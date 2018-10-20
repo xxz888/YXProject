@@ -18,6 +18,9 @@
     //初始化window
     [self initWindow];
     
+    
+
+    
     //初始化网络请求配置
     [self NetWorkConfig];
     
@@ -36,8 +39,11 @@
     //网络监听
     [self monitorNetworkStatus];
     
+    
+    //初始化QMUI
+    [self initQMUI];
     //广告页
-    [AppManager appStart];
+    //[AppManager appStart];
     
     return YES;
 }

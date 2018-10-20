@@ -8,13 +8,23 @@
 
 #import "LoginViewController.h"
 #import <UMSocialCore/UMSocialCore.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface LoginViewController ()
-
+//1 播放器
+@property (strong, nonatomic) AVPlayer *player;
+@property(nonatomic,strong)QMUIButton * button;
 @end
 
 @implementation LoginViewController
-
+#pragma mark - 1 viewWillAppear 就进行播放
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBar.hidden = YES;
+    //视频播放
+    [self.player play];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"登录";
@@ -35,7 +45,7 @@
         [weakself WXLogin];
     };
     
-    [self.view addSubview:snowBtn];
+    //[self.view addSubview:snowBtn];
     
     YYLabel *snowBtn2 = [[YYLabel alloc] initWithFrame:CGRectMake(0, 300, 150, 60)];
     snowBtn2.text = @"QQ登录";
@@ -52,7 +62,7 @@
         [weakself QQLogin];
     };
     
-    [self.view addSubview:snowBtn2];
+    //[self.view addSubview:snowBtn2];
     
     YYLabel *skipBtn = [[YYLabel alloc] initWithFrame:CGRectMake(0, 400, 150, 60)];
     skipBtn.text = @"跳过登录";
@@ -102,5 +112,30 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark - 懒加载AVPlayer
+- (AVPlayer *)player
+{
+    if (!_player) {
+        //1 创建一个播放item
+        NSString *path = [[NSBundle mainBundle]pathForResource:@"register_guide_video.mp4" ofType:nil];
+        NSURL *url = [NSURL fileURLWithPath:path];
+        AVPlayerItem *playItem = [AVPlayerItem playerItemWithURL:url];
+        // 2 播放的设置
+        _player = [AVPlayer playerWithPlayerItem:playItem];
+        _player.actionAtItemEnd = AVPlayerActionAtItemEndNone;// 永不暂停
+        // 3 将图层嵌入到0层
+        AVPlayerLayer *layer = [AVPlayerLayer playerLayerWithPlayer:_player];
+        layer.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight);
+        [self.view.layer insertSublayer:layer atIndex:0];
+        // 4 播放到头循环播放
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playToEnd) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+    }
+    return _player;
+}
+#pragma mark - 视频播放结束 触发
+- (void)playToEnd
+{
+    // 重头再来
+    [self.player seekToTime:kCMTimeZero];
+}
 @end

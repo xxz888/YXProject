@@ -33,6 +33,8 @@
 //初始化网络配置
 -(void)NetWorkConfig;
 
+//初始化QMUI
+-(void)initQMUI;
 //单例
 + (AppDelegate *)shareAppDelegate;
 

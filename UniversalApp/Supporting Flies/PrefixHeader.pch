@@ -47,7 +47,7 @@
 #import "FontAndColorMacros.h"
 #import "ThirdMacros.h"
 #import "CommonMacros.h"
-
+#import "QMUIKit.h"
 //基础类
 #import "AppDelegate.h"
 #import "AppDelegate+AppService.h"

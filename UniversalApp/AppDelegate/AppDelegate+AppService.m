@@ -100,8 +100,13 @@
         
     }else {//登陆失败加载登陆页面控制器
         
+        
+        UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+        LoginViewController * VC = [stroryBoard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+                                             
+                                             
         self.mainTabBar = nil;
-        RootNavigationController *loginNavi =[[RootNavigationController alloc] initWithRootViewController:[LoginViewController new]];
+        RootNavigationController *loginNavi =[[RootNavigationController alloc] initWithRootViewController:VC];
         
         CATransition *anima = [CATransition animation];
         anima.type = @"fade";//设置动画的类型
@@ -230,6 +235,13 @@
     }];
     
 }
+
+
+//初始化QMUI
+-(void)initQMUI{
+    
+}
+
 
 + (AppDelegate *)shareAppDelegate{
     return (AppDelegate *)[[UIApplication sharedApplication] delegate];

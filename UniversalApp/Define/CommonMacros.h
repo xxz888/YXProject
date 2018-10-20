@@ -34,4 +34,6 @@
 //网络状态变化
 #define KNotificationNetWorkStateChange @"KNotificationNetWorkStateChange"
 
+#pragma mark - ——————— 引用 ————————
+
 #endif /* CommonMacros_h */

@@ -187,6 +187,9 @@
 		29FEE77B1ECED1E200C81B60 /* MBHUD_Warn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 29FEE7731ECED1E200C81B60 /* MBHUD_Warn@2x.png */; };
 		29FEE77C1ECED1E200C81B60 /* MBHUD_Warn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 29FEE7741ECED1E200C81B60 /* MBHUD_Warn@3x.png */; };
 		5BC8C50C0BEF57AA0780D5DC /* libPods-UniversalApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E884624664B432D4FE5044F /* libPods-UniversalApp.a */; };
+		BBC16284217AD6EA00008907 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC16283217AD6EA00008907 /* Login.storyboard */; };
+		BBC16286217AD8F500008907 /* register_guide_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BBC16285217AD8F500008907 /* register_guide_video.mp4 */; };
+		BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -482,6 +485,10 @@
 		29FEE7741ECED1E200C81B60 /* MBHUD_Warn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MBHUD_Warn@3x.png"; sourceTree = "<group>"; };
 		9E884624664B432D4FE5044F /* libPods-UniversalApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UniversalApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A51AB222BA7ACF202B5B1330 /* Pods-UniversalApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalApp/Pods-UniversalApp.debug.xcconfig"; sourceTree = "<group>"; };
+		BBC16283217AD6EA00008907 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		BBC16285217AD8F500008907 /* register_guide_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = register_guide_video.mp4; sourceTree = "<group>"; };
+		BBC162D0217B111C00008907 /* QMUIConfigurationTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfigurationTemplate.h; sourceTree = "<group>"; };
+		BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIConfigurationTemplate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -726,6 +733,7 @@
 		293D45AB1ECD6926007C64A9 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				BBC16285217AD8F500008907 /* register_guide_video.mp4 */,
 				29629EE81F78E2C7002CFCBD /* back_icon@2x.png */,
 				29629EE71F78E2C7002CFCBD /* back_icon@3x.png */,
 				296F85071FED04EF005612D1 /* close_icon@2x.png */,
@@ -1294,6 +1302,7 @@
 		296F9EBA1ECC64CE0063A255 /* UniversalApp */ = {
 			isa = PBXGroup;
 			children = (
+				BBC16282217AD6DE00008907 /* StoryBoard */,
 				29AD6C5D1ED3E4D600B0879C /* AppDelegate */,
 				293D45A91ECD6926007C64A9 /* Modules */,
 				293D45A81ECD6926007C64A9 /* Manager */,
@@ -1447,6 +1456,8 @@
 				29AD6C5F1ED3E4D600B0879C /* AppDelegate+AppService.m */,
 				2924783C1ED6857300BB097A /* AppDelegate+PushService.h */,
 				2924783D1ED6857300BB097A /* AppDelegate+PushService.m */,
+				BBC162D0217B111C00008907 /* QMUIConfigurationTemplate.h */,
+				BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -1518,6 +1529,14 @@
 				9E884624664B432D4FE5044F /* libPods-UniversalApp.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BBC16282217AD6DE00008907 /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				BBC16283217AD6EA00008907 /* Login.storyboard */,
+			);
+			path = StoryBoard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1668,6 +1687,7 @@
 				296DEA811F5D536500C6FD00 /* pageControlCurrentDot@2x.png in Resources */,
 				296DEA7F1F5D536500C6FD00 /* pageControlDot@3x.png in Resources */,
 				294A680D1ED58F0700AC382A /* LCTabBarBadge@2x.png in Resources */,
+				BBC16284217AD6EA00008907 /* Login.storyboard in Resources */,
 				290A97E51F4AB24A006BF882 /* stepPk_win_colour7@2x.png in Resources */,
 				2996100E1ED7E81900BCED2A /* snow.png in Resources */,
 				29530FD91F60F1BB00D24E05 /* photo_sample_06.png in Resources */,
@@ -1686,6 +1706,7 @@
 				290A97DF1F4AB24A006BF882 /* stepPk_win_colour1@2x.png in Resources */,
 				293D46501ECDBB63007C64A9 /* icon_tabbar_misc_selected.png in Resources */,
 				290A97F11F4ABC02006BF882 /* qianb@2x.png in Resources */,
+				BBC16286217AD8F500008907 /* register_guide_video.mp4 in Resources */,
 				293D46511ECDBB63007C64A9 /* icon_tabbar_misc_selected@2x.png in Resources */,
 				293D46461ECDBB63007C64A9 /* icon_tabbar_merchant_normal.png in Resources */,
 				290A97E01F4AB24A006BF882 /* stepPk_win_colour2@2x.png in Resources */,
@@ -1751,6 +1772,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-UniversalApp/Pods-UniversalApp-resources.sh",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/QMUIKit/QMUIKit/QMUIResources/QMUIResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -1809,6 +1831,7 @@
 				29AD6C631ED3E4D600B0879C /* AppDelegate.m in Sources */,
 				290471B81F98D9A80081CCA1 /* UITabBar+CustomBadge.m in Sources */,
 				29CF332A1F14B5CC00DB7507 /* MakeFriendsLogic.m in Sources */,
+				BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */,
 				2917D1FF1EDFC89A00E76185 /* YYFPSLabel.m in Sources */,
 				29AD6C621ED3E4D600B0879C /* AppDelegate+AppService.m in Sources */,
 				296DEA701F5D50D100C6FD00 /* TAAnimatedDotView.m in Sources */,
@@ -2033,7 +2056,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/UniversalApp/Supporting Flies/PrefixHeader.pch";
 				INFOPLIST_FILE = "UniversalApp/Supporting Flies/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2062,7 +2085,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/UniversalApp/Supporting Flies/PrefixHeader.pch";
 				INFOPLIST_FILE = "UniversalApp/Supporting Flies/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

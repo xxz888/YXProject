@@ -20,6 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     [self addNavigationItemWithTitles
      :@[@"push"] isLeft:NO target:self action:@selector(naviBtnClick:) tags:@[@1000]];
     
