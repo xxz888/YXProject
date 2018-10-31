@@ -67,5 +67,9 @@
 #import <Masonry.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
+#define WP_TOOL_IMManager  [IMManager sharedIMManager]
+#define WP_TOOL_AppManager [AppManager sharedAppManager]
+#define WP_TOOL_ShareManager [ShareManager sharedShareManager]
+
 
 #endif /* PrefixHeader_pch */

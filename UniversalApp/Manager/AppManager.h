@@ -13,6 +13,7 @@
  包含应用层的相关服务
  */
 @interface AppManager : NSObject
+SINGLETON_FOR_HEADER(AppManager);
 
 #pragma mark ————— APP启动接口 —————
 +(void)appStart;
@@ -20,4 +21,6 @@
 #pragma mark ————— FPS 监测 —————
 +(void)showFPS;
 
+#pragma mark ————— 更新app的方法，封装起来 —————
+- (void)updateApp;
 @end

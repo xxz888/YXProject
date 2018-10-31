@@ -45,6 +45,8 @@
     //广告页
     //[AppManager appStart];
     
+    [WP_TOOL_AppManager updateApp];
+
     return YES;
 }
 

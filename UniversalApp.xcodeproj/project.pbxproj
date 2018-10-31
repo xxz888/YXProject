@@ -187,6 +187,8 @@
 		29FEE77B1ECED1E200C81B60 /* MBHUD_Warn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 29FEE7731ECED1E200C81B60 /* MBHUD_Warn@2x.png */; };
 		29FEE77C1ECED1E200C81B60 /* MBHUD_Warn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 29FEE7741ECED1E200C81B60 /* MBHUD_Warn@3x.png */; };
 		5BC8C50C0BEF57AA0780D5DC /* libPods-UniversalApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E884624664B432D4FE5044F /* libPods-UniversalApp.a */; };
+		BB5DC69B2189CA38003F1998 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */; };
+		BB5DC69C2189CA38003F1998 /* SELUpdateAlertConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */; };
 		BBC16284217AD6EA00008907 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC16283217AD6EA00008907 /* Login.storyboard */; };
 		BBC16286217AD8F500008907 /* register_guide_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BBC16285217AD8F500008907 /* register_guide_video.mp4 */; };
 		BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */; };
@@ -485,6 +487,10 @@
 		29FEE7741ECED1E200C81B60 /* MBHUD_Warn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MBHUD_Warn@3x.png"; sourceTree = "<group>"; };
 		9E884624664B432D4FE5044F /* libPods-UniversalApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UniversalApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A51AB222BA7ACF202B5B1330 /* Pods-UniversalApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalApp/Pods-UniversalApp.debug.xcconfig"; sourceTree = "<group>"; };
+		BB5DC6972189CA38003F1998 /* SELUpdateAlertConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlertConst.h; sourceTree = "<group>"; };
+		BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
+		BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlertConst.m; sourceTree = "<group>"; };
+		BB5DC69A2189CA38003F1998 /* SELUpdateAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlert.h; sourceTree = "<group>"; };
 		BBC16283217AD6EA00008907 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		BBC16285217AD8F500008907 /* register_guide_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = register_guide_video.mp4; sourceTree = "<group>"; };
 		BBC162D0217B111C00008907 /* QMUIConfigurationTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfigurationTemplate.h; sourceTree = "<group>"; };
@@ -758,6 +764,7 @@
 		293D45AD1ECD6926007C64A9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				BB5DC6962189CA38003F1998 /* UpdateAlert */,
 				296DEA5F1F5D50D100C6FD00 /* SDCycleScrollView */,
 				29D3C0041F4D11A200FD3914 /* TagsView */,
 				290A980A1F4ABD00006BF882 /* SandBoxHelper */,
@@ -1531,6 +1538,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BB5DC6962189CA38003F1998 /* UpdateAlert */ = {
+			isa = PBXGroup;
+			children = (
+				BB5DC6972189CA38003F1998 /* SELUpdateAlertConst.h */,
+				BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */,
+				BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */,
+				BB5DC69A2189CA38003F1998 /* SELUpdateAlert.h */,
+			);
+			path = UpdateAlert;
+			sourceTree = "<group>";
+		};
 		BBC16282217AD6DE00008907 /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
@@ -1831,8 +1849,10 @@
 				29AD6C631ED3E4D600B0879C /* AppDelegate.m in Sources */,
 				290471B81F98D9A80081CCA1 /* UITabBar+CustomBadge.m in Sources */,
 				29CF332A1F14B5CC00DB7507 /* MakeFriendsLogic.m in Sources */,
+				BB5DC69B2189CA38003F1998 /* SELUpdateAlert.m in Sources */,
 				BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */,
 				2917D1FF1EDFC89A00E76185 /* YYFPSLabel.m in Sources */,
+				BB5DC69C2189CA38003F1998 /* SELUpdateAlertConst.m in Sources */,
 				29AD6C621ED3E4D600B0879C /* AppDelegate+AppService.m in Sources */,
 				296DEA701F5D50D100C6FD00 /* TAAnimatedDotView.m in Sources */,
 				293D46051ECDAA02007C64A9 /* RootNavigationController.m in Sources */,

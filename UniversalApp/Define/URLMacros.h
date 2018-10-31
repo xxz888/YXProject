@@ -45,6 +45,10 @@
 #define URL_main @"http://192.168.20.31:20000/shark-miai-service"
 #endif
 
+#pragma mark - ——————— 更新app的id号，需要更改 ————————
+
+#define UPDATE_APP_URL @"http://itunes.apple.com/lookup?id="
+#define UPDATE_App_ID @""
 
 
 #pragma mark - ——————— 详细接口地址 ————————
