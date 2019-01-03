@@ -20,6 +20,11 @@
 #import "UITabBar+CustomBadge.h"
 #import "XYTabBar.h"
 
+#import "YXHomeViewController.h"
+#import "YXFindViewController.h"
+#import "YXMessageViewController.h"
+#import "YXPublishViewController.h"
+#import "YXMineViewController.h"
 @interface MainTabBarController ()<UITabBarControllerDelegate>
 
 @property (nonatomic,strong) NSMutableArray * VCS;//tabbar root VC
@@ -59,21 +64,35 @@
     _VCS = @[].mutableCopy;
 //    HomeViewController *homeVC = [[HomeViewController alloc]init];
 //    WaterFallListViewController *homeVC = [WaterFallListViewController new];
-    PersonListViewController *homeVC = [[PersonListViewController alloc]init];
+//    PersonListViewController *homeVC = [[PersonListViewController alloc]init];
+    
+    
+    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+    YXHomeViewController * homeVC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeViewController"];
     [self setupChildViewController:homeVC title:@"首页" imageName:@"icon_tabbar_homepage" seleceImageName:@"icon_tabbar_homepage_selected"];
     
 //    MakeFriendsViewController *makeFriendVC = [[MakeFriendsViewController alloc]init];
-    ToolDemoViewController *makeFriendVC = [[ToolDemoViewController alloc]init];
-    [self setupChildViewController:makeFriendVC title:@"Demo" imageName:@"icon_tabbar_onsite" seleceImageName:@"icon_tabbar_onsite_selected"];
+//    ToolDemoViewController *makeFriendVC = [[ToolDemoViewController alloc]init];
+    UIStoryboard * stroryBoard2 = [UIStoryboard storyboardWithName:@"YXFind" bundle:nil];
+    YXFindViewController * findVC = [stroryBoard2 instantiateViewControllerWithIdentifier:@"YXFindViewController"];
+    [self setupChildViewController:findVC title:@"发现" imageName:@"icon_tabbar_onsite" seleceImageName:@"icon_tabbar_onsite_selected"];
     
 //    MsgViewController *msgVC = [[MsgViewController alloc]init];
-    DraggingCardViewController *msgVC = [DraggingCardViewController new];
-    [self setupChildViewController:msgVC title:@"消息" imageName:@"icon_tabbar_merchant_normal" seleceImageName:@"icon_tabbar_merchant_selected"];
+//    DraggingCardViewController *msgVC = [DraggingCardViewController new];
+    UIStoryboard * stroryBoard3 = [UIStoryboard storyboardWithName:@"YXPublish" bundle:nil];
+    YXPublishViewController * publishVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishViewController"];
+    [self setupChildViewController:publishVC title:@"消息" imageName:@"icon_tabbar_merchant_normal" seleceImageName:@"icon_tabbar_merchant_selected"];
     
     
-    MineViewController *mineVC = [[MineViewController alloc]init];
+//    MineViewController *mineVC = [[MineViewController alloc]init];
+    UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMessage" bundle:nil];
+    YXMessageViewController * messageVC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMessageViewController"];
+    [self setupChildViewController:messageVC title:@"发现" imageName:@"icon_tabbar_mine" seleceImageName:@"icon_tabbar_mine_selected"];
+    
+    
+    UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+    YXMineViewController * mineVC = [stroryBoard5 instantiateViewControllerWithIdentifier:@"YXMineViewController"];
     [self setupChildViewController:mineVC title:@"我的" imageName:@"icon_tabbar_mine" seleceImageName:@"icon_tabbar_mine_selected"];
-    
     self.viewControllers = _VCS;
 }
 

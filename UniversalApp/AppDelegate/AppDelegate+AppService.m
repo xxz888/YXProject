@@ -81,6 +81,8 @@
 {
     BOOL loginSuccess = [notification.object boolValue];
     
+    loginSuccess = YES;
+    
     if (loginSuccess) {//登陆成功加载主窗口控制器
         
         //为避免自动登录成功刷新tabbar
