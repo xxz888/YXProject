@@ -46,7 +46,7 @@
 #pragma mark ————— 初始化网络配置 —————
 -(void)NetWorkConfig{
     YTKNetworkConfig *config = [YTKNetworkConfig sharedConfig];
-    config.baseUrl = URL_main;
+    config.baseUrl = API_ROOT_URL_HTTP_FORMAL;
 }
 
 #pragma mark ————— 初始化用户系统 —————

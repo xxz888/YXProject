@@ -13,6 +13,7 @@
         <!--Home View Controller-->
         <scene sceneID="biq-aR-xI8">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kad-5r-Js8" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="YXHomeViewController" id="xNK-IO-eew" customClass="YXHomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bg1-9L-BsD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -21,9 +22,38 @@
                         <viewLayoutGuide key="safeArea" id="Oes-FW-HIY"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kad-5r-Js8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-305" y="-110"/>
+            <point key="canvasLocation" x="-4401" y="-146"/>
+        </scene>
+        <!--Home Xue Jia View Controller-->
+        <scene sceneID="fIT-qu-gk1">
+            <objects>
+                <viewController storyboardIdentifier="YXHomeXueJiaViewController" id="Lkc-Ae-SRX" customClass="YXHomeXueJiaViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hvr-iq-f8s">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgE-aW-koo">
+                                <rect key="frame" x="0.0" y="30" width="375" height="509"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dgE-aW-koo" firstAttribute="top" secondItem="RRU-Dp-FU3" secondAttribute="top" constant="10" id="CgJ-bA-T7k"/>
+                            <constraint firstItem="RRU-Dp-FU3" firstAttribute="bottom" secondItem="dgE-aW-koo" secondAttribute="bottom" constant="128" id="mNM-mp-o89"/>
+                            <constraint firstItem="dgE-aW-koo" firstAttribute="trailing" secondItem="RRU-Dp-FU3" secondAttribute="trailing" id="uS7-iY-JdM"/>
+                            <constraint firstItem="dgE-aW-koo" firstAttribute="leading" secondItem="RRU-Dp-FU3" secondAttribute="leading" id="wHq-Te-Tvd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="RRU-Dp-FU3"/>
+                    </view>
+                    <connections>
+                        <outlet property="bootomView" destination="dgE-aW-koo" id="jwa-jb-91A"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S1e-pt-cdG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3060" y="-225.33733133433284"/>
         </scene>
     </scenes>
 </document>

@@ -279,6 +279,8 @@ PODS:
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
+  - ZXSegmentController (0.1.5):
+    - Masonry (~> 1.1.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
@@ -289,6 +291,7 @@ DEPENDENCIES:
   - SDWebImage (~> 3.8)
   - YTKNetwork
   - YYKit
+  - ZXSegmentController
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -299,7 +302,8 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   YTKNetwork: df8a7a5597bda1664a4efaa7ef871a818a887fe0
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
+  ZXSegmentController: d94f138ab0191da1e2e4268e9b961e082a142549
 
-PODFILE CHECKSUM: e03c12ee02ee010e5e28937147b26ff134618c4e
+PODFILE CHECKSUM: 2ca941aacd9c0ebfb6344c5d1090deff77cf5874
 
 COCOAPODS: 1.4.0.beta.1

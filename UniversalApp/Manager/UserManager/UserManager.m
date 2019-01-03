@@ -85,7 +85,7 @@ SINGLETON_FOR_CLASS(UserManager);
 #pragma mark ————— 手动登录到服务器 —————
 -(void)loginToServer:(NSDictionary *)params completion:(loginBlock)completion{
     [MBProgressHUD showActivityMessageInView:@"登录中..."];
-    [PPNetworkHelper POST:NSStringFormat(@"%@%@",URL_main,URL_user_login) parameters:params success:^(id responseObject) {
+    [PPNetworkHelper POST:NSStringFormat(@"%@%@",API_ROOT_URL_HTTP_FORMAL,URL_user_login) parameters:params success:^(id responseObject) {
         [self LoginSuccess:responseObject completion:completion];
         
     } failure:^(NSError *error) {
@@ -98,7 +98,7 @@ SINGLETON_FOR_CLASS(UserManager);
 
 #pragma mark ————— 自动登录到服务器 —————
 -(void)autoLoginToServer:(loginBlock)completion{
-    [PPNetworkHelper POST:NSStringFormat(@"%@%@",URL_main,URL_user_auto_login) parameters:nil success:^(id responseObject) {
+    [PPNetworkHelper POST:NSStringFormat(@"%@%@",API_ROOT_URL_HTTP_FORMAL,URL_user_auto_login) parameters:nil success:^(id responseObject) {
         [self LoginSuccess:responseObject completion:completion];
         
     } failure:^(NSError *error) {

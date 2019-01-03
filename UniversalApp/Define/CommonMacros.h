@@ -10,6 +10,8 @@
 
 #ifndef CommonMacros_h
 #define CommonMacros_h
+#define YX_MANAGER [YXManager sharedInstance]
+#import "NSString+CString.h"
 
 #pragma mark - ——————— 用户相关 ————————
 //登录状态改变通知

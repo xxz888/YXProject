@@ -100,7 +100,7 @@
     if (!_isOpenAES) {
         return nil;
     }
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",URL_main,self.requestUrl]]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",API_ROOT_URL_HTTP_FORMAL,self.requestUrl]]];
     
     //加密header部分
     NSString *headerContentStr = [[HeaderModel new] modelToJSONString];

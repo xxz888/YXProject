@@ -60,6 +60,7 @@
 #import "UserManager.h"
 #import "IMManager.h"
 #import "UIButton+XYButton.h"
+#import "YXManager.h"
 
 //第三方
 #import <YYKit.h>

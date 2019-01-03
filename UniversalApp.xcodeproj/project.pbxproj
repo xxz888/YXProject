@@ -204,6 +204,24 @@
 		BBA812C521DDBF6A001B5EA1 /* UITabBar+TBBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812BC21DDBF69001B5EA1 /* UITabBar+TBBadge.m */; };
 		BBA812C621DDBF6A001B5EA1 /* UIView+TBFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812C021DDBF6A001B5EA1 /* UIView+TBFrame.m */; };
 		BBA812C721DDBF6A001B5EA1 /* UIFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812C321DDBF6A001B5EA1 /* UIFactory.m */; };
+		BBA812E521DDDE47001B5EA1 /* WJSliderScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812D821DDDE47001B5EA1 /* WJSliderScrollView.m */; };
+		BBA812E621DDDE47001B5EA1 /* WJSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812DB21DDDE47001B5EA1 /* WJSliderView.m */; };
+		BBA812E721DDDE47001B5EA1 /* MDMultipleSegmentLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812DF21DDDE47001B5EA1 /* MDMultipleSegmentLayout.m */; };
+		BBA812E821DDDE47001B5EA1 /* MDFlipCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812E121DDDE47001B5EA1 /* MDFlipCollectionView.m */; };
+		BBA812E921DDDE47001B5EA1 /* MDMultipleSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812E221DDDE47001B5EA1 /* MDMultipleSegmentView.m */; };
+		BBA812EA21DDDE47001B5EA1 /* MDMultipleSegmentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812E421DDDE47001B5EA1 /* MDMultipleSegmentViewCell.m */; };
+		BBA812F721DDEBBB001B5EA1 /* SegmentTapView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812F621DDEBBB001B5EA1 /* SegmentTapView.m */; };
+		BBA812FA21DDEBEC001B5EA1 /* YXHomeTuiJianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812F921DDEBEC001B5EA1 /* YXHomeTuiJianViewController.m */; };
+		BBA812FD21DDEBFB001B5EA1 /* YXHomeXueJiaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812FC21DDEBFB001B5EA1 /* YXHomeXueJiaViewController.m */; };
+		BBA8130021DDEC10001B5EA1 /* YXHomeMeiJiuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812FF21DDEC10001B5EA1 /* YXHomeMeiJiuViewController.m */; };
+		BBA8130321DDEC20001B5EA1 /* YXHomeGaoErFuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA8130221DDEC20001B5EA1 /* YXHomeGaoErFuViewController.m */; };
+		BBA8130721DDFC81001B5EA1 /* YXHomeXueJiaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA8130521DDFC81001B5EA1 /* YXHomeXueJiaTableViewCell.m */; };
+		BBA8130821DDFC81001B5EA1 /* YXHomeXueJiaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBA8130621DDFC81001B5EA1 /* YXHomeXueJiaTableViewCell.xib */; };
+		BBA8130B21DDFE4F001B5EA1 /* YXHomeXueJiaHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA8130A21DDFE4F001B5EA1 /* YXHomeXueJiaHeaderView.m */; };
+		BBA8130D21DDFE64001B5EA1 /* YXHomeXueJiaHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBA8130C21DDFE64001B5EA1 /* YXHomeXueJiaHeaderView.xib */; };
+		BBA8131021DE06BE001B5EA1 /* YXManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA8130F21DE06BE001B5EA1 /* YXManager.m */; };
+		BBA8131321DE0814001B5EA1 /* HttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA8131121DE0814001B5EA1 /* HttpRequest.m */; };
+		BBA8147021DE0D38001B5EA1 /* NSString+CString.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA813B621DE0D37001B5EA1 /* NSString+CString.m */; };
 		BBC16284217AD6EA00008907 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC16283217AD6EA00008907 /* Login.storyboard */; };
 		BBC16286217AD8F500008907 /* register_guide_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BBC16285217AD8F500008907 /* register_guide_video.mp4 */; };
 		BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */; };
@@ -531,6 +549,40 @@
 		BBA812C021DDBF6A001B5EA1 /* UIView+TBFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TBFrame.m"; sourceTree = "<group>"; };
 		BBA812C221DDBF6A001B5EA1 /* UIFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIFactory.h; sourceTree = "<group>"; };
 		BBA812C321DDBF6A001B5EA1 /* UIFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIFactory.m; sourceTree = "<group>"; };
+		BBA812D821DDDE47001B5EA1 /* WJSliderScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJSliderScrollView.m; sourceTree = "<group>"; };
+		BBA812D921DDDE47001B5EA1 /* WJSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJSliderView.h; sourceTree = "<group>"; };
+		BBA812DA21DDDE47001B5EA1 /* WJSliderScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJSliderScrollView.h; sourceTree = "<group>"; };
+		BBA812DB21DDDE47001B5EA1 /* WJSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJSliderView.m; sourceTree = "<group>"; };
+		BBA812DD21DDDE47001B5EA1 /* MDMultipleSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMultipleSegmentView.h; sourceTree = "<group>"; };
+		BBA812DE21DDDE47001B5EA1 /* MDFlipCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDFlipCollectionView.h; sourceTree = "<group>"; };
+		BBA812DF21DDDE47001B5EA1 /* MDMultipleSegmentLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMultipleSegmentLayout.m; sourceTree = "<group>"; };
+		BBA812E021DDDE47001B5EA1 /* MDMultipleSegmentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMultipleSegmentViewCell.h; sourceTree = "<group>"; };
+		BBA812E121DDDE47001B5EA1 /* MDFlipCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDFlipCollectionView.m; sourceTree = "<group>"; };
+		BBA812E221DDDE47001B5EA1 /* MDMultipleSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMultipleSegmentView.m; sourceTree = "<group>"; };
+		BBA812E321DDDE47001B5EA1 /* MDMultipleSegmentLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMultipleSegmentLayout.h; sourceTree = "<group>"; };
+		BBA812E421DDDE47001B5EA1 /* MDMultipleSegmentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMultipleSegmentViewCell.m; sourceTree = "<group>"; };
+		BBA812F521DDEBBB001B5EA1 /* SegmentTapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentTapView.h; sourceTree = "<group>"; };
+		BBA812F621DDEBBB001B5EA1 /* SegmentTapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentTapView.m; sourceTree = "<group>"; };
+		BBA812F821DDEBEC001B5EA1 /* YXHomeTuiJianViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeTuiJianViewController.h; sourceTree = "<group>"; };
+		BBA812F921DDEBEC001B5EA1 /* YXHomeTuiJianViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeTuiJianViewController.m; sourceTree = "<group>"; };
+		BBA812FB21DDEBFB001B5EA1 /* YXHomeXueJiaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaViewController.h; sourceTree = "<group>"; };
+		BBA812FC21DDEBFB001B5EA1 /* YXHomeXueJiaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaViewController.m; sourceTree = "<group>"; };
+		BBA812FE21DDEC10001B5EA1 /* YXHomeMeiJiuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeMeiJiuViewController.h; sourceTree = "<group>"; };
+		BBA812FF21DDEC10001B5EA1 /* YXHomeMeiJiuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeMeiJiuViewController.m; sourceTree = "<group>"; };
+		BBA8130121DDEC20001B5EA1 /* YXHomeGaoErFuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeGaoErFuViewController.h; sourceTree = "<group>"; };
+		BBA8130221DDEC20001B5EA1 /* YXHomeGaoErFuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeGaoErFuViewController.m; sourceTree = "<group>"; };
+		BBA8130421DDFC81001B5EA1 /* YXHomeXueJiaTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaTableViewCell.h; sourceTree = "<group>"; };
+		BBA8130521DDFC81001B5EA1 /* YXHomeXueJiaTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaTableViewCell.m; sourceTree = "<group>"; };
+		BBA8130621DDFC81001B5EA1 /* YXHomeXueJiaTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeXueJiaTableViewCell.xib; sourceTree = "<group>"; };
+		BBA8130921DDFE4F001B5EA1 /* YXHomeXueJiaHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaHeaderView.h; sourceTree = "<group>"; };
+		BBA8130A21DDFE4F001B5EA1 /* YXHomeXueJiaHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaHeaderView.m; sourceTree = "<group>"; };
+		BBA8130C21DDFE64001B5EA1 /* YXHomeXueJiaHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeXueJiaHeaderView.xib; sourceTree = "<group>"; };
+		BBA8130E21DE06BE001B5EA1 /* YXManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXManager.h; sourceTree = "<group>"; };
+		BBA8130F21DE06BE001B5EA1 /* YXManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXManager.m; sourceTree = "<group>"; };
+		BBA8131121DE0814001B5EA1 /* HttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequest.m; sourceTree = "<group>"; };
+		BBA8131221DE0814001B5EA1 /* HttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequest.h; sourceTree = "<group>"; };
+		BBA8131921DE0D37001B5EA1 /* NSString+CString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CString.h"; sourceTree = "<group>"; };
+		BBA813B621DE0D37001B5EA1 /* NSString+CString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CString.m"; sourceTree = "<group>"; };
 		BBC16283217AD6EA00008907 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		BBC16285217AD8F500008907 /* register_guide_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = register_guide_video.mp4; sourceTree = "<group>"; };
 		BBC162D0217B111C00008907 /* QMUIConfigurationTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfigurationTemplate.h; sourceTree = "<group>"; };
@@ -752,6 +804,8 @@
 		293D45A81ECD6926007C64A9 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				BBA8130E21DE06BE001B5EA1 /* YXManager.h */,
+				BBA8130F21DE06BE001B5EA1 /* YXManager.m */,
 				290DE9241ED19B7F00A45FF6 /* AppManager.h */,
 				290DE9251ED19B7F00A45FF6 /* AppManager.m */,
 				293ECC2B1EE56D1D008061A1 /* IMManager.h */,
@@ -806,6 +860,9 @@
 		293D45AD1ECD6926007C64A9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */,
+				BBA812D721DDDE47001B5EA1 /* homeSliderView */,
+				BBA812DC21DDDE47001B5EA1 /* UNUSED */,
 				BB5DC6962189CA38003F1998 /* UpdateAlert */,
 				296DEA5F1F5D50D100C6FD00 /* SDCycleScrollView */,
 				29D3C0041F4D11A200FD3914 /* TagsView */,
@@ -1526,6 +1583,8 @@
 		29AD6C681ED41E2100B0879C /* UserManager */ = {
 			isa = PBXGroup;
 			children = (
+				BBA8131221DE0814001B5EA1 /* HttpRequest.h */,
+				BBA8131121DE0814001B5EA1 /* HttpRequest.m */,
 				29AD6C691ED41E2100B0879C /* UserManager.h */,
 				29AD6C6A1ED41E2100B0879C /* UserManager.m */,
 				29AD6C6F1ED41ED200B0879C /* UserInfo.h */,
@@ -1618,8 +1677,12 @@
 		BBA812A421DDAB7A001B5EA1 /* A首页 */ = {
 			isa = PBXGroup;
 			children = (
-				BBA812A521DDAB7A001B5EA1 /* YXHomeViewController.m */,
 				BBA812A621DDAB7A001B5EA1 /* YXHomeViewController.h */,
+				BBA812A521DDAB7A001B5EA1 /* YXHomeViewController.m */,
+				BBA812EB21DDE64A001B5EA1 /* 1推荐 */,
+				BBA812EC21DDE64A001B5EA1 /* 2雪茄 */,
+				BBA812ED21DDE64A001B5EA1 /* 3美酒 */,
+				BBA812EE21DDE64A001B5EA1 /* 4高尔夫 */,
 			);
 			path = "A首页";
 			sourceTree = "<group>";
@@ -1671,6 +1734,93 @@
 				BBA812C321DDBF6A001B5EA1 /* UIFactory.m */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		BBA812D721DDDE47001B5EA1 /* homeSliderView */ = {
+			isa = PBXGroup;
+			children = (
+				BBA812F421DDEBBB001B5EA1 /* SegementTap */,
+				BBA812D821DDDE47001B5EA1 /* WJSliderScrollView.m */,
+				BBA812D921DDDE47001B5EA1 /* WJSliderView.h */,
+				BBA812DA21DDDE47001B5EA1 /* WJSliderScrollView.h */,
+				BBA812DB21DDDE47001B5EA1 /* WJSliderView.m */,
+			);
+			path = homeSliderView;
+			sourceTree = "<group>";
+		};
+		BBA812DC21DDDE47001B5EA1 /* UNUSED */ = {
+			isa = PBXGroup;
+			children = (
+				BBA812DD21DDDE47001B5EA1 /* MDMultipleSegmentView.h */,
+				BBA812DE21DDDE47001B5EA1 /* MDFlipCollectionView.h */,
+				BBA812DF21DDDE47001B5EA1 /* MDMultipleSegmentLayout.m */,
+				BBA812E021DDDE47001B5EA1 /* MDMultipleSegmentViewCell.h */,
+				BBA812E121DDDE47001B5EA1 /* MDFlipCollectionView.m */,
+				BBA812E221DDDE47001B5EA1 /* MDMultipleSegmentView.m */,
+				BBA812E321DDDE47001B5EA1 /* MDMultipleSegmentLayout.h */,
+				BBA812E421DDDE47001B5EA1 /* MDMultipleSegmentViewCell.m */,
+			);
+			path = UNUSED;
+			sourceTree = "<group>";
+		};
+		BBA812EB21DDE64A001B5EA1 /* 1推荐 */ = {
+			isa = PBXGroup;
+			children = (
+				BBA812F821DDEBEC001B5EA1 /* YXHomeTuiJianViewController.h */,
+				BBA812F921DDEBEC001B5EA1 /* YXHomeTuiJianViewController.m */,
+			);
+			path = "1推荐";
+			sourceTree = "<group>";
+		};
+		BBA812EC21DDE64A001B5EA1 /* 2雪茄 */ = {
+			isa = PBXGroup;
+			children = (
+				BBA812FB21DDEBFB001B5EA1 /* YXHomeXueJiaViewController.h */,
+				BBA812FC21DDEBFB001B5EA1 /* YXHomeXueJiaViewController.m */,
+				BBA8130921DDFE4F001B5EA1 /* YXHomeXueJiaHeaderView.h */,
+				BBA8130A21DDFE4F001B5EA1 /* YXHomeXueJiaHeaderView.m */,
+				BBA8130C21DDFE64001B5EA1 /* YXHomeXueJiaHeaderView.xib */,
+				BBA8130421DDFC81001B5EA1 /* YXHomeXueJiaTableViewCell.h */,
+				BBA8130521DDFC81001B5EA1 /* YXHomeXueJiaTableViewCell.m */,
+				BBA8130621DDFC81001B5EA1 /* YXHomeXueJiaTableViewCell.xib */,
+			);
+			path = "2雪茄";
+			sourceTree = "<group>";
+		};
+		BBA812ED21DDE64A001B5EA1 /* 3美酒 */ = {
+			isa = PBXGroup;
+			children = (
+				BBA812FE21DDEC10001B5EA1 /* YXHomeMeiJiuViewController.h */,
+				BBA812FF21DDEC10001B5EA1 /* YXHomeMeiJiuViewController.m */,
+			);
+			path = "3美酒";
+			sourceTree = "<group>";
+		};
+		BBA812EE21DDE64A001B5EA1 /* 4高尔夫 */ = {
+			isa = PBXGroup;
+			children = (
+				BBA8130121DDEC20001B5EA1 /* YXHomeGaoErFuViewController.h */,
+				BBA8130221DDEC20001B5EA1 /* YXHomeGaoErFuViewController.m */,
+			);
+			path = "4高尔夫";
+			sourceTree = "<group>";
+		};
+		BBA812F421DDEBBB001B5EA1 /* SegementTap */ = {
+			isa = PBXGroup;
+			children = (
+				BBA812F521DDEBBB001B5EA1 /* SegmentTapView.h */,
+				BBA812F621DDEBBB001B5EA1 /* SegmentTapView.m */,
+			);
+			path = SegementTap;
+			sourceTree = "<group>";
+		};
+		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
+			isa = PBXGroup;
+			children = (
+				BBA8131921DE0D37001B5EA1 /* NSString+CString.h */,
+				BBA813B621DE0D37001B5EA1 /* NSString+CString.m */,
+			);
+			path = "艺鑫工具";
 			sourceTree = "<group>";
 		};
 		BBC16282217AD6DE00008907 /* StoryBoard */ = {
@@ -1784,6 +1934,13 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				uk,
+				it,
+				"zh-Hant",
+				vi,
+				ru,
+				id,
 			);
 			mainGroup = 296F9EAF1ECC64CE0063A255;
 			productRefGroup = 296F9EB91ECC64CE0063A255 /* Products */;
@@ -1810,6 +1967,7 @@
 				290A97F61F4ABC02006BF882 /* woman@2x.png in Resources */,
 				29530FD61F60F1BB00D24E05 /* photo_sample_03.png in Resources */,
 				293D46421ECDBB63007C64A9 /* icon_tabbar_homepage.png in Resources */,
+				BBA8130821DDFC81001B5EA1 /* YXHomeXueJiaTableViewCell.xib in Resources */,
 				2996100C1ED7E81900BCED2A /* DazFire.png in Resources */,
 				290A97F51F4ABC02006BF882 /* man@2x.png in Resources */,
 				290A97E61F4AB24A006BF882 /* stepPk_win_colour8@2x.png in Resources */,
@@ -1880,6 +2038,7 @@
 				293D45A31ECD6422007C64A9 /* Info.plist in Resources */,
 				293D464F1ECDBB63007C64A9 /* icon_tabbar_misc@2x.png in Resources */,
 				293D464B1ECDBB63007C64A9 /* icon_tabbar_mine@2x.png in Resources */,
+				BBA8130D21DDFE64001B5EA1 /* YXHomeXueJiaHeaderView.xib in Resources */,
 				2996102B1ED84B5100BCED2A /* UMSocialSDKResources.bundle in Resources */,
 				29629EE91F78E49B002CFCBD /* back_icon@2x.png in Resources */,
 				29530FD71F60F1BB00D24E05 /* photo_sample_04.png in Resources */,
@@ -1990,7 +2149,11 @@
 				BB5DC69C2189CA38003F1998 /* SELUpdateAlertConst.m in Sources */,
 				29AD6C621ED3E4D600B0879C /* AppDelegate+AppService.m in Sources */,
 				296DEA701F5D50D100C6FD00 /* TAAnimatedDotView.m in Sources */,
+				BBA812FA21DDEBEC001B5EA1 /* YXHomeTuiJianViewController.m in Sources */,
 				293D46051ECDAA02007C64A9 /* RootNavigationController.m in Sources */,
+				BBA812EA21DDDE47001B5EA1 /* MDMultipleSegmentViewCell.m in Sources */,
+				BBA8130321DDEC20001B5EA1 /* YXHomeGaoErFuViewController.m in Sources */,
+				BBA8130B21DDFE4F001B5EA1 /* YXHomeXueJiaHeaderView.m in Sources */,
 				29AD6C5B1ED3E28800B0879C /* PPNetworkCache.m in Sources */,
 				290A97DC1F4AB24A006BF882 /* EmitterViewController.m in Sources */,
 				BBA812B021DDABB3001B5EA1 /* YXPublishViewController.m in Sources */,
@@ -2001,14 +2164,17 @@
 				293D465A1ECDC004007C64A9 /* LoginViewController.m in Sources */,
 				296F99F11F04F05000909CDB /* WaterFallListViewController.m in Sources */,
 				290A98091F4ABCF6006BF882 /* XZPickView.m in Sources */,
+				BBA8130721DDFC81001B5EA1 /* YXHomeXueJiaTableViewCell.m in Sources */,
 				29530FAE1F60F10700D24E05 /* CardView.m in Sources */,
 				290A981E1F4ABEB9006BF882 /* BaseTableViewCell.m in Sources */,
 				293D46011ECDA56A007C64A9 /* MainTabBarController.m in Sources */,
 				2914E4871F20A45C001C01DB /* PersonListViewController.m in Sources */,
+				BBA812FD21DDEBFB001B5EA1 /* YXHomeXueJiaViewController.m in Sources */,
 				290DE9261ED19B7F00A45FF6 /* AppManager.m in Sources */,
 				BBA812C721DDBF6A001B5EA1 /* UIFactory.m in Sources */,
 				2914E4931F20A4F8001C01DB /* ProfileViewController.m in Sources */,
 				BBA812AA21DDAB7A001B5EA1 /* YXHomeViewController.m in Sources */,
+				BBA812E721DDDE47001B5EA1 /* MDMultipleSegmentLayout.m in Sources */,
 				2973A81A1EDEE6BE002751F0 /* GameInfo.m in Sources */,
 				290A97DD1F4AB24A006BF882 /* TagsViewController.m in Sources */,
 				296DEA711F5D50D100C6FD00 /* TADotView.m in Sources */,
@@ -2017,6 +2183,7 @@
 				29AD6C671ED41BA100B0879C /* AdPageView.m in Sources */,
 				29CF33331F14B62A00DB7507 /* LoginLogic.m in Sources */,
 				BBA812C421DDBF6A001B5EA1 /* UIButton+SSEdgeInsets.m in Sources */,
+				BBA812E921DDDE47001B5EA1 /* MDMultipleSegmentView.m in Sources */,
 				290471B91F98D9AB0081CCA1 /* XYTabBar.m in Sources */,
 				296DEA731F5D50D100C6FD00 /* SDCollectionViewCell.m in Sources */,
 				29CF33301F14B60800DB7507 /* MineLogic.m in Sources */,
@@ -2027,7 +2194,9 @@
 				BBA812C621DDBF6A001B5EA1 /* UIView+TBFrame.m in Sources */,
 				29CD2C6E1F30229B00A0F5DC /* CellModel.m in Sources */,
 				2924783E1ED6857300BB097A /* AppDelegate+PushService.m in Sources */,
+				BBA8147021DE0D38001B5EA1 /* NSString+CString.m in Sources */,
 				2940C5351F0A3EAB008BC29F /* WaterFallListLogic.m in Sources */,
+				BBA8130021DDEC10001B5EA1 /* YXHomeMeiJiuViewController.m in Sources */,
 				293D45F51ECDA453007C64A9 /* RootViewController.m in Sources */,
 				296F9A3E1F050AA900909CDB /* SecondViewController.m in Sources */,
 				296F9A3B1F0504C900909CDB /* WaterFlowLayout.m in Sources */,
@@ -2039,16 +2208,20 @@
 				290A98051F4ABCD9006BF882 /* IAPManager.m in Sources */,
 				290A981F1F4ABEB9006BF882 /* HSBaseCellModel.m in Sources */,
 				2914E48D1F20A471001C01DB /* PersonListLogic.m in Sources */,
+				BBA8131321DE0814001B5EA1 /* HttpRequest.m in Sources */,
 				293ECC2D1EE56D1D008061A1 /* IMManager.m in Sources */,
+				BBA812E821DDDE47001B5EA1 /* MDFlipCollectionView.m in Sources */,
 				29AD6C4D1ED3D51200B0879C /* OpenUDID.m in Sources */,
 				BBA812B321DDABC1001B5EA1 /* YXMessageViewController.m in Sources */,
 				290A97FE1F4ABC12006BF882 /* MineHeaderView.m in Sources */,
 				296DEA721F5D50D100C6FD00 /* TAPageControl.m in Sources */,
 				29530FA61F60F0E800D24E05 /* DraggingCardViewController.m in Sources */,
+				BBA812F721DDEBBB001B5EA1 /* SegmentTapView.m in Sources */,
 				293D460E1ECDAEDC007C64A9 /* MsgViewController.m in Sources */,
 				29AD6C711ED41ED200B0879C /* UserInfo.m in Sources */,
 				290A98021F4ABC4F006BF882 /* SettingViewController.m in Sources */,
 				BBA812AD21DDAB9D001B5EA1 /* YXFindViewController.m in Sources */,
+				BBA812E621DDDE47001B5EA1 /* WJSliderView.m in Sources */,
 				290A97FD1F4ABC12006BF882 /* MineTableViewCell.m in Sources */,
 				296DEA781F5D530E00C6FD00 /* ScrollBannerVC.m in Sources */,
 				2940C5381F0A3EC5008BC29F /* GetWaterFallListAPI.m in Sources */,
@@ -2058,6 +2231,7 @@
 				BBA812B921DDBE47001B5EA1 /* TBTabBar.m in Sources */,
 				29530FB01F60F10700D24E05 /* YSLDraggableCardContainer.m in Sources */,
 				29FEE7681ECEC27900C81B60 /* MBProgressHUD+XY.m in Sources */,
+				BBA812E521DDDE47001B5EA1 /* WJSliderScrollView.m in Sources */,
 				2917D2171EE02F9C00E76185 /* ShareManager.m in Sources */,
 				29AD6C5C1ED3E28800B0879C /* PPNetworkHelper.m in Sources */,
 				29530FAF1F60F10700D24E05 /* YSLCardView.m in Sources */,
@@ -2068,6 +2242,7 @@
 				BBA812C521DDBF6A001B5EA1 /* UITabBar+TBBadge.m in Sources */,
 				296DEA751F5D50D100C6FD00 /* UIView+SDExtension.m in Sources */,
 				29D3C0091F4D11A200FD3914 /* FFTagsView.m in Sources */,
+				BBA8131021DE06BE001B5EA1 /* YXManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

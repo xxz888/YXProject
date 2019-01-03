@@ -9,4 +9,6 @@ pod 'Masonry'
 pod 'YTKNetwork'
 pod 'QMUIKit'
 pod 'SDWebImage', '~>3.8'
+pod 'ZXSegmentController'
+
 end
