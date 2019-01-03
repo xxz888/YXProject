@@ -199,6 +199,11 @@
 		BBA812B021DDABB3001B5EA1 /* YXPublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812AF21DDABB3001B5EA1 /* YXPublishViewController.m */; };
 		BBA812B321DDABC1001B5EA1 /* YXMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812B221DDABC1001B5EA1 /* YXMessageViewController.m */; };
 		BBA812B621DDABD3001B5EA1 /* YXMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812B521DDABD3001B5EA1 /* YXMineViewController.m */; };
+		BBA812B921DDBE47001B5EA1 /* TBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812B721DDBE47001B5EA1 /* TBTabBar.m */; };
+		BBA812C421DDBF6A001B5EA1 /* UIButton+SSEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812BB21DDBF69001B5EA1 /* UIButton+SSEdgeInsets.m */; };
+		BBA812C521DDBF6A001B5EA1 /* UITabBar+TBBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812BC21DDBF69001B5EA1 /* UITabBar+TBBadge.m */; };
+		BBA812C621DDBF6A001B5EA1 /* UIView+TBFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812C021DDBF6A001B5EA1 /* UIView+TBFrame.m */; };
+		BBA812C721DDBF6A001B5EA1 /* UIFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812C321DDBF6A001B5EA1 /* UIFactory.m */; };
 		BBC16284217AD6EA00008907 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC16283217AD6EA00008907 /* Login.storyboard */; };
 		BBC16286217AD8F500008907 /* register_guide_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BBC16285217AD8F500008907 /* register_guide_video.mp4 */; };
 		BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */; };
@@ -516,6 +521,16 @@
 		BBA812B221DDABC1001B5EA1 /* YXMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMessageViewController.m; sourceTree = "<group>"; };
 		BBA812B421DDABD3001B5EA1 /* YXMineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineViewController.h; sourceTree = "<group>"; };
 		BBA812B521DDABD3001B5EA1 /* YXMineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineViewController.m; sourceTree = "<group>"; };
+		BBA812B721DDBE47001B5EA1 /* TBTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBTabBar.m; sourceTree = "<group>"; };
+		BBA812B821DDBE47001B5EA1 /* TBTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBTabBar.h; sourceTree = "<group>"; };
+		BBA812BB21DDBF69001B5EA1 /* UIButton+SSEdgeInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SSEdgeInsets.m"; sourceTree = "<group>"; };
+		BBA812BC21DDBF69001B5EA1 /* UITabBar+TBBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+TBBadge.m"; sourceTree = "<group>"; };
+		BBA812BD21DDBF6A001B5EA1 /* UIView+TBFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TBFrame.h"; sourceTree = "<group>"; };
+		BBA812BE21DDBF6A001B5EA1 /* UITabBar+TBBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+TBBadge.h"; sourceTree = "<group>"; };
+		BBA812BF21DDBF6A001B5EA1 /* UIButton+SSEdgeInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+SSEdgeInsets.h"; sourceTree = "<group>"; };
+		BBA812C021DDBF6A001B5EA1 /* UIView+TBFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TBFrame.m"; sourceTree = "<group>"; };
+		BBA812C221DDBF6A001B5EA1 /* UIFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIFactory.h; sourceTree = "<group>"; };
+		BBA812C321DDBF6A001B5EA1 /* UIFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIFactory.m; sourceTree = "<group>"; };
 		BBC16283217AD6EA00008907 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		BBC16285217AD8F500008907 /* register_guide_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = register_guide_video.mp4; sourceTree = "<group>"; };
 		BBC162D0217B111C00008907 /* QMUIConfigurationTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfigurationTemplate.h; sourceTree = "<group>"; };
@@ -696,6 +711,8 @@
 		2917D1FC1EDFC89A00E76185 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				BBA812BA21DDBF69001B5EA1 /* Category */,
+				BBA812C121DDBF6A001B5EA1 /* Tools */,
 				2917D1FD1EDFC89A00E76185 /* YYFPSLabel.h */,
 				2917D1FE1EDFC89A00E76185 /* YYFPSLabel.m */,
 			);
@@ -975,6 +992,8 @@
 				293D46151ECDB2E6007C64A9 /* TabBarView */,
 				293D45FF1ECDA56A007C64A9 /* MainTabBarController.h */,
 				293D46001ECDA56A007C64A9 /* MainTabBarController.m */,
+				BBA812B821DDBE47001B5EA1 /* TBTabBar.h */,
+				BBA812B721DDBE47001B5EA1 /* TBTabBar.m */,
 			);
 			path = TabbarController;
 			sourceTree = "<group>";
@@ -1632,6 +1651,28 @@
 			path = "D消息";
 			sourceTree = "<group>";
 		};
+		BBA812BA21DDBF69001B5EA1 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				BBA812BB21DDBF69001B5EA1 /* UIButton+SSEdgeInsets.m */,
+				BBA812BC21DDBF69001B5EA1 /* UITabBar+TBBadge.m */,
+				BBA812BD21DDBF6A001B5EA1 /* UIView+TBFrame.h */,
+				BBA812BE21DDBF6A001B5EA1 /* UITabBar+TBBadge.h */,
+				BBA812BF21DDBF6A001B5EA1 /* UIButton+SSEdgeInsets.h */,
+				BBA812C021DDBF6A001B5EA1 /* UIView+TBFrame.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		BBA812C121DDBF6A001B5EA1 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				BBA812C221DDBF6A001B5EA1 /* UIFactory.h */,
+				BBA812C321DDBF6A001B5EA1 /* UIFactory.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		BBC16282217AD6DE00008907 /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
@@ -1965,6 +2006,7 @@
 				293D46011ECDA56A007C64A9 /* MainTabBarController.m in Sources */,
 				2914E4871F20A45C001C01DB /* PersonListViewController.m in Sources */,
 				290DE9261ED19B7F00A45FF6 /* AppManager.m in Sources */,
+				BBA812C721DDBF6A001B5EA1 /* UIFactory.m in Sources */,
 				2914E4931F20A4F8001C01DB /* ProfileViewController.m in Sources */,
 				BBA812AA21DDAB7A001B5EA1 /* YXHomeViewController.m in Sources */,
 				2973A81A1EDEE6BE002751F0 /* GameInfo.m in Sources */,
@@ -1974,6 +2016,7 @@
 				29AD6C6B1ED41E2100B0879C /* UserManager.m in Sources */,
 				29AD6C671ED41BA100B0879C /* AdPageView.m in Sources */,
 				29CF33331F14B62A00DB7507 /* LoginLogic.m in Sources */,
+				BBA812C421DDBF6A001B5EA1 /* UIButton+SSEdgeInsets.m in Sources */,
 				290471B91F98D9AB0081CCA1 /* XYTabBar.m in Sources */,
 				296DEA731F5D50D100C6FD00 /* SDCollectionViewCell.m in Sources */,
 				29CF33301F14B60800DB7507 /* MineLogic.m in Sources */,
@@ -1981,6 +2024,7 @@
 				2917D2141EE02CF100E76185 /* UIButton+XYButton.m in Sources */,
 				29CF332D1F14B5EA00DB7507 /* MsgLogic.m in Sources */,
 				2914E48A1F20A462001C01DB /* PersonModel.m in Sources */,
+				BBA812C621DDBF6A001B5EA1 /* UIView+TBFrame.m in Sources */,
 				29CD2C6E1F30229B00A0F5DC /* CellModel.m in Sources */,
 				2924783E1ED6857300BB097A /* AppDelegate+PushService.m in Sources */,
 				2940C5351F0A3EAB008BC29F /* WaterFallListLogic.m in Sources */,
@@ -2011,6 +2055,7 @@
 				29CD2C6B1F30227100A0F5DC /* TableViewCell.m in Sources */,
 				29D3C00A1F4D11A200FD3914 /* TagsButton.m in Sources */,
 				293D46111ECDAEED007C64A9 /* MineViewController.m in Sources */,
+				BBA812B921DDBE47001B5EA1 /* TBTabBar.m in Sources */,
 				29530FB01F60F10700D24E05 /* YSLDraggableCardContainer.m in Sources */,
 				29FEE7681ECEC27900C81B60 /* MBProgressHUD+XY.m in Sources */,
 				2917D2171EE02F9C00E76185 /* ShareManager.m in Sources */,
@@ -2020,6 +2065,7 @@
 				290A980D1F4ABD00006BF882 /* SandBoxHelper.m in Sources */,
 				29AD6C5A1ED3E28800B0879C /* HeaderModel.m in Sources */,
 				293D45FA1ECDA4D8007C64A9 /* RootWebViewController.m in Sources */,
+				BBA812C521DDBF6A001B5EA1 /* UITabBar+TBBadge.m in Sources */,
 				296DEA751F5D50D100C6FD00 /* UIView+SDExtension.m in Sources */,
 				29D3C0091F4D11A200FD3914 /* FFTagsView.m in Sources */,
 			);

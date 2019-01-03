@@ -66,7 +66,11 @@
 #import <MBProgressHUD.h>
 #import <Masonry.h>
 #import <SDWebImage/UIImageView+WebCache.h>
-
+//插件
+#import "UIView+TBFrame.h"
+#import "UIFactory.h"
+#import "UIButton+SSEdgeInsets.h"
+#import "UITabBar+TBBadge.h"
 #define WP_TOOL_IMManager  [IMManager sharedIMManager]
 #define WP_TOOL_AppManager [AppManager sharedAppManager]
 #define WP_TOOL_ShareManager [ShareManager sharedShareManager]

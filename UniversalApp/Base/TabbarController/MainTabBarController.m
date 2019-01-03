@@ -25,6 +25,8 @@
 #import "YXMessageViewController.h"
 #import "YXPublishViewController.h"
 #import "YXMineViewController.h"
+#import "TBTabBar.h"
+
 @interface MainTabBarController ()<UITabBarControllerDelegate>
 
 @property (nonatomic,strong) NSMutableArray * VCS;//tabbar root VC
@@ -41,7 +43,30 @@
     [self setUpTabBar];
     //添加子控制器
     [self setUpAllChildViewController];
+    
+    // 创建tabbar中间的tabbarItem
+    [self setUpMidelTabbarItem];
 }
+
+#pragma mark -创建tabbar中间的tabbarItem
+
+- (void)setUpMidelTabbarItem {
+    
+    TBTabBar *tabBar = [[TBTabBar alloc] init];
+    [self setValue:tabBar forKey:@"tabBar"];
+    
+    __weak typeof(self) weakSelf = self;
+    [tabBar setDidClickPublishBtn:^{
+        [QMUITips showSucceed:@"发布成功" inView:weakSelf.view hideAfterDelay:2];
+        /*
+        UIStoryboard * stroryBoard3 = [UIStoryboard storyboardWithName:@"YXPublish" bundle:nil];
+        YXPublishViewController * publishVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishViewController"];
+        [weakSelf presentViewController:publishVC animated:YES completion:nil];
+        */
+    }];
+    
+}
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -79,15 +104,13 @@
     
 //    MsgViewController *msgVC = [[MsgViewController alloc]init];
 //    DraggingCardViewController *msgVC = [DraggingCardViewController new];
-    UIStoryboard * stroryBoard3 = [UIStoryboard storyboardWithName:@"YXPublish" bundle:nil];
-    YXPublishViewController * publishVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishViewController"];
-    [self setupChildViewController:publishVC title:@"消息" imageName:@"icon_tabbar_merchant_normal" seleceImageName:@"icon_tabbar_merchant_selected"];
+
     
     
 //    MineViewController *mineVC = [[MineViewController alloc]init];
     UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMessage" bundle:nil];
     YXMessageViewController * messageVC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMessageViewController"];
-    [self setupChildViewController:messageVC title:@"发现" imageName:@"icon_tabbar_mine" seleceImageName:@"icon_tabbar_mine_selected"];
+    [self setupChildViewController:messageVC title:@"发现" imageName:@"icon_tabbar_merchant_normal" seleceImageName:@"icon_tabbar_merchant_selected"];
     
     
     UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
@@ -127,6 +150,33 @@
         [self.tabBar setBadgeStyle:kCustomBadgeStyleNone value:0 atIndex:index];
     }
     
+}
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+{
+    NSLog(@"item name = %@", item.title);
+    NSInteger index = [self.tabBar.items indexOfObject:item];
+    [self animationWithIndex:index];
+    if([item.title isEqualToString:@"发现"])
+    {
+        // 也可以判断标题,然后做自己想做的事<img alt="得意" src="http://static.blog.csdn.net/xheditor/xheditor_emot/default/proud.gif" />
+    }
+}
+- (void)animationWithIndex:(NSInteger) index {
+    NSMutableArray * tabbarbuttonArray = [NSMutableArray array];
+    for (UIView *tabBarButton in self.tabBar.subviews) {
+        if ([tabBarButton isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
+            [tabbarbuttonArray addObject:tabBarButton];
+        }
+    }
+    CABasicAnimation*pulse = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    pulse.timingFunction= [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    pulse.duration = 0.2;
+    pulse.repeatCount= 1;
+    pulse.autoreverses= YES;
+    pulse.fromValue= [NSNumber numberWithFloat:0.7];
+    pulse.toValue= [NSNumber numberWithFloat:1.3];
+    [[tabbarbuttonArray[index] layer]
+     addAnimation:pulse forKey:nil];
 }
 
 - (BOOL)shouldAutorotate {
