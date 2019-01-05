@@ -16,15 +16,8 @@
     NSString * strURl = [API_ROOT_URL_HTTP_FORMAL stringByAppendingString:pi];
     [[self commonAction] POST:strURl  parameters:parmeters progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-            //如果解析器是AFHTTPRequestSerializer类型，则要先把数据转换成字典
-        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-        NSLog(@"pi = 【%@】 result = 【%@】",pi,dic);
-        sucess(dic);
-        //这里判断rid
+        [weakself setCommonRespone:sucess pi:pi responseObject:responseObject];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
         failure(error);
     }];
 }
@@ -32,23 +25,40 @@
     kWeakSelf(self);
     NSString * url = [API_ROOT_URL_HTTP_FORMAL append:pi];
     [[self commonAction] GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        //如果解析器是AFHTTPRequestSerializer类型，则要先把数据转换成字典
-        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-        NSLog(@"pi = 【%@】 result = 【%@】",pi,dic);
-        sucess(dic);
+        [weakself setCommonRespone:sucess pi:pi responseObject:responseObject];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         
         failure(error);
     }];
 }
+#pragma mark ========== 请求成功处理参数的共同方法 ==========
++(void)setCommonRespone:(SucessBlock)sucess pi:(NSString *)pi responseObject:(id)responseObject{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+    //返回情况分为两种情况，第一种是NSInlineData 字符串类型， 一种是json字典
+    if (dic) {
+        //如果解析器是AFHTTPRequestSerializer类型，则要先把数据转换成字典
+        NSLog(@"pi = 【%@】 result = 【%@】",pi,dic);
+        sucess(dic);
+    }else{
+        NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+        NSString *response = [[NSString alloc] initWithBytes:[responseObject bytes] length:[responseObject length] encoding:enc];
+        sucess(response);
+    }
+}
 +(AFHTTPSessionManager *)commonAction{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer =  [AFJSONRequestSerializer serializer];
     manager.responseSerializer =  [AFHTTPResponseSerializer serializer];
+    UserInfo *userInfo = curUser;
+    if (curUser && userInfo.token && ![userInfo.token isEqualToString:@""]) {
+        [manager.requestSerializer setValue:[@"JWT " append:userInfo.token] forHTTPHeaderField:@"Authorization"];
+    }
+    
+
+    
     [manager.requestSerializer setValue:@"Keep-Alive" forHTTPHeaderField:@"Connection"];
     //允许非权威机构颁发的证书
     manager.securityPolicy.allowInvalidCertificates=YES;

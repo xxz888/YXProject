@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import <UMSocialCore/UMSocialCore.h>
 #import <AVFoundation/AVFoundation.h>
+#import "UIButton+CountDown.h"
 
 @interface LoginViewController ()
 //1 播放器
@@ -22,12 +23,14 @@
 {
     self.navigationController.navigationBar.hidden = YES;
     //视频播放
-    [self.player play];
+    //[self.player play];
     
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"登录";
+    
+    
     
     YYLabel *snowBtn = [[YYLabel alloc] initWithFrame:CGRectMake(0, 200, 150, 60)];
     snowBtn.text = @"微信登录";
@@ -79,9 +82,10 @@
         [weakself skipAction];
     };
     
-    [self.view addSubview:skipBtn];
+    //[self.view addSubview:skipBtn];
     
-    
+    self.getMes_codeBtn.backgroundColor = [UIColor colorWithRed:84 / 255.0 green:180 / 255.0 blue:98 / 255.0 alpha:1.0f];
+    [self.getMes_codeBtn addTarget:self action:@selector(getSms_CodeAction) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)WXLogin{
@@ -131,6 +135,49 @@
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playToEnd) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
     }
     return _player;
+}
+- (IBAction)loginAction:(id)sender {
+
+    [YX_MANAGER requestLoginPOST:@{@"mobile":self.phoneTf.text,@"sms_code":self.codeTf.text} success:^(id object) {
+        if ([object isKindOfClass:[NSDictionary class]]) {
+            [userManager login:kUserLoginTypePwd params:object completion:^(BOOL success, NSString *des) {
+                [QMUITips showSucceed:@"登录成功" inView:self.view hideAfterDelay:2];
+            }];
+        }else{
+            if ([object isEqualToString:@"-1"]) {
+                [QMUITips showError:@"该手机号未发送验证码" inView:self.view hideAfterDelay:2];
+            }else if([object isEqualToString:@"0"]){
+                [QMUITips showError:@"短信验证码错误" inView:self.view hideAfterDelay:2];
+            }else if ([object isEqualToString:@"1"]){
+                [QMUITips showSucceed:@"登录成功" inView:self.view hideAfterDelay:2];
+            }
+        }
+   
+    }];
+}
+- (IBAction)closeLoginView:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{
+        [[AppDelegate shareAppDelegate].mainTabBar setSelectedIndex:0];
+    }];
+
+
+    
+}
+- (void)getSms_CodeAction{
+    [YX_MANAGER requestSmscodeGET:self.phoneTf.text success:^(id object) {
+        if ([object isEqualToString:@"1"]) {
+            [QMUITips showSucceed:@"验证码发送成功" inView:self.view hideAfterDelay:2];
+            [self.getMes_codeBtn startWithTime:180
+                                         title:@"点击重新获取"
+                                countDownTitle:@"s"
+                                     mainColor:[UIColor colorWithRed:84 / 255.0 green:180 / 255.0 blue:98 / 255.0 alpha:1.0f]
+                                    countColor:[UIColor colorWithRed:84 / 255.0 green:180 / 255.0 blue:98 / 255.0 alpha:1.0f]];
+        }else{
+            [QMUITips showError:@"3分钟内重复发送" inView:self.view hideAfterDelay:2];
+        }
+
+    }];
+    
 }
 #pragma mark - 视频播放结束 触发
 - (void)playToEnd

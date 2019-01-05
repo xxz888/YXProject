@@ -41,13 +41,56 @@ successBlock(responseObject);\
 
 #pragma mark ==========GET请求模版==========
 -(void)requestGET:YX_BLOCK{
-
+    kWeakSelf(self);
+    NSString * url = @"";
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
+        //[weakself. removeAllObjects];
+        //[weakself. addObject:responseObject];
+        successBlock(responseObject);
+    } failure:^(NSError *error) {
+    }];
 }
 #pragma mark ==========POST请求模版==========
 -(void)requestPOST:YX_BLOCK{
-
+    [HTTP_POST(@"") Parameters:dic sucess:^(id responseObject) {
+        
+        successBlock(responseObject);
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
+#pragma mark ==========登录==========
+-(void)requestLoginPOST:YX_BLOCK{
+    [HTTP_POST(@"/users/register/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+#pragma mark ==========登录验证码==========
+-(void)requestSmscodeGET:YX_BLOCK{
+    NSString * url = @"/pub/smscode/";
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {
+    }];
+}
+
+
+
+#pragma mark ==========我的关注==========
+-(void)requestLikesGET:YX_BLOCK{
+    kWeakSelf(self);
+    NSString * url = @"/users/likes/";
+    [HTTP_GET([[url append:dic] append:@"/0/"])  sucess:^(id responseObject) {
+        //[weakself. removeAllObjects];
+        //[weakself. addObject:responseObject];
+        successBlock(responseObject);
+    } failure:^(NSError *error) {
+    }];
+}
 #pragma mark ========== 请求广告 ==========
 -(void)requestGETAdvertising:YX_BLOCK{
     kWeakSelf(self);
@@ -59,10 +102,21 @@ successBlock(responseObject);\
     } failure:^(NSError *error) {
     }];
 }
-
-
+#pragma mark ========== 请求新闻 ==========
+-(void)requestGETInformation:YX_BLOCK{
+    kWeakSelf(self);
+    NSString * url = @"/pub/information/";
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
+        //[weakself. removeAllObjects];
+        //[weakself. addObject:responseObject];
+        successBlock(responseObject);
+    } failure:^(NSError *error) {
+    }];
+}
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
+    self.informationArray = [[NSMutableArray alloc]init];
+    
     return  self;
 }
 @end

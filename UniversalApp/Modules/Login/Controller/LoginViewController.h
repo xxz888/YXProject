@@ -7,5 +7,8 @@
 //
 
 @interface LoginViewController : RootViewController
+@property (weak, nonatomic) IBOutlet UITextField *phoneTf;
+@property (weak, nonatomic) IBOutlet UITextField *codeTf;
+@property (weak, nonatomic) IBOutlet UIButton *getMes_codeBtn;
 
 @end

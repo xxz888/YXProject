@@ -34,6 +34,7 @@
 //再次级字色
 #define CFontColor2 [UIColor colorWithHexString:@"5c5c5c"]
 
+#define YXRGBAColor(r,g,b)  [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
 #pragma mark -  字体区
 

@@ -10,4 +10,9 @@
 
 @interface YXHomeXueJiaTableViewCell : TableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *cellImageView;
+@property (weak, nonatomic) IBOutlet UILabel *cellLbl;
+@property (weak, nonatomic) IBOutlet UILabel *cellAutherLbl;
+@property (weak, nonatomic) IBOutlet UILabel *cellDataLbl;
+
 @end

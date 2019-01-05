@@ -32,6 +32,9 @@ SINGLETON_FOR_CLASS(UserManager);
 
 #pragma mark ————— 带参数登录 —————
 -(void)login:(UserLoginType )loginType params:(NSDictionary *)params completion:(loginBlock)completion{
+    
+    [self loginToServer:params completion:completion];
+    return;
     //友盟登录类型
     UMSocialPlatformType platFormType;
     
@@ -84,16 +87,18 @@ SINGLETON_FOR_CLASS(UserManager);
 
 #pragma mark ————— 手动登录到服务器 —————
 -(void)loginToServer:(NSDictionary *)params completion:(loginBlock)completion{
-    [MBProgressHUD showActivityMessageInView:@"登录中..."];
-    [PPNetworkHelper POST:NSStringFormat(@"%@%@",API_ROOT_URL_HTTP_FORMAL,URL_user_login) parameters:params success:^(id responseObject) {
-        [self LoginSuccess:responseObject completion:completion];
-        
-    } failure:^(NSError *error) {
-        [MBProgressHUD hideHUD];
-        if (completion) {
-            completion(NO,error.localizedDescription);
-        }
-    }];
+    [self LoginSuccess:params completion:completion];
+
+//    [MBProgressHUD showActivityMessageInView:@"登录中..."];
+//    [PPNetworkHelper POST:NSStringFormat(@"%@%@",API_ROOT_URL_HTTP_FORMAL,URL_user_login) parameters:params success:^(id responseObject) {
+//        [self LoginSuccess:responseObject completion:completion];
+//
+//    } failure:^(NSError *error) {
+//        [MBProgressHUD hideHUD];
+//        if (completion) {
+//            completion(NO,error.localizedDescription);
+//        }
+//    }];
 }
 
 #pragma mark ————— 自动登录到服务器 —————
@@ -110,6 +115,15 @@ SINGLETON_FOR_CLASS(UserManager);
 
 #pragma mark ————— 登录成功处理 —————
 -(void)LoginSuccess:(id )responseObject completion:(loginBlock)completion{
+    self.curUserInfo = [UserInfo modelWithDictionary:responseObject];
+    [self saveUserInfo];
+    self.isLogined = YES;
+    if (completion) {
+        completion(YES,nil);
+    }
+    KPostNotification(KNotificationLoginStateChange, @YES);
+    return;
+    
     if (ValidDict(responseObject)) {
         if (ValidDict(responseObject[@"data"])) {
             NSDictionary *data = responseObject[@"data"];
@@ -155,7 +169,6 @@ SINGLETON_FOR_CLASS(UserManager);
         NSDictionary *dic = [self.curUserInfo modelToJSONObject];
         [cache setObject:dic forKey:KUserModelCache];
     }
-    
 }
 #pragma mark ————— 加载缓存的用户信息 —————
 -(BOOL)loadUserInfo{

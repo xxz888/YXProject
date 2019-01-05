@@ -35,6 +35,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = KWhiteColor;
     [self.window makeKeyAndVisible];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [[UIButton appearance] setExclusiveTouch:YES];
 //    [[UIButton appearance] setShowsTouchWhenHighlighted:YES];
     [UIActivityIndicatorView appearanceWhenContainedIn:[MBProgressHUD class], nil].color = KWhiteColor;
@@ -51,13 +52,13 @@
 
 #pragma mark ————— 初始化用户系统 —————
 -(void)initUserManager{
-    DLog(@"设备IMEI ：%@",[OpenUDID value]);
     if([userManager loadUserInfo]){
         
         //如果有本地数据，先展示TabBar 随后异步自动登录
         self.mainTabBar = [MainTabBarController new];
         self.window.rootViewController = self.mainTabBar;
-        
+        KPostNotification(KNotificationLoginStateChange, @YES)
+        return;
         //自动登录
         [userManager autoLoginToServer:^(BOOL success, NSString *des) {
             if (success) {
@@ -71,7 +72,7 @@
         
     }else{
         //没有登录过，展示登录页面
-        KPostNotification(KNotificationLoginStateChange, @NO)
+        KPostNotification(KNotificationLoginStateChange, @YES)
 //        [MBProgressHUD showErrorMessage:@"需要登录"];
     }
 }
@@ -79,10 +80,10 @@
 #pragma mark ————— 登录状态处理 —————
 - (void)loginStateChange:(NSNotification *)notification
 {
+    
+    
     BOOL loginSuccess = [notification.object boolValue];
-    
-    loginSuccess = YES;
-    
+        
     if (loginSuccess) {//登陆成功加载主窗口控制器
         
         //为避免自动登录成功刷新tabbar
@@ -132,6 +133,9 @@
     
     if (isNetWork) {//有网络
         if ([userManager loadUserInfo] && !isLogin) {//有用户数据 并且 未登录成功 重新来一次自动登录
+            
+            KPostNotification(KNotificationLoginStateChange, @YES)
+            return;
             [userManager autoLoginToServer:^(BOOL success, NSString *des) {
                 if (success) {
                     DLog(@"网络改变后，自动登录成功");

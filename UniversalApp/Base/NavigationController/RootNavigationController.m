@@ -27,8 +27,8 @@
     UINavigationBar *navBar = [UINavigationBar appearance];
     //导航栏背景图
     //    [navBar setBackgroundImage:[UIImage imageNamed:@"tabBarBj"] forBarMetrics:UIBarMetricsDefault];
-    [navBar setBarTintColor:CNavBgColor];
-    [navBar setTintColor:CNavBgFontColor];
+    [navBar setBarTintColor:KWhiteColor];
+    [navBar setTintColor:KWhiteColor];
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName :KWhiteColor, NSFontAttributeName : [UIFont systemFontOfSize:18]}];
     
     //[navBar setBackgroundImage:[UIImage imageWithColor:KWhiteColor] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];

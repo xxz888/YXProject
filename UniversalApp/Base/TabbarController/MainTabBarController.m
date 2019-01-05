@@ -26,8 +26,16 @@
 #import "YXPublishViewController.h"
 #import "YXMineViewController.h"
 #import "TBTabBar.h"
+#import "VTingSeaPopView.h"
 
-@interface MainTabBarController ()<UITabBarControllerDelegate>
+#import "YXPublishImageViewController.h"
+@interface MainTabBarController ()<UITabBarControllerDelegate,VTingPopItemSelectDelegate> {
+    NSMutableArray *images;
+    NSMutableArray *titles;
+    NSMutableArray *titlesTag;
+    
+    VTingSeaPopView *pop;
+}
 
 @property (nonatomic,strong) NSMutableArray * VCS;//tabbar root VC
 
@@ -52,21 +60,53 @@
 
 - (void)setUpMidelTabbarItem {
     
+    images = [NSMutableArray array];
+    titles = [NSMutableArray arrayWithObjects:@"晒图",@"足迹",@"文章",nil];
+    titlesTag =  [NSMutableArray arrayWithObjects:@"定格美好瞬间",@"记录品鉴足迹",@"分享你的故事",nil];
+    for (int i = 0; i<3; i++) {
+        if (i<3) {
+            [images addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%d",i+1]]];
+        }else{
+            [images addObject:[UIImage imageNamed:[NSString stringWithFormat:@"remind"]]];
+        }
+    }
+    
     TBTabBar *tabBar = [[TBTabBar alloc] init];
     [self setValue:tabBar forKey:@"tabBar"];
     
     __weak typeof(self) weakSelf = self;
     [tabBar setDidClickPublishBtn:^{
-        [QMUITips showSucceed:@"发布成功" inView:weakSelf.view hideAfterDelay:2];
-        /*
-        UIStoryboard * stroryBoard3 = [UIStoryboard storyboardWithName:@"YXPublish" bundle:nil];
-        YXPublishViewController * publishVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishViewController"];
-        [weakSelf presentViewController:publishVC animated:YES completion:nil];
-        */
+//        [QMUITips showSucceed:@"发布成功" inView:weakSelf.view hideAfterDelay:2];
+        
+//        UIStoryboard * stroryBoard3 = [UIStoryboard storyboardWithName:@"YXPublish" bundle:nil];
+//        YXPublishViewController * publishVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishViewController"];
+//        [weakSelf presentViewController:publishVC animated:YES completion:nil];
+        
+        pop = [[VTingSeaPopView alloc] initWithButtonBGImageArr:images andButtonBGT:titles titlsTag:titlesTag];
+        for(UIView * view in [weakSelf.view subviews])
+        {
+            if ([view isKindOfClass:[pop class]]) {
+                [view removeFromSuperview];
+            }
+        }
+        [self.view addSubview:pop];
+        pop.delegate = weakSelf;
+        [pop show];
+        
     }];
     
 }
+#pragma mark delegate
+-(void)itemDidSelected:(NSInteger)index {
+    NSLog(@"点击了%ld:item",index);
+    __weak typeof(self) weakSelf = self;
 
+    if (index == 0) {
+        UIStoryboard * stroryBoard3 = [UIStoryboard storyboardWithName:@"YXPublish" bundle:nil];
+        YXPublishImageViewController * publishVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishImageViewController"];
+        [weakSelf presentViewController:publishVC animated:YES completion:nil];
+    }
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -107,12 +147,12 @@
 
     
     
-//    MineViewController *mineVC = [[MineViewController alloc]init];
     UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMessage" bundle:nil];
     YXMessageViewController * messageVC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMessageViewController"];
     [self setupChildViewController:messageVC title:@"发现" imageName:@"icon_tabbar_merchant_normal" seleceImageName:@"icon_tabbar_merchant_selected"];
     
-    
+    //   MineViewController *mineVC = [[MineViewController alloc]init];
+
     UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
     YXMineViewController * mineVC = [stroryBoard5 instantiateViewControllerWithIdentifier:@"YXMineViewController"];
     [self setupChildViewController:mineVC title:@"我的" imageName:@"icon_tabbar_mine" seleceImageName:@"icon_tabbar_mine_selected"];
@@ -139,8 +179,9 @@
 
 
 -(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
-    //    NSLog(@"选中 %ld",tabBarController.selectedIndex);
-    
+    if (tabBarController.selectedIndex == 3 && ![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO)
+    }
 }
 
 -(void)setRedDotWithIndex:(NSInteger)index isShow:(BOOL)isShow{

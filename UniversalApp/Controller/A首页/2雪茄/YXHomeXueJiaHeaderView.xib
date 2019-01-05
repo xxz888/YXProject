@@ -24,10 +24,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Beb-ND-97B">
-                    <rect key="frame" x="0.0" y="180" width="375" height="220"/>
+                    <rect key="frame" x="0.0" y="180" width="375" height="150"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="220" id="POJ-Mc-GJk"/>
+                        <constraint firstAttribute="height" constant="150" id="POJ-Mc-GJk"/>
                     </constraints>
                 </view>
             </subviews>

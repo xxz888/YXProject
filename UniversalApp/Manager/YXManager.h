@@ -17,15 +17,22 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 + (instancetype)sharedInstance;
 
 @property(nonatomic,strong)NSMutableArray * advertisingArray;
+@property(nonatomic,strong)NSMutableArray * informationArray;
 
 
 #pragma mark ========== GET请求模版 ==========
 -(void)requestGET:AD_BLOCK paramters:(NSString *)paramters;
 #pragma mark ========== POST请求模版 ==========
 -(void)requestPOST:AD_BLOCK;
-
-
+#pragma mark ==========我的关注==========
+-(void)requestLikesGET:YX_BLOCK;
+#pragma mark ==========登录==========
+-(void)requestLoginPOST:YX_BLOCK;
+#pragma mark ==========登录验证码==========
+-(void)requestSmscodeGET:YX_BLOCK;
 #pragma mark ========== 请求广告 ==========
 -(void)requestGETAdvertising:YX_BLOCK;
+#pragma mark ========== 请求新闻 ==========
+-(void)requestGETInformation:YX_BLOCK;
 
 @end
