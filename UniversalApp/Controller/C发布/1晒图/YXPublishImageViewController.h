@@ -9,7 +9,6 @@
 #import "RootViewController.h"
 
 @interface YXPublishImageViewController : RootViewController
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewAutoHeight;
-@property (weak, nonatomic) IBOutlet UIView *photoImageView;
+@property (weak, nonatomic) IBOutlet UITableView *yxTableview;
 
 @end

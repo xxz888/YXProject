@@ -8,8 +8,8 @@
 
 #import "YXPublishImageViewController.h"
 #import "LLImagePickerView.h"
-
-@interface YXPublishImageViewController ()
+#import "YXPublishImageTableViewCell.h"
+@interface YXPublishImageViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
 
@@ -17,33 +17,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.yxTableview registerNib:[UINib nibWithNibName:@"YXPublishImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXPublishImageTableViewCell"];
 
     [self initImagePhontoView];
 }
 -(void)initImagePhontoView{
-    LLImagePickerView *pickerV = [LLImagePickerView ImagePickerViewWithFrame:CGRectMake(0, 0, self.photoImageView.bounds.size.width, 0) CountOfRow:3];
+    kWeakSelf(self);
+    LLImagePickerView *pickerV = [LLImagePickerView ImagePickerViewWithFrame:CGRectMake(0, 0, KScreenWidth, 0) CountOfRow:3];
     pickerV.type = LLImageTypeAll;
     pickerV.maxImageSelected = 8;
     pickerV.allowPickingVideo = YES;
-    [self.photoImageView addSubview:pickerV];
+    weakself.yxTableview.tableHeaderView = pickerV;
     [pickerV observeSelectedMediaArray:^(NSArray<LLImagePickerModel *> *list) {
         NSLog(@"%@",list);
+        weakself.yxTableview.tableHeaderView = pickerV;
+
+        
     }];
-    
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return  1;
 }
-*/
-
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 250;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    YXPublishImageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXPublishImageTableViewCell" forIndexPath:indexPath];
+    return cell;
+}
+- (IBAction)closeView:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end
