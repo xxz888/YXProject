@@ -38,4 +38,8 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestCigar_brand:YX_BLOCK;
 #pragma mark ========== 品牌详情 ==========
 -(void)requestCigar_brand_detailsPOST:YX_BLOCK;
+#pragma mark ========== 品牌详情点赞收藏 ==========
+-(void)requestCollect_cigarPOST:YX_BLOCK;
+#pragma mark ========== 品牌是否关注 ==========
+-(void)requestMy_concern_cigarPOST:YX_BLOCK;
 @end

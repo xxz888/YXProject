@@ -9,10 +9,11 @@
 #import "TableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+@protocol ClickLikeBtnDelegate <NSObject>
+-(void)clickLikeBtn:(BOOL)isZan cigar_id:(NSString *)cigar_id likeBtn:(UIButton *)likeBtn;
+@end 
 @interface YXHomeXueJiaDetailTableViewCell : TableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *section2TitleLbl;
-@property (weak, nonatomic) IBOutlet UIView *section2LikeView;
 @property (weak, nonatomic) IBOutlet UIImageView *section2ImageView;
 @property (weak, nonatomic) IBOutlet UILabel *section2Lbl1;
 @property (weak, nonatomic) IBOutlet UILabel *section2Lbl2;
@@ -20,6 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *section2Lbl4;
 @property (weak, nonatomic) IBOutlet UILabel *section2Lbl5;
 @property (weak, nonatomic) IBOutlet UILabel *section2Lbl6;
+@property (weak, nonatomic) IBOutlet UIButton *likeBtn;
+
+@property (nonatomic,weak) id<ClickLikeBtnDelegate> delegate;
+@property(nonatomic,weak) NSString * cigar_id;
 @end
 
 NS_ASSUME_NONNULL_END

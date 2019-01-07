@@ -333,6 +333,8 @@
 		BBD2C9AD21E3029100350DCD /* YXHomeXueJiaPinPaiDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C9AC21E3029100350DCD /* YXHomeXueJiaPinPaiDetailViewController.m */; };
 		BBD2C9B021E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C9AF21E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.m */; };
 		BBD2C9B221E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD2C9B121E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib */; };
+		BBE82BD821E340AD004E4144 /* CatZanButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82BD521E340AD004E4144 /* CatZanButton.m */; };
+		BBE82BD921E340AD004E4144 /* EffectImage.png in Resources */ = {isa = PBXBuildFile; fileRef = BBE82BD721E340AD004E4144 /* EffectImage.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -869,6 +871,9 @@
 		BBD2C9AE21E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaDetailTableViewCell.h; sourceTree = "<group>"; };
 		BBD2C9AF21E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaDetailTableViewCell.m; sourceTree = "<group>"; };
 		BBD2C9B121E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeXueJiaDetailTableViewCell.xib; sourceTree = "<group>"; };
+		BBE82BD521E340AD004E4144 /* CatZanButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatZanButton.m; sourceTree = "<group>"; };
+		BBE82BD621E340AD004E4144 /* CatZanButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatZanButton.h; sourceTree = "<group>"; };
+		BBE82BD721E340AD004E4144 /* EffectImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EffectImage.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2114,6 +2119,7 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BBE82BD421E340AD004E4144 /* CatZanButton */,
 				BBD2C97321E1BC0900350DCD /* PYSearch */,
 				BBD2C96221E10E5500350DCD /* LTTextView */,
 				BBD2C94C21E0F72800350DCD /* DACircularProgress */,
@@ -2572,6 +2578,16 @@
 			path = "品牌详情";
 			sourceTree = "<group>";
 		};
+		BBE82BD421E340AD004E4144 /* CatZanButton */ = {
+			isa = PBXGroup;
+			children = (
+				BBE82BD521E340AD004E4144 /* CatZanButton.m */,
+				BBE82BD621E340AD004E4144 /* CatZanButton.h */,
+				BBE82BD721E340AD004E4144 /* EffectImage.png */,
+			);
+			path = CatZanButton;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2745,6 +2761,7 @@
 				BBD2C93021E0F67800350DCD /* PlayButtonOverlayLargeTap@2x.png in Resources */,
 				296F9A371F04F39000909CDB /* 8.jpg in Resources */,
 				293D45A11ECD6422007C64A9 /* Assets.xcassets in Resources */,
+				BBE82BD921E340AD004E4144 /* EffectImage.png in Resources */,
 				BBD2C94021E0F67800350DCD /* ImageSelectedSmallOff.png in Resources */,
 				293D464A1ECDBB63007C64A9 /* icon_tabbar_mine.png in Resources */,
 				290A97F31F4ABC02006BF882 /* arrow_icon@2x.png in Resources */,
@@ -3081,6 +3098,7 @@
 				293D45FA1ECDA4D8007C64A9 /* RootWebViewController.m in Sources */,
 				BBD2C91921E0F67800350DCD /* LLActionSheetView.m in Sources */,
 				BBD2C91521E0F67800350DCD /* LLImagePickerManager.m in Sources */,
+				BBE82BD821E340AD004E4144 /* CatZanButton.m in Sources */,
 				BBA812C521DDBF6A001B5EA1 /* UITabBar+TBBadge.m in Sources */,
 				296DEA751F5D50D100C6FD00 /* UIView+SDExtension.m in Sources */,
 				29D3C0091F4D11A200FD3914 /* FFTagsView.m in Sources */,

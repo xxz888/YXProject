@@ -133,6 +133,24 @@ successBlock(responseObject);\
     }];
 }
 
+#pragma mark ========== 品牌详情点赞收藏 ==========
+-(void)requestCollect_cigarPOST:YX_BLOCK{
+    [HTTP_POST(@"/cigar/collect_cigar/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+#pragma mark ========== 品牌是否关注 ==========
+-(void)requestMy_concern_cigarPOST:YX_BLOCK{
+    [HTTP_POST(@"/cigar/my_concern_cigar/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];
