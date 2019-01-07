@@ -151,6 +151,16 @@ successBlock(responseObject);\
     }];
 }
 
+#pragma mark ========== 发布晒图 ==========
+-(void)requestFaBuImagePOST:YX_BLOCK{
+    [HTTP_POST(@"/users/post/0/0/0/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

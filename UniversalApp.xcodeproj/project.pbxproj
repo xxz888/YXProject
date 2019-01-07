@@ -335,6 +335,7 @@
 		BBD2C9B221E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD2C9B121E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib */; };
 		BBE82BD821E340AD004E4144 /* CatZanButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82BD521E340AD004E4144 /* CatZanButton.m */; };
 		BBE82BD921E340AD004E4144 /* EffectImage.png in Resources */ = {isa = PBXBuildFile; fileRef = BBE82BD721E340AD004E4144 /* EffectImage.png */; };
+		BBE82BDC21E35FF1004E4144 /* ZZYPhotoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82BDA21E35FF1004E4144 /* ZZYPhotoHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -874,6 +875,8 @@
 		BBE82BD521E340AD004E4144 /* CatZanButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatZanButton.m; sourceTree = "<group>"; };
 		BBE82BD621E340AD004E4144 /* CatZanButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatZanButton.h; sourceTree = "<group>"; };
 		BBE82BD721E340AD004E4144 /* EffectImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EffectImage.png; sourceTree = "<group>"; };
+		BBE82BDA21E35FF1004E4144 /* ZZYPhotoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZYPhotoHelper.m; sourceTree = "<group>"; };
+		BBE82BDB21E35FF1004E4144 /* ZZYPhotoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZYPhotoHelper.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2119,6 +2122,8 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BBE82BDB21E35FF1004E4144 /* ZZYPhotoHelper.h */,
+				BBE82BDA21E35FF1004E4144 /* ZZYPhotoHelper.m */,
 				BBE82BD421E340AD004E4144 /* CatZanButton */,
 				BBD2C97321E1BC0900350DCD /* PYSearch */,
 				BBD2C96221E10E5500350DCD /* LTTextView */,
@@ -3016,6 +3021,7 @@
 				BBD2C91B21E0F67800350DCD /* UIImageView+LLExtension.m in Sources */,
 				BBA8147021DE0D38001B5EA1 /* NSString+CString.m in Sources */,
 				BBD2C98E21E1BC3F00350DCD /* PYSearchViewController.m in Sources */,
+				BBE82BDC21E35FF1004E4144 /* ZZYPhotoHelper.m in Sources */,
 				BBD2C98521E1BC0A00350DCD /* PYSearchConst.m in Sources */,
 				BBD2C83B21E0F44A00350DCD /* UIImageView+CircularImv.m in Sources */,
 				BBD2C98221E1BC0A00350DCD /* UIColor+PYSearchExtension.m in Sources */,
