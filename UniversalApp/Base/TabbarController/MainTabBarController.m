@@ -29,6 +29,7 @@
 #import "VTingSeaPopView.h"
 
 #import "YXPublishImageViewController.h"
+#import "YXPublishArticleViewController.h"
 @interface MainTabBarController ()<UITabBarControllerDelegate,VTingPopItemSelectDelegate> {
     NSMutableArray *images;
     NSMutableArray *titles;
@@ -100,10 +101,13 @@
 -(void)itemDidSelected:(NSInteger)index {
     NSLog(@"点击了%ld:item",index);
     __weak typeof(self) weakSelf = self;
+    UIStoryboard * stroryBoard3 = [UIStoryboard storyboardWithName:@"YXPublish" bundle:nil];
 
-    if (index == 0) {
-        UIStoryboard * stroryBoard3 = [UIStoryboard storyboardWithName:@"YXPublish" bundle:nil];
+    if (index == 0) {//晒图
         YXPublishImageViewController * publishVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishImageViewController"];
+        [weakSelf presentViewController:publishVC animated:YES completion:nil];
+    }else if (index == 2){//文章
+        YXPublishArticleViewController * publishVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishArticleViewController"];
         [weakSelf presentViewController:publishVC animated:YES completion:nil];
     }
 }

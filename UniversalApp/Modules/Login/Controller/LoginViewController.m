@@ -156,7 +156,7 @@
     }];
 }
 - (IBAction)closeLoginView:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
+    [self dismissViewControllerAnimated:NO completion:^{
         [[AppDelegate shareAppDelegate].mainTabBar setSelectedIndex:0];
     }];
 

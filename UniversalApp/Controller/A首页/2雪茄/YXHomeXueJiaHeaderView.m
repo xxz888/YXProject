@@ -39,18 +39,22 @@
     [self.photoArray addObject:@"http://www.cigaronline.cn/upload/image/20181225/20181225030921_665.png"];
     [self.photoArray addObject:@"http://www.cigaronline.cn/upload/image/20181222/20181222035425_728.jpg"];
     [self.photoArray addObject:@"http://www.cigaronline.cn/upload/image/20181219/20181219031157_371.png"];
-
+    NSMutableArray * array = [[NSMutableArray alloc]init];
 //    
 //    for (NSDictionary * dic in YX_MANAGER.advertisingArray) {
 //        [self.photoArray addObject:dic[@"photo"]];
 //    }
-SDCycleScrollView *cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, self.underView.frame.size.height) delegate:self placeholderImage:[UIImage imageNamed:@""]];
-cycleScrollView3.bannerImageViewContentMode =  3;
-cycleScrollView3.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
-cycleScrollView3.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
-cycleScrollView3.autoScrollTimeInterval = 4;
-cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:self.photoArray];
-   [cycleScrollView3 setPlaceholderImage:[UIImage imageNamed:@"img_moren"]];
+    SDCycleScrollView *cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, self.underView.frame.size.height) delegate:self placeholderImage:[UIImage imageNamed:@""]];
+    cycleScrollView3.bannerImageViewContentMode =  3;
+    cycleScrollView3.showPageControl = NO;
+    cycleScrollView3.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
+    cycleScrollView3.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
+    cycleScrollView3.autoScrollTimeInterval = 4;
+    cycleScrollView3.titlesGroup = @[@"密歇根州通过雪茄永久税务上限",
+                                     @"高希霸珍藏罗布图2014限量版雪茄发售",
+                                     @"德鲁庄园宣布LIGA PRIVADA 10 周年纪念版雪茄发货"];
+    cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:self.photoArray];
+       [cycleScrollView3 setPlaceholderImage:[UIImage imageNamed:@"img_moren"]];
     [self.underView addSubview:cycleScrollView3];
 }
 //九宫格
@@ -76,8 +80,23 @@ cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:self.photoArray]
         YXGridView * view = [nib objectAtIndex:0];
         view.titleLbl.text = titleArray[i];
         view.titleTagLbl.text = titleTagArray[i];
+        view.tag = i;
 //        view.backgroundColor = [themeColors[i] colorWithAlphaComponent:.7];
         [self.gridView addSubview:view];
+        
+        
+        //view添加点击事件
+        UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
+        [view addGestureRecognizer:tapGesturRecognizer];
+
+    }
+}
+-(void)tapAction:(id)sender{
+    UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;
+    UIView *views = (UIView*) tap.view;
+    NSUInteger tag = views.tag;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(clickGridView:)]) {
+        [self.delegate clickGridView:tag];
     }
 }
 @end

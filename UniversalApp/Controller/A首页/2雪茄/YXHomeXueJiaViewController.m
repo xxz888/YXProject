@@ -10,8 +10,9 @@
 #import "YXHomeXueJiaViewController.h"
 #import "YXHomeXueJiaTableViewCell.h"
 #import "YXHomeXueJiaHeaderView.h"
+#import "YXHomeXueJiaPinPaiViewController.h"
 
-@interface YXHomeXueJiaViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface YXHomeXueJiaViewController ()<UITableViewDelegate,UITableViewDataSource,ClickGridView>
 @property(nonatomic,strong)UITableView * bottomTableView;
 @property(nonatomic,strong)YXHomeXueJiaHeaderView * headerView;
 
@@ -69,6 +70,7 @@
     if (!self.bottomTableView) {
         self.bottomTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.bootomView.frame.size.width, self.bootomView.frame.size.height) style:UITableViewStyleGrouped];
     }
+    self.bottomTableView.backgroundColor = KWhiteColor;
     [self.bottomTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaTableViewCell"];
     self.bottomTableView.delegate= self;
     self.bottomTableView.dataSource = self;
@@ -82,6 +84,7 @@
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeXueJiaHeaderView" owner:self options:nil];
     self.headerView = [nib objectAtIndex:0];
     self.headerView.frame = CGRectMake(0, 0, KScreenWidth, 330);
+    self.headerView.delegate = self;
     return self.headerView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -108,6 +111,18 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+}
+
+#pragma mark ========== 点击九宫格 ==========
+-(void)clickGridView:(NSInteger)tag{
+    NSLog(@"%lu",tag);
+    
+    
+    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+    if (tag == 0) {
+        YXHomeXueJiaPinPaiViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiViewController"];
+        [self.navigationController pushViewController:VC animated:YES];
+    }
 }
 -(NSString *)haomiaoChangeYYMMDDHHMMSS:(NSString *)string{
     NSTimeInterval time = [string doubleValue] ;

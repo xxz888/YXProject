@@ -57,7 +57,7 @@
         //如果有本地数据，先展示TabBar 随后异步自动登录
         self.mainTabBar = [MainTabBarController new];
         self.window.rootViewController = self.mainTabBar;
-        KPostNotification(KNotificationLoginStateChange, @YES)
+//        KPostNotification(KNotificationLoginStateChange, @YES)
         return;
         //自动登录
         [userManager autoLoginToServer:^(BOOL success, NSString *des) {
@@ -108,7 +108,7 @@
         LoginViewController * VC = [stroryBoard instantiateViewControllerWithIdentifier:@"LoginViewController"];
                                              
                                              
-        self.mainTabBar = nil;
+//        self.mainTabBar = nil;
         RootNavigationController *loginNavi =[[RootNavigationController alloc] initWithRootViewController:VC];
         
         CATransition *anima = [CATransition animation];
@@ -116,8 +116,8 @@
         anima.subtype = kCATransitionFromRight; //设置动画的方向
         anima.duration = 0.3f;
         
-        self.window.rootViewController = loginNavi;
-        
+//        self.window.rootViewController = loginNavi;
+        [self.window.rootViewController presentViewController:loginNavi animated:YES completion:nil];
         [kAppWindow.layer addAnimation:anima forKey:@"revealAnimation"];
         
     }

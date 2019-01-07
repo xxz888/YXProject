@@ -108,9 +108,9 @@
     if (!_textView) {
         _textView = [[UITextView alloc]init];
         _textView.backgroundColor = [UIColor clearColor];
-        _textView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        _textView.layer.borderWidth = 0.5;
-        _textView.font = [UIFont systemFontOfSize:13];
+        //_textView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        //_textView.layer.borderWidth = 0.5;
+        _textView.font = [UIFont systemFontOfSize:14];
         _textView.delegate = self;
     }
 

@@ -113,6 +113,17 @@ successBlock(responseObject);\
     } failure:^(NSError *error) {
     }];
 }
+
+
+#pragma mark ========== 请求品牌 ==========
+-(void)requestCigar_brand:YX_BLOCK{
+    kWeakSelf(self);
+    NSString * url = @"/cigar/cigar_brand/";
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {
+    }];
+}
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

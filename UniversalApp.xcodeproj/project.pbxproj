@@ -315,6 +315,19 @@
 		BBD2C95F21E10A9300350DCD /* YXPublishImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C95E21E10A9300350DCD /* YXPublishImageTableViewCell.m */; };
 		BBD2C96121E10AA100350DCD /* YXPublishImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD2C96021E10AA100350DCD /* YXPublishImageTableViewCell.xib */; };
 		BBD2C96521E10E5500350DCD /* LTTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C96421E10E5500350DCD /* LTTextView.m */; };
+		BBD2C96821E1A7FB00350DCD /* YXPublishArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C96721E1A7FB00350DCD /* YXPublishArticleViewController.m */; };
+		BBD2C96F21E1B0FB00350DCD /* YXHomeXueJiaPinPaiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C96E21E1B0FB00350DCD /* YXHomeXueJiaPinPaiViewController.m */; };
+		BBD2C98221E1BC0A00350DCD /* UIColor+PYSearchExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C97521E1BC0900350DCD /* UIColor+PYSearchExtension.m */; };
+		BBD2C98521E1BC0A00350DCD /* PYSearchConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C97921E1BC0900350DCD /* PYSearchConst.m */; };
+		BBD2C98621E1BC0A00350DCD /* PYSearch.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BBD2C97A21E1BC0900350DCD /* PYSearch.bundle */; };
+		BBD2C98721E1BC0A00350DCD /* NSBundle+PYSearchExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C97B21E1BC0A00350DCD /* NSBundle+PYSearchExtension.m */; };
+		BBD2C98821E1BC0A00350DCD /* UIView+PYSearchExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C98121E1BC0A00350DCD /* UIView+PYSearchExtension.m */; };
+		BBD2C98E21E1BC3F00350DCD /* PYSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C98A21E1BC3F00350DCD /* PYSearchViewController.m */; };
+		BBD2C98F21E1BC3F00350DCD /* PYSearchSuggestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C98B21E1BC3F00350DCD /* PYSearchSuggestionViewController.m */; };
+		BBD2C99221E1BD1900350DCD /* PYTempViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C99021E1BD1800350DCD /* PYTempViewController.m */; };
+		BBD2C99921E1C7D600350DCD /* YXHomeXueJiaGuBaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C99821E1C7D600350DCD /* YXHomeXueJiaGuBaViewController.m */; };
+		BBD2C9A021E2F4CA00350DCD /* YXHomeXueJiaPinPaiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C99F21E2F4CA00350DCD /* YXHomeXueJiaPinPaiTableViewCell.m */; };
+		BBD2C9A221E2F4E800350DCD /* YXHomeXueJiaPinPaiTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD2C9A121E2F4E800350DCD /* YXHomeXueJiaPinPaiTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -817,6 +830,31 @@
 		BBD2C96021E10AA100350DCD /* YXPublishImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXPublishImageTableViewCell.xib; sourceTree = "<group>"; };
 		BBD2C96321E10E5500350DCD /* LTTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTTextView.h; sourceTree = "<group>"; };
 		BBD2C96421E10E5500350DCD /* LTTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTTextView.m; sourceTree = "<group>"; };
+		BBD2C96621E1A7FB00350DCD /* YXPublishArticleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXPublishArticleViewController.h; sourceTree = "<group>"; };
+		BBD2C96721E1A7FB00350DCD /* YXPublishArticleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXPublishArticleViewController.m; sourceTree = "<group>"; };
+		BBD2C96D21E1B0FB00350DCD /* YXHomeXueJiaPinPaiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaPinPaiViewController.h; sourceTree = "<group>"; };
+		BBD2C96E21E1B0FB00350DCD /* YXHomeXueJiaPinPaiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaPinPaiViewController.m; sourceTree = "<group>"; };
+		BBD2C97421E1BC0900350DCD /* NSBundle+PYSearchExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+PYSearchExtension.h"; sourceTree = "<group>"; };
+		BBD2C97521E1BC0900350DCD /* UIColor+PYSearchExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PYSearchExtension.m"; sourceTree = "<group>"; };
+		BBD2C97821E1BC0900350DCD /* UIView+PYSearchExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PYSearchExtension.h"; sourceTree = "<group>"; };
+		BBD2C97921E1BC0900350DCD /* PYSearchConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYSearchConst.m; sourceTree = "<group>"; };
+		BBD2C97A21E1BC0900350DCD /* PYSearch.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PYSearch.bundle; sourceTree = "<group>"; };
+		BBD2C97B21E1BC0A00350DCD /* NSBundle+PYSearchExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+PYSearchExtension.m"; sourceTree = "<group>"; };
+		BBD2C97C21E1BC0A00350DCD /* PYSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYSearch.h; sourceTree = "<group>"; };
+		BBD2C97F21E1BC0A00350DCD /* UIColor+PYSearchExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PYSearchExtension.h"; sourceTree = "<group>"; };
+		BBD2C98021E1BC0A00350DCD /* PYSearchConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYSearchConst.h; sourceTree = "<group>"; };
+		BBD2C98121E1BC0A00350DCD /* UIView+PYSearchExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PYSearchExtension.m"; sourceTree = "<group>"; };
+		BBD2C98A21E1BC3F00350DCD /* PYSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYSearchViewController.m; sourceTree = "<group>"; };
+		BBD2C98B21E1BC3F00350DCD /* PYSearchSuggestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYSearchSuggestionViewController.m; sourceTree = "<group>"; };
+		BBD2C98C21E1BC3F00350DCD /* PYSearchSuggestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYSearchSuggestionViewController.h; sourceTree = "<group>"; };
+		BBD2C98D21E1BC3F00350DCD /* PYSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYSearchViewController.h; sourceTree = "<group>"; };
+		BBD2C99021E1BD1800350DCD /* PYTempViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYTempViewController.m; sourceTree = "<group>"; };
+		BBD2C99121E1BD1900350DCD /* PYTempViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYTempViewController.h; sourceTree = "<group>"; };
+		BBD2C99721E1C7D600350DCD /* YXHomeXueJiaGuBaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaGuBaViewController.h; sourceTree = "<group>"; };
+		BBD2C99821E1C7D600350DCD /* YXHomeXueJiaGuBaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaGuBaViewController.m; sourceTree = "<group>"; };
+		BBD2C99E21E2F4CA00350DCD /* YXHomeXueJiaPinPaiTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaPinPaiTableViewCell.h; sourceTree = "<group>"; };
+		BBD2C99F21E2F4CA00350DCD /* YXHomeXueJiaPinPaiTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaPinPaiTableViewCell.m; sourceTree = "<group>"; };
+		BBD2C9A121E2F4E800350DCD /* YXHomeXueJiaPinPaiTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeXueJiaPinPaiTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2023,6 +2061,7 @@
 				BBD2C95921E0FAEC00350DCD /* YXGridView.h */,
 				BBD2C95A21E0FAEC00350DCD /* YXGridView.m */,
 				BBD2C95821E0FAEC00350DCD /* YXGridView.xib */,
+				BBD2C96921E1B05400350DCD /* 雪茄品牌 */,
 			);
 			path = "2雪茄";
 			sourceTree = "<group>";
@@ -2057,6 +2096,7 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BBD2C97321E1BC0900350DCD /* PYSearch */,
 				BBD2C96221E10E5500350DCD /* LTTextView */,
 				BBD2C94C21E0F72800350DCD /* DACircularProgress */,
 				BBD2C89F21E0F67700350DCD /* LLImagePickerView */,
@@ -2169,6 +2209,8 @@
 		BBD2C84721E0F46500350DCD /* 3文章 */ = {
 			isa = PBXGroup;
 			children = (
+				BBD2C96621E1A7FB00350DCD /* YXPublishArticleViewController.h */,
+				BBD2C96721E1A7FB00350DCD /* YXPublishArticleViewController.m */,
 			);
 			path = "3文章";
 			sourceTree = "<group>";
@@ -2414,6 +2456,91 @@
 			path = LTTextView;
 			sourceTree = "<group>";
 		};
+		BBD2C96921E1B05400350DCD /* 雪茄品牌 */ = {
+			isa = PBXGroup;
+			children = (
+				BBD2C96D21E1B0FB00350DCD /* YXHomeXueJiaPinPaiViewController.h */,
+				BBD2C96E21E1B0FB00350DCD /* YXHomeXueJiaPinPaiViewController.m */,
+				BBD2C99421E1C7A900350DCD /* 1古巴 */,
+				BBD2C99621E1C7A900350DCD /* 2非古 */,
+				BBD2C99321E1C7A900350DCD /* 3我的关注 */,
+				BBD2C99521E1C7A900350DCD /* 4筛选 */,
+				BBD2C98921E1BC3F00350DCD /* 搜索 */,
+			);
+			path = "雪茄品牌";
+			sourceTree = "<group>";
+		};
+		BBD2C97321E1BC0900350DCD /* PYSearch */ = {
+			isa = PBXGroup;
+			children = (
+				BBD2C97421E1BC0900350DCD /* NSBundle+PYSearchExtension.h */,
+				BBD2C97521E1BC0900350DCD /* UIColor+PYSearchExtension.m */,
+				BBD2C97821E1BC0900350DCD /* UIView+PYSearchExtension.h */,
+				BBD2C97921E1BC0900350DCD /* PYSearchConst.m */,
+				BBD2C97A21E1BC0900350DCD /* PYSearch.bundle */,
+				BBD2C97B21E1BC0A00350DCD /* NSBundle+PYSearchExtension.m */,
+				BBD2C97C21E1BC0A00350DCD /* PYSearch.h */,
+				BBD2C97F21E1BC0A00350DCD /* UIColor+PYSearchExtension.h */,
+				BBD2C98021E1BC0A00350DCD /* PYSearchConst.h */,
+				BBD2C98121E1BC0A00350DCD /* UIView+PYSearchExtension.m */,
+			);
+			path = PYSearch;
+			sourceTree = "<group>";
+		};
+		BBD2C98921E1BC3F00350DCD /* 搜索 */ = {
+			isa = PBXGroup;
+			children = (
+				BBD2C98D21E1BC3F00350DCD /* PYSearchViewController.h */,
+				BBD2C98A21E1BC3F00350DCD /* PYSearchViewController.m */,
+				BBD2C98C21E1BC3F00350DCD /* PYSearchSuggestionViewController.h */,
+				BBD2C98B21E1BC3F00350DCD /* PYSearchSuggestionViewController.m */,
+				BBD2C99121E1BD1900350DCD /* PYTempViewController.h */,
+				BBD2C99021E1BD1800350DCD /* PYTempViewController.m */,
+			);
+			path = "搜索";
+			sourceTree = "<group>";
+		};
+		BBD2C99321E1C7A900350DCD /* 3我的关注 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "3我的关注";
+			sourceTree = "<group>";
+		};
+		BBD2C99421E1C7A900350DCD /* 1古巴 */ = {
+			isa = PBXGroup;
+			children = (
+				BBD2C99721E1C7D600350DCD /* YXHomeXueJiaGuBaViewController.h */,
+				BBD2C99821E1C7D600350DCD /* YXHomeXueJiaGuBaViewController.m */,
+				BBD2C99A21E2E86800350DCD /* view */,
+			);
+			path = "1古巴";
+			sourceTree = "<group>";
+		};
+		BBD2C99521E1C7A900350DCD /* 4筛选 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "4筛选";
+			sourceTree = "<group>";
+		};
+		BBD2C99621E1C7A900350DCD /* 2非古 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "2非古";
+			sourceTree = "<group>";
+		};
+		BBD2C99A21E2E86800350DCD /* view */ = {
+			isa = PBXGroup;
+			children = (
+				BBD2C99E21E2F4CA00350DCD /* YXHomeXueJiaPinPaiTableViewCell.h */,
+				BBD2C99F21E2F4CA00350DCD /* YXHomeXueJiaPinPaiTableViewCell.m */,
+				BBD2C9A121E2F4E800350DCD /* YXHomeXueJiaPinPaiTableViewCell.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2589,6 +2716,7 @@
 				BBD2C94021E0F67800350DCD /* ImageSelectedSmallOff.png in Resources */,
 				293D464A1ECDBB63007C64A9 /* icon_tabbar_mine.png in Resources */,
 				290A97F31F4ABC02006BF882 /* arrow_icon@2x.png in Resources */,
+				BBD2C98621E1BC0A00350DCD /* PYSearch.bundle in Resources */,
 				2917D2081EE007C300E76185 /* MBHUD_Info@3x.png in Resources */,
 				296DEA811F5D536500C6FD00 /* pageControlCurrentDot@2x.png in Resources */,
 				BBD2C92F21E0F67800350DCD /* ImageSelectedOff.png in Resources */,
@@ -2658,6 +2786,7 @@
 				BBD2C93421E0F67800350DCD /* PlayButtonOverlayLargeTap.png in Resources */,
 				29629EE91F78E49B002CFCBD /* back_icon@2x.png in Resources */,
 				29530FD71F60F1BB00D24E05 /* photo_sample_04.png in Resources */,
+				BBD2C9A221E2F4E800350DCD /* YXHomeXueJiaPinPaiTableViewCell.xib in Resources */,
 				296F9A301F04F39000909CDB /* 13.jpg in Resources */,
 				BBD2C96121E10AA100350DCD /* YXPublishImageTableViewCell.xib in Resources */,
 				BBD2C94B21E0F67800350DCD /* README.md in Resources */,
@@ -2773,6 +2902,7 @@
 				BB5DC69C2189CA38003F1998 /* SELUpdateAlertConst.m in Sources */,
 				29AD6C621ED3E4D600B0879C /* AppDelegate+AppService.m in Sources */,
 				BBD2C90121E0F67700350DCD /* TZPhotoPreviewCell.m in Sources */,
+				BBD2C98F21E1BC3F00350DCD /* PYSearchSuggestionViewController.m in Sources */,
 				296DEA701F5D50D100C6FD00 /* TAAnimatedDotView.m in Sources */,
 				BBA812FA21DDEBEC001B5EA1 /* YXHomeTuiJianViewController.m in Sources */,
 				293D46051ECDAA02007C64A9 /* RootNavigationController.m in Sources */,
@@ -2796,6 +2926,7 @@
 				290A981E1F4ABEB9006BF882 /* BaseTableViewCell.m in Sources */,
 				293D46011ECDA56A007C64A9 /* MainTabBarController.m in Sources */,
 				BBD2C91D21E0F67800350DCD /* UIViewController+LLExtension.m in Sources */,
+				BBD2C96821E1A7FB00350DCD /* YXPublishArticleViewController.m in Sources */,
 				2914E4871F20A45C001C01DB /* PersonListViewController.m in Sources */,
 				BBA812FD21DDEBFB001B5EA1 /* YXHomeXueJiaViewController.m in Sources */,
 				BBD2C92321E0F67800350DCD /* UIImage+MWPhotoBrowser.m in Sources */,
@@ -2834,7 +2965,10 @@
 				2924783E1ED6857300BB097A /* AppDelegate+PushService.m in Sources */,
 				BBD2C91B21E0F67800350DCD /* UIImageView+LLExtension.m in Sources */,
 				BBA8147021DE0D38001B5EA1 /* NSString+CString.m in Sources */,
+				BBD2C98E21E1BC3F00350DCD /* PYSearchViewController.m in Sources */,
+				BBD2C98521E1BC0A00350DCD /* PYSearchConst.m in Sources */,
 				BBD2C83B21E0F44A00350DCD /* UIImageView+CircularImv.m in Sources */,
+				BBD2C98221E1BC0A00350DCD /* UIColor+PYSearchExtension.m in Sources */,
 				2940C5351F0A3EAB008BC29F /* WaterFallListLogic.m in Sources */,
 				BBD2C90021E0F67700350DCD /* TZPhotoPickerController.m in Sources */,
 				BBA8130021DDEC10001B5EA1 /* YXHomeMeiJiuViewController.m in Sources */,
@@ -2842,13 +2976,16 @@
 				293D45F51ECDA453007C64A9 /* RootViewController.m in Sources */,
 				BBD2C80C21E0F41F00350DCD /* YXMineAllViewController.m in Sources */,
 				BBD2C83721E0F44A00350DCD /* UIButton+CountDown.m in Sources */,
+				BBD2C98721E1BC0A00350DCD /* NSBundle+PYSearchExtension.m in Sources */,
 				296F9A3E1F050AA900909CDB /* SecondViewController.m in Sources */,
 				296F9A3B1F0504C900909CDB /* WaterFlowLayout.m in Sources */,
 				296F9A541F0516A700909CDB /* UICollectionView+IndexPath.m in Sources */,
+				BBD2C99221E1BD1900350DCD /* PYTempViewController.m in Sources */,
 				293D46081ECDAEAD007C64A9 /* HomeViewController.m in Sources */,
 				290A981D1F4ABEB9006BF882 /* BaseRequestAPI.m in Sources */,
 				BBD2C80E21E0F41F00350DCD /* YXMineImageViewController.m in Sources */,
 				BBD2C80D21E0F41F00350DCD /* YXMineFootViewController.m in Sources */,
+				BBD2C9A021E2F4CA00350DCD /* YXHomeXueJiaPinPaiTableViewCell.m in Sources */,
 				BBD2C91721E0F67800350DCD /* LLImagePickerView.m in Sources */,
 				29280E881F063EE700BF52D9 /* XYTransition.m in Sources */,
 				290A97FF1F4ABC12006BF882 /* NickNameLbel.m in Sources */,
@@ -2856,6 +2993,7 @@
 				290A981F1F4ABEB9006BF882 /* HSBaseCellModel.m in Sources */,
 				BBD2C96521E10E5500350DCD /* LTTextView.m in Sources */,
 				BBD2C95C21E0FAEC00350DCD /* YXGridView.m in Sources */,
+				BBD2C98821E1BC0A00350DCD /* UIView+PYSearchExtension.m in Sources */,
 				2914E48D1F20A471001C01DB /* PersonListLogic.m in Sources */,
 				BBA8131321DE0814001B5EA1 /* HttpRequest.m in Sources */,
 				293ECC2D1EE56D1D008061A1 /* IMManager.m in Sources */,
@@ -2868,6 +3006,7 @@
 				296DEA721F5D50D100C6FD00 /* TAPageControl.m in Sources */,
 				29530FA61F60F0E800D24E05 /* DraggingCardViewController.m in Sources */,
 				BBD2C8F721E0F67700350DCD /* TZAssetCell.m in Sources */,
+				BBD2C99921E1C7D600350DCD /* YXHomeXueJiaGuBaViewController.m in Sources */,
 				BBA812F721DDEBBB001B5EA1 /* SegmentTapView.m in Sources */,
 				BBD2C8F821E0F67700350DCD /* TZVideoPlayerController.m in Sources */,
 				BBD2C8FB21E0F67700350DCD /* UIView+Layout.m in Sources */,
@@ -2909,6 +3048,7 @@
 				BBA812C521DDBF6A001B5EA1 /* UITabBar+TBBadge.m in Sources */,
 				296DEA751F5D50D100C6FD00 /* UIView+SDExtension.m in Sources */,
 				29D3C0091F4D11A200FD3914 /* FFTagsView.m in Sources */,
+				BBD2C96F21E1B0FB00350DCD /* YXHomeXueJiaPinPaiViewController.m in Sources */,
 				BBA8131021DE06BE001B5EA1 /* YXManager.m in Sources */,
 				BBD2C80B21E0F41F00350DCD /* YXMineArticleViewController.m in Sources */,
 			);
