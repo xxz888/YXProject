@@ -124,6 +124,15 @@ successBlock(responseObject);\
     } failure:^(NSError *error) {
     }];
 }
+#pragma mark ========== 品牌详情 ==========
+-(void)requestCigar_brand_detailsPOST:YX_BLOCK{
+    [HTTP_POST(@"/cigar/cigar_brand_details/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

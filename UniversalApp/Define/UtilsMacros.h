@@ -70,6 +70,18 @@
 //拼接字符串
 #define NSStringFormat(format,...) [NSString stringWithFormat:format,##__VA_ARGS__]
 
+/**
+ * 数据类型转 NSString
+ */
+#define intToNSString(x) [NSString stringWithFormat:@"%d", (x)]
+#define floatToNSString(x) [NSString stringWithFormat:@"%f", (x)]
+#define doubleToNSString(x) [NSString stringWithFormat:@"%.2f", (x)]
+#define CGFloatToNSString(x) [NSString stringWithFormat:@"%f", (x)]
+#define NSUIntegerToNSString(x) [NSString stringWithFormat:@"%lu", (long)(x)]
+#define NSIntegerToNSString(x) [NSString stringWithFormat:@"%ld", (long)(x)]
+#define kGetString(NSNumber)  [NSString stringWithFormat:@"%@",NSNumber]
+#define kGetNSInteger(NSInteger) [NSString stringWithFormat:@"%ld",NSInteger]
+#define kGet2fDouble(Double) [NSString stringWithFormat:@"%.1f",Double]
 //颜色
 #define KClearColor [UIColor clearColor]
 #define KWhiteColor [UIColor whiteColor]

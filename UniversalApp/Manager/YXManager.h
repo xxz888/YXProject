@@ -36,5 +36,6 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestGETInformation:YX_BLOCK;
 #pragma mark ========== 请求品牌 ==========
 -(void)requestCigar_brand:YX_BLOCK;
-
+#pragma mark ========== 品牌详情 ==========
+-(void)requestCigar_brand_detailsPOST:YX_BLOCK;
 @end

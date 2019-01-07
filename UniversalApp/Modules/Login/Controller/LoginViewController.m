@@ -137,11 +137,13 @@
     return _player;
 }
 - (IBAction)loginAction:(id)sender {
-
+    kWeakSelf(self);
     [YX_MANAGER requestLoginPOST:@{@"mobile":self.phoneTf.text,@"sms_code":self.codeTf.text} success:^(id object) {
         if ([object isKindOfClass:[NSDictionary class]]) {
             [userManager login:kUserLoginTypePwd params:object completion:^(BOOL success, NSString *des) {
+                [weakself dismissViewControllerAnimated:YES completion:nil];
                 [QMUITips showSucceed:@"登录成功" inView:self.view hideAfterDelay:2];
+                
             }];
         }else{
             if ([object isEqualToString:@"-1"]) {

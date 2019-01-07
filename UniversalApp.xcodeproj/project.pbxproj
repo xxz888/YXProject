@@ -328,6 +328,11 @@
 		BBD2C99921E1C7D600350DCD /* YXHomeXueJiaGuBaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C99821E1C7D600350DCD /* YXHomeXueJiaGuBaViewController.m */; };
 		BBD2C9A021E2F4CA00350DCD /* YXHomeXueJiaPinPaiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C99F21E2F4CA00350DCD /* YXHomeXueJiaPinPaiTableViewCell.m */; };
 		BBD2C9A221E2F4E800350DCD /* YXHomeXueJiaPinPaiTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD2C9A121E2F4E800350DCD /* YXHomeXueJiaPinPaiTableViewCell.xib */; };
+		BBD2C9A721E2FA0600350DCD /* NSArray+TPDecription.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C9A421E2FA0600350DCD /* NSArray+TPDecription.m */; };
+		BBD2C9A821E2FA0600350DCD /* NSDictionary+TPDecription.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C9A621E2FA0600350DCD /* NSDictionary+TPDecription.m */; };
+		BBD2C9AD21E3029100350DCD /* YXHomeXueJiaPinPaiDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C9AC21E3029100350DCD /* YXHomeXueJiaPinPaiDetailViewController.m */; };
+		BBD2C9B021E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C9AF21E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.m */; };
+		BBD2C9B221E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD2C9B121E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -855,6 +860,15 @@
 		BBD2C99E21E2F4CA00350DCD /* YXHomeXueJiaPinPaiTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaPinPaiTableViewCell.h; sourceTree = "<group>"; };
 		BBD2C99F21E2F4CA00350DCD /* YXHomeXueJiaPinPaiTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaPinPaiTableViewCell.m; sourceTree = "<group>"; };
 		BBD2C9A121E2F4E800350DCD /* YXHomeXueJiaPinPaiTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeXueJiaPinPaiTableViewCell.xib; sourceTree = "<group>"; };
+		BBD2C9A321E2FA0600350DCD /* NSArray+TPDecription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+TPDecription.h"; sourceTree = "<group>"; };
+		BBD2C9A421E2FA0600350DCD /* NSArray+TPDecription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+TPDecription.m"; sourceTree = "<group>"; };
+		BBD2C9A521E2FA0600350DCD /* NSDictionary+TPDecription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+TPDecription.h"; sourceTree = "<group>"; };
+		BBD2C9A621E2FA0600350DCD /* NSDictionary+TPDecription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+TPDecription.m"; sourceTree = "<group>"; };
+		BBD2C9AB21E3029100350DCD /* YXHomeXueJiaPinPaiDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaPinPaiDetailViewController.h; sourceTree = "<group>"; };
+		BBD2C9AC21E3029100350DCD /* YXHomeXueJiaPinPaiDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaPinPaiDetailViewController.m; sourceTree = "<group>"; };
+		BBD2C9AE21E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaDetailTableViewCell.h; sourceTree = "<group>"; };
+		BBD2C9AF21E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaDetailTableViewCell.m; sourceTree = "<group>"; };
+		BBD2C9B121E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeXueJiaDetailTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1801,6 +1815,10 @@
 		29AD6C521ED3E28800B0879C /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				BBD2C9A321E2FA0600350DCD /* NSArray+TPDecription.h */,
+				BBD2C9A421E2FA0600350DCD /* NSArray+TPDecription.m */,
+				BBD2C9A521E2FA0600350DCD /* NSDictionary+TPDecription.h */,
+				BBD2C9A621E2FA0600350DCD /* NSDictionary+TPDecription.m */,
 				296F9A521F0516A700909CDB /* UICollectionView+IndexPath.h */,
 				296F9A531F0516A700909CDB /* UICollectionView+IndexPath.m */,
 				2917D20F1EE0268A00E76185 /* UIViewController+AlertViewAndActionSheet.h */,
@@ -2512,6 +2530,7 @@
 			children = (
 				BBD2C99721E1C7D600350DCD /* YXHomeXueJiaGuBaViewController.h */,
 				BBD2C99821E1C7D600350DCD /* YXHomeXueJiaGuBaViewController.m */,
+				BBD2C9AA21E3026900350DCD /* 品牌详情 */,
 				BBD2C99A21E2E86800350DCD /* view */,
 			);
 			path = "1古巴";
@@ -2539,6 +2558,18 @@
 				BBD2C9A121E2F4E800350DCD /* YXHomeXueJiaPinPaiTableViewCell.xib */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		BBD2C9AA21E3026900350DCD /* 品牌详情 */ = {
+			isa = PBXGroup;
+			children = (
+				BBD2C9AB21E3029100350DCD /* YXHomeXueJiaPinPaiDetailViewController.h */,
+				BBD2C9AC21E3029100350DCD /* YXHomeXueJiaPinPaiDetailViewController.m */,
+				BBD2C9AE21E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.h */,
+				BBD2C9AF21E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.m */,
+				BBD2C9B121E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib */,
+			);
+			path = "品牌详情";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2690,6 +2721,7 @@
 				BBD2C93621E0F67800350DCD /* PlayButtonOverlayLargeTap@3x.png in Resources */,
 				2917D2091EE007C300E76185 /* MBHUD_Info@2x.png in Resources */,
 				293D46521ECDBB63007C64A9 /* icon_tabbar_nearby.png in Resources */,
+				BBD2C9B221E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib in Resources */,
 				BBD2C90421E0F67700350DCD /* README.md in Resources */,
 				290A97E21F4AB24A006BF882 /* stepPk_win_colour4@2x.png in Resources */,
 				29FEE77B1ECED1E200C81B60 /* MBHUD_Warn@2x.png in Resources */,
@@ -2898,6 +2930,7 @@
 				BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */,
 				BBA812B621DDABD3001B5EA1 /* YXMineViewController.m in Sources */,
 				2917D1FF1EDFC89A00E76185 /* YYFPSLabel.m in Sources */,
+				BBD2C9A821E2FA0600350DCD /* NSDictionary+TPDecription.m in Sources */,
 				BBD2C8F921E0F67700350DCD /* TZAssetModel.m in Sources */,
 				BB5DC69C2189CA38003F1998 /* SELUpdateAlertConst.m in Sources */,
 				29AD6C621ED3E4D600B0879C /* AppDelegate+AppService.m in Sources */,
@@ -2990,7 +3023,9 @@
 				29280E881F063EE700BF52D9 /* XYTransition.m in Sources */,
 				290A97FF1F4ABC12006BF882 /* NickNameLbel.m in Sources */,
 				290A98051F4ABCD9006BF882 /* IAPManager.m in Sources */,
+				BBD2C9A721E2FA0600350DCD /* NSArray+TPDecription.m in Sources */,
 				290A981F1F4ABEB9006BF882 /* HSBaseCellModel.m in Sources */,
+				BBD2C9AD21E3029100350DCD /* YXHomeXueJiaPinPaiDetailViewController.m in Sources */,
 				BBD2C96521E10E5500350DCD /* LTTextView.m in Sources */,
 				BBD2C95C21E0FAEC00350DCD /* YXGridView.m in Sources */,
 				BBD2C98821E1BC0A00350DCD /* UIView+PYSearchExtension.m in Sources */,
@@ -3042,6 +3077,7 @@
 				290A980D1F4ABD00006BF882 /* SandBoxHelper.m in Sources */,
 				BBD2C91821E0F67800350DCD /* LLImagePickerCell.m in Sources */,
 				29AD6C5A1ED3E28800B0879C /* HeaderModel.m in Sources */,
+				BBD2C9B021E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.m in Sources */,
 				293D45FA1ECDA4D8007C64A9 /* RootWebViewController.m in Sources */,
 				BBD2C91921E0F67800350DCD /* LLActionSheetView.m in Sources */,
 				BBD2C91521E0F67800350DCD /* LLImagePickerManager.m in Sources */,

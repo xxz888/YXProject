@@ -18,8 +18,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.yxTableview registerNib:[UINib nibWithNibName:@"YXPublishImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXPublishImageTableViewCell"];
-
+    
+    //各种控件样式
+    [self initControl];
+    //初始化选择图片
     [self initImagePhontoView];
+}
+-(void)initControl{
+    UIColor * color1 = [UIColor darkGrayColor];
+    [self.cunCaogaoBtn setTitleColor:color1 forState:UIControlStateNormal];
+    ViewBorderRadius(self.cunCaogaoBtn, 5, 1, color1);
+    
+    [self.fabuBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
+    [self.fabuBtn setBackgroundColor:color1];
+    ViewBorderRadius(self.fabuBtn, 5, 1, color1);
+
+    [self.buttonFabuBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
+    [self.buttonFabuBtn setBackgroundColor:color1];
+
+    
 }
 -(void)initImagePhontoView{
     kWeakSelf(self);
@@ -48,5 +65,9 @@
 }
 - (IBAction)closeView:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)cunCaoGaoAction:(id)sender {
+}
+- (IBAction)fabuAction:(id)sender {
 }
 @end
