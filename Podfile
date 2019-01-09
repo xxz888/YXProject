@@ -10,5 +10,6 @@ pod 'YTKNetwork'
 pod 'QMUIKit'
 pod 'SDWebImage', '~>3.8'
 pod 'ZXSegmentController'
+pod "Qiniu", "~> 7.1"
 
 end

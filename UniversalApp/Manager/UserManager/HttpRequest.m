@@ -28,8 +28,8 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [weakself setCommonRespone:sucess pi:pi responseObject:responseObject];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        
+//        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        NSLog(@"%@",error);
         failure(error);
     }];
 }
@@ -50,16 +50,13 @@
 }
 +(AFHTTPSessionManager *)commonAction{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
     manager.requestSerializer =  [AFJSONRequestSerializer serializer];
     manager.responseSerializer =  [AFHTTPResponseSerializer serializer];
     UserInfo *userInfo = curUser;
     if (curUser && userInfo.token && ![userInfo.token isEqualToString:@""]) {
         [manager.requestSerializer setValue:[@"JWT " append:userInfo.token] forHTTPHeaderField:@"Authorization"];
     }
-    
-
-    
-    [manager.requestSerializer setValue:@"Keep-Alive" forHTTPHeaderField:@"Connection"];
     //允许非权威机构颁发的证书
     manager.securityPolicy.allowInvalidCertificates=YES;
     //也不验证域名一致性
@@ -67,7 +64,7 @@
     //关闭缓存避免干扰测试
     manager.requestSerializer.cachePolicy=NSURLRequestReloadIgnoringLocalCacheData;
     manager.requestSerializer.timeoutInterval = 10;
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", @"multipart/form-data", @"application/json", @"text/html", @"image/jpeg", @"image/png", @"application/octet-stream", @"text/json", nil];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/javascript",@"text/plain",nil];
     return manager;
 }
 

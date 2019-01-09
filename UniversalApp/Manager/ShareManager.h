@@ -21,4 +21,7 @@ SINGLETON_FOR_HEADER(ShareManager)
  展示分享页面
  */
 -(void)showShareView;
+//获取当前时间戳  （以毫秒为单位）
+
++(NSString *)getNowTimeTimestamp3;
 @end

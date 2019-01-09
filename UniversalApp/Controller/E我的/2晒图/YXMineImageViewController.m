@@ -8,12 +8,20 @@
 
 #import "YXMineImageViewController.h"
 
-@interface YXMineImageViewController ()
+@interface YXMineImageViewController (){
+    NSInteger page ;
+}
 
 @end
 
 @implementation YXMineImageViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    NSString * pageString = NSIntegerToNSString(page) ;
+    [YX_MANAGER requestImageListGET:pageString success:^(id object) {
+        
+    }];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

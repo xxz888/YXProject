@@ -34,14 +34,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgE-aW-koo">
-                                <rect key="frame" x="0.0" y="30" width="375" height="509"/>
+                                <rect key="frame" x="0.0" y="30" width="375" height="637"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dgE-aW-koo" firstAttribute="top" secondItem="RRU-Dp-FU3" secondAttribute="top" constant="10" id="CgJ-bA-T7k"/>
-                            <constraint firstItem="RRU-Dp-FU3" firstAttribute="bottom" secondItem="dgE-aW-koo" secondAttribute="bottom" constant="128" id="mNM-mp-o89"/>
+                            <constraint firstItem="RRU-Dp-FU3" firstAttribute="bottom" secondItem="dgE-aW-koo" secondAttribute="bottom" id="mNM-mp-o89"/>
                             <constraint firstItem="dgE-aW-koo" firstAttribute="trailing" secondItem="RRU-Dp-FU3" secondAttribute="trailing" id="uS7-iY-JdM"/>
                             <constraint firstItem="dgE-aW-koo" firstAttribute="leading" secondItem="RRU-Dp-FU3" secondAttribute="leading" id="wHq-Te-Tvd"/>
                         </constraints>

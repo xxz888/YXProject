@@ -68,7 +68,7 @@
 //tableview
 -(void)createBottomTableView{
     if (!self.bottomTableView) {
-        self.bottomTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.bootomView.frame.size.width, self.bootomView.frame.size.height) style:UITableViewStyleGrouped];
+        self.bottomTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, self.bootomView.frame.size.height) style:UITableViewStyleGrouped];
     }
     self.bottomTableView.backgroundColor = KWhiteColor;
     [self.bottomTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaTableViewCell"];

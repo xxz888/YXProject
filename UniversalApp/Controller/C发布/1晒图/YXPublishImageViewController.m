@@ -10,6 +10,20 @@
 #import "LLImagePickerView.h"
 #import "YXPublishImageTableViewCell.h"
 #import "ZZYPhotoHelper.h"
+#import "QiniuLoad.h"
+
+#import<QiniuSDK.h>
+#import<AFNetworking.h>
+//#import <ComminCrypto/CommonCrypto.h>
+#import<QN_GTM_Base64.h>
+//#import<QBEtag.h>
+#import<QNConfiguration.h>
+
+
+#define kQNinterface @"官网获取外链域名"
+static NSString *accessKey = @"官网获取";
+static NSString *secretKey = @"官网获取";
+
 
 @interface YXPublishImageViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSMutableArray * _photoImageList;
@@ -18,7 +32,10 @@
 @end
 
 @implementation YXPublishImageViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+ 
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.yxTableview registerNib:[UINib nibWithNibName:@"YXPublishImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXPublishImageTableViewCell"];
@@ -54,6 +71,14 @@
         for (LLImagePickerModel * model in list) {
             [_photoImageList addObject:model.image];
         }
+ 
+        
+
+        
+  
+     
+
+        
         NSLog(@"%@",list);
         weakself.yxTableview.tableHeaderView = pickerV;
 
@@ -79,31 +104,71 @@
 
 #pragma mark ========== 发布 ==========
 - (IBAction)fabuAction:(id)sender {
-    NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
-    if (_photoImageList.count == 0) {
-        [QMUITips showError:@"请上传图片" inView:self.view hideAfterDelay:2];
-        return;
-    }else if (_photoImageList.count == 1){
-        [dic setValue:[self inImageOutString:_photoImageList[0]] forKey:@"photo1"];
-    }else if (_photoImageList.count == 2){
-        [dic setValue:[self inImageOutString:_photoImageList[0]] forKey:@"photo1"];
-        [dic setValue:[self inImageOutString:_photoImageList[1]] forKey:@"photo2"];
-    }else if (_photoImageList.count == 3){
-        [dic setValue:[self inImageOutString:_photoImageList[0]] forKey:@"photo1"];
-        [dic setValue:[self inImageOutString:_photoImageList[1]] forKey:@"photo2"];
-        [dic setValue:[self inImageOutString:_photoImageList[2]] forKey:@"photo3"];
-    }
-   
-    [dic setValue:@"风景图片" forKey:@"describe"];//描述
-    [dic setValue:@"杭州市海底捞火锅" forKey:@"publish_site"];//地点
-    [dic setValue:@"0" forKey:@"tag"];//标签
-
-    [YX_MANAGER requestFaBuImagePOST:dic success:^(id object) {
-        
+    kWeakSelf(self);
+    //先上传到七牛云图片  再提交服务器
+    [QiniuLoad uploadImageToQNFilePath:_photoImageList success:^(NSString *reslut) {
+        NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
+        NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
+        if (qiniuArray.count == 0) {
+            [QMUITips showError:@"请上传图片" inView:self.view hideAfterDelay:2];
+            return;
+        }else if (qiniuArray.count == 1){
+            [dic setValue:qiniuArray[0] forKey:@"photo1"];
+        }else if (qiniuArray.count == 2){
+            [dic setValue:qiniuArray[0] forKey:@"photo1"];
+            [dic setValue:qiniuArray[1] forKey:@"photo2"];
+        }else if (qiniuArray.count == 3){
+            [dic setValue:qiniuArray[0] forKey:@"photo1"];
+            [dic setValue:qiniuArray[1] forKey:@"photo2"];
+            [dic setValue:qiniuArray[2] forKey:@"photo3"];
+        }
+        [dic setValue:@"风景图片" forKey:@"describe"];//描述
+        [dic setValue:@"杭州市海底捞火锅" forKey:@"publish_site"];//地点
+        [dic setValue:@"0" forKey:@"tag"];//标签
+        //发布按钮
+        [YX_MANAGER requestFaBuImagePOST:dic success:^(id object) {
+            [QMUITips showSucceed:@"发布成功" inView:weakself.view hideAfterDelay:2];
+        }];
+    } failure:^(NSString *error) {
+        NSLog(@"%@",error);
     }];
+    
+    
+    
+
 }
 -(NSString *)inImageOutString:(UIImage *)image{
       NSString *strTopper = [NSString stringWithFormat:@"%@", [UIImageJPEGRepresentation(image, 0.1f) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength]];
     return strTopper;
 }
+
+//照片获取本地路径转换
+- (NSString *)getImagePath:(UIImage *)Image {
+    NSString *filePath = nil;
+    NSData *data = nil;
+    if (UIImagePNGRepresentation(Image) == nil) {
+        data = UIImageJPEGRepresentation(Image, 1.0);
+    } else {
+        data = UIImagePNGRepresentation(Image);
+    }
+    
+    //图片保存的路径
+    //这里将图片放在沙盒的documents文件夹中
+    NSString *DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    
+    //文件管理器
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    //把刚刚图片转换的data对象拷贝至沙盒中
+    [fileManager createDirectoryAtPath:DocumentsPath withIntermediateDirectories:YES attributes:nil error:nil];
+    NSString *ImagePath = [[NSString alloc] initWithFormat:@"/theFirstImage.png"];
+    [fileManager createFileAtPath:[DocumentsPath stringByAppendingString:ImagePath] contents:data attributes:nil];
+    
+    //得到选择后沙盒中图片的完整路径
+    filePath = [[NSString alloc] initWithFormat:@"%@%@", DocumentsPath, ImagePath];
+    return filePath;
+}
+
+
+
 @end

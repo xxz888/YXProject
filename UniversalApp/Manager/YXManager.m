@@ -41,32 +41,23 @@ successBlock(responseObject);\
 
 #pragma mark ==========GET请求模版==========
 -(void)requestGET:YX_BLOCK{
-    kWeakSelf(self);
     NSString * url = @"";
     [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
-        //[weakself. removeAllObjects];
-        //[weakself. addObject:responseObject];
         successBlock(responseObject);
-    } failure:^(NSError *error) {
-    }];
+    } failure:^(NSError *error) {}];
 }
 #pragma mark ==========POST请求模版==========
 -(void)requestPOST:YX_BLOCK{
     [HTTP_POST(@"") Parameters:dic sucess:^(id responseObject) {
-        
         successBlock(responseObject);
-    } failure:^(NSError *error) {
-        
-    }];
+    } failure:^(NSError *error) { }];
 }
 
 #pragma mark ==========登录==========
 -(void)requestLoginPOST:YX_BLOCK{
     [HTTP_POST(@"/users/register/") Parameters:dic sucess:^(id responseObject) {
         successBlock(responseObject);
-    } failure:^(NSError *error) {
-        
-    }];
+    } failure:^(NSError *error) { }];
 }
 
 #pragma mark ==========登录验证码==========
@@ -74,19 +65,15 @@ successBlock(responseObject);\
     NSString * url = @"/pub/smscode/";
     [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
         successBlock(responseObject);
-    } failure:^(NSError *error) {
-    }];
+    } failure:^(NSError *error) { }];
 }
 
 
 
 #pragma mark ==========我的关注==========
 -(void)requestLikesGET:YX_BLOCK{
-    kWeakSelf(self);
     NSString * url = @"/users/likes/";
     [HTTP_GET([[url append:dic] append:@"/0/"])  sucess:^(id responseObject) {
-        //[weakself. removeAllObjects];
-        //[weakself. addObject:responseObject];
         successBlock(responseObject);
     } failure:^(NSError *error) {
     }];
@@ -99,67 +86,74 @@ successBlock(responseObject);\
         [weakself.advertisingArray removeAllObjects];
         [weakself.advertisingArray addObject:responseObject];
         successBlock(responseObject);
-    } failure:^(NSError *error) {
-    }];
+    } failure:^(NSError *error) {}];
 }
 #pragma mark ========== 请求新闻 ==========
 -(void)requestGETInformation:YX_BLOCK{
-    kWeakSelf(self);
     NSString * url = @"/pub/information/";
     [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
-        //[weakself. removeAllObjects];
-        //[weakself. addObject:responseObject];
         successBlock(responseObject);
     } failure:^(NSError *error) {
     }];
 }
-
+#pragma mark ==========请求七牛tocken==========
+-(void)requestQiniu_tokenGET:YX_BLOCK{
+    NSString * url = @"/pub/qiniu_token/";
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject){
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 
 #pragma mark ========== 请求品牌 ==========
 -(void)requestCigar_brand:YX_BLOCK{
-    kWeakSelf(self);
     NSString * url = @"/cigar/cigar_brand/";
     [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
         successBlock(responseObject);
-    } failure:^(NSError *error) {
-    }];
+    } failure:^(NSError *error) {}];
 }
 #pragma mark ========== 品牌详情 ==========
 -(void)requestCigar_brand_detailsPOST:YX_BLOCK{
     [HTTP_POST(@"/cigar/cigar_brand_details/") Parameters:dic sucess:^(id responseObject) {
         successBlock(responseObject);
-    } failure:^(NSError *error) {
-        
-    }];
+    } failure:^(NSError *error) {}];
 }
 
 #pragma mark ========== 品牌详情点赞收藏 ==========
 -(void)requestCollect_cigarPOST:YX_BLOCK{
     [HTTP_POST(@"/cigar/collect_cigar/") Parameters:dic sucess:^(id responseObject) {
         successBlock(responseObject);
-    } failure:^(NSError *error) {
-        
-    }];
+    } failure:^(NSError *error) { }];
 }
 
 #pragma mark ========== 品牌是否关注 ==========
 -(void)requestMy_concern_cigarPOST:YX_BLOCK{
     [HTTP_POST(@"/cigar/my_concern_cigar/") Parameters:dic sucess:^(id responseObject) {
         successBlock(responseObject);
-    } failure:^(NSError *error) {
-        
-    }];
+    } failure:^(NSError *error) {}];
 }
 
 #pragma mark ========== 发布晒图 ==========
 -(void)requestFaBuImagePOST:YX_BLOCK{
     [HTTP_POST(@"/users/post/0/0/0/") Parameters:dic sucess:^(id responseObject) {
         successBlock(responseObject);
-    } failure:^(NSError *error) {
-        
-    }];
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ==========晒图列表==========
+-(void)requestImageListGET:YX_BLOCK{
+    NSString * url = @"/users/post/2/0/";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
 }
 
+
+
+#pragma mark ==========发布文章==========
+-(void)requestEssayPOST:YX_BLOCK{
+    [HTTP_POST(@"/users/essay/0/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
 
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];

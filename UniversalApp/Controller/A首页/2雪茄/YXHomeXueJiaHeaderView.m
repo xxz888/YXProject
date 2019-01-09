@@ -44,11 +44,11 @@
 //    for (NSDictionary * dic in YX_MANAGER.advertisingArray) {
 //        [self.photoArray addObject:dic[@"photo"]];
 //    }
-    SDCycleScrollView *cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, self.underView.frame.size.height) delegate:self placeholderImage:[UIImage imageNamed:@""]];
+    SDCycleScrollView *cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, self.underView.frame.size.height) delegate:self placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cycleScrollView3.bannerImageViewContentMode =  3;
     cycleScrollView3.showPageControl = NO;
-    cycleScrollView3.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
-    cycleScrollView3.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
+    cycleScrollView3.currentPageDotImage = [UIImage imageNamed:@"img_moren"];
+    cycleScrollView3.pageDotImage = [UIImage imageNamed:@"img_moren"];
     cycleScrollView3.autoScrollTimeInterval = 4;
     cycleScrollView3.titlesGroup = @[@"密歇根州通过雪茄永久税务上限",
                                      @"高希霸珍藏罗布图2014限量版雪茄发售",

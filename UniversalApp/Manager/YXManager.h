@@ -44,4 +44,10 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestMy_concern_cigarPOST:YX_BLOCK;
 #pragma mark ========== 发布晒图 ==========
 -(void)requestFaBuImagePOST:YX_BLOCK;
+#pragma mark ==========晒图列表==========
+-(void)requestImageListGET:YX_BLOCK;
+#pragma mark ==========请求七牛tocken==========
+-(void)requestQiniu_tokenGET:YX_BLOCK;
+#pragma mark ==========发布文章==========
+-(void)requestEssayPOST:YX_BLOCK;
 @end

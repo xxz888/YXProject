@@ -25,6 +25,14 @@
     
     [self initData];
 
+    
+    
+    UserInfo *userInfo = curUser;
+    NSString * userId = userInfo.id;
+    NSString * key = [NSString stringWithFormat:@"%@_image_%@.jpg/",userId,[ShareManager getNowTimeTimestamp3]];
+    [YX_MANAGER requestQiniu_tokenGET:key success:^(id object) {
+        
+    }];
 }
 -(void)initData{
     

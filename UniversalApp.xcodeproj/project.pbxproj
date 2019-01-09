@@ -333,9 +333,16 @@
 		BBD2C9AD21E3029100350DCD /* YXHomeXueJiaPinPaiDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C9AC21E3029100350DCD /* YXHomeXueJiaPinPaiDetailViewController.m */; };
 		BBD2C9B021E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C9AF21E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.m */; };
 		BBD2C9B221E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD2C9B121E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib */; };
+		BBD30CD521E589B1000D3244 /* YXMineImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD30CD321E589B1000D3244 /* YXMineImageTableViewCell.m */; };
+		BBD30CD621E589B1000D3244 /* YXMineImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD30CD421E589B1000D3244 /* YXMineImageTableViewCell.xib */; };
 		BBE82BD821E340AD004E4144 /* CatZanButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82BD521E340AD004E4144 /* CatZanButton.m */; };
 		BBE82BD921E340AD004E4144 /* EffectImage.png in Resources */ = {isa = PBXBuildFile; fileRef = BBE82BD721E340AD004E4144 /* EffectImage.png */; };
 		BBE82BDC21E35FF1004E4144 /* ZZYPhotoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82BDA21E35FF1004E4144 /* ZZYPhotoHelper.m */; };
+		BBE82CE521E3A125004E4144 /* QiniuLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82CE321E3A125004E4144 /* QiniuLoad.m */; };
+		BBE82CF721E445CA004E4144 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82CF621E445C9004E4144 /* GTMBase64.m */; };
+		BBE82CFF21E44A7D004E4144 /* ZLPhotoPickerDatas.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82CF921E44A7D004E4144 /* ZLPhotoPickerDatas.m */; };
+		BBE82D0021E44A7D004E4144 /* ZLPhotoPickerGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82CFB21E44A7D004E4144 /* ZLPhotoPickerGroup.m */; };
+		BBE82D0121E44A7D004E4144 /* ZLPhotoAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82CFC21E44A7D004E4144 /* ZLPhotoAssets.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -872,11 +879,25 @@
 		BBD2C9AE21E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaDetailTableViewCell.h; sourceTree = "<group>"; };
 		BBD2C9AF21E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaDetailTableViewCell.m; sourceTree = "<group>"; };
 		BBD2C9B121E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeXueJiaDetailTableViewCell.xib; sourceTree = "<group>"; };
+		BBD30CD221E589B1000D3244 /* YXMineImageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineImageTableViewCell.h; sourceTree = "<group>"; };
+		BBD30CD321E589B1000D3244 /* YXMineImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineImageTableViewCell.m; sourceTree = "<group>"; };
+		BBD30CD421E589B1000D3244 /* YXMineImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineImageTableViewCell.xib; sourceTree = "<group>"; };
 		BBE82BD521E340AD004E4144 /* CatZanButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatZanButton.m; sourceTree = "<group>"; };
 		BBE82BD621E340AD004E4144 /* CatZanButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatZanButton.h; sourceTree = "<group>"; };
 		BBE82BD721E340AD004E4144 /* EffectImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EffectImage.png; sourceTree = "<group>"; };
 		BBE82BDA21E35FF1004E4144 /* ZZYPhotoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZYPhotoHelper.m; sourceTree = "<group>"; };
 		BBE82BDB21E35FF1004E4144 /* ZZYPhotoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZYPhotoHelper.h; sourceTree = "<group>"; };
+		BBE82CE321E3A125004E4144 /* QiniuLoad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QiniuLoad.m; sourceTree = "<group>"; };
+		BBE82CE421E3A125004E4144 /* QiniuLoad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiniuLoad.h; sourceTree = "<group>"; };
+		BBE82CF421E445C9004E4144 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		BBE82CF521E445C9004E4144 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		BBE82CF621E445C9004E4144 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		BBE82CF921E44A7D004E4144 /* ZLPhotoPickerDatas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoPickerDatas.m; sourceTree = "<group>"; };
+		BBE82CFA21E44A7D004E4144 /* ZLPhotoAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoAssets.h; sourceTree = "<group>"; };
+		BBE82CFB21E44A7D004E4144 /* ZLPhotoPickerGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoPickerGroup.m; sourceTree = "<group>"; };
+		BBE82CFC21E44A7D004E4144 /* ZLPhotoAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoAssets.m; sourceTree = "<group>"; };
+		BBE82CFD21E44A7D004E4144 /* ZLPhotoPickerDatas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerDatas.h; sourceTree = "<group>"; };
+		BBE82CFE21E44A7D004E4144 /* ZLPhotoPickerGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerGroup.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2122,6 +2143,9 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BBE82CF821E44A7D004E4144 /* Models */,
+				BBE82CF321E445C9004E4144 /* GTMBase64 */,
+				BBE82CE221E3A125004E4144 /* QiniuLoad */,
 				BBE82BDB21E35FF1004E4144 /* ZZYPhotoHelper.h */,
 				BBE82BDA21E35FF1004E4144 /* ZZYPhotoHelper.m */,
 				BBE82BD421E340AD004E4144 /* CatZanButton */,
@@ -2189,6 +2213,9 @@
 			children = (
 				BBD2C80921E0F41F00350DCD /* YXMineImageViewController.h */,
 				BBD2C80A21E0F41F00350DCD /* YXMineImageViewController.m */,
+				BBD30CD221E589B1000D3244 /* YXMineImageTableViewCell.h */,
+				BBD30CD321E589B1000D3244 /* YXMineImageTableViewCell.m */,
+				BBD30CD421E589B1000D3244 /* YXMineImageTableViewCell.xib */,
 			);
 			path = "2晒图";
 			sourceTree = "<group>";
@@ -2593,6 +2620,38 @@
 			path = CatZanButton;
 			sourceTree = "<group>";
 		};
+		BBE82CE221E3A125004E4144 /* QiniuLoad */ = {
+			isa = PBXGroup;
+			children = (
+				BBE82CE421E3A125004E4144 /* QiniuLoad.h */,
+				BBE82CE321E3A125004E4144 /* QiniuLoad.m */,
+			);
+			path = QiniuLoad;
+			sourceTree = "<group>";
+		};
+		BBE82CF321E445C9004E4144 /* GTMBase64 */ = {
+			isa = PBXGroup;
+			children = (
+				BBE82CF421E445C9004E4144 /* GTMBase64.h */,
+				BBE82CF521E445C9004E4144 /* GTMDefines.h */,
+				BBE82CF621E445C9004E4144 /* GTMBase64.m */,
+			);
+			path = GTMBase64;
+			sourceTree = "<group>";
+		};
+		BBE82CF821E44A7D004E4144 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BBE82CFD21E44A7D004E4144 /* ZLPhotoPickerDatas.h */,
+				BBE82CF921E44A7D004E4144 /* ZLPhotoPickerDatas.m */,
+				BBE82CFA21E44A7D004E4144 /* ZLPhotoAssets.h */,
+				BBE82CFC21E44A7D004E4144 /* ZLPhotoAssets.m */,
+				BBE82CFB21E44A7D004E4144 /* ZLPhotoPickerGroup.m */,
+				BBE82CFE21E44A7D004E4144 /* ZLPhotoPickerGroup.h */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2604,7 +2663,6 @@
 				296F9EB41ECC64CE0063A255 /* Sources */,
 				296F9EB51ECC64CE0063A255 /* Frameworks */,
 				296F9EB61ECC64CE0063A255 /* Resources */,
-				FCE002867A10AABD9CA626C2 /* [CP] Embed Pods Frameworks */,
 				BAD1716792B72D02CEED4423 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -2664,7 +2722,7 @@
 				TargetAttributes = {
 					296F9EB71ECC64CE0063A255 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = GS87L2SD5F;
+						DevelopmentTeam = NXL64PT9J8;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
@@ -2788,6 +2846,7 @@
 				290A97F01F4ABC02006BF882 /* haoy@2x.png in Resources */,
 				2917D20B1EE007C300E76185 /* MBHUD_Error@2x.png in Resources */,
 				293D464C1ECDBB63007C64A9 /* icon_tabbar_mine_selected.png in Resources */,
+				BBD30CD621E589B1000D3244 /* YXMineImageTableViewCell.xib in Resources */,
 				296DEA7E1F5D536500C6FD00 /* pageControlDot@2x.png in Resources */,
 				290A97F21F4ABC02006BF882 /* renw@2x.png in Resources */,
 				296F85091FED04EF005612D1 /* close_icon@2x.png in Resources */,
@@ -2892,7 +2951,8 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QMUIResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2915,21 +2975,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FCE002867A10AABD9CA626C2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UniversalApp/Pods-UniversalApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2981,6 +3026,7 @@
 				290A981E1F4ABEB9006BF882 /* BaseTableViewCell.m in Sources */,
 				293D46011ECDA56A007C64A9 /* MainTabBarController.m in Sources */,
 				BBD2C91D21E0F67800350DCD /* UIViewController+LLExtension.m in Sources */,
+				BBE82D0021E44A7D004E4144 /* ZLPhotoPickerGroup.m in Sources */,
 				BBD2C96821E1A7FB00350DCD /* YXPublishArticleViewController.m in Sources */,
 				2914E4871F20A45C001C01DB /* PersonListViewController.m in Sources */,
 				BBA812FD21DDEBFB001B5EA1 /* YXHomeXueJiaViewController.m in Sources */,
@@ -3005,6 +3051,7 @@
 				BBD2C83821E0F44A00350DCD /* VTingSeaPopView.m in Sources */,
 				290471B91F98D9AB0081CCA1 /* XYTabBar.m in Sources */,
 				BBD2C91E21E0F67800350DCD /* NSString+LLExtension.m in Sources */,
+				BBE82D0121E44A7D004E4144 /* ZLPhotoAssets.m in Sources */,
 				BBD2C8FE21E0F67700350DCD /* TZProgressView.m in Sources */,
 				BBD2C90221E0F67700350DCD /* TZImagePickerController.m in Sources */,
 				296DEA731F5D50D100C6FD00 /* SDCollectionViewCell.m in Sources */,
@@ -3044,6 +3091,7 @@
 				BBD2C9A021E2F4CA00350DCD /* YXHomeXueJiaPinPaiTableViewCell.m in Sources */,
 				BBD2C91721E0F67800350DCD /* LLImagePickerView.m in Sources */,
 				29280E881F063EE700BF52D9 /* XYTransition.m in Sources */,
+				BBD30CD521E589B1000D3244 /* YXMineImageTableViewCell.m in Sources */,
 				290A97FF1F4ABC12006BF882 /* NickNameLbel.m in Sources */,
 				290A98051F4ABCD9006BF882 /* IAPManager.m in Sources */,
 				BBD2C9A721E2FA0600350DCD /* NSArray+TPDecription.m in Sources */,
@@ -3069,6 +3117,7 @@
 				BBD2C8F821E0F67700350DCD /* TZVideoPlayerController.m in Sources */,
 				BBD2C8FB21E0F67700350DCD /* UIView+Layout.m in Sources */,
 				BBD2C83A21E0F44A00350DCD /* VTingTimeView.m in Sources */,
+				BBE82CE521E3A125004E4144 /* QiniuLoad.m in Sources */,
 				BBD2C92121E0F67800350DCD /* MWCaptionView.m in Sources */,
 				BBD2C8FA21E0F67700350DCD /* NSBundle+TZImagePicker.m in Sources */,
 				BBD2C95521E0F72800350DCD /* DALabeledCircularProgressView.m in Sources */,
@@ -3087,6 +3136,7 @@
 				29D3C00A1F4D11A200FD3914 /* TagsButton.m in Sources */,
 				293D46111ECDAEED007C64A9 /* MineViewController.m in Sources */,
 				BBD2C95621E0F72800350DCD /* DACircularProgressView.m in Sources */,
+				BBE82CF721E445CA004E4144 /* GTMBase64.m in Sources */,
 				BBA812B921DDBE47001B5EA1 /* TBTabBar.m in Sources */,
 				29530FB01F60F10700D24E05 /* YSLDraggableCardContainer.m in Sources */,
 				29FEE7681ECEC27900C81B60 /* MBProgressHUD+XY.m in Sources */,
@@ -3105,6 +3155,7 @@
 				BBD2C91921E0F67800350DCD /* LLActionSheetView.m in Sources */,
 				BBD2C91521E0F67800350DCD /* LLImagePickerManager.m in Sources */,
 				BBE82BD821E340AD004E4144 /* CatZanButton.m in Sources */,
+				BBE82CFF21E44A7D004E4144 /* ZLPhotoPickerDatas.m in Sources */,
 				BBA812C521DDBF6A001B5EA1 /* UITabBar+TBBadge.m in Sources */,
 				296DEA751F5D50D100C6FD00 /* UIView+SDExtension.m in Sources */,
 				29D3C0091F4D11A200FD3914 /* FFTagsView.m in Sources */,
@@ -3254,7 +3305,7 @@
 			baseConfigurationReference = A51AB222BA7ACF202B5B1330 /* Pods-UniversalApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = GS87L2SD5F;
+				DEVELOPMENT_TEAM = NXL64PT9J8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3271,7 +3322,7 @@
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/SocialLibraries/WeChat",
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/UMSocialSDKPlugin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nb.666;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adianyun.buyebao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/UniversalApp/Define";
@@ -3283,7 +3334,7 @@
 			baseConfigurationReference = 14ED69325E9FD4BDB1CA95F8 /* Pods-UniversalApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = GS87L2SD5F;
+				DEVELOPMENT_TEAM = NXL64PT9J8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3300,7 +3351,7 @@
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/SocialLibraries/WeChat",
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/UMSocialSDKPlugin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nb.666;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adianyun.buyebao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/UniversalApp/Define";
