@@ -49,9 +49,15 @@
     BOOL is_like = [self.dataArray[indexPath.row][@"is_like"] integerValue] == 1;
     if (is_like) {
         [cell.common1GuanzhuBtn setTitle:@"互相关注" forState:UIControlStateNormal];
+        [cell.common1GuanzhuBtn setTitleColor:KWhiteColor forState:0];
+        [cell.common1GuanzhuBtn setBackgroundColor:YXRGBAColor(255, 51, 51)];
+        ViewBorderRadius(cell.common1GuanzhuBtn, 5, 0, KClearColor);
     }else{
         [cell.common1GuanzhuBtn setTitle:@"关注" forState:UIControlStateNormal];
+        [cell.common1GuanzhuBtn setTitleColor:[UIColor darkGrayColor] forState:0];
+        [cell.common1GuanzhuBtn setBackgroundColor:KWhiteColor];
     }
+    
     [cell.common1ImageView sd_setImageWithURL:[NSURL URLWithString:imgString] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     return cell;
 }
@@ -63,11 +69,17 @@
     [YX_MANAGER requestLikesActionGET:common_id_string success:^(id object) {
         BOOL is_like = [cell.common1GuanzhuBtn.titleLabel.text isEqualToString:@"关注"] == 1;
         [QMUITips showSucceed:is_like ?@"互相关注成功" : @"已取消关注" inView:weakself.view hideAfterDelay:2];
-
+        
         if (is_like) {
             [cell.common1GuanzhuBtn setTitle:@"互相关注" forState:UIControlStateNormal];
+            [cell.common1GuanzhuBtn setTitleColor:KWhiteColor forState:0];
+            [cell.common1GuanzhuBtn setBackgroundColor:YXRGBAColor(255, 51, 51)];
+            ViewBorderRadius(cell.common1GuanzhuBtn, 5, 0, KClearColor);
         }else{
             [cell.common1GuanzhuBtn setTitle:@"关注" forState:UIControlStateNormal];
+            [cell.common1GuanzhuBtn setTitleColor:[UIColor darkGrayColor] forState:0];
+            [cell.common1GuanzhuBtn setBackgroundColor:KWhiteColor];
+            
         }
     }];
 }

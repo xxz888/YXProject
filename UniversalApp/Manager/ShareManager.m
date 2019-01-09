@@ -169,17 +169,18 @@ SINGLETON_FOR_CLASS(ShareManager);
 
 +(void)setGuanZhuStatus:(UIButton *)btn status:(BOOL)statusBool{
     UIColor * color1 = [UIColor darkGrayColor];
-    if (statusBool) {
+     if (statusBool) {
+        
         [btn setTitle:@"关注" forState:UIControlStateNormal];
-        [btn setTitleColor:color1 forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor darkGrayColor] forState:0];
         [btn setBackgroundColor:KWhiteColor];
         ViewBorderRadius(btn, 5, 1, color1);
-     
+
     }else{
-        [btn setTitle:@"✓ 已关注" forState:UIControlStateNormal];
-        [btn setTitleColor:KWhiteColor forState:UIControlStateNormal];
-        [btn setBackgroundColor:color1];
-        ViewBorderRadius(btn, 5, 1, color1);
+        [btn setTitle:@"已关注" forState:UIControlStateNormal];
+        [btn setTitleColor:KWhiteColor forState:0];
+        [btn setBackgroundColor:YXRGBAColor(255, 51, 51)];
+        ViewBorderRadius(btn, 5, 0, KClearColor);
     }
 }
 @end

@@ -169,7 +169,20 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
-
+#pragma mark ==========详情列表==========
+-(void)requestGetDetailListGET:YX_BLOCK{
+    NSString * url = @"/users/post/";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ==========点评请求==========
+-(void)requestCigar_commentGET:YX_BLOCK{
+    NSString * url = @"/cigar/cigar_comment/";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];

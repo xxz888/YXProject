@@ -54,4 +54,8 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestEssayListGET:YX_BLOCK;
 #pragma mark ==========取消关注==========
 -(void)requestLikesActionGET:YX_BLOCK;
+#pragma mark ==========详情列表==========
+-(void)requestGetDetailListGET:YX_BLOCK;
+#pragma mark ==========点评请求==========
+-(void)requestCigar_commentGET:YX_BLOCK;
 @end

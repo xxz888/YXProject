@@ -67,7 +67,7 @@
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,0 , self.gridView.frame.size.width/1.5, self.gridView.frame.size.height/1.5)];
         [imageView setContentMode:UIViewContentModeScaleAspectFit];
         [imageView sd_setImageWithURL:[NSURL URLWithString:self.dataDic[@"hot_brand_list"][i][@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-        imageView.tag = i;
+        imageView.tag = i;//[self.dataDic[@"hot_brand_list"][@"id"] integerValue];
         [self.gridView addSubview:imageView];
         //view添加点击事件
         UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
@@ -77,12 +77,7 @@
     
 
 }
--(void)tapAction:(id)sender{
-    UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;
-    UIView *views = (UIView*) tap.view;
-    NSUInteger tag = views.tag;
-   
-}
+
 //返回右侧索引标题数组
 //这个标题的内容时和分区标题相对应
 -(NSArray*)sectionIndexTitlesForTableView:(UITableView *)tableView{
@@ -119,6 +114,13 @@
     YXHomeXueJiaPinPaiTableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     [self requestCigar_brand_details:cell.cellLbl.text indexPath:indexPath];
 }
+-(void)tapAction:(id)sender{
+    UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;
+    UIView *views = (UIView*) tap.view;
+    NSUInteger tag = views.tag;
+
+}
+
 -(void)requestCigar_brand_details:(NSString *)cigar_brand indexPath:(NSIndexPath *)indexPath{
     kWeakSelf(self);
     [YX_MANAGER requestCigar_brand_detailsPOST:@{@"cigar_brand":cigar_brand} success:^(id object) {

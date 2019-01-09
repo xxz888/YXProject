@@ -341,6 +341,9 @@
 		BBD30CE421E5CD89000D3244 /* YXMineFenSiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD30CE321E5CD89000D3244 /* YXMineFenSiViewController.m */; };
 		BBD30CE921E5CE26000D3244 /* YXMineCommon1TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD30CE721E5CE26000D3244 /* YXMineCommon1TableViewCell.m */; };
 		BBD30CEA21E5CE26000D3244 /* YXMineCommon1TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD30CE821E5CE26000D3244 /* YXMineCommon1TableViewCell.xib */; };
+		BBD30CEE21E5F562000D3244 /* YXHomeXueJiaPinPaiLastDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD30CED21E5F562000D3244 /* YXHomeXueJiaPinPaiLastDetailViewController.m */; };
+		BBD30CF121E5F7AD000D3244 /* YXHomeLastDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD30CF021E5F7AD000D3244 /* YXHomeLastDetailView.m */; };
+		BBD30CF321E5F7C5000D3244 /* YXHomeLastDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD30CF221E5F7C5000D3244 /* YXHomeLastDetailView.xib */; };
 		BBE82BD821E340AD004E4144 /* CatZanButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82BD521E340AD004E4144 /* CatZanButton.m */; };
 		BBE82BD921E340AD004E4144 /* EffectImage.png in Resources */ = {isa = PBXBuildFile; fileRef = BBE82BD721E340AD004E4144 /* EffectImage.png */; };
 		BBE82BDC21E35FF1004E4144 /* ZZYPhotoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82BDA21E35FF1004E4144 /* ZZYPhotoHelper.m */; };
@@ -898,6 +901,11 @@
 		BBD30CE621E5CE26000D3244 /* YXMineCommon1TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineCommon1TableViewCell.h; sourceTree = "<group>"; };
 		BBD30CE721E5CE26000D3244 /* YXMineCommon1TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineCommon1TableViewCell.m; sourceTree = "<group>"; };
 		BBD30CE821E5CE26000D3244 /* YXMineCommon1TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineCommon1TableViewCell.xib; sourceTree = "<group>"; };
+		BBD30CEC21E5F562000D3244 /* YXHomeXueJiaPinPaiLastDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaPinPaiLastDetailViewController.h; sourceTree = "<group>"; };
+		BBD30CED21E5F562000D3244 /* YXHomeXueJiaPinPaiLastDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaPinPaiLastDetailViewController.m; sourceTree = "<group>"; };
+		BBD30CEF21E5F7AD000D3244 /* YXHomeLastDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeLastDetailView.h; sourceTree = "<group>"; };
+		BBD30CF021E5F7AD000D3244 /* YXHomeLastDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeLastDetailView.m; sourceTree = "<group>"; };
+		BBD30CF221E5F7C5000D3244 /* YXHomeLastDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeLastDetailView.xib; sourceTree = "<group>"; };
 		BBE82BD521E340AD004E4144 /* CatZanButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatZanButton.m; sourceTree = "<group>"; };
 		BBE82BD621E340AD004E4144 /* CatZanButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatZanButton.h; sourceTree = "<group>"; };
 		BBE82BD721E340AD004E4144 /* EffectImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EffectImage.png; sourceTree = "<group>"; };
@@ -2629,6 +2637,7 @@
 				BBD2C9AE21E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.h */,
 				BBD2C9AF21E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.m */,
 				BBD2C9B121E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib */,
+				BBD30CEB21E5F531000D3244 /* 详情的详情 */,
 			);
 			path = "品牌详情";
 			sourceTree = "<group>";
@@ -2666,6 +2675,18 @@
 				BBD30CE821E5CE26000D3244 /* YXMineCommon1TableViewCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		BBD30CEB21E5F531000D3244 /* 详情的详情 */ = {
+			isa = PBXGroup;
+			children = (
+				BBD30CEC21E5F562000D3244 /* YXHomeXueJiaPinPaiLastDetailViewController.h */,
+				BBD30CED21E5F562000D3244 /* YXHomeXueJiaPinPaiLastDetailViewController.m */,
+				BBD30CEF21E5F7AD000D3244 /* YXHomeLastDetailView.h */,
+				BBD30CF021E5F7AD000D3244 /* YXHomeLastDetailView.m */,
+				BBD30CF221E5F7C5000D3244 /* YXHomeLastDetailView.xib */,
+			);
+			path = "详情的详情";
 			sourceTree = "<group>";
 		};
 		BBE82BD421E340AD004E4144 /* CatZanButton */ = {
@@ -2953,6 +2974,7 @@
 				293D45A31ECD6422007C64A9 /* Info.plist in Resources */,
 				293D464F1ECDBB63007C64A9 /* icon_tabbar_misc@2x.png in Resources */,
 				293D464B1ECDBB63007C64A9 /* icon_tabbar_mine@2x.png in Resources */,
+				BBD30CF321E5F7C5000D3244 /* YXHomeLastDetailView.xib in Resources */,
 				BBA8130D21DDFE64001B5EA1 /* YXHomeXueJiaHeaderView.xib in Resources */,
 				2996102B1ED84B5100BCED2A /* UMSocialSDKResources.bundle in Resources */,
 				BBD2C93421E0F67800350DCD /* PlayButtonOverlayLargeTap.png in Resources */,
@@ -3067,6 +3089,7 @@
 				BBA812FA21DDEBEC001B5EA1 /* YXHomeTuiJianViewController.m in Sources */,
 				293D46051ECDAA02007C64A9 /* RootNavigationController.m in Sources */,
 				BBA812EA21DDDE47001B5EA1 /* MDMultipleSegmentViewCell.m in Sources */,
+				BBD30CEE21E5F562000D3244 /* YXHomeXueJiaPinPaiLastDetailViewController.m in Sources */,
 				BBA8130321DDEC20001B5EA1 /* YXHomeGaoErFuViewController.m in Sources */,
 				BBA8130B21DDFE4F001B5EA1 /* YXHomeXueJiaHeaderView.m in Sources */,
 				29AD6C5B1ED3E28800B0879C /* PPNetworkCache.m in Sources */,
@@ -3112,6 +3135,7 @@
 				BBD2C83821E0F44A00350DCD /* VTingSeaPopView.m in Sources */,
 				290471B91F98D9AB0081CCA1 /* XYTabBar.m in Sources */,
 				BBD2C91E21E0F67800350DCD /* NSString+LLExtension.m in Sources */,
+				BBD30CF121E5F7AD000D3244 /* YXHomeLastDetailView.m in Sources */,
 				BBE82D0121E44A7D004E4144 /* ZLPhotoAssets.m in Sources */,
 				BBD2C8FE21E0F67700350DCD /* TZProgressView.m in Sources */,
 				BBD2C90221E0F67700350DCD /* TZImagePickerController.m in Sources */,

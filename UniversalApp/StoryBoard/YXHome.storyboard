@@ -23,7 +23,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kad-5r-Js8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4401" y="-146"/>
+            <point key="canvasLocation" x="-4956" y="89"/>
         </scene>
         <!--Home Xue Jia View Controller-->
         <scene sceneID="fIT-qu-gk1">
@@ -53,7 +53,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S1e-pt-cdG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3442" y="-123"/>
+            <point key="canvasLocation" x="-3490" y="-641"/>
         </scene>
         <!--Home Xue Jia Pin Pai View Controller-->
         <scene sceneID="GLI-nl-RUf">
@@ -68,7 +68,37 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hqi-Bl-NXC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2794" y="-124"/>
+            <point key="canvasLocation" x="-2761" y="-641"/>
+        </scene>
+        <!--Home Xue Jia Pin Pai Last Detail View Controller-->
+        <scene sceneID="De2-YD-Odz">
+            <objects>
+                <viewController storyboardIdentifier="YXHomeXueJiaPinPaiLastDetailViewController" id="v9Y-Gd-tcH" customClass="YXHomeXueJiaPinPaiLastDetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="R1a-3V-LLL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gbp-6u-uUm">
+                                <rect key="frame" x="20" y="40" width="335" height="627"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Gbp-6u-uUm" firstAttribute="top" secondItem="Iir-Ii-0Om" secondAttribute="top" constant="20" id="U18-gc-5mm"/>
+                            <constraint firstItem="Gbp-6u-uUm" firstAttribute="leading" secondItem="Iir-Ii-0Om" secondAttribute="leading" constant="20" id="mBP-nt-rsM"/>
+                            <constraint firstItem="Iir-Ii-0Om" firstAttribute="bottom" secondItem="Gbp-6u-uUm" secondAttribute="bottom" id="rgn-sM-49f"/>
+                            <constraint firstAttribute="trailing" secondItem="Gbp-6u-uUm" secondAttribute="trailing" constant="20" id="w3w-8V-Wt7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Iir-Ii-0Om"/>
+                    </view>
+                    <connections>
+                        <outlet property="yxTableView" destination="Gbp-6u-uUm" id="Zbl-nD-Z9O"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dEE-K6-0ef" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1385" y="-642"/>
         </scene>
         <!--Home Xue Jia Gu Ba View Controller-->
         <scene sceneID="YjO-5Q-XaK">
@@ -112,13 +142,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4nx-In-bcu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2073" y="-125"/>
+            <point key="canvasLocation" x="-4135" y="-642"/>
         </scene>
         <!--Home Xue Jia Pin Pai Detail View Controller-->
         <scene sceneID="eF3-bB-mHj">
             <objects>
                 <tableViewController storyboardIdentifier="YXHomeXueJiaPinPaiDetailViewController" id="20N-5a-4Hm" customClass="YXHomeXueJiaPinPaiDetailViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="2gg-tb-cZI">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="2gg-tb-cZI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -268,7 +298,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3xb-TA-n9h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1954.4000000000001" y="-930.58470764617698"/>
+            <point key="canvasLocation" x="-2079" y="-643"/>
         </scene>
     </scenes>
 </document>

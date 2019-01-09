@@ -9,6 +9,8 @@
 #import "YXHomeXueJiaPinPaiDetailViewController.h"
 #import "YXHomeXueJiaDetailTableViewCell.h"
 #import "CatZanButton.h"
+#import "YXHomeXueJiaPinPaiLastDetailViewController.h"
+
 @interface YXHomeXueJiaPinPaiDetailViewController()<ClickLikeBtnDelegate>{
     UIImage * _selImage;
     UIImage * _unImage;
@@ -56,17 +58,8 @@
     
     //用的不是一个字典的东西
     self.section1countLbl.text = [kGetString(self.dicData[@"concern_number"]) append:@" 人关注"];
-    UIColor * color1 = [UIColor darkGrayColor];
-    if ([self.dicData[@"is_concern"] integerValue] == 1) {
-        [self.section1GuanZhuBtn setTitle:@"✓ 已关注" forState:UIControlStateNormal];
-        [self.section1GuanZhuBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
-        [self.section1GuanZhuBtn setBackgroundColor:color1];
-        ViewBorderRadius(self.section1GuanZhuBtn, 5, 1, color1);
-    }else{
-        [self.section1GuanZhuBtn setTitle:@"关注" forState:UIControlStateNormal];
-        [self.section1GuanZhuBtn setTitleColor:color1 forState:UIControlStateNormal];
-        ViewBorderRadius(self.section1GuanZhuBtn, 5, 1, color1);
-    }
+    BOOL isGuanZhu = [self.dicData[@"is_concern"] integerValue] == 1;
+    [ShareManager setGuanZhuStatus:self.section1GuanZhuBtn status:isGuanZhu];
     
 
 }
@@ -119,9 +112,18 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 1) {
-        return 250;
+        return 240;
     }
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    [YX_MANAGER requestGetDetailListGET:@"" success:^(id object) {
+//
+//    }];
+    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+    YXHomeXueJiaPinPaiLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiLastDetailViewController"];
+    VC.startDic = [NSDictionary dictionaryWithDictionary:self.dicData[@"data"][indexPath.row]];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 #pragma mark ========== 关注作者的方法 ==========
 - (IBAction)section1GuanZhuAction:(id)sender {
@@ -156,19 +158,9 @@
     kWeakSelf(self);
     NSDictionary * cellData = self.dicStartData;
 
-    [YX_MANAGER requestMy_concern_cigarPOST:@{@"cigar_brand":self.title,@"photo":cellData[@"photo"]} success:^(id object) {
-        UIColor * color1 = [UIColor darkGrayColor];
-
-        if ([weakself.section1GuanZhuBtn.titleLabel.text isEqualToString:@"关注"]) {
-            [weakself.section1GuanZhuBtn setTitle:@"✓ 已关注" forState:UIControlStateNormal];
-            [weakself.section1GuanZhuBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
-            [weakself.section1GuanZhuBtn setBackgroundColor:color1];
-            ViewBorderRadius(weakself.section1GuanZhuBtn, 5, 1, color1);
-        }else{
-            [weakself.section1GuanZhuBtn setTitle:@"关注" forState:UIControlStateNormal];
-            [weakself.section1GuanZhuBtn setTitleColor:color1 forState:UIControlStateNormal];
-            ViewBorderRadius(weakself.section1GuanZhuBtn, 5, 1, color1);
-        }
+    [YX_MANAGER requestMy_concern_cigarPOST:@{@"cigar_brand":self.title,@"photo":cellData[@"photo"]} success:^(id object) {        
+        BOOL isGuanZhu = [weakself.section1GuanZhuBtn.titleLabel.text isEqualToString:@"关注"];
+        [ShareManager setGuanZhuStatus:weakself.section1GuanZhuBtn status:!isGuanZhu];
 
     }];
 }

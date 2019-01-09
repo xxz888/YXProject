@@ -50,6 +50,7 @@
     cell.common1GuanzhuBtn.tag = [self.dataArray[indexPath.row][@"aim_id"] integerValue];
     NSString * imgString = self.dataArray[indexPath.row][@"aim_photo"];
     [cell.common1ImageView sd_setImageWithURL:[NSURL URLWithString:imgString] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    [ShareManager setGuanZhuStatus:cell.common1GuanzhuBtn status:NO];
     return cell;
 }
 -(void)clickBtnAction:(NSInteger)common_id tag:(NSInteger)tag{
@@ -60,11 +61,7 @@
     [YX_MANAGER requestLikesActionGET:common_id_string success:^(id object) {
         BOOL is_like = [cell.common1GuanzhuBtn.titleLabel.text isEqualToString:@"关注"] == 1;
         [QMUITips showSucceed:is_like ?@"关注成功": @"已取消关注" inView:weakself.view hideAfterDelay:2];
-        if (is_like) {
-            [cell.common1GuanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
-        }else{
-            [cell.common1GuanzhuBtn setTitle:@"关注" forState:UIControlStateNormal];
-        }
+        [ShareManager setGuanZhuStatus:cell.common1GuanzhuBtn status:!is_like];
     }];
 }
 @end
