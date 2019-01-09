@@ -117,19 +117,6 @@
     }
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
--(void)setLayoutCol:(YXHomeXueJiaDetailTableViewCell *)cell{
-    kWeakSelf(self);
-    CatZanButton *zanBtn=[[CatZanButton alloc] init];
-    [zanBtn setCenter:cell.center];
-
-    [cell addSubview:zanBtn];
-//    zanBtn.frame = CGRectMake(0, 0, 30, 30);
-    [zanBtn setType:CatZanButtonTypeFirework];
-    [zanBtn setClickHandler:^(CatZanButton *zanButton) {
-      
-    }];
-    
-}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 1) {
         return 250;

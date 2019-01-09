@@ -166,8 +166,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLc-cZ-Jdo">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="auc-Bf-pDi"/>
+                                </constraints>
+                                <state key="normal" image="拍照"/>
+                                <connections>
+                                    <action selector="paizhaoAction:" destination="7N9-2F-NPF" eventType="touchUpInside" id="o3a-eN-Etm"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CVH-n1-Cj1">
-                                <rect key="frame" x="20" y="145" width="335" height="522"/>
+                                <rect key="frame" x="20" y="145" width="335" height="472"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -175,23 +185,27 @@
                         <constraints>
                             <constraint firstItem="CVH-n1-Cj1" firstAttribute="leading" secondItem="aoo-EN-a1D" secondAttribute="leading" id="4ZV-2T-5sR"/>
                             <constraint firstItem="aoo-EN-a1D" firstAttribute="trailing" secondItem="LUU-jp-yK0" secondAttribute="trailing" id="5gf-CC-mcJ"/>
+                            <constraint firstItem="WPQ-lT-atu" firstAttribute="bottom" secondItem="ZLc-cZ-Jdo" secondAttribute="bottom" id="Dcq-1m-lJ4"/>
                             <constraint firstItem="inN-L4-pfY" firstAttribute="centerX" secondItem="WPQ-lT-atu" secondAttribute="centerX" id="GO1-qf-6hU"/>
-                            <constraint firstItem="WPQ-lT-atu" firstAttribute="bottom" secondItem="CVH-n1-Cj1" secondAttribute="bottom" id="HiP-JZ-1yN"/>
+                            <constraint firstItem="WPQ-lT-atu" firstAttribute="bottom" secondItem="CVH-n1-Cj1" secondAttribute="bottom" constant="50" id="HiP-JZ-1yN"/>
                             <constraint firstItem="inN-L4-pfY" firstAttribute="centerY" secondItem="LDx-UU-1XA" secondAttribute="centerY" id="Qqo-RA-zL2"/>
                             <constraint firstItem="LDx-UU-1XA" firstAttribute="top" secondItem="WPQ-lT-atu" secondAttribute="top" constant="20" id="R7k-SW-5Z2"/>
                             <constraint firstItem="LDx-UU-1XA" firstAttribute="leading" secondItem="WPQ-lT-atu" secondAttribute="leading" constant="20" id="S2h-PN-Pxz"/>
                             <constraint firstItem="aoo-EN-a1D" firstAttribute="leading" secondItem="LDx-UU-1XA" secondAttribute="leading" id="WyN-wi-Vgx"/>
                             <constraint firstItem="aoo-EN-a1D" firstAttribute="top" secondItem="LDx-UU-1XA" secondAttribute="bottom" constant="20" id="bwc-8c-MbW"/>
                             <constraint firstItem="CVH-n1-Cj1" firstAttribute="trailing" secondItem="aoo-EN-a1D" secondAttribute="trailing" id="cmf-zm-Q8X"/>
+                            <constraint firstItem="ZLc-cZ-Jdo" firstAttribute="leading" secondItem="WPQ-lT-atu" secondAttribute="leading" id="gvr-m8-Wod"/>
                             <constraint firstItem="LUU-jp-yK0" firstAttribute="centerY" secondItem="LDx-UU-1XA" secondAttribute="centerY" id="iVg-h0-xR6"/>
                             <constraint firstItem="CVH-n1-Cj1" firstAttribute="top" secondItem="aoo-EN-a1D" secondAttribute="bottom" constant="15" id="qpW-Ws-f7J"/>
                             <constraint firstItem="WPQ-lT-atu" firstAttribute="trailing" secondItem="LUU-jp-yK0" secondAttribute="trailing" constant="20" id="rZl-yS-ySj"/>
+                            <constraint firstItem="WPQ-lT-atu" firstAttribute="trailing" secondItem="ZLc-cZ-Jdo" secondAttribute="trailing" id="yz4-As-1Yi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WPQ-lT-atu"/>
                     </view>
                     <connections>
                         <outlet property="closeView" destination="LDx-UU-1XA" id="eQa-09-k6c"/>
                         <outlet property="mainView" destination="CVH-n1-Cj1" id="Rh6-p4-eqM"/>
+                        <outlet property="paizhaoBtn" destination="ZLc-cZ-Jdo" id="i8B-kw-6MK"/>
                         <outlet property="titleTf" destination="aoo-EN-a1D" id="P8g-2B-20I"/>
                     </connections>
                 </viewController>
@@ -200,4 +214,7 @@
             <point key="canvasLocation" x="2094" y="-463"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="拍照" width="32" height="32"/>
+    </resources>
 </document>

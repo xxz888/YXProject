@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *mineImageView;
 @property (weak, nonatomic) IBOutlet UILabel *mineImageLbl;
 @property (weak, nonatomic) IBOutlet UIButton *mineImageBtn;
+@property (weak, nonatomic) IBOutlet UILabel *mineTimeLbl;
 
 @end
 

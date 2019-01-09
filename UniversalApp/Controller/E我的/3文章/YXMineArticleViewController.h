@@ -9,5 +9,6 @@
 #import "RootViewController.h"
 
 @interface YXMineArticleViewController : RootViewController
+@property (weak, nonatomic) IBOutlet UITableView *yxTableView;
 
 @end

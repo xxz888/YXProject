@@ -22,22 +22,22 @@
 
     
     //初始化网络请求配置
-    [self NetWorkConfig];
+    //[self NetWorkConfig];
     
     //UMeng初始化
-    [self initUMeng];
+    //[self initUMeng];
     
     //初始化app服务
     [self initService];
     
     //初始化IM
-    [[IMManager sharedIMManager] initIM];
+    //[[IMManager sharedIMManager] initIM];
     
     //初始化用户系统
     [self initUserManager];
     
     //网络监听
-    [self monitorNetworkStatus];
+    //[self monitorNetworkStatus];
     
     
     //初始化QMUI

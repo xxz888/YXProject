@@ -36,6 +36,20 @@
     [self setInitCollection];
     
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //每次进入界面刷新关注和粉丝数量
+    [self requestGuanZhuAndFenSiCount];
+}
+-(void)requestGuanZhuAndFenSiCount{
+    kWeakSelf(self);
+    [YX_MANAGER requestLikesGET:@"4" success:^(id object) {
+        weakself.guanzhuCountLbl.text = object;
+    }];
+    [YX_MANAGER requestLikesGET:@"5" success:^(id object) {
+        weakself.fensiCountLbl.text = object;
+    }];
+}
 -(void)setInitCollection{
     UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
     
@@ -55,7 +69,7 @@
     
     
     NSArray* names = @[@"全部",@"晒图",@"文章",@"足迹"];
-    NSArray* controllers = @[AllVC,ArticleVC,ImageVC,FootVC];
+    NSArray* controllers = @[AllVC,ImageVC,ArticleVC,FootVC];
     
     
     /*
@@ -85,11 +99,7 @@
         make.left.right.bottom.mas_equalTo(0);
     }];
 }
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    //请求关注列表
-    //[self requestLikesGuanzhu];
-}
+
 -(void)setHeaderViewValue{
     self.userInfo = curUser;
 
@@ -99,10 +109,12 @@
     self.navigationController.title = self.userInfo.username;
     self.mineTitle.text = self.userInfo.username;
     
-    self.mineAdress.text = [[self.userInfo.province append:@"  "] append:self.userInfo.country];
+//    self.mineAdress.text = [[self.userInfo.province append:@"  "] append:self.userInfo.country];
+//    self.mineAdress.text = [self.mineAdress.text isEqualToString:@""] ? @"浙江 杭州":self.mineAdress.text;
     
-    self.guanzhuBtn.hidden = YES;
-    
+    self.mineAdress.text = @"浙江 杭州";
+    self.guanzhuBtn.hidden = NO;
+    [self.guanzhuBtn setTitle:@"✓ 已关注" forState:UIControlStateNormal];
     ViewBorderRadius(self.guanzhuBtn, 5, 1,CFontColor1);
     
 }

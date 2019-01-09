@@ -40,7 +40,7 @@
     //返回情况分为两种情况，第一种是NSInlineData 字符串类型， 一种是json字典
     if (dic) {
         //如果解析器是AFHTTPRequestSerializer类型，则要先把数据转换成字典
-        NSLog(@"pi = 【%@】 result = 【%@】",pi,dic);
+        NSLog(@"参数 = 【%@】 \n 返回结果 = 【%@】",pi,dic);
         sucess(dic);
     }else{
         NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
@@ -55,6 +55,7 @@
     manager.responseSerializer =  [AFHTTPResponseSerializer serializer];
     UserInfo *userInfo = curUser;
     if (curUser && userInfo.token && ![userInfo.token isEqualToString:@""]) {
+        NSLog(@"身份信息-----%@",[@"JWT " append:userInfo.token]);
         [manager.requestSerializer setValue:[@"JWT " append:userInfo.token] forHTTPHeaderField:@"Authorization"];
     }
     //允许非权威机构颁发的证书

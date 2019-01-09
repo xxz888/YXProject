@@ -27,6 +27,7 @@ static NSString *secretKey = @"官网获取";
 
 @interface YXPublishImageViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSMutableArray * _photoImageList;
+    NSString * _textViewInput;
 }
 
 @end
@@ -94,6 +95,7 @@ static NSString *secretKey = @"官网获取";
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXPublishImageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXPublishImageTableViewCell" forIndexPath:indexPath];
+    _textViewInput = cell.textView.textView.text;
     return cell;
 }
 - (IBAction)closeView:(id)sender {
@@ -114,20 +116,33 @@ static NSString *secretKey = @"官网获取";
             return;
         }else if (qiniuArray.count == 1){
             [dic setValue:qiniuArray[0] forKey:@"photo1"];
+            [dic setValue:@"" forKey:@"photo2"];
+            [dic setValue:@"" forKey:@"photo3"];
+
         }else if (qiniuArray.count == 2){
             [dic setValue:qiniuArray[0] forKey:@"photo1"];
             [dic setValue:qiniuArray[1] forKey:@"photo2"];
+            [dic setValue:@"" forKey:@"photo3"];
+
         }else if (qiniuArray.count == 3){
             [dic setValue:qiniuArray[0] forKey:@"photo1"];
             [dic setValue:qiniuArray[1] forKey:@"photo2"];
             [dic setValue:qiniuArray[2] forKey:@"photo3"];
+        }else if (_textViewInput.length == 0){
+            [QMUITips showError:@"请输入描述!" inView:self.view hideAfterDelay:2];
+            return;
         }
-        [dic setValue:@"风景图片" forKey:@"describe"];//描述
-        [dic setValue:@"杭州市海底捞火锅" forKey:@"publish_site"];//地点
+        [dic setValue:_textViewInput forKey:@"describe"];//描述
+        [dic setValue:@"杭州市野风现代之星3楼海底捞火锅" forKey:@"publish_site"];//地点
         [dic setValue:@"0" forKey:@"tag"];//标签
         //发布按钮
         [YX_MANAGER requestFaBuImagePOST:dic success:^(id object) {
-            [QMUITips showSucceed:@"发布成功" inView:weakself.view hideAfterDelay:2];
+            if ([object isEqualToString:@"1"]) {
+                [QMUITips showSucceed:@"发布成功" inView:weakself.view hideAfterDelay:2];
+                [weakself dismissViewControllerAnimated:YES completion:nil];
+            }else{
+                [QMUITips showError:@"发布失败,请稍后重试" inView:weakself.view hideAfterDelay:2];
+            }
         }];
     } failure:^(NSString *error) {
         NSLog(@"%@",error);

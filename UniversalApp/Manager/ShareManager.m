@@ -130,4 +130,56 @@ SINGLETON_FOR_CLASS(ShareManager);
     return timeSp;
     
 }
+
+//将某个时间戳转化成 时间
+
+#pragma mark - 将某个时间戳转化成 时间
+
++(NSString *)timestampSwitchTime:(NSInteger)timestamp andFormatter:(NSString *)format{
+    
+    
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    
+    [formatter setDateFormat:format]; // （@"YYYY-MM-dd hh:mm:ss"）----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    
+    NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
+    
+    [formatter setTimeZone:timeZone];
+    
+    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:timestamp];
+    
+    
+    
+    NSString *confromTimespStr = [formatter stringFromDate:confromTimesp];
+    
+    
+    
+    //NSLog(@"&&&&&&&confromTimespStr = : %@",confromTimespStr);
+    
+    
+    
+    return confromTimespStr;
+    
+}
+
++(void)setGuanZhuStatus:(UIButton *)btn status:(BOOL)statusBool{
+    UIColor * color1 = [UIColor darkGrayColor];
+    if (statusBool) {
+        [btn setTitle:@"关注" forState:UIControlStateNormal];
+        [btn setTitleColor:color1 forState:UIControlStateNormal];
+        [btn setBackgroundColor:KWhiteColor];
+        ViewBorderRadius(btn, 5, 1, color1);
+     
+    }else{
+        [btn setTitle:@"✓ 已关注" forState:UIControlStateNormal];
+        [btn setTitleColor:KWhiteColor forState:UIControlStateNormal];
+        [btn setBackgroundColor:color1];
+        ViewBorderRadius(btn, 5, 1, color1);
+    }
+}
 @end

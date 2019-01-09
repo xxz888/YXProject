@@ -198,7 +198,6 @@
 }
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
-    NSLog(@"item name = %@", item.title);
     NSInteger index = [self.tabBar.items indexOfObject:item];
     [self animationWithIndex:index];
     if([item.title isEqualToString:@"发现"])

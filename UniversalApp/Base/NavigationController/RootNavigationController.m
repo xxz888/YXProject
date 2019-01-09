@@ -30,9 +30,10 @@
     [navBar setBarTintColor:KWhiteColor];//bar背景色
     [navBar setTintColor:KBlackColor];
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName :KBlackColor, NSFontAttributeName : [UIFont systemFontOfSize:18]}];
-    
+    [[UINavigationBar appearance] setTintColor:KBlackColor];
+
     //[navBar setBackgroundImage:[UIImage imageWithColor:KWhiteColor] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-    [navBar setShadowImage:[UIImage new]];//去掉阴影线
+   // [navBar setShadowImage:[UIImage new]];//去掉阴影线
 }
 
 - (void)viewDidLoad {

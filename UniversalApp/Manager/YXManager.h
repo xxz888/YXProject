@@ -50,4 +50,8 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestQiniu_tokenGET:YX_BLOCK;
 #pragma mark ==========发布文章==========
 -(void)requestEssayPOST:YX_BLOCK;
+#pragma mark ==========文章列表==========
+-(void)requestEssayListGET:YX_BLOCK;
+#pragma mark ==========取消关注==========
+-(void)requestLikesActionGET:YX_BLOCK;
 @end

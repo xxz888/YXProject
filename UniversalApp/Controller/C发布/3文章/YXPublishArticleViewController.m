@@ -22,4 +22,7 @@
 - (IBAction)coseViewAction:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+- (IBAction)paizhaoAction:(id)sender {
+    
+}
 @end

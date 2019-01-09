@@ -156,7 +156,7 @@
 #pragma mark ————— 友盟 初始化 —————
 -(void)initUMeng{
     /* 打开调试日志 */
-    [[UMSocialManager defaultManager] openLog:YES];
+    //[[UMSocialManager defaultManager] openLog:YES];
     
     /* 设置友盟appkey */
     [[UMSocialManager defaultManager] setUmSocialAppkey:UMengKey];

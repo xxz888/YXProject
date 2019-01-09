@@ -78,6 +78,15 @@ successBlock(responseObject);\
     } failure:^(NSError *error) {
     }];
 }
+
+#pragma mark ==========取消关注==========
+-(void)requestLikesActionGET:YX_BLOCK{
+    NSString * url = @"/users/likes/3/";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {
+    }];
+}
 #pragma mark ========== 请求广告 ==========
 -(void)requestGETAdvertising:YX_BLOCK{
     kWeakSelf(self);
@@ -147,13 +156,20 @@ successBlock(responseObject);\
 }
 
 
-
 #pragma mark ==========发布文章==========
 -(void)requestEssayPOST:YX_BLOCK{
     [HTTP_POST(@"/users/essay/0/") Parameters:dic sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) { }];
 }
+#pragma mark ==========文章列表==========
+-(void)requestEssayListGET:YX_BLOCK{
+    NSString * url = @"/users/essay/";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
 
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];

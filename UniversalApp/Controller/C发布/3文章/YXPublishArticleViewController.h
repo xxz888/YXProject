@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)coseViewAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *titleTf;
 @property (weak, nonatomic) IBOutlet UIView *mainView;
+@property (weak, nonatomic) IBOutlet UIButton *paizhaoBtn;
+- (IBAction)paizhaoAction:(id)sender;
 
 @end
 

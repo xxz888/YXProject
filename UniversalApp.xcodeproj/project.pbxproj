@@ -335,6 +335,12 @@
 		BBD2C9B221E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD2C9B121E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib */; };
 		BBD30CD521E589B1000D3244 /* YXMineImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD30CD321E589B1000D3244 /* YXMineImageTableViewCell.m */; };
 		BBD30CD621E589B1000D3244 /* YXMineImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD30CD421E589B1000D3244 /* YXMineImageTableViewCell.xib */; };
+		BBD30CDA21E5C35D000D3244 /* YXMineEssayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD30CD821E5C35D000D3244 /* YXMineEssayTableViewCell.m */; };
+		BBD30CDB21E5C35D000D3244 /* YXMineEssayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD30CD921E5C35D000D3244 /* YXMineEssayTableViewCell.xib */; };
+		BBD30CE121E5CD79000D3244 /* YXMineGuanZhuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD30CE021E5CD79000D3244 /* YXMineGuanZhuViewController.m */; };
+		BBD30CE421E5CD89000D3244 /* YXMineFenSiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD30CE321E5CD89000D3244 /* YXMineFenSiViewController.m */; };
+		BBD30CE921E5CE26000D3244 /* YXMineCommon1TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD30CE721E5CE26000D3244 /* YXMineCommon1TableViewCell.m */; };
+		BBD30CEA21E5CE26000D3244 /* YXMineCommon1TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD30CE821E5CE26000D3244 /* YXMineCommon1TableViewCell.xib */; };
 		BBE82BD821E340AD004E4144 /* CatZanButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82BD521E340AD004E4144 /* CatZanButton.m */; };
 		BBE82BD921E340AD004E4144 /* EffectImage.png in Resources */ = {isa = PBXBuildFile; fileRef = BBE82BD721E340AD004E4144 /* EffectImage.png */; };
 		BBE82BDC21E35FF1004E4144 /* ZZYPhotoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82BDA21E35FF1004E4144 /* ZZYPhotoHelper.m */; };
@@ -882,6 +888,16 @@
 		BBD30CD221E589B1000D3244 /* YXMineImageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineImageTableViewCell.h; sourceTree = "<group>"; };
 		BBD30CD321E589B1000D3244 /* YXMineImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineImageTableViewCell.m; sourceTree = "<group>"; };
 		BBD30CD421E589B1000D3244 /* YXMineImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineImageTableViewCell.xib; sourceTree = "<group>"; };
+		BBD30CD721E5C35D000D3244 /* YXMineEssayTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineEssayTableViewCell.h; sourceTree = "<group>"; };
+		BBD30CD821E5C35D000D3244 /* YXMineEssayTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineEssayTableViewCell.m; sourceTree = "<group>"; };
+		BBD30CD921E5C35D000D3244 /* YXMineEssayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineEssayTableViewCell.xib; sourceTree = "<group>"; };
+		BBD30CDF21E5CD79000D3244 /* YXMineGuanZhuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineGuanZhuViewController.h; sourceTree = "<group>"; };
+		BBD30CE021E5CD79000D3244 /* YXMineGuanZhuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineGuanZhuViewController.m; sourceTree = "<group>"; };
+		BBD30CE221E5CD89000D3244 /* YXMineFenSiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineFenSiViewController.h; sourceTree = "<group>"; };
+		BBD30CE321E5CD89000D3244 /* YXMineFenSiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineFenSiViewController.m; sourceTree = "<group>"; };
+		BBD30CE621E5CE26000D3244 /* YXMineCommon1TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineCommon1TableViewCell.h; sourceTree = "<group>"; };
+		BBD30CE721E5CE26000D3244 /* YXMineCommon1TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineCommon1TableViewCell.m; sourceTree = "<group>"; };
+		BBD30CE821E5CE26000D3244 /* YXMineCommon1TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineCommon1TableViewCell.xib; sourceTree = "<group>"; };
 		BBE82BD521E340AD004E4144 /* CatZanButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatZanButton.m; sourceTree = "<group>"; };
 		BBE82BD621E340AD004E4144 /* CatZanButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatZanButton.h; sourceTree = "<group>"; };
 		BBE82BD721E340AD004E4144 /* EffectImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EffectImage.png; sourceTree = "<group>"; };
@@ -1983,6 +1999,10 @@
 		BBA812A321DDAB7A001B5EA1 /* E我的 */ = {
 			isa = PBXGroup;
 			children = (
+				BBD30CE521E5CDE3000D3244 /* View */,
+				BBD30CDD21E5CCC9000D3244 /* 粉丝 */,
+				BBD30CDC21E5CCC9000D3244 /* 关注 */,
+				BBD30CDE21E5CCC9000D3244 /* 贴数 */,
 				BBD2C80221E0F41F00350DCD /* 1全部 */,
 				BBD2C80821E0F41F00350DCD /* 2晒图 */,
 				BBD2C7FF21E0F41F00350DCD /* 3文章 */,
@@ -2186,6 +2206,9 @@
 			children = (
 				BBD2C80021E0F41F00350DCD /* YXMineArticleViewController.h */,
 				BBD2C80121E0F41F00350DCD /* YXMineArticleViewController.m */,
+				BBD30CD721E5C35D000D3244 /* YXMineEssayTableViewCell.h */,
+				BBD30CD821E5C35D000D3244 /* YXMineEssayTableViewCell.m */,
+				BBD30CD921E5C35D000D3244 /* YXMineEssayTableViewCell.xib */,
 			);
 			path = "3文章";
 			sourceTree = "<group>";
@@ -2610,6 +2633,41 @@
 			path = "品牌详情";
 			sourceTree = "<group>";
 		};
+		BBD30CDC21E5CCC9000D3244 /* 关注 */ = {
+			isa = PBXGroup;
+			children = (
+				BBD30CDF21E5CD79000D3244 /* YXMineGuanZhuViewController.h */,
+				BBD30CE021E5CD79000D3244 /* YXMineGuanZhuViewController.m */,
+			);
+			path = "关注";
+			sourceTree = "<group>";
+		};
+		BBD30CDD21E5CCC9000D3244 /* 粉丝 */ = {
+			isa = PBXGroup;
+			children = (
+				BBD30CE221E5CD89000D3244 /* YXMineFenSiViewController.h */,
+				BBD30CE321E5CD89000D3244 /* YXMineFenSiViewController.m */,
+			);
+			path = "粉丝";
+			sourceTree = "<group>";
+		};
+		BBD30CDE21E5CCC9000D3244 /* 贴数 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "贴数";
+			sourceTree = "<group>";
+		};
+		BBD30CE521E5CDE3000D3244 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BBD30CE621E5CE26000D3244 /* YXMineCommon1TableViewCell.h */,
+				BBD30CE721E5CE26000D3244 /* YXMineCommon1TableViewCell.m */,
+				BBD30CE821E5CE26000D3244 /* YXMineCommon1TableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		BBE82BD421E340AD004E4144 /* CatZanButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -2791,6 +2849,7 @@
 				2996100C1ED7E81900BCED2A /* DazFire.png in Resources */,
 				290A97F51F4ABC02006BF882 /* man@2x.png in Resources */,
 				290A97E61F4AB24A006BF882 /* stepPk_win_colour8@2x.png in Resources */,
+				BBD30CEA21E5CE26000D3244 /* YXMineCommon1TableViewCell.xib in Resources */,
 				BBD2C92A21E0F67800350DCD /* UIBarButtonItemGrid@3x.png in Resources */,
 				BBA8129621DDA9A5001B5EA1 /* YXHome.storyboard in Resources */,
 				BBD2C94321E0F67800350DCD /* PlayButtonOverlayLarge@3x.png in Resources */,
@@ -2913,6 +2972,7 @@
 				293D46491ECDBB63007C64A9 /* icon_tabbar_merchant_selected@2x.png in Resources */,
 				299610291ED84B5100BCED2A /* UMSocialSDKPromptResources.bundle in Resources */,
 				2996100D1ED7E81900BCED2A /* rain.png in Resources */,
+				BBD30CDB21E5C35D000D3244 /* YXMineEssayTableViewCell.xib in Resources */,
 				BBD2C93F21E0F67800350DCD /* VideoOverlay.png in Resources */,
 				293D46481ECDBB63007C64A9 /* icon_tabbar_merchant_selected.png in Resources */,
 				BBD2C93521E0F67800350DCD /* ImageError@3x.png in Resources */,
@@ -3048,6 +3108,7 @@
 				29CF33331F14B62A00DB7507 /* LoginLogic.m in Sources */,
 				BBA812C421DDBF6A001B5EA1 /* UIButton+SSEdgeInsets.m in Sources */,
 				BBA812E921DDDE47001B5EA1 /* MDMultipleSegmentView.m in Sources */,
+				BBD30CE921E5CE26000D3244 /* YXMineCommon1TableViewCell.m in Sources */,
 				BBD2C83821E0F44A00350DCD /* VTingSeaPopView.m in Sources */,
 				290471B91F98D9AB0081CCA1 /* XYTabBar.m in Sources */,
 				BBD2C91E21E0F67800350DCD /* NSString+LLExtension.m in Sources */,
@@ -3120,6 +3181,7 @@
 				BBE82CE521E3A125004E4144 /* QiniuLoad.m in Sources */,
 				BBD2C92121E0F67800350DCD /* MWCaptionView.m in Sources */,
 				BBD2C8FA21E0F67700350DCD /* NSBundle+TZImagePicker.m in Sources */,
+				BBD30CDA21E5C35D000D3244 /* YXMineEssayTableViewCell.m in Sources */,
 				BBD2C95521E0F72800350DCD /* DALabeledCircularProgressView.m in Sources */,
 				293D460E1ECDAEDC007C64A9 /* MsgViewController.m in Sources */,
 				BBD2C84C21E0F46500350DCD /* YXPublishImageViewController.m in Sources */,
@@ -3150,11 +3212,13 @@
 				290A980D1F4ABD00006BF882 /* SandBoxHelper.m in Sources */,
 				BBD2C91821E0F67800350DCD /* LLImagePickerCell.m in Sources */,
 				29AD6C5A1ED3E28800B0879C /* HeaderModel.m in Sources */,
+				BBD30CE121E5CD79000D3244 /* YXMineGuanZhuViewController.m in Sources */,
 				BBD2C9B021E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.m in Sources */,
 				293D45FA1ECDA4D8007C64A9 /* RootWebViewController.m in Sources */,
 				BBD2C91921E0F67800350DCD /* LLActionSheetView.m in Sources */,
 				BBD2C91521E0F67800350DCD /* LLImagePickerManager.m in Sources */,
 				BBE82BD821E340AD004E4144 /* CatZanButton.m in Sources */,
+				BBD30CE421E5CD89000D3244 /* YXMineFenSiViewController.m in Sources */,
 				BBE82CFF21E44A7D004E4144 /* ZLPhotoPickerDatas.m in Sources */,
 				BBA812C521DDBF6A001B5EA1 /* UITabBar+TBBadge.m in Sources */,
 				296DEA751F5D50D100C6FD00 /* UIView+SDExtension.m in Sources */,

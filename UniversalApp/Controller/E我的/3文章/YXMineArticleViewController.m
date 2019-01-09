@@ -7,21 +7,50 @@
 //
 
 #import "YXMineArticleViewController.h"
+#import "YXMineEssayTableViewCell.h"
 
-@interface YXMineArticleViewController ()
-
+@interface YXMineArticleViewController ()<UITableViewDelegate,UITableViewDataSource>{
+    NSInteger page ;
+}
+@property(nonatomic,strong)NSMutableArray * dataArray;
 @end
 
 @implementation YXMineArticleViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    kWeakSelf(self);
+    NSString * pageString = NSIntegerToNSString(page) ;
+    [YX_MANAGER requestEssayListGET:pageString success:^(id object) {
+        [weakself.dataArray removeAllObjects];
+        [weakself.dataArray addObjectsFromArray:object];
+        [weakself.yxTableView reloadData];
+    }];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    page = 1;
+    
+    self.dataArray = [[NSMutableArray alloc]init];
+    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXMineEssayTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineEssayTableViewCell"];
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 350;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 3;
+    
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    YXMineEssayTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMineEssayTableViewCell" forIndexPath:indexPath];
+    [cell.essayLeftImageView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        [cell.essayRightImageView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        [cell.essayTitleImageView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+//    cell.mineImageLbl.text = self.dataArray[indexPath.row][@"describe"];
+//    NSString * time = self.dataArray[indexPath.row][@"publish_time"];
+//    cell.mineTimeLbl.text = [ShareManager timestampSwitchTime:[time integerValue] andFormatter:@"YYYY-MM-dd HH:mm:ss"];
+    return cell;
 }
 
 /*

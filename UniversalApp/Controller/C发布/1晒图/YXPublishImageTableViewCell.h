@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YXPublishImageTableViewCell : TableViewCell
 @property (weak, nonatomic) IBOutlet UIView *ttView;
-
+@property(nonatomic) LTTextView  *textView;
 @end
 
 NS_ASSUME_NONNULL_END

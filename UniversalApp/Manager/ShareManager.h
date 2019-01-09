@@ -24,4 +24,9 @@ SINGLETON_FOR_HEADER(ShareManager)
 //获取当前时间戳  （以毫秒为单位）
 
 +(NSString *)getNowTimeTimestamp3;
+#pragma mark - 将某个时间戳转化成 时间
+
++(NSString *)timestampSwitchTime:(NSInteger)timestamp andFormatter:(NSString *)format;
+//关注按钮初始化状态
++(void)setGuanZhuStatus:(UIButton *)btn status:(BOOL)statusBool;
 @end
