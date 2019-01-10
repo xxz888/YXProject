@@ -133,6 +133,7 @@ static NSString *QiniuBucketName       = @"storeios";
         }
         UserInfo *userInfo = curUser;
         NSString * userId = userInfo.id;
+        sleep(1);
         NSString * key = [NSString stringWithFormat:@"%@_image_%@.jpg/",userId,[ShareManager getNowTimeTimestamp3]];
         [upManager putData:data key:key token:[QiniuLoad makeToken:accessKey secretKey:secretKey] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
             if (info.isOK) {

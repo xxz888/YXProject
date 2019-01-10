@@ -16,29 +16,37 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h4O-w8-FM0">
-                    <rect key="frame" x="0.0" y="160" width="375" height="30"/>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="h4O-w8-FM0">
+                    <rect key="frame" x="0.0" y="160" width="365" height="30"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cG-eU-8uX">
-                            <rect key="frame" x="0.0" y="0.0" width="94" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cG-eU-8uX">
+                            <rect key="frame" x="0.0" y="0.0" width="91.5" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="# 参与话题">
+                            <state key="normal" title="  # 参与话题">
                                 <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1R-xi-K6d">
-                            <rect key="frame" x="94" y="0.0" width="93.5" height="30"/>
+                            <rect key="frame" x="101.5" y="0.0" width="91" height="30"/>
+                            <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="#新话题#">
                                 <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
+                            <connections>
+                                <action selector="xinhuatiAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="FpD-6c-20q"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xkh-bO-evE">
-                            <rect key="frame" x="187.5" y="0.0" width="187.5" height="30"/>
+                            <rect key="frame" x="202.5" y="0.0" width="162.5" height="30"/>
+                            <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="查看更多 &gt;">
                                 <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
+                            <connections>
+                                <action selector="moreAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="4KG-N2-Hpp"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.66799789669999998" green="0.47512125970000002" blue="0.25860109930000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -54,7 +62,7 @@
                         <constraint firstAttribute="height" constant="40" id="sTQ-rc-vF7"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="    # 你的位置">
+                    <state key="normal" title="  # 你的位置">
                         <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
@@ -72,7 +80,7 @@
                 <constraint firstItem="h4O-w8-FM0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="FQN-lf-Waw"/>
                 <constraint firstItem="h4O-w8-FM0" firstAttribute="top" secondItem="PWO-BY-mZg" secondAttribute="bottom" constant="20" id="Lgb-XL-vPU"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rph-NK-tL6" secondAttribute="trailing" id="Qvl-OK-1XJ"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="h4O-w8-FM0" secondAttribute="trailing" id="RBy-Sn-2JV"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="h4O-w8-FM0" secondAttribute="trailing" constant="10" id="RBy-Sn-2JV"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="PWO-BY-mZg" secondAttribute="trailing" id="RkE-Fn-hnw"/>
                 <constraint firstItem="PWO-BY-mZg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="YCn-hU-8jo"/>
                 <constraint firstItem="PWO-BY-mZg" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="dik-yX-ip2"/>
@@ -80,7 +88,9 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="moreBtn" destination="Xkh-bO-evE" id="KoP-rO-P6A"/>
                 <outlet property="ttView" destination="PWO-BY-mZg" id="YeJ-YF-VLb"/>
+                <outlet property="xinhuatiBtn" destination="g1R-xi-K6d" id="Kgw-8M-R86"/>
             </connections>
         </view>
     </objects>

@@ -66,6 +66,7 @@
     starRateView.rateStyle = IncompleteStar;
     starRateView.tag = 1;
     [view addSubview:starRateView];
+    starRateView.userInteractionEnabled = NO;
 }
 -(void)setSixPhotoView:(NSMutableArray *)imageArray{
     [self sixPhotoviewValue:imageArray];
