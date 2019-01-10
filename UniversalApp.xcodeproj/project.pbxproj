@@ -189,6 +189,9 @@
 		5BC8C50C0BEF57AA0780D5DC /* libPods-UniversalApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E884624664B432D4FE5044F /* libPods-UniversalApp.a */; };
 		BB5DC69B2189CA38003F1998 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */; };
 		BB5DC69C2189CA38003F1998 /* SELUpdateAlertConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */; };
+		BB95F63F21E6E0880071A369 /* XHStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB95F63E21E6E0880071A369 /* XHStarRateView.m */; };
+		BB95F64721E715CB0071A369 /* YXHomeLastMyTalkView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB95F64521E715CB0071A369 /* YXHomeLastMyTalkView.m */; };
+		BB95F64921E715D60071A369 /* YXHomeLastMyTalkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB95F64821E715D60071A369 /* YXHomeLastMyTalkView.xib */; };
 		BBA8129621DDA9A5001B5EA1 /* YXHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA8129521DDA9A5001B5EA1 /* YXHome.storyboard */; };
 		BBA8129821DDA9B6001B5EA1 /* YXFind.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA8129721DDA9B6001B5EA1 /* YXFind.storyboard */; };
 		BBA8129A21DDA9F1001B5EA1 /* YXPublish.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA8129921DDA9F1001B5EA1 /* YXPublish.storyboard */; };
@@ -651,6 +654,11 @@
 		BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
 		BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlertConst.m; sourceTree = "<group>"; };
 		BB5DC69A2189CA38003F1998 /* SELUpdateAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlert.h; sourceTree = "<group>"; };
+		BB95F63D21E6E0880071A369 /* XHStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHStarRateView.h; sourceTree = "<group>"; };
+		BB95F63E21E6E0880071A369 /* XHStarRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHStarRateView.m; sourceTree = "<group>"; };
+		BB95F64521E715CB0071A369 /* YXHomeLastMyTalkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeLastMyTalkView.m; sourceTree = "<group>"; };
+		BB95F64621E715CB0071A369 /* YXHomeLastMyTalkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHomeLastMyTalkView.h; sourceTree = "<group>"; };
+		BB95F64821E715D60071A369 /* YXHomeLastMyTalkView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeLastMyTalkView.xib; sourceTree = "<group>"; };
 		BBA8129521DDA9A5001B5EA1 /* YXHome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = YXHome.storyboard; sourceTree = "<group>"; };
 		BBA8129721DDA9B6001B5EA1 /* YXFind.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = YXFind.storyboard; sourceTree = "<group>"; };
 		BBA8129921DDA9F1001B5EA1 /* YXPublish.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = YXPublish.storyboard; sourceTree = "<group>"; };
@@ -1992,6 +2000,25 @@
 			path = UpdateAlert;
 			sourceTree = "<group>";
 		};
+		BB95F63C21E6E0880071A369 /* XHStarRateView */ = {
+			isa = PBXGroup;
+			children = (
+				BB95F63D21E6E0880071A369 /* XHStarRateView.h */,
+				BB95F63E21E6E0880071A369 /* XHStarRateView.m */,
+			);
+			path = XHStarRateView;
+			sourceTree = "<group>";
+		};
+		BB95F64421E715CB0071A369 /* 我来点评 */ = {
+			isa = PBXGroup;
+			children = (
+				BB95F64621E715CB0071A369 /* YXHomeLastMyTalkView.h */,
+				BB95F64521E715CB0071A369 /* YXHomeLastMyTalkView.m */,
+				BB95F64821E715D60071A369 /* YXHomeLastMyTalkView.xib */,
+			);
+			path = "我来点评";
+			sourceTree = "<group>";
+		};
 		BBA8129F21DDAB00001B5EA1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -2171,6 +2198,7 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BB95F63C21E6E0880071A369 /* XHStarRateView */,
 				BBE82CF821E44A7D004E4144 /* Models */,
 				BBE82CF321E445C9004E4144 /* GTMBase64 */,
 				BBE82CE221E3A125004E4144 /* QiniuLoad */,
@@ -2685,6 +2713,7 @@
 				BBD30CEF21E5F7AD000D3244 /* YXHomeLastDetailView.h */,
 				BBD30CF021E5F7AD000D3244 /* YXHomeLastDetailView.m */,
 				BBD30CF221E5F7C5000D3244 /* YXHomeLastDetailView.xib */,
+				BB95F64421E715CB0071A369 /* 我来点评 */,
 			);
 			path = "详情的详情";
 			sourceTree = "<group>";
@@ -2886,6 +2915,7 @@
 				29FEE77B1ECED1E200C81B60 /* MBHUD_Warn@2x.png in Resources */,
 				BBD2C94121E0F67800350DCD /* UIBarButtonItemArrowLeft@3x.png in Resources */,
 				2917D2071EE007C300E76185 /* MBHUD_Success@2x.png in Resources */,
+				BB95F64921E715D60071A369 /* YXHomeLastMyTalkView.xib in Resources */,
 				296F9A351F04F39000909CDB /* 6.jpg in Resources */,
 				BBD2C93821E0F67800350DCD /* VideoOverlay@3x.png in Resources */,
 				BBA8129A21DDA9F1001B5EA1 /* YXPublish.storyboard in Resources */,
@@ -3198,6 +3228,7 @@
 				29530FA61F60F0E800D24E05 /* DraggingCardViewController.m in Sources */,
 				BBD2C8F721E0F67700350DCD /* TZAssetCell.m in Sources */,
 				BBD2C99921E1C7D600350DCD /* YXHomeXueJiaGuBaViewController.m in Sources */,
+				BB95F64721E715CB0071A369 /* YXHomeLastMyTalkView.m in Sources */,
 				BBA812F721DDEBBB001B5EA1 /* SegmentTapView.m in Sources */,
 				BBD2C8F821E0F67700350DCD /* TZVideoPlayerController.m in Sources */,
 				BBD2C8FB21E0F67700350DCD /* UIView+Layout.m in Sources */,
@@ -3237,6 +3268,7 @@
 				BBD2C91821E0F67800350DCD /* LLImagePickerCell.m in Sources */,
 				29AD6C5A1ED3E28800B0879C /* HeaderModel.m in Sources */,
 				BBD30CE121E5CD79000D3244 /* YXMineGuanZhuViewController.m in Sources */,
+				BB95F63F21E6E0880071A369 /* XHStarRateView.m in Sources */,
 				BBD2C9B021E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.m in Sources */,
 				293D45FA1ECDA4D8007C64A9 /* RootWebViewController.m in Sources */,
 				BBD2C91921E0F67800350DCD /* LLActionSheetView.m in Sources */,

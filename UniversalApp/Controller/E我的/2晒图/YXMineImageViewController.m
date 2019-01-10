@@ -19,7 +19,7 @@
     [super viewWillAppear:animated];
     kWeakSelf(self);
     NSString * pageString = NSIntegerToNSString(page) ;
-    [YX_MANAGER requestImageListGET:pageString success:^(id object) {
+    [YX_MANAGER requestGetDetailListPOST:@{@"type":@(2),@"tag":@"0",@"page":@(1)} success:^(id object) {
         [weakself.dataArray removeAllObjects];
         [weakself.dataArray addObjectsFromArray:object];
         [weakself.yxTableView reloadData];
@@ -42,7 +42,8 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXMineImageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMineImageTableViewCell" forIndexPath:indexPath];
-    [cell.mineImageView sd_setImageWithURL:[NSURL URLWithString:self.dataArray[indexPath.row][@"photo1"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSURL * url = [NSURL URLWithString:self.dataArray[indexPath.row][@"photo1"]];
+    [cell.mineImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cell.mineImageLbl.text = self.dataArray[indexPath.row][@"describe"];
     NSString * time = self.dataArray[indexPath.row][@"publish_time"];
     cell.mineTimeLbl.text = [ShareManager timestampSwitchTime:[time integerValue] andFormatter:@"YYYY-MM-dd HH:mm:ss"];

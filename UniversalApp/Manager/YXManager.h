@@ -55,7 +55,10 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 #pragma mark ==========取消关注==========
 -(void)requestLikesActionGET:YX_BLOCK;
 #pragma mark ==========详情列表==========
--(void)requestGetDetailListGET:YX_BLOCK;
+-(void)requestGetDetailListPOST:YX_BLOCK;
 #pragma mark ==========点评请求==========
 -(void)requestCigar_commentGET:YX_BLOCK;
+
+#pragma mark ==========雪茄五星的评价==========
+-(void)requestCigar_commentPOST:YX_BLOCK;
 @end

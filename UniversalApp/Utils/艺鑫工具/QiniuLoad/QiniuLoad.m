@@ -16,15 +16,15 @@
 #import <QNConfiguration.h>
 
 
-#define kQNinterface @"http://pil9qvgp1.bkt.clouddn.com/"
-//static NSString *accessKey = @"ybwGKYoTnJ_9O4AEqcIBc64w1RUd52IUCR59ZkjQ";
-//static NSString *secretKey = @"l516o_86yRbBdiOkJIz-TKEyjH7a2KM_E16vcPLv";
-//static NSString *QiniuBucketName       = @"storeios";
+#define kQNinterface @"http://pl05cmwlt.bkt.clouddn.com/"
+static NSString *accessKey = @"ybwGKYoTnJ_9O4AEqcIBc64w1RUd52IUCR59ZkjQ";
+static NSString *secretKey = @"l516o_86yRbBdiOkJIz-TKEyjH7a2KM_E16vcPLv";
+static NSString *QiniuBucketName       = @"storeios";
 
 
-static NSString *accessKey = @"rpLW8CzqDzdgK27Mdp6fdrFjjdJRR-jBmfC1m8P0";
-static NSString *secretKey = @"m6t4wu-bTuHJBmw4h-H99JiogkmfKNfj2N0nvG-K";
-static NSString *QiniuBucketName  = @"thegdlife";
+//static NSString *accessKey = @"rpLW8CzqDzdgK27Mdp6fdrFjjdJRR-jBmfC1m8P0";
+//static NSString *secretKey = @"m6t4wu-bTuHJBmw4h-H99JiogkmfKNfj2N0nvG-K";
+//static NSString *QiniuBucketName  = @"thegdlife";
 
 @interface QiniuLoad ()
 

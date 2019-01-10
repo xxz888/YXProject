@@ -134,12 +134,14 @@ static NSString *secretKey = @"官网获取";
         }
         [dic setValue:_textViewInput forKey:@"describe"];//描述
         [dic setValue:@"杭州市野风现代之星3楼海底捞火锅" forKey:@"publish_site"];//地点
-        [dic setValue:@"0" forKey:@"tag"];//标签
+        [dic setValue:@"xiba110" forKey:@"tag"];//标签
         //发布按钮
         [YX_MANAGER requestFaBuImagePOST:dic success:^(id object) {
             if ([object isEqualToString:@"1"]) {
                 [QMUITips showSucceed:@"发布成功" inView:weakself.view hideAfterDelay:2];
-                [weakself dismissViewControllerAnimated:YES completion:nil];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [weakself dismissViewControllerAnimated:YES completion:nil];
+                });
             }else{
                 [QMUITips showError:@"发布失败,请稍后重试" inView:weakself.view hideAfterDelay:2];
             }
@@ -151,6 +153,8 @@ static NSString *secretKey = @"官网获取";
     
     
 
+}
+-(void)dismissVC{
 }
 -(NSString *)inImageOutString:(UIImage *)image{
       NSString *strTopper = [NSString stringWithFormat:@"%@", [UIImageJPEGRepresentation(image, 0.1f) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength]];

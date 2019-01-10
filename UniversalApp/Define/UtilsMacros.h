@@ -92,19 +92,24 @@ fprintf(stderr, "---------------------------------------------------------------
 
 //拼接字符串
 #define NSStringFormat(format,...) [NSString stringWithFormat:format,##__VA_ARGS__]
-
+// 在主线程中执行
+#define DO_IN_MAIN_QUEUE(action) dispatch_async(dispatch_get_main_queue(), action)
+// 在主线程中延迟执行
+#define DO_IN_MAIN_QUEUE_AFTER(seconds, action) dispatch_after(dispatch_time(DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC), dispatch_get_main_queue(), action)
 /**
  * 数据类型转 NSString
  */
 #define intToNSString(x) [NSString stringWithFormat:@"%d", (x)]
 #define floatToNSString(x) [NSString stringWithFormat:@"%f", (x)]
+#define nsstringToFloat(x) [[NSString stringWithFormat:@"%@",x] floatValue]
+
 #define doubleToNSString(x) [NSString stringWithFormat:@"%.2f", (x)]
 #define CGFloatToNSString(x) [NSString stringWithFormat:@"%f", (x)]
 #define NSUIntegerToNSString(x) [NSString stringWithFormat:@"%lu", (long)(x)]
 #define NSIntegerToNSString(x) [NSString stringWithFormat:@"%ld", (long)(x)]
 #define kGetString(NSNumber)  [NSString stringWithFormat:@"%@",NSNumber]
 #define kGetNSInteger(NSInteger) [NSString stringWithFormat:@"%ld",NSInteger]
-#define kGet2fDouble(Double) [NSString stringWithFormat:@"%.1f",Double]
+#define kGet2fDouble(Double) [NSString stringWithFormat:@"%.2f",Double]
 //颜色
 #define KClearColor [UIColor clearColor]
 #define KWhiteColor [UIColor whiteColor]

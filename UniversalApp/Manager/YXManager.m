@@ -170,11 +170,11 @@ successBlock(responseObject);\
     } failure:^(NSError *error) {}];
 }
 #pragma mark ==========详情列表==========
--(void)requestGetDetailListGET:YX_BLOCK{
-    NSString * url = @"/users/post/";
-    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+-(void)requestGetDetailListPOST:YX_BLOCK{
+    NSString * url = @"/users/post/1/1/1/";
+    [HTTP_POST(url) Parameters:dic sucess:^(id responseObject) {
         successBlock(responseObject);
-    } failure:^(NSError *error) {}];
+    } failure:^(NSError *error) { }];
 }
 #pragma mark ==========点评请求==========
 -(void)requestCigar_commentGET:YX_BLOCK{
@@ -182,6 +182,14 @@ successBlock(responseObject);\
     [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
+}
+
+
+#pragma mark ==========雪茄五星的评价==========
+-(void)requestCigar_commentPOST:YX_BLOCK{
+    [HTTP_POST(@"/cigar/cigar_comment/0/0/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
 }
 
 - (instancetype)init{
