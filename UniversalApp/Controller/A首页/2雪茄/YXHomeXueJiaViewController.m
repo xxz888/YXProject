@@ -13,7 +13,7 @@
 #import "YXHomeXueJiaPinPaiViewController.h"
 #import "YXHomeXueJiaWenHuaViewController.h"
 #import "YXHomeXueJiaToolsViewController.h"
-
+#import "YXHomeXueJiaQuestionViewController.h"
 @interface YXHomeXueJiaViewController ()<UITableViewDelegate,UITableViewDataSource,ClickGridView>
 @property(nonatomic,strong)UITableView * bottomTableView;
 @property(nonatomic,strong)YXHomeXueJiaHeaderView * headerView;
@@ -27,17 +27,17 @@
     self.informationArray = [NSMutableArray array];
     //tableview列表
     [self createBottomTableView];
-
+    //顶部广告请求
+     [self requestAdvertising];
+    //tableview请求
+    [self requestInformation];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 
-    //顶部广告请求
-    [self requestAdvertising];
-    //tableview请求
-    [self requestInformation];
+
 }
 
 
@@ -52,10 +52,11 @@
 
 }
 -(void)requestAdvertising{
+
     kWeakSelf(self);
     [YX_MANAGER requestGETAdvertising:@"1" success:^(id object) {
         [weakself.headerView setUpSycleScrollView:object];
-
+        [weakself.bottomTableView reloadData];
     }];
 }
 
@@ -81,6 +82,7 @@
     self.headerView = [nib objectAtIndex:0];
     self.headerView.frame = CGRectMake(0, 0, KScreenWidth, 330);
     self.headerView.delegate = self;
+
     return self.headerView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -122,6 +124,11 @@
         VC = [[YXHomeXueJiaWenHuaViewController alloc]init];
     }else if(tag == 3){
         VC = [[YXHomeXueJiaToolsViewController alloc]init];
+    }else if (tag == 4){
+        VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaQuestionViewController"];
+    }
+    else if(tag == 5){
+        VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaFootViewController"];
     }
     [self.navigationController pushViewController:VC animated:YES];
 

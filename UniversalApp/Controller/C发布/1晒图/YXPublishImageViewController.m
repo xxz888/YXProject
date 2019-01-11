@@ -14,9 +14,7 @@
 
 #import<QiniuSDK.h>
 #import<AFNetworking.h>
-//#import <ComminCrypto/CommonCrypto.h>
 #import<QN_GTM_Base64.h>
-//#import<QBEtag.h>
 #import<QNConfiguration.h>
 
 

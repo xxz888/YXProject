@@ -203,6 +203,23 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
+#pragma mark ==========雪茄提问列表==========
+-(void)requestQuestionGET:YX_BLOCK{
+    NSString * url = @"/users/question/";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
+#pragma mark ==========雪茄发布提问==========
+-(void)requestFaBuQuestionPOST:YX_BLOCK{
+    [HTTP_POST(@"/users/question/0/kw/0/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+
+
+
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];
