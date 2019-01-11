@@ -18,6 +18,7 @@ PODS:
   - Masonry (1.1.0)
   - MBProgressHUD (1.0.0)
   - MJRefresh (3.1.13)
+  - MLLabel (1.10.5)
   - Qiniu (7.2.5):
     - HappyDNS (~> 0.3)
   - QMUIKit (2.8.1):
@@ -277,6 +278,7 @@ PODS:
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
+  - UUButton (1.1)
   - YTKNetwork (2.0.4):
     - AFNetworking (~> 3.0)
   - YYKit (1.0.9):
@@ -290,9 +292,11 @@ DEPENDENCIES:
   - Masonry
   - MBProgressHUD (~> 1.0.0)
   - MJRefresh
+  - MLLabel
   - Qiniu (~> 7.1)
   - QMUIKit
   - SDWebImage (~> 3.8)
+  - UUButton
   - YTKNetwork
   - YYKit
   - ZXSegmentController
@@ -304,9 +308,11 @@ SPEC REPOS:
     - Masonry
     - MBProgressHUD
     - MJRefresh
+    - MLLabel
     - Qiniu
     - QMUIKit
     - SDWebImage
+    - UUButton
     - YTKNetwork
     - YYKit
     - ZXSegmentController
@@ -317,13 +323,15 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJRefresh: 56a28aa628c9895e97a518dabaecf70b18f92f32
+  MLLabel: d76124055a2205e7f76878e62cd06ba925ba0c97
   Qiniu: 909b408ee489ea54827e9717be90b94bc9dfbc48
   QMUIKit: 36fe0f01873605e15e86113403db547aca16e6c5
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  UUButton: 9a19bbe0c812a6920de21da8acca7a2d0bad52da
   YTKNetwork: df8a7a5597bda1664a4efaa7ef871a818a887fe0
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZXSegmentController: d94f138ab0191da1e2e4268e9b961e082a142549
 
-PODFILE CHECKSUM: 5fddf3f4d9a0b2a61060d896cf601f7674829e7c
+PODFILE CHECKSUM: cad9b81d697dc02788bad72ec822f6d4863d29eb
 
 COCOAPODS: 1.5.3

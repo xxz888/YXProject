@@ -49,14 +49,16 @@
     }];
 //
 //    //请求评价列表 最新评论列表
-//    [YX_MANAGER requestCigar_commentGET:[self getParamters:@"3"] success:^(id object) {
-//
-//    }];
+    [YX_MANAGER requestCigar_commentGET:[self getParamters:@"3"] success:^(id object) {
+        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb2"];
+
+    }];
 //
 //    //请求评价列表 最热评论列表
-//    [YX_MANAGER requestCigar_commentGET:[self getParamters:@"4"] success:^(id object) {
-//
-//    }];
+    [YX_MANAGER requestCigar_commentGET:[self getParamters:@"4"] success:^(id object) {
+        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb3"];
+
+    }];
     //
     //请求六宫格图片
     NSString * tag = self.startDic[@"cigar_name"];

@@ -48,6 +48,8 @@
 #import "ThirdMacros.h"
 #import "CommonMacros.h"
 #import "QMUIKit.h"
+#import "Utility.h"
+
 //基础类
 #import "AppDelegate.h"
 #import "AppDelegate+AppService.h"

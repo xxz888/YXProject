@@ -55,6 +55,8 @@
 
     kWeakSelf(self);
     [YX_MANAGER requestGETAdvertising:@"1" success:^(id object) {
+        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb4"];
+
         [weakself.headerView setUpSycleScrollView:object];
         [weakself.bottomTableView reloadData];
     }];
