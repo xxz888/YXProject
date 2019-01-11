@@ -19,10 +19,6 @@
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
-    // Drawing code
-  
-    //轮播图
-    [self setUpSycleScrollView:nil];
     //九宫格
     [self createMiddleCollection];
 }
@@ -36,25 +32,23 @@
 }
 //添加轮播图
 - (void)setUpSycleScrollView:(NSMutableArray *)imageArray{
-    [self.photoArray addObject:@"http://www.cigaronline.cn/upload/image/20181225/20181225030921_665.png"];
-    [self.photoArray addObject:@"http://www.cigaronline.cn/upload/image/20181222/20181222035425_728.jpg"];
-    [self.photoArray addObject:@"http://www.cigaronline.cn/upload/image/20181219/20181219031157_371.png"];
-    NSMutableArray * array = [[NSMutableArray alloc]init];
-//    
-//    for (NSDictionary * dic in YX_MANAGER.advertisingArray) {
-//        [self.photoArray addObject:dic[@"photo"]];
-//    }
+
+    NSMutableArray * photoArray = [NSMutableArray array];
+    NSMutableArray * titleArray = [NSMutableArray array];
+    
+    for (NSDictionary * dic in imageArray) {
+        [photoArray addObject:dic[@"photo"]];
+        [titleArray addObject:dic[@"character"]];
+        
+    }
     SDCycleScrollView *cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, self.underView.frame.size.height) delegate:self placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cycleScrollView3.bannerImageViewContentMode =  3;
     cycleScrollView3.showPageControl = NO;
-    cycleScrollView3.currentPageDotImage = [UIImage imageNamed:@"img_moren"];
-    cycleScrollView3.pageDotImage = [UIImage imageNamed:@"img_moren"];
+    cycleScrollView3.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
+    cycleScrollView3.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
     cycleScrollView3.autoScrollTimeInterval = 4;
-    cycleScrollView3.titlesGroup = @[@"密歇根州通过雪茄永久税务上限",
-                                     @"高希霸珍藏罗布图2014限量版雪茄发售",
-                                     @"德鲁庄园宣布LIGA PRIVADA 10 周年纪念版雪茄发货"];
-    cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:self.photoArray];
-       [cycleScrollView3 setPlaceholderImage:[UIImage imageNamed:@"img_moren"]];
+    cycleScrollView3.titlesGroup = titleArray;
+    cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];
     [self.underView addSubview:cycleScrollView3];
 }
 //九宫格

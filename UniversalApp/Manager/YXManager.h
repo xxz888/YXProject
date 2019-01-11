@@ -61,4 +61,8 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 
 #pragma mark ==========雪茄五星的评价==========
 -(void)requestCigar_commentPOST:YX_BLOCK;
+#pragma mark ==========雪茄文化列表==========
+-(void)requestCigar_accessories_cultureGET:YX_BLOCK;
+#pragma mark ==========雪茄配件列表==========
+-(void)requestCigar_accessoriesGET:YX_BLOCK;
 @end
