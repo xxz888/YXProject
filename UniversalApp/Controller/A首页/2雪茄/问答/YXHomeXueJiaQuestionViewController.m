@@ -113,6 +113,7 @@
         moment.singleHeight = 315;
         moment.location = @"";
         moment.isPraise = NO;
+        moment.photo =self.dataArray[i][@"user_photo"];
         NSString * pic1 = kGetString(self.dataArray[i][@"pic1"]);
         NSString * pic2 = kGetString(self.dataArray[i][@"pic2"]);
         NSString * pic3 = kGetString(self.dataArray[i][@"pic3"]);

@@ -27,6 +27,7 @@
 #import "YXMineViewController.h"
 #import "TBTabBar.h"
 #import "VTingSeaPopView.h"
+#import "SDTimeLineTableViewController.h"
 
 #import "YXPublishImageViewController.h"
 #import "YXPublishArticleViewController.h"
@@ -135,9 +136,10 @@
 //    WaterFallListViewController *homeVC = [WaterFallListViewController new];
 //    PersonListViewController *homeVC = [[PersonListViewController alloc]init];
     
-    
+    //[[SDTimeLineTableViewController alloc]init]
     UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
     YXHomeViewController * homeVC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeViewController"];
+
     [self setupChildViewController:homeVC title:@"首页" imageName:@"icon_tabbar_homepage" seleceImageName:@"icon_tabbar_homepage_selected"];
     
 //    MakeFriendsViewController *makeFriendVC = [[MakeFriendsViewController alloc]init];

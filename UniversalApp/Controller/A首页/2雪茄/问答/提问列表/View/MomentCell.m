@@ -118,7 +118,8 @@ CGFloat maxLimitHeight = 0;
 {
     _moment = moment;
     // 头像
-    _headImageView.image = [UIImage imageNamed:@"moment_head"];
+    
+    [_headImageView sd_setImageWithURL:[NSURL URLWithString:moment.photo] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     // 昵称
     _nameLab.text = moment.userName;
     // 正文

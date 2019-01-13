@@ -217,7 +217,12 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) { }];
 }
-
+#pragma mark ==========点赞/取消点赞文章评论==========
+-(void)requestEssay_comment_praisePOST:YX_BLOCK{
+    [HTTP_POST(@"/users/essay_comment_praise/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
 
 
 - (instancetype)init{

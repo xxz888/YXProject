@@ -14,6 +14,9 @@
 
 // 正文
 @property (nonatomic,copy) NSString *text;
+//头像
+@property (nonatomic,copy) NSString *photo;
+
 // 发布位置
 @property (nonatomic,copy) NSString *location;
 // 发布者名字

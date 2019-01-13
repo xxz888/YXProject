@@ -10,38 +10,106 @@
 #import "YXHomeLastDetailView.h"
 #import "YXHomeLastMyTalkView.h"
 #import "XHStarRateView.h"
-@interface YXHomeXueJiaPinPaiLastDetailViewController ()<UITableViewDelegate,UITableViewDataSource,clickMyTalkDelegate>
+
+
+#import "SDTimeLineTableHeaderView.h"
+#import "SDTimeLineRefreshHeader.h"
+#import "SDTimeLineRefreshFooter.h"
+#import "SDTimeLineCell.h"
+#import "SDTimeLineCellModel.h"
+
+#import "UITableView+SDAutoTableViewCellHeight.h"
+
+#import "UIView+SDAutoLayout.h"
+#import "LEETheme.h"
+#import "GlobalDefines.h"
+
+#define kTimeLineTableViewCellId @"SDTimeLineCell"
+
+static CGFloat textFieldH = 40;
+
+
+@interface YXHomeXueJiaPinPaiLastDetailViewController ()<UITableViewDelegate,UITableViewDataSource,clickMyTalkDelegate,SDTimeLineCellDelegate, UITextFieldDelegate>{
+    SDTimeLineRefreshFooter *_refreshFooter;
+    SDTimeLineRefreshHeader *_refreshHeader;
+    CGFloat _lastScrollViewOffsetY;
+    CGFloat _totalKeybordHeight;
+}
 @property(nonatomic,strong)YXHomeLastDetailView * lastDetailView;
 @property(nonatomic,strong)YXHomeLastMyTalkView * lastMyTalkView;
+@property (nonatomic, strong) NSMutableArray *dataArray;
 
+
+@property (nonatomic, strong) UITextField *textField;
+@property (nonatomic, assign) BOOL isReplayingComment;
+@property (nonatomic, strong) NSIndexPath *currentEditingIndexthPath;
+@property (nonatomic, copy) NSString *commentToUser;
 
 
 @end
 
 @implementation YXHomeXueJiaPinPaiLastDetailViewController
 
-- (void)viewDidLoad {
+
+- (void)viewDidLoad{
     [super viewDidLoad];
-    
-    
     //初始化所有的控件
     [self initAllControl];
 }
 
 -(void)initAllControl{
-    [self.yxTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
-
     self.title = self.startDic[@"cigar_name"];
+
+    _dataArray = [[NSMutableArray alloc]init];
+    [self.yxTableView registerClass:[SDTimeLineCell class] forCellReuseIdentifier:kTimeLineTableViewCellId];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.edgesForExtendedLayout = UIRectEdgeTop;
+    self.dataArray = [NSMutableArray arrayWithArray:[self creatModelsWithCount]];
+    
     [self.yxTableView reloadData];
+
+    
+    /*
+     // 上拉加载
+     __weak typeof(self) weakSelf = self;
+     _refreshFooter = [SDTimeLineRefreshFooter refreshFooterWithRefreshingText:@"正在加载数据..."];
+     __weak typeof(_refreshFooter) weakRefreshFooter = _refreshFooter;
+     [_refreshFooter addToScrollView:self.yxTableView refreshOpration:^{
+     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+     [weakSelf.dataArray addObjectsFromArray:[weakSelf creatModelsWithCount:10]];
+     
+     
+     [weakself.yxTableView reloadDataWithExistedHeightCache]
+     作用等同于
+     [weakself.yxTableView reloadData]
+     只是“reloadDataWithExistedHeightCache”刷新tableView但不清空之前已经计算好的高度缓存，用于直接将新数据拼接在旧数据之后的tableView刷新
+     
+     [weakself.yxTableView reloadDataWithExistedHeightCache];
+     
+     [weakRefreshFooter endRefreshing];
+     });
+     }];
+     
+     SDTimeLineTableHeaderView *headerView = [SDTimeLineTableHeaderView new];
+     headerView.frame = CGRectMake(0, 0, 0, 260);
+     self.yxTableView.tableHeaderView = headerView;
+     */
+    //添加分隔线颜色设置
+    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeLastDetailView" owner:self options:nil];
+    self.lastDetailView = [nib objectAtIndex:0];
+    self.lastDetailView.frame = CGRectMake(0, 0, KScreenWidth, 1100);
+    self.lastDetailView.delegate = self;
+    self.yxTableView.tableHeaderView = self.lastDetailView;
+    self.yxTableView.lee_theme
+    .LeeAddSeparatorColor(DAY , [[UIColor lightGrayColor] colorWithAlphaComponent:0.5f])
+    .LeeAddSeparatorColor(NIGHT , [[UIColor grayColor] colorWithAlphaComponent:0.5f]);
+    [self setupTextField];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-//    [[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb11"]
-//    [[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb12"]
-//    [[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb2"]
-//    [[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb3"]
-
     
     kWeakSelf(self);
     //请求评价列表 平均分
@@ -82,28 +150,6 @@
         [weakself.lastDetailView setSixPhotoView:imageArray];
     }];
 }
--(NSString *)getParamters:(NSString *)type{
-    return [NSString stringWithFormat:@"%@/%@",type,self.startDic[@"id"]];
-}
-
-//代理方法
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeLastDetailView" owner:self options:nil];
-    self.lastDetailView = [nib objectAtIndex:0];
-    self.lastDetailView.frame = CGRectMake(0, 0, KScreenWidth, 330);
-    self.lastDetailView.delegate = self;
-    return self.lastDetailView;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 1100;
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
-}
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
-    return cell;
-}
 
 #pragma mark ========== 点击我来评论 ==========
 -(void)clickMyTalkAction{
@@ -125,4 +171,373 @@
 }
 
 
+#pragma mark ========== tableview数据 ==========
+- (NSArray *)creatModelsWithCount{
+    NSArray * formalArray = [NSArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb2"]] ;
+    NSMutableArray *resArr = [NSMutableArray new];
+    for (int i = 0; i < formalArray.count; i++) {
+        SDTimeLineCellModel *model = [SDTimeLineCellModel new];
+        model.iconName = formalArray[i][@"user_photo"];
+        model.name = formalArray[i][@"user_name"];
+        model.msgContent = formalArray[i][@"comment"];
+        model.commontTime = [formalArray[i][@"update_time"] integerValue];
+        model.score = [formalArray[i][@"average_score"] floatValue];
+        model.praise = kGetString(formalArray[i][@"praise"]);
+        model.id =  kGetString(formalArray[i][@"id"]);
+        // 模拟随机评论数据
+        NSMutableArray *tempComments = [NSMutableArray new];
+        NSArray * child_listArray =  [NSArray arrayWithArray:formalArray[i][@"child_list"]];
+        for (int i = 0; i < [child_listArray count]; i++) {
+            SDTimeLineCellCommentItemModel *commentItemModel = [SDTimeLineCellCommentItemModel new];
+            commentItemModel.firstUserName = kGetString(child_listArray[i][@"user_name"]);
+            commentItemModel.firstUserId = kGetString(child_listArray[i][@"user_id"]);
+            if (child_listArray[i][@"aim_id"] != 0) {
+                commentItemModel.secondUserName = kGetString(child_listArray[i][@"aim_name"]);
+                commentItemModel.secondUserId = kGetString(child_listArray[i][@"aim_id"]);
+            }
+            commentItemModel.commentString = child_listArray[i][@"comment"];
+            [tempComments addObject:commentItemModel];
+        }
+        model.commentItemsArray = [tempComments copy];
+        // 模拟随机点赞数据
+        NSMutableArray *tempLikes = [NSMutableArray new];
+        SDTimeLineCellLikeItemModel * model1 = [SDTimeLineCellLikeItemModel new];
+        model1.userName = [NSString stringWithFormat:@"%@",formalArray[i][@"praise_number"]];
+        model1.userId = @"000";
+        
+        [tempLikes addObject:model1];
+        model.likeItemsArray = [tempLikes copy];
+        /*
+         // 模拟随机点赞数据
+         int likeRandom = arc4random_uniform(3);
+         NSMutableArray *tempLikes = [NSMutableArray new];
+         for (int i = 0; i < likeRandom; i++) {
+         SDTimeLineCellLikeItemModel *model = [SDTimeLineCellLikeItemModel new];
+         int index = arc4random_uniform((int)namesArray.count);
+         model.userName = namesArray[index];
+         model.userId = namesArray[index];
+         [tempLikes addObject:model];
+         }
+         
+         model.likeItemsArray = [tempLikes copy];
+         */
+        [resArr addObject:model];
+    }
+    return [resArr copy];
+}
+#pragma mark ========== tableview代理和所有方法 ==========
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.dataArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    SDTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:kTimeLineTableViewCellId];
+    cell.indexPath = indexPath;
+    __weak typeof(self) weakSelf = self;
+    if (!cell.moreButtonClickedBlock) {
+        [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {
+            SDTimeLineCellModel *model = weakSelf.dataArray[indexPath.row];
+            model.isOpening = !model.isOpening;
+            [weakSelf.yxTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }];
+        
+        [cell setDidClickCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow, NSIndexPath *indexPath) {
+            weakSelf.textField.placeholder = [NSString stringWithFormat:@"  回复：%@", commentId];
+            weakSelf.currentEditingIndexthPath = indexPath;
+            [weakSelf.textField becomeFirstResponder];
+            weakSelf.isReplayingComment = YES;
+            weakSelf.commentToUser = commentId;
+            [weakSelf adjustTableViewToFitKeyboardWithRect:rectInWindow];
+        }];
+        
+        cell.delegate = self;
+    }
+    ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
+    [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
+    cell.model = self.dataArray[indexPath.row];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    // >>>>>>>>>>>>>>>>>>>>> * cell自适应 * >>>>>>>>>>>>>>>>>>>>>>>>
+    id model = self.dataArray[indexPath.row];
+    return [self.yxTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[SDTimeLineCell class] contentViewWidth:[self cellContentViewWith]];
+}
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [_textField resignFirstResponder];
+    _textField.placeholder = nil;
+}
+- (CGFloat)cellContentViewWith{
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    // 适配ios7横屏
+    if ([UIApplication sharedApplication].statusBarOrientation != UIInterfaceOrientationPortrait && [[UIDevice currentDevice].systemVersion floatValue] < 8) {
+        width = [UIScreen mainScreen].bounds.size.height;
+    }
+    return width;
+}
+#pragma mark ========== tableview 点击评论按钮 ==========
+- (void)didClickcCommentButtonInCell:(UITableViewCell *)cell{
+    [_textField becomeFirstResponder];
+    _currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
+    [self adjustTableViewToFitKeyboard];
+}
+#pragma mark ========== tableview 点赞按钮 ==========
+- (void)didClickLikeButtonInCell:(SDTimeLineCell *)cell{
+    NSIndexPath *index = [self.yxTableView indexPathForCell:cell];
+    SDTimeLineCellModel *model = self.dataArray[index.row];
+    NSString * likeString= cell.commentView.likeLabel.text;
+    [YX_MANAGER requestEssay_comment_praisePOST:@{@"comment_id":model.id} success:^(id object) {
+        NSInteger lastValue = 0;
+        if ([model.praise isEqualToString:@"1"]) {
+            lastValue = [likeString integerValue] - 1;
+            [cell.zanButton setTitle:@"赞" forState:UIControlStateNormal];
+        }else{
+            lastValue = [likeString integerValue] + 1;
+            [cell.zanButton setTitle:@"已赞" forState:UIControlStateNormal];
+        }
+        cell.commentView.likeLabel.text = [NSString stringWithFormat:@"%ld",lastValue];
+        
+    }];
+    /*
+     if (!model.isLiked) {
+     SDTimeLineCellLikeItemModel *likeModel = [SDTimeLineCellLikeItemModel new];
+     likeModel.userName = @"GSD_iOS";
+     likeModel.userId = @"gsdios";
+     [temp addObject:likeModel];
+     model.liked = YES;
+     } else {
+     SDTimeLineCellLikeItemModel *tempLikeModel = nil;
+     for (SDTimeLineCellLikeItemModel *likeModel in model.likeItemsArray) {
+     if ([likeModel.userId isEqualToString:@"gsdios"]) {
+     tempLikeModel = likeModel;
+     break;
+     }
+     }
+     [temp removeObject:tempLikeModel];
+     model.liked = NO;
+     }
+     model.likeItemsArray = [temp copy];
+     */
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //        [self.yxTableView reloadRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationNone];
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark ========== 以下为所有自适应和不常用的方法 ==========
+- (void)adjustTableViewToFitKeyboard{
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UITableViewCell *cell = [self.yxTableView cellForRowAtIndexPath:_currentEditingIndexthPath];
+    CGRect rect = [cell.superview convertRect:cell.frame toView:window];
+    [self adjustTableViewToFitKeyboardWithRect:rect];
+}
+
+- (void)adjustTableViewToFitKeyboardWithRect:(CGRect)rect
+{
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    CGFloat delta = CGRectGetMaxY(rect) - (window.bounds.size.height - _totalKeybordHeight);
+    
+    CGPoint offset = self.yxTableView.contentOffset;
+    offset.y += delta;
+    if (offset.y < 0) {
+        offset.y = 0;
+    }
+    
+    [self.yxTableView setContentOffset:offset animated:YES];
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField.text.length) {
+        [_textField resignFirstResponder];
+        
+        SDTimeLineCellModel *model = self.dataArray[_currentEditingIndexthPath.row];
+        NSMutableArray *temp = [NSMutableArray new];
+        [temp addObjectsFromArray:model.commentItemsArray];
+        SDTimeLineCellCommentItemModel *commentItemModel = [SDTimeLineCellCommentItemModel new];
+        
+        if (self.isReplayingComment) {
+            commentItemModel.firstUserName = @"GSD_iOS";
+            commentItemModel.firstUserId = @"GSD_iOS";
+            commentItemModel.secondUserName = self.commentToUser;
+            commentItemModel.secondUserId = self.commentToUser;
+            commentItemModel.commentString = textField.text;
+            
+            self.isReplayingComment = NO;
+        } else {
+            commentItemModel.firstUserName = @"GSD_iOS";
+            commentItemModel.commentString = textField.text;
+            commentItemModel.firstUserId = @"GSD_iOS";
+        }
+        [temp addObject:commentItemModel];
+        model.commentItemsArray = [temp copy];
+        [self.yxTableView reloadRowsAtIndexPaths:@[_currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
+        
+        _textField.text = @"";
+        _textField.placeholder = nil;
+        
+        return YES;
+    }
+    return NO;
+}
+
+
+
+- (void)keyboardNotification:(NSNotification *)notification
+{
+    NSDictionary *dict = notification.userInfo;
+    CGRect rect = [dict[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
+    
+    
+    
+    CGRect textFieldRect = CGRectMake(0, rect.origin.y - textFieldH, rect.size.width, textFieldH);
+    if (rect.origin.y == [UIScreen mainScreen].bounds.size.height) {
+        textFieldRect = rect;
+    }
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        _textField.frame = textFieldRect;
+    }];
+    
+    CGFloat h = rect.size.height + textFieldH;
+    if (_totalKeybordHeight != h) {
+        _totalKeybordHeight = h;
+        [self adjustTableViewToFitKeyboard];
+    }
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [_textField resignFirstResponder];
+}
+
+- (void)dealloc
+{
+    [_refreshHeader removeFromSuperview];
+    [_refreshFooter removeFromSuperview];
+    
+    [_textField removeFromSuperview];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)setupTextField
+{
+    _textField = [UITextField new];
+    _textField.returnKeyType = UIReturnKeyDone;
+    _textField.delegate = self;
+    _textField.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
+    _textField.layer.borderWidth = 1;
+    
+    //为textfield添加背景颜色 字体颜色的设置 还有block设置 , 在block中改变它的键盘样式 (当然背景颜色和字体颜色也可以直接在block中写)
+    
+    _textField.lee_theme
+    .LeeAddBackgroundColor(DAY , [UIColor whiteColor])
+    .LeeAddBackgroundColor(NIGHT , [UIColor blackColor])
+    .LeeAddTextColor(DAY , [UIColor blackColor])
+    .LeeAddTextColor(NIGHT , [UIColor grayColor])
+    .LeeAddCustomConfig(DAY , ^(UITextField *item){
+        
+        item.keyboardAppearance = UIKeyboardAppearanceDefault;
+        if ([item isFirstResponder]) {
+            [item resignFirstResponder];
+            [item becomeFirstResponder];
+        }
+    }).LeeAddCustomConfig(NIGHT , ^(UITextField *item){
+        
+        item.keyboardAppearance = UIKeyboardAppearanceDark;
+        if ([item isFirstResponder]) {
+            [item resignFirstResponder];
+            [item becomeFirstResponder];
+        }
+    });
+    
+    _textField.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height, self.view.width_sd, textFieldH);
+    [[UIApplication sharedApplication].keyWindow addSubview:_textField];
+    
+    [_textField becomeFirstResponder];
+    [_textField resignFirstResponder];
+}
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    /*
+     if (!_refreshHeader.superview) {
+     
+     _refreshHeader = [SDTimeLineRefreshHeader refreshHeaderWithCenter:CGPointMake(40, 45)];
+     _refreshHeader.scrollView = self.yxTableView;
+     __weak typeof(_refreshHeader) weakHeader = _refreshHeader;
+     __weak typeof(self) weakSelf = self;
+     [_refreshHeader setRefreshingBlock:^{
+     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+     weakSelf.dataArray = [[weakSelf creatModelsWithCount:10] mutableCopy];
+     [weakHeader endRefreshing];
+     dispatch_async(dispatch_get_main_queue(), ^{
+     [weakself.yxTableView reloadData];
+     });
+     });
+     }];
+     [self.yxTableView.superview addSubview:_refreshHeader];
+     } else {
+     [self.yxTableView.superview bringSubviewToFront:_refreshHeader];
+     }
+     */
+}
+-(NSString *)getParamters:(NSString *)type{
+    return [NSString stringWithFormat:@"%@/%@",type,self.startDic[@"id"]];
+}
 @end

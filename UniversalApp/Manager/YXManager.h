@@ -69,4 +69,6 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestQuestionGET:YX_BLOCK;
 #pragma mark ==========雪茄发布提问==========
 -(void)requestFaBuQuestionPOST:YX_BLOCK;
+#pragma mark ==========点赞/取消点赞文章评论==========
+-(void)requestEssay_comment_praisePOST:YX_BLOCK;
 @end
