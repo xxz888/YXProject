@@ -135,7 +135,10 @@
 -(void)clickLikeBtn:(BOOL)isZan cigar_id:(NSString *)cigar_id likeBtn:(nonnull UIButton *)likeBtn{
     kWeakSelf(self);
     if ([userManager loadUserInfo]) {
+        
         [YX_MANAGER requestCollect_cigarPOST:@{@"cigar_id":cigar_id} success:^(id object) {
+            [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb8"];
+
             [likeBtn setBackgroundImage:isZan ? _selImage:_unImage forState:UIControlStateNormal];
             [weakself requestCigar_brand_details];
         }];
@@ -145,8 +148,18 @@
 }
 #pragma mark ========== 重新请求详情 ==========
 -(void)requestCigar_brand_details{
+    
+    
+    
     kWeakSelf(self);
+    
+    
+    weakself.dicData = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb9"]];
+    [weakself.tableView reloadData];
+    return;
     [YX_MANAGER requestCigar_brand_detailsPOST:@{@"cigar_brand":self.title} success:^(id object) {
+        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb9"];
+
         weakself.dicData = [NSMutableDictionary dictionaryWithDictionary:object];
         [weakself.tableView reloadData];
     }];
@@ -156,7 +169,10 @@
     kWeakSelf(self);
     NSDictionary * cellData = self.dicStartData;
 
-    [YX_MANAGER requestMy_concern_cigarPOST:@{@"cigar_brand":self.title,@"photo":cellData[@"photo"]} success:^(id object) {        
+    
+    [YX_MANAGER requestMy_concern_cigarPOST:@{@"cigar_brand":self.title,@"photo":cellData[@"photo"]} success:^(id object) {
+        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb10"];
+
         BOOL isGuanZhu = [weakself.section1GuanZhuBtn.titleLabel.text isEqualToString:@"关注"];
         [ShareManager setGuanZhuStatus:weakself.section1GuanZhuBtn status:!isGuanZhu];
 

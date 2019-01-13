@@ -43,6 +43,7 @@ NSMutableAttributedString *kMLLinkLabelAttributedText(id object)
                                     range:[likeString rangeOfString:comment.userName]];
         }
     }
+    
     if ([object isKindOfClass:[NSString class]])
     {
         NSString *content = (NSString *)object;
@@ -55,10 +56,11 @@ NSMutableAttributedString *kMLLinkLabelAttributedText(id object)
         }
         
         //添加'赞'的图片
+        
         NSRange range = NSMakeRange(0, 3);
         NSTextAttachment *textAttachment = [[NSTextAttachment alloc] init];
-        textAttachment.image = [UIImage imageNamed:@"moment_like_hl"];
-        textAttachment.bounds = CGRectMake(0, -3, textAttachment.image.size.width, textAttachment.image.size.height);
+//        textAttachment.image = [UIImage imageNamed:@"moment_like_hl"];
+//        textAttachment.bounds = CGRectMake(0, -3, textAttachment.image.size.width, textAttachment.image.size.height);
         NSAttributedString *imageStr = [NSAttributedString attributedStringWithAttachment:textAttachment];
         [attributedText replaceCharactersInRange:range withAttributedString:imageStr];
     }

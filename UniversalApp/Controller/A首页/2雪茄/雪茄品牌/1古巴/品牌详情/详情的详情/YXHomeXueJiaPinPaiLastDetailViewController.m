@@ -37,14 +37,23 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+//    [[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb11"]
+//    [[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb12"]
+//    [[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb2"]
+//    [[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb3"]
+
+    
     kWeakSelf(self);
     //请求评价列表 平均分
     [YX_MANAGER requestCigar_commentGET:[self getParamters:@"1"] success:^(id object) {
+        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb11"];
+
         [weakself.lastDetailView againSetDetailView:weakself.startDic allDataDic:object];
     }];
     
 //    //请求评价列表 个人分
     [YX_MANAGER requestCigar_commentGET:[self getParamters:@"2"] success:^(id object) {
+        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb12"];
 
     }];
 //
@@ -64,6 +73,8 @@
     NSString * tag = self.startDic[@"cigar_name"];
 
     [YX_MANAGER requestGetDetailListPOST:@{@"type":@(1),@"tag":@"xiba110",@"page":@(1)} success:^(id object) {
+        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb13"];
+
         NSMutableArray * imageArray = [NSMutableArray array];
         for (NSDictionary * dic in object) {
             [imageArray addObject:dic[@"photo1"]];

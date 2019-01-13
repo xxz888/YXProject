@@ -42,9 +42,14 @@
 
 
 -(void)requestInformation{
-
+    [self.informationArray removeAllObjects];
+    [self.informationArray addObjectsFromArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb5"]];
+    [self.bottomTableView reloadData];
+    return;
     kWeakSelf(self);
     [YX_MANAGER requestGETInformation:@"1" success:^(id object) {
+        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb5"];
+
         [weakself.informationArray removeAllObjects];
         [weakself.informationArray addObjectsFromArray:object];
         [weakself.bottomTableView reloadData];
@@ -52,7 +57,8 @@
 
 }
 -(void)requestAdvertising{
-
+//    [self.headerView setUpSycleScrollView:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb4"]];
+    return;
     kWeakSelf(self);
     [YX_MANAGER requestGETAdvertising:@"1" success:^(id object) {
         [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb4"];
@@ -84,6 +90,7 @@
     self.headerView = [nib objectAtIndex:0];
     self.headerView.frame = CGRectMake(0, 0, KScreenWidth, 330);
     self.headerView.delegate = self;
+    [self.headerView setUpSycleScrollView:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb4"]];
 
     return self.headerView;
 }

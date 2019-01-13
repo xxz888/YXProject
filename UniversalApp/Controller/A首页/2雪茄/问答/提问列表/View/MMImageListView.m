@@ -16,7 +16,8 @@
 
 // 预览视图
 @property (nonatomic, strong) MMImagePreviewView *previewView;
-
+// 图片视图数组
+@property (nonatomic, strong) NSMutableArray *imageViewsArray;
 @end
 
 @implementation MMImageListView
@@ -27,7 +28,7 @@
     if (self) {
         // 小图(九宫格)
         _imageViewsArray = [[NSMutableArray alloc] init];
-        for (int i = 0; i < _imageViewsArray.count; i++) {
+        for (int i = 0; i < 9; i++) {
             MMImageView *imageView = [[MMImageView alloc] initWithFrame:CGRectZero];
             imageView.tag = 1000 + i;
             [imageView setTapSmallView:^(MMImageView *imageView){
@@ -84,16 +85,19 @@
         imageView = [self viewWithTag:1000+i];
         imageView.hidden = NO;
         imageView.frame = frame;
-        if (i == 0) {
-            NSURL * url0 = [NSURL URLWithString:_imageViewsArray[0][@"pic1"]];
-            [imageView sd_setImageWithURL:url0 placeholderImage:[UIImage imageNamed:@"img_moren"]];
-        }else if (i == 1){
-            NSURL * url1 = [NSURL URLWithString:_imageViewsArray[1][@"pic2"]];
-            [imageView sd_setImageWithURL:url1 placeholderImage:[UIImage imageNamed:@"img_moren"]];
-        }else if (i == 2){
-            NSURL * url2 = [NSURL URLWithString:_imageViewsArray[2][@"pic3"]];
-            [imageView sd_setImageWithURL:url2 placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        if (moment.imageListArray.count != 0) {
+            if (i == 0) {
+                NSURL * url0 = [NSURL URLWithString:kGetString(moment.imageListArray[0]) ];
+                [imageView sd_setImageWithURL:url0 placeholderImage:[UIImage imageNamed:@"img_moren"]];
+            }else if (i == 1){
+                NSURL * url1 = [NSURL URLWithString:kGetString(moment.imageListArray[1])];
+                [imageView sd_setImageWithURL:url1 placeholderImage:[UIImage imageNamed:@"img_moren"]];
+            }else if (i == 2){
+                NSURL * url2 = [NSURL URLWithString:kGetString(moment.imageListArray[2])];
+                [imageView sd_setImageWithURL:url2 placeholderImage:[UIImage imageNamed:@"img_moren"]];
+            }
         }
+ 
         
 //        imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"moment_pic_%d",(int)i]];
     }

@@ -66,6 +66,14 @@
     
 }
 -(void)requestQuestion{
+    
+    [self.dataArray removeAllObjects];
+    [self.dataArray addObjectsFromArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb1"]];
+    [self initTestInfo];
+    [self.tableView reloadData];
+    return;
+    
+    
     kWeakSelf(self);
     NSString * par = [NSString stringWithFormat:@"%@/kw/%@",@"1",@"1"];
     [YX_MANAGER requestQuestionGET:par success:^(id object) {
@@ -75,8 +83,8 @@
         [weakself.dataArray removeAllObjects];
         [weakself.dataArray addObjectsFromArray:object];
  
-//        [weakself initTestInfo];
-//        [weakself.tableView reloadData];
+        [weakself initTestInfo];
+        [weakself.tableView reloadData];
     }];
 }
 - (void)viewWillDisappear:(BOOL)animated {
@@ -87,56 +95,56 @@
 
 
 #pragma mark - 测试数据
+#pragma mark - 测试数据
 - (void)initTestInfo
 {
     self.momentList = [[NSMutableArray alloc] init];
     NSMutableArray *commentList = nil;
     for (int i = 0;  i < self.dataArray.count; i ++)  {
-        // 评论
-        commentList = [[NSMutableArray alloc] init];
-        NSDictionary * dic2 = self.dataArray[i];
-        NSArray * array1 =dic2[@"answer"];
-     
         
-        NSArray * array2 = array1[i][@"child"];
-        
-        
-        
+        //最外层
         Moment *moment = [[Moment alloc] init];
         moment.commentList = commentList;
         moment.praiseNameList = nil;//@"胡一菲，唐悠悠，陈美嘉，吕小布，曾小贤，张伟，关谷神奇";
-        moment.userName = @"Jeanne";
-        moment.time = 1487649403;
+        moment.userName = self.dataArray[i][@"user_name"];
+        moment.text = self.dataArray[i][@"title"];
+        moment.time = [self.dataArray[i][@"publish_date"] longLongValue];
         moment.singleWidth = 500;
         moment.singleHeight = 315;
-        moment.location = @"北京 · 西单";
+        moment.location = @"";
         moment.isPraise = NO;
-        moment.text = dic2[@"user_name"];
+        NSString * pic1 = kGetString(self.dataArray[i][@"pic1"]);
+        NSString * pic2 = kGetString(self.dataArray[i][@"pic2"]);
+        NSString * pic3 = kGetString(self.dataArray[i][@"pic3"]);
+
+//        if ([pic1 isEqualToString:@""] || [pic1 isEqualToString:@"1"]) {
+//            moment.fileCount = 0;
+//        }else if ([pic2 isEqualToString:@""] || [pic2 isEqualToString:@"0"]){
+//            moment.fileCount = 1;
+//        }else if ([pic3 isEqualToString:@""] || [pic3 isEqualToString:@"0"]){
+//            moment.fileCount = 2;
+//        }else{
+            moment.fileCount = 3;
+//        }
+      
+  
+
+        moment.imageListArray = [NSMutableArray arrayWithObjects:self.dataArray[i][@"pic1"],self.dataArray[i][@"pic2"],self.dataArray[i][@"pic3"], nil];
         
-        //如果没有评论，就不显示
-        if (array1.count == 0) {
-            moment.commentList = nil;
-            moment.praiseNameList = nil;
-        }
-        if(array2.count == 0){
-            continue;
-        }
+        // 评论
+        commentList = [[NSMutableArray alloc] init];
+        int num = (int)[self.dataArray[i][@"answer"] count];
         
-        moment.fileCount = 3;
-        int num = (int)[array1 count];
-        //这个num 是 child 数组count
         for (int j = 0; j < num; j ++) {
             Comment *comment = [[Comment alloc] init];
-            //这个地方写写 user_name
-            NSDictionary * dic1 = array2[j];
-            comment.userName = dic1[@"user_name"];
-            comment.text = dic1[@"answer"];
-            comment.time = [dic1[@"publish_date"] longLongValue];
+            comment.userName = self.dataArray[i][@"answer"][j][@"user_name"];
+            comment.text =  self.dataArray[i][@"answer"][j][@"answer"];
+            comment.time = 1487649503;
             comment.pk = j;
             [commentList addObject:comment];
         }
         
-    
+
         
         /*
         if (i == 5) {
@@ -153,12 +161,10 @@
         } else {
             moment.text = @"天界大乱，九州屠戮，当初被推下地狱cheerylau@126.com的她已经浴火归来，😭😭剑指仙界'你们杀了他，我便覆了你的天，毁了你的界，永世不得超生又如何！'👍👍";
             moment.fileCount = arc4random()%10;
-        }
-         */
+        }*/
         [self.momentList addObject:moment];
     }
 }
-
 #pragma mark - UI
 - (void)setUpUI
 {
@@ -282,12 +288,9 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor whiteColor];
     }
-
-    [cell setImageListArray:self.dataArray[indexPath.row][@"pic1"]];
-    [cell setImageListArray:self.dataArray[indexPath.row][@"pic2"]];
-    [cell setImageListArray:self.dataArray[indexPath.row][@"pic3"]];
-
     cell.moment = [self.momentList objectAtIndex:indexPath.row];
+
+
     cell.delegate = self;
     cell.tag = indexPath.row;
     return cell;

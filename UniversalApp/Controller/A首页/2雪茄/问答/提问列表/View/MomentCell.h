@@ -22,6 +22,8 @@
 // 名称
 @property (nonatomic, strong) UILabel *nameLab;
 // 时间
+@property (nonatomic, strong) UILabel *timeTagLab;
+// 时间
 @property (nonatomic, strong) UILabel *timeLab;
 // 位置
 @property (nonatomic, strong) UILabel *locationLab;
@@ -33,7 +35,6 @@
 @property (nonatomic, strong) MLLinkLabel *linkLabel;
 // 图片
 @property (nonatomic, strong) MMImageListView *imageListView;
-@property (nonatomic, strong) NSMutableArray * imageListArray;
 
 // 赞和评论视图
 @property (nonatomic, strong) UIView *commentView;

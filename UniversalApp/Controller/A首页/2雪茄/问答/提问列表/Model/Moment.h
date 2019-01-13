@@ -38,5 +38,6 @@
 @property (nonatomic,strong) NSArray *commentList;
 // Moment对应cell高度
 @property (nonatomic,assign) CGFloat rowHeight;
+@property (nonatomic, strong) NSMutableArray * imageListArray;
 
 @end

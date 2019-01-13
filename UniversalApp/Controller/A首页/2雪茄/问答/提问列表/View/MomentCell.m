@@ -7,8 +7,9 @@
 //
 
 #import "MomentCell.h"
-#pragma mark - ------------------ 动态 ------------------
 #import "MLLabelUtil.h"
+
+#pragma mark - ------------------ 动态 ------------------
 
 // 最大高度限制
 CGFloat maxLimitHeight = 0;
@@ -31,15 +32,25 @@ CGFloat maxLimitHeight = 0;
     _headImageView.contentMode = UIViewContentModeScaleAspectFill;
     _headImageView.userInteractionEnabled = YES;
     _headImageView.layer.masksToBounds = YES;
+    _headImageView.layer.cornerRadius = _headImageView.frame.size.width / 2.0;
     [self.contentView addSubview:_headImageView];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickHead:)];
     [_headImageView addGestureRecognizer:tapGesture];
     // 名字视图
-    _nameLab = [[UILabel alloc] initWithFrame:CGRectMake(_headImageView.right+10, _headImageView.top, kTextWidth, 20)];
-    _nameLab.font = [UIFont boldSystemFontOfSize:17.0];
+    _nameLab = [[UILabel alloc] initWithFrame:CGRectMake(_headImageView.right+10, _headImageView.centerY - 10, kTextWidth, 20)];
+    _nameLab.font = [UIFont systemFontOfSize:15.0];
     _nameLab.textColor = kHLTextColor;
     _nameLab.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:_nameLab];
+    
+    
+    
+    // 名字视图
+    _timeTagLab = [[UILabel alloc] initWithFrame:CGRectMake(KScreenWidth -60, _headImageView.centerY - 10, kTextWidth, 20)];
+    _timeTagLab.font = [UIFont systemFontOfSize:13.0];
+    _timeTagLab.textColor = kHLTextColor;
+    _timeTagLab.backgroundColor = [UIColor clearColor];
+    [self.contentView addSubview:_timeTagLab];
     // 正文视图
     _linkLabel = kMLLinkLabel();
     _linkLabel.font = kTextFont;
@@ -68,14 +79,16 @@ CGFloat maxLimitHeight = 0;
     _timeLab = [[UILabel alloc] init];
     _timeLab.textColor = [UIColor colorWithRed:0.43 green:0.43 blue:0.43 alpha:1.0];
     _timeLab.font = [UIFont systemFontOfSize:13.0f];
+    _timeLab.userInteractionEnabled = NO;
     [self.contentView addSubview:_timeLab];
     // 删除视图
     _deleteBtn = [[UIButton alloc] init];
     _deleteBtn.titleLabel.font = [UIFont systemFontOfSize:13.0f];
     _deleteBtn.backgroundColor = [UIColor clearColor];
-    [_deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
+    [_deleteBtn setTitle:@"" forState:UIControlStateNormal];
     [_deleteBtn setTitleColor:kHLTextColor forState:UIControlStateNormal];
     [_deleteBtn addTarget:self action:@selector(deleteMoment:) forControlEvents:UIControlEventTouchUpInside];
+    _deleteBtn.userInteractionEnabled = NO;
     [self.contentView addSubview:_deleteBtn];
     // 评论视图
     _bgImageView = [[UIImageView alloc] init];
@@ -111,12 +124,13 @@ CGFloat maxLimitHeight = 0;
     // 正文
     _showAllBtn.hidden = YES;
     _linkLabel.hidden = YES;
-    CGFloat bottom = _nameLab.bottom + kPaddingValue;
+    CGFloat bottom = _headImageView.bottom + kPaddingValue ;
     CGFloat rowHeight = 0;
     if ([moment.text length]) {
         _linkLabel.hidden = NO;
         _linkLabel.text = moment.text;
         // 判断显示'全文'/'收起'
+       
         CGSize attrStrSize = [_linkLabel preferredSizeWithMaxWidth:kTextWidth];
         CGFloat labH = attrStrSize.height;
         if (labH > maxLimitHeight) {
@@ -128,7 +142,7 @@ CGFloat maxLimitHeight = 0;
             }
             _showAllBtn.hidden = NO;
         }
-        _linkLabel.frame = CGRectMake(_nameLab.left, bottom, attrStrSize.width, labH);
+        _linkLabel.frame = CGRectMake(_headImageView.left, bottom , attrStrSize.width, labH);
         _showAllBtn.frame = CGRectMake(_nameLab.left, _linkLabel.bottom + kArrowHeight, kMoreLabWidth, kMoreLabHeight);
         if (_showAllBtn.hidden) {
             bottom = _linkLabel.bottom + kPaddingValue;
@@ -139,12 +153,12 @@ CGFloat maxLimitHeight = 0;
     // 图片
     _imageListView.moment = moment;
     if (moment.fileCount > 0) {
-        _imageListView.origin = CGPointMake(_nameLab.left, bottom);
+        _imageListView.origin = CGPointMake(_linkLabel.left, bottom);
         bottom = _imageListView.bottom + kPaddingValue;
     }
     // 位置
     _locationLab.frame = CGRectMake(_nameLab.left, bottom, _nameLab.width, kTimeLabelH);
-    _timeLab.text = [NSString stringWithFormat:@"%@",[Utility getDateFormatByTimestamp:moment.time]];
+    _timeTagLab.text = [NSString stringWithFormat:@"%@",[Utility getDateFormatByTimestamp:moment.time]];
     CGFloat textW = [_timeLab.text boundingRectWithSize:CGSizeMake(200, kTimeLabelH)
                                                 options:NSStringDrawingUsesLineFragmentOrigin
                                              attributes:@{NSFontAttributeName:_timeLab.font}
@@ -207,9 +221,9 @@ CGFloat maxLimitHeight = 0;
     }
     // 更新UI
     if (top > 0) {
-        _bgImageView.frame = CGRectMake(_nameLab.left, bottom, width, top + kArrowHeight);
-        _bgImageView.image = [[UIImage imageNamed:@"comment_bg"] stretchableImageWithLeftCapWidth:40 topCapHeight:30];
-        _commentView.frame = CGRectMake(_nameLab.left, bottom + kArrowHeight, width, top);
+        _bgImageView.frame = CGRectMake(_headImageView.left, bottom, width, top + kArrowHeight);
+        _bgImageView.image = [[UIImage imageNamed:@""] stretchableImageWithLeftCapWidth:40 topCapHeight:30];
+        _commentView.frame = CGRectMake(_headImageView.left, bottom + kArrowHeight, width, top);
         rowHeight = _commentView.bottom + kBlank;
     } else {
         rowHeight = _timeLab.bottom + kBlank;

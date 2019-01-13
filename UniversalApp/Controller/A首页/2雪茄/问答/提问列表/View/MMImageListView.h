@@ -12,8 +12,7 @@
 #import "Moment.h"
 
 @interface MMImageListView : UIView
-// 图片视图数组
-@property (nonatomic, strong) NSMutableArray *imageViewsArray;
+
 // 动态
 @property (nonatomic,strong) Moment *moment;
 

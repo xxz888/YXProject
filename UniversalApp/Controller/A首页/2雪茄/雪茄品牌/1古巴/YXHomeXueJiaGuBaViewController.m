@@ -33,7 +33,23 @@
     self.dataArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaPinPaiTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaPinPaiTableViewCell"];
     kWeakSelf(self);
+
+    
+    
+    
+    self.dataDic = [[NSMutableDictionary alloc]initWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb6"]];
+    self.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:weakself.dataDic[@"brand_list"]]];
+    
+    //        [weakself userSorting:[NSMutableArray arrayWithArray:weakself.dataDic[@"hot_brand_list"]]];
+    [self createMiddleCollection];
+    
+    [self.yxTableView reloadData];
+    return;
+    
+    
     [YX_MANAGER requestCigar_brand:@"1" success:^(id object) {
+        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb6"];
+
         weakself.dataDic = [[NSMutableDictionary alloc]initWithDictionary:object];
         weakself.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:weakself.dataDic[@"brand_list"]]];
 
@@ -122,8 +138,18 @@
 }
 
 -(void)requestCigar_brand_details:(NSString *)cigar_brand indexPath:(NSIndexPath *)indexPath{
+    
+    
+    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+    YXHomeXueJiaPinPaiDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiDetailViewController"];
+    VC.dicData = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb7"]];
+    VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:self.dataDic[@"brand_list"][indexPath.section]];
+    [self.navigationController pushViewController:VC animated:YES];
+    return;
     kWeakSelf(self);
     [YX_MANAGER requestCigar_brand_detailsPOST:@{@"cigar_brand":cigar_brand} success:^(id object) {
+        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb7"];
+
         UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
         YXHomeXueJiaPinPaiDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiDetailViewController"];
         VC.dicData = [NSMutableDictionary dictionaryWithDictionary:object];
