@@ -9,8 +9,15 @@
 #import "YXHomeLastDetailView.h"
 #import "XHStarRateView.h"
 #import "QMUIGridView.h"
-@interface YXHomeLastDetailView ()
+#import "MMImageListView.h"
+#import "MMImagePreviewView.h"
+
+@interface YXHomeLastDetailView (){
+    NSInteger _imageCount;
+}
 @property(nonatomic)QMUIGridView * gridView;
+// 预览视图
+@property (nonatomic, strong) MMImagePreviewView *previewView;
 @end
 @implementation YXHomeLastDetailView
 
@@ -23,7 +30,8 @@
 */
 - (void)awakeFromNib{
     [super awakeFromNib];
-    
+    // 预览视图
+    _previewView = [[MMImagePreviewView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 }
 -(void)againSetDetailView:(NSDictionary *)startDic  allDataDic:(NSDictionary *)allDataDic{
     //头图片
@@ -69,6 +77,7 @@
     starRateView.userInteractionEnabled = NO;
 }
 -(void)setSixPhotoView:(NSMutableArray *)imageArray{
+    _imageCount = imageArray.count;
     [self sixPhotoviewValue:imageArray];
 }
 -(void)sixPhotoviewValue:(NSMutableArray *)imageArray{
@@ -88,16 +97,19 @@
     self.gridView.separatorDashed = NO;
     
     for (NSInteger i = 0; i < count; i++) {
-        UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,0 , self.gridView.frame.size.width, self.gridView.frame.size.height)];
+        MMImageView *imageView = [[MMImageView alloc]initWithFrame:CGRectMake(0,0 , self.gridView.frame.size.width, self.gridView.frame.size.height)];
+        imageView.tag = 1000 + i;
         [imageView setContentMode:UIViewContentModeScaleToFill];
         [imageView sd_setImageWithURL:[NSURL URLWithString:imageArray[i]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         [self.gridView addSubview:imageView];
         imageView.tag = i;
         //view添加点击事件
-        UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
-        [imageView addGestureRecognizer:tapGesturRecognizer];
+//        UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapSmallViewCallback:)];
+//        [imageView addGestureRecognizer:tapGesturRecognizer];
     }
 }
+
+
 -(void)tapAction:(id)sender{
     UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;
     UIView *views = (UIView*) tap.view;
@@ -115,6 +127,75 @@
 }
 - (IBAction)lastSearchAllAction:(id)sender {
 }
-- (IBAction)lastSegmentAction:(id)sender {
+- (IBAction)lastSegmentAction:(UISegmentedControl *)sender{
+    self.block(sender.selectedSegmentIndex);
+}
+
+
+#pragma mark - 小图单击
+- (void)singleTapSmallViewCallback:(id)sender
+{
+    
+    UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;
+    UIView *views = (UIView*) tap.view;
+    if (_imageCount == 0) {
+        return;
+    }
+    UIWindow *window = [[UIApplication sharedApplication].windows objectAtIndex:0];
+    // 解除隐藏
+    [window addSubview:_previewView];
+    [window bringSubviewToFront:_previewView];
+    // 清空
+    [_previewView.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    // 添加子视图
+    NSInteger index = views.tag-1000;
+    NSInteger count = _imageCount;
+    CGRect convertRect;
+    if (count == 1) {
+        [_previewView.pageControl removeFromSuperview];
+    }
+    for (NSInteger i = 0; i < count; i ++)
+    {
+        // 转换Frame
+        MMImageView *pImageView = (MMImageView *)[self viewWithTag:1000+i];
+        convertRect = [[pImageView superview] convertRect:pImageView.frame toView:window];
+        // 添加
+        MMScrollView *scrollView = [[MMScrollView alloc] initWithFrame:CGRectMake(i*_previewView.width, 0, _previewView.width, _previewView.height)];
+        scrollView.tag = 100+i;
+        scrollView.maximumZoomScale = 2.0;
+        scrollView.image = pImageView.image;
+        scrollView.contentRect = convertRect;
+        // 单击
+        [scrollView setTapBigView:^(MMScrollView *scrollView){
+            [self singleTapBigViewCallback:scrollView];
+        }];
+        [_previewView.scrollView addSubview:scrollView];
+        if (i == index) {
+            [UIView animateWithDuration:0.3 animations:^{
+                _previewView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0];
+                _previewView.pageControl.hidden = NO;
+                [scrollView updateOriginRect];
+            }];
+        } else {
+            [scrollView updateOriginRect];
+        }
+    }
+    // 更新offset
+    CGPoint offset = _previewView.scrollView.contentOffset;
+    offset.x = index * k_screen_width;
+    _previewView.scrollView.contentOffset = offset;
+}
+
+#pragma mark - 大图单击||长按
+- (void)singleTapBigViewCallback:(MMScrollView *)scrollView
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        _previewView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+        _previewView.pageControl.hidden = YES;
+        scrollView.contentRect = scrollView.contentRect;
+        scrollView.zoomScale = 1.0;
+    } completion:^(BOOL finished) {
+        [_previewView removeFromSuperview];
+    }];
 }
 @end

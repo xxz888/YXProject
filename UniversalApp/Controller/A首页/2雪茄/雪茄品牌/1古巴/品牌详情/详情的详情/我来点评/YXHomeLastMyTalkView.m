@@ -87,6 +87,7 @@
     [self.parDic setValue:self.qmuiTextView.text forKey:@"comment"];
     [YX_MANAGER requestCigar_commentPOST:self.parDic success:^(id object) {
         [QMUITips showSucceed:@"评论成功" inView:self hideAfterDelay:2];
+        weakself.block();
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakself.superview removeFromSuperview];
         });

@@ -65,9 +65,9 @@
 - (void)setupViews
 {
     _bgImageView = [UIImageView new];
-    UIImage *bgImage = [[[UIImage imageNamed:@"LikeCmtBg"] stretchableImageWithLeftCapWidth:40 topCapHeight:30] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        UIImage *bgImage = [UIImage imageNamed:@""];
     _bgImageView.image = bgImage;
-    _bgImageView.backgroundColor = [UIColor clearColor];
+    _bgImageView.backgroundColor = YXRGBAColor(236, 236, 236);
     [self addSubview:_bgImageView];
     
     _likeLabel = [MLLinkLabel new];
@@ -259,9 +259,9 @@
     }
     text = [text stringByAppendingString:[NSString stringWithFormat:@"：%@", model.commentString]];
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:text];
-    [attString setAttributes:@{NSLinkAttributeName : model.firstUserId} range:[text rangeOfString:model.firstUserName]];
+    [attString setAttributes:@{NSLinkAttributeName : model.firstUserName} range:[text rangeOfString:model.firstUserName]];
     if (model.secondUserName) {
-        [attString setAttributes:@{NSLinkAttributeName : model.secondUserId} range:[text rangeOfString:model.secondUserName]];
+        [attString setAttributes:@{NSLinkAttributeName : model.secondUserName} range:[text rangeOfString:model.secondUserName]];
     }
     return attString;
 }
@@ -279,8 +279,8 @@
 
 #pragma mark - MLLinkLabelDelegate
 
-- (void)didClickLink:(MLLink *)link linkText:(NSString *)linkText linkLabel:(MLLinkLabel *)linkLabel
-{
+- (void)didClickLink:(MLLink *)link linkText:(NSString *)linkText linkLabel:(MLLinkLabel *)linkLabel{
+    self.didClickCommentLabelBlock(link.linkValue, CGRectMake(0, 0, KScreenWidth, 20));
     NSLog(@"%@", link.linkValue);
 }
 

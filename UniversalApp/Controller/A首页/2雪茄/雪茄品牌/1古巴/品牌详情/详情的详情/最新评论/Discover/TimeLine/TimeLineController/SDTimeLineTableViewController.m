@@ -65,7 +65,6 @@ static CGFloat textFieldH = 40;
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb2"];
 }
 - (void)viewDidLoad
 {
@@ -256,6 +255,7 @@ static CGFloat textFieldH = 40;
                 commentItemModel.secondUserName = kGetString(child_listArray[i][@"aim_name"]);
                 commentItemModel.secondUserId = kGetString(child_listArray[i][@"aim_id"]);
             }
+            commentItemModel.commentItemModel = child_listArray[i];
             commentItemModel.commentString = child_listArray[i][@"comment"];
             [tempComments addObject:commentItemModel];
         }
@@ -309,14 +309,14 @@ static CGFloat textFieldH = 40;
             [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }];
         
-        [cell setDidClickCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow, NSIndexPath *indexPath) {
-            weakSelf.textField.placeholder = [NSString stringWithFormat:@"  回复：%@", commentId];
-            weakSelf.currentEditingIndexthPath = indexPath;
-            [weakSelf.textField becomeFirstResponder];
-            weakSelf.isReplayingComment = YES;
-            weakSelf.commentToUser = commentId;
-            [weakSelf adjustTableViewToFitKeyboardWithRect:rectInWindow];
-        }];
+//        [cell setDidClickCommentLabelBlock:^(SDTimeLineCellCommentItemModel * commentItemModel, CGRect rectInWindow, SDTimeLineCell *cell) {
+//            weakSelf.textField.placeholder = [NSString stringWithFormat:@"  回复：%@", commentId.firstUserName];
+//            weakSelf.currentEditingIndexthPath = indexPath;
+//            [weakSelf.textField becomeFirstResponder];
+//            weakSelf.isReplayingComment = YES;
+//            weakSelf.commentToUser = commentId;
+//            [weakSelf adjustTableViewToFitKeyboardWithRect:rectInWindow];
+//        }];
         
         cell.delegate = self;
     }

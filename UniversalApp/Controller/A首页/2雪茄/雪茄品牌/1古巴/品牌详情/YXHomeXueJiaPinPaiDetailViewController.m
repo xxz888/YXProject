@@ -154,9 +154,9 @@
     kWeakSelf(self);
     
     
-    weakself.dicData = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb9"]];
-    [weakself.tableView reloadData];
-    return;
+//    weakself.dicData = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb9"]];
+//    [weakself.tableView reloadData];
+//    return;
     [YX_MANAGER requestCigar_brand_detailsPOST:@{@"cigar_brand":self.title} success:^(id object) {
         [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb9"];
 

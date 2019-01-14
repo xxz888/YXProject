@@ -33,6 +33,7 @@
 
 - (void)didClickLikeButtonInCell:(UITableViewCell *)cell;
 - (void)didClickcCommentButtonInCell:(UITableViewCell *)cell;
+-(void)showMoreComment:(UITableViewCell *)cell;
 @end
 
 @class SDTimeLineCellModel;
@@ -50,7 +51,7 @@
 
 @property (nonatomic, copy) void (^moreButtonClickedBlock)(NSIndexPath *indexPath);
 
-@property (nonatomic, copy) void (^didClickCommentLabelBlock)(NSString *commentId, CGRect rectInWindow, NSIndexPath *indexPath);
+@property (nonatomic, copy) void (^didClickCommentLabelBlock)(NSString *commentId, CGRect rectInWindow, SDTimeLineCell *cell);
 
 @property (nonatomic, strong) UIButton * zanButton;
 

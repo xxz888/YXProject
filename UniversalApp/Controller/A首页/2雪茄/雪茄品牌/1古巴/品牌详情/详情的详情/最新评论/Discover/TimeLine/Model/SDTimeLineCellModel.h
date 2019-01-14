@@ -27,7 +27,6 @@
  */
 
 #import <Foundation/Foundation.h>
-
 @class SDTimeLineCellLikeItemModel, SDTimeLineCellCommentItemModel;
 
 @interface SDTimeLineCellModel : NSObject
@@ -75,6 +74,8 @@
 
 @property (nonatomic, copy) NSString *secondUserName;
 @property (nonatomic, copy) NSString *secondUserId;
+
+@property (nonatomic, copy) SDTimeLineCellCommentItemModel *commentItemModel;
 
 @property (nonatomic, copy) NSAttributedString *attributedContent;
 

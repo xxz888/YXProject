@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+typedef void(^dismissBlock)(void);
 @interface YXHomeLastMyTalkView : UIView
 @property (weak, nonatomic) IBOutlet UIView *waiguanView;
 @property (weak, nonatomic) IBOutlet UIView *xiangweiView;
@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) QMUITextView * qmuiTextView;
 - (IBAction)fabiaoAction:(id)sender;
 @property(nonatomic,strong)NSMutableDictionary * parDic;
+@property (nonatomic,copy) dismissBlock block;
 @end
 
 NS_ASSUME_NONNULL_END

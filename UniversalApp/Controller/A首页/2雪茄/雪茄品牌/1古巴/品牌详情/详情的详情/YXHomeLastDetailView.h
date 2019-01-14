@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol clickMyTalkDelegate <NSObject>
 -(void)clickMyTalkAction;
 @end
+
+typedef void(^SegmentActionBlock)(NSInteger index);
+
 @interface YXHomeLastDetailView : UIView
 //重新赋值
 -(void)againSetDetailView:(NSDictionary *)startDic  allDataDic:(NSDictionary *)allDataDic;
@@ -19,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)setSixPhotoView:(NSMutableArray *)imageArray;
 //点击我的点评
 @property (nonatomic,weak) id<clickMyTalkDelegate> delegate;
+@property (nonatomic,copy)SegmentActionBlock block;
 
 @property (weak, nonatomic) IBOutlet UIImageView *lastImageView;
 @property (weak, nonatomic) IBOutlet UILabel *lastTitleLbl;

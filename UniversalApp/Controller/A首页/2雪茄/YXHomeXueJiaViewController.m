@@ -42,13 +42,13 @@
 
 
 -(void)requestInformation{
-    [self.informationArray removeAllObjects];
-    [self.informationArray addObjectsFromArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb5"]];
-    [self.bottomTableView reloadData];
-    return;
+//    [self.informationArray removeAllObjects];
+//    [self.informationArray addObjectsFromArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb5"]];
+//    [self.bottomTableView reloadData];
+//    return;
     kWeakSelf(self);
     [YX_MANAGER requestGETInformation:@"1" success:^(id object) {
-        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb5"];
+//        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb5"];
 
         [weakself.informationArray removeAllObjects];
         [weakself.informationArray addObjectsFromArray:object];
@@ -58,7 +58,7 @@
 }
 -(void)requestAdvertising{
 //    [self.headerView setUpSycleScrollView:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb4"]];
-    return;
+//    return;
     kWeakSelf(self);
     [YX_MANAGER requestGETAdvertising:@"1" success:^(id object) {
         [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb4"];

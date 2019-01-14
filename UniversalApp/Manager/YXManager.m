@@ -211,19 +211,44 @@ successBlock(responseObject);\
     } failure:^(NSError *error) {}];
 }
 
+#pragma mark ==========获取子评论列表==========
+-(void)requestCigar_comment_childGET:YX_BLOCK{
+    NSString * url = @"/cigar/cigar_comment_child/1/";
+    [HTTP_GET([[url append:dic] append:@"/0/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 #pragma mark ==========雪茄发布提问==========
 -(void)requestFaBuQuestionPOST:YX_BLOCK{
     [HTTP_POST(@"/users/question/0/kw/0/") Parameters:dic sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) { }];
 }
+#pragma mark ==========点赞/取消点赞雪茄评论==========
+-(void)requestPraise_cigaPr_commentPOST:YX_BLOCK{
+    [HTTP_POST(@"/cigar/praise_cigar_comment/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+#pragma mark ==========发布雪茄评论信息子评论==========
+-(void)requestCigar_comment_childPOST:YX_BLOCK{
+    [HTTP_POST(@"/cigar/cigar_comment_child/0/0/0/0/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+
 #pragma mark ==========点赞/取消点赞文章评论==========
 -(void)requestEssay_comment_praisePOST:YX_BLOCK{
     [HTTP_POST(@"/users/essay_comment_praise/") Parameters:dic sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) { }];
 }
-
+#pragma mark ==========发布文章评论子评论==========
+-(void)requestEssay_comment_childPOST:YX_BLOCK{
+    [HTTP_POST(@"/users/essay_comment_child/0/0/0/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
 
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];

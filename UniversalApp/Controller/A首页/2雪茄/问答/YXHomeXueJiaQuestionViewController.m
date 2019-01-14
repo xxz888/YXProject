@@ -67,11 +67,11 @@
 }
 -(void)requestQuestion{
     
-    [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb1"]];
-    [self initTestInfo];
-    [self.tableView reloadData];
-    return;
+//    [self.dataArray removeAllObjects];
+//    [self.dataArray addObjectsFromArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb1"]];
+//    [self initTestInfo];
+//    [self.tableView reloadData];
+//    return;
     
     
     kWeakSelf(self);

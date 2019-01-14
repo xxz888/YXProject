@@ -35,15 +35,19 @@
 #import "SDWeiXinPhotoContainerView.h"
 
 #import "SDTimeLineCellOperationMenu.h"
-
 #import "LEETheme.h"
 #import "XHStarRateView.h"
+#import "MMImageListView.h"
 const CGFloat contentLabelFontSize = 15;
 CGFloat maxContentLabelHeight = 0; // 根据具体font而定
 
 NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLineCellOperationButtonClickedNotification";
+@interface SDTimeLineCell ()
 
+
+@end
 @implementation SDTimeLineCell
+
 
 {
     UIImageView *_iconView;
@@ -55,7 +59,8 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     UIButton *_operationButton;
 
     SDTimeLineCellOperationMenu *_operationMenu;
-    
+    UIButton * _showMoreCommentBtn;
+
     
     UIButton *_huiFuButton;
     UIView * _starView;
@@ -130,7 +135,20 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     
     _picContainerView = [SDWeiXinPhotoContainerView new];
     
+    kWeakSelf(self);
     _commentView = [SDTimeLineCellCommentView new];
+    [_commentView setDidClickCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow) {
+        weakself.didClickCommentLabelBlock(commentId, rectInWindow, weakself);
+    }];
+    
+    
+    
+    _showMoreCommentBtn = [UIButton new];
+    [_showMoreCommentBtn setTitle:@"显示更多评论 >>" forState:UIControlStateNormal];
+    [_showMoreCommentBtn setTitleColor:KDarkGaryColor forState:UIControlStateNormal];
+    [_showMoreCommentBtn addTarget:self action:@selector(showMoreCommentAction) forControlEvents:UIControlEventTouchUpInside];
+    _showMoreCommentBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    
     
     _timeLabel = [UILabel new];
     _timeLabel.font = [UIFont systemFontOfSize:13];
@@ -150,7 +168,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     }];
     
     
-    NSArray *views = @[_iconView, _nameLable,_starView, _contentLabel, _moreButton, _picContainerView, _timeLabel, _huiFuButton,_zanButton, _operationMenu, _commentView];
+    NSArray *views = @[_iconView, _nameLable,_starView, _contentLabel, _moreButton, _picContainerView, _timeLabel, _huiFuButton,_zanButton, _operationMenu, _commentView,_showMoreCommentBtn];
     
     [self.contentView sd_addSubviews:views];
     
@@ -221,6 +239,13 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     .leftEqualToView(_contentLabel)
     .rightSpaceToView(self.contentView, margin)
     .topSpaceToView(_timeLabel, margin); // 已经在内部实现高度自适应所以不需要再设置高度
+    
+    
+    _showMoreCommentBtn.sd_layout
+    .topSpaceToView(_commentView, 10)
+    .centerXEqualToView(_commentView)
+    .widthIs(200)
+    .heightIs(20);
     
     _operationMenu.sd_layout
     .rightSpaceToView(_operationButton, 0)
@@ -310,7 +335,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     
     if ([model.praise isEqualToString:@"1"]) {
         [_zanButton setTitle:@"已赞" forState:UIControlStateNormal];
-    }else if ([model.praise isEqualToString:@"1"]){
+    }else if ([model.praise isEqualToString:@"0"]){
         [_zanButton setTitle:@"赞" forState:UIControlStateNormal];
     }
 }
@@ -342,6 +367,11 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
         [self.delegate didClickLikeButtonInCell:self];
     }
 }
+-(void)showMoreCommentAction{
+    if ([self.delegate respondsToSelector:@selector(showMoreComment:)]) {
+        [self.delegate showMoreComment:self];
+    }
+}
 - (void)operationButtonClicked
 {
     [self postOperationButtonClickedNotification];
@@ -371,6 +401,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:kSDTimeLineCellOperationButtonClickedNotification object:_operationButton];
 }
+
 
 @end
 
