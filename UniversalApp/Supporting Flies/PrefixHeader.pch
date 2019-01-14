@@ -42,6 +42,7 @@
 #define PrefixHeader_pch
 
 //全局宏
+
 #import "UtilsMacros.h"
 #import "URLMacros.h"
 #import "FontAndColorMacros.h"
@@ -49,6 +50,7 @@
 #import "CommonMacros.h"
 #import "QMUIKit.h"
 #import "Utility.h"
+
 
 //基础类
 #import "AppDelegate.h"
@@ -74,6 +76,8 @@
 #import "UIFactory.h"
 #import "UIButton+SSEdgeInsets.h"
 #import "UITabBar+TBBadge.h"
+
+
 #define WP_TOOL_IMManager  [IMManager sharedIMManager]
 #define WP_TOOL_AppManager [AppManager sharedAppManager]
 #define WP_TOOL_ShareManager [ShareManager sharedShareManager]

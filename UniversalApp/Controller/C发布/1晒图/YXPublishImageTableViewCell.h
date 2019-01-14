@@ -9,14 +9,16 @@
 #import "TableViewCell.h"
 #import "LTTextView.h"
 NS_ASSUME_NONNULL_BEGIN
-
+typedef void(^tagStringBlock)(NSString *);
 @interface YXPublishImageTableViewCell : TableViewCell
+@property (weak, nonatomic) IBOutlet UIView *floatView;
 @property (weak, nonatomic) IBOutlet UIView *ttView;
 @property (weak, nonatomic) IBOutlet UIButton *xinhuatiBtn;
 - (IBAction)xinhuatiAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *moreBtn;
 - (IBAction)moreAction:(id)sender;
 @property(nonatomic) LTTextView  *textView;
+@property (nonatomic,copy) tagStringBlock block;
 @end
 
 NS_ASSUME_NONNULL_END

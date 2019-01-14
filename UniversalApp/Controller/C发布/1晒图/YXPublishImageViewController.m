@@ -16,6 +16,7 @@
 #import<AFNetworking.h>
 #import<QN_GTM_Base64.h>
 #import<QNConfiguration.h>
+#import "CBGroupAndStreamView.h"
 
 
 #define kQNinterface @"官网获取外链域名"
@@ -26,7 +27,10 @@ static NSString *secretKey = @"官网获取";
 @interface YXPublishImageViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSMutableArray * _photoImageList;
     NSString * _textViewInput;
+    NSMutableArray * _tagArray;
 }
+@property (strong, nonatomic) CBGroupAndStreamView * menueView;
+@property (weak, nonatomic) IBOutlet UIView *floatView;
 
 @end
 
@@ -38,7 +42,7 @@ static NSString *secretKey = @"官网获取";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.yxTableview registerNib:[UINib nibWithNibName:@"YXPublishImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXPublishImageTableViewCell"];
-    
+    _tagArray = [[NSMutableArray alloc]init];
     //各种控件样式
     [self initControl];
     //初始化选择图片
@@ -57,6 +61,7 @@ static NSString *secretKey = @"官网获取";
     [self.buttonFabuBtn setBackgroundColor:color1];
 
     _photoImageList = [[NSMutableArray alloc]init];
+    
 }
 -(void)initImagePhontoView{
     kWeakSelf(self);
@@ -89,11 +94,19 @@ static NSString *secretKey = @"官网获取";
     return  1;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 250;
+    return 280;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXPublishImageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXPublishImageTableViewCell" forIndexPath:indexPath];
     _textViewInput = cell.textView.textView.text;
+    
+    kWeakSelf(self);
+    //新话题
+    cell.block = ^(NSString * tagString) {
+        [_tagArray addObject:tagString];
+        [weakself addNewTags:_tagArray];
+    };
+    
     return cell;
 }
 - (IBAction)closeView:(id)sender {
@@ -132,7 +145,12 @@ static NSString *secretKey = @"官网获取";
         }
         [dic setValue:_textViewInput forKey:@"describe"];//描述
         [dic setValue:@"杭州市野风现代之星3楼海底捞火锅" forKey:@"publish_site"];//地点
-        [dic setValue:@"xiba110" forKey:@"tag"];//标签
+        if (_tagArray.count == 0) {
+            [dic setValue:@"" forKey:@"tag"];//标签
+        }else{
+            NSString *string = [_tagArray componentsJoinedByString:@","];
+            [dic setValue:string forKey:@"tag"];//标签
+        }
         //发布按钮
         [YX_MANAGER requestFaBuImagePOST:dic success:^(id object) {
             if ([object isEqualToString:@"1"]) {
@@ -159,31 +177,40 @@ static NSString *secretKey = @"官网获取";
     return strTopper;
 }
 
-//照片获取本地路径转换
-- (NSString *)getImagePath:(UIImage *)Image {
-    NSString *filePath = nil;
-    NSData *data = nil;
-    if (UIImagePNGRepresentation(Image) == nil) {
-        data = UIImageJPEGRepresentation(Image, 1.0);
-    } else {
-        data = UIImagePNGRepresentation(Image);
-    }
+
+
+#define PYRectangleTagMaxCol 3
+#define PYTextColor PYSEARCH_COLOR(113, 113, 113)
+#define PYSEARCH_COLORPolRandomColor self.colorPol[arc4random_uniform((uint32_t)self.colorPol.count)]
+-(void)addNewTags:(NSMutableArray *)tagArray{
+    NSArray * titleArr = @[@""];
+    NSArray *contentArr = @[tagArray];
+
     
-    //图片保存的路径
-    //这里将图片放在沙盒的documents文件夹中
-    NSString *DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    CBGroupAndStreamView * silde = [[CBGroupAndStreamView alloc] initWithFrame:CGRectMake(0, 280-25, [UIScreen mainScreen].bounds.size.width, self.floatView.bounds.size.height)];
+    silde.isSingle = YES;
+    silde.radius = 5;
+    silde.font = [UIFont systemFontOfSize:12];
+    silde.titleTextFont = [UIFont systemFontOfSize:18];
+    [silde setContentView:contentArr titleArr:titleArr];
     
-    //文件管理器
-    NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    //把刚刚图片转换的data对象拷贝至沙盒中
-    [fileManager createDirectoryAtPath:DocumentsPath withIntermediateDirectories:YES attributes:nil error:nil];
-    NSString *ImagePath = [[NSString alloc] initWithFormat:@"/theFirstImage.png"];
-    [fileManager createFileAtPath:[DocumentsPath stringByAppendingString:ImagePath] contents:data attributes:nil];
-    
-    //得到选择后沙盒中图片的完整路径
-    filePath = [[NSString alloc] initWithFormat:@"%@%@", DocumentsPath, ImagePath];
-    return filePath;
+//    UIButton * locationBtn = [UIButton buttonWithType:1];
+//    [locationBtn setFont:[UIFont systemFontOfSize:15]];
+//    locationBtn.frame = CGRectMake(0, 5, silde.frame.size.width, 20);
+//    locationBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//    [locationBtn setTitle:@"  # 获取地理位置" forState:0];
+//    [locationBtn setTitleColor:KDarkGaryColor forState:UIControlStateNormal];
+//    [silde addSubview:locationBtn];
+
+    [self.floatView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.floatView addSubview:silde];
+    _menueView = silde;
+    kWeakSelf(self);
+    silde.cb_selectCurrentValueBlock = ^(NSString *value, NSInteger index, NSInteger groupId) {
+        [_tagArray removeObjectAtIndex:index];
+        [weakself addNewTags:_tagArray];
+    };
 }
 
 

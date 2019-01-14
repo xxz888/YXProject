@@ -64,6 +64,11 @@
         [QMUITips showError:@"请输入新话题" inView:btn.superview hideAfterDelay:2];
         return;
     }
+    self.block([textField.text concate:@"#"]);
+    [btn.superview.superview removeFromSuperview];
+}
+//获取地理位置
+- (IBAction)getLoactionAction:(id)sender {
     
 }
 //更多

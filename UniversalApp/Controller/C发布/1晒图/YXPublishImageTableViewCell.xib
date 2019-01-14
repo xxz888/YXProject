@@ -56,16 +56,6 @@
                         <constraint firstAttribute="height" constant="30" id="prm-Df-wg8"/>
                     </constraints>
                 </stackView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rph-NK-tL6">
-                    <rect key="frame" x="0.0" y="200" width="375" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="sTQ-rc-vF7"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="  # 你的位置">
-                        <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PWO-BY-mZg">
                     <rect key="frame" x="0.0" y="20" width="375" height="120"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -73,18 +63,27 @@
                         <constraint firstAttribute="height" constant="120" id="Hrt-Gw-O4e"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lEs-Fu-kqw">
+                    <rect key="frame" x="0.0" y="200" width="106" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="  # 获取地理位置">
+                        <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="getLoactionAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="cfc-RP-Sy7"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="rph-NK-tL6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="29c-vo-MJe"/>
+                <constraint firstItem="lEs-Fu-kqw" firstAttribute="top" secondItem="h4O-w8-FM0" secondAttribute="bottom" constant="10" id="Bhp-fy-oJi"/>
                 <constraint firstItem="h4O-w8-FM0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="FQN-lf-Waw"/>
                 <constraint firstItem="h4O-w8-FM0" firstAttribute="top" secondItem="PWO-BY-mZg" secondAttribute="bottom" constant="20" id="Lgb-XL-vPU"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rph-NK-tL6" secondAttribute="trailing" id="Qvl-OK-1XJ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="h4O-w8-FM0" secondAttribute="trailing" constant="10" id="RBy-Sn-2JV"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="PWO-BY-mZg" secondAttribute="trailing" id="RkE-Fn-hnw"/>
+                <constraint firstItem="lEs-Fu-kqw" firstAttribute="leading" secondItem="5cG-eU-8uX" secondAttribute="leading" id="XJc-ia-UfA"/>
                 <constraint firstItem="PWO-BY-mZg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="YCn-hU-8jo"/>
                 <constraint firstItem="PWO-BY-mZg" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="dik-yX-ip2"/>
-                <constraint firstItem="rph-NK-tL6" firstAttribute="top" secondItem="h4O-w8-FM0" secondAttribute="bottom" constant="10" id="msF-EV-8eY"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
@@ -92,6 +91,7 @@
                 <outlet property="ttView" destination="PWO-BY-mZg" id="YeJ-YF-VLb"/>
                 <outlet property="xinhuatiBtn" destination="g1R-xi-K6d" id="Kgw-8M-R86"/>
             </connections>
+            <point key="canvasLocation" x="-47" y="50"/>
         </view>
     </objects>
 </document>

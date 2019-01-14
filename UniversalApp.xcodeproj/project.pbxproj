@@ -412,6 +412,8 @@
 		BBDA2D2421EB30BF00EDCCFF /* SDRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDA2CD421EB30BF00EDCCFF /* SDRefreshView.m */; };
 		BBDA2D2521EB30BF00EDCCFF /* UIView+SDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDA2CD621EB30BF00EDCCFF /* UIView+SDAutoLayout.m */; };
 		BBDA2D2621EB30BF00EDCCFF /* UITableView+SDAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDA2CD921EB30BF00EDCCFF /* UITableView+SDAutoTableViewCellHeight.m */; };
+		BBDA2EE621EC84C600EDCCFF /* UIView+CBExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDA2EE221EC84C600EDCCFF /* UIView+CBExtension.m */; };
+		BBDA2EE721EC84C600EDCCFF /* CBGroupAndStreamView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDA2EE521EC84C600EDCCFF /* CBGroupAndStreamView.m */; };
 		BBE82BD821E340AD004E4144 /* CatZanButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82BD521E340AD004E4144 /* CatZanButton.m */; };
 		BBE82BD921E340AD004E4144 /* EffectImage.png in Resources */ = {isa = PBXBuildFile; fileRef = BBE82BD721E340AD004E4144 /* EffectImage.png */; };
 		BBE82BDC21E35FF1004E4144 /* ZZYPhotoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82BDA21E35FF1004E4144 /* ZZYPhotoHelper.m */; };
@@ -1104,6 +1106,10 @@
 		BBDA2CD821EB30BF00EDCCFF /* SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAutoLayout.h; sourceTree = "<group>"; };
 		BBDA2CD921EB30BF00EDCCFF /* UITableView+SDAutoTableViewCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+SDAutoTableViewCellHeight.m"; sourceTree = "<group>"; };
 		BBDA2CDA21EB30BF00EDCCFF /* UIView+SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDAutoLayout.h"; sourceTree = "<group>"; };
+		BBDA2EE221EC84C600EDCCFF /* UIView+CBExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CBExtension.m"; sourceTree = "<group>"; };
+		BBDA2EE321EC84C600EDCCFF /* CBGroupAndStreamView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBGroupAndStreamView.h; sourceTree = "<group>"; };
+		BBDA2EE421EC84C600EDCCFF /* UIView+CBExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CBExtension.h"; sourceTree = "<group>"; };
+		BBDA2EE521EC84C600EDCCFF /* CBGroupAndStreamView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBGroupAndStreamView.m; sourceTree = "<group>"; };
 		BBE82BD521E340AD004E4144 /* CatZanButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatZanButton.m; sourceTree = "<group>"; };
 		BBE82BD621E340AD004E4144 /* CatZanButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatZanButton.h; sourceTree = "<group>"; };
 		BBE82BD721E340AD004E4144 /* EffectImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EffectImage.png; sourceTree = "<group>"; };
@@ -2389,6 +2395,7 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BBDA2EE121EC84C600EDCCFF /* CBGroupWatherLab */,
 				BBDA2C6A21EB30BF00EDCCFF /* 最新最热评价 */,
 				BBCC4B1A21E8933800493F40 /* Resources */,
 				BBCC4B1021E8927600493F40 /* Utility */,
@@ -3457,6 +3464,17 @@
 			path = SDAutoLayout;
 			sourceTree = "<group>";
 		};
+		BBDA2EE121EC84C600EDCCFF /* CBGroupWatherLab */ = {
+			isa = PBXGroup;
+			children = (
+				BBDA2EE221EC84C600EDCCFF /* UIView+CBExtension.m */,
+				BBDA2EE321EC84C600EDCCFF /* CBGroupAndStreamView.h */,
+				BBDA2EE421EC84C600EDCCFF /* UIView+CBExtension.h */,
+				BBDA2EE521EC84C600EDCCFF /* CBGroupAndStreamView.m */,
+			);
+			path = CBGroupWatherLab;
+			sourceTree = "<group>";
+		};
 		BBE82BD421E340AD004E4144 /* CatZanButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -3946,6 +3964,7 @@
 				BBD2C90221E0F67700350DCD /* TZImagePickerController.m in Sources */,
 				BBCC4AC021E86EC200493F40 /* YXHomeXueJiaFootTableViewCell.m in Sources */,
 				296DEA731F5D50D100C6FD00 /* SDCollectionViewCell.m in Sources */,
+				BBDA2EE621EC84C600EDCCFF /* UIView+CBExtension.m in Sources */,
 				BBDA2D0721EB30BF00EDCCFF /* SDChatTableViewController.m in Sources */,
 				29CF33301F14B60800DB7507 /* MineLogic.m in Sources */,
 				296DEA741F5D50D100C6FD00 /* SDCycleScrollView.m in Sources */,
@@ -4076,6 +4095,7 @@
 				BBDA2D0521EB30BF00EDCCFF /* SDWebViewController.m in Sources */,
 				BBE82BD821E340AD004E4144 /* CatZanButton.m in Sources */,
 				BBD30CE421E5CD89000D3244 /* YXMineFenSiViewController.m in Sources */,
+				BBDA2EE721EC84C600EDCCFF /* CBGroupAndStreamView.m in Sources */,
 				BBCC4AB221E83F9F00493F40 /* YXToolsColorTableViewCell.m in Sources */,
 				BBCC4B1821E8927700493F40 /* Utility.m in Sources */,
 				BBE82CFF21E44A7D004E4144 /* ZLPhotoPickerDatas.m in Sources */,

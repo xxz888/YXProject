@@ -12,7 +12,8 @@
 #import "Comment.h"
 #import "MLLabel.h"
 #import <MLLinkLabel.h>
-
+#import "PYSearchViewController.h"
+#import "PYTempViewController.h"
 @interface YXHomeXueJiaQuestionViewController ()<UITableViewDelegate,UITableViewDataSource,MomentCellDelegate>
 @property (nonatomic, strong) NSMutableArray *momentList;
 @property (nonatomic, strong) UITableView *tableView;
@@ -64,6 +65,39 @@
     [self.navigationItem.titleView sizeToFit];
     self.navigationItem.titleView = searchBar;
     
+}
+-(void)textField1TextChange:(UITextField *)tf{
+    [self clickSearchBar];
+}
+
+
+
+- (void)clickSearchBar
+{
+    // 1. Create an Array of popular search
+    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
+    // 2. Create a search view controller
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"PYExampleSearchPlaceholderText", @"搜索编程语言") didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+        // Called when search begain.
+        // eg：Push to a temp view controller
+        [searchViewController.navigationController pushViewController:[[PYTempViewController alloc] init] animated:YES];
+    }];
+    // 3. Set style for popular search and search history
+    
+    searchViewController.hotSearchStyle = PYHotSearchStyleColorfulTag;
+    searchViewController.searchHistoryStyle = 1;
+    
+    // 4. Set delegate
+    searchViewController.delegate = self;
+    // 5. Present(Modal) or push search view controller
+    // Present(Modal)
+    //    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
+    //    [self presentViewController:nav animated:YES completion:nil];
+    // Push
+    // Set mode of show search view controller, default is `PYSearchViewControllerShowModeModal`
+    searchViewController.searchViewControllerShowMode = PYSearchViewControllerShowModePush;
+    //    // Push search view controller
+    [self.navigationController pushViewController:searchViewController animated:YES];
 }
 -(void)requestQuestion{
     
@@ -130,7 +164,10 @@
       
   
 
-        moment.imageListArray = [NSMutableArray arrayWithObjects:self.dataArray[i][@"pic1"],self.dataArray[i][@"pic2"],self.dataArray[i][@"pic3"], nil];
+        moment.imageListArray = [NSMutableArray arrayWithObjects:
+                                 self.dataArray[i][@"pic1"],
+                                 self.dataArray[i][@"pic2"],
+                                 self.dataArray[i][@"pic3"], nil];
         
         // 评论
         commentList = [[NSMutableArray alloc] init];
@@ -174,65 +211,15 @@
     tableView.backgroundColor = [UIColor clearColor];
     tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     tableView.separatorColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
-    tableView.separatorInset = UIEdgeInsetsZero;
+//    tableView.separatorInset = UIEdgeInsetsZero;
     tableView.dataSource = self;
     tableView.delegate = self;
-    tableView.estimatedRowHeight = 0;
-    tableView.tableFooterView = [UIView new];
+//    tableView.estimatedRowHeight = 0;
+//    tableView.tableFooterView = [UIView new];
     tableView.tableHeaderView = self.tableHeaderView;
     self.tableView = tableView;
     [self.view addSubview:self.tableView];
 }
-
-#pragma mark - 发布动态
-- (void)addMoment
-{
-    NSLog(@"新增");
-}
-
-#pragma mark - MomentCellDelegate
-// 点击用户头像
-- (void)didClickProfile:(MomentCell *)cell
-{
-    NSLog(@"击用户头像");
-}
-
-// 点赞
-- (void)didLikeMoment:(MomentCell *)cell
-{
-    NSLog(@"点赞");
-    Moment *moment = cell.moment;
-    NSMutableArray *tempArray = [NSMutableArray array];
-    if (moment.praiseNameList.length) {
-        tempArray = [NSMutableArray arrayWithArray:[moment.praiseNameList componentsSeparatedByString:@"，"]];
-    }
-    if (moment.isPraise) {
-        moment.isPraise = 0;
-        [tempArray removeObject:@"金大侠"];
-    } else {
-        moment.isPraise = 1;
-        [tempArray addObject:@"金大侠"];
-    }
-    NSMutableString *tempString = [NSMutableString string];
-    NSInteger count = [tempArray count];
-    for (NSInteger i = 0; i < count; i ++) {
-        if (i == 0) {
-            [tempString appendString:[tempArray objectAtIndex:i]];
-        } else {
-            [tempString appendString:[NSString stringWithFormat:@"，%@",[tempArray objectAtIndex:i]]];
-        }
-    }
-    moment.praiseNameList = tempString;
-    [self.momentList replaceObjectAtIndex:cell.tag withObject:moment];
-    [self.tableView reloadData];
-}
-
-// 评论
-- (void)didAddComment:(MomentCell *)cell
-{
-    NSLog(@"评论");
-}
-
 // 查看全文/收起
 - (void)didSelectFullText:(MomentCell *)cell
 {
@@ -240,35 +227,6 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
-
-// 删除
-- (void)didDeleteMoment:(MomentCell *)cell
-{
-    NSLog(@"删除");
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定删除吗？" message:nil preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        // 取消
-    }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        // 删除
-        [self.momentList removeObject:cell.moment];
-        [self.tableView reloadData];
-    }]];
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
-// 选择评论
-- (void)didSelectComment:(Comment *)comment
-{
-    NSLog(@"点击评论");
-}
-
-// 点击高亮文字
-- (void)didClickLink:(MLLink *)link linkText:(NSString *)linkText
-{
-    NSLog(@"点击高亮文字：%@",linkText);
-}
-
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -308,9 +266,9 @@
 #pragma mark - UITableViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    NSIndexPath *indexPath =  [self.tableView indexPathForRowAtPoint:CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y)];
-    MomentCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    cell.menuView.show = NO;
+//    NSIndexPath *indexPath =  [self.tableView indexPathForRowAtPoint:CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y)];
+//    MomentCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+//    cell.menuView.show = NO;
 }
 
 #pragma mark -
