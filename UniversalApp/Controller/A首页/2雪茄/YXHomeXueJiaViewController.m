@@ -73,6 +73,7 @@
 
 //tableview
 -(void)createBottomTableView{
+
     if (!self.bottomTableView) {
         self.bottomTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, self.bootomView.frame.size.height) style:UITableViewStyleGrouped];
     }

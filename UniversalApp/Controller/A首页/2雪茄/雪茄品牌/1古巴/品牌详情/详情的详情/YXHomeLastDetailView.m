@@ -81,6 +81,9 @@
     [self sixPhotoviewValue:imageArray];
 }
 -(void)sixPhotoviewValue:(NSMutableArray *)imageArray{
+    [self.lastSixPhotoView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+
+    
     ViewBorderRadius(self.lastSixPhotoView, 5, 1, [UIColor lightGrayColor]);
     if (!self.gridView) {
         self.gridView = [[QMUIGridView alloc] init];

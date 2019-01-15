@@ -64,6 +64,9 @@
 
 //九宫格
 - (void)createMiddleCollection{
+    
+    [self.yxTableView.tableHeaderView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+
     if (!self.gridView) {
         self.gridView = [[QMUIGridView alloc] init];
     }

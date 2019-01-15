@@ -1199,6 +1199,7 @@
 #pragma mark - UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    
     if ([self.delegate respondsToSelector:@selector(searchViewController:didSearchWithSearchBar:searchText:)]) {
         [self.delegate searchViewController:self didSearchWithSearchBar:searchBar searchText:searchBar.text];
         [self saveSearchCacheAndRefreshView];

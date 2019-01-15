@@ -225,6 +225,36 @@
             </objects>
             <point key="canvasLocation" x="-706" y="-644"/>
         </scene>
+        <!--Home Xue Jia Wen Da Detail View Controller-->
+        <scene sceneID="sxy-Xg-DeI">
+            <objects>
+                <viewController storyboardIdentifier="YXHomeXueJiaWenDaDetailViewController" id="BZJ-Lb-5BP" customClass="YXHomeXueJiaWenDaDetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hwe-tB-hck">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mfG-Cs-TIn">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mfG-Cs-TIn" firstAttribute="trailing" secondItem="r5N-io-Jf1" secondAttribute="trailing" id="8hJ-hn-Z8T"/>
+                            <constraint firstItem="mfG-Cs-TIn" firstAttribute="leading" secondItem="r5N-io-Jf1" secondAttribute="leading" id="Chq-qW-Unb"/>
+                            <constraint firstItem="mfG-Cs-TIn" firstAttribute="top" secondItem="hwe-tB-hck" secondAttribute="top" id="P5O-Ah-GoF"/>
+                            <constraint firstItem="r5N-io-Jf1" firstAttribute="bottom" secondItem="mfG-Cs-TIn" secondAttribute="bottom" id="ez6-4a-RgK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="r5N-io-Jf1"/>
+                    </view>
+                    <connections>
+                        <outlet property="yxTableView" destination="mfG-Cs-TIn" id="5CL-JN-knY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uuD-El-3fF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1380" y="511"/>
+        </scene>
         <!--Home Xue Jia Question View Controller-->
         <scene sceneID="A9O-XV-QRV">
             <objects>
@@ -235,7 +265,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2iR-zy-w0b">
                                 <rect key="frame" x="0.0" y="617" width="375" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="yfL-PX-Qeo"/>
                                 </constraints>

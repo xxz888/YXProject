@@ -14,6 +14,7 @@
 #import <MLLinkLabel.h>
 #import "PYSearchViewController.h"
 #import "PYTempViewController.h"
+#import "YXHomeXueJiaWenDaDetailViewController.h"
 @interface YXHomeXueJiaQuestionViewController ()<UITableViewDelegate,UITableViewDataSource,MomentCellDelegate>
 @property (nonatomic, strong) NSMutableArray *momentList;
 @property (nonatomic, strong) UITableView *tableView;
@@ -60,7 +61,7 @@
     searchBar.placeholder = @"   🔍 搜索";
     
     
-    [searchBar addTarget:self action:@selector(textField1TextChange:) forControlEvents:UIControlEventEditingDidBegin];
+    [searchBar addTarget:self action:@selector(textField1TextChange:) forControlEvents:UIControlEventTouchDown];
     
     [self.navigationItem.titleView sizeToFit];
     self.navigationItem.titleView = searchBar;
@@ -101,11 +102,11 @@
 }
 -(void)requestQuestion{
     
-//    [self.dataArray removeAllObjects];
-//    [self.dataArray addObjectsFromArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb1"]];
-//    [self initTestInfo];
-//    [self.tableView reloadData];
-//    return;
+    [self.dataArray removeAllObjects];
+    [self.dataArray addObjectsFromArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb1"]];
+    [self initTestInfo];
+    [self.tableView reloadData];
+    return;
     
     
     kWeakSelf(self);
@@ -207,7 +208,7 @@
 - (void)setUpUI
 {
     // 表格
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, k_screen_width, k_screen_height-k_top_height)];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, k_screen_width, k_screen_height-k_top_height - 50)];
     tableView.backgroundColor = [UIColor clearColor];
     tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     tableView.separatorColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
@@ -254,7 +255,11 @@
     cell.tag = indexPath.row;
     return cell;
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    YXHomeXueJiaWenDaDetailViewController * VC = [[YXHomeXueJiaWenDaDetailViewController alloc]init];
+    VC.moment = self.momentList[indexPath.row];
+    [self.navigationController pushViewController:VC animated:YES];
+}
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

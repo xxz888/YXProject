@@ -45,7 +45,23 @@
     }else{
         NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
         NSString *response = [[NSString alloc] initWithBytes:[responseObject bytes] length:[responseObject length] encoding:enc];
-        sucess(response);
+        UIView * view;
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11) {
+            view = [[UIApplication sharedApplication].windows firstObject];
+        } else {
+            view = [[UIApplication sharedApplication].windows lastObject];
+        }
+        
+        if ([response isEqualToString:@"1"]) {
+            sucess(response);
+        }else{
+            NSString * str = [NSString stringWithFormat:@"请求接口为:%@\n返回数据为:%@",pi,response];
+            [QMUITips showError:@"请求失败,请稍后重试" inView:view hideAfterDelay:1];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [QMUITips showError:str inView:view hideAfterDelay:3];
+            });
+            NSLog(@"%@",str);
+        }
     }
 }
 +(AFHTTPSessionManager *)commonAction{
