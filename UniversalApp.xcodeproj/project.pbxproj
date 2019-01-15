@@ -186,6 +186,18 @@
 		5BC8C50C0BEF57AA0780D5DC /* libPods-UniversalApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E884624664B432D4FE5044F /* libPods-UniversalApp.a */; };
 		BB5DC69B2189CA38003F1998 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */; };
 		BB5DC69C2189CA38003F1998 /* SELUpdateAlertConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */; };
+		BB6D29EC21ED7EA400F5049F /* YXHomeXueJiaPeiJianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D29EB21ED7EA400F5049F /* YXHomeXueJiaPeiJianViewController.m */; };
+		BB6D29F021ED8D6E00F5049F /* YXHomeXueJiaPeiJianDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D29EF21ED8D6E00F5049F /* YXHomeXueJiaPeiJianDetailViewController.m */; };
+		BB6D29F421ED8EED00F5049F /* YXHomeXueJiaPeiJianDetailTuiJianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D29F321ED8EED00F5049F /* YXHomeXueJiaPeiJianDetailTuiJianViewController.m */; };
+		BB6D2A0121EDA7F400F5049F /* BKCustomSwitchBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D29F821EDA7F400F5049F /* BKCustomSwitchBtn.m */; };
+		BB6D2A0221EDA7F400F5049F /* ClassifyCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D29FB21EDA7F400F5049F /* ClassifyCollection.m */; };
+		BB6D2A0321EDA7F400F5049F /* BKDoubleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D29FC21EDA7F400F5049F /* BKDoubleCollectionViewCell.m */; };
+		BB6D2A0421EDA7F400F5049F /* BKSingleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D29FE21EDA7F400F5049F /* BKSingleCollectionViewCell.m */; };
+		BB6D2A0521EDA7F400F5049F /* BKStrikeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D29FF21EDA7F400F5049F /* BKStrikeLabel.m */; };
+		BB6D2A0921EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A0721EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.m */; };
+		BB6D2A0A21EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB6D2A0821EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.xib */; };
+		BB6D2A0D21EDD1F000F5049F /* YXHeaderView1.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A0C21EDD1F000F5049F /* YXHeaderView1.m */; };
+		BB6D2A0F21EDD1F900F5049F /* YXHeaderView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB6D2A0E21EDD1F900F5049F /* YXHeaderView1.xib */; };
 		BB95F63F21E6E0880071A369 /* XHStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB95F63E21E6E0880071A369 /* XHStarRateView.m */; };
 		BB95F64721E715CB0071A369 /* YXHomeLastMyTalkView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB95F64521E715CB0071A369 /* YXHomeLastMyTalkView.m */; };
 		BB95F64921E715D60071A369 /* YXHomeLastMyTalkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB95F64821E715D60071A369 /* YXHomeLastMyTalkView.xib */; };
@@ -722,6 +734,28 @@
 		BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
 		BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlertConst.m; sourceTree = "<group>"; };
 		BB5DC69A2189CA38003F1998 /* SELUpdateAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlert.h; sourceTree = "<group>"; };
+		BB6D29EA21ED7EA400F5049F /* YXHomeXueJiaPeiJianViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaPeiJianViewController.h; sourceTree = "<group>"; };
+		BB6D29EB21ED7EA400F5049F /* YXHomeXueJiaPeiJianViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaPeiJianViewController.m; sourceTree = "<group>"; };
+		BB6D29EE21ED8D6E00F5049F /* YXHomeXueJiaPeiJianDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaPeiJianDetailViewController.h; sourceTree = "<group>"; };
+		BB6D29EF21ED8D6E00F5049F /* YXHomeXueJiaPeiJianDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaPeiJianDetailViewController.m; sourceTree = "<group>"; };
+		BB6D29F221ED8EED00F5049F /* YXHomeXueJiaPeiJianDetailTuiJianViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaPeiJianDetailTuiJianViewController.h; sourceTree = "<group>"; };
+		BB6D29F321ED8EED00F5049F /* YXHomeXueJiaPeiJianDetailTuiJianViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaPeiJianDetailTuiJianViewController.m; sourceTree = "<group>"; };
+		BB6D29F721EDA7F400F5049F /* BKDoubleCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKDoubleCollectionViewCell.h; sourceTree = "<group>"; };
+		BB6D29F821EDA7F400F5049F /* BKCustomSwitchBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKCustomSwitchBtn.m; sourceTree = "<group>"; };
+		BB6D29F921EDA7F400F5049F /* BKStrikeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKStrikeLabel.h; sourceTree = "<group>"; };
+		BB6D29FA21EDA7F400F5049F /* BKSingleCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKSingleCollectionViewCell.h; sourceTree = "<group>"; };
+		BB6D29FB21EDA7F400F5049F /* ClassifyCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifyCollection.m; sourceTree = "<group>"; };
+		BB6D29FC21EDA7F400F5049F /* BKDoubleCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKDoubleCollectionViewCell.m; sourceTree = "<group>"; };
+		BB6D29FD21EDA7F400F5049F /* BKCustomSwitchBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKCustomSwitchBtn.h; sourceTree = "<group>"; };
+		BB6D29FE21EDA7F400F5049F /* BKSingleCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKSingleCollectionViewCell.m; sourceTree = "<group>"; };
+		BB6D29FF21EDA7F400F5049F /* BKStrikeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKStrikeLabel.m; sourceTree = "<group>"; };
+		BB6D2A0021EDA7F400F5049F /* ClassifyCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifyCollection.h; sourceTree = "<group>"; };
+		BB6D2A0621EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaPeiJianLastDetailViewController.h; sourceTree = "<group>"; };
+		BB6D2A0721EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaPeiJianLastDetailViewController.m; sourceTree = "<group>"; };
+		BB6D2A0821EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeXueJiaPeiJianLastDetailViewController.xib; sourceTree = "<group>"; };
+		BB6D2A0B21EDD1F000F5049F /* YXHeaderView1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHeaderView1.h; sourceTree = "<group>"; };
+		BB6D2A0C21EDD1F000F5049F /* YXHeaderView1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHeaderView1.m; sourceTree = "<group>"; };
+		BB6D2A0E21EDD1F900F5049F /* YXHeaderView1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHeaderView1.xib; sourceTree = "<group>"; };
 		BB95F63D21E6E0880071A369 /* XHStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHStarRateView.h; sourceTree = "<group>"; };
 		BB95F63E21E6E0880071A369 /* XHStarRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHStarRateView.m; sourceTree = "<group>"; };
 		BB95F64521E715CB0071A369 /* YXHomeLastMyTalkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeLastMyTalkView.m; sourceTree = "<group>"; };
@@ -2204,6 +2238,46 @@
 			path = UpdateAlert;
 			sourceTree = "<group>";
 		};
+		BB6D29ED21ED8D5600F5049F /* 雪茄配件详情 */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D29EE21ED8D6E00F5049F /* YXHomeXueJiaPeiJianDetailViewController.h */,
+				BB6D29EF21ED8D6E00F5049F /* YXHomeXueJiaPeiJianDetailViewController.m */,
+				BB6D29F121ED8ED500F5049F /* 推荐 */,
+			);
+			path = "雪茄配件详情";
+			sourceTree = "<group>";
+		};
+		BB6D29F121ED8ED500F5049F /* 推荐 */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D29F221ED8EED00F5049F /* YXHomeXueJiaPeiJianDetailTuiJianViewController.h */,
+				BB6D29F321ED8EED00F5049F /* YXHomeXueJiaPeiJianDetailTuiJianViewController.m */,
+				BB6D2A0621EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.h */,
+				BB6D2A0721EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.m */,
+				BB6D2A0821EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.xib */,
+				BB6D29F621EDA7F400F5049F /* commpent */,
+			);
+			path = "推荐";
+			sourceTree = "<group>";
+		};
+		BB6D29F621EDA7F400F5049F /* commpent */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D2A0021EDA7F400F5049F /* ClassifyCollection.h */,
+				BB6D29FB21EDA7F400F5049F /* ClassifyCollection.m */,
+				BB6D29F721EDA7F400F5049F /* BKDoubleCollectionViewCell.h */,
+				BB6D29FC21EDA7F400F5049F /* BKDoubleCollectionViewCell.m */,
+				BB6D29FD21EDA7F400F5049F /* BKCustomSwitchBtn.h */,
+				BB6D29F821EDA7F400F5049F /* BKCustomSwitchBtn.m */,
+				BB6D29FA21EDA7F400F5049F /* BKSingleCollectionViewCell.h */,
+				BB6D29FE21EDA7F400F5049F /* BKSingleCollectionViewCell.m */,
+				BB6D29F921EDA7F400F5049F /* BKStrikeLabel.h */,
+				BB6D29FF21EDA7F400F5049F /* BKStrikeLabel.m */,
+			);
+			path = commpent;
+			sourceTree = "<group>";
+		};
 		BB95F63C21E6E0880071A369 /* XHStarRateView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2454,6 +2528,12 @@
 		BBCC4A8B21E82C4100493F40 /* 雪茄配件 */ = {
 			isa = PBXGroup;
 			children = (
+				BB6D29EA21ED7EA400F5049F /* YXHomeXueJiaPeiJianViewController.h */,
+				BB6D29EB21ED7EA400F5049F /* YXHomeXueJiaPeiJianViewController.m */,
+				BB6D2A0B21EDD1F000F5049F /* YXHeaderView1.h */,
+				BB6D2A0C21EDD1F000F5049F /* YXHeaderView1.m */,
+				BB6D2A0E21EDD1F900F5049F /* YXHeaderView1.xib */,
+				BB6D29ED21ED8D5600F5049F /* 雪茄配件详情 */,
 			);
 			path = "雪茄配件";
 			sourceTree = "<group>";
@@ -3768,6 +3848,8 @@
 				293D46501ECDBB63007C64A9 /* icon_tabbar_misc_selected.png in Resources */,
 				BBD2C92921E0F67800350DCD /* UIBarButtonItemArrowLeft.png in Resources */,
 				BBCC4AA921E83DD100493F40 /* YXXingZhuangViewController.xib in Resources */,
+				BB6D2A0A21EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.xib in Resources */,
+				BB6D2A0F21EDD1F900F5049F /* YXHeaderView1.xib in Resources */,
 				290A97F11F4ABC02006BF882 /* qianb@2x.png in Resources */,
 				BBD2C8F521E0F67700350DCD /* LICENSE in Resources */,
 				293D46511ECDBB63007C64A9 /* icon_tabbar_misc_selected@2x.png in Resources */,
@@ -3906,6 +3988,7 @@
 				BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */,
 				BBA812B621DDABD3001B5EA1 /* YXMineViewController.m in Sources */,
 				BBDA2D0621EB30BF00EDCCFF /* SDSimpleCell.m in Sources */,
+				BB6D2A0421EDA7F400F5049F /* BKSingleCollectionViewCell.m in Sources */,
 				2917D1FF1EDFC89A00E76185 /* YYFPSLabel.m in Sources */,
 				BBCC4A9321E82CEE00493F40 /* YXHomeXueJiaWenHuaViewController.m in Sources */,
 				BBD2C9A821E2FA0600350DCD /* NSDictionary+TPDecription.m in Sources */,
@@ -3952,8 +4035,10 @@
 				BBA812FD21DDEBFB001B5EA1 /* YXHomeXueJiaViewController.m in Sources */,
 				BBD2C92321E0F67800350DCD /* UIImage+MWPhotoBrowser.m in Sources */,
 				BBDA2D2321EB30BF00EDCCFF /* SDRefreshFooterView.m in Sources */,
+				BB6D2A0121EDA7F400F5049F /* BKCustomSwitchBtn.m in Sources */,
 				290DE9261ED19B7F00A45FF6 /* AppManager.m in Sources */,
 				BBA812C721DDBF6A001B5EA1 /* UIFactory.m in Sources */,
+				BB6D2A0221EDA7F400F5049F /* ClassifyCollection.m in Sources */,
 				2914E4931F20A4F8001C01DB /* ProfileViewController.m in Sources */,
 				BBA812AA21DDAB7A001B5EA1 /* YXHomeViewController.m in Sources */,
 				BBCC4B8F21E894CD00493F40 /* Comment.m in Sources */,
@@ -3997,6 +4082,7 @@
 				BBDA2D0D21EB30BF00EDCCFF /* SDWaitingView.m in Sources */,
 				2917D2141EE02CF100E76185 /* UIButton+XYButton.m in Sources */,
 				BBCC4B8D21E894CD00493F40 /* YXHomeQuestionFaBuViewController.m in Sources */,
+				BB6D2A0D21EDD1F000F5049F /* YXHeaderView1.m in Sources */,
 				29CF332D1F14B5EA00DB7507 /* MsgLogic.m in Sources */,
 				BBD2C92621E0F67800350DCD /* MWTapDetectingView.m in Sources */,
 				2914E48A1F20A462001C01DB /* PersonModel.m in Sources */,
@@ -4021,6 +4107,7 @@
 				BBDA2C5F21EB308100EDCCFF /* SDDiscoverTableViewController.m in Sources */,
 				BBA8130021DDEC10001B5EA1 /* YXHomeMeiJiuViewController.m in Sources */,
 				BBD2C92021E0F67800350DCD /* MWPhotoBrowser.m in Sources */,
+				BB6D2A0921EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.m in Sources */,
 				293D45F51ECDA453007C64A9 /* RootViewController.m in Sources */,
 				BBD2C80C21E0F41F00350DCD /* YXMineAllViewController.m in Sources */,
 				BBD2C83721E0F44A00350DCD /* UIButton+CountDown.m in Sources */,
@@ -4034,6 +4121,7 @@
 				290A981D1F4ABEB9006BF882 /* BaseRequestAPI.m in Sources */,
 				BBD2C80E21E0F41F00350DCD /* YXMineImageViewController.m in Sources */,
 				BBD2C80D21E0F41F00350DCD /* YXMineFootViewController.m in Sources */,
+				BB6D29F421ED8EED00F5049F /* YXHomeXueJiaPeiJianDetailTuiJianViewController.m in Sources */,
 				BBD2C9A021E2F4CA00350DCD /* YXHomeXueJiaPinPaiTableViewCell.m in Sources */,
 				BBD2C91721E0F67800350DCD /* LLImagePickerView.m in Sources */,
 				29280E881F063EE700BF52D9 /* XYTransition.m in Sources */,
@@ -4049,6 +4137,7 @@
 				BBD2C9AD21E3029100350DCD /* YXHomeXueJiaPinPaiDetailViewController.m in Sources */,
 				BBD2C96521E10E5500350DCD /* LTTextView.m in Sources */,
 				BBDA2D2021EB30BF00EDCCFF /* SDRefreshHeaderView.m in Sources */,
+				BB6D2A0521EDA7F400F5049F /* BKStrikeLabel.m in Sources */,
 				BBD2C95C21E0FAEC00350DCD /* YXGridView.m in Sources */,
 				BBD2C98821E1BC0A00350DCD /* UIView+PYSearchExtension.m in Sources */,
 				2914E48D1F20A471001C01DB /* PersonListLogic.m in Sources */,
@@ -4078,6 +4167,7 @@
 				293D460E1ECDAEDC007C64A9 /* MsgViewController.m in Sources */,
 				BBD2C84C21E0F46500350DCD /* YXPublishImageViewController.m in Sources */,
 				29AD6C711ED41ED200B0879C /* UserInfo.m in Sources */,
+				BB6D29F021ED8D6E00F5049F /* YXHomeXueJiaPeiJianDetailViewController.m in Sources */,
 				BBD2C92721E0F67800350DCD /* MWGridViewController.m in Sources */,
 				BBDA2D2621EB30BF00EDCCFF /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				BBCC4B9021E894CD00493F40 /* MMImageListView.m in Sources */,
@@ -4110,6 +4200,7 @@
 				29530FAF1F60F10700D24E05 /* YSLCardView.m in Sources */,
 				293D460B1ECDAEC6007C64A9 /* MakeFriendsViewController.m in Sources */,
 				290A980D1F4ABD00006BF882 /* SandBoxHelper.m in Sources */,
+				BB6D2A0321EDA7F400F5049F /* BKDoubleCollectionViewCell.m in Sources */,
 				BBD2C91821E0F67800350DCD /* LLImagePickerCell.m in Sources */,
 				BBDA2C6321EB308100EDCCFF /* SDTimeLineCellOperationMenu.m in Sources */,
 				29AD6C5A1ED3E28800B0879C /* HeaderModel.m in Sources */,
@@ -4117,6 +4208,7 @@
 				BB95F63F21E6E0880071A369 /* XHStarRateView.m in Sources */,
 				BBD2C9B021E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.m in Sources */,
 				BBDA2CFD21EB30BF00EDCCFF /* SDBaseTableViewController.m in Sources */,
+				BB6D29EC21ED7EA400F5049F /* YXHomeXueJiaPeiJianViewController.m in Sources */,
 				293D45FA1ECDA4D8007C64A9 /* RootWebViewController.m in Sources */,
 				BBD2C91921E0F67800350DCD /* LLActionSheetView.m in Sources */,
 				BBD2C91521E0F67800350DCD /* LLImagePickerManager.m in Sources */,

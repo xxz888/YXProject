@@ -14,6 +14,7 @@
 #import "YXHomeXueJiaWenHuaViewController.h"
 #import "YXHomeXueJiaToolsViewController.h"
 #import "YXHomeXueJiaQuestionViewController.h"
+#import "YXHomeXueJiaPeiJianViewController.h"
 @interface YXHomeXueJiaViewController ()<UITableViewDelegate,UITableViewDataSource,ClickGridView>
 @property(nonatomic,strong)UITableView * bottomTableView;
 @property(nonatomic,strong)YXHomeXueJiaHeaderView * headerView;
@@ -131,6 +132,8 @@
         VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiViewController"];
     }else if(tag == 1){
         VC = [[YXHomeXueJiaWenHuaViewController alloc]init];
+    }else if (tag == 2){
+        VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPeiJianViewController"];
     }else if(tag == 3){
         VC = [[YXHomeXueJiaToolsViewController alloc]init];
     }else if (tag == 4){

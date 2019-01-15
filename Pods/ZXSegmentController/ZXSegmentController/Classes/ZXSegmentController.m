@@ -53,6 +53,7 @@
             //切换控制器
             UIViewController* newController = (UIViewController*)self.controllers[index];
             [self replaceController:self.currentController newController:newController];
+
         }
                                                                   withMaxDisplayItem:6
                                                                       withItemHeight:40

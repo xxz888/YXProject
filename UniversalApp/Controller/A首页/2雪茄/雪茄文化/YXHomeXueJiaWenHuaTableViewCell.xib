@@ -26,17 +26,27 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNh-8N-SFn">
-                        <rect key="frame" x="0.0" y="160" width="320" height="38.5"/>
+                        <rect key="frame" x="0.0" y="160" width="224" height="38.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1R-cT-Lyo">
+                        <rect key="frame" x="224" y="160" width="91" height="38.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="LIl-8h-jbr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="LGn-1B-HKD"/>
-                    <constraint firstAttribute="trailing" secondItem="JNh-8N-SFn" secondAttribute="trailing" id="Okf-N8-7dr"/>
+                    <constraint firstItem="M1R-cT-Lyo" firstAttribute="leading" secondItem="JNh-8N-SFn" secondAttribute="trailing" id="Rtv-yd-Mth"/>
+                    <constraint firstAttribute="bottom" secondItem="M1R-cT-Lyo" secondAttribute="bottom" id="UYf-vs-B3l"/>
                     <constraint firstItem="JNh-8N-SFn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ZA9-DK-FZO"/>
+                    <constraint firstItem="M1R-cT-Lyo" firstAttribute="top" secondItem="LIl-8h-jbr" secondAttribute="bottom" id="bRk-8q-JPD"/>
+                    <constraint firstAttribute="trailing" secondItem="M1R-cT-Lyo" secondAttribute="trailing" constant="5" id="ih3-SX-G2r"/>
                     <constraint firstAttribute="bottom" secondItem="JNh-8N-SFn" secondAttribute="bottom" id="iuI-mg-XkX"/>
+                    <constraint firstItem="JNh-8N-SFn" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.7" id="sMR-EF-i8P"/>
                     <constraint firstAttribute="trailing" secondItem="LIl-8h-jbr" secondAttribute="trailing" id="tq5-94-L1C"/>
                     <constraint firstItem="LIl-8h-jbr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="wOi-B6-X7H"/>
                     <constraint firstItem="JNh-8N-SFn" firstAttribute="top" secondItem="LIl-8h-jbr" secondAttribute="bottom" id="x55-On-q5C"/>
@@ -44,10 +54,11 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="timeLbl" destination="M1R-cT-Lyo" id="6A1-CJ-5bs"/>
                 <outlet property="wenhuaImageView" destination="LIl-8h-jbr" id="Um6-if-voO"/>
                 <outlet property="wenhuaLbl" destination="JNh-8N-SFn" id="3GE-Ln-Hdh"/>
             </connections>
-            <point key="canvasLocation" x="-515" y="-19"/>
+            <point key="canvasLocation" x="-515.20000000000005" y="-19.340329835082461"/>
         </tableViewCell>
     </objects>
 </document>

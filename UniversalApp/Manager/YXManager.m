@@ -189,7 +189,7 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) { }];
 }
-#pragma mark ==========雪茄文化列表==========
+#pragma mark ==========雪茄文化配件列表==========
 -(void)requestCigar_accessories_cultureGET:YX_BLOCK{
     NSString * url = @"/cigar/cigar_accessories_culture/";
     [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
@@ -203,6 +203,21 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
+#pragma mark ==========雪茄文化列表==========
+-(void)requestCigar_cultureGET:YX_BLOCK{
+    NSString * url = @"/cigar/cigar_culture/";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ==========雪茄配件列表==========
+-(void)requestCigar_accessories_CbrandGET:YX_BLOCK{
+    NSString * url = @"/cigar/cigar_accessories_brand/";
+    [HTTP_GET(url)  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
 #pragma mark ==========雪茄提问列表==========
 -(void)requestQuestionGET:YX_BLOCK{
     NSString * url = @"/users/question/";
