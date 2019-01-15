@@ -7,6 +7,8 @@
 //
 
 #import "YXPublishImageViewController.h"
+#import "YXGaoDeMapViewController.h"
+
 #import "LLImagePickerView.h"
 #import "YXPublishImageTableViewCell.h"
 #import "ZZYPhotoHelper.h"
@@ -23,6 +25,9 @@
 static NSString *accessKey = @"官网获取";
 static NSString *secretKey = @"官网获取";
 
+#import <QMapKit/QMapKit.h>
+#import <QMapSearchKit/QMapSearchKit.h>
+#define TencentKey @"KMTBZ-AJN3K-MWSJW-A5FV6-ZVDCQ-JIF33"
 
 @interface YXPublishImageViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSMutableArray * _photoImageList;
@@ -37,7 +42,8 @@ static NSString *secretKey = @"官网获取";
 @implementation YXPublishImageViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
- 
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,6 +55,10 @@ static NSString *secretKey = @"官网获取";
     [self initImagePhontoView];
 }
 -(void)initControl{
+    [QMapServices sharedServices].apiKey = TencentKey;
+    [[QMSSearchServices sharedServices] setApiKey:TencentKey];
+
+    
     UIColor * color1 = [UIColor darkGrayColor];
     [self.cunCaogaoBtn setTitleColor:color1 forState:UIControlStateNormal];
     ViewBorderRadius(self.cunCaogaoBtn, 5, 1, color1);
@@ -75,14 +85,6 @@ static NSString *secretKey = @"官网获取";
         for (LLImagePickerModel * model in list) {
             [_photoImageList addObject:model.image];
         }
- 
-        
-
-        
-  
-     
-
-        
         NSLog(@"%@",list);
         weakself.yxTableview.tableHeaderView = pickerV;
 
@@ -106,7 +108,17 @@ static NSString *secretKey = @"官网获取";
         [_tagArray addObject:tagString];
         [weakself addNewTags:_tagArray];
     };
-    
+    //位置
+    cell.locationblock = ^(YXPublishImageTableViewCell * cell) {
+        YXGaoDeMapViewController * VC = [[YXGaoDeMapViewController alloc]init];
+        VC.block = ^(NSString * locationString) {
+            [cell.locationBtn setTitle:locationString forState:0];
+            [weakself dismissViewControllerAnimated:YES completion:nil];
+        };
+        
+        RootNavigationController *nav = [[RootNavigationController alloc]initWithRootViewController:VC];
+        [weakself presentViewController:nav animated:YES completion:nil];
+        };
     return cell;
 }
 - (IBAction)closeView:(id)sender {

@@ -87,6 +87,7 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="locationBtn" destination="lEs-Fu-kqw" id="INJ-7C-dcs"/>
                 <outlet property="moreBtn" destination="Xkh-bO-evE" id="KoP-rO-P6A"/>
                 <outlet property="ttView" destination="PWO-BY-mZg" id="YeJ-YF-VLb"/>
                 <outlet property="xinhuatiBtn" destination="g1R-xi-K6d" id="Kgw-8M-R86"/>

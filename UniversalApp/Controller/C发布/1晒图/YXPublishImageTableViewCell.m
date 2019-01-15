@@ -7,6 +7,7 @@
 //
 
 #import "YXPublishImageTableViewCell.h"
+//#import <AMapLocationKit/AMapLocationKit.h>
 @interface YXPublishImageTableViewCell (){
     QMUITextField *textField;
 }
@@ -69,7 +70,7 @@
 }
 //获取地理位置
 - (IBAction)getLoactionAction:(id)sender {
-    
+    self.locationblock(self);
 }
 //更多
 - (IBAction)moreAction:(id)sender {

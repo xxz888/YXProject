@@ -414,6 +414,10 @@
 		BBDA2D2621EB30BF00EDCCFF /* UITableView+SDAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDA2CD921EB30BF00EDCCFF /* UITableView+SDAutoTableViewCellHeight.m */; };
 		BBDA2EE621EC84C600EDCCFF /* UIView+CBExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDA2EE221EC84C600EDCCFF /* UIView+CBExtension.m */; };
 		BBDA2EE721EC84C600EDCCFF /* CBGroupAndStreamView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDA2EE521EC84C600EDCCFF /* CBGroupAndStreamView.m */; };
+		BBDA2EF121ECC22B00EDCCFF /* QMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBDA2EEB21ECC22B00EDCCFF /* QMapKit.framework */; };
+		BBDA2EF221ECC22B00EDCCFF /* QMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBDA2EEC21ECC22B00EDCCFF /* QMapSearchKit.framework */; };
+		BBDA2EF321ECC22B00EDCCFF /* YXGaoDeMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDA2EEF21ECC22B00EDCCFF /* YXGaoDeMapViewController.m */; };
+		BBDA2EF421ECC22B00EDCCFF /* SearchResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDA2EF021ECC22B00EDCCFF /* SearchResultsController.m */; };
 		BBE82BD821E340AD004E4144 /* CatZanButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82BD521E340AD004E4144 /* CatZanButton.m */; };
 		BBE82BD921E340AD004E4144 /* EffectImage.png in Resources */ = {isa = PBXBuildFile; fileRef = BBE82BD721E340AD004E4144 /* EffectImage.png */; };
 		BBE82BDC21E35FF1004E4144 /* ZZYPhotoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82BDA21E35FF1004E4144 /* ZZYPhotoHelper.m */; };
@@ -1110,6 +1114,12 @@
 		BBDA2EE321EC84C600EDCCFF /* CBGroupAndStreamView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBGroupAndStreamView.h; sourceTree = "<group>"; };
 		BBDA2EE421EC84C600EDCCFF /* UIView+CBExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CBExtension.h"; sourceTree = "<group>"; };
 		BBDA2EE521EC84C600EDCCFF /* CBGroupAndStreamView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBGroupAndStreamView.m; sourceTree = "<group>"; };
+		BBDA2EEB21ECC22B00EDCCFF /* QMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QMapKit.framework; sourceTree = "<group>"; };
+		BBDA2EEC21ECC22B00EDCCFF /* QMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QMapSearchKit.framework; sourceTree = "<group>"; };
+		BBDA2EED21ECC22B00EDCCFF /* SearchResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsController.h; sourceTree = "<group>"; };
+		BBDA2EEE21ECC22B00EDCCFF /* YXGaoDeMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXGaoDeMapViewController.h; sourceTree = "<group>"; };
+		BBDA2EEF21ECC22B00EDCCFF /* YXGaoDeMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXGaoDeMapViewController.m; sourceTree = "<group>"; };
+		BBDA2EF021ECC22B00EDCCFF /* SearchResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsController.m; sourceTree = "<group>"; };
 		BBE82BD521E340AD004E4144 /* CatZanButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatZanButton.m; sourceTree = "<group>"; };
 		BBE82BD621E340AD004E4144 /* CatZanButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatZanButton.h; sourceTree = "<group>"; };
 		BBE82BD721E340AD004E4144 /* EffectImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EffectImage.png; sourceTree = "<group>"; };
@@ -1133,8 +1143,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBDA2EF121ECC22B00EDCCFF /* QMapKit.framework in Frameworks */,
 				296ED8B41EF3B6A300E33961 /* libPods-UniversalApp.a in Frameworks */,
 				299610251ED84B5100BCED2A /* libSocialQQ.a in Frameworks */,
+				BBDA2EF221ECC22B00EDCCFF /* QMapSearchKit.framework in Frameworks */,
 				299610261ED84B5100BCED2A /* libSocialWeChat.a in Frameworks */,
 				299610131ED84A8D00BCED2A /* CoreGraphics.framework in Frameworks */,
 				299610111ED84A7100BCED2A /* libsqlite3.tbd in Frameworks */,
@@ -2395,6 +2407,7 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BBDA2EEA21ECC22B00EDCCFF /* LocationSend */,
 				BBDA2EE121EC84C600EDCCFF /* CBGroupWatherLab */,
 				BBDA2C6A21EB30BF00EDCCFF /* 最新最热评价 */,
 				BBCC4B1A21E8933800493F40 /* Resources */,
@@ -3475,6 +3488,19 @@
 			path = CBGroupWatherLab;
 			sourceTree = "<group>";
 		};
+		BBDA2EEA21ECC22B00EDCCFF /* LocationSend */ = {
+			isa = PBXGroup;
+			children = (
+				BBDA2EEB21ECC22B00EDCCFF /* QMapKit.framework */,
+				BBDA2EEC21ECC22B00EDCCFF /* QMapSearchKit.framework */,
+				BBDA2EED21ECC22B00EDCCFF /* SearchResultsController.h */,
+				BBDA2EEE21ECC22B00EDCCFF /* YXGaoDeMapViewController.h */,
+				BBDA2EEF21ECC22B00EDCCFF /* YXGaoDeMapViewController.m */,
+				BBDA2EF021ECC22B00EDCCFF /* SearchResultsController.m */,
+			);
+			path = LocationSend;
+			sourceTree = "<group>";
+		};
 		BBE82BD421E340AD004E4144 /* CatZanButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -3982,6 +4008,7 @@
 				BBD2C91B21E0F67800350DCD /* UIImageView+LLExtension.m in Sources */,
 				BBA8147021DE0D38001B5EA1 /* NSString+CString.m in Sources */,
 				BBD2C98E21E1BC3F00350DCD /* PYSearchViewController.m in Sources */,
+				BBDA2EF421ECC22B00EDCCFF /* SearchResultsController.m in Sources */,
 				BBE82BDC21E35FF1004E4144 /* ZZYPhotoHelper.m in Sources */,
 				BBD2C98521E1BC0A00350DCD /* PYSearchConst.m in Sources */,
 				BBDA2C6621EB308100EDCCFF /* SDTimeLineTableHeaderView.m in Sources */,
@@ -4078,6 +4105,7 @@
 				BBD2C8F621E0F67700350DCD /* TZImageCropManager.m in Sources */,
 				BBDA2C6421EB308100EDCCFF /* SDTimeLineCellCommentView.m in Sources */,
 				BBCC4AAD21E83DE200493F40 /* YXHomeChiCunViewController.m in Sources */,
+				BBDA2EF321ECC22B00EDCCFF /* YXGaoDeMapViewController.m in Sources */,
 				29AD6C5C1ED3E28800B0879C /* PPNetworkHelper.m in Sources */,
 				29530FAF1F60F10700D24E05 /* YSLCardView.m in Sources */,
 				293D460B1ECDAEC6007C64A9 /* MakeFriendsViewController.m in Sources */,
@@ -4255,6 +4283,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/UMSocialSDK",
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/UMSocialUI",
+					"$(PROJECT_DIR)/UniversalApp/Utils/艺鑫工具",
+					"$(PROJECT_DIR)/UniversalApp/Utils/艺鑫工具/LocationSend",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/UniversalApp/Supporting Flies/PrefixHeader.pch";
@@ -4267,7 +4297,7 @@
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/SocialLibraries/WeChat",
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/UMSocialSDKPlugin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.adianyun.buyebao;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yxproject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/UniversalApp/Define";
@@ -4285,6 +4315,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/UMSocialSDK",
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/UMSocialUI",
+					"$(PROJECT_DIR)/UniversalApp/Utils/艺鑫工具",
+					"$(PROJECT_DIR)/UniversalApp/Utils/艺鑫工具/LocationSend",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/UniversalApp/Supporting Flies/PrefixHeader.pch";
@@ -4297,7 +4329,7 @@
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/SocialLibraries/WeChat",
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/UMSocialSDKPlugin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.adianyun.buyebao;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yxproject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/UniversalApp/Define";
