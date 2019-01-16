@@ -199,6 +199,18 @@
 		BB6D2A0D21EDD1F000F5049F /* YXHeaderView1.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A0C21EDD1F000F5049F /* YXHeaderView1.m */; };
 		BB6D2A0F21EDD1F900F5049F /* YXHeaderView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB6D2A0E21EDD1F900F5049F /* YXHeaderView1.xib */; };
 		BB6D2A1221EDE6FD00F5049F /* YXHomeXueJiaWenDaDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A1121EDE6FD00F5049F /* YXHomeXueJiaWenDaDetailViewController.m */; };
+		BB6D2A3121EEC63900F5049F /* ExpandingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A1721EEC63900F5049F /* ExpandingCell.m */; };
+		BB6D2A3221EEC63900F5049F /* HCInputBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A1821EEC63900F5049F /* HCInputBar.m */; };
+		BB6D2A3321EEC63900F5049F /* UIFont+MyFont.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A1A21EEC63900F5049F /* UIFont+MyFont.m */; };
+		BB6D2A3421EEC63900F5049F /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A1B21EEC63900F5049F /* UIView+Frame.m */; };
+		BB6D2A3521EEC63900F5049F /* UIColor+MyColor.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A1F21EEC63900F5049F /* UIColor+MyColor.m */; };
+		BB6D2A3621EEC63900F5049F /* HCEmojiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A2221EEC63900F5049F /* HCEmojiManager.m */; };
+		BB6D2A3721EEC63900F5049F /* EmojiToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A2521EEC63900F5049F /* EmojiToolBar.m */; };
+		BB6D2A3821EEC63900F5049F /* HCEmojiKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A2821EEC63900F5049F /* HCEmojiKeyboard.m */; };
+		BB6D2A3921EEC63900F5049F /* EmojiCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A2A21EEC63900F5049F /* EmojiCollectionView.m */; };
+		BB6D2A3A21EEC63900F5049F /* SinglePageEmojiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A2B21EEC63900F5049F /* SinglePageEmojiCell.m */; };
+		BB6D2A3B21EEC63900F5049F /* EmojiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A2C21EEC63900F5049F /* EmojiCell.m */; };
+		BB6D2A3C21EEC63900F5049F /* Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BB6D2A3021EEC63900F5049F /* Resources.bundle */; };
 		BB95F63F21E6E0880071A369 /* XHStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB95F63E21E6E0880071A369 /* XHStarRateView.m */; };
 		BB95F64721E715CB0071A369 /* YXHomeLastMyTalkView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB95F64521E715CB0071A369 /* YXHomeLastMyTalkView.m */; };
 		BB95F64921E715D60071A369 /* YXHomeLastMyTalkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB95F64821E715D60071A369 /* YXHomeLastMyTalkView.xib */; };
@@ -759,6 +771,30 @@
 		BB6D2A0E21EDD1F900F5049F /* YXHeaderView1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHeaderView1.xib; sourceTree = "<group>"; };
 		BB6D2A1021EDE6FD00F5049F /* YXHomeXueJiaWenDaDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaWenDaDetailViewController.h; sourceTree = "<group>"; };
 		BB6D2A1121EDE6FD00F5049F /* YXHomeXueJiaWenDaDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaWenDaDetailViewController.m; sourceTree = "<group>"; };
+		BB6D2A1521EEC63900F5049F /* ExpandingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandingCell.h; sourceTree = "<group>"; };
+		BB6D2A1621EEC63900F5049F /* HCInputBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCInputBar.h; sourceTree = "<group>"; };
+		BB6D2A1721EEC63900F5049F /* ExpandingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandingCell.m; sourceTree = "<group>"; };
+		BB6D2A1821EEC63900F5049F /* HCInputBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCInputBar.m; sourceTree = "<group>"; };
+		BB6D2A1A21EEC63900F5049F /* UIFont+MyFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+MyFont.m"; sourceTree = "<group>"; };
+		BB6D2A1B21EEC63900F5049F /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		BB6D2A1C21EEC63900F5049F /* UIColor+MyColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MyColor.h"; sourceTree = "<group>"; };
+		BB6D2A1D21EEC63900F5049F /* UIFont+MyFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+MyFont.h"; sourceTree = "<group>"; };
+		BB6D2A1E21EEC63900F5049F /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		BB6D2A1F21EEC63900F5049F /* UIColor+MyColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MyColor.m"; sourceTree = "<group>"; };
+		BB6D2A2021EEC63900F5049F /* HCHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHeader.h; sourceTree = "<group>"; };
+		BB6D2A2221EEC63900F5049F /* HCEmojiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCEmojiManager.m; sourceTree = "<group>"; };
+		BB6D2A2321EEC63900F5049F /* HCEmojiKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCEmojiKeyboard.h; sourceTree = "<group>"; };
+		BB6D2A2521EEC63900F5049F /* EmojiToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiToolBar.m; sourceTree = "<group>"; };
+		BB6D2A2621EEC63900F5049F /* EmojiToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiToolBar.h; sourceTree = "<group>"; };
+		BB6D2A2721EEC63900F5049F /* HCEmojiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCEmojiManager.h; sourceTree = "<group>"; };
+		BB6D2A2821EEC63900F5049F /* HCEmojiKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCEmojiKeyboard.m; sourceTree = "<group>"; };
+		BB6D2A2A21EEC63900F5049F /* EmojiCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiCollectionView.m; sourceTree = "<group>"; };
+		BB6D2A2B21EEC63900F5049F /* SinglePageEmojiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePageEmojiCell.m; sourceTree = "<group>"; };
+		BB6D2A2C21EEC63900F5049F /* EmojiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiCell.m; sourceTree = "<group>"; };
+		BB6D2A2D21EEC63900F5049F /* EmojiCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiCollectionView.h; sourceTree = "<group>"; };
+		BB6D2A2E21EEC63900F5049F /* SinglePageEmojiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePageEmojiCell.h; sourceTree = "<group>"; };
+		BB6D2A2F21EEC63900F5049F /* EmojiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiCell.h; sourceTree = "<group>"; };
+		BB6D2A3021EEC63900F5049F /* Resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resources.bundle; sourceTree = "<group>"; };
 		BB95F63D21E6E0880071A369 /* XHStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHStarRateView.h; sourceTree = "<group>"; };
 		BB95F63E21E6E0880071A369 /* XHStarRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHStarRateView.m; sourceTree = "<group>"; };
 		BB95F64521E715CB0071A369 /* YXHomeLastMyTalkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeLastMyTalkView.m; sourceTree = "<group>"; };
@@ -2281,6 +2317,77 @@
 			path = commpent;
 			sourceTree = "<group>";
 		};
+		BB6D2A1321EEC63900F5049F /* HCEmoji */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D2A1421EEC63900F5049F /* InputBar */,
+				BB6D2A1921EEC63900F5049F /* Utils */,
+				BB6D2A2021EEC63900F5049F /* HCHeader.h */,
+				BB6D2A2121EEC63900F5049F /* EmojiKeyboard */,
+				BB6D2A3021EEC63900F5049F /* Resources.bundle */,
+			);
+			path = HCEmoji;
+			sourceTree = "<group>";
+		};
+		BB6D2A1421EEC63900F5049F /* InputBar */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D2A1521EEC63900F5049F /* ExpandingCell.h */,
+				BB6D2A1621EEC63900F5049F /* HCInputBar.h */,
+				BB6D2A1721EEC63900F5049F /* ExpandingCell.m */,
+				BB6D2A1821EEC63900F5049F /* HCInputBar.m */,
+			);
+			path = InputBar;
+			sourceTree = "<group>";
+		};
+		BB6D2A1921EEC63900F5049F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D2A1A21EEC63900F5049F /* UIFont+MyFont.m */,
+				BB6D2A1B21EEC63900F5049F /* UIView+Frame.m */,
+				BB6D2A1C21EEC63900F5049F /* UIColor+MyColor.h */,
+				BB6D2A1D21EEC63900F5049F /* UIFont+MyFont.h */,
+				BB6D2A1E21EEC63900F5049F /* UIView+Frame.h */,
+				BB6D2A1F21EEC63900F5049F /* UIColor+MyColor.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		BB6D2A2121EEC63900F5049F /* EmojiKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D2A2221EEC63900F5049F /* HCEmojiManager.m */,
+				BB6D2A2321EEC63900F5049F /* HCEmojiKeyboard.h */,
+				BB6D2A2421EEC63900F5049F /* EmojiToolBar */,
+				BB6D2A2721EEC63900F5049F /* HCEmojiManager.h */,
+				BB6D2A2821EEC63900F5049F /* HCEmojiKeyboard.m */,
+				BB6D2A2921EEC63900F5049F /* EmojiView */,
+			);
+			path = EmojiKeyboard;
+			sourceTree = "<group>";
+		};
+		BB6D2A2421EEC63900F5049F /* EmojiToolBar */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D2A2521EEC63900F5049F /* EmojiToolBar.m */,
+				BB6D2A2621EEC63900F5049F /* EmojiToolBar.h */,
+			);
+			path = EmojiToolBar;
+			sourceTree = "<group>";
+		};
+		BB6D2A2921EEC63900F5049F /* EmojiView */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D2A2A21EEC63900F5049F /* EmojiCollectionView.m */,
+				BB6D2A2B21EEC63900F5049F /* SinglePageEmojiCell.m */,
+				BB6D2A2C21EEC63900F5049F /* EmojiCell.m */,
+				BB6D2A2D21EEC63900F5049F /* EmojiCollectionView.h */,
+				BB6D2A2E21EEC63900F5049F /* SinglePageEmojiCell.h */,
+				BB6D2A2F21EEC63900F5049F /* EmojiCell.h */,
+			);
+			path = EmojiView;
+			sourceTree = "<group>";
+		};
 		BB95F63C21E6E0880071A369 /* XHStarRateView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2484,6 +2591,7 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BB6D2A1321EEC63900F5049F /* HCEmoji */,
 				BBDA2EEA21ECC22B00EDCCFF /* LocationSend */,
 				BBDA2EE121EC84C600EDCCFF /* CBGroupWatherLab */,
 				BBDA2C6A21EB30BF00EDCCFF /* 最新最热评价 */,
@@ -3759,6 +3867,7 @@
 				BBD2C93D21E0F67800350DCD /* ImageSelectedOff@2x.png in Resources */,
 				BBCC4AC121E86EC200493F40 /* YXHomeXueJiaFootTableViewCell.xib in Resources */,
 				BBA8129E21DDAA15001B5EA1 /* YXMine.storyboard in Resources */,
+				BB6D2A3C21EEC63900F5049F /* Resources.bundle in Resources */,
 				290A97F61F4ABC02006BF882 /* woman@2x.png in Resources */,
 				29530FD61F60F1BB00D24E05 /* photo_sample_03.png in Resources */,
 				BBD2C93E21E0F67800350DCD /* UIBarButtonItemArrowLeft@2x.png in Resources */,
@@ -3988,6 +4097,7 @@
 				29CF332A1F14B5CC00DB7507 /* MakeFriendsLogic.m in Sources */,
 				BBDA2C6221EB308100EDCCFF /* SDTimeLineCellModel.m in Sources */,
 				BB5DC69B2189CA38003F1998 /* SELUpdateAlert.m in Sources */,
+				BB6D2A3A21EEC63900F5049F /* SinglePageEmojiCell.m in Sources */,
 				BBDA2D2221EB30BF00EDCCFF /* UIView+SDExtension.m in Sources */,
 				BBDA2D0321EB30BF00EDCCFF /* SDContactsTableViewCell.m in Sources */,
 				BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */,
@@ -3996,6 +4106,7 @@
 				BB6D2A0421EDA7F400F5049F /* BKSingleCollectionViewCell.m in Sources */,
 				2917D1FF1EDFC89A00E76185 /* YYFPSLabel.m in Sources */,
 				BBCC4A9321E82CEE00493F40 /* YXHomeXueJiaWenHuaViewController.m in Sources */,
+				BB6D2A3921EEC63900F5049F /* EmojiCollectionView.m in Sources */,
 				BBD2C9A821E2FA0600350DCD /* NSDictionary+TPDecription.m in Sources */,
 				BBDA2C6521EB308100EDCCFF /* SDTimeLineRefreshFooter.m in Sources */,
 				BBD2C8F921E0F67700350DCD /* TZAssetModel.m in Sources */,
@@ -4018,6 +4129,7 @@
 				296F72C11F9761C800E5EAB1 /* NativeCallJSVC.m in Sources */,
 				2914E4901F20A4D1001C01DB /* PersonListCollectionViewCell.m in Sources */,
 				BBCC4B8E21E894CD00493F40 /* Moment.m in Sources */,
+				BB6D2A3321EEC63900F5049F /* UIFont+MyFont.m in Sources */,
 				290A97DE1F4AB24A006BF882 /* ToolDemoViewController.m in Sources */,
 				293D465A1ECDC004007C64A9 /* LoginViewController.m in Sources */,
 				BBCC4B9221E894CD00493F40 /* MomentCell.m in Sources */,
@@ -4085,10 +4197,12 @@
 				29CF33301F14B60800DB7507 /* MineLogic.m in Sources */,
 				296DEA741F5D50D100C6FD00 /* SDCycleScrollView.m in Sources */,
 				BBDA2D0D21EB30BF00EDCCFF /* SDWaitingView.m in Sources */,
+				BB6D2A3421EEC63900F5049F /* UIView+Frame.m in Sources */,
 				2917D2141EE02CF100E76185 /* UIButton+XYButton.m in Sources */,
 				BBCC4B8D21E894CD00493F40 /* YXHomeQuestionFaBuViewController.m in Sources */,
 				BB6D2A0D21EDD1F000F5049F /* YXHeaderView1.m in Sources */,
 				29CF332D1F14B5EA00DB7507 /* MsgLogic.m in Sources */,
+				BB6D2A3B21EEC63900F5049F /* EmojiCell.m in Sources */,
 				BBD2C92621E0F67800350DCD /* MWTapDetectingView.m in Sources */,
 				2914E48A1F20A462001C01DB /* PersonModel.m in Sources */,
 				BBD2C91A21E0F67800350DCD /* UIImage+LLGif.m in Sources */,
@@ -4096,6 +4210,7 @@
 				29CD2C6E1F30229B00A0F5DC /* CellModel.m in Sources */,
 				2924783E1ED6857300BB097A /* AppDelegate+PushService.m in Sources */,
 				BBDA2D0B21EB30BF00EDCCFF /* LEETheme.m in Sources */,
+				BB6D2A3521EEC63900F5049F /* UIColor+MyColor.m in Sources */,
 				BBD2C91B21E0F67800350DCD /* UIImageView+LLExtension.m in Sources */,
 				BBA8147021DE0D38001B5EA1 /* NSString+CString.m in Sources */,
 				BBD2C98E21E1BC3F00350DCD /* PYSearchViewController.m in Sources */,
@@ -4124,6 +4239,7 @@
 				BBCC4B1721E8927700493F40 /* UIView+Geometry.m in Sources */,
 				293D46081ECDAEAD007C64A9 /* HomeViewController.m in Sources */,
 				290A981D1F4ABEB9006BF882 /* BaseRequestAPI.m in Sources */,
+				BB6D2A3721EEC63900F5049F /* EmojiToolBar.m in Sources */,
 				BBD2C80E21E0F41F00350DCD /* YXMineImageViewController.m in Sources */,
 				BBD2C80D21E0F41F00350DCD /* YXMineFootViewController.m in Sources */,
 				BB6D29F421ED8EED00F5049F /* YXHomeXueJiaPeiJianDetailTuiJianViewController.m in Sources */,
@@ -4137,6 +4253,7 @@
 				290A97FF1F4ABC12006BF882 /* NickNameLbel.m in Sources */,
 				290A98051F4ABCD9006BF882 /* IAPManager.m in Sources */,
 				BBD2C9A721E2FA0600350DCD /* NSArray+TPDecription.m in Sources */,
+				BB6D2A3121EEC63900F5049F /* ExpandingCell.m in Sources */,
 				290A981F1F4ABEB9006BF882 /* HSBaseCellModel.m in Sources */,
 				BBDA2D0C21EB30BF00EDCCFF /* SDPhotoBrowser.m in Sources */,
 				BBD2C9AD21E3029100350DCD /* YXHomeXueJiaPinPaiDetailViewController.m in Sources */,
@@ -4162,6 +4279,7 @@
 				BBA812F721DDEBBB001B5EA1 /* SegmentTapView.m in Sources */,
 				BB6D2A1221EDE6FD00F5049F /* YXHomeXueJiaWenDaDetailViewController.m in Sources */,
 				BBCC4AA321E83DC000493F40 /* YXColorViewController.m in Sources */,
+				BB6D2A3821EEC63900F5049F /* HCEmojiKeyboard.m in Sources */,
 				BBD2C8F821E0F67700350DCD /* TZVideoPlayerController.m in Sources */,
 				BBD2C8FB21E0F67700350DCD /* UIView+Layout.m in Sources */,
 				BBD2C83A21E0F44A00350DCD /* VTingTimeView.m in Sources */,
@@ -4193,6 +4311,7 @@
 				BBA812B921DDBE47001B5EA1 /* TBTabBar.m in Sources */,
 				29530FB01F60F10700D24E05 /* YSLDraggableCardContainer.m in Sources */,
 				29FEE7681ECEC27900C81B60 /* MBProgressHUD+XY.m in Sources */,
+				BB6D2A3221EEC63900F5049F /* HCInputBar.m in Sources */,
 				BBD2C91C21E0F67800350DCD /* UIView+LLExtension.m in Sources */,
 				BBA812E521DDDE47001B5EA1 /* WJSliderScrollView.m in Sources */,
 				BBDA2D0121EB30BF00EDCCFF /* SDContactsTableViewController.m in Sources */,
@@ -4222,6 +4341,7 @@
 				BBE82BD821E340AD004E4144 /* CatZanButton.m in Sources */,
 				BBD30CE421E5CD89000D3244 /* YXMineFenSiViewController.m in Sources */,
 				BBDA2EE721EC84C600EDCCFF /* CBGroupAndStreamView.m in Sources */,
+				BB6D2A3621EEC63900F5049F /* HCEmojiManager.m in Sources */,
 				BBCC4AB221E83F9F00493F40 /* YXToolsColorTableViewCell.m in Sources */,
 				BBCC4B1821E8927700493F40 /* Utility.m in Sources */,
 				BBE82CFF21E44A7D004E4144 /* ZLPhotoPickerDatas.m in Sources */,
