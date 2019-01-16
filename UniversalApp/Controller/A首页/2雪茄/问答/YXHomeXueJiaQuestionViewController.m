@@ -102,11 +102,11 @@
 }
 -(void)requestQuestion{
     
-    [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb1"]];
-    [self initTestInfo];
-    [self.tableView reloadData];
-    return;
+//    [self.dataArray removeAllObjects];
+//    [self.dataArray addObjectsFromArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb1"]];
+//    [self initTestInfo];
+//    [self.tableView reloadData];
+//    return;
     
     
     kWeakSelf(self);
@@ -139,7 +139,6 @@
         
         //最外层
         Moment *moment = [[Moment alloc] init];
-        moment.commentList = commentList;
         moment.praiseNameList = nil;//@"胡一菲，唐悠悠，陈美嘉，吕小布，曾小贤，张伟，关谷神奇";
         moment.userName = self.dataArray[i][@"user_name"];
         moment.text = self.dataArray[i][@"title"];
@@ -149,19 +148,8 @@
         moment.location = @"";
         moment.isPraise = NO;
         moment.photo =self.dataArray[i][@"user_photo"];
-        NSString * pic1 = kGetString(self.dataArray[i][@"pic1"]);
-        NSString * pic2 = kGetString(self.dataArray[i][@"pic2"]);
-        NSString * pic3 = kGetString(self.dataArray[i][@"pic3"]);
-
-//        if ([pic1 isEqualToString:@""] || [pic1 isEqualToString:@"1"]) {
-//            moment.fileCount = 0;
-//        }else if ([pic2 isEqualToString:@""] || [pic2 isEqualToString:@"0"]){
-//            moment.fileCount = 1;
-//        }else if ([pic3 isEqualToString:@""] || [pic3 isEqualToString:@"0"]){
-//            moment.fileCount = 2;
-//        }else{
-            moment.fileCount = 3;
-//        }
+        moment.startId = self.dataArray[i][@"id"];
+        moment.fileCount = 3;
       
   
 
@@ -173,7 +161,6 @@
         // 评论
         commentList = [[NSMutableArray alloc] init];
         int num = (int)[self.dataArray[i][@"answer"] count];
-        
         for (int j = 0; j < num; j ++) {
             Comment *comment = [[Comment alloc] init];
             comment.userName = self.dataArray[i][@"answer"][j][@"user_name"];
@@ -182,25 +169,7 @@
             comment.pk = j;
             [commentList addObject:comment];
         }
-        
-
-        
-        /*
-        if (i == 5) {
-            moment.commentList = nil;
-            moment.praiseNameList = nil;
-            moment.text = @"蜀绣又名“川绣”，是在丝绸或其他织物上采用蚕丝线绣出花纹图案的中国传统工艺，18107891687主要指以四川成都为中心的川西平原一带的刺绣。😁蜀绣最早见于西汉的记载，当时的工艺已相当成熟，同时传承了图案配色鲜艳、常用红绿颜色的特点。😁蜀绣又名“川绣”，是在丝绸或其他织物上采用蚕丝线绣出花纹图案的中国传统工艺，https://www.baidu.com，主要指以四川成都为中心的川西平原一带的刺绣。蜀绣最早见于西汉的记载，当时的工艺已相当成熟，同时传承了图案配色鲜艳、常用红绿颜色的特点。";
-            moment.fileCount = 1;
-        } else if (i == 1) {
-            moment.text = @"天界大乱，九州屠戮，当初被推下地狱的她已经浴火归来 😭😭剑指仙界'你们杀了他，我便覆了你的天，毁了你的界，永世不得超生又如何！'👍👍 ";
-            moment.fileCount = arc4random()%10;
-            moment.praiseNameList = nil;
-        } else if (i == 2) {
-            moment.fileCount = 9;
-        } else {
-            moment.text = @"天界大乱，九州屠戮，当初被推下地狱cheerylau@126.com的她已经浴火归来，😭😭剑指仙界'你们杀了他，我便覆了你的天，毁了你的界，永世不得超生又如何！'👍👍";
-            moment.fileCount = arc4random()%10;
-        }*/
+        [moment setValue:commentList forKey:@"commentList"];
         [self.momentList addObject:moment];
     }
 }
@@ -258,6 +227,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     YXHomeXueJiaWenDaDetailViewController * VC = [[YXHomeXueJiaWenDaDetailViewController alloc]init];
     VC.moment = self.momentList[indexPath.row];
+//    VC.startDic = [NSDictionary dictionaryWithDictionary:self.dataArray[indexPath.row]];
     [self.navigationController pushViewController:VC animated:YES];
 }
 #pragma mark - UITableViewDelegate

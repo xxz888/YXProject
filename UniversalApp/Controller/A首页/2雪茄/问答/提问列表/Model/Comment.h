@@ -21,4 +21,18 @@
 // 关联动态的PK
 @property (nonatomic,assign) int pk;
 
+// id
+@property (nonatomic,copy) NSString * userId;
+
+@property (nonatomic,copy) NSString *userChildName;
+@property (nonatomic,copy) NSString *userChildId;
+@property (nonatomic,copy) NSString * aim_id;
+@property (nonatomic,copy) NSString * aim_name;
+@property (nonatomic,copy) NSString * answerChildId;
+
+@property (nonatomic,strong) NSMutableArray * childArray;
+
+
+
+
 @end

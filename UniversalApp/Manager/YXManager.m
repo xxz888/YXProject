@@ -265,6 +265,33 @@ successBlock(responseObject);\
     } failure:^(NSError *error) { }];
 }
 
+#pragma mark ==========获取回答列表==========
+-(void)requestAnswerListGET:YX_BLOCK{
+    NSString * url = @"/users/answer/";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ==========发布回答==========
+-(void)requestFaBuHuiDaPOST:YX_BLOCK{
+    [HTTP_POST(@"/users/answer/0/0/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+
+#pragma mark ==========获取子回答列表==========
+-(void)requestAnswer_childListGET:YX_BLOCK{
+    NSString * url = @"/users/answer_child/";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ==========发布子回答==========
+-(void)requestFaBuHuiDa_childPOST:YX_BLOCK{
+    [HTTP_POST(@"/users/answer_child/0/0/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

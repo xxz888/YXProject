@@ -82,5 +82,12 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestCigar_cultureGET:YX_BLOCK;
 #pragma mark ==========雪茄配件列表==========
 -(void)requestCigar_accessories_CbrandGET:YX_BLOCK;
-
+#pragma mark ==========获取回答列表==========
+-(void)requestAnswerListGET:YX_BLOCK;
+#pragma mark ==========发布回答==========
+-(void)requestFaBuHuiDaPOST:YX_BLOCK;
+#pragma mark ==========获取子回答列表==========
+-(void)requestAnswer_childListGET:YX_BLOCK;
+#pragma mark ==========发布子回答==========
+-(void)requestFaBuHuiDa_childPOST:YX_BLOCK;
 @end

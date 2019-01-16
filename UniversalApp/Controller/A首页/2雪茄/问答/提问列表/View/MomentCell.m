@@ -203,7 +203,8 @@ CGFloat maxLimitHeight = 0;
     NSInteger count = [moment.commentList count];
     if (count > 0) {
         for (NSInteger i = 0; i < count; i ++) {
-            CommentLabel *label = [[CommentLabel alloc] initWithFrame:CGRectMake(0, top, width, 0)];
+            
+            CommentLabel *label = [[CommentLabel alloc] initWithFrame:CGRectMake(0, top, KScreenWidth - 20, 0)];
             label.comment = [moment.commentList objectAtIndex:i];
             [label setDidClickText:^(Comment *comment) {
                 if ([self.delegate respondsToSelector:@selector(didSelectComment:)]) {
@@ -222,9 +223,9 @@ CGFloat maxLimitHeight = 0;
     }
     // 更新UI
     if (top > 0) {
-        _bgImageView.frame = CGRectMake(_headImageView.left, bottom, width, top + kArrowHeight);
+        _bgImageView.frame = CGRectMake(_headImageView.left, bottom, KScreenWidth - 20, top + kArrowHeight);
         _bgImageView.image = [[UIImage imageNamed:@""] stretchableImageWithLeftCapWidth:40 topCapHeight:30];
-        _commentView.frame = CGRectMake(_headImageView.left, bottom + kArrowHeight, width, top);
+        _commentView.frame = CGRectMake(_headImageView.left, bottom + kArrowHeight, KScreenWidth - 20, top);
         rowHeight = _commentView.bottom + kBlank;
     } else {
         rowHeight = _timeLab.bottom + kBlank;
@@ -300,8 +301,13 @@ CGFloat maxLimitHeight = 0;
     _comment = comment;
     _linkLabel.attributedText = kMLLinkLabelAttributedText(comment);
     CGSize attrStrSize = [_linkLabel preferredSizeWithMaxWidth:kTextWidth];
-    _linkLabel.frame = CGRectMake(5, 3, attrStrSize.width, attrStrSize.height);
-    self.height = attrStrSize.height + 5;
+//    _linkLabel.frame = CGRectMake(5, 3, KScreenWidth - 20, 30);
+    CGSize maximumLabelSize = CGSizeMake(KScreenWidth-20, 9999);
+    CGSize expectSize = [_linkLabel sizeThatFits:maximumLabelSize];//这里会得到一个由label文本长度计算出来的一个宽高的CGSize结构体。
+    //别忘了把frame给回label，如果用xib加了约束的话可以只改一个约束的值
+     _linkLabel.frame = CGRectMake(5, 3, expectSize.width, expectSize.height);
+    self.height = expectSize.height + 5;
+
 }
 
 #pragma mark - MLLinkLabelDelegate
@@ -316,6 +322,9 @@ CGFloat maxLimitHeight = 0;
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     self.backgroundColor = kHLBgColor;
+    if (self.didClickText) {
+        self.didClickText(_comment);
+    }
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

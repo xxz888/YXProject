@@ -11,7 +11,8 @@
 #import <Foundation/Foundation.h>
 
 @interface Moment : NSObject
-
+// id
+@property (nonatomic,copy) NSString * startId;
 // 正文
 @property (nonatomic,copy) NSString *text;
 //头像
