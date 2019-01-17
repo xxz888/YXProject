@@ -9,9 +9,9 @@
 #import "RootViewController.h"
 #import "LoginViewController.h"
 #import <UShareUI/UShareUI.h>
-
-
-@interface RootViewController ()
+#import "PYSearchViewController.h"
+#import "PYTempViewController.h"
+@interface RootViewController ()<PYSearchViewControllerDelegate>
 
 @property (nonatomic,strong) UIImageView* noDataView;
 
@@ -312,4 +312,32 @@
 }
 */
 
+
+#pragma mark ==========  搜索相关 ==========
+-(void)setNavSearchView{
+    UIColor *color =  YXRGBAColor(239, 239, 239);
+    UITextField * searchBar = [[UITextField alloc] init];
+    searchBar.frame = CGRectMake(50, 0, KScreenWidth - 50, 35);
+    searchBar.backgroundColor = color;
+    searchBar.layer.cornerRadius = 10;
+    searchBar.layer.masksToBounds = YES;
+    searchBar.placeholder = @"   🔍 搜索";
+    [searchBar addTarget:self action:@selector(textField1TextChange:) forControlEvents:UIControlEventEditingDidBegin];
+    [self.navigationItem.titleView sizeToFit];
+    self.navigationItem.titleView = searchBar;
+}
+-(void)textField1TextChange:(UITextField *)tf{
+    [self clickSearchBar];
+}
+- (void)clickSearchBar{
+    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"PYExampleSearchPlaceholderText", @"搜索编程语言") didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+        [searchViewController.navigationController pushViewController:[[PYTempViewController alloc] init] animated:YES];
+    }];
+    searchViewController.hotSearchStyle = PYHotSearchStyleColorfulTag;
+    searchViewController.searchHistoryStyle = 1;
+    searchViewController.delegate = self;
+    searchViewController.searchViewControllerShowMode = PYSearchViewControllerShowModePush;
+    [self.navigationController pushViewController:searchViewController animated:YES];
+}
 @end

@@ -37,26 +37,26 @@
     [super viewDidLoad];
     UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
 
-    if (!TuiJianVC) {
-        TuiJianVC = [[YXHomeTuiJianViewController alloc]init];
-    }
+//    if (!TuiJianVC) {
+//        TuiJianVC = [[YXHomeTuiJianViewController alloc]init];
+//    }
     
     
     if (!XueJiaVC) {
         XueJiaVC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaViewController"];
     }
     
-    if (!MeiJiuVC) {
-        MeiJiuVC = [[YXHomeMeiJiuViewController alloc]init];
-    }
+//    if (!MeiJiuVC) {
+//        MeiJiuVC = [[YXHomeMeiJiuViewController alloc]init];
+//    }
     
     if (!GaoErFuVC) {
-        GaoErFuVC = [[YXHomeGaoErFuViewController alloc]init];
+        GaoErFuVC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeGaoErFuViewController"];
     }
 
     
     NSArray* names = @[@"推荐",@"雪茄",@"美酒",@"高尔夫"];
-    NSArray* controllers = @[XueJiaVC,XueJiaVC,XueJiaVC,XueJiaVC];
+    NSArray* controllers = @[XueJiaVC,XueJiaVC,GaoErFuVC,GaoErFuVC];
     
     
     /*
@@ -74,9 +74,9 @@
     [segmentController didMoveToParentViewController:self];
     [self createAutolayout];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    [segmentController scrollToIndex:1 animated:YES];
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//    [segmentController scrollToIndex:1 animated:YES];
+//    });
 }
 - (void)createAutolayout{
     /*

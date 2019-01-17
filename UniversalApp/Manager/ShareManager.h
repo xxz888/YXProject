@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XHStarRateView.h"
+#import "SDCycleScrollView.h"
 
 /**
  分享 相关服务
@@ -29,4 +31,8 @@ SINGLETON_FOR_HEADER(ShareManager)
 +(NSString *)timestampSwitchTime:(NSInteger)timestamp andFormatter:(NSString *)format;
 //关注按钮初始化状态
 +(void)setGuanZhuStatus:(UIButton *)btn status:(BOOL)statusBool;
+
++(XHStarRateView *)fiveStarView:(CGFloat)score view:(UIView *)view;
+//添加轮播图
++(SDCycleScrollView *)setUpSycleScrollView:(NSMutableArray *)imageArray;
 @end

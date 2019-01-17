@@ -82,5 +82,6 @@
 
 //取消网络请求
 - (void)cancelRequest;
-
+#pragma mark ==========  搜索相关 ==========
+-(void)setNavSearchView;
 @end

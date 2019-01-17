@@ -8,7 +8,6 @@
 
 #import "ShareManager.h"
 #import <UShareUI/UShareUI.h>
-
 @implementation ShareManager
 
 SINGLETON_FOR_CLASS(ShareManager);
@@ -182,5 +181,33 @@ SINGLETON_FOR_CLASS(ShareManager);
         [btn setBackgroundColor:YXRGBAColor(255, 51, 51)];
         ViewBorderRadius(btn, 5, 0, KClearColor);
     }
+}
+
+
++(XHStarRateView *)fiveStarView:(CGFloat)score view:(UIView *)view{
+    XHStarRateView *starRateView = [[XHStarRateView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
+    starRateView.isAnimation = YES;
+    starRateView.rateStyle = WholeStar;
+    starRateView.tag = 1;
+    starRateView.currentScore = 5;
+    [view addSubview:starRateView];
+    return starRateView;
+}
+
+//添加轮播图
++(SDCycleScrollView *)setUpSycleScrollView:(NSMutableArray *)imageArray{
+    
+    NSMutableArray * photoArray = [NSMutableArray array];
+    NSMutableArray * titleArray = [NSMutableArray array];
+    
+    SDCycleScrollView *cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, 180) delegate:nil placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    cycleScrollView3.bannerImageViewContentMode =  3;
+    cycleScrollView3.showPageControl = NO;
+    cycleScrollView3.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
+    cycleScrollView3.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
+    cycleScrollView3.autoScrollTimeInterval = 4;
+    cycleScrollView3.titlesGroup = titleArray;
+    cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:imageArray];
+    return cycleScrollView3;
 }
 @end

@@ -90,4 +90,9 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestAnswer_childListGET:YX_BLOCK;
 #pragma mark ==========发布子回答==========
 -(void)requestFaBuHuiDa_childPOST:YX_BLOCK;
+
+#pragma mark ========== 高尔夫品牌 ==========
+-(void)requestGolf_brand:YX_BLOCK;
+#pragma mark ========== 关注/取消关注高尔夫品牌 ==========
+-(void)requestGolf_brand_like:YX_BLOCK;
 @end

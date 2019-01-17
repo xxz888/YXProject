@@ -219,11 +219,11 @@
                                     make.right.left.bottom.mas_equalTo(0);
                                 }];
                             }completion:^(BOOL finished) {
-                                if (finished) {
+//                                if (finished) {
                                     self.currentController = newController;
-                                }else{
-                                    self.currentController = oldController;
-                                }
+//                                }else{
+//                                    self.currentController = oldController;
+//                                }
                             }];
 }
 

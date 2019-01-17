@@ -455,6 +455,15 @@
 		BBE82CFF21E44A7D004E4144 /* ZLPhotoPickerDatas.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82CF921E44A7D004E4144 /* ZLPhotoPickerDatas.m */; };
 		BBE82D0021E44A7D004E4144 /* ZLPhotoPickerGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82CFB21E44A7D004E4144 /* ZLPhotoPickerGroup.m */; };
 		BBE82D0121E44A7D004E4144 /* ZLPhotoAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82CFC21E44A7D004E4144 /* ZLPhotoAssets.m */; };
+		BBECEE9B21F0327A007E90AC /* YXHomeGEFPinPaiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECEE9921F0327A007E90AC /* YXHomeGEFPinPaiViewController.m */; };
+		BBECEE9C21F0327A007E90AC /* YXHomeGEFPinPaiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBECEE9A21F0327A007E90AC /* YXHomeGEFPinPaiViewController.xib */; };
+		BBECEEA021F043DB007E90AC /* YXGEFPinPaiDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECEE9F21F043DB007E90AC /* YXGEFPinPaiDetailTableViewController.m */; };
+		BBECEEAA21F04C8B007E90AC /* YXQCDJCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECEEA821F04C8B007E90AC /* YXQCDJCViewController.m */; };
+		BBECEEAB21F04C8B007E90AC /* YXQCDJCViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBECEEA921F04C8B007E90AC /* YXQCDJCViewController.xib */; };
+		BBECEEAF21F04D4B007E90AC /* YXQCDJCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECEEAD21F04D4B007E90AC /* YXQCDJCTableViewCell.m */; };
+		BBECEEB021F04D4B007E90AC /* YXQCDJCTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBECEEAE21F04D4B007E90AC /* YXQCDJCTableViewCell.xib */; };
+		BBECEEB421F05B32007E90AC /* YXQCDJCHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECEEB321F05B32007E90AC /* YXQCDJCHeaderView.m */; };
+		BBECEEB621F05B3C007E90AC /* YXQCDJCHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBECEEB521F05B3C007E90AC /* YXQCDJCHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1220,6 +1229,20 @@
 		BBE82CFC21E44A7D004E4144 /* ZLPhotoAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoAssets.m; sourceTree = "<group>"; };
 		BBE82CFD21E44A7D004E4144 /* ZLPhotoPickerDatas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerDatas.h; sourceTree = "<group>"; };
 		BBE82CFE21E44A7D004E4144 /* ZLPhotoPickerGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerGroup.h; sourceTree = "<group>"; };
+		BBECEE9821F0327A007E90AC /* YXHomeGEFPinPaiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeGEFPinPaiViewController.h; sourceTree = "<group>"; };
+		BBECEE9921F0327A007E90AC /* YXHomeGEFPinPaiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeGEFPinPaiViewController.m; sourceTree = "<group>"; };
+		BBECEE9A21F0327A007E90AC /* YXHomeGEFPinPaiViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeGEFPinPaiViewController.xib; sourceTree = "<group>"; };
+		BBECEE9E21F043DB007E90AC /* YXGEFPinPaiDetailTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXGEFPinPaiDetailTableViewController.h; sourceTree = "<group>"; };
+		BBECEE9F21F043DB007E90AC /* YXGEFPinPaiDetailTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXGEFPinPaiDetailTableViewController.m; sourceTree = "<group>"; };
+		BBECEEA721F04C8B007E90AC /* YXQCDJCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXQCDJCViewController.h; sourceTree = "<group>"; };
+		BBECEEA821F04C8B007E90AC /* YXQCDJCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXQCDJCViewController.m; sourceTree = "<group>"; };
+		BBECEEA921F04C8B007E90AC /* YXQCDJCViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXQCDJCViewController.xib; sourceTree = "<group>"; };
+		BBECEEAC21F04D4B007E90AC /* YXQCDJCTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXQCDJCTableViewCell.h; sourceTree = "<group>"; };
+		BBECEEAD21F04D4B007E90AC /* YXQCDJCTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXQCDJCTableViewCell.m; sourceTree = "<group>"; };
+		BBECEEAE21F04D4B007E90AC /* YXQCDJCTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXQCDJCTableViewCell.xib; sourceTree = "<group>"; };
+		BBECEEB221F05B32007E90AC /* YXQCDJCHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXQCDJCHeaderView.h; sourceTree = "<group>"; };
+		BBECEEB321F05B32007E90AC /* YXQCDJCHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXQCDJCHeaderView.m; sourceTree = "<group>"; };
+		BBECEEB521F05B3C007E90AC /* YXQCDJCHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXQCDJCHeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2586,6 +2609,8 @@
 			children = (
 				BBA8130121DDEC20001B5EA1 /* YXHomeGaoErFuViewController.h */,
 				BBA8130221DDEC20001B5EA1 /* YXHomeGaoErFuViewController.m */,
+				BBECEEA321F04C3D007E90AC /* 球场及度假村 */,
+				BBECEE9221F030F3007E90AC /* 高尔夫品牌 */,
 			);
 			path = "4高尔夫";
 			sourceTree = "<group>";
@@ -3754,6 +3779,42 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		BBECEE9221F030F3007E90AC /* 高尔夫品牌 */ = {
+			isa = PBXGroup;
+			children = (
+				BBECEE9821F0327A007E90AC /* YXHomeGEFPinPaiViewController.h */,
+				BBECEE9921F0327A007E90AC /* YXHomeGEFPinPaiViewController.m */,
+				BBECEE9A21F0327A007E90AC /* YXHomeGEFPinPaiViewController.xib */,
+				BBECEE9D21F043A7007E90AC /* 高尔夫详情 */,
+			);
+			path = "高尔夫品牌";
+			sourceTree = "<group>";
+		};
+		BBECEE9D21F043A7007E90AC /* 高尔夫详情 */ = {
+			isa = PBXGroup;
+			children = (
+				BBECEE9E21F043DB007E90AC /* YXGEFPinPaiDetailTableViewController.h */,
+				BBECEE9F21F043DB007E90AC /* YXGEFPinPaiDetailTableViewController.m */,
+			);
+			path = "高尔夫详情";
+			sourceTree = "<group>";
+		};
+		BBECEEA321F04C3D007E90AC /* 球场及度假村 */ = {
+			isa = PBXGroup;
+			children = (
+				BBECEEA721F04C8B007E90AC /* YXQCDJCViewController.h */,
+				BBECEEA821F04C8B007E90AC /* YXQCDJCViewController.m */,
+				BBECEEA921F04C8B007E90AC /* YXQCDJCViewController.xib */,
+				BBECEEAC21F04D4B007E90AC /* YXQCDJCTableViewCell.h */,
+				BBECEEAD21F04D4B007E90AC /* YXQCDJCTableViewCell.m */,
+				BBECEEAE21F04D4B007E90AC /* YXQCDJCTableViewCell.xib */,
+				BBECEEB221F05B32007E90AC /* YXQCDJCHeaderView.h */,
+				BBECEEB321F05B32007E90AC /* YXQCDJCHeaderView.m */,
+				BBECEEB521F05B3C007E90AC /* YXQCDJCHeaderView.xib */,
+			);
+			path = "球场及度假村";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3890,6 +3951,7 @@
 				29530FD61F60F1BB00D24E05 /* photo_sample_03.png in Resources */,
 				BBD2C93E21E0F67800350DCD /* UIBarButtonItemArrowLeft@2x.png in Resources */,
 				293D46421ECDBB63007C64A9 /* icon_tabbar_homepage.png in Resources */,
+				BBECEEB021F04D4B007E90AC /* YXQCDJCTableViewCell.xib in Resources */,
 				BBA8130821DDFC81001B5EA1 /* YXHomeXueJiaTableViewCell.xib in Resources */,
 				BBD2C94521E0F67800350DCD /* ImageSelectedSmallOn@3x.png in Resources */,
 				290A97F51F4ABC02006BF882 /* man@2x.png in Resources */,
@@ -3941,6 +4003,7 @@
 				BBD2C92F21E0F67800350DCD /* ImageSelectedOff.png in Resources */,
 				BBD2C94421E0F67800350DCD /* UIBarButtonItemArrowRight@2x.png in Resources */,
 				296DEA7F1F5D536500C6FD00 /* pageControlDot@3x.png in Resources */,
+				BBECEEB621F05B3C007E90AC /* YXQCDJCHeaderView.xib in Resources */,
 				BBCC4AB321E83F9F00493F40 /* YXToolsColorTableViewCell.xib in Resources */,
 				294A680D1ED58F0700AC382A /* LCTabBarBadge@2x.png in Resources */,
 				BBC16284217AD6EA00008907 /* Login.storyboard in Resources */,
@@ -4003,6 +4066,7 @@
 				293D464D1ECDBB63007C64A9 /* icon_tabbar_mine_selected@2x.png in Resources */,
 				293D46531ECDBB63007C64A9 /* icon_tabbar_nearby_selected.png in Resources */,
 				BB6D2A4721EF7D9200F5049F /* YXHomeQuestionDetailHeaderView.xib in Resources */,
+				BBECEEAB21F04C8B007E90AC /* YXQCDJCViewController.xib in Resources */,
 				296F9A2C1F04F39000909CDB /* 1.jpg in Resources */,
 				293D46561ECDBB63007C64A9 /* icon_tabbar_onsite_selected@2x.png in Resources */,
 				BBDA2D1121EB30BF00EDCCFF /* MLEmoji_ExpressionImage.plist in Resources */,
@@ -4010,6 +4074,7 @@
 				293D45A21ECD6422007C64A9 /* LaunchScreen.storyboard in Resources */,
 				293D45A31ECD6422007C64A9 /* Info.plist in Resources */,
 				BBCC4B8C21E894CD00493F40 /* YXHomeXueJiaFootViewController.xib in Resources */,
+				BBECEE9C21F0327A007E90AC /* YXHomeGEFPinPaiViewController.xib in Resources */,
 				293D464F1ECDBB63007C64A9 /* icon_tabbar_misc@2x.png in Resources */,
 				293D464B1ECDBB63007C64A9 /* icon_tabbar_mine@2x.png in Resources */,
 				BBD30CF321E5F7C5000D3244 /* YXHomeLastDetailView.xib in Resources */,
@@ -4138,10 +4203,12 @@
 				BBA812FA21DDEBEC001B5EA1 /* YXHomeTuiJianViewController.m in Sources */,
 				BBCC4B1921E8927700493F40 /* MLLabelUtil.m in Sources */,
 				293D46051ECDAA02007C64A9 /* RootNavigationController.m in Sources */,
+				BBECEEAF21F04D4B007E90AC /* YXQCDJCTableViewCell.m in Sources */,
 				BBA812EA21DDDE47001B5EA1 /* MDMultipleSegmentViewCell.m in Sources */,
 				BBD30CEE21E5F562000D3244 /* YXHomeXueJiaPinPaiLastDetailViewController.m in Sources */,
 				BBA8130321DDEC20001B5EA1 /* YXHomeGaoErFuViewController.m in Sources */,
 				BBA8130B21DDFE4F001B5EA1 /* YXHomeXueJiaHeaderView.m in Sources */,
+				BBECEEAA21F04C8B007E90AC /* YXQCDJCViewController.m in Sources */,
 				29AD6C5B1ED3E28800B0879C /* PPNetworkCache.m in Sources */,
 				290A97DC1F4AB24A006BF882 /* EmitterViewController.m in Sources */,
 				BBA812B021DDABB3001B5EA1 /* YXPublishViewController.m in Sources */,
@@ -4173,6 +4240,7 @@
 				BBA812FD21DDEBFB001B5EA1 /* YXHomeXueJiaViewController.m in Sources */,
 				BBD2C92321E0F67800350DCD /* UIImage+MWPhotoBrowser.m in Sources */,
 				BBDA2D2321EB30BF00EDCCFF /* SDRefreshFooterView.m in Sources */,
+				BBECEE9B21F0327A007E90AC /* YXHomeGEFPinPaiViewController.m in Sources */,
 				BB6D2A0121EDA7F400F5049F /* BKCustomSwitchBtn.m in Sources */,
 				290DE9261ED19B7F00A45FF6 /* AppManager.m in Sources */,
 				BBA812C721DDBF6A001B5EA1 /* UIFactory.m in Sources */,
@@ -4320,6 +4388,7 @@
 				290A98021F4ABC4F006BF882 /* SettingViewController.m in Sources */,
 				BBA812AD21DDAB9D001B5EA1 /* YXFindViewController.m in Sources */,
 				BBA812E621DDDE47001B5EA1 /* WJSliderView.m in Sources */,
+				BBECEEB421F05B32007E90AC /* YXQCDJCHeaderView.m in Sources */,
 				290A97FD1F4ABC12006BF882 /* MineTableViewCell.m in Sources */,
 				296DEA781F5D530E00C6FD00 /* ScrollBannerVC.m in Sources */,
 				2940C5381F0A3EC5008BC29F /* GetWaterFallListAPI.m in Sources */,
@@ -4327,6 +4396,7 @@
 				BBDA2CFE21EB30BF00EDCCFF /* SDBaseNavigationController.m in Sources */,
 				BBD2C92521E0F67800350DCD /* MWPhoto.m in Sources */,
 				29D3C00A1F4D11A200FD3914 /* TagsButton.m in Sources */,
+				BBECEEA021F043DB007E90AC /* YXGEFPinPaiDetailTableViewController.m in Sources */,
 				293D46111ECDAEED007C64A9 /* MineViewController.m in Sources */,
 				BBD2C95621E0F72800350DCD /* DACircularProgressView.m in Sources */,
 				BBE82CF721E445CA004E4144 /* GTMBase64.m in Sources */,

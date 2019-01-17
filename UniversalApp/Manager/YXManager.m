@@ -292,6 +292,22 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) { }];
 }
+
+
+#pragma mark ========== 高尔夫品牌 ==========
+-(void)requestGolf_brand:YX_BLOCK{
+    NSString * url = @"/golf/golf_brand/";
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ========== 关注/取消关注高尔夫品牌 ==========
+-(void)requestGolf_brand_like:YX_BLOCK{
+    NSString * url = @"/golf/golf_brand_like/";
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

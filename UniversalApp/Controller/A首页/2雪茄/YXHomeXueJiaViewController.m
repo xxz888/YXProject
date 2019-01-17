@@ -8,17 +8,9 @@
 //
 
 #import "YXHomeXueJiaViewController.h"
-#import "YXHomeXueJiaTableViewCell.h"
-#import "YXHomeXueJiaHeaderView.h"
-#import "YXHomeXueJiaPinPaiViewController.h"
-#import "YXHomeXueJiaWenHuaViewController.h"
-#import "YXHomeXueJiaToolsViewController.h"
-#import "YXHomeXueJiaQuestionViewController.h"
-#import "YXHomeXueJiaPeiJianViewController.h"
+
 @interface YXHomeXueJiaViewController ()<UITableViewDelegate,UITableViewDataSource,ClickGridView>
-@property(nonatomic,strong)UITableView * bottomTableView;
-@property(nonatomic,strong)YXHomeXueJiaHeaderView * headerView;
-@property(nonatomic,strong)NSMutableArray * informationArray;
+
 @end
 
 @implementation YXHomeXueJiaViewController
@@ -93,7 +85,8 @@
     self.headerView.frame = CGRectMake(0, 0, KScreenWidth, 330);
     self.headerView.delegate = self;
     [self.headerView setUpSycleScrollView:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb4"]];
-
+    self.headerView.titleArray = @[@"雪茄品牌",@"雪茄文化",@"雪茄配件",@"工具",@"问答",@"品鉴足迹"];
+    self.headerView.titleTagArray = @[@"Cigar Brand",@"Culture",@"Accessories",@"Tools",@"Q&A",@"Journey"];
     return self.headerView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -125,8 +118,6 @@
 #pragma mark ========== 点击九宫格 ==========
 -(void)clickGridView:(NSInteger)tag{
     NSLog(@"%lu",tag);
-    
-    
     UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
     RootViewController * VC = nil;
     if (tag == 0) {

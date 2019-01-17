@@ -102,47 +102,23 @@
     searchBar.backgroundColor = color;
     searchBar.layer.cornerRadius = 10;
     searchBar.layer.masksToBounds = YES;
-   
     searchBar.placeholder = @"   🔍 搜索";
-    
-    
     [searchBar addTarget:self action:@selector(textField1TextChange:) forControlEvents:UIControlEventEditingDidBegin];
-    
     [self.navigationItem.titleView sizeToFit];
     self.navigationItem.titleView = searchBar;
-
 }
 -(void)textField1TextChange:(UITextField *)tf{
     [self clickSearchBar];
 }
-
-
-
-- (void)clickSearchBar
-{
-    // 1. Create an Array of popular search
+- (void)clickSearchBar{
     NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
-    // 2. Create a search view controller
     PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"PYExampleSearchPlaceholderText", @"搜索编程语言") didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
-        // Called when search begain.
-        // eg：Push to a temp view controller
         [searchViewController.navigationController pushViewController:[[PYTempViewController alloc] init] animated:YES];
     }];
-    // 3. Set style for popular search and search history
-
-        searchViewController.hotSearchStyle = PYHotSearchStyleColorfulTag;
-        searchViewController.searchHistoryStyle = 1;
-
-    // 4. Set delegate
+    searchViewController.hotSearchStyle = PYHotSearchStyleColorfulTag;
+    searchViewController.searchHistoryStyle = 1;
     searchViewController.delegate = self;
-    // 5. Present(Modal) or push search view controller
-    // Present(Modal)
-    //    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
-    //    [self presentViewController:nav animated:YES completion:nil];
-    // Push
-    // Set mode of show search view controller, default is `PYSearchViewControllerShowModeModal`
     searchViewController.searchViewControllerShowMode = PYSearchViewControllerShowModePush;
-    //    // Push search view controller
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
 @end
