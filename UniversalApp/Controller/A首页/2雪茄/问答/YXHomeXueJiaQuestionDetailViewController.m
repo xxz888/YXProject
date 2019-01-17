@@ -288,7 +288,6 @@ static CGFloat textFieldH = 40;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SDTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:kTimeLineTableViewCellId];
     cell.indexPath = indexPath;
-    cell.ishaveIcon = YES;
     
     
     __weak typeof(self) weakSelf = self;

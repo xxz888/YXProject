@@ -9,7 +9,6 @@
 
 @interface HCInputBar ()<UITextViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 
-@property (strong, nonatomic) UITextView *inputView;
 @property (strong, nonatomic) UICollectionView *expandingView;
 @property (strong, nonatomic) UIButton *keyboardTypeBtn;
 @property (assign, nonatomic) InputBarStyle style;
