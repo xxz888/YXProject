@@ -33,6 +33,6 @@
 @property (nonatomic,strong) NSMutableArray * childArray;
 
 
-
-
+// 关联动态的PK
+@property (nonatomic,assign) BOOL isLastChildBool;
 @end

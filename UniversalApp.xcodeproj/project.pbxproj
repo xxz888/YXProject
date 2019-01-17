@@ -212,6 +212,9 @@
 		BB6D2A3B21EEC63900F5049F /* EmojiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A2C21EEC63900F5049F /* EmojiCell.m */; };
 		BB6D2A3C21EEC63900F5049F /* Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BB6D2A3021EEC63900F5049F /* Resources.bundle */; };
 		BB6D2A3F21EF206A00F5049F /* KeyBoardTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A3E21EF206A00F5049F /* KeyBoardTableView.m */; };
+		BB6D2A4221EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A4121EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.m */; };
+		BB6D2A4521EF7D8400F5049F /* YXHomeQuestionDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A4421EF7D8400F5049F /* YXHomeQuestionDetailHeaderView.m */; };
+		BB6D2A4721EF7D9200F5049F /* YXHomeQuestionDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB6D2A4621EF7D9200F5049F /* YXHomeQuestionDetailHeaderView.xib */; };
 		BB95F63F21E6E0880071A369 /* XHStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB95F63E21E6E0880071A369 /* XHStarRateView.m */; };
 		BB95F64721E715CB0071A369 /* YXHomeLastMyTalkView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB95F64521E715CB0071A369 /* YXHomeLastMyTalkView.m */; };
 		BB95F64921E715D60071A369 /* YXHomeLastMyTalkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB95F64821E715D60071A369 /* YXHomeLastMyTalkView.xib */; };
@@ -798,6 +801,11 @@
 		BB6D2A3021EEC63900F5049F /* Resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resources.bundle; sourceTree = "<group>"; };
 		BB6D2A3D21EF206A00F5049F /* KeyBoardTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyBoardTableView.h; sourceTree = "<group>"; };
 		BB6D2A3E21EF206A00F5049F /* KeyBoardTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyBoardTableView.m; sourceTree = "<group>"; };
+		BB6D2A4021EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaQuestionDetailViewController.h; sourceTree = "<group>"; };
+		BB6D2A4121EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaQuestionDetailViewController.m; sourceTree = "<group>"; };
+		BB6D2A4321EF7D8400F5049F /* YXHomeQuestionDetailHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeQuestionDetailHeaderView.h; sourceTree = "<group>"; };
+		BB6D2A4421EF7D8400F5049F /* YXHomeQuestionDetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeQuestionDetailHeaderView.m; sourceTree = "<group>"; };
+		BB6D2A4621EF7D9200F5049F /* YXHomeQuestionDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeQuestionDetailHeaderView.xib; sourceTree = "<group>"; };
 		BB95F63D21E6E0880071A369 /* XHStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHStarRateView.h; sourceTree = "<group>"; };
 		BB95F63E21E6E0880071A369 /* XHStarRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHStarRateView.m; sourceTree = "<group>"; };
 		BB95F64521E715CB0071A369 /* YXHomeLastMyTalkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeLastMyTalkView.m; sourceTree = "<group>"; };
@@ -2674,6 +2682,8 @@
 				BBCC4AC321E8739800493F40 /* YXHomeXueJiaQuestionViewController.m */,
 				BB6D2A1021EDE6FD00F5049F /* YXHomeXueJiaWenDaDetailViewController.h */,
 				BB6D2A1121EDE6FD00F5049F /* YXHomeXueJiaWenDaDetailViewController.m */,
+				BB6D2A4021EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.h */,
+				BB6D2A4121EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.m */,
 				BBCC4B7821E894CD00493F40 /* 发布提问 */,
 				BBCC4B7C21E894CD00493F40 /* 提问列表 */,
 			);
@@ -2798,6 +2808,9 @@
 				BBCC4B8521E894CD00493F40 /* MMImageListView.m */,
 				BBCC4B8321E894CD00493F40 /* MMImagePreviewView.h */,
 				BBCC4B8B21E894CD00493F40 /* MMOperateMenuView.m */,
+				BB6D2A4321EF7D8400F5049F /* YXHomeQuestionDetailHeaderView.h */,
+				BB6D2A4421EF7D8400F5049F /* YXHomeQuestionDetailHeaderView.m */,
+				BB6D2A4621EF7D9200F5049F /* YXHomeQuestionDetailHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3989,6 +4002,7 @@
 				293D46451ECDBB63007C64A9 /* icon_tabbar_homepage_selected@2x.png in Resources */,
 				293D464D1ECDBB63007C64A9 /* icon_tabbar_mine_selected@2x.png in Resources */,
 				293D46531ECDBB63007C64A9 /* icon_tabbar_nearby_selected.png in Resources */,
+				BB6D2A4721EF7D9200F5049F /* YXHomeQuestionDetailHeaderView.xib in Resources */,
 				296F9A2C1F04F39000909CDB /* 1.jpg in Resources */,
 				293D46561ECDBB63007C64A9 /* icon_tabbar_onsite_selected@2x.png in Resources */,
 				BBDA2D1121EB30BF00EDCCFF /* MLEmoji_ExpressionImage.plist in Resources */,
@@ -4148,6 +4162,7 @@
 				29530FAE1F60F10700D24E05 /* CardView.m in Sources */,
 				290A981E1F4ABEB9006BF882 /* BaseTableViewCell.m in Sources */,
 				293D46011ECDA56A007C64A9 /* MainTabBarController.m in Sources */,
+				BB6D2A4221EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.m in Sources */,
 				BBD2C91D21E0F67800350DCD /* UIViewController+LLExtension.m in Sources */,
 				BBCC4A9C21E83CFE00493F40 /* YXHomeXueJiaToolsViewController.m in Sources */,
 				BBDA2C6721EB308100EDCCFF /* SDTimeLineCell.m in Sources */,
@@ -4174,6 +4189,7 @@
 				290A97DD1F4AB24A006BF882 /* TagsViewController.m in Sources */,
 				296DEA711F5D50D100C6FD00 /* TADotView.m in Sources */,
 				BBD2C92221E0F67800350DCD /* MWZoomingScrollView.m in Sources */,
+				BB6D2A4521EF7D8400F5049F /* YXHomeQuestionDetailHeaderView.m in Sources */,
 				29629EF11F78E669002CFCBD /* XLJSHandler.m in Sources */,
 				29AD6C6B1ED41E2100B0879C /* UserManager.m in Sources */,
 				BBDA2C6821EB308100EDCCFF /* SDTimeLineRefreshHeader.m in Sources */,

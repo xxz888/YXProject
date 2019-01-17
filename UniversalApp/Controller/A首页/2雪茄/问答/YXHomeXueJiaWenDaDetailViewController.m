@@ -15,6 +15,8 @@
     Comment * _childComment;
 }
 @property (nonatomic, strong) KeyBoardTableView *tableView;
+@property (nonatomic, strong) KeyBoardTableView *yxTableView;
+
 @property (nonatomic, strong) UIView *tableHeaderView;
 @property (nonatomic, strong) UIImageView *coverImageView;
 @property (nonatomic, strong) UIImageView *headImageView;
@@ -57,7 +59,8 @@
             comment.pk = 0;
             [_dataArray addObject:comment];
             if ([dic[@"child"] count] > 0) {
-                for (NSDictionary * childDic in dic[@"child"]) {
+                for (NSInteger i = 0 ; i < [dic[@"child"] count] ; i++) {
+                    NSDictionary * childDic =  dic[@"child"][i];
                     Comment *commentChild = [[Comment alloc] init];
                     commentChild.pk = 1;
                     commentChild.aim_id = childDic[@"aim_id"];
@@ -68,6 +71,9 @@
                     commentChild.userId = childDic[@"user_id"];
                     commentChild.text = childDic[@"answer"];
                     commentChild.answerChildId = childDic[@"answer_id"];
+                    if (i+1 == [dic[@"child"] count]) {
+                        commentChild.isLastChildBool = YES;
+                    }
                     [_dataArray addObject:commentChild];
                 }
             }
@@ -76,7 +82,9 @@
         [weakself.tableView reloadData];
     }];
 }
-
+-(void)commonAction{
+    
+}
 #pragma mark ========== 发布回答 ==========
 -(void)requestFaBuHuiDa:(NSMutableDictionary *)dic{
     [dic setValue:self.moment.startId forKey:@"question_id"];
@@ -93,11 +101,35 @@
     }];
 }
 #pragma mark ========== 请求子回答列表 ==========
--(void)requestAnserChildList{
-    NSString * par = [NSString stringWithFormat:@"%@/%@",self.moment.startId,@"1"];
+-(void)requestAnserChildList:(NSString *)str{
+    NSString * par = [NSString stringWithFormat:@"%@/%@",str,@"1"];
+    kWeakSelf(self);
     //获取回答列表
     [YX_MANAGER requestAnswer_childListGET:par success:^(id object) {
+        [_dataArray removeAllObjects];
+                for (NSInteger i = 0 ; i < [object count] ; i++) {
+                    NSDictionary * childDic =  object[i];
+                    Comment *commentChild = [[Comment alloc] init];
+                    commentChild.pk = 1;
+                    commentChild.aim_id = childDic[@"aim_id"];
+                    commentChild.aim_name = childDic[@"aim_name"];
+                    commentChild.userChildId = childDic[@"user_id"];
+                    commentChild.userChildName = childDic[@"user_name"];
+                    commentChild.userName = [NSString stringWithFormat:@"       %@ 回复 %@",childDic[@"user_name"],childDic[@"aim_name"]] ;
+                    commentChild.userId = childDic[@"user_id"];
+                    commentChild.text = childDic[@"answer"];
+                    commentChild.answerChildId = childDic[@"answer_id"];
+                    if (i+1 == [object count]) {
+                        commentChild.isLastChildBool = YES;
+                    }else{
+                        commentChild.isLastChildBool = NO;
+                    }
+                    [_dataArray addObject:commentChild];
+                }
+        [self.moment setValue:_dataArray forKey:@"commentList"];
+        [weakself.tableView reloadData];
 
+   
     }];
 }
 #pragma mark ========== 发布子回答 ==========
@@ -149,8 +181,7 @@
     [self.view addSubview:self.tableView];
 }
 #pragma mark - UITableViewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 
@@ -159,8 +190,7 @@
     return 1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identifier = @"MomentCell";
     MomentCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
@@ -169,8 +199,6 @@
         cell.backgroundColor = [UIColor whiteColor];
     }
     cell.moment =  self.moment;
-    
-    
     cell.delegate = self;
     cell.tag = indexPath.row;
     return cell;
@@ -183,6 +211,10 @@
 }
 
 
+
+- (void)didMoreBtn:(NSInteger)tag{
+    [self requestAnserChildList:intToNSString(tag)];
+}
 
 
 - (void)configKeyboard{
@@ -278,21 +310,11 @@
 - (HCInputBar *)inputBar {
     if (!_inputBar) {
         _inputBar = [[HCInputBar alloc]initWithStyle:DefaultInputBarStyle];
-/*
-        if (_row == 0) {
-            _inputBar = [[HCInputBar alloc]initWithStyle:DefaultInputBarStyle];
-        }else{
-            _inputBar = [[HCInputBar alloc]initWithStyle:ExpandingInputBarStyle];
-            _inputBar.expandingAry = @[[NSNumber numberWithInteger:ImgStyleWithEmoji],[NSNumber numberWithInteger:ImgStyleWithVideo],[NSNumber numberWithInteger:ImgStyleWithPhoto],[NSNumber numberWithInteger:ImgStyleWithCamera],[NSNumber numberWithInteger:ImgStyleWithVoice]];
-        }
- */
         _inputBar.keyboard.showAddBtn = NO;
         [_inputBar.keyboard addBtnClicked:^{
             NSLog(@"我点击了添加按钮");
         }];
-     
-            _inputBar.placeHolder = @"输入评论";
-        
+        _inputBar.placeHolder = @"输入评论";
     }
     return _inputBar;
 }

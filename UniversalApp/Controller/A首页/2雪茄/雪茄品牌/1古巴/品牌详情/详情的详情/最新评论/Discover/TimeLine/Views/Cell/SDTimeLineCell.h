@@ -28,7 +28,16 @@
 
 #import <UIKit/UIKit.h>
 #import "SDTimeLineCellCommentView.h"
+#import "SDTimeLineCellModel.h"
+#import "UIView+SDAutoLayout.h"
 
+
+#import "SDWeiXinPhotoContainerView.h"
+
+#import "SDTimeLineCellOperationMenu.h"
+#import "LEETheme.h"
+#import "XHStarRateView.h"
+#import "MMImageListView.h"
 @protocol SDTimeLineCellDelegate <NSObject>
 
 - (void)didClickLikeButtonInCell:(UITableViewCell *)cell;
@@ -56,5 +65,16 @@
 @property (nonatomic, strong) UIButton * zanButton;
 
 
+@property (nonatomic, strong) UIImageView *iconView;
+@property (nonatomic, strong) UILabel *nameLable;
+@property (nonatomic, strong)  UILabel *contentLabel;
+@property (nonatomic)  SDWeiXinPhotoContainerView *picContainerView;
+@property (nonatomic, strong) UILabel *timeLabel;
+@property (nonatomic, strong)  UIButton *moreButton;
+@property (nonatomic, strong)  UIButton *operationButton;
+@property (nonatomic)  SDTimeLineCellOperationMenu *operationMenu;
+@property (nonatomic, strong)  UIButton * showMoreCommentBtn;
+@property (nonatomic, strong)  UIButton *huiFuButton;
+@property (nonatomic, strong)  UIView * starView;
 
 @end

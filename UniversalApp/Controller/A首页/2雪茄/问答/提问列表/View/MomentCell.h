@@ -48,7 +48,6 @@
 // 代理
 @property (nonatomic, assign) id<MomentCellDelegate> delegate;
 
-
 @end
 
 @protocol MomentCellDelegate <NSObject>
@@ -69,7 +68,8 @@
 - (void)didSelectComment:(Comment *)comment;
 // 点击高亮文字
 - (void)didClickLink:(MLLink *)link linkText:(NSString *)linkText;
-
+// 选择评论
+- (void)didMoreBtn:(NSInteger )tag;
 @end
 
 

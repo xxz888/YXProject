@@ -28,16 +28,7 @@
 
 #import "SDTimeLineCell.h"
 
-#import "SDTimeLineCellModel.h"
-#import "UIView+SDAutoLayout.h"
 
-
-#import "SDWeiXinPhotoContainerView.h"
-
-#import "SDTimeLineCellOperationMenu.h"
-#import "LEETheme.h"
-#import "XHStarRateView.h"
-#import "MMImageListView.h"
 const CGFloat contentLabelFontSize = 15;
 CGFloat maxContentLabelHeight = 0; // 根据具体font而定
 
@@ -50,20 +41,20 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
 
 
 {
-    UIImageView *_iconView;
-    UILabel *_nameLable;
-    UILabel *_contentLabel;
-    SDWeiXinPhotoContainerView *_picContainerView;
-    UILabel *_timeLabel;
-    UIButton *_moreButton;
-    UIButton *_operationButton;
-
-    SDTimeLineCellOperationMenu *_operationMenu;
-    UIButton * _showMoreCommentBtn;
-
-    
-    UIButton *_huiFuButton;
-    UIView * _starView;
+//    UIImageView *_iconView;
+//    UILabel *_nameLable;
+//    UILabel *_contentLabel;
+//    SDWeiXinPhotoContainerView *_picContainerView;
+//    UILabel *_timeLabel;
+//    UIButton *_moreButton;
+//    UIButton *_operationButton;
+//
+//    SDTimeLineCellOperationMenu *_operationMenu;
+//    UIButton * _showMoreCommentBtn;
+//
+//    
+//    UIButton *_huiFuButton;
+//    UIView * _starView;
 
 }
 

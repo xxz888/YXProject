@@ -43,13 +43,13 @@
 
 
 -(void)requestInformation{
-//    [self.informationArray removeAllObjects];
-//    [self.informationArray addObjectsFromArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb5"]];
-//    [self.bottomTableView reloadData];
-//    return;
+    [self.informationArray removeAllObjects];
+    [self.informationArray addObjectsFromArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb5"]];
+    [self.bottomTableView reloadData];
+    return;
     kWeakSelf(self);
     [YX_MANAGER requestGETInformation:@"1" success:^(id object) {
-//        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb5"];
+      [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb5"];
 
         [weakself.informationArray removeAllObjects];
         [weakself.informationArray addObjectsFromArray:object];
@@ -75,7 +75,7 @@
 -(void)createBottomTableView{
 
     if (!self.bottomTableView) {
-        self.bottomTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, self.bootomView.frame.size.height) style:UITableViewStyleGrouped];
+        self.bottomTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, self.bootomView.frame.size.height - 60) style:UITableViewStyleGrouped];
     }
     self.bottomTableView.backgroundColor = KWhiteColor;
     [self.bottomTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaTableViewCell"];

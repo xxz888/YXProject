@@ -219,8 +219,28 @@ CGFloat maxLimitHeight = 0;
             [_commentView addSubview:label];
             // 更新
             top += label.height;
+            
+            
+            
+            if (label.comment.isLastChildBool) {
+                UIButton * showMoreCommentBtn = [UIButton buttonWithType:0];
+                showMoreCommentBtn.frame = CGRectMake(0, top, KScreenWidth - 20, 30);
+                [showMoreCommentBtn setTitle:@"显示更多评论 >>" forState:UIControlStateNormal];
+                [showMoreCommentBtn setTitleColor:KDarkGaryColor forState:UIControlStateNormal];
+                [showMoreCommentBtn addTarget:self action:@selector(showMoreCommentAction:) forControlEvents:UIControlEventTouchUpInside];
+                showMoreCommentBtn.tag = [label.comment.answerChildId integerValue];
+                showMoreCommentBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+                [_commentView addSubview:showMoreCommentBtn];
+                // 更新
+                top += 30;
+            }
+            
+            
         }
     }
+    
+    
+    
     // 更新UI
     if (top > 0) {
         _bgImageView.frame = CGRectMake(_headImageView.left, bottom, KScreenWidth - 20, top + kArrowHeight);
@@ -234,7 +254,11 @@ CGFloat maxLimitHeight = 0;
     // 这样做就是起到缓存行高的作用，省去重复计算!!!
     _moment.rowHeight = rowHeight;
 }
-
+-(void)showMoreCommentAction:(UIButton *)btn{
+    if ( [self.delegate respondsToSelector:@selector(didMoreBtn:)] ) {
+        [self.delegate didMoreBtn:btn.tag];
+    }
+}
 #pragma mark - 点击事件
 // 查看全文/收起
 - (void)fullTextClicked:(UIButton *)sender

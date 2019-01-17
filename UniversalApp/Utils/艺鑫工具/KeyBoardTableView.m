@@ -10,12 +10,12 @@
 #import "MomentCell.h"
 @implementation KeyBoardTableView
 
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-    id view = [super hitTest:point withEvent:event];
-    if (![view isKindOfClass:[UITextField class]] && ![view isKindOfClass:[MLLinkLabel class]]) {
-        [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-        return self;
-    }
-    return view;
-}
+//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+//    id view = [super hitTest:point withEvent:event];
+//    if (![view isKindOfClass:[UITextField class]] && ![view isKindOfClass:[MLLinkLabel class]] && ![view isKindOfClass:[UIButton class]]) {
+//        [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+//        return self;
+//    }
+//    return view;
+//}
 @end

@@ -15,6 +15,8 @@
 #import "PYSearchViewController.h"
 #import "PYTempViewController.h"
 #import "YXHomeXueJiaWenDaDetailViewController.h"
+#import "YXHomeXueJiaQuestionDetailViewController.h"
+
 @interface YXHomeXueJiaQuestionViewController ()<UITableViewDelegate,UITableViewDataSource,MomentCellDelegate>
 @property (nonatomic, strong) NSMutableArray *momentList;
 @property (nonatomic, strong) UITableView *tableView;
@@ -102,11 +104,11 @@
 }
 -(void)requestQuestion{
     
-//    [self.dataArray removeAllObjects];
-//    [self.dataArray addObjectsFromArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb1"]];
-//    [self initTestInfo];
-//    [self.tableView reloadData];
-//    return;
+    [self.dataArray removeAllObjects];
+    [self.dataArray addObjectsFromArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb1"]];
+    [self initTestInfo];
+    [self.tableView reloadData];
+    return;
     
     
     kWeakSelf(self);
@@ -224,11 +226,19 @@
     cell.tag = indexPath.row;
     return cell;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    YXHomeXueJiaWenDaDetailViewController * VC = [[YXHomeXueJiaWenDaDetailViewController alloc]init];
+//    YXHomeXueJiaWenDaDetailViewController * VC = [[YXHomeXueJiaWenDaDetailViewController alloc]init];
+//    VC.moment = self.momentList[indexPath.row];
+//    [self.navigationController pushViewController:VC animated:YES];
+
+    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+    YXHomeXueJiaQuestionDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaQuestionDetailViewController"];
     VC.moment = self.momentList[indexPath.row];
-//    VC.startDic = [NSDictionary dictionaryWithDictionary:self.dataArray[indexPath.row]];
+
     [self.navigationController pushViewController:VC animated:YES];
+
+    
 }
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
