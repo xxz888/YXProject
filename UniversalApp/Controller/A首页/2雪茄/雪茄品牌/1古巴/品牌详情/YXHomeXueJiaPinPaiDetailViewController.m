@@ -121,6 +121,7 @@
     UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
     YXHomeXueJiaPinPaiLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiLastDetailViewController"];
     VC.startDic = [NSDictionary dictionaryWithDictionary:self.dicData[@"data"][indexPath.row]];
+    YX_MANAGER.isHaveIcon = NO;
     [self.navigationController pushViewController:VC animated:YES];
 }
 #pragma mark ========== 关注作者的方法 ==========

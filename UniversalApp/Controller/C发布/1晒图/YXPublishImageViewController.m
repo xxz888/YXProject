@@ -77,8 +77,8 @@ static NSString *secretKey = @"官网获取";
     kWeakSelf(self);
     LLImagePickerView *pickerV = [LLImagePickerView ImagePickerViewWithFrame:CGRectMake(0, 0, KScreenWidth, 0) CountOfRow:3];
     pickerV.type = LLImageTypeAll;
-    pickerV.maxImageSelected = 8;
-    pickerV.allowPickingVideo = YES;
+    pickerV.maxImageSelected = 3;
+    pickerV.allowPickingVideo = NO;
     weakself.yxTableview.tableHeaderView = pickerV;
     [pickerV observeSelectedMediaArray:^(NSArray<LLImagePickerModel *> *list) {
         [_photoImageList removeAllObjects];

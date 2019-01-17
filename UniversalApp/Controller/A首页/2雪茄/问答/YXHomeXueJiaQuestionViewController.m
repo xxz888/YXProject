@@ -235,7 +235,7 @@
     UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
     YXHomeXueJiaQuestionDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaQuestionDetailViewController"];
     VC.moment = self.momentList[indexPath.row];
-
+    YX_MANAGER.isHaveIcon = YES;
     [self.navigationController pushViewController:VC animated:YES];
 
     

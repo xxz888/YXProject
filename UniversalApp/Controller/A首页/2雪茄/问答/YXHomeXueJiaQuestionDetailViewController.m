@@ -43,6 +43,8 @@ static CGFloat textFieldH = 40;
 @property (nonatomic, assign) BOOL isReplayingComment;
 @property (nonatomic, strong) NSIndexPath *currentEditingIndexthPath;
 @property (nonatomic, copy) NSString *commentToUser;
+@property (nonatomic, strong) NSMutableDictionary * pardic;;
+
 @end
 
 @implementation YXHomeXueJiaQuestionDetailViewController
@@ -63,6 +65,7 @@ static CGFloat textFieldH = 40;
     [YX_MANAGER requestAnswerListGET:par success:^(id object) {
         weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
         [weakself refreshTableView];
+        [weakself.inputBar.inputView resignFirstResponder];
     }];
 }
 -(void)commonAction{
@@ -112,6 +115,8 @@ static CGFloat textFieldH = 40;
     _segmentIndex = 0;
     _dataArray = [[NSMutableArray alloc]init];
     _pageArray = [[NSMutableArray alloc]init];
+    
+    _pardic = [[NSMutableDictionary alloc]init];
     [self.yxTableView registerClass:[SDTimeLineCell class] forCellReuseIdentifier:kTimeLineTableViewCellId];
     self.yxTableView.delegate = self;
     self.yxTableView.dataSource = self;
@@ -144,10 +149,43 @@ static CGFloat textFieldH = 40;
          [self.headerView.imageView3 sd_setImageWithURL:[NSURL URLWithString:self.moment.imageListArray[2]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     
     self.yxTableView.tableHeaderView = self.headerView;
-    [self setupTextField];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
     
+    
+    //点击键盘发送按钮，开始发布回答
+    self.inputBar.block = ^(NSString *contents) {
+        [weakself.pardic removeAllObjects];
+        if (weakself.isReplayingComment) {
+            
+            
+            SDTimeLineCellModel *model = weakself.dataArray[weakself.currentEditingIndexthPath.row];
+            SDTimeLineCellCommentItemModel * itemModel;
+            for (SDTimeLineCellCommentItemModel * oldItemModel in model.commentItemsArray) {
+                if ([oldItemModel.firstUserName isEqualToString:weakself.commentToUser]) {
+                    itemModel = oldItemModel;
+                }
+            }
+            int farther_id = 0;
+            if ([itemModel.firstUserName isEqualToString:weakself.commentToUser]) {
+                farther_id = [itemModel.firstUserId intValue];
+            }
+            if ([itemModel.secondUserName isEqualToString:weakself.commentToUser]) {
+                farther_id = [itemModel.secondUserId intValue];
+            }
+            
+            
+            [weakself.pardic setValue:model.id forKey:@"answer_id"];
+            [weakself.pardic setValue:contents forKey:@"answer"];
+            [weakself.pardic setValue:itemModel.firstUserId forKey:@"aim_id"];
+            [weakself.pardic setValue:itemModel.firstUserName  forKey:@"aim_name"];
+  
+            [weakself requestFaBuHuiDaChild:weakself.pardic];
+        }else{
+            [weakself.pardic setValue:contents forKey:@"answer"];
+            [weakself requestFaBuHuiDa:weakself.pardic];
+        }
+
+    };
 }
 
 #pragma mark ========== 请求子回答列表 ==========
@@ -250,7 +288,7 @@ static CGFloat textFieldH = 40;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SDTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:kTimeLineTableViewCellId];
     cell.indexPath = indexPath;
-    
+    cell.ishaveIcon = YES;
     
     
     __weak typeof(self) weakSelf = self;
@@ -262,23 +300,23 @@ static CGFloat textFieldH = 40;
         }];
         
         [cell setDidClickCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow, SDTimeLineCell * cell) {
-            weakSelf.textField.placeholder = [NSString stringWithFormat:@"  回复：%@", commentId];
+            weakSelf.inputBar.placeHolder = [NSString stringWithFormat:@"  回复：%@", commentId];
             weakSelf.currentEditingIndexthPath = cell.indexPath;
-            [weakSelf.textField becomeFirstResponder];
+            [weakSelf.inputBar.inputView becomeFirstResponder];
             weakSelf.isReplayingComment = YES;
-            weakSelf.commentToUser = commentId;
-            [weakSelf adjustTableViewToFitKeyboard];
-            
+            weakSelf.commentToUser = commentId;            
         }];
         
         cell.delegate = self;
     }
     ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
+
     cell.model = self.dataArray[indexPath.row];
     
     cell.iconView.hidden = cell.starView.hidden = cell.moreButton.hidden = cell.zanButton.hidden =
     cell.huiFuButton.hidden = cell.commentView.likeStringLabel.hidden = cell.timeLabel.hidden = YES;
+    cell.iconView.sd_layout.widthIs(0);
     if (cell.model.commentItemsArray.count == 0) {
         cell.showMoreCommentBtn.hidden = YES;
     }
@@ -318,198 +356,21 @@ static CGFloat textFieldH = 40;
         }
     }
 }
-#pragma mark ========== tableview 点击评论按钮 ==========
-- (void)didClickcCommentButtonInCell:(UITableViewCell *)cell{
-    [_textField becomeFirstResponder];
-    _currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
-    SDTimeLineCellModel *model = self.dataArray[_currentEditingIndexthPath.row];
-    self.commentToUser = model.name;
-    [self adjustTableViewToFitKeyboard];
-}
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [_textField becomeFirstResponder];
+   /* [_inputBar.inputView becomeFirstResponder];
     _currentEditingIndexthPath = indexPath;
     SDTimeLineCellModel *model = self.dataArray[_currentEditingIndexthPath.row];
     self.commentToUser = model.name;
-    [self adjustTableViewToFitKeyboard];
+    */
 }
 
 
 
 - (IBAction)startInputTextAction:(id)sender {
-    [_textField becomeFirstResponder];
-//    _currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
-//    SDTimeLineCellModel *model = self.dataArray[_currentEditingIndexthPath.row];
-//    self.commentToUser = model.name;
-    [self adjustTableViewToFitKeyboard];
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#pragma mark ========== 以下为所有自适应和不常用的方法 ==========
-- (void)adjustTableViewToFitKeyboard{
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    UITableViewCell *cell = [self.yxTableView cellForRowAtIndexPath:_currentEditingIndexthPath];
-    CGRect rect = [cell.superview convertRect:cell.frame toView:window];
-    [self adjustTableViewToFitKeyboardWithRect:rect];
-}
-
-- (void)adjustTableViewToFitKeyboardWithRect:(CGRect)rect
-{
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    CGFloat delta = CGRectGetMaxY(rect) - (window.bounds.size.height - _totalKeybordHeight);
-    
-    CGPoint offset = self.yxTableView.contentOffset;
-    offset.y += delta;
-    if (offset.y < 0) {
-        offset.y = 0;
-    }
-    
-    [self.yxTableView setContentOffset:offset animated:YES];
-}
-
-#pragma mark - UITextFieldDelegate
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    if (textField.text.length) {
-        [_textField resignFirstResponder];
-        SDTimeLineCellModel *model = self.dataArray[_currentEditingIndexthPath.row];
-        SDTimeLineCellCommentItemModel * itemModel;
-        if (self.isReplayingComment) {
-            for (SDTimeLineCellCommentItemModel * oldItemModel in model.commentItemsArray) {
-                if ([oldItemModel.firstUserName isEqualToString:self.commentToUser]) {
-                    itemModel = oldItemModel;
-                }
-            }
-            int farther_id = 0;
-            if ([itemModel.firstUserName isEqualToString:self.commentToUser]) {
-                farther_id = [itemModel.firstUserId intValue];
-            }
-            if ([itemModel.secondUserName isEqualToString:self.commentToUser]) {
-                farther_id = [itemModel.secondUserId intValue];
-            }
-      
-            self.isReplayingComment = NO;
-        }else{
-    
-        }
-        _textField.text = @"";
-        _textField.placeholder = nil;
-        
-        return YES;
-    }
-    return NO;
-}
-
-
-
-- (void)keyboardNotification:(NSNotification *)notification
-{
-    NSDictionary *dict = notification.userInfo;
-    CGRect rect = [dict[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
-    
-    
-    
-    CGRect textFieldRect = CGRectMake(0, rect.origin.y - textFieldH, rect.size.width, textFieldH);
-    if (rect.origin.y == [UIScreen mainScreen].bounds.size.height) {
-        textFieldRect = rect;
-    }
-    
-    [UIView animateWithDuration:0.25 animations:^{
-        _textField.frame = textFieldRect;
-    }];
-    
-    CGFloat h = rect.size.height + textFieldH;
-    if (_totalKeybordHeight != h) {
-        _totalKeybordHeight = h;
-        [self adjustTableViewToFitKeyboard];
-    }
-}
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [_textField resignFirstResponder];
-}
-
-- (void)dealloc
-{
-    [_refreshHeader removeFromSuperview];
-    [_refreshFooter removeFromSuperview];
-    
-    [_textField removeFromSuperview];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)setupTextField
-{
-    _textField = [UITextField new];
-    _textField.returnKeyType = UIReturnKeyDone;
-    _textField.delegate = self;
-    _textField.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
-    _textField.layer.borderWidth = 1;
-    
-    //为textfield添加背景颜色 字体颜色的设置 还有block设置 , 在block中改变它的键盘样式 (当然背景颜色和字体颜色也可以直接在block中写)
-    _textField.backgroundColor = [UIColor whiteColor];
-    _textField.textColor = [UIColor blackColor];
-    _textField.keyboardAppearance = UIKeyboardAppearanceDefault;
-    if ([_textField isFirstResponder]) {
-        [_textField resignFirstResponder];
-        [_textField becomeFirstResponder];
-    }
-    _textField.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height, self.view.width_sd, textFieldH);
-    [[UIApplication sharedApplication].keyWindow addSubview:_textField];
-    
-    [_textField becomeFirstResponder];
-    [_textField resignFirstResponder];
-}
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-}
-
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {

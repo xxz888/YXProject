@@ -52,7 +52,7 @@
             view = [[UIApplication sharedApplication].windows lastObject];
         }
         
-        if ([response isEqualToString:@"1"]) {
+        if ([response integerValue] >= 1) {
             sucess(response);
         }else{
             NSString * str = [NSString stringWithFormat:@"请求接口为:%@\n返回数据为:%@",pi,response];

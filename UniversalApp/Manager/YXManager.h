@@ -19,7 +19,7 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 @property(nonatomic,strong)NSMutableArray * advertisingArray;
 @property(nonatomic,strong)NSMutableArray * informationArray;
 
-
+@property(nonatomic)BOOL isHaveIcon;
 #pragma mark ========== GET请求模版 ==========
 -(void)requestGET:AD_BLOCK paramters:(NSString *)paramters;
 #pragma mark ========== POST请求模版 ==========

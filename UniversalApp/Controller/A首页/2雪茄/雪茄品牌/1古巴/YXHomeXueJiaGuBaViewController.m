@@ -119,7 +119,7 @@
     [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:self.dataDic[@"brand_list"][indexPath.section][@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     [cell.cellImageView setContentMode:UIViewContentModeScaleAspectFit];
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
-    cell.cellLbl.text = self.dataDic[@"brand_list"][indexPath.section][@"cigar_brand"];
+    cell.cellLbl.text = self.dataArray[indexPath.section][indexPath.row][@"cigar_brand"];
     
     return cell;
 }

@@ -69,7 +69,7 @@
      */
     ZXSegmentController* segmentController = [[ZXSegmentController alloc] initWithControllers:controllers
                                                                                withTitleNames:names
-                                                                             withDefaultIndex:1
+                                                                             withDefaultIndex:0
                                                                                withTitleColor:[UIColor grayColor]
                                                                        withTitleSelectedColor:YXRGBAColor(88, 88, 88)
                                                                               withSliderColor:YXRGBAColor(88, 88, 88)];

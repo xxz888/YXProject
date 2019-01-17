@@ -26,6 +26,7 @@ typedef void(^InputViewContents)(NSString *contents);
 #pragma mark - -----Properties-----
 @property (strong, nonatomic) HCEmojiKeyboard *keyboard;
 @property (strong, nonatomic) InputViewContents block;
+@property (strong, nonatomic) UITextView *inputView;
 
 /**
  *textView的背景文字，不设置则默认不存在

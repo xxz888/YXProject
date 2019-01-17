@@ -59,15 +59,10 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
 }
 
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        
         [self setup];
-        
-        //设置主题
         [self configTheme];
-        
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
@@ -173,7 +168,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     .heightIs(40);
     
     _nameLable.sd_layout
-    .leftSpaceToView(_iconView, margin)
+    .leftSpaceToView( YX_MANAGER.isHaveIcon ? self.contentView : _iconView, margin)
     .topEqualToView(_iconView)
     .heightIs(18);
     [_nameLable setSingleLineAutoResizeWithMaxWidth:200];
@@ -307,7 +302,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
         picContainerTopMargin = 10;
     }
     _picContainerView.sd_layout.topSpaceToView(_moreButton, picContainerTopMargin);
-    
+   
     UIView *bottomView;
     
     if (!model.commentItemsArray.count && !model.likeItemsArray.count) {
@@ -315,7 +310,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     } else {
         bottomView = _commentView;
     }
-    
+
     [self setupAutoHeightWithBottomView:bottomView bottomMargin:15];
     
     _timeLabel.text = [ShareManager timestampSwitchTime:model.commontTime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
