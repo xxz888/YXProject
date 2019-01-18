@@ -7,8 +7,8 @@
 //
 
 #import "RootViewController.h"
-
-@interface YXHomeViewController : UIViewController
+@interface YXHomeViewController : RootViewController
 @property (weak, nonatomic) IBOutlet UIView *mainView;
+
 
 @end

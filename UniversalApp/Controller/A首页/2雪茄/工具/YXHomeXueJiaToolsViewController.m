@@ -18,7 +18,6 @@
     YXXingZhuangViewController * VC2;
     YXHomeChiCunViewController * VC3;
 }
-@property (nonatomic,weak) ZXSegmentController* segmentController;
 
 @end
 
@@ -55,7 +54,7 @@
                                                                                withTitleColor:YXRGBAColor(153, 153, 153)
                                                                        withTitleSelectedColor:YXRGBAColor(161, 120, 58)
                                                                               withSliderColor:YXRGBAColor(161, 120, 58)];
-    [self addChildViewController:(_segmentController = segmentController)];
+    [self addChildViewController:(self.segmentController = segmentController)];
     [self.view addSubview:segmentController.view];
     [segmentController didMoveToParentViewController:self];
     [self createAutolayout];
@@ -68,7 +67,7 @@
     /*
      高度自由化的布局，可以根据需求，把segmentController布局成你需要的样子.(面对不同的场景，设置不同的top距离)
      */
-    [_segmentController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.segmentController.view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(64);
         make.left.right.bottom.mas_equalTo(0);
     }];

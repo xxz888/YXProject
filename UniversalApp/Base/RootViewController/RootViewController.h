@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <MJRefresh.h>
 #import "UIViewController+AlertViewAndActionSheet.h"
+#import <Masonry/Masonry.h>
+#import <ZXSegmentController/ZXSegmentController.h>
+
+typedef void (^ListenChangeIndexBlock)(NSInteger);
+
 /**
  VC 基类
  */
@@ -19,6 +24,7 @@
  */
 @property (nonatomic, assign) UIStatusBarStyle StatusBarStyle;
 
+@property (nonatomic,copy) ListenChangeIndexBlock getIndex;
 
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) UICollectionView * collectionView;
@@ -84,4 +90,7 @@
 - (void)cancelRequest;
 #pragma mark ==========  搜索相关 ==========
 -(void)setNavSearchView;
+@property (nonatomic,weak) ZXSegmentController* segmentController;
+-(void)setSegmentControllersArray:(NSArray *)controllers title:(NSArray *)titlesArray defaultIndex:(NSInteger)index top:(CGFloat)top;
+
 @end

@@ -2647,7 +2647,6 @@
 				BBD2C8B921E0F67700350DCD /* MWPhotoBrowser */,
 				BBD2C85E21E0F67600350DCD /* TZImagePickerController */,
 				BBD2C83421E0F44A00350DCD /* BFKit */,
-				BBD2C81721E0F44A00350DCD /* DVDishPieHeader */,
 				BBD2C81121E0F44A00350DCD /* DVLineChartView */,
 				BBD2C80F21E0F44900350DCD /* UIButton+CountDown.h */,
 				BBD2C81021E0F44900350DCD /* UIButton+CountDown.m */,
@@ -2892,13 +2891,6 @@
 				BBD2C81621E0F44A00350DCD /* VTingTimeView.m */,
 			);
 			path = DVLineChartView;
-			sourceTree = "<group>";
-		};
-		BBD2C81721E0F44A00350DCD /* DVDishPieHeader */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DVDishPieHeader;
 			sourceTree = "<group>";
 		};
 		BBD2C83421E0F44A00350DCD /* BFKit */ = {

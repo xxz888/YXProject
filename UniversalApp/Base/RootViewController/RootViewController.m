@@ -38,6 +38,8 @@
     [[UINavigationBar appearance] setTintColor:KBlackColor];
 
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    self.segmentController = (ZXSegmentController *)self.parentViewController;
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -339,5 +341,27 @@
     searchViewController.delegate = self;
     searchViewController.searchViewControllerShowMode = PYSearchViewControllerShowModePush;
     [self.navigationController pushViewController:searchViewController animated:YES];
+}
+-(void)setSegmentControllersArray:(NSArray *)controllers title:(NSArray *)titlesArray defaultIndex:(NSInteger)index top:(CGFloat)top{
+    ZXSegmentController* segmentController = [[ZXSegmentController alloc] initWithControllers:controllers
+                                                                               withTitleNames:titlesArray
+                                                                             withDefaultIndex:index
+                                                                               withTitleColor:[UIColor grayColor]
+                                                                       withTitleSelectedColor:YXRGBAColor(88, 88, 88)
+                                                                              withSliderColor:YXRGBAColor(88, 88, 88)];
+    kWeakSelf(self);
+    segmentController.getIndex = ^(NSInteger index) {
+        weakself.getIndex(index);
+    };
+    [self addChildViewController:(self.segmentController = segmentController)];
+    [self.view addSubview:segmentController.view];
+    [segmentController didMoveToParentViewController:self];
+    [self createAutolayout:top];
+}
+- (void)createAutolayout:(CGFloat)top{
+    [self.segmentController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(top);
+        make.left.right.bottom.mas_equalTo(0);
+    }];
 }
 @end

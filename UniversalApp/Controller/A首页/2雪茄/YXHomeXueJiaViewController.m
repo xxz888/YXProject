@@ -8,6 +8,7 @@
 //
 
 #import "YXHomeXueJiaViewController.h"
+#import <ZXSegmentController/ZXSegmentController.h>
 
 @interface YXHomeXueJiaViewController ()<UITableViewDelegate,UITableViewDataSource,ClickGridView>
 
@@ -16,24 +17,25 @@
 @implementation YXHomeXueJiaViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self getSegmentIndex];
     // Do any additional setup after loading the view.
     self.informationArray = [NSMutableArray array];
+    
     //tableview列表
     [self createBottomTableView];
     //顶部广告请求
      [self requestAdvertising];
     //tableview请求
     [self requestInformation];
+    
 }
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
-
-
+-(void)getSegmentIndex{
+    ZXSegmentController * segmentController = (ZXSegmentController *)self.parentViewController;
+    segmentController.getIndex = ^(NSInteger index) {
+        
+    };
 }
-
-
 -(void)requestInformation{
     [self.informationArray removeAllObjects];
     [self.informationArray addObjectsFromArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb5"]];
@@ -67,7 +69,7 @@
 -(void)createBottomTableView{
 
     if (!self.bottomTableView) {
-        self.bottomTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, self.bootomView.frame.size.height - 60) style:UITableViewStyleGrouped];
+        self.bottomTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, self.bootomView.frame.size.height - 60 - 64) style:UITableViewStyleGrouped];
     }
     self.bottomTableView.backgroundColor = KWhiteColor;
     [self.bottomTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaTableViewCell"];
@@ -143,9 +145,5 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     return [dateFormatter stringFromDate:date];
-}
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 @end

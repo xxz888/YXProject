@@ -26,15 +26,6 @@
     //tableview请求
     [self requestInformation];
 }
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
-    
-    
-}
-
-
 -(void)requestInformation{
     [self.informationArray removeAllObjects];
     [self.informationArray addObjectsFromArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb5"]];
@@ -144,17 +135,5 @@
     dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     return [dateFormatter stringFromDate:date];
 }
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-}
-
-
-
-
-
-
-
-
 
 @end

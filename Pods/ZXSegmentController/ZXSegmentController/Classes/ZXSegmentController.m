@@ -50,6 +50,9 @@
                                                               withTitleSelectedColor:self.titleSelectedColor
                                                                      withSliderColor:self.sliderColor
                                                                            withBlock:^(NSUInteger index) {
+                                                                               if (self.getIndex) {
+                                                                                   self.getIndex(index);
+                                                                               }
             //切换控制器
             UIViewController* newController = (UIViewController*)self.controllers[index];
             [self replaceController:self.currentController newController:newController];
@@ -219,11 +222,11 @@
                                     make.right.left.bottom.mas_equalTo(0);
                                 }];
                             }completion:^(BOOL finished) {
-//                                if (finished) {
+                                if (finished) {
                                     self.currentController = newController;
-//                                }else{
-//                                    self.currentController = oldController;
-//                                }
+                                }else{
+                                    self.currentController = oldController;
+                                }
                             }];
 }
 
