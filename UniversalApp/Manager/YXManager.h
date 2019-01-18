@@ -95,4 +95,8 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestGolf_brand:YX_BLOCK;
 #pragma mark ========== 关注/取消关注高尔夫品牌 ==========
 -(void)requestGolf_brand_like:YX_BLOCK;
+#pragma mark ==========获取高尔夫产品列表==========
+-(void)requestGolf_productPOST:YX_BLOCK;
+#pragma mark ========== 收藏/取消收藏高尔产品 ==========
+-(void)requestGolf_product_collect:YX_BLOCK;
 @end

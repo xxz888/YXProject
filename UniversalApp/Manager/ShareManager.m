@@ -169,7 +169,6 @@ SINGLETON_FOR_CLASS(ShareManager);
 +(void)setGuanZhuStatus:(UIButton *)btn status:(BOOL)statusBool{
     UIColor * color1 = [UIColor darkGrayColor];
      if (statusBool) {
-        
         [btn setTitle:@"关注" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor darkGrayColor] forState:0];
         [btn setBackgroundColor:KWhiteColor];

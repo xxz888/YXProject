@@ -464,6 +464,10 @@
 		BBECEEB021F04D4B007E90AC /* YXQCDJCTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBECEEAE21F04D4B007E90AC /* YXQCDJCTableViewCell.xib */; };
 		BBECEEB421F05B32007E90AC /* YXQCDJCHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECEEB321F05B32007E90AC /* YXQCDJCHeaderView.m */; };
 		BBECEEB621F05B3C007E90AC /* YXQCDJCHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBECEEB521F05B3C007E90AC /* YXQCDJCHeaderView.xib */; };
+		BBECEEFD21F183FB007E90AC /* YXGEPPinPaiDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECEEFC21F183FB007E90AC /* YXGEPPinPaiDetailHeaderView.m */; };
+		BBECEEFF21F18404007E90AC /* YXGEPPinPaiDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBECEEFE21F18404007E90AC /* YXGEPPinPaiDetailHeaderView.xib */; };
+		BBECEF0621F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECEF0421F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.m */; };
+		BBECEF0721F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBECEF0521F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1243,6 +1247,12 @@
 		BBECEEB221F05B32007E90AC /* YXQCDJCHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXQCDJCHeaderView.h; sourceTree = "<group>"; };
 		BBECEEB321F05B32007E90AC /* YXQCDJCHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXQCDJCHeaderView.m; sourceTree = "<group>"; };
 		BBECEEB521F05B3C007E90AC /* YXQCDJCHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXQCDJCHeaderView.xib; sourceTree = "<group>"; };
+		BBECEEFB21F183FB007E90AC /* YXGEPPinPaiDetailHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXGEPPinPaiDetailHeaderView.h; sourceTree = "<group>"; };
+		BBECEEFC21F183FB007E90AC /* YXGEPPinPaiDetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXGEPPinPaiDetailHeaderView.m; sourceTree = "<group>"; };
+		BBECEEFE21F18404007E90AC /* YXGEPPinPaiDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXGEPPinPaiDetailHeaderView.xib; sourceTree = "<group>"; };
+		BBECEF0321F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXGEFPinPaiDetailTableViewCell.h; sourceTree = "<group>"; };
+		BBECEF0421F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXGEFPinPaiDetailTableViewCell.m; sourceTree = "<group>"; };
+		BBECEF0521F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXGEFPinPaiDetailTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3787,6 +3797,12 @@
 			children = (
 				BBECEE9E21F043DB007E90AC /* YXGEFPinPaiDetailTableViewController.h */,
 				BBECEE9F21F043DB007E90AC /* YXGEFPinPaiDetailTableViewController.m */,
+				BBECEEFB21F183FB007E90AC /* YXGEPPinPaiDetailHeaderView.h */,
+				BBECEEFC21F183FB007E90AC /* YXGEPPinPaiDetailHeaderView.m */,
+				BBECEEFE21F18404007E90AC /* YXGEPPinPaiDetailHeaderView.xib */,
+				BBECEF0321F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.h */,
+				BBECEF0421F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.m */,
+				BBECEF0521F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.xib */,
 			);
 			path = "高尔夫详情";
 			sourceTree = "<group>";
@@ -3952,6 +3968,7 @@
 				BBD2C92A21E0F67800350DCD /* UIBarButtonItemGrid@3x.png in Resources */,
 				BBA8129621DDA9A5001B5EA1 /* YXHome.storyboard in Resources */,
 				BBD2C94321E0F67800350DCD /* PlayButtonOverlayLarge@3x.png in Resources */,
+				BBECEEFF21F18404007E90AC /* YXGEPPinPaiDetailHeaderView.xib in Resources */,
 				29530FD41F60F1BB00D24E05 /* photo_sample_01.png in Resources */,
 				29629EEA1F78E49D002CFCBD /* back_icon@3x.png in Resources */,
 				BBD2C94921E0F67800350DCD /* ImageSelectedSmallOn@2x.png in Resources */,
@@ -4073,6 +4090,7 @@
 				BBA8130D21DDFE64001B5EA1 /* YXHomeXueJiaHeaderView.xib in Resources */,
 				2996102B1ED84B5100BCED2A /* UMSocialSDKResources.bundle in Resources */,
 				BBD2C93421E0F67800350DCD /* PlayButtonOverlayLargeTap.png in Resources */,
+				BBECEF0721F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.xib in Resources */,
 				29629EE91F78E49B002CFCBD /* back_icon@2x.png in Resources */,
 				29530FD71F60F1BB00D24E05 /* photo_sample_04.png in Resources */,
 				BBD2C9A221E2F4E800350DCD /* YXHomeXueJiaPinPaiTableViewCell.xib in Resources */,
@@ -4172,6 +4190,7 @@
 				BBCC4AB821E86B6500493F40 /* YXHomeXueJiaFootViewController.m in Sources */,
 				29CF332A1F14B5CC00DB7507 /* MakeFriendsLogic.m in Sources */,
 				BBDA2C6221EB308100EDCCFF /* SDTimeLineCellModel.m in Sources */,
+				BBECEF0621F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.m in Sources */,
 				BB5DC69B2189CA38003F1998 /* SELUpdateAlert.m in Sources */,
 				BB6D2A3A21EEC63900F5049F /* SinglePageEmojiCell.m in Sources */,
 				BBDA2D2221EB30BF00EDCCFF /* UIView+SDExtension.m in Sources */,
@@ -4291,6 +4310,7 @@
 				BBA812C621DDBF6A001B5EA1 /* UIView+TBFrame.m in Sources */,
 				29CD2C6E1F30229B00A0F5DC /* CellModel.m in Sources */,
 				2924783E1ED6857300BB097A /* AppDelegate+PushService.m in Sources */,
+				BBECEEFD21F183FB007E90AC /* YXGEPPinPaiDetailHeaderView.m in Sources */,
 				BBDA2D0B21EB30BF00EDCCFF /* LEETheme.m in Sources */,
 				BB6D2A3521EEC63900F5049F /* UIColor+MyColor.m in Sources */,
 				BBD2C91B21E0F67800350DCD /* UIImageView+LLExtension.m in Sources */,

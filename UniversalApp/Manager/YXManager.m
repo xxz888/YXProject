@@ -308,6 +308,21 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
+
+#pragma mark ==========获取高尔夫产品列表==========
+-(void)requestGolf_productPOST:YX_BLOCK{
+    [HTTP_POST(@"/golf/golf_product/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+#pragma mark ========== 收藏/取消收藏高尔产品 ==========
+-(void)requestGolf_product_collect:YX_BLOCK{
+    NSString * url = @"/golf/golf_product_collect/";
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

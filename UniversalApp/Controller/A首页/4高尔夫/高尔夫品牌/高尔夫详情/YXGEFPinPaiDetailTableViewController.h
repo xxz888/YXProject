@@ -10,17 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YXGEFPinPaiDetailTableViewController : UITableViewController
+@interface YXGEFPinPaiDetailTableViewController : RootViewController
 @property(nonatomic,strong)NSMutableDictionary * dicData;
 @property(nonatomic,strong)NSMutableDictionary * dicStartData;
 
-@property (weak, nonatomic) IBOutlet UIImageView *section1ImageView;
-@property (weak, nonatomic) IBOutlet UILabel *section1TitleLbl;
-@property (weak, nonatomic) IBOutlet UILabel *section1countLbl;
-@property (weak, nonatomic) IBOutlet UIButton *section1GuanZhuBtn;
-- (IBAction)section1GuanZhuAction:(id)sender;
-@property (weak, nonatomic) IBOutlet UITextView *section1TextView;
 
+@property (weak, nonatomic) IBOutlet UITableView *yxTableView;
 
 @end
 

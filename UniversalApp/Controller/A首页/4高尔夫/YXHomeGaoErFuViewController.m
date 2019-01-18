@@ -22,9 +22,9 @@
     //tableview列表
     [self createBottomTableView];
     //顶部广告请求
-    [self requestAdvertising];
+    //[self requestAdvertising];
     //tableview请求
-    [self requestInformation];
+    //[self requestInformation];
 }
 -(void)requestInformation{
     [self.informationArray removeAllObjects];
@@ -42,8 +42,6 @@
     
 }
 -(void)requestAdvertising{
-    //    [self.headerView setUpSycleScrollView:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb4"]];
-    //    return;
     kWeakSelf(self);
     [YX_MANAGER requestGETAdvertising:@"1" success:^(id object) {
         [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb4"];

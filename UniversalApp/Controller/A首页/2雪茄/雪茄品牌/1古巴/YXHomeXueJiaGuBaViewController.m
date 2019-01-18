@@ -22,13 +22,13 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self requestCigar_brand];
 }
 -(void)viewDidLoad{
     [super viewDidLoad];
     self.indexArray = [[NSMutableArray alloc]init];
     self.dataArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaPinPaiTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaPinPaiTableViewCell"];
-    kWeakSelf(self);
 
     
     
@@ -42,21 +42,19 @@
 //    [self.yxTableView reloadData];
 //    return;
     
-    
+
+}
+-(void)requestCigar_brand{
+    kWeakSelf(self);
     [YX_MANAGER requestCigar_brand:@"1" success:^(id object) {
         [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb6"];
-
         weakself.dataDic = [[NSMutableDictionary alloc]initWithDictionary:object];
         weakself.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:weakself.dataDic[@"brand_list"]]];
-
-//        [weakself userSorting:[NSMutableArray arrayWithArray:weakself.dataDic[@"hot_brand_list"]]];
         [weakself createMiddleCollection];
-
         [weakself.yxTableView reloadData];
         
     }];
 }
-
 
 //九宫格
 - (void)createMiddleCollection{

@@ -173,8 +173,7 @@
     
     [YX_MANAGER requestMy_concern_cigarPOST:@{@"cigar_brand":self.title,@"photo":cellData[@"photo"]} success:^(id object) {
         [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb10"];
-
-        BOOL isGuanZhu = [weakself.section1GuanZhuBtn.titleLabel.text isEqualToString:@"关注"];
+        BOOL isGuanZhu = [weakself.dicData[@"is_concern"] integerValue] == 1;
         [ShareManager setGuanZhuStatus:weakself.section1GuanZhuBtn status:!isGuanZhu];
 
     }];

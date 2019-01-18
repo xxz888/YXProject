@@ -30,27 +30,20 @@
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaPinPaiTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaPinPaiTableViewCell"];
     kWeakSelf(self);
     
-    
-    
-    
-    //    self.dataDic = [[NSMutableDictionary alloc]initWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb6"]];
-    //    self.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:weakself.dataDic[@"brand_list"]]];
-    
-    //        [weakself userSorting:[NSMutableArray arrayWithArray:weakself.dataDic[@"hot_brand_list"]]];
-    //    [self createMiddleCollection];
-    //
-    //    [self.yxTableView reloadData];
-    //    return;
-    
+    id object = [[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb6"];
+    [weakself.dataArrayTag removeAllObjects];
+    [weakself.dataArrayTag addObjectsFromArray:object];
+    weakself.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:object]];
+    [weakself createMiddleCollection];
+    [weakself.yxTableView reloadData];
+    return;
     
     [YX_MANAGER requestGolf_brand:@"2" success:^(id object) {
         [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb6"];
         [weakself.dataArrayTag removeAllObjects];
         [weakself.dataArrayTag addObjectsFromArray:object];
-//        weakself.dataDic = [[NSMutableDictionary alloc]initWithDictionary:object];
         weakself.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:object]];
         [weakself createMiddleCollection];
-        
         [weakself.yxTableView reloadData];
         
     }];
@@ -86,10 +79,7 @@
         //view添加点击事件
         UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
         [imageView addGestureRecognizer:tapGesturRecognizer];
-        
     }
-    
-    
 }
 
 //返回右侧索引标题数组
@@ -128,47 +118,12 @@
     YXGEFPinPaiDetailTableViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXGEFPinPaiDetailTableViewController"];
     VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[indexPath.section][indexPath.row]];
     [self.navigationController pushViewController:VC animated:YES];
-    
-    YXHomeXueJiaPinPaiTableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-//    [self requestCigar_brand_details:cell.cellLbl.text indexPath:indexPath];
 }
 -(void)tapAction:(id)sender{
     UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;
     UIView *views = (UIView*) tap.view;
     NSUInteger tag = views.tag;
-    
 }
-
--(void)requestCigar_brand_details:(NSString *)cigar_brand indexPath:(NSIndexPath *)indexPath{
-    
-    
-        UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-        YXGEFPinPaiDetailTableViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXGEFPinPaiDetailTableViewController"];
-//        VC.dicData = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb7"]];
-//        VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:self.dataDic[@"brand_list"][indexPath.section]];
-        [self.navigationController pushViewController:VC animated:YES];
-        return;
-    kWeakSelf(self);
-    [YX_MANAGER requestCigar_brand_detailsPOST:@{@"cigar_brand":cigar_brand} success:^(id object) {
-        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb7"];
-        
-        UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-        YXHomeXueJiaPinPaiDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiDetailViewController"];
-        VC.dicData = [NSMutableDictionary dictionaryWithDictionary:object];
-        VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:self.dataDic[@"brand_list"][indexPath.section]];
-        [weakself.navigationController pushViewController:VC animated:YES];
-    }];
-}
-
-
-
-
-
-
-
-
-
-
 
 
 #pragma mark ========== 设置 右侧索引标题 对应的分区索引 ==========
