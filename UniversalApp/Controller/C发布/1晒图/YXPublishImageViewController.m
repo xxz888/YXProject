@@ -13,6 +13,7 @@
 #import "YXPublishImageTableViewCell.h"
 #import "ZZYPhotoHelper.h"
 #import "QiniuLoad.h"
+#import "YXPublishMoreTagsViewController.h"
 
 #import<QiniuSDK.h>
 #import<AFNetworking.h>
@@ -118,7 +119,16 @@ static NSString *secretKey = @"官网获取";
         
         RootNavigationController *nav = [[RootNavigationController alloc]initWithRootViewController:VC];
         [weakself presentViewController:nav animated:YES completion:nil];
-        };
+    };
+    //更多标签
+    cell.moreBlock = ^{
+        YXPublishMoreTagsViewController * VC = [[YXPublishMoreTagsViewController alloc]init];
+
+        RootNavigationController *nav = [[RootNavigationController alloc]initWithRootViewController:VC];
+
+        [weakself presentViewController:nav animated:YES completion:nil];
+    };
+    
     return cell;
 }
 - (IBAction)closeView:(id)sender {

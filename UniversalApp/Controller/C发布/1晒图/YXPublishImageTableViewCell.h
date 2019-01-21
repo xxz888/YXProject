@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface YXPublishImageTableViewCell : TableViewCell
 typedef void(^tagStringBlock)(NSString *);
 typedef void(^locationBlock)(YXPublishImageTableViewCell *);
+typedef void(^moreBlock)(void);
+
 @property (weak, nonatomic) IBOutlet UIButton *locationBtn;
 
 @property (weak, nonatomic) IBOutlet UIView *floatView;
@@ -26,7 +28,7 @@ typedef void(^locationBlock)(YXPublishImageTableViewCell *);
 @property(nonatomic) LTTextView  *textView;
 @property (nonatomic,copy) tagStringBlock block;
 @property (nonatomic,copy) locationBlock locationblock;
-
+@property (nonatomic,copy) moreBlock moreBlock;
 @end
 
 NS_ASSUME_NONNULL_END

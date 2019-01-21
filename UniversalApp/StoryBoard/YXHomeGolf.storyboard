@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="qlS-JV-74S">
-                                <rect key="frame" x="0.0" y="20" width="375" height="597"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="587"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="9mi-l4-T8y" id="sMu-aO-Cv1"/>
@@ -27,7 +27,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYv-Bn-72S">
-                                <rect key="frame" x="3" y="620" width="369" height="45"/>
+                                <rect key="frame" x="8" y="610" width="359" height="47"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="开始记分">
@@ -41,11 +41,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="d65-tF-iUU" firstAttribute="trailing" secondItem="qlS-JV-74S" secondAttribute="trailing" id="3Ht-0U-FV3"/>
-                            <constraint firstItem="d65-tF-iUU" firstAttribute="bottom" secondItem="AYv-Bn-72S" secondAttribute="bottom" constant="2" id="Pv9-jG-O9y"/>
-                            <constraint firstItem="d65-tF-iUU" firstAttribute="bottom" secondItem="qlS-JV-74S" secondAttribute="bottom" constant="50" id="TQ1-1m-eJE"/>
+                            <constraint firstItem="d65-tF-iUU" firstAttribute="bottom" secondItem="AYv-Bn-72S" secondAttribute="bottom" constant="10" id="Pv9-jG-O9y"/>
+                            <constraint firstItem="d65-tF-iUU" firstAttribute="bottom" secondItem="qlS-JV-74S" secondAttribute="bottom" constant="60" id="TQ1-1m-eJE"/>
                             <constraint firstItem="qlS-JV-74S" firstAttribute="leading" secondItem="d65-tF-iUU" secondAttribute="leading" id="Wj6-Nl-ua9"/>
-                            <constraint firstItem="AYv-Bn-72S" firstAttribute="leading" secondItem="d65-tF-iUU" secondAttribute="leading" constant="3" id="aNh-1i-Nz8"/>
-                            <constraint firstItem="AYv-Bn-72S" firstAttribute="trailing" secondItem="d65-tF-iUU" secondAttribute="trailing" constant="-3" id="ahW-cw-M86"/>
+                            <constraint firstItem="AYv-Bn-72S" firstAttribute="leading" secondItem="d65-tF-iUU" secondAttribute="leading" constant="8" id="aNh-1i-Nz8"/>
+                            <constraint firstItem="AYv-Bn-72S" firstAttribute="trailing" secondItem="d65-tF-iUU" secondAttribute="trailing" constant="-8" id="ahW-cw-M86"/>
                             <constraint firstItem="qlS-JV-74S" firstAttribute="top" secondItem="d65-tF-iUU" secondAttribute="top" id="ayj-ZI-zM6"/>
                             <constraint firstItem="AYv-Bn-72S" firstAttribute="top" secondItem="qlS-JV-74S" secondAttribute="bottom" constant="3" id="ddo-ct-r9p"/>
                         </constraints>

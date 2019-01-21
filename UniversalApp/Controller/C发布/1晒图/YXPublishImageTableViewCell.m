@@ -74,6 +74,6 @@
 }
 //更多
 - (IBAction)moreAction:(id)sender {
-
+    self.moreBlock();
 }
 @end
