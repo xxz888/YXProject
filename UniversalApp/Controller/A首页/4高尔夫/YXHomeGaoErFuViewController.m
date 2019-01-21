@@ -9,6 +9,7 @@
 #import "YXHomeGaoErFuViewController.h"
 #import "YXHomeGEFPinPaiViewController.h"
 #import "YXQCDJCViewController.h"
+#import "YXHomeGolfScoreViewController.h"
 
 @interface YXHomeGaoErFuViewController ()<UITableViewDelegate,UITableViewDataSource,ClickGridView>
 
@@ -128,7 +129,9 @@
         VCCoustom.whereCome = TYPE_GOLF_2;
         [self.navigationController pushViewController:VCCoustom animated:YES];
     }else if (tag == 4){
-  
+        UIStoryboard * stroryBoard2 = [UIStoryboard storyboardWithName:@"YXHomeGolf" bundle:nil];
+        VC = [stroryBoard2 instantiateViewControllerWithIdentifier:@"YXHomeGolfScoreViewController"];
+        [self.navigationController pushViewController:VC animated:YES];
     }else if(tag == 5){
 
     }

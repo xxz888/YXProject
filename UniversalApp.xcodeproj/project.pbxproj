@@ -255,6 +255,12 @@
 		BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */; };
 		BBC6180121F597EE00495619 /* YXGEFPinPaiLastDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC617FF21F597EE00495619 /* YXGEFPinPaiLastDetailViewController.m */; };
 		BBC6180221F597EE00495619 /* YXGEFPinPaiLastDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC6180021F597EE00495619 /* YXGEFPinPaiLastDetailViewController.xib */; };
+		BBC6180421F5AD5A00495619 /* YXHomeGolf.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC6180321F5AD5A00495619 /* YXHomeGolf.storyboard */; };
+		BBC6180921F5ADB300495619 /* YXHomeGolfScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC6180821F5ADB300495619 /* YXHomeGolfScoreViewController.m */; };
+		BBC6180C21F5AE6E00495619 /* YXHomeGolfScoreHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC6180B21F5AE6E00495619 /* YXHomeGolfScoreHeaderView.m */; };
+		BBC6180E21F5AE8200495619 /* YXHomeGolfScoreHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC6180D21F5AE8200495619 /* YXHomeGolfScoreHeaderView.xib */; };
+		BBC6181221F5BD2B00495619 /* YXHomeGolfScoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC6181021F5BD2B00495619 /* YXHomeGolfScoreTableViewCell.m */; };
+		BBC6181321F5BD2B00495619 /* YXHomeGolfScoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC6181121F5BD2B00495619 /* YXHomeGolfScoreTableViewCell.xib */; };
 		BBCC4A9321E82CEE00493F40 /* YXHomeXueJiaWenHuaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4A9121E82CEE00493F40 /* YXHomeXueJiaWenHuaViewController.m */; };
 		BBCC4A9421E82CEE00493F40 /* YXHomeXueJiaWenHuaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBCC4A9221E82CEE00493F40 /* YXHomeXueJiaWenHuaViewController.xib */; };
 		BBCC4A9821E82D3400493F40 /* YXHomeXueJiaWenHuaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4A9621E82D3400493F40 /* YXHomeXueJiaWenHuaTableViewCell.m */; };
@@ -891,6 +897,15 @@
 		BBC617FE21F597EE00495619 /* YXGEFPinPaiLastDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXGEFPinPaiLastDetailViewController.h; sourceTree = "<group>"; };
 		BBC617FF21F597EE00495619 /* YXGEFPinPaiLastDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXGEFPinPaiLastDetailViewController.m; sourceTree = "<group>"; };
 		BBC6180021F597EE00495619 /* YXGEFPinPaiLastDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXGEFPinPaiLastDetailViewController.xib; sourceTree = "<group>"; };
+		BBC6180321F5AD5A00495619 /* YXHomeGolf.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = YXHomeGolf.storyboard; sourceTree = "<group>"; };
+		BBC6180721F5ADB300495619 /* YXHomeGolfScoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeGolfScoreViewController.h; sourceTree = "<group>"; };
+		BBC6180821F5ADB300495619 /* YXHomeGolfScoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeGolfScoreViewController.m; sourceTree = "<group>"; };
+		BBC6180A21F5AE6E00495619 /* YXHomeGolfScoreHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeGolfScoreHeaderView.h; sourceTree = "<group>"; };
+		BBC6180B21F5AE6E00495619 /* YXHomeGolfScoreHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeGolfScoreHeaderView.m; sourceTree = "<group>"; };
+		BBC6180D21F5AE8200495619 /* YXHomeGolfScoreHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeGolfScoreHeaderView.xib; sourceTree = "<group>"; };
+		BBC6180F21F5BD2B00495619 /* YXHomeGolfScoreTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeGolfScoreTableViewCell.h; sourceTree = "<group>"; };
+		BBC6181021F5BD2B00495619 /* YXHomeGolfScoreTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeGolfScoreTableViewCell.m; sourceTree = "<group>"; };
+		BBC6181121F5BD2B00495619 /* YXHomeGolfScoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeGolfScoreTableViewCell.xib; sourceTree = "<group>"; };
 		BBCC4A9021E82CEE00493F40 /* YXHomeXueJiaWenHuaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaWenHuaViewController.h; sourceTree = "<group>"; };
 		BBCC4A9121E82CEE00493F40 /* YXHomeXueJiaWenHuaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaWenHuaViewController.m; sourceTree = "<group>"; };
 		BBCC4A9221E82CEE00493F40 /* YXHomeXueJiaWenHuaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeXueJiaWenHuaViewController.xib; sourceTree = "<group>"; };
@@ -2624,6 +2639,7 @@
 			children = (
 				BBA8130121DDEC20001B5EA1 /* YXHomeGaoErFuViewController.h */,
 				BBA8130221DDEC20001B5EA1 /* YXHomeGaoErFuViewController.m */,
+				BBC6180621F5AD9D00495619 /* 高尔夫记分 */,
 				BBECEEA321F04C3D007E90AC /* 球场及度假村 */,
 				BBECEE9221F030F3007E90AC /* 高尔夫品牌 */,
 			);
@@ -2684,6 +2700,7 @@
 				BBA8129921DDA9F1001B5EA1 /* YXPublish.storyboard */,
 				BBA8129B21DDAA04001B5EA1 /* YXMessage.storyboard */,
 				BBA8129D21DDAA15001B5EA1 /* YXMine.storyboard */,
+				BBC6180321F5AD5A00495619 /* YXHomeGolf.storyboard */,
 			);
 			path = StoryBoard;
 			sourceTree = "<group>";
@@ -2696,6 +2713,21 @@
 				BBC6180021F597EE00495619 /* YXGEFPinPaiLastDetailViewController.xib */,
 			);
 			path = "高尔夫详情的详情";
+			sourceTree = "<group>";
+		};
+		BBC6180621F5AD9D00495619 /* 高尔夫记分 */ = {
+			isa = PBXGroup;
+			children = (
+				BBC6180721F5ADB300495619 /* YXHomeGolfScoreViewController.h */,
+				BBC6180821F5ADB300495619 /* YXHomeGolfScoreViewController.m */,
+				BBC6180A21F5AE6E00495619 /* YXHomeGolfScoreHeaderView.h */,
+				BBC6180B21F5AE6E00495619 /* YXHomeGolfScoreHeaderView.m */,
+				BBC6180D21F5AE8200495619 /* YXHomeGolfScoreHeaderView.xib */,
+				BBC6180F21F5BD2B00495619 /* YXHomeGolfScoreTableViewCell.h */,
+				BBC6181021F5BD2B00495619 /* YXHomeGolfScoreTableViewCell.m */,
+				BBC6181121F5BD2B00495619 /* YXHomeGolfScoreTableViewCell.xib */,
+			);
+			path = "高尔夫记分";
 			sourceTree = "<group>";
 		};
 		BBCC4A8B21E82C4100493F40 /* 雪茄配件 */ = {
@@ -4049,6 +4081,8 @@
 				290A97F21F4ABC02006BF882 /* renw@2x.png in Resources */,
 				296F85091FED04EF005612D1 /* close_icon@2x.png in Resources */,
 				BBCC4A9421E82CEE00493F40 /* YXHomeXueJiaWenHuaViewController.xib in Resources */,
+				BBC6180421F5AD5A00495619 /* YXHomeGolf.storyboard in Resources */,
+				BBC6180E21F5AE8200495619 /* YXHomeGolfScoreHeaderView.xib in Resources */,
 				296F9A341F04F39000909CDB /* 5.jpg in Resources */,
 				BBCC4AA421E83DC000493F40 /* YXColorViewController.xib in Resources */,
 				296F9A361F04F39000909CDB /* 7.jpg in Resources */,
@@ -4111,6 +4145,7 @@
 				29629EE91F78E49B002CFCBD /* back_icon@2x.png in Resources */,
 				29530FD71F60F1BB00D24E05 /* photo_sample_04.png in Resources */,
 				BBD2C9A221E2F4E800350DCD /* YXHomeXueJiaPinPaiTableViewCell.xib in Resources */,
+				BBC6181321F5BD2B00495619 /* YXHomeGolfScoreTableViewCell.xib in Resources */,
 				296F9A301F04F39000909CDB /* 13.jpg in Resources */,
 				BBD2C96121E10AA100350DCD /* YXPublishImageTableViewCell.xib in Resources */,
 				BBD2C94B21E0F67800350DCD /* README.md in Resources */,
@@ -4285,6 +4320,7 @@
 				290A97DD1F4AB24A006BF882 /* TagsViewController.m in Sources */,
 				296DEA711F5D50D100C6FD00 /* TADotView.m in Sources */,
 				BBD2C92221E0F67800350DCD /* MWZoomingScrollView.m in Sources */,
+				BBC6180C21F5AE6E00495619 /* YXHomeGolfScoreHeaderView.m in Sources */,
 				BB6D2A4521EF7D8400F5049F /* YXHomeQuestionDetailHeaderView.m in Sources */,
 				29629EF11F78E669002CFCBD /* XLJSHandler.m in Sources */,
 				29AD6C6B1ED41E2100B0879C /* UserManager.m in Sources */,
@@ -4426,7 +4462,9 @@
 				BBDA2CFE21EB30BF00EDCCFF /* SDBaseNavigationController.m in Sources */,
 				BBD2C92521E0F67800350DCD /* MWPhoto.m in Sources */,
 				29D3C00A1F4D11A200FD3914 /* TagsButton.m in Sources */,
+				BBC6180921F5ADB300495619 /* YXHomeGolfScoreViewController.m in Sources */,
 				BBECEEA021F043DB007E90AC /* YXGEFPinPaiDetailTableViewController.m in Sources */,
+				BBC6181221F5BD2B00495619 /* YXHomeGolfScoreTableViewCell.m in Sources */,
 				293D46111ECDAEED007C64A9 /* MineViewController.m in Sources */,
 				BBD2C95621E0F72800350DCD /* DACircularProgressView.m in Sources */,
 				BBE82CF721E445CA004E4144 /* GTMBase64.m in Sources */,

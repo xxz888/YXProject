@@ -92,7 +92,7 @@
                 <outlet property="ttView" destination="PWO-BY-mZg" id="YeJ-YF-VLb"/>
                 <outlet property="xinhuatiBtn" destination="g1R-xi-K6d" id="Kgw-8M-R86"/>
             </connections>
-            <point key="canvasLocation" x="-47" y="50"/>
+            <point key="canvasLocation" x="-188" y="0.0"/>
         </view>
     </objects>
 </document>

@@ -140,7 +140,7 @@
     }else if (tag == 4){
         YXHomeXueJiaQuestionViewController *  VCCoustom = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaQuestionViewController"];
         VCCoustom.whereCome = TYPE_XUEJIA_1;
-        [self.navigationController pushViewController:VC animated:YES];
+        [self.navigationController pushViewController:VCCoustom animated:YES];
     }
     else if(tag == 5){
         VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaFootViewController"];

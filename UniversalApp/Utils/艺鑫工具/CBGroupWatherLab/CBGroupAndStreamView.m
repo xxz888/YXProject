@@ -47,22 +47,24 @@
 - (void)initDefaultConfign{
     _isDefaultSel = YES;
     _isSingle = YES;
-    _butHeight = 30;
+    _butHeight = 20;
     _font = [UIFont systemFontOfSize:12];
     _contentNorColor = CBColor(100, 100, 100);
-    _contentSelColor =  CBColor(100, 100, 100);
-    _norColor = CBColor(242, 242, 242);
-    _selColor = CBColor(242, 242, 242);
-    _titleTextColor = KDarkGaryColor;
+    _contentSelColor = [UIColor whiteColor];
+    _norColor = CBColor(228, 228, 228);
+    _selColor = CBColor(250, 87, 118);
+    _titleTextColor = CBColor(100, 100, 100);
     _titleTextFont = [UIFont systemFontOfSize:14];
     _maragin_x = _maragin_y = 10;
-    _titleLabHeight = 30;
-    _radius = 6;
+    _titleLabHeight = 0;
+    _radius = 0;
     _defaultSelectIndex = 0;
 
 }
 
 - (void)setContentView:(NSArray *)contenArr titleArr:(NSArray *)titleArr{
+
+
 
     //每次初始化view时，清除保存选择的值
     [self.saveSelButValueArr removeAllObjects];
@@ -70,7 +72,9 @@
 
     _contetntArr = contenArr.count > 0 ? contenArr : _contetntArr;
     _titleArr = titleArr.count > 0 ? titleArr : _titleArr;
-
+    contenArr = _contetntArr.count > 0 ? _contetntArr:contenArr;
+    titleArr = _titleArr.count > 0 ? _titleArr : titleArr;
+ 
     if (_isDefaultSel && _defaultSelectIndexArr.count > 0) {
         NSAssert(!(_defaultSelectIndexArr.count < titleArr.count), @"设置默认选择数组，需与 titleArr 元素个数一至");
     }
@@ -79,11 +83,13 @@
     //设置内容
     [self.dataSourceArr removeAllObjects];
     [self.dataSourceArr addObjectsFromArray:contenArr];
-
-    for (NSInteger i = 0 ; i < titleArr.count; ++i) {
-        //设置默认的值，使保存值的数组是按照group的顺序来保存，便于后面对相应的group的值进行增改
+    //设置默认的值，使保存值的数组是按照group的顺序来保存，便于后面对相应的group的值进行增改
+    [titleArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.saveSelButValueArr addObject:@""];
         [self.saveGroupIndexArr addObject:@""];
+    }];
+
+    for (NSInteger i = 0 ; i < titleArr.count; ++i) {
         //设置每一组的值，并返回最后一个frame
          @autoreleasepool {
              self.frameRect = [self setSignView:contenArr[i] andTitle:titleArr[i] andFrame:self.frameRect andGroupId:i];
@@ -247,7 +253,7 @@
     }
      [self.saveSelButValueArr replaceObjectAtIndex:sender.tag / 100 withObject:valueStr];
     //保存groupID
-    [self.saveSelButValueArr[sender.tag / 100] isEqualToString:@""] ? [self.saveGroupIndexArr replaceObjectAtIndex:sender.tag / 100 withObject:@""] : [self.saveGroupIndexArr replaceObjectAtIndex:sender.tag / 100 withObject:[NSNumber numberWithInteger:sender.tag / 100]];
+    [self.saveGroupIndexArr replaceObjectAtIndex:sender.tag / 100 withObject:[NSNumber numberWithInteger:sender.tag / 100]];
     //代理传值
     if ([self.delegate respondsToSelector:@selector(cb_selectCurrentValueWith:index:groupId:)]) {
         [self.delegate cb_selectCurrentValueWith:self.dataSourceArr[sender.tag / 100][sender.tag % 100 - 1] index:sender.tag % 100 - 1 groupId:sender.tag / 100];
@@ -269,22 +275,24 @@
         tempSaveArr = [[NSMutableArray alloc] init];
     }
 
-    valueStr = [NSString stringWithFormat:@"%ld/%@",sender.tag % 100 - 1,self.dataSourceArr[sender.tag / 100][sender.tag % 100 - 1]];
-
     if (sender.selected) {
+        valueStr = [NSString stringWithFormat:@"%ld/%@",sender.tag % 100 - 1,self.dataSourceArr[sender.tag / 100][sender.tag % 100 - 1]];
         sender.backgroundColor = _selColor;
+
         if (![tempSaveArr containsObject:valueStr]) {
             [tempSaveArr addObject:valueStr];
+        }else{
+            [tempSaveArr replaceObjectAtIndex:sender.tag % 100 - 1 withObject:valueStr];
         }
     }else{
         sender.backgroundColor = _norColor;
+        valueStr = [NSString stringWithFormat:@"%ld/%@",sender.tag % 100 - 1,self.dataSourceArr[sender.tag / 100][sender.tag % 100 - 1]];;
         [tempSaveArr removeObject:valueStr];
     }
 
     [self.saveSelButValueArr replaceObjectAtIndex:sender.tag / 100 withObject:tempSaveArr?tempSaveArr:@""];
     //保存groupID
-   [self.saveSelButValueArr[sender.tag / 100] count] == 0 ? [self.saveGroupIndexArr replaceObjectAtIndex:sender.tag / 100 withObject:@""] : [self.saveGroupIndexArr replaceObjectAtIndex:sender.tag / 100 withObject:[NSNumber numberWithInteger:sender.tag / 100]];
-
+    [self.saveGroupIndexArr replaceObjectAtIndex:sender.tag / 100 withObject:[NSNumber numberWithInteger:sender.tag / 100]];
     //传递当前选中的Value
     if ([self.delegate respondsToSelector:@selector(cb_selectCurrentValueWith:index:groupId:)]) {
         [self.delegate cb_selectCurrentValueWith:self.dataSourceArr[sender.tag / 100][sender.tag % 100 - 1] index:sender.tag % 100 - 1 groupId:sender.tag / 100];
