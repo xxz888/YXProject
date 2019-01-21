@@ -15,26 +15,28 @@
 @end
 
 @implementation YXHomeGaoErFuViewController
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //顶部广告请求
+    [self requestAdvertising];
+    //tableview请求
+    kWeakSelf(self);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //顶部广告请求
+        [weakself requestAdvertising];
+    });
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.informationArray = [NSMutableArray array];
     //tableview列表
     [self createBottomTableView];
-    //顶部广告请求
-    //[self requestAdvertising];
-    //tableview请求
-    //[self requestInformation];
+
 }
 -(void)requestInformation{
-    [self.informationArray removeAllObjects];
-    [self.informationArray addObjectsFromArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb5"]];
-    [self.bottomTableView reloadData];
-    return;
     kWeakSelf(self);
-    [YX_MANAGER requestGETInformation:@"1" success:^(id object) {
-        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb5"];
-        
+    [YX_MANAGER requestGETInformation:TYPE_GOLF_2 success:^(id object) {
         [weakself.informationArray removeAllObjects];
         [weakself.informationArray addObjectsFromArray:object];
         [weakself.bottomTableView reloadData];
@@ -43,11 +45,12 @@
 }
 -(void)requestAdvertising{
     kWeakSelf(self);
-    [YX_MANAGER requestGETAdvertising:@"1" success:^(id object) {
-        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb4"];
-        
-        [weakself.headerView setUpSycleScrollView:object];
-        [weakself.bottomTableView reloadData];
+    [YX_MANAGER requestGETAdvertising:TYPE_GOLF_2 success:^(id object) {
+        if ([object count] > 0) {
+            [weakself.headerView setUpSycleScrollView:object];
+            [weakself.bottomTableView reloadData];
+        }
+
     }];
 }
 
@@ -74,9 +77,10 @@
     self.headerView = [nib objectAtIndex:0];
     self.headerView.frame = CGRectMake(0, 0, KScreenWidth, 330);
     self.headerView.delegate = self;
-    [self.headerView setUpSycleScrollView:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb4"]];
     self.headerView.titleArray = @[@"高尔夫品牌",@"高尔夫知识",@"球场及度假村",@"问答交流",@"记分",@"足迹"];
     self.headerView.titleTagArray = @[@"Golf Brand",@"Knowledge",@"Resort",@"Q&A",@"Score",@"Journey"];
+    //顶部广告请求
+    [self requestAdvertising];
     return self.headerView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -112,18 +116,22 @@
     RootViewController * VC = nil;
     if (tag == 0) {
         VC = [[YXHomeGEFPinPaiViewController alloc]init];
+        [self.navigationController pushViewController:VC animated:YES];
     }else if(tag == 1){
-        VC = [[YXHomeXueJiaWenHuaViewController alloc]init];
+  
+        
     }else if (tag == 2){
         VC = [[YXQCDJCViewController alloc]init];
+        [self.navigationController pushViewController:VC animated:YES];
     }else if(tag == 3){
-        VC = [[YXHomeXueJiaToolsViewController alloc]init];
+      YXHomeXueJiaQuestionViewController *  VCCoustom = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaQuestionViewController"];
+        VCCoustom.whereCome = TYPE_GOLF_2;
+        [self.navigationController pushViewController:VCCoustom animated:YES];
     }else if (tag == 4){
-        VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaQuestionViewController"];
+  
     }else if(tag == 5){
-        VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaFootViewController"];
+
     }
-    [self.navigationController pushViewController:VC animated:YES];
     
 }
 -(NSString *)haomiaoChangeYYMMDDHHMMSS:(NSString *)string{

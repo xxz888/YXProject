@@ -16,10 +16,20 @@
 @interface YXQCDJCViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
 @property(nonatomic,strong)YXQCDJCHeaderView * headerView;
+@property(nonatomic,strong)NSMutableArray * dataArray;
 @end
 
 @implementation YXQCDJCViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    NSDictionary * dic =@{@"city":@"杭州",
+                          @"longitude":@(120.20000),
+                          @"latitude":@(30.26667),
+                          @"page":@"1"
+                          };
+    [YX_MANAGER requestGolf_coursePOST:dic success:^(id object) {
+    }];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"球场";

@@ -24,7 +24,8 @@ typedef void (^ListenChangeIndexBlock)(NSInteger);
                    withDefaultIndex:(NSUInteger)index
                      withTitleColor:(UIColor* _Nullable)titleColor
              withTitleSelectedColor:(UIColor* _Nullable)titleSelectedColor
-                    withSliderColor:(UIColor* _Nullable)sliderColor;
+                    withSliderColor:(UIColor* _Nullable)sliderColor
+                         isSameView:(BOOL)sameView;
 
 - (instancetype)initWithControllers:(NSArray* _Nonnull)controllers
                      withTitleNames:(NSArray* _Nonnull)names

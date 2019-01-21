@@ -342,20 +342,24 @@
     searchViewController.searchViewControllerShowMode = PYSearchViewControllerShowModePush;
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
--(void)setSegmentControllersArray:(NSArray *)controllers title:(NSArray *)titlesArray defaultIndex:(NSInteger)index top:(CGFloat)top{
+-(void)setSegmentControllersArray:(NSArray *)controllers title:(NSArray *)titlesArray defaultIndex:(NSInteger)index top:(CGFloat)top view:(UIView *)view isSameView:(BOOL)sameView{
     ZXSegmentController* segmentController = [[ZXSegmentController alloc] initWithControllers:controllers
                                                                                withTitleNames:titlesArray
                                                                              withDefaultIndex:index
                                                                                withTitleColor:[UIColor grayColor]
                                                                        withTitleSelectedColor:YXRGBAColor(88, 88, 88)
-                                                                              withSliderColor:YXRGBAColor(88, 88, 88)];
+                                                                              withSliderColor:YXRGBAColor(88, 88, 88)
+                                                isSameView:sameView
+                                            ];
     kWeakSelf(self);
     segmentController.getIndex = ^(NSInteger index) {
-        weakself.getIndex(index);
+//        weakself.getIndex(index);
     };
-    [self addChildViewController:(self.segmentController = segmentController)];
+    if (!sameView) {
+        [self addChildViewController:(self.segmentController = segmentController)];
+        [segmentController didMoveToParentViewController:self];
+    }
     [self.view addSubview:segmentController.view];
-    [segmentController didMoveToParentViewController:self];
     [self createAutolayout:top];
 }
 - (void)createAutolayout:(CGFloat)top{
@@ -364,4 +368,5 @@
         make.left.right.bottom.mas_equalTo(0);
     }];
 }
+
 @end

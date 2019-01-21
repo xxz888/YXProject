@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXHomeXueJiaQuestionViewController : UIViewController
-
+@property(nonatomic,strong)NSString * whereCome;
 @end
 
 NS_ASSUME_NONNULL_END

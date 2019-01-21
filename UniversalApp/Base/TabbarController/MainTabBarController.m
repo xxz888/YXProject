@@ -61,7 +61,6 @@
 #pragma mark -创建tabbar中间的tabbarItem
 
 - (void)setUpMidelTabbarItem {
-    
     images = [NSMutableArray array];
     titles = [NSMutableArray arrayWithObjects:@"晒图",@"足迹",@"文章",nil];
     titlesTag =  [NSMutableArray arrayWithObjects:@"定格美好瞬间",@"记录品鉴足迹",@"分享你的故事",nil];
@@ -72,23 +71,18 @@
             [images addObject:[UIImage imageNamed:[NSString stringWithFormat:@"remind"]]];
         }
     }
-    
     TBTabBar *tabBar = [[TBTabBar alloc] init];
     [self setValue:tabBar forKey:@"tabBar"];
     
     __weak typeof(self) weakSelf = self;
     [tabBar setDidClickPublishBtn:^{
-//        [QMUITips showSucceed:@"发布成功" inView:weakSelf.view hideAfterDelay:2];
-        
-//        UIStoryboard * stroryBoard3 = [UIStoryboard storyboardWithName:@"YXPublish" bundle:nil];
-//        YXPublishViewController * publishVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishViewController"];
-//        [weakSelf presentViewController:publishVC animated:YES completion:nil];
-        
         pop = [[VTingSeaPopView alloc] initWithButtonBGImageArr:images andButtonBGT:titles titlsTag:titlesTag];
-        for(UIView * view in [weakSelf.view subviews])
-        {
-            if ([view isKindOfClass:[pop class]]) {
-                [view removeFromSuperview];
+        //依次遍历self.view中的所有子视图
+        for(id tmpView in [self.view subviews]){
+            if([tmpView isKindOfClass:[VTingSeaPopView class]]){
+                VTingSeaPopView * seaPopView = (VTingSeaPopView *)tmpView;
+                    [seaPopView removeFromSuperview];
+                    break;
             }
         }
         [self.view addSubview:pop];

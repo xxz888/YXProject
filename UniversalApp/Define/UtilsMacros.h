@@ -11,6 +11,11 @@
 #ifndef define_h
 #define define_h
 
+#define TYPE_TUIJIAN_0  @"0"
+#define TYPE_XUEJIA_1  @"1"
+#define TYPE_GOLF_2 @"2"
+#define TYPE_HONGJIU_3 @"3"
+
 //获取系统对象
 #define kApplication        [UIApplication sharedApplication]
 #define kAppWindow          [UIApplication sharedApplication].delegate.window

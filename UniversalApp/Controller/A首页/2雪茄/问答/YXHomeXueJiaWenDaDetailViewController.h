@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface YXHomeXueJiaWenDaDetailViewController : UIViewController
 @property (nonatomic) Moment *moment;
 //@property(nonatomic,strong)NSDictionary * startDic;
+@property(nonatomic,strong)NSString * whereCome;
 
 @end
 

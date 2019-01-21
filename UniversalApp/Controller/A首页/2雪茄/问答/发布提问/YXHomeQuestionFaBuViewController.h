@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *moreBtn;
 - (IBAction)xinhuatiAction:(id)sender;
 - (IBAction)moreAction:(id)sender;
-
+@property(nonatomic,strong)NSString * whereCome;
 @end
 
 NS_ASSUME_NONNULL_END

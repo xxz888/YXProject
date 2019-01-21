@@ -16,6 +16,7 @@
 #import "PYTempViewController.h"
 #import "YXHomeXueJiaWenDaDetailViewController.h"
 #import "YXHomeXueJiaQuestionDetailViewController.h"
+#import "YXHomeQuestionFaBuViewController.h"
 
 @interface YXHomeXueJiaQuestionViewController ()<UITableViewDelegate,UITableViewDataSource,MomentCellDelegate>
 @property (nonatomic, strong) NSMutableArray *momentList;
@@ -75,51 +76,23 @@
 
 
 
-- (void)clickSearchBar
-{
-    // 1. Create an Array of popular search
+- (void)clickSearchBar{
     NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
-    // 2. Create a search view controller
     PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"PYExampleSearchPlaceholderText", @"搜索编程语言") didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
-        // Called when search begain.
-        // eg：Push to a temp view controller
         [searchViewController.navigationController pushViewController:[[PYTempViewController alloc] init] animated:YES];
     }];
-    // 3. Set style for popular search and search history
-    
     searchViewController.hotSearchStyle = PYHotSearchStyleColorfulTag;
     searchViewController.searchHistoryStyle = 1;
-    
-    // 4. Set delegate
     searchViewController.delegate = self;
-    // 5. Present(Modal) or push search view controller
-    // Present(Modal)
-    //    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
-    //    [self presentViewController:nav animated:YES completion:nil];
-    // Push
-    // Set mode of show search view controller, default is `PYSearchViewControllerShowModeModal`
     searchViewController.searchViewControllerShowMode = PYSearchViewControllerShowModePush;
-    //    // Push search view controller
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
 -(void)requestQuestion{
-    
-    [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb1"]];
-    [self initTestInfo];
-    [self.tableView reloadData];
-    return;
-    
-    
     kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"%@/kw/%@",@"1",@"1"];
+    NSString * par = [NSString stringWithFormat:@"%@/kw/%@",self.whereCome,@"1"];
     [YX_MANAGER requestQuestionGET:par success:^(id object) {
-        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb1"];
-        
-        
         [weakself.dataArray removeAllObjects];
         [weakself.dataArray addObjectsFromArray:object];
- 
         [weakself initTestInfo];
         [weakself.tableView reloadData];
     }];
@@ -128,17 +101,10 @@
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
-
-
-
-#pragma mark - 测试数据
-#pragma mark - 测试数据
-- (void)initTestInfo
-{
+- (void)initTestInfo{
     self.momentList = [[NSMutableArray alloc] init];
     NSMutableArray *commentList = nil;
     for (int i = 0;  i < self.dataArray.count; i ++)  {
-        
         //最外层
         Moment *moment = [[Moment alloc] init];
         moment.praiseNameList = nil;//@"胡一菲，唐悠悠，陈美嘉，吕小布，曾小贤，张伟，关谷神奇";
@@ -152,15 +118,10 @@
         moment.photo =self.dataArray[i][@"user_photo"];
         moment.startId = self.dataArray[i][@"id"];
         moment.fileCount = 3;
-      
-  
-
         moment.imageListArray = [NSMutableArray arrayWithObjects:
                                  self.dataArray[i][@"pic1"],
                                  self.dataArray[i][@"pic2"],
                                  self.dataArray[i][@"pic3"], nil];
-        
-        // 评论
         commentList = [[NSMutableArray alloc] init];
         int num = (int)[self.dataArray[i][@"answer"] count];
         for (int j = 0; j < num; j ++) {
@@ -236,6 +197,7 @@
     YXHomeXueJiaQuestionDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaQuestionDetailViewController"];
     VC.moment = self.momentList[indexPath.row];
     YX_MANAGER.isHaveIcon = YES;
+    VC.whereCome = self.whereCome;
     [self.navigationController pushViewController:VC animated:YES];
 
     
@@ -260,6 +222,12 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+- (IBAction)tiwenAction:(id)sender {
+    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+    YXHomeQuestionFaBuViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeQuestionFaBuViewController"];
+    VC.whereCome = self.whereCome;
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 @end

@@ -91,6 +91,6 @@ typedef void (^ListenChangeIndexBlock)(NSInteger);
 #pragma mark ==========  搜索相关 ==========
 -(void)setNavSearchView;
 @property (nonatomic,weak) ZXSegmentController* segmentController;
--(void)setSegmentControllersArray:(NSArray *)controllers title:(NSArray *)titlesArray defaultIndex:(NSInteger)index top:(CGFloat)top;
+-(void)setSegmentControllersArray:(NSArray *)controllers title:(NSArray *)titlesArray defaultIndex:(NSInteger)index top:(CGFloat)top view:(UIView *)view isSameView:(BOOL)sameView;
 
 @end

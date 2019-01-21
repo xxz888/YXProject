@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @protocol ClickGuanZhuBtnDelegate <NSObject>
 -(void)clickGuanZhuAction:(UIButton *)btn;
+-(void)clickSegmentAction:(NSInteger)segmentIndex;
 @end
 @interface YXGEPPinPaiDetailHeaderView : UIView
 
@@ -25,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UISegmentedControl *bigSegment;
 @property (weak, nonatomic) IBOutlet UIView *smallView;
 @property (nonatomic,weak) id<ClickGuanZhuBtnDelegate> delegate;
+@property (nonatomic,weak) id<ClickGuanZhuBtnDelegate> segmentDelegate;
 
 
 @end

@@ -24,11 +24,18 @@
     
     //tableview列表
     [self createBottomTableView];
-    //顶部广告请求
-     [self requestAdvertising];
+
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
     //tableview请求
     [self requestInformation];
-    
+    kWeakSelf(self);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //顶部广告请求
+        [weakself requestAdvertising];
+    });
 }
 -(void)getSegmentIndex{
     ZXSegmentController * segmentController = (ZXSegmentController *)self.parentViewController;
@@ -37,29 +44,22 @@
     };
 }
 -(void)requestInformation{
-    [self.informationArray removeAllObjects];
-    [self.informationArray addObjectsFromArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb5"]];
-    [self.bottomTableView reloadData];
-    return;
     kWeakSelf(self);
-    [YX_MANAGER requestGETInformation:@"1" success:^(id object) {
-      [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb5"];
-
+    [YX_MANAGER requestGETInformation:TYPE_XUEJIA_1 success:^(id object) {
         [weakself.informationArray removeAllObjects];
         [weakself.informationArray addObjectsFromArray:object];
         [weakself.bottomTableView reloadData];
+  
+
     }];
 
 }
 -(void)requestAdvertising{
-//    [self.headerView setUpSycleScrollView:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb4"]];
-//    return;
     kWeakSelf(self);
-    [YX_MANAGER requestGETAdvertising:@"1" success:^(id object) {
-        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb4"];
-
-        [weakself.headerView setUpSycleScrollView:object];
-        [weakself.bottomTableView reloadData];
+    [YX_MANAGER requestGETAdvertising:TYPE_XUEJIA_1 success:^(id object) {
+        if ([object count] > 0) {
+            [weakself.headerView setUpSycleScrollView:object];
+        }
     }];
 }
 
@@ -86,7 +86,6 @@
     self.headerView = [nib objectAtIndex:0];
     self.headerView.frame = CGRectMake(0, 0, KScreenWidth, 330);
     self.headerView.delegate = self;
-    [self.headerView setUpSycleScrollView:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb4"]];
     self.headerView.titleArray = @[@"雪茄品牌",@"雪茄文化",@"雪茄配件",@"工具",@"问答",@"品鉴足迹"];
     self.headerView.titleTagArray = @[@"Cigar Brand",@"Culture",@"Accessories",@"Tools",@"Q&A",@"Journey"];
     return self.headerView;
@@ -124,19 +123,29 @@
     RootViewController * VC = nil;
     if (tag == 0) {
         VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiViewController"];
+        [self.navigationController pushViewController:VC animated:YES];
+
     }else if(tag == 1){
         VC = [[YXHomeXueJiaWenHuaViewController alloc]init];
+        [self.navigationController pushViewController:VC animated:YES];
+
     }else if (tag == 2){
         VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPeiJianViewController"];
+        [self.navigationController pushViewController:VC animated:YES];
+
     }else if(tag == 3){
         VC = [[YXHomeXueJiaToolsViewController alloc]init];
+        [self.navigationController pushViewController:VC animated:YES];
+
     }else if (tag == 4){
-        VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaQuestionViewController"];
+        YXHomeXueJiaQuestionViewController *  VCCoustom = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaQuestionViewController"];
+        VCCoustom.whereCome = TYPE_XUEJIA_1;
+        [self.navigationController pushViewController:VC animated:YES];
     }
     else if(tag == 5){
         VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaFootViewController"];
+        [self.navigationController pushViewController:VC animated:YES];
     }
-    [self.navigationController pushViewController:VC animated:YES];
 
 }
 -(NSString *)haomiaoChangeYYMMDDHHMMSS:(NSString *)string{

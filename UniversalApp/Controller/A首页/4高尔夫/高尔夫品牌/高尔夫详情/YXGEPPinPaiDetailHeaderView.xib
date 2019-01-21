@@ -76,24 +76,11 @@
                                                 <segment title="球具"/>
                                                 <segment title="附带产品"/>
                                             </segments>
-                                            <connections>
-                                                <action selector="segmentCon:" destination="iN0-l3-epB" eventType="valueChanged" id="CbO-hr-7P6"/>
-                                            </connections>
                                         </segmentedControl>
-                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jyV-6H-FEF">
-                                            <rect key="frame" x="0.0" y="45.5" width="375" height="36.5"/>
-                                            <segments>
-                                                <segment title="球具"/>
-                                                <segment title="球道木杆"/>
-                                                <segment title="铁杆"/>
-                                                <segment title="挖起杆"/>
-                                                <segment title="推杆"/>
-                                                <segment title="高尔夫"/>
-                                            </segments>
-                                            <connections>
-                                                <action selector="segmentCon:" destination="iN0-l3-epB" eventType="valueChanged" id="aPG-wP-VX1"/>
-                                            </connections>
-                                        </segmentedControl>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q7J-7b-f5T">
+                                            <rect key="frame" x="0.0" y="45.5" width="375" height="35.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </view>
                                     </subviews>
                                 </stackView>
                             </subviews>
@@ -152,14 +139,14 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="bigSegment" destination="Lyg-Q0-Jqa" id="4oB-aT-328"/>
                 <outlet property="section1GuanZhuBtn" destination="U0m-cw-0rj" id="yhY-2z-GZt"/>
                 <outlet property="section1ImageView" destination="nk8-B4-svO" id="Ang-2F-ec9"/>
                 <outlet property="section1TextView" destination="7Cq-tG-vLy" id="KGR-yu-tNo"/>
                 <outlet property="section1TitleLbl" destination="rel-qX-60g" id="KPe-Go-tUX"/>
                 <outlet property="section1countLbl" destination="3Ww-Xi-Qjn" id="gZW-8n-1Sz"/>
+                <outlet property="smallView" destination="Q7J-7b-f5T" id="nRw-EK-1jc"/>
             </connections>
-            <point key="canvasLocation" x="-895" y="-122"/>
+            <point key="canvasLocation" x="-1282" y="-207"/>
         </view>
     </objects>
 </document>

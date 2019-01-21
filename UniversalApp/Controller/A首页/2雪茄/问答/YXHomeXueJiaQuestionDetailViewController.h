@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YXHomeXueJiaQuestionDetailViewController : UIViewController
 @property (nonatomic) Moment *moment;
+@property(nonatomic,strong)NSString * whereCome;
+
 @end
 
 NS_ASSUME_NONNULL_END

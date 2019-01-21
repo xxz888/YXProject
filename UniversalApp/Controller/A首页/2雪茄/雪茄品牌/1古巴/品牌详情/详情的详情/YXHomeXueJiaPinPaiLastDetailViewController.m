@@ -157,7 +157,6 @@ static CGFloat textFieldH = 40;
     //请求六宫格图片
     NSString * tag = self.startDic[@"cigar_name"];
     [YX_MANAGER requestGetDetailListPOST:@{@"type":@(1),@"tag":tag,@"page":@(1)} success:^(id object) {
-        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb13"];
         NSMutableArray * imageArray = [NSMutableArray array];
         for (NSDictionary * dic in object) {
             [imageArray addObject:dic[@"photo1"]];

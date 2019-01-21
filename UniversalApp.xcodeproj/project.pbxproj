@@ -253,6 +253,8 @@
 		BBA8147021DE0D38001B5EA1 /* NSString+CString.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA813B621DE0D37001B5EA1 /* NSString+CString.m */; };
 		BBC16284217AD6EA00008907 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC16283217AD6EA00008907 /* Login.storyboard */; };
 		BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */; };
+		BBC6180121F597EE00495619 /* YXGEFPinPaiLastDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC617FF21F597EE00495619 /* YXGEFPinPaiLastDetailViewController.m */; };
+		BBC6180221F597EE00495619 /* YXGEFPinPaiLastDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC6180021F597EE00495619 /* YXGEFPinPaiLastDetailViewController.xib */; };
 		BBCC4A9321E82CEE00493F40 /* YXHomeXueJiaWenHuaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4A9121E82CEE00493F40 /* YXHomeXueJiaWenHuaViewController.m */; };
 		BBCC4A9421E82CEE00493F40 /* YXHomeXueJiaWenHuaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBCC4A9221E82CEE00493F40 /* YXHomeXueJiaWenHuaViewController.xib */; };
 		BBCC4A9821E82D3400493F40 /* YXHomeXueJiaWenHuaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4A9621E82D3400493F40 /* YXHomeXueJiaWenHuaTableViewCell.m */; };
@@ -886,6 +888,9 @@
 		BBC16283217AD6EA00008907 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		BBC162D0217B111C00008907 /* QMUIConfigurationTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfigurationTemplate.h; sourceTree = "<group>"; };
 		BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIConfigurationTemplate.m; sourceTree = "<group>"; };
+		BBC617FE21F597EE00495619 /* YXGEFPinPaiLastDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXGEFPinPaiLastDetailViewController.h; sourceTree = "<group>"; };
+		BBC617FF21F597EE00495619 /* YXGEFPinPaiLastDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXGEFPinPaiLastDetailViewController.m; sourceTree = "<group>"; };
+		BBC6180021F597EE00495619 /* YXGEFPinPaiLastDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXGEFPinPaiLastDetailViewController.xib; sourceTree = "<group>"; };
 		BBCC4A9021E82CEE00493F40 /* YXHomeXueJiaWenHuaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaWenHuaViewController.h; sourceTree = "<group>"; };
 		BBCC4A9121E82CEE00493F40 /* YXHomeXueJiaWenHuaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaWenHuaViewController.m; sourceTree = "<group>"; };
 		BBCC4A9221E82CEE00493F40 /* YXHomeXueJiaWenHuaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeXueJiaWenHuaViewController.xib; sourceTree = "<group>"; };
@@ -2683,6 +2688,16 @@
 			path = StoryBoard;
 			sourceTree = "<group>";
 		};
+		BBC617FD21F597BC00495619 /* 高尔夫详情的详情 */ = {
+			isa = PBXGroup;
+			children = (
+				BBC617FE21F597EE00495619 /* YXGEFPinPaiLastDetailViewController.h */,
+				BBC617FF21F597EE00495619 /* YXGEFPinPaiLastDetailViewController.m */,
+				BBC6180021F597EE00495619 /* YXGEFPinPaiLastDetailViewController.xib */,
+			);
+			path = "高尔夫详情的详情";
+			sourceTree = "<group>";
+		};
 		BBCC4A8B21E82C4100493F40 /* 雪茄配件 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2805,8 +2820,8 @@
 			isa = PBXGroup;
 			children = (
 				BBCC4B7921E894CD00493F40 /* YXHomeQuestionFaBuViewController.h */,
-				BBCC4B7A21E894CD00493F40 /* YXHomeXueJiaFootViewController.xib */,
 				BBCC4B7B21E894CD00493F40 /* YXHomeQuestionFaBuViewController.m */,
+				BBCC4B7A21E894CD00493F40 /* YXHomeXueJiaFootViewController.xib */,
 			);
 			path = "发布提问";
 			sourceTree = "<group>";
@@ -3803,6 +3818,7 @@
 				BBECEF0321F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.h */,
 				BBECEF0421F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.m */,
 				BBECEF0521F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.xib */,
+				BBC617FD21F597BC00495619 /* 高尔夫详情的详情 */,
 			);
 			path = "高尔夫详情";
 			sourceTree = "<group>";
@@ -4022,6 +4038,7 @@
 				BBCC4AAE21E83DE200493F40 /* YXHomeChiCunViewController.xib in Resources */,
 				29530FD91F60F1BB00D24E05 /* photo_sample_06.png in Resources */,
 				293D46551ECDBB63007C64A9 /* icon_tabbar_onsite_new@2x.png in Resources */,
+				BBC6180221F597EE00495619 /* YXGEFPinPaiLastDetailViewController.xib in Resources */,
 				BBA8129821DDA9B6001B5EA1 /* YXFind.storyboard in Resources */,
 				BBCC4A9921E82D3400493F40 /* YXHomeXueJiaWenHuaTableViewCell.xib in Resources */,
 				290A97F01F4ABC02006BF882 /* haoy@2x.png in Resources */,
@@ -4388,6 +4405,7 @@
 				BBE82CE521E3A125004E4144 /* QiniuLoad.m in Sources */,
 				BBD2C92121E0F67800350DCD /* MWCaptionView.m in Sources */,
 				BBD2C8FA21E0F67700350DCD /* NSBundle+TZImagePicker.m in Sources */,
+				BBC6180121F597EE00495619 /* YXGEFPinPaiLastDetailViewController.m in Sources */,
 				BBD30CDA21E5C35D000D3244 /* YXMineEssayTableViewCell.m in Sources */,
 				BBD2C95521E0F72800350DCD /* DALabeledCircularProgressView.m in Sources */,
 				293D460E1ECDAEDC007C64A9 /* MsgViewController.m in Sources */,

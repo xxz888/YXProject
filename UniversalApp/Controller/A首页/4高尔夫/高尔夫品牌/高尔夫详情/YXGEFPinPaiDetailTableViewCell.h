@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@protocol ClickLikeBtnDelegate <NSObject>
+@protocol ClickGolfLikeBtnDelegate <NSObject>
 -(void)clickLikeBtn:(BOOL)isZan golf_id:(NSString *)golf_id likeBtn:(UIButton *)likeBtn;
 @end 
 @interface YXGEFPinPaiDetailTableViewCell : UITableViewCell
@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *gefTitleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *gnPriceLbl;
 @property (weak, nonatomic) IBOutlet UILabel *mgPriceLbl;
-@property (nonatomic,weak) id<ClickLikeBtnDelegate> delegate;
+@property (nonatomic,weak) id<ClickGolfLikeBtnDelegate> delegate;
 @property(nonatomic,weak) NSString * golf_id;
 
 @end

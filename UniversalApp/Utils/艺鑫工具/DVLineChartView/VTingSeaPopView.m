@@ -237,6 +237,8 @@
 
 #pragma mark 关闭当前视图
 -(void)dismissSelfBtn:(UIButton *)btn {
+    
+    
     //创建异步线程
     dispatch_queue_t queue1 = dispatch_get_global_queue(0, 0);
     dispatch_async(queue1, ^{

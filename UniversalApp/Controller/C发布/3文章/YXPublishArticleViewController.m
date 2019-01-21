@@ -12,6 +12,9 @@
 @implementation YXPublishArticleViewController
 -(void)viewDidLoad{
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.extendedLayoutIncludesOpaqueBars = NO;
+    self.modalPresentationCapturesStatusBarAppearance = NO;
     [self initMainView];
 }
 -(void)initMainView{
@@ -25,4 +28,8 @@
 - (IBAction)paizhaoAction:(id)sender {
     
 }
+
+
+
+
 @end

@@ -29,17 +29,9 @@
     [self setNavSearchView];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaPinPaiTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaPinPaiTableViewCell"];
     kWeakSelf(self);
-    
-    id object = [[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb6"];
-    [weakself.dataArrayTag removeAllObjects];
-    [weakself.dataArrayTag addObjectsFromArray:object];
-    weakself.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:object]];
-    [weakself createMiddleCollection];
-    [weakself.yxTableView reloadData];
-    return;
+
     
     [YX_MANAGER requestGolf_brand:@"2" success:^(id object) {
-        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"aaabbb6"];
         [weakself.dataArrayTag removeAllObjects];
         [weakself.dataArrayTag addObjectsFromArray:object];
         weakself.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:object]];
