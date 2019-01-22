@@ -102,8 +102,8 @@
         YXPublishImageViewController * publishVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishImageViewController"];
         [weakSelf presentViewController:publishVC animated:YES completion:nil];
     }else if (index == 2){//文章
-        YXPublishArticleViewController * publishVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishArticleViewController"];
-        [weakSelf presentViewController:publishVC animated:YES completion:nil];
+//        YXPublishArticleViewController * publishVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishArticleViewController"];
+//        [weakSelf presentViewController:publishVC animated:YES completion:nil];
     }
 }
 

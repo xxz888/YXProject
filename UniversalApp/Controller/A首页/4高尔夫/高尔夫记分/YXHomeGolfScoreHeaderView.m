@@ -11,6 +11,8 @@
 
 @interface YXHomeGolfScoreHeaderView ()<CBGroupAndStreamDelegate>
 @property (strong, nonatomic) CBGroupAndStreamView * menueView;
+@property (nonatomic,strong)NSMutableArray * indexArray;
+
 @end
 @implementation YXHomeGolfScoreHeaderView
 
@@ -29,6 +31,8 @@
     silde.font = [UIFont systemFontOfSize:12];
     silde.titleTextFont = [UIFont systemFontOfSize:18];
     silde.selColor = [UIColor colorWithRed:38/255.0 green:38/255.0 blue:38/255.0 alpha:1.0];
+    silde.defaultSelectIndexArr = @[@0,@[@1]];
+
     [silde setContentView:contentArr titleArr:titleArr];
     [self.twoView addSubview:silde];
     _menueView = silde;
@@ -38,6 +42,8 @@
     silde.cb_selectCurrentValueBlock = ^(NSString *value, NSInteger index, NSInteger groupId) {
         NSLog(@"value = %@----index = %ld------groupId = %ld",value,index,groupId);
     };
+    _indexArray = [[NSMutableArray alloc]initWithObjects:@"1",@"4",nil];
+    self.clickDongBlock(_indexArray);
 
 }
 
@@ -57,5 +63,11 @@
 
 - (void)cb_selectCurrentValueWith:(NSString *)value index:(NSInteger)index groupId:(NSInteger)groupId{
     NSLog(@"value = %@----index = %ld------groupId = %ld",value,index,groupId);
+    if (groupId == 0 && index == 1) {
+            [_indexArray replaceObjectAtIndex:0 withObject:@"2"];
+    }else if (groupId == 1 && index == 1){
+            [_indexArray replaceObjectAtIndex:1 withObject:@"4"];
+    }
+    self.clickDongBlock(_indexArray);
 }
 @end

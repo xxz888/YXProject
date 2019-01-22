@@ -9,6 +9,7 @@
 #import "YXHomeGolfScoreViewController.h"
 #import "YXHomeGolfScoreHeaderView.h"
 #import "YXHomeGolfScoreTableViewCell.h"
+#import "YXHomeScoreActionViewController.h"
 
 
 @interface YXHomeGolfScoreViewController ()
@@ -16,6 +17,7 @@
 @property (nonatomic,strong) YXHomeGolfScoreHeaderView * headerView;
 @property (weak, nonatomic) IBOutlet UIButton *startScoreBtn;
 - (IBAction)startScoreAction:(id)sender;
+@property (nonatomic,strong)NSMutableArray * indexArray;
 
 @end
 
@@ -29,12 +31,18 @@
     self.yxTableView.allowsMultipleSelection = NO;
     self.yxTableView.allowsSelectionDuringEditing = NO;
     self.yxTableView.allowsMultipleSelectionDuringEditing = NO;
+    _indexArray = [[NSMutableArray alloc]init];
 }
 
 //代理方法
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeGolfScoreHeaderView" owner:self options:nil];
     self.headerView = [nib objectAtIndex:0];
+    kWeakSelf(self);
+    self.headerView.clickDongBlock = ^(NSMutableArray * indexArray) {
+        [weakself.indexArray removeAllObjects];
+        weakself.indexArray = [NSMutableArray arrayWithArray:indexArray];
+    };
     return self.headerView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -82,6 +90,18 @@
     return cell;
 }
 - (IBAction)startScoreAction:(id)sender {
-    
+    YXHomeScoreActionViewController * VC = [[YXHomeScoreActionViewController alloc]init];
+    VC.ABArray = [NSMutableArray array];
+
+    if ([self.indexArray[0] integerValue] == 1 && [self.indexArray[1] integerValue] == 3) {
+        [VC.ABArray addObjectsFromArray:@[@"A场",@"A场"]];
+    }else if ([self.indexArray[0] integerValue] == 1 && [self.indexArray[1] integerValue] == 4){
+        [VC.ABArray addObjectsFromArray:@[@"A场",@"B场"]];
+    }else if ([self.indexArray[0] integerValue] == 2 && [self.indexArray[1] integerValue] == 3){
+        [VC.ABArray addObjectsFromArray:@[@"B场",@"A场"]];
+    }else if ([self.indexArray[0] integerValue] == 2 && [self.indexArray[1] integerValue] == 4){
+        [VC.ABArray addObjectsFromArray:@[@"B场",@"B场"]];
+    }
+    [self.navigationController pushViewController:VC animated:YES];
 }
 @end

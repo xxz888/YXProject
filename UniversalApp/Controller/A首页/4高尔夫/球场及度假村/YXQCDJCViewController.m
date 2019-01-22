@@ -13,6 +13,8 @@
 #import "UIView+SDAutoLayout.h"
 #import "YXQCDJCHeaderView.h"
 #define demoURL @"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2797616721,1483253964&fm=26&gp=0.jpg"
+#import "YXQCDJCDetailTableViewController.h"
+
 @interface YXQCDJCViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
 @property(nonatomic,strong)YXQCDJCHeaderView * headerView;
@@ -60,5 +62,10 @@
     [cell.startView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [cell.startView addSubview:starView];
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHomeGolf" bundle:nil];
+    YXQCDJCDetailTableViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXQCDJCDetailTableViewController"];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 @end
