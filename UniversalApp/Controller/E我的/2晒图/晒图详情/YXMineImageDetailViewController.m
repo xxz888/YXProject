@@ -93,7 +93,7 @@ static CGFloat textFieldH = 40;
     //添加分隔线颜色设置
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXMineImageDetailHeaderView" owner:self options:nil];
     self.lastDetailView = [nib objectAtIndex:0];
-    self.lastDetailView.frame = CGRectMake(0, 0, KScreenWidth, 500);
+    self.lastDetailView.frame = CGRectMake(0, 0, KScreenWidth, 485);
     self.yxTableView.tableHeaderView = self.lastDetailView;
     [self.lastDetailView setContentViewValue:@[self.startDic[@"photo1"],self.startDic[@"photo2"],self.startDic[@"photo3"]]];
     self.lastDetailView.titleLbl.text = self.startDic[@"user_name"];
@@ -116,6 +116,8 @@ static CGFloat textFieldH = 40;
 -(void)requestNewList{
     kWeakSelf(self);
     id object = [[NSUserDefaults standardUserDefaults] objectForKey:@"b2"];
+    weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
+    [weakself refreshTableView];
     //请求评价列表 最新评论列表
     [YX_MANAGER requestPost_comment:[self getParamters:@"1" page:@"1"] success:^(id object) {
         [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"b2"];
@@ -138,16 +140,18 @@ static CGFloat textFieldH = 40;
         [self.yxTableView reloadData];
     }
 }
+#pragma mark ========== 评论子评论 ==========
 -(void)requestCigar_comment_child:(NSDictionary *)dic{
     kWeakSelf(self);
     [YX_MANAGER requestCigar_comment_childPOST:dic success:^(id object) {
         _segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];
 }
+#pragma mark ========== 更多评论 ==========
 -(void)requestMoreCigar_comment_child:(NSString *)farther_id page:(NSString *)page{
     kWeakSelf(self);
-    NSString * string = [NSString stringWithFormat:@"%@/%@",page,farther_id];
-    [YX_MANAGER requestCigar_comment_childGET:string success:^(id object) {
+    NSString * string = [NSString stringWithFormat:@"%@/%@",farther_id,page];
+    [YX_MANAGER requestPost_comment_child:string success:^(id object) {
         if ([object count] == 0) {
             [QMUITips showInfo:@"没有更多评论了" detailText:@"" inView:weakself.yxTableView hideAfterDelay:1];
             return ;
@@ -232,10 +236,9 @@ static CGFloat textFieldH = 40;
         model.name = formalArray[i][@"user_name"];
         model.msgContent = formalArray[i][@"comment"];
         model.commontTime = [formalArray[i][@"update_time"] integerValue];
-        model.score = [formalArray[i][@"average_score"] floatValue];
-        model.praise = kGetString(formalArray[i][@"praise"]);
+        model.praise = kGetString(formalArray[i][@"praise_number"]);
         model.id =  kGetString(formalArray[i][@"id"]);
-        
+        model.postid = kGetString(formalArray[i][@"postid"]);
         [pageDic setValue:@([model.id intValue]) forKey:@"id"];
         [pageDic setValue:@(0) forKey:@"page"];
         [_pageArray addObject:pageDic];
@@ -312,6 +315,8 @@ static CGFloat textFieldH = 40;
     ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
     cell.model = self.dataArray[indexPath.row];
+    
+    cell.starView.hidden = YES;
     return cell;
 }
 
@@ -334,6 +339,12 @@ static CGFloat textFieldH = 40;
         width = [UIScreen mainScreen].bounds.size.height;
     }
     return width;
+}
+#pragma mark ========== 评论子晒图 ==========
+-(void)requestPingLunShaiTu:(NSDictionary *)dic{
+    [YX_MANAGER requestpost_comment_childPOST:dic success:^(id object) {
+        
+    }];
 }
 #pragma mark ========== 点击跟多评论按钮 ==========
 -(void)showMoreComment:(UITableViewCell *)cell{
@@ -360,7 +371,7 @@ static CGFloat textFieldH = 40;
     kWeakSelf(self);
     NSIndexPath *index = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel *model = self.dataArray[index.row];
-    [YX_MANAGER requestPraise_cigaPr_commentPOST:@{@"comment_id":@([model.id intValue])} success:^(id object) {
+    [YX_MANAGER requestPost_comment_praisePOST:@{@"comment_id":@([model.id intValue])} success:^(id object) {
         _currentEditingIndexthPath = index;
         _segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];
@@ -492,11 +503,9 @@ static CGFloat textFieldH = 40;
                                                }];
             self.isReplayingComment = NO;
         }else{
-            [self requestCigar_comment_child:@{@"comment":textField.text,
-                                               @"father_id":@([model.id intValue]),
-                                               @"aim_id":@(0),
-                                               @"aim_name":@""
-                                               }];
+            [self pinglunFatherPic:@{@"comment":textField.text,
+                                     @"post_id":@([model.postid intValue]),
+                                     }];
             
         }
         
@@ -529,8 +538,12 @@ static CGFloat textFieldH = 40;
     }
     return NO;
 }
-
-
+#pragma mark ========== 评论晒图 ==========
+-(void)pinglunFatherPic:(NSDictionary *)dic{
+    [YX_MANAGER requestPost_commentPOST:dic success:^(id object) {
+        
+    }];
+}
 
 - (void)keyboardNotification:(NSNotification *)notification
 {

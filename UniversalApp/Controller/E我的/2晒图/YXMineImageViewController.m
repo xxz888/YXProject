@@ -21,6 +21,9 @@
     [super viewWillAppear:animated];
     kWeakSelf(self);
     id object = [[NSUserDefaults standardUserDefaults] objectForKey:@"b1"];
+    [weakself.dataArray removeAllObjects];
+    [weakself.dataArray addObjectsFromArray:object];
+    [weakself.yxTableView reloadData];
     NSString * pageString = NSIntegerToNSString(page) ;
     [YX_MANAGER requestGetDetailListPOST:@{@"type":@(2),@"tag":@"0",@"page":@(1)} success:^(id object) {
         [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"b1"];

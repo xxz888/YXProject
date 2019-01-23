@@ -49,7 +49,7 @@
     }
     NSArray* names = @[@"古巴",@"非古",@"我的关注",@"筛选"];
     NSArray* controllers = @[VC1,VC2,VC3,VC4];
-    [self setSegmentControllersArray:controllers title:names defaultIndex:0 top:84 view:self.view  isSameBool:YES];
+    [self setSegmentControllersArray:controllers title:names defaultIndex:0 top:84 view:self.view];
 }
 
 

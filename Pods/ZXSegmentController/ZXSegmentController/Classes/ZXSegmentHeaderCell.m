@@ -96,7 +96,7 @@
 //滑块出现
 - (void)sliderViewWillDisplay{
     [_sliderView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo([self caculateSliderViewWidth]*1);
+        make.width.mas_equalTo([self caculateSliderViewWidth]*0.6);
     }];
     
     [UIView animateWithDuration:0.25 animations:^{

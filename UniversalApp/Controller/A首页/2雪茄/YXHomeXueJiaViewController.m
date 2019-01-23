@@ -17,8 +17,6 @@
 @implementation YXHomeXueJiaViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self getSegmentIndex];
     // Do any additional setup after loading the view.
     self.informationArray = [NSMutableArray array];
     
@@ -38,12 +36,6 @@
 
 
   
-}
--(void)getSegmentIndex{
-    ZXSegmentController * segmentController = (ZXSegmentController *)self.parentViewController;
-    segmentController.getIndex = ^(NSInteger index) {
-        
-    };
 }
 -(void)requestInformation{
     kWeakSelf(self);

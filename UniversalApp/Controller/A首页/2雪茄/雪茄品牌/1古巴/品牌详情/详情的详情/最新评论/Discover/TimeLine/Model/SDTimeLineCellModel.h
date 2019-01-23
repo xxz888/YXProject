@@ -50,6 +50,7 @@
 @property (nonatomic) CGFloat score;
 @property (nonatomic,copy) NSString * praise;
 @property (nonatomic,copy) NSString * id;
+@property (nonatomic,copy) NSString * postid;
 
 
 @end

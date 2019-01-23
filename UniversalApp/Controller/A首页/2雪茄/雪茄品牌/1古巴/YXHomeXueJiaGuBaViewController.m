@@ -28,13 +28,6 @@
     self.indexArray = [[NSMutableArray alloc]init];
     self.dataArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaPinPaiTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaPinPaiTableViewCell"];
-    self.segmentController = (ZXSegmentController *)self.parentViewController;
-    kWeakSelf(self);
-    self.segmentController.getIndex = ^(NSInteger index) {
-        if (index == 1) {
-            [weakself requestCigar_brand:@"2"];
-        }
-    };
 }
 -(void)requestCigar_brand:(NSString *)type{
     kWeakSelf(self);

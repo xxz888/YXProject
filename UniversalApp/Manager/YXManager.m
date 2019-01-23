@@ -340,6 +340,37 @@ successBlock(responseObject);\
     } failure:^(NSError *error) {}];
 }
 
+#pragma mark ==========点赞/取消点赞晒图==========
+-(void)requestPost_praisePOST:YX_BLOCK{
+    [HTTP_POST(@"/users/post_praise/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+#pragma mark ==========评论晒图==========
+-(void)requestPost_commentPOST:YX_BLOCK{
+    [HTTP_POST(@"/users/post_comment/0/0/0/0/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+#pragma mark ==========点赞/取消点赞晒图评论==========
+-(void)requestPost_comment_praisePOST:YX_BLOCK{
+    [HTTP_POST(@"/users/post_comment_praise/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+#pragma mark ========== 获取晒图评论子评论列表 ==========
+-(void)requestPost_comment_child:YX_BLOCK{
+    NSString * url = @"/users/post_comment_child/0";
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ==========发布晒图评论子评论==========
+-(void)requestpost_comment_childPOST:YX_BLOCK{
+    [HTTP_POST(@"/users/post_comment_child/0/0/0/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
 
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];

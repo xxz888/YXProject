@@ -21,6 +21,17 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     kWeakSelf(self);
+    id object = [[NSUserDefaults standardUserDefaults] objectForKey:@"b3"];
+    [weakself.dataArray removeAllObjects];
+    [weakself.heightArray removeAllObjects];
+    
+    [weakself.dataArray addObjectsFromArray:object];
+    for (NSDictionary * dic in object) {
+        CGFloat height = [weakself getHTMLHeightByStr:dic[@"essay"]];
+        [weakself.heightArray addObject:@(height/2.2)];
+    }
+    
+    [weakself.yxTableView reloadData];
     NSString * pageString = NSIntegerToNSString(page) ;
     [YX_MANAGER requestEssayListGET:pageString success:^(id object) {
         [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"b3"];

@@ -269,6 +269,7 @@
 		BBADE4D821F8655E0011E5FF /* YXMineImageDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBADE4D621F8655E0011E5FF /* YXMineImageDetailViewController.xib */; };
 		BBADE4DB21F8665A0011E5FF /* YXMineImageDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBADE4DA21F8665A0011E5FF /* YXMineImageDetailHeaderView.m */; };
 		BBADE4DD21F866670011E5FF /* YXMineImageDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBADE4DC21F866670011E5FF /* YXMineImageDetailHeaderView.xib */; };
+		BBADE4E121F8A6D30011E5FF /* CBSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBADE4DF21F8A6D30011E5FF /* CBSegmentView.m */; };
 		BBC16284217AD6EA00008907 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC16283217AD6EA00008907 /* Login.storyboard */; };
 		BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */; };
 		BBC6180121F597EE00495619 /* YXGEFPinPaiLastDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC617FF21F597EE00495619 /* YXGEFPinPaiLastDetailViewController.m */; };
@@ -940,6 +941,8 @@
 		BBADE4D921F8665A0011E5FF /* YXMineImageDetailHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineImageDetailHeaderView.h; sourceTree = "<group>"; };
 		BBADE4DA21F8665A0011E5FF /* YXMineImageDetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineImageDetailHeaderView.m; sourceTree = "<group>"; };
 		BBADE4DC21F866670011E5FF /* YXMineImageDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineImageDetailHeaderView.xib; sourceTree = "<group>"; };
+		BBADE4DF21F8A6D30011E5FF /* CBSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBSegmentView.m; sourceTree = "<group>"; };
+		BBADE4E021F8A6D30011E5FF /* CBSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSegmentView.h; sourceTree = "<group>"; };
 		BBC16283217AD6EA00008907 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		BBC162D0217B111C00008907 /* QMUIConfigurationTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfigurationTemplate.h; sourceTree = "<group>"; };
 		BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIConfigurationTemplate.m; sourceTree = "<group>"; };
@@ -2727,6 +2730,7 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BBADE4DE21F8A6D30011E5FF /* CBSegment */,
 				BBADE4CF21F8064A0011E5FF /* DWImagePicker */,
 				BBADE4BA21F801070011E5FF /* RichVCUtil */,
 				BBADE43821F6CB110011E5FF /* UIKit */,
@@ -2821,6 +2825,15 @@
 				BBADE4DC21F866670011E5FF /* YXMineImageDetailHeaderView.xib */,
 			);
 			path = "晒图详情";
+			sourceTree = "<group>";
+		};
+		BBADE4DE21F8A6D30011E5FF /* CBSegment */ = {
+			isa = PBXGroup;
+			children = (
+				BBADE4DF21F8A6D30011E5FF /* CBSegmentView.m */,
+				BBADE4E021F8A6D30011E5FF /* CBSegmentView.h */,
+			);
+			path = CBSegment;
 			sourceTree = "<group>";
 		};
 		BBC16282217AD6DE00008907 /* StoryBoard */ = {
@@ -4504,6 +4517,7 @@
 				BB6D2A3421EEC63900F5049F /* UIView+Frame.m in Sources */,
 				2917D2141EE02CF100E76185 /* UIButton+XYButton.m in Sources */,
 				BBCC4B8D21E894CD00493F40 /* YXHomeQuestionFaBuViewController.m in Sources */,
+				BBADE4E121F8A6D30011E5FF /* CBSegmentView.m in Sources */,
 				BB6D2A0D21EDD1F000F5049F /* YXHeaderView1.m in Sources */,
 				29CF332D1F14B5EA00DB7507 /* MsgLogic.m in Sources */,
 				BB6D2A3B21EEC63900F5049F /* EmojiCell.m in Sources */,

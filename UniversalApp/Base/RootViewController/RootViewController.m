@@ -342,21 +342,15 @@
     searchViewController.searchViewControllerShowMode = PYSearchViewControllerShowModePush;
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
--(void)setSegmentControllersArray:(NSArray *)controllers title:(NSArray *)titlesArray defaultIndex:(NSInteger)index top:(CGFloat)top view:(UIView *)view isSameBool:(BOOL)isSameBool{
+-(void)setSegmentControllersArray:(NSArray *)controllers title:(NSArray *)titlesArray defaultIndex:(NSInteger)index top:(CGFloat)top view:(UIView *)view{
     ZXSegmentController* segmentController = [[ZXSegmentController alloc] initWithControllers:controllers
                                                                                withTitleNames:titlesArray
                                                                              withDefaultIndex:index
                                                                                withTitleColor:[UIColor grayColor]
                                                                        withTitleSelectedColor:YXRGBAColor(88, 88, 88)
                                                                               withSliderColor:YXRGBAColor(88, 88, 88)
-                                                                              isSameBool:isSameBool
                                             ];
     kWeakSelf(self);
-    segmentController.getIndex = ^(NSInteger index) {
-        if (weakself.getIndex) {
-            weakself.getIndex(index);
-        }
-    };
     [self addChildViewController:(self.segmentController = segmentController)];
     [segmentController didMoveToParentViewController:self];
     [self.view addSubview:segmentController.view];
