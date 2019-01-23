@@ -92,8 +92,8 @@
     if (indexPath.section == 1) {
         NSDictionary * cellData = self.dicData[@"data"][indexPath.row];
         YXHomeXueJiaDetailTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaDetailTableViewCell" forIndexPath:indexPath];
-        [cell.section2ImageView sd_setImageWithURL:[NSURL URLWithString:cellData[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-//        [cell.section2ImageView setContentMode:UIViewContentModeScaleAspectFit];
+        NSString * url = [cellData[@"photo_list"] count] > 0 ? cellData[@"photo_list"][0][@"photo_url"] : @"";
+        [cell.section2ImageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         cell.section2TitleLbl.text = cellData[@"cigar_name"];
         cell.section2Lbl1.text = kGetString(cellData[@"ring_gauge"]) ;
         cell.section2Lbl2.text = kGetString(cellData[@"length"]);
@@ -102,9 +102,7 @@
         cell.section2Lbl5.text = [kGetString(cellData[@"price_single_china"]) append:@"元/支"];
         cell.section2Lbl6.text = [NSString stringWithFormat:@"%@元/盒\n(%@)支",cellData[@"price_box_china"],cellData[@"box_size"]];
         cell.cigar_id = kGetString(cellData[@"id"]);
-        
         [cell.likeBtn setBackgroundImage:[cellData[@"is_collect"] integerValue] == 1 ? _selImage:_unImage forState:UIControlStateNormal];
-        
         cell.delegate = self;
         return cell;
     }
@@ -118,11 +116,13 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-    YXHomeXueJiaPinPaiLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiLastDetailViewController"];
-    VC.startDic = [NSDictionary dictionaryWithDictionary:self.dicData[@"data"][indexPath.row]];
-    YX_MANAGER.isHaveIcon = NO;
-    [self.navigationController pushViewController:VC animated:YES];
+    if (indexPath.section == 1) {
+        UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+        YXHomeXueJiaPinPaiLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiLastDetailViewController"];
+        VC.startDic = [NSDictionary dictionaryWithDictionary:self.dicData[@"data"][indexPath.row]];
+        YX_MANAGER.isHaveIcon = NO;
+        [self.navigationController pushViewController:VC animated:YES];
+    }
 }
 #pragma mark ========== 关注作者的方法 ==========
 - (IBAction)section1GuanZhuAction:(id)sender {

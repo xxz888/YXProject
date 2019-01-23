@@ -42,7 +42,7 @@
     
     NSArray* names = @[@"雪茄颜色",@"雪茄形状",@"尺寸工具"];
     NSArray* controllers = @[VC1,VC2,VC3];
-    [self setSegmentControllersArray:controllers title:names defaultIndex:1 top:64 view:self.view isSameView:NO];
+    [self setSegmentControllersArray:controllers title:names defaultIndex:1 top:64 view:self.view isSameBool:NO];
 
 }
 

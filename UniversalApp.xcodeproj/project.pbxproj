@@ -2547,6 +2547,8 @@
 		BBA812A321DDAB7A001B5EA1 /* E我的 */ = {
 			isa = PBXGroup;
 			children = (
+				BBA812B421DDABD3001B5EA1 /* YXMineViewController.h */,
+				BBA812B521DDABD3001B5EA1 /* YXMineViewController.m */,
 				BBD30CE521E5CDE3000D3244 /* View */,
 				BBD30CDD21E5CCC9000D3244 /* 粉丝 */,
 				BBD30CDC21E5CCC9000D3244 /* 关注 */,
@@ -2555,8 +2557,6 @@
 				BBD2C80821E0F41F00350DCD /* 2晒图 */,
 				BBD2C7FF21E0F41F00350DCD /* 3文章 */,
 				BBD2C80521E0F41F00350DCD /* 4足迹 */,
-				BBA812B421DDABD3001B5EA1 /* YXMineViewController.h */,
-				BBA812B521DDABD3001B5EA1 /* YXMineViewController.m */,
 			);
 			path = "E我的";
 			sourceTree = "<group>";

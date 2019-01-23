@@ -19,75 +19,62 @@
 @property (nonatomic,strong) NSMutableArray * indexArray;
 @end
 @implementation YXHomeXueJiaGuBaViewController
-
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self requestCigar_brand];
+    [self requestCigar_brand:@"1"];
 }
 -(void)viewDidLoad{
     [super viewDidLoad];
     self.indexArray = [[NSMutableArray alloc]init];
     self.dataArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaPinPaiTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaPinPaiTableViewCell"];
-
-    
-    
-    
-//    self.dataDic = [[NSMutableDictionary alloc]initWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"aaabbb6"]];
-//    self.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:weakself.dataDic[@"brand_list"]]];
-    
-    //        [weakself userSorting:[NSMutableArray arrayWithArray:weakself.dataDic[@"hot_brand_list"]]];
-//    [self createMiddleCollection];
-//
-//    [self.yxTableView reloadData];
-//    return;
-    
-
-}
--(void)requestCigar_brand{
+    self.segmentController = (ZXSegmentController *)self.parentViewController;
     kWeakSelf(self);
-    [YX_MANAGER requestCigar_brand:@"1" success:^(id object) {
+    self.segmentController.getIndex = ^(NSInteger index) {
+        if (index == 1) {
+            [weakself requestCigar_brand:@"2"];
+        }
+    };
+}
+-(void)requestCigar_brand:(NSString *)type{
+    kWeakSelf(self);
+    [YX_MANAGER requestCigar_brand:type success:^(id object) {
         weakself.dataDic = [[NSMutableDictionary alloc]initWithDictionary:object];
         weakself.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:weakself.dataDic[@"brand_list"]]];
         [weakself createMiddleCollection];
         [weakself.yxTableView reloadData];
-        
     }];
 }
-
 //九宫格
 - (void)createMiddleCollection{
-    
     [self.yxTableView.tableHeaderView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-
     if (!self.gridView) {
         self.gridView = [[QMUIGridView alloc] init];
     }
-    float height = 90;
+    float height = 80;
     NSInteger count = [self.dataDic[@"hot_brand_list"] count];
-    count = count <= 3 ? 1 : (count >3 && count <=6) ? 2 : 3;
-    self.gridView.frame = CGRectMake(0, 0, KScreenWidth, height*count);
+    count = count <= 3 ? 1 : 2;
+    self.gridView.frame = CGRectMake(10, 0, KScreenWidth-20, height*count);
     self.yxTableView.tableHeaderView = self.gridView;
 
-    self.gridView.columnCount = 3;
+    self.gridView.columnCount = 4;
     self.gridView.rowHeight = height;
     self.gridView.separatorWidth = PixelOne;
-    self.gridView.separatorColor = UIColorSeparator;
+    self.gridView.separatorColor = KClearColor;
     self.gridView.separatorDashed = NO;
 
     for (NSInteger i = 0; i < [self.dataDic[@"hot_brand_list"] count]; i++) {
-        UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,0 , self.gridView.frame.size.width/1.5, self.gridView.frame.size.height/1.5)];
+        UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10,0 , self.gridView.frame.size.width-20, self.gridView.frame.size.height)];
         [imageView setContentMode:UIViewContentModeScaleAspectFit];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:self.dataDic[@"hot_brand_list"][i][@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        
+        NSMutableString * str = [self.dataDic[@"hot_brand_list"][i][@"photo"] replaceAll:@" " target:@"%20"];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         imageView.tag = i;//[self.dataDic[@"hot_brand_list"][@"id"] integerValue];
         [self.gridView addSubview:imageView];
         //view添加点击事件
         UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
         [imageView addGestureRecognizer:tapGesturRecognizer];
-        
     }
-    
-
 }
 
 //返回右侧索引标题数组
@@ -113,7 +100,7 @@
     YXHomeXueJiaPinPaiTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaPinPaiTableViewCell" forIndexPath:indexPath];
 
     
-    [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:self.dataDic[@"brand_list"][indexPath.section][@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:self.dataArray[indexPath.section][indexPath.row][@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     [cell.cellImageView setContentMode:UIViewContentModeScaleAspectFit];
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     cell.cellLbl.text = self.dataArray[indexPath.section][indexPath.row][@"cigar_brand"];
@@ -130,7 +117,6 @@
     UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;
     UIView *views = (UIView*) tap.view;
     NSUInteger tag = views.tag;
-
 }
 
 -(void)requestCigar_brand_details:(NSString *)cigar_brand indexPath:(NSIndexPath *)indexPath{

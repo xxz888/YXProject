@@ -116,16 +116,13 @@ static NSString *secretKey = @"官网获取";
             [cell.locationBtn setTitle:locationString forState:0];
             [weakself dismissViewControllerAnimated:YES completion:nil];
         };
-        
         RootNavigationController *nav = [[RootNavigationController alloc]initWithRootViewController:VC];
         [weakself presentViewController:nav animated:YES completion:nil];
     };
     //更多标签
     cell.moreBlock = ^{
         YXPublishMoreTagsViewController * VC = [[YXPublishMoreTagsViewController alloc]init];
-
         RootNavigationController *nav = [[RootNavigationController alloc]initWithRootViewController:VC];
-
         [weakself presentViewController:nav animated:YES completion:nil];
     };
     
@@ -187,10 +184,6 @@ static NSString *secretKey = @"官网获取";
     } failure:^(NSString *error) {
         NSLog(@"%@",error);
     }];
-    
-    
-    
-
 }
 -(void)dismissVC{
 }
@@ -198,33 +191,18 @@ static NSString *secretKey = @"官网获取";
       NSString *strTopper = [NSString stringWithFormat:@"%@", [UIImageJPEGRepresentation(image, 0.1f) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength]];
     return strTopper;
 }
-
-
-
 #define PYRectangleTagMaxCol 3
 #define PYTextColor PYSEARCH_COLOR(113, 113, 113)
 #define PYSEARCH_COLORPolRandomColor self.colorPol[arc4random_uniform((uint32_t)self.colorPol.count)]
 -(void)addNewTags:(NSMutableArray *)tagArray{
     NSArray * titleArr = @[@""];
     NSArray *contentArr = @[tagArray];
-
-    
     CBGroupAndStreamView * silde = [[CBGroupAndStreamView alloc] initWithFrame:CGRectMake(0, 280-25, [UIScreen mainScreen].bounds.size.width, self.floatView.bounds.size.height)];
     silde.isSingle = YES;
     silde.radius = 5;
     silde.font = [UIFont systemFontOfSize:12];
     silde.titleTextFont = [UIFont systemFontOfSize:18];
     [silde setContentView:contentArr titleArr:titleArr];
-    
-    
-//    UIButton * locationBtn = [UIButton buttonWithType:1];
-//    [locationBtn setFont:[UIFont systemFontOfSize:15]];
-//    locationBtn.frame = CGRectMake(0, 5, silde.frame.size.width, 20);
-//    locationBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-//    [locationBtn setTitle:@"  # 获取地理位置" forState:0];
-//    [locationBtn setTitleColor:KDarkGaryColor forState:UIControlStateNormal];
-//    [silde addSubview:locationBtn];
-
     [self.floatView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.floatView addSubview:silde];
     _menueView = silde;

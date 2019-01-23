@@ -39,7 +39,7 @@
 
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    self.segmentController = (ZXSegmentController *)self.parentViewController;
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -342,23 +342,23 @@
     searchViewController.searchViewControllerShowMode = PYSearchViewControllerShowModePush;
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
--(void)setSegmentControllersArray:(NSArray *)controllers title:(NSArray *)titlesArray defaultIndex:(NSInteger)index top:(CGFloat)top view:(UIView *)view isSameView:(BOOL)sameView{
+-(void)setSegmentControllersArray:(NSArray *)controllers title:(NSArray *)titlesArray defaultIndex:(NSInteger)index top:(CGFloat)top view:(UIView *)view isSameBool:(BOOL)isSameBool{
     ZXSegmentController* segmentController = [[ZXSegmentController alloc] initWithControllers:controllers
                                                                                withTitleNames:titlesArray
                                                                              withDefaultIndex:index
                                                                                withTitleColor:[UIColor grayColor]
                                                                        withTitleSelectedColor:YXRGBAColor(88, 88, 88)
                                                                               withSliderColor:YXRGBAColor(88, 88, 88)
-                                                isSameView:sameView
+                                                                              isSameBool:isSameBool
                                             ];
     kWeakSelf(self);
     segmentController.getIndex = ^(NSInteger index) {
-//        weakself.getIndex(index);
+        if (weakself.getIndex) {
+            weakself.getIndex(index);
+        }
     };
-    if (!sameView) {
-        [self addChildViewController:(self.segmentController = segmentController)];
-        [segmentController didMoveToParentViewController:self];
-    }
+    [self addChildViewController:(self.segmentController = segmentController)];
+    [segmentController didMoveToParentViewController:self];
     [self.view addSubview:segmentController.view];
     [self createAutolayout:top];
 }

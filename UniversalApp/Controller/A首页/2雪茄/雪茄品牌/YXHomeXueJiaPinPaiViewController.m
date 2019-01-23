@@ -34,7 +34,6 @@
 
 -(void)setInitCollection{
     UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-    
     if (!VC1) {
         VC1 = [stroryBoard instantiateViewControllerWithIdentifier:@"YXHomeXueJiaGuBaViewController"];
     }
@@ -48,11 +47,9 @@
     if (!VC4) {
         VC4 = [stroryBoard instantiateViewControllerWithIdentifier:@"YXHomeXueJiaGuBaViewController"];
     }
-    
-    
     NSArray* names = @[@"古巴",@"非古",@"我的关注",@"筛选"];
     NSArray* controllers = @[VC1,VC2,VC3,VC4];
-    [self setSegmentControllersArray:controllers title:names defaultIndex:0 top:84 view:self.view isSameView:NO];
+    [self setSegmentControllersArray:controllers title:names defaultIndex:0 top:84 view:self.view  isSameBool:YES];
 }
 
 

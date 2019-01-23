@@ -50,23 +50,17 @@
                                                               withTitleSelectedColor:self.titleSelectedColor
                                                                      withSliderColor:self.sliderColor
                                                                            withBlock:^(NSUInteger index) {
-                                                                           
-                                                                               
                                                                                if (self.isSameView) {
-                                                                                   
-                                                                               }else{
                                                                                    if (self.getIndex) {
                                                                                        self.getIndex(index);
                                                                                    }
+                                                                               }else{
+                                                                                   
                                                                                    //切换控制器
                                                                                    UIViewController* newController = (UIViewController*)self.controllers[index];
                                                                                    [self replaceController:self.currentController newController:newController];
-                                                                                   
                                                                                }
-                                                                               
-                                                                         
-    
-
+       
         }
                                                                   withMaxDisplayItem:6
                                                                       withItemHeight:40
@@ -80,10 +74,6 @@
         
         [self.view addSubview:(self.headerView = headerView)];
         self.view.backgroundColor = [UIColor grayColor];
-
-        if (self.isSameView) {
-            
-        }else{
             for ( UIViewController* item in self.controllers ){
                 [self addChildViewController:item];
                 
@@ -93,8 +83,6 @@
                     self.currentController = item;
                 }
             }
-        }
- 
         [self createAutolayout];
         [self createLeftWithRightSwipeGesture];
     });
@@ -144,7 +132,7 @@
                            withTitleColor:titleColor
                    withTitleSelectedColor:titleSelectedColor
                           withSliderColor:sliderColor
-                        isSameView:NO
+                 isSameBool:self.isSameView
                  ] ){
         _maxDisplayItem = maxDisplayItem;
         _itemHeight = itemHeight;
@@ -159,12 +147,13 @@
                      withTitleColor:(UIColor* _Nullable)titleColor
              withTitleSelectedColor:(UIColor* _Nullable)titleSelectedColor
                     withSliderColor:(UIColor* _Nullable)sliderColor
-                        isSameView:(BOOL)sameView{
+                         isSameBool:(BOOL)isSameBool;
+                        {
     if ( self = [self initWithControllers:controllers withTitleNames:names withDefaultIndex:index] ){
         self.titleColor = titleColor;
         self.titleSelectedColor = titleSelectedColor;
         self.sliderColor = sliderColor;
-        self.isSameView = sameView;
+        self.isSameView = isSameBool;
     }
     return self;
 };
@@ -227,6 +216,7 @@
      *  animations              转换过程中得动画
      *  completion              转换完成
      */
+
     if ( [oldController isEqual:newController] ){
         return ;
     }

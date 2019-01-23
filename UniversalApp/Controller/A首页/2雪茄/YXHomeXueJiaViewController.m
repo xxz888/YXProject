@@ -24,11 +24,6 @@
     
     //tableview列表
     [self createBottomTableView];
-
-}
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-
     //tableview请求
     [self requestInformation];
     kWeakSelf(self);
@@ -36,6 +31,13 @@
         //顶部广告请求
         [weakself requestAdvertising];
     });
+
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
+
+  
 }
 -(void)getSegmentIndex{
     ZXSegmentController * segmentController = (ZXSegmentController *)self.parentViewController;
@@ -70,12 +72,12 @@
 
     if (!self.bottomTableView) {
         self.bottomTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, self.bootomView.frame.size.height - 60 - 64 - 49) style:UITableViewStyleGrouped];
+        [self.bootomView addSubview:self.bottomTableView];
     }
     self.bottomTableView.backgroundColor = KWhiteColor;
     [self.bottomTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaTableViewCell"];
     self.bottomTableView.delegate= self;
     self.bottomTableView.dataSource = self;
-    [self.bootomView addSubview:self.bottomTableView];
     
 
 }
