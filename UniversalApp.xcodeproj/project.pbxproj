@@ -258,6 +258,14 @@
 		BBADE49521F6CB110011E5FF /* QDCollectionViewDemoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBADE44A21F6CB110011E5FF /* QDCollectionViewDemoCell.m */; };
 		BBADE4B721F6E6720011E5FF /* YXHomeScoreActionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBADE4B521F6E6720011E5FF /* YXHomeScoreActionCollectionViewCell.m */; };
 		BBADE4B821F6E6720011E5FF /* YXHomeScoreActionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBADE4B621F6E6720011E5FF /* YXHomeScoreActionCollectionViewCell.xib */; };
+		BBADE4C521F801080011E5FF /* PictureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BBADE4BB21F801070011E5FF /* PictureModel.m */; };
+		BBADE4C621F801080011E5FF /* UIColor+HEX.m in Sources */ = {isa = PBXBuildFile; fileRef = BBADE4BF21F801070011E5FF /* UIColor+HEX.m */; };
+		BBADE4C721F801080011E5FF /* ImageTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = BBADE4C021F801070011E5FF /* ImageTextAttachment.m */; };
+		BBADE4C821F801080011E5FF /* NSAttributedString+RichText.m in Sources */ = {isa = PBXBuildFile; fileRef = BBADE4C121F801070011E5FF /* NSAttributedString+RichText.m */; };
+		BBADE4C921F801080011E5FF /* NSAttributedString+html.m in Sources */ = {isa = PBXBuildFile; fileRef = BBADE4C221F801070011E5FF /* NSAttributedString+html.m */; };
+		BBADE4CD21F8015C0011E5FF /* RichText.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBADE4CA21F8015B0011E5FF /* RichText.storyboard */; };
+		BBADE4CE21F8015C0011E5FF /* RichTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBADE4CB21F8015C0011E5FF /* RichTextViewController.m */; };
+		BBADE4D221F8064A0011E5FF /* ImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BBADE4D021F8064A0011E5FF /* ImagePicker.m */; };
 		BBC16284217AD6EA00008907 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC16283217AD6EA00008907 /* Login.storyboard */; };
 		BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */; };
 		BBC6180121F597EE00495619 /* YXGEFPinPaiLastDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC617FF21F597EE00495619 /* YXGEFPinPaiLastDetailViewController.m */; };
@@ -910,6 +918,21 @@
 		BBADE4B421F6E6720011E5FF /* YXHomeScoreActionCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeScoreActionCollectionViewCell.h; sourceTree = "<group>"; };
 		BBADE4B521F6E6720011E5FF /* YXHomeScoreActionCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeScoreActionCollectionViewCell.m; sourceTree = "<group>"; };
 		BBADE4B621F6E6720011E5FF /* YXHomeScoreActionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeScoreActionCollectionViewCell.xib; sourceTree = "<group>"; };
+		BBADE4BB21F801070011E5FF /* PictureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureModel.m; sourceTree = "<group>"; };
+		BBADE4BC21F801070011E5FF /* NSAttributedString+html.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+html.h"; sourceTree = "<group>"; };
+		BBADE4BD21F801070011E5FF /* NSAttributedString+RichText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+RichText.h"; sourceTree = "<group>"; };
+		BBADE4BE21F801070011E5FF /* ImageTextAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTextAttachment.h; sourceTree = "<group>"; };
+		BBADE4BF21F801070011E5FF /* UIColor+HEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HEX.m"; sourceTree = "<group>"; };
+		BBADE4C021F801070011E5FF /* ImageTextAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTextAttachment.m; sourceTree = "<group>"; };
+		BBADE4C121F801070011E5FF /* NSAttributedString+RichText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+RichText.m"; sourceTree = "<group>"; };
+		BBADE4C221F801070011E5FF /* NSAttributedString+html.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+html.m"; sourceTree = "<group>"; };
+		BBADE4C321F801070011E5FF /* PictureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureModel.h; sourceTree = "<group>"; };
+		BBADE4C421F801070011E5FF /* UIColor+HEX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HEX.h"; sourceTree = "<group>"; };
+		BBADE4CA21F8015B0011E5FF /* RichText.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RichText.storyboard; sourceTree = "<group>"; };
+		BBADE4CB21F8015C0011E5FF /* RichTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RichTextViewController.m; sourceTree = "<group>"; };
+		BBADE4CC21F8015C0011E5FF /* RichTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RichTextViewController.h; sourceTree = "<group>"; };
+		BBADE4D021F8064A0011E5FF /* ImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePicker.m; sourceTree = "<group>"; };
+		BBADE4D121F8064A0011E5FF /* ImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePicker.h; sourceTree = "<group>"; };
 		BBC16283217AD6EA00008907 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		BBC162D0217B111C00008907 /* QMUIConfigurationTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfigurationTemplate.h; sourceTree = "<group>"; };
 		BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIConfigurationTemplate.m; sourceTree = "<group>"; };
@@ -2697,6 +2720,8 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BBADE4CF21F8064A0011E5FF /* DWImagePicker */,
+				BBADE4BA21F801070011E5FF /* RichVCUtil */,
 				BBADE43821F6CB110011E5FF /* UIKit */,
 				BB6D2A1321EEC63900F5049F /* HCEmoji */,
 				BBDA2EEA21ECC22B00EDCCFF /* LocationSend */,
@@ -2750,6 +2775,32 @@
 				BBADE46F21F6CB110011E5FF /* QDCollectionViewDemoCell.h */,
 			);
 			path = UIKit;
+			sourceTree = "<group>";
+		};
+		BBADE4BA21F801070011E5FF /* RichVCUtil */ = {
+			isa = PBXGroup;
+			children = (
+				BBADE4BB21F801070011E5FF /* PictureModel.m */,
+				BBADE4BC21F801070011E5FF /* NSAttributedString+html.h */,
+				BBADE4BD21F801070011E5FF /* NSAttributedString+RichText.h */,
+				BBADE4BE21F801070011E5FF /* ImageTextAttachment.h */,
+				BBADE4BF21F801070011E5FF /* UIColor+HEX.m */,
+				BBADE4C021F801070011E5FF /* ImageTextAttachment.m */,
+				BBADE4C121F801070011E5FF /* NSAttributedString+RichText.m */,
+				BBADE4C221F801070011E5FF /* NSAttributedString+html.m */,
+				BBADE4C321F801070011E5FF /* PictureModel.h */,
+				BBADE4C421F801070011E5FF /* UIColor+HEX.h */,
+			);
+			path = RichVCUtil;
+			sourceTree = "<group>";
+		};
+		BBADE4CF21F8064A0011E5FF /* DWImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				BBADE4D021F8064A0011E5FF /* ImagePicker.m */,
+				BBADE4D121F8064A0011E5FF /* ImagePicker.h */,
+			);
+			path = DWImagePicker;
 			sourceTree = "<group>";
 		};
 		BBC16282217AD6DE00008907 /* StoryBoard */ = {
@@ -3040,6 +3091,9 @@
 			children = (
 				BBD2C96621E1A7FB00350DCD /* YXPublishArticleViewController.h */,
 				BBD2C96721E1A7FB00350DCD /* YXPublishArticleViewController.m */,
+				BBADE4CA21F8015B0011E5FF /* RichText.storyboard */,
+				BBADE4CC21F8015C0011E5FF /* RichTextViewController.h */,
+				BBADE4CB21F8015C0011E5FF /* RichTextViewController.m */,
 			);
 			path = "3文章";
 			sourceTree = "<group>";
@@ -4152,6 +4206,7 @@
 				BBCC4AA421E83DC000493F40 /* YXColorViewController.xib in Resources */,
 				296F9A361F04F39000909CDB /* 7.jpg in Resources */,
 				BBDA2D0F21EB30BF00EDCCFF /* MLEmoji_Expression.plist in Resources */,
+				BBADE4CD21F8015C0011E5FF /* RichText.storyboard in Resources */,
 				296F9A2F1F04F39000909CDB /* 12.jpg in Resources */,
 				29629EF21F78E67E002CFCBD /* JSToOC.html in Resources */,
 				BBD2C95B21E0FAEC00350DCD /* YXGridView.xib in Resources */,
@@ -4306,6 +4361,7 @@
 				BBD2C91621E0F67800350DCD /* LLImagePickerModel.m in Sources */,
 				29AD6C631ED3E4D600B0879C /* AppDelegate.m in Sources */,
 				290471B81F98D9A80081CCA1 /* UITabBar+CustomBadge.m in Sources */,
+				BBADE4C621F801080011E5FF /* UIColor+HEX.m in Sources */,
 				BBCC4AB821E86B6500493F40 /* YXHomeXueJiaFootViewController.m in Sources */,
 				29CF332A1F14B5CC00DB7507 /* MakeFriendsLogic.m in Sources */,
 				BBDA2C6221EB308100EDCCFF /* SDTimeLineCellModel.m in Sources */,
@@ -4333,6 +4389,7 @@
 				296DEA701F5D50D100C6FD00 /* TAAnimatedDotView.m in Sources */,
 				BBA812FA21DDEBEC001B5EA1 /* YXHomeTuiJianViewController.m in Sources */,
 				BBCC4B1921E8927700493F40 /* MLLabelUtil.m in Sources */,
+				BBADE4CE21F8015C0011E5FF /* RichTextViewController.m in Sources */,
 				293D46051ECDAA02007C64A9 /* RootNavigationController.m in Sources */,
 				BBECEEAF21F04D4B007E90AC /* YXQCDJCTableViewCell.m in Sources */,
 				BBA812EA21DDDE47001B5EA1 /* MDMultipleSegmentViewCell.m in Sources */,
@@ -4346,6 +4403,7 @@
 				296F9A1B1F04F18400909CDB /* WaterFallCollectionViewCell.m in Sources */,
 				296F72C11F9761C800E5EAB1 /* NativeCallJSVC.m in Sources */,
 				2914E4901F20A4D1001C01DB /* PersonListCollectionViewCell.m in Sources */,
+				BBADE4C921F801080011E5FF /* NSAttributedString+html.m in Sources */,
 				BBCC4B8E21E894CD00493F40 /* Moment.m in Sources */,
 				BB6D2A3321EEC63900F5049F /* UIFont+MyFont.m in Sources */,
 				290A97DE1F4AB24A006BF882 /* ToolDemoViewController.m in Sources */,
@@ -4413,6 +4471,7 @@
 				BBE82D0121E44A7D004E4144 /* ZLPhotoAssets.m in Sources */,
 				BBD2C8FE21E0F67700350DCD /* TZProgressView.m in Sources */,
 				BBD2C90221E0F67700350DCD /* TZImagePickerController.m in Sources */,
+				BBADE4C521F801080011E5FF /* PictureModel.m in Sources */,
 				BBCC4AC021E86EC200493F40 /* YXHomeXueJiaFootTableViewCell.m in Sources */,
 				296DEA731F5D50D100C6FD00 /* SDCollectionViewCell.m in Sources */,
 				BBDA2EE621EC84C600EDCCFF /* UIView+CBExtension.m in Sources */,
@@ -4466,6 +4525,7 @@
 				BB6D2A3721EEC63900F5049F /* EmojiToolBar.m in Sources */,
 				BBD2C80E21E0F41F00350DCD /* YXMineImageViewController.m in Sources */,
 				BBD2C80D21E0F41F00350DCD /* YXMineFootViewController.m in Sources */,
+				BBADE4C821F801080011E5FF /* NSAttributedString+RichText.m in Sources */,
 				BB6D29F421ED8EED00F5049F /* YXHomeXueJiaPeiJianDetailTuiJianViewController.m in Sources */,
 				BBD2C9A021E2F4CA00350DCD /* YXHomeXueJiaPinPaiTableViewCell.m in Sources */,
 				BBD2C91721E0F67800350DCD /* LLImagePickerView.m in Sources */,
@@ -4536,6 +4596,7 @@
 				BBECEEA021F043DB007E90AC /* YXGEFPinPaiDetailTableViewController.m in Sources */,
 				BBC6181221F5BD2B00495619 /* YXHomeGolfScoreTableViewCell.m in Sources */,
 				293D46111ECDAEED007C64A9 /* MineViewController.m in Sources */,
+				BBADE4C721F801080011E5FF /* ImageTextAttachment.m in Sources */,
 				BBD2C95621E0F72800350DCD /* DACircularProgressView.m in Sources */,
 				BBE82CF721E445CA004E4144 /* GTMBase64.m in Sources */,
 				BBA812B921DDBE47001B5EA1 /* TBTabBar.m in Sources */,
@@ -4582,6 +4643,7 @@
 				BBA8131021DE06BE001B5EA1 /* YXManager.m in Sources */,
 				BBD2C80B21E0F41F00350DCD /* YXMineArticleViewController.m in Sources */,
 				BBDA2D1321EB30BF00EDCCFF /* TTTAttributedLabel.m in Sources */,
+				BBADE4D221F8064A0011E5FF /* ImagePicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

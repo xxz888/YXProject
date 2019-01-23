@@ -31,6 +31,8 @@
 
 #import "YXPublishImageViewController.h"
 #import "YXPublishArticleViewController.h"
+
+#import "RichTextViewController.h"
 @interface MainTabBarController ()<UITabBarControllerDelegate,VTingPopItemSelectDelegate> {
     NSMutableArray *images;
     NSMutableArray *titles;
@@ -50,7 +52,7 @@
     [super viewDidLoad];
     self.delegate = self;
     //初始化tabbar
-    [self setUpTabBar];
+//    [self setUpTabBar];
     //添加子控制器
     [self setUpAllChildViewController];
     
@@ -104,6 +106,9 @@
     }else if (index == 2){//文章
 //        YXPublishArticleViewController * publishVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishArticleViewController"];
 //        [weakSelf presentViewController:publishVC animated:YES completion:nil];
+        RichTextViewController * ctrl=[RichTextViewController ViewController];
+        [weakSelf presentViewController:ctrl animated:YES completion:nil];
+
     }
 }
 

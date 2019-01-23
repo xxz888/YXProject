@@ -65,17 +65,9 @@
     if (!FootVC) {
         FootVC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineFootViewController"];
     }
-    
-    
     NSArray* names = @[@"全部",@"晒图",@"文章",@"足迹"];
     NSArray* controllers = @[AllVC,ImageVC,ArticleVC,FootVC];
-    
-    
-    /*
-     *   controllers长度和names长度必须一致，否则将会导致cash
-     *   segmentController在一个屏幕里最多显示6个按钮，如果超过6个，将会自动开启滚动功能，如果不足6个，按钮宽度=父view宽度/x  (x=按钮个数)
-     */
-    [self setSegmentControllersArray:controllers title:names defaultIndex:1 top:260 view:self.view isSameView:NO];
+    [self setSegmentControllersArray:controllers title:names defaultIndex:1 top:170+50 view:self.view isSameView:NO];
 }
 
 

@@ -14,10 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *essayTitleImageView;
 @property (weak, nonatomic) IBOutlet UILabel *essayNameLbl;
 @property (weak, nonatomic) IBOutlet UILabel *essayTimeLbl;
-@property (weak, nonatomic) IBOutlet UILabel *essayTitleLbl;
-@property (weak, nonatomic) IBOutlet UILabel *essayTitleTagLbl;
-@property (weak, nonatomic) IBOutlet UIImageView *essayLeftImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *essayRightImageView;
+
+@property (weak, nonatomic) IBOutlet UIWebView *essayWebView;
 
 @end
 
