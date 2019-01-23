@@ -32,7 +32,7 @@
     }else{
         height = kInputBarHeight;
     }
-    self = [super initWithFrame:CGRectMake(-0.5, ScreenHeight-height, ScreenWidth+1, height)];
+    self = [super initWithFrame:CGRectMake(-0.5, ScreenHeight-height, ScreenWidth+1, height-5)];
     self.backgroundColor = [UIColor backgroundColor];
     self.layer.borderColor = [[UIColor bigBorderColor] CGColor];
     self.layer.borderWidth = 0.5;
@@ -57,7 +57,7 @@
     if (_style == ExpandingInputBarStyle) {
         [self addSubview:self.expandingView];
     }else{
-        [self addSubview:self.keyboardTypeBtn];
+//        [self addSubview:self.keyboardTypeBtn];
     }
 }
 

@@ -8,6 +8,8 @@
 
 #import "YXMineImageViewController.h"
 #import "YXMineImageTableViewCell.h"
+#import "YXMineImageDetailViewController.h"
+
 @interface YXMineImageViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSInteger page ;
 }
@@ -18,8 +20,10 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     kWeakSelf(self);
+    id object = [[NSUserDefaults standardUserDefaults] objectForKey:@"b1"];
     NSString * pageString = NSIntegerToNSString(page) ;
     [YX_MANAGER requestGetDetailListPOST:@{@"type":@(2),@"tag":@"0",@"page":@(1)} success:^(id object) {
+        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"b1"];
         [weakself.dataArray removeAllObjects];
         [weakself.dataArray addObjectsFromArray:object];
         [weakself.yxTableView reloadData];
@@ -49,5 +53,9 @@
     cell.mineTimeLbl.text = [ShareManager timestampSwitchTime:[time integerValue] andFormatter:@"YYYY-MM-dd HH:mm:ss"];
     return cell;
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
+    VC.startDic = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[indexPath.row]];
+    [self.navigationController pushViewController:VC animated:YES];
+}
 @end

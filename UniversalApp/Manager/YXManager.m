@@ -329,6 +329,18 @@ successBlock(responseObject);\
     } failure:^(NSError *error) { }];
 }
 
+
+
+
+#pragma mark ========== 获取晒图评论列表 ==========
+-(void)requestPost_comment:YX_BLOCK{
+    NSString * url = @"/users/post_comment/";
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
+
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

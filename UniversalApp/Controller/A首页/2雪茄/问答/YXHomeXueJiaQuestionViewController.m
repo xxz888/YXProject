@@ -14,7 +14,6 @@
 #import <MLLinkLabel.h>
 #import "PYSearchViewController.h"
 #import "PYTempViewController.h"
-#import "YXHomeXueJiaWenDaDetailViewController.h"
 #import "YXHomeXueJiaQuestionDetailViewController.h"
 #import "YXHomeQuestionFaBuViewController.h"
 

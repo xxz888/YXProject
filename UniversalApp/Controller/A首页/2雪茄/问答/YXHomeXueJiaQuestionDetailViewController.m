@@ -24,7 +24,7 @@
 
 #define kTimeLineTableViewCellId @"SDTimeLineCell"
 
-static CGFloat textFieldH = 40;
+static CGFloat textFieldH = 0;
 @interface YXHomeXueJiaQuestionDetailViewController ()<UITableViewDelegate,UITableViewDataSource,SDTimeLineCellDelegate, UITextFieldDelegate>{
     SDTimeLineRefreshFooter *_refreshFooter;
     SDTimeLineRefreshHeader *_refreshHeader;
@@ -39,7 +39,6 @@ static CGFloat textFieldH = 40;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
 @property(nonatomic)YXHomeQuestionDetailHeaderView * headerView;
-@property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, assign) BOOL isReplayingComment;
 @property (nonatomic, strong) NSIndexPath *currentEditingIndexthPath;
 @property (nonatomic, copy) NSString *commentToUser;
@@ -330,10 +329,6 @@ static CGFloat textFieldH = 40;
         return [self.yxTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[SDTimeLineCell class] contentViewWidth:[self cellContentViewWith]] - 20;
     }
     return [self.yxTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[SDTimeLineCell class] contentViewWidth:[self cellContentViewWith]] + 20;
-}
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    [_textField resignFirstResponder];
-    _textField.placeholder = nil;
 }
 - (CGFloat)cellContentViewWith{
     CGFloat width = [UIScreen mainScreen].bounds.size.width;

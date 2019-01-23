@@ -79,7 +79,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gbp-6u-uUm">
-                                <rect key="frame" x="5" y="40" width="365" height="627"/>
+                                <rect key="frame" x="5" y="40" width="365" height="617"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="v9Y-Gd-tcH" id="iud-Pn-MY4"/>
@@ -91,7 +91,7 @@
                         <constraints>
                             <constraint firstItem="Gbp-6u-uUm" firstAttribute="top" secondItem="Iir-Ii-0Om" secondAttribute="top" constant="20" id="U18-gc-5mm"/>
                             <constraint firstItem="Gbp-6u-uUm" firstAttribute="leading" secondItem="Iir-Ii-0Om" secondAttribute="leading" constant="5" id="mBP-nt-rsM"/>
-                            <constraint firstItem="Iir-Ii-0Om" firstAttribute="bottom" secondItem="Gbp-6u-uUm" secondAttribute="bottom" id="rgn-sM-49f"/>
+                            <constraint firstItem="Iir-Ii-0Om" firstAttribute="bottom" secondItem="Gbp-6u-uUm" secondAttribute="bottom" constant="10" id="rgn-sM-49f"/>
                             <constraint firstAttribute="trailing" secondItem="Gbp-6u-uUm" secondAttribute="trailing" constant="5" id="w3w-8V-Wt7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Iir-Ii-0Om"/>
@@ -234,13 +234,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CIE-9r-dMb" customClass="KeyBoardTableView">
-                                <rect key="frame" x="0.0" y="20" width="375" height="607"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="597"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="CIE-9r-dMb" secondAttribute="bottom" constant="40" id="dkJ-hh-EGE"/>
+                            <constraint firstAttribute="bottom" secondItem="CIE-9r-dMb" secondAttribute="bottom" constant="50" id="dkJ-hh-EGE"/>
                             <constraint firstItem="CIE-9r-dMb" firstAttribute="leading" secondItem="vax-fn-JN6" secondAttribute="leading" id="mfN-K0-qm5"/>
                             <constraint firstItem="CIE-9r-dMb" firstAttribute="top" secondItem="vax-fn-JN6" secondAttribute="top" id="oL9-Jv-Loq"/>
                             <constraint firstItem="CIE-9r-dMb" firstAttribute="trailing" secondItem="vax-fn-JN6" secondAttribute="trailing" id="yjk-1t-zaL"/>

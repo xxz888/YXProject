@@ -23,6 +23,7 @@
     kWeakSelf(self);
     NSString * pageString = NSIntegerToNSString(page) ;
     [YX_MANAGER requestEssayListGET:pageString success:^(id object) {
+        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"b3"];
         [weakself.dataArray removeAllObjects];
         [weakself.heightArray removeAllObjects];
 

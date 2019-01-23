@@ -101,4 +101,9 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestGolf_product_collect:YX_BLOCK;
 #pragma mark ==========获取高尔夫球场列表==========
 -(void)requestGolf_coursePOST:YX_BLOCK;
+
+
+
+#pragma mark ========== 获取晒图评论列表 ==========
+-(void)requestPost_comment:YX_BLOCK;
 @end

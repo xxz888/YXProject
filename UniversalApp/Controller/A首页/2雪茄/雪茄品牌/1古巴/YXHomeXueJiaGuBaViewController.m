@@ -125,7 +125,7 @@
         UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
         YXHomeXueJiaPinPaiDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiDetailViewController"];
         VC.dicData = [NSMutableDictionary dictionaryWithDictionary:object];
-        VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:self.dataDic[@"brand_list"][indexPath.section]];
+        VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[indexPath.section][indexPath.row]];
         [weakself.navigationController pushViewController:VC animated:YES];
     }];
 }

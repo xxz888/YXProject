@@ -32,9 +32,9 @@ static NSString *selectedCamera = @"Resources.bundle/cameraHighlighted";
 #define kKeyboardY          (kInputBarHeight-kKeyboardWidth)/2
 #define kKeyboardWidth      28
 
-#define kInputViewX         (kKeyboardWidth+kKeyboardX*2)
+#define kInputViewX         5//(kKeyboardWidth+kKeyboardX*2)
 #define kInputViewY         7
-#define kInputViewWidth     (ScreenWidth-kInputViewX-kKeyboardX)
+#define kInputViewWidth     ScreenWidth-10//(ScreenWidth-kInputViewX-kKeyboardX)
 #define kInputViewHeight    (kInputBarHeight-kInputViewY*2)
 #define kInputViewMaxHeight 60
 //ExpandingType下的坐标
