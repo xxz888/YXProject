@@ -11,6 +11,7 @@
 #import "UIViewController+AlertViewAndActionSheet.h"
 #import <Masonry/Masonry.h>
 #import <ZXSegmentController/ZXSegmentController.h>
+#import "IQKeyboardManager.h"
 
 typedef void (^ListenChangeIndexBlock)(NSInteger);
 
@@ -92,5 +93,5 @@ typedef void (^ListenChangeIndexBlock)(NSInteger);
 -(void)setNavSearchView;
 @property (nonatomic,weak) ZXSegmentController* segmentController;
 -(void)setSegmentControllersArray:(NSArray *)controllers title:(NSArray *)titlesArray defaultIndex:(NSInteger)index top:(CGFloat)top view:(UIView *)view;
-
+- (void)closeKeyboard:(UITapGestureRecognizer *)recognizer;
 @end

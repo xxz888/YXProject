@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YXMineImageDetailViewController">
             <connections>
+                <outlet property="clickPingLunBtn" destination="5dq-fY-RFm" id="4Mg-mD-DrI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="yxTableView" destination="f6d-vl-7wc" id="4vR-gO-rxB"/>
             </connections>
@@ -29,25 +30,30 @@
                         <outlet property="delegate" destination="-1" id="0ll-I5-GNV"/>
                     </connections>
                 </tableView>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="评论..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xSR-dQ-yOs">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dq-fY-RFm">
                     <rect key="frame" x="5" y="622" width="365" height="40"/>
-                    <nil key="textColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="  点击评论...">
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="clickPingLunAction:" destination="-1" eventType="touchUpInside" id="YUk-TQ-bnv"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="xSR-dQ-yOs" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="5" id="82A-TW-Ppn"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="xSR-dQ-yOs" secondAttribute="trailing" constant="5" id="EJb-ms-bM1"/>
+                <constraint firstItem="5dq-fY-RFm" firstAttribute="top" secondItem="f6d-vl-7wc" secondAttribute="bottom" constant="5" id="3ht-QM-ppb"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="f6d-vl-7wc" secondAttribute="bottom" constant="50" id="Sgt-qJ-fwI"/>
                 <constraint firstItem="f6d-vl-7wc" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="SxD-qU-OZQ"/>
-                <constraint firstItem="xSR-dQ-yOs" firstAttribute="top" secondItem="f6d-vl-7wc" secondAttribute="bottom" constant="5" id="UIO-Gh-O5b"/>
                 <constraint firstItem="f6d-vl-7wc" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="10" id="W4U-WC-qDT"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="5dq-fY-RFm" secondAttribute="trailing" constant="5" id="gIv-Jm-xx0"/>
+                <constraint firstItem="5dq-fY-RFm" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="5" id="imt-AE-AoK"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="f6d-vl-7wc" secondAttribute="trailing" constant="10" id="x5l-fw-euL"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="xSR-dQ-yOs" secondAttribute="bottom" constant="5" id="yET-sX-fKY"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="5dq-fY-RFm" secondAttribute="bottom" constant="5" id="yF7-rj-fxG"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="-335" y="10"/>
         </view>
     </objects>
 </document>

@@ -64,32 +64,7 @@ static CGFloat textFieldH = 40;
     self.yxTableView.estimatedSectionFooterHeight = 0;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeTop;
-    
-    /*
-     // 上拉加载
-     __weak typeof(self) weakSelf = self;
-     _refreshFooter = [SDTimeLineRefreshFooter refreshFooterWithRefreshingText:@"正在加载数据..."];
-     __weak typeof(_refreshFooter) weakRefreshFooter = _refreshFooter;
-     [_refreshFooter addToScrollView:self.yxTableView refreshOpration:^{
-     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-     [weakSelf.dataArray addObjectsFromArray:[weakSelf creatModelsWithCount:10]];
-     
-     
-     [weakself.yxTableView reloadDataWithExistedHeightCache]
-     作用等同于
-     [weakself.yxTableView reloadData]
-     只是“reloadDataWithExistedHeightCache”刷新tableView但不清空之前已经计算好的高度缓存，用于直接将新数据拼接在旧数据之后的tableView刷新
-     
-     [weakself.yxTableView reloadDataWithExistedHeightCache];
-     
-     [weakRefreshFooter endRefreshing];
-     });
-     }];
-     
-     SDTimeLineTableHeaderView *headerView = [SDTimeLineTableHeaderView new];
-     headerView.frame = CGRectMake(0, 0, 0, 260);
-     self.yxTableView.tableHeaderView = headerView;
-     */
+    ViewBorderRadius(self.clickPingLunBtn, 5, 0.5, kLinkTextColor);
     //添加分隔线颜色设置
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXMineImageDetailHeaderView" owner:self options:nil];
     self.lastDetailView = [nib objectAtIndex:0];
@@ -115,9 +90,9 @@ static CGFloat textFieldH = 40;
 #pragma mark ========== 获取晒图评论列表 ==========
 -(void)requestNewList{
     kWeakSelf(self);
-    id object = [[NSUserDefaults standardUserDefaults] objectForKey:@"b2"];
-    weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
-    [weakself refreshTableView];
+//    id object = [[NSUserDefaults standardUserDefaults] objectForKey:@"b2"];
+//    weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
+//    [weakself refreshTableView];
     //请求评价列表 最新评论列表
     [YX_MANAGER requestPost_comment:[self getParamters:@"1" page:@"1"] success:^(id object) {
         [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"b2"];
@@ -141,9 +116,9 @@ static CGFloat textFieldH = 40;
     }
 }
 #pragma mark ========== 评论子评论 ==========
--(void)requestCigar_comment_child:(NSDictionary *)dic{
+-(void)requestpost_comment_child:(NSDictionary *)dic{
     kWeakSelf(self);
-    [YX_MANAGER requestCigar_comment_childPOST:dic success:^(id object) {
+    [YX_MANAGER requestpost_comment_childPOST:dic success:^(id object) {
         _segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];
 }
@@ -224,7 +199,6 @@ static CGFloat textFieldH = 40;
     modalViewController.contentView = self.lastMyTalkView;
     [modalViewController showWithAnimated:YES completion:nil];
 }
-
 
 #pragma mark ========== tableview数据 ==========
 - (NSArray *)creatModelsWithCount:(NSArray *)formalArray{
@@ -359,12 +333,21 @@ static CGFloat textFieldH = 40;
     }
 }
 #pragma mark ========== tableview 点击评论按钮 ==========
-- (void)didClickcCommentButtonInCell:(UITableViewCell *)cell{
-    [_textField becomeFirstResponder];
+- (void)didClickcCommentButtonInCell:(SDTimeLineCell *)cell{
     _currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
-    SDTimeLineCellModel *model = self.dataArray[_currentEditingIndexthPath.row];
+    SDTimeLineCellModel * model = self.dataArray[_currentEditingIndexthPath.row];
+    self.textField.placeholder = [NSString stringWithFormat:@"  回复：%@",model.name];
+    self.currentEditingIndexthPath = cell.indexPath;
+    [self.textField becomeFirstResponder];
+    self.isReplayingComment = YES;
     self.commentToUser = model.name;
     [self adjustTableViewToFitKeyboard];
+    
+//    [_textField becomeFirstResponder];
+//    _currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
+//    SDTimeLineCellModel *model = self.dataArray[_currentEditingIndexthPath.row];
+//    self.commentToUser = model.name;
+//    [self adjustTableViewToFitKeyboard];
 }
 #pragma mark ========== tableview 点赞按钮 ==========
 - (void)didClickLikeButtonInCell:(SDTimeLineCell *)cell{
@@ -375,29 +358,10 @@ static CGFloat textFieldH = 40;
         _currentEditingIndexthPath = index;
         _segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];
-    /*
-     if (!model.isLiked) {
-     SDTimeLineCellLikeItemModel *likeModel = [SDTimeLineCellLikeItemModel new];
-     likeModel.userName = @"GSD_iOS";
-     likeModel.userId = @"gsdios";
-     [temp addObject:likeModel];
-     model.liked = YES;
-     } else {
-     SDTimeLineCellLikeItemModel *tempLikeModel = nil;
-     for (SDTimeLineCellLikeItemModel *likeModel in model.likeItemsArray) {
-     if ([likeModel.userId isEqualToString:@"gsdios"]) {
-     tempLikeModel = likeModel;
-     break;
-     }
-     }
-     [temp removeObject:tempLikeModel];
-     model.liked = NO;
-     }
-     model.likeItemsArray = [temp copy];
-     */
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        //        [self.yxTableView reloadRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationNone];
-    });
+}
+- (IBAction)clickPingLunAction:(id)sender {
+    [_textField becomeFirstResponder];
+    _textField.placeholder = @"开始评论...";
 }
 
 
@@ -461,8 +425,7 @@ static CGFloat textFieldH = 40;
     [self adjustTableViewToFitKeyboardWithRect:rect];
 }
 
-- (void)adjustTableViewToFitKeyboardWithRect:(CGRect)rect
-{
+- (void)adjustTableViewToFitKeyboardWithRect:(CGRect)rect{
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     CGFloat delta = CGRectGetMaxY(rect) - (window.bounds.size.height - _totalKeybordHeight);
     
@@ -481,9 +444,10 @@ static CGFloat textFieldH = 40;
 {
     if (textField.text.length) {
         [_textField resignFirstResponder];
-        SDTimeLineCellModel *model = self.dataArray[_currentEditingIndexthPath.row];
-        SDTimeLineCellCommentItemModel * itemModel;
+
         if (self.isReplayingComment) {
+            SDTimeLineCellModel *model = self.dataArray[_currentEditingIndexthPath.row];
+            SDTimeLineCellCommentItemModel * itemModel;
             for (SDTimeLineCellCommentItemModel * oldItemModel in model.commentItemsArray) {
                 if ([oldItemModel.firstUserName isEqualToString:self.commentToUser]) {
                     itemModel = oldItemModel;
@@ -496,7 +460,7 @@ static CGFloat textFieldH = 40;
             if ([itemModel.secondUserName isEqualToString:self.commentToUser]) {
                 farther_id = [itemModel.secondUserId intValue];
             }
-            [self requestCigar_comment_child:@{@"comment":textField.text,
+            [self requestpost_comment_child:@{@"comment":textField.text,
                                                @"father_id":@([model.id intValue]),
                                                @"aim_id":@(farther_id),
                                                @"aim_name":self.commentToUser
@@ -504,7 +468,7 @@ static CGFloat textFieldH = 40;
             self.isReplayingComment = NO;
         }else{
             [self pinglunFatherPic:@{@"comment":textField.text,
-                                     @"post_id":@([model.postid intValue]),
+                                     @"post_id":@([self.startDic[@"id"] intValue]),
                                      }];
             
         }
@@ -540,8 +504,9 @@ static CGFloat textFieldH = 40;
 }
 #pragma mark ========== 评论晒图 ==========
 -(void)pinglunFatherPic:(NSDictionary *)dic{
+    kWeakSelf(self);
     [YX_MANAGER requestPost_commentPOST:dic success:^(id object) {
-        
+        _segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];
 }
 

@@ -41,16 +41,17 @@
     
 
 }
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-}
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[UIApplication sharedApplication].keyWindow endEditing:YES];
 }
+
 
 
 - (void)showLoadingAnimation
@@ -361,6 +362,10 @@
         make.top.mas_equalTo(top);
         make.left.right.bottom.mas_equalTo(0);
     }];
+}
+#pragma mark - gesture actions
+- (void)closeKeyboard:(UITapGestureRecognizer *)recognizer {
+    [self.view endEditing:YES];
 }
 
 @end

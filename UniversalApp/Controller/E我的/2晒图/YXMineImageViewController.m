@@ -20,10 +20,10 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     kWeakSelf(self);
-    id object = [[NSUserDefaults standardUserDefaults] objectForKey:@"b1"];
-    [weakself.dataArray removeAllObjects];
-    [weakself.dataArray addObjectsFromArray:object];
-    [weakself.yxTableView reloadData];
+//    id object = [[NSUserDefaults standardUserDefaults] objectForKey:@"b1"];
+//    [weakself.dataArray removeAllObjects];
+//    [weakself.dataArray addObjectsFromArray:object];
+//    [weakself.yxTableView reloadData];
     NSString * pageString = NSIntegerToNSString(page) ;
     [YX_MANAGER requestGetDetailListPOST:@{@"type":@(2),@"tag":@"0",@"page":@(1)} success:^(id object) {
         [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"b1"];
@@ -59,6 +59,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
     VC.startDic = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[indexPath.row]];
+    YX_MANAGER.isHaveIcon = NO;
     [self.navigationController pushViewController:VC animated:YES];
 }
 @end

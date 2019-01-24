@@ -29,7 +29,7 @@
 #import "SDTimeLineCell.h"
 
 
-const CGFloat contentLabelFontSize = 15;
+const CGFloat contentLabelFontSize = 13;
 CGFloat maxContentLabelHeight = 0; // 根据具体font而定
 
 NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLineCellOperationButtonClickedNotification";
