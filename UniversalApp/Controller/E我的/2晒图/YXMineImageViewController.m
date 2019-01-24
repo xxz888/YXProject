@@ -19,11 +19,12 @@
 @implementation YXMineImageViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+
+    [self requestList];
+}
+-(void)requestList{
     kWeakSelf(self);
-//    id object = [[NSUserDefaults standardUserDefaults] objectForKey:@"b1"];
-//    [weakself.dataArray removeAllObjects];
-//    [weakself.dataArray addObjectsFromArray:object];
-//    [weakself.yxTableView reloadData];
+
     NSString * pageString = NSIntegerToNSString(page) ;
     [YX_MANAGER requestGetDetailListPOST:@{@"type":@(2),@"tag":@"0",@"page":@(1)} success:^(id object) {
         [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"b1"];
@@ -40,7 +41,7 @@
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXMineImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineImageTableViewCell"];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 250;
+    return 360;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -54,7 +55,21 @@
     cell.mineImageLbl.text = self.dataArray[indexPath.row][@"describe"];
     NSString * time = self.dataArray[indexPath.row][@"publish_time"];
     cell.mineTimeLbl.text = [ShareManager timestampSwitchTime:[time integerValue] andFormatter:@"YYYY-MM-dd HH:mm:ss"];
+
+    
+    kWeakSelf(self);
+    cell.block = ^(YXMineImageTableViewCell * cell) {
+        [weakself requestDianZanAction:cell];
+    };
     return cell;
+}
+-(void)requestDianZanAction:(YXMineImageTableViewCell *)cell{
+    NSIndexPath * indexPath = [self.yxTableView indexPathForCell:cell];
+    kWeakSelf(self);
+    NSString* post_id = self.dataArray[indexPath.row][@"id"];
+    [YX_MANAGER requestPost_praisePOST:@{@"post_id":post_id} success:^(id object) {
+        [weakself requestList];
+    }];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
@@ -62,4 +77,6 @@
     YX_MANAGER.isHaveIcon = NO;
     [self.navigationController pushViewController:VC animated:YES];
 }
+
+
 @end

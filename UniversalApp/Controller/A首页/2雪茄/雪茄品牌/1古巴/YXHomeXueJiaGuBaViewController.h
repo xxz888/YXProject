@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXHomeXueJiaGuBaViewController : RootViewController
-
+-(void)requestCigar_brand:(NSString *)type;
 @end
 
 NS_ASSUME_NONNULL_END

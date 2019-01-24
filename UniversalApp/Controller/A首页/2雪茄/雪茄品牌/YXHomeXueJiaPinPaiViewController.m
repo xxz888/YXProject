@@ -12,12 +12,13 @@
 #import "PYTempViewController.h"
 #import <Masonry/Masonry.h>
 #import <ZXSegmentController/ZXSegmentController.h>
+#import "YXHomeXueJiaFeiGuViewController.h"
 
 #import "YXHomeXueJiaGuBaViewController.h"
 @interface YXHomeXueJiaPinPaiViewController() <PYSearchViewControllerDelegate>
     {
         YXHomeXueJiaGuBaViewController * VC1;
-        YXHomeXueJiaGuBaViewController * VC2;
+        YXHomeXueJiaFeiGuViewController * VC2;
         YXHomeXueJiaGuBaViewController * VC3;
         YXHomeXueJiaGuBaViewController * VC4;
     }
@@ -38,7 +39,7 @@
         VC1 = [stroryBoard instantiateViewControllerWithIdentifier:@"YXHomeXueJiaGuBaViewController"];
     }
     if (!VC2) {
-        VC2 = [stroryBoard instantiateViewControllerWithIdentifier:@"YXHomeXueJiaGuBaViewController"];
+        VC2 = [stroryBoard instantiateViewControllerWithIdentifier:@"YXHomeXueJiaFeiGuViewController"];
     }
     
     if (!VC3) {

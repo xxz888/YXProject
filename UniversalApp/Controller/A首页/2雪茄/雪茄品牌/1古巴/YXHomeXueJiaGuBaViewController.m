@@ -60,7 +60,7 @@
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10,0 , self.gridView.frame.size.width-20, self.gridView.frame.size.height)];
         [imageView setContentMode:UIViewContentModeScaleAspectFit];
         
-        NSMutableString * str = [self.dataDic[@"hot_brand_list"][i][@"photo"] replaceAll:@" " target:@"%20"];
+        NSString * str = [(NSMutableString *)self.dataDic[@"hot_brand_list"][i][@"photo"] replaceAll:@" " target:@"%20"];
         [imageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         imageView.tag = i;//[self.dataDic[@"hot_brand_list"][@"id"] integerValue];
         [self.gridView addSubview:imageView];
@@ -92,8 +92,8 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXHomeXueJiaPinPaiTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaPinPaiTableViewCell" forIndexPath:indexPath];
 
-    
-    [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:self.dataArray[indexPath.section][indexPath.row][@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str = [(NSMutableString *)self.dataArray[indexPath.section][indexPath.row][@"photo"] replaceAll:@" " target:@"%20"];
+    [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     [cell.cellImageView setContentMode:UIViewContentModeScaleAspectFit];
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     cell.cellLbl.text = self.dataArray[indexPath.section][indexPath.row][@"cigar_brand"];

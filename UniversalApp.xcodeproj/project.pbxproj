@@ -228,6 +228,9 @@
 		BB9413E421F8B602007E800A /* IQUIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9413D221F8B602007E800A /* IQUIView+Hierarchy.m */; };
 		BB9413E521F8B602007E800A /* IQUIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9413D621F8B602007E800A /* IQUIViewController+Additions.m */; };
 		BB9413E621F8B602007E800A /* IQKeyboardReturnKeyHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9413D821F8B602007E800A /* IQKeyboardReturnKeyHandler.m */; };
+		BB9413EB21F96830007E800A /* YXMineEssayDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9413E921F96830007E800A /* YXMineEssayDetailViewController.m */; };
+		BB9413EC21F96830007E800A /* YXMineEssayDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB9413EA21F96830007E800A /* YXMineEssayDetailViewController.xib */; };
+		BB9413EF21F98AB1007E800A /* YXHomeXueJiaFeiGuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9413EE21F98AB1007E800A /* YXHomeXueJiaFeiGuViewController.m */; };
 		BB95F63F21E6E0880071A369 /* XHStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB95F63E21E6E0880071A369 /* XHStarRateView.m */; };
 		BB95F64721E715CB0071A369 /* YXHomeLastMyTalkView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB95F64521E715CB0071A369 /* YXHomeLastMyTalkView.m */; };
 		BB95F64921E715D60071A369 /* YXHomeLastMyTalkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB95F64821E715D60071A369 /* YXHomeLastMyTalkView.xib */; };
@@ -887,6 +890,11 @@
 		BB9413D621F8B602007E800A /* IQUIViewController+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQUIViewController+Additions.m"; sourceTree = "<group>"; };
 		BB9413D721F8B602007E800A /* IQUIView+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIView+Hierarchy.h"; sourceTree = "<group>"; };
 		BB9413D821F8B602007E800A /* IQKeyboardReturnKeyHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQKeyboardReturnKeyHandler.m; sourceTree = "<group>"; };
+		BB9413E821F96830007E800A /* YXMineEssayDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineEssayDetailViewController.h; sourceTree = "<group>"; };
+		BB9413E921F96830007E800A /* YXMineEssayDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineEssayDetailViewController.m; sourceTree = "<group>"; };
+		BB9413EA21F96830007E800A /* YXMineEssayDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineEssayDetailViewController.xib; sourceTree = "<group>"; };
+		BB9413ED21F98AB1007E800A /* YXHomeXueJiaFeiGuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaFeiGuViewController.h; sourceTree = "<group>"; };
+		BB9413EE21F98AB1007E800A /* YXHomeXueJiaFeiGuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaFeiGuViewController.m; sourceTree = "<group>"; };
 		BB95F63D21E6E0880071A369 /* XHStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHStarRateView.h; sourceTree = "<group>"; };
 		BB95F63E21E6E0880071A369 /* XHStarRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHStarRateView.m; sourceTree = "<group>"; };
 		BB95F64521E715CB0071A369 /* YXHomeLastMyTalkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeLastMyTalkView.m; sourceTree = "<group>"; };
@@ -2623,6 +2631,16 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		BB9413E721F96810007E800A /* 文章详情 */ = {
+			isa = PBXGroup;
+			children = (
+				BB9413E821F96830007E800A /* YXMineEssayDetailViewController.h */,
+				BB9413E921F96830007E800A /* YXMineEssayDetailViewController.m */,
+				BB9413EA21F96830007E800A /* YXMineEssayDetailViewController.xib */,
+			);
+			path = "文章详情";
+			sourceTree = "<group>";
+		};
 		BB95F63C21E6E0880071A369 /* XHStarRateView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3168,6 +3186,7 @@
 				BBD30CD721E5C35D000D3244 /* YXMineEssayTableViewCell.h */,
 				BBD30CD821E5C35D000D3244 /* YXMineEssayTableViewCell.m */,
 				BBD30CD921E5C35D000D3244 /* YXMineEssayTableViewCell.xib */,
+				BB9413E721F96810007E800A /* 文章详情 */,
 			);
 			path = "3文章";
 			sourceTree = "<group>";
@@ -3563,6 +3582,8 @@
 		BBD2C99621E1C7A900350DCD /* 2非古 */ = {
 			isa = PBXGroup;
 			children = (
+				BB9413ED21F98AB1007E800A /* YXHomeXueJiaFeiGuViewController.h */,
+				BB9413EE21F98AB1007E800A /* YXHomeXueJiaFeiGuViewController.m */,
 			);
 			path = "2非古";
 			sourceTree = "<group>";
@@ -4267,6 +4288,7 @@
 				296DEA801F5D536500C6FD00 /* pageControlCurrentDot@3x.png in Resources */,
 				296F9A331F04F39000909CDB /* 4.jpg in Resources */,
 				BB9EFE7121F5CCBA00180813 /* YXPublishMoreTagsViewController.xib in Resources */,
+				BB9413EC21F96830007E800A /* YXMineEssayDetailViewController.xib in Resources */,
 				296F9A2B1F04F39000909CDB /* 0.jpg in Resources */,
 				BBD2C91F21E0F67800350DCD /* LLImagePicker.bundle in Resources */,
 				BBD2C93D21E0F67800350DCD /* ImageSelectedOff@2x.png in Resources */,
@@ -4552,6 +4574,7 @@
 				BBA812EA21DDDE47001B5EA1 /* MDMultipleSegmentViewCell.m in Sources */,
 				BBD30CEE21E5F562000D3244 /* YXHomeXueJiaPinPaiLastDetailViewController.m in Sources */,
 				BBA8130321DDEC20001B5EA1 /* YXHomeGaoErFuViewController.m in Sources */,
+				BB9413EF21F98AB1007E800A /* YXHomeXueJiaFeiGuViewController.m in Sources */,
 				BBA8130B21DDFE4F001B5EA1 /* YXHomeXueJiaHeaderView.m in Sources */,
 				BBECEEAA21F04C8B007E90AC /* YXQCDJCViewController.m in Sources */,
 				29AD6C5B1ED3E28800B0879C /* PPNetworkCache.m in Sources */,
@@ -4706,6 +4729,7 @@
 				BB6D2A3121EEC63900F5049F /* ExpandingCell.m in Sources */,
 				290A981F1F4ABEB9006BF882 /* HSBaseCellModel.m in Sources */,
 				BBDA2D0C21EB30BF00EDCCFF /* SDPhotoBrowser.m in Sources */,
+				BB9413EB21F96830007E800A /* YXMineEssayDetailViewController.m in Sources */,
 				BBD2C9AD21E3029100350DCD /* YXHomeXueJiaPinPaiDetailViewController.m in Sources */,
 				BBD2C96521E10E5500350DCD /* LTTextView.m in Sources */,
 				BBDA2D2021EB30BF00EDCCFF /* SDRefreshHeaderView.m in Sources */,

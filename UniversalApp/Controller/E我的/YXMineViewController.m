@@ -67,7 +67,7 @@
     }
     NSArray* names = @[@"全部",@"晒图",@"文章",@"足迹"];
     NSArray* controllers = @[AllVC,ImageVC,ArticleVC,FootVC];
-    [self setSegmentControllersArray:controllers title:names defaultIndex:1 top:170+50 view:self.view  ];
+    [self setSegmentControllersArray:controllers title:names defaultIndex:2 top:170+50 view:self.view  ];
 }
 
 

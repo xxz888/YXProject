@@ -15,7 +15,8 @@
 #define TYPE_XUEJIA_1  @"1"
 #define TYPE_GOLF_2 @"2"
 #define TYPE_HONGJIU_3 @"3"
-
+#define ZAN_IMG [UIImage imageNamed:@"Zan"];
+#define UNZAN_IMG [UIImage imageNamed:@"UnZan"];
 //获取系统对象
 #define kApplication        [UIApplication sharedApplication]
 #define kAppWindow          [UIApplication sharedApplication].delegate.window

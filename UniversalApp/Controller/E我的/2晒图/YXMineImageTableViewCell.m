@@ -13,6 +13,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    ViewRadius(self.mineImageView, 3);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -20,5 +21,10 @@
 
     // Configure the view for the selected state
 }
+
+- (IBAction)likeAction:(id)sender{
+    self.block(self);
+}
+
 
 @end

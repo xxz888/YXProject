@@ -116,4 +116,18 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestPost_comment_child:YX_BLOCK;
 #pragma mark ==========发布晒图评论子评论==========
 -(void)requestpost_comment_childPOST:YX_BLOCK;
+
+
+#pragma mark ==========点赞/取消点赞文章==========
+-(void)requestPost_essay_praisePOST:YX_BLOCK;
+#pragma mark ==========评论文章==========
+-(void)requestPost_essay_commentPOST:YX_BLOCK;
+#pragma mark ========== 获取文章评论列表 ==========
+-(void)requestessay_comment:YX_BLOCK;
+#pragma mark ==========点赞/取消点赞文章评论==========
+-(void)requestessay_comment_praisePOST:YX_BLOCK;
+#pragma mark ========== 获取晒图评论子评论列表 ==========
+-(void)requestessay_comment_child:YX_BLOCK;
+#pragma mark ==========发布文章评论子评论==========
+-(void)requestessay_comment_childPOST:YX_BLOCK;
 @end

@@ -35,4 +35,6 @@ SINGLETON_FOR_HEADER(ShareManager)
 +(XHStarRateView *)fiveStarView:(CGFloat)score view:(UIView *)view;
 //添加轮播图
 +(SDCycleScrollView *)setUpSycleScrollView:(NSMutableArray *)imageArray;
+//html
++(NSString *)justFitImage:(NSString *)essay;
 @end

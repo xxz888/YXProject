@@ -8,6 +8,7 @@
 
 #import "YXMineArticleViewController.h"
 #import "YXMineEssayTableViewCell.h"
+#import "YXMineEssayDetailViewController.h"
 
 @interface YXMineArticleViewController ()<UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate>{
     NSInteger page ;
@@ -21,17 +22,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     kWeakSelf(self);
-    id object = [[NSUserDefaults standardUserDefaults] objectForKey:@"b3"];
-    [weakself.dataArray removeAllObjects];
-    [weakself.heightArray removeAllObjects];
-    
-    [weakself.dataArray addObjectsFromArray:object];
-    for (NSDictionary * dic in object) {
-        CGFloat height = [weakself getHTMLHeightByStr:dic[@"essay"]];
-        [weakself.heightArray addObject:@(height/2.2)];
-    }
-    
-    [weakself.yxTableView reloadData];
+
     NSString * pageString = NSIntegerToNSString(page) ;
     [YX_MANAGER requestEssayListGET:pageString success:^(id object) {
         [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"b3"];
@@ -67,30 +58,10 @@
     [cell.essayTitleImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cell.essayNameLbl.text = dic[@"user_name"];
     cell.essayTimeLbl.text = [ShareManager timestampSwitchTime:[dic[@"publish_time"] integerValue] andFormatter:@""];
-    [cell.essayWebView loadHTMLString:[self justFitImage:dic[@"essay"]] baseURL:nil];
+    [cell.essayWebView loadHTMLString:[ShareManager justFitImage:dic[@"essay"]] baseURL:nil];
     return cell;
 }
--(NSString *)justFitImage:(NSString *)essay{
-    NSString *htmlString = [NSString stringWithFormat:@"<html> \n"
-                            "<head> \n"
-                            "<style type=\"text/css\"> \n"
-                            "body {font-size:15px;}\n"
-                            "</style> \n"
-                            "</head> \n"
-                            "<body>"
-                            "<script type='text/javascript'>"
-                            "window.onload = function(){\n"
-                            "var $img = document.getElementsByTagName('img');\n"
-                            "for(var p in  $img){\n"
-                            " $img[p].style.width = '100%%';\n"
-                            "$img[p].style.height ='auto'\n"
-                            "}\n"
-                            "}"
-                            "</script>%@"
-                            "</body>"
-                            "</html>",essay];
-    return htmlString;
-}
+
 //计算html字符串高度
 -(CGFloat )getHTMLHeightByStr:(NSString *)str
 {
@@ -98,5 +69,11 @@
     [htmlString addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} range:NSMakeRange(0, htmlString.length)];
     CGSize textSize = [htmlString boundingRectWithSize:(CGSize){KScreenWidth - 10, CGFLOAT_MAX}options:NSStringDrawingUsesFontLeading || NSStringDrawingUsesLineFragmentOrigin context:nil].size;
     return textSize.height;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    YXMineEssayDetailViewController * VC = [[YXMineEssayDetailViewController alloc]init];
+    VC.startDic = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[indexPath.row]];
+    YX_MANAGER.isHaveIcon = NO;
+    [self.navigationController pushViewController:VC animated:YES];
 }
 @end

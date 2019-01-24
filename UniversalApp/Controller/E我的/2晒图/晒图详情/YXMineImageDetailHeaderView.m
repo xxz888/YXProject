@@ -10,6 +10,7 @@
 #import "SDCycleScrollView.h"
 @interface YXMineImageDetailHeaderView()<SDCycleScrollViewDelegate>
 @property(nonatomic)SDCycleScrollView *cycleScrollView3;
+@property (nonatomic,strong) UIWebView * webView;
 
 @end
 @implementation YXMineImageDetailHeaderView
@@ -43,5 +44,12 @@
     _cycleScrollView3.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
     _cycleScrollView3.autoScrollTimeInterval = 4;
     _cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];
+}
+-(void)setUpWebView:(NSString *)htmlString{
+    if (!self.webView) {
+        self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
+        [self.contentView addSubview:self.webView];
+    }
+    [self.webView loadHTMLString:[ShareManager justFitImage:htmlString] baseURL:nil];
 }
 @end

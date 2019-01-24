@@ -24,6 +24,7 @@ typedef void(^SegmentActionBlock)(NSInteger index);
 
 
 -(void)setContentViewValue:(NSMutableArray *)photoArray;
+-(void)setUpWebView:(NSString *)htmlString;
 @end
 
 NS_ASSUME_NONNULL_END
