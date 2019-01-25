@@ -18,7 +18,8 @@
 #import "YXMinePingLunViewController.h"
 #import "YXMineSettingTableViewController.h"
 #import "YXMineMyCaoGaoViewController.h"
-
+#import "YXMineMyDianZanViewController.h"
+#import "YXFindViewController.h"
 @interface YXMineViewController () <UITableViewDelegate,UITableViewDataSource>{
     YXMineAllViewController * AllVC;
     YXMineArticleViewController * ArticleVC;
@@ -58,35 +59,14 @@
         weakself.tieshuCountLbl.text = kGetString(object[@"pubulish_number"]);
     }];
 }
-
-
-
-
-
-
 -(void)setInitCollection{
     UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
-    
-    if (!AllVC) {
-        AllVC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineAllViewController"];
-    }
-    if (!ArticleVC) {
-        ArticleVC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineArticleViewController"];
-    }
-    
-    if (!ImageVC) {
-        ImageVC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineImageViewController"];
-    }
-    if (!FootVC) {
-        FootVC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineFootViewController"];
-    }
-//    NSArray* names = @[@"全部",@"晒图",@"文章",@"足迹"];
-    NSArray* names = @[@"晒图",@"文章"];
-
-    NSArray* controllers = @[AllVC,AllVC];
-    [self setSegmentControllersArray:controllers title:names defaultIndex:0 top:170+50 view:self.view ];
+    YXFindViewController * findVC = [[YXFindViewController alloc]init];
+    findVC.whereCome = YES;
+    findVC.view.frame = CGRectMake(5, 160, KScreenWidth-10, kScreenHeight-170);
+    [self addChildViewController:findVC];
+    [self.view insertSubview:findVC.view atIndex:0];
 }
-
 
 -(void)setHeaderViewValue{
     self.userInfo = curUser;
@@ -204,6 +184,9 @@
         YXMineMyCollectionViewController * VC = [[YXMineMyCollectionViewController alloc]init];
         VC.dicData = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"dicData"]];
         VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"dicStartData"]];
+        [self.navigationController pushViewController:VC animated:YES];
+    } else if (indexPath.row == 4){
+        YXMineMyDianZanViewController * VC = [[YXMineMyDianZanViewController alloc]init];
         [self.navigationController pushViewController:VC animated:YES];
     }else if (indexPath.row == 5){
         YXMinePingLunViewController * VC = [[YXMinePingLunViewController alloc]init];

@@ -20,11 +20,10 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 
-    [self requestList];
+//    [self requestList];
 }
--(void)requestList{
+-(void)requestMineShaiTuList{
     kWeakSelf(self);
-
     NSString * pageString = NSIntegerToNSString(page) ;
     [YX_MANAGER requestGetDetailListPOST:@{@"type":@(2),@"tag":@"0",@"page":@(1)} success:^(id object) {
         [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"b1"];
@@ -84,7 +83,7 @@
     kWeakSelf(self);
     NSString* post_id = kGetString(self.dataArray[indexPath.row][@"id"]);
     [YX_MANAGER requestPost_praisePOST:@{@"post_id":post_id} success:^(id object) {
-        [weakself requestList];
+//        [weakself requestList];
     }];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

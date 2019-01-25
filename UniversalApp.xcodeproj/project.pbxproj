@@ -225,6 +225,7 @@
 		BB928F6A21FAD02B0090A044 /* YXMineMyCaoGaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F6821FAD02B0090A044 /* YXMineMyCaoGaoViewController.m */; };
 		BB928F6B21FAD02B0090A044 /* YXMineMyCaoGaoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB928F6921FAD02B0090A044 /* YXMineMyCaoGaoViewController.xib */; };
 		BB928F6F21FAD1410090A044 /* YXMineMyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F6E21FAD1410090A044 /* YXMineMyCollectionViewController.m */; };
+		BB928F7321FAF9730090A044 /* YXMineMyDianZanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F7221FAF9730090A044 /* YXMineMyDianZanViewController.m */; };
 		BB9413D921F8B602007E800A /* IQTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9413B821F8B602007E800A /* IQTextView.m */; };
 		BB9413DA21F8B602007E800A /* IQToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9413BC21F8B602007E800A /* IQToolbar.m */; };
 		BB9413DB21F8B602007E800A /* IQTitleBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9413BE21F8B602007E800A /* IQTitleBarButtonItem.m */; };
@@ -891,6 +892,8 @@
 		BB928F6921FAD02B0090A044 /* YXMineMyCaoGaoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineMyCaoGaoViewController.xib; sourceTree = "<group>"; };
 		BB928F6D21FAD1410090A044 /* YXMineMyCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMineMyCollectionViewController.h; sourceTree = "<group>"; };
 		BB928F6E21FAD1410090A044 /* YXMineMyCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMineMyCollectionViewController.m; sourceTree = "<group>"; };
+		BB928F7121FAF9730090A044 /* YXMineMyDianZanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineMyDianZanViewController.h; sourceTree = "<group>"; };
+		BB928F7221FAF9730090A044 /* YXMineMyDianZanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineMyDianZanViewController.m; sourceTree = "<group>"; };
 		BB9413B821F8B602007E800A /* IQTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQTextView.m; sourceTree = "<group>"; };
 		BB9413B921F8B602007E800A /* IQTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQTextView.h; sourceTree = "<group>"; };
 		BB9413BB21F8B602007E800A /* IQUIView+IQKeyboardToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIView+IQKeyboardToolbar.h"; sourceTree = "<group>"; };
@@ -2636,6 +2639,15 @@
 			path = "我的收藏";
 			sourceTree = "<group>";
 		};
+		BB928F7021FAF90A0090A044 /* 我的点赞 */ = {
+			isa = PBXGroup;
+			children = (
+				BB928F7121FAF9730090A044 /* YXMineMyDianZanViewController.h */,
+				BB928F7221FAF9730090A044 /* YXMineMyDianZanViewController.m */,
+			);
+			path = "我的点赞";
+			sourceTree = "<group>";
+		};
 		BB9413B621F8B602007E800A /* IQKeyboardManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -2725,6 +2737,7 @@
 		BB94141121F9AC3F007E800A /* 抽屉 */ = {
 			isa = PBXGroup;
 			children = (
+				BB928F7021FAF90A0090A044 /* 我的点赞 */,
 				BB928F6C21FAD1410090A044 /* 我的收藏 */,
 				BB928F6621FAD0090090A044 /* 草稿 */,
 				BB928F5E21FACA810090A044 /* 设置 */,
@@ -4729,6 +4742,7 @@
 				BBCC4B8F21E894CD00493F40 /* Comment.m in Sources */,
 				BBCC4A9821E82D3400493F40 /* YXHomeXueJiaWenHuaTableViewCell.m in Sources */,
 				BBDA2C6021EB308100EDCCFF /* SDDiscoverTableViewCell.m in Sources */,
+				BB928F7321FAF9730090A044 /* YXMineMyDianZanViewController.m in Sources */,
 				BBD2C8FC21E0F67700350DCD /* TZPhotoPreviewController.m in Sources */,
 				BBA812E721DDDE47001B5EA1 /* MDMultipleSegmentLayout.m in Sources */,
 				2973A81A1EDEE6BE002751F0 /* GameInfo.m in Sources */,

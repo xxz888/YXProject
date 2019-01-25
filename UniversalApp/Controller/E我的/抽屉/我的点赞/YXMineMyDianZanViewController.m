@@ -1,18 +1,18 @@
 //
-//  YXMineAllViewController.m
+//  YXMineMyDianZanViewController.m
 //  UniversalApp
 //
-//  Created by 小小醉 on 2019/1/4.
+//  Created by 小小醉 on 2019/1/25.
 //  Copyright © 2019年 徐阳. All rights reserved.
 //
 
-#import "YXMineAllViewController.h"
+#import "YXMineMyDianZanViewController.h"
 
-@interface YXMineAllViewController ()
+@interface YXMineMyDianZanViewController ()
 
 @end
 
-@implementation YXMineAllViewController
+@implementation YXMineMyDianZanViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,11 +21,6 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 /*
 #pragma mark - Navigation
 

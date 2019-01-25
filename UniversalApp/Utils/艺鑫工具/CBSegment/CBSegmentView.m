@@ -110,7 +110,12 @@
 //        creat button
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [self addSubview:btn];
-        CGFloat btnW = titleWidth+20;
+        CGFloat btnW;
+        if (titleArray.count > 3) {
+           btnW = titleWidth + 20;
+        }else{
+            btnW =  (KScreenWidth - titleWidth)/2;
+        }
         btn.frame =  CGRectMake(totalWidth, 0.5, btnW, _HeaderH-0.5-2);
         btn.contentMode = UIViewContentModeCenter;
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;

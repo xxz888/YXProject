@@ -9,6 +9,6 @@
 #import "RootViewController.h"
 
 @interface YXFindViewController : RootViewController
-@property (weak, nonatomic) IBOutlet UITableView *yxTableView;
-
+@property (strong, nonatomic) UITableView *yxTableView;
+@property (nonatomic,assign) BOOL whereCome;//YES 为我的界面进来的
 @end

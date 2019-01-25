@@ -89,8 +89,8 @@
             NSString * essay = [weakself replacetagWithImageArray:qiniuArray];
             NSDictionary * parDic = @{@"title":self.titleTf.text,
                                       @"intro":@"",
-                                      @"picture1":@"",
-                                      @"picture2":@"",
+                                      @"picture1":qiniuArray.count > 0  ? qiniuArray[0] : @"",
+                                      @"picture2":qiniuArray.count > 1  ? qiniuArray[1] : @"",
                                       @"essay":essay,
                                       @"publish_site":@"现代野风之星",
                                       @"tag":@"000",

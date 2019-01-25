@@ -18,7 +18,6 @@
 @interface YXFindViewController ()<PYSearchViewControllerDelegate,UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate>{
     NSInteger page ;
     CBSegmentView * sliderSegmentView;
-
 }
 @property(nonatomic,strong)NSMutableArray * dataArray;
 @property(nonatomic,strong)NSMutableArray * heightArray;
@@ -39,9 +38,18 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self requestFindTag];
+    if (self.whereCome) {
+        [sliderSegmentView setTitleArray:@[@"晒图",@"文章"] withStyle:CBSegmentStyleSlider];
+        [self requestMineShaiTuList];
+    }else{
+        [self requestFindTag];
+    }
 }
 -(void)tableviewCon{
+    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(5, 64, KScreenWidth-10, kScreenHeight-5) style:0];
+    [self.view addSubview:self.yxTableView];
+    self.yxTableView.delegate = self;
+    self.yxTableView.dataSource= self;
     self.yxTableView.tableHeaderView = [self headerView];
     page = 1;
     _type = @"1";
@@ -53,7 +61,15 @@
     sliderSegmentView = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, 40)];
     sliderSegmentView.titleChooseReturn = ^(NSInteger x) {
         weakself.type = NSIntegerToNSString(x+1);
-        [weakself requestFind];
+        if (weakself.whereCome) {
+            if ([weakself.type integerValue] == 1) {
+                [weakself requestMineShaiTuList];
+            }else if ([weakself.type integerValue] == 2){
+                [weakself requestMineWenZhangList];
+            }
+        }else{
+            [weakself requestFind];
+        }
     };
     return sliderSegmentView;
 }
@@ -76,6 +92,34 @@
     [YX_MANAGER requestGet_users_find:parString success:^(id object) {
         [weakself.dataArray removeAllObjects];
         [weakself.dataArray addObjectsFromArray:object];
+        [weakself.yxTableView reloadData];
+    }];
+}
+#pragma mark ========== 我的界面晒图请求 ==========
+-(void)requestMineShaiTuList{
+    kWeakSelf(self);
+    NSString * pageString = NSIntegerToNSString(page) ;
+    [YX_MANAGER requestGetDetailListPOST:@{@"type":@(2),@"tag":@"0",@"page":@(1)} success:^(id object) {
+        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"b1"];
+        [weakself.dataArray removeAllObjects];
+        [weakself.dataArray addObjectsFromArray:object];
+        [weakself.yxTableView reloadData];
+    }];
+}
+-(void)requestMineWenZhangList{
+    kWeakSelf(self);
+    NSString * pageString = NSIntegerToNSString(page) ;
+    [YX_MANAGER requestEssayListGET:pageString success:^(id object) {
+        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"b3"];
+        [weakself.dataArray removeAllObjects];
+        [weakself.heightArray removeAllObjects];
+        
+        [weakself.dataArray addObjectsFromArray:object];
+        for (NSDictionary * dic in object) {
+            CGFloat height = [weakself getHTMLHeightByStr:dic[@"essay"]];
+            [weakself.heightArray addObject:@(height/2.2)];
+        }
+        
         [weakself.yxTableView reloadData];
     }];
 }
@@ -105,7 +149,7 @@
     NSDictionary * dic = self.dataArray[indexPath.row];
     YX_MANAGER.isHaveIcon = NO;
     //1(晒图数据)2(文章数据)
-    switch ([dic[@"obj"] integerValue]) {
+    switch (self.whereCome ?  [self.type integerValue] : [dic[@"obj"] integerValue]) {
         case 1:{
             YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
             VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
@@ -142,7 +186,7 @@
         [weakself requestDianZanAction:cell];
     };
     //1(晒图数据)2(文章数据)
-    switch ([dic[@"obj"] integerValue]) {
+    switch (self.whereCome ?  [self.type integerValue] : [dic[@"obj"] integerValue]) {
         case 1:{
             cell.midImageView.hidden = NO;
             cell.midWebView.hidden = YES;
@@ -209,5 +253,13 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.type = @"1";
+}
+//计算html字符串高度
+-(CGFloat )getHTMLHeightByStr:(NSString *)str
+{
+    NSMutableAttributedString *htmlString =[[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:[NSNumber numberWithInt:NSUTF8StringEncoding]}documentAttributes:NULL error:nil];
+    [htmlString addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} range:NSMakeRange(0, htmlString.length)];
+    CGSize textSize = [htmlString boundingRectWithSize:(CGSize){KScreenWidth - 10, CGFLOAT_MAX}options:NSStringDrawingUsesFontLeading || NSStringDrawingUsesLineFragmentOrigin context:nil].size;
+    return textSize.height;
 }
 @end

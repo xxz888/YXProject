@@ -144,7 +144,7 @@
 //    MakeFriendsViewController *makeFriendVC = [[MakeFriendsViewController alloc]init];
 //    ToolDemoViewController *makeFriendVC = [[ToolDemoViewController alloc]init];
     UIStoryboard * stroryBoard2 = [UIStoryboard storyboardWithName:@"YXFind" bundle:nil];
-    YXFindViewController * findVC = [stroryBoard2 instantiateViewControllerWithIdentifier:@"YXFindViewController"];
+    YXFindViewController * findVC = [[YXFindViewController alloc]init];
     [self setupChildViewController:findVC title:@"发现" imageName:@"icon_tabbar_onsite" seleceImageName:@"icon_tabbar_onsite_selected"];
     
 //    MsgViewController *msgVC = [[MsgViewController alloc]init];

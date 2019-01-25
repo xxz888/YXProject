@@ -17,28 +17,9 @@
                     <view key="view" contentMode="scaleToFill" id="5iR-Qf-9ss">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RqF-GZ-SWc">
-                                <rect key="frame" x="5" y="20" width="365" height="647"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="k2B-0B-OBO" id="ejz-ss-Fbx"/>
-                                    <outlet property="delegate" destination="k2B-0B-OBO" id="J8x-a8-mrv"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="4Vn-5D-Rwt" firstAttribute="bottom" secondItem="RqF-GZ-SWc" secondAttribute="bottom" id="RD3-QB-Bib"/>
-                            <constraint firstItem="4Vn-5D-Rwt" firstAttribute="trailing" secondItem="RqF-GZ-SWc" secondAttribute="trailing" constant="5" id="dwV-Ne-hsb"/>
-                            <constraint firstItem="RqF-GZ-SWc" firstAttribute="leading" secondItem="4Vn-5D-Rwt" secondAttribute="leading" constant="5" id="wMv-S0-yb5"/>
-                            <constraint firstItem="RqF-GZ-SWc" firstAttribute="top" secondItem="4Vn-5D-Rwt" secondAttribute="top" id="yH2-K0-ke5"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4Vn-5D-Rwt"/>
                     </view>
-                    <connections>
-                        <outlet property="yxTableView" destination="RqF-GZ-SWc" id="zoc-bJ-Xxe"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17C-gi-azF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
