@@ -402,9 +402,13 @@ successBlock(responseObject);\
 }
 
 
-
-
-
+#pragma mark ========== 根据用户id获取个人资料,彼此的关注状态 ==========
+-(void)requestGetUserothers:YX_BLOCK{
+    NSString * url = @"/users/others/1/";
+    [HTTP_GET([[url append:dic] append:@"/0/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 
 
 #pragma mark ========== 获取发现页标签数据 ==========

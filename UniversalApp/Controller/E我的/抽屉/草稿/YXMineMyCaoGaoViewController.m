@@ -27,8 +27,7 @@
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaTableViewCell"];
     self.yxTableView.delegate= self;
     self.yxTableView.dataSource = self;
-    self.tableView.tableFooterView = [[UIView alloc]init];
-    
+    self.yxTableView.tableFooterView = [[UIView alloc]init];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -51,7 +50,7 @@
     [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:self.caoGaoDic[@"photo1"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cell.cellLbl.text = self.caoGaoDic[@"tag"];
     cell.cellAutherLbl.text = self.caoGaoDic[@"describe"];
-    
+    cell.cellDataLbl.hidden = YES;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -76,6 +76,9 @@
     cell.block = ^(YXMineImageTableViewCell * cell) {
         [weakself requestDianZanAction:cell];
     };
+    cell.clickImageBlock = ^(NSInteger index) {
+        
+    };
     return cell;
 }
 -(void)requestDianZanAction:(YXMineImageTableViewCell *)cell{

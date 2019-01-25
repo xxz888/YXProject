@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface YXMineImageTableViewCell : TableViewCell
 typedef void(^clickZan)(YXMineImageTableViewCell *);
+typedef void(^clickImage)(NSInteger);
 
 @property (weak, nonatomic) IBOutlet UIImageView *essayTitleImageView;
 @property (weak, nonatomic) IBOutlet UILabel *essayNameLbl;
@@ -24,6 +25,7 @@ typedef void(^clickZan)(YXMineImageTableViewCell *);
 @property (nonatomic,strong) NSString *post_id;
 @property (nonatomic) BOOL isZan;
 @property (nonatomic,copy) clickZan block;
+@property (nonatomic,copy) clickImage clickImageBlock;
 @property (weak, nonatomic) IBOutlet UIView *midView;
 
 - (IBAction)likeAction:(id)sender;

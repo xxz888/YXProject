@@ -138,4 +138,6 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestGet_users_find_tag:YX_BLOCK;
 #pragma mark ========== 获取发现页标签数据全部接口 ==========
 -(void)requestGet_users_find:YX_BLOCK;
+#pragma mark ========== 根据用户id获取个人资料,彼此的关注状态 ==========
+-(void)requestGetUserothers:YX_BLOCK;
 @end

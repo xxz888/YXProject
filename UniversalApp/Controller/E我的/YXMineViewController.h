@@ -24,4 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *guanzhuBtn;
 - (IBAction)guanzhuAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *editPersonBtn;
+
+@property (nonatomic,assign) BOOL whereCome;// NO为自己  YES为其他人
+@property (nonatomic,copy) NSString * userId;
 @end

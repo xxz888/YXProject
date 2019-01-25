@@ -52,12 +52,18 @@
 }
 #pragma mark ========== 关注粉丝贴数列表 ==========
 -(void)requestGuanZhuAndFenSiCount{
-    kWeakSelf(self);
-    [YX_MANAGER requestLikesGET:@"4" success:^(id object) {
-        weakself.guanzhuCountLbl.text = kGetString(object[@"like_number"]);
-        weakself.fensiCountLbl.text = kGetString(object[@"fans_number"]);
-        weakself.tieshuCountLbl.text = kGetString(object[@"pubulish_number"]);
-    }];
+    
+    if (self.whereCome) {
+      
+    }else{
+        kWeakSelf(self);
+        [YX_MANAGER requestLikesGET:@"4" success:^(id object) {
+            weakself.guanzhuCountLbl.text = kGetString(object[@"like_number"]);
+            weakself.fensiCountLbl.text = kGetString(object[@"fans_number"]);
+            weakself.tieshuCountLbl.text = kGetString(object[@"pubulish_number"]);
+        }];
+    }
+
 }
 -(void)setInitCollection{
     UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
@@ -69,22 +75,58 @@
 }
 
 -(void)setHeaderViewValue{
-    self.userInfo = curUser;
+    kWeakSelf(self);
+    if (self.whereCome) {
+    [self addNavigationItemWithImageNames:nil isLeft:NO target:self action:@selector(handleShowContentView) tags:nil];
+        [YX_MANAGER requestGetUserothers:self.userId success:^(id object) {
+            [weakself.mineImageView sd_setImageWithURL:[NSURL URLWithString:object[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+            weakself.title = kGetString(object[@"username"]);
+            weakself.mineTitle.text =kGetString(object[@"username"]);
+            weakself.mineAdress.text = kGetString(object[@"city"]);
+            weakself.guanzhuBtn.hidden = NO;
+            weakself.editPersonBtn.hidden = YES;
+            
+            weakself.guanzhuCountLbl.text = kGetString(object[@"like_number"]);
+            weakself.fensiCountLbl.text = kGetString(object[@"fans_number"]);
+            weakself.tieshuCountLbl.text = kGetString(object[@"pubulish_number"]);
+            
+            NSInteger tag = [object[@"is_like"] integerValue];
+            NSString * islike = @"";
+            if (tag == 1) {
+                islike = @"互相关注";
+            }else if (tag == 2){
+                islike = @"已关注";
+            }else if (tag == 3){
+                islike = @"关注";
+            }else if (tag == 4){
+                islike = @"关注";
+            }
 
-    [self.mineImageView sd_setImageWithURL:[NSURL URLWithString:self.userInfo.photo] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+            [weakself.guanzhuBtn setTitle:islike forState:UIControlStateNormal];
+
+        }];
+    }else{
+            [self addNavigationItemWithImageNames:@[@"菜单"] isLeft:NO target:self action:@selector(handleShowContentView) tags:nil];
+        self.userInfo = curUser;
+        [self.mineImageView sd_setImageWithURL:[NSURL URLWithString:self.userInfo.photo] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        self.mineImageView.layer.masksToBounds = YES;
+        self.mineImageView.layer.cornerRadius = self.mineImageView.frame.size.width / 2.0;
+        self.navigationController.title = self.userInfo.username;
+        self.mineTitle.text = self.userInfo.username;
+        //    self.mineAdress.text = [[self.userInfo.province append:@"  "] append:self.userInfo.country];
+        //    self.mineAdress.text = [self.mineAdress.text isEqualToString:@""] ? @"浙江 杭州":self.mineAdress.text;
+        self.mineAdress.text = @"浙江 杭州";
+        self.guanzhuBtn.hidden = YES;
+        self.editPersonBtn.hidden = NO;
+    }
+    
+    
+    
     self.mineImageView.layer.masksToBounds = YES;
     self.mineImageView.layer.cornerRadius = self.mineImageView.frame.size.width / 2.0;
-    self.navigationController.title = self.userInfo.username;
-    self.mineTitle.text = self.userInfo.username;
-    
-//    self.mineAdress.text = [[self.userInfo.province append:@"  "] append:self.userInfo.country];
-//    self.mineAdress.text = [self.mineAdress.text isEqualToString:@""] ? @"浙江 杭州":self.mineAdress.text;
-    
-    self.mineAdress.text = @"浙江 杭州";
     ViewBorderRadius(self.guanzhuBtn, 5, 1,CFontColor1);
     ViewBorderRadius(self.editPersonBtn, 5, 1, CFontColor1);
 
-    [self addNavigationItemWithImageNames:@[@"菜单"] isLeft:NO target:self action:@selector(handleShowContentView) tags:nil];
 }
 -(void)caidanClick{
     [self setLayoutCol];

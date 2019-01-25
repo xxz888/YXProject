@@ -15,6 +15,7 @@
 #import "YXMineEssayDetailViewController.h"
 #import "YXMineImageTableViewCell.h"
 #import "YXMineImageDetailViewController.h"
+#import "YXMineViewController.h"
 @interface YXFindViewController ()<PYSearchViewControllerDelegate,UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate>{
     NSInteger page ;
     CBSegmentView * sliderSegmentView;
@@ -141,6 +142,7 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXMineImageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMineImageTableViewCell" forIndexPath:indexPath];
+    cell.essayTitleImageView.tag = indexPath.row;
     [self sameCell:cell indexPath:indexPath];
     [self diffentCell:cell indexPath:indexPath];
     return cell;
@@ -184,6 +186,13 @@
     kWeakSelf(self);
     cell.block = ^(YXMineImageTableViewCell * cell) {
         [weakself requestDianZanAction:cell];
+    };
+    cell.clickImageBlock = ^(NSInteger tag) {
+        UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+        YXMineViewController * mineVC = [stroryBoard5 instantiateViewControllerWithIdentifier:@"YXMineViewController"];
+        mineVC.userId = kGetString( weakself.dataArray[tag][@"user_id"]);
+        mineVC.whereCome = YES;
+        [weakself.navigationController pushViewController:mineVC animated:YES];
     };
     //1(晒图数据)2(文章数据)
     switch (self.whereCome ?  [self.type integerValue] : [dic[@"obj"] integerValue]) {
