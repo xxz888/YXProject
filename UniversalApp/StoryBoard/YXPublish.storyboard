@@ -50,7 +50,7 @@
                                     <action selector="closeView:" destination="iCA-JC-7lp" eventType="touchUpInside" id="yWB-Wj-cdK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Wr-5T-Rjo">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Wr-5T-Rjo">
                                 <rect key="frame" x="295" y="40" width="60" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Ndl-kh-J5R"/>
@@ -69,7 +69,7 @@
                                 </constraints>
                                 <state key="normal" title="存草稿"/>
                                 <connections>
-                                    <action selector="cunCaoGaoAction:" destination="iCA-JC-7lp" eventType="touchUpInside" id="ZOA-nd-Acj"/>
+                                    <action selector="fabuAction:" destination="iCA-JC-7lp" eventType="touchUpInside" id="oZu-Jc-hyP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wnS-dv-FCQ">

@@ -14,6 +14,10 @@
 #import "YXMineImageViewController.h"
 #import "YXMineFootViewController.h"
 #import "YXHomeEditPersonTableViewController.h"
+#import "YXMineMyCollectionViewController.h"
+#import "YXMinePingLunViewController.h"
+#import "YXMineSettingTableViewController.h"
+#import "YXMineMyCaoGaoViewController.h"
 
 @interface YXMineViewController () <UITableViewDelegate,UITableViewDataSource>{
     YXMineAllViewController * AllVC;
@@ -21,9 +25,11 @@
     YXMineImageViewController * ImageVC;
     YXMineFootViewController * FootVC;
     NSArray * titleArray;
+     QMUIModalPresentationViewController * _modalViewController;
 }
 @property(nonatomic, strong) UserInfo *userInfo;//用户信息
 @property (strong, nonatomic) UITableView *yxTableView;
+
 
 @end
 
@@ -43,15 +49,21 @@
     //每次进入界面刷新关注和粉丝数量
     [self requestGuanZhuAndFenSiCount];
 }
+#pragma mark ========== 关注粉丝贴数列表 ==========
 -(void)requestGuanZhuAndFenSiCount{
     kWeakSelf(self);
     [YX_MANAGER requestLikesGET:@"4" success:^(id object) {
-        weakself.guanzhuCountLbl.text = object;
-    }];
-    [YX_MANAGER requestLikesGET:@"5" success:^(id object) {
-        weakself.fensiCountLbl.text = object;
+        weakself.guanzhuCountLbl.text = kGetString(object[@"like_number"]);
+        weakself.fensiCountLbl.text = kGetString(object[@"fans_number"]);
+        weakself.tieshuCountLbl.text = kGetString(object[@"pubulish_number"]);
     }];
 }
+
+
+
+
+
+
 -(void)setInitCollection{
     UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
     
@@ -71,7 +83,7 @@
 //    NSArray* names = @[@"全部",@"晒图",@"文章",@"足迹"];
     NSArray* names = @[@"晒图",@"文章"];
 
-    NSArray* controllers = @[ImageVC,ArticleVC];
+    NSArray* controllers = @[AllVC,AllVC];
     [self setSegmentControllersArray:controllers title:names defaultIndex:0 top:170+50 view:self.view ];
 }
 
@@ -112,11 +124,12 @@
 }
 - (void)handleShowContentView {
     
-
-    QMUIModalPresentationViewController *modalViewController = [[QMUIModalPresentationViewController alloc] init];
-    modalViewController.contentViewMargins = UIEdgeInsetsMake(0, modalViewController.view.frame.size.width/2.5, 0, 0);
-    modalViewController.contentView = self.yxTableView;
-    [modalViewController showWithAnimated:YES completion:nil];
+    if (!_modalViewController) {
+        _modalViewController = [[QMUIModalPresentationViewController alloc] init];
+    }
+    _modalViewController.contentViewMargins = UIEdgeInsetsMake(0, _modalViewController.view.frame.size.width/2.5, 0, 0);
+    _modalViewController.contentView = self.yxTableView;
+    [_modalViewController showWithAnimated:YES completion:nil];
     [self.yxTableView reloadData];
 }
 - (IBAction)editPersonAction:(id)sender {
@@ -184,7 +197,23 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if (indexPath.row == 1){
+        YXMineMyCaoGaoViewController * VC = [[YXMineMyCaoGaoViewController alloc]init];
+        [self.navigationController pushViewController:VC animated:YES];
+    }else if (indexPath.row == 3) {
+        YXMineMyCollectionViewController * VC = [[YXMineMyCollectionViewController alloc]init];
+        VC.dicData = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"dicData"]];
+        VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"dicStartData"]];
+        [self.navigationController pushViewController:VC animated:YES];
+    }else if (indexPath.row == 5){
+        YXMinePingLunViewController * VC = [[YXMinePingLunViewController alloc]init];
+        [self.navigationController pushViewController:VC animated:YES];
+    }else if (indexPath.row == 6){
+        UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+        YXMineSettingTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineSettingTableViewController"];
+        [self.navigationController pushViewController:VC animated:YES];
+    }
+    [_modalViewController hideWithAnimated:YES completion:nil];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 50;

@@ -106,7 +106,7 @@
                             <constraint firstAttribute="height" constant="25" id="vke-QU-GwT"/>
                         </constraints>
                     </stackView>
-                    <webView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8q8-hz-6uZ">
+                    <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8q8-hz-6uZ">
                         <rect key="frame" x="0.0" y="60" width="320" height="242.5"/>
                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </webView>

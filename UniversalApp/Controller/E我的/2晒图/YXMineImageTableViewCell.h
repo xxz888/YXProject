@@ -11,7 +11,12 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface YXMineImageTableViewCell : TableViewCell
 typedef void(^clickZan)(YXMineImageTableViewCell *);
-@property (weak, nonatomic) IBOutlet UIImageView *mineImageView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *essayTitleImageView;
+@property (weak, nonatomic) IBOutlet UILabel *essayNameLbl;
+@property (weak, nonatomic) IBOutlet UILabel *essayTimeLbl;
+
+
 @property (weak, nonatomic) IBOutlet UILabel *mineImageLbl;
 @property (weak, nonatomic) IBOutlet UIButton *mineImageBtn;
 @property (weak, nonatomic) IBOutlet UILabel *mineTimeLbl;
@@ -19,8 +24,11 @@ typedef void(^clickZan)(YXMineImageTableViewCell *);
 @property (nonatomic,strong) NSString *post_id;
 @property (nonatomic) BOOL isZan;
 @property (nonatomic,copy) clickZan block;
+@property (weak, nonatomic) IBOutlet UIView *midView;
 
 - (IBAction)likeAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *midImageView;
+@property (weak, nonatomic) IBOutlet UIWebView *midWebView;
 
 @end
 

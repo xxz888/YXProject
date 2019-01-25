@@ -400,6 +400,35 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) { }];
 }
+
+
+
+
+
+
+
+#pragma mark ========== 获取发现页标签数据 ==========
+-(void)requestGet_users_find:YX_BLOCK{
+    NSString * url = @"/users/find/";
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
+
+
+#pragma mark ========== 获取发现页标签数据全部接口 ==========
+-(void)requestGet_users_find_tag:YX_BLOCK{
+    NSString * url = @"/users/find_tag/";
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
+
+
+
+
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

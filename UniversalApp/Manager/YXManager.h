@@ -130,4 +130,12 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestessay_comment_child:YX_BLOCK;
 #pragma mark ==========发布文章评论子评论==========
 -(void)requestessay_comment_childPOST:YX_BLOCK;
+
+
+
+
+#pragma mark ========== 获取发现页标签数据 ==========
+-(void)requestGet_users_find_tag:YX_BLOCK;
+#pragma mark ========== 获取发现页标签数据全部接口 ==========
+-(void)requestGet_users_find:YX_BLOCK;
 @end

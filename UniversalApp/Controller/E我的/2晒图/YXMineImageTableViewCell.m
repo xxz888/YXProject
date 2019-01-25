@@ -13,7 +13,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    ViewRadius(self.mineImageView, 3);
+    self.essayTitleImageView.layer.masksToBounds = YES;
+    self.essayTitleImageView.layer.cornerRadius = self.essayTitleImageView.frame.size.width / 2.0;
+    
+       ViewRadius(self.midImageView, 3);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

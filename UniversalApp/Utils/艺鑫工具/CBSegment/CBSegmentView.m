@@ -51,14 +51,14 @@
         self.bounces = NO;
         self.showsHorizontalScrollIndicator = NO;
         self.showsVerticalScrollIndicator = NO;
-        self.layer.borderColor = CBColorA(204, 204, 204, 1).CGColor;
-        self.layer.borderWidth = 0.5;
+//        self.layer.borderColor = CBColorA(204, 204, 204, 1).CGColor;
+//        self.layer.borderWidth = 0.5;
         
         _HeaderH = frame.size.height;
         _SegmentStyle = CBSegmentStyleSlider;
         _titleColor = [UIColor grayColor];
         _titleSelectedColor = CBColorA(88, 88, 88, 1);
-        _titleFont = 17;
+        _titleFont = 15;
     }
     return self;
 }
@@ -95,12 +95,13 @@
         UIView *slider = [[UIView alloc]init];
         slider.frame = CGRectMake(0, _HeaderH-3, 0, 3);
         slider.backgroundColor = _titleSelectedColor;
+        [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         [self addSubview:slider];
         self.slider = slider;
     }
     
     [self.titleWidthArray removeAllObjects];
-    CGFloat totalWidth = 15;
+    CGFloat totalWidth = 5;
     CGFloat btnSpace = 15;
     for (NSInteger i = 0; i<titleArray.count; i++) {
 //        cache title width

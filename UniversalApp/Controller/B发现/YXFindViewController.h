@@ -9,5 +9,6 @@
 #import "RootViewController.h"
 
 @interface YXFindViewController : RootViewController
+@property (weak, nonatomic) IBOutlet UITableView *yxTableView;
 
 @end

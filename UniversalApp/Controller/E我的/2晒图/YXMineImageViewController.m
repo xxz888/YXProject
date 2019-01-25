@@ -41,7 +41,7 @@
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXMineImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineImageTableViewCell"];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 360;
+    return 350;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -50,12 +50,26 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXMineImageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMineImageTableViewCell" forIndexPath:indexPath];
-    NSURL * url = [NSURL URLWithString:self.dataArray[indexPath.row][@"photo1"]];
-    [cell.mineImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    cell.mineImageLbl.text = self.dataArray[indexPath.row][@"describe"];
-    NSString * time = self.dataArray[indexPath.row][@"publish_time"];
+    NSDictionary * dic = self.dataArray[indexPath.row];
+
+    NSURL * url = [NSURL URLWithString:dic[@"photo1"]];
+    
+    [cell.essayTitleImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    cell.essayNameLbl.text = dic[@"user_name"];
+    cell.essayTimeLbl.text = [ShareManager timestampSwitchTime:[dic[@"publish_time"] integerValue] andFormatter:@""];
+
+    //自定义
+    UIImageView * mineImageView = [[UIImageView alloc]init];
+    mineImageView.frame = CGRectMake(0, 0, KScreenWidth-10, cell.midView.frame.size.height);
+    [cell.midView addSubview:mineImageView];
+    [mineImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    ViewRadius(mineImageView, 3);
+
+    
+    cell.mineImageLbl.text = dic[@"describe"];
+    NSString * time = dic[@"publish_time"];
     cell.mineTimeLbl.text = [ShareManager timestampSwitchTime:[time integerValue] andFormatter:@"YYYY-MM-dd HH:mm:ss"];
-    BOOL isp =  [self.dataArray[indexPath.row][@"is_praise"] integerValue] == 1;
+    BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
     UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
     [cell.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
     
