@@ -23,6 +23,7 @@ typedef void(^SegmentActionBlock)(NSInteger index);
 - (IBAction)lastSegmentAction:(id)sender;
 
 
+
 -(void)setContentViewValue:(NSMutableArray *)photoArray;
 -(void)setUpWebView:(NSString *)htmlString;
 @end

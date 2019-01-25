@@ -147,7 +147,7 @@
 #pragma mark ========== 重新请求详情 ==========
 -(void)requestCigar_brand_details{
     kWeakSelf(self);
-    [YX_MANAGER requestCigar_brand_detailsPOST:@{@"cigar_brand":self.title} success:^(id object) {
+    [YX_MANAGER requestCigar_brand_detailsPOST:@{@"cigar_brand_id":kGetString(self.dicStartData[@"id"])} success:^(id object) {
         weakself.dicData = [NSMutableDictionary dictionaryWithDictionary:object];
         [weakself.tableView reloadData];
     }];

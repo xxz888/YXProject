@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol MCTabBarControllerDelegate<UITabBarControllerDelegate>
+// 重写了选中方法，主要处理中间item选中事件
+- (void)mcTabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController;
+@end
 /**
  底部 TabBar 控制器
  */
 @interface MainTabBarController : UITabBarController
-
 /**
  设置小红点
  
@@ -19,5 +22,5 @@
  @param isShow 是显示还是隐藏
  */
 -(void)setRedDotWithIndex:(NSInteger)index isShow:(BOOL)isShow;
-
+@property (nonatomic, weak) id<MCTabBarControllerDelegate> mcDelegate;
 @end

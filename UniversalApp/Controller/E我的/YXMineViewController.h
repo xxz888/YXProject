@@ -16,11 +16,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *guanzhuCountLbl;
 @property (weak, nonatomic) IBOutlet UILabel *fensiCountLbl;
 @property (weak, nonatomic) IBOutlet UILabel *tieshuCountLbl;
+- (IBAction)editPersonAction:(id)sender;
 
 - (IBAction)guanzhuAction:(id)sender;
 - (IBAction)fensiAction:(id)sender;
 - (IBAction)tieshuAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *guanzhuBtn;
 - (IBAction)guanzhuAction:(id)sender;
-
+@property (weak, nonatomic) IBOutlet UIButton *editPersonBtn;
 @end

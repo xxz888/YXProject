@@ -55,7 +55,9 @@
     cell.mineImageLbl.text = self.dataArray[indexPath.row][@"describe"];
     NSString * time = self.dataArray[indexPath.row][@"publish_time"];
     cell.mineTimeLbl.text = [ShareManager timestampSwitchTime:[time integerValue] andFormatter:@"YYYY-MM-dd HH:mm:ss"];
-
+    BOOL isp =  [self.dataArray[indexPath.row][@"is_praise"] integerValue] == 1;
+    UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
+    [cell.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
     
     kWeakSelf(self);
     cell.block = ^(YXMineImageTableViewCell * cell) {
@@ -66,7 +68,7 @@
 -(void)requestDianZanAction:(YXMineImageTableViewCell *)cell{
     NSIndexPath * indexPath = [self.yxTableView indexPathForCell:cell];
     kWeakSelf(self);
-    NSString* post_id = self.dataArray[indexPath.row][@"id"];
+    NSString* post_id = kGetString(self.dataArray[indexPath.row][@"id"]);
     [YX_MANAGER requestPost_praisePOST:@{@"post_id":post_id} success:^(id object) {
         [weakself requestList];
     }];

@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface YXHomeXueJiaPinPaiTableViewCell : TableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *cellImageView;
 @property (weak, nonatomic) IBOutlet UILabel *cellLbl;
+@property (nonatomic,strong) NSString * id;
 
 @end
 

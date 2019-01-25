@@ -214,6 +214,8 @@
 		BB6D2A4221EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A4121EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.m */; };
 		BB6D2A4521EF7D8400F5049F /* YXHomeQuestionDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A4421EF7D8400F5049F /* YXHomeQuestionDetailHeaderView.m */; };
 		BB6D2A4721EF7D9200F5049F /* YXHomeQuestionDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB6D2A4621EF7D9200F5049F /* YXHomeQuestionDetailHeaderView.xib */; };
+		BB928F4A21F9BB960090A044 /* YXHomeEditPersonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F4921F9BB960090A044 /* YXHomeEditPersonTableViewController.m */; };
+		BB928F4D21F9CA0A0090A044 /* MCTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F4C21F9CA090090A044 /* MCTabBar.m */; };
 		BB9413D921F8B602007E800A /* IQTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9413B821F8B602007E800A /* IQTextView.m */; };
 		BB9413DA21F8B602007E800A /* IQToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9413BC21F8B602007E800A /* IQToolbar.m */; };
 		BB9413DB21F8B602007E800A /* IQTitleBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9413BE21F8B602007E800A /* IQTitleBarButtonItem.m */; };
@@ -861,6 +863,10 @@
 		BB6D2A4321EF7D8400F5049F /* YXHomeQuestionDetailHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeQuestionDetailHeaderView.h; sourceTree = "<group>"; };
 		BB6D2A4421EF7D8400F5049F /* YXHomeQuestionDetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeQuestionDetailHeaderView.m; sourceTree = "<group>"; };
 		BB6D2A4621EF7D9200F5049F /* YXHomeQuestionDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeQuestionDetailHeaderView.xib; sourceTree = "<group>"; };
+		BB928F4821F9BB960090A044 /* YXHomeEditPersonTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeEditPersonTableViewController.h; sourceTree = "<group>"; };
+		BB928F4921F9BB960090A044 /* YXHomeEditPersonTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeEditPersonTableViewController.m; sourceTree = "<group>"; };
+		BB928F4B21F9CA090090A044 /* MCTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCTabBar.h; sourceTree = "<group>"; };
+		BB928F4C21F9CA090090A044 /* MCTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCTabBar.m; sourceTree = "<group>"; };
 		BB9413B821F8B602007E800A /* IQTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQTextView.m; sourceTree = "<group>"; };
 		BB9413B921F8B602007E800A /* IQTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQTextView.h; sourceTree = "<group>"; };
 		BB9413BB21F8B602007E800A /* IQUIView+IQKeyboardToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIView+IQKeyboardToolbar.h"; sourceTree = "<group>"; };
@@ -2641,6 +2647,22 @@
 			path = "文章详情";
 			sourceTree = "<group>";
 		};
+		BB94141121F9AC3F007E800A /* 抽屉 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "抽屉";
+			sourceTree = "<group>";
+		};
+		BB94141C21F9B850007E800A /* 编辑个人资料 */ = {
+			isa = PBXGroup;
+			children = (
+				BB928F4821F9BB960090A044 /* YXHomeEditPersonTableViewController.h */,
+				BB928F4921F9BB960090A044 /* YXHomeEditPersonTableViewController.m */,
+			);
+			path = "编辑个人资料";
+			sourceTree = "<group>";
+		};
 		BB95F63C21E6E0880071A369 /* XHStarRateView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2696,6 +2718,8 @@
 			children = (
 				BBA812B421DDABD3001B5EA1 /* YXMineViewController.h */,
 				BBA812B521DDABD3001B5EA1 /* YXMineViewController.m */,
+				BB94141C21F9B850007E800A /* 编辑个人资料 */,
+				BB94141121F9AC3F007E800A /* 抽屉 */,
 				BBD30CE521E5CDE3000D3244 /* View */,
 				BBD30CDD21E5CCC9000D3244 /* 粉丝 */,
 				BBD30CDC21E5CCC9000D3244 /* 关注 */,
@@ -2867,6 +2891,8 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BB928F4B21F9CA090090A044 /* MCTabBar.h */,
+				BB928F4C21F9CA090090A044 /* MCTabBar.m */,
 				BB9413B621F8B602007E800A /* IQKeyboardManager */,
 				BBADE4DE21F8A6D30011E5FF /* CBSegment */,
 				BBADE4CF21F8064A0011E5FF /* DWImagePicker */,
@@ -4724,6 +4750,7 @@
 				BBCC4AA821E83DD100493F40 /* YXXingZhuangViewController.m in Sources */,
 				BBD30CD521E589B1000D3244 /* YXMineImageTableViewCell.m in Sources */,
 				290A97FF1F4ABC12006BF882 /* NickNameLbel.m in Sources */,
+				BB928F4A21F9BB960090A044 /* YXHomeEditPersonTableViewController.m in Sources */,
 				290A98051F4ABCD9006BF882 /* IAPManager.m in Sources */,
 				BBD2C9A721E2FA0600350DCD /* NSArray+TPDecription.m in Sources */,
 				BB6D2A3121EEC63900F5049F /* ExpandingCell.m in Sources */,
@@ -4742,6 +4769,7 @@
 				293ECC2D1EE56D1D008061A1 /* IMManager.m in Sources */,
 				BBD2C8FF21E0F67700350DCD /* TZImageManager.m in Sources */,
 				BB9413DC21F8B602007E800A /* IQBarButtonItem.m in Sources */,
+				BB928F4D21F9CA0A0090A044 /* MCTabBar.m in Sources */,
 				BBA812E821DDDE47001B5EA1 /* MDFlipCollectionView.m in Sources */,
 				29AD6C4D1ED3D51200B0879C /* OpenUDID.m in Sources */,
 				BBA812B321DDABC1001B5EA1 /* YXMessageViewController.m in Sources */,

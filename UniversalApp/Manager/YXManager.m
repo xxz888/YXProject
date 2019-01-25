@@ -330,7 +330,7 @@ successBlock(responseObject);\
 
 #pragma mark ==========点赞/取消点赞晒图==========
 -(void)requestPost_praisePOST:YX_BLOCK{
-    [HTTP_POST(@"/users/post_praise/") Parameters:dic sucess:^(id responseObject) {
+    [HTTP_POST(@"/users/post_praise/1/") Parameters:dic sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) { }];
 }

@@ -58,10 +58,13 @@
 
     for (NSInteger i = 0; i < [self.dataDic[@"hot_brand_list"] count]; i++) {
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10,0 , self.gridView.frame.size.width-20, self.gridView.frame.size.height)];
-        [imageView setContentMode:UIViewContentModeScaleAspectFit];
+//        [imageView setContentMode:UIViewContentModeScaleAspectFit];
         
         NSString * str = [(NSMutableString *)self.dataDic[@"hot_brand_list"][i][@"photo"] replaceAll:@" " target:@"%20"];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        
+        [imageView sd_setImageWithURL:[NSURL URLWithString:str]
+                     placeholderImage:[UIImage imageNamed:@"img_moren"]
+                              options:SDWebImageAllowInvalidSSLCertificates];
         imageView.tag = i;//[self.dataDic[@"hot_brand_list"][@"id"] integerValue];
         [self.gridView addSubview:imageView];
         //view添加点击事件
@@ -97,14 +100,14 @@
     [cell.cellImageView setContentMode:UIViewContentModeScaleAspectFit];
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     cell.cellLbl.text = self.dataArray[indexPath.section][indexPath.row][@"cigar_brand"];
-    
+    cell.id = kGetString(self.dataArray[indexPath.section][indexPath.row][@"id"]);
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     YXHomeXueJiaPinPaiTableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-    [self requestCigar_brand_details:cell.cellLbl.text indexPath:indexPath];
+    [self requestCigar_brand_details:cell.id indexPath:indexPath];
 }
 -(void)tapAction:(id)sender{
     UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;
@@ -112,9 +115,9 @@
     NSUInteger tag = views.tag;
 }
 
--(void)requestCigar_brand_details:(NSString *)cigar_brand indexPath:(NSIndexPath *)indexPath{
+-(void)requestCigar_brand_details:(NSString *)cigar_brand_id indexPath:(NSIndexPath *)indexPath{
     kWeakSelf(self);
-    [YX_MANAGER requestCigar_brand_detailsPOST:@{@"cigar_brand":cigar_brand} success:^(id object) {
+    [YX_MANAGER requestCigar_brand_detailsPOST:@{@"cigar_brand_id":cigar_brand_id} success:^(id object) {
         UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
         YXHomeXueJiaPinPaiDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiDetailViewController"];
         VC.dicData = [NSMutableDictionary dictionaryWithDictionary:object];

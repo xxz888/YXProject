@@ -52,4 +52,6 @@
     }
     [self.webView loadHTMLString:[ShareManager justFitImage:htmlString] baseURL:nil];
 }
+- (IBAction)editPersonAction:(id)sender {
+}
 @end

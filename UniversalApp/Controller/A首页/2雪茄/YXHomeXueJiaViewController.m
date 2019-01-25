@@ -63,7 +63,7 @@
 -(void)createBottomTableView{
 
     if (!self.bottomTableView) {
-        self.bottomTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, self.bootomView.frame.size.height - 60 - 64 - 49) style:UITableViewStyleGrouped];
+        self.bottomTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, self.bootomView.frame.size.height-49-64) style:UITableViewStyleGrouped];
         [self.bootomView addSubview:self.bottomTableView];
     }
     self.bottomTableView.backgroundColor = KWhiteColor;

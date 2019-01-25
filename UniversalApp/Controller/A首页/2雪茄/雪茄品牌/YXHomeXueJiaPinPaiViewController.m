@@ -39,7 +39,8 @@
         VC1 = [stroryBoard instantiateViewControllerWithIdentifier:@"YXHomeXueJiaGuBaViewController"];
     }
     if (!VC2) {
-        VC2 = [stroryBoard instantiateViewControllerWithIdentifier:@"YXHomeXueJiaFeiGuViewController"];
+        VC2 = [[YXHomeXueJiaFeiGuViewController alloc]init];
+        
     }
     
     if (!VC3) {
