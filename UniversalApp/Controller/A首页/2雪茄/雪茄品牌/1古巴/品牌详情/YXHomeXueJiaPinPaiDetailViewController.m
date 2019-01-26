@@ -24,7 +24,7 @@
     
     self.edgesForExtendedLayout=UIRectEdgeNone;
     [self.tableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaDetailTableViewCell"];
-    
+    self.tableView.tableFooterView = [[UIView alloc]init];
     [self initData];
 
     
@@ -57,9 +57,9 @@
     
     
     //用的不是一个字典的东西
-    self.section1countLbl.text = [kGetString(self.dicData[@"concern_number"]) append:@" 人关注"];
-    BOOL isGuanZhu = [self.dicData[@"is_concern"] integerValue] == 1;
-    [ShareManager setGuanZhuStatus:self.section1GuanZhuBtn status:isGuanZhu];
+    self.section1countLbl.text = [kGetString(self.dicStartData[@"concern_number"]) append:@" 人关注"];
+    BOOL isGuanZhu = [self.dicStartData[@"is_concern"] integerValue] == 1;
+    [ShareManager setGuanZhuStatus:self.section1GuanZhuBtn status:!isGuanZhu];
     
 
 }
@@ -102,7 +102,8 @@
         cell.section2Lbl5.text = [kGetString(cellData[@"price_single_china"]) append:@"元/支"];
         cell.section2Lbl6.text = [NSString stringWithFormat:@"%@元/盒\n(%@)支",cellData[@"price_box_china"],cellData[@"box_size"]];
         cell.cigar_id = kGetString(cellData[@"id"]);
-        [cell.likeBtn setBackgroundImage:[cellData[@"is_collect"] integerValue] == 1 ? _selImage:_unImage forState:UIControlStateNormal];
+        
+        [cell.likeBtn setBackgroundImage:[cellData[@"is_collect"] integerValue] == 1  || !cellData[@"is_collect"] ? _selImage:_unImage forState:UIControlStateNormal];
         cell.delegate = self;
         return cell;
     }
@@ -156,9 +157,9 @@
 -(void)requestMy_concern_cigar{
     kWeakSelf(self);
     NSDictionary * cellData = self.dicStartData;
-    [YX_MANAGER requestMy_concern_cigarPOST:@{@"cigar_brand":self.title,@"photo":cellData[@"photo"]} success:^(id object) {
+    [YX_MANAGER requestMy_concern_cigarPOST:@{@"cigar_brand_id":self.dicStartData[@"id"]} success:^(id object) {
         BOOL isGuanZhu = [weakself.dicData[@"is_concern"] integerValue] == 1;
-        [ShareManager setGuanZhuStatus:weakself.section1GuanZhuBtn status:!isGuanZhu];
+        [ShareManager setGuanZhuStatus:weakself.section1GuanZhuBtn status:isGuanZhu];
 
     }];
 }

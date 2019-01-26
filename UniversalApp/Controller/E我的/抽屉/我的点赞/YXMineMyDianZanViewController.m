@@ -17,9 +17,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.title = @"我的点赞";
     self.dataArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXMineImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineImageTableViewCell"];
+    self.yxTableView.separatorStyle = 0;
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -28,7 +29,7 @@
     [YX_MANAGER requestMyDianZanList:@"1" success:^(id object) {
         [weakself.dataArray removeAllObjects];
         [weakself.dataArray addObjectsFromArray:object];
-        [weakself.tableView reloadData];
+        [weakself.yxTableView reloadData];
     }];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -53,7 +54,7 @@
     [mineImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"img_moren"]];
     ViewRadius(mineImageView, 3);
     cell.mineImageLbl.text = dic[@"describe"];
-    cell.mineTimeLbl.text = dic[@"publish_site"];
+    cell.mineTimeLbl.text = [@"☉ " append:dic[@"publish_site"]];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

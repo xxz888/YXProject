@@ -42,6 +42,8 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestCollect_cigarPOST:YX_BLOCK;
 #pragma mark ========== 品牌是否关注 ==========
 -(void)requestMy_concern_cigarPOST:YX_BLOCK;
+#pragma mark ==========我关注的雪茄品牌==========
+-(void)requestGETMyGuanZhuList:YX_BLOCK;
 #pragma mark ========== 发布晒图 ==========
 -(void)requestFaBuImagePOST:YX_BLOCK;
 #pragma mark ==========晒图列表==========
@@ -165,4 +167,14 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestGetTagList:YX_BLOCK;
 #pragma mark ==========获取TAG标签列表 ==========
 -(void)requestGetTagList_Tag:YX_BLOCK;
+#pragma mark ========== 我的点评雪茄列表 ==========
+-(void)requestGetMyDianPingList:YX_BLOCK;
+#pragma mark ========== 我收藏的雪茄列表 ==========
+-(void)requestMyXueJia_CollectionListGet:YX_BLOCK;
+
+
+#pragma mark ========== 我的页面全部接口 ==========
+-(void)requestGetSersAllList:YX_BLOCK;
+#pragma mark ========== 其他的全部 ==========
+-(void)requestGetSers_Other_AllList:YX_BLOCK;
 @end

@@ -13,7 +13,7 @@
 #import <Masonry/Masonry.h>
 #import <ZXSegmentController/ZXSegmentController.h>
 #import "YXHomeXueJiaFeiGuViewController.h"
-
+#import "YXHomeXueJiaMyGuanZhuViewController.h"
 #import "YXHomeXueJiaGuBaViewController.h"
 @interface YXHomeXueJiaPinPaiViewController() <PYSearchViewControllerDelegate>
     {
@@ -36,21 +36,19 @@
 -(void)setInitCollection{
     UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
     if (!VC1) {
-        VC1 = [stroryBoard instantiateViewControllerWithIdentifier:@"YXHomeXueJiaGuBaViewController"];
+        VC1 = [[YXHomeXueJiaGuBaViewController alloc]init];
     }
     if (!VC2) {
         VC2 = [[YXHomeXueJiaFeiGuViewController alloc]init];
-        
     }
-    
     if (!VC3) {
-        VC3 = [stroryBoard instantiateViewControllerWithIdentifier:@"YXHomeXueJiaGuBaViewController"];
+        VC3 = [[YXHomeXueJiaMyGuanZhuViewController alloc]init];
     }
     if (!VC4) {
         VC4 = [stroryBoard instantiateViewControllerWithIdentifier:@"YXHomeXueJiaGuBaViewController"];
     }
-    NSArray* names = @[@"古巴",@"非古",@"我的关注",@"筛选"];
-    NSArray* controllers = @[VC1,VC2,VC3,VC4];
+    NSArray* names = @[@"古巴",@"非古",@"我的关注"];
+    NSArray* controllers = @[VC1,VC2,VC3];
     [self setSegmentControllersArray:controllers title:names defaultIndex:0 top:84 view:self.view];
 }
 

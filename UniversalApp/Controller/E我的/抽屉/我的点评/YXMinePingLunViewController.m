@@ -11,6 +11,7 @@
 
 @interface YXMinePingLunViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *yxTableVIew;
+@property (nonatomic,strong) NSMutableArray * dataArray;
 
 @end
 
@@ -18,17 +19,44 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的评论";
+    self.title = @"我的点评";
+    self.dataArray = [[NSMutableArray alloc]init];
     [self.yxTableVIew registerNib:[UINib nibWithNibName:@"YXMinePingLunTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMinePingLunTableViewCell"];
+    self.yxTableVIew.tableFooterView = [[UIView alloc]init];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self requestMyDianPing];
+}
+-(void)requestMyDianPing{
+    kWeakSelf(self);
+    [YX_MANAGER requestGetMyDianPingList:@"1" success:^(id object) {
+        [weakself.dataArray removeAllObjects];
+        [weakself.dataArray addObjectsFromArray:object];
+        [weakself.yxTableVIew reloadData];
+    }];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.dataArray.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 280;
+    return 300;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXMinePingLunTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMinePingLunTableViewCell" forIndexPath:indexPath];
+    NSDictionary * dic = self.dataArray[indexPath.row];
+    NSString * string = [dic[@"photo_list"] count] > 0 ? dic[@"photo_list"][0][@"photo_url"] : @"";
+    [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+  
+    cell.cnLbl.text =  [kGetString(dic[@"price_box_china"]) append:@"元"];
+    cell.skLbl.text =  [kGetString(dic[@"price_box_hongkong"]) append:@"元"];
+    cell.hwLbl.text =  [kGetString(dic[@"price_box_overswas"]) append:@"元"];
+
+    cell.titleLbl.text = dic[@"cigar_name"];
+    
+    cell.timeLbl.text = [ShareManager timestampSwitchTime:[kGetString(dic[@"comment_time"]) longLongValue] andFormatter:@""];
+    
+    cell.plLbl.text = dic[@"comment"];
     return cell;
 }
 /*

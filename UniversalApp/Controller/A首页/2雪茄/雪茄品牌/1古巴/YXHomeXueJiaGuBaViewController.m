@@ -12,11 +12,7 @@
 #import "YXHomeXueJiaPinPaiDetailViewController.h"
 @interface YXHomeXueJiaGuBaViewController()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic, strong) QMUIGridView *gridView;
-@property (weak, nonatomic) IBOutlet UITableView *yxTableView;
-@property (nonatomic,strong) NSMutableArray * dataArray;
-@property (nonatomic,strong) NSMutableArray * dataArrayTag;
-@property (nonatomic,strong) NSMutableDictionary * dataDic;
-@property (nonatomic,strong) NSMutableArray * indexArray;
+
 @end
 @implementation YXHomeXueJiaGuBaViewController
 -(void)viewWillAppear:(BOOL)animated{
@@ -27,13 +23,22 @@
     [super viewDidLoad];
     self.indexArray = [[NSMutableArray alloc]init];
     self.dataArray = [[NSMutableArray alloc]init];
+    self.hotDataArray = [[NSMutableArray alloc]init];
+    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(5, 10, KScreenWidth-10, kScreenHeight-5) style:0];
+    [self.view addSubview:self.yxTableView];
+    self.yxTableView.delegate = self;
+    self.yxTableView.dataSource= self;
+    self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaPinPaiTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaPinPaiTableViewCell"];
 }
 -(void)requestCigar_brand:(NSString *)type{
     kWeakSelf(self);
+
     [YX_MANAGER requestCigar_brand:type success:^(id object) {
-        weakself.dataDic = [[NSMutableDictionary alloc]initWithDictionary:object];
-        weakself.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:weakself.dataDic[@"brand_list"]]];
+        [weakself.dataArray removeAllObjects];
+        [weakself.hotDataArray removeAllObjects];
+        weakself.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:object[@"brand_list"]]];
+        [weakself.hotDataArray addObjectsFromArray:object[@"hot_brand_list"]];
         [weakself createMiddleCollection];
         [weakself.yxTableView reloadData];
     }];
@@ -45,7 +50,7 @@
         self.gridView = [[QMUIGridView alloc] init];
     }
     float height = 80;
-    NSInteger count = [self.dataDic[@"hot_brand_list"] count];
+    NSInteger count = [self.hotDataArray count];
     count = count <= 3 ? 1 : 2;
     self.gridView.frame = CGRectMake(10, 0, KScreenWidth-20, height*count);
     self.yxTableView.tableHeaderView = self.gridView;
@@ -56,16 +61,16 @@
     self.gridView.separatorColor = KClearColor;
     self.gridView.separatorDashed = NO;
 
-    for (NSInteger i = 0; i < [self.dataDic[@"hot_brand_list"] count]; i++) {
+    for (NSInteger i = 0; i < [self.hotDataArray count]; i++) {
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10,0 , self.gridView.frame.size.width-20, self.gridView.frame.size.height)];
 //        [imageView setContentMode:UIViewContentModeScaleAspectFit];
         
-        NSString * str = [(NSMutableString *)self.dataDic[@"hot_brand_list"][i][@"photo"] replaceAll:@" " target:@"%20"];
+        NSString * str = [(NSMutableString *)self.hotDataArray[i][@"photo"] replaceAll:@" " target:@"%20"];
         
         [imageView sd_setImageWithURL:[NSURL URLWithString:str]
                      placeholderImage:[UIImage imageNamed:@"img_moren"]
                               options:SDWebImageAllowInvalidSSLCertificates];
-        imageView.tag = i;//[self.dataDic[@"hot_brand_list"][@"id"] integerValue];
+        imageView.tag = i;//[self.hotDataArray[@"id"] integerValue];
         [self.gridView addSubview:imageView];
         //view添加点击事件
         UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];

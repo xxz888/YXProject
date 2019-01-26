@@ -310,6 +310,7 @@
 		BBADE4DB21F8665A0011E5FF /* YXMineImageDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBADE4DA21F8665A0011E5FF /* YXMineImageDetailHeaderView.m */; };
 		BBADE4DD21F866670011E5FF /* YXMineImageDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBADE4DC21F866670011E5FF /* YXMineImageDetailHeaderView.xib */; };
 		BBADE4E121F8A6D30011E5FF /* CBSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBADE4DF21F8A6D30011E5FF /* CBSegmentView.m */; };
+		BBB4CE5921FC454600485048 /* YXHomeXueJiaMyGuanZhuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4CE5821FC454600485048 /* YXHomeXueJiaMyGuanZhuViewController.m */; };
 		BBC16284217AD6EA00008907 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC16283217AD6EA00008907 /* Login.storyboard */; };
 		BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */; };
 		BBC6180121F597EE00495619 /* YXGEFPinPaiLastDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC617FF21F597EE00495619 /* YXGEFPinPaiLastDetailViewController.m */; };
@@ -1057,6 +1058,8 @@
 		BBADE4DC21F866670011E5FF /* YXMineImageDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineImageDetailHeaderView.xib; sourceTree = "<group>"; };
 		BBADE4DF21F8A6D30011E5FF /* CBSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBSegmentView.m; sourceTree = "<group>"; };
 		BBADE4E021F8A6D30011E5FF /* CBSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSegmentView.h; sourceTree = "<group>"; };
+		BBB4CE5721FC454600485048 /* YXHomeXueJiaMyGuanZhuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaMyGuanZhuViewController.h; sourceTree = "<group>"; };
+		BBB4CE5821FC454600485048 /* YXHomeXueJiaMyGuanZhuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaMyGuanZhuViewController.m; sourceTree = "<group>"; };
 		BBC16283217AD6EA00008907 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		BBC162D0217B111C00008907 /* QMUIConfigurationTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfigurationTemplate.h; sourceTree = "<group>"; };
 		BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIConfigurationTemplate.m; sourceTree = "<group>"; };
@@ -2615,7 +2618,7 @@
 			path = EmojiView;
 			sourceTree = "<group>";
 		};
-		BB928F5321FABC2A0090A044 /* 我的评论 */ = {
+		BB928F5321FABC2A0090A044 /* 我的点评 */ = {
 			isa = PBXGroup;
 			children = (
 				BB928F5421FABCC30090A044 /* YXMinePingLunViewController.h */,
@@ -2625,7 +2628,7 @@
 				BB928F5A21FABCF10090A044 /* YXMinePingLunTableViewCell.m */,
 				BB928F5B21FABCF10090A044 /* YXMinePingLunTableViewCell.xib */,
 			);
-			path = "我的评论";
+			path = "我的点评";
 			sourceTree = "<group>";
 		};
 		BB928F5E21FACA810090A044 /* 设置 */ = {
@@ -2833,7 +2836,7 @@
 				BB928F6C21FAD1410090A044 /* 我的收藏 */,
 				BB928F6621FAD0090090A044 /* 草稿 */,
 				BB928F5E21FACA810090A044 /* 设置 */,
-				BB928F5321FABC2A0090A044 /* 我的评论 */,
+				BB928F5321FABC2A0090A044 /* 我的点评 */,
 			);
 			path = "抽屉";
 			sourceTree = "<group>";
@@ -3768,6 +3771,8 @@
 		BBD2C99321E1C7A900350DCD /* 3我的关注 */ = {
 			isa = PBXGroup;
 			children = (
+				BBB4CE5721FC454600485048 /* YXHomeXueJiaMyGuanZhuViewController.h */,
+				BBB4CE5821FC454600485048 /* YXHomeXueJiaMyGuanZhuViewController.m */,
 			);
 			path = "3我的关注";
 			sourceTree = "<group>";
@@ -4870,6 +4875,7 @@
 				BBD2C91E21E0F67800350DCD /* NSString+LLExtension.m in Sources */,
 				BB9413E621F8B602007E800A /* IQKeyboardReturnKeyHandler.m in Sources */,
 				BBDA2D0E21EB30BF00EDCCFF /* SDBrowserImageView.m in Sources */,
+				BBB4CE5921FC454600485048 /* YXHomeXueJiaMyGuanZhuViewController.m in Sources */,
 				BBDA2D0921EB30BF00EDCCFF /* SDChatTableViewCell.m in Sources */,
 				BBDA2D0021EB30BF00EDCCFF /* SDContactsSearchResultController.m in Sources */,
 				BBD30CF121E5F7AD000D3244 /* YXHomeLastDetailView.m in Sources */,

@@ -9,15 +9,30 @@
 #import "YXMineMyCollectionViewController.h"
 #import "YXMinePingLunViewController.h"
 
-@interface YXMineMyCollectionViewController ()
+@interface YXMineMyCollectionViewController ()<UITableViewDelegate,UITableViewDataSource>{
+    
+}
 
+@property(nonatomic,strong)NSMutableArray * dataArray;
 @end
 
 @implementation YXMineMyCollectionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.dataArray = [[NSMutableArray alloc]init];
 
+}
+-(void)viewWillAppear:(BOOL)animated{
+    self.title = @"我的收藏";
+    [self requestMyXueJia_CollectionListGet];
+}
+-(void)requestMyXueJia_CollectionListGet{
+    kWeakSelf(self);
+    [YX_MANAGER requestMyXueJia_CollectionListGet:@"" success:^(id object) {
+        weakself.dicData = [NSMutableDictionary dictionaryWithDictionary:@{@"data":object}];
+        [weakself.tableView reloadData];
+    }];
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == 0) {
@@ -40,6 +55,18 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0;
+}
+#pragma mark ========== 点赞按钮 ==========
+-(void)clickLikeBtn:(BOOL)isZan cigar_id:(NSString *)cigar_id likeBtn:(nonnull UIButton *)likeBtn{
+    kWeakSelf(self);
+    if ([userManager loadUserInfo]) {
+        [YX_MANAGER requestCollect_cigarPOST:@{@"cigar_id":cigar_id} success:^(id object) {
+            [likeBtn setBackgroundImage:isZan ? ZAN_IMG:UNZAN_IMG forState:UIControlStateNormal];
+            [weakself requestMyXueJia_CollectionListGet];
+        }];
+    }else{
+        KPostNotification(KNotificationLoginStateChange, @NO)
+    }
 }
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

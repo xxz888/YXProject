@@ -462,16 +462,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R32-pk-6gS">
-                                <rect key="frame" x="0.0" y="50" width="375" height="617"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="Kld-uX-LrI" id="zN5-pH-4tC"/>
-                                    <outlet property="delegate" destination="Kld-uX-LrI" id="RQ1-fR-tSv"/>
-                                </connections>
-                            </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  热门推荐" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wrq-jn-zt8">
-                                <rect key="frame" x="20" y="30" width="355" height="10"/>
+                                <rect key="frame" x="20" y="30" width="355" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -480,19 +472,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="2Wm-9J-zAE" firstAttribute="trailing" secondItem="Wrq-jn-zt8" secondAttribute="trailing" id="0dS-n8-1fJ"/>
-                            <constraint firstItem="R32-pk-6gS" firstAttribute="top" secondItem="2Wm-9J-zAE" secondAttribute="top" constant="30" id="1Vo-Mg-hmA"/>
                             <constraint firstItem="Wrq-jn-zt8" firstAttribute="leading" secondItem="2Wm-9J-zAE" secondAttribute="leading" constant="20" id="DrX-5q-Dt9"/>
-                            <constraint firstItem="R32-pk-6gS" firstAttribute="leading" secondItem="2Wm-9J-zAE" secondAttribute="leading" id="GZS-Wg-Zgd"/>
-                            <constraint firstItem="2Wm-9J-zAE" firstAttribute="bottom" secondItem="R32-pk-6gS" secondAttribute="bottom" id="Smg-ul-xyX"/>
-                            <constraint firstItem="R32-pk-6gS" firstAttribute="top" secondItem="Wrq-jn-zt8" secondAttribute="bottom" constant="10" id="gQB-yz-Skl"/>
-                            <constraint firstItem="2Wm-9J-zAE" firstAttribute="trailing" secondItem="R32-pk-6gS" secondAttribute="trailing" id="i6A-ve-IbG"/>
                             <constraint firstItem="Wrq-jn-zt8" firstAttribute="top" secondItem="2Wm-9J-zAE" secondAttribute="top" constant="10" id="vwq-nw-uUx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2Wm-9J-zAE"/>
                     </view>
-                    <connections>
-                        <outlet property="yxTableView" destination="R32-pk-6gS" id="tNq-Qt-wHB"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4nx-In-bcu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

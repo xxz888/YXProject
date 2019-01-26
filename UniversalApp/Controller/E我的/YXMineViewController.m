@@ -89,17 +89,18 @@
         [YX_MANAGER requestGetUserothers:self.userId success:^(id object) {
             [weakself personValue:object];
         }];
+     
     }else{
         self.userInfo = curUser;
         [YX_MANAGER requestGetFind_user_id:user_id_BOOL ? self.userId : self.userInfo.id success:^(id object) {
             [weakself personValue:object];
         }];
-        
         [YX_MANAGER requestLikesGET:@"4" success:^(id object) {
             weakself.guanzhuCountLbl.text = kGetString(object[@"like_number"]);
             weakself.fensiCountLbl.text = kGetString(object[@"fans_number"]);
             weakself.tieshuCountLbl.text = kGetString(object[@"pubulish_number"]);
         }];
+      
     }
 }
 -(void)personValue:(id)object{
@@ -163,7 +164,7 @@
     CGRect frame = CGRectMake(0, 0, KScreenWidth/1.5, KScreenHeight);
     self.yxTableView = [[UITableView alloc]initWithFrame:frame style:0];
     [self.yxTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Identifier"];
-    titleArray = @[@"更多",@"我的草稿",@"发现好友",@"我的关注收藏",@"我的点赞",@"我的评论",@"设置"];
+    titleArray = @[@"更多",@"我的草稿",@"发现好友",@"我的收藏",@"我的点赞",@"我的点评",@"设置"];
     self.yxTableView.backgroundColor = UIColorWhite;
     self.yxTableView.layer.cornerRadius = 6;
     self.yxTableView.delegate = self;
@@ -212,9 +213,9 @@
         [self.navigationController pushViewController:VC animated:YES];
     }else if (indexPath.row == 3) {
         YXMineMyCollectionViewController * VC = [[YXMineMyCollectionViewController alloc]init];
-        VC.dicData = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"dicData"]];
-        VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"dicStartData"]];
         [self.navigationController pushViewController:VC animated:YES];
+
+//        VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"dicStartData"]];
     } else if (indexPath.row == 4){
         YXMineMyDianZanViewController * VC = [[YXMineMyDianZanViewController alloc]init];
         [self.navigationController pushViewController:VC animated:YES];

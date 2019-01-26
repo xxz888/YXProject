@@ -130,7 +130,13 @@
     kWeakSelf(self);
     NSString * pageString = NSIntegerToNSString(page) ;
     [YX_MANAGER requestGetDetailListPOST:@{@"type":@(2),@"tag":@"0",@"page":@(1)} success:^(id object) {
+        UserDefaultsSET(object, @"a2");
+
         [weakself mineShaiTuCommonAction:object];
+    }];
+    
+    [YX_MANAGER requestGetSersAllList:@"1" success:^(id object) {
+        UserDefaultsSET(object, @"a1");
     }];
 }
 #pragma mark ========== 我的界面文章请求 ==========
@@ -139,6 +145,8 @@
     NSString * pageString = NSIntegerToNSString(page) ;
     [YX_MANAGER requestEssayListGET:pageString success:^(id object) {
         [weakself mineWenZhangCommonAction:object];
+        UserDefaultsSET(object, @"a3");
+
     }];
 }
 #pragma mark ========== 晒图点赞 ==========

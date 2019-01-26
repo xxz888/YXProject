@@ -131,14 +131,25 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) { }];
 }
-
+#pragma mark ========== 我收藏的雪茄列表 ==========
+-(void)requestMyXueJia_CollectionListGet:YX_BLOCK{
+    [HTTP_GET(@"/cigar/collect_cigar/") sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
 #pragma mark ========== 品牌是否关注 ==========
 -(void)requestMy_concern_cigarPOST:YX_BLOCK{
     [HTTP_POST(@"/cigar/my_concern_cigar/") Parameters:dic sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
-
+#pragma mark ==========我关注的雪茄品牌==========
+-(void)requestGETMyGuanZhuList:YX_BLOCK{
+    NSString * url = @"/cigar/my_concern_cigar/";
+    [HTTP_GET(url)  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 #pragma mark ========== 发布晒图 ==========
 -(void)requestFaBuImagePOST:YX_BLOCK{
     [HTTP_POST(@"/users/post/0/0/0/") Parameters:dic sucess:^(id responseObject) {
@@ -185,7 +196,7 @@ successBlock(responseObject);\
 
 #pragma mark ==========雪茄五星的评价==========
 -(void)requestCigar_commentPOST:YX_BLOCK{
-    [HTTP_POST(@"/cigar/cigar_comment/0/0/") Parameters:dic sucess:^(id responseObject) {
+    [HTTP_POST(@"/cigar/cigar_comment/0/0/0/") Parameters:dic sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) { }];
 }
@@ -456,7 +467,7 @@ successBlock(responseObject);\
 #pragma mark ========== 我的点赞列表 ==========
 -(void)requestMyDianZanList:YX_BLOCK{
     NSString * url = @"/users/post_praise/";
-    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
@@ -499,6 +510,29 @@ successBlock(responseObject);\
     } failure:^(NSError *error) {}];
 }
 
+#pragma mark ========== 我的点评雪茄列表 ==========
+-(void)requestGetMyDianPingList:YX_BLOCK{
+    NSString * url = @"/cigar/cigar_comment/5/1/";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
+
+#pragma mark ========== 我的页面全部接口 ==========
+-(void)requestGetSersAllList:YX_BLOCK{
+    NSString * url = @"/users/all/";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ========== 其他的全部 ==========
+-(void)requestGetSers_Other_AllList:YX_BLOCK{
+    NSString * url = @"/users/others/6/";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 
 
 - (instancetype)init{
