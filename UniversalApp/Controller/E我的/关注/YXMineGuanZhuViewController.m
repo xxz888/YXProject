@@ -8,6 +8,7 @@
 
 #import "YXMineGuanZhuViewController.h"
 #import "YXMineCommon1TableViewCell.h"
+#define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
 
 @interface YXMineGuanZhuViewController ()<UITableViewDelegate,UITableViewDataSource,ClickBtnDelegate>
 @property(nonatomic,strong)NSMutableArray * dataArray;
@@ -18,14 +19,30 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    
+    
+    /*
+     要分为两种
+     1、如果是我自己的界面，请求一种
+     2、如果是别人的界面，在请求一种
+     */
     kWeakSelf(self);
-    [YX_MANAGER requestLikesGET:@"1" success:^(id object) {
-        [weakself.dataArray removeAllObjects];
-        [weakself.dataArray addObjectsFromArray:object];
-        [weakself.yxTableView reloadData];
-    }];
-}
 
+    if (user_id_BOOL) {
+        [YX_MANAGER requestOtherGuanZhu:[self.userId append:@"/1/"] success:^(id object) {
+            [weakself commonAction:object];
+        }];
+    }else{
+        [YX_MANAGER requestLikesGET:@"1" success:^(id object) {
+            [weakself commonAction:object];
+        }];
+    }
+}
+-(void)commonAction:(id)object{
+    [self.dataArray removeAllObjects];
+    [self.dataArray addObjectsFromArray:object];
+    [self.yxTableView reloadData];
+}
 
 
 - (void)viewDidLoad {

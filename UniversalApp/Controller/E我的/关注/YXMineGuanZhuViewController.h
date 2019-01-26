@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YXMineGuanZhuViewController : RootViewController
 @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
+@property (nonatomic,assign) BOOL whereCome;// NO为自己  YES为其他人
+@property (nonatomic,copy) NSString * userId;
+
 @end
 
 NS_ASSUME_NONNULL_END

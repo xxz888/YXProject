@@ -20,7 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)sexBtnAction:(id)sender;
 - (IBAction)addressBtnAction:(id)sender;
 - (IBAction)birthBtnAction:(id)sender;
-
+@property (weak, nonatomic) IBOutlet UIButton *sexBtn;
+@property (weak, nonatomic) IBOutlet UIButton *adressBtn;
+@property (weak, nonatomic) IBOutlet UIButton *birthBtn;
+@property(nonatomic, strong) NSDictionary *userInfoDic;//用户信息
 @end
 
 NS_ASSUME_NONNULL_END

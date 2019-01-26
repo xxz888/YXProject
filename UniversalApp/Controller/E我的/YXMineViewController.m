@@ -20,6 +20,10 @@
 #import "YXMineMyCaoGaoViewController.h"
 #import "YXMineMyDianZanViewController.h"
 #import "YXFindViewController.h"
+#import "YXMineFenSiViewController.h"
+#import "YXMineGuanZhuViewController.h"
+#define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
+
 @interface YXMineViewController () <UITableViewDelegate,UITableViewDataSource>{
     YXMineAllViewController * AllVC;
     YXMineArticleViewController * ArticleVC;
@@ -27,9 +31,11 @@
     YXMineFootViewController * FootVC;
     NSArray * titleArray;
      QMUIModalPresentationViewController * _modalViewController;
+    
 }
 @property(nonatomic, strong) UserInfo *userInfo;//用户信息
 @property (strong, nonatomic) UITableView *yxTableView;
+@property(nonatomic, strong) NSDictionary *userInfoDic;//用户信息
 
 
 @end
@@ -39,113 +45,97 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //头部赋值
-    [self setHeaderViewValue];
-    //下部四个按钮
-    [self setInitCollection];
-    [self setLayoutCol];
+    //UI赋值
+    [self setViewUI];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    //每次进入界面刷新关注和粉丝数量
-    [self requestGuanZhuAndFenSiCount];
+    //每次进入界面请求数据
+    [self setViewData];
 }
-#pragma mark ========== 关注粉丝贴数列表 ==========
--(void)requestGuanZhuAndFenSiCount{
-    
+#pragma mark ========== UI界面 ==========
+-(void)setViewUI{
+    NSArray * menuArray = nil;
     if (self.whereCome) {
-      
+        self.guanzhuBtn.hidden = NO;
+        self.editPersonBtn.hidden = YES;
     }else{
-        kWeakSelf(self);
+        menuArray = @[@"菜单"];
+        self.guanzhuBtn.hidden = YES;
+        self.editPersonBtn.hidden = NO;
+        [self setLayoutCol];
+    }
+    [self addNavigationItemWithImageNames:menuArray isLeft:NO target:self action:@selector(handleShowContentView) tags:nil];
+    self.mineImageView.layer.masksToBounds = YES;
+    self.mineImageView.layer.cornerRadius = self.mineImageView.frame.size.width / 2.0;
+    ViewBorderRadius(self.guanzhuBtn, 5, 1,CFontColor1);
+    ViewBorderRadius(self.editPersonBtn, 5, 1, CFontColor1);
+    [self setInitCollection];
+}
+#pragma mark ========== 嵌套复用的界面 ==========
+-(void)setInitCollection{
+    YXFindViewController * findVC = [[YXFindViewController alloc]init];
+    findVC.whereCome = YES; //  YES为其他人 NO为自己
+    findVC.userId = self.userId;
+    findVC.view.frame = CGRectMake(5, 160, KScreenWidth-10, kScreenHeight-170);
+    [self addChildViewController:findVC];
+    [self.view insertSubview:findVC.view atIndex:0];
+}
+#pragma mark ========== 数据 ==========
+-(void)setViewData{
+    kWeakSelf(self);
+    //  YES为其他人 NO为自己
+    if (self.whereCome) {
+        [YX_MANAGER requestGetUserothers:self.userId success:^(id object) {
+            [weakself personValue:object];
+        }];
+    }else{
+        self.userInfo = curUser;
+        [YX_MANAGER requestGetFind_user_id:user_id_BOOL ? self.userId : self.userInfo.id success:^(id object) {
+            [weakself personValue:object];
+        }];
+        
         [YX_MANAGER requestLikesGET:@"4" success:^(id object) {
             weakself.guanzhuCountLbl.text = kGetString(object[@"like_number"]);
             weakself.fensiCountLbl.text = kGetString(object[@"fans_number"]);
             weakself.tieshuCountLbl.text = kGetString(object[@"pubulish_number"]);
         }];
     }
-
 }
--(void)setInitCollection{
+-(void)personValue:(id)object{
+    [self.mineImageView sd_setImageWithURL:[NSURL URLWithString:object[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    self.title = kGetString(object[@"username"]);
+    self.mineTitle.text =kGetString(object[@"username"]);
+    self.mineAdress.text = kGetString(object[@"site"]);
+    self.guanzhuCountLbl.text = kGetString(object[@"likes_number"]);
+    self.fensiCountLbl.text = kGetString(object[@"fans_number"]);
+    self.tieshuCountLbl.text = kGetString(object[@"publish_number"]);
+    NSInteger tag = [object[@"is_like"] integerValue];
+    NSString * islike = tag == 1 ? @"互相关注" : tag == 2 ? @"已关注" : @"关注";
+    [self.guanzhuBtn setTitle:islike forState:UIControlStateNormal];
+    
+    self.userInfoDic = [NSDictionary dictionaryWithDictionary:object];
+}
+#pragma mark ========== 关注按钮 ==========
+- (IBAction)guanzhuAction:(id)sender{
     UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
-    YXFindViewController * findVC = [[YXFindViewController alloc]init];
-    findVC.whereCome = YES;
-    findVC.view.frame = CGRectMake(5, 160, KScreenWidth-10, kScreenHeight-170);
-    [self addChildViewController:findVC];
-    [self.view insertSubview:findVC.view atIndex:0];
+    YXMineGuanZhuViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineGuanZhuViewController"];
+    VC.userId = self.userId;
+    [self.navigationController pushViewController:VC animated:YES];
 }
-
--(void)setHeaderViewValue{
-    kWeakSelf(self);
-    if (self.whereCome) {
-    [self addNavigationItemWithImageNames:nil isLeft:NO target:self action:@selector(handleShowContentView) tags:nil];
-        [YX_MANAGER requestGetUserothers:self.userId success:^(id object) {
-            [weakself.mineImageView sd_setImageWithURL:[NSURL URLWithString:object[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-            weakself.title = kGetString(object[@"username"]);
-            weakself.mineTitle.text =kGetString(object[@"username"]);
-            weakself.mineAdress.text = kGetString(object[@"city"]);
-            weakself.guanzhuBtn.hidden = NO;
-            weakself.editPersonBtn.hidden = YES;
-            
-            weakself.guanzhuCountLbl.text = kGetString(object[@"like_number"]);
-            weakself.fensiCountLbl.text = kGetString(object[@"fans_number"]);
-            weakself.tieshuCountLbl.text = kGetString(object[@"pubulish_number"]);
-            
-            NSInteger tag = [object[@"is_like"] integerValue];
-            NSString * islike = @"";
-            if (tag == 1) {
-                islike = @"互相关注";
-            }else if (tag == 2){
-                islike = @"已关注";
-            }else if (tag == 3){
-                islike = @"关注";
-            }else if (tag == 4){
-                islike = @"关注";
-            }
-
-            [weakself.guanzhuBtn setTitle:islike forState:UIControlStateNormal];
-
-        }];
-    }else{
-            [self addNavigationItemWithImageNames:@[@"菜单"] isLeft:NO target:self action:@selector(handleShowContentView) tags:nil];
-        self.userInfo = curUser;
-        [self.mineImageView sd_setImageWithURL:[NSURL URLWithString:self.userInfo.photo] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-        self.mineImageView.layer.masksToBounds = YES;
-        self.mineImageView.layer.cornerRadius = self.mineImageView.frame.size.width / 2.0;
-        self.navigationController.title = self.userInfo.username;
-        self.mineTitle.text = self.userInfo.username;
-        //    self.mineAdress.text = [[self.userInfo.province append:@"  "] append:self.userInfo.country];
-        //    self.mineAdress.text = [self.mineAdress.text isEqualToString:@""] ? @"浙江 杭州":self.mineAdress.text;
-        self.mineAdress.text = @"浙江 杭州";
-        self.guanzhuBtn.hidden = YES;
-        self.editPersonBtn.hidden = NO;
-    }
-    
-    
-    
-    self.mineImageView.layer.masksToBounds = YES;
-    self.mineImageView.layer.cornerRadius = self.mineImageView.frame.size.width / 2.0;
-    ViewBorderRadius(self.guanzhuBtn, 5, 1,CFontColor1);
-    ViewBorderRadius(self.editPersonBtn, 5, 1, CFontColor1);
-
-}
--(void)caidanClick{
-    [self setLayoutCol];
-}
--(void)requestLikesGuanzhu{
-    kWeakSelf(self);
-    [YX_MANAGER requestLikesGET:@"1" success:^(id object) {
-        weakself.guanzhuCountLbl.text = [NSString stringWithFormat:@"%lu",[object count]];
-    }];
-}
-
+#pragma mark ========== 粉丝按钮 ==========
 - (IBAction)fensiAction:(id)sender {
-    
+    UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+    YXMineFenSiViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineFenSiViewController"];
+    VC.userId = self.userId;
+    [self.navigationController pushViewController:VC animated:YES];
 }
+#pragma mark ========== 贴数按钮 ==========
 - (IBAction)tieshuAction:(id)sender {
 
 }
+#pragma mark ========== 点击菜单按钮的方法 ==========
 - (void)handleShowContentView {
-    
     if (!_modalViewController) {
         _modalViewController = [[QMUIModalPresentationViewController alloc] init];
     }
@@ -154,24 +144,21 @@
     [_modalViewController showWithAnimated:YES completion:nil];
     [self.yxTableView reloadData];
 }
+#pragma mark ========== 编辑个人资料 ==========
 - (IBAction)editPersonAction:(id)sender {
     UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
     YXHomeEditPersonTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXHomeEditPersonTableViewController"];
+    VC.userInfoDic = [NSDictionary dictionaryWithDictionary:self.userInfoDic];
     [self.navigationController pushViewController:VC animated:YES];
 }
 
-- (IBAction)guanzhuAction:(id)sender {
-}
 
 
 
 
 
 
-
-
-
-
+#pragma mark ========== 右上角菜单按钮 ==========
 -(void)setLayoutCol{
     CGRect frame = CGRectMake(0, 0, KScreenWidth/1.5, KScreenHeight);
     self.yxTableView = [[UITableView alloc]initWithFrame:frame style:0];
@@ -185,6 +172,7 @@
     self.yxTableView.estimatedSectionFooterHeight = KScreenHeight-titleArray.count * 50;
     self.yxTableView.estimatedSectionHeaderHeight = 0;
 }
+#pragma mark ========== 菜单view的方法 ==========
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return KScreenHeight-titleArray.count * 50;
 }
@@ -243,4 +231,5 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 50;
 }
+
 @end

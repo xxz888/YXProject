@@ -409,8 +409,6 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
-
-
 #pragma mark ========== 获取发现页标签数据 ==========
 -(void)requestGet_users_find:YX_BLOCK{
     NSString * url = @"/users/find/";
@@ -418,9 +416,6 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
-
-
-
 #pragma mark ========== 获取发现页标签数据全部接口 ==========
 -(void)requestGet_users_find_tag:YX_BLOCK{
     NSString * url = @"/users/find_tag/";
@@ -428,11 +423,66 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
+#pragma mark ========== 根据用户id获取该用户的晒图 ==========
+-(void)requestOtherImage:YX_BLOCK{
+    NSString * url = @"/users/others/2/";
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ========== 根据用户id获取该用户的文章 ==========
+-(void)requestOtherEssay:YX_BLOCK{
+    NSString * url = @"/users/others/3/";
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 
+#pragma mark ========== 根据用户id获取该用户的关注列表 ==========
+-(void)requestOtherGuanZhu:YX_BLOCK{
+    NSString * url = @"/users/others/4/";
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ========== 根据用户id获取该用户的粉丝列表 ==========
+-(void)requestOtherFenSi:YX_BLOCK{
+    NSString * url = @"/users/others/4/";
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 
+#pragma mark ========== 我的点赞列表 ==========
+-(void)requestMyDianZanList:YX_BLOCK{
+    NSString * url = @"/users/post_praise/";
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 
+#pragma mark ==========更新用户资料==========
+-(void)requestUpdate_userPOST:YX_BLOCK{
+    [HTTP_POST(@"/users/update_user/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
 
+#pragma mark ========== 根据用户名搜索用户 ==========
+-(void)requestFind_user:YX_BLOCK{
+    NSString * url = @"/users/find_user/";
+    [HTTP_POST(url)  Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 
+#pragma mark ==========根据用户id获取个人资料,彼此的关注状态 ==========
+-(void)requestGetFind_user_id:YX_BLOCK{
+    NSString * url = @"/users/others/1/";
+    [HTTP_GET([[url append:dic] append:@"/0/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

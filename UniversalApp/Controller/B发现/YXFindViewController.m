@@ -16,6 +16,9 @@
 #import "YXMineImageTableViewCell.h"
 #import "YXMineImageDetailViewController.h"
 #import "YXMineViewController.h"
+
+#define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
+
 @interface YXFindViewController ()<PYSearchViewControllerDelegate,UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate>{
     NSInteger page ;
     CBSegmentView * sliderSegmentView;
@@ -39,9 +42,20 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self setViewData];
+  
+}
+-(void)setViewData{
+    /*
+     如果是发现界面，直接请求发现界面的数据
+     如果是我的界面，要分为两种
+     1、如果是我自己的界面，请求一种
+     2、如果是别人的界面，在请求一种
+     现在的情况是，进入这个界面，默认请求晒图展示
+     */
     if (self.whereCome) {
         [sliderSegmentView setTitleArray:@[@"晒图",@"文章"] withStyle:CBSegmentStyleSlider];
-        [self requestMineShaiTuList];
+        user_id_BOOL ? [self requestOtherShaiTuList] : [self requestMineShaiTuList];
     }else{
         [self requestFindTag];
     }
@@ -51,6 +65,7 @@
     [self.view addSubview:self.yxTableView];
     self.yxTableView.delegate = self;
     self.yxTableView.dataSource= self;
+    self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.yxTableView.tableHeaderView = [self headerView];
     page = 1;
     _type = @"1";
@@ -62,11 +77,25 @@
     sliderSegmentView = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, 40)];
     sliderSegmentView.titleChooseReturn = ^(NSInteger x) {
         weakself.type = NSIntegerToNSString(x+1);
+        /*
+         如果是发现界面，直接请求发现界面的数据
+         如果是我的界面，要分为两种
+                      1、如果是我自己的界面，请求一种
+                      2、如果是别人的界面，在请求一种
+         */
         if (weakself.whereCome) {
-            if ([weakself.type integerValue] == 1) {
-                [weakself requestMineShaiTuList];
-            }else if ([weakself.type integerValue] == 2){
-                [weakself requestMineWenZhangList];
+            if (user_id_BOOL) {
+                if ([weakself.type integerValue] == 1) {
+                    [weakself requestOtherShaiTuList];
+                }else if ([weakself.type integerValue] == 2){
+                    [weakself requestOtherWenZhangList];
+                }
+            }else{
+                if ([weakself.type integerValue] == 1) {
+                    [weakself requestMineShaiTuList];
+                }else if ([weakself.type integerValue] == 2){
+                    [weakself requestMineWenZhangList];
+                }
             }
         }else{
             [weakself requestFind];
@@ -101,27 +130,15 @@
     kWeakSelf(self);
     NSString * pageString = NSIntegerToNSString(page) ;
     [YX_MANAGER requestGetDetailListPOST:@{@"type":@(2),@"tag":@"0",@"page":@(1)} success:^(id object) {
-        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"b1"];
-        [weakself.dataArray removeAllObjects];
-        [weakself.dataArray addObjectsFromArray:object];
-        [weakself.yxTableView reloadData];
+        [weakself mineShaiTuCommonAction:object];
     }];
 }
+#pragma mark ========== 我的界面文章请求 ==========
 -(void)requestMineWenZhangList{
     kWeakSelf(self);
     NSString * pageString = NSIntegerToNSString(page) ;
     [YX_MANAGER requestEssayListGET:pageString success:^(id object) {
-        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"b3"];
-        [weakself.dataArray removeAllObjects];
-        [weakself.heightArray removeAllObjects];
-        
-        [weakself.dataArray addObjectsFromArray:object];
-        for (NSDictionary * dic in object) {
-            CGFloat height = [weakself getHTMLHeightByStr:dic[@"essay"]];
-            [weakself.heightArray addObject:@(height/2.2)];
-        }
-        
-        [weakself.yxTableView reloadData];
+        [weakself mineWenZhangCommonAction:object];
     }];
 }
 #pragma mark ========== 晒图点赞 ==========
@@ -132,6 +149,36 @@
     [YX_MANAGER requestPost_praisePOST:@{@"post_id":post_id} success:^(id object) {
         [weakself requestFind];
     }];
+}
+
+#pragma mark ========== 其他用户的晒图请求 ==========
+-(void)requestOtherShaiTuList{
+    kWeakSelf(self);
+    [YX_MANAGER requestOtherImage:[self.userId append:@"/1"] success:^(id object) {
+        [weakself mineShaiTuCommonAction:object];
+    }];
+}
+#pragma mark ========== 其他用户的文章请求 ==========
+-(void)requestOtherWenZhangList{
+    kWeakSelf(self);
+    [YX_MANAGER requestOtherEssay:[self.userId append:@"/1"] success:^(id object) {
+        [weakself mineWenZhangCommonAction:object];
+    }];
+}
+-(void)mineShaiTuCommonAction:(id)object{
+    [self.dataArray removeAllObjects];
+    [self.dataArray addObjectsFromArray:object];
+    [self.yxTableView reloadData];
+}
+-(void)mineWenZhangCommonAction:(id)object{
+    [self.dataArray removeAllObjects];
+    [self.heightArray removeAllObjects];
+    [self.dataArray addObjectsFromArray:object];
+    for (NSDictionary * dic in object) {
+        CGFloat height = [self getHTMLHeightByStr:dic[@"essay"]];
+        [self.heightArray addObject:@(height/2.2)];
+    }
+    [self.yxTableView reloadData];
 }
 #pragma mark ========== tableview代理方法 ==========
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -190,7 +237,7 @@
     cell.clickImageBlock = ^(NSInteger tag) {
         UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
         YXMineViewController * mineVC = [stroryBoard5 instantiateViewControllerWithIdentifier:@"YXMineViewController"];
-        mineVC.userId = kGetString( weakself.dataArray[tag][@"user_id"]);
+        mineVC.userId = kGetString(weakself.dataArray[tag][@"user_id"]);
         mineVC.whereCome = YES;
         [weakself.navigationController pushViewController:mineVC animated:YES];
     };

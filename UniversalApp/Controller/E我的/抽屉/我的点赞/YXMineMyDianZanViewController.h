@@ -7,11 +7,11 @@
 //
 
 #import "RootViewController.h"
-#import "YXFindViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YXMineMyDianZanViewController : YXFindViewController
+@interface YXMineMyDianZanViewController : RootViewController
+@property (weak, nonatomic) IBOutlet UITableView *yxTableView;
 
 @end
 

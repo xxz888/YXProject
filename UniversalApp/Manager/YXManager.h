@@ -140,4 +140,25 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestGet_users_find:YX_BLOCK;
 #pragma mark ========== 根据用户id获取个人资料,彼此的关注状态 ==========
 -(void)requestGetUserothers:YX_BLOCK;
+
+#pragma mark ========== 根据用户id获取该用户的晒图 ==========
+-(void)requestOtherImage:YX_BLOCK;
+#pragma mark ========== 根据用户id获取该用户的文章 ==========
+-(void)requestOtherEssay:YX_BLOCK;
+#pragma mark ========== 根据用户id获取该用户的粉丝列表 ==========
+-(void)requestOtherFenSi:YX_BLOCK;
+#pragma mark ========== 根据用户id获取该用户的关注列表 ==========
+-(void)requestOtherGuanZhu:YX_BLOCK;
+
+
+#pragma mark ========== 我的点赞列表 ==========
+-(void)requestMyDianZanList:YX_BLOCK;
+
+
+#pragma mark ==========更新用户资料==========
+-(void)requestUpdate_userPOST:YX_BLOCK;
+#pragma mark ========== 根据用户名搜索用户 ==========
+-(void)requestFind_user:YX_BLOCK;
+#pragma mark ==========根据用户id获取个人资料,彼此的关注状态 ==========
+-(void)requestGetFind_user_id:YX_BLOCK;
 @end
