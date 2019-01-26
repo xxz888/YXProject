@@ -45,14 +45,14 @@
 
 #pragma mark---初始化
 - (void)initDefaultConfign{
-    _isDefaultSel = YES;
+    _isDefaultSel = NO;
     _isSingle = YES;
     _butHeight = 20;
     _font = [UIFont systemFontOfSize:12];
     _contentNorColor = CBColor(100, 100, 100);
     _contentSelColor = [UIColor whiteColor];
     _norColor = CBColor(228, 228, 228);
-    _selColor = CBColor(250, 87, 118);
+    _selColor = CBColor(228, 228, 228);
     _titleTextColor = CBColor(100, 100, 100);
     _titleTextFont = [UIFont systemFontOfSize:14];
     _maragin_x = _maragin_y = 10;

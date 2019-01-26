@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface YXMineImageTableViewCell : TableViewCell
 typedef void(^clickZan)(YXMineImageTableViewCell *);
 typedef void(^clickImage)(NSInteger);
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewConstraint;
+@property (weak, nonatomic) IBOutlet UIView *topView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *essayTitleImageView;
 @property (weak, nonatomic) IBOutlet UILabel *essayNameLbl;

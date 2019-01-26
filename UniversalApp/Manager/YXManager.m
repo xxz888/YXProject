@@ -483,6 +483,24 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
+#pragma mark ==========获取TAG标签列表 ==========
+-(void)requestGetTagList:YX_BLOCK{
+    NSString * url = @"/users/tag/";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
+#pragma mark ==========获取TAG标签列表 ==========
+-(void)requestGetTagList_Tag:YX_BLOCK{
+    NSString * url = @"/users/tag/1/1/";
+    [HTTP_POST(url)  Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
+
+
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

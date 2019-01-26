@@ -161,4 +161,8 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestFind_user:YX_BLOCK;
 #pragma mark ==========根据用户id获取个人资料,彼此的关注状态 ==========
 -(void)requestGetFind_user_id:YX_BLOCK;
+#pragma mark ==========获取TAG标签列表 ==========
+-(void)requestGetTagList:YX_BLOCK;
+#pragma mark ==========获取TAG标签列表 ==========
+-(void)requestGetTagList_Tag:YX_BLOCK;
 @end

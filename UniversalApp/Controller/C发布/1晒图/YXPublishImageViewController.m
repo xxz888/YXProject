@@ -125,7 +125,11 @@ static NSString *secretKey = @"官网获取";
     //新话题
     cell.block = ^(NSString * tagString) {
         [_tagArray addObject:tagString];
-        [weakself addNewTags:_tagArray];
+        if (weakself.menueView) {
+            [_menueView setContentView:@[_tagArray] titleArr:@[]];
+        }else{
+            [weakself addNewTags];
+        }
     };
     //位置
     cell.locationblock = ^(YXPublishImageTableViewCell * cell) {
@@ -141,6 +145,14 @@ static NSString *secretKey = @"官网获取";
     cell.moreBlock = ^{
         YXPublishMoreTagsViewController * VC = [[YXPublishMoreTagsViewController alloc]init];
         RootNavigationController *nav = [[RootNavigationController alloc]initWithRootViewController:VC];
+        VC.tagBlock = ^(NSDictionary * dic) {
+            [_tagArray addObject:[@"#" append:dic[@"tag"]]];
+            if (weakself.menueView) {
+                [_menueView setContentView:@[_tagArray] titleArr:@[]];
+            }else{
+                [weakself addNewTags];
+            }
+        };
         [weakself presentViewController:nav animated:YES completion:nil];
     };
     
@@ -223,10 +235,10 @@ static NSString *secretKey = @"官网获取";
 #define PYRectangleTagMaxCol 3
 #define PYTextColor PYSEARCH_COLOR(113, 113, 113)
 #define PYSEARCH_COLORPolRandomColor self.colorPol[arc4random_uniform((uint32_t)self.colorPol.count)]
--(void)addNewTags:(NSMutableArray *)tagArray{
+-(void)addNewTags{
     NSArray * titleArr = @[@""];
-    NSArray *contentArr = @[tagArray];
-    CBGroupAndStreamView * silde = [[CBGroupAndStreamView alloc] initWithFrame:CGRectMake(0, 280-25, [UIScreen mainScreen].bounds.size.width, self.floatView.bounds.size.height)];
+    NSArray *contentArr = @[_tagArray];
+    CBGroupAndStreamView * silde = [[CBGroupAndStreamView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, self.floatView.bounds.size.height)];
     silde.isSingle = YES;
     silde.radius = 5;
     silde.font = [UIFont systemFontOfSize:12];
@@ -238,7 +250,7 @@ static NSString *secretKey = @"官网获取";
     kWeakSelf(self);
     silde.cb_selectCurrentValueBlock = ^(NSString *value, NSInteger index, NSInteger groupId) {
         [_tagArray removeObjectAtIndex:index];
-        [weakself addNewTags:_tagArray];
+        [_menueView setContentView:@[_tagArray] titleArr:@[]];
     };
 }
 

@@ -8,9 +8,16 @@
 
 #import "YXPublishMoreTagsViewController.h"
 #import "YXGridView.h"
-@interface YXPublishMoreTagsViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface YXPublishMoreTagsViewController ()<UITableViewDelegate,UITableViewDataSource>{
+    CBSegmentView * sliderSegmentView;
+    UITextField * searchBar;
+}
+@property(nonatomic,strong)NSMutableArray * tagArray;
+@property(nonatomic,strong)NSString * type;
+
 @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
 @property(nonatomic, strong) QMUIGridView *gridView;
+@property(nonatomic,strong)NSMutableArray * dataArray;
 
 @end
 
@@ -19,78 +26,98 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.yxTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+    self.yxTableView.tableHeaderView = [self headerView];
     [self setNavSearchView];
-    
-    [self createMiddleCollection:@[@"雪茄品牌",@"雪茄文化",@"运动"] titleTagArray:@[@"Cigar Brand",@"Culture",@"Sports"]];
+    self.tagArray = [[NSMutableArray alloc]init];
+    self.dataArray = [[NSMutableArray alloc]init];
+
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+//    [self requestGetTag];
+    [self requestFindTag];
+
+}
+#pragma mark ========== 先请求tag列表,获取发现页标签数据 ==========
+-(void)requestFindTag{
+    kWeakSelf(self);
+    [self.tagArray removeAllObjects];
+    [YX_MANAGER requestGet_users_find_tag:@"" success:^(id object) {
+        for (NSDictionary * dic in object) {
+            [weakself.tagArray addObject:dic[@"type"]];
+        }
+        [sliderSegmentView setTitleArray:weakself.tagArray withStyle:CBSegmentStyleSlider];
+        [weakself requestGetTagLIst:kGetString(object[0][@"id"])];
+    }];
+}
+#pragma mark ========== 根据标签请求列表 ==========
+-(void)requestGetTagLIst:(NSString *)page{
+    kWeakSelf(self);
+    NSString * par = [NSString stringWithFormat:@"%@/%@",page,@"1"];
+    [YX_MANAGER requestGetTagList:par success:^(id object) {
+        [weakself.dataArray removeAllObjects];
+        [weakself.dataArray addObjectsFromArray:object];
+        [weakself.yxTableView reloadData];
+    }];
+}
+-(UIView *)headerView{
+    kWeakSelf(self);
+    sliderSegmentView = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, 40)];
+    sliderSegmentView.titleChooseReturn = ^(NSInteger x) {
+        weakself.type = NSIntegerToNSString(x+1);
+        [weakself requestGetTagLIst:weakself.type];
+    };
+    return sliderSegmentView;
+}
+
+#pragma mark ========== 搜索标签 ==========
+-(void)searchTagResult{
+    kWeakSelf(self);
+    [YX_MANAGER requestGetTagList_Tag:@{@"type":@"1",@"key":searchBar.text,@"page":@"1"} success:^(id object) {
+        [weakself.dataArray removeAllObjects];
+        [weakself.dataArray addObjectsFromArray:object];
+        [weakself.yxTableView reloadData];
+    }];
+}
+
+
+
+
+
+
+
+
+
+
+
 #pragma mark ==========  搜索相关 ==========
 -(void)setNavSearchView{
     UIColor *color =  YXRGBAColor(239, 239, 239);
-    UITextField * searchBar = [[UITextField alloc] init];
+    if (!searchBar) {
+        searchBar = [[UITextField alloc] init];
+    }
     searchBar.frame = CGRectMake(50, 0, KScreenWidth - 50, 35);
     searchBar.backgroundColor = color;
     searchBar.layer.cornerRadius = 10;
     searchBar.layer.masksToBounds = YES;
     searchBar.placeholder = @"   🔍 搜索";
-    
-//    UIButton * btn = [UIButton buttonWithType:1];
-//    [btn setTitle:@"取消" forState:0];
-//    [btn setTitleColor:KDarkGaryColor forState:0];
-//    btn.frame = CGRectMake(searchBar.frame.size.width - 50, 0, 50, 35);
-//    [btn addTarget:self action:@selector(closeView) forControlEvents:UIControlEventTouchUpInside];
-//    [searchBar addSubview:btn];
-//
-    
-    [searchBar addTarget:self action:@selector(textField1TextChange:) forControlEvents:UIControlEventEditingDidBegin];
+    [searchBar addTarget:self action:@selector(textField1TextChange:) forControlEvents:UIControlEventEditingChanged];
     [self.navigationItem.titleView sizeToFit];
     self.navigationItem.titleView = searchBar;
 }
 -(void)textField1TextChange:(UITextField *)tf{
-
-}
-
-
-//九宫格
-- (void)createMiddleCollection:(NSArray *)titleArray titleTagArray:(NSArray *)titleTagArray{
-    if (!self.gridView) {
-        self.gridView = [[QMUIGridView alloc] init];
+    if (tf.text.length == 0) {
+        [self requestGetTagLIst:self.type];
+    }else{
+        [self searchTagResult];
     }
-     self.yxTableView.tableHeaderView = self.gridView;
-    
-    self.gridView.frame = CGRectMake(0, 0, KScreenWidth, 70);
-    self.gridView.columnCount = 3;
-    self.gridView.rowHeight = 60;
-    self.gridView.separatorWidth = PixelOne;
-    self.gridView.separatorColor = UIColorSeparator;
-    self.gridView.separatorDashed = NO;
-    
-    // 将要布局的 item 以 addSubview: 的方式添加进去即可自动布局
-    NSArray<UIColor *> *themeColors = @[UIColorTheme1, UIColorTheme2, UIColorTheme3, UIColorTheme4, UIColorTheme5, UIColorTheme6];
-    for (NSInteger i = 0; i < 3; i++) {
-        NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXGridView" owner:self options:nil];
-        YXGridView * view = [nib objectAtIndex:0];
-        view.titleLbl.text = titleArray[i];
-        view.titleTagLbl.text = titleTagArray[i];
-        view.tag = i;
-        //        view.backgroundColor = [themeColors[i] colorWithAlphaComponent:.7];
-        [self.gridView addSubview:view];
-        //view添加点击事件
-        UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
-        [view addGestureRecognizer:tapGesturRecognizer];
-        
-    }
-}
--(void)tapAction:(id)sender{
-    UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;
-    UIView *views = (UIView*) tap.view;
-    NSUInteger tag = views.tag;
-  
 }
 -(void)closeView{
     [self dismissViewControllerAnimated:YES completion:nil ];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.dataArray.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 50;
@@ -98,8 +125,14 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = 0;
-    cell.textLabel.text = @"#Cihiba";
+    cell.textLabel.text =  [NSString stringWithFormat:@"#%@",self.dataArray[indexPath.row][@"tag"]];
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    kWeakSelf(self);
+    [self dismissViewControllerAnimated:YES completion:^{
+        weakself.tagBlock(weakself.dataArray[indexPath.row]);
+    }];
 }
 
 

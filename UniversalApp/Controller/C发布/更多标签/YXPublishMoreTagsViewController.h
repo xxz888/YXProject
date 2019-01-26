@@ -9,9 +9,9 @@
 #import "RootViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+typedef void(^returnTagString)(NSDictionary *);
 @interface YXPublishMoreTagsViewController : RootViewController
-
+@property (nonatomic,copy) returnTagString tagBlock;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -182,13 +182,15 @@
 }
 #pragma mark ========== tableview代理方法 ==========
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 350;
+    return self.whereCome ? 350-60 : 350;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArray.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXMineImageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMineImageTableViewCell" forIndexPath:indexPath];
+    cell.topViewConstraint.constant =  self.whereCome ? 0 : 60;
+    cell.topView.hidden = self.whereCome;
     cell.essayTitleImageView.tag = indexPath.row;
     [self sameCell:cell indexPath:indexPath];
     [self diffentCell:cell indexPath:indexPath];

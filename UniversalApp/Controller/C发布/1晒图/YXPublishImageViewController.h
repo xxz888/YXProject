@@ -11,7 +11,6 @@
 @interface YXPublishImageViewController : RootViewController
 @property (weak, nonatomic) IBOutlet UITableView *yxTableview;
 @property (weak, nonatomic) IBOutlet UIButton *cunCaogaoBtn;
-- (IBAction)cunCaoGaoAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *fabuBtn;
 - (IBAction)fabuAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *buttonFabuBtn;
