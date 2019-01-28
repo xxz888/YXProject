@@ -98,7 +98,7 @@
                 <outlet property="titleLbl" destination="8UY-PL-yvX" id="zka-UU-1ls"/>
                 <outlet property="titleTimeLbl" destination="qqq-vP-12W" id="MtB-Nn-HY1"/>
             </connections>
-            <point key="canvasLocation" x="-338.39999999999998" y="-71.514242878560722"/>
+            <point key="canvasLocation" x="-114" y="-74"/>
         </view>
     </objects>
 </document>

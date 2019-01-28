@@ -196,7 +196,6 @@
     YXHomeXueJiaQuestionDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaQuestionDetailViewController"];
     VC.moment = self.momentList[indexPath.row];
     YX_MANAGER.isHaveIcon = YES;
-    VC.whereCome = self.whereCome;
     [self.navigationController pushViewController:VC animated:YES];
 
     

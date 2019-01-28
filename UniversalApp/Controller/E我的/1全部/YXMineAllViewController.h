@@ -7,8 +7,7 @@
 //
 
 #import "RootViewController.h"
-#import "YXFindViewController.h"
 
-@interface YXMineAllViewController : YXFindViewController
+@interface YXMineAllViewController : RootViewController
 
 @end

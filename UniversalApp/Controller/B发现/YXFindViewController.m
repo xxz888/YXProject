@@ -19,14 +19,14 @@
 #import "YXFindImageTableViewCell.h"
 #import "YXFindQuestionTableViewCell.h"
 #import "YXFindFootTableViewCell.h"
-
+#import "YXHomeXueJiaQuestionDetailViewController.h"
+#import "Moment.h"
+#import "Comment.h"
 @interface YXFindViewController ()<PYSearchViewControllerDelegate,UITableViewDelegate,UITableViewDataSource>{
     NSInteger page ;
     CBSegmentView * sliderSegmentView;
 }
-
 @property(nonatomic,strong)NSMutableArray * dataArray;
-@property(nonatomic,strong)NSMutableArray * heightArray;
 @property(nonatomic,strong)NSString * type;
 @end
 
@@ -36,19 +36,17 @@
     [super viewDidLoad];
     //搜索栏
     [self setNavSearchView];
-    //滑动条
-    [self.view addSubview: [self headerView]];
     //创建tableview
     [self tableviewCon];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self setViewData];
+    [self requestFindTag];
 }
 #pragma mark ========== headerview ==========
 -(UIView *)headerView{
     kWeakSelf(self);
-    sliderSegmentView = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, 64, KScreenWidth, 40)];
+    sliderSegmentView = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, 40)];
     sliderSegmentView.titleChooseReturn = ^(NSInteger x) {
         weakself.type = NSIntegerToNSString(x+1);
         [weakself requestFindTheType];
@@ -57,16 +55,16 @@
 }
 #pragma mark ========== 创建tableview ==========
 -(void)tableviewCon{
-    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64 + 40, KScreenWidth, KScreenHeight - 104) style:0];
+    self.dataArray = [[NSMutableArray alloc]init];
+    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, NavigationContentTop, KScreenWidth, KScreenHeight - NavigationContentTop) style:0];
     [self.view addSubview:self.yxTableView];
+    self.yxTableView.tableHeaderView = [self headerView];
     self.yxTableView.delegate = self;
     self.yxTableView.dataSource= self;
     self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.yxTableView.showsVerticalScrollIndicator = NO;
     page = 1;
     _type = @"1";
-    self.dataArray = [[NSMutableArray alloc]init];
-    
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindImageTableViewCell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindQuestionTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindQuestionTableViewCell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindFootTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindFootTableViewCell"];
@@ -79,11 +77,6 @@
         [weakself requestFindTheType];
     }];
 }
--(void)setViewData{
-    [self requestFindTag];
-}
-
-
 #pragma mark ========== 1111111-先请求tag列表,获取发现页标签数据 ==========
 -(void)requestFindTag{
     kWeakSelf(self);
@@ -148,39 +141,52 @@
 
 #pragma mark ========== tableview代理方法 ==========
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return  335;
+    NSDictionary * dic = self.dataArray[indexPath.row];
+    NSInteger tag = [dic[@"obj"] integerValue];
+    if (tag == 1) {
+        return 600;
+    }else if (tag == 3){
+        return 390;
+    }else if(tag == 4){
+        return 550;
+    }else{
+        return 0;
+    }
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArray.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.row];
-    NSInteger tag = [dic[@"object"] integerValue];
-    //1图片 2问答 3足迹
-    switch (tag) {
-        case 1:
-            return [self customImageData:dic indexPath:indexPath];
-        case 2:
-            return [self customQuestionData:dic indexPath:indexPath];
-        case 3:
-            return [self cunstomFootData:dic indexPath:indexPath];
-        default:
-            return nil;
+    NSInteger tag = [dic[@"obj"] integerValue];
+    if (tag == 1) {
+        return [self customImageData:dic indexPath:indexPath];
+    }else if (tag == 3){
+        return [self customQuestionData:dic indexPath:indexPath];
+    }else if (tag == 4){
+        return [self cunstomFootData:dic indexPath:indexPath];
+    }else{
+        return nil;
     }
 }
 #pragma mark ========== 图片 ==========
 -(YXFindImageTableViewCell *)customImageData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath{
     YXFindImageTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFindImageTableViewCell" forIndexPath:indexPath];
+    cell.titleImageView.tag = indexPath.row;
+    [cell setCellValue:dic];
     return cell;
 }
 #pragma mark ========== 问答 ==========
 -(YXFindQuestionTableViewCell *)customQuestionData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath{
     YXFindQuestionTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFindQuestionTableViewCell" forIndexPath:indexPath];
+    cell.titleImageView.tag = indexPath.row;
+    [cell setCellValue:dic];
     return cell;
 }
 #pragma mark ========== 足迹 ==========
 -(YXFindFootTableViewCell *)cunstomFootData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath{
     YXFindFootTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFindFootTableViewCell" forIndexPath:indexPath];
+    [cell setCellValue:dic];
     return cell;
 }
 
@@ -189,43 +195,59 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.row];
-    YX_MANAGER.isHaveIcon = NO;
-    YXMineEssayDetailViewController * VC = [[YXMineEssayDetailViewController alloc]init];
-    VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-    [self.navigationController pushViewController:VC animated:YES];
-}
-#pragma mark ========== 文章tableview ==========
--(void)customWenZhangCell:(YXMineEssayTableViewCell *)cell indexPath:(NSIndexPath *)indexPath{
-    NSDictionary * dic = self.dataArray[indexPath.row];
-    kWeakSelf(self);
-    cell.block = ^(YXMineEssayTableViewCell * cell) {
-        NSIndexPath * indexPath = [weakself.yxTableView indexPathForCell:cell];
-        [weakself requestDianZanAction:indexPath];
-    };
-    cell.clickImageBlock = ^(NSInteger tag) {
-        UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
-        YXMineViewController * mineVC = [stroryBoard5 instantiateViewControllerWithIdentifier:@"YXMineViewController"];
-        mineVC.userId = kGetString(weakself.dataArray[tag][@"user_id"]);
-        mineVC.whereCome = YES;
-        [weakself.navigationController pushViewController:mineVC animated:YES];
-    };
-    
-    [cell.essayTitleImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    cell.essayNameLbl.text = dic[@"user_name"];
-    cell.essayTimeLbl.text = [ShareManager timestampSwitchTime:[dic[@"publish_time"] integerValue] andFormatter:@""];
-    cell.mineImageLbl.text = dic[@"title"];
-    cell.mineTimeLbl.text = dic[@"title"];
-    BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
-    UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
-    
-    [cell.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
-    NSURL * url1 = [NSURL URLWithString:self.dataArray[indexPath.row][@"picture1"]];
-    NSURL * url2 = [NSURL URLWithString:self.dataArray[indexPath.row][@"picture2"]];
-    [cell.midImageView sd_setImageWithURL:url1 placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    [cell.midTwoImageVIew sd_setImageWithURL:url2 placeholderImage:[UIImage imageNamed:@"img_moren"]];
-
+    NSInteger tag = [dic[@"obj"] integerValue];
+    if (tag == 1) {//晒图
+        YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
+        VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+        YX_MANAGER.isHaveIcon = NO;
+        [self.navigationController pushViewController:VC animated:YES];
+    }else if (tag == 2){//文章
+        YX_MANAGER.isHaveIcon = NO;
+        YXMineEssayDetailViewController * VC = [[YXMineEssayDetailViewController alloc]init];
+        VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+        [self.navigationController pushViewController:VC animated:YES];
+    }else if (tag == 3){//问答
+        UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+        YXHomeXueJiaQuestionDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaQuestionDetailViewController"];
+        VC.moment = [self setTestInfo:dic];
+        YX_MANAGER.isHaveIcon = YES;
+        [self.navigationController pushViewController:VC animated:YES];
+    }else if (tag == 4){//足迹
+        
+    }
 }
 
+-(Moment *)setTestInfo:(NSDictionary *)dic{
+        NSMutableArray *commentList = nil;
+        Moment *moment = [[Moment alloc] init];
+        moment.praiseNameList = nil;
+        moment.userName = dic[@"user_name"];
+        moment.text = dic[@"title"];
+        moment.time = [dic[@"publish_date"] longLongValue];
+        moment.singleWidth = 500;
+        moment.singleHeight = 315;
+        moment.location = @"";
+        moment.isPraise = NO;
+        moment.photo =dic[@"user_photo"];
+        moment.startId = dic[@"id"];
+        moment.fileCount = 3;
+        moment.imageListArray = [NSMutableArray arrayWithObjects:
+                                 dic[@"pic1"],
+                                 dic[@"pic2"],
+                                 dic[@"pic3"], nil];
+        commentList = [[NSMutableArray alloc] init];
+        int num = (int)[dic[@"answer"] count];
+        for (int j = 0; j < num; j ++) {
+            Comment *comment = [[Comment alloc] init];
+            comment.userName = dic[@"answer"][j][@"user_name"];
+            comment.text =  dic[@"answer"][j][@"answer"];
+            comment.time = 1487649503;
+            comment.pk = j;
+            [commentList addObject:comment];
+        }
+        [moment setValue:commentList forKey:@"commentList"];
+        return moment;
+}
 
 
 
@@ -273,13 +295,5 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.type = @"1";
-}
-//计算html字符串高度
--(CGFloat )getHTMLHeightByStr:(NSString *)str
-{
-    NSMutableAttributedString *htmlString =[[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:[NSNumber numberWithInt:NSUTF8StringEncoding]}documentAttributes:NULL error:nil];
-    [htmlString addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} range:NSMakeRange(0, htmlString.length)];
-    CGSize textSize = [htmlString boundingRectWithSize:(CGSize){KScreenWidth - 10, CGFLOAT_MAX}options:NSStringDrawingUsesFontLeading || NSStringDrawingUsesLineFragmentOrigin context:nil].size;
-    return textSize.height;
 }
 @end

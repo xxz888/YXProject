@@ -21,7 +21,6 @@
 #import "XYTabBar.h"
 
 #import "YXHomeViewController.h"
-#import "YXFindViewController.h"
 #import "YXMessageViewController.h"
 #import "YXPublishViewController.h"
 #import "YXMineViewController.h"

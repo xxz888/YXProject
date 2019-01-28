@@ -19,7 +19,6 @@
 #import "YXMineSettingTableViewController.h"
 #import "YXMineMyCaoGaoViewController.h"
 #import "YXMineMyDianZanViewController.h"
-#import "YXFindViewController.h"
 #import "YXMineFenSiViewController.h"
 #import "YXMineGuanZhuViewController.h"
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
@@ -80,15 +79,6 @@
     YXMineImageViewController * imageVC = [[YXMineImageViewController alloc]init];
     YXMineArticleViewController * articleVC = [stroryBoard instantiateViewControllerWithIdentifier:@"YXMineArticleViewController"];
     [self setSegmentControllersArray:@[imageVC,articleVC] title:@[@"晒图",@"文章"] defaultIndex:0 top:175+NavigationBarHeight view:self.view];
-}
-#pragma mark ========== 嵌套复用的界面 ==========
--(void)setInitCollection{
-    YXFindViewController * findVC = [[YXFindViewController alloc]init];
-    findVC.whereCome = YES; //  YES为其他人 NO为自己
-    findVC.userId = self.userId;
-    findVC.view.frame = CGRectMake(0, 160, self.view.frame.size.width, kScreenHeight-170);
-    [self addChildViewController:findVC];
-    [self.view insertSubview:findVC.view atIndex:0];
 }
 #pragma mark ========== 数据 ==========
 -(void)setViewData{
