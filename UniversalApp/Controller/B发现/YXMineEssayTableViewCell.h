@@ -33,6 +33,7 @@ typedef void(^clickImage)(NSInteger);
 - (IBAction)likeAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *midImageView;
 @property (weak, nonatomic) IBOutlet UIWebView *midWebView;
+@property (weak, nonatomic) IBOutlet UIImageView *midTwoImageVIew;
 
 @end
 

@@ -17,7 +17,8 @@
     self.essayTitleImageView.layer.cornerRadius = self.essayTitleImageView.frame.size.width / 2.0;
     
        ViewRadius(self.midImageView, 3);
-    
+    ViewRadius(self.midTwoImageVIew, 3);
+
     
     //图片这种类型的view默认是没有点击事件的，所以要把用户交互的属性打开
     self.essayTitleImageView.userInteractionEnabled = YES;
