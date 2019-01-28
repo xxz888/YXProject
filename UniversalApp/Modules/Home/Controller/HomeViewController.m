@@ -42,7 +42,7 @@
             break;
         case 1002:
         {
-            [kAppDelegate.mainTabBar setRedDotWithIndex:3 isShow:YES];
+//            [kAppDelegate.mainTabBar setRedDotWithIndex:3 isShow:YES];
             RootNavigationController *loginNavi =[[RootNavigationController alloc] initWithRootViewController:[[RootWebViewController alloc] initWithUrl:@"http://www.hao123.com"]];
             
             //    RootNavigationController *loginNavi =[[RootNavigationController alloc] initWithRootViewController:[LoginViewController new]];

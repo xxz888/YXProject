@@ -75,7 +75,7 @@
 }
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat height = self.whereCome ? 300 - 60 : 30;
+    CGFloat height = self.whereCome ? 300 - 60 : 300;
     if (self.showType == singleLineShowOneGoods) {
         return CGSizeMake(ScreenWidth, height);
     } else {

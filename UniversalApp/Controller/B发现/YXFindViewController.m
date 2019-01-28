@@ -18,7 +18,7 @@
 #import "YXMineImageCollectionView.h"
 #import "BKCustomSwitchBtn.h"
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
-#define ChildView_Frame CGRectMake(5, 104, KScreenWidth-10, kScreenHeight-170-49-104)
+#define ChildView_Frame self.whereCome ? CGRectMake(5, 104, KScreenWidth-10, kScreenHeight-170-49-104) : CGRectMake(5, 104, KScreenWidth-10, kScreenHeight-49-104)
 @interface YXFindViewController ()<PYSearchViewControllerDelegate,UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate,BKCustomSwitchBtnDelegate>{
     NSInteger page ;
     CBSegmentView * sliderSegmentView;
@@ -198,30 +198,22 @@
     kWeakSelf(self);
     NSString * parString =[NSString stringWithFormat:@"%@/%@",self.type,@"1"];
     [YX_MANAGER requestGet_users_find:parString success:^(id object) {
-        [weakself.dataArray removeAllObjects];
-        [weakself.dataArray addObjectsFromArray:object];
-        [weakself.yxTableView reloadData];
+        [weakself mineShaiTuCommonAction:object];
     }];
 }
 #pragma mark ========== 我的界面晒图请求 ==========
 -(void)requestMineShaiTuList{
     kWeakSelf(self);
     NSString * pageString = NSIntegerToNSString(page) ;
-    id object = UserDefaultsGET(@"a2");
-    self.yxCollectionView.dataArray = [NSArray arrayWithArray:object];
-    self.yxCollectionView.whereCome = self.whereCome;
-    [weakself mineShaiTuCommonAction:object];
     [YX_MANAGER requestGetDetailListPOST:@{@"type":@(2),@"tag":@"0",@"page":@(1)} success:^(id object) {
         UserDefaultsSET(object, @"a2");
-
         [weakself mineShaiTuCommonAction:object];
     }];
-    id object1 = UserDefaultsGET(@"a1");
-    
     [YX_MANAGER requestGetSersAllList:@"1" success:^(id object) {
         UserDefaultsSET(object, @"a1");
     }];
 }
+
 #pragma mark ========== 我的界面文章请求 ==========
 -(void)requestMineWenZhangList{
     kWeakSelf(self);
@@ -260,8 +252,8 @@
     }];
 }
 -(void)mineShaiTuCommonAction:(id)object{
-    [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:object];
+    self.yxCollectionView.dataArray = [NSArray arrayWithArray:object];
+    self.yxCollectionView.whereCome = self.whereCome;
     [self.yxCollectionView reloadData];
 }
 -(void)mineWenZhangCommonAction:(id)object{

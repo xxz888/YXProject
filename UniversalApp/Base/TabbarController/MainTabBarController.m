@@ -47,7 +47,7 @@
 
 @implementation MainTabBarController
 
-
+/*
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.delegate = self;
@@ -235,6 +235,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+*/
 
 @end

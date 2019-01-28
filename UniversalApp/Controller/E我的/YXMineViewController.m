@@ -105,7 +105,7 @@
 }
 -(void)personValue:(id)object{
     [self.mineImageView sd_setImageWithURL:[NSURL URLWithString:object[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    self.title = kGetString(object[@"username"]);
+    self.navigationItem.title = kGetString(object[@"username"]);
     self.mineTitle.text =kGetString(object[@"username"]);
     self.mineAdress.text = kGetString(object[@"site"]);
     self.guanzhuCountLbl.text = kGetString(object[@"likes_number"]);

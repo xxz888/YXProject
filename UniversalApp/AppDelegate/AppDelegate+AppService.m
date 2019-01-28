@@ -11,6 +11,7 @@
 #import "LoginViewController.h"
 //#import "OpenUDID.h"
 #import <YTKNetwork.h>
+#import "SaltedFishTabBarVC.h"
 
 @implementation AppDelegate (AppService)
 
@@ -55,7 +56,7 @@
     if([userManager loadUserInfo]){
         
         //如果有本地数据，先展示TabBar 随后异步自动登录
-        self.mainTabBar = [MainTabBarController new];
+        self.mainTabBar = [SaltedFishTabBarVC new];
         self.window.rootViewController = self.mainTabBar;
 //        KPostNotification(KNotificationLoginStateChange, @YES)
         return;
@@ -88,7 +89,7 @@
         
         //为避免自动登录成功刷新tabbar
         if (!self.mainTabBar || ![self.window.rootViewController isKindOfClass:[MainTabBarController class]]) {
-            self.mainTabBar = [MainTabBarController new];
+            self.mainTabBar = [SaltedFishTabBarVC new];
 
             CATransition *anima = [CATransition animation];
             anima.type = @"cube";//设置动画的类型

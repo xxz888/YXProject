@@ -251,8 +251,8 @@
 
 #pragma mark -  tabarBadge
 -(void)tabarBadge{
-    [kAppDelegate.mainTabBar setRedDotWithIndex:3 isShow:YES];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+//    [kAppDelegate.mainTabBar setRedDotWithIndex:3 isShow:YES];
+//    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 #pragma mark -  IAPTest
