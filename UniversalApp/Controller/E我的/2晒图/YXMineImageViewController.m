@@ -7,7 +7,7 @@
 //
 
 #import "YXMineImageViewController.h"
-#import "YXMineImageTableViewCell.h"
+#import "YXMineEssayTableViewCell.h"
 #import "YXMineImageDetailViewController.h"
 
 @interface YXMineImageViewController ()<UITableViewDelegate,UITableViewDataSource>{
@@ -37,7 +37,7 @@
     page = 1;
     
     self.dataArray = [[NSMutableArray alloc]init];
-    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXMineImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineImageTableViewCell"];
+    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXMineEssayTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineEssayTableViewCell"];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 350;
@@ -48,7 +48,7 @@
 
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    YXMineImageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMineImageTableViewCell" forIndexPath:indexPath];
+    YXMineEssayTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMineEssayTableViewCell" forIndexPath:indexPath];
     NSDictionary * dic = self.dataArray[indexPath.row];
 
     NSURL * url = [NSURL URLWithString:dic[@"photo1"]];
@@ -73,7 +73,7 @@
     [cell.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
     
     kWeakSelf(self);
-    cell.block = ^(YXMineImageTableViewCell * cell) {
+    cell.block = ^(YXMineEssayTableViewCell * cell) {
         [weakself requestDianZanAction:cell];
     };
     cell.clickImageBlock = ^(NSInteger index) {
@@ -81,7 +81,7 @@
     };
     return cell;
 }
--(void)requestDianZanAction:(YXMineImageTableViewCell *)cell{
+-(void)requestDianZanAction:(YXMineEssayTableViewCell *)cell{
     NSIndexPath * indexPath = [self.yxTableView indexPathForCell:cell];
     kWeakSelf(self);
     NSString* post_id = kGetString(self.dataArray[indexPath.row][@"id"]);

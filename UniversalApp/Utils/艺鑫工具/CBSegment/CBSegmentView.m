@@ -92,12 +92,21 @@
     }
     
     if (style == CBSegmentStyleSlider) {
+        
+        [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        
+        UIView *sliderAll = [[UIView alloc]init];
+        sliderAll.frame = CGRectMake(0,_HeaderH-3 , KScreenWidth, 3);
+        sliderAll.backgroundColor = YXRGBAColor(239, 239, 239);
+        [self addSubview:sliderAll];
+        
         UIView *slider = [[UIView alloc]init];
         slider.frame = CGRectMake(0, _HeaderH-3, 0, 3);
         slider.backgroundColor = _titleSelectedColor;
-        [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         [self addSubview:slider];
         self.slider = slider;
+        
+    
     }
     
     [self.titleWidthArray removeAllObjects];

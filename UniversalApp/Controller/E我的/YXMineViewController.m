@@ -77,7 +77,7 @@
     YXFindViewController * findVC = [[YXFindViewController alloc]init];
     findVC.whereCome = YES; //  YES为其他人 NO为自己
     findVC.userId = self.userId;
-    findVC.view.frame = CGRectMake(5, 160, KScreenWidth-10, kScreenHeight-170);
+    findVC.view.frame = CGRectMake(0, 160, self.view.frame.size.width, kScreenHeight-170);
     [self addChildViewController:findVC];
     [self.view insertSubview:findVC.view atIndex:0];
 }

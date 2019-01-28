@@ -186,6 +186,9 @@
 		5BC8C50C0BEF57AA0780D5DC /* libPods-UniversalApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E884624664B432D4FE5044F /* libPods-UniversalApp.a */; };
 		BB5DC69B2189CA38003F1998 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */; };
 		BB5DC69C2189CA38003F1998 /* SELUpdateAlertConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */; };
+		BB5FD86321FDFC8000B5F1A8 /* YXMineImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD86121FDFC8000B5F1A8 /* YXMineImageCollectionViewCell.m */; };
+		BB5FD86421FDFC8000B5F1A8 /* YXMineImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5FD86221FDFC8000B5F1A8 /* YXMineImageCollectionViewCell.xib */; };
+		BB5FD86721FDFFD600B5F1A8 /* YXMineImageCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD86621FDFFD600B5F1A8 /* YXMineImageCollectionView.m */; };
 		BB6D29EC21ED7EA400F5049F /* YXHomeXueJiaPeiJianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D29EB21ED7EA400F5049F /* YXHomeXueJiaPeiJianViewController.m */; };
 		BB6D29F021ED8D6E00F5049F /* YXHomeXueJiaPeiJianDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D29EF21ED8D6E00F5049F /* YXHomeXueJiaPeiJianDetailViewController.m */; };
 		BB6D29F421ED8EED00F5049F /* YXHomeXueJiaPeiJianDetailTuiJianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D29F321ED8EED00F5049F /* YXHomeXueJiaPeiJianDetailTuiJianViewController.m */; };
@@ -235,8 +238,8 @@
 		BB928F9821FB5D290090A044 /* BRPickerView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BB928F9021FB5D280090A044 /* BRPickerView.bundle */; };
 		BB928F9921FB5D290090A044 /* BRAddressPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F9221FB5D280090A044 /* BRAddressPickerView.m */; };
 		BB928F9D21FBFFD40090A044 /* YXMineTongYongTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F9C21FBFFD40090A044 /* YXMineTongYongTableViewController.m */; };
-		BB928FA121FC1F6E0090A044 /* YXMineImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F9E21FC1F6D0090A044 /* YXMineImageTableViewCell.m */; };
-		BB928FA221FC1F6E0090A044 /* YXMineImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB928F9F21FC1F6D0090A044 /* YXMineImageTableViewCell.xib */; };
+		BB928FA121FC1F6E0090A044 /* YXMineEssayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F9E21FC1F6D0090A044 /* YXMineEssayTableViewCell.m */; };
+		BB928FA221FC1F6E0090A044 /* YXMineEssayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB928F9F21FC1F6D0090A044 /* YXMineEssayTableViewCell.xib */; };
 		BB9413D921F8B602007E800A /* IQTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9413B821F8B602007E800A /* IQTextView.m */; };
 		BB9413DA21F8B602007E800A /* IQToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9413BC21F8B602007E800A /* IQToolbar.m */; };
 		BB9413DB21F8B602007E800A /* IQTitleBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9413BE21F8B602007E800A /* IQTitleBarButtonItem.m */; };
@@ -457,8 +460,6 @@
 		BBD2C9AD21E3029100350DCD /* YXHomeXueJiaPinPaiDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C9AC21E3029100350DCD /* YXHomeXueJiaPinPaiDetailViewController.m */; };
 		BBD2C9B021E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C9AF21E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.m */; };
 		BBD2C9B221E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD2C9B121E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib */; };
-		BBD30CDA21E5C35D000D3244 /* YXMineEssayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD30CD821E5C35D000D3244 /* YXMineEssayTableViewCell.m */; };
-		BBD30CDB21E5C35D000D3244 /* YXMineEssayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD30CD921E5C35D000D3244 /* YXMineEssayTableViewCell.xib */; };
 		BBD30CE121E5CD79000D3244 /* YXMineGuanZhuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD30CE021E5CD79000D3244 /* YXMineGuanZhuViewController.m */; };
 		BBD30CE421E5CD89000D3244 /* YXMineFenSiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD30CE321E5CD89000D3244 /* YXMineFenSiViewController.m */; };
 		BBD30CE921E5CE26000D3244 /* YXMineCommon1TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD30CE721E5CE26000D3244 /* YXMineCommon1TableViewCell.m */; };
@@ -830,6 +831,11 @@
 		BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
 		BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlertConst.m; sourceTree = "<group>"; };
 		BB5DC69A2189CA38003F1998 /* SELUpdateAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlert.h; sourceTree = "<group>"; };
+		BB5FD86021FDFC8000B5F1A8 /* YXMineImageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineImageCollectionViewCell.h; sourceTree = "<group>"; };
+		BB5FD86121FDFC8000B5F1A8 /* YXMineImageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineImageCollectionViewCell.m; sourceTree = "<group>"; };
+		BB5FD86221FDFC8000B5F1A8 /* YXMineImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineImageCollectionViewCell.xib; sourceTree = "<group>"; };
+		BB5FD86521FDFFD500B5F1A8 /* YXMineImageCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMineImageCollectionView.h; sourceTree = "<group>"; };
+		BB5FD86621FDFFD600B5F1A8 /* YXMineImageCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMineImageCollectionView.m; sourceTree = "<group>"; };
 		BB6D29EA21ED7EA400F5049F /* YXHomeXueJiaPeiJianViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaPeiJianViewController.h; sourceTree = "<group>"; };
 		BB6D29EB21ED7EA400F5049F /* YXHomeXueJiaPeiJianViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaPeiJianViewController.m; sourceTree = "<group>"; };
 		BB6D29EE21ED8D6E00F5049F /* YXHomeXueJiaPeiJianDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaPeiJianDetailViewController.h; sourceTree = "<group>"; };
@@ -922,9 +928,9 @@
 		BB928F9221FB5D280090A044 /* BRAddressPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAddressPickerView.m; sourceTree = "<group>"; };
 		BB928F9B21FBFFD40090A044 /* YXMineTongYongTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineTongYongTableViewController.h; sourceTree = "<group>"; };
 		BB928F9C21FBFFD40090A044 /* YXMineTongYongTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineTongYongTableViewController.m; sourceTree = "<group>"; };
-		BB928F9E21FC1F6D0090A044 /* YXMineImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMineImageTableViewCell.m; sourceTree = "<group>"; };
-		BB928F9F21FC1F6D0090A044 /* YXMineImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YXMineImageTableViewCell.xib; sourceTree = "<group>"; };
-		BB928FA021FC1F6D0090A044 /* YXMineImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMineImageTableViewCell.h; sourceTree = "<group>"; };
+		BB928F9E21FC1F6D0090A044 /* YXMineEssayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMineEssayTableViewCell.m; sourceTree = "<group>"; };
+		BB928F9F21FC1F6D0090A044 /* YXMineEssayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YXMineEssayTableViewCell.xib; sourceTree = "<group>"; };
+		BB928FA021FC1F6D0090A044 /* YXMineEssayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMineEssayTableViewCell.h; sourceTree = "<group>"; };
 		BB9413B821F8B602007E800A /* IQTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQTextView.m; sourceTree = "<group>"; };
 		BB9413B921F8B602007E800A /* IQTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQTextView.h; sourceTree = "<group>"; };
 		BB9413BB21F8B602007E800A /* IQUIView+IQKeyboardToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIView+IQKeyboardToolbar.h"; sourceTree = "<group>"; };
@@ -1297,9 +1303,6 @@
 		BBD2C9AE21E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaDetailTableViewCell.h; sourceTree = "<group>"; };
 		BBD2C9AF21E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaDetailTableViewCell.m; sourceTree = "<group>"; };
 		BBD2C9B121E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeXueJiaDetailTableViewCell.xib; sourceTree = "<group>"; };
-		BBD30CD721E5C35D000D3244 /* YXMineEssayTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineEssayTableViewCell.h; sourceTree = "<group>"; };
-		BBD30CD821E5C35D000D3244 /* YXMineEssayTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineEssayTableViewCell.m; sourceTree = "<group>"; };
-		BBD30CD921E5C35D000D3244 /* YXMineEssayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineEssayTableViewCell.xib; sourceTree = "<group>"; };
 		BBD30CDF21E5CD79000D3244 /* YXMineGuanZhuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineGuanZhuViewController.h; sourceTree = "<group>"; };
 		BBD30CE021E5CD79000D3244 /* YXMineGuanZhuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineGuanZhuViewController.m; sourceTree = "<group>"; };
 		BBD30CE221E5CD89000D3244 /* YXMineFenSiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineFenSiViewController.h; sourceTree = "<group>"; };
@@ -2937,9 +2940,14 @@
 			children = (
 				BBA812AB21DDAB9D001B5EA1 /* YXFindViewController.h */,
 				BBA812AC21DDAB9D001B5EA1 /* YXFindViewController.m */,
-				BB928FA021FC1F6D0090A044 /* YXMineImageTableViewCell.h */,
-				BB928F9E21FC1F6D0090A044 /* YXMineImageTableViewCell.m */,
-				BB928F9F21FC1F6D0090A044 /* YXMineImageTableViewCell.xib */,
+				BB928FA021FC1F6D0090A044 /* YXMineEssayTableViewCell.h */,
+				BB928F9E21FC1F6D0090A044 /* YXMineEssayTableViewCell.m */,
+				BB928F9F21FC1F6D0090A044 /* YXMineEssayTableViewCell.xib */,
+				BB5FD86521FDFFD500B5F1A8 /* YXMineImageCollectionView.h */,
+				BB5FD86621FDFFD600B5F1A8 /* YXMineImageCollectionView.m */,
+				BB5FD86021FDFC8000B5F1A8 /* YXMineImageCollectionViewCell.h */,
+				BB5FD86121FDFC8000B5F1A8 /* YXMineImageCollectionViewCell.m */,
+				BB5FD86221FDFC8000B5F1A8 /* YXMineImageCollectionViewCell.xib */,
 			);
 			path = "B发现";
 			sourceTree = "<group>";
@@ -3400,9 +3408,6 @@
 			children = (
 				BBD2C80021E0F41F00350DCD /* YXMineArticleViewController.h */,
 				BBD2C80121E0F41F00350DCD /* YXMineArticleViewController.m */,
-				BBD30CD721E5C35D000D3244 /* YXMineEssayTableViewCell.h */,
-				BBD30CD821E5C35D000D3244 /* YXMineEssayTableViewCell.m */,
-				BBD30CD921E5C35D000D3244 /* YXMineEssayTableViewCell.xib */,
 				BB9413E721F96810007E800A /* 文章详情 */,
 			);
 			path = "3文章";
@@ -4504,7 +4509,7 @@
 				296DEA801F5D536500C6FD00 /* pageControlCurrentDot@3x.png in Resources */,
 				296F9A331F04F39000909CDB /* 4.jpg in Resources */,
 				BB9EFE7121F5CCBA00180813 /* YXPublishMoreTagsViewController.xib in Resources */,
-				BB928FA221FC1F6E0090A044 /* YXMineImageTableViewCell.xib in Resources */,
+				BB928FA221FC1F6E0090A044 /* YXMineEssayTableViewCell.xib in Resources */,
 				BB9413EC21F96830007E800A /* YXMineEssayDetailViewController.xib in Resources */,
 				296F9A2B1F04F39000909CDB /* 0.jpg in Resources */,
 				BBD2C91F21E0F67800350DCD /* LLImagePicker.bundle in Resources */,
@@ -4597,6 +4602,7 @@
 				BBCC4A9421E82CEE00493F40 /* YXHomeXueJiaWenHuaViewController.xib in Resources */,
 				BBC6180421F5AD5A00495619 /* YXHomeGolf.storyboard in Resources */,
 				BBC6180E21F5AE8200495619 /* YXHomeGolfScoreHeaderView.xib in Resources */,
+				BB5FD86421FDFC8000B5F1A8 /* YXMineImageCollectionViewCell.xib in Resources */,
 				296F9A341F04F39000909CDB /* 5.jpg in Resources */,
 				BBCC4AA421E83DC000493F40 /* YXColorViewController.xib in Resources */,
 				296F9A361F04F39000909CDB /* 7.jpg in Resources */,
@@ -4675,7 +4681,6 @@
 				293D46441ECDBB63007C64A9 /* icon_tabbar_homepage_selected.png in Resources */,
 				293D46491ECDBB63007C64A9 /* icon_tabbar_merchant_selected@2x.png in Resources */,
 				299610291ED84B5100BCED2A /* UMSocialSDKPromptResources.bundle in Resources */,
-				BBD30CDB21E5C35D000D3244 /* YXMineEssayTableViewCell.xib in Resources */,
 				BBD2C93F21E0F67800350DCD /* VideoOverlay.png in Resources */,
 				293D46481ECDBB63007C64A9 /* icon_tabbar_merchant_selected.png in Resources */,
 				BBD2C93521E0F67800350DCD /* ImageError@3x.png in Resources */,
@@ -4748,6 +4753,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB5FD86721FDFFD600B5F1A8 /* YXMineImageCollectionView.m in Sources */,
 				BBADE43721F6CA210011E5FF /* YXHomeScoreActionViewController.m in Sources */,
 				BBCC4B9321E894CD00493F40 /* MMOperateMenuView.m in Sources */,
 				BB9413E521F8B602007E800A /* IQUIViewController+Additions.m in Sources */,
@@ -4999,7 +5005,6 @@
 				BBD2C92121E0F67800350DCD /* MWCaptionView.m in Sources */,
 				BBD2C8FA21E0F67700350DCD /* NSBundle+TZImagePicker.m in Sources */,
 				BBC6180121F597EE00495619 /* YXGEFPinPaiLastDetailViewController.m in Sources */,
-				BBD30CDA21E5C35D000D3244 /* YXMineEssayTableViewCell.m in Sources */,
 				BBD2C95521E0F72800350DCD /* DALabeledCircularProgressView.m in Sources */,
 				293D460E1ECDAEDC007C64A9 /* MsgViewController.m in Sources */,
 				BB9413E321F8B602007E800A /* IQUIScrollView+Additions.m in Sources */,
@@ -5011,6 +5016,7 @@
 				BB9EFE8F21F6B92300180813 /* YXQCDJCDetailTableViewController.m in Sources */,
 				BBCC4B9021E894CD00493F40 /* MMImageListView.m in Sources */,
 				290A98021F4ABC4F006BF882 /* SettingViewController.m in Sources */,
+				BB5FD86321FDFC8000B5F1A8 /* YXMineImageCollectionViewCell.m in Sources */,
 				BBA812AD21DDAB9D001B5EA1 /* YXFindViewController.m in Sources */,
 				BBA812E621DDDE47001B5EA1 /* WJSliderView.m in Sources */,
 				BBECEEB421F05B32007E90AC /* YXQCDJCHeaderView.m in Sources */,
@@ -5040,7 +5046,7 @@
 				BBD2C8F621E0F67700350DCD /* TZImageCropManager.m in Sources */,
 				BBDA2C6421EB308100EDCCFF /* SDTimeLineCellCommentView.m in Sources */,
 				BBCC4AAD21E83DE200493F40 /* YXHomeChiCunViewController.m in Sources */,
-				BB928FA121FC1F6E0090A044 /* YXMineImageTableViewCell.m in Sources */,
+				BB928FA121FC1F6E0090A044 /* YXMineEssayTableViewCell.m in Sources */,
 				BBDA2EF321ECC22B00EDCCFF /* YXGaoDeMapViewController.m in Sources */,
 				29AD6C5C1ED3E28800B0879C /* PPNetworkHelper.m in Sources */,
 				29530FAF1F60F10700D24E05 /* YSLCardView.m in Sources */,

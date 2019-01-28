@@ -58,7 +58,6 @@
     [cell.essayTitleImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cell.essayNameLbl.text = dic[@"user_name"];
     cell.essayTimeLbl.text = [ShareManager timestampSwitchTime:[dic[@"publish_time"] integerValue] andFormatter:@""];
-    [cell.essayWebView loadHTMLString:[ShareManager justFitImage:dic[@"essay"]] baseURL:nil];
     return cell;
 }
 

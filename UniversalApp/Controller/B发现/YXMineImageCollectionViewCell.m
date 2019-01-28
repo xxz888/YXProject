@@ -12,7 +12,11 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    self.essayTitleImageView.layer.masksToBounds = YES;
+    self.essayTitleImageView.layer.cornerRadius = self.essayTitleImageView.frame.size.width / 2.0;
+    
+    ViewRadius(self.midImageView, 3);
+    
 }
 
 @end

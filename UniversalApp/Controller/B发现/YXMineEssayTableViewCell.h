@@ -1,5 +1,5 @@
 //
-//  YXMineImageTableViewCell.h
+//  YXMineEssayTableViewCell.h
 //  UniversalApp
 //
 //  Created by 小小醉 on 2019/1/9.
@@ -9,8 +9,8 @@
 #import "TableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@interface YXMineImageTableViewCell : TableViewCell
-typedef void(^clickZan)(YXMineImageTableViewCell *);
+@interface YXMineEssayTableViewCell : TableViewCell
+typedef void(^clickZan)(YXMineEssayTableViewCell *);
 typedef void(^clickImage)(NSInteger);
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewConstraint;
 @property (weak, nonatomic) IBOutlet UIView *topView;

@@ -24,6 +24,8 @@
 #define UserDefaultsGET(key) [[NSUserDefaults standardUserDefaults] objectForKey:key] // 取
 #define UserDefaultsSET(object,key) [[NSUserDefaults standardUserDefaults] setObject:object forKey:key]  // 写
 
+
+
 //获取系统对象
 #define kApplication        [UIApplication sharedApplication]
 #define kAppWindow          [UIApplication sharedApplication].delegate.window

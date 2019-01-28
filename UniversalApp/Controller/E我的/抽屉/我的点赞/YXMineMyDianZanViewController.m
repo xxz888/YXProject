@@ -7,7 +7,7 @@
 //
 
 #import "YXMineMyDianZanViewController.h"
-#import "YXMineImageTableViewCell.h"
+#import "YXMineEssayTableViewCell.h"
 #import "YXMineImageDetailViewController.h"
 @interface YXMineMyDianZanViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)NSMutableArray * dataArray;
@@ -19,7 +19,7 @@
     [super viewDidLoad];
     self.title = @"我的点赞";
     self.dataArray = [[NSMutableArray alloc]init];
-    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXMineImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineImageTableViewCell"];
+    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXMineEssayTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineEssayTableViewCell"];
     self.yxTableView.separatorStyle = 0;
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -39,7 +39,7 @@
     return 350;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    YXMineImageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMineImageTableViewCell" forIndexPath:indexPath];
+    YXMineEssayTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMineEssayTableViewCell" forIndexPath:indexPath];
     NSDictionary * dic = self.dataArray[indexPath.row];
     cell.likeBtn.hidden = YES;
     [cell.essayTitleImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];

@@ -11,23 +11,26 @@
 #import "PYSearch.h"
 #import "PYTempViewController.h"
 #import "YXMineEssayTableViewCell.h"
-#import "YXMineEssayTableViewCell.h"
 #import "YXMineEssayDetailViewController.h"
-#import "YXMineImageTableViewCell.h"
 #import "YXMineImageDetailViewController.h"
 #import "YXMineViewController.h"
-
+#import "YXMineImageCollectionViewCell.h"
+#import "YXMineImageCollectionView.h"
+#import "BKCustomSwitchBtn.h"
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
-
-@interface YXFindViewController ()<PYSearchViewControllerDelegate,UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate>{
+#define ChildView_Frame CGRectMake(5, 104, KScreenWidth-10, kScreenHeight-170-49-104)
+@interface YXFindViewController ()<PYSearchViewControllerDelegate,UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate,BKCustomSwitchBtnDelegate>{
     NSInteger page ;
     CBSegmentView * sliderSegmentView;
 }
+
 @property(nonatomic,strong)NSMutableArray * dataArray;
 @property(nonatomic,strong)NSMutableArray * heightArray;
 @property(nonatomic,strong)NSString * type;
 
-
+@property (nonatomic, strong) BKCustomSwitchBtn *changeShowTypeBtn;//转换cell布局的Btn
+@property (nonatomic, assign) GoodsListShowType goodsShowType;
+@property (nonatomic, strong) YXMineImageCollectionView * yxCollectionView;
 
 @end
 
@@ -37,13 +40,74 @@
     [super viewDidLoad];
     //搜索栏
     [self setNavSearchView];
+    //滑动条
+    
+    [self.view addSubview: [self headerView]];
     //tableview
+    [self collectionViewCon];
     [self tableviewCon];
+    self.yxTableView.hidden = YES;
+
+    [self setViewData];
+
+
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self setViewData];
-  
+}
+
+-(void)collectionViewCon{
+    
+    UICollectionViewFlowLayout *layout1 = [[UICollectionViewFlowLayout alloc]init];
+    self.yxCollectionView = [[YXMineImageCollectionView alloc]initWithFrame:ChildView_Frame collectionViewLayout:layout1];
+    //self.yxCollectionView.myDelegate = self;
+    [self.view addSubview:self.yxCollectionView];
+    self.yxCollectionView.showType = self.whereCome ? signleLineShowDoubleGoods : singleLineShowOneGoods;
+    //更换展示商品列表的按钮
+    _changeShowTypeBtn = [[BKCustomSwitchBtn alloc]initWithFrame:CGRectZero];
+    _changeShowTypeBtn.hidden = NO;
+    _changeShowTypeBtn.selected = YES;
+    _changeShowTypeBtn.myDelegate = self;
+    [_changeShowTypeBtn setDragEnable:YES];
+    [_changeShowTypeBtn setAdsorbEnable:YES];
+    _changeShowTypeBtn.frame = CGRectMake(300, 200 + 5, 30, 30);
+    [_changeShowTypeBtn addTarget:self action:@selector(changeShowTypeHome:) forControlEvents:UIControlEventTouchUpInside];
+    [_changeShowTypeBtn setBackgroundImage:[UIImage imageNamed:@"商品列表样式1"] forState:UIControlStateNormal];
+    [_changeShowTypeBtn setBackgroundImage:[UIImage imageNamed:@"商品列表样式2"] forState:UIControlStateSelected];
+    [self.view addSubview:_changeShowTypeBtn];
+    
+    kWeakSelf(self);
+    self.yxCollectionView.indexPathBlock = ^(NSIndexPath * indexPath) {
+        NSDictionary * dic = weakself.dataArray[indexPath.row];
+        YX_MANAGER.isHaveIcon = NO;
+        YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
+        VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+        [weakself.navigationController pushViewController:VC animated:YES];
+    };
+}
+#pragma mark - 更改展示样式
+-(void)changeShowTypeHome:(UIButton *)btn{
+    
+    if (btn.isSelected) {
+        btn.selected = NO;
+        // self.goodsShowType = singleLineShowOneGoods;
+        self.yxCollectionView.showType =singleLineShowOneGoods;
+        
+    } else {
+        btn.selected = YES;
+        // self.goodsShowType = signleLineShowDoubleGoods;
+        self.yxCollectionView.showType =signleLineShowDoubleGoods;
+    }
+}
+#pragma mark - 禁止切换btn位置在搜索条件栏上
+-(void)btnCurrentLocationOrignalY:(CGFloat)orignalY begainPoint:(CGPoint)point{
+    //
+    //    if (self.backScrollView.frame.origin.y > orignalY) {
+    //        [UIView animateWithDuration:0.2 animations:^{
+    //            self.changeShowTypeBtn.frame = CGRectMake(ScreenWidth-40, self.backScrollView.frame.origin.y + 5, 30, 30);
+    //        }];
+    //    }
 }
 -(void)setViewData{
     /*
@@ -61,20 +125,22 @@
     }
 }
 -(void)tableviewCon{
-    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(5, 64, KScreenWidth-10, kScreenHeight-5) style:0];
+    self.yxTableView = [[UITableView alloc]initWithFrame:ChildView_Frame style:0];
     [self.view addSubview:self.yxTableView];
     self.yxTableView.delegate = self;
     self.yxTableView.dataSource= self;
     self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.yxTableView.tableHeaderView = [self headerView];
+    self.yxTableView.showsVerticalScrollIndicator = NO;
+
+//    self.yxTableView.tableHeaderView = [self headerView];
     page = 1;
     _type = @"1";
     self.dataArray = [[NSMutableArray alloc]init];
-    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXMineImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineImageTableViewCell"];
+    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXMineEssayTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineEssayTableViewCell"];
 }
 -(UIView *)headerView{
     kWeakSelf(self);
-    sliderSegmentView = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, 40)];
+    sliderSegmentView = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, 64, KScreenWidth, 40)];
     sliderSegmentView.titleChooseReturn = ^(NSInteger x) {
         weakself.type = NSIntegerToNSString(x+1);
         /*
@@ -86,14 +152,18 @@
         if (weakself.whereCome) {
             if (user_id_BOOL) {
                 if ([weakself.type integerValue] == 1) {
+                    [weakself showShaiTuView];
                     [weakself requestOtherShaiTuList];
                 }else if ([weakself.type integerValue] == 2){
+                    [weakself showWenZhangView];
                     [weakself requestOtherWenZhangList];
                 }
             }else{
                 if ([weakself.type integerValue] == 1) {
+                    [weakself showShaiTuView];
                     [weakself requestMineShaiTuList];
                 }else if ([weakself.type integerValue] == 2){
+                    [weakself showWenZhangView];
                     [weakself requestMineWenZhangList];
                 }
             }
@@ -102,6 +172,14 @@
         }
     };
     return sliderSegmentView;
+}
+-(void)showShaiTuView{
+    self.yxTableView.hidden = YES;
+    self.yxCollectionView.hidden = NO;
+}
+-(void)showWenZhangView{
+    self.yxTableView.hidden = NO;
+    self.yxCollectionView.hidden = YES;
 }
 #pragma mark ========== 先请求tag列表,获取发现页标签数据 ==========
 -(void)requestFindTag{
@@ -129,11 +207,16 @@
 -(void)requestMineShaiTuList{
     kWeakSelf(self);
     NSString * pageString = NSIntegerToNSString(page) ;
+    id object = UserDefaultsGET(@"a2");
+    self.yxCollectionView.dataArray = [NSArray arrayWithArray:object];
+    self.yxCollectionView.whereCome = self.whereCome;
+    [weakself mineShaiTuCommonAction:object];
     [YX_MANAGER requestGetDetailListPOST:@{@"type":@(2),@"tag":@"0",@"page":@(1)} success:^(id object) {
         UserDefaultsSET(object, @"a2");
 
         [weakself mineShaiTuCommonAction:object];
     }];
+    id object1 = UserDefaultsGET(@"a1");
     
     [YX_MANAGER requestGetSersAllList:@"1" success:^(id object) {
         UserDefaultsSET(object, @"a1");
@@ -142,6 +225,9 @@
 #pragma mark ========== 我的界面文章请求 ==========
 -(void)requestMineWenZhangList{
     kWeakSelf(self);
+    id object = UserDefaultsGET(@"a3");
+    [weakself mineWenZhangCommonAction:object];
+
     NSString * pageString = NSIntegerToNSString(page) ;
     [YX_MANAGER requestEssayListGET:pageString success:^(id object) {
         [weakself mineWenZhangCommonAction:object];
@@ -150,7 +236,7 @@
     }];
 }
 #pragma mark ========== 晒图点赞 ==========
--(void)requestDianZanAction:(YXMineImageTableViewCell *)cell{
+-(void)requestDianZanAction:(YXMineEssayTableViewCell *)cell{
     NSIndexPath * indexPath = [self.yxTableView indexPathForCell:cell];
     kWeakSelf(self);
     NSString* post_id = kGetString(self.dataArray[indexPath.row][@"id"]);
@@ -176,7 +262,7 @@
 -(void)mineShaiTuCommonAction:(id)object{
     [self.dataArray removeAllObjects];
     [self.dataArray addObjectsFromArray:object];
-    [self.yxTableView reloadData];
+    [self.yxCollectionView reloadData];
 }
 -(void)mineWenZhangCommonAction:(id)object{
     [self.dataArray removeAllObjects];
@@ -190,58 +276,46 @@
 }
 #pragma mark ========== tableview代理方法 ==========
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return self.whereCome ? 350-60 : 350;
+    return self.whereCome ? 335-60 : 335;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArray.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    YXMineImageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMineImageTableViewCell" forIndexPath:indexPath];
+    YXMineEssayTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMineEssayTableViewCell" forIndexPath:indexPath];
     cell.topViewConstraint.constant =  self.whereCome ? 0 : 60;
     cell.topView.hidden = self.whereCome;
     cell.essayTitleImageView.tag = indexPath.row;
-    [self sameCell:cell indexPath:indexPath];
-    [self diffentCell:cell indexPath:indexPath];
+    [self customWenZhangCell:cell indexPath:indexPath];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.row];
     YX_MANAGER.isHaveIcon = NO;
+    YXMineEssayDetailViewController * VC = [[YXMineEssayDetailViewController alloc]init];
+    VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+    [self.navigationController pushViewController:VC animated:YES];
+    
+    
     //1(晒图数据)2(文章数据)
-    switch (self.whereCome ?  [self.type integerValue] : [dic[@"obj"] integerValue]) {
-        case 1:{
-            YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
-            VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-            [self.navigationController pushViewController:VC animated:YES];
-        }
-            break;
-        case 2:{
-            YXMineEssayDetailViewController * VC = [[YXMineEssayDetailViewController alloc]init];
-            VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-            [self.navigationController pushViewController:VC animated:YES];
-        }
-            break;
-        default:
-            break;
-    }
+//    switch (self.whereCome ?  [self.type integerValue] : [dic[@"obj"] integerValue]) {
+//        case 1:{
+//
+//        }
+//            break;
+//        case 2:{
+//
+//        }
+//            break;
+//        default:
+//            break;
+//    }
 }
-#pragma mark ========== 定制不同的cell ==========
--(void)sameCell:(YXMineImageTableViewCell *)cell indexPath:(NSIndexPath *)indexPath{
-    NSDictionary * dic = self.dataArray[indexPath.row];
-    [cell.essayTitleImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    cell.essayNameLbl.text = dic[@"user_name"];
-    cell.essayTimeLbl.text = [ShareManager timestampSwitchTime:[dic[@"publish_time"] integerValue] andFormatter:@""];
-    cell.mineImageLbl.text = dic[@"describe"];
-    NSString * time = dic[@"publish_time"];
-    cell.mineTimeLbl.text = [ShareManager timestampSwitchTime:[time integerValue] andFormatter:@"YYYY-MM-dd HH:mm:ss"];
-    BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
-    UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
-    [cell.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
-}
--(void)diffentCell:(YXMineImageTableViewCell *)cell indexPath:(NSIndexPath *)indexPath{
+#pragma mark ========== 文章tableview ==========
+-(void)customWenZhangCell:(YXMineEssayTableViewCell *)cell indexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.row];
     kWeakSelf(self);
-    cell.block = ^(YXMineImageTableViewCell * cell) {
+    cell.block = ^(YXMineEssayTableViewCell * cell) {
         [weakself requestDianZanAction:cell];
     };
     cell.clickImageBlock = ^(NSInteger tag) {
@@ -251,25 +325,21 @@
         mineVC.whereCome = YES;
         [weakself.navigationController pushViewController:mineVC animated:YES];
     };
-    //1(晒图数据)2(文章数据)
-    switch (self.whereCome ?  [self.type integerValue] : [dic[@"obj"] integerValue]) {
-        case 1:{
-            cell.midImageView.hidden = NO;
-            cell.midWebView.hidden = YES;
+    
+    [cell.essayTitleImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    cell.essayNameLbl.text = dic[@"user_name"];
+    cell.essayTimeLbl.text = [ShareManager timestampSwitchTime:[dic[@"publish_time"] integerValue] andFormatter:@""];
+    cell.mineImageLbl.text = dic[@"title"];
+    cell.mineTimeLbl.text = dic[@"title"];
+    BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
+    UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
+    
+    [cell.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
+    NSURL * url1 = [NSURL URLWithString:self.dataArray[indexPath.row][@"picture1"]];
+    NSURL * url2 = [NSURL URLWithString:self.dataArray[indexPath.row][@"picture2"]];
+    [cell.midImageView sd_setImageWithURL:url1 placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    [cell.midTwoImageVIew sd_setImageWithURL:url2 placeholderImage:[UIImage imageNamed:@"img_moren"]];
 
-            NSURL * url = [NSURL URLWithString:self.dataArray[indexPath.row][@"photo1"]];
-            [cell.midImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"img_moren"]];
-        }
-            break;
-        case 2:{
-            cell.midImageView.hidden = YES;
-            cell.midWebView.hidden = NO;
-            [cell.midWebView loadHTMLString:[ShareManager justFitImage:dic[@"essay"]] baseURL:nil];
-        }
-            break;
-        default:
-            break;
-    }
 }
 
 
