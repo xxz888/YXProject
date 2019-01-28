@@ -77,7 +77,6 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXMineEssayTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMineEssayTableViewCell" forIndexPath:indexPath];
-    cell.topView.hidden = self.whereCome;
     cell.essayTitleImageView.tag = indexPath.row;
     [self customWenZhangCell:cell indexPath:indexPath];
     return cell;

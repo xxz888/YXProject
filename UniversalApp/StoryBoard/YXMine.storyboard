@@ -537,25 +537,9 @@
             </objects>
             <point key="canvasLocation" x="1194" y="-543"/>
         </scene>
-        <!--Mine All View Controller-->
-        <scene sceneID="wnv-Dg-d9u">
-            <objects>
-                <viewController storyboardIdentifier="YXMineAllViewController" id="Jiz-PJ-ToT" customClass="YXMineAllViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="40W-Ug-frh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="ZaF-fe-Rjr"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bXS-rk-Nqo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="295" y="940"/>
-        </scene>
         <!--Mine Article View Controller-->
         <scene sceneID="YcH-T7-max">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2UN-Qi-icv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="YXMineArticleViewController" id="Av0-7W-2Rr" customClass="YXMineArticleViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lhh-Wq-THg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -583,6 +567,7 @@
                         <outlet property="yxTableView" destination="pzx-xN-jro" id="vQ4-7R-Flq"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2UN-Qi-icv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1758" y="940"/>
         </scene>
@@ -903,6 +888,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YLE-ew-hhj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2474" y="161"/>
+        </scene>
+        <!--Mine All View Controller-->
+        <scene sceneID="Onf-p9-fzV">
+            <objects>
+                <viewController storyboardIdentifier="YXMineAllViewController" id="Urg-xj-Fib" customClass="YXMineAllViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QaX-UL-KVl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rlb-Xh-EaP">
+                                <rect key="frame" x="5" y="5" width="365" height="662"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Urg-xj-Fib" id="6vA-hU-mSr"/>
+                                    <outlet property="delegate" destination="Urg-xj-Fib" id="B0A-Us-7Wj"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="68P-qB-p3p" firstAttribute="bottom" secondItem="rlb-Xh-EaP" secondAttribute="bottom" id="BCV-sP-t8E"/>
+                            <constraint firstItem="rlb-Xh-EaP" firstAttribute="leading" secondItem="68P-qB-p3p" secondAttribute="leading" constant="5" id="TA4-p3-wvX"/>
+                            <constraint firstItem="rlb-Xh-EaP" firstAttribute="top" secondItem="QaX-UL-KVl" secondAttribute="top" constant="5" id="WNv-1T-qu0"/>
+                            <constraint firstItem="68P-qB-p3p" firstAttribute="trailing" secondItem="rlb-Xh-EaP" secondAttribute="trailing" constant="5" id="m0U-aC-K0h"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="68P-qB-p3p"/>
+                    </view>
+                    <connections>
+                        <outlet property="yxTableView" destination="rlb-Xh-EaP" id="O6w-k8-bhr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zvI-Nt-LMA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1474" y="1142"/>
         </scene>
     </scenes>
 </document>

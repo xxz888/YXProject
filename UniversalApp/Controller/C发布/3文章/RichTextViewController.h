@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @protocol RichTextViewControllerDelegate <NSObject>
-
+//2.block传值  typedef void(^returnBlock)();
+typedef void(^dismissBlock) ();
+//block
 @optional
 -(void)uploadImageArray:(NSArray *)imageArr withCompletion:(NSString * (^)(NSArray * urlArray))completion;
 
@@ -50,7 +52,10 @@ IB_DESIGNABLE
 
 
 
-
+//block声明属性
+@property (nonatomic, copy) dismissBlock mDismissBlock;
+//block声明方法
+-(void)toDissmissSelf:(dismissBlock)block;
 
 
 

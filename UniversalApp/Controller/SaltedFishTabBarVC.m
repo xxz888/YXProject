@@ -12,6 +12,7 @@
 #import "YXMessageViewController.h"
 #import "YXPublishViewController.h"
 #import "YXMineViewController.h"
+#import "XWPopMenuController.h"
 @interface SaltedFishTabBarVC ()<AxcAE_TabBarDelegate>
 
 @end
@@ -145,12 +146,9 @@ static NSInteger lastIdx = 0;
         [self.axcTabBar setSelectIndex:lastIdx WithAnimation:NO]; // 换回上一个选中状态
         // 或者
 //        self.axcTabBar.selectIndex = lastIdx; // 不去切换TabBar的选中状态
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"点击了中间的,不切换视图"
-                                                                          preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:([UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            NSLog(@"好的！！！！");
-        }])];
-        [self presentViewController:alertController animated:YES completion:nil];
+        NSLog(@"点击发布按钮->");
+        XWPopMenuController *vc = [[XWPopMenuController alloc]init];
+        [self presentViewController:vc animated:NO completion:nil];
     }
 }
 - (void)setSelectedIndex:(NSUInteger)selectedIndex{

@@ -99,7 +99,7 @@
             if ([object isEqualToString:@"1"]) {
                 [QMUITips showSucceed:@"发布成功" inView:weakself.view hideAfterDelay:2];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [weakself dismissViewControllerAnimated:YES completion:nil];
+                    [weakself finishPublish];
                 });
             }else{
                 [QMUITips showError:@"发布失败,请稍后重试" inView:weakself.view hideAfterDelay:2];
@@ -140,7 +140,19 @@
     }
 }
 
-
+#pragma mark - 完成发布
+//完成发布
+-(void)finishPublish{
+    //2.block传值
+    if (self.mDismissBlock != nil) {
+        self.mDismissBlock();
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+//block声明方法
+-(void)toDissmissSelf:(dismissBlock)block{
+    self.mDismissBlock = block;
+}
 //这里就开始上传图片，拼接图片地址
 -(NSString *)replacetagWithImageArray:(NSArray *)picArr{
     NSMutableAttributedString * contentStr=[[NSMutableAttributedString alloc]initWithAttributedString:_textView.attributedText];

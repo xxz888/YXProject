@@ -80,8 +80,7 @@
     YXMineArticleViewController * articleVC = [stroryBoard instantiateViewControllerWithIdentifier:@"YXMineArticleViewController"];
     articleVC.userId = self.userId;
     
-    
-    YXMineAllViewController * AllVC = [[YXMineAllViewController alloc]init];
+    YXMineAllViewController * AllVC = [stroryBoard instantiateViewControllerWithIdentifier:@"YXMineAllViewController"];
     AllVC.userId = self.userId;
     [self setSegmentControllersArray:@[AllVC,imageVC,articleVC] title:@[@"全部",@"晒图",@"文章"] defaultIndex:0 top:175+NavigationBarHeight view:self.view];
 }

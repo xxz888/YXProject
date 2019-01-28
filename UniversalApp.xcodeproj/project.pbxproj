@@ -201,6 +201,11 @@
 		BB5FD89021FECC0600B5F1A8 /* YXFindQuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5FD88E21FECC0600B5F1A8 /* YXFindQuestionTableViewCell.xib */; };
 		BB5FD89421FECC2A00B5F1A8 /* YXFindFootTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD89221FECC2A00B5F1A8 /* YXFindFootTableViewCell.m */; };
 		BB5FD89521FECC2A00B5F1A8 /* YXFindFootTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5FD89321FECC2A00B5F1A8 /* YXFindFootTableViewCell.xib */; };
+		BB5FD89D21FF488E00B5F1A8 /* PublishMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD89821FF488E00B5F1A8 /* PublishMenuButton.m */; };
+		BB5FD89F21FF488E00B5F1A8 /* UIImage+XW.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD89C21FF488E00B5F1A8 /* UIImage+XW.m */; };
+		BB5FD8A221FF49DD00B5F1A8 /* XWPopMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD8A021FF49DD00B5F1A8 /* XWPopMenuController.m */; };
+		BB5FD8A621FF529A00B5F1A8 /* YXMineAllImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD8A421FF529A00B5F1A8 /* YXMineAllImageTableViewCell.m */; };
+		BB5FD8A721FF529A00B5F1A8 /* YXMineAllImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5FD8A521FF529A00B5F1A8 /* YXMineAllImageTableViewCell.xib */; };
 		BB6D29EC21ED7EA400F5049F /* YXHomeXueJiaPeiJianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D29EB21ED7EA400F5049F /* YXHomeXueJiaPeiJianViewController.m */; };
 		BB6D29F021ED8D6E00F5049F /* YXHomeXueJiaPeiJianDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D29EF21ED8D6E00F5049F /* YXHomeXueJiaPeiJianDetailViewController.m */; };
 		BB6D29F421ED8EED00F5049F /* YXHomeXueJiaPeiJianDetailTuiJianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D29F321ED8EED00F5049F /* YXHomeXueJiaPeiJianDetailTuiJianViewController.m */; };
@@ -867,6 +872,15 @@
 		BB5FD89121FECC2A00B5F1A8 /* YXFindFootTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindFootTableViewCell.h; sourceTree = "<group>"; };
 		BB5FD89221FECC2A00B5F1A8 /* YXFindFootTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindFootTableViewCell.m; sourceTree = "<group>"; };
 		BB5FD89321FECC2A00B5F1A8 /* YXFindFootTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFindFootTableViewCell.xib; sourceTree = "<group>"; };
+		BB5FD89821FF488E00B5F1A8 /* PublishMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishMenuButton.m; sourceTree = "<group>"; };
+		BB5FD89921FF488E00B5F1A8 /* UIImage+XW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+XW.h"; sourceTree = "<group>"; };
+		BB5FD89B21FF488E00B5F1A8 /* PublishMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishMenuButton.h; sourceTree = "<group>"; };
+		BB5FD89C21FF488E00B5F1A8 /* UIImage+XW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+XW.m"; sourceTree = "<group>"; };
+		BB5FD8A021FF49DD00B5F1A8 /* XWPopMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWPopMenuController.m; sourceTree = "<group>"; };
+		BB5FD8A121FF49DD00B5F1A8 /* XWPopMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWPopMenuController.h; sourceTree = "<group>"; };
+		BB5FD8A321FF529A00B5F1A8 /* YXMineAllImageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineAllImageTableViewCell.h; sourceTree = "<group>"; };
+		BB5FD8A421FF529A00B5F1A8 /* YXMineAllImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineAllImageTableViewCell.m; sourceTree = "<group>"; };
+		BB5FD8A521FF529A00B5F1A8 /* YXMineAllImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineAllImageTableViewCell.xib; sourceTree = "<group>"; };
 		BB6D29EA21ED7EA400F5049F /* YXHomeXueJiaPeiJianViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaPeiJianViewController.h; sourceTree = "<group>"; };
 		BB6D29EB21ED7EA400F5049F /* YXHomeXueJiaPeiJianViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaPeiJianViewController.m; sourceTree = "<group>"; };
 		BB6D29EE21ED8D6E00F5049F /* YXHomeXueJiaPeiJianDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaPeiJianDetailViewController.h; sourceTree = "<group>"; };
@@ -2568,6 +2582,17 @@
 			path = "三种Cell";
 			sourceTree = "<group>";
 		};
+		BB5FD89621FF488E00B5F1A8 /* XWPopMenu */ = {
+			isa = PBXGroup;
+			children = (
+				BB5FD89821FF488E00B5F1A8 /* PublishMenuButton.m */,
+				BB5FD89921FF488E00B5F1A8 /* UIImage+XW.h */,
+				BB5FD89B21FF488E00B5F1A8 /* PublishMenuButton.h */,
+				BB5FD89C21FF488E00B5F1A8 /* UIImage+XW.m */,
+			);
+			path = XWPopMenu;
+			sourceTree = "<group>";
+		};
 		BB6D29ED21ED8D5600F5049F /* 雪茄配件详情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3008,6 +3033,8 @@
 		BBA812A821DDAB7A001B5EA1 /* C发布 */ = {
 			isa = PBXGroup;
 			children = (
+				BB5FD8A121FF49DD00B5F1A8 /* XWPopMenuController.h */,
+				BB5FD8A021FF49DD00B5F1A8 /* XWPopMenuController.m */,
 				BBA812AE21DDABB3001B5EA1 /* YXPublishViewController.h */,
 				BBA812AF21DDABB3001B5EA1 /* YXPublishViewController.m */,
 				BB9EFE6C21F5CC7F00180813 /* 更多标签 */,
@@ -3142,6 +3169,7 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BB5FD89621FF488E00B5F1A8 /* XWPopMenu */,
 				BB5FD87721FE9C5200B5F1A8 /* TestTabBar.h */,
 				BB5FD87621FE9C5200B5F1A8 /* TestTabBar.m */,
 				BB5FD86B21FE9BBD00B5F1A8 /* AxcAE_TabBar */,
@@ -3477,6 +3505,9 @@
 			children = (
 				BBD2C80321E0F41F00350DCD /* YXMineAllViewController.h */,
 				BBD2C80421E0F41F00350DCD /* YXMineAllViewController.m */,
+				BB5FD8A321FF529A00B5F1A8 /* YXMineAllImageTableViewCell.h */,
+				BB5FD8A421FF529A00B5F1A8 /* YXMineAllImageTableViewCell.m */,
+				BB5FD8A521FF529A00B5F1A8 /* YXMineAllImageTableViewCell.xib */,
 			);
 			path = "1全部";
 			sourceTree = "<group>";
@@ -4591,6 +4622,7 @@
 				BBADE4B821F6E6720011E5FF /* YXHomeScoreActionCollectionViewCell.xib in Resources */,
 				BB5FD87F21FEB87400B5F1A8 /* YXMineImageCollectionViewCell.xib in Resources */,
 				290A97E61F4AB24A006BF882 /* stepPk_win_colour8@2x.png in Resources */,
+				BB5FD8A721FF529A00B5F1A8 /* YXMineAllImageTableViewCell.xib in Resources */,
 				BBD30CEA21E5CE26000D3244 /* YXMineCommon1TableViewCell.xib in Resources */,
 				BBD2C92A21E0F67800350DCD /* UIBarButtonItemGrid@3x.png in Resources */,
 				BBA8129621DDA9A5001B5EA1 /* YXHome.storyboard in Resources */,
@@ -4828,6 +4860,7 @@
 				290DE9231ED19B6B00A45FF6 /* AESCipher.m in Sources */,
 				BBADE49521F6CB110011E5FF /* QDCollectionViewDemoCell.m in Sources */,
 				293D45A41ECD6422007C64A9 /* main.m in Sources */,
+				BB5FD89D21FF488E00B5F1A8 /* PublishMenuButton.m in Sources */,
 				BBD2C91621E0F67800350DCD /* LLImagePickerModel.m in Sources */,
 				29AD6C631ED3E4D600B0879C /* AppDelegate.m in Sources */,
 				290471B81F98D9A80081CCA1 /* UITabBar+CustomBadge.m in Sources */,
@@ -4955,6 +4988,7 @@
 				BBD30CF121E5F7AD000D3244 /* YXHomeLastDetailView.m in Sources */,
 				BBCC4AC421E8739800493F40 /* YXHomeXueJiaQuestionViewController.m in Sources */,
 				BBE82D0121E44A7D004E4144 /* ZLPhotoAssets.m in Sources */,
+				BB5FD8A221FF49DD00B5F1A8 /* XWPopMenuController.m in Sources */,
 				BBD2C8FE21E0F67700350DCD /* TZProgressView.m in Sources */,
 				BBD2C90221E0F67700350DCD /* TZImagePickerController.m in Sources */,
 				BBADE4C521F801080011E5FF /* PictureModel.m in Sources */,
@@ -4989,6 +5023,7 @@
 				BB9413E121F8B602007E800A /* IQNSArray+Sort.m in Sources */,
 				BBDA2EF421ECC22B00EDCCFF /* SearchResultsController.m in Sources */,
 				BBE82BDC21E35FF1004E4144 /* ZZYPhotoHelper.m in Sources */,
+				BB5FD8A621FF529A00B5F1A8 /* YXMineAllImageTableViewCell.m in Sources */,
 				BBD2C98521E1BC0A00350DCD /* PYSearchConst.m in Sources */,
 				BBDA2C6621EB308100EDCCFF /* SDTimeLineTableHeaderView.m in Sources */,
 				BBD2C83B21E0F44A00350DCD /* UIImageView+CircularImv.m in Sources */,
@@ -4996,6 +5031,7 @@
 				BBD2C98221E1BC0A00350DCD /* UIColor+PYSearchExtension.m in Sources */,
 				BBDA2D1221EB30BF00EDCCFF /* MLEmojiLabel.m in Sources */,
 				2940C5351F0A3EAB008BC29F /* WaterFallListLogic.m in Sources */,
+				BB5FD89F21FF488E00B5F1A8 /* UIImage+XW.m in Sources */,
 				BBD2C90021E0F67700350DCD /* TZPhotoPickerController.m in Sources */,
 				BBDA2C5F21EB308100EDCCFF /* SDDiscoverTableViewController.m in Sources */,
 				BBA8130021DDEC10001B5EA1 /* YXHomeMeiJiuViewController.m in Sources */,

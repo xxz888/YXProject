@@ -108,10 +108,6 @@
     YXMineImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YXMineImageCollectionViewCell" forIndexPath:indexPath];
     cell.essayTitleImageView.tag = indexPath.row;
     
-    [cell.essayTitleImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    cell.essayNameLbl.text = dic[@"user_name"];
-    cell.essayTimeLbl.text = [ShareManager timestampSwitchTime:[dic[@"publish_time"] integerValue] andFormatter:@""];
-    
     [cell.midImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo1"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     
     cell.titleLbl.text = dic[@"describe"];
@@ -137,7 +133,7 @@
 {
     CGFloat height = 250;
     if (self.showType == singleLineShowOneGoods) {
-        return CGSizeMake(KScreenWidth, height);
+        return CGSizeMake(KScreenWidth, height + 100);
     } else {
         return CGSizeMake((KScreenWidth-10)/2.0-0.5, height);
     }
