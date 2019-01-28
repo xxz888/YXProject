@@ -21,6 +21,7 @@
 #import "YXMineMyDianZanViewController.h"
 #import "YXMineFenSiViewController.h"
 #import "YXMineGuanZhuViewController.h"
+#import "YXMineAllViewController.h"
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
 
 @interface YXMineViewController () <UITableViewDelegate,UITableViewDataSource>{
@@ -69,16 +70,20 @@
     self.mineImageView.layer.cornerRadius = self.mineImageView.frame.size.width / 2.0;
     ViewBorderRadius(self.guanzhuBtn, 5, 1,CFontColor1);
     ViewBorderRadius(self.editPersonBtn, 5, 1, CFontColor1);
-    
     [self setSegmentControllerUI];
-    
-    //[self setInitCollection];
 }
 -(void)setSegmentControllerUI{
     UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
     YXMineImageViewController * imageVC = [[YXMineImageViewController alloc]init];
+    imageVC.userId = self.userId;
+    //  YES为其他人 NO为自己
     YXMineArticleViewController * articleVC = [stroryBoard instantiateViewControllerWithIdentifier:@"YXMineArticleViewController"];
-    [self setSegmentControllersArray:@[imageVC,articleVC] title:@[@"晒图",@"文章"] defaultIndex:0 top:175+NavigationBarHeight view:self.view];
+    articleVC.userId = self.userId;
+    
+    
+    YXMineAllViewController * AllVC = [[YXMineAllViewController alloc]init];
+    AllVC.userId = self.userId;
+    [self setSegmentControllersArray:@[AllVC,imageVC,articleVC] title:@[@"全部",@"晒图",@"文章"] defaultIndex:0 top:175+NavigationBarHeight view:self.view];
 }
 #pragma mark ========== 数据 ==========
 -(void)setViewData{

@@ -97,14 +97,6 @@
         NSIndexPath * indexPath = [weakself.yxTableView indexPathForCell:cell];
         [weakself requestDianZanAction:indexPath];
     };
-//    cell.clickImageBlock = ^(NSInteger tag) {
-//        UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
-//        YXMineViewController * mineVC = [stroryBoard5 instantiateViewControllerWithIdentifier:@"YXMineViewController"];
-//        mineVC.userId = kGetString(weakself.dataArray[tag][@"user_id"]);
-//        mineVC.whereCome = YES;
-//        [weakself.navigationController pushViewController:mineVC animated:YES];
-//    };
-//
     [cell.essayTitleImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cell.essayNameLbl.text = dic[@"user_name"];
     cell.essayTimeLbl.text = [ShareManager timestampSwitchTime:[dic[@"publish_time"] integerValue] andFormatter:@""];

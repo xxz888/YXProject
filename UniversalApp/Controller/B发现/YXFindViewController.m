@@ -173,6 +173,11 @@
 -(YXFindImageTableViewCell *)customImageData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath{
     YXFindImageTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFindImageTableViewCell" forIndexPath:indexPath];
     cell.titleImageView.tag = indexPath.row;
+    kWeakSelf(self);
+    cell.clickImageBlock = ^(NSInteger tag) {
+        [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
+    };
+
     [cell setCellValue:dic];
     return cell;
 }
@@ -180,17 +185,32 @@
 -(YXFindQuestionTableViewCell *)customQuestionData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath{
     YXFindQuestionTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFindQuestionTableViewCell" forIndexPath:indexPath];
     cell.titleImageView.tag = indexPath.row;
+    kWeakSelf(self);
+    cell.clickImageBlock = ^(NSInteger tag) {
+        [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
+    };
     [cell setCellValue:dic];
     return cell;
 }
 #pragma mark ========== 足迹 ==========
 -(YXFindFootTableViewCell *)cunstomFootData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath{
     YXFindFootTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFindFootTableViewCell" forIndexPath:indexPath];
+    cell.titleImageView.tag = indexPath.row;
+    kWeakSelf(self);
+    cell.clickImageBlock = ^(NSInteger tag) {
+        [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
+    };
     [cell setCellValue:dic];
     return cell;
 }
 
-
+-(void)clickUserImageView:(NSString *)userId{
+    UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+    YXMineViewController * mineVC = [stroryBoard5 instantiateViewControllerWithIdentifier:@"YXMineViewController"];
+    mineVC.userId = userId;
+    mineVC.whereCome = YES;    //  YES为其他人 NO为自己
+    [self.navigationController pushViewController:mineVC animated:YES];
+}
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

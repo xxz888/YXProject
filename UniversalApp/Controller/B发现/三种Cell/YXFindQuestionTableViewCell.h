@@ -33,7 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)searchAllPlBtnAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *addPlImageView;
 
-
+typedef void(^clickImageBlock)(NSInteger);
+@property (nonatomic,copy) clickImageBlock clickImageBlock;
 -(void)setCellValue:(NSDictionary *)dic;
 @end
 

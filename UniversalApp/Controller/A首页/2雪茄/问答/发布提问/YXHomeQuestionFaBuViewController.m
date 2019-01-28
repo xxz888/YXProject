@@ -99,7 +99,11 @@
         }
         [dic setValue: self.qmuiTextView.text forKey:@"question"];
         [dic setValue:self.questionTitleTf.text forKey:@"title"];//标题
-        [dic setValue:self.whereCome forKey:@"type"];//(1,"雪茄"),(2,"高尔夫"),(3,"红酒")
+        [dic setValue:self.whereCome forKey:@"type"];//(1,"雪茄"),(2,"红酒"),(3,"高尔夫")
+        [dic setValue:self.switchBtn.isOn ? @(1) : @(2) forKey:@"to_find"];
+        [dic setValue:@"chicken" forKey:@"tag"];
+        [dic setValue:@"西湖龙井" forKey:@"publish_site"];
+
         //发布按钮
         [YX_MANAGER requestFaBuQuestionPOST:dic success:^(id object) {
             if ([object isEqualToString:@"1"]) {
@@ -117,6 +121,9 @@
     
     
     
+    
+}
+- (IBAction)switchBtnAction:(id)sender {
     
 }
 

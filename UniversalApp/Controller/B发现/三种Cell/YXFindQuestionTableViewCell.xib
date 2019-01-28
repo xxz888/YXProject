@@ -172,10 +172,16 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="3pr-V8-TAQ" firstAttribute="leading" secondItem="BqU-7b-lqc" secondAttribute="leading" id="1kg-wZ-3yt"/>
+                                            <constraint firstAttribute="bottom" secondItem="xob-G7-Bir" secondAttribute="bottom" id="5Jp-So-HPO"/>
                                             <constraint firstAttribute="bottom" secondItem="3pr-V8-TAQ" secondAttribute="bottom" id="5Nq-sK-Zyb"/>
+                                            <constraint firstItem="xob-G7-Bir" firstAttribute="top" secondItem="BqU-7b-lqc" secondAttribute="top" id="Dgw-4a-kQm"/>
                                             <constraint firstAttribute="trailing" secondItem="xob-G7-Bir" secondAttribute="trailing" id="UXi-6K-m7s"/>
+                                            <constraint firstItem="3pr-V8-TAQ" firstAttribute="leading" secondItem="BqU-7b-lqc" secondAttribute="leading" id="aLc-Ey-rlw"/>
+                                            <constraint firstAttribute="bottom" secondItem="3pr-V8-TAQ" secondAttribute="bottom" id="dlO-Xn-Rip"/>
+                                            <constraint firstAttribute="trailing" secondItem="xob-G7-Bir" secondAttribute="trailing" id="jWd-Ti-qyr"/>
                                             <constraint firstItem="xob-G7-Bir" firstAttribute="top" secondItem="BqU-7b-lqc" secondAttribute="top" id="k4k-Ow-Nr3"/>
                                             <constraint firstItem="xob-G7-Bir" firstAttribute="leading" secondItem="3pr-V8-TAQ" secondAttribute="trailing" id="syW-e6-lGp"/>
+                                            <constraint firstItem="3pr-V8-TAQ" firstAttribute="top" secondItem="BqU-7b-lqc" secondAttribute="top" id="vf5-xp-PZR"/>
                                             <constraint firstAttribute="bottom" secondItem="xob-G7-Bir" secondAttribute="bottom" id="yXj-g5-TqX"/>
                                             <constraint firstItem="3pr-V8-TAQ" firstAttribute="top" secondItem="BqU-7b-lqc" secondAttribute="top" id="zsP-uT-g2v"/>
                                         </constraints>

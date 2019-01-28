@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)xinhuatiAction:(id)sender;
 - (IBAction)moreAction:(id)sender;
 @property(nonatomic,strong)NSString * whereCome;
+@property (weak, nonatomic) IBOutlet UISwitch *switchBtn;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -37,7 +37,7 @@
 -(void)collectionViewCon{
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    self.yxCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-170-49-NavigationBarHeight) collectionViewLayout:layout];
+    self.yxCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-170-NavigationBarHeight - 64) collectionViewLayout:layout];
     self.yxCollectionView.backgroundColor = KWhiteColor;
     self.showType = signleLineShowDoubleGoods;
     [self.view addSubview:self.yxCollectionView];
@@ -114,6 +114,7 @@
     
     [cell.midImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo1"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     
+    cell.titleLbl.text = dic[@"describe"];
     BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
     UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
     [cell.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];

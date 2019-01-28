@@ -131,6 +131,12 @@
 static NSInteger lastIdx = 0;
 - (void)axcAE_TabBar:(AxcAE_TabBar *)tabbar selectIndex:(NSInteger)index{
     if (index != 2) { // 不是中间的就切换
+        
+        
+        if (index == 4 && ![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
         // 通知 切换视图控制器
         [self setSelectedIndex:index];
         lastIdx = index;

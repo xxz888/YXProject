@@ -25,7 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *pl2ContentLbl;
 - (IBAction)searchAllPlBtnAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *addPlImageView;
-
+typedef void(^clickImageBlock)(NSInteger);
+@property (nonatomic,copy) clickImageBlock clickImageBlock;
 
 -(void)setCellValue:(NSDictionary *)dic;
 @end
