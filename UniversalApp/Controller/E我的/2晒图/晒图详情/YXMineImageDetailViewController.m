@@ -65,7 +65,12 @@ static CGFloat textFieldH = 40;
     self.lastDetailView = [nib objectAtIndex:0];
     self.lastDetailView.frame = CGRectMake(0, 0, KScreenWidth, 485);
     self.yxTableView.tableHeaderView = self.lastDetailView;
-    [self.lastDetailView setContentViewValue:@[self.startDic[@"photo1"],self.startDic[@"photo2"],self.startDic[@"photo3"]]];
+    if (self.startDic[@"pic1"] || self.startDic[@"pic2"] || self.startDic[@"pic3"]) {
+        [self.lastDetailView setContentViewValue:@[self.startDic[@"pic1"],self.startDic[@"pic2"],self.startDic[@"pic3"]]];
+    }else{
+[self.lastDetailView setContentViewValue:@[self.startDic[@"photo1"],self.startDic[@"photo2"],self.startDic[@"photo3"]]];
+    }
+
     self.lastDetailView.titleLbl.text = self.startDic[@"user_name"];
     [self.lastDetailView.titleImageView sd_setImageWithURL:[NSURL URLWithString:self.startDic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     self.lastDetailView.titleImageView.layer.masksToBounds = YES;

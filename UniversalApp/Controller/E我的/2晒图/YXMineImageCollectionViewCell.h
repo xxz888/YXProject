@@ -9,12 +9,19 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@class YXMineImageCollectionViewCell;
+
+typedef void(^clickZanBlock)(YXMineImageCollectionViewCell *);
 
 @interface YXMineImageCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 @property (weak, nonatomic) IBOutlet UIButton *likeBtn;
 @property (nonatomic,strong) NSString *post_id;
 @property (weak, nonatomic) IBOutlet UIImageView *midImageView;
+- (IBAction)likeBtnAction:(id)sender;
+
+
+@property (nonatomic,copy) clickZanBlock block;
 
 
 

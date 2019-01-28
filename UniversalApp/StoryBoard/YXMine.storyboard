@@ -552,43 +552,10 @@
             </objects>
             <point key="canvasLocation" x="295" y="940"/>
         </scene>
-        <!--Mine Image View Controller-->
-        <scene sceneID="gB7-Vf-Kzf">
-            <objects>
-                <viewController storyboardIdentifier="YXMineImageViewController" id="Elt-OX-6uU" customClass="YXMineImageViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="yhc-cK-Tzb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MxN-9K-k1d">
-                                <rect key="frame" x="5" y="25" width="365" height="642"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="Elt-OX-6uU" id="bW2-yO-dsU"/>
-                                    <outlet property="delegate" destination="Elt-OX-6uU" id="BTN-w5-Giw"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="ChB-bj-vHC" firstAttribute="trailing" secondItem="MxN-9K-k1d" secondAttribute="trailing" constant="5" id="5MF-18-7jP"/>
-                            <constraint firstItem="MxN-9K-k1d" firstAttribute="bottom" secondItem="ChB-bj-vHC" secondAttribute="bottom" id="Dzj-1B-P5x"/>
-                            <constraint firstItem="MxN-9K-k1d" firstAttribute="top" secondItem="ChB-bj-vHC" secondAttribute="top" constant="5" id="Gne-Zl-HMB"/>
-                            <constraint firstItem="MxN-9K-k1d" firstAttribute="leading" secondItem="ChB-bj-vHC" secondAttribute="leading" constant="5" id="RnH-W5-3np"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="ChB-bj-vHC"/>
-                    </view>
-                    <connections>
-                        <outlet property="yxTableView" destination="MxN-9K-k1d" id="zAB-um-Fwg"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2Ej-Hq-fO4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1038" y="940"/>
-        </scene>
         <!--Mine Article View Controller-->
         <scene sceneID="YcH-T7-max">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2UN-Qi-icv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="YXMineArticleViewController" id="Av0-7W-2Rr" customClass="YXMineArticleViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lhh-Wq-THg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -616,7 +583,6 @@
                         <outlet property="yxTableView" destination="pzx-xN-jro" id="vQ4-7R-Flq"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2UN-Qi-icv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1758" y="940"/>
         </scene>

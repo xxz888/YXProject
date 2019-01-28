@@ -70,7 +70,16 @@
     self.mineImageView.layer.cornerRadius = self.mineImageView.frame.size.width / 2.0;
     ViewBorderRadius(self.guanzhuBtn, 5, 1,CFontColor1);
     ViewBorderRadius(self.editPersonBtn, 5, 1, CFontColor1);
-    [self setInitCollection];
+    
+    [self setSegmentControllerUI];
+    
+    //[self setInitCollection];
+}
+-(void)setSegmentControllerUI{
+    UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+    YXMineImageViewController * imageVC = [[YXMineImageViewController alloc]init];
+    YXMineArticleViewController * articleVC = [stroryBoard instantiateViewControllerWithIdentifier:@"YXMineArticleViewController"];
+    [self setSegmentControllersArray:@[imageVC,articleVC] title:@[@"晒图",@"文章"] defaultIndex:0 top:175+NavigationBarHeight view:self.view];
 }
 #pragma mark ========== 嵌套复用的界面 ==========
 -(void)setInitCollection{
@@ -100,7 +109,6 @@
             weakself.fensiCountLbl.text = kGetString(object[@"fans_number"]);
             weakself.tieshuCountLbl.text = kGetString(object[@"pubulish_number"]);
         }];
-      
     }
 }
 -(void)personValue:(id)object{
@@ -114,7 +122,6 @@
     NSInteger tag = [object[@"is_like"] integerValue];
     NSString * islike = tag == 1 ? @"互相关注" : tag == 2 ? @"已关注" : @"关注";
     [self.guanzhuBtn setTitle:islike forState:UIControlStateNormal];
-    
     self.userInfoDic = [NSDictionary dictionaryWithDictionary:object];
 }
 #pragma mark ========== 关注按钮 ==========
@@ -152,13 +159,6 @@
     VC.userInfoDic = [NSDictionary dictionaryWithDictionary:self.userInfoDic];
     [self.navigationController pushViewController:VC animated:YES];
 }
-
-
-
-
-
-
-
 #pragma mark ========== 右上角菜单按钮 ==========
 -(void)setLayoutCol{
     CGRect frame = CGRectMake(0, 0, KScreenWidth/1.5, KScreenHeight);
@@ -177,11 +177,9 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return KScreenHeight-titleArray.count * 50;
 }
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return titleArray.count;
 }
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *Identifier = @"Identifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
@@ -191,7 +189,6 @@
     if (indexPath.row != 0) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.font = [UIFont systemFontOfSize:16.0f];
-
     }else{
         cell.textLabel.font = [UIFont systemFontOfSize:20.0f];
     }
@@ -214,8 +211,6 @@
     }else if (indexPath.row == 3) {
         YXMineMyCollectionViewController * VC = [[YXMineMyCollectionViewController alloc]init];
         [self.navigationController pushViewController:VC animated:YES];
-
-//        VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"dicStartData"]];
     } else if (indexPath.row == 4){
         YXMineMyDianZanViewController * VC = [[YXMineMyDianZanViewController alloc]init];
         [self.navigationController pushViewController:VC animated:YES];

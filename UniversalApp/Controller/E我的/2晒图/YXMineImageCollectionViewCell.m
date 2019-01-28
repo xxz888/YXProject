@@ -14,9 +14,11 @@
     [super awakeFromNib];
     self.essayTitleImageView.layer.masksToBounds = YES;
     self.essayTitleImageView.layer.cornerRadius = self.essayTitleImageView.frame.size.width / 2.0;
-    
     ViewRadius(self.midImageView, 3);
     
 }
 
+- (IBAction)likeBtnAction:(id)sender {
+    self.block(self);
+}
 @end
