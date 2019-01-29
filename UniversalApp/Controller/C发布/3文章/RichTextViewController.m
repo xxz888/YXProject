@@ -223,7 +223,7 @@
     return ctrl;
 }
 - (IBAction)coseViewAction:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self finishPublish];
 }
 -(void)CommomInit
 {

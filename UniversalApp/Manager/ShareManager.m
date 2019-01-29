@@ -165,7 +165,29 @@ SINGLETON_FOR_CLASS(ShareManager);
     return confromTimespStr;
     
 }
-
++(NSString *)getNowTimeMiaoShu{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+    
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"]; // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    
+    //设置时区,这个对于时间的处理有时很重要
+    
+    NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
+    
+    [formatter setTimeZone:timeZone];
+    
+    NSDate *datenow = [NSDate date];//现在时间,你可以输出来看下是什么格式
+    
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[datenow timeIntervalSince1970]];
+    
+    return timeSp;
+    
+}
 +(void)setGuanZhuStatus:(UIButton *)btn status:(BOOL)statusBool{
     UIColor * color1 = [UIColor darkGrayColor];
      if (statusBool) {
@@ -230,5 +252,18 @@ SINGLETON_FOR_CLASS(ShareManager);
                             "</body>"
                             "</html>",essay];
     return htmlString;
+}
+
++(void)inTextViewOutDifColorView:(UITextView *)tfView tag:(NSString *)tag{
+    //创建 NSMutableAttributedString
+    NSMutableAttributedString *attributedStr01 = [[NSMutableAttributedString alloc] initWithString: tfView.text];
+    //给所有字符设置字体为Zapfino，字体高度为15像素
+    [attributedStr01 addAttribute: NSFontAttributeName
+                            value:[UIFont systemFontOfSize:15]
+                            range: NSMakeRange(0, tag.length)];
+    [attributedStr01 addAttribute: NSForegroundColorAttributeName value: YXRGBAColor(10, 96, 254) range: NSMakeRange(tfView.text.length-tag.length,tag.length )];
+    
+    //赋值给显示控件label01的 attributedText
+    tfView.attributedText = attributedStr01;
 }
 @end

@@ -59,15 +59,14 @@
     [self.dataArray addObjectsFromArray:object];
     [self.yxTableView reloadData];
 }
-#pragma mark ========== 晒图点赞 ==========
--(void)requestDianZanAction:(NSIndexPath *)indexPath{
+#pragma mark ========== 文章点赞 ==========
+-(void)requestDianZanWenZhangAction:(NSIndexPath *)indexPath{
     kWeakSelf(self);
-    NSString* post_id = kGetString(self.dataArray[indexPath.row][@"id"]);
-    [YX_MANAGER requestPost_praisePOST:@{@"post_id":post_id} success:^(id object) {
+    NSString* essay_id = kGetString(self.dataArray[indexPath.row][@"id"]);
+    [YX_MANAGER requestPost_essay_praisePOST:@{@"essay_id":essay_id} success:^(id object) {
         user_id_BOOL ?[weakself requestOtherWenZhangList]: [weakself requestMineWenZhangList] ;
     }];
 }
-
 #pragma mark ========== tableview代理方法 ==========
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 290;
@@ -94,7 +93,7 @@
     kWeakSelf(self);
     cell.block = ^(YXMineEssayTableViewCell * cell) {
         NSIndexPath * indexPath = [weakself.yxTableView indexPathForCell:cell];
-        [weakself requestDianZanAction:indexPath];
+        [weakself requestDianZanWenZhangAction:indexPath];
     };
     [cell.essayTitleImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cell.essayNameLbl.text = dic[@"user_name"];

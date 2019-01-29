@@ -75,6 +75,7 @@
     
     // 将要布局的 item 以 addSubview: 的方式添加进去即可自动布局
     NSArray<UIColor *> *themeColors = @[UIColorTheme1, UIColorTheme2, UIColorTheme3, UIColorTheme4, UIColorTheme5, UIColorTheme6];
+    [self.gridView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     for (NSInteger i = 0; i < themeColors.count; i++) {
         NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXGridView" owner:self options:nil];
         YXGridView * view = [nib objectAtIndex:0];

@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)moreAction:(id)sender;
 @property(nonatomic,strong)NSString * whereCome;
 @property (weak, nonatomic) IBOutlet UISwitch *switchBtn;
+@property (weak, nonatomic) IBOutlet UIButton *locationBtn;
+- (IBAction)locationBtnAction:(id)sender;
 
 @end
 

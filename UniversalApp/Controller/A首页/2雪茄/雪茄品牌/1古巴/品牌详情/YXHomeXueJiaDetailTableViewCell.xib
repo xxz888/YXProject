@@ -245,6 +245,7 @@
                 <outlet property="section2Lbl5" destination="TR0-Xu-zJD" id="JPw-mT-Yxh"/>
                 <outlet property="section2Lbl6" destination="e3A-tb-Tp6" id="WPS-l0-vtm"/>
                 <outlet property="section2TitleLbl" destination="BjI-8V-4j4" id="Sap-zN-NGG"/>
+                <outlet property="stackView1" destination="yyQ-iC-pjL" id="6X0-DW-x8S"/>
             </connections>
             <point key="canvasLocation" x="-1327.2" y="-30.584707646176913"/>
         </view>

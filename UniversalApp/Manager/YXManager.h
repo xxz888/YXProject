@@ -177,4 +177,25 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestGetSersAllList:YX_BLOCK;
 #pragma mark ========== 其他的全部 ==========
 -(void)requestGetSers_Other_AllList:YX_BLOCK;
+#pragma mark ==========发布足迹 ==========
+-(void)requestPost_track:YX_BLOCK;
+#pragma mark ========== 获取我的足迹列表 ==========
+-(void)requestGetMy_Track_list:YX_BLOCK;
+
+
+
+#pragma mark ==========点赞/取消点赞足迹 ==========
+-(void)requestDianZanFoot:YX_BLOCK;
+#pragma mark ==========评论足迹 ==========
+-(void)requestPingLunFoot:YX_BLOCK;
+#pragma mark ==========获取最新足迹评论列表 ==========
+-(void)requestGetHotFootList:YX_BLOCK;
+#pragma mark ==========获取最新足迹评论列表 ==========
+-(void)requestGetNewFootList:YX_BLOCK;
+#pragma mark ==========获取足迹评论子评论列表 ==========
+-(void)requestGetFootPingLun_Child_List:YX_BLOCK;
+#pragma mark ==========发布足迹评论子评论 ==========
+-(void)requestFaBuFoot_child_PingLun:YX_BLOCK;
+#pragma mark ==========点赞/取消点赞足迹评论 ==========
+-(void)requestDianZanFoot_PingLun:YX_BLOCK;
 @end

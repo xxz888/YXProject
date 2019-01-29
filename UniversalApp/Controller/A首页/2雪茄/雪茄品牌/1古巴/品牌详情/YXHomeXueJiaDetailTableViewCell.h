@@ -25,6 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,weak) id<ClickLikeBtnDelegate> delegate;
 @property(nonatomic,weak) NSString * cigar_id;
+
+
+@property (nonatomic,assign) BOOL whereCome;//yes为足迹进来 no为正常进入  足迹进来
 @end
 
 NS_ASSUME_NONNULL_END

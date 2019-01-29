@@ -22,6 +22,8 @@
 #import "YXHomeXueJiaQuestionDetailViewController.h"
 #import "Moment.h"
 #import "Comment.h"
+#import "YXMineFootDetailViewController.h"
+
 @interface YXFindViewController ()<PYSearchViewControllerDelegate,UITableViewDelegate,UITableViewDataSource>{
     NSInteger page ;
     CBSegmentView * sliderSegmentView;
@@ -38,10 +40,12 @@
     [self setNavSearchView];
     //创建tableview
     [self tableviewCon];
+    
+    [self requestFindTag];
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self requestFindTag];
 }
 #pragma mark ========== headerview ==========
 -(UIView *)headerView{
@@ -233,7 +237,10 @@
         YX_MANAGER.isHaveIcon = YES;
         [self.navigationController pushViewController:VC animated:YES];
     }else if (tag == 4){//足迹
-        
+        YXMineFootDetailViewController * VC = [[YXMineFootDetailViewController alloc]init];
+        VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+        YX_MANAGER.isHaveIcon = NO;
+        [self.navigationController pushViewController:VC animated:YES];
     }
 }
 

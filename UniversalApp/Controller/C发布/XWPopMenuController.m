@@ -10,7 +10,8 @@
 #import "PublishMenuButton.h"
 #import "YXPublishImageViewController.h"
 #import "RichTextViewController.h"
-//导入自定义控制器->
+#import "YXPublishFootViewController.h"
+#import "YXHomeXueJiaPinPaiViewController.h"
 
 
 @interface XWPopMenuController (){
@@ -206,66 +207,53 @@
     __weak typeof(self) weakSelf = self;
     UIStoryboard * stroryBoard3 = [UIStoryboard storyboardWithName:@"YXPublish" bundle:nil];
     if (btn.tag == 1000) {//晒图
-        YXPublishImageViewController * publishVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishImageViewController"];
-        [publishVC toDissmissSelf:^{
+        YXPublishImageViewController * imageVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishImageViewController"];
+        [imageVC toDissmissSelf:^{
             self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(returnUpVC) userInfo:nil repeats:YES];
-            [UIView animateWithDuration:0.2 animations:^{
+            [UIView animateWithDuration:0.1 animations:^{
                 _closeImgView.transform = CGAffineTransformRotate(_closeImgView.transform, -M_PI_2*1.5);
             }];
         }];
-        [weakSelf presentViewController:publishVC animated:YES completion:nil];
+        [weakSelf presentViewController:imageVC animated:YES completion:nil];
     }else if (btn.tag == 1002){//文章
         RichTextViewController * ctrl=[RichTextViewController ViewController];
         [ctrl toDissmissSelf:^{
             self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(returnUpVC) userInfo:nil repeats:YES];
-            [UIView animateWithDuration:0.2 animations:^{
+            [UIView animateWithDuration:0.1 animations:^{
                 _closeImgView.transform = CGAffineTransformRotate(_closeImgView.transform, -M_PI_2*1.5);
             }];
         }];
         [weakSelf presentViewController:ctrl animated:YES completion:nil];
     }else{
+        UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+        YXHomeXueJiaPinPaiViewController * pinpaiVC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiViewController"];
+        pinpaiVC.whereCome = YES; //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
+        RootNavigationController * nav1 = [[RootNavigationController alloc]initWithRootViewController:pinpaiVC];
         
-    }
-    //根据选中的不同按钮的tag判断进入相应的界面->
-    /*
-    if (btn.tag == 1000) {
-        //纯文本
-        TwoViewController *publishTextVC = [[TwoViewController alloc] init];
+        [pinpaiVC toDissmissSelf:^{
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(returnUpVC) userInfo:nil repeats:YES];
+            [UIView animateWithDuration:0.1 animations:^{
+                _closeImgView.transform = CGAffineTransformRotate(_closeImgView.transform, -M_PI_2*1.5);
+            }];
+        }];
+        [weakSelf presentViewController:nav1 animated:YES completion:nil];
+
         
-        [publishTextVC toDissmissSelf:^{
+        
+        
+        
+        /*
+        YXPublishFootViewController * footVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishFootViewController"];
+        
+        [footVC toDissmissSelf:^{
             self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(returnUpVC) userInfo:nil repeats:YES];
-            [UIView animateWithDuration:0.2 animations:^{
+            [UIView animateWithDuration:0.1 animations:^{
                 _closeImgView.transform = CGAffineTransformRotate(_closeImgView.transform, -M_PI_2*1.5);
             }];
         }];
-        [self presentViewController:publishTextVC animated:YES completion:nil];
-
-    }else if(btn.tag == 1001){
-        //图文
-        OneViewController *publishVC = [[OneViewController alloc] init];
-        [publishVC.navigationItem setTitle:@"发布"];
-        [publishVC toDissmissSelf:^{
-            self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(returnUpVC) userInfo:nil repeats:YES];
-            [UIView animateWithDuration:0.2 animations:^{
-                _closeImgView.transform = CGAffineTransformRotate(_closeImgView.transform, -M_PI_2*1.5);
-            }];
-        }];
-        [self presentViewController:publishVC animated:YES completion:nil];
-    }else{
-        //链接 
-        ThreeViewController *publishLinkVC = [[ThreeViewController alloc] init];
-        [publishLinkVC.navigationItem setTitle:@"发布"];
-        [publishLinkVC toDissmissSelf:^{
-            self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(returnUpVC) userInfo:nil repeats:YES];
-            [UIView animateWithDuration:0.2 animations:^{
-                _closeImgView.transform = CGAffineTransformRotate(_closeImgView.transform, -M_PI_2*1.5);
-            }];
-        }];
-        [self presentViewController:publishLinkVC animated:YES completion:nil];
-
+        [weakSelf presentViewController:footVC animated:YES completion:nil];
+         */
     }
-    */
-    
     [UIView animateWithDuration:0.5 animations:^{
         btn.transform = CGAffineTransformMakeScale(2.0, 2.0);
         btn.alpha = 0;

@@ -32,6 +32,9 @@
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dq-fY-RFm">
                     <rect key="frame" x="5" y="622" width="365" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="1jV-J9-gB5"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <state key="normal" title="  点击评论...">
                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -44,7 +47,6 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="5dq-fY-RFm" firstAttribute="top" secondItem="f6d-vl-7wc" secondAttribute="bottom" constant="5" id="3ht-QM-ppb"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="f6d-vl-7wc" secondAttribute="bottom" constant="50" id="Sgt-qJ-fwI"/>
                 <constraint firstItem="f6d-vl-7wc" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="SxD-qU-OZQ"/>
                 <constraint firstItem="f6d-vl-7wc" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="10" id="W4U-WC-qDT"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="5dq-fY-RFm" secondAttribute="trailing" constant="5" id="gIv-Jm-xx0"/>

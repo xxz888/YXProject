@@ -22,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSMutableArray *)userSorting:(NSMutableArray *)modelArr;
 //九宫格
 - (void)createMiddleCollection;
+
+@property (nonatomic,assign) BOOL whereCome;//yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
+
 @end
 
 NS_ASSUME_NONNULL_END

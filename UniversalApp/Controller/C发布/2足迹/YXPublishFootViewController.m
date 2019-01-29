@@ -1,12 +1,14 @@
 //
-//  YXHomeQuestionFaBuViewController.m
+//  YXPublishFootViewController.m
 //  UniversalApp
 //
-//  Created by 小小醉 on 2019/1/11.
+//  Created by 小小醉 on 2019/1/29.
 //  Copyright © 2019年 徐阳. All rights reserved.
 //
 
-#import "YXHomeQuestionFaBuViewController.h"
+#import "YXPublishFootViewController.h"
+
+
 #import "ZZYPhotoHelper.h"
 #import "LLImagePickerView.h"
 #import "LTTextView.h"
@@ -15,19 +17,19 @@
 #import "CBGroupAndStreamView.h"
 #import "YXGaoDeMapViewController.h"
 #import "YXPublishMoreTagsViewController.h"
-@interface YXHomeQuestionFaBuViewController (){
+@interface YXPublishFootViewController (){
     LTTextView * _textView;
     NSMutableArray * _photoImageList;
     NSMutableArray * _tagArray;
     UITextField * textField;
-        NSString * _textViewInput;
+    NSString * _textViewInput;
 }
 @property(nonatomic, strong) QMUITextView * qmuiTextView;
 @property (strong, nonatomic) CBGroupAndStreamView * menueView;
 @property (weak, nonatomic) IBOutlet UIView *floatView;
 @end
 
-@implementation YXHomeQuestionFaBuViewController
+@implementation YXPublishFootViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -101,21 +103,25 @@
             [QMUITips showError:@"请输入要提问的问题!" inView:self.view hideAfterDelay:2];
             return;
         }
-        [dic setValue: self.qmuiTextView.text forKey:@"question"];
-        [dic setValue:self.questionTitleTf.text forKey:@"title"];//标题
-        [dic setValue:self.whereCome forKey:@"type"];//(1,"雪茄"),(2,"红酒"),(3,"高尔夫")
+        
+        [dic setValue:self.cigar_id forKey:@"cigar_id"];
+        [dic setValue:[ShareManager getNowTimeMiaoShu] forKey:@"publish_time"];
+
+        
+        [dic setValue: self.qmuiTextView.text forKey:@"content"];
+        [dic setValue:@(1) forKey:@"type"];//(1,"雪茄"),(2,"红酒"),(3,"高尔夫")
         [dic setValue:self.switchBtn.isOn ? @(1) : @(2) forKey:@"to_find"];
         
         NSString * tag  = _tagArray.count == 0 ? @"" : [_tagArray componentsJoinedByString:@","];
         [dic setValue:tag forKey:@"tag"];//标签
-
+        
         NSString * publish_site = [self.locationBtn.titleLabel.text isEqualToString:@"你的位置"] ? @"" : self.locationBtn.titleLabel.text;
         [dic setValue:publish_site forKey:@"publish_site"];
-
+        
         //发布按钮
-        [YX_MANAGER requestFaBuQuestionPOST:dic success:^(id object) {
-            if ([object isEqualToString:@"1"]) {
-                [QMUITips showSucceed:@"发布成功" inView:weakself.view hideAfterDelay:2];
+        [YX_MANAGER requestPost_track:dic success:^(id object) {
+            if ([object[@"status"] integerValue] == 1) {
+                [QMUITips showSucceed:object[@"message"] inView:weakself.view hideAfterDelay:2];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [weakself.navigationController popViewControllerAnimated:YES];
                 });
@@ -231,5 +237,37 @@
     [btn.superview.superview removeFromSuperview];
 }
 
-@end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - 完成发布
+//完成发布
+-(void)finishPublish{
+    //2.block传值
+    if (self.mDismissBlock != nil) {
+        self.mDismissBlock();
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+//block声明方法
+-(void)toDissmissSelf:(dismissBlock)block{
+    self.mDismissBlock = block;
+}
+
+@end

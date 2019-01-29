@@ -11,7 +11,9 @@
 #import <UShareUI/UShareUI.h>
 #import "PYSearchViewController.h"
 #import "PYTempViewController.h"
-@interface RootViewController ()<PYSearchViewControllerDelegate>
+@interface RootViewController ()<PYSearchViewControllerDelegate>{
+    XHStarRateView *starRateView ;
+}
 
 @property (nonatomic,strong) UIImageView* noDataView;
 
@@ -367,5 +369,14 @@
 - (void)closeKeyboard:(UITapGestureRecognizer *)recognizer {
     [self.view endEditing:YES];
 }
-
+-(void)fiveStarView:(CGFloat)score view:(UIView *)view{
+    starRateView = [[XHStarRateView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
+    starRateView.currentScore = score;
+    starRateView.isAnimation = YES;
+    starRateView.rateStyle = WholeStar;
+    starRateView.tag = 1;
+    [view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [view addSubview:starRateView];
+    starRateView.userInteractionEnabled = NO;
+}
 @end

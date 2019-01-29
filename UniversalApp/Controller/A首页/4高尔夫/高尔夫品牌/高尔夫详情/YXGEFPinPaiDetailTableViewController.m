@@ -50,11 +50,6 @@
 -(void)requestGolfList:(NSString *)type page:(NSInteger)page{
     kWeakSelf(self);
     
-//    id object = [[NSUserDefaults standardUserDefaults] objectForKey:@"a2"];
-//    [_dataArray removeAllObjects];
-//    [_dataArray addObjectsFromArray:object];
-//    [self.yxTableView reloadData];
-//    return;
     
     [_parDic removeAllObjects];
     [_parDic setValue:@([self.dicStartData[@"id"] intValue]) forKey:@"brand_id"];
@@ -62,7 +57,6 @@
     [_parDic setValue:@(1) forKey:@"_class"];
     [_parDic setValue:type forKey:@"type_"];
     [YX_MANAGER requestGolf_productPOST:_parDic success:^(id object) {
-        [[NSUserDefaults standardUserDefaults]setValue:object forKey:@"a2"];
         [weakself.dataArray removeAllObjects];
         [weakself.dataArray addObjectsFromArray:object];
         [weakself.yxTableView reloadData];

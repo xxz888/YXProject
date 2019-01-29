@@ -37,7 +37,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ydl-6I-UC1">
-                        <rect key="frame" x="5" y="300" width="6.5" height="25"/>
+                        <rect key="frame" x="5" y="300" width="280" height="25"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -54,6 +54,7 @@
                     <constraint firstItem="BHc-9m-aVL" firstAttribute="trailing" secondItem="N7a-Wg-Pu5" secondAttribute="trailing" id="5lK-Ib-d5s"/>
                     <constraint firstAttribute="trailing" secondItem="ZCC-Na-ruH" secondAttribute="trailing" id="ODA-C3-4KU"/>
                     <constraint firstItem="N7a-Wg-Pu5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="PZz-EZ-QvI"/>
+                    <constraint firstItem="BHc-9m-aVL" firstAttribute="leading" secondItem="Ydl-6I-UC1" secondAttribute="trailing" constant="5" id="Wn5-9l-5Bi"/>
                     <constraint firstItem="ZCC-Na-ruH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="gKQ-OD-OYK"/>
                     <constraint firstItem="BHc-9m-aVL" firstAttribute="top" secondItem="N7a-Wg-Pu5" secondAttribute="bottom" constant="10" id="j4c-9j-RCR"/>
                     <constraint firstItem="Ydl-6I-UC1" firstAttribute="centerY" secondItem="BHc-9m-aVL" secondAttribute="centerY" id="lh5-Ka-wvw"/>

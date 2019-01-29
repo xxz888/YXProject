@@ -37,9 +37,11 @@
  
     
     
+    NSString * titleText = [NSString stringWithFormat:@"%@%@",dic[@"content"],dic[@"index"]];
+    self.titleTagtextView.text = titleText;
+    [ShareManager inTextViewOutDifColorView:self.titleTagtextView tag:dic[@"index"]];
     
-    self.titleTagtextView.text = [dic[@"describe"] append:dic[@"index"]];
-
+    
     [self.midImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"pic1"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"user_photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     self.titleLbl.text = dic[@"user_name"];

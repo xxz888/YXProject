@@ -534,7 +534,74 @@ successBlock(responseObject);\
     } failure:^(NSError *error) {}];
 }
 
+#pragma mark ==========发布足迹 ==========
+-(void)requestPost_track:YX_BLOCK{
+    NSString * url = @"/users/track/1/1/1/";
+    [HTTP_POST(url)  Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ========== 获取我的足迹列表 ==========
+-(void)requestGetMy_Track_list:YX_BLOCK{
+    NSString * url = @"/users/track/";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 
+
+
+
+
+#pragma mark ==========点赞/取消点赞足迹 ==========
+-(void)requestDianZanFoot:YX_BLOCK{
+    NSString * url = @"/users/track_praise/";
+    [HTTP_POST(url)  Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ==========评论足迹 ==========
+-(void)requestPingLunFoot:YX_BLOCK{
+    NSString * url = @"/users/track_comment/1/1/1/1/";
+    [HTTP_POST(url)  Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ==========获取最新足迹评论列表 ==========
+-(void)requestGetNewFootList:YX_BLOCK{
+    NSString * url = @"/users/track_comment/1/1/";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ==========获取最热足迹评论列表 ==========
+-(void)requestGetHotFootList:YX_BLOCK{
+    NSString * url = @"/users/track_comment/2/1/";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ==========点赞/取消点赞足迹评论 ==========
+-(void)requestDianZanFoot_PingLun:YX_BLOCK{
+    NSString * url = @"/users/track_comment_praise/";
+    [HTTP_POST(url)  Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ==========获取足迹评论子评论列表 ==========
+-(void)requestGetFootPingLun_Child_List:YX_BLOCK{
+    NSString * url = @"/users/track_comment_child/0/";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ==========发布足迹评论子评论 ==========
+-(void)requestFaBuFoot_child_PingLun:YX_BLOCK{
+    NSString * url = @"/users/track_comment_child/0/0/0/";
+    [HTTP_POST(url)  Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

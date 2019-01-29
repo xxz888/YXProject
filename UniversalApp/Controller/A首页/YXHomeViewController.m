@@ -39,8 +39,8 @@
     if (!GaoErFuVC) {
         GaoErFuVC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeGaoErFuViewController"];
     }
-    NSArray* names = @[@"推荐",@"雪茄",@"美酒",@"高尔夫"];
-    NSArray* controllers = @[XueJiaVC,XueJiaVC,GaoErFuVC,GaoErFuVC];
-    [self setSegmentControllersArray:controllers title:names defaultIndex:1 top:64 view:self.view];
+    NSArray* names = @[@"雪茄",@"高尔夫"];
+    NSArray* controllers = @[XueJiaVC,GaoErFuVC];
+    [self setSegmentControllersArray:controllers title:names defaultIndex:0 top:64 view:self.view];
 }
 @end

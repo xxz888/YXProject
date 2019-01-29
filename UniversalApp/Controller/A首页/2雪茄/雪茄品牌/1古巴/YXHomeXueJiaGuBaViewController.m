@@ -130,7 +130,7 @@
 
         VC.dicData = [NSMutableDictionary dictionaryWithDictionary:object];
         VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[indexPath.section][indexPath.row]];
-        
+        VC.whereCome = self.whereCome;
         [[NSUserDefaults standardUserDefaults] setValue:VC.dicData forKey:@"dicData"];
         [[NSUserDefaults standardUserDefaults] setValue:VC.dicStartData forKey:@"dicStartData"];
         

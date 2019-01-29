@@ -69,7 +69,6 @@
     kWeakSelf(self);
     NSString * pageString = NSIntegerToNSString(page) ;
     [YX_MANAGER requestGetDetailListPOST:@{@"type":@(2),@"tag":@"0",@"page":@(1)} success:^(id object) {
-        UserDefaultsSET(object, @"a2");
         [weakself mineShaiTuRefreshAction:object];
     }];
 }

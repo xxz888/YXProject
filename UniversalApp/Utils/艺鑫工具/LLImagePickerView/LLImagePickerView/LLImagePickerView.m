@@ -77,7 +77,7 @@ static NSInteger countOfRow;
 
 - (void)configureCollectionView {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.itemSize = CGSizeMake(self.width/countOfRow, self.width/countOfRow);
+    layout.itemSize = CGSizeMake(110, 110);
     layout.minimumLineSpacing = 0;
     layout.minimumInteritemSpacing = 0;
     layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);

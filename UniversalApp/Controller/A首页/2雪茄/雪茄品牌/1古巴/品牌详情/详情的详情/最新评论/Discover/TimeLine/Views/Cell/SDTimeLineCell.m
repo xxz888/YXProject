@@ -73,6 +73,8 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveOperationButtonClickedNotification:) name:kSDTimeLineCellOperationButtonClickedNotification object:nil];
     
+    self.selectionStyle = 0;
+    
     _iconView = [UIImageView new];
     
     _nameLable = [UILabel new];

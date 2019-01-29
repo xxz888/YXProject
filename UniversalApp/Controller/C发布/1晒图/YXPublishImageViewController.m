@@ -8,12 +8,12 @@
 
 #import "YXPublishImageViewController.h"
 #import "YXGaoDeMapViewController.h"
-
+#import "YXPublishMoreTagsViewController.h"
 #import "LLImagePickerView.h"
 #import "YXPublishImageTableViewCell.h"
 #import "ZZYPhotoHelper.h"
 #import "QiniuLoad.h"
-#import "YXPublishMoreTagsViewController.h"
+
 
 #import<QiniuSDK.h>
 #import<AFNetworking.h>
@@ -26,18 +26,17 @@
 static NSString *accessKey = @"官网获取";
 static NSString *secretKey = @"官网获取";
 
-#import <QMapKit/QMapKit.h>
-#import <QMapSearchKit/QMapSearchKit.h>
-#define TencentKey @"KMTBZ-AJN3K-MWSJW-A5FV6-ZVDCQ-JIF33"
+
 
 @interface YXPublishImageViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSMutableArray * _photoImageList;
     NSString * _textViewInput;
-    NSMutableArray * _tagArray;
+    NSString * _locationString;
 }
 @property (strong, nonatomic) CBGroupAndStreamView * menueView;
 @property (weak, nonatomic) IBOutlet UIView *floatView;
 @property(nonatomic,strong)NSMutableDictionary * caoGaoDic;
+@property(nonatomic,strong)NSMutableArray * tagArray;
 
 @end
 
@@ -61,8 +60,7 @@ static NSString *secretKey = @"官网获取";
     
 }
 -(void)initControl{
-    [QMapServices sharedServices].apiKey = TencentKey;
-    [[QMSSearchServices sharedServices] setApiKey:TencentKey];
+
 
     
     UIColor * color1 = [UIColor darkGrayColor];
@@ -120,11 +118,11 @@ static NSString *secretKey = @"官网获取";
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXPublishImageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXPublishImageTableViewCell" forIndexPath:indexPath];
     _textViewInput = cell.textView.textView.text;
-    
+    _locationString = cell.locationBtn.titleLabel.text;
     kWeakSelf(self);
     //新话题
     cell.block = ^(NSString * tagString) {
-        [_tagArray addObject:tagString];
+        [weakself.tagArray addObject:tagString];
         if (weakself.menueView) {
             [_menueView setContentView:@[_tagArray] titleArr:@[]];
         }else{
@@ -135,6 +133,7 @@ static NSString *secretKey = @"官网获取";
     cell.locationblock = ^(YXPublishImageTableViewCell * cell) {
         YXGaoDeMapViewController * VC = [[YXGaoDeMapViewController alloc]init];
         VC.block = ^(NSString * locationString) {
+            _locationString = locationString;
             [cell.locationBtn setTitle:locationString forState:0];
             [weakself dismissViewControllerAnimated:YES completion:nil];
         };
@@ -203,7 +202,11 @@ static NSString *secretKey = @"官网获取";
             return;
         }
         [dic setValue:_textViewInput forKey:@"describe"];//描述
-        [dic setValue:@"杭州市野风现代之星3楼海底捞火锅" forKey:@"publish_site"];//地点
+        
+        
+        
+        NSString * publish_site = [_locationString isEqualToString:@"你的位置"] ? @"" : _locationString;
+        [dic setValue:publish_site forKey:@"publish_site"];//地点
         if (_tagArray.count == 0) {
             [dic setValue:@"" forKey:@"tag"];//标签
         }else{
@@ -240,13 +243,6 @@ static NSString *secretKey = @"官网获取";
 }
 -(void)dismissVC{
 }
--(NSString *)inImageOutString:(UIImage *)image{
-      NSString *strTopper = [NSString stringWithFormat:@"%@", [UIImageJPEGRepresentation(image, 0.1f) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength]];
-    return strTopper;
-}
-#define PYRectangleTagMaxCol 3
-#define PYTextColor PYSEARCH_COLOR(113, 113, 113)
-#define PYSEARCH_COLORPolRandomColor self.colorPol[arc4random_uniform((uint32_t)self.colorPol.count)]
 -(void)addNewTags{
     NSArray * titleArr = @[@""];
     NSArray *contentArr = @[_tagArray];
@@ -261,8 +257,11 @@ static NSString *secretKey = @"官网获取";
     _menueView = silde;
     kWeakSelf(self);
     silde.cb_selectCurrentValueBlock = ^(NSString *value, NSInteger index, NSInteger groupId) {
-        [_tagArray removeObjectAtIndex:index];
-        [_menueView setContentView:@[_tagArray] titleArr:@[]];
+        NSMutableArray * array = [NSMutableArray arrayWithArray:weakself.tagArray];
+        [array removeObjectAtIndex:index];
+        [weakself.tagArray removeAllObjects];
+        [weakself.tagArray addObjectsFromArray:array];
+        [_menueView setContentView:@[weakself.tagArray] titleArr:@[]];
     };
 }
 

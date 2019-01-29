@@ -9,7 +9,7 @@
 #import "YXMineFootViewController.h"
 
 @interface YXMineFootViewController ()
-
+@property(nonatomic,strong)NSMutableArray * dataSource;
 @end
 
 @implementation YXMineFootViewController
@@ -18,7 +18,20 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [self requestZuJi];
+}
+-(void)requestZuJi{
+    id obj = UserDefaultsGET(@"a2");
+    kWeakSelf(self);
+    NSString * par = [NSString stringWithFormat:@"%@/%@/%@",@"1",@"1",@"1"];
+    [YX_MANAGER requestGetMy_Track_list:par success:^(id object) {
+        UserDefaultsSET(object, @"a2");
+        [weakself.dataSource removeAllObjects];
+        [weakself.dataSource addObjectsFromArray:object];
+//        [weakself.yxTableView reloadData];
+    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

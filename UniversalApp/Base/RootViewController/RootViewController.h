@@ -94,4 +94,5 @@ typedef void (^ListenChangeIndexBlock)(NSInteger);
 @property (nonatomic,weak) ZXSegmentController* segmentController;
 -(void)setSegmentControllersArray:(NSArray *)controllers title:(NSArray *)titlesArray defaultIndex:(NSInteger)index top:(CGFloat)top view:(UIView *)view;
 - (void)closeKeyboard:(UITapGestureRecognizer *)recognizer;
+-(void)fiveStarView:(CGFloat)score view:(UIView *)view;
 @end

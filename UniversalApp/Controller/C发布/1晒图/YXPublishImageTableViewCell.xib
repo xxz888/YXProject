@@ -17,17 +17,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="h4O-w8-FM0">
-                    <rect key="frame" x="0.0" y="160" width="365" height="30"/>
+                    <rect key="frame" x="30" y="160" width="335" height="30"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cG-eU-8uX">
-                            <rect key="frame" x="0.0" y="0.0" width="91.5" height="30"/>
+                            <rect key="frame" x="0.0" y="0.0" width="84" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="  # 参与话题">
+                            <state key="normal" title="参与话题">
                                 <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1R-xi-K6d">
-                            <rect key="frame" x="101.5" y="0.0" width="91" height="30"/>
+                            <rect key="frame" x="94" y="0.0" width="83.5" height="30"/>
                             <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="#新话题#">
@@ -38,7 +38,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xkh-bO-evE">
-                            <rect key="frame" x="202.5" y="0.0" width="162.5" height="30"/>
+                            <rect key="frame" x="187.5" y="0.0" width="147.5" height="30"/>
                             <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="查看更多 &gt;">
@@ -63,27 +63,48 @@
                         <constraint firstAttribute="height" constant="120" id="Hrt-Gw-O4e"/>
                     </constraints>
                 </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="定位" translatesAutoresizingMaskIntoConstraints="NO" id="pWZ-22-WT6">
+                    <rect key="frame" x="5" y="204.5" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="q4o-Cx-Zyv"/>
+                        <constraint firstAttribute="height" constant="20" id="rRO-Ji-Txq"/>
+                    </constraints>
+                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lEs-Fu-kqw">
-                    <rect key="frame" x="0.0" y="200" width="106" height="29"/>
+                    <rect key="frame" x="30" y="200" width="86" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="  # 获取地理位置">
+                    <state key="normal" title="获取地理位置">
                         <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
                         <action selector="getLoactionAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="cfc-RP-Sy7"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="井号" translatesAutoresizingMaskIntoConstraints="NO" id="vD4-ga-OE4">
+                    <rect key="frame" x="5" y="165" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="AZq-gh-CZH"/>
+                        <constraint firstAttribute="height" constant="20" id="oQo-bt-bLu"/>
+                        <constraint firstAttribute="width" constant="20" id="zHy-MD-6TI"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="lEs-Fu-kqw" firstAttribute="top" secondItem="h4O-w8-FM0" secondAttribute="bottom" constant="10" id="Bhp-fy-oJi"/>
-                <constraint firstItem="h4O-w8-FM0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="FQN-lf-Waw"/>
+                <constraint firstItem="h4O-w8-FM0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="FQN-lf-Waw"/>
                 <constraint firstItem="h4O-w8-FM0" firstAttribute="top" secondItem="PWO-BY-mZg" secondAttribute="bottom" constant="20" id="Lgb-XL-vPU"/>
+                <constraint firstItem="vD4-ga-OE4" firstAttribute="centerY" secondItem="5cG-eU-8uX" secondAttribute="centerY" id="P6R-Zq-Pac"/>
+                <constraint firstItem="h4O-w8-FM0" firstAttribute="leading" secondItem="vD4-ga-OE4" secondAttribute="trailing" constant="5" id="Qgw-fs-2pX"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="h4O-w8-FM0" secondAttribute="trailing" constant="10" id="RBy-Sn-2JV"/>
+                <constraint firstItem="vD4-ga-OE4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="RCt-3z-v4E"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="PWO-BY-mZg" secondAttribute="trailing" id="RkE-Fn-hnw"/>
                 <constraint firstItem="lEs-Fu-kqw" firstAttribute="leading" secondItem="5cG-eU-8uX" secondAttribute="leading" id="XJc-ia-UfA"/>
                 <constraint firstItem="PWO-BY-mZg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="YCn-hU-8jo"/>
+                <constraint firstItem="pWZ-22-WT6" firstAttribute="centerX" secondItem="vD4-ga-OE4" secondAttribute="centerX" id="ZSG-sY-S3v"/>
                 <constraint firstItem="PWO-BY-mZg" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="dik-yX-ip2"/>
+                <constraint firstItem="pWZ-22-WT6" firstAttribute="leading" secondItem="vD4-ga-OE4" secondAttribute="leading" id="iBz-3l-kQ3"/>
+                <constraint firstItem="pWZ-22-WT6" firstAttribute="centerY" secondItem="lEs-Fu-kqw" secondAttribute="centerY" id="tct-6L-UJ1"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
@@ -92,7 +113,11 @@
                 <outlet property="ttView" destination="PWO-BY-mZg" id="YeJ-YF-VLb"/>
                 <outlet property="xinhuatiBtn" destination="g1R-xi-K6d" id="Kgw-8M-R86"/>
             </connections>
-            <point key="canvasLocation" x="-474" y="-48"/>
+            <point key="canvasLocation" x="-425" y="-352"/>
         </view>
     </objects>
+    <resources>
+        <image name="井号" width="32" height="32"/>
+        <image name="定位" width="32" height="32"/>
+    </resources>
 </document>

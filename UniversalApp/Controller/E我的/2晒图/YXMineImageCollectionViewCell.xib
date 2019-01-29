@@ -37,7 +37,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6bg-It-3lX">
-                        <rect key="frame" x="5" y="200" width="6.5" height="17"/>
+                        <rect key="frame" x="5" y="200" width="145" height="25"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -55,10 +55,12 @@
                 <constraint firstItem="6bg-It-3lX" firstAttribute="top" secondItem="uU5-iU-16V" secondAttribute="bottom" constant="10" id="ChJ-18-h7m"/>
                 <constraint firstItem="6bg-It-3lX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="Dk3-XK-QJk"/>
                 <constraint firstItem="uU5-iU-16V" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="LXn-b6-ZaA"/>
+                <constraint firstItem="6bg-It-3lX" firstAttribute="centerY" secondItem="ZvS-6K-4kq" secondAttribute="centerY" id="ONA-79-X69"/>
                 <constraint firstItem="TWl-Gc-SwD" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="U2F-ZC-ioR"/>
                 <constraint firstItem="uU5-iU-16V" firstAttribute="centerX" secondItem="SEy-5g-ep8" secondAttribute="centerX" id="Zg6-Eb-I9x"/>
                 <constraint firstAttribute="trailing" secondItem="ZvS-6K-4kq" secondAttribute="trailing" constant="5" id="dL1-oA-BFY"/>
                 <constraint firstItem="ZvS-6K-4kq" firstAttribute="top" secondItem="uU5-iU-16V" secondAttribute="bottom" constant="10" id="is7-5w-gpy"/>
+                <constraint firstItem="ZvS-6K-4kq" firstAttribute="leading" secondItem="6bg-It-3lX" secondAttribute="trailing" constant="5" id="iv7-Pn-bqx"/>
                 <constraint firstAttribute="trailing" secondItem="uU5-iU-16V" secondAttribute="trailing" constant="5" id="lGU-Y2-Nlk"/>
                 <constraint firstItem="TWl-Gc-SwD" firstAttribute="top" secondItem="ZvS-6K-4kq" secondAttribute="bottom" constant="10" id="lLV-0A-Q43"/>
                 <constraint firstItem="uU5-iU-16V" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="o73-Oq-ckD"/>
@@ -71,7 +73,7 @@
                 <outlet property="midImageView" destination="uU5-iU-16V" id="11b-ya-3cW"/>
                 <outlet property="titleLbl" destination="6bg-It-3lX" id="b5M-6E-NzB"/>
             </connections>
-            <point key="canvasLocation" x="325.60000000000002" y="69.715142428785612"/>
+            <point key="canvasLocation" x="325.60000000000002" y="69.265367316341838"/>
         </collectionViewCell>
     </objects>
     <resources>

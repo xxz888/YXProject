@@ -10,7 +10,7 @@
 #import "YXHomeXueJiaDetailTableViewCell.h"
 #import "CatZanButton.h"
 #import "YXHomeXueJiaPinPaiLastDetailViewController.h"
-
+#import "YXPublishFootViewController.h"
 @interface YXHomeXueJiaPinPaiDetailViewController()<ClickLikeBtnDelegate>{
     UIImage * _selImage;
     UIImage * _unImage;
@@ -110,19 +110,33 @@
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+  
     if (indexPath.section == 1) {
-        return 240;
+        //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
+        return self.whereCome ? 130 : 240;
     }
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
+    return self.whereCome ? 0 : [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
     if (indexPath.section == 1) {
-        UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-        YXHomeXueJiaPinPaiLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiLastDetailViewController"];
-        VC.startDic = [NSDictionary dictionaryWithDictionary:self.dicData[@"data"][indexPath.row]];
-        YX_MANAGER.isHaveIcon = NO;
-        [self.navigationController pushViewController:VC animated:YES];
+        
+         //yes为足迹进来 no为正常进入
+        if (self.whereCome) {
+            UIStoryboard * stroryBoard3 = [UIStoryboard storyboardWithName:@"YXPublish" bundle:nil];
+             YXPublishFootViewController * footVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishFootViewController"];
+            footVC.cigar_id = kGetString(self.dicData[@"data"][indexPath.row][@"id"]);
+            [self.navigationController pushViewController:footVC animated:YES];
+
+        }else{
+            UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+            YXHomeXueJiaPinPaiLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiLastDetailViewController"];
+            VC.startDic = [NSDictionary dictionaryWithDictionary:self.dicData[@"data"][indexPath.row]];
+            YX_MANAGER.isHaveIcon = NO;
+            [self.navigationController pushViewController:VC animated:YES];
+        }
+
     }
 }
 #pragma mark ========== 关注作者的方法 ==========

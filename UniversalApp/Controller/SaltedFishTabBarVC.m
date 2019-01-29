@@ -10,7 +10,6 @@
 #import "YXHomeViewController.h"
 #import "YXFindViewController.h"
 #import "YXMessageViewController.h"
-#import "YXPublishViewController.h"
 #import "YXMineViewController.h"
 #import "XWPopMenuController.h"
 @interface SaltedFishTabBarVC ()<AxcAE_TabBarDelegate>

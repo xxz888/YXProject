@@ -46,7 +46,9 @@
 #define UPDATE_App_ID @"1358751725"
 
 
-
+#import <QMapKit/QMapKit.h>
+#import <QMapSearchKit/QMapSearchKit.h>
+#define TencentKey @"KMTBZ-AJN3K-MWSJW-A5FV6-ZVDCQ-JIF33"
 
 #pragma mark - ——————— 详细接口地址 ————————
 

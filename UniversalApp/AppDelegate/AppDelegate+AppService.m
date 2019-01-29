@@ -18,6 +18,8 @@
 
 #pragma mark ————— 初始化服务 —————
 -(void)initService{
+    [QMapServices sharedServices].apiKey = TencentKey;
+    [[QMSSearchServices sharedServices] setApiKey:TencentKey];
     //注册登录状态监听
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(loginStateChange:)

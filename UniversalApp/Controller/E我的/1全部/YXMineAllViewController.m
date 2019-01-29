@@ -24,27 +24,29 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    id obj = UserDefaultsGET(@"a2");
-    id obj1 = UserDefaultsGET(@"a2");
-    [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:obj];
-    [self.yxTableView reloadData];
-    //user_id_BOOL ? [self requestOther_AllList] : [self requestMine_AllList];
+    user_id_BOOL ? [self requestOther_AllList] : [self requestMine_AllList];
 }
 #pragma mark ========== 我自己的所有 ==========
 -(void)requestMine_AllList{
+    id obj = UserDefaultsGET(@"a1");
     kWeakSelf(self);
     [YX_MANAGER requestGetSersAllList:@"1" success:^(id object) {
+        UserDefaultsSET(object, @"a1");
+        [weakself commonAction:object];
     }];
 }
 #pragma mark ========== 其他用户的所有 ==========
 -(void)requestOther_AllList{
     kWeakSelf(self);
     [YX_MANAGER requestGetSers_Other_AllList:[self.userId append:@"/1"] success:^(id object) {
-        UserDefaultsSET(object, @"a2");
+        [weakself commonAction:object];
     }];
 }
-
+-(void)commonAction:(id)obj{
+    [self.dataArray removeAllObjects];
+    [self.dataArray addObjectsFromArray:obj];
+//    [self.yxTableView reloadData];
+}
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self tableviewCon];
@@ -70,7 +72,15 @@
     kWeakSelf(self);
     NSString* post_id = kGetString(self.dataArray[indexPath.row][@"id"]);
     [YX_MANAGER requestPost_praisePOST:@{@"post_id":post_id} success:^(id object) {
-
+        user_id_BOOL ? [weakself requestOther_AllList] : [weakself requestMine_AllList];
+    }];
+}
+#pragma mark ========== 文章点赞 ==========
+-(void)requestDianZanWenZhangAction:(NSIndexPath *)indexPath{
+    kWeakSelf(self);
+    NSString* essay_id = kGetString(self.dataArray[indexPath.row][@"id"]);
+    [YX_MANAGER requestPost_essay_praisePOST:@{@"essay_id":essay_id} success:^(id object) {
+        user_id_BOOL ? [weakself requestOther_AllList] : [weakself requestMine_AllList];
     }];
 }
 
@@ -116,7 +126,7 @@
     kWeakSelf(self);
     cell.block = ^(YXMineEssayTableViewCell * cell) {
         NSIndexPath * indexPath = [weakself.yxTableView indexPathForCell:cell];
-        [weakself requestDianZanAction:indexPath];
+        [weakself requestDianZanWenZhangAction:indexPath];
     };
     [cell.essayTitleImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cell.essayNameLbl.text = dic[@"user_name"];

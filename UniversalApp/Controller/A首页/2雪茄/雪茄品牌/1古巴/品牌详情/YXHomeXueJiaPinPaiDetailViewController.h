@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)section1GuanZhuAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextView *section1TextView;
 
+@property (nonatomic,assign) BOOL whereCome;//yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
 
 
 @end

@@ -22,14 +22,12 @@
 
 #import "YXHomeViewController.h"
 #import "YXMessageViewController.h"
-#import "YXPublishViewController.h"
 #import "YXMineViewController.h"
 #import "TBTabBar.h"
 #import "VTingSeaPopView.h"
 #import "SDTimeLineTableViewController.h"
 
 #import "YXPublishImageViewController.h"
-#import "YXPublishArticleViewController.h"
 
 #import "RichTextViewController.h"
 @interface MainTabBarController ()<UITabBarControllerDelegate,VTingPopItemSelectDelegate> {
