@@ -21,16 +21,17 @@
     self.yxTableView.delegate=  self;
     self.yxTableView.dataSource = self;
     self.title = @"雪茄文化";
-    
-}
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
     kWeakSelf(self);
     [YX_MANAGER requestCigar_cultureGET:@"1" success:^(id object) {
         [weakself.dataArray removeAllObjects];
         [weakself.dataArray addObjectsFromArray:object];
         [weakself.yxTableView reloadData];
     }];
+    
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArray.count;

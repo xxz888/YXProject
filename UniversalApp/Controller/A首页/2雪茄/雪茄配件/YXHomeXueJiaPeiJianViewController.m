@@ -32,13 +32,8 @@
     self.yxTableView.dataSource=self;
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaTableViewCell"];
 
-    [self.yxTableView reloadData];
-
-}
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+    
     kWeakSelf(self);
-//    NSString * par = [NSString stringWithFormat:@"%@/%@",@"1",@"1"];
     [YX_MANAGER requestCigar_accessories_CbrandGET:@"" success:^(id object) {
         [weakself.dataArray removeAllObjects];
         [weakself.dataArray addObjectsFromArray:object];
@@ -50,6 +45,10 @@
         [weakself.cellDataArray addObjectsFromArray:object];
         [weakself.yxTableView reloadData];
     }];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
 }
 
 //九宫格

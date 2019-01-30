@@ -21,22 +21,7 @@
     
     
     
-    /*
-     要分为两种
-     1、如果是我自己的界面，请求一种
-     2、如果是别人的界面，在请求一种
-     */
-    kWeakSelf(self);
 
-    if (user_id_BOOL) {
-        [YX_MANAGER requestOtherGuanZhu:[self.userId append:@"/1/"] success:^(id object) {
-            [weakself commonAction:object];
-        }];
-    }else{
-        [YX_MANAGER requestLikesGET:@"1" success:^(id object) {
-            [weakself commonAction:object];
-        }];
-    }
 }
 -(void)commonAction:(id)object{
     [self.dataArray removeAllObjects];
@@ -50,6 +35,22 @@
     self.title = @"关注列表";
     self.dataArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXMineCommon1TableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineCommon1TableViewCell"];
+    /*
+     要分为两种
+     1、如果是我自己的界面，请求一种
+     2、如果是别人的界面，在请求一种
+     */
+    kWeakSelf(self);
+    
+    if (user_id_BOOL) {
+        [YX_MANAGER requestOtherGuanZhu:[self.userId append:@"/1/"] success:^(id object) {
+            [weakself commonAction:object];
+        }];
+    }else{
+        [YX_MANAGER requestLikesGET:@"1" success:^(id object) {
+            [weakself commonAction:object];
+        }];
+    }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 50;

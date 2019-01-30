@@ -41,9 +41,6 @@
     
     self.titleImgView.layer.masksToBounds = YES;
     self.titleImgView.layer.cornerRadius = self.titleImgView.frame.size.width / 2.0;
-}
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
     if (self.userInfoDic) {
         
         [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:self.userInfoDic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
@@ -53,6 +50,10 @@
         [self.sexBtn setTitle:[self.userInfoDic[@"gender"] integerValue] == 0 ? @"女":@"男" forState:UIControlStateNormal];
         self.photo = self.userInfoDic[@"photo"];
     }
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
 }
 #pragma mark - Table view data source
 

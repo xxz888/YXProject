@@ -29,10 +29,11 @@
     self.view.backgroundColor = KWhiteColor;
     self.dataArray = [[NSMutableArray alloc]init];
     [self collectionViewCon];
+    user_id_BOOL ? [self requestOtherShaiTuList] : [self requestMineShaiTuList];
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    user_id_BOOL ? [self requestOtherShaiTuList] : [self requestMineShaiTuList];
 }
 -(void)collectionViewCon{
     

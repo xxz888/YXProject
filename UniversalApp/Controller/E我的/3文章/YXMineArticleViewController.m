@@ -23,10 +23,11 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self tableviewCon];
+    user_id_BOOL ?[self requestOtherWenZhangList]: [self requestMineWenZhangList] ;
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    user_id_BOOL ?[self requestOtherWenZhangList]: [self requestMineWenZhangList] ;
 }
 -(void)tableviewCon{
     self.yxTableView.delegate = self;

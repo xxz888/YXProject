@@ -47,11 +47,12 @@
     
     //UI赋值
     [self setViewUI];
+    //每次进入界面请求数据
+    [self setViewData];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    //每次进入界面请求数据
-    [self setViewData];
+  
 }
 #pragma mark ========== UI界面 ==========
 -(void)setViewUI{

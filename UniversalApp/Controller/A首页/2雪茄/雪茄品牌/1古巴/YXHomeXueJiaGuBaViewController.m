@@ -17,7 +17,6 @@
 @implementation YXHomeXueJiaGuBaViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self requestCigar_brand:@"1"];
 }
 -(void)viewDidLoad{
     [super viewDidLoad];
@@ -30,6 +29,8 @@
     self.yxTableView.dataSource= self;
     self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaPinPaiTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaPinPaiTableViewCell"];
+    [self requestCigar_brand:@"1"];
+
 }
 -(void)requestCigar_brand:(NSString *)type{
     kWeakSelf(self);

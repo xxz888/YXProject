@@ -14,7 +14,6 @@
 
 @implementation YXHomeXueJiaMyGuanZhuViewController
 -(void)viewWillAppear:(BOOL)animated{
-    [self requestGETMyGuanZhuList];
 }
 -(void)requestGETMyGuanZhuList{
     kWeakSelf(self);
@@ -29,7 +28,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self requestGETMyGuanZhuList];
 }
 
 /*

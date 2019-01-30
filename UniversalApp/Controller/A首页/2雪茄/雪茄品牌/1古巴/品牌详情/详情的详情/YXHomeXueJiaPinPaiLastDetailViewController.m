@@ -57,6 +57,11 @@ static CGFloat textFieldH = 40;
     [super viewDidLoad];
     //初始化所有的控件
     [self initAllControl];
+    
+    [self requestPingJunFen];
+    [self requestGeRenFen];
+    [self requestNewList];
+    [self requestLiuGongGe];
 }
 
 -(void)initAllControl{
@@ -222,13 +227,12 @@ static CGFloat textFieldH = 40;
         }
         [self.yxTableView reloadRowsAtIndexPaths:@[_currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
     }];
+    
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self requestPingJunFen];
-    [self requestGeRenFen];
-    [self requestNewList];
-    [self requestLiuGongGe];
+
 }
 
 #pragma mark ========== 点击我来评论 ==========

@@ -21,11 +21,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.dataArray = [[NSMutableArray alloc]init];
-
-}
--(void)viewWillAppear:(BOOL)animated{
     self.title = @"我的收藏";
     [self requestMyXueJia_CollectionListGet];
+}
+-(void)viewWillAppear:(BOOL)animated{
+  
 }
 -(void)requestMyXueJia_CollectionListGet{
     kWeakSelf(self);

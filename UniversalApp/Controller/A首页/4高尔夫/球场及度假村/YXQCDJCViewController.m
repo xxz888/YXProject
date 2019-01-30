@@ -24,6 +24,12 @@
 @implementation YXQCDJCViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+ 
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = @"球场";
+    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXQCDJCTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXQCDJCTableViewCell"];
     NSDictionary * dic =@{@"city":@"杭州",
                           @"longitude":@(120.20000),
                           @"latitude":@(30.26667),
@@ -31,11 +37,6 @@
                           };
     [YX_MANAGER requestGolf_coursePOST:dic success:^(id object) {
     }];
-}
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.title = @"球场";
-    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXQCDJCTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXQCDJCTableViewCell"];
 }
 //代理方法
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

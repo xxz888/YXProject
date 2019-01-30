@@ -14,11 +14,10 @@
 
 @implementation YXHomeXueJiaFeiGuViewController
 -(void)viewWillAppear:(BOOL)animated{
-    [self requestCigar_brand:@"2"];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self requestCigar_brand:@"2"];
 }
 
 

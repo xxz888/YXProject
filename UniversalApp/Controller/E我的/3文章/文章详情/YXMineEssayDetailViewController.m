@@ -49,6 +49,8 @@ static CGFloat textFieldH = 40;
     [super viewDidLoad];
     //初始化所有的控件
     [self initAllControl];
+    [self requestNewList];
+
 }
 -(void)initAllControl{
     kWeakSelf(self);
@@ -174,7 +176,6 @@ static CGFloat textFieldH = 40;
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self requestNewList];
 }
 
 

@@ -18,6 +18,15 @@
 @implementation YXHomeGaoErFuViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+  
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.informationArray = [NSMutableArray array];
+    //tableview列表
+    [self createBottomTableView];
+    
     //顶部广告请求
     [self requestAdvertising];
     //tableview请求
@@ -26,13 +35,6 @@
         //顶部广告请求
         [weakself requestAdvertising];
     });
-}
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.informationArray = [NSMutableArray array];
-    //tableview列表
-    [self createBottomTableView];
 
 }
 -(void)requestInformation{

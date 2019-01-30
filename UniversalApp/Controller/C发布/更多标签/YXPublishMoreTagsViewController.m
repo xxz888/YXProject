@@ -30,13 +30,13 @@
     [self setNavSearchView];
     self.tagArray = [[NSMutableArray alloc]init];
     self.dataArray = [[NSMutableArray alloc]init];
-
+    
+    //    [self requestGetTag];
+    [self requestFindTag];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-//    [self requestGetTag];
-    [self requestFindTag];
+
 
 }
 #pragma mark ========== 先请求tag列表,获取发现页标签数据 ==========

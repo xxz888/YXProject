@@ -26,10 +26,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createUI];
+    [self requestCollection:self.segIndex];
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self requestCollection:self.segIndex];
 }
 -(void)requestCollection:(NSString *)type{
     kWeakSelf(self);

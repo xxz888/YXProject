@@ -20,6 +20,18 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+
+}
+-(void)commonAction:(id)object{
+    [self.dataArray removeAllObjects];
+    [self.dataArray addObjectsFromArray:object];
+    [self.yxTableView reloadData];
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = @"粉丝列表";
+    self.dataArray = [[NSMutableArray alloc]init];
+    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXMineCommon1TableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineCommon1TableViewCell"];
     kWeakSelf(self);
     /*
      要分为两种
@@ -35,17 +47,6 @@
             [weakself commonAction:object];
         }];
     }
-}
--(void)commonAction:(id)object{
-    [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:object];
-    [self.yxTableView reloadData];
-}
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.title = @"粉丝列表";
-    self.dataArray = [[NSMutableArray alloc]init];
-    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXMineCommon1TableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineCommon1TableViewCell"];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 50;

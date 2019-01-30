@@ -34,11 +34,13 @@
     self.yxTableView.delegate=  self;
     self.yxTableView.dataSource = self;
     self.yxTableView.tableFooterView = [[UIView alloc]init];
+    
+    [self requestZuJi:_isreverse1];
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    [self requestZuJi:_isreverse1];
 }
 -(void)requestZuJi:(NSString *)isreverse{
     kWeakSelf(self);

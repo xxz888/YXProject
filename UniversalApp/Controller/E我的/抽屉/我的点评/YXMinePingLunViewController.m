@@ -23,10 +23,11 @@
     self.dataArray = [[NSMutableArray alloc]init];
     [self.yxTableVIew registerNib:[UINib nibWithNibName:@"YXMinePingLunTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMinePingLunTableViewCell"];
     self.yxTableVIew.tableFooterView = [[UIView alloc]init];
+    [self requestMyDianPing];
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self requestMyDianPing];
 }
 -(void)requestMyDianPing{
     kWeakSelf(self);

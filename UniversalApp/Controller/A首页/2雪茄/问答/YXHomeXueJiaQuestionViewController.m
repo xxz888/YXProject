@@ -41,6 +41,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self setUpUI];
 //    [self initTestInfo];
+    [self requestQuestion];
 
 }
 
@@ -48,7 +49,6 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
    
-    [self requestQuestion];
 }
 
 #pragma mark ==========  搜索相关 ==========

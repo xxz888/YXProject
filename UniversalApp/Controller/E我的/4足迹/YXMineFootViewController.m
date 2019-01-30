@@ -23,10 +23,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self tableviewCon];
+    user_id_BOOL ? [self requestZuJi_Other] : [self requestZuJi];
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    user_id_BOOL ? [self requestZuJi_Other] : [self requestZuJi];
 }
 -(void)requestZuJi{
     kWeakSelf(self);

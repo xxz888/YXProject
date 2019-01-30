@@ -41,11 +41,12 @@
     _selImage = [UIImage imageNamed:@"Zan"];
     _unImage = [UIImage imageNamed:@"UnZan"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXGEFPinPaiDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXGEFPinPaiDetailTableViewCell"];
+    [self requestGolfList:TYPE_QIU_JU page:1];
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    [self requestGolfList:TYPE_QIU_JU page:1];
 }
 -(void)requestGolfList:(NSString *)type page:(NSInteger)page{
     kWeakSelf(self);

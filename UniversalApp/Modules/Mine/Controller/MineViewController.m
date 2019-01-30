@@ -33,12 +33,12 @@
     self.isShowLiftBack = NO;//每个根视图需要设置该属性为NO，否则会出现导航栏异常
     
     [self createUI];
-    
+    [self getRequset];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self getRequset];
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];

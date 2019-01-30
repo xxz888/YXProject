@@ -28,11 +28,12 @@
     self.yxTableView.delegate= self;
     self.yxTableView.dataSource = self;
     self.yxTableView.tableFooterView = [[UIView alloc]init];
+    self.caoGaoDic = UserDefaultsGET(YX_USER_FaBuCaoGao);
+    [self.yxTableView reloadData];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.caoGaoDic = UserDefaultsGET(YX_USER_FaBuCaoGao);
-    [self.yxTableView reloadData];
+
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
