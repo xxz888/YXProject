@@ -23,10 +23,8 @@
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
 
 @interface YXMineAllViewController ()<UITableViewDelegate,UITableViewDataSource>{
-    NSInteger page ;
 }
 @property(nonatomic,strong)NSMutableArray * dataArray;
-@property(nonatomic,strong)NSString * type;
 
 @property(nonatomic, assign)BOOL isMainScroll;
 @property(nonatomic, assign)BOOL isCellScroll;
@@ -37,34 +35,52 @@
     [super viewDidLoad];
     //创建tableview
     [self tableviewCon];
-    
-    self.isMainScroll = YES;
-    self.isCellScroll = NO;
+    [self addRefreshView:self.yxTableView];
     user_id_BOOL ? [self requestOther_AllList] : [self requestMine_AllList];
-
 }
-
+-(void)headerRereshing{
+    [super headerRereshing];
+    user_id_BOOL ? [self requestOther_AllList] : [self requestMine_AllList];
+}
+-(void)footerRereshing{
+    [super footerRereshing];
+    user_id_BOOL ? [self requestOther_AllList] : [self requestMine_AllList];
+}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 }
 #pragma mark ========== 我自己的所有 ==========
 -(void)requestMine_AllList{
     kWeakSelf(self);
-    [YX_MANAGER requestGetSersAllList:@"1" success:^(id object) {
-        UserDefaultsSET(object, @"a1");
+    [YX_MANAGER requestGetSersAllList:NSIntegerToNSString(self.requestPage) success:^(id object) {
         [weakself commonAction:object];
     }];
 }
 #pragma mark ========== 其他用户的所有 ==========
 -(void)requestOther_AllList{
     kWeakSelf(self);
-    [YX_MANAGER requestGetSers_Other_AllList:[self.userId append:@"/1"] success:^(id object) {
+    NSString * par = [NSString stringWithFormat:@"%@/%@",self.userId,NSIntegerToNSString(self.requestPage)];
+    [YX_MANAGER requestGetSers_Other_AllList:par success:^(id object){
         [weakself commonAction:object];
     }];
 }
 -(void)commonAction:(id)obj{
-    [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:obj];
+    if (self.requestPage == 1) {
+        [self.dataArray removeAllObjects];
+        [self.dataArray addObjectsFromArray:obj];
+    }else{
+        if ([obj count] == 0) {
+            [QMUITips showInfo:REFRESH_NO_DATA inView:self.view hideAfterDelay:1];
+            [self.yxTableView.mj_footer endRefreshing];
+            return;
+        }
+        self.dataArray = [NSMutableArray arrayWithArray:[self.dataArray arrayByAddingObjectsFromArray:obj]];
+    }
+    kWeakSelf(self);
+    DO_IN_MAIN_QUEUE_AFTER(0.5f, ^{
+        [weakself.yxTableView.mj_header endRefreshing];
+        [weakself.yxTableView.mj_footer endRefreshing];
+    });
     [self.yxTableView reloadData];
 }
 #pragma mark ========== 创建tableview ==========
@@ -76,8 +92,6 @@
     self.yxTableView.dataSource= self;
     self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.yxTableView.showsVerticalScrollIndicator = NO;
-    page = 1;
-    _type = @"1";
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindImageTableViewCell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindQuestionTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindQuestionTableViewCell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindFootTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindFootTableViewCell"];

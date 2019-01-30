@@ -12,7 +12,9 @@
 #import <Masonry/Masonry.h>
 #import <ZXSegmentController/ZXSegmentController.h>
 #import "IQKeyboardManager.h"
-
+#import "FCXRefreshFooterView.h"
+#import "FCXRefreshHeaderView.h"
+#import "UIScrollView+FCXRefresh.h"
 typedef void (^ListenChangeIndexBlock)(NSInteger);
 
 /**
@@ -29,6 +31,12 @@ typedef void (^ListenChangeIndexBlock)(NSInteger);
 
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) UICollectionView * collectionView;
+
+@property (nonatomic, strong) FCXRefreshHeaderView * refreshHeaderView;
+@property (nonatomic, strong) FCXRefreshFooterView * refreshFooterView;
+@property (nonatomic,assign) NSInteger requestPage;
+
+
 
 /**
  *  显示没有数据页面
@@ -95,4 +103,7 @@ typedef void (^ListenChangeIndexBlock)(NSInteger);
 -(void)setSegmentControllersArray:(NSArray *)controllers title:(NSArray *)titlesArray defaultIndex:(NSInteger)index top:(CGFloat)top view:(UIView *)view;
 - (void)closeKeyboard:(UITapGestureRecognizer *)recognizer;
 -(void)fiveStarView:(CGFloat)score view:(UIView *)view;
+- (void)addRefreshView:(UITableView *)yxTableView;
+-(void)headerRereshing;
+-(void)footerRereshing;
 @end

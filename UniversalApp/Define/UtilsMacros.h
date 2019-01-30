@@ -17,13 +17,23 @@
 #define TYPE_HONGJIU_3 @"3"
 #define ZAN_IMG [UIImage imageNamed:@"Zan"]
 #define UNZAN_IMG [UIImage imageNamed:@"UnZan"]
-
+#define REFRESH_NO_DATA @"没有更多数据"
 
 #define YX_USER_FaBuCaoGao @"YX_FaBuCaoGao"
 /**本地化存储**/
 #define UserDefaultsGET(key) [[NSUserDefaults standardUserDefaults] objectForKey:key] // 取
 #define UserDefaultsSET(object,key) [[NSUserDefaults standardUserDefaults] setObject:object forKey:key]  // 写
 
+
+// 在主线程中执行
+#define DO_IN_MAIN_QUEUE(action) dispatch_async(dispatch_get_main_queue(), action)
+// 在主线程中延迟执行
+#define DO_IN_MAIN_QUEUE_AFTER(seconds, action) dispatch_after(dispatch_time(DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC), dispatch_get_main_queue(), action)
+
+// 在子线程中执行
+#define DO_IN_BACKGROUND(action) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), action)
+// 在子线程中延迟执行
+#define DO_IN_BACKGROUND_AFTER(seconds, action) dispatch_after(dispatch_time(DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), action)
 
 
 //获取系统对象

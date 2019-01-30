@@ -40,7 +40,7 @@
 }
 -(void)requestZuJi_Other{
     kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"%@/%@/%@",self.userId,@"1"];
+    NSString * par = [NSString stringWithFormat:@"%@/%@",self.userId,@"1"];
     [YX_MANAGER requestGetOther_Track_list:par success:^(id object) {
         [weakself.dataArray removeAllObjects];
         [weakself.dataArray addObjectsFromArray:object];

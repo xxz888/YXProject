@@ -11,8 +11,11 @@
 #import <UShareUI/UShareUI.h>
 #import "PYSearchViewController.h"
 #import "PYTempViewController.h"
+
+
 @interface RootViewController ()<PYSearchViewControllerDelegate>{
     XHStarRateView *starRateView ;
+    UITableView * _yxTableView;
 }
 
 @property (nonatomic,strong) UIImageView* noDataView;
@@ -29,7 +32,6 @@
     _StatusBarStyle=StatusBarStyle;
     [self setNeedsStatusBarAppearanceUpdate];
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor =KWhiteColor;
@@ -38,10 +40,10 @@
     //默认导航栏样式：黑字
     self.StatusBarStyle = 0;
     [[UINavigationBar appearance] setTintColor:KBlackColor];
-
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-
+    self.requestPage = 1;
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -56,14 +58,10 @@
 
 
 
-- (void)showLoadingAnimation
-{
-   
+- (void)showLoadingAnimation{
 }
 
-- (void)stopLoadingAnimation
-{
-   
+- (void)stopLoadingAnimation{
 }
 
 -(void)showNoDataImage
@@ -85,10 +83,34 @@
     }
 }
 
+- (void)addRefreshView:(UITableView *)yxTableView{
+    _yxTableView = yxTableView;
+    yxTableView.showsHorizontalScrollIndicator = YES;
+    yxTableView.estimatedRowHeight = 0;
+    yxTableView.estimatedSectionFooterHeight = 0;
+    yxTableView.estimatedSectionHeaderHeight = 0;
+    //头部刷新
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(headerRereshing)];
+    header.automaticallyChangeAlpha = YES;
+    header.lastUpdatedTimeLabel.hidden = YES;
+    yxTableView.mj_header = header;
+    
+    //底部刷新
+    yxTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
+}
+
+-(void)headerRereshing{
+    self.requestPage = 1;
+
+}
+-(void)footerRereshing{
+    self.requestPage += 1;
+
+}
 /**
  *  懒加载UITableView
  *
- *  @return UITableView
+ *  @return UITableViewT
  */
 - (UITableView *)tableView
 {
@@ -107,9 +129,6 @@
         
         //底部刷新
         _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
-//        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
-//        _tableView.mj_footer.ignoredScrollViewContentInsetBottom = 30;
-
         _tableView.backgroundColor=CViewBgColor;
         _tableView.scrollsToTop = YES;
         _tableView.tableFooterView = [[UIView alloc] init];
@@ -137,28 +156,12 @@
         
         //底部刷新
         _collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
-
-//#ifdef kiOS11Before
-//        
-//#else
-//        _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-//        _collectionView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
-//        _collectionView.scrollIndicatorInsets = _collectionView.contentInset;
-//#endif
         
         _collectionView.backgroundColor=CViewBgColor;
         _collectionView.scrollsToTop = YES;
     }
     return _collectionView;
 }
--(void)headerRereshing{
-    
-}
-
--(void)footerRereshing{
-    
-}
-
 /**
  *  是否显示返回按钮
  */

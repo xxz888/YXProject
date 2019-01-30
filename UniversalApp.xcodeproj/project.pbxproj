@@ -280,6 +280,12 @@
 		BB95F63F21E6E0880071A369 /* XHStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB95F63E21E6E0880071A369 /* XHStarRateView.m */; };
 		BB95F64721E715CB0071A369 /* YXHomeLastMyTalkView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB95F64521E715CB0071A369 /* YXHomeLastMyTalkView.m */; };
 		BB95F64921E715D60071A369 /* YXHomeLastMyTalkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB95F64821E715D60071A369 /* YXHomeLastMyTalkView.xib */; };
+		BB9832702201700C0048D103 /* FCXRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9832672201700C0048D103 /* FCXRefreshFooterView.m */; };
+		BB9832712201700C0048D103 /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB9832692201700C0048D103 /* blueArrow@2x.png */; };
+		BB9832722201700C0048D103 /* UIScrollView+FCXRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = BB98326A2201700C0048D103 /* UIScrollView+FCXRefresh.m */; };
+		BB9832732201700C0048D103 /* FCXRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB98326B2201700C0048D103 /* FCXRefreshHeaderView.m */; };
+		BB9832742201700C0048D103 /* FCXRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB98326D2201700C0048D103 /* FCXRefreshBaseView.m */; };
+		BB9832752201700C0048D103 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = BB98326F2201700C0048D103 /* blueArrow.png */; };
 		BB9EFE7021F5CCBA00180813 /* YXPublishMoreTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFE6E21F5CCBA00180813 /* YXPublishMoreTagsViewController.m */; };
 		BB9EFE7121F5CCBA00180813 /* YXPublishMoreTagsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB9EFE6F21F5CCBA00180813 /* YXPublishMoreTagsViewController.xib */; };
 		BB9EFE8F21F6B92300180813 /* YXQCDJCDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFE8D21F6B92300180813 /* YXQCDJCDetailTableViewController.m */; };
@@ -1022,6 +1028,16 @@
 		BB95F64521E715CB0071A369 /* YXHomeLastMyTalkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeLastMyTalkView.m; sourceTree = "<group>"; };
 		BB95F64621E715CB0071A369 /* YXHomeLastMyTalkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHomeLastMyTalkView.h; sourceTree = "<group>"; };
 		BB95F64821E715D60071A369 /* YXHomeLastMyTalkView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeLastMyTalkView.xib; sourceTree = "<group>"; };
+		BB9832662201700C0048D103 /* FCXRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCXRefreshHeaderView.h; sourceTree = "<group>"; };
+		BB9832672201700C0048D103 /* FCXRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCXRefreshFooterView.m; sourceTree = "<group>"; };
+		BB9832682201700C0048D103 /* FCXRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCXRefreshBaseView.h; sourceTree = "<group>"; };
+		BB9832692201700C0048D103 /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
+		BB98326A2201700C0048D103 /* UIScrollView+FCXRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+FCXRefresh.m"; sourceTree = "<group>"; };
+		BB98326B2201700C0048D103 /* FCXRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCXRefreshHeaderView.m; sourceTree = "<group>"; };
+		BB98326C2201700C0048D103 /* FCXRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCXRefreshFooterView.h; sourceTree = "<group>"; };
+		BB98326D2201700C0048D103 /* FCXRefreshBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCXRefreshBaseView.m; sourceTree = "<group>"; };
+		BB98326E2201700C0048D103 /* UIScrollView+FCXRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+FCXRefresh.h"; sourceTree = "<group>"; };
+		BB98326F2201700C0048D103 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
 		BB9EFE6D21F5CCBA00180813 /* YXPublishMoreTagsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXPublishMoreTagsViewController.h; sourceTree = "<group>"; };
 		BB9EFE6E21F5CCBA00180813 /* YXPublishMoreTagsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXPublishMoreTagsViewController.m; sourceTree = "<group>"; };
 		BB9EFE6F21F5CCBA00180813 /* YXPublishMoreTagsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXPublishMoreTagsViewController.xib; sourceTree = "<group>"; };
@@ -2970,6 +2986,23 @@
 			path = "我来点评";
 			sourceTree = "<group>";
 		};
+		BB9832652201700C0048D103 /* FCXRefreshView */ = {
+			isa = PBXGroup;
+			children = (
+				BB9832662201700C0048D103 /* FCXRefreshHeaderView.h */,
+				BB9832672201700C0048D103 /* FCXRefreshFooterView.m */,
+				BB9832682201700C0048D103 /* FCXRefreshBaseView.h */,
+				BB9832692201700C0048D103 /* blueArrow@2x.png */,
+				BB98326A2201700C0048D103 /* UIScrollView+FCXRefresh.m */,
+				BB98326B2201700C0048D103 /* FCXRefreshHeaderView.m */,
+				BB98326C2201700C0048D103 /* FCXRefreshFooterView.h */,
+				BB98326D2201700C0048D103 /* FCXRefreshBaseView.m */,
+				BB98326E2201700C0048D103 /* UIScrollView+FCXRefresh.h */,
+				BB98326F2201700C0048D103 /* blueArrow.png */,
+			);
+			path = FCXRefreshView;
+			sourceTree = "<group>";
+		};
 		BB9EFE6C21F5CC7F00180813 /* 更多标签 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3185,6 +3218,7 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BB9832652201700C0048D103 /* FCXRefreshView */,
 				BB5FD89621FF488E00B5F1A8 /* XWPopMenu */,
 				BB5FD87721FE9C5200B5F1A8 /* TestTabBar.h */,
 				BB5FD87621FE9C5200B5F1A8 /* TestTabBar.m */,
@@ -4692,6 +4726,7 @@
 				BBD2C92F21E0F67800350DCD /* ImageSelectedOff.png in Resources */,
 				BBD2C94421E0F67800350DCD /* UIBarButtonItemArrowRight@2x.png in Resources */,
 				296DEA7F1F5D536500C6FD00 /* pageControlDot@3x.png in Resources */,
+				BB9832752201700C0048D103 /* blueArrow.png in Resources */,
 				BBECEEB621F05B3C007E90AC /* YXQCDJCHeaderView.xib in Resources */,
 				BBCC4AB321E83F9F00493F40 /* YXToolsColorTableViewCell.xib in Resources */,
 				294A680D1ED58F0700AC382A /* LCTabBarBadge@2x.png in Resources */,
@@ -4775,6 +4810,7 @@
 				BBD30CF321E5F7C5000D3244 /* YXHomeLastDetailView.xib in Resources */,
 				BBA8130D21DDFE64001B5EA1 /* YXHomeXueJiaHeaderView.xib in Resources */,
 				2996102B1ED84B5100BCED2A /* UMSocialSDKResources.bundle in Resources */,
+				BB9832712201700C0048D103 /* blueArrow@2x.png in Resources */,
 				BBD2C93421E0F67800350DCD /* PlayButtonOverlayLargeTap.png in Resources */,
 				BBECEF0721F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.xib in Resources */,
 				29629EE91F78E49B002CFCBD /* back_icon@2x.png in Resources */,
@@ -4968,6 +5004,7 @@
 				BB928F7C21FB55E80090A044 /* YXMineMyDianZanViewController.m in Sources */,
 				BBD2C8FC21E0F67700350DCD /* TZPhotoPreviewController.m in Sources */,
 				BBA812E721DDDE47001B5EA1 /* MDMultipleSegmentLayout.m in Sources */,
+				BB9832732201700C0048D103 /* FCXRefreshHeaderView.m in Sources */,
 				2973A81A1EDEE6BE002751F0 /* GameInfo.m in Sources */,
 				BBDA2C6921EB308100EDCCFF /* SDWeiXinPhotoContainerView.m in Sources */,
 				BB7AF1382200869400989896 /* YXMineHeaderView.m in Sources */,
@@ -5068,6 +5105,7 @@
 				BBCC4B1721E8927700493F40 /* UIView+Geometry.m in Sources */,
 				293D46081ECDAEAD007C64A9 /* HomeViewController.m in Sources */,
 				290A981D1F4ABEB9006BF882 /* BaseRequestAPI.m in Sources */,
+				BB9832742201700C0048D103 /* FCXRefreshBaseView.m in Sources */,
 				BB6D2A3721EEC63900F5049F /* EmojiToolBar.m in Sources */,
 				BBD2C80E21E0F41F00350DCD /* YXMineImageViewController.m in Sources */,
 				BBD2C80D21E0F41F00350DCD /* YXMineFootViewController.m in Sources */,
@@ -5100,12 +5138,14 @@
 				2914E48D1F20A471001C01DB /* PersonListLogic.m in Sources */,
 				BBA8131321DE0814001B5EA1 /* HttpRequest.m in Sources */,
 				293ECC2D1EE56D1D008061A1 /* IMManager.m in Sources */,
+				BB9832702201700C0048D103 /* FCXRefreshFooterView.m in Sources */,
 				BBD2C8FF21E0F67700350DCD /* TZImageManager.m in Sources */,
 				BB9413DC21F8B602007E800A /* IQBarButtonItem.m in Sources */,
 				BB928F4D21F9CA0A0090A044 /* MCTabBar.m in Sources */,
 				BBA812E821DDDE47001B5EA1 /* MDFlipCollectionView.m in Sources */,
 				29AD6C4D1ED3D51200B0879C /* OpenUDID.m in Sources */,
 				BBA812B321DDABC1001B5EA1 /* YXMessageViewController.m in Sources */,
+				BB9832722201700C0048D103 /* UIScrollView+FCXRefresh.m in Sources */,
 				290A97FE1F4ABC12006BF882 /* MineHeaderView.m in Sources */,
 				BBD2C90321E0F67700350DCD /* TZGifPhotoPreviewController.m in Sources */,
 				296DEA721F5D50D100C6FD00 /* TAPageControl.m in Sources */,
