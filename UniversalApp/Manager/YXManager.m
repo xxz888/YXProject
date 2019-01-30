@@ -551,7 +551,13 @@ successBlock(responseObject);\
 
 
 
-
+#pragma mark ========== 获取其他人足迹列表 ==========
+-(void)requestGetOther_Track_list:YX_BLOCK{
+    NSString * url = @"/users/others/7/";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 
 #pragma mark ==========点赞/取消点赞足迹 ==========
 -(void)requestDianZanFoot:YX_BLOCK{

@@ -237,6 +237,8 @@
 		BB7AF12C2200035700989896 /* YXPublishFootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7AF12B2200035700989896 /* YXPublishFootViewController.m */; };
 		BB7AF13422004FE600989896 /* YXMineFootDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7AF13222004FE600989896 /* YXMineFootDetailViewController.m */; };
 		BB7AF13522004FE600989896 /* YXMineFootDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7AF13322004FE600989896 /* YXMineFootDetailViewController.xib */; };
+		BB7AF1382200869400989896 /* YXMineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7AF1372200869400989896 /* YXMineHeaderView.m */; };
+		BB7AF13A2200869E00989896 /* YXMineHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7AF1392200869E00989896 /* YXMineHeaderView.xib */; };
 		BB928F4A21F9BB960090A044 /* YXHomeEditPersonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F4921F9BB960090A044 /* YXHomeEditPersonTableViewController.m */; };
 		BB928F4D21F9CA0A0090A044 /* MCTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F4C21F9CA090090A044 /* MCTabBar.m */; };
 		BB928F5721FABCC30090A044 /* YXMinePingLunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F5521FABCC30090A044 /* YXMinePingLunViewController.m */; };
@@ -939,6 +941,9 @@
 		BB7AF13122004FE600989896 /* YXMineFootDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineFootDetailViewController.h; sourceTree = "<group>"; };
 		BB7AF13222004FE600989896 /* YXMineFootDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineFootDetailViewController.m; sourceTree = "<group>"; };
 		BB7AF13322004FE600989896 /* YXMineFootDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineFootDetailViewController.xib; sourceTree = "<group>"; };
+		BB7AF1362200869400989896 /* YXMineHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineHeaderView.h; sourceTree = "<group>"; };
+		BB7AF1372200869400989896 /* YXMineHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineHeaderView.m; sourceTree = "<group>"; };
+		BB7AF1392200869E00989896 /* YXMineHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineHeaderView.xib; sourceTree = "<group>"; };
 		BB928F4821F9BB960090A044 /* YXHomeEditPersonTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeEditPersonTableViewController.h; sourceTree = "<group>"; };
 		BB928F4921F9BB960090A044 /* YXHomeEditPersonTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeEditPersonTableViewController.m; sourceTree = "<group>"; };
 		BB928F4B21F9CA090090A044 /* MCTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCTabBar.h; sourceTree = "<group>"; };
@@ -3003,6 +3008,9 @@
 			children = (
 				BBA812B421DDABD3001B5EA1 /* YXMineViewController.h */,
 				BBA812B521DDABD3001B5EA1 /* YXMineViewController.m */,
+				BB7AF1362200869400989896 /* YXMineHeaderView.h */,
+				BB7AF1372200869400989896 /* YXMineHeaderView.m */,
+				BB7AF1392200869E00989896 /* YXMineHeaderView.xib */,
 				BB94141C21F9B850007E800A /* 编辑个人资料 */,
 				BB94141121F9AC3F007E800A /* 抽屉 */,
 				BBD30CE521E5CDE3000D3244 /* View */,
@@ -4775,6 +4783,7 @@
 				BBC6181321F5BD2B00495619 /* YXHomeGolfScoreTableViewCell.xib in Resources */,
 				296F9A301F04F39000909CDB /* 13.jpg in Resources */,
 				BBD2C96121E10AA100350DCD /* YXPublishImageTableViewCell.xib in Resources */,
+				BB7AF13A2200869E00989896 /* YXMineHeaderView.xib in Resources */,
 				BBD2C94B21E0F67800350DCD /* README.md in Resources */,
 				BBD2C95721E0F72800350DCD /* README.md in Resources */,
 				293D46401ECDBB63007C64A9 /* icon_tabbar_discovery.png in Resources */,
@@ -4961,6 +4970,7 @@
 				BBA812E721DDDE47001B5EA1 /* MDMultipleSegmentLayout.m in Sources */,
 				2973A81A1EDEE6BE002751F0 /* GameInfo.m in Sources */,
 				BBDA2C6921EB308100EDCCFF /* SDWeiXinPhotoContainerView.m in Sources */,
+				BB7AF1382200869400989896 /* YXMineHeaderView.m in Sources */,
 				290A97DD1F4AB24A006BF882 /* TagsViewController.m in Sources */,
 				296DEA711F5D50D100C6FD00 /* TADotView.m in Sources */,
 				BBD2C92221E0F67800350DCD /* MWZoomingScrollView.m in Sources */,

@@ -181,7 +181,10 @@
     cell.clickImageBlock = ^(NSInteger tag) {
         [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
     };
-
+    cell.zanblock = ^(YXFindImageTableViewCell * cell) {
+        NSIndexPath * indexPath1 = [weakself.yxTableView indexPathForCell:cell];
+        [weakself requestDianZan_Image_Action:indexPath1];
+    };
     [cell setCellValue:dic];
     return cell;
 }
@@ -200,14 +203,30 @@
 -(YXFindFootTableViewCell *)cunstomFootData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath{
     YXFindFootTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFindFootTableViewCell" forIndexPath:indexPath];
     cell.titleImageView.tag = indexPath.row;
+    [cell setCellValue:dic];
+
     kWeakSelf(self);
     cell.clickImageBlock = ^(NSInteger tag) {
         [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
     };
-    [cell setCellValue:dic];
+    cell.jumpDetailVC = ^(YXFindFootTableViewCell * cell) {
+        NSIndexPath * indexPath1 = [weakself.yxTableView indexPathForCell:cell];
+        [weakself commonDidVC:indexPath1];
+    };
+    cell.zanblock = ^(YXFindFootTableViewCell * cell) {
+        NSIndexPath * indexPath1 = [weakself.yxTableView indexPathForCell:cell];
+        [weakself requestDianZan_ZuJI_Action:indexPath1];
+    };
     return cell;
 }
-
+-(void)commonDidVC:(NSIndexPath *)indexPath{
+    NSDictionary * dic = self.dataArray[indexPath.row];
+    YXMineFootDetailViewController * VC = [[YXMineFootDetailViewController alloc]init];
+    VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+    YX_MANAGER.isHaveIcon = NO;
+    [self.navigationController pushViewController:VC animated:YES];
+}
+#pragma mark ========== 点击头像 ==========
 -(void)clickUserImageView:(NSString *)userId{
     UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
     YXMineViewController * mineVC = [stroryBoard5 instantiateViewControllerWithIdentifier:@"YXMineViewController"];
@@ -215,7 +234,22 @@
     mineVC.whereCome = YES;    //  YES为其他人 NO为自己
     [self.navigationController pushViewController:mineVC animated:YES];
 }
-
+#pragma mark ========== 晒图点赞 ==========
+-(void)requestDianZan_Image_Action:(NSIndexPath *)indexPath{
+    kWeakSelf(self);
+    NSString* post_id = kGetString(self.dataArray[indexPath.row][@"id"]);
+    [YX_MANAGER requestPost_praisePOST:@{@"post_id":post_id} success:^(id object) {
+        [weakself requestFindTheType];
+    }];
+}
+#pragma mark ========== 足迹点赞 ==========
+-(void)requestDianZan_ZuJI_Action:(NSIndexPath *)indexPath{
+    kWeakSelf(self);
+    NSString* track_id = kGetString(self.dataArray[indexPath.row][@"id"]);
+    [YX_MANAGER requestDianZanFoot:@{@"track_id":track_id} success:^(id object) {
+        [weakself requestFindTheType];
+    }];
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.row];
@@ -237,10 +271,7 @@
         YX_MANAGER.isHaveIcon = YES;
         [self.navigationController pushViewController:VC animated:YES];
     }else if (tag == 4){//足迹
-        YXMineFootDetailViewController * VC = [[YXMineFootDetailViewController alloc]init];
-        VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-        YX_MANAGER.isHaveIcon = NO;
-        [self.navigationController pushViewController:VC animated:YES];
+        [self commonDidVC:indexPath];
     }
 }
 

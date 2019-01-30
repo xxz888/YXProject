@@ -9,5 +9,6 @@
 #import "RootViewController.h"
 
 @interface YXMineFootViewController : RootViewController
-
+@property (strong, nonatomic) UITableView *yxTableView;
+@property (nonatomic,copy) NSString * userId;//我的界面 下边 如果是other，要传id请求，晒图和文章
 @end

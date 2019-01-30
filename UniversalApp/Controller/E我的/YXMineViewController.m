@@ -80,7 +80,7 @@
     YXMineArticleViewController * articleVC = [stroryBoard instantiateViewControllerWithIdentifier:@"YXMineArticleViewController"];
     articleVC.userId = self.userId;
     
-    YXMineAllViewController * AllVC = [stroryBoard instantiateViewControllerWithIdentifier:@"YXMineAllViewController"];
+    YXMineAllViewController * AllVC = [[YXMineAllViewController alloc]init];
     AllVC.userId = self.userId;
     
     

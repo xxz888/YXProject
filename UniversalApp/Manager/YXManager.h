@@ -198,4 +198,6 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestFaBuFoot_child_PingLun:YX_BLOCK;
 #pragma mark ==========点赞/取消点赞足迹评论 ==========
 -(void)requestDianZanFoot_PingLun:YX_BLOCK;
+#pragma mark ========== 获取其他人足迹列表 ==========
+-(void)requestGetOther_Track_list:YX_BLOCK;
 @end

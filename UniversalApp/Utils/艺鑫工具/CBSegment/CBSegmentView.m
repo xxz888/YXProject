@@ -96,7 +96,7 @@
         [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         
         UIView *sliderAll = [[UIView alloc]init];
-        sliderAll.frame = CGRectMake(0,_HeaderH-3 , KScreenWidth, 3);
+        sliderAll.frame = CGRectMake(0,_HeaderH-3 , KScreenWidth*2, 3);
         sliderAll.backgroundColor = YXRGBAColor(239, 239, 239);
         [self addSubview:sliderAll];
         

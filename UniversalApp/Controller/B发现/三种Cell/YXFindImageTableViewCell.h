@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
 @interface YXFindImageTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *titleImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
@@ -29,8 +30,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^clickImageBlock)(NSInteger);
 @property (nonatomic,copy) clickImageBlock clickImageBlock;
-
 -(void)setCellValue:(NSDictionary *)dic;
+
+
+typedef void(^clickImageZanBlock)(YXFindImageTableViewCell *);
+@property (weak, nonatomic) IBOutlet UIButton *likeBtn;
+- (IBAction)likeBtnAction:(id)sender;
+@property (nonatomic,copy) clickImageZanBlock zanblock;
+
 @end
 
 NS_ASSUME_NONNULL_END

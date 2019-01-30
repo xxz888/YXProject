@@ -32,6 +32,13 @@
     self.clickImageBlock(tag);
 }
 
+- (IBAction)addPlBtnAction:(id)sender {
+    self.jumpDetailVC(self);
+}
+- (IBAction)searchAllPlBtnAction:(id)sender{
+    self.jumpDetailVC(self);
+}
+
 -(void)setCellValue:(NSDictionary *)dic{
     
  
@@ -41,6 +48,12 @@
     self.titleTagtextView.text = titleText;
     [ShareManager inTextViewOutDifColorView:self.titleTagtextView tag:dic[@"index"]];
     
+    
+    NSString * allString = [NSString stringWithFormat:@"查看全部%@条评论",kGetString(dic[@"comment_number"])];
+    if ([allString isEqualToString:@"查看全部(null)条评论"] || [allString isEqualToString:@"查看全部0条评论"]) {
+        allString = @"查看全部评论";
+    }
+    [self.searchBtn setTitle:allString forState:UIControlStateNormal];
     
     [self.midImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"pic1"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"user_photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
@@ -54,12 +67,19 @@
      NSArray * commentArray = dic[@"comment_list"];
      if (commentArray.count > 0) {
      self.pl1NameLbl.text = commentArray[0][@"user_name"];
-     self.pl1ContentLbl.text = commentArray[0][@"comment"];
+     self.pl2NameLbl.text = commentArray[0][@"comment"];
      }else if (commentArray.count > 1){
-     self.pl2NameLbl.text = commentArray[0][@"user_name"];
+     self.pl1ContentLbl.text = commentArray[0][@"user_name"];
      self.pl2ContentLbl.text = commentArray[0][@"comment"];
      }
     
+    BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
+    UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
+    [self.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
+    
     [self.addPlImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"user_photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+}
+- (IBAction)likeBtnAction:(id)sender{
+    self.zanblock(self);
 }
 @end

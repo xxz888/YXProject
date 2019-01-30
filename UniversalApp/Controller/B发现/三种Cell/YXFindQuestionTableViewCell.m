@@ -62,7 +62,11 @@
     
     
     
-    
+    NSString * allString = [NSString stringWithFormat:@"查看全部%@条评论",kGetString(dic[@"comment_number"])];
+    if ([allString isEqualToString:@"查看全部(null)条评论"] || [allString isEqualToString:@"查看全部0条评论"]) {
+        allString = @"查看全部评论";
+    }
+    [self.searchBtn setTitle:allString forState:UIControlStateNormal];
     
     
     
@@ -78,9 +82,16 @@
     [self.mapBtn setTitle:dic[@"publish_site"] forState:UIControlStateNormal];
   
     
-   
+    BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
+    UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
+    [self.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
      
     
     [self.addPlImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo1"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+}
+
+
+- (IBAction)likeBtnAction:(id)sender {
+    self.zanblock(self);
 }
 @end

@@ -96,10 +96,10 @@
                             <constraint firstAttribute="height" constant="1" id="gfI-Oi-blQ"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8EQ-ay-nxW">
-                        <rect key="frame" x="30" y="231" width="107" height="28"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8EQ-ay-nxW">
+                        <rect key="frame" x="30" y="231" width="255" height="28"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <state key="normal" title="杭州野风现代之星"/>
+                        <state key="normal" title="-"/>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="定位" translatesAutoresizingMaskIntoConstraints="NO" id="UZY-Yi-QCD">
                         <rect key="frame" x="5" y="235" width="20" height="20"/>
@@ -189,7 +189,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQa-5k-l92">
                                         <rect key="frame" x="0.0" y="60" width="310" height="20"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <state key="normal" title="查看全部22条评论">
+                                        <state key="normal" title="查看全部评论">
                                             <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -205,25 +205,30 @@
                                                     <constraint firstAttribute="width" constant="20" id="zXm-xv-Ydg"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加评论" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dk4-2q-WLg">
-                                                <rect key="frame" x="30" y="0.0" width="280" height="20"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YLi-a4-4R1">
+                                                <rect key="frame" x="25" y="-3.5" width="285" height="27"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <state key="normal" title="添加评论">
+                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="addPlBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="t8t-Kc-B73"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="YLi-a4-4R1" firstAttribute="leading" secondItem="KWd-1d-AEX" secondAttribute="trailing" constant="5" id="0ms-oX-M6j"/>
                                             <constraint firstItem="KWd-1d-AEX" firstAttribute="leading" secondItem="LUZ-uM-XAI" secondAttribute="leading" id="742-pQ-Srg"/>
-                                            <constraint firstAttribute="trailing" secondItem="Dk4-2q-WLg" secondAttribute="trailing" id="8nw-Hg-cC3"/>
                                             <constraint firstAttribute="bottom" secondItem="KWd-1d-AEX" secondAttribute="bottom" id="Gro-HN-Pcf"/>
-                                            <constraint firstItem="Dk4-2q-WLg" firstAttribute="top" secondItem="LUZ-uM-XAI" secondAttribute="top" id="QOR-I4-axd"/>
-                                            <constraint firstItem="Dk4-2q-WLg" firstAttribute="leading" secondItem="KWd-1d-AEX" secondAttribute="trailing" constant="10" id="ahU-zs-Hvd"/>
-                                            <constraint firstAttribute="bottom" secondItem="Dk4-2q-WLg" secondAttribute="bottom" id="eDa-t0-Hct"/>
+                                            <constraint firstItem="YLi-a4-4R1" firstAttribute="centerY" secondItem="KWd-1d-AEX" secondAttribute="centerY" id="ePE-y7-EUb"/>
                                             <constraint firstItem="KWd-1d-AEX" firstAttribute="top" secondItem="LUZ-uM-XAI" secondAttribute="top" id="zJ7-DR-hvi"/>
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="YLi-a4-4R1" firstAttribute="trailing" secondItem="jQa-5k-l92" secondAttribute="trailing" id="Mjh-Tp-soK"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -242,11 +247,23 @@
                             <constraint firstAttribute="height" constant="5" id="JXD-tc-bdK"/>
                         </constraints>
                     </imageView>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="njj-q4-4kw">
+                        <rect key="frame" x="290" y="232.5" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="MZS-eS-jQl"/>
+                            <constraint firstAttribute="height" constant="25" id="vYp-d5-79s"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="UnZan"/>
+                        <connections>
+                            <action selector="likeBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="OO2-EK-uNO"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="RGo-9O-LqQ" firstAttribute="leading" secondItem="UZY-Yi-QCD" secondAttribute="leading" id="3vK-SK-ZoF"/>
                     <constraint firstItem="a8Q-oD-Ifi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="Drq-xn-HLg"/>
                     <constraint firstAttribute="trailing" secondItem="cf8-aN-YP0" secondAttribute="trailing" id="EBr-aR-NtP"/>
+                    <constraint firstItem="njj-q4-4kw" firstAttribute="centerY" secondItem="8EQ-ay-nxW" secondAttribute="centerY" id="Jgy-15-8R1"/>
                     <constraint firstItem="Ahe-XY-iiY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="Qrx-mB-MJz"/>
                     <constraint firstItem="UZY-Yi-QCD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="Unq-wv-zA9"/>
                     <constraint firstItem="8EQ-ay-nxW" firstAttribute="leading" secondItem="UZY-Yi-QCD" secondAttribute="trailing" constant="5" id="Vob-pB-61r"/>
@@ -262,6 +279,8 @@
                     <constraint firstItem="UZY-Yi-QCD" firstAttribute="top" secondItem="a8Q-oD-Ifi" secondAttribute="bottom" constant="5" id="rDA-TK-lk2"/>
                     <constraint firstAttribute="trailing" secondItem="Ahe-XY-iiY" secondAttribute="trailing" id="rYc-Qk-lP9"/>
                     <constraint firstItem="RGo-9O-LqQ" firstAttribute="top" secondItem="xFE-rI-8pz" secondAttribute="bottom" constant="5" id="sTH-QW-Gvw"/>
+                    <constraint firstItem="njj-q4-4kw" firstAttribute="leading" secondItem="8EQ-ay-nxW" secondAttribute="trailing" constant="5" id="t6I-RZ-cQG"/>
+                    <constraint firstAttribute="trailing" secondItem="njj-q4-4kw" secondAttribute="trailing" constant="5" id="tVd-lz-wcG"/>
                     <constraint firstItem="a8Q-oD-Ifi" firstAttribute="top" secondItem="Ahe-XY-iiY" secondAttribute="bottom" constant="10" id="tnI-ty-DDm"/>
                     <constraint firstItem="8EQ-ay-nxW" firstAttribute="centerY" secondItem="UZY-Yi-QCD" secondAttribute="centerY" id="yY9-kY-hq5"/>
                     <constraint firstItem="xFE-rI-8pz" firstAttribute="top" secondItem="UZY-Yi-QCD" secondAttribute="bottom" constant="5" id="z3F-OR-MmS"/>
@@ -270,6 +289,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="addPlImageView" destination="KWd-1d-AEX" id="Rnj-ha-CzI"/>
+                <outlet property="likeBtn" destination="njj-q4-4kw" id="7bl-aX-byp"/>
                 <outlet property="mapBtn" destination="8EQ-ay-nxW" id="mbO-yn-75Q"/>
                 <outlet property="midImageView1" destination="R5O-8J-lIX" id="6Yo-5R-fFD"/>
                 <outlet property="midImageView2" destination="Ws7-gX-ace" id="b5u-K3-WDf"/>
@@ -278,16 +298,20 @@
                 <outlet property="pl1NameLbl" destination="MbK-4l-7hv" id="91E-bC-sIo"/>
                 <outlet property="pl2ContentLbl" destination="xob-G7-Bir" id="7Hh-VX-7r9"/>
                 <outlet property="pl2NameLbl" destination="bhE-Sm-jsP" id="mA2-cc-Rsr"/>
+                <outlet property="searchBtn" destination="jQa-5k-l92" id="hUg-IF-Oh3"/>
                 <outlet property="timeLbl" destination="cvQ-bD-F60" id="fhj-j6-brW"/>
                 <outlet property="titleImageView" destination="qm7-h2-uxC" id="P6i-i0-1r4"/>
                 <outlet property="titleLbl" destination="WdQ-Hc-Bej" id="s2e-tO-Bcw"/>
                 <outlet property="titleTagLbl1" destination="SKQ-6J-jr0" id="weG-tY-0k5"/>
                 <outlet property="titleTagLbl2" destination="Bqr-qJ-SvN" id="n7q-8o-n9F"/>
+                <outlet property="topView" destination="cf8-aN-YP0" id="1fm-vC-vDf"/>
+                <outlet property="topViewConstraint" destination="8mc-CO-4aW" id="TfC-ni-Mx4"/>
             </connections>
             <point key="canvasLocation" x="99" y="68"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="UnZan" width="32" height="32"/>
         <image name="定位" width="32" height="32"/>
     </resources>
 </document>

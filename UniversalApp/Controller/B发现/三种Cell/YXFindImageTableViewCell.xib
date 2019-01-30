@@ -80,8 +80,8 @@
                             <constraint firstAttribute="width" constant="20" id="QcF-RO-Kc2"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oE4-Xp-Bai">
-                        <rect key="frame" x="30" y="404" width="30" height="28"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oE4-Xp-Bai">
+                        <rect key="frame" x="30" y="404" width="255" height="28"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <state key="normal" title="-"/>
                     </button>
@@ -220,6 +220,17 @@
                             <constraint firstAttribute="height" constant="5" id="iOE-XE-ymg"/>
                         </constraints>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MAJ-zC-OgS">
+                        <rect key="frame" x="290" y="405.5" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="HQm-Pj-S90"/>
+                            <constraint firstAttribute="height" constant="25" id="zgI-EV-UhM"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="UnZan"/>
+                        <connections>
+                            <action selector="likeBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="zNo-fJ-r1c"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="yIq-Bb-jOb" firstAttribute="leading" secondItem="BMp-Mq-gff" secondAttribute="leading" id="0sP-J0-wqn"/>
@@ -233,6 +244,9 @@
                     <constraint firstAttribute="trailing" secondItem="0tg-ot-fK3" secondAttribute="trailing" id="JrC-to-uPp"/>
                     <constraint firstItem="oE4-Xp-Bai" firstAttribute="centerY" secondItem="BMp-Mq-gff" secondAttribute="centerY" id="Jsd-lN-dWR"/>
                     <constraint firstItem="Rif-eJ-Htc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="KCM-55-91O"/>
+                    <constraint firstAttribute="trailing" secondItem="MAJ-zC-OgS" secondAttribute="trailing" constant="5" id="P0a-bi-BSK"/>
+                    <constraint firstItem="MAJ-zC-OgS" firstAttribute="leading" secondItem="oE4-Xp-Bai" secondAttribute="trailing" constant="5" id="S2M-5o-nO4"/>
+                    <constraint firstItem="MAJ-zC-OgS" firstAttribute="centerY" secondItem="oE4-Xp-Bai" secondAttribute="centerY" id="Taf-oB-HGT"/>
                     <constraint firstItem="vDM-97-ztu" firstAttribute="top" secondItem="8lP-WS-6cI" secondAttribute="bottom" constant="10" id="UVp-21-ytT"/>
                     <constraint firstItem="yIq-Bb-jOb" firstAttribute="top" secondItem="0tg-ot-fK3" secondAttribute="bottom" constant="5" id="VL1-u0-HrR"/>
                     <constraint firstItem="8lP-WS-6cI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="XVk-9j-aXe"/>
@@ -251,6 +265,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="addPlImageView" destination="4pD-A1-8kD" id="PmN-IZ-Joq"/>
+                <outlet property="likeBtn" destination="MAJ-zC-OgS" id="HHA-px-DzX"/>
                 <outlet property="mapBtn" destination="oE4-Xp-Bai" id="qPL-bc-mhA"/>
                 <outlet property="midImageView" destination="vDM-97-ztu" id="vgO-Cf-2EM"/>
                 <outlet property="pl1ContentLbl" destination="92m-IO-nGI" id="nwG-4s-zaG"/>
@@ -267,6 +282,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="UnZan" width="32" height="32"/>
         <image name="定位" width="32" height="32"/>
     </resources>
 </document>

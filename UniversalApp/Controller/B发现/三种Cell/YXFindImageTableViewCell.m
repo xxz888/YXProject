@@ -71,17 +71,25 @@
     [self.mapBtn setTitle:dic[@"publish_site"] forState:UIControlStateNormal];
     self.pl1NameLbl.text = dic[@"max_hot_comment"][@"user_name"];
     self.pl1ContentLbl.text = dic[@"max_hot_comment"][@"comment"];
-    /*
-    NSArray * commentArray = dic[@"max_hot_comment"];
+    
+    NSArray * commentArray = dic[@"comment_list"];
     if (commentArray.count > 0) {
         self.pl1NameLbl.text = commentArray[0][@"user_name"];
-        self.pl1ContentLbl.text = commentArray[0][@"comment"];
+        self.pl2NameLbl.text = commentArray[0][@"comment"];
     }else if (commentArray.count > 1){
-        self.pl2NameLbl.text = commentArray[0][@"user_name"];
+        self.pl1ContentLbl.text = commentArray[0][@"user_name"];
         self.pl2ContentLbl.text = commentArray[0][@"comment"];
     }
-
-     */
+    
+    BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
+    UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
+    [self.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
+    
     [self.addPlImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo1"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+}
+
+
+- (IBAction)likeBtnAction:(id)sender {
+    self.zanblock(self);
 }
 @end
