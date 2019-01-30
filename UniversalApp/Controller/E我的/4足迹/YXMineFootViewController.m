@@ -23,27 +23,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self tableviewCon];
+    
+    [self addRefreshView:self.yxTableView];
     user_id_BOOL ? [self requestZuJi_Other] : [self requestZuJi];
 
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 }
+-(void)headerRereshing{
+    [super headerRereshing];
+    user_id_BOOL ? [self requestZuJi_Other] : [self requestZuJi];
+}
+-(void)footerRereshing{
+    [super footerRereshing];
+    user_id_BOOL ? [self requestZuJi_Other] : [self requestZuJi];
+}
 -(void)requestZuJi{
     kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"%@/%@/%@",@"1",@"1",@"1"];
+    NSString * par = [NSString stringWithFormat:@"%@/%@/%@",NSIntegerToNSString(self.requestPage),@"1",@"1"];
     [YX_MANAGER requestGetMy_Track_list:par success:^(id object) {
-        [weakself.dataArray removeAllObjects];
-        [weakself.dataArray addObjectsFromArray:object];
+        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
     }];
 }
 -(void)requestZuJi_Other{
     kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"%@/%@",self.userId,@"1"];
+    NSString * par = [NSString stringWithFormat:@"%@/%@",self.userId,NSIntegerToNSString(self.requestPage)];
     [YX_MANAGER requestGetOther_Track_list:par success:^(id object) {
-        [weakself.dataArray removeAllObjects];
-        [weakself.dataArray addObjectsFromArray:object];
+        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
     }];
 }

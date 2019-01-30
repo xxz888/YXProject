@@ -23,8 +23,7 @@
 
 }
 -(void)commonAction:(id)object{
-    [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:object];
+    self.dataArray = [self commonAction:object dataArray:self.dataArray];
     [self.yxTableView reloadData];
 }
 - (void)viewDidLoad {
@@ -39,11 +38,13 @@
      2、如果是别人的界面，在请求一种
      */
     if (user_id_BOOL) {
-        [YX_MANAGER requestOtherFenSi:[self.userId append:@"/1/"] success:^(id object) {
+        NSString * par = [NSString stringWithFormat:@"%@/%@/",self.userId,NSIntegerToNSString(self.requestPage)];
+        [YX_MANAGER requestOtherFenSi:par success:^(id object) {
             [weakself commonAction:object];
         }];
     }else{
-        [YX_MANAGER requestLikesGET:@"2" success:^(id object) {
+        NSString * par = [NSString stringWithFormat:@"%@/%@/%@/",@"2",@"0",NSIntegerToNSString(self.requestPage)];
+        [YX_MANAGER requestLikesGET:par success:^(id object) {
             [weakself commonAction:object];
         }];
     }

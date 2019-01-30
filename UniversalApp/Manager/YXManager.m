@@ -73,7 +73,7 @@ successBlock(responseObject);\
 #pragma mark ==========我的关注==========
 -(void)requestLikesGET:YX_BLOCK{
     NSString * url = @"/users/likes/";
-    [HTTP_GET([[url append:dic] append:@"/0/"])  sucess:^(id responseObject) {
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) {
     }];
@@ -82,7 +82,7 @@ successBlock(responseObject);\
 #pragma mark ==========取消关注==========
 -(void)requestLikesActionGET:YX_BLOCK{
     NSString * url = @"/users/likes/3/";
-    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+    [HTTP_GET([[url append:dic] append:@"/1/"])  sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) {
     }];
@@ -423,7 +423,7 @@ successBlock(responseObject);\
 #pragma mark ========== 获取发现页标签数据 ==========
 -(void)requestGet_users_find:YX_BLOCK{
     NSString * url = @"/users/find/";
-    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }

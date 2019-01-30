@@ -16,6 +16,7 @@
 @interface RootViewController ()<PYSearchViewControllerDelegate>{
     XHStarRateView *starRateView ;
     UITableView * _yxTableView;
+    UICollectionView * _yxCollectionView;
 }
 
 @property (nonatomic,strong) UIImageView* noDataView;
@@ -98,7 +99,17 @@
     //底部刷新
     yxTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
 }
-
+- (void)addCollectionViewRefreshView:(UICollectionView *)yxCollectionView{
+    _yxCollectionView = yxCollectionView;
+    yxCollectionView.showsHorizontalScrollIndicator = YES;
+    //头部刷新
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(headerRereshing)];
+    header.automaticallyChangeAlpha = YES;
+    header.lastUpdatedTimeLabel.hidden = YES;
+    yxCollectionView.mj_header = header;
+    //底部刷新
+    yxCollectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
+}
 -(void)headerRereshing{
     self.requestPage = 1;
 
@@ -107,6 +118,25 @@
     self.requestPage += 1;
 
 }
+-(NSMutableArray *)commonAction:(id)obj dataArray:(NSMutableArray *)dataArray{
+    NSMutableArray * nnnArray = [NSMutableArray arrayWithArray:dataArray];
+    if (self.requestPage == 1) {
+        [nnnArray removeAllObjects];
+        [nnnArray addObjectsFromArray:obj];
+    }else{
+        if ([obj count] == 0) {
+            [QMUITips showInfo:REFRESH_NO_DATA inView:self.view hideAfterDelay:1];
+            [_yxTableView.mj_footer endRefreshing];
+        }
+        nnnArray = [NSMutableArray arrayWithArray:[nnnArray arrayByAddingObjectsFromArray:obj]];
+    }
+    DO_IN_MAIN_QUEUE_AFTER(0.5f, ^{
+        [_yxTableView.mj_header endRefreshing];
+        [_yxTableView.mj_footer endRefreshing];
+    });
+    return nnnArray;
+}
+
 /**
  *  懒加载UITableView
  *

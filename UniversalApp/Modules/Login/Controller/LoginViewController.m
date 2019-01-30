@@ -167,17 +167,12 @@
 }
 - (void)getSms_CodeAction{
     [YX_MANAGER requestSmscodeGET:self.phoneTf.text success:^(id object) {
-        if ([object isEqualToString:@"1"]) {
             [QMUITips showSucceed:@"验证码发送成功" inView:self.view hideAfterDelay:2];
             [self.getMes_codeBtn startWithTime:180
                                          title:@"点击重新获取"
                                 countDownTitle:@"s"
                                      mainColor:[UIColor colorWithRed:84 / 255.0 green:180 / 255.0 blue:98 / 255.0 alpha:1.0f]
                                     countColor:[UIColor colorWithRed:84 / 255.0 green:180 / 255.0 blue:98 / 255.0 alpha:1.0f]];
-        }else{
-            [QMUITips showError:@"3分钟内重复发送" inView:self.view hideAfterDelay:2];
-        }
-
     }];
     
 }

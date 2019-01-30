@@ -21,13 +21,24 @@
     self.yxTableView.delegate=  self;
     self.yxTableView.dataSource = self;
     self.title = @"雪茄文化";
+    [self addRefreshView:self.yxTableView];
+    [self requestCrgar];
+
+}
+-(void)headerRereshing{
+    [super headerRereshing];
+    [self requestCrgar];
+}
+-(void)footerRereshing{
+    [super footerRereshing];
+    [self requestCrgar];
+}
+-(void)requestCrgar{
     kWeakSelf(self);
-    [YX_MANAGER requestCigar_cultureGET:@"1" success:^(id object) {
-        [weakself.dataArray removeAllObjects];
-        [weakself.dataArray addObjectsFromArray:object];
+    [YX_MANAGER requestCigar_cultureGET:NSIntegerToNSString(self.requestPage) success:^(id object) {
+        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
     }];
-    
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

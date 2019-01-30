@@ -28,18 +28,57 @@
     [self createUI];
     [self requestCollection:self.segIndex];
 
+    [self addCollectionViewRefreshView:self.collectionView];
+}
+- (void)addCollectionViewRefreshView:(UICollectionView *)yxCollectionView{
+    yxCollectionView.showsHorizontalScrollIndicator = YES;
+    //头部刷新
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(headerRereshing)];
+    header.automaticallyChangeAlpha = YES;
+    header.lastUpdatedTimeLabel.hidden = YES;
+    yxCollectionView.mj_header = header;
+    //底部刷新
+    yxCollectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
+}
+-(void)headerRereshing{
+    self.requestPage = 1;
+    [self requestCollection:self.segIndex];
+}
+-(void)footerRereshing{
+    self.requestPage += 1;
+    [self requestCollection:self.segIndex];
+}
+-(NSMutableArray *)commonAction:(id)obj dataArray:(NSMutableArray *)dataArray{
+    NSMutableArray * nnnArray = [NSMutableArray arrayWithArray:dataArray];
+    if (self.requestPage == 1) {
+        [nnnArray removeAllObjects];
+        [nnnArray addObjectsFromArray:obj];
+    }else{
+        if ([obj count] == 0) {
+            [QMUITips showInfo:REFRESH_NO_DATA inView:self.view hideAfterDelay:1];
+            [self.collectionView.mj_footer endRefreshing];
+        }
+        nnnArray = [NSMutableArray arrayWithArray:[nnnArray arrayByAddingObjectsFromArray:obj]];
+    }
+    DO_IN_MAIN_QUEUE_AFTER(0.5f, ^{
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
+    });
+    return nnnArray;
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 }
 -(void)requestCollection:(NSString *)type{
     kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"%@/%@/%@",type,@"1",self.startDic[@"brand_name"]];
+    NSString * par = [NSString stringWithFormat:@"%@/%@/%@",type,NSIntegerToNSString(self.requestPage),self.startDic[@"brand_name"]];
     [YX_MANAGER requestCigar_accessoriesGET:par success:^(id object) {
-        weakself.collectionView.dataArray = [NSArray arrayWithArray:object];
+        weakself.collectionView.dataArray = [weakself commonAction:object dataArray:weakself.collectionView.dataArray];
         [weakself.collectionView reloadData];
     }];
 }
+
+
 - (void)createUI{
     self.goodsShowType = signleLineShowDoubleGoods;
     UICollectionViewFlowLayout *layout1 = [[UICollectionViewFlowLayout alloc]init];

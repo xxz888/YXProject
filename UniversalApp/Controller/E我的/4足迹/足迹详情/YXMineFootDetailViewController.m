@@ -90,23 +90,40 @@ static CGFloat textFieldH = 40;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
     
+    [self addRefreshView:self.yxTableView];
+}
+-(void)headerRereshing{
+    [super headerRereshing];
+    _segmentIndex == 0 ? [self requestNewList] : [self requestHotList];
+}
+-(void)footerRereshing{
+    [super footerRereshing];
+    _segmentIndex == 0 ? [self requestNewList] : [self requestHotList];
 }
 #pragma mark ========== 获取足迹评论列表 ==========
 -(void)requestNewList{
     kWeakSelf(self);
 
     //请求评价列表 最新评论列表
-    [YX_MANAGER requestGetNewFootList:[self getParamters:@"1" page:@"1"] success:^(id object) {
-        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"b2"];
-        weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
+    [YX_MANAGER requestGetNewFootList:[self getParamters:@"1" page:NSIntegerToNSString(self.requestPage)] success:^(id object) {
+        
+        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
+        if ([object count] == 0) {
+            [QMUITips showInfo:REFRESH_NO_DATA inView:self.view hideAfterDelay:1];
+            [weakself.yxTableView.mj_footer endRefreshing];
+            return ;
+        }else{
+            weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:weakself.dataArray]];
+        }
         [weakself refreshTableView];
     }];
 }
 -(void)requestHotList{
     kWeakSelf(self);
     //请求评价列表 最热评论列表
-    [YX_MANAGER requestGetHotFootList:[self getParamters:@"2" page:@"1"] success:^(id object) {
-        weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
+    [YX_MANAGER requestGetHotFootList:[self getParamters:@"2" page:NSIntegerToNSString(self.requestPage)] success:^(id object) {
+        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
+        weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:weakself.dataArray]];
         [weakself refreshTableView];
     }];
 }

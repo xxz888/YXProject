@@ -30,7 +30,7 @@
     [self setNavSearchView];
     self.tagArray = [[NSMutableArray alloc]init];
     self.dataArray = [[NSMutableArray alloc]init];
-    
+    [self addRefreshView:self.yxTableView];
     //    [self requestGetTag];
     [self requestFindTag];
 }
@@ -39,11 +39,22 @@
 
 
 }
+-(void)headerRereshing{
+    [super headerRereshing];
+    [self requestGetTagLIst:self.type];
+}
+-(void)footerRereshing{
+    [super footerRereshing];
+    [self requestGetTagLIst:self.type];
+
+}
 #pragma mark ========== 先请求tag列表,获取发现页标签数据 ==========
 -(void)requestFindTag{
     kWeakSelf(self);
     [self.tagArray removeAllObjects];
     [YX_MANAGER requestGet_users_find_tag:@"" success:^(id object) {
+        
+
         for (NSDictionary * dic in object) {
             [weakself.tagArray addObject:dic[@"type"]];
         }
@@ -54,10 +65,9 @@
 #pragma mark ========== 根据标签请求列表 ==========
 -(void)requestGetTagLIst:(NSString *)page{
     kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"%@/%@",page,@"1"];
+    NSString * par = [NSString stringWithFormat:@"%@/%@",NSIntegerToNSString(self.requestPage),@"1"];
     [YX_MANAGER requestGetTagList:par success:^(id object) {
-        [weakself.dataArray removeAllObjects];
-        [weakself.dataArray addObjectsFromArray:object];
+        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
     }];
 }

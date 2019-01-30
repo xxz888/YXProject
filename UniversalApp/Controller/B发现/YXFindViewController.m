@@ -43,9 +43,18 @@
     
     [self requestFindTag];
 
+     [self addRefreshView:self.yxTableView];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+}
+-(void)headerRereshing{
+    [super headerRereshing];
+    [self requestFindTheType];
+}
+-(void)footerRereshing{
+    [super footerRereshing];
+    [self requestFindTheType];
 }
 #pragma mark ========== headerview ==========
 -(UIView *)headerView{
@@ -96,10 +105,9 @@
 #pragma mark ========== 2222222-在请求具体tag下的请求,获取发现页标签数据全部接口 ==========
 -(void)requestFindTheType{
     kWeakSelf(self);
-    NSString * parString =[NSString stringWithFormat:@"%@/%@",self.type,@"1"];
+    NSString * parString =[NSString stringWithFormat:@"%@/%@",self.type,NSIntegerToNSString(self.requestPage)];
     [YX_MANAGER requestGet_users_find:parString success:^(id object){
-        [weakself.dataArray removeAllObjects];
-        [weakself.dataArray addObjectsFromArray:object];
+        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
     }];
 }

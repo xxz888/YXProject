@@ -54,18 +54,31 @@ static CGFloat textFieldH = 0;
     //初始化所有的控件
     [self initAllControl];
     
+    
+    [self addRefreshView:self.yxTableView];
     [self requestAnserList];
+    
+    
 }
 #pragma mark ========== 请求回答列表 ==========
 -(void)requestAnserList{
-    NSString * par = [NSString stringWithFormat:@"%@/%@",self.moment.startId,@"1"];
+    NSString * par = [NSString stringWithFormat:@"%@/%@",self.moment.startId,NSIntegerToNSString(self.requestPage)];
     //获取回答列表
     kWeakSelf(self);
     [YX_MANAGER requestAnswerListGET:par success:^(id object) {
-        weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
+        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
+        weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:weakself.dataArray]];
         [weakself refreshTableView];
         [weakself.inputBar.inputView resignFirstResponder];
     }];
+}
+-(void)headerRereshing{
+    [super headerRereshing];
+    [self requestAnserList];
+}
+-(void)footerRereshing{
+    [super footerRereshing];
+    [self requestAnserList];
 }
 -(void)commonAction{
     

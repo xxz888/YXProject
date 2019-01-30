@@ -48,7 +48,15 @@ static CGFloat textFieldH = 40;
     //初始化所有的控件
     [self initAllControl];
     [self requestNewList];
-
+    [self addRefreshView:self.yxTableView];
+}
+-(void)headerRereshing{
+    [super headerRereshing];
+    _segmentIndex == 0 ? [self requestNewList] : [self requestHotList];
+}
+-(void)footerRereshing{
+    [super footerRereshing];
+    _segmentIndex == 0 ? [self requestNewList] : [self requestHotList];
 }
 -(void)initAllControl{
     kWeakSelf(self);
@@ -90,6 +98,7 @@ static CGFloat textFieldH = 40;
     
     
 }
+
 #pragma mark ========== 获取晒图评论列表 ==========
 -(void)requestNewList{
     kWeakSelf(self);
@@ -97,8 +106,8 @@ static CGFloat textFieldH = 40;
 //    weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
 //    [weakself refreshTableView];
     //请求评价列表 最新评论列表
-    [YX_MANAGER requestPost_comment:[self getParamters:@"1" page:@"1"] success:^(id object) {
-        [[NSUserDefaults standardUserDefaults] setValue:object forKey:@"b2"];
+    [YX_MANAGER requestPost_comment:[self getParamters:@"1" page:NSIntegerToNSString(self.requestPage)] success:^(id object) {
+        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
         [weakself refreshTableView];
     }];
@@ -106,7 +115,8 @@ static CGFloat textFieldH = 40;
 -(void)requestHotList{
     kWeakSelf(self);
     //请求评价列表 最热评论列表
-    [YX_MANAGER requestPost_comment:[self getParamters:@"2" page:@"1"] success:^(id object) {
+    [YX_MANAGER requestPost_comment:[self getParamters:@"2" page:NSIntegerToNSString(self.requestPage)] success:^(id object) {
+        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
         [weakself refreshTableView];
     }];

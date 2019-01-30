@@ -54,6 +54,8 @@
                 [QMUITips showError:obj[@"message"] inView:view hideAfterDelay:1];
                 return;
             }
+        }else{
+            sucess(obj);
         }
     }else{
         NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);

@@ -17,7 +17,7 @@
     NSString * _isreverse4;
 
 }
-@property (nonatomic,strong) NSMutableArray * dataSource;
+@property (nonatomic,strong) NSMutableArray *dataArray;
 
 @end
 
@@ -27,27 +27,35 @@
     [super viewDidLoad];
     
     self.title = @"品鉴足迹";
-    _dataSource = [[NSMutableArray alloc]init];
+    self.dataArray = [[NSMutableArray alloc]init];
     _sort = @"1";
     _isreverse1 = _isreverse2 = _isreverse3 = _isreverse4 = @"1";
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaFootTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaFootTableViewCell"];
     self.yxTableView.delegate=  self;
     self.yxTableView.dataSource = self;
     self.yxTableView.tableFooterView = [[UIView alloc]init];
-    
-    [self requestZuJi:_isreverse1];
+    [self addRefreshView:self.yxTableView];
 
+    [self requestZuJi:_isreverse1];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
 }
+-(void)headerRereshing{
+    [super headerRereshing];
+    [self requestZuJi:_isreverse1];
+}
+-(void)footerRereshing{
+    [super footerRereshing];
+    [self requestZuJi:_isreverse1];
+
+}
 -(void)requestZuJi:(NSString *)isreverse{
     kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"%@/%@/%@",@"1",_sort,isreverse];
+    NSString * par = [NSString stringWithFormat:@"%@/%@/%@",NSIntegerToNSString(self.requestPage),_sort,isreverse];
     [YX_MANAGER requestGetMy_Track_list:par success:^(id object) {
-        [weakself.dataSource removeAllObjects];
-        [weakself.dataSource addObjectsFromArray:object];
+        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
     }];
 }
@@ -55,14 +63,14 @@
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.dataSource count];
+    return [self.dataArray count];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 150;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXHomeXueJiaFootTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaFootTableViewCell" forIndexPath:indexPath];
-    NSDictionary * dic = self.dataSource[indexPath.row];
+    NSDictionary * dic = self.dataArray[indexPath.row];
     NSDictionary * dicTag = dic[@"cigar_info"];
     [cell.footImageVIew sd_setImageWithURL:[NSURL URLWithString:dicTag[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     

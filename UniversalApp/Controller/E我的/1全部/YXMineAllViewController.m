@@ -53,7 +53,8 @@
 -(void)requestMine_AllList{
     kWeakSelf(self);
     [YX_MANAGER requestGetSersAllList:NSIntegerToNSString(self.requestPage) success:^(id object) {
-        [weakself commonAction:object];
+         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
+        [weakself.yxTableView reloadData];
     }];
 }
 #pragma mark ========== 其他用户的所有 ==========
@@ -61,28 +62,11 @@
     kWeakSelf(self);
     NSString * par = [NSString stringWithFormat:@"%@/%@",self.userId,NSIntegerToNSString(self.requestPage)];
     [YX_MANAGER requestGetSers_Other_AllList:par success:^(id object){
-        [weakself commonAction:object];
+        weakself.dataArray =  [weakself commonAction:object dataArray:weakself.dataArray];
+        [weakself.yxTableView reloadData];
     }];
 }
--(void)commonAction:(id)obj{
-    if (self.requestPage == 1) {
-        [self.dataArray removeAllObjects];
-        [self.dataArray addObjectsFromArray:obj];
-    }else{
-        if ([obj count] == 0) {
-            [QMUITips showInfo:REFRESH_NO_DATA inView:self.view hideAfterDelay:1];
-            [self.yxTableView.mj_footer endRefreshing];
-            return;
-        }
-        self.dataArray = [NSMutableArray arrayWithArray:[self.dataArray arrayByAddingObjectsFromArray:obj]];
-    }
-    kWeakSelf(self);
-    DO_IN_MAIN_QUEUE_AFTER(0.5f, ^{
-        [weakself.yxTableView.mj_header endRefreshing];
-        [weakself.yxTableView.mj_footer endRefreshing];
-    });
-    [self.yxTableView reloadData];
-}
+
 #pragma mark ========== 创建tableview ==========
 -(void)tableviewCon{
     self.dataArray = [[NSMutableArray alloc]init];

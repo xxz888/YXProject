@@ -43,11 +43,13 @@
     kWeakSelf(self);
     
     if (user_id_BOOL) {
-        [YX_MANAGER requestOtherGuanZhu:[self.userId append:@"/1/"] success:^(id object) {
+        NSString * par = [NSString stringWithFormat:@"%@/%@/",self.userId,NSIntegerToNSString(self.requestPage)];
+        [YX_MANAGER requestOtherGuanZhu:par success:^(id object) {
             [weakself commonAction:object];
         }];
     }else{
-        [YX_MANAGER requestLikesGET:@"1" success:^(id object) {
+        NSString * par = [NSString stringWithFormat:@"%@/%@/%@/",@"1",@"0",NSIntegerToNSString(self.requestPage)];
+        [YX_MANAGER requestLikesGET:par success:^(id object) {
             [weakself commonAction:object];
         }];
     }

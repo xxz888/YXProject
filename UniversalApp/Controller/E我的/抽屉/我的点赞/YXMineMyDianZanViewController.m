@@ -21,10 +21,24 @@
     self.dataArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXMineEssayTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineEssayTableViewCell"];
     self.yxTableView.separatorStyle = 0;
+    [self addRefreshView:self.yxTableView];
+    [self requestMyDianZanLIst];
+ 
+}
+-(void)headerRereshing{
+    [super headerRereshing];
+    [self requestMyDianZanLIst];
+
+}
+-(void)footerRereshing{
+    [super footerRereshing];
+    [self requestMyDianZanLIst];
+
+}
+-(void)requestMyDianZanLIst{
     kWeakSelf(self);
-    [YX_MANAGER requestMyDianZanList:@"1" success:^(id object) {
-        [weakself.dataArray removeAllObjects];
-        [weakself.dataArray addObjectsFromArray:object];
+    [YX_MANAGER requestMyDianZanList:NSIntegerToNSString(self.requestPage) success:^(id object) {
+        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
     }];
 }

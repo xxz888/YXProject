@@ -19,7 +19,7 @@
 
 @interface YXHomeXueJiaQuestionViewController ()<UITableViewDelegate,UITableViewDataSource,MomentCellDelegate>
 @property (nonatomic, strong) NSMutableArray *momentList;
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UITableView * yxTableView;
 @property (nonatomic, strong) UIView *tableHeaderView;
 @property (nonatomic, strong) UIImageView *coverImageView;
 @property (nonatomic, strong) UIImageView *headImageView;
@@ -40,7 +40,8 @@
 
     self.view.backgroundColor = [UIColor whiteColor];
     [self setUpUI];
-//    [self initTestInfo];
+    
+    [self addRefreshView:self.yxTableView];
     [self requestQuestion];
 
 }
@@ -86,14 +87,22 @@
     searchViewController.searchViewControllerShowMode = PYSearchViewControllerShowModePush;
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
+-(void)headerRereshing{
+    [super headerRereshing];
+    [self requestQuestion];
+}
+-(void)footerRereshing{
+    [super footerRereshing];
+    [self requestQuestion];
+
+}
 -(void)requestQuestion{
     kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"%@/kw/%@",self.whereCome,@"1"];
+    NSString * par = [NSString stringWithFormat:@"%@/kw/%@",self.whereCome,   NSIntegerToNSString(self.requestPage)];
     [YX_MANAGER requestQuestionGET:par success:^(id object) {
-        [weakself.dataArray removeAllObjects];
-        [weakself.dataArray addObjectsFromArray:object];
+        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself initTestInfo];
-        [weakself.tableView reloadData];
+        [weakself.yxTableView reloadData];
     }];
 }
 - (void)viewWillDisappear:(BOOL)animated {
@@ -136,28 +145,23 @@
     }
 }
 #pragma mark - UI
-- (void)setUpUI
-{
+- (void)setUpUI{
     // 表格
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, k_screen_width, k_screen_height-k_top_height - 50)];
-    tableView.backgroundColor = [UIColor clearColor];
-    tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    tableView.separatorColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
-//    tableView.separatorInset = UIEdgeInsetsZero;
-    tableView.dataSource = self;
-    tableView.delegate = self;
-//    tableView.estimatedRowHeight = 0;
-//    tableView.tableFooterView = [UIView new];
-    tableView.tableHeaderView = self.tableHeaderView;
-    self.tableView = tableView;
-    [self.view addSubview:self.tableView];
+    self.yxTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, k_screen_width, k_screen_height-k_top_height - 50)];
+    self.yxTableView.backgroundColor = [UIColor clearColor];
+    self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.yxTableView.showsVerticalScrollIndicator = NO;
+    self.yxTableView.dataSource = self;
+    self.yxTableView.delegate = self;
+    self.yxTableView.tableFooterView = [UIView new];
+    [self.view addSubview:self.yxTableView];
 }
 // 查看全文/收起
 - (void)didSelectFullText:(MomentCell *)cell
 {
     NSLog(@"全文/收起");
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    NSIndexPath *indexPath = [self.yxTableView indexPathForCell:cell];
+    [self.yxTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -211,8 +215,8 @@
 #pragma mark - UITableViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-//    NSIndexPath *indexPath =  [self.tableView indexPathForRowAtPoint:CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y)];
-//    MomentCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+//    NSIndexPath *indexPath =  [self.yxTableView indexPathForRowAtPoint:CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y)];
+//    MomentCell *cell = [self.yxTableView cellForRowAtIndexPath:indexPath];
 //    cell.menuView.show = NO;
 }
 

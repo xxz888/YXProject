@@ -23,15 +23,27 @@
     self.dataArray = [[NSMutableArray alloc]init];
     [self.yxTableVIew registerNib:[UINib nibWithNibName:@"YXMinePingLunTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMinePingLunTableViewCell"];
     self.yxTableVIew.tableFooterView = [[UIView alloc]init];
+    [self addRefreshView:self.yxTableVIew];
     [self requestMyDianPing];
 
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 }
+
+-(void)headerRereshing{
+    [super headerRereshing];
+    [self requestMyDianPing];
+
+}
+-(void)footerRereshing{
+    [super footerRereshing];
+    [self requestMyDianPing];
+
+}
 -(void)requestMyDianPing{
     kWeakSelf(self);
-    [YX_MANAGER requestGetMyDianPingList:@"1" success:^(id object) {
+    [YX_MANAGER requestGetMyDianPingList:NSIntegerToNSString(self.requestPage) success:^(id object) {
         [weakself.dataArray removeAllObjects];
         [weakself.dataArray addObjectsFromArray:object];
         [weakself.yxTableVIew reloadData];

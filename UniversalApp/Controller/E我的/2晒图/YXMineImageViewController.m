@@ -29,12 +29,25 @@
     self.view.backgroundColor = KWhiteColor;
     self.dataArray = [[NSMutableArray alloc]init];
     [self collectionViewCon];
+    
+    
+    [self addCollectionViewRefreshView:self.yxCollectionView];
     user_id_BOOL ? [self requestOtherShaiTuList] : [self requestMineShaiTuList];
-
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 }
+
+-(void)headerRereshing{
+    [super headerRereshing];
+    user_id_BOOL ? [self requestOtherShaiTuList] : [self requestMineShaiTuList];
+}
+-(void)footerRereshing{
+    [super footerRereshing];
+    user_id_BOOL ? [self requestOtherShaiTuList] : [self requestMineShaiTuList];
+}
+
 -(void)collectionViewCon{
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
@@ -68,23 +81,23 @@
 #pragma mark ========== 我的界面晒图请求 ==========
 -(void)requestMineShaiTuList{
     kWeakSelf(self);
-    NSString * pageString = NSIntegerToNSString(page) ;
-    [YX_MANAGER requestGetDetailListPOST:@{@"type":@(2),@"tag":@"0",@"page":@(1)} success:^(id object) {
+    [YX_MANAGER requestGetDetailListPOST:@{@"type":@(2),@"page":NSIntegerToNSString(self.requestPage)} success:^(id object) {
         [weakself mineShaiTuRefreshAction:object];
+        
     }];
 }
 #pragma mark ========== 其他用户的晒图请求 ==========
 -(void)requestOtherShaiTuList{
     kWeakSelf(self);
-    [YX_MANAGER requestOtherImage:[self.userId append:@"/1"] success:^(id object) {
+    NSString * par = [NSString stringWithFormat:@"%@/%@",self.userId,NSIntegerToNSString(self.requestPage)];
+    [YX_MANAGER requestOtherImage:par success:^(id object) {
         [weakself mineShaiTuRefreshAction:object];
     }];
 }
 
 #pragma mark ========== 界面刷新 ==========
 -(void)mineShaiTuRefreshAction:(id)object{
-    [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:object];
+     self.dataArray = [self addCollectionViewRefreshView:object dataArray:self.dataArray];
     [self.yxCollectionView reloadData];
 }
 #pragma mark ========== 晒图点赞 ==========

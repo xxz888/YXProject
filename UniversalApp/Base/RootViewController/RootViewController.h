@@ -35,8 +35,8 @@ typedef void (^ListenChangeIndexBlock)(NSInteger);
 @property (nonatomic, strong) FCXRefreshHeaderView * refreshHeaderView;
 @property (nonatomic, strong) FCXRefreshFooterView * refreshFooterView;
 @property (nonatomic,assign) NSInteger requestPage;
-
-
+-(NSMutableArray *)commonAction:(id)obj dataArray:(NSMutableArray *)dataArray;
+-(NSMutableArray *)addCollectionViewRefreshView:(id)obj dataArray:(NSMutableArray *)dataArray;
 
 /**
  *  显示没有数据页面
@@ -104,6 +104,7 @@ typedef void (^ListenChangeIndexBlock)(NSInteger);
 - (void)closeKeyboard:(UITapGestureRecognizer *)recognizer;
 -(void)fiveStarView:(CGFloat)score view:(UIView *)view;
 - (void)addRefreshView:(UITableView *)yxTableView;
+- (void)addCollectionViewRefreshView:(UICollectionView *)yxCollectionView;
 -(void)headerRereshing;
 -(void)footerRereshing;
 @end
