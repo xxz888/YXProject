@@ -48,7 +48,7 @@
         
         _ary = [NSArray array];
         
-        _ary = @[@"1",@"2",@"3"];
+        _ary = @[@"1",@"2"];
     }
     
     return _ary;
@@ -144,7 +144,7 @@
 //按九宫格计算方式排列按钮
 - (void)setMenu{
     
-    int cols = 3;
+    int cols = 2;
     int col = 0;
     int row = 0;
     
@@ -160,7 +160,7 @@
     
     for (int i = 0; i < self.ary.count; i++) {
         
-        NSArray *arrTitle = @[@"晒图",@"足迹",@"文章"];
+        NSArray *arrTitle = @[@"晒图",@"足迹"];
         PublishMenuButton *btn = [PublishMenuButton buttonWithType:UIButtonTypeCustom];
         
         //图标图片和文本

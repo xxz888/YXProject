@@ -33,7 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"发布提问";
+    self.title = @"发布足迹";
     _tagArray = [[NSMutableArray alloc]init];
     
     
@@ -50,7 +50,7 @@
     self.qmuiTextView.frame = CGRectMake(0, 0, self.questionMainView.frame.size.width, self.questionMainView.frame.size.height);
     self.qmuiTextView.backgroundColor = YXRGBAColor(239, 239, 239);
     self.qmuiTextView.font = UIFontMake(15);
-    self.qmuiTextView.placeholder = @"发表你的提问";
+    self.qmuiTextView.placeholder = @"发表你的足迹";
     self.qmuiTextView.layer.cornerRadius = 8;
     self.qmuiTextView.clipsToBounds = YES;
     [self.qmuiTextView becomeFirstResponder];
@@ -96,11 +96,8 @@
             [dic setValue:qiniuArray[0] forKey:@"pic1"];
             [dic setValue:qiniuArray[1] forKey:@"pic2"];
             [dic setValue:qiniuArray[2] forKey:@"pic3"];
-        }else if (self.questionTitleTf.text.length == 0){
-            [QMUITips showError:@"请输入标题!" inView:self.view hideAfterDelay:2];
-            return;
         }else if (self.qmuiTextView.text.length == 0){
-            [QMUITips showError:@"请输入要提问的问题!" inView:self.view hideAfterDelay:2];
+            [QMUITips showError:@"请输入足迹描述!" inView:self.view hideAfterDelay:2];
             return;
         }
         

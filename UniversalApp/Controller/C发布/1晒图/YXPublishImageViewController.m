@@ -129,6 +129,7 @@ static NSString *secretKey = @"官网获取";
             [weakself addNewTags];
         }
     };
+    
     //位置
     cell.locationblock = ^(YXPublishImageTableViewCell * cell) {
         YXGaoDeMapViewController * VC = [[YXGaoDeMapViewController alloc]init];
@@ -253,11 +254,11 @@ static NSString *secretKey = @"官网获取";
     _menueView = silde;
     kWeakSelf(self);
     silde.cb_selectCurrentValueBlock = ^(NSString *value, NSInteger index, NSInteger groupId) {
-        NSMutableArray * array = [NSMutableArray arrayWithArray:weakself.tagArray];
-        [array removeObjectAtIndex:index];
-        [weakself.tagArray removeAllObjects];
-        [weakself.tagArray addObjectsFromArray:array];
-        [_menueView setContentView:@[weakself.tagArray] titleArr:@[]];
+//        NSMutableArray * array = [NSMutableArray arrayWithArray:weakself.tagArray];
+//        [array removeObjectAtIndex:index];
+//        [weakself.tagArray removeAllObjects];
+//        [weakself.tagArray addObjectsFromArray:array];
+//        [_menueView setContentView:@[weakself.tagArray] titleArr:@[]];
     };
 }
 

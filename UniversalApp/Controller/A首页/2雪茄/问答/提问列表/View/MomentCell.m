@@ -120,6 +120,9 @@ CGFloat maxLimitHeight = 0;
     // 头像
     
     [_headImageView sd_setImageWithURL:[NSURL URLWithString:moment.photo] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    
+    _headImageView.layer.masksToBounds = YES;
+    _headImageView.layer.cornerRadius = _headImageView.frame.size.width / 2.0;
     // 昵称
     _nameLab.text = moment.userName;
     // 正文

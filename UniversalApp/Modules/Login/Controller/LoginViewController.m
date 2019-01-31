@@ -139,21 +139,11 @@
 - (IBAction)loginAction:(id)sender {
     kWeakSelf(self);
     [YX_MANAGER requestLoginPOST:@{@"mobile":self.phoneTf.text,@"sms_code":self.codeTf.text} success:^(id object) {
-        if ([object isKindOfClass:[NSDictionary class]]) {
             [userManager login:kUserLoginTypePwd params:object completion:^(BOOL success, NSString *des) {
                 [weakself dismissViewControllerAnimated:YES completion:nil];
                 [QMUITips showSucceed:@"登录成功" inView:self.view hideAfterDelay:2];
                 
             }];
-        }else{
-            if ([object isEqualToString:@"-1"]) {
-                [QMUITips showError:@"该手机号未发送验证码" inView:self.view hideAfterDelay:2];
-            }else if([object isEqualToString:@"0"]){
-                [QMUITips showError:@"短信验证码错误" inView:self.view hideAfterDelay:2];
-            }else if ([object isEqualToString:@"1"]){
-                [QMUITips showSucceed:@"登录成功" inView:self.view hideAfterDelay:2];
-            }
-        }
    
     }];
 }

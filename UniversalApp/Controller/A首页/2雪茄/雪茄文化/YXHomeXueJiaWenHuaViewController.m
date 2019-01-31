@@ -8,6 +8,7 @@
 
 #import "YXHomeXueJiaWenHuaViewController.h"
 #import "YXHomeXueJiaWenHuaTableViewCell.h"
+#import "YXHomeNewsDetailViewController.h"
 @interface YXHomeXueJiaWenHuaViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)NSMutableArray * dataArray;
 @end
@@ -48,7 +49,7 @@
     return self.dataArray.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 200;
+    return 260;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXHomeXueJiaWenHuaTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaWenHuaTableViewCell" forIndexPath:indexPath];
@@ -57,5 +58,15 @@
     cell.timeLbl.text = [ShareManager timestampSwitchTime:[self.dataArray[indexPath.row][@"publish_time"] integerValue] andFormatter:@""];
     return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    YXHomeNewsDetailViewController * VC = [YXHomeNewsDetailViewController alloc];
+    NSDictionary * dic = self.dataArray[indexPath.row];
+    VC.webDic =[NSMutableDictionary dictionaryWithDictionary:dic];
+    [VC.webDic setValue:dic[@"picture"] forKey:@"photo"];
+    [VC.webDic setValue:dic[@"publish_time"] forKey:@"date"];
+    [VC.webDic setValue:dic[@"essay"] forKey:@"details"];
+    [VC.webDic setValue:@"" forKey:@"author"];
 
+    [self.navigationController pushViewController:VC animated:YES];
+}
 @end

@@ -8,6 +8,7 @@
 
 #import "YXMineSettingTableViewController.h"
 #import "YXMineSettingSafeTableViewController.h"
+#import "YXHomeEditPersonTableViewController.h"
 @interface YXMineSettingTableViewController ()
 
 @end
@@ -38,8 +39,20 @@
         UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
         YXMineSettingSafeTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineSettingSafeTableViewController"];
         [self.navigationController pushViewController:VC animated:YES];
+    }else if (indexPath.section == 0 && indexPath.row == 0){
+        UserInfo * userInfo= curUser;
+        [YX_MANAGER requestGetUserothers:userInfo.id success:^(id object) {
+            UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+            YXHomeEditPersonTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXHomeEditPersonTableViewController"];
+            VC.userInfoDic = [NSDictionary dictionaryWithDictionary:[NSDictionary dictionaryWithDictionary:object]];
+            [self.navigationController pushViewController:VC animated:YES];
+        }];
+ 
     }
   
+}
+- (IBAction)exitAppAction:(id)sender {
+    [userManager logout:nil];
 }
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

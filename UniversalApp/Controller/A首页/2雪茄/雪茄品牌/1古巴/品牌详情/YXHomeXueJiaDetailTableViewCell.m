@@ -16,7 +16,6 @@
     BOOL isCollection;
 }
 @property (nonatomic , strong) UIButton *lastButton;
-@property (weak, nonatomic) IBOutlet UIStackView *stackView1;
 @end
 @implementation YXHomeXueJiaDetailTableViewCell
 
@@ -45,8 +44,7 @@
     [super awakeFromNib];
     
     //[self setLayoutCol];
-    //yes为足迹进来 no为正常进入  足迹进来
-    self.stackView1.hidden = self.likeBtn.hidden = self.whereCome;
+
 }
 
 

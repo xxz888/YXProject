@@ -40,11 +40,6 @@
 }
 -(void)requestInformation{
     kWeakSelf(self);
-    id object = UserDefaultsGET(@"a1");
-    [weakself.informationArray removeAllObjects];
-    [weakself.informationArray addObjectsFromArray:object];
-    [weakself.bottomTableView reloadData];
-    return;
     [YX_MANAGER requestGETInformation:TYPE_XUEJIA_1 success:^(id object) {
         UserDefaultsSET(object, @"a1");
         [weakself.informationArray removeAllObjects];
@@ -115,7 +110,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     YXHomeNewsDetailViewController * VC = [YXHomeNewsDetailViewController alloc];
-    VC.webDic =[NSDictionary dictionaryWithDictionary:self.informationArray[indexPath.row]];
+    VC.webDic =[NSMutableDictionary dictionaryWithDictionary:self.informationArray[indexPath.row]];
     [self.navigationController pushViewController:VC animated:YES];
 }
 

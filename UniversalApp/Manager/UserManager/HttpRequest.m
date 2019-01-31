@@ -9,6 +9,7 @@
 #import "HttpRequest.h"
 #import "AFHTTPSessionManager.h"
 #import "AFNetworkActivityIndicatorManager.h"
+#import "XLDouYinLoading.h"
 @implementation HttpRequest
 
 + (void)httpRequestPostPi:(NSString *)pi Parameters:(id)parmeters sucess:(SucessBlock)sucess failure:(FailureBlock)failure{
@@ -30,6 +31,7 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
 //        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         NSLog(@"%@",error);
+        
         failure(error);
     }];
 }
@@ -98,7 +100,6 @@
 +(void)setCommonRequestParameters{
     
 }
-
 
 
 @end

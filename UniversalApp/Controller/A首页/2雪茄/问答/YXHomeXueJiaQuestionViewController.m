@@ -33,8 +33,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"问答";
     //搜索栏
-    [self setNavSearchView];
+//    [self setNavSearchView];
     self.dataArray = [[NSMutableArray alloc]init];
     self.picArray = [[NSMutableArray alloc]init];
 
@@ -184,7 +185,7 @@
         cell.backgroundColor = [UIColor whiteColor];
     }
     cell.moment = [self.momentList objectAtIndex:indexPath.row];
-
+    
 
     cell.delegate = self;
     cell.tag = indexPath.row;

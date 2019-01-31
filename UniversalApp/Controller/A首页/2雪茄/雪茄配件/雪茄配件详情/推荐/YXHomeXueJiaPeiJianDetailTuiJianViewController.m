@@ -55,7 +55,7 @@
         [nnnArray addObjectsFromArray:obj];
     }else{
         if ([obj count] == 0) {
-            [QMUITips showInfo:REFRESH_NO_DATA inView:self.view hideAfterDelay:1];
+//            [QMUITips showInfo:REFRESH_NO_DATA inView:self.view hideAfterDelay:1];
             [self.collectionView.mj_footer endRefreshing];
         }
         nnnArray = [NSMutableArray arrayWithArray:[nnnArray arrayByAddingObjectsFromArray:obj]];

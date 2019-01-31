@@ -126,14 +126,9 @@
     [YX_MANAGER requestCigar_brand_detailsPOST:@{@"cigar_brand_id":cigar_brand_id} success:^(id object) {
         UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
         YXHomeXueJiaPinPaiDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiDetailViewController"];
-        
-     
-
         VC.dicData = [NSMutableDictionary dictionaryWithDictionary:object];
         VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[indexPath.section][indexPath.row]];
         VC.whereCome = self.whereCome;
-        [[NSUserDefaults standardUserDefaults] setValue:VC.dicData forKey:@"dicData"];
-        [[NSUserDefaults standardUserDefaults] setValue:VC.dicStartData forKey:@"dicStartData"];
         
         [weakself.navigationController pushViewController:VC animated:YES];
     }];

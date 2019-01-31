@@ -19,6 +19,11 @@
 #define UNZAN_IMG [UIImage imageNamed:@"UnZan"]
 #define REFRESH_NO_DATA @"没有更多数据"
 
+
+#define Handle_IMG [UIImage imageNamed:@"已赞"]
+#define un_Handle_IMG [UIImage imageNamed:@"未赞"]
+
+
 #define YX_USER_FaBuCaoGao @"YX_FaBuCaoGao"
 /**本地化存储**/
 #define UserDefaultsGET(key) [[NSUserDefaults standardUserDefaults] objectForKey:key] // 取

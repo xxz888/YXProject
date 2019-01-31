@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ClickLikeBtnDelegate <NSObject>
 -(void)clickLikeBtn:(BOOL)isZan cigar_id:(NSString *)cigar_id likeBtn:(UIButton *)likeBtn;
 @end 
-@interface YXHomeXueJiaDetailTableViewCell : TableViewCell
+@interface YXHomeXueJiaDetailTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *section2TitleLbl;
 @property (weak, nonatomic) IBOutlet UIImageView *section2ImageView;
 @property (weak, nonatomic) IBOutlet UILabel *section2Lbl1;
@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,weak) id<ClickLikeBtnDelegate> delegate;
 @property(nonatomic,weak) NSString * cigar_id;
+@property (weak, nonatomic) IBOutlet UIStackView *stackView1;
 
 
 @property (nonatomic,assign) BOOL whereCome;//yes为足迹进来 no为正常进入  足迹进来

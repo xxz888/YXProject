@@ -745,6 +745,9 @@
                                                     <state key="normal" title="退出当前账号">
                                                         <color key="titleColor" red="0.53333333333333333" green="0.52941176470588236" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="exitAppAction:" destination="wNH-Zg-7Ea" eventType="touchUpInside" id="5Gm-kU-nDm"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

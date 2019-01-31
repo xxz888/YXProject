@@ -22,6 +22,10 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
+    
+    self.tableView.estimatedRowHeight = 0;
+       self.tableView.estimatedSectionHeaderHeight = 0;
+       self.tableView.estimatedSectionFooterHeight = 0;
     self.edgesForExtendedLayout=UIRectEdgeNone;
     [self.tableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaDetailTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc]init];
@@ -103,7 +107,8 @@
         cell.section2Lbl5.text = [kGetString(cellData[@"price_single_china"]) append:@"元/支"];
         cell.section2Lbl6.text = [NSString stringWithFormat:@"%@元/盒\n(%@)支",cellData[@"price_box_china"],cellData[@"box_size"]];
         cell.cigar_id = kGetString(cellData[@"id"]);
-        
+        //yes为足迹进来 no为正常进入  足迹进来
+        cell.stackView1.hidden = cell.likeBtn.hidden = self.whereCome;
         [cell.likeBtn setBackgroundImage:[cellData[@"is_collect"] integerValue] == 1  || !cellData[@"is_collect"] ? _selImage:_unImage forState:UIControlStateNormal];
         cell.delegate = self;
         return cell;
@@ -133,7 +138,8 @@
         }else{
             UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
             YXHomeXueJiaPinPaiLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiLastDetailViewController"];
-            VC.startDic = [NSDictionary dictionaryWithDictionary:self.dicData[@"data"][indexPath.row]];
+            VC.startDic = [NSMutableDictionary dictionaryWithDictionary:self.dicData[@"data"][indexPath.row]];
+            [VC.startDic setValue:self.title forKey:@"cigar_brand"];
             YX_MANAGER.isHaveIcon = NO;
             [self.navigationController pushViewController:VC animated:YES];
         }
@@ -172,10 +178,10 @@
 -(void)requestMy_concern_cigar{
     kWeakSelf(self);
     NSDictionary * cellData = self.dicStartData;
-    [YX_MANAGER requestMy_concern_cigarPOST:@{@"cigar_brand_id":self.dicStartData[@"id"]} success:^(id object) {
+    [YX_MANAGER requestMy_concern_cigarPOST:@{@"cigar_brand_id":cellData[@"id"]} success:^(id object) {
         BOOL isGuanZhu = [weakself.dicData[@"is_concern"] integerValue] == 1;
         [ShareManager setGuanZhuStatus:weakself.section1GuanZhuBtn status:isGuanZhu];
-
     }];
 }
+
 @end

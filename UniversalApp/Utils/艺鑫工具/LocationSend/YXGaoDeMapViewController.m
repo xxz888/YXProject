@@ -234,8 +234,11 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Identifier"];
     }
-    cell.textLabel.text = self.dataList[indexPath.row].title;
-    cell.detailTextLabel.text = self.dataList[indexPath.row].address;
+    if (self.dataList.count != 0) {
+        cell.textLabel.text = self.dataList[indexPath.row].title;
+        cell.detailTextLabel.text = self.dataList[indexPath.row].address;  
+    }
+
     return cell;
 }
 

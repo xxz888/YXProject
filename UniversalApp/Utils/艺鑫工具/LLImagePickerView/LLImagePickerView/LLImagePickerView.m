@@ -264,7 +264,7 @@ static NSInteger countOfRow;
                 break;
             default:
             {                
-                LLActionSheetView *alert = [[LLActionSheetView alloc]initWithTitleArray:@[@"相册", @"相机", @"录像", @"视频"] andShowCancel: YES];                
+                LLActionSheetView *alert = [[LLActionSheetView alloc]initWithTitleArray:@[@"相册", @"相机"] andShowCancel: YES];                
                 alert.ClickIndex = ^(NSInteger index) {
                     NSLog(@"%zd",index);
                     if (index == 4) {

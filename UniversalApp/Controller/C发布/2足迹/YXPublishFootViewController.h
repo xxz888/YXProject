@@ -10,7 +10,7 @@
 typedef void(^dismissBlock) ();
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YXPublishFootViewController : YXHomeQuestionFaBuViewController
+@interface YXPublishFootViewController : RootViewController
 //block声明属性
 @property (nonatomic, copy) dismissBlock mDismissBlock;
 //block声明方法

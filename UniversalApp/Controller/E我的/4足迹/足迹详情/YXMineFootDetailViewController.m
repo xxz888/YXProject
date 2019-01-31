@@ -109,7 +109,7 @@ static CGFloat textFieldH = 40;
         
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         if ([object count] == 0) {
-            [QMUITips showInfo:REFRESH_NO_DATA inView:self.view hideAfterDelay:1];
+//            [QMUITips showInfo:REFRESH_NO_DATA inView:self.view hideAfterDelay:1];
             [weakself.yxTableView.mj_footer endRefreshing];
             return ;
         }else{

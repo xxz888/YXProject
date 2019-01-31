@@ -16,11 +16,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="1100"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Woy-zo-PsE">
-                    <rect key="frame" x="87.5" y="40" width="200" height="100"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Woy-zo-PsE">
+                    <rect key="frame" x="0.0" y="40" width="375" height="100"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="4ls-xs-8fE"/>
-                        <constraint firstAttribute="width" constant="200" id="mRd-wh-iP1"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="choaca/高希霸" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxh-0v-YOz">
@@ -356,7 +355,7 @@
                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O27-yF-UqV">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O27-yF-UqV">
                             <rect key="frame" x="280" y="15" width="75" height="30"/>
                             <state key="normal" title="查看全部 &gt;">
                                 <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -548,6 +547,7 @@
             <constraints>
                 <constraint firstItem="E31-5Z-Li4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="0Hk-CO-tyf"/>
                 <constraint firstItem="RLu-bl-tsW" firstAttribute="top" secondItem="T81-TP-f0A" secondAttribute="bottom" constant="20" id="0Yw-Yh-tiQ"/>
+                <constraint firstItem="Woy-zo-PsE" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="2Nr-Yu-Rzb"/>
                 <constraint firstItem="fDn-K6-mw4" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="20" id="2fM-SE-ZhR"/>
                 <constraint firstItem="T81-TP-f0A" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="3iZ-5g-3UQ"/>
                 <constraint firstItem="fdI-dg-f7h" firstAttribute="top" secondItem="8Jm-lX-NXN" secondAttribute="bottom" constant="10" id="AIa-Tf-STU"/>

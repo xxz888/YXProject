@@ -113,7 +113,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     _zanButton =[UIButton buttonWithType:1];
     
     
-    [_zanButton setTitle:@"赞" forState:UIControlStateNormal];
+//    [_zanButton setTitle:@"赞" forState:UIControlStateNormal];
     [_zanButton setTitleColor:KDarkGaryColor forState:UIControlStateNormal];
 
     [_zanButton setFont:[UIFont systemFontOfSize:13]];
@@ -218,10 +218,10 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     .widthIs(50);
     
     _zanButton.sd_layout
-    .rightSpaceToView(self.contentView, margin)
+    .rightSpaceToView(self.contentView, margin+10)
     .centerYEqualToView(_timeLabel)
-    .heightIs(50)
-    .widthIs(50);
+    .heightIs(30)
+    .widthIs(30);
     
     _commentView.sd_layout
     .leftEqualToView(_contentLabel)
@@ -320,11 +320,10 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     
     [self fiveStarView:model.score view:_starView];
 
-    
     if ([model.praise isEqualToString:@"1"]) {
-        [_zanButton setTitle:@"已赞" forState:UIControlStateNormal];
+        [self.zanButton setBackgroundImage:[UIImage imageNamed:@"已赞"] forState:UIControlStateNormal];
     }else if ([model.praise isEqualToString:@"0"]){
-        [_zanButton setTitle:@"赞" forState:UIControlStateNormal];
+        [self.zanButton setBackgroundImage:[UIImage imageNamed:@"未赞"] forState:UIControlStateNormal];
     }
 }
 

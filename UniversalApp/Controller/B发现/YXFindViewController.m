@@ -36,8 +36,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"发现";
     //搜索栏
-    [self setNavSearchView];
+    //[self setNavSearchView];
     //创建tableview
     [self tableviewCon];
     

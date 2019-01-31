@@ -89,9 +89,9 @@ static CGFloat textFieldH = 40;
         _segmentIndex = index;
     };
     self.lastDetailView.searchAllBlock = ^{
-        UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
-        YXMineImageViewController * imageVC = [[YXMineImageViewController alloc]init];
-        [weakself.navigationController pushViewController:imageVC animated:YES];
+//        UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+//        YXMineImageViewController * imageVC = [[YXMineImageViewController alloc]init];
+//        [weakself.navigationController pushViewController:imageVC animated:YES];
     };
     [self setupTextField];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
@@ -652,6 +652,6 @@ static CGFloat textFieldH = 40;
      */
 }
 -(NSString *)getParamters:(NSString *)type{
-    return [NSString stringWithFormat:@"%@/%@",type,self.startDic[@"id"]];
+    return [NSString stringWithFormat:@"%@/%@/%@",type,self.startDic[@"id"],@"1"];
 }
 @end

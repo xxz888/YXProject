@@ -35,7 +35,8 @@
 }
 -(void)againSetDetailView:(NSDictionary *)startDic  allDataDic:(NSDictionary *)allDataDic{
     //头图片
-    [self.lastImageView sd_setImageWithURL:[NSURL URLWithString:startDic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * string =[startDic[@"photo_list"] count] > 0 ? startDic[@"photo_list"][0][@"photo_url"] : @"";
+   [self.lastImageView sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     //头名字
     self.lastTitleLbl.text = kGetString(startDic[@"cigar_name"]);
     //国内售价

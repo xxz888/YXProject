@@ -29,7 +29,8 @@
         self.title = @"请选择品牌";
         [self addNavigationItemWithImageNames:@[@"返回键"] isLeft:YES target:self action:@selector(clickBackAction) tags:nil];
     }else{
-        [self setNavSearchView];
+        self.title = @"雪茄品牌";
+        //[self setNavSearchView];
     }
     [self setInitCollection];
 }

@@ -66,10 +66,15 @@ static CGFloat textFieldH = 0;
     //获取回答列表
     kWeakSelf(self);
     [YX_MANAGER requestAnswerListGET:par success:^(id object) {
-        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
-        weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:weakself.dataArray]];
-        [weakself refreshTableView];
-        [weakself.inputBar.inputView resignFirstResponder];
+        if ([object count] != 0) {
+            weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
+            weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:weakself.dataArray]];
+            [weakself refreshTableView];
+            [weakself.inputBar.inputView resignFirstResponder];
+        }else{
+            [weakself.yxTableView.mj_footer endRefreshing];
+        }
+ 
     }];
 }
 -(void)headerRereshing{
@@ -152,6 +157,9 @@ static CGFloat textFieldH = 0;
     self.headerView = [nib objectAtIndex:0];
     self.headerView.frame = CGRectMake(0, 0, KScreenWidth, 250);
      [self.headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:self.moment.photo] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    self.headerView.titleImageView.layer.masksToBounds = YES;
+    self.headerView.titleImageView.layer.cornerRadius = self.headerView.titleImageView.frame.size.width / 2.0;
+    
     self.headerView.titleLbl.text = self.moment.userName;
     self.headerView.timeLbl.text = [ShareManager timestampSwitchTime:self.moment.time andFormatter:@""];
     self.headerView.detailLbl.text = self.moment.text;
