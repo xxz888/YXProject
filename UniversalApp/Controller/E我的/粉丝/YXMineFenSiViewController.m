@@ -101,7 +101,7 @@
             [cell.common1GuanzhuBtn setTitle:@"关注" forState:UIControlStateNormal];
             [cell.common1GuanzhuBtn setTitleColor:[UIColor darkGrayColor] forState:0];
             [cell.common1GuanzhuBtn setBackgroundColor:KWhiteColor];
-            
+            ViewBorderRadius(cell.common1GuanzhuBtn, 5, 1, KDarkGaryColor);
         }
     }];
 }

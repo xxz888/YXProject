@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 typedef void(^SegmentActionBlock)(NSInteger index);
+typedef void(^SearchAllActionBlock)(void);
 
 @interface YXHomeLastDetailView : UIView
 //重新赋值
@@ -23,6 +24,7 @@ typedef void(^SegmentActionBlock)(NSInteger index);
 //点击我的点评
 @property (nonatomic,weak) id<clickMyTalkDelegate> delegate;
 @property (nonatomic,copy)SegmentActionBlock block;
+@property (nonatomic,copy)SearchAllActionBlock searchAllBlock;
 
 @property (weak, nonatomic) IBOutlet UIImageView *lastImageView;
 @property (weak, nonatomic) IBOutlet UILabel *lastTitleLbl;

@@ -77,15 +77,15 @@
     UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
     YXMineImageViewController * imageVC = [[YXMineImageViewController alloc]init];
     imageVC.userId = self.userId;
-    //  YES为其他人 NO为自己
+
     YXMineArticleViewController * articleVC = [stroryBoard instantiateViewControllerWithIdentifier:@"YXMineArticleViewController"];
     articleVC.userId = self.userId;
     
     YXMineAllViewController * AllVC = [[YXMineAllViewController alloc]init];
     AllVC.userId = self.userId;
     
-    
     YXMineFootViewController * footVC = [[YXMineFootViewController alloc]init];
+    footVC.userId = self.userId;
     [self setSegmentControllersArray:@[AllVC,imageVC,footVC] title:@[@"全部",@"晒图",@"足迹"] defaultIndex:0 top:175+NavigationBarHeight view:self.view];
 }
 #pragma mark ========== 数据 ==========

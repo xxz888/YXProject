@@ -286,6 +286,8 @@
 		BB9832732201700C0048D103 /* FCXRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB98326B2201700C0048D103 /* FCXRefreshHeaderView.m */; };
 		BB9832742201700C0048D103 /* FCXRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB98326D2201700C0048D103 /* FCXRefreshBaseView.m */; };
 		BB9832752201700C0048D103 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = BB98326F2201700C0048D103 /* blueArrow.png */; };
+		BB9832792201E0C90048D103 /* YXHomeNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9832782201E0C90048D103 /* YXHomeNewsDetailViewController.m */; };
+		BB98327F2202C9350048D103 /* html in Resources */ = {isa = PBXBuildFile; fileRef = BB98327E2202C9340048D103 /* html */; };
 		BB9EFE7021F5CCBA00180813 /* YXPublishMoreTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFE6E21F5CCBA00180813 /* YXPublishMoreTagsViewController.m */; };
 		BB9EFE7121F5CCBA00180813 /* YXPublishMoreTagsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB9EFE6F21F5CCBA00180813 /* YXPublishMoreTagsViewController.xib */; };
 		BB9EFE8F21F6B92300180813 /* YXQCDJCDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFE8D21F6B92300180813 /* YXQCDJCDetailTableViewController.m */; };
@@ -1038,6 +1040,9 @@
 		BB98326D2201700C0048D103 /* FCXRefreshBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCXRefreshBaseView.m; sourceTree = "<group>"; };
 		BB98326E2201700C0048D103 /* UIScrollView+FCXRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+FCXRefresh.h"; sourceTree = "<group>"; };
 		BB98326F2201700C0048D103 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		BB9832772201E0C90048D103 /* YXHomeNewsDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeNewsDetailViewController.h; sourceTree = "<group>"; };
+		BB9832782201E0C90048D103 /* YXHomeNewsDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeNewsDetailViewController.m; sourceTree = "<group>"; };
+		BB98327E2202C9340048D103 /* html */ = {isa = PBXFileReference; lastKnownFileType = folder; path = html; sourceTree = "<group>"; };
 		BB9EFE6D21F5CCBA00180813 /* YXPublishMoreTagsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXPublishMoreTagsViewController.h; sourceTree = "<group>"; };
 		BB9EFE6E21F5CCBA00180813 /* YXPublishMoreTagsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXPublishMoreTagsViewController.m; sourceTree = "<group>"; };
 		BB9EFE6F21F5CCBA00180813 /* YXPublishMoreTagsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXPublishMoreTagsViewController.xib; sourceTree = "<group>"; };
@@ -2326,6 +2331,7 @@
 		296F9EBA1ECC64CE0063A255 /* UniversalApp */ = {
 			isa = PBXGroup;
 			children = (
+				BB98327E2202C9340048D103 /* html */,
 				BBA8129F21DDAB00001B5EA1 /* Controller */,
 				BBC16282217AD6DE00008907 /* StoryBoard */,
 				29AD6C5D1ED3E4D600B0879C /* AppDelegate */,
@@ -3003,6 +3009,15 @@
 			path = FCXRefreshView;
 			sourceTree = "<group>";
 		};
+		BB9832762201E0990048D103 /* 新闻详情 */ = {
+			isa = PBXGroup;
+			children = (
+				BB9832772201E0C90048D103 /* YXHomeNewsDetailViewController.h */,
+				BB9832782201E0C90048D103 /* YXHomeNewsDetailViewController.m */,
+			);
+			path = "新闻详情";
+			sourceTree = "<group>";
+		};
 		BB9EFE6C21F5CC7F00180813 /* 更多标签 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3175,6 +3190,7 @@
 				BBD2C95921E0FAEC00350DCD /* YXGridView.h */,
 				BBD2C95A21E0FAEC00350DCD /* YXGridView.m */,
 				BBD2C95821E0FAEC00350DCD /* YXGridView.xib */,
+				BB9832762201E0990048D103 /* 新闻详情 */,
 				BBCC4A8F21E82C4100493F40 /* 工具 */,
 				BBCC4A8E21E82C4100493F40 /* 品鉴足迹 */,
 				BBCC4A8D21E82C4100493F40 /* 问答 */,
@@ -4796,6 +4812,7 @@
 				293D464D1ECDBB63007C64A9 /* icon_tabbar_mine_selected@2x.png in Resources */,
 				293D46531ECDBB63007C64A9 /* icon_tabbar_nearby_selected.png in Resources */,
 				BB6D2A4721EF7D9200F5049F /* YXHomeQuestionDetailHeaderView.xib in Resources */,
+				BB98327F2202C9350048D103 /* html in Resources */,
 				BBECEEAB21F04C8B007E90AC /* YXQCDJCViewController.xib in Resources */,
 				296F9A2C1F04F39000909CDB /* 1.jpg in Resources */,
 				293D46561ECDBB63007C64A9 /* icon_tabbar_onsite_selected@2x.png in Resources */,
@@ -5171,6 +5188,7 @@
 				293D460E1ECDAEDC007C64A9 /* MsgViewController.m in Sources */,
 				BB9413E321F8B602007E800A /* IQUIScrollView+Additions.m in Sources */,
 				BB5FD88A21FECBDB00B5F1A8 /* YXFindImageTableViewCell.m in Sources */,
+				BB9832792201E0C90048D103 /* YXHomeNewsDetailViewController.m in Sources */,
 				BBD2C84C21E0F46500350DCD /* YXPublishImageViewController.m in Sources */,
 				29AD6C711ED41ED200B0879C /* UserInfo.m in Sources */,
 				BB6D29F021ED8D6E00F5049F /* YXHomeXueJiaPeiJianDetailViewController.m in Sources */,

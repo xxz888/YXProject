@@ -129,6 +129,7 @@
     }
 }
 - (IBAction)lastSearchAllAction:(id)sender {
+    self.searchAllBlock();
 }
 - (IBAction)lastSegmentAction:(UISegmentedControl *)sender{
     self.block(sender.selectedSegmentIndex);

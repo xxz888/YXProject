@@ -114,14 +114,11 @@
 
         //发布按钮
         [YX_MANAGER requestFaBuQuestionPOST:dic success:^(id object) {
-            if ([object isEqualToString:@"1"]) {
                 [QMUITips showSucceed:@"发布成功" inView:weakself.view hideAfterDelay:2];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [weakself.navigationController popViewControllerAnimated:YES];
                 });
-            }else{
-                [QMUITips showError:@"发布失败,请稍后重试" inView:weakself.view hideAfterDelay:2];
-            }
+
         }];
     } failure:^(NSString *error) {
         NSLog(@"%@",error);

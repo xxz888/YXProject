@@ -95,9 +95,9 @@
     }];
 }
 
-#pragma mark ========== 界面刷新 ==========
+#pragma mark ========== 界面刷新 ==========x
 -(void)mineShaiTuRefreshAction:(id)object{
-     self.dataArray = [self addCollectionViewRefreshView:object dataArray:self.dataArray];
+     self.dataArray = [self commonCollectionAction:object dataArray:self.dataArray];
     [self.yxCollectionView reloadData];
 }
 #pragma mark ========== 晒图点赞 ==========

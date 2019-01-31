@@ -136,7 +136,25 @@
     });
     return nnnArray;
 }
+-(NSMutableArray *)commonCollectionAction:(id)obj dataArray:(NSMutableArray *)dataArray{
 
+    NSMutableArray * nnnArray = [NSMutableArray arrayWithArray:dataArray];
+    if (self.requestPage == 1) {
+        [nnnArray removeAllObjects];
+        [nnnArray addObjectsFromArray:obj];
+    }else{
+        if ([obj count] == 0) {
+            [QMUITips showInfo:REFRESH_NO_DATA inView:self.view hideAfterDelay:1];
+            [_collectionView.mj_footer endRefreshing];
+        }
+        nnnArray = [NSMutableArray arrayWithArray:[nnnArray arrayByAddingObjectsFromArray:obj]];
+    }
+    DO_IN_MAIN_QUEUE_AFTER(0.5f, ^{
+        [_yxCollectionView.mj_header endRefreshing];
+        [_yxCollectionView.mj_footer endRefreshing];
+    });
+    return nnnArray;
+}
 /**
  *  懒加载UITableView
  *

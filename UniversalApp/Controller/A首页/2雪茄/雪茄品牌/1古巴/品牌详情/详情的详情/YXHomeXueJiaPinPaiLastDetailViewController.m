@@ -10,7 +10,7 @@
 #import "YXHomeLastDetailView.h"
 #import "YXHomeLastMyTalkView.h"
 #import "XHStarRateView.h"
-
+#import "YXMineImageViewController.h"
 
 #import "SDTimeLineTableHeaderView.h"
 #import "SDTimeLineRefreshHeader.h"
@@ -77,34 +77,6 @@ static CGFloat textFieldH = 40;
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeTop;
-
-
-    
-    /*
-     // 上拉加载
-     __weak typeof(self) weakSelf = self;
-     _refreshFooter = [SDTimeLineRefreshFooter refreshFooterWithRefreshingText:@"正在加载数据..."];
-     __weak typeof(_refreshFooter) weakRefreshFooter = _refreshFooter;
-     [_refreshFooter addToScrollView:self.yxTableView refreshOpration:^{
-     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-     [weakSelf.dataArray addObjectsFromArray:[weakSelf creatModelsWithCount:10]];
-     
-     
-     [weakself.yxTableView reloadDataWithExistedHeightCache]
-     作用等同于
-     [weakself.yxTableView reloadData]
-     只是“reloadDataWithExistedHeightCache”刷新tableView但不清空之前已经计算好的高度缓存，用于直接将新数据拼接在旧数据之后的tableView刷新
-     
-     [weakself.yxTableView reloadDataWithExistedHeightCache];
-     
-     [weakRefreshFooter endRefreshing];
-     });
-     }];
-     
-     SDTimeLineTableHeaderView *headerView = [SDTimeLineTableHeaderView new];
-     headerView.frame = CGRectMake(0, 0, 0, 260);
-     self.yxTableView.tableHeaderView = headerView;
-     */
     //添加分隔线颜色设置
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeLastDetailView" owner:self options:nil];
     self.lastDetailView = [nib objectAtIndex:0];
@@ -115,6 +87,11 @@ static CGFloat textFieldH = 40;
     self.lastDetailView.block = ^(NSInteger index) {
         index == 0 ? [weakself requestNewList] : [weakself requestHotList];
         _segmentIndex = index;
+    };
+    self.lastDetailView.searchAllBlock = ^{
+        UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+        YXMineImageViewController * imageVC = [[YXMineImageViewController alloc]init];
+        [weakself.navigationController pushViewController:imageVC animated:YES];
     };
     [self setupTextField];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
@@ -235,6 +212,7 @@ static CGFloat textFieldH = 40;
 
 }
 
+
 #pragma mark ========== 点击我来评论 ==========
 -(void)clickMyTalkAction{
     
@@ -256,7 +234,7 @@ static CGFloat textFieldH = 40;
     modalViewController.contentView = self.lastMyTalkView;
     [modalViewController showWithAnimated:YES completion:nil];
 }
-
+#pragma mark ========== 点击全部图片 ==========
 
 #pragma mark ========== tableview数据 ==========
 - (NSArray *)creatModelsWithCount:(NSArray *)formalArray{

@@ -94,6 +94,7 @@
         YXHomeXueJiaDetailTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaDetailTableViewCell" forIndexPath:indexPath];
         NSString * url = [cellData[@"photo_list"] count] > 0 ? cellData[@"photo_list"][0][@"photo_url"] : @"";
         [cell.section2ImageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        cell.whereCome = self.whereCome;
         cell.section2TitleLbl.text = cellData[@"cigar_name"];
         cell.section2Lbl1.text = kGetString(cellData[@"ring_gauge"]) ;
         cell.section2Lbl2.text = kGetString(cellData[@"length"]);

@@ -107,4 +107,5 @@ typedef void (^ListenChangeIndexBlock)(NSInteger);
 - (void)addCollectionViewRefreshView:(UICollectionView *)yxCollectionView;
 -(void)headerRereshing;
 -(void)footerRereshing;
+-(NSMutableArray *)commonCollectionAction:(id)obj dataArray:(NSMutableArray *)dataArray;
 @end
