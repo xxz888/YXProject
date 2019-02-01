@@ -47,7 +47,7 @@
     ViewRadius(self.moreBtn, 3);
     
     self.qmuiTextView = [[QMUITextView alloc] init];
-    self.qmuiTextView.frame = CGRectMake(0, 0, self.questionMainView.frame.size.width, self.questionMainView.frame.size.height);
+    self.qmuiTextView.frame = CGRectMake(0, 0, KScreenWidth - 20, self.questionMainView.frame.size.height);
     self.qmuiTextView.backgroundColor = YXRGBAColor(239, 239, 239);
     self.qmuiTextView.font = UIFontMake(15);
     self.qmuiTextView.placeholder = @"发表你的足迹";
@@ -233,7 +233,9 @@
     }
     [btn.superview.superview removeFromSuperview];
 }
-
+-(void)backBtnClicked{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 
 

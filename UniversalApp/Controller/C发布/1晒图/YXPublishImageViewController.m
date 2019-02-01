@@ -117,7 +117,7 @@ static NSString *secretKey = @"官网获取";
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXPublishImageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXPublishImageTableViewCell" forIndexPath:indexPath];
-    _textViewInput = cell.textView.textView.text;
+
     _locationString = cell.locationBtn.titleLabel.text;
     kWeakSelf(self);
     //新话题
@@ -202,11 +202,14 @@ static NSString *secretKey = @"官网获取";
             [QMUITips showError:@"请输入描述!" inView:self.view hideAfterDelay:2];
             return;
         }
+        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        YXPublishImageTableViewCell * cell = [self.yxTableview cellForRowAtIndexPath:indexPath];
+        _textViewInput = cell.qmuiTextView.text;
         [dic setValue:_textViewInput forKey:@"describe"];//描述
         
         
         
-        NSString * publish_site = [_locationString isEqualToString:@"你的位置"] ? @"" : _locationString;
+        NSString * publish_site = [_locationString isEqualToString:@"你的位置"] ||  [_locationString isEqualToString:@"获取地理位置"] ? @"" : _locationString;
         [dic setValue:publish_site forKey:@"publish_site"];//地点
         if (_tagArray.count == 0) {
             [dic setValue:@"" forKey:@"tag"];//标签

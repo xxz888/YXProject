@@ -98,16 +98,16 @@
                                         <rect key="frame" x="0.0" y="20" width="310" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mac-2h-Rff">
-                                                <rect key="frame" x="0.0" y="0.0" width="60" height="20"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="80" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="60" id="8Nn-YU-Mjc"/>
+                                                    <constraint firstAttribute="width" constant="80" id="8Nn-YU-Mjc"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4G5-Jy-Ad9">
-                                                <rect key="frame" x="60" y="0.0" width="250" height="20"/>
+                                                <rect key="frame" x="80" y="0.0" width="230" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -128,16 +128,16 @@
                                         <rect key="frame" x="0.0" y="40" width="310" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jaz-Oa-3r7">
-                                                <rect key="frame" x="0.0" y="0.0" width="60" height="20"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="80" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="60" id="4Hq-5Q-Gk8"/>
+                                                    <constraint firstAttribute="width" constant="80" id="4Hq-5Q-Gk8"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKH-lV-8ps">
-                                                <rect key="frame" x="60" y="0.0" width="250" height="20"/>
+                                                <rect key="frame" x="80" y="0.0" width="230" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>

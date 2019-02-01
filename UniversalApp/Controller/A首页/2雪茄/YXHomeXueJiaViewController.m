@@ -43,7 +43,6 @@
 -(void)requestInformation{
     kWeakSelf(self);
     [YX_MANAGER requestGETInformation:TYPE_XUEJIA_1 success:^(id object) {
-        UserDefaultsSET(object, @"a1");
         [weakself.informationArray removeAllObjects];
         [weakself.informationArray addObjectsFromArray:object];
         [weakself.bottomTableView reloadData];
@@ -59,6 +58,10 @@
             [weakself.headerView setUpSycleScrollView:object];
             [weakself.scrollImgArray removeAllObjects];
             [weakself.scrollImgArray addObjectsFromArray:object];
+        }else{
+            [weakself.bottomTableView.mj_footer endRefreshing];
+            [weakself.bottomTableView.mj_footer endRefreshing];
+
         }
     }];
 }
@@ -69,7 +72,7 @@
 -(void)createBottomTableView{
 
     if (!self.bottomTableView) {
-        self.bottomTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, AxcAE_IsiPhoneX ?self.bootomView.frame.size.height : self.bootomView.frame.size.height-49-64) style:UITableViewStyleGrouped];
+        self.bottomTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, AxcAE_IsiPhoneX ?self.bootomView.frame.size.height : KScreenHeight - kTopHeight - TabBarHeight) style:UITableViewStyleGrouped];
         [self.bootomView addSubview:self.bottomTableView];
     }
     self.bottomTableView.backgroundColor = KWhiteColor;

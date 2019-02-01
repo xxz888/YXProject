@@ -18,7 +18,7 @@
 @interface YXHomeXueJiaPinPaiViewController() <PYSearchViewControllerDelegate> {
         YXHomeXueJiaGuBaViewController *  VC1;
         YXHomeXueJiaFeiGuViewController*  VC2;
-        YXHomeXueJiaGuBaViewController *  VC3;
+        YXHomeXueJiaMyGuanZhuViewController *  VC3;
         YXHomeXueJiaGuBaViewController *  VC4;
 }
 @end

@@ -73,7 +73,8 @@ static CGFloat textFieldH = 40;
     //添加分隔线颜色设置
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXMineImageDetailHeaderView" owner:self options:nil];
     self.lastDetailView = [nib objectAtIndex:0];
-    self.lastDetailView.frame = CGRectMake(0, 0, KScreenWidth, 485);
+
+    self.lastDetailView.frame = CGRectMake(0, 0, KScreenWidth, 485 - kTopHeight );
     self.yxTableView.tableHeaderView = self.lastDetailView;
     if (self.startDic[@"pic1"] || self.startDic[@"pic2"] || self.startDic[@"pic3"]) {
         [self.lastDetailView setContentViewValue:@[self.startDic[@"pic1"],self.startDic[@"pic2"],self.startDic[@"pic3"]]];
@@ -107,26 +108,39 @@ static CGFloat textFieldH = 40;
 //    [weakself refreshTableView];
     //请求评价列表 最新评论列表
     [YX_MANAGER requestPost_comment:[self getParamters:@"1" page:NSIntegerToNSString(self.requestPage)] success:^(id object) {
-        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
-        weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
-        [weakself refreshTableView];
+        if ([object count] > 0) {
+            weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
+            weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
+            [weakself refreshTableView];
+        }else{
+            [weakself.yxTableView.mj_footer endRefreshing];
+            [weakself.yxTableView.mj_footer endRefreshing];
+            
+        }
+    
     }];
 }
 -(void)requestHotList{
     kWeakSelf(self);
     //请求评价列表 最热评论列表
     [YX_MANAGER requestPost_comment:[self getParamters:@"2" page:NSIntegerToNSString(self.requestPage)] success:^(id object) {
-        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
-        weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
-        [weakself refreshTableView];
+        if ([object count] > 0) {
+            weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
+            weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
+            [weakself refreshTableView];
+        }else{
+            [weakself.yxTableView.mj_footer endRefreshing];
+            [weakself.yxTableView.mj_footer endRefreshing];
+            
+        }
     }];
 }
 -(void)refreshTableView{
-    if (_currentEditingIndexthPath) {
-        [self.yxTableView reloadRowsAtIndexPaths:@[_currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
-    }else{
+//    if (_currentEditingIndexthPath) {
+//        [self.yxTableView reloadRowsAtIndexPaths:@[_currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
+//    }else{
         [self.yxTableView reloadData];
-    }
+//    }
 }
 #pragma mark ========== 评论子评论 ==========
 -(void)requestpost_comment_child:(NSDictionary *)dic{
@@ -218,7 +232,7 @@ static CGFloat textFieldH = 40;
     for (int i = 0; i < formalArray.count; i++) {
         SDTimeLineCellModel *model = [SDTimeLineCellModel new];
         NSMutableDictionary * pageDic = [[NSMutableDictionary alloc]init];
-        model.iconName = formalArray[i][@"user_photo"];
+        model.iconName = formalArray[i][@"photo"];
         model.name = formalArray[i][@"user_name"];
         model.msgContent = formalArray[i][@"comment"];
         model.commontTime = [formalArray[i][@"update_time"] integerValue];

@@ -8,6 +8,8 @@
 
 #import "TableViewCell.h"
 #import "LTTextView.h"
+#import "QMUITextView.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 
@@ -25,10 +27,10 @@ typedef void(^moreBlock)(void);
 - (IBAction)xinhuatiAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *moreBtn;
 - (IBAction)moreAction:(id)sender;
-@property(nonatomic) LTTextView  *textView;
 @property (nonatomic,copy) tagStringBlock block;
 @property (nonatomic,copy) locationBlock locationblock;
 @property (nonatomic,copy) moreBlock moreBlock;
+@property(nonatomic, strong) QMUITextView * qmuiTextView;
 @end
 
 NS_ASSUME_NONNULL_END

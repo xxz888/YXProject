@@ -66,7 +66,7 @@ static CGFloat textFieldH = 40;
     //添加分隔线颜色设置
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXMineImageDetailHeaderView" owner:self options:nil];
     self.lastDetailView = [nib objectAtIndex:0];
-    self.lastDetailView.frame = CGRectMake(0, 0, KScreenWidth, 485);
+    self.lastDetailView.frame = CGRectMake(0, 0, KScreenWidth, 485 - kTopHeight );
     self.yxTableView.tableHeaderView = self.lastDetailView;
     if (self.startDic[@"pic1"] || self.startDic[@"pic2"] || self.startDic[@"pic3"]) {
         [self.lastDetailView setContentViewValue:@[self.startDic[@"pic1"],self.startDic[@"pic2"],self.startDic[@"pic3"]]];
@@ -107,32 +107,38 @@ static CGFloat textFieldH = 40;
     //请求评价列表 最新评论列表
     [YX_MANAGER requestGetNewFootList:[self getParamters:@"1" page:NSIntegerToNSString(self.requestPage)] success:^(id object) {
         
-        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
-        if ([object count] == 0) {
-//            [QMUITips showInfo:REFRESH_NO_DATA inView:self.view hideAfterDelay:1];
-            [weakself.yxTableView.mj_footer endRefreshing];
-            return ;
+        if ([object count] > 0) {
+            weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
+            weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
+            [weakself refreshTableView];
         }else{
-            weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:weakself.dataArray]];
+            [weakself.yxTableView.mj_footer endRefreshing];
+            [weakself.yxTableView.mj_footer endRefreshing];
+            
         }
-        [weakself refreshTableView];
     }];
 }
 -(void)requestHotList{
     kWeakSelf(self);
     //请求评价列表 最热评论列表
     [YX_MANAGER requestGetHotFootList:[self getParamters:@"2" page:NSIntegerToNSString(self.requestPage)] success:^(id object) {
-        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
-        weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:weakself.dataArray]];
-        [weakself refreshTableView];
+        if ([object count] > 0) {
+            weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
+            weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
+            [weakself refreshTableView];
+        }else{
+            [weakself.yxTableView.mj_footer endRefreshing];
+            [weakself.yxTableView.mj_footer endRefreshing];
+            
+        }
     }];
 }
 -(void)refreshTableView{
-    if (_currentEditingIndexthPath) {
-        [self.yxTableView reloadRowsAtIndexPaths:@[_currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
-    }else{
+//    if (_currentEditingIndexthPath) {
+//        [self.yxTableView reloadRowsAtIndexPaths:@[_currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
+//    }else{
         [self.yxTableView reloadData];
-    }
+//    }
 }
 #pragma mark ========== 评论子评论 ==========
 -(void)requestpost_comment_child:(NSDictionary *)dic{

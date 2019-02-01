@@ -290,7 +290,7 @@
         moment.praiseNameList = nil;
         moment.userName = dic[@"user_name"];
         moment.text = dic[@"title"];
-        moment.time = [dic[@"publish_date"] longLongValue];
+        moment.time = [dic[@"publish_time"] integerValue];
         moment.singleWidth = 500;
         moment.singleHeight = 315;
         moment.location = @"";
