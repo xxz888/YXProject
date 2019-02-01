@@ -31,7 +31,7 @@
     self.yxTableView.delegate= self;
     self.yxTableView.dataSource=self;
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaTableViewCell"];
-
+    self.yxTableView.tableFooterView = [[UIView alloc]init];
     
     kWeakSelf(self);
     [YX_MANAGER requestCigar_accessories_CbrandGET:@"" success:^(id object) {

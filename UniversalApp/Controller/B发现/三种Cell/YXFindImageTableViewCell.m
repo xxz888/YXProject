@@ -48,11 +48,12 @@
 -(void)setCellValue:(NSDictionary *)dic{
     
     [self.midImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo1"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    self.titleTagtextView.text = [dic[@"describe"] append:dic[@"index"]];
     
     
-    
-    
+    NSString * titleText = [NSString stringWithFormat:@"%@%@",dic[@"describe"],dic[@"index"]];
+    self.titleTagtextView.text = titleText;
+    [ShareManager inTextViewOutDifColorView:self.titleTagtextView tag:dic[@"index"]];
+
     
     
     
@@ -90,6 +91,11 @@
 
 
 - (IBAction)likeBtnAction:(id)sender {
+    
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
     self.zanblock(self);
 }
 @end

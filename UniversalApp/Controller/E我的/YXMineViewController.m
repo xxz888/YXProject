@@ -86,7 +86,7 @@
     
     YXMineFootViewController * footVC = [[YXMineFootViewController alloc]init];
     footVC.userId = self.userId;
-    [self setSegmentControllersArray:@[AllVC,imageVC,footVC] title:@[@"全部",@"晒图",@"足迹"] defaultIndex:0 top:175+NavigationBarHeight view:self.view];
+    [self setSegmentControllersArray:@[AllVC,imageVC,footVC] title:@[@"全部",@"晒图",@"足迹"] defaultIndex:0 top:175+kTopHeight view:self.view];
 }
 #pragma mark ========== 数据 ==========
 -(void)setViewData{
@@ -122,8 +122,24 @@
     [self.guanzhuBtn setTitle:islike forState:UIControlStateNormal];
     self.userInfoDic = [NSDictionary dictionaryWithDictionary:object];
 }
+- (IBAction)guanzhuOtherAction:(id)sender {
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
+    kWeakSelf(self);
+    [YX_MANAGER requestLikesActionGET:self.userId success:^(id object) {
+        BOOL is_like = [weakself.guanzhuBtn.titleLabel.text isEqualToString:@"关注"] == 1;
+        [QMUITips showSucceed:is_like ?@"关注成功": @"已取消关注" inView:weakself.view hideAfterDelay:2];
+        [ShareManager setGuanZhuStatus:weakself.guanzhuBtn status:!is_like];
+    }];
+}
 #pragma mark ========== 关注按钮 ==========
 - (IBAction)guanzhuAction:(id)sender{
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
     UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
     YXMineGuanZhuViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineGuanZhuViewController"];
     VC.userId = self.userId;
@@ -131,6 +147,10 @@
 }
 #pragma mark ========== 粉丝按钮 ==========
 - (IBAction)fensiAction:(id)sender {
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
     UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
     YXMineFenSiViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineFenSiViewController"];
     VC.userId = self.userId;
@@ -159,8 +179,8 @@
 }
 #pragma mark ========== 右上角菜单按钮 ==========
 -(void)setLayoutCol{
-    CGRect frame = CGRectMake(0, 0, KScreenWidth/1.5, KScreenHeight);
-    self.yxTableView = [[UITableView alloc]initWithFrame:frame style:0];
+    CGRect frame = CGRectMake(0,AxcAE_IsiPhoneX ? kTopHeight : 0, KScreenWidth/1.5, AxcAE_IsiPhoneX ? KScreenHeight - kTopHeight :KScreenHeight);
+    self.yxTableView = [[UITableView alloc]initWithFrame:frame style:1];
     [self.yxTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Identifier"];
     titleArray = @[@"更多",@"我的草稿",@"发现好友",@"我的收藏",@"我的点赞",@"我的点评",@"设置"];
     self.yxTableView.backgroundColor = UIColorWhite;
@@ -206,7 +226,10 @@
     if (indexPath.row == 1){
         YXMineMyCaoGaoViewController * VC = [[YXMineMyCaoGaoViewController alloc]init];
         [self.navigationController pushViewController:VC animated:YES];
-    }else if (indexPath.row == 3) {
+    }else if(indexPath.row == 2){
+        [QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
+    }
+    else if (indexPath.row == 3) {
         YXMineMyCollectionViewController * VC = [[YXMineMyCollectionViewController alloc]init];
         [self.navigationController pushViewController:VC animated:YES];
     } else if (indexPath.row == 4){

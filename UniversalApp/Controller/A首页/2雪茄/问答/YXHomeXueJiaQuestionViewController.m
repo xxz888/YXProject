@@ -119,7 +119,7 @@
         moment.praiseNameList = nil;//@"胡一菲，唐悠悠，陈美嘉，吕小布，曾小贤，张伟，关谷神奇";
         moment.userName = self.dataArray[i][@"user_name"];
         moment.text = self.dataArray[i][@"title"];
-        moment.time = [self.dataArray[i][@"publish_date"] longLongValue];
+        moment.time = [self.dataArray[i][@"publish_time"] integerValue];
         moment.singleWidth = 500;
         moment.singleHeight = 315;
         moment.location = @"";
@@ -148,7 +148,7 @@
 #pragma mark - UI
 - (void)setUpUI{
     // 表格
-    self.yxTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, k_screen_width, k_screen_height-k_top_height - 50)];
+    self.yxTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kTopHeight, k_screen_width, k_screen_height-kTopHeight-TabBarHeight)];
     self.yxTableView.backgroundColor = [UIColor clearColor];
     self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.yxTableView.showsVerticalScrollIndicator = NO;

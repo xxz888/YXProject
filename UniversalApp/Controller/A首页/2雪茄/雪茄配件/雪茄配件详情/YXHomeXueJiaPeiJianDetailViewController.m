@@ -54,7 +54,7 @@
 
     NSArray* names = @[@"推荐",@"雪茄剪",@"打火机",@"保湿盒",@"雪茄盒",@"烟灰缸"];
     NSArray* controllers = @[VC1,VC2,VC3,VC4,VC5,VC6];
-    [self setSegmentControllersArray:controllers title:names defaultIndex:0 top:64 view:self.view  ];
+    [self setSegmentControllersArray:controllers title:names defaultIndex:0 top:kTopHeight view:self.view  ];
 }
 
 

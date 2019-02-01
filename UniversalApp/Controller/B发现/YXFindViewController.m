@@ -70,7 +70,7 @@
 #pragma mark ========== 创建tableview ==========
 -(void)tableviewCon{
     self.dataArray = [[NSMutableArray alloc]init];
-    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, NavigationContentTop, KScreenWidth, KScreenHeight - NavigationContentTop) style:0];
+    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, kTopHeight, KScreenWidth, KScreenHeight - kTopHeight-TabBarHeight) style:0];
     [self.view addSubview:self.yxTableView];
     self.yxTableView.tableHeaderView = [self headerView];
     self.yxTableView.delegate = self;

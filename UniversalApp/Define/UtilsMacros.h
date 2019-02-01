@@ -22,7 +22,7 @@
 
 #define Handle_IMG [UIImage imageNamed:@"已赞"]
 #define un_Handle_IMG [UIImage imageNamed:@"未赞"]
-
+#define SHOW_FUTURE_DEV @"功能正在开发中..."
 
 #define YX_USER_FaBuCaoGao @"YX_FaBuCaoGao"
 /**本地化存储**/

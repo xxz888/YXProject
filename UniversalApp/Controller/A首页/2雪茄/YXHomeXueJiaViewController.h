@@ -19,4 +19,6 @@
 @property(nonatomic,strong)UITableView * bottomTableView;
 @property(nonatomic,strong)YXHomeXueJiaHeaderView * headerView;
 @property(nonatomic,strong)NSMutableArray * informationArray;
+@property(nonatomic,strong)NSMutableArray * scrollImgArray;
+
 @end

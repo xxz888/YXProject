@@ -12,7 +12,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    self.wenhuaImageView.layer.masksToBounds = YES;
+    self.wenhuaImageView.layer.cornerRadius = 3;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

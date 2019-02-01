@@ -46,7 +46,7 @@ CGFloat maxLimitHeight = 0;
     
     
     // 名字视图
-    _timeTagLab = [[UILabel alloc] initWithFrame:CGRectMake(KScreenWidth -60, _headImageView.centerY - 10, kTextWidth, 20)];
+    _timeTagLab = [[UILabel alloc] initWithFrame:CGRectMake(KScreenWidth -140, _headImageView.centerY - 10, kTextWidth, 20)];
     _timeTagLab.font = [UIFont systemFontOfSize:13.0];
     _timeTagLab.textColor = kHLTextColor;
     _timeTagLab.backgroundColor = [UIColor clearColor];
@@ -162,7 +162,7 @@ CGFloat maxLimitHeight = 0;
     }
     // 位置
     _locationLab.frame = CGRectMake(_nameLab.left, bottom, _nameLab.width, kTimeLabelH);
-    _timeTagLab.text = [NSString stringWithFormat:@"%@",[Utility getDateFormatByTimestamp:moment.time]];
+    _timeTagLab.text = [NSString stringWithFormat:@"%@", [ShareManager timestampSwitchTime:moment.time andFormatter:@""]];
     CGFloat textW = [_timeLab.text boundingRectWithSize:CGSizeMake(200, kTimeLabelH)
                                                 options:NSStringDrawingUsesLineFragmentOrigin
                                              attributes:@{NSFontAttributeName:_timeLab.font}

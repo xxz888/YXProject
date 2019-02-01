@@ -33,7 +33,7 @@
 // 图片数量
 @property (nonatomic,assign) NSInteger fileCount;
 // 发布时间戳
-@property (nonatomic,assign) long long time;
+@property (nonatomic,assign) NSInteger time;
 // 显示'全文'/'收起'
 @property (nonatomic,assign) BOOL isFullText;
 // 是否已经点赞

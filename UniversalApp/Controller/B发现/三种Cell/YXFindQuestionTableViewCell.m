@@ -92,6 +92,10 @@
 
 
 - (IBAction)likeBtnAction:(id)sender {
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
     self.zanblock(self);
 }
 @end

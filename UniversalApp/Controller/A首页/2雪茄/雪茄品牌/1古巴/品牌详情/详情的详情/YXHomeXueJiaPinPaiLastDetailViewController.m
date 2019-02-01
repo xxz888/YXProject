@@ -80,7 +80,7 @@ static CGFloat textFieldH = 40;
     //添加分隔线颜色设置
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeLastDetailView" owner:self options:nil];
     self.lastDetailView = [nib objectAtIndex:0];
-    self.lastDetailView.frame = CGRectMake(0, 0, KScreenWidth, 1100);
+    self.lastDetailView.frame = CGRectMake(0, 0, KScreenWidth, AxcAE_IsiPhoneX ? 950 : 1050);
     self.lastDetailView.delegate = self;
     self.yxTableView.tableHeaderView = self.lastDetailView;
     //点击segment

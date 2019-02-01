@@ -33,9 +33,17 @@
 }
 
 - (IBAction)addPlBtnAction:(id)sender {
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
     self.jumpDetailVC(self);
 }
 - (IBAction)searchAllPlBtnAction:(id)sender{
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
     self.jumpDetailVC(self);
 }
 

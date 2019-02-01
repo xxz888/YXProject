@@ -275,7 +275,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39Y-AP-pM1">
-                                <rect key="frame" x="100" y="30" width="7" height="18"/>
+                                <rect key="frame" x="100" y="30" width="7" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -296,7 +296,7 @@
                                     <color key="titleColor" red="0.31372549020000001" green="0.3294117647" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="guanzhuAction:" destination="Xxf-Ui-LlL" eventType="touchUpInside" id="e5u-0f-Ocj"/>
+                                    <action selector="guanzhuOtherAction:" destination="Xxf-Ui-LlL" eventType="touchUpInside" id="LwU-FH-BJf"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="vzD-Vj-XZV">
@@ -417,10 +417,9 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nhq-fI-Rq3">
-                                <rect key="frame" x="225" y="30" width="140" height="25"/>
+                                <rect key="frame" x="225" y="30" width="140" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="140" id="Yb0-jr-xNl"/>
-                                    <constraint firstAttribute="height" constant="25" id="wbp-aU-Xzz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="查看并编辑个人资料">
@@ -445,6 +444,7 @@
                             <constraint firstItem="SSz-Yb-qGf" firstAttribute="top" secondItem="vzD-Vj-XZV" secondAttribute="bottom" id="Zh3-ZL-AfP"/>
                             <constraint firstItem="HRo-SK-n3O" firstAttribute="leading" secondItem="aJa-4I-rF2" secondAttribute="trailing" constant="20" id="gGj-0V-gFa"/>
                             <constraint firstItem="vzD-Vj-XZV" firstAttribute="leading" secondItem="IUk-c0-q79" secondAttribute="leading" constant="10" id="iWM-Dn-K88"/>
+                            <constraint firstItem="Nhq-fI-Rq3" firstAttribute="height" secondItem="39Y-AP-pM1" secondAttribute="height" id="jwo-1C-cvF"/>
                             <constraint firstItem="aJa-4I-rF2" firstAttribute="leading" secondItem="IUk-c0-q79" secondAttribute="leading" constant="10" id="mrm-y9-SJX"/>
                             <constraint firstItem="IUk-c0-q79" firstAttribute="trailing" secondItem="Nhq-fI-Rq3" secondAttribute="trailing" constant="10" id="qOw-En-Gt6"/>
                             <constraint firstItem="39Y-AP-pM1" firstAttribute="top" secondItem="aJa-4I-rF2" secondAttribute="top" id="z5Z-nj-aPa"/>

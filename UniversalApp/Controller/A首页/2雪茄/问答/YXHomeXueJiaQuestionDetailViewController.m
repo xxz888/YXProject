@@ -73,6 +73,7 @@ static CGFloat textFieldH = 0;
             [weakself.inputBar.inputView resignFirstResponder];
         }else{
             [weakself.yxTableView.mj_footer endRefreshing];
+            [weakself.yxTableView.mj_header endRefreshing];
         }
  
     }];
@@ -155,7 +156,7 @@ static CGFloat textFieldH = 0;
     //添加分隔线颜色设置
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeQuestionDetailHeaderView" owner:self options:nil];
     self.headerView = [nib objectAtIndex:0];
-    self.headerView.frame = CGRectMake(0, 0, KScreenWidth, 250);
+    self.headerView.frame = CGRectMake(0, 0, KScreenWidth, 140);
      [self.headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:self.moment.photo] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     self.headerView.titleImageView.layer.masksToBounds = YES;
     self.headerView.titleImageView.layer.cornerRadius = self.headerView.titleImageView.frame.size.width / 2.0;

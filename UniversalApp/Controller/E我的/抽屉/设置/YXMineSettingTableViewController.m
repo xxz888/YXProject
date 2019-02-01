@@ -48,6 +48,8 @@
             [self.navigationController pushViewController:VC animated:YES];
         }];
  
+    }else{
+        [QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
     }
   
 }

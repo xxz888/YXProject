@@ -21,6 +21,8 @@
     // Do any additional setup after loading the view.
     self.informationArray = [NSMutableArray array];
     
+    self.scrollImgArray = [NSMutableArray array];
+
     //tableview列表
     [self createBottomTableView];
     //tableview请求
@@ -55,6 +57,8 @@
     [YX_MANAGER requestGETAdvertising:TYPE_XUEJIA_1 success:^(id object) {
         if ([object count] > 0) {
             [weakself.headerView setUpSycleScrollView:object];
+            [weakself.scrollImgArray removeAllObjects];
+            [weakself.scrollImgArray addObjectsFromArray:object];
         }
     }];
 }
@@ -65,7 +69,7 @@
 -(void)createBottomTableView{
 
     if (!self.bottomTableView) {
-        self.bottomTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, self.bootomView.frame.size.height-49-64) style:UITableViewStyleGrouped];
+        self.bottomTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, AxcAE_IsiPhoneX ?self.bootomView.frame.size.height : self.bootomView.frame.size.height-49-64) style:UITableViewStyleGrouped];
         [self.bootomView addSubview:self.bottomTableView];
     }
     self.bottomTableView.backgroundColor = KWhiteColor;
@@ -84,6 +88,18 @@
     self.headerView.delegate = self;
     self.headerView.titleArray = @[@"雪茄品牌",@"雪茄文化",@"雪茄配件",@"工具",@"问答",@"品鉴足迹"];
     self.headerView.titleTagArray = @[@"Cigar Brand",@"Culture",@"Accessories",@"Tools",@"Q&A",@"Journey"];
+    kWeakSelf(self);
+    self.headerView.scrollImgBlock = ^(NSInteger index) {
+        YXHomeNewsDetailViewController * VC = [YXHomeNewsDetailViewController alloc];
+        NSDictionary * dic = weakself.scrollImgArray[index];
+        VC.webDic =[NSMutableDictionary dictionaryWithDictionary:dic];
+        [VC.webDic setValue:dic[@"character"] forKey:@"title"];
+        [VC.webDic setValue:@"" forKey:@"date"];
+        [VC.webDic setValue:dic[@"character"] forKey:@"details"];
+        [VC.webDic setValue:@"" forKey:@"author"];
+        [weakself.navigationController pushViewController:VC animated:YES];
+    };
+    
     return self.headerView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -104,7 +120,7 @@
     [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:self.informationArray[indexPath.row][@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cell.cellLbl.text = self.informationArray[indexPath.row][@"title"];
     cell.cellAutherLbl.text = self.informationArray[indexPath.row][@"author"];
-    cell.cellDataLbl.text = [self haomiaoChangeYYMMDDHHMMSS:self.informationArray[indexPath.row][@"author"]];
+    cell.cellDataLbl.text =  [ShareManager timestampSwitchTime:[self.informationArray[indexPath.row][@"date"] integerValue] andFormatter:@""];
 
     return cell;
 }
@@ -141,11 +157,17 @@
         [self.navigationController pushViewController:VCCoustom animated:YES];
     }
     else if(tag == 5){
+        if (![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
         VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaFootViewController"];
         [self.navigationController pushViewController:VC animated:YES];
     }
 
 }
+
+
 -(NSString *)haomiaoChangeYYMMDDHHMMSS:(NSString *)string{
     NSTimeInterval time = [string doubleValue] ;
     NSDate *date = [[NSDate alloc]initWithTimeIntervalSince1970:time/1000.0];

@@ -137,10 +137,20 @@ static NSInteger lastIdx = 0;
             KPostNotification(KNotificationLoginStateChange, @NO);
             return;
         }
+        if (index == 3) {
+            [QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
+            return;
+        }
         // 通知 切换视图控制器
         [self setSelectedIndex:index];
         lastIdx = index;
     }else{ // 点击了中间的
+        
+      
+        if (![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
         
         [self.axcTabBar setSelectIndex:lastIdx WithAnimation:NO]; // 换回上一个选中状态
         // 或者

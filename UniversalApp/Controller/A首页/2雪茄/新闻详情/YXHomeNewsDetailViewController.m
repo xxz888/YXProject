@@ -18,6 +18,7 @@
     [super viewDidLoad];
     self.title = _webDic[@"title"];
     self.webView.navigationDelegate = self;
+    self.webView.frame =  CGRectMake(0, 0, KScreenWidth, KScreenHeight-kTopHeight);
     //获取bundlePath 路径
     NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
     //获取本地html目录 basePath
@@ -34,8 +35,6 @@
 }
 #pragma mark - WKNavigationDelegate
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
-    
-
     NSString * vss = [[self dictionaryToJson:_webDic] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     vss = [NSString stringWithFormat:@"callJs('%@')",vss];
     [self.webView evaluateJavaScript:vss completionHandler:nil];

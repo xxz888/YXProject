@@ -56,6 +56,8 @@
     _cycleScrollView3.autoScrollTimeInterval = 4;
     _cycleScrollView3.titlesGroup = titleArray;
     _cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];
+    
+    
 
 }   
 //九宫格
@@ -81,6 +83,7 @@
         YXGridView * view = [nib objectAtIndex:0];
         view.titleLbl.text = titleArray[i];
         view.titleTagLbl.text = titleTagArray[i];
+        view.titleLbl.textColor = KBlackColor;
         view.tag = i;
 //        view.backgroundColor = [themeColors[i] colorWithAlphaComponent:.7];
         [self.gridView addSubview:view];
@@ -97,5 +100,9 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(clickGridView:)]) {
         [self.delegate clickGridView:tag];
     }
+}
+/** 点击图片回调 */
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    self.scrollImgBlock(index);
 }
 @end

@@ -74,6 +74,10 @@
     return cell;
 }
 -(void)clickBtnAction:(NSInteger)common_id tag:(NSInteger)tag{
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
     NSIndexPath * indexPath = [NSIndexPath indexPathForRow:tag inSection:0];
     YXMineCommon1TableViewCell *cell = [self.yxTableView cellForRowAtIndexPath:indexPath];
     kWeakSelf(self);

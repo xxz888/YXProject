@@ -13,7 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="YXHomeLastDetailView">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="1100"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="1020"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Woy-zo-PsE">
@@ -530,7 +530,7 @@
                     </constraints>
                 </stackView>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Vr2-IH-DBE">
-                    <rect key="frame" x="0.0" y="992.5" width="375" height="26"/>
+                    <rect key="frame" x="0.0" y="982.5" width="375" height="26"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="dDI-yK-PUa"/>
                     </constraints>
@@ -565,7 +565,7 @@
                 <constraint firstItem="Woy-zo-PsE" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="VXD-q3-Lkp"/>
                 <constraint firstItem="pRD-kg-SpE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="-20" id="Wl9-6S-FHX"/>
                 <constraint firstItem="fDn-K6-mw4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="X9V-bK-Tk5"/>
-                <constraint firstItem="Vr2-IH-DBE" firstAttribute="top" secondItem="fdI-dg-f7h" secondAttribute="bottom" constant="30" id="Z3X-H1-H9F"/>
+                <constraint firstItem="Vr2-IH-DBE" firstAttribute="top" secondItem="fdI-dg-f7h" secondAttribute="bottom" constant="20" id="Z3X-H1-H9F"/>
                 <constraint firstItem="4dh-xt-WmT" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="ZcN-sM-aj0"/>
                 <constraint firstItem="pRD-kg-SpE" firstAttribute="top" secondItem="fDn-K6-mw4" secondAttribute="bottom" constant="10" id="aGr-BZ-zAt"/>
                 <constraint firstItem="T81-TP-f0A" firstAttribute="top" secondItem="pRD-kg-SpE" secondAttribute="bottom" constant="20" id="aff-uR-zBB"/>
@@ -608,7 +608,7 @@
                 <outlet property="lastXiangWeiFiveView" destination="FOx-Nx-1ed" id="jPO-2U-46w"/>
                 <outlet property="lastXiangWeiLbl" destination="oxI-Zo-2Mb" id="7aN-Ve-gL6"/>
             </connections>
-            <point key="canvasLocation" x="-226.40000000000001" y="44.977511244377816"/>
+            <point key="canvasLocation" x="-226.40000000000001" y="8.0959520239880067"/>
         </view>
     </objects>
 </document>

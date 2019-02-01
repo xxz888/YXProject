@@ -30,8 +30,11 @@
     [super viewDidLoad];
     self.title = @"登录";
     
+    self.phoneTf.layer.masksToBounds = YES;
+    self.phoneTf.layer.cornerRadius = 3;
     
-    
+    self.codeTf.layer.masksToBounds = YES;
+    self.codeTf.layer.cornerRadius = 3;
     YYLabel *snowBtn = [[YYLabel alloc] initWithFrame:CGRectMake(0, 200, 150, 60)];
     snowBtn.text = @"微信登录";
     snowBtn.font = SYSTEMFONT(20);
@@ -142,7 +145,7 @@
             [userManager login:kUserLoginTypePwd params:object completion:^(BOOL success, NSString *des) {
                 [weakself dismissViewControllerAnimated:YES completion:nil];
                 [QMUITips showSucceed:@"登录成功" inView:self.view hideAfterDelay:2];
-                
+                [[AppDelegate shareAppDelegate].mainTabBar setSelectedIndex:0];
             }];
    
     }];
@@ -171,5 +174,12 @@
 {
     // 重头再来
     [self.player seekToTime:kCMTimeZero];
+}
+
+- (IBAction)wxLoginAction:(id)sender {
+     [QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
+}
+- (IBAction)qqLoginAction:(id)sender {
+    [QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
 }
 @end
