@@ -57,12 +57,14 @@
     YXMineEssayTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMineEssayTableViewCell" forIndexPath:indexPath];
     NSDictionary * dic = self.dataArray[indexPath.row];
     cell.likeBtn.hidden = YES;
-    [cell.essayTitleImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str = [(NSMutableString *)dic[@"photo"] replaceAll:@" " target:@"%20"];
+    [cell.essayTitleImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cell.essayNameLbl.text = dic[@"user_name"];
     cell.essayTimeLbl.text = [ShareManager timestampSwitchTime:[dic[@"publish_time"] integerValue] andFormatter:@""];
     
     //自定义
-    NSURL * url = [NSURL URLWithString:dic[@"photo1"]];
+    NSString * str1 = [(NSMutableString *)dic[@"photo1"] replaceAll:@" " target:@"%20"];
+    NSURL * url = [NSURL URLWithString:str1];
     UIImageView * mineImageView = [[UIImageView alloc]init];
     mineImageView.frame = CGRectMake(0, 0, KScreenWidth-10, cell.midView.frame.size.height);
     [cell.midView addSubview:mineImageView];

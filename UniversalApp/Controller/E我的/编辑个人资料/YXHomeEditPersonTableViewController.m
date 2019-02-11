@@ -42,8 +42,8 @@
     self.titleImgView.layer.masksToBounds = YES;
     self.titleImgView.layer.cornerRadius = self.titleImgView.frame.size.width / 2.0;
     if (self.userInfoDic) {
-        
-        [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:self.userInfoDic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        NSString * str = [(NSMutableString *)self.userInfoDic[@"photo"] replaceAll:@" " target:@"%20"];
+        [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         self.nameTf.text = kGetString(self.userInfoDic[@"username"]);
         [self.adressBtn setTitle:self.userInfoDic[@"site"] forState:UIControlStateNormal];
         [self.birthBtn setTitle:self.userInfoDic[@"birthday"] forState:UIControlStateNormal];

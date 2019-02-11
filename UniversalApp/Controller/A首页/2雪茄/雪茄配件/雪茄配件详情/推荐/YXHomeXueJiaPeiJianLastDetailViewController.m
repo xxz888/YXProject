@@ -91,5 +91,13 @@
     cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];
     [self.titleView addSubview:cycleScrollView3];
 }
+- (IBAction)addCarShopAction:(id)sender {
+    [QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
+
+}
+- (IBAction)buyAction:(id)sender {
+    [QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
+
+}
 
 @end

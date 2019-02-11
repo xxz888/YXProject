@@ -120,8 +120,8 @@
     //    if (self.showType == singleLineShowOneGoods) {
     YXMineImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YXMineImageCollectionViewCell" forIndexPath:indexPath];
     cell.essayTitleImageView.tag = indexPath.row;
-    
-    [cell.midImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo1"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str1 = [(NSMutableString *)dic[@"photo1"] replaceAll:@" " target:@"%20"];
+    [cell.midImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     
     cell.titleLbl.text = dic[@"describe"];
     BOOL isp =  [dic[@"is_praise"] integerValue] == 1;

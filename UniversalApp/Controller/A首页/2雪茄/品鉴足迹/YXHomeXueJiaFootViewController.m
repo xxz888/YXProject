@@ -72,7 +72,8 @@
     YXHomeXueJiaFootTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaFootTableViewCell" forIndexPath:indexPath];
     NSDictionary * dic = self.dataArray[indexPath.row];
     NSDictionary * dicTag = dic[@"cigar_info"];
-    [cell.footImageVIew sd_setImageWithURL:[NSURL URLWithString:dicTag[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str = [(NSMutableString *)dicTag[@"photo"] replaceAll:@" " target:@"%20"];
+    [cell.footImageVIew sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     
     NSString * string1 = [NSString stringWithFormat:@"%@/%@",dicTag[@"brand_name"],dicTag[@"cigar_name"]];
     cell.footTitleLbl.text = string1;

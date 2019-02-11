@@ -34,7 +34,8 @@
     cell.mgPriceLbl.text = kGet2fDouble([dic[@"price_USA"] doubleValue]);
     cell.likeBtn.hidden = YES;
     if ([dic[@"photo_list"] count] > 0) {
-        [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo_list"][0][@"photo_url"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        NSString * str = [(NSMutableString *)dic[@"photo_list"][0][@"photo_url"] replaceAll:@" " target:@"%20"];
+        [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     }
     return cell;
 }

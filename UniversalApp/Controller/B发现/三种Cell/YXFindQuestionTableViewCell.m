@@ -47,9 +47,13 @@
     
     self.titleTagLbl1.text = dic[@"title"];
     self.titleTagLbl2.text = dic[@"question"];
-    [self.midImageView1 sd_setImageWithURL:[NSURL URLWithString:dic[@"pic1"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    [self.midImageView2 sd_setImageWithURL:[NSURL URLWithString:dic[@"pic2"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    [self.midImageView3 sd_setImageWithURL:[NSURL URLWithString:dic[@"pic3"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str1 = [(NSMutableString *)dic[@"pic1"] replaceAll:@" " target:@"%20"];
+    NSString * str2 = [(NSMutableString *)dic[@"pic2"] replaceAll:@" " target:@"%20"];
+    NSString * str3 = [(NSMutableString *)dic[@"pic3"] replaceAll:@" " target:@"%20"];
+
+    [self.midImageView1 sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    [self.midImageView2 sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    [self.midImageView3 sd_setImageWithURL:[NSURL URLWithString:str3] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         
     NSArray * commentArray = dic[@"answer"];
     if (commentArray.count > 0) {
@@ -75,8 +79,8 @@
     
     
     
-    
-    [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"user_photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str4 = [(NSMutableString *)dic[@"user_photo"] replaceAll:@" " target:@"%20"];
+    [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:str4] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     self.titleLbl.text = dic[@"user_name"];
     self.timeLbl.text = [ShareManager timestampSwitchTime:[dic[@"publish_time"] integerValue] andFormatter:@""];
     [self.mapBtn setTitle:dic[@"publish_site"] forState:UIControlStateNormal];
@@ -86,8 +90,8 @@
     UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
     [self.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
      
-    
-    [self.addPlImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo1"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str5 = [(NSMutableString *)dic[@"photo1"] replaceAll:@" " target:@"%20"];
+    [self.addPlImageView sd_setImageWithURL:[NSURL URLWithString:str5] placeholderImage:[UIImage imageNamed:@"img_moren"]];
 }
 
 

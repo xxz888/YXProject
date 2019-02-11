@@ -58,7 +58,8 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXQCDJCTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXQCDJCTableViewCell" forIndexPath:indexPath];
-    [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:demoURL] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str = [(NSMutableString *)demoURL replaceAll:@" " target:@"%20"];
+    [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     XHStarRateView * starView = [ShareManager fiveStarView:3 view:cell.startView];
     [cell.startView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [cell.startView addSubview:starView];

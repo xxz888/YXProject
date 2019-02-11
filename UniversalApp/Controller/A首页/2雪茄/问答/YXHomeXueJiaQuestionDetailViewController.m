@@ -158,7 +158,8 @@ static CGFloat textFieldH = 0;
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeQuestionDetailHeaderView" owner:self options:nil];
     self.headerView = [nib objectAtIndex:0];
     self.headerView.frame = CGRectMake(0, 0, KScreenWidth, !AxcAE_IsiPhoneX ? 300 : 220);
-     [self.headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:self.moment.photo] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str = [(NSMutableString *)self.moment.photo replaceAll:@" " target:@"%20"];
+     [self.headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     self.headerView.titleImageView.layer.masksToBounds = YES;
     self.headerView.titleImageView.layer.cornerRadius = self.headerView.titleImageView.frame.size.width / 2.0;
     
@@ -166,9 +167,15 @@ static CGFloat textFieldH = 0;
     self.headerView.timeLbl.text = [ShareManager timestampSwitchTime:self.moment.time andFormatter:@""];
     self.headerView.detailLbl.text = self.moment.text;
     
-     [self.headerView.imageView1 sd_setImageWithURL:[NSURL URLWithString:self.moment.imageListArray[0]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-     [self.headerView.imageView2 sd_setImageWithURL:[NSURL URLWithString:self.moment.imageListArray[1]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-     [self.headerView.imageView3 sd_setImageWithURL:[NSURL URLWithString:self.moment.imageListArray[2]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    
+    NSString * str0 = [(NSMutableString *)self.moment.imageListArray[0] replaceAll:@" " target:@"%20"];
+     [self.headerView.imageView1 sd_setImageWithURL:[NSURL URLWithString:str0] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    
+    NSString * str1 = [(NSMutableString *)self.moment.imageListArray[1] replaceAll:@" " target:@"%20"];
+     [self.headerView.imageView2 sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    
+    NSString * str2 = [(NSMutableString *)self.moment.imageListArray[2] replaceAll:@" " target:@"%20"];
+     [self.headerView.imageView3 sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     
     self.yxTableView.tableHeaderView = self.headerView;
     

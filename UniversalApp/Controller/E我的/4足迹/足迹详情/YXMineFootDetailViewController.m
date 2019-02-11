@@ -75,7 +75,8 @@ static CGFloat textFieldH = 40;
     }
     
     self.lastDetailView.titleLbl.text = self.startDic[@"user_name"];
-    [self.lastDetailView.titleImageView sd_setImageWithURL:[NSURL URLWithString:self.startDic[@"user_photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str2 = [(NSMutableString *)self.startDic[@"user_photo"] replaceAll:@" " target:@"%20"];
+    [self.lastDetailView.titleImageView sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     self.lastDetailView.titleImageView.layer.masksToBounds = YES;
     self.lastDetailView.titleImageView.layer.cornerRadius = self.lastDetailView.titleImageView.frame.size.width / 2.0;
     self.lastDetailView.titleTimeLbl.text = [ShareManager timestampSwitchTime:[self.startDic[@"publish_time"] longLongValue] andFormatter:@""];

@@ -69,7 +69,9 @@
     cell.common1NameLbl.text = self.dataArray[indexPath.row][@"aim_name"];
     cell.common1GuanzhuBtn.tag = [self.dataArray[indexPath.row][@"aim_id"] integerValue];
     NSString * imgString = self.dataArray[indexPath.row][@"aim_photo"];
-    [cell.common1ImageView sd_setImageWithURL:[NSURL URLWithString:imgString] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str1 = [(NSMutableString *)imgString replaceAll:@" " target:@"%20"];
+
+    [cell.common1ImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     [ShareManager setGuanZhuStatus:cell.common1GuanzhuBtn status:NO];
     return cell;
 }

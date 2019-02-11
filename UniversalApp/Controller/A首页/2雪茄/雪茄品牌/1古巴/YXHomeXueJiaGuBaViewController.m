@@ -23,7 +23,7 @@
     self.indexArray = [[NSMutableArray alloc]init];
     self.dataArray = [[NSMutableArray alloc]init];
     self.hotDataArray = [[NSMutableArray alloc]init];
-    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(5, 10, KScreenWidth-10, kScreenHeight-5) style:0];
+    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(5, 10, KScreenWidth-10, kScreenHeight-kTopHeight-kTabBarHeight) style:0];
     [self.view addSubview:self.yxTableView];
     self.yxTableView.delegate = self;
     self.yxTableView.dataSource= self;
@@ -65,20 +65,26 @@
     for (NSInteger i = 0; i < [self.hotDataArray count]; i++) {
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10,0 , self.gridView.frame.size.width-20, self.gridView.frame.size.height)];
 //        [imageView setContentMode:UIViewContentModeScaleAspectFit];
-        
         NSString * str = [(NSMutableString *)self.hotDataArray[i][@"photo"] replaceAll:@" " target:@"%20"];
-        
         [imageView sd_setImageWithURL:[NSURL URLWithString:str]
                      placeholderImage:[UIImage imageNamed:@"img_moren"]
                               options:SDWebImageAllowInvalidSSLCertificates];
         imageView.tag = i;//[self.hotDataArray[@"id"] integerValue];
         [self.gridView addSubview:imageView];
+        imageView.userInteractionEnabled = YES;
         //view添加点击事件
         UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
         [imageView addGestureRecognizer:tapGesturRecognizer];
     }
 }
-
+-(void)tapAction:(id)sender{
+    UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;
+    UIView *views = (UIView*) tap.view;
+    NSUInteger tag = views.tag;
+    NSString * cellid = kGetString(self.hotDataArray[tag][@"id"]);
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:tag inSection:0];
+    [self requestCigar_brand_details:cellid indexPath:indexPath isHot:YES];
+}
 //返回右侧索引标题数组
 //这个标题的内容时和分区标题相对应
 -(NSArray*)sectionIndexTitlesForTableView:(UITableView *)tableView{
@@ -113,21 +119,23 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     YXHomeXueJiaPinPaiTableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-    [self requestCigar_brand_details:cell.id indexPath:indexPath];
-}
--(void)tapAction:(id)sender{
-    UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;
-    UIView *views = (UIView*) tap.view;
-    NSUInteger tag = views.tag;
+    [self requestCigar_brand_details:cell.id indexPath:indexPath isHot:NO];
 }
 
--(void)requestCigar_brand_details:(NSString *)cigar_brand_id indexPath:(NSIndexPath *)indexPath{
+
+-(void)requestCigar_brand_details:(NSString *)cigar_brand_id indexPath:(NSIndexPath *)indexPath isHot:(BOOL)isHot{
     kWeakSelf(self);
     [YX_MANAGER requestCigar_brand_detailsPOST:@{@"cigar_brand_id":cigar_brand_id} success:^(id object) {
         UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
         YXHomeXueJiaPinPaiDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiDetailViewController"];
         VC.dicData = [NSMutableDictionary dictionaryWithDictionary:object];
-        VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[indexPath.section][indexPath.row]];
+        
+        if (isHot) {
+            VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:self.hotDataArray[indexPath.row]];
+        }else{
+            VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[indexPath.section][indexPath.row]];
+        }
+ 
         VC.whereCome = self.whereCome;
         
         [weakself.navigationController pushViewController:VC animated:YES];

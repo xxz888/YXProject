@@ -50,7 +50,8 @@
         BKSingleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([BKSingleCollectionViewCell class]) forIndexPath:indexPath];
         cell.goodsNameLabel.text = self.dataArray[indexPath.row][@"name"];
         if ([self.dataArray[indexPath.row][@"photo_list"] count] > 0) {
-            [cell.goodsImgeView sd_setImageWithURL:[NSURL URLWithString: self.dataArray[indexPath.row][@"photo_list"][0][@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+            NSString * str = [(NSMutableString *)self.dataArray[indexPath.row][@"photo_list"][0][@"photo"] replaceAll:@" " target:@"%20"];
+            [cell.goodsImgeView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         }else{
             [cell.goodsImgeView setImage:[UIImage imageNamed:@"img_moren"]];
         }
@@ -61,7 +62,8 @@
         BKDoubleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([BKDoubleCollectionViewCell class]) forIndexPath:indexPath];
         cell.goodsNameLabel.text = self.dataArray[indexPath.row][@"name"];
         if ([self.dataArray[indexPath.row][@"photo_list"] count] > 0) {
-            [cell.goodsImgeView sd_setImageWithURL:[NSURL URLWithString: self.dataArray[indexPath.row][@"photo_list"][0][@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+            NSString * str = [(NSMutableString *)self.dataArray[indexPath.row][@"photo_list"][0][@"photo"] replaceAll:@" " target:@"%20"];
+            [cell.goodsImgeView sd_setImageWithURL:[NSURL URLWithString: str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         }else{
             [cell.goodsImgeView setImage:[UIImage imageNamed:@"img_moren"]];
         }

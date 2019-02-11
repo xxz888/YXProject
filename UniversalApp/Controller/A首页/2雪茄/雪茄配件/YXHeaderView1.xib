@@ -18,9 +18,10 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lzb-0E-Pry">
                     <rect key="frame" x="0.0" y="0.0" width="380" height="187"/>
+                    <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eD4-km-Xc0">
-                    <rect key="frame" x="0.0" y="192" width="380" height="37"/>
+                    <rect key="frame" x="0.0" y="187" width="380" height="47"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -30,10 +31,10 @@
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eD4-km-Xc0" secondAttribute="trailing" id="85W-Dg-kTQ"/>
                 <constraint firstItem="eD4-km-Xc0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="97X-zO-t7Z"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="eD4-km-Xc0" secondAttribute="bottom" constant="5" id="Btl-Em-VMX"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="eD4-km-Xc0" secondAttribute="bottom" id="Btl-Em-VMX"/>
                 <constraint firstItem="lzb-0E-Pry" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.8" id="DiM-TV-vuC"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="lzb-0E-Pry" secondAttribute="trailing" id="GGp-Wq-RcG"/>
-                <constraint firstItem="eD4-km-Xc0" firstAttribute="top" secondItem="lzb-0E-Pry" secondAttribute="bottom" constant="5" id="P80-7x-4E8"/>
+                <constraint firstItem="eD4-km-Xc0" firstAttribute="top" secondItem="lzb-0E-Pry" secondAttribute="bottom" id="P80-7x-4E8"/>
                 <constraint firstItem="eD4-km-Xc0" firstAttribute="centerX" secondItem="lzb-0E-Pry" secondAttribute="centerX" id="XXO-Cw-fFp"/>
                 <constraint firstItem="lzb-0E-Pry" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="kjO-2K-068"/>
                 <constraint firstItem="lzb-0E-Pry" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="nhy-dK-gho"/>

@@ -36,7 +36,8 @@
 -(void)againSetDetailView:(NSDictionary *)startDic  allDataDic:(NSDictionary *)allDataDic{
     //头图片
     NSString * string =[startDic[@"photo_list"] count] > 0 ? startDic[@"photo_list"][0][@"photo_url"] : @"";
-   [self.lastImageView sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str = [(NSMutableString *)string replaceAll:@" " target:@"%20"];
+   [self.lastImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     //头名字
     self.lastTitleLbl.text = kGetString(startDic[@"cigar_name"]);
     //国内售价
@@ -104,7 +105,8 @@
         MMImageView *imageView = [[MMImageView alloc]initWithFrame:CGRectMake(0,0 , self.gridView.frame.size.width, self.gridView.frame.size.height)];
         imageView.tag = 1000 + i;
         [imageView setContentMode:UIViewContentModeScaleToFill];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:imageArray[i]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        NSString * str = [(NSMutableString *)imageArray[i] replaceAll:@" " target:@"%20"];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         [self.gridView addSubview:imageView];
         imageView.tag = i;
         //view添加点击事件

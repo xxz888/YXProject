@@ -68,7 +68,8 @@
 
     NSDictionary * cellData = self.dicStartData;
     self.title = cellData[@"ch_name"];
-    [self.headerView.section1ImageView sd_setImageWithURL:[NSURL URLWithString:cellData[@"logo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str = [(NSMutableString *)cellData[@"logo"] replaceAll:@" " target:@"%20"];
+    [self.headerView.section1ImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     [self.headerView.section1ImageView setContentMode:UIViewContentModeScaleAspectFit];
     self.headerView.section1TextView.text = kGetString(cellData[@"intro"]);
     self.headerView.section1TitleLbl.text = [NSString stringWithFormat:@"%@/%@",cellData[@"brand_name"],cellData[@"ch_name"]];
@@ -105,7 +106,8 @@
     cell.mgPriceLbl.text = kGet2fDouble([dic[@"price_USA"] doubleValue]);
     cell.golf_id = kGetString(dic[@"id"]);
     if ([dic[@"photo_list"] count] > 0) {
-        [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo_list"][0][@"photo_url"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        NSString * str = [(NSMutableString *)dic[@"photo_list"][0][@"photo_url"] replaceAll:@" " target:@"%20"];
+        [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     }
     
     [cell.likeBtn setBackgroundImage:[dic[@"is_collect"] integerValue] == 1 ? _selImage:_unImage forState:UIControlStateNormal];

@@ -87,13 +87,16 @@
         imageView.frame = frame;
         if (moment.imageListArray.count != 0) {
             if (i == 0) {
-                NSURL * url0 = [NSURL URLWithString:kGetString(moment.imageListArray[0]) ];
+                NSString * str = [(NSMutableString *)kGetString(moment.imageListArray[0]) replaceAll:@" " target:@"%20"];
+                NSURL * url0 = [NSURL URLWithString:str];
                 [imageView sd_setImageWithURL:url0 placeholderImage:[UIImage imageNamed:@"img_moren"]];
             }else if (i == 1){
-                NSURL * url1 = [NSURL URLWithString:kGetString(moment.imageListArray[1])];
+                NSString * str1 = [(NSMutableString *)kGetString(moment.imageListArray[1]) replaceAll:@" " target:@"%20"];
+                NSURL * url1 = [NSURL URLWithString:str1];
                 [imageView sd_setImageWithURL:url1 placeholderImage:[UIImage imageNamed:@"img_moren"]];
             }else if (i == 2){
-                NSURL * url2 = [NSURL URLWithString:kGetString(moment.imageListArray[2])];
+                NSString * str2 = [(NSMutableString *)kGetString(moment.imageListArray[2]) replaceAll:@" " target:@"%20"];
+                NSURL * url2 = [NSURL URLWithString:str2];
                 [imageView sd_setImageWithURL:url2 placeholderImage:[UIImage imageNamed:@"img_moren"]];
             }
         }

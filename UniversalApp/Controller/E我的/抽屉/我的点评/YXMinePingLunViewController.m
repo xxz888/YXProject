@@ -59,7 +59,9 @@
     YXMinePingLunTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMinePingLunTableViewCell" forIndexPath:indexPath];
     NSDictionary * dic = self.dataArray[indexPath.row];
     NSString * string = [dic[@"photo_list"] count] > 0 ? dic[@"photo_list"][0][@"photo_url"] : @"";
-    [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str1 = [(NSMutableString *)string replaceAll:@" " target:@"%20"];
+
+    [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
   
     cell.cnLbl.text =  [kGetString(dic[@"price_box_china"]) append:@"元"];
     cell.skLbl.text =  [kGetString(dic[@"price_box_hongkong"]) append:@"元"];

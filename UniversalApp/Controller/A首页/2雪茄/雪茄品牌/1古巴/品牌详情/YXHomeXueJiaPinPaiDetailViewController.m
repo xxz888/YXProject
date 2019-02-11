@@ -21,24 +21,13 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    
-    
-    self.tableView.estimatedRowHeight = 0;
+        self.tableView.estimatedRowHeight = 0;
        self.tableView.estimatedSectionHeaderHeight = 0;
        self.tableView.estimatedSectionFooterHeight = 0;
     self.edgesForExtendedLayout=UIRectEdgeNone;
     [self.tableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaDetailTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc]init];
     [self initData];
-
-    
-    
-    UserInfo *userInfo = curUser;
-    NSString * userId = userInfo.id;
-    NSString * key = [NSString stringWithFormat:@"%@_image_%@.jpg/",userId,[ShareManager getNowTimeTimestamp3]];
-    [YX_MANAGER requestQiniu_tokenGET:key success:^(id object) {
-        
-    }];
 }
 -(void)initData{
     
@@ -48,7 +37,9 @@
     NSDictionary * cellData = self.dicStartData;
     self.title = cellData[@"cigar_brand"];
     
-    [self.section1ImageView sd_setImageWithURL:[NSURL URLWithString:cellData[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    
+    NSString * str = [(NSMutableString *)cellData[@"photo"] replaceAll:@" " target:@"%20"];
+    [self.section1ImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     [self.section1ImageView setContentMode:UIViewContentModeScaleAspectFit];
     
     self.section1TextView.text = kGetString(cellData[@"intro"]);
@@ -97,7 +88,8 @@
         NSDictionary * cellData = self.dicData[@"data"][indexPath.row];
         YXHomeXueJiaDetailTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaDetailTableViewCell" forIndexPath:indexPath];
         NSString * url = [cellData[@"photo_list"] count] > 0 ? cellData[@"photo_list"][0][@"photo_url"] : @"";
-        [cell.section2ImageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        NSString * str = [(NSMutableString *)url replaceAll:@" " target:@"%20"];
+        [cell.section2ImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         cell.whereCome = self.whereCome;
         cell.section2TitleLbl.text = cellData[@"cigar_name"];
         cell.section2Lbl1.text = kGetString(cellData[@"ring_gauge"]) ;
@@ -113,6 +105,7 @@
         cell.delegate = self;
         return cell;
     }
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//推荐该方法
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

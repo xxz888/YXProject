@@ -65,7 +65,8 @@
     for (NSInteger i = 0; i < [self.dataArrayTag count]; i++) {
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,0 , self.gridView.frame.size.width/1.5, self.gridView.frame.size.height/1.5)];
         [imageView setContentMode:UIViewContentModeScaleAspectFit];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:self.dataArrayTag[i][@"logo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        NSString * str = [(NSMutableString *)self.dataArrayTag[i][@"logo"] replaceAll:@" " target:@"%20"];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         imageView.tag = i;//[self.dataDic[@"hot_brand_list"][@"id"] integerValue];
         [self.gridView addSubview:imageView];
         //view添加点击事件
@@ -97,7 +98,8 @@
     YXHomeXueJiaPinPaiTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaPinPaiTableViewCell" forIndexPath:indexPath];
     
     NSDictionary * dic = self.dataArray[indexPath.section][indexPath.row];
-    [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"logo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str = [(NSMutableString *)dic[@"logo"] replaceAll:@" " target:@"%20"];
+    [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     [cell.cellImageView setContentMode:UIViewContentModeScaleAspectFit];
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     cell.cellLbl.text = self.dataArray[indexPath.section][indexPath.row][@"ch_name"];

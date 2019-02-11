@@ -118,8 +118,8 @@ CGFloat maxLimitHeight = 0;
 {
     _moment = moment;
     // 头像
-    
-    [_headImageView sd_setImageWithURL:[NSURL URLWithString:moment.photo] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str = [(NSMutableString *)moment.photo replaceAll:@" " target:@"%20"];
+    [_headImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     
     _headImageView.layer.masksToBounds = YES;
     _headImageView.layer.cornerRadius = _headImageView.frame.size.width / 2.0;

@@ -46,10 +46,9 @@
 
 
 -(void)setCellValue:(NSDictionary *)dic{
-    
-    [self.midImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo1"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    
-    
+    NSString * str = [(NSMutableString *)dic[@"photo1"] replaceAll:@" " target:@"%20"];
+
+    [self.midImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     NSString * titleText = [NSString stringWithFormat:@"%@%@",dic[@"describe"],dic[@"index"]];
     self.titleTagtextView.text = titleText;
     [ShareManager inTextViewOutDifColorView:self.titleTagtextView tag:dic[@"index"]];
@@ -63,8 +62,8 @@
     
     
     
-    
-    [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str1 = [(NSMutableString *)dic[@"photo"] replaceAll:@" " target:@"%20"];
+    [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     self.titleLbl.text = dic[@"user_name"];
     self.timeLbl.text = [ShareManager timestampSwitchTime:[dic[@"publish_time"] integerValue] andFormatter:@""];
     self.titleTagLbl.text = dic[@"user_name"];
@@ -85,8 +84,8 @@
     BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
     UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
     [self.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
-    
-    [self.addPlImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo1"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str2 = [(NSMutableString *)dic[@"photo1"] replaceAll:@" " target:@"%20"];
+    [self.addPlImageView sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"img_moren"]];
 }
 
 

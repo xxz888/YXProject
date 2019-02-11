@@ -62,9 +62,11 @@
         allString = @"查看全部评论";
     }
     [self.searchBtn setTitle:allString forState:UIControlStateNormal];
+    NSString * str1 = [(NSMutableString *)dic[@"pic1"] replaceAll:@" " target:@"%20"];
+    [self.midImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     
-    [self.midImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"pic1"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"user_photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str2 = [(NSMutableString *)dic[@"user_photo"] replaceAll:@" " target:@"%20"];
+    [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     self.titleLbl.text = dic[@"user_name"];
     self.timeLbl.text = [ShareManager timestampSwitchTime:[dic[@"publish_time"] integerValue] andFormatter:@""];
     
@@ -84,8 +86,8 @@
     BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
     UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
     [self.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
-    
-    [self.addPlImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"user_photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str3 = [(NSMutableString *)dic[@"user_photo"] replaceAll:@" " target:@"%20"];
+    [self.addPlImageView sd_setImageWithURL:[NSURL URLWithString:str3] placeholderImage:[UIImage imageNamed:@"img_moren"]];
 }
 - (IBAction)likeBtnAction:(id)sender{
     self.zanblock(self);

@@ -53,7 +53,8 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXHomeXueJiaWenHuaTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaWenHuaTableViewCell" forIndexPath:indexPath];
-    [cell.wenhuaImageView sd_setImageWithURL:[NSURL URLWithString:self.dataArray[indexPath.row][@"picture"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str = [(NSMutableString *)self.dataArray[indexPath.row][@"picture"] replaceAll:@" " target:@"%20"];
+    [cell.wenhuaImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cell.wenhuaLbl.text = self.dataArray[indexPath.row][@"title"];
     cell.timeLbl.text = [ShareManager timestampSwitchTime:[self.dataArray[indexPath.row][@"publish_time"] integerValue] andFormatter:@""];
     return cell;

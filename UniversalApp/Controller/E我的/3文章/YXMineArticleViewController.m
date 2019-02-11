@@ -96,7 +96,9 @@
         NSIndexPath * indexPath = [weakself.yxTableView indexPathForCell:cell];
         [weakself requestDianZanWenZhangAction:indexPath];
     };
-    [cell.essayTitleImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str1 = [(NSMutableString *)dic[@"photo"] replaceAll:@" " target:@"%20"];
+
+    [cell.essayTitleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cell.essayNameLbl.text = dic[@"user_name"];
     cell.essayTimeLbl.text = [ShareManager timestampSwitchTime:[dic[@"publish_time"] integerValue] andFormatter:@""];
     cell.mineImageLbl.text = dic[@"title"];
@@ -105,8 +107,12 @@
     UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
     
     [cell.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
-    NSURL * url1 = [NSURL URLWithString:self.dataArray[indexPath.row][@"picture1"]];
-    NSURL * url2 = [NSURL URLWithString:self.dataArray[indexPath.row][@"picture2"]];
+    
+    NSString * str3 = [(NSMutableString *)self.dataArray[indexPath.row][@"picture1"] replaceAll:@" " target:@"%20"];
+    NSString * str2 = [(NSMutableString *)self.dataArray[indexPath.row][@"picture2"] replaceAll:@" " target:@"%20"];
+
+    NSURL * url1 = [NSURL URLWithString:str3];
+    NSURL * url2 = [NSURL URLWithString:str2];
     [cell.midImageView sd_setImageWithURL:url1 placeholderImage:[UIImage imageNamed:@"img_moren"]];
     [cell.midTwoImageVIew sd_setImageWithURL:url2 placeholderImage:[UIImage imageNamed:@"img_moren"]];
     

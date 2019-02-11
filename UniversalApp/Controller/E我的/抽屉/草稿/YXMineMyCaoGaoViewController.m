@@ -48,7 +48,8 @@
     if (!cell) {
         cell = [[YXHomeXueJiaTableViewCell alloc]initWithStyle:0 reuseIdentifier:identify];
     }
-    [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:self.caoGaoDic[@"photo1"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str = [(NSMutableString *)self.caoGaoDic[@"photo1"] replaceAll:@" " target:@"%20"];
+    [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cell.cellLbl.text = self.caoGaoDic[@"tag"];
     cell.cellAutherLbl.text = self.caoGaoDic[@"describe"];
     cell.cellDataLbl.hidden = YES;

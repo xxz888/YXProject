@@ -82,13 +82,15 @@
     .centerYIs(self.yxTableView.tableHeaderView.centerY)
     .topEqualToView(self.yxTableView.tableHeaderView)
     .heightIs(5);
-    [self.yxTableView.tableHeaderView addSubview:lineView];
+//    [self.yxTableView.tableHeaderView addSubview:lineView];
     for (NSInteger i = 0; i < [self.dataArray count]; i++) {
         
         
         NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHeaderView1" owner:self options:nil];
         YXHeaderView1 * headerView1 = [nib objectAtIndex:0];
-        [headerView1.titleImageView sd_setImageWithURL:[NSURL URLWithString:self.dataArray[i][@"brand_logo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        NSString * str = [(NSMutableString *)self.dataArray[i][@"brand_logo"] replaceAll:@" " target:@"%20"];
+
+        [headerView1.titleImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         headerView1.titleImageView.tag = i;
         headerView1.titleLbl.text = self.dataArray[i][@"brand_name"];
         [self.gridView addSubview:headerView1];
@@ -116,8 +118,8 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXHomeXueJiaTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaTableViewCell" forIndexPath:indexPath];
-    
-    [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:self.cellDataArray[indexPath.row][@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * str = [(NSMutableString *)self.cellDataArray[indexPath.row][@"photo"] replaceAll:@" " target:@"%20"];
+    [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cell.cellLbl.text = self.cellDataArray[indexPath.row][@"title"];
     cell.cellAutherLbl.text = self.cellDataArray[indexPath.row][@"author"];
     cell.cellDataLbl.text = [ShareManager timestampSwitchTime:[self.cellDataArray[indexPath.row][@"update_time"] integerValue] andFormatter:@""];
