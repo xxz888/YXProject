@@ -222,7 +222,7 @@ static NSString *secretKey = @"官网获取";
             UserDefaultsSET(dic, YX_USER_FaBuCaoGao);
             [QMUITips showSucceed:@"存草稿成功" inView:weakself.view hideAfterDelay:2];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [weakself dismissViewControllerAnimated:YES completion:nil];
+                [weakself finishPublish];
             });
         }else{
             [weakself requestFabu:dic];

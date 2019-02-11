@@ -68,27 +68,10 @@ static CGFloat textFieldH = 40;
     self.yxTableView.estimatedRowHeight = 0;
     self.yxTableView.estimatedSectionHeaderHeight = 0;
     self.yxTableView.estimatedSectionFooterHeight = 0;
+    self.yxTableView.tableFooterView = [[UIView alloc]init];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeTop;
-    //添加分隔线颜色设置
-    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXMineImageDetailHeaderView" owner:self options:nil];
-    self.lastDetailView = [nib objectAtIndex:0];
-
-    self.lastDetailView.frame = CGRectMake(0, 0, KScreenWidth, 485 - kTopHeight );
-    self.yxTableView.tableHeaderView = self.lastDetailView;
-    if (self.startDic[@"pic1"] || self.startDic[@"pic2"] || self.startDic[@"pic3"]) {
-        [self.lastDetailView setContentViewValue:@[self.startDic[@"pic1"],self.startDic[@"pic2"],self.startDic[@"pic3"]]];
-    }else{
-[self.lastDetailView setContentViewValue:@[self.startDic[@"photo1"],self.startDic[@"photo2"],self.startDic[@"photo3"]]];
-    }
-
-    self.lastDetailView.titleLbl.text = self.startDic[@"user_name"];
-    NSString * str1 = [(NSMutableString *)self.startDic[@"photo"] replaceAll:@" " target:@"%20"];
-
-    [self.lastDetailView.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    self.lastDetailView.titleImageView.layer.masksToBounds = YES;
-    self.lastDetailView.titleImageView.layer.cornerRadius = self.lastDetailView.titleImageView.frame.size.width / 2.0;
-    self.lastDetailView.titleTimeLbl.text = [ShareManager timestampSwitchTime:[self.startDic[@"publish_time"] longLongValue] andFormatter:@""];
+    
     self.clickPingLunBtn.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
     self.clickPingLunBtn.layer.borderWidth = 1;
     //点击segment
@@ -101,13 +84,34 @@ static CGFloat textFieldH = 40;
     
     
 }
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (!self.lastDetailView) {
+        //添加分隔线颜色设置
+        NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXMineImageDetailHeaderView" owner:self options:nil];
+        self.lastDetailView = [nib objectAtIndex:0];
+    }
 
+    if (self.startDic[@"pic1"] || self.startDic[@"pic2"] || self.startDic[@"pic3"]) {
+        [self.lastDetailView setContentViewValue:@[self.startDic[@"pic1"],self.startDic[@"pic2"],self.startDic[@"pic3"]]];
+    }else{
+        [self.lastDetailView setContentViewValue:@[self.startDic[@"photo1"],self.startDic[@"photo2"],self.startDic[@"photo3"]]];
+    }
+    
+    self.lastDetailView.titleLbl.text = self.startDic[@"user_name"];
+    NSString * str1 = [(NSMutableString *)self.startDic[@"photo"] replaceAll:@" " target:@"%20"];
+    
+    [self.lastDetailView.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    self.lastDetailView.titleImageView.layer.masksToBounds = YES;
+    self.lastDetailView.titleImageView.layer.cornerRadius = self.lastDetailView.titleImageView.frame.size.width / 2.0;
+    self.lastDetailView.titleTimeLbl.text = [ShareManager timestampSwitchTime:[self.startDic[@"publish_time"] longLongValue] andFormatter:@""];
+    return  self.lastDetailView;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return  230;
+}
 #pragma mark ========== 获取晒图评论列表 ==========
 -(void)requestNewList{
     kWeakSelf(self);
-//    id object = [[NSUserDefaults standardUserDefaults] objectForKey:@"b2"];
-//    weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
-//    [weakself refreshTableView];
     //请求评价列表 最新评论列表
     [YX_MANAGER requestPost_comment:[self getParamters:@"1" page:NSIntegerToNSString(self.requestPage)] success:^(id object) {
         if ([object count] > 0) {
@@ -117,9 +121,7 @@ static CGFloat textFieldH = 40;
         }else{
             [weakself.yxTableView.mj_footer endRefreshing];
             [weakself.yxTableView.mj_footer endRefreshing];
-            
         }
-    
     }];
 }
 -(void)requestHotList{
@@ -138,11 +140,7 @@ static CGFloat textFieldH = 40;
     }];
 }
 -(void)refreshTableView{
-//    if (_currentEditingIndexthPath) {
-//        [self.yxTableView reloadRowsAtIndexPaths:@[_currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
-//    }else{
-        [self.yxTableView reloadData];
-//    }
+    [self.yxTableView reloadData];
 }
 #pragma mark ========== 评论子评论 ==========
 -(void)requestpost_comment_child:(NSDictionary *)dic{
@@ -230,6 +228,8 @@ static CGFloat textFieldH = 40;
 
 #pragma mark ========== tableview数据 ==========
 - (NSArray *)creatModelsWithCount:(NSArray *)formalArray{
+    [_pageArray removeAllObjects];
+
     NSMutableArray *resArr = [NSMutableArray new];
     for (int i = 0; i < formalArray.count; i++) {
         SDTimeLineCellModel *model = [SDTimeLineCellModel new];
@@ -265,23 +265,8 @@ static CGFloat textFieldH = 40;
         SDTimeLineCellLikeItemModel * model1 = [SDTimeLineCellLikeItemModel new];
         model1.userName = [NSString stringWithFormat:@"%@",formalArray[i][@"praise_number"]];
         model1.userId = @"000";
-        
         [tempLikes addObject:model1];
         model.likeItemsArray = [tempLikes copy];
-        /*
-         // 模拟随机点赞数据
-         int likeRandom = arc4random_uniform(3);
-         NSMutableArray *tempLikes = [NSMutableArray new];
-         for (int i = 0; i < likeRandom; i++) {
-         SDTimeLineCellLikeItemModel *model = [SDTimeLineCellLikeItemModel new];
-         int index = arc4random_uniform((int)namesArray.count);
-         model.userName = namesArray[index];
-         model.userId = namesArray[index];
-         [tempLikes addObject:model];
-         }
-         
-         model.likeItemsArray = [tempLikes copy];
-         */
         [resArr addObject:model];
     }
     return [resArr copy];
@@ -356,7 +341,10 @@ static CGFloat textFieldH = 40;
     for (NSDictionary * dic in copyArray) {
         if ([dic[@"id"] intValue] == [model.id intValue]) {
             [dic setValue:@([dic[@"page"] intValue]+1) forKey:@"page"];
-            [self requestMoreCigar_comment_child:model.id page:kGetString(dic[@"page"])];
+            kWeakSelf(self);
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakself requestMoreCigar_comment_child:model.id page:kGetString(dic[@"page"])];
+            });
         }
     }
 }

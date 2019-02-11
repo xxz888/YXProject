@@ -132,13 +132,18 @@ static NSInteger lastIdx = 0;
 - (void)axcAE_TabBar:(AxcAE_TabBar *)tabbar selectIndex:(NSInteger)index{
     if (index != 2) { // 不是中间的就切换
         
-        
+        UIView * view;
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11) {
+            view = [[UIApplication sharedApplication].windows firstObject];
+        } else {
+            view = [[UIApplication sharedApplication].windows lastObject];
+        }
         if (index == 4 && ![userManager loadUserInfo]) {
             KPostNotification(KNotificationLoginStateChange, @NO);
             return;
         }
         if (index == 3) {
-            [QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
+            [QMUITips showInfo:SHOW_FUTURE_DEV inView:view hideAfterDelay:1];
             return;
         }
         // 通知 切换视图控制器

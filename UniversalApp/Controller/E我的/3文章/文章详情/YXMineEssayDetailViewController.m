@@ -181,6 +181,8 @@ static CGFloat textFieldH = 40;
 
 #pragma mark ========== tableview数据 ==========
 - (NSArray *)creatModelsWithCount:(NSArray *)formalArray{
+    [_pageArray removeAllObjects];
+
     NSMutableArray *resArr = [NSMutableArray new];
     for (int i = 0; i < formalArray.count; i++) {
         SDTimeLineCellModel *model = [SDTimeLineCellModel new];

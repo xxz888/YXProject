@@ -43,6 +43,7 @@ static CGFloat textFieldH = 0;
 @property (nonatomic, strong) NSIndexPath *currentEditingIndexthPath;
 @property (nonatomic, copy) NSString *commentToUser;
 @property (nonatomic, strong) NSMutableDictionary * pardic;;
+@property (nonatomic, strong) MMImageListView *imageListView;
 
 @end
 
@@ -154,32 +155,8 @@ static CGFloat textFieldH = 0;
     //添加输入框键盘模块
     [self.view addSubview:self.inputBar];
     
-    //添加分隔线颜色设置
-    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeQuestionDetailHeaderView" owner:self options:nil];
-    self.headerView = [nib objectAtIndex:0];
-    self.headerView.frame = CGRectMake(0, 0, KScreenWidth, !AxcAE_IsiPhoneX ? 300 : 220);
-    NSString * str = [(NSMutableString *)self.moment.photo replaceAll:@" " target:@"%20"];
-     [self.headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    self.headerView.titleImageView.layer.masksToBounds = YES;
-    self.headerView.titleImageView.layer.cornerRadius = self.headerView.titleImageView.frame.size.width / 2.0;
-    
-    self.headerView.titleLbl.text = self.moment.userName;
-    self.headerView.timeLbl.text = [ShareManager timestampSwitchTime:self.moment.time andFormatter:@""];
-    self.headerView.detailLbl.text = self.moment.text;
-    
-    
-    NSString * str0 = [(NSMutableString *)self.moment.imageListArray[0] replaceAll:@" " target:@"%20"];
-     [self.headerView.imageView1 sd_setImageWithURL:[NSURL URLWithString:str0] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    
-    NSString * str1 = [(NSMutableString *)self.moment.imageListArray[1] replaceAll:@" " target:@"%20"];
-     [self.headerView.imageView2 sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    
-    NSString * str2 = [(NSMutableString *)self.moment.imageListArray[2] replaceAll:@" " target:@"%20"];
-     [self.headerView.imageView3 sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    
-    self.yxTableView.tableHeaderView = self.headerView;
-    
-    
+  
+
     
     //点击键盘发送按钮，开始发布回答
     self.inputBar.block = ^(NSString *contents) {
@@ -216,7 +193,42 @@ static CGFloat textFieldH = 0;
 
     };
 }
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    //添加分隔线颜色设置
+    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeQuestionDetailHeaderView" owner:self options:nil];
+    self.headerView = [nib objectAtIndex:0];
+    self.headerView.frame = CGRectMake(0, 0, KScreenWidth, !AxcAE_IsiPhoneX ? 300 : 220);
+    NSString * str = [(NSMutableString *)self.moment.photo replaceAll:@" " target:@"%20"];
+    [self.headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    self.headerView.titleImageView.layer.masksToBounds = YES;
+    self.headerView.titleImageView.layer.cornerRadius = self.headerView.titleImageView.frame.size.width / 2.0;
+    
+    self.headerView.titleLbl.text = self.moment.userName;
+    self.headerView.timeLbl.text = [ShareManager timestampSwitchTime:self.moment.time andFormatter:@""];
+    self.headerView.detailLbl.text = self.moment.text;
+    
+    NSString * str0 = [(NSMutableString *)self.moment.imageListArray[0] replaceAll:@" " target:@"%20"];
+    NSString * str1 = [(NSMutableString *)self.moment.imageListArray[1] replaceAll:@" " target:@"%20"];
+    NSString * str2 = [(NSMutableString *)self.moment.imageListArray[2] replaceAll:@" " target:@"%20"];
 
+    // 图片区
+    _imageListView = [[MMImageListView alloc] initWithFrame:CGRectZero];
+    [self.headerView.totalImage addSubview:_imageListView];
+    Moment * moment = [[Moment alloc]init];
+    moment.imageListArray = [NSMutableArray arrayWithObjects:str0,str1, str2, nil];
+    moment.singleWidth = 500;
+    moment.singleHeight = 315;
+    moment.fileCount = 3;
+    // 图片
+    _imageListView.moment = moment;
+    if (moment.fileCount > 0) {
+        _imageListView.origin = CGPointMake(0, 0);
+    }
+    return self.headerView;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return  230;
+}
 #pragma mark ========== 请求子回答列表 ==========
 
 -(void)requestAnserChildList:(NSString *)farther_id page:(NSString *)page{
@@ -278,6 +290,7 @@ static CGFloat textFieldH = 0;
 }
 #pragma mark ========== tableview数据 ==========
 - (NSArray *)creatModelsWithCount:(NSArray *)formalArray{
+    [_pageArray removeAllObjects];
     NSMutableArray *resArr = [NSMutableArray new];
     for (int i = 0; i < formalArray.count; i++) {
         SDTimeLineCellModel *model = [SDTimeLineCellModel new];
@@ -376,7 +389,10 @@ static CGFloat textFieldH = 0;
     for (NSDictionary * dic in copyArray) {
         if ([dic[@"id"] intValue] == [model.id intValue]) {
             [dic setValue:@([dic[@"page"] intValue]+1) forKey:@"page"];
-            [self requestAnserChildList:model.id page:kGetString(dic[@"page"])];
+            kWeakSelf(self);
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakself requestAnserChildList:model.id page:kGetString(dic[@"page"])];
+            });
         }
     }
 }

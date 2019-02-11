@@ -185,18 +185,12 @@
         cell.backgroundColor = [UIColor whiteColor];
     }
     cell.moment = [self.momentList objectAtIndex:indexPath.row];
-    
-
     cell.delegate = self;
     cell.tag = indexPath.row;
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    YXHomeXueJiaWenDaDetailViewController * VC = [[YXHomeXueJiaWenDaDetailViewController alloc]init];
-//    VC.moment = self.momentList[indexPath.row];
-//    [self.navigationController pushViewController:VC animated:YES];
-
     UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
     YXHomeXueJiaQuestionDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaQuestionDetailViewController"];
     VC.moment = self.momentList[indexPath.row];

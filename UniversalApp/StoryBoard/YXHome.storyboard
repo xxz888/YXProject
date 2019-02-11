@@ -126,9 +126,10 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IjV-vS-HWl">
                                         <rect key="frame" x="0.0" y="0.0" width="94" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fb-Gb-MBN">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fb-Gb-MBN">
                                                 <rect key="frame" x="0.0" y="0.0" width="94" height="50"/>
-                                                <state key="normal" title="时间 ⬆️">
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <state key="normal" title="时间↑">
                                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -147,9 +148,10 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Afc-Ft-wNO">
                                         <rect key="frame" x="94" y="0.0" width="93.5" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKH-wQ-b1M">
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKH-wQ-b1M">
                                                 <rect key="frame" x="0.0" y="0.0" width="93.5" height="50"/>
-                                                <state key="normal" title="名字 ⬆️">
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <state key="normal" title="名字↑">
                                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -168,9 +170,10 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tCF-6K-p0y">
                                         <rect key="frame" x="187.5" y="0.0" width="94" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qaf-Ao-MRa">
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qaf-Ao-MRa">
                                                 <rect key="frame" x="0.0" y="0.0" width="94" height="50"/>
-                                                <state key="normal" title="价格 ⬆️">
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <state key="normal" title="价格↑">
                                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -189,9 +192,10 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oc9-pL-Ooi">
                                         <rect key="frame" x="281.5" y="0.0" width="93.5" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="duV-bu-NP8">
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="duV-bu-NP8">
                                                 <rect key="frame" x="0.0" y="0.0" width="93.5" height="50"/>
-                                                <state key="normal" title="评分 ⬆️">
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <state key="normal" title="评分↑">
                                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -226,6 +230,10 @@
                         <viewLayoutGuide key="safeArea" id="87X-mj-IC8"/>
                     </view>
                     <connections>
+                        <outlet property="nameBtn" destination="mKH-wQ-b1M" id="Qoa-eg-OAq"/>
+                        <outlet property="priceBtn" destination="Qaf-Ao-MRa" id="qdG-Cb-hFK"/>
+                        <outlet property="scoreBtn" destination="duV-bu-NP8" id="YDd-yO-9gJ"/>
+                        <outlet property="timeBtn" destination="6fb-Gb-MBN" id="bBU-Ef-hYt"/>
                         <outlet property="view1" destination="IjV-vS-HWl" id="1Ty-Dx-fZG"/>
                         <outlet property="view2" destination="Afc-Ft-wNO" id="nrg-Vz-3YE"/>
                         <outlet property="view3" destination="tCF-6K-p0y" id="e2e-gG-qiD"/>
@@ -235,7 +243,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="27A-Lc-WAF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-706" y="-644"/>
+            <point key="canvasLocation" x="-772" y="-643"/>
         </scene>
         <!--Home Xue Jia Question Detail View Controller-->
         <scene sceneID="puE-Of-8MA">

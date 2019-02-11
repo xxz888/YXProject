@@ -238,6 +238,8 @@ static CGFloat textFieldH = 40;
 
 #pragma mark ========== tableview数据 ==========
 - (NSArray *)creatModelsWithCount:(NSArray *)formalArray{
+    [_pageArray removeAllObjects];
+
     NSMutableArray *resArr = [NSMutableArray new];
     for (int i = 0; i < formalArray.count; i++) {
         SDTimeLineCellModel *model = [SDTimeLineCellModel new];
@@ -252,6 +254,7 @@ static CGFloat textFieldH = 40;
         
         [pageDic setValue:@([model.id intValue]) forKey:@"id"];
         [pageDic setValue:@(0) forKey:@"page"];
+  
         [_pageArray addObject:pageDic];
      
         // 模拟随机评论数据
@@ -357,7 +360,11 @@ static CGFloat textFieldH = 40;
     for (NSDictionary * dic in copyArray) {
         if ([dic[@"id"] intValue] == [model.id intValue]) {
             [dic setValue:@([dic[@"page"] intValue]+1) forKey:@"page"];
-            [self requestMoreCigar_comment_child:model.id page:kGetString(dic[@"page"])];
+            
+            kWeakSelf(self);
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakself requestMoreCigar_comment_child:model.id page:kGetString(dic[@"page"])];
+            });
         }
     }
 }

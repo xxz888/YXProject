@@ -29,16 +29,12 @@
     self.view.backgroundColor = KWhiteColor;
     self.dataArray = [[NSMutableArray alloc]init];
     [self collectionViewCon];
-    
-    
     [self addCollectionViewRefreshView:self.yxCollectionView];
     user_id_BOOL ? [self requestOtherShaiTuList] : [self requestMineShaiTuList];
-    
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 }
-
 -(void)headerRereshing{
     [super headerRereshing];
     user_id_BOOL ? [self requestOtherShaiTuList] : [self requestMineShaiTuList];
@@ -83,7 +79,6 @@
     kWeakSelf(self);
     [YX_MANAGER requestGetDetailListPOST:@{@"type":@(2),@"page":NSIntegerToNSString(self.requestPage)} success:^(id object) {
         [weakself mineShaiTuRefreshAction:object];
-        
     }];
 }
 #pragma mark ========== 其他用户的晒图请求 ==========
@@ -117,17 +112,14 @@
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.row];
-    //    if (self.showType == singleLineShowOneGoods) {
     YXMineImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YXMineImageCollectionViewCell" forIndexPath:indexPath];
     cell.essayTitleImageView.tag = indexPath.row;
     NSString * str1 = [(NSMutableString *)dic[@"photo1"] replaceAll:@" " target:@"%20"];
     [cell.midImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    
     cell.titleLbl.text = dic[@"describe"];
     BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
     UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
     [cell.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
-    
     kWeakSelf(self);
     cell.block = ^(YXMineImageCollectionViewCell * cell) {
         NSIndexPath * indexPath = [weakself.yxCollectionView indexPathForCell:cell];

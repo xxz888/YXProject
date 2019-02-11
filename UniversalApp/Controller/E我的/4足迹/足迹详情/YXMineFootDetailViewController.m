@@ -63,10 +63,26 @@ static CGFloat textFieldH = 40;
     self.yxTableView.estimatedSectionFooterHeight = 0;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeTop;
+   
+    self.clickPingLunBtn.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
+    self.clickPingLunBtn.layer.borderWidth = 1;
+    //点击segment
+    self.lastDetailView.block = ^(NSInteger index) {
+        index == 0 ? [weakself requestNewList] : [weakself requestHotList];
+        _segmentIndex = index;
+    };
+    [self setupTextField];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+    
+    [self addRefreshView:self.yxTableView];
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     //添加分隔线颜色设置
-    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXMineImageDetailHeaderView" owner:self options:nil];
-    self.lastDetailView = [nib objectAtIndex:0];
-    self.lastDetailView.frame = CGRectMake(0, 0, KScreenWidth, 485 - kTopHeight );
+    if (!self.lastDetailView) {
+        NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXMineImageDetailHeaderView" owner:self options:nil];
+        self.lastDetailView = [nib objectAtIndex:0];
+    }
     self.yxTableView.tableHeaderView = self.lastDetailView;
     if (self.startDic[@"pic1"] || self.startDic[@"pic2"] || self.startDic[@"pic3"]) {
         [self.lastDetailView setContentViewValue:@[self.startDic[@"pic1"],self.startDic[@"pic2"],self.startDic[@"pic3"]]];
@@ -80,18 +96,10 @@ static CGFloat textFieldH = 40;
     self.lastDetailView.titleImageView.layer.masksToBounds = YES;
     self.lastDetailView.titleImageView.layer.cornerRadius = self.lastDetailView.titleImageView.frame.size.width / 2.0;
     self.lastDetailView.titleTimeLbl.text = [ShareManager timestampSwitchTime:[self.startDic[@"publish_time"] longLongValue] andFormatter:@""];
-    self.clickPingLunBtn.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
-    self.clickPingLunBtn.layer.borderWidth = 1;
-    //点击segment
-    self.lastDetailView.block = ^(NSInteger index) {
-        index == 0 ? [weakself requestNewList] : [weakself requestHotList];
-        _segmentIndex = index;
-    };
-    [self setupTextField];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
-    
-    
-    [self addRefreshView:self.yxTableView];
+    return self.lastDetailView;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return  230;
 }
 -(void)headerRereshing{
     [super headerRereshing];
@@ -227,6 +235,7 @@ static CGFloat textFieldH = 40;
 
 #pragma mark ========== tableview数据 ==========
 - (NSArray *)creatModelsWithCount:(NSArray *)formalArray{
+    [_pageArray removeAllObjects];
     NSMutableArray *resArr = [NSMutableArray new];
     for (int i = 0; i < formalArray.count; i++) {
         SDTimeLineCellModel *model = [SDTimeLineCellModel new];

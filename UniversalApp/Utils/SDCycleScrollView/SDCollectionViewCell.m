@@ -71,6 +71,7 @@
 {
     UIImageView *imageView = [[UIImageView alloc] init];
     _imageView = imageView;
+    ViewRadius(imageView, 3);
     [self.contentView addSubview:imageView];
 }
 

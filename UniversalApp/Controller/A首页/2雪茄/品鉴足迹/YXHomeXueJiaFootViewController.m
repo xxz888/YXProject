@@ -18,6 +18,10 @@
 
 }
 @property (nonatomic,strong) NSMutableArray *dataArray;
+@property (weak, nonatomic) IBOutlet UIButton *timeBtn;
+@property (weak, nonatomic) IBOutlet UIButton *nameBtn;
+@property (weak, nonatomic) IBOutlet UIButton *priceBtn;
+@property (weak, nonatomic) IBOutlet UIButton *scoreBtn;
 
 @end
 
@@ -55,6 +59,8 @@
     kWeakSelf(self);
     NSString * par = [NSString stringWithFormat:@"%@/%@/%@",NSIntegerToNSString(self.requestPage),_sort,isreverse];
     [YX_MANAGER requestGetMy_Track_list:par success:^(id object) {
+
+
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
     }];
@@ -91,19 +97,24 @@
     _sort = NSIntegerToNSString(sender.tag);
     switch (sender.tag) {
         case 1:_isreverse1 = [_isreverse1 isEqualToString:@"1"] ? @"0" : @"1";
-                [self requestZuJi:_isreverse1];
+            [self requestZuJi:_isreverse1];
+            BOOL isReverseBool1 = [_isreverse1 isEqualToString:@"1"] ? YES : NO;
+            [self.timeBtn setTitle:isReverseBool1 ? @"时间↑":@"时间↓" forState:UIControlStateNormal];
             break;
         case 2:_isreverse2 = [_isreverse2 isEqualToString:@"1"] ? @"0" : @"1";
             [self requestZuJi:_isreverse2];
-
+            BOOL isReverseBool2 = [_isreverse2 isEqualToString:@"1"] ? YES : NO;
+            [self.nameBtn setTitle:isReverseBool2 ? @"名字↑":@"名字↓" forState:UIControlStateNormal];
             break;
-        case 3:_isreverse3 = [_isreverse2 isEqualToString:@"1"] ? @"0" : @"1";
+        case 3:_isreverse3 = [_isreverse3 isEqualToString:@"1"] ? @"0" : @"1";
             [self requestZuJi:_isreverse3];
-
+            BOOL isReverseBool3 = [_isreverse3 isEqualToString:@"1"] ? YES : NO;
+            [self.priceBtn setTitle:isReverseBool3 ? @"价格↑":@"价格↓" forState:UIControlStateNormal];
             break;
-        case 4:_isreverse4 = [_isreverse2 isEqualToString:@"1"] ? @"0" : @"1";
+        case 4:_isreverse4 = [_isreverse4 isEqualToString:@"1"] ? @"0" : @"1";
             [self requestZuJi:_isreverse4];
-
+            BOOL isReverseBool4 = [_isreverse4 isEqualToString:@"1"] ? YES : NO;
+            [self.scoreBtn setTitle:isReverseBool4 ? @"评分↑":@"评分↓" forState:UIControlStateNormal];
             break;
         default:
             break;

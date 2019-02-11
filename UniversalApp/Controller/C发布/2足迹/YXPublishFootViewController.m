@@ -187,6 +187,8 @@
 }
 //新话题
 - (IBAction)xinhuatiAction:(id)sender {
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+
     UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 200)];
     contentView.backgroundColor = UIColorWhite;
     contentView.layer.cornerRadius = 6;
