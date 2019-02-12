@@ -239,6 +239,9 @@
 		BB70253D22129812009EBE39 /* YXFindSearchHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB70253C22129812009EBE39 /* YXFindSearchHeadView.xib */; };
 		BB7025442212A42C009EBE39 /* YXFindSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7025432212A42C009EBE39 /* YXFindSearchResultViewController.m */; };
 		BB7025472212A4D9009EBE39 /* YXFindSearchResultUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7025462212A4D9009EBE39 /* YXFindSearchResultUsersViewController.m */; };
+		BB70254B2212AF3F009EBE39 /* YXFindSearchResultAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB70254A2212AF3F009EBE39 /* YXFindSearchResultAllViewController.m */; };
+		BB70254F2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB70254D2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m */; };
+		BB7025502212BAE2009EBE39 /* YXFindSearchResultTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB70254E2212BAE2009EBE39 /* YXFindSearchResultTagViewController.xib */; };
 		BB7AF12C2200035700989896 /* YXPublishFootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7AF12B2200035700989896 /* YXPublishFootViewController.m */; };
 		BB7AF13422004FE600989896 /* YXMineFootDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7AF13222004FE600989896 /* YXMineFootDetailViewController.m */; };
 		BB7AF13522004FE600989896 /* YXMineFootDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7AF13322004FE600989896 /* YXMineFootDetailViewController.xib */; };
@@ -960,6 +963,11 @@
 		BB7025432212A42C009EBE39 /* YXFindSearchResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchResultViewController.m; sourceTree = "<group>"; };
 		BB7025452212A4D9009EBE39 /* YXFindSearchResultUsersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchResultUsersViewController.h; sourceTree = "<group>"; };
 		BB7025462212A4D9009EBE39 /* YXFindSearchResultUsersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchResultUsersViewController.m; sourceTree = "<group>"; };
+		BB7025492212AF3F009EBE39 /* YXFindSearchResultAllViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchResultAllViewController.h; sourceTree = "<group>"; };
+		BB70254A2212AF3F009EBE39 /* YXFindSearchResultAllViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchResultAllViewController.m; sourceTree = "<group>"; };
+		BB70254C2212BAE2009EBE39 /* YXFindSearchResultTagViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchResultTagViewController.h; sourceTree = "<group>"; };
+		BB70254D2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchResultTagViewController.m; sourceTree = "<group>"; };
+		BB70254E2212BAE2009EBE39 /* YXFindSearchResultTagViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFindSearchResultTagViewController.xib; sourceTree = "<group>"; };
 		BB7AF12A2200035700989896 /* YXPublishFootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXPublishFootViewController.h; sourceTree = "<group>"; };
 		BB7AF12B2200035700989896 /* YXPublishFootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXPublishFootViewController.m; sourceTree = "<group>"; };
 		BB7AF13122004FE600989896 /* YXMineFootDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineFootDetailViewController.h; sourceTree = "<group>"; };
@@ -2776,6 +2784,8 @@
 		BB70253F2212A3D6009EBE39 /* 全部 */ = {
 			isa = PBXGroup;
 			children = (
+				BB7025492212AF3F009EBE39 /* YXFindSearchResultAllViewController.h */,
+				BB70254A2212AF3F009EBE39 /* YXFindSearchResultAllViewController.m */,
 			);
 			path = "全部";
 			sourceTree = "<group>";
@@ -2800,6 +2810,9 @@
 		BB7025482212AE22009EBE39 /* 标签详情 */ = {
 			isa = PBXGroup;
 			children = (
+				BB70254C2212BAE2009EBE39 /* YXFindSearchResultTagViewController.h */,
+				BB70254D2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m */,
+				BB70254E2212BAE2009EBE39 /* YXFindSearchResultTagViewController.xib */,
 			);
 			path = "标签详情";
 			sourceTree = "<group>";
@@ -4794,6 +4807,7 @@
 				BBD2C90421E0F67700350DCD /* README.md in Resources */,
 				290A97E21F4AB24A006BF882 /* stepPk_win_colour4@2x.png in Resources */,
 				29FEE77B1ECED1E200C81B60 /* MBHUD_Warn@2x.png in Resources */,
+				BB7025502212BAE2009EBE39 /* YXFindSearchResultTagViewController.xib in Resources */,
 				BBD2C94121E0F67800350DCD /* UIBarButtonItemArrowLeft@3x.png in Resources */,
 				2917D2071EE007C300E76185 /* MBHUD_Success@2x.png in Resources */,
 				BB95F64921E715D60071A369 /* YXHomeLastMyTalkView.xib in Resources */,
@@ -5136,6 +5150,7 @@
 				BBDA2D2421EB30BF00EDCCFF /* SDRefreshView.m in Sources */,
 				BBD30CE921E5CE26000D3244 /* YXMineCommon1TableViewCell.m in Sources */,
 				BB5FD87521FE9BBD00B5F1A8 /* AxcAE_TabBarItem.m in Sources */,
+				BB70254B2212AF3F009EBE39 /* YXFindSearchResultAllViewController.m in Sources */,
 				BBD2C83821E0F44A00350DCD /* VTingSeaPopView.m in Sources */,
 				290471B91F98D9AB0081CCA1 /* XYTabBar.m in Sources */,
 				BBD2C91E21E0F67800350DCD /* NSString+LLExtension.m in Sources */,
@@ -5266,6 +5281,7 @@
 				BBD2C99921E1C7D600350DCD /* YXHomeXueJiaGuBaViewController.m in Sources */,
 				BB95F64721E715CB0071A369 /* YXHomeLastMyTalkView.m in Sources */,
 				BB7025472212A4D9009EBE39 /* YXFindSearchResultUsersViewController.m in Sources */,
+				BB70254F2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m in Sources */,
 				BBA812F721DDEBBB001B5EA1 /* SegmentTapView.m in Sources */,
 				BBCC4AA321E83DC000493F40 /* YXColorViewController.m in Sources */,
 				BB928F9721FB5D290090A044 /* BRAddressModel.m in Sources */,

@@ -1,12 +1,12 @@
 //
-//  YXFindViewController.m
+//  YXFindSearchResultAllViewController.m
 //  UniversalApp
 //
-//  Created by 小小醉 on 2019/1/3.
+//  Created by 小小醉 on 2019/2/12.
 //  Copyright © 2019年 徐阳. All rights reserved.
 //
 
-#import "YXFindViewController.h"
+#import "YXFindSearchResultAllViewController.h"
 #import "PYSearchViewController.h"
 #import "PYSearch.h"
 #import "PYTempViewController.h"
@@ -23,32 +23,30 @@
 #import "Moment.h"
 #import "Comment.h"
 #import "YXMineFootDetailViewController.h"
-#import "YXFindSearchViewController.h"
-#import "YXFindSearchResultViewController.h"
-
-@interface YXFindViewController ()<PYSearchViewControllerDelegate,UITableViewDelegate,UITableViewDataSource>{
+@interface YXFindSearchResultAllViewController ()<PYSearchViewControllerDelegate,UITableViewDelegate,UITableViewDataSource>{
     NSInteger page ;
-    CBSegmentView * sliderSegmentView;
 }
 @property(nonatomic,strong)NSMutableArray * dataArray;
 @property(nonatomic,strong)NSString * type;
+
 @end
 
-@implementation YXFindViewController
+@implementation YXFindSearchResultAllViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"发现";
- 
+    
     //搜索栏
-    [self setNavSearchView];
+//    [self setNavSearchView];
     //创建tableview
     [self tableviewCon];
     
-    [self requestFindTag];
-
-     [self addRefreshView:self.yxTableView];
+    [self addRefreshView:self.yxTableView];
+    
+    [self requestFindTheType];
 }
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
@@ -68,22 +66,11 @@
     [super footerRereshing];
     [self requestFindTheType];
 }
-#pragma mark ========== headerview ==========
--(UIView *)headerView{
-    kWeakSelf(self);
-    sliderSegmentView = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, 40)];
-    sliderSegmentView.titleChooseReturn = ^(NSInteger x) {
-        weakself.type = NSIntegerToNSString(x+1);
-        [weakself requestFindTheType];
-    };
-    return sliderSegmentView;
-}
 #pragma mark ========== 创建tableview ==========
 -(void)tableviewCon{
     self.dataArray = [[NSMutableArray alloc]init];
-    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, kTopHeight, KScreenWidth, KScreenHeight - kTopHeight-TabBarHeight) style:0];
+    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight) style:0];
     [self.view addSubview:self.yxTableView];
-    self.yxTableView.tableHeaderView = [self headerView];
     self.yxTableView.delegate = self;
     self.yxTableView.dataSource= self;
     self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -100,18 +87,6 @@
     NSString* post_id = kGetString(self.dataArray[indexPath.row][@"id"]);
     [YX_MANAGER requestPost_praisePOST:@{@"post_id":post_id} success:^(id object){
         [weakself requestFindTheType];
-    }];
-}
-#pragma mark ========== 1111111-先请求tag列表,获取发现页标签数据 ==========
--(void)requestFindTag{
-    kWeakSelf(self);
-    NSMutableArray * array = [[NSMutableArray alloc]init];
-    [YX_MANAGER requestGet_users_find_tag:@"" success:^(id object) {
-        for (NSDictionary * dic in object) {
-            [array addObject:dic[@"type"]];
-        }
-       [sliderSegmentView setTitleArray:array withStyle:CBSegmentStyleSlider];
-       [weakself requestFindTheType];
     }];
 }
 #pragma mark ========== 2222222-在请求具体tag下的请求,获取发现页标签数据全部接口 ==========
@@ -224,7 +199,7 @@
     YXFindFootTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFindFootTableViewCell" forIndexPath:indexPath];
     cell.titleImageView.tag = indexPath.row;
     [cell setCellValue:dic];
-
+    
     kWeakSelf(self);
     cell.clickImageBlock = ^(NSInteger tag) {
         [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
@@ -296,83 +271,35 @@
 }
 
 -(Moment *)setTestInfo:(NSDictionary *)dic{
-        NSMutableArray *commentList = nil;
-        Moment *moment = [[Moment alloc] init];
-        moment.praiseNameList = nil;
-        moment.userName = dic[@"user_name"];
-        moment.text = dic[@"title"];
-        moment.time = [dic[@"publish_time"] integerValue];
-        moment.singleWidth = 500;
-        moment.singleHeight = 315;
-        moment.location = @"";
-        moment.isPraise = NO;
-        moment.photo =dic[@"user_photo"];
-        moment.startId = dic[@"id"];
-        moment.fileCount = 3;
-        moment.imageListArray = [NSMutableArray arrayWithObjects:
-                                 dic[@"pic1"],
-                                 dic[@"pic2"],
-                                 dic[@"pic3"], nil];
-        commentList = [[NSMutableArray alloc] init];
-        int num = (int)[dic[@"answer"] count];
-        for (int j = 0; j < num; j ++) {
-            Comment *comment = [[Comment alloc] init];
-            comment.userName = dic[@"answer"][j][@"user_name"];
-            comment.text =  dic[@"answer"][j][@"answer"];
-            comment.time = 1487649503;
-            comment.pk = j;
-            [commentList addObject:comment];
-        }
-        [moment setValue:commentList forKey:@"commentList"];
-        return moment;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#pragma mark ==========  搜索相关 ==========
--(void)setNavSearchView{
-    UIColor *color =  YXRGBAColor(217, 217, 217);
-    UITextField * searchBar = [[UITextField alloc] init];
-    searchBar.frame = CGRectMake(-10, 0, KScreenWidth, 40);
-    ViewBorderRadius(searchBar, 1, 1, color);
-    searchBar.placeholder = @"搜索";
-    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(searchBar.py_size.width-60, 0, 25, 25);
-    btn.centerY = searchBar.centerY;
-    [btn setBackgroundImage:[UIImage imageNamed:@"放大镜"] forState:UIControlStateNormal];
-    [searchBar addSubview:btn];
-    [searchBar addTarget:self action:@selector(textField1TextChange:) forControlEvents:UIControlEventEditingDidBegin];
-    [self.navigationItem.titleView sizeToFit];
-    self.navigationItem.titleView = searchBar;
-}
--(void)textField1TextChange:(UITextField *)tf{
-    [self clickSearchBar];
-}
-- (void)clickSearchBar{
-    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
-    YXFindSearchViewController *searchViewController = [YXFindSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"搜索", @"搜索") didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
- 
-        [searchViewController.navigationController pushViewController:[[YXFindSearchResultViewController alloc] init] animated:YES];
-    }];
-    searchViewController.hotSearchStyle = PYHotSearchStyleBorderTag;
-    searchViewController.searchHistoryStyle = 1;
-    searchViewController.delegate = self;
-    RootNavigationController *nav2 = [[RootNavigationController alloc]initWithRootViewController:searchViewController];
-    [self presentViewController:nav2 animated:YES completion:nil];
+    NSMutableArray *commentList = nil;
+    Moment *moment = [[Moment alloc] init];
+    moment.praiseNameList = nil;
+    moment.userName = dic[@"user_name"];
+    moment.text = dic[@"title"];
+    moment.time = [dic[@"publish_time"] integerValue];
+    moment.singleWidth = 500;
+    moment.singleHeight = 315;
+    moment.location = @"";
+    moment.isPraise = NO;
+    moment.photo =dic[@"user_photo"];
+    moment.startId = dic[@"id"];
+    moment.fileCount = 3;
+    moment.imageListArray = [NSMutableArray arrayWithObjects:
+                             dic[@"pic1"],
+                             dic[@"pic2"],
+                             dic[@"pic3"], nil];
+    commentList = [[NSMutableArray alloc] init];
+    int num = (int)[dic[@"answer"] count];
+    for (int j = 0; j < num; j ++) {
+        Comment *comment = [[Comment alloc] init];
+        comment.userName = dic[@"answer"][j][@"user_name"];
+        comment.text =  dic[@"answer"][j][@"answer"];
+        comment.time = 1487649503;
+        comment.pk = j;
+        [commentList addObject:comment];
+    }
+    [moment setValue:commentList forKey:@"commentList"];
+    return moment;
 }
 
 @end

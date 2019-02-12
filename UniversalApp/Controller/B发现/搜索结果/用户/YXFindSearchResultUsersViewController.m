@@ -8,19 +8,28 @@
 
 #import "YXFindSearchResultUsersViewController.h"
 #import "YXHomeXueJiaTableViewCell.h"
+#import "YXFindSearchResultTagViewController.h"
+
 @interface YXFindSearchResultUsersViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView * yxTableView;
 @end
 
 @implementation YXFindSearchResultUsersViewController
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    self.navigationController.navigationBar.hidden = NO;
 
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createyxTableView];
 }
 //tableview
 -(void)createyxTableView{
-    
     if (!self.yxTableView) {
         self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-kTopHeight-40) style:UITableViewStylePlain];
         [self.view addSubview:self.yxTableView];
@@ -52,7 +61,8 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    YXFindSearchResultTagViewController * VC = [[YXFindSearchResultTagViewController alloc]init];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 

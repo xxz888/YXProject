@@ -10,4 +10,5 @@
 
 @interface YXFindViewController : RootViewController
 @property (strong, nonatomic) UITableView *yxTableView;
+-(void)tableviewCon;
 @end
