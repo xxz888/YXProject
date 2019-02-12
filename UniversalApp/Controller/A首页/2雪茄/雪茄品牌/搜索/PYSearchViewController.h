@@ -427,5 +427,5 @@ didSelectSearchSuggestionAtIndex:(NSInteger)index
 + (instancetype)searchViewControllerWithHotSearches:(NSArray<NSString *> *)hotSearches
                                searchBarPlaceholder:(NSString *)placeholder
                                      didSearchBlock:(PYDidSearchBlock)block;
-
+- (void)cancelDidClick;
 @end

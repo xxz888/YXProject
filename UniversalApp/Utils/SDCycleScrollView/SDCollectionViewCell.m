@@ -36,6 +36,8 @@
 @implementation SDCollectionViewCell
 {
     __weak UILabel *_titleLabel;
+    __weak UILabel *_pageLabel;
+
 }
 
 
@@ -53,25 +55,31 @@
 {
     _titleLabelBackgroundColor = titleLabelBackgroundColor;
     _titleLabel.backgroundColor = titleLabelBackgroundColor;
+    
+    _pageLabel.backgroundColor = titleLabelBackgroundColor;
+    
 }
 
 - (void)setTitleLabelTextColor:(UIColor *)titleLabelTextColor
 {
     _titleLabelTextColor = titleLabelTextColor;
     _titleLabel.textColor = titleLabelTextColor;
+    
+    _pageLabel.textColor = titleLabelTextColor;
+
 }
 
 - (void)setTitleLabelTextFont:(UIFont *)titleLabelTextFont
 {
     _titleLabelTextFont = titleLabelTextFont;
     _titleLabel.font = titleLabelTextFont;
+    _pageLabel.font = titleLabelTextFont;
 }
 
 - (void)setupImageView
 {
     UIImageView *imageView = [[UIImageView alloc] init];
     _imageView = imageView;
-    ViewRadius(imageView, 3);
     [self.contentView addSubview:imageView];
 }
 
@@ -81,6 +89,14 @@
     _titleLabel = titleLabel;
     _titleLabel.hidden = YES;
     [self.contentView addSubview:titleLabel];
+    
+    
+    
+    UILabel * label = [[UILabel alloc]init];
+    _pageLabel = label;
+    _pageLabel.hidden = YES;
+    [self.contentView addSubview:_pageLabel];
+    
 }
 
 - (void)setTitle:(NSString *)title
@@ -90,12 +106,22 @@
     if (_titleLabel.hidden) {
         _titleLabel.hidden = NO;
     }
-}
 
+}
+-(void)setPageTag:(NSString *)pageTag{
+    _pageTag = [pageTag copy];
+    _pageLabel.text = [NSString stringWithFormat:@"%@ ", pageTag];
+    if (_pageLabel.hidden) {
+        _pageLabel.hidden = NO;
+    }
+}
 -(void)setTitleLabelTextAlignment:(NSTextAlignment)titleLabelTextAlignment
 {
     _titleLabelTextAlignment = titleLabelTextAlignment;
     _titleLabel.textAlignment = titleLabelTextAlignment;
+    
+    _pageLabel.textAlignment = titleLabelTextAlignment;
+
 }
 
 - (void)layoutSubviews
@@ -103,14 +129,17 @@
     [super layoutSubviews];
     
     if (self.onlyDisplayText) {
-        _titleLabel.frame = self.bounds;
+        _titleLabel.frame = CGRectMake(0, 0, self.frame.size.width-40, self.frame.size.height);
+        _pageLabel.frame = CGRectMake(self.frame.size.width-40, 0, self.frame.size.width,40);
     } else {
         _imageView.frame = self.bounds;
         CGFloat titleLabelW = self.sd_width;
         CGFloat titleLabelH = _titleLabelHeight;
         CGFloat titleLabelX = 0;
         CGFloat titleLabelY = self.sd_height - titleLabelH;
-        _titleLabel.frame = CGRectMake(titleLabelX, titleLabelY, titleLabelW, titleLabelH);
+        _titleLabel.frame = CGRectMake(titleLabelX, titleLabelY, titleLabelW-40, titleLabelH);
+        _pageLabel.frame = CGRectMake(titleLabelW-40, titleLabelY, 40,titleLabelH);
+
     }
 }
 

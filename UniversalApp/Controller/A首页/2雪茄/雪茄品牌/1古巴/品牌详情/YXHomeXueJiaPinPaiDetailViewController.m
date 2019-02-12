@@ -21,15 +21,21 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-        self.tableView.estimatedRowHeight = 0;
-       self.tableView.estimatedSectionHeaderHeight = 0;
-       self.tableView.estimatedSectionFooterHeight = 0;
-    self.edgesForExtendedLayout=UIRectEdgeNone;
-    [self.tableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaDetailTableViewCell"];
-    self.tableView.tableFooterView = [[UIView alloc]init];
+
     [self initData];
 }
 -(void)initData{
+    
+    self.navigationController.navigationBar.topItem.title = @"";
+    self.tableView.estimatedRowHeight = 0;
+    self.tableView.estimatedSectionHeaderHeight = 0;
+    self.tableView.estimatedSectionFooterHeight = 0;
+    self.edgesForExtendedLayout=UIRectEdgeNone;
+    [self.tableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaDetailTableViewCell"];
+    self.tableView.tableFooterView = [[UIView alloc]init];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//推荐该方法
+
+    
     
     _selImage = [UIImage imageNamed:@"Zan"];
     _unImage = [UIImage imageNamed:@"UnZan"];
@@ -87,6 +93,9 @@
     if (indexPath.section == 1) {
         NSDictionary * cellData = self.dicData[@"data"][indexPath.row];
         YXHomeXueJiaDetailTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaDetailTableViewCell" forIndexPath:indexPath];
+        cell.selectionStyle =UITableViewCellSelectionStyleNone;
+        cell.delegate = self;
+
         NSString * url = [cellData[@"photo_list"] count] > 0 ? cellData[@"photo_list"][0][@"photo_url"] : @"";
         NSString * str = [(NSMutableString *)url replaceAll:@" " target:@"%20"];
         [cell.section2ImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
@@ -97,22 +106,21 @@
         cell.section2Lbl3.text = kGetString(cellData[@"shape"]);
         cell.section2Lbl4.text = [kGetString(cellData[@"price_box_china"]) append:@"元"];
         cell.section2Lbl5.text = [kGetString(cellData[@"price_single_china"]) append:@"元/支"];
-        cell.section2Lbl6.text = [NSString stringWithFormat:@"%@元/盒\n(%@)支",cellData[@"price_box_china"],cellData[@"box_size"]];
+        cell.section2Lbl6.text = [NSString stringWithFormat:@"%@/盒(%@支)",cellData[@"price_box_china"],cellData[@"box_size"]];
         cell.cigar_id = kGetString(cellData[@"id"]);
         //yes为足迹进来 no为正常进入  足迹进来
-        cell.stackView1.hidden = cell.likeBtn.hidden = self.whereCome;
+        cell.stackView1.hidden = cell.likeBtn.hidden = cell.zanCountLbl.hidden = self.whereCome;
         [cell.likeBtn setBackgroundImage:[cellData[@"is_collect"] integerValue] == 1  || !cellData[@"is_collect"] ? _selImage:_unImage forState:UIControlStateNormal];
-        cell.delegate = self;
+        cell.zanCountLbl.text = kGetString(cellData[@"collect_number"]);
         return cell;
     }
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//推荐该方法
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
   
     if (indexPath.section == 1) {
         //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
-        return self.whereCome ? 130 : 240;
+        return self.whereCome ? 130 : 185;
     }
     //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
     return self.whereCome ? 0 : [super tableView:tableView heightForRowAtIndexPath:indexPath];

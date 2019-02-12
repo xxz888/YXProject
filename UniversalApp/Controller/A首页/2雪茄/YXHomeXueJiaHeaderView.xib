@@ -17,17 +17,24 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Il-xe-gvF">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="230"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="180" id="Vv8-GU-dlc"/>
+                        <constraint firstAttribute="height" constant="230" id="Vv8-GU-dlc"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Beb-ND-97B">
-                    <rect key="frame" x="0.0" y="180" width="375" height="150"/>
+                    <rect key="frame" x="0.0" y="230" width="375" height="150"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="150" id="POJ-Mc-GJk"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJ8-iD-KTW">
+                    <rect key="frame" x="0.0" y="380" width="375" height="5"/>
+                    <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="5" id="bQV-hf-5d3"/>
                     </constraints>
                 </view>
             </subviews>
@@ -39,6 +46,9 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Beb-ND-97B" secondAttribute="trailing" id="6O5-mL-8Eu"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5Il-xe-gvF" secondAttribute="trailing" id="9dF-7O-Q9J"/>
                 <constraint firstItem="5Il-xe-gvF" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="cCT-ib-7TE"/>
+                <constraint firstItem="xJ8-iD-KTW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="iVk-F9-daq"/>
+                <constraint firstItem="xJ8-iD-KTW" firstAttribute="top" secondItem="Beb-ND-97B" secondAttribute="bottom" id="ids-Mj-KXx"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="xJ8-iD-KTW" secondAttribute="trailing" id="jml-XT-aU6"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -46,7 +56,7 @@
                 <outlet property="middleView" destination="Beb-ND-97B" id="OvZ-x1-K4T"/>
                 <outlet property="underView" destination="5Il-xe-gvF" id="u4d-TG-p8B"/>
             </connections>
-            <point key="canvasLocation" x="-310" y="-208"/>
+            <point key="canvasLocation" x="-311.19999999999999" y="-208.69565217391306"/>
         </view>
     </objects>
 </document>

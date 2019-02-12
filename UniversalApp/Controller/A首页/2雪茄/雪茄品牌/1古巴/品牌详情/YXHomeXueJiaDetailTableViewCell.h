@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,weak) id<ClickLikeBtnDelegate> delegate;
 @property(nonatomic,weak) NSString * cigar_id;
 @property (weak, nonatomic) IBOutlet UIStackView *stackView1;
+@property (weak, nonatomic) IBOutlet UILabel *zanCountLbl;
 
 
 @property (nonatomic,assign) BOOL whereCome;//yes为足迹进来 no为正常进入  足迹进来

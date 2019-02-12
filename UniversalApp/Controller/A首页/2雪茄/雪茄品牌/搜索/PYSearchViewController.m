@@ -7,9 +7,10 @@
 #import "PYSearchViewController.h"
 #import "PYSearchConst.h"
 #import "PYSearchSuggestionViewController.h"
+#import "YXFindSearchHeadView.h"
 
 #define PYRectangleTagMaxCol 3
-#define PYTextColor PYSEARCH_COLOR(113, 113, 113)
+#define PYTextColor KBlackColor
 #define PYSEARCH_COLORPolRandomColor self.colorPol[arc4random_uniform((uint32_t)self.colorPol.count)]
 
 @interface PYSearchViewController () <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, PYSearchSuggestionViewDataSource, UIGestureRecognizerDelegate> {
@@ -95,6 +96,7 @@
  The width of cancel button
  */
 @property (nonatomic, assign) CGFloat cancelButtonWidth;
+@property(nonatomic,strong)YXFindSearchHeadView * findSearchView;
 
 @end
 
@@ -114,6 +116,11 @@
     
     [self setup];
 }
+#pragma mark ==========  搜索相关 ==========
+-(void)setNavSearchView{
+    
+   
+}
 
 - (void)viewDidLayoutSubviews
 {
@@ -124,16 +131,26 @@
         self.searchHistories = self.searchHistories;
         self.currentOrientation = [[UIDevice currentDevice] orientation];
     }
-    
+    /*
+    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXFindSearchHeadView" owner:self options:nil];
+    self.findSearchView = [nib objectAtIndex:0];
+    [self.findSearchView.cancleBtn addTarget:self action:@selector(cancelDidClick)  forControlEvents:UIControlEventTouchUpInside];
+//    [self.navigationItem.titleView sizeToFit];
+    self.navigationItem.titleView = self.findSearchView;
+     */
     CGFloat adaptWidth = 0.0;
     UISearchBar *searchBar = self.searchBar;
     UITextField *searchField = self.searchTextField;
     UIView *titleView = self.navigationItem.titleView;
     UIButton *backButton = self.navigationItem.leftBarButtonItem.customView;
     UIButton *cancelButton = self.navigationItem.rightBarButtonItem.customView;
+    [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+    [cancelButton setTitleColor:KDarkGaryColor forState:UIControlStateNormal];
+    cancelButton.font = [UIFont systemFontOfSize:15];
     UIEdgeInsets backButtonLayoutMargins = UIEdgeInsetsZero;
     UIEdgeInsets cancelButtonLayoutMargins = UIEdgeInsetsZero;
     UIEdgeInsets navigationBarLayoutMargins = UIEdgeInsetsZero;
+  
     UINavigationBar *navigationBar = self.navigationController.navigationBar;
     
     if (@available(iOS 8.0, *)) {
@@ -188,6 +205,7 @@
             titleView.py_width = self.view.py_width - self.cancelButtonWidth - titleView.py_x * 2 - 3;
         }
     }
+    
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -202,7 +220,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     if (self.cancelButtonWidth == 0) { // Just adapt iOS 11.2
         [self viewDidLayoutSubviews];
     }
@@ -223,8 +242,6 @@
     }
     if (_searchViewControllerShowMode == PYSearchViewControllerShowModePush) {
         if (self.navigationController.viewControllers.count > 1) {
-            self.baseSearchTableView.contentInset = UIEdgeInsetsMake(64, 0, self.view.py_y, 0);
-
             _previousInteractivePopGestureRecognizerDelegate = self.navigationController.interactivePopGestureRecognizer.delegate;
             self.navigationController.interactivePopGestureRecognizer.delegate = self;
         }
@@ -234,7 +251,8 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:nil];
     [self.searchBar resignFirstResponder];
     
     if (_searchViewControllerShowMode == PYSearchViewControllerShowModePush) {
@@ -266,7 +284,7 @@
 - (UITableView *)baseSearchTableView
 {
     if (!_baseSearchTableView) {
-        UITableView *baseSearchTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+        UITableView *baseSearchTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kTopHeight, KScreenWidth, KScreenHeight-kTopHeight) style:UITableViewStyleGrouped];
         baseSearchTableView.backgroundColor = [UIColor clearColor];
         baseSearchTableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         if ([baseSearchTableView respondsToSelector:@selector(setCellLayoutMarginsFollowReadableWidth:)]) { // For the adapter iPad
@@ -314,14 +332,14 @@
     }
     return _searchSuggestionVC;
 }
-
+#pragma mark ========== 清空垃圾箱按钮 ==========
 - (UIButton *)emptyButton
 {
     if (!_emptyButton) {
         UIButton *emptyButton = [[UIButton alloc] init];
         emptyButton.titleLabel.font = self.searchHistoryHeader.font;
         [emptyButton setTitleColor:PYTextColor forState:UIControlStateNormal];
-        [emptyButton setTitle:[NSBundle py_localizedStringForKey:PYSearchEmptyButtonText] forState:UIControlStateNormal];
+        [emptyButton setTitle:@"" forState:UIControlStateNormal];
         [emptyButton setImage:[NSBundle py_imageNamed:@"empty"] forState:UIControlStateNormal];
         [emptyButton addTarget:self action:@selector(emptySearchHistoryDidClick) forControlEvents:UIControlEventTouchUpInside];
         [emptyButton sizeToFit];
@@ -348,11 +366,12 @@
     }
     return _searchHistoryTagsContentView;
 }
-
+#pragma mark ========== 历史记录按钮 ==========
 - (UILabel *)searchHistoryHeader
 {
     if (!_searchHistoryHeader) {
-        UILabel *titleLabel = [self setupTitleLabel:[NSBundle py_localizedStringForKey:PYSearchSearchHistoryText]];
+        UILabel *titleLabel = [self setupTitleLabel:@"历史记录"];
+        titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
         [self.searchHistoryView addSubview:titleLabel];
         _searchHistoryHeader = titleLabel;
     }
@@ -401,6 +420,7 @@
     self.baseSearchTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.navigationController.navigationBar.backIndicatorImage = nil;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+#pragma mark ========== 取消按钮 ==========
     UIButton *cancleButton = [UIButton buttonWithType:UIButtonTypeSystem];
     cancleButton.titleLabel.font = [UIFont systemFontOfSize:17];
     [cancleButton setTitle:[NSBundle py_localizedStringForKey:PYSearchCancelButtonText] forState:UIControlStateNormal];
@@ -479,11 +499,16 @@
     hotSearchView.py_x = PYSEARCH_MARGIN * 1.5;
     hotSearchView.py_width = headerView.py_width - hotSearchView.py_x * 2;
     hotSearchView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    UILabel *titleLabel = [self setupTitleLabel:[NSBundle py_localizedStringForKey:PYSearchHotSearchText]];
+    //热门
+#pragma mark ========== 热门按钮 ==========
+
+    UILabel *titleLabel = [self setupTitleLabel:@"热门"];
     self.hotSearchHeader = titleLabel;
+    titleLabel.textColor = KBlackColor;
+    titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
     [hotSearchView addSubview:titleLabel];
     UIView *hotSearchTagsContentView = [[UIView alloc] init];
-    hotSearchTagsContentView.py_width = hotSearchView.py_width;
+    hotSearchTagsContentView.py_width = KScreenWidth;
     hotSearchTagsContentView.py_y = CGRectGetMaxY(titleLabel.frame) + PYSEARCH_MARGIN;
     hotSearchTagsContentView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [hotSearchView addSubview:hotSearchTagsContentView];
@@ -492,13 +517,18 @@
     self.hotSearchView = hotSearchView;
     self.headerView = headerView;
     self.baseSearchTableView.tableHeaderView = headerView;
+//    UIView * lineView = [[UIView alloc] init];
+//    lineView.backgroundColor = YXRGBAColor(239, 239, 239);
+//    lineView.
+    
     
     UIView *footerView = [[UIView alloc] init];
     footerView.py_width = PYScreenW;
     UILabel *emptySearchHistoryLabel = [[UILabel alloc] init];
-    emptySearchHistoryLabel.textColor = [UIColor darkGrayColor];
+    emptySearchHistoryLabel.textColor = KDarkGaryColor;
     emptySearchHistoryLabel.font = [UIFont systemFontOfSize:13];
     emptySearchHistoryLabel.userInteractionEnabled = YES;
+
     emptySearchHistoryLabel.text = [NSBundle py_localizedStringForKey:PYSearchEmptySearchHistoryText];
     emptySearchHistoryLabel.textAlignment = NSTextAlignmentCenter;
     emptySearchHistoryLabel.py_height = 49;
@@ -1095,7 +1125,7 @@
     label.userInteractionEnabled = YES;
     label.font = [UIFont systemFontOfSize:12];
     label.text = title;
-    label.textColor = [UIColor grayColor];
+    label.textColor = KBlackColor;
     label.backgroundColor = [UIColor py_colorWithHexString:@"#fafafa"];
     label.layer.cornerRadius = 3;
     label.clipsToBounds = YES;
@@ -1199,7 +1229,6 @@
 #pragma mark - UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    
     if ([self.delegate respondsToSelector:@selector(searchViewController:didSearchWithSearchBar:searchText:)]) {
         [self.delegate searchViewController:self didSearchWithSearchBar:searchBar searchText:searchBar.text];
         [self saveSearchCacheAndRefreshView];

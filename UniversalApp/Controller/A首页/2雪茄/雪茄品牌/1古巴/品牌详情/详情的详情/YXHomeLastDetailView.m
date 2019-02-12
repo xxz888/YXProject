@@ -30,14 +30,21 @@
 */
 - (void)awakeFromNib{
     [super awakeFromNib];
-    // 预览视图
+    //使用一个字典同时设置字体大小和背景色在某种状态下
+
     _previewView = [[MMImagePreviewView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    ViewBorderRadius(self.scoreView, 3, 1, YXRGBAColor(200, 200, 200));
+    ViewBorderRadius(self.self.lastSixPhotoView, 3, 1, YXRGBAColor(200, 200, 200));
+    //我来点评
+//    ViewBorderRadius(self.lastMyTalkBtn, 5, 1, YXRGBAColor(134, 81, 82));
+
 }
 -(void)againSetDetailView:(NSDictionary *)startDic  allDataDic:(NSDictionary *)allDataDic{
     //头图片
     NSString * string =[startDic[@"photo_list"] count] > 0 ? startDic[@"photo_list"][0][@"photo_url"] : @"";
     NSString * str = [(NSMutableString *)string replaceAll:@" " target:@"%20"];
    [self.lastImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+
     //头名字
     self.lastTitleLbl.text = kGetString(startDic[@"cigar_name"]);
     //国内售价
@@ -46,8 +53,7 @@
     self.lastPrice2Lbl.text = kGetString(startDic[@"price_box_hongkong"]);
     //海外售价
     self.lastPrice3Lbl.text = kGetString(startDic[@"price_box_overswas"]);
-    //我来点评
-    ViewBorderRadius(self.lastMyTalkBtn, 5, 1, [UIColor lightGrayColor]);
+
     //总分的五颗星
     [self fiveStarView:nsstringToFloat(allDataDic[@"average_score__avg"]) view:self.lastAllScoreFiveView];
     //外观
@@ -86,7 +92,6 @@
     [self.lastSixPhotoView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
 
     
-    ViewBorderRadius(self.lastSixPhotoView, 5, 1, [UIColor lightGrayColor]);
     if (!self.gridView) {
         self.gridView = [[QMUIGridView alloc] init];
     }

@@ -12,9 +12,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.cellImageView.layer.masksToBounds = YES;
-    self.cellImageView.layer.cornerRadius = 3;
-    
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

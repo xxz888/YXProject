@@ -48,7 +48,7 @@
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
     
-    CGFloat heightKK = AxcAE_IsiPhoneX ? 90 : 40;
+    CGFloat heightKK = 90;
     self.yxCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 175 -kTopHeight - heightKK) collectionViewLayout:layout];
     self.yxCollectionView.backgroundColor = KWhiteColor;
     self.showType = signleLineShowDoubleGoods;

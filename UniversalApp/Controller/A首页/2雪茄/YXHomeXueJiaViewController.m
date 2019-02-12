@@ -87,7 +87,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeXueJiaHeaderView" owner:self options:nil];
     self.headerView = [nib objectAtIndex:0];
-    self.headerView.frame = CGRectMake(0, 0, KScreenWidth, 330);
+    self.headerView.frame = CGRectMake(0, 0, KScreenWidth, 380);
     self.headerView.delegate = self;
     self.headerView.titleArray = @[@"雪茄品牌",@"雪茄文化",@"雪茄配件",@"工具",@"问答",@"品鉴足迹"];
     self.headerView.titleTagArray = @[@"Cigar Brand",@"Culture",@"Accessories",@"Tools",@"Q&A",@"Journey"];
@@ -106,7 +106,7 @@
     return self.headerView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 330;
+    return 380;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.informationArray.count;
@@ -116,16 +116,15 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identify = @"YXHomeXueJiaTableViewCell";
-    YXHomeXueJiaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
-    if (!cell) {
-        cell = [[YXHomeXueJiaTableViewCell alloc]initWithStyle:0 reuseIdentifier:identify];
-    }
+    YXHomeXueJiaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify forIndexPath:indexPath];
     NSString * str = [(NSMutableString *)self.informationArray[indexPath.row][@"photo"] replaceAll:@" " target:@"%20"];
     [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cell.cellLbl.text = self.informationArray[indexPath.row][@"title"];
     cell.cellAutherLbl.text = self.informationArray[indexPath.row][@"author"];
     cell.cellDataLbl.text =  [ShareManager timestampSwitchTime:[self.informationArray[indexPath.row][@"date"] integerValue] andFormatter:@""];
-
+    cell.cellImageView.layer.masksToBounds = YES;
+    cell.cellImageView.layer.cornerRadius = 3;
+    
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

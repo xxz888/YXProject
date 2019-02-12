@@ -17,6 +17,7 @@
 @implementation YXHomeXueJiaGuBaViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self requestCigar_brand:@"1"];
 }
 -(void)viewDidLoad{
     [super viewDidLoad];
@@ -29,8 +30,6 @@
     self.yxTableView.dataSource= self;
     self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaPinPaiTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaPinPaiTableViewCell"];
-    [self requestCigar_brand:@"1"];
-
 }
 -(void)requestCigar_brand:(NSString *)type{
     kWeakSelf(self);
@@ -52,7 +51,7 @@
     }
     float height = 80;
     NSInteger count = [self.hotDataArray count];
-    count = count <= 3 ? 1 : 2;
+    count = count <= 4 ? 1 : 2;
     self.gridView.frame = CGRectMake(10, 0, KScreenWidth-20, height*count);
     self.yxTableView.tableHeaderView = self.gridView;
 

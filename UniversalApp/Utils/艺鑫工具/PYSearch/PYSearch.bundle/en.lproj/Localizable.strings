@@ -1,6 +1,6 @@
 "PYSearchSearchPlaceholderText" = "Search content";
-"PYSearchHotSearchText" = "热门搜索";
-"PYSearchSearchHistoryText" = "搜索历史";
+"PYSearchHotSearchText" = "热门";
+"PYSearchSearchHistoryText" = "历史记录";
 "PYSearchEmptySearchHistoryText" = "Clear the search history";
 
 "PYSearchEmptyButtonText" = "Clear";

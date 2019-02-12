@@ -78,8 +78,8 @@ NSString * const ID = @"SDCycleScrollViewCell";
     _autoScrollTimeInterval = 2.0;
     _titleLabelTextColor = [UIColor whiteColor];
     _titleLabelTextFont= [UIFont systemFontOfSize:14];
-    _titleLabelBackgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-    _titleLabelHeight = 30;
+    _titleLabelBackgroundColor = YXRGBAColor(83, 83, 83);//[UIColor colorWithRed:83 green:83 blue:83 alpha:1];
+    _titleLabelHeight = 25;
     _titleLabelTextAlignment = NSTextAlignmentLeft;
     _autoScroll = YES;
     _infiniteLoop = YES;
@@ -595,6 +595,8 @@ NSString * const ID = @"SDCycleScrollViewCell";
     
     if (_titlesGroup.count && itemIndex < _titlesGroup.count) {
         cell.title = _titlesGroup[itemIndex];
+        NSString * page = [NSString stringWithFormat:@"%ld/%lu",itemIndex+1,(unsigned long)_titlesGroup.count];
+        cell.pageTag = page;
     }
     
     if (!cell.hasConfigured) {

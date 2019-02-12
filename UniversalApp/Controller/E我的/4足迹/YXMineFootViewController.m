@@ -58,7 +58,7 @@
 #pragma mark ========== 创建tableview ==========
 -(void)tableviewCon{
     self.dataArray = [[NSMutableArray alloc]init];
-    CGFloat heightKK = AxcAE_IsiPhoneX ? 90 : 40;
+    CGFloat heightKK = 90;
 
     self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 175 -kTopHeight - heightKK) style:0];
     [self.view addSubview:self.yxTableView];

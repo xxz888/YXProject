@@ -70,7 +70,7 @@
 #pragma mark ========== 创建tableview ==========
 -(void)tableviewCon{
     self.dataArray = [[NSMutableArray alloc]init];
-    CGFloat heightKK = AxcAE_IsiPhoneX ? 90 : 40;
+    CGFloat heightKK = 90;
     self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 175 -kTopHeight - heightKK) style:0];
     [self.view addSubview:self.yxTableView];
     self.yxTableView.delegate = self;
@@ -247,5 +247,16 @@
     }
     [moment setValue:commentList forKey:@"commentList"];
     return moment;
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    CGRect startFrame = scrollView.frame;
+    CGFloat offsetY = scrollView.contentOffset.y;
+    NSLog(@"%.2f",offsetY);
+    if (offsetY > 100) {
+        [self.yxTableView setFrame: CGRectMake(0, 0, KScreenWidth, KScreenHeight - 175 -kTopHeight - 90)];
+
+    }else{
+        [self.yxTableView setFrame: CGRectMake(0, 0, KScreenWidth, KScreenHeight - 175 -kTopHeight - 90)];
+    }
 }
 @end

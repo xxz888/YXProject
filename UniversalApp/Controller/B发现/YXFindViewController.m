@@ -23,6 +23,8 @@
 #import "Moment.h"
 #import "Comment.h"
 #import "YXMineFootDetailViewController.h"
+#import "YXFindSearchViewController.h"
+#import "YXFindSearchResultViewController.h"
 
 @interface YXFindViewController ()<PYSearchViewControllerDelegate,UITableViewDelegate,UITableViewDataSource>{
     NSInteger page ;
@@ -37,8 +39,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"发现";
+ 
     //搜索栏
-    //[self setNavSearchView];
+    [self setNavSearchView];
     //创建tableview
     [self tableviewCon];
     
@@ -48,6 +51,14 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.type = @"1";
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:nil];
 }
 -(void)headerRereshing{
     [super headerRereshing];
@@ -336,12 +347,17 @@
 -(void)setNavSearchView{
     UIColor *color =  YXRGBAColor(239, 239, 239);
     UITextField * searchBar = [[UITextField alloc] init];
-    searchBar.frame = CGRectMake(50, 0, KScreenWidth - 50, 35);
-    searchBar.backgroundColor = color;
-    searchBar.layer.cornerRadius = 10;
-    searchBar.layer.masksToBounds = YES;
-    searchBar.placeholder = @"   🔍 搜索";
+    searchBar.frame = CGRectMake(-10, 0, KScreenWidth, 40);
+    ViewBorderRadius(searchBar, 1, 1, color);
+//    searchBar.layer.cornerRadius = 10;
+//    searchBar.layer.masksToBounds = YES;
+    searchBar.placeholder = @"搜索";
+//    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    btn.frame = CGRectMake(KScreenWidth - 80, 0, 50, 40);
+//    [btn setTitle:@"🔍" forState:UIControlStateNormal];
+//    [searchBar addSubview:btn];
     [searchBar addTarget:self action:@selector(textField1TextChange:) forControlEvents:UIControlEventEditingDidBegin];
+    
     [self.navigationItem.titleView sizeToFit];
     self.navigationItem.titleView = searchBar;
 }
@@ -350,17 +366,14 @@
 }
 - (void)clickSearchBar{
     NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"PYExampleSearchPlaceholderText", @"搜索编程语言") didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
-        [searchViewController.navigationController pushViewController:[[PYTempViewController alloc] init] animated:YES];
+    YXFindSearchViewController *searchViewController = [YXFindSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"搜索", @"搜索") didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+        [searchViewController.navigationController pushViewController:[[YXFindSearchResultViewController alloc] init] animated:YES];
     }];
-    searchViewController.hotSearchStyle = PYHotSearchStyleColorfulTag;
+    searchViewController.hotSearchStyle = PYHotSearchStyleBorderTag;
     searchViewController.searchHistoryStyle = 1;
     searchViewController.delegate = self;
-    searchViewController.searchViewControllerShowMode = PYSearchViewControllerShowModePush;
-    [self.navigationController pushViewController:searchViewController animated:YES];
+    RootNavigationController *nav2 = [[RootNavigationController alloc]initWithRootViewController:searchViewController];
+    [self presentViewController:nav2 animated:YES completion:nil];
 }
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    self.type = @"1";
-}
+
 @end

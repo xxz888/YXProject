@@ -234,6 +234,11 @@
 		BB6D2A4221EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A4121EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.m */; };
 		BB6D2A4521EF7D8400F5049F /* YXHomeQuestionDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A4421EF7D8400F5049F /* YXHomeQuestionDetailHeaderView.m */; };
 		BB6D2A4721EF7D9200F5049F /* YXHomeQuestionDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB6D2A4621EF7D9200F5049F /* YXHomeQuestionDetailHeaderView.xib */; };
+		BB70253722126E67009EBE39 /* YXFindSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB70253622126E67009EBE39 /* YXFindSearchViewController.m */; };
+		BB70253B2212980A009EBE39 /* YXFindSearchHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB70253A2212980A009EBE39 /* YXFindSearchHeadView.m */; };
+		BB70253D22129812009EBE39 /* YXFindSearchHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB70253C22129812009EBE39 /* YXFindSearchHeadView.xib */; };
+		BB7025442212A42C009EBE39 /* YXFindSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7025432212A42C009EBE39 /* YXFindSearchResultViewController.m */; };
+		BB7025472212A4D9009EBE39 /* YXFindSearchResultUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7025462212A4D9009EBE39 /* YXFindSearchResultUsersViewController.m */; };
 		BB7AF12C2200035700989896 /* YXPublishFootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7AF12B2200035700989896 /* YXPublishFootViewController.m */; };
 		BB7AF13422004FE600989896 /* YXMineFootDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7AF13222004FE600989896 /* YXMineFootDetailViewController.m */; };
 		BB7AF13522004FE600989896 /* YXMineFootDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7AF13322004FE600989896 /* YXMineFootDetailViewController.xib */; };
@@ -946,6 +951,15 @@
 		BB6D2A4321EF7D8400F5049F /* YXHomeQuestionDetailHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeQuestionDetailHeaderView.h; sourceTree = "<group>"; };
 		BB6D2A4421EF7D8400F5049F /* YXHomeQuestionDetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeQuestionDetailHeaderView.m; sourceTree = "<group>"; };
 		BB6D2A4621EF7D9200F5049F /* YXHomeQuestionDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeQuestionDetailHeaderView.xib; sourceTree = "<group>"; };
+		BB70253522126E67009EBE39 /* YXFindSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchViewController.h; sourceTree = "<group>"; };
+		BB70253622126E67009EBE39 /* YXFindSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchViewController.m; sourceTree = "<group>"; };
+		BB7025392212980A009EBE39 /* YXFindSearchHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchHeadView.h; sourceTree = "<group>"; };
+		BB70253A2212980A009EBE39 /* YXFindSearchHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchHeadView.m; sourceTree = "<group>"; };
+		BB70253C22129812009EBE39 /* YXFindSearchHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFindSearchHeadView.xib; sourceTree = "<group>"; };
+		BB7025422212A42C009EBE39 /* YXFindSearchResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchResultViewController.h; sourceTree = "<group>"; };
+		BB7025432212A42C009EBE39 /* YXFindSearchResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchResultViewController.m; sourceTree = "<group>"; };
+		BB7025452212A4D9009EBE39 /* YXFindSearchResultUsersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchResultUsersViewController.h; sourceTree = "<group>"; };
+		BB7025462212A4D9009EBE39 /* YXFindSearchResultUsersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchResultUsersViewController.m; sourceTree = "<group>"; };
 		BB7AF12A2200035700989896 /* YXPublishFootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXPublishFootViewController.h; sourceTree = "<group>"; };
 		BB7AF12B2200035700989896 /* YXPublishFootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXPublishFootViewController.m; sourceTree = "<group>"; };
 		BB7AF13122004FE600989896 /* YXMineFootDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineFootDetailViewController.h; sourceTree = "<group>"; };
@@ -2737,6 +2751,59 @@
 			path = EmojiView;
 			sourceTree = "<group>";
 		};
+		BB702538221297E3009EBE39 /* 搜索view */ = {
+			isa = PBXGroup;
+			children = (
+				BB7025392212980A009EBE39 /* YXFindSearchHeadView.h */,
+				BB70253A2212980A009EBE39 /* YXFindSearchHeadView.m */,
+				BB70253C22129812009EBE39 /* YXFindSearchHeadView.xib */,
+			);
+			path = "搜索view";
+			sourceTree = "<group>";
+		};
+		BB70253E2212A3A7009EBE39 /* 搜索结果 */ = {
+			isa = PBXGroup;
+			children = (
+				BB7025422212A42C009EBE39 /* YXFindSearchResultViewController.h */,
+				BB7025432212A42C009EBE39 /* YXFindSearchResultViewController.m */,
+				BB7025412212A3F4009EBE39 /* 标签 */,
+				BB7025402212A3E5009EBE39 /* 用户 */,
+				BB70253F2212A3D6009EBE39 /* 全部 */,
+			);
+			path = "搜索结果";
+			sourceTree = "<group>";
+		};
+		BB70253F2212A3D6009EBE39 /* 全部 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "全部";
+			sourceTree = "<group>";
+		};
+		BB7025402212A3E5009EBE39 /* 用户 */ = {
+			isa = PBXGroup;
+			children = (
+				BB7025452212A4D9009EBE39 /* YXFindSearchResultUsersViewController.h */,
+				BB7025462212A4D9009EBE39 /* YXFindSearchResultUsersViewController.m */,
+			);
+			path = "用户";
+			sourceTree = "<group>";
+		};
+		BB7025412212A3F4009EBE39 /* 标签 */ = {
+			isa = PBXGroup;
+			children = (
+				BB7025482212AE22009EBE39 /* 标签详情 */,
+			);
+			path = "标签";
+			sourceTree = "<group>";
+		};
+		BB7025482212AE22009EBE39 /* 标签详情 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "标签详情";
+			sourceTree = "<group>";
+		};
 		BB7AF12D22004B8A00989896 /* 足迹详情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3106,6 +3173,10 @@
 			children = (
 				BBA812AB21DDAB9D001B5EA1 /* YXFindViewController.h */,
 				BBA812AC21DDAB9D001B5EA1 /* YXFindViewController.m */,
+				BB70253522126E67009EBE39 /* YXFindSearchViewController.h */,
+				BB70253622126E67009EBE39 /* YXFindSearchViewController.m */,
+				BB70253E2212A3A7009EBE39 /* 搜索结果 */,
+				BB702538221297E3009EBE39 /* 搜索view */,
 				BB5FD88621FECBB500B5F1A8 /* 三种Cell */,
 			);
 			path = "B发现";
@@ -4793,6 +4864,7 @@
 				BBD2C95B21E0FAEC00350DCD /* YXGridView.xib in Resources */,
 				BBDA2D1021EB30BF00EDCCFF /* MLEmoji_Expression.bundle in Resources */,
 				BBD2C83921E0F44A00350DCD /* timeView.xib in Resources */,
+				BB70253D22129812009EBE39 /* YXFindSearchHeadView.xib in Resources */,
 				293D46471ECDBB63007C64A9 /* icon_tabbar_merchant_normal@2x.png in Resources */,
 				BBD2C92E21E0F67800350DCD /* VideoOverlay@2x.png in Resources */,
 				BBD2C93221E0F67800350DCD /* ImageSelectedSmallOff@2x.png in Resources */,
@@ -5107,6 +5179,7 @@
 				BB6D2A3521EEC63900F5049F /* UIColor+MyColor.m in Sources */,
 				BBD2C91B21E0F67800350DCD /* UIImageView+LLExtension.m in Sources */,
 				BB7AF12C2200035700989896 /* YXPublishFootViewController.m in Sources */,
+				BB70253722126E67009EBE39 /* YXFindSearchViewController.m in Sources */,
 				BBA8147021DE0D38001B5EA1 /* NSString+CString.m in Sources */,
 				BBD2C98E21E1BC3F00350DCD /* PYSearchViewController.m in Sources */,
 				BB9413E121F8B602007E800A /* IQNSArray+Sort.m in Sources */,
@@ -5135,6 +5208,7 @@
 				296F9A3B1F0504C900909CDB /* WaterFlowLayout.m in Sources */,
 				296F9A541F0516A700909CDB /* UICollectionView+IndexPath.m in Sources */,
 				BB928F6A21FAD02B0090A044 /* YXMineMyCaoGaoViewController.m in Sources */,
+				BB7025442212A42C009EBE39 /* YXFindSearchResultViewController.m in Sources */,
 				BBD2C99221E1BD1900350DCD /* PYTempViewController.m in Sources */,
 				BBCC4B1721E8927700493F40 /* UIView+Geometry.m in Sources */,
 				293D46081ECDAEAD007C64A9 /* HomeViewController.m in Sources */,
@@ -5191,6 +5265,7 @@
 				BBD2C8F721E0F67700350DCD /* TZAssetCell.m in Sources */,
 				BBD2C99921E1C7D600350DCD /* YXHomeXueJiaGuBaViewController.m in Sources */,
 				BB95F64721E715CB0071A369 /* YXHomeLastMyTalkView.m in Sources */,
+				BB7025472212A4D9009EBE39 /* YXFindSearchResultUsersViewController.m in Sources */,
 				BBA812F721DDEBBB001B5EA1 /* SegmentTapView.m in Sources */,
 				BBCC4AA321E83DC000493F40 /* YXColorViewController.m in Sources */,
 				BB928F9721FB5D290090A044 /* BRAddressModel.m in Sources */,
@@ -5229,6 +5304,7 @@
 				BBECEEA021F043DB007E90AC /* YXGEFPinPaiDetailTableViewController.m in Sources */,
 				BBC6181221F5BD2B00495619 /* YXHomeGolfScoreTableViewCell.m in Sources */,
 				293D46111ECDAEED007C64A9 /* MineViewController.m in Sources */,
+				BB70253B2212980A009EBE39 /* YXFindSearchHeadView.m in Sources */,
 				BBADE4C721F801080011E5FF /* ImageTextAttachment.m in Sources */,
 				BB5FD86A21FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m in Sources */,
 				BBD2C95621E0F72800350DCD /* DACircularProgressView.m in Sources */,

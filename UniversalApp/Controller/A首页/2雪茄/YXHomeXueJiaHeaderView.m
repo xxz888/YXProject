@@ -72,7 +72,7 @@
     self.gridView.columnCount = 3;
     self.gridView.rowHeight = 75;
     self.gridView.separatorWidth = PixelOne;
-    self.gridView.separatorColor = UIColorSeparator;
+    self.gridView.separatorColor = KClearColor;
     self.gridView.separatorDashed = NO;
     
     // 将要布局的 item 以 addSubview: 的方式添加进去即可自动布局
@@ -84,6 +84,9 @@
         view.titleLbl.text = titleArray[i];
         view.titleTagLbl.text = titleTagArray[i];
         view.titleLbl.textColor = KBlackColor;
+        view.titleLbl.font = [UIFont systemFontOfSize:14];
+        view.titleTagLbl.font = [UIFont systemFontOfSize:13];
+
         view.tag = i;
 //        view.backgroundColor = [themeColors[i] colorWithAlphaComponent:.7];
         [self.gridView addSubview:view];

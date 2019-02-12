@@ -25,6 +25,7 @@ typedef void(^SearchAllActionBlock)(void);
 @property (nonatomic,weak) id<clickMyTalkDelegate> delegate;
 @property (nonatomic,copy)SegmentActionBlock block;
 @property (nonatomic,copy)SearchAllActionBlock searchAllBlock;
+@property (weak, nonatomic) IBOutlet UIView *scoreView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *lastImageView;
 @property (weak, nonatomic) IBOutlet UILabel *lastTitleLbl;
