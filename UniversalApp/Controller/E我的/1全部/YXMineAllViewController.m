@@ -248,15 +248,4 @@
     [moment setValue:commentList forKey:@"commentList"];
     return moment;
 }
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    CGRect startFrame = scrollView.frame;
-    CGFloat offsetY = scrollView.contentOffset.y;
-    NSLog(@"%.2f",offsetY);
-    if (offsetY > 100) {
-        [self.yxTableView setFrame: CGRectMake(0, 0, KScreenWidth, KScreenHeight - 175 -kTopHeight - 90)];
-
-    }else{
-        [self.yxTableView setFrame: CGRectMake(0, 0, KScreenWidth, KScreenHeight - 175 -kTopHeight - 90)];
-    }
-}
 @end

@@ -43,7 +43,7 @@
     return self.dataArray.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 100;
+    return 60;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXToolsColorTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXToolsColorTableViewCell" forIndexPath:indexPath];

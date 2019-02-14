@@ -132,7 +132,7 @@
                                     <action selector="shareAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="EqJ-OZ-pkH"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pI2-G1-BTv">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pI2-G1-BTv">
                                 <rect key="frame" x="23" y="-5" width="25" height="13"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="13" id="BC6-7q-WcG"/>
@@ -200,7 +200,7 @@
                                             <action selector="likeBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Dd6-7Y-DA8"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2L-o9-g7p">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2L-o9-g7p">
                                         <rect key="frame" x="23" y="-5" width="25" height="13"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="13" id="bFM-ex-MEQ"/>

@@ -179,7 +179,7 @@
                                             <action selector="likeBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="rhj-zw-FMX"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6zf-ZO-70W">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6zf-ZO-70W">
                                         <rect key="frame" x="23" y="-5" width="25" height="13"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="13" id="q0w-jf-hNg"/>
@@ -218,7 +218,7 @@
                                     <action selector="shareAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="EcU-ce-O6N"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qcH-fe-hZ2">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qcH-fe-hZ2">
                                 <rect key="frame" x="23" y="-5" width="25" height="13"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="13" id="RpN-c4-GmU"/>
