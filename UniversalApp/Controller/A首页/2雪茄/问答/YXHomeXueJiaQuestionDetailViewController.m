@@ -227,7 +227,7 @@ static CGFloat textFieldH = 0;
     return self.headerView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return  230;
+    return  200;
 }
 #pragma mark ========== 请求子回答列表 ==========
 
@@ -295,7 +295,7 @@ static CGFloat textFieldH = 0;
     for (int i = 0; i < formalArray.count; i++) {
         SDTimeLineCellModel *model = [SDTimeLineCellModel new];
         NSMutableDictionary * pageDic = [[NSMutableDictionary alloc]init];
-        model.name = formalArray[i][@"user_name"];
+        model.name = [formalArray[i][@"user_name"] append:@":"];
         model.msgContent = formalArray[i][@"answer"];
         model.id =  kGetString(formalArray[i][@"id"]);
         
@@ -308,10 +308,10 @@ static CGFloat textFieldH = 0;
         NSArray * child_listArray =  [NSArray arrayWithArray:formalArray[i][@"child"]];
         for (int i = 0; i < [child_listArray count]; i++) {
             SDTimeLineCellCommentItemModel *commentItemModel = [SDTimeLineCellCommentItemModel new];
-            commentItemModel.firstUserName = kGetString(child_listArray[i][@"user_name"]);
+            commentItemModel.firstUserName = [kGetString(child_listArray[i][@"user_name"]) append:@":"];
             commentItemModel.firstUserId = kGetString(child_listArray[i][@"user_id"]);
             if (child_listArray[i][@"aim_id"] != 0) {
-                commentItemModel.secondUserName = kGetString(child_listArray[i][@"aim_name"]);
+                commentItemModel.secondUserName = [kGetString(child_listArray[i][@"aim_name"]) append:@":"];
                 commentItemModel.secondUserId = kGetString(child_listArray[i][@"aim_id"]);
             }
             commentItemModel.commentString = child_listArray[i][@"answer"];
@@ -366,12 +366,15 @@ static CGFloat textFieldH = 0;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     // >>>>>>>>>>>>>>>>>>>>> * cell自适应 * >>>>>>>>>>>>>>>>>>>>>>>>
+    return 30;
+    /*
     SDTimeLineCellModel * model = self.dataArray[indexPath.row];
     if (model.commentItemsArray.count == 0 ) {
         
         return [self.yxTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[SDTimeLineCell class] contentViewWidth:[self cellContentViewWith]] - 20;
     }
     return [self.yxTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[SDTimeLineCell class] contentViewWidth:[self cellContentViewWith]] + 20;
+     */
 }
 - (CGFloat)cellContentViewWith{
     CGFloat width = [UIScreen mainScreen].bounds.size.width;

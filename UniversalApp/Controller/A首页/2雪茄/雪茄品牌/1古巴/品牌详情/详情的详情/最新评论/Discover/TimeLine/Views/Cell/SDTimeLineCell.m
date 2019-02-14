@@ -79,7 +79,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     
     _nameLable = [UILabel new];
     _nameLable.font = [UIFont systemFontOfSize:14];
-    _nameLable.textColor = [UIColor colorWithRed:(54 / 255.0) green:(71 / 255.0) blue:(121 / 255.0) alpha:0.9];
+    _nameLable.textColor = KDarkGaryColor;
     
     _starView = [[UIView alloc]init];
     _starView.userInteractionEnabled = NO;
@@ -182,12 +182,21 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     .widthIs(110)
     .heightIs(30);
     
-    
-    _contentLabel.sd_layout
-    .leftEqualToView(_nameLable)
-    .topSpaceToView(_nameLable, margin)
-    .rightSpaceToView(contentView, margin)
-    .autoHeightRatio(0);
+    if (YX_MANAGER.isHaveIcon) {
+        _contentLabel.sd_layout
+        .centerYEqualToView(_nameLable)
+        .leftSpaceToView(_nameLable, 3)
+        .topEqualToView(_nameLable)
+        .heightIs(18);
+
+    }else{
+        _contentLabel.sd_layout
+        .leftEqualToView(_nameLable)
+        .topSpaceToView(_nameLable, 5)
+        .rightSpaceToView(contentView, margin)
+        .autoHeightRatio(0);
+    }
+
     
     // morebutton的高度在setmodel里面设置
     _moreButton.sd_layout

@@ -85,7 +85,7 @@
 // 全文/收起按钮宽度
 #define kMoreLabWidth       60
 // 视图之间的间距
-#define kPaddingValue       8
+#define kPaddingValue       0
 // 评论赞视图气泡的尖尖高度
 #define kArrowHeight        0
 #endif /* ThirdMacros_h */

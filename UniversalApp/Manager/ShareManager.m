@@ -9,7 +9,7 @@
 #import "ShareManager.h"
 #import <UShareUI/UShareUI.h>
 #import "UIColor+MyColor.h"
-
+#import "MMImageListView.h"
 @implementation ShareManager
 
 SINGLETON_FOR_CLASS(ShareManager);
@@ -321,5 +321,69 @@ SINGLETON_FOR_CLASS(ShareManager);
     view.layer.borderWidth = 0.8;
     view.layer.masksToBounds = YES;
     view.layer.cornerRadius = 7;
+}
+
+
+
+#pragma mark - 小图单击
+-(void)singleTapSmallViewCallback:(MMImageView *)imageView{
+    // 预览视图
+    _previewView = [[MMImagePreviewView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    UIWindow *window = [[UIApplication sharedApplication].windows objectAtIndex:0];
+    // 解除隐藏
+    [window addSubview:_previewView];
+    [window bringSubviewToFront:_previewView];
+    // 清空
+    [_previewView.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    // 添加子视图
+    NSInteger index = imageView.tag-1000;
+    NSInteger count = 3;
+    CGRect convertRect;
+    if (count == 1) {
+        [_previewView.pageControl removeFromSuperview];
+    }
+    for (NSInteger i = 0; i < count; i ++){
+        // 转换Frame
+        MMImageView *pImageView = imageView;//(MMImageView *)[self viewWithTag:1000+i];
+        convertRect = [[pImageView superview] convertRect:pImageView.frame toView:window];
+        // 添加
+        MMScrollView *scrollView = [[MMScrollView alloc] initWithFrame:CGRectMake(i*_previewView.width, 0, _previewView.width, _previewView.height)];
+        scrollView.tag = 100+i;
+        scrollView.maximumZoomScale = 2.0;
+        scrollView.image = pImageView.image;
+        scrollView.contentRect = convertRect;
+        // 单击
+        [scrollView setTapBigView:^(MMScrollView *scrollView){
+            [self singleTapBigViewCallback:scrollView];
+        }];
+
+        [_previewView.scrollView addSubview:scrollView];
+        if (i == index) {
+            [UIView animateWithDuration:0.3 animations:^{
+                _previewView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0];
+                _previewView.pageControl.hidden = NO;
+                [scrollView updateOriginRect];
+            }];
+        } else {
+            [scrollView updateOriginRect];
+        }
+    }
+    // 更新offset
+    CGPoint offset = _previewView.scrollView.contentOffset;
+    offset.x = index * k_screen_width;
+    _previewView.scrollView.contentOffset = offset;
+}
+
+#pragma mark - 大图单击||长按
+-(void)singleTapBigViewCallback:(MMScrollView *)scrollView
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        _previewView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+        _previewView.pageControl.hidden = YES;
+        scrollView.contentRect = scrollView.contentRect;
+        scrollView.zoomScale = 1.0;
+    } completion:^(BOOL finished) {
+        [_previewView removeFromSuperview];
+    }];
 }
 @end

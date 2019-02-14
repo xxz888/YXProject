@@ -83,7 +83,6 @@
 
 -(void)setCellValue:(NSDictionary *)dic whereCome:(BOOL)whereCome{
     NSString * str = [(NSMutableString *)dic[@"photo1"] replaceAll:@" " target:@"%20"];
-
     [self.midImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
  
 
@@ -144,7 +143,6 @@
     self.talkCount.text = kGetString(dic[@"comment_number"]);
     
 }
-
 
 - (IBAction)likeBtnAction:(id)sender {
     

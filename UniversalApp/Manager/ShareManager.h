@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "XHStarRateView.h"
 #import "SDCycleScrollView.h"
+#import "MMImagePreviewView.h"
 
 /**
  分享 相关服务
@@ -41,4 +42,8 @@ SINGLETON_FOR_HEADER(ShareManager)
 +(void)inTextViewOutDifColorView:(UITextView *)tfView tag:(NSString *)tag;
 +(void)inTextFieldOutDifColorView:(UILabel *)tfView tag:(NSString *)tag;
 + (void)setBorderinView:(UIView *)view;
+
+
+@property (nonatomic,strong) MMImagePreviewView * previewView;
+
 @end

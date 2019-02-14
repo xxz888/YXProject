@@ -30,6 +30,7 @@
         _imageViewsArray = [[NSMutableArray alloc] init];
         for (int i = 0; i < 9; i++) {
             MMImageView *imageView = [[MMImageView alloc] initWithFrame:CGRectZero];
+            ViewRadius(imageView, 3);
             imageView.tag = 1000 + i;
             [imageView setTapSmallView:^(MMImageView *imageView){
                 [self singleTapSmallViewCallback:imageView];

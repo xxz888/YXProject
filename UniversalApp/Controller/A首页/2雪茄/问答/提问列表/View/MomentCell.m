@@ -39,7 +39,7 @@ CGFloat maxLimitHeight = 0;
     // 名字视图
     _nameLab = [[UILabel alloc] initWithFrame:CGRectMake(_headImageView.right+10, _headImageView.centerY - 10, kTextWidth, 20)];
     _nameLab.font = [UIFont systemFontOfSize:15.0];
-    _nameLab.textColor = kHLTextColor;
+    _nameLab.textColor = KBlackColor;
     _nameLab.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:_nameLab];
     
@@ -64,7 +64,7 @@ CGFloat maxLimitHeight = 0;
     _showAllBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     _showAllBtn.backgroundColor = [UIColor clearColor];
     [_showAllBtn setTitle:@"全文" forState:UIControlStateNormal];
-    [_showAllBtn setTitleColor:kHLTextColor forState:UIControlStateNormal];
+    [_showAllBtn setTitleColor:KBlackColor forState:UIControlStateNormal];
     [_showAllBtn addTarget:self action:@selector(fullTextClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_showAllBtn];
     // 图片区
