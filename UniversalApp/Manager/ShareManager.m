@@ -8,6 +8,8 @@
 
 #import "ShareManager.h"
 #import <UShareUI/UShareUI.h>
+#import "UIColor+MyColor.h"
+
 @implementation ShareManager
 
 SINGLETON_FOR_CLASS(ShareManager);
@@ -188,6 +190,40 @@ SINGLETON_FOR_CLASS(ShareManager);
     return timeSp;
     
 }
+
++ (NSString *)updateTimeForRow:(long)timestamp {
+    NSDate *dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval nowTimestamp = [dat timeIntervalSince1970] ;
+    long long int timeDifference = nowTimestamp - timestamp;
+    long long int secondTime = timeDifference;
+    long long int minuteTime = secondTime/60;
+    long long int hoursTime = minuteTime/60;
+    long long int dayTime = hoursTime/24;
+    long long int monthTime = dayTime/30;
+    long long int yearTime = monthTime/12;
+    
+    if (1 <= yearTime) {
+        return [NSString stringWithFormat:@"%lld年前",yearTime];
+    }
+    else if(1 <= monthTime) {
+        return [NSString stringWithFormat:@"%lld月前",monthTime];
+    }
+    else if(1 <= dayTime) {
+        return [NSString stringWithFormat:@"%lld天前",dayTime];
+    }
+    else if(1 <= hoursTime) {
+        return [NSString stringWithFormat:@"%lld小时前",hoursTime];
+    }
+    else if(1 <= minuteTime) {
+        return [NSString stringWithFormat:@"%lld分钟前",minuteTime];
+    }
+    else if(1 <= secondTime) {
+        return [NSString stringWithFormat:@"%lld秒前",secondTime];
+    }
+    else {
+        return @"刚刚";
+    }
+}
 +(void)setGuanZhuStatus:(UIButton *)btn status:(BOOL)statusBool{
     UIColor * color1 = [UIColor darkGrayColor];
      if (statusBool) {
@@ -255,15 +291,35 @@ SINGLETON_FOR_CLASS(ShareManager);
 }
 
 +(void)inTextViewOutDifColorView:(UITextView *)tfView tag:(NSString *)tag{
+    
     //创建 NSMutableAttributedString
     NSMutableAttributedString *attributedStr01 = [[NSMutableAttributedString alloc] initWithString: tfView.text];
     //给所有字符设置字体为Zapfino，字体高度为15像素
     [attributedStr01 addAttribute: NSFontAttributeName
-                            value:[UIFont systemFontOfSize:15]
-                            range: NSMakeRange(0, tag.length)];
+                            value:[UIFont systemFontOfSize:13]
+                            range: NSMakeRange(tfView.text.length-tag.length, tag.length)];
     [attributedStr01 addAttribute: NSForegroundColorAttributeName value: YXRGBAColor(10, 96, 254) range: NSMakeRange(tfView.text.length-tag.length,tag.length )];
     
     //赋值给显示控件label01的 attributedText
     tfView.attributedText = attributedStr01;
+}
++(void)inTextFieldOutDifColorView:(UILabel *)tfView tag:(NSString *)tag{
+    
+    //创建 NSMutableAttributedString
+    NSMutableAttributedString *attributedStr01 = [[NSMutableAttributedString alloc] initWithString: tfView.text];
+    //给所有字符设置字体为Zapfino，字体高度为15像素
+    [attributedStr01 addAttribute: NSFontAttributeName
+                            value:[UIFont systemFontOfSize:13]
+                            range: NSMakeRange(tfView.text.length-tag.length, tag.length)];
+    [attributedStr01 addAttribute: NSForegroundColorAttributeName value: YXRGBAColor(10, 96, 254) range: NSMakeRange(tfView.text.length-tag.length,tag.length )];
+    
+    //赋值给显示控件label01的 attributedText
+    tfView.attributedText = attributedStr01;
+}
++ (void)setBorderinView:(UIView *)view{
+    view.layer.borderColor = [[UIColor borderColor] CGColor];
+    view.layer.borderWidth = 0.8;
+    view.layer.masksToBounds = YES;
+    view.layer.cornerRadius = 7;
 }
 @end

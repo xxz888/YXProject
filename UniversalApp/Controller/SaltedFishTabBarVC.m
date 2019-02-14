@@ -142,10 +142,10 @@ static NSInteger lastIdx = 0;
             KPostNotification(KNotificationLoginStateChange, @NO);
             return;
         }
-        if (index == 3) {
-            [QMUITips showInfo:SHOW_FUTURE_DEV inView:view hideAfterDelay:1];
-            return;
-        }
+//        if (index == 3) {
+//            [QMUITips showInfo:SHOW_FUTURE_DEV inView:view hideAfterDelay:1];
+//            return;
+//        }
         // 通知 切换视图控制器
         [self setSelectedIndex:index];
         lastIdx = index;

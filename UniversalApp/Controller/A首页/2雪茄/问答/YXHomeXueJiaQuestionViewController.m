@@ -55,21 +55,31 @@
 
 #pragma mark ==========  搜索相关 ==========
 -(void)setNavSearchView{
-    UIColor *color =  YXRGBAColor(239, 239, 239);
+    UIColor *color =  YXRGBAColor(217, 217, 217);
     UITextField * searchBar = [[UITextField alloc] init];
-    searchBar.frame = CGRectMake(50, 0, KScreenWidth - 50, 35);
-    searchBar.backgroundColor = color;
-    searchBar.layer.cornerRadius = 10;
-    searchBar.layer.masksToBounds = YES;
-    
-    searchBar.placeholder = @"   🔍 搜索";
-    
-    
-    [searchBar addTarget:self action:@selector(textField1TextChange:) forControlEvents:UIControlEventTouchDown];
-    
+    searchBar.frame = CGRectMake(-10, 0, KScreenWidth, 40);
+    ViewBorderRadius(searchBar, 1, 1, color);
+    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(searchBar.py_size.width-60, 0, 25, 25);
+    btn.centerY = searchBar.centerY;
+    [btn setBackgroundImage:[UIImage imageNamed:@"放大镜"] forState:UIControlStateNormal];
+    [searchBar addSubview:btn];
+    [searchBar addTarget:self action:@selector(textField1TextChange:) forControlEvents:UIControlEventEditingDidBegin];
     [self.navigationItem.titleView sizeToFit];
     self.navigationItem.titleView = searchBar;
     
+    
+    
+    NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
+    attrs[NSForegroundColorAttributeName] = color;
+    attrs[NSFontAttributeName] = [UIFont systemFontOfSize:14];
+    searchBar.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"搜索" attributes:attrs];
+    
+    CGRect frame = searchBar.frame;
+    frame.size.width = 10;// 距离左侧的距离
+    UIView *leftview = [[UIView alloc] initWithFrame:frame];
+    searchBar.leftViewMode = UITextFieldViewModeAlways;
+    searchBar.leftView = leftview;
 }
 -(void)textField1TextChange:(UITextField *)tf{
     [self clickSearchBar];

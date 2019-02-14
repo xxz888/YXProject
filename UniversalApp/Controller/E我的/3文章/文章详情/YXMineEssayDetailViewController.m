@@ -58,6 +58,7 @@ static CGFloat textFieldH = 40;
     _segmentIndex = 0;
     _dataArray = [[NSMutableArray alloc]init];
     _pageArray = [[NSMutableArray alloc]init];
+    [ShareManager setBorderinView:self.clickPingLunBtn];
     [self.yxTableView registerClass:[SDTimeLineCell class] forCellReuseIdentifier:kTimeLineTableViewCellId];
     self.yxTableView.estimatedRowHeight = 0;
     self.yxTableView.estimatedSectionHeaderHeight = 0;

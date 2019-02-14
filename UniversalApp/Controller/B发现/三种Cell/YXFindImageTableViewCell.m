@@ -41,17 +41,17 @@
 }
 
 - (IBAction)searchAllPlBtnAction:(id)sender{
+    self.jumpDetailVCBlock(self);
 }
 
 
 
--(void)setCellValue:(NSDictionary *)dic{
+-(void)setCellValue:(NSDictionary *)dic whereCome:(BOOL)whereCome{
     NSString * str = [(NSMutableString *)dic[@"photo1"] replaceAll:@" " target:@"%20"];
 
     [self.midImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    NSString * titleText = [NSString stringWithFormat:@"%@%@",dic[@"describe"],dic[@"index"]];
-    self.titleTagtextView.text = titleText;
-    [ShareManager inTextViewOutDifColorView:self.titleTagtextView tag:dic[@"index"]];
+ 
+
 
     
     
@@ -65,19 +65,33 @@
     NSString * str1 = [(NSMutableString *)dic[@"photo"] replaceAll:@" " target:@"%20"];
     [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     self.titleLbl.text = dic[@"user_name"];
-    self.timeLbl.text = [ShareManager timestampSwitchTime:[dic[@"publish_time"] integerValue] andFormatter:@""];
-    self.titleTagLbl.text = dic[@"user_name"];
+    self.timeLbl.text = [ShareManager updateTimeForRow:[dic[@"publish_time"] longLongValue]];
+    
+    /*
+     whereCome = NO
+                如果是图片 titleTagLbl 为 名字  titleTagtextView 为内容
+                如果是图片 titleTagLbl 为 内容  titleTagtextView 为来自足迹
+    */
+    NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
+    if (whereCome) {
+        self.titleTagLbl.text = titleText;
+        self.titleTagtextView.text = [@"来自足迹·" append:dic[@"publish_site"]];
+        [ShareManager inTextFieldOutDifColorView:self.titleTagLbl tag:dic[@"index"]];
+        self.titleTagtextView.textColor = KBlackColor;
+    }else{
+        self.titleTagLbl.text = dic[@"user_name"];
+        self.titleTagtextView.text = titleText;
+        [ShareManager inTextViewOutDifColorView:self.titleTagtextView tag:dic[@"index"]];
+    }
 
     [self.mapBtn setTitle:dic[@"publish_site"] forState:UIControlStateNormal];
-    self.pl1NameLbl.text = dic[@"max_hot_comment"][@"user_name"];
-    self.pl1ContentLbl.text = dic[@"max_hot_comment"][@"comment"];
     
     NSArray * commentArray = dic[@"comment_list"];
     if (commentArray.count > 0) {
-        self.pl1NameLbl.text = commentArray[0][@"user_name"];
+        self.pl1NameLbl.text = [commentArray[0][@"user_name"] append:@":"];
         self.pl2NameLbl.text = commentArray[0][@"comment"];
     }else if (commentArray.count > 1){
-        self.pl1ContentLbl.text = commentArray[0][@"user_name"];
+        self.pl1ContentLbl.text = [commentArray[0][@"user_name"] append:@":"];
         self.pl2ContentLbl.text = commentArray[0][@"comment"];
     }
     
@@ -96,5 +110,8 @@
         return;
     }
     self.zanblock(self);
+}
+- (IBAction)shareAction:(id)sender {
+    self.shareblock(self);
 }
 @end

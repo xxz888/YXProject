@@ -426,7 +426,7 @@ static CGFloat textFieldH = 0;
         [_inputBar.keyboard addBtnClicked:^{
             NSLog(@"我点击了添加按钮");
         }];
-        _inputBar.placeHolder = @"输入评论";
+        _inputBar.placeHolder = @"点击评论";
     }
     return _inputBar;
 }

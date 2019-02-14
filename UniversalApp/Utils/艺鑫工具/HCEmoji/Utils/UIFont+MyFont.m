@@ -13,6 +13,6 @@
 }
 
 + (UIFont *)inputViewFont {
-    return [UIFont systemFontOfSize:16];
+    return [UIFont systemFontOfSize:13];
 }
 @end

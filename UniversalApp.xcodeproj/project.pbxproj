@@ -184,6 +184,8 @@
 		29FEE77B1ECED1E200C81B60 /* MBHUD_Warn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 29FEE7731ECED1E200C81B60 /* MBHUD_Warn@2x.png */; };
 		29FEE77C1ECED1E200C81B60 /* MBHUD_Warn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 29FEE7741ECED1E200C81B60 /* MBHUD_Warn@3x.png */; };
 		5BC8C50C0BEF57AA0780D5DC /* libPods-UniversalApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E884624664B432D4FE5044F /* libPods-UniversalApp.a */; };
+		BB44F87D22140AFB0034CAEC /* HXEasyCustomShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB44F87B22140AFB0034CAEC /* HXEasyCustomShareView.m */; };
+		BB44F87E22140AFB0034CAEC /* HXShareScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB44F87C22140AFB0034CAEC /* HXShareScrollView.m */; };
 		BB5DC69B2189CA38003F1998 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */; };
 		BB5DC69C2189CA38003F1998 /* SELUpdateAlertConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */; };
 		BB5FD86A21FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD86821FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m */; };
@@ -862,6 +864,10 @@
 		29FEE7741ECED1E200C81B60 /* MBHUD_Warn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MBHUD_Warn@3x.png"; sourceTree = "<group>"; };
 		9E884624664B432D4FE5044F /* libPods-UniversalApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UniversalApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A51AB222BA7ACF202B5B1330 /* Pods-UniversalApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalApp/Pods-UniversalApp.debug.xcconfig"; sourceTree = "<group>"; };
+		BB44F87922140AFB0034CAEC /* HXShareScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXShareScrollView.h; sourceTree = "<group>"; };
+		BB44F87A22140AFB0034CAEC /* HXEasyCustomShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXEasyCustomShareView.h; sourceTree = "<group>"; };
+		BB44F87B22140AFB0034CAEC /* HXEasyCustomShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXEasyCustomShareView.m; sourceTree = "<group>"; };
+		BB44F87C22140AFB0034CAEC /* HXShareScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXShareScrollView.m; sourceTree = "<group>"; };
 		BB5DC6972189CA38003F1998 /* SELUpdateAlertConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlertConst.h; sourceTree = "<group>"; };
 		BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
 		BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlertConst.m; sourceTree = "<group>"; };
@@ -2596,6 +2602,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BB44F87822140AFB0034CAEC /* 分享相关 */ = {
+			isa = PBXGroup;
+			children = (
+				BB44F87922140AFB0034CAEC /* HXShareScrollView.h */,
+				BB44F87A22140AFB0034CAEC /* HXEasyCustomShareView.h */,
+				BB44F87B22140AFB0034CAEC /* HXEasyCustomShareView.m */,
+				BB44F87C22140AFB0034CAEC /* HXShareScrollView.m */,
+			);
+			path = "分享相关";
+			sourceTree = "<group>";
+		};
 		BB5DC6962189CA38003F1998 /* UpdateAlert */ = {
 			isa = PBXGroup;
 			children = (
@@ -3333,6 +3350,7 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BB44F87822140AFB0034CAEC /* 分享相关 */,
 				BB9832822202CD9A0048D103 /* XLDouYinLoading */,
 				BB9832652201700C0048D103 /* FCXRefreshView */,
 				BB5FD89621FF488E00B5F1A8 /* XWPopMenu */,
@@ -5198,6 +5216,7 @@
 				BBA8147021DE0D38001B5EA1 /* NSString+CString.m in Sources */,
 				BBD2C98E21E1BC3F00350DCD /* PYSearchViewController.m in Sources */,
 				BB9413E121F8B602007E800A /* IQNSArray+Sort.m in Sources */,
+				BB44F87E22140AFB0034CAEC /* HXShareScrollView.m in Sources */,
 				BBDA2EF421ECC22B00EDCCFF /* SearchResultsController.m in Sources */,
 				BBE82BDC21E35FF1004E4144 /* ZZYPhotoHelper.m in Sources */,
 				BB5FD8A621FF529A00B5F1A8 /* YXMineAllImageTableViewCell.m in Sources */,
@@ -5282,6 +5301,7 @@
 				BB95F64721E715CB0071A369 /* YXHomeLastMyTalkView.m in Sources */,
 				BB7025472212A4D9009EBE39 /* YXFindSearchResultUsersViewController.m in Sources */,
 				BB70254F2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m in Sources */,
+				BB44F87D22140AFB0034CAEC /* HXEasyCustomShareView.m in Sources */,
 				BBA812F721DDEBBB001B5EA1 /* SegmentTapView.m in Sources */,
 				BBCC4AA321E83DC000493F40 /* YXColorViewController.m in Sources */,
 				BB928F9721FB5D290090A044 /* BRAddressModel.m in Sources */,

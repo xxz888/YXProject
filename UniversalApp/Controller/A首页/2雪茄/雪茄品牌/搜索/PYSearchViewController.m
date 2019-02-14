@@ -141,6 +141,9 @@
     CGFloat adaptWidth = 0.0;
     UISearchBar *searchBar = self.searchBar;
     UITextField *searchField = self.searchTextField;
+    UIColor *color =  YXRGBAColor(217, 217, 217);
+    ViewBorderRadius(searchField, 15, 1, color);
+
     UIView *titleView = self.navigationItem.titleView;
     UIButton *backButton = self.navigationItem.leftBarButtonItem.customView;
     UIButton *cancelButton = self.navigationItem.rightBarButtonItem.customView;
@@ -191,13 +194,13 @@
                 searchBar.py_x = PYSEARCH_MARGIN - navigationBarLayoutMargins.left;
             }
         }
-        searchBar.py_height = self.view.py_width > self.view.py_height ? 24 : 30;
+        searchBar.py_height = self.view.py_width > self.view.py_height ? 24 : 34;
         searchBar.py_width = self.view.py_width - adaptWidth - PYSEARCH_MARGIN;
         searchField.frame = searchBar.bounds;
         cancelButton.py_width = self.cancelButtonWidth;
     } else {
         titleView.py_y = self.view.py_width > self.view.py_height ? 4 : 7;
-        titleView.py_height = self.view.py_width > self.view.py_height ? 24 : 30;
+        titleView.py_height = self.view.py_width > self.view.py_height ? 24 : 34;
         if (self.searchViewControllerShowMode == PYSearchViewControllerShowModePush) {
             titleView.py_width = self.view.py_width - adaptWidth - PYSEARCH_MARGIN;
         } else {
@@ -485,7 +488,7 @@
     for (UIView *subView in [[searchBar.subviews lastObject] subviews]) {
         if ([[subView class] isSubclassOfClass:[UITextField class]]) {
             UITextField *textField = (UITextField *)subView;
-            textField.font = [UIFont systemFontOfSize:16];
+            textField.font = [UIFont systemFontOfSize:14];
             _searchTextField = textField;
             break;
         }

@@ -16,7 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.title = @"我的消息";
 }
 
 - (void)didReceiveMemoryWarning {

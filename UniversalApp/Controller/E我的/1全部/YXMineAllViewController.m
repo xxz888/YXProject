@@ -87,7 +87,7 @@
     NSDictionary * dic = self.dataArray[indexPath.row];
     NSInteger tag = [dic[@"obj"] integerValue];
     if (tag == 1) {
-        return 600;
+        return 670;
     }else if (tag == 3){
         return 340;
     }else if(tag == 4){
@@ -103,20 +103,19 @@
     NSDictionary * dic = self.dataArray[indexPath.row];
     NSInteger tag = [dic[@"obj"] integerValue];
     if (tag == 1) {
-        return [self customImageData:dic indexPath:indexPath];
+        return [self customImageData:dic indexPath:indexPath whereCome:NO];
     }else if (tag == 3){
         return [self customQuestionData:dic indexPath:indexPath];
     }else if (tag == 4){
-        return [self cunstomFootData:dic indexPath:indexPath];
+        return [self customImageData:dic indexPath:indexPath whereCome:YES];
     }else{
         return nil;
     }
 }
 #pragma mark ========== 图片 ==========
--(YXFindImageTableViewCell *)customImageData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath{
+-(YXFindImageTableViewCell *)customImageData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath whereCome:(BOOL)whereCome{
     YXFindImageTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFindImageTableViewCell" forIndexPath:indexPath];
     cell.titleImageView.tag = indexPath.row;
-    [cell setCellValue:dic];
     kWeakSelf(self);
     cell.clickImageBlock = ^(NSInteger tag) {
         [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
@@ -125,6 +124,7 @@
         NSIndexPath * indexPath1 = [weakself.yxTableView indexPathForCell:cell];
         [weakself requestDianZan_Image_Action:indexPath1];
     };
+    [cell setCellValue:dic whereCome:whereCome];
     return cell;
 }
 #pragma mark ========== 问答 ==========

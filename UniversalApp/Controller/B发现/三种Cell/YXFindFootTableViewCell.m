@@ -68,7 +68,7 @@
     NSString * str2 = [(NSMutableString *)dic[@"user_photo"] replaceAll:@" " target:@"%20"];
     [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     self.titleLbl.text = dic[@"user_name"];
-    self.timeLbl.text = [ShareManager timestampSwitchTime:[dic[@"publish_time"] integerValue] andFormatter:@""];
+    self.timeLbl.text = [ShareManager updateTimeForRow:[dic[@"publish_time"] longLongValue]];
     
     [self.mapBtn setTitle:dic[@"publish_site"] forState:UIControlStateNormal];
     self.pl1NameLbl.text = dic[@"max_hot_comment"][@"user_name"];

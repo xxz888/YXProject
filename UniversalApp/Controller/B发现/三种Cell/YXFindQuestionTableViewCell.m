@@ -57,10 +57,10 @@
         
     NSArray * commentArray = dic[@"answer"];
     if (commentArray.count > 0) {
-        self.pl1NameLbl.text = commentArray[0][@"user_name"];
+        self.pl1NameLbl.text = [commentArray[0][@"user_name"]  append:@":"];
         self.pl2NameLbl.text = commentArray[0][@"answer"];
     }else if (commentArray.count > 1){
-        self.pl1ContentLbl.text = commentArray[1][@"user_name"];
+        self.pl1ContentLbl.text = [commentArray[1][@"user_name"]  append:@":"];
         self.pl2ContentLbl.text = commentArray[1][@"answer"];
     }
     
@@ -82,7 +82,7 @@
     NSString * str4 = [(NSMutableString *)dic[@"user_photo"] replaceAll:@" " target:@"%20"];
     [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:str4] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     self.titleLbl.text = dic[@"user_name"];
-    self.timeLbl.text = [ShareManager timestampSwitchTime:[dic[@"publish_time"] integerValue] andFormatter:@""];
+    self.timeLbl.text = [ShareManager updateTimeForRow:[dic[@"publish_time"] longLongValue]];
     [self.mapBtn setTitle:dic[@"publish_site"] forState:UIControlStateNormal];
   
     
@@ -100,6 +100,13 @@
         KPostNotification(KNotificationLoginStateChange, @NO);
         return;
     }
-    self.zanblock(self);
+    if (self.zanblock) {
+        self.zanblock(self);
+
+    }
+}
+
+- (IBAction)searchAllPlBtnAction:(id)sender{
+    self.jumpDetail1VCBlock(self);
 }
 @end

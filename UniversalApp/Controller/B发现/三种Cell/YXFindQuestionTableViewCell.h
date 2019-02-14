@@ -46,15 +46,20 @@ typedef void(^clickImageBlock)(NSInteger);
 
 @property (weak, nonatomic) IBOutlet UIButton *searchBtn;
 
-- (IBAction)searchAllPlBtnAction:(id)sender;
 - (IBAction)addPlBtnAction:(id)sender;
 @property (nonatomic,copy) jumpDetailVC jumpDetailVC;
 
 
 
+//回话 查看全部 添加评论    跳转详情
+typedef void(^jumpDetail1VCBlock)(YXFindQuestionTableViewCell *);
+- (IBAction)searchAllPlBtnAction:(id)sender;
+@property (nonatomic,copy) jumpDetail1VCBlock jumpDetail1VCBlock;
 
 
 
+
+//点赞
 typedef void(^clickQuestionZanBlock)(YXFindQuestionTableViewCell *);
 @property (weak, nonatomic) IBOutlet UIButton *likeBtn;
 - (IBAction)likeBtnAction:(id)sender;

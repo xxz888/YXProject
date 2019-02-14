@@ -29,7 +29,7 @@
     //    [navBar setBackgroundImage:[UIImage imageNamed:@"tabBarBj"] forBarMetrics:UIBarMetricsDefault];
     [navBar setBarTintColor:KWhiteColor];//bar背景色
     [navBar setTintColor:KBlackColor];
-    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName :KBlackColor, NSFontAttributeName : [UIFont systemFontOfSize:18]}];
+    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName :KBlackColor, NSFontAttributeName : [UIFont systemFontOfSize:17 weight:UIFontWeightBold]}];
     [[UINavigationBar appearance] setTintColor:KBlackColor];
 
     //[navBar setBackgroundImage:[UIImage imageWithColor:KWhiteColor] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];

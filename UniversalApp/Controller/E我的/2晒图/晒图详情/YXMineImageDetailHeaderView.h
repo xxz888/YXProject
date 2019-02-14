@@ -23,8 +23,8 @@ typedef void(^SegmentActionBlock)(NSInteger index);
 - (IBAction)lastSegmentAction:(id)sender;
 
 
-
--(void)setContentViewValue:(NSMutableArray *)photoArray;
+-(void)setSycleScrollView:(NSArray *)photoArray;
+- (void)setUpSycleScrollView:(NSArray *)photoArray;
 -(void)setUpWebView:(NSString *)htmlString;
 @end
 

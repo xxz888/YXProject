@@ -63,7 +63,7 @@ static CGFloat textFieldH = 40;
     self.yxTableView.estimatedSectionFooterHeight = 0;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeTop;
-   
+    [ShareManager setBorderinView:self.clickPingLunBtn];
     self.clickPingLunBtn.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
     self.clickPingLunBtn.layer.borderWidth = 1;
     //点击segment
@@ -83,11 +83,10 @@ static CGFloat textFieldH = 40;
         NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXMineImageDetailHeaderView" owner:self options:nil];
         self.lastDetailView = [nib objectAtIndex:0];
     }
-    self.yxTableView.tableHeaderView = self.lastDetailView;
     if (self.startDic[@"pic1"] || self.startDic[@"pic2"] || self.startDic[@"pic3"]) {
-        [self.lastDetailView setContentViewValue:@[self.startDic[@"pic1"],self.startDic[@"pic2"],self.startDic[@"pic3"]]];
+        [self.lastDetailView setUpSycleScrollView:@[self.startDic[@"pic1"],self.startDic[@"pic2"],self.startDic[@"pic3"]]];
     }else{
-        [self.lastDetailView setContentViewValue:@[self.startDic[@"photo1"],self.startDic[@"photo2"],self.startDic[@"photo3"]]];
+        [self.lastDetailView setUpSycleScrollView:@[self.startDic[@"photo1"],self.startDic[@"photo2"],self.startDic[@"photo3"]]];
     }
     
     self.lastDetailView.titleLbl.text = self.startDic[@"user_name"];
@@ -99,7 +98,7 @@ static CGFloat textFieldH = 40;
     return self.lastDetailView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return  230;
+    return  525;
 }
 -(void)headerRereshing{
     [super headerRereshing];

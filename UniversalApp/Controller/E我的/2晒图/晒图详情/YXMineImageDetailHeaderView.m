@@ -22,20 +22,18 @@
 }
 
 - (IBAction)lastSegmentAction:(id)sender{
-    self.block(self.lastSegmentControl.selectedSegmentIndex);
+    if (self.block) {
+        self.block(self.lastSegmentControl.selectedSegmentIndex);
+    }
 }
 - (IBAction)guanzhuAction:(id)sender {
 }
 
-
--(void)setContentViewValue:(NSArray *)photoArray{
-    [self setUpSycleScrollView:photoArray];
-}
 //添加轮播图
 - (void)setUpSycleScrollView:(NSArray *)photoArray{
  
     if (!_cycleScrollView3) {
-        _cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth-10, self.contentView.frame.size.height) delegate:self placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        _cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth-10, 400) delegate:self placeholderImage:[UIImage imageNamed:@"img_moren"]];
         [self.contentView addSubview:_cycleScrollView3];
     }
     _cycleScrollView3.bannerImageViewContentMode =  3;
@@ -43,6 +41,9 @@
     _cycleScrollView3.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
     _cycleScrollView3.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
     _cycleScrollView3.autoScrollTimeInterval = 4;
+//    _cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];
+}
+-(void)setSycleScrollView:(NSArray *)photoArray{
     _cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];
 }
 -(void)setUpWebView:(NSString *)htmlString{

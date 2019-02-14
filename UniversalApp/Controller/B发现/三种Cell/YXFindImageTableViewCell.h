@@ -25,18 +25,34 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *pl2NameLbl;
 @property (weak, nonatomic) IBOutlet UILabel *pl1ContentLbl;
 @property (weak, nonatomic) IBOutlet UILabel *pl2ContentLbl;
-- (IBAction)searchAllPlBtnAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *addPlImageView;
 
+
+//cell方法
+-(void)setCellValue:(NSDictionary *)dic whereCome:(BOOL)whereCome;
+
+//回话 查看全部 添加评论    跳转详情
+typedef void(^jumpDetailVCBlock)(YXFindImageTableViewCell *);
+- (IBAction)searchAllPlBtnAction:(id)sender;
+@property (nonatomic,copy) jumpDetailVCBlock jumpDetailVCBlock;
+
+
+
+//点击头像
 typedef void(^clickImageBlock)(NSInteger);
 @property (nonatomic,copy) clickImageBlock clickImageBlock;
--(void)setCellValue:(NSDictionary *)dic;
 
-
+//爱心
 typedef void(^clickImageZanBlock)(YXFindImageTableViewCell *);
 @property (weak, nonatomic) IBOutlet UIButton *likeBtn;
 - (IBAction)likeBtnAction:(id)sender;
 @property (nonatomic,copy) clickImageZanBlock zanblock;
+
+
+//分享
+typedef void(^clickShareBlock)(YXFindImageTableViewCell *);
+- (IBAction)shareAction:(id)sender;
+@property (nonatomic,copy) clickShareBlock shareblock;
 
 @end
 

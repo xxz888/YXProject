@@ -61,6 +61,12 @@ static CGFloat textFieldH = 40;
 -(void)initAllControl{
     kWeakSelf(self);
     self.title = @"晒图详情";
+    
+    [ShareManager setBorderinView:self.clickPingLunBtn];
+    
+
+
+    
     _segmentIndex = 0;
     _dataArray = [[NSMutableArray alloc]init];
     _pageArray = [[NSMutableArray alloc]init];
@@ -92,9 +98,9 @@ static CGFloat textFieldH = 40;
     }
 
     if (self.startDic[@"pic1"] || self.startDic[@"pic2"] || self.startDic[@"pic3"]) {
-        [self.lastDetailView setContentViewValue:@[self.startDic[@"pic1"],self.startDic[@"pic2"],self.startDic[@"pic3"]]];
+        [self.lastDetailView setUpSycleScrollView:@[self.startDic[@"pic1"],self.startDic[@"pic2"],self.startDic[@"pic3"]]];
     }else{
-        [self.lastDetailView setContentViewValue:@[self.startDic[@"photo1"],self.startDic[@"photo2"],self.startDic[@"photo3"]]];
+        [self.lastDetailView setUpSycleScrollView:@[self.startDic[@"photo1"],self.startDic[@"photo2"],self.startDic[@"photo3"]]];
     }
     
     self.lastDetailView.titleLbl.text = self.startDic[@"user_name"];
@@ -107,7 +113,7 @@ static CGFloat textFieldH = 40;
     return  self.lastDetailView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return  230;
+    return  525;
 }
 #pragma mark ========== 获取晒图评论列表 ==========
 -(void)requestNewList{
@@ -553,7 +559,7 @@ static CGFloat textFieldH = 40;
     [_textField resignFirstResponder];
 }
 
-- (void)dealloc
+- (void)deallocsetContentViewValue
 {
     [_textField removeFromSuperview];
     [[NSNotificationCenter defaultCenter] removeObserver:self];

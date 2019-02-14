@@ -5,7 +5,7 @@
 //  Created by 小小醉 on 2019/1/3.
 //  Copyright © 2019年 徐阳. All rights reserved.
 //
-
+#import "HXEasyCustomShareView.h"
 #import "YXFindViewController.h"
 #import "PYSearchViewController.h"
 #import "PYSearch.h"
@@ -31,6 +31,8 @@
     CBSegmentView * sliderSegmentView;
 }
 @property(nonatomic,strong)NSMutableArray * dataArray;
+@property(nonatomic,strong)NSMutableArray * typeArray;
+
 @property(nonatomic,strong)NSString * type;
 @end
 
@@ -42,6 +44,8 @@
  
     //搜索栏
     [self setNavSearchView];
+    self.navigationItem.rightBarButtonItem = nil;
+    [self headerView];
     //创建tableview
     [self tableviewCon];
     
@@ -69,27 +73,28 @@
     [self requestFindTheType];
 }
 #pragma mark ========== headerview ==========
--(UIView *)headerView{
+-(void)headerView{
     kWeakSelf(self);
-    sliderSegmentView = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, 40)];
+    sliderSegmentView = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, kTopHeight, KScreenWidth, 40)];
     sliderSegmentView.titleChooseReturn = ^(NSInteger x) {
-        weakself.type = NSIntegerToNSString(x+1);
+        [weakself.dataArray removeAllObjects];
+        weakself.type = weakself.typeArray[x];
+        weakself.requestPage = 1;
         [weakself requestFindTheType];
     };
-    return sliderSegmentView;
+    [self.view addSubview:sliderSegmentView];
 }
 #pragma mark ========== 创建tableview ==========
 -(void)tableviewCon{
     self.dataArray = [[NSMutableArray alloc]init];
-    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, kTopHeight, KScreenWidth, KScreenHeight - kTopHeight-TabBarHeight) style:0];
+    self.typeArray = [[NSMutableArray alloc]init];
+    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, kTopHeight + 40, KScreenWidth, KScreenHeight - kTopHeight-TabBarHeight - 40) style:0];
     [self.view addSubview:self.yxTableView];
-    self.yxTableView.tableHeaderView = [self headerView];
     self.yxTableView.delegate = self;
     self.yxTableView.dataSource= self;
     self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.yxTableView.showsVerticalScrollIndicator = NO;
     page = 1;
-    _type = @"1";
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindImageTableViewCell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindQuestionTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindQuestionTableViewCell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindFootTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindFootTableViewCell"];
@@ -107,9 +112,12 @@
     kWeakSelf(self);
     NSMutableArray * array = [[NSMutableArray alloc]init];
     [YX_MANAGER requestGet_users_find_tag:@"" success:^(id object) {
+        [weakself.typeArray removeAllObjects];
         for (NSDictionary * dic in object) {
             [array addObject:dic[@"type"]];
+            [weakself.typeArray addObject:dic[@"id"]];
         }
+        weakself.type = weakself.typeArray[0];
        [sliderSegmentView setTitleArray:array withStyle:CBSegmentStyleSlider];
        [weakself requestFindTheType];
     }];
@@ -167,12 +175,10 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.row];
     NSInteger tag = [dic[@"obj"] integerValue];
-    if (tag == 1) {
-        return 600;
+    if (tag == 1 || tag == 4) {
+        return 690;
     }else if (tag == 3){
-        return 390;
-    }else if(tag == 4){
-        return 550;
+        return 410;
     }else{
         return 0;
     }
@@ -184,17 +190,17 @@
     NSDictionary * dic = self.dataArray[indexPath.row];
     NSInteger tag = [dic[@"obj"] integerValue];
     if (tag == 1) {
-        return [self customImageData:dic indexPath:indexPath];
+        return [self customImageData:dic indexPath:indexPath whereCome:NO];
     }else if (tag == 3){
         return [self customQuestionData:dic indexPath:indexPath];
     }else if (tag == 4){
-        return [self cunstomFootData:dic indexPath:indexPath];
+        return [self customImageData:dic indexPath:indexPath whereCome:YES];
     }else{
         return nil;
     }
 }
 #pragma mark ========== 图片 ==========
--(YXFindImageTableViewCell *)customImageData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath{
+-(YXFindImageTableViewCell *)customImageData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath whereCome:(BOOL)whereCome{
     YXFindImageTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFindImageTableViewCell" forIndexPath:indexPath];
     cell.titleImageView.tag = indexPath.row;
     kWeakSelf(self);
@@ -205,7 +211,14 @@
         NSIndexPath * indexPath1 = [weakself.yxTableView indexPathForCell:cell];
         [weakself requestDianZan_Image_Action:indexPath1];
     };
-    [cell setCellValue:dic];
+    cell.shareblock = ^(YXFindImageTableViewCell * cell) {
+        [weakself addGuanjiaShareView];
+    };
+    cell.jumpDetailVCBlock = ^(YXFindImageTableViewCell * cell) {
+        NSIndexPath * indexPathSelect = [weakself.yxTableView indexPathForCell:cell];
+        [weakself tableView:weakself.yxTableView didSelectRowAtIndexPath:indexPathSelect];
+    };
+    [cell setCellValue:dic whereCome:whereCome];
     return cell;
 }
 #pragma mark ========== 问答 ==========
@@ -215,6 +228,10 @@
     kWeakSelf(self);
     cell.clickImageBlock = ^(NSInteger tag) {
         [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
+    };
+    cell.jumpDetail1VCBlock = ^(YXFindQuestionTableViewCell * cell) {
+        NSIndexPath * indexPathSelect = [weakself.yxTableView indexPathForCell:cell];
+        [weakself tableView:weakself.yxTableView didSelectRowAtIndexPath:indexPathSelect];
     };
     [cell setCellValue:dic];
     return cell;
@@ -327,38 +344,6 @@
         return moment;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#pragma mark ==========  搜索相关 ==========
--(void)setNavSearchView{
-    UIColor *color =  YXRGBAColor(217, 217, 217);
-    UITextField * searchBar = [[UITextField alloc] init];
-    searchBar.frame = CGRectMake(-10, 0, KScreenWidth, 40);
-    ViewBorderRadius(searchBar, 1, 1, color);
-    searchBar.placeholder = @"搜索";
-    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(searchBar.py_size.width-60, 0, 25, 25);
-    btn.centerY = searchBar.centerY;
-    [btn setBackgroundImage:[UIImage imageNamed:@"放大镜"] forState:UIControlStateNormal];
-    [searchBar addSubview:btn];
-    [searchBar addTarget:self action:@selector(textField1TextChange:) forControlEvents:UIControlEventEditingDidBegin];
-    [self.navigationItem.titleView sizeToFit];
-    self.navigationItem.titleView = searchBar;
-}
 -(void)textField1TextChange:(UITextField *)tf{
     [self clickSearchBar];
 }
@@ -375,4 +360,73 @@
     [self presentViewController:nav2 animated:YES completion:nil];
 }
 
+
+
+
+
+#pragma mark ========== 分享 ==========
+- (void)addGuanjiaShareView {
+    NSArray *shareAry = @[@{@"image":@"shareView_wx",
+                            @"title":@"微信"},
+                          @{@"image":@"shareView_friend",
+                            @"title":@"朋友圈"},
+                          @{@"image":@"shareView_wb",
+                            @"title":@"新浪微博"},
+                          @{@"image":@"shareView_rr",
+                            @"title":@"其他"},
+                          @{@"image":@"",
+                            @"title":@""},
+                          @{@"image":@"",
+                            @"title":@""},
+                          @{@"image":@"",
+                            @"title":@""},
+                          @{@"image":@"share_copyLink",
+                            @"title":@"复制链接"},
+                          @{@"image":@"share_copyLink",
+                            @"title":@"删除"}];
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 54)];
+    headerView.backgroundColor = [UIColor clearColor];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, headerView.frame.size.width, 15)];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor blackColor];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont systemFontOfSize:15];
+    label.text = @"分享到";
+    [headerView addSubview:label];
+    
+    UILabel *lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, headerView.frame.size.height-0.5, headerView.frame.size.width, 0.5)];
+    lineLabel.backgroundColor = [UIColor colorWithRed:208/255.0 green:208/255.0 blue:208/255.0 alpha:1.0];
+    [headerView addSubview:lineLabel];
+    
+    UILabel *lineLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, headerView.frame.size.width, 0.5)];
+    lineLabel1.backgroundColor = [UIColor colorWithRed:208/255.0 green:208/255.0 blue:208/255.0 alpha:1.0];
+    
+    HXEasyCustomShareView *shareView = [[HXEasyCustomShareView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+    shareView.backView.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+    shareView.headerView = headerView;
+    float height = [shareView getBoderViewHeight:shareAry firstCount:7];
+    shareView.boderView.frame = CGRectMake(0, 0, shareView.frame.size.width, height);
+    shareView.middleLineLabel.hidden = YES;
+    [shareView.cancleButton addSubview:lineLabel1];
+    shareView.cancleButton.frame = CGRectMake(shareView.cancleButton.frame.origin.x, shareView.cancleButton.frame.origin.y, shareView.cancleButton.frame.size.width, 54);
+    shareView.cancleButton.titleLabel.font = [UIFont systemFontOfSize:16];
+    [shareView.cancleButton setTitleColor:[UIColor colorWithRed:184/255.0 green:184/255.0 blue:184/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [shareView setShareAry:shareAry delegate:self];
+    [[UIApplication sharedApplication].keyWindow addSubview:shareView];
+    
+
+}
+
+#pragma mark HXEasyCustomShareViewDelegate
+
+- (void)easyCustomShareViewButtonAction:(HXEasyCustomShareView *)shareView title:(NSString *)title {
+    NSLog(@"当前点击:%@",title);
+}
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
+    [self clickSearchBar];
+    return YES;
+}
 @end

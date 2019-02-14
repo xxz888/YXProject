@@ -33,20 +33,6 @@
 
 @implementation YXFindSearchResultAllViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.title = @"发现";
-    
-    //搜索栏
-//    [self setNavSearchView];
-    //创建tableview
-    [self tableviewCon];
-    
-    [self addRefreshView:self.yxTableView];
-    
-    [self requestFindTheType];
-}
-
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
@@ -58,6 +44,16 @@
     [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:nil];
 }
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    //创建tableview
+    [self tableviewCon];
+    
+    [self addRefreshView:self.yxTableView];
+    
+    [self requestFindTheType];
+}
+
 -(void)headerRereshing{
     [super headerRereshing];
     [self requestFindTheType];
@@ -180,7 +176,7 @@
         NSIndexPath * indexPath1 = [weakself.yxTableView indexPathForCell:cell];
         [weakself requestDianZan_Image_Action:indexPath1];
     };
-    [cell setCellValue:dic];
+//    [cell setCellValue:dic whereCome:whereCome];
     return cell;
 }
 #pragma mark ========== 问答 ==========

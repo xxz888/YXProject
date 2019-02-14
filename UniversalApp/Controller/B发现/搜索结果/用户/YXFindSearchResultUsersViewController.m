@@ -17,18 +17,18 @@
 @implementation YXFindSearchResultUsersViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
--(void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:nil];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createyxTableView];
 }
-//tableview
 -(void)createyxTableView{
     if (!self.yxTableView) {
         self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-kTopHeight-40) style:UITableViewStylePlain];

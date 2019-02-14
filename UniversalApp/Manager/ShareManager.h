@@ -29,6 +29,7 @@ SINGLETON_FOR_HEADER(ShareManager)
 #pragma mark - 将某个时间戳转化成 时间
 +(NSString *)getNowTimeMiaoShu;
 +(NSString *)timestampSwitchTime:(NSInteger)timestamp andFormatter:(NSString *)format;
++ (NSString *)updateTimeForRow:(long)timestamp;
 //关注按钮初始化状态
 +(void)setGuanZhuStatus:(UIButton *)btn status:(BOOL)statusBool;
 
@@ -38,4 +39,6 @@ SINGLETON_FOR_HEADER(ShareManager)
 //html
 +(NSString *)justFitImage:(NSString *)essay;
 +(void)inTextViewOutDifColorView:(UITextView *)tfView tag:(NSString *)tag;
++(void)inTextFieldOutDifColorView:(UILabel *)tfView tag:(NSString *)tag;
++ (void)setBorderinView:(UIView *)view;
 @end

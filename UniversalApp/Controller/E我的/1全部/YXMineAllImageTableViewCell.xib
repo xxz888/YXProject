@@ -20,13 +20,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N7a-Wg-Pu5">
-                        <rect key="frame" x="5" y="10" width="310" height="280"/>
+                        <rect key="frame" x="5" y="10" width="310" height="350"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="280" id="vPH-gG-fJS"/>
+                            <constraint firstAttribute="height" constant="350" id="vPH-gG-fJS"/>
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BHc-9m-aVL">
-                        <rect key="frame" x="290" y="300" width="25" height="25"/>
+                        <rect key="frame" x="290" y="370" width="25" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="0Ud-3z-0gT"/>
                             <constraint firstAttribute="width" constant="25" id="h4u-iP-XS1"/>
@@ -37,13 +37,13 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ydl-6I-UC1">
-                        <rect key="frame" x="5" y="300" width="280" height="25"/>
+                        <rect key="frame" x="5" y="370" width="280" height="25"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZCC-Na-ruH">
-                        <rect key="frame" x="0.0" y="335" width="320" height="2"/>
+                        <rect key="frame" x="0.0" y="405" width="320" height="2"/>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="2" id="jRw-z6-vbN"/>

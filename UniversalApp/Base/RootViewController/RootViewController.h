@@ -108,4 +108,6 @@ typedef void (^ListenChangeIndexBlock)(NSInteger);
 -(void)headerRereshing;
 -(void)footerRereshing;
 -(NSMutableArray *)commonCollectionAction:(id)obj dataArray:(NSMutableArray *)dataArray;
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar;
+- (void)cancleAction;
 @end

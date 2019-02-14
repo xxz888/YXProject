@@ -11,9 +11,9 @@
 #import <UShareUI/UShareUI.h>
 #import "PYSearchViewController.h"
 #import "PYTempViewController.h"
+#import "YXFindSearchHeadView.h"
 
-
-@interface RootViewController ()<PYSearchViewControllerDelegate>{
+@interface RootViewController ()<PYSearchViewControllerDelegate,UISearchBarDelegate>{
     XHStarRateView *starRateView ;
     UITableView * _yxTableView;
     UICollectionView * _yxCollectionView;
@@ -353,48 +353,39 @@
     // 默认进去类型
     return   UIInterfaceOrientationPortrait;
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
+//    searchBar.showsCancelButton = YES;
+//    //找到searchbar下得UINavigationButton即是cancel按钮，改变他即可
+//    UIButton *searchBarCancelBtn = searchBar.subviews[0].subviews[2];
+//    [searchBarCancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+//    [searchBarCancelBtn setTitleColor:[UIColor colorWithWhite:0.325 alpha:1.000] forState:UIControlStateNormal];
+    return YES;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+//监视搜索框的结果
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    NSString *searchText = searchController.searchBar.text;
+    NSLog(@"%@", searchText);
 }
-*/
-
 
 #pragma mark ==========  搜索相关 ==========
 -(void)setNavSearchView{
-    UIColor *color =  YXRGBAColor(239, 239, 239);
-    UITextField * searchBar = [[UITextField alloc] init];
-    searchBar.frame = CGRectMake(50, 0, KScreenWidth - 50, 35);
-    searchBar.backgroundColor = color;
-    searchBar.layer.cornerRadius = 10;
-    searchBar.layer.masksToBounds = YES;
-    searchBar.placeholder = @"   🔍 搜索";
-    [searchBar addTarget:self action:@selector(textField1TextChange:) forControlEvents:UIControlEventEditingDidBegin];
+    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXFindSearchHeadView" owner:self options:nil];
+    YXFindSearchHeadView * searchHeaderView = [nib objectAtIndex:0];
+    searchHeaderView.searchBar.delegate = self;
     [self.navigationItem.titleView sizeToFit];
-    self.navigationItem.titleView = searchBar;
+    self.navigationItem.titleView = searchHeaderView;
+    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:(UIBarButtonItemStyleDone) target:self action:@selector(cancleAction)];
+    [rightitem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:15],NSFontAttributeName,KDarkGaryColor,NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
+    self.navigationItem.rightBarButtonItem = rightitem;
+
+}
+#pragma mark - gesture actions
+- (void)cancleAction{
+[[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    
 }
 -(void)textField1TextChange:(UITextField *)tf{
-    [self clickSearchBar];
-}
-- (void)clickSearchBar{
-    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"PYExampleSearchPlaceholderText", @"搜索编程语言") didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
-        [searchViewController.navigationController pushViewController:[[PYTempViewController alloc] init] animated:YES];
-    }];
-    searchViewController.hotSearchStyle = PYHotSearchStyleColorfulTag;
-    searchViewController.searchHistoryStyle = 1;
-    searchViewController.delegate = self;
-    searchViewController.searchViewControllerShowMode = PYSearchViewControllerShowModePush;
-    [self.navigationController pushViewController:searchViewController animated:YES];
+//    [self clickSearchBar];
 }
 -(void)setSegmentControllersArray:(NSArray *)controllers title:(NSArray *)titlesArray defaultIndex:(NSInteger)index top:(CGFloat)top view:(UIView *)view{
     ZXSegmentController* segmentController = [[ZXSegmentController alloc] initWithControllers:controllers

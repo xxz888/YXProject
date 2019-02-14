@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITextField *findTextField;
 @property (weak, nonatomic) IBOutlet UIButton *cancleBtn;
 - (IBAction)cancleAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property(nonatomic, assign) CGSize intrinsicContentSize;
 
 @end
 

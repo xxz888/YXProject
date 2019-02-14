@@ -16,57 +16,40 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="搜索" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S41-xl-6Yr">
-                    <rect key="frame" x="10" y="7" width="315" height="40"/>
-                    <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7R4-GF-iRr">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
+                    <subviews>
+                        <searchBar contentMode="redraw" placeholder="搜索" translatesAutoresizingMaskIntoConstraints="NO" id="f0K-B3-5RC">
+                            <rect key="frame" x="0.0" y="18" width="375" height="34"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="34" id="0rH-YA-P81"/>
+                            </constraints>
+                            <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="peX-fM-Aez"/>
+                        <constraint firstItem="f0K-B3-5RC" firstAttribute="leading" secondItem="7R4-GF-iRr" secondAttribute="leading" id="AyM-gK-1Pw"/>
+                        <constraint firstAttribute="trailing" secondItem="f0K-B3-5RC" secondAttribute="trailing" id="QWq-VG-IEH"/>
+                        <constraint firstAttribute="bottom" secondItem="f0K-B3-5RC" secondAttribute="bottom" id="h9i-qk-JZS"/>
                     </constraints>
-                    <nil key="textColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEt-FE-oCZ">
-                    <rect key="frame" x="325" y="7" width="50" height="40"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="取消">
-                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                    <connections>
-                        <action selector="cancleAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="D1h-ND-dFe"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mCq-qv-E0D">
-                    <rect key="frame" x="295" y="14.5" width="25" height="25"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="25" id="9hz-wT-tv0"/>
-                        <constraint firstAttribute="width" constant="25" id="Rc4-Qf-V7e"/>
-                    </constraints>
-                    <state key="normal" backgroundImage="放大镜"/>
-                </button>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="S41-xl-6Yr" secondAttribute="bottom" constant="5" id="6fk-sq-Pic"/>
-                <constraint firstItem="S41-xl-6Yr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="DmL-gy-dSF"/>
-                <constraint firstItem="hEt-FE-oCZ" firstAttribute="leading" secondItem="mCq-qv-E0D" secondAttribute="trailing" constant="5" id="MOt-vJ-zJr"/>
-                <constraint firstItem="hEt-FE-oCZ" firstAttribute="centerY" secondItem="S41-xl-6Yr" secondAttribute="centerY" id="OQB-y5-3cT"/>
-                <constraint firstItem="mCq-qv-E0D" firstAttribute="centerY" secondItem="S41-xl-6Yr" secondAttribute="centerY" id="cUb-nz-qqb"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hEt-FE-oCZ" secondAttribute="trailing" id="cyn-5f-GS1"/>
-                <constraint firstItem="hEt-FE-oCZ" firstAttribute="leading" secondItem="S41-xl-6Yr" secondAttribute="trailing" id="fE2-zr-yd1"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="S41-xl-6Yr" secondAttribute="trailing" constant="50" id="nQD-R7-Vuc"/>
-                <constraint firstItem="hEt-FE-oCZ" firstAttribute="height" secondItem="S41-xl-6Yr" secondAttribute="height" id="vPE-pb-aZ8"/>
+                <constraint firstItem="7R4-GF-iRr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="GCu-4v-Lk4"/>
+                <constraint firstItem="7R4-GF-iRr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Qnc-8K-EyJ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="7R4-GF-iRr" secondAttribute="trailing" id="dYY-el-oRd"/>
+                <constraint firstAttribute="bottom" secondItem="7R4-GF-iRr" secondAttribute="bottom" id="pnS-vV-GEJ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="cancleBtn" destination="hEt-FE-oCZ" id="tm3-1Y-Nso"/>
-                <outlet property="findTextField" destination="S41-xl-6Yr" id="hLV-lE-G4u"/>
+                <outlet property="searchBar" destination="f0K-B3-5RC" id="FFI-V3-DmV"/>
             </connections>
-            <point key="canvasLocation" x="-300" y="-84.557721139430285"/>
+            <point key="canvasLocation" x="-438" y="-85"/>
         </view>
     </objects>
-    <resources>
-        <image name="放大镜" width="32" height="32"/>
-    </resources>
 </document>

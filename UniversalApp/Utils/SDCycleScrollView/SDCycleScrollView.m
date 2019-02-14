@@ -122,6 +122,7 @@ NSString * const ID = @"SDCycleScrollViewCell";
 + (instancetype)cycleScrollViewWithFrame:(CGRect)frame delegate:(id<SDCycleScrollViewDelegate>)delegate placeholderImage:(UIImage *)placeholderImage
 {
     SDCycleScrollView *cycleScrollView = [[self alloc] initWithFrame:frame];
+    cycleScrollView.backgroundColor = KWhiteColor;
     cycleScrollView.delegate = delegate;
     cycleScrollView.placeholderImage = placeholderImage;
     

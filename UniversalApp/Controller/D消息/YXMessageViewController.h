@@ -8,6 +8,6 @@
 
 #import "RootViewController.h"
 
-@interface YXMessageViewController : RootViewController
+@interface YXMessageViewController : UITableViewController
 
 @end

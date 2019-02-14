@@ -56,22 +56,6 @@
     [self setSegmentControllersArray:controllers title:names defaultIndex:0 top:self.whereCome ? kTopHeight : kTopHeight view:self.view];
     
 }
-
-
-
-#pragma mark ==========  搜索相关 ==========
--(void)setNavSearchView{
-    UIColor *color =  YXRGBAColor(239, 239, 239);
-    UITextField * searchBar = [[UITextField alloc] init];
-    searchBar.frame = CGRectMake(50, 0, KScreenWidth - 50, 35);
-    searchBar.backgroundColor = color;
-    searchBar.layer.cornerRadius = 10;
-    searchBar.layer.masksToBounds = YES;
-    searchBar.placeholder = @"   🔍 搜索";
-    [searchBar addTarget:self action:@selector(textField1TextChange:) forControlEvents:UIControlEventEditingDidBegin];
-    [self.navigationItem.titleView sizeToFit];
-    self.navigationItem.titleView = searchBar;
-}
 -(void)textField1TextChange:(UITextField *)tf{
     [self clickSearchBar];
 }
