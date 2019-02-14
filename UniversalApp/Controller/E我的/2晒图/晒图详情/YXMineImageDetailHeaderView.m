@@ -41,7 +41,7 @@
     _cycleScrollView3.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
     _cycleScrollView3.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
     _cycleScrollView3.autoScrollTimeInterval = 4;
-//    _cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];
+   _cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];
 }
 -(void)setSycleScrollView:(NSArray *)photoArray{
     _cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];

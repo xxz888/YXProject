@@ -17,6 +17,7 @@
 @implementation YXHomeXueJiaGuBaViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.title = @"雪茄品牌";
     [self requestCigar_brand:@"1"];
 }
 -(void)viewDidLoad{
@@ -63,7 +64,7 @@
 
     for (NSInteger i = 0; i < [self.hotDataArray count]; i++) {
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10,0 , self.gridView.frame.size.width-20, self.gridView.frame.size.height)];
-//        [imageView setContentMode:UIViewContentModeScaleAspectFit];
+        [imageView setContentMode:UIViewContentModeScaleAspectFit];
         NSString * str = [(NSMutableString *)self.hotDataArray[i][@"photo"] replaceAll:@" " target:@"%20"];
         [imageView sd_setImageWithURL:[NSURL URLWithString:str]
                      placeholderImage:[UIImage imageNamed:@"img_moren"]

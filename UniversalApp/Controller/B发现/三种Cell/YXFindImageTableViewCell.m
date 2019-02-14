@@ -82,7 +82,7 @@
 
 
 -(void)setCellValue:(NSDictionary *)dic whereCome:(BOOL)whereCome{
-    NSString * str = [(NSMutableString *)dic[@"photo1"] replaceAll:@" " target:@"%20"];
+    NSString * str = [(NSMutableString *) (whereCome ? dic[@"pic1"]:dic[@"photo1"]) replaceAll:@" " target:@"%20"];
     [self.midImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
  
 
@@ -111,7 +111,7 @@
     NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
     NSStringDrawingOptions option = (NSStringDrawingOptions)(NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading);
     CGSize size = [titleText boundingRectWithSize:CGSizeMake(KScreenWidth - 20 - 30, 100000) options:option attributes:attribute context:nil].size;
-    self.openBtn.hidden = size.width < KScreenWidth - 20 - 30;
+//    self.openBtn.hidden = size.width < KScreenWidth - 20 - 30;
     if (whereCome) {
         //足迹界面要 足迹这一行
         self.titleTagtextViewHeight.constant = 30;
@@ -128,9 +128,10 @@
     if (commentArray.count > 0) {
         self.pl1NameLbl.text = [commentArray[0][@"user_name"] append:@":"];
         self.pl2NameLbl.text = commentArray[0][@"comment"];
-    }else if (commentArray.count > 1){
-        self.pl1ContentLbl.text = [commentArray[0][@"user_name"] append:@":"];
-        self.pl2ContentLbl.text = commentArray[0][@"comment"];
+    }
+    if (commentArray.count > 1){
+        self.pl1ContentLbl.text = [commentArray[1][@"user_name"] append:@":"];
+        self.pl2ContentLbl.text = commentArray[1][@"comment"];
     }
     
     BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
