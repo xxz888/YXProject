@@ -127,6 +127,18 @@
     kWeakSelf(self);
     NSString * parString =[NSString stringWithFormat:@"%@/%@",self.type,NSIntegerToNSString(self.requestPage)];
     [YX_MANAGER requestGet_users_find:parString success:^(id object){
+        
+  
+        
+        if ([object count] > 0) {
+            NSMutableArray *_dataSourceTemp=[NSMutableArray new];
+            for (NSDictionary *company in object) {
+                NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:company];
+                [dic setObject:@"0" forKey:@"isShowMoreText"];
+                [_dataSourceTemp addObject:dic];
+            }
+            object=_dataSourceTemp;
+        }
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
     }];
@@ -167,18 +179,32 @@
 
 
 
-
-
-
-
 #pragma mark ========== tableview代理方法 ==========
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.row];
     NSInteger tag = [dic[@"obj"] integerValue];
+    NSDictionary * dicTag = nil;
+    if ([self.dataArray count] > indexPath.row){
+        dicTag = [self.dataArray objectAtIndex:indexPath.row];
+    }
+    
     if (tag == 1 || tag == 4) {
-        return 690;
+        //根据isShowMoreText属性判断cell的高度
+        if ([dicTag[@"isShowMoreText"] isEqualToString:@"1"]){
+            return [YXFindImageTableViewCell cellMoreHeight:dicTag whereCome:tag==1?NO:YES];
+        }else{
+            return tag==1?670:700;
+        }
+        return 0;
     }else if (tag == 3){
-        return 410;
+
+        //根据isShowMoreText属性判断cell的高度
+        if ([dicTag[@"isShowMoreText"] isEqualToString:@"1"]){
+            return [YXFindQuestionTableViewCell cellMoreHeight:dicTag];
+        }else{
+            return 410;
+        }
+        return 0;
     }else{
         return 0;
     }
@@ -218,6 +244,20 @@
         NSIndexPath * indexPathSelect = [weakself.yxTableView indexPathForCell:cell];
         [weakself tableView:weakself.yxTableView didSelectRowAtIndexPath:indexPathSelect];
     };
+    //自定义cell的回调，获取要展开/收起的cell。刷新点击的cell
+    cell.showMoreTextBlock = ^(YXFindImageTableViewCell * cell,NSMutableDictionary * dataDic){
+        NSIndexPath *indexRow = [weakself.yxTableView indexPathForCell:cell];
+        NSMutableArray * copyArr = [NSMutableArray arrayWithArray:weakself.dataArray];
+        for (NSInteger i = 0; i < copyArr.count; i++) {
+            if ([copyArr[i][@"id"] integerValue] == [dataDic[@"id"] integerValue]) {
+                [weakself.dataArray replaceObjectAtIndex:i withObject:dataDic];
+            }
+        }
+        
+        [weakself.yxTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexRow, nil] withRowAnimation:UITableViewRowAnimationNone];
+    };
+    cell.dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+    cell.whereCome = whereCome;
     [cell setCellValue:dic whereCome:whereCome];
     return cell;
 }
@@ -225,6 +265,7 @@
 -(YXFindQuestionTableViewCell *)customQuestionData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath{
     YXFindQuestionTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFindQuestionTableViewCell" forIndexPath:indexPath];
     cell.titleImageView.tag = indexPath.row;
+    cell.dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
     kWeakSelf(self);
     cell.clickImageBlock = ^(NSInteger tag) {
         [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
@@ -232,6 +273,21 @@
     cell.jumpDetail1VCBlock = ^(YXFindQuestionTableViewCell * cell) {
         NSIndexPath * indexPathSelect = [weakself.yxTableView indexPathForCell:cell];
         [weakself tableView:weakself.yxTableView didSelectRowAtIndexPath:indexPathSelect];
+    };
+    cell.shareQuestionblock = ^(YXFindQuestionTableViewCell * cell) {
+        [weakself addGuanjiaShareView];
+    };
+    //自定义cell的回调，获取要展开/收起的cell。刷新点击的cell
+    cell.showMoreTextBlock = ^(YXFindQuestionTableViewCell * cell,NSMutableDictionary * dataDic){
+        NSIndexPath *indexRow = [weakself.yxTableView indexPathForCell:cell];
+        NSMutableArray * copyArr = [NSMutableArray arrayWithArray:weakself.dataArray];
+        for (NSInteger i = 0; i < copyArr.count; i++) {
+            if ([copyArr[i][@"id"] integerValue] == [dataDic[@"id"] integerValue]) {
+                [weakself.dataArray replaceObjectAtIndex:i withObject:dataDic];
+
+            }
+        }
+        [weakself.yxTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexRow, nil] withRowAnimation:UITableViewRowAnimationNone];
     };
     [cell setCellValue:dic];
     return cell;
@@ -372,18 +428,18 @@
                             @"title":@"朋友圈"},
                           @{@"image":@"shareView_wb",
                             @"title":@"新浪微博"},
+                          @{@"image":@"shareView_qq",
+                            @"title":@"QQ"},
                           @{@"image":@"shareView_rr",
                             @"title":@"其他"},
                           @{@"image":@"",
                             @"title":@""},
                           @{@"image":@"",
                             @"title":@""},
+                          @{@"image":@"share_copyLink",
+                            @"title":@"删除"},
                           @{@"image":@"",
-                            @"title":@""},
-                          @{@"image":@"share_copyLink",
-                            @"title":@"复制链接"},
-                          @{@"image":@"share_copyLink",
-                            @"title":@"删除"}];
+                            @"title":@""}];
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 54)];
     headerView.backgroundColor = [UIColor clearColor];

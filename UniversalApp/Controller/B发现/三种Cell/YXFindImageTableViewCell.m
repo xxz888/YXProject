@@ -9,7 +9,42 @@
 #import "YXFindImageTableViewCell.h"
 
 @implementation YXFindImageTableViewCell
++(CGFloat)cellMoreHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
+    /*
+     whereCome = NO 为晒图  YES为足迹
+     */
+    NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
+    
+    //展开后得高度(计算出文本内容的高度+固定控件的高度)
+    NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
+    NSStringDrawingOptions option = (NSStringDrawingOptions)(NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading);
+    CGSize size = [titleText boundingRectWithSize:CGSizeMake(KScreenWidth - 20 - 30, 100000) options:option attributes:attribute context:nil].size;
+ 
+    return size.height + (whereCome ? 710:680) - 30;
+}
 
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    /*
+     whereCome = NO 为晒图  YES为足迹
+     */
+    NSString * titleText = [NSString stringWithFormat:@"%@%@",self.whereCome ? self.dataDic[@"content"]:self.dataDic[@"describe"],self.dataDic[@"index"]];
+    self.titleTagLbl.text = titleText;
+    [ShareManager inTextFieldOutDifColorView:self.titleTagLbl tag:self.dataDic[@"index"]];
+    
+    if ([self.dataDic[@"isShowMoreText"] isEqualToString:@"1"]){
+        ///计算文本高度
+        NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
+        NSStringDrawingOptions option = (NSStringDrawingOptions)(NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading);
+        CGSize size = [titleText boundingRectWithSize:CGSizeMake(KScreenWidth - 20 - 30, 100000) options:option attributes:attribute context:nil].size;
+        self.titleTagLblHeight.constant = size.height + 10;
+        [self.openBtn setTitle:@"收起" forState:UIControlStateNormal];
+    }
+    else{
+        [self.openBtn setTitle:@"展开" forState:UIControlStateNormal];
+        self.titleTagLblHeight.constant = 30;
+    }
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.titleImageView.layer.masksToBounds = YES;
@@ -68,20 +103,24 @@
     self.timeLbl.text = [ShareManager updateTimeForRow:[dic[@"publish_time"] longLongValue]];
     
     /*
-     whereCome = NO
-                如果是图片 titleTagLbl 为 名字  titleTagtextView 为内容
-                如果是图片 titleTagLbl 为 内容  titleTagtextView 为来自足迹
+     whereCome = NO 为晒图  YES为足迹
     */
     NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
+    self.titleTagLbl.text = titleText;
+    [ShareManager inTextFieldOutDifColorView:self.titleTagLbl tag:dic[@"index"]];
+    
+    NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
+    NSStringDrawingOptions option = (NSStringDrawingOptions)(NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading);
+    CGSize size = [titleText boundingRectWithSize:CGSizeMake(KScreenWidth - 20 - 30, 100000) options:option attributes:attribute context:nil].size;
+    self.openBtn.hidden = size.width < KScreenWidth - 20 - 30;
     if (whereCome) {
-        self.titleTagLbl.text = titleText;
+        //足迹界面要 足迹这一行
+        self.titleTagtextViewHeight.constant = 30;
         self.titleTagtextView.text = [@"来自足迹·" append:dic[@"publish_site"]];
-        [ShareManager inTextFieldOutDifColorView:self.titleTagLbl tag:dic[@"index"]];
         self.titleTagtextView.textColor = KBlackColor;
     }else{
-        self.titleTagLbl.text = dic[@"user_name"];
-        self.titleTagtextView.text = titleText;
-        [ShareManager inTextViewOutDifColorView:self.titleTagtextView tag:dic[@"index"]];
+        //晒图界面 不要这一行
+        self.titleTagtextViewHeight.constant = 0;
     }
 
     [self.mapBtn setTitle:dic[@"publish_site"] forState:UIControlStateNormal];
@@ -98,8 +137,12 @@
     BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
     UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
     [self.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
-    NSString * str2 = [(NSMutableString *)dic[@"photo1"] replaceAll:@" " target:@"%20"];
+ 
+    UserInfo *userInfo = curUser;
+    NSString * str2 = [(NSMutableString *)userInfo.photo replaceAll:@" " target:@"%20"];
     [self.addPlImageView sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    self.talkCount.text = kGetString(dic[@"comment_number"]);
+    
 }
 
 
@@ -113,5 +156,13 @@
 }
 - (IBAction)shareAction:(id)sender {
     self.shareblock(self);
+}
+
+- (IBAction)openAction:(id)sender{
+    //将当前对象的isShowMoreText属性设为相反值
+    self.dataDic[@"isShowMoreText"] = [self.dataDic[@"isShowMoreText"] isEqualToString:@"1"] ? @"0" : @"1";
+    if (self.showMoreTextBlock){
+        self.showMoreTextBlock(self,self.dataDic);
+    }
 }
 @end

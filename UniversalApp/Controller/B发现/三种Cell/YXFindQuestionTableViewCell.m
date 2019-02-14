@@ -9,6 +9,38 @@
 #import "YXFindQuestionTableViewCell.h"
 
 @implementation YXFindQuestionTableViewCell
++(CGFloat)cellMoreHeight:(NSDictionary *)dic{
+    //展开后得高度(计算出文本内容的高度+固定控件的高度)
+    NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
+    NSStringDrawingOptions option = (NSStringDrawingOptions)(NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading);
+    CGSize size = [dic[@"question"] boundingRectWithSize:CGSizeMake(KScreenWidth- 20, 100000) options:option attributes:attribute context:nil].size;
+    return size.height + 420 - 30;
+}
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    self.titleTagLbl2.text = self.dataDic[@"question"];
+    
+    if ([self.dataDic[@"isShowMoreText"] isEqualToString:@"1"]){
+        ///计算文本高度
+        NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
+        NSStringDrawingOptions option = (NSStringDrawingOptions)(NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading);
+        CGSize size = [self.dataDic[@"question"] boundingRectWithSize:CGSizeMake(self.titleTagLbl2.frame.size.width, 100000) options:option attributes:attribute context:nil].size;
+        self.textHeight.constant = size.height + 10;
+        [self.openBtn setTitle:@"收起" forState:UIControlStateNormal];
+    }
+    else{
+        [self.openBtn setTitle:@"展开" forState:UIControlStateNormal];
+        self.textHeight.constant = 30;
+    }
+}
+- (IBAction)openAction:(id)sender{
+    //将当前对象的isShowMoreText属性设为相反值
+    self.dataDic[@"isShowMoreText"] = [self.dataDic[@"isShowMoreText"] isEqualToString:@"1"] ? @"0" : @"1";
+    if (self.showMoreTextBlock){
+        self.showMoreTextBlock(self,self.dataDic);
+    }
+}
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -59,21 +91,29 @@
     if (commentArray.count > 0) {
         self.pl1NameLbl.text = [commentArray[0][@"user_name"]  append:@":"];
         self.pl2NameLbl.text = commentArray[0][@"answer"];
-    }else if (commentArray.count > 1){
+    }
+    if (commentArray.count > 1){
         self.pl1ContentLbl.text = [commentArray[1][@"user_name"]  append:@":"];
         self.pl2ContentLbl.text = commentArray[1][@"answer"];
     }
     
     
     
-    NSString * allString = [NSString stringWithFormat:@"查看全部%@条评论",kGetString(dic[@"comment_number"])];
-    if ([allString isEqualToString:@"查看全部(null)条评论"] || [allString isEqualToString:@"查看全部0条评论"]) {
-        allString = @"查看全部评论";
+    NSString * allString = [NSString stringWithFormat:@" 查看全部%@条评论",kGetString(dic[@"answer_number"])];
+    if ([allString isEqualToString:@" 查看全部(null)条评论"] || [allString isEqualToString:@" 查看全部0条评论"]) {
+        allString = @" 查看全部评论";
     }
+    
     [self.searchBtn setTitle:allString forState:UIControlStateNormal];
+    UserInfo *userInfo = curUser;
+    NSString * str = [(NSMutableString *)userInfo.photo replaceAll:@" " target:@"%20"];
+    [self.addPlImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     
-    
-    
+    self.talkCount.text = kGetString(dic[@"answer_number"]);
+//    NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
+//    NSStringDrawingOptions option = (NSStringDrawingOptions)(NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading);
+//    CGSize size = [self.titleTagLbl2.text boundingRectWithSize:CGSizeMake(KScreenWidth- 20, 100000) options:option attributes:attribute context:nil].size;
+//    self.openBtn.hidden = size.width < KScreenWidth - 20;
     
     
     
@@ -90,8 +130,6 @@
     UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
     [self.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
      
-    NSString * str5 = [(NSMutableString *)dic[@"photo1"] replaceAll:@" " target:@"%20"];
-    [self.addPlImageView sd_setImageWithURL:[NSURL URLWithString:str5] placeholderImage:[UIImage imageNamed:@"img_moren"]];
 }
 
 
@@ -109,4 +147,8 @@
 - (IBAction)searchAllPlBtnAction:(id)sender{
     self.jumpDetail1VCBlock(self);
 }
+- (IBAction)shareAction:(id)sender{
+    self.shareQuestionblock(self);
+}
+
 @end
