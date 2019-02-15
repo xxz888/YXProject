@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YXMineAndFindBaseTableViewCell.h"
+
 @class YXFindQuestionTableViewCell;
 typedef void(^jumpDetailVC)(YXFindQuestionTableViewCell *);
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YXFindQuestionTableViewCell : UITableViewCell
+@interface YXFindQuestionTableViewCell : YXMineAndFindBaseTableViewCell
 
 @property (nonatomic,strong) NSMutableDictionary * dataDic;
 
@@ -48,7 +50,6 @@ typedef void(^clickImageBlock)(NSInteger);
 
 @property (weak, nonatomic) IBOutlet UIButton *searchBtn;
 
-- (IBAction)addPlBtnAction:(id)sender;
 @property (nonatomic,copy) jumpDetailVC jumpDetailVC;
 
 

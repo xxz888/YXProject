@@ -7,10 +7,11 @@
 //
 
 #import "RootViewController.h"
+#import "YXMineAndFindBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YXHomeXueJiaQuestionViewController : RootViewController
+@interface YXHomeXueJiaQuestionViewController : YXMineAndFindBaseViewController
 @property(nonatomic,strong)NSString * whereCome;
 @end
 

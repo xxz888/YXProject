@@ -66,6 +66,7 @@
         self.editPersonBtn.hidden = NO;
         [self setLayoutCol];
     }
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     [self addNavigationItemWithImageNames:menuArray isLeft:NO target:self action:@selector(handleShowContentView) tags:nil];
     self.mineImageView.layer.masksToBounds = YES;
     self.mineImageView.layer.cornerRadius = self.mineImageView.frame.size.width / 2.0;
@@ -86,7 +87,7 @@
     
     YXMineFootViewController * footVC = [[YXMineFootViewController alloc]init];
     footVC.userId = self.userId;
-    [self setSegmentControllersArray:@[AllVC,imageVC,footVC] title:@[@"全部",@"晒图",@"足迹"] defaultIndex:0 top:170+kTopHeight view:self.view];
+    [self setSegmentControllersArray:@[AllVC,imageVC,footVC] title:@[@"全部",@"晒图",@"足迹"] defaultIndex:0 top:160 view:self.view];
 }
 #pragma mark ========== 数据 ==========
 -(void)setViewData{

@@ -47,9 +47,10 @@
 -(void)collectionViewCon{
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    
     CGFloat heightKK = 90;
-    self.yxCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 175 -kTopHeight - heightKK) collectionViewLayout:layout];
+    CGFloat height =  user_id_BOOL ? 64 : 0;
+    CGRect frame = CGRectMake(0, 0, KScreenWidth,KScreenHeight - 175 -kTopHeight - heightKK + height);
+    self.yxCollectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:layout];
     self.yxCollectionView.backgroundColor = KWhiteColor;
     self.showType = signleLineShowDoubleGoods;
     [self.view addSubview:self.yxCollectionView];
@@ -133,7 +134,7 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
     VC.startDic = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[indexPath.row]];
-    YX_MANAGER.isHaveIcon = NO;
+    
     [self.navigationController pushViewController:VC animated:YES];
 }
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

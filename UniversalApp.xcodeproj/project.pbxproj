@@ -233,8 +233,6 @@
 		BB5FD88B21FECBDB00B5F1A8 /* YXFindImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5FD88921FECBDB00B5F1A8 /* YXFindImageTableViewCell.xib */; };
 		BB5FD88F21FECC0600B5F1A8 /* YXFindQuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD88D21FECC0600B5F1A8 /* YXFindQuestionTableViewCell.m */; };
 		BB5FD89021FECC0600B5F1A8 /* YXFindQuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5FD88E21FECC0600B5F1A8 /* YXFindQuestionTableViewCell.xib */; };
-		BB5FD89421FECC2A00B5F1A8 /* YXFindFootTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD89221FECC2A00B5F1A8 /* YXFindFootTableViewCell.m */; };
-		BB5FD89521FECC2A00B5F1A8 /* YXFindFootTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5FD89321FECC2A00B5F1A8 /* YXFindFootTableViewCell.xib */; };
 		BB5FD89D21FF488E00B5F1A8 /* PublishMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD89821FF488E00B5F1A8 /* PublishMenuButton.m */; };
 		BB5FD89F21FF488E00B5F1A8 /* UIImage+XW.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD89C21FF488E00B5F1A8 /* UIImage+XW.m */; };
 		BB5FD8A221FF49DD00B5F1A8 /* XWPopMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD8A021FF49DD00B5F1A8 /* XWPopMenuController.m */; };
@@ -422,6 +420,8 @@
 		BBCC4B9121E894CD00493F40 /* MMImagePreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4B8821E894CD00493F40 /* MMImagePreviewView.m */; };
 		BBCC4B9221E894CD00493F40 /* MomentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4B8921E894CD00493F40 /* MomentCell.m */; };
 		BBCC4B9321E894CD00493F40 /* MMOperateMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4B8B21E894CD00493F40 /* MMOperateMenuView.m */; };
+		BBD1C77422166AD40063002F /* YXMineAndFindBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD1C77322166AD40063002F /* YXMineAndFindBaseViewController.m */; };
+		BBD1C777221670CD0063002F /* YXMineAndFindBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD1C776221670CD0063002F /* YXMineAndFindBaseTableViewCell.m */; };
 		BBD2C80B21E0F41F00350DCD /* YXMineArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C80121E0F41F00350DCD /* YXMineArticleViewController.m */; };
 		BBD2C80C21E0F41F00350DCD /* YXMineAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C80421E0F41F00350DCD /* YXMineAllViewController.m */; };
 		BBD2C80D21E0F41F00350DCD /* YXMineFootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C80621E0F41F00350DCD /* YXMineFootViewController.m */; };
@@ -962,9 +962,6 @@
 		BB5FD88C21FECC0600B5F1A8 /* YXFindQuestionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindQuestionTableViewCell.h; sourceTree = "<group>"; };
 		BB5FD88D21FECC0600B5F1A8 /* YXFindQuestionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindQuestionTableViewCell.m; sourceTree = "<group>"; };
 		BB5FD88E21FECC0600B5F1A8 /* YXFindQuestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFindQuestionTableViewCell.xib; sourceTree = "<group>"; };
-		BB5FD89121FECC2A00B5F1A8 /* YXFindFootTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindFootTableViewCell.h; sourceTree = "<group>"; };
-		BB5FD89221FECC2A00B5F1A8 /* YXFindFootTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindFootTableViewCell.m; sourceTree = "<group>"; };
-		BB5FD89321FECC2A00B5F1A8 /* YXFindFootTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFindFootTableViewCell.xib; sourceTree = "<group>"; };
 		BB5FD89821FF488E00B5F1A8 /* PublishMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishMenuButton.m; sourceTree = "<group>"; };
 		BB5FD89921FF488E00B5F1A8 /* UIImage+XW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+XW.h"; sourceTree = "<group>"; };
 		BB5FD89B21FF488E00B5F1A8 /* PublishMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishMenuButton.h; sourceTree = "<group>"; };
@@ -1299,6 +1296,10 @@
 		BBCC4B8921E894CD00493F40 /* MomentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentCell.m; sourceTree = "<group>"; };
 		BBCC4B8A21E894CD00493F40 /* MMImageListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMImageListView.h; sourceTree = "<group>"; };
 		BBCC4B8B21E894CD00493F40 /* MMOperateMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMOperateMenuView.m; sourceTree = "<group>"; };
+		BBD1C77222166AD40063002F /* YXMineAndFindBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineAndFindBaseViewController.h; sourceTree = "<group>"; };
+		BBD1C77322166AD40063002F /* YXMineAndFindBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineAndFindBaseViewController.m; sourceTree = "<group>"; };
+		BBD1C775221670CD0063002F /* YXMineAndFindBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineAndFindBaseTableViewCell.h; sourceTree = "<group>"; };
+		BBD1C776221670CD0063002F /* YXMineAndFindBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineAndFindBaseTableViewCell.m; sourceTree = "<group>"; };
 		BBD2C80021E0F41F00350DCD /* YXMineArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMineArticleViewController.h; sourceTree = "<group>"; };
 		BBD2C80121E0F41F00350DCD /* YXMineArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMineArticleViewController.m; sourceTree = "<group>"; };
 		BBD2C80321E0F41F00350DCD /* YXMineAllViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMineAllViewController.h; sourceTree = "<group>"; };
@@ -2431,34 +2432,6 @@
 		296F9EBA1ECC64CE0063A255 /* UniversalApp */ = {
 			isa = PBXGroup;
 			children = (
-				BB2911EC22156BB500FF484E /* Cigarillo.gif */,
-				BB2911ED22156BB500FF484E /* Petit Corona.gif */,
-				BB2911EE22156BB500FF484E /* Petit Pyramid.gif */,
-				BB2911EF22156BB500FF484E /* Grand Corona.gif */,
-				BB2911F022156BB500FF484E /* Petit Perfecto.gif */,
-				BB2911F122156BB500FF484E /* Corona.gif */,
-				BB2911F222156BB500FF484E /* Long Panetela.gif */,
-				BB2911F322156BB500FF484E /* Pyramid.gif */,
-				BB2911F422156BB500FF484E /* Lonsdale.gif */,
-				BB2911F522156BB500FF484E /* Giant Robusto.gif */,
-				BB2911F622156BB500FF484E /* Double Robusto.gif */,
-				BB2911F722156BB500FF484E /* Double Corona.gif */,
-				BB2911F822156BB500FF484E /* Robusto.gif */,
-				BB2911F922156BB500FF484E /* Small Panetela.gif */,
-				BB2911FA22156BB500FF484E /* Long Corona.gif */,
-				BB2911FB22156BB500FF484E /* Giant Corona.gif */,
-				BB2911FC22156BB500FF484E /* Perfecto.gif */,
-				BB2911FD22156BB500FF484E /* Slim Panetela.gif */,
-				BB2911FE22156BB500FF484E /* Corona Extra.gif */,
-				BB2911FF22156BB500FF484E /* Churchill.gif */,
-				BB29120022156BB500FF484E /* Double Pyramid.gif */,
-				BB29120122156BB500FF484E /* Giant Perfecto.gif */,
-				BB29120222156BB500FF484E /* Culebras.gif */,
-				BB29120322156BB500FF484E /* Short Panetela.gif */,
-				BB29120422156BB500FF484E /* Robusto Extra.gif */,
-				BB29120522156BB500FF484E /* Petit Robusto.gif */,
-				BB29120622156BB500FF484E /* Double Perfecto.gif */,
-				BB29120722156BB500FF484E /* Panetela.gif */,
 				BB98327E2202C9340048D103 /* html */,
 				BBA8129F21DDAB00001B5EA1 /* Controller */,
 				BBC16282217AD6DE00008907 /* StoryBoard */,
@@ -2700,6 +2673,34 @@
 		BB2911EB22156BB500FF484E /* 雪茄形状 */ = {
 			isa = PBXGroup;
 			children = (
+				BB2911EC22156BB500FF484E /* Cigarillo.gif */,
+				BB2911ED22156BB500FF484E /* Petit Corona.gif */,
+				BB2911EE22156BB500FF484E /* Petit Pyramid.gif */,
+				BB2911EF22156BB500FF484E /* Grand Corona.gif */,
+				BB2911F022156BB500FF484E /* Petit Perfecto.gif */,
+				BB2911F122156BB500FF484E /* Corona.gif */,
+				BB2911F222156BB500FF484E /* Long Panetela.gif */,
+				BB2911F322156BB500FF484E /* Pyramid.gif */,
+				BB2911F422156BB500FF484E /* Lonsdale.gif */,
+				BB2911F522156BB500FF484E /* Giant Robusto.gif */,
+				BB2911F622156BB500FF484E /* Double Robusto.gif */,
+				BB2911F722156BB500FF484E /* Double Corona.gif */,
+				BB2911F822156BB500FF484E /* Robusto.gif */,
+				BB2911F922156BB500FF484E /* Small Panetela.gif */,
+				BB2911FA22156BB500FF484E /* Long Corona.gif */,
+				BB2911FB22156BB500FF484E /* Giant Corona.gif */,
+				BB2911FC22156BB500FF484E /* Perfecto.gif */,
+				BB2911FD22156BB500FF484E /* Slim Panetela.gif */,
+				BB2911FE22156BB500FF484E /* Corona Extra.gif */,
+				BB2911FF22156BB500FF484E /* Churchill.gif */,
+				BB29120022156BB500FF484E /* Double Pyramid.gif */,
+				BB29120122156BB500FF484E /* Giant Perfecto.gif */,
+				BB29120222156BB500FF484E /* Culebras.gif */,
+				BB29120322156BB500FF484E /* Short Panetela.gif */,
+				BB29120422156BB500FF484E /* Robusto Extra.gif */,
+				BB29120522156BB500FF484E /* Petit Robusto.gif */,
+				BB29120622156BB500FF484E /* Double Perfecto.gif */,
+				BB29120722156BB500FF484E /* Panetela.gif */,
 			);
 			path = "雪茄形状";
 			sourceTree = "<group>";
@@ -2760,9 +2761,6 @@
 				BB5FD88C21FECC0600B5F1A8 /* YXFindQuestionTableViewCell.h */,
 				BB5FD88D21FECC0600B5F1A8 /* YXFindQuestionTableViewCell.m */,
 				BB5FD88E21FECC0600B5F1A8 /* YXFindQuestionTableViewCell.xib */,
-				BB5FD89121FECC2A00B5F1A8 /* YXFindFootTableViewCell.h */,
-				BB5FD89221FECC2A00B5F1A8 /* YXFindFootTableViewCell.m */,
-				BB5FD89321FECC2A00B5F1A8 /* YXFindFootTableViewCell.xib */,
 			);
 			path = "三种Cell";
 			sourceTree = "<group>";
@@ -3267,6 +3265,7 @@
 			children = (
 				BB5FD86921FE9B2F00B5F1A8 /* SaltedFishTabBarVC.h */,
 				BB5FD86821FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m */,
+				BBD1C7782216A98D0063002F /* 晒图问答足迹 */,
 				BBA812A421DDAB7A001B5EA1 /* A首页 */,
 				BBA812A721DDAB7A001B5EA1 /* B发现 */,
 				BBA812A821DDAB7A001B5EA1 /* C发布 */,
@@ -3653,8 +3652,6 @@
 			children = (
 				BBCC4AC221E8739800493F40 /* YXHomeXueJiaQuestionViewController.h */,
 				BBCC4AC321E8739800493F40 /* YXHomeXueJiaQuestionViewController.m */,
-				BB6D2A4021EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.h */,
-				BB6D2A4121EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.m */,
 				BBCC4B7821E894CD00493F40 /* 发布提问 */,
 				BBCC4B7C21E894CD00493F40 /* 提问列表 */,
 			);
@@ -3788,6 +3785,37 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		BBD1C77122166AB40063002F /* 发现和我的界面复用 */ = {
+			isa = PBXGroup;
+			children = (
+				BBD1C77222166AD40063002F /* YXMineAndFindBaseViewController.h */,
+				BBD1C77322166AD40063002F /* YXMineAndFindBaseViewController.m */,
+				BBD1C775221670CD0063002F /* YXMineAndFindBaseTableViewCell.h */,
+				BBD1C776221670CD0063002F /* YXMineAndFindBaseTableViewCell.m */,
+			);
+			path = "发现和我的界面复用";
+			sourceTree = "<group>";
+		};
+		BBD1C7782216A98D0063002F /* 晒图问答足迹 */ = {
+			isa = PBXGroup;
+			children = (
+				BBD1C77122166AB40063002F /* 发现和我的界面复用 */,
+				BBD1C7792216AA090063002F /* 问答详情 */,
+				BBADE4D321F865400011E5FF /* 晒图详情 */,
+				BB7AF12D22004B8A00989896 /* 足迹详情 */,
+			);
+			path = "晒图问答足迹";
+			sourceTree = "<group>";
+		};
+		BBD1C7792216AA090063002F /* 问答详情 */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D2A4021EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.h */,
+				BB6D2A4121EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.m */,
+			);
+			path = "问答详情";
+			sourceTree = "<group>";
+		};
 		BBD2C7FF21E0F41F00350DCD /* 3文章 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3818,7 +3846,6 @@
 			children = (
 				BBD2C80721E0F41F00350DCD /* YXMineFootViewController.h */,
 				BBD2C80621E0F41F00350DCD /* YXMineFootViewController.m */,
-				BB7AF12D22004B8A00989896 /* 足迹详情 */,
 			);
 			path = "4足迹";
 			sourceTree = "<group>";
@@ -3831,7 +3858,6 @@
 				BB5FD87921FEB87300B5F1A8 /* YXMineImageCollectionViewCell.h */,
 				BB5FD87D21FEB87400B5F1A8 /* YXMineImageCollectionViewCell.m */,
 				BB5FD87C21FEB87400B5F1A8 /* YXMineImageCollectionViewCell.xib */,
-				BBADE4D321F865400011E5FF /* 晒图详情 */,
 			);
 			path = "2晒图";
 			sourceTree = "<group>";
@@ -4940,7 +4966,6 @@
 				BBA8129621DDA9A5001B5EA1 /* YXHome.storyboard in Resources */,
 				BBD2C94321E0F67800350DCD /* PlayButtonOverlayLarge@3x.png in Resources */,
 				BBECEEFF21F18404007E90AC /* YXGEPPinPaiDetailHeaderView.xib in Resources */,
-				BB5FD89521FECC2A00B5F1A8 /* YXFindFootTableViewCell.xib in Resources */,
 				29530FD41F60F1BB00D24E05 /* photo_sample_01.png in Resources */,
 				29629EEA1F78E49D002CFCBD /* back_icon@3x.png in Resources */,
 				BBD2C94921E0F67800350DCD /* ImageSelectedSmallOn@2x.png in Resources */,
@@ -5304,7 +5329,6 @@
 				29629EF11F78E669002CFCBD /* XLJSHandler.m in Sources */,
 				29AD6C6B1ED41E2100B0879C /* UserManager.m in Sources */,
 				BBDA2C6821EB308100EDCCFF /* SDTimeLineRefreshHeader.m in Sources */,
-				BB5FD89421FECC2A00B5F1A8 /* YXFindFootTableViewCell.m in Sources */,
 				29AD6C671ED41BA100B0879C /* AdPageView.m in Sources */,
 				BB9413DB21F8B602007E800A /* IQTitleBarButtonItem.m in Sources */,
 				BBD2C95F21E10A9300350DCD /* YXPublishImageTableViewCell.m in Sources */,
@@ -5334,6 +5358,7 @@
 				BBD2C8FE21E0F67700350DCD /* TZProgressView.m in Sources */,
 				BBD2C90221E0F67700350DCD /* TZImagePickerController.m in Sources */,
 				BBADE4C521F801080011E5FF /* PictureModel.m in Sources */,
+				BBD1C77422166AD40063002F /* YXMineAndFindBaseViewController.m in Sources */,
 				BBCC4AC021E86EC200493F40 /* YXHomeXueJiaFootTableViewCell.m in Sources */,
 				296DEA731F5D50D100C6FD00 /* SDCollectionViewCell.m in Sources */,
 				BBDA2EE621EC84C600EDCCFF /* UIView+CBExtension.m in Sources */,
@@ -5521,6 +5546,7 @@
 				29AD6C5A1ED3E28800B0879C /* HeaderModel.m in Sources */,
 				BB928F5721FABCC30090A044 /* YXMinePingLunViewController.m in Sources */,
 				BBD30CE121E5CD79000D3244 /* YXMineGuanZhuViewController.m in Sources */,
+				BBD1C777221670CD0063002F /* YXMineAndFindBaseTableViewCell.m in Sources */,
 				BB95F63F21E6E0880071A369 /* XHStarRateView.m in Sources */,
 				BBD2C9B021E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.m in Sources */,
 				BBDA2CFD21EB30BF00EDCCFF /* SDBaseTableViewController.m in Sources */,

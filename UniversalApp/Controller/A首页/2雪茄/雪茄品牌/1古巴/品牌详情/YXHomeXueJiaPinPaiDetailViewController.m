@@ -141,7 +141,7 @@
             YXHomeXueJiaPinPaiLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiLastDetailViewController"];
             VC.startDic = [NSMutableDictionary dictionaryWithDictionary:self.dicData[@"data"][indexPath.row]];
             [VC.startDic setValue:self.title forKey:@"cigar_brand"];
-            YX_MANAGER.isHaveIcon = NO;
+            
             [self.navigationController pushViewController:VC animated:YES];
         }
 

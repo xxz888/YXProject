@@ -26,10 +26,10 @@
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvS-6K-4kq">
-                        <rect key="frame" x="155" y="200" width="25" height="25"/>
+                        <rect key="frame" x="160" y="200" width="20" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="25" id="Ayf-2f-lcd"/>
-                            <constraint firstAttribute="width" constant="25" id="Wa0-rk-jRc"/>
+                            <constraint firstAttribute="height" constant="20" id="Ayf-2f-lcd"/>
+                            <constraint firstAttribute="width" constant="20" id="Wa0-rk-jRc"/>
                         </constraints>
                         <state key="normal" backgroundImage="UnZan"/>
                         <connections>
@@ -37,13 +37,13 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6bg-It-3lX">
-                        <rect key="frame" x="5" y="200" width="145" height="25"/>
+                        <rect key="frame" x="5" y="200" width="150" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TWl-Gc-SwD">
-                        <rect key="frame" x="5" y="235" width="175" height="2"/>
+                        <rect key="frame" x="5" y="230" width="175" height="2"/>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="2" id="7Vn-Qi-fPY"/>
@@ -73,10 +73,10 @@
                 <outlet property="midImageView" destination="uU5-iU-16V" id="11b-ya-3cW"/>
                 <outlet property="titleLbl" destination="6bg-It-3lX" id="b5M-6E-NzB"/>
             </connections>
-            <point key="canvasLocation" x="325.60000000000002" y="69.265367316341838"/>
+            <point key="canvasLocation" x="76" y="67"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="UnZan" width="32" height="32"/>
+        <image name="UnZan" width="64" height="64"/>
     </resources>
 </document>

@@ -18,7 +18,6 @@
 
 #import "YXFindImageTableViewCell.h"
 #import "YXFindQuestionTableViewCell.h"
-#import "YXFindFootTableViewCell.h"
 #import "YXHomeXueJiaQuestionDetailViewController.h"
 #import "Moment.h"
 #import "Comment.h"
@@ -75,7 +74,7 @@
     _type = @"1";
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindImageTableViewCell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindQuestionTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindQuestionTableViewCell"];
-    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindFootTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindFootTableViewCell"];
+    
 }
 #pragma mark ========== 晒图点赞 ==========
 -(void)requestDianZanAction:(NSIndexPath *)indexPath{
@@ -159,7 +158,7 @@
     }else if (tag == 3){
         return [self customQuestionData:dic indexPath:indexPath];
     }else if (tag == 4){
-        return [self cunstomFootData:dic indexPath:indexPath];
+        return [self customImageData:dic indexPath:indexPath];
     }else{
         return nil;
     }
@@ -190,31 +189,12 @@
     [cell setCellValue:dic];
     return cell;
 }
-#pragma mark ========== 足迹 ==========
--(YXFindFootTableViewCell *)cunstomFootData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath{
-    YXFindFootTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFindFootTableViewCell" forIndexPath:indexPath];
-    cell.titleImageView.tag = indexPath.row;
-    [cell setCellValue:dic];
-    
-    kWeakSelf(self);
-    cell.clickImageBlock = ^(NSInteger tag) {
-        [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
-    };
-    cell.jumpDetailVC = ^(YXFindFootTableViewCell * cell) {
-        NSIndexPath * indexPath1 = [weakself.yxTableView indexPathForCell:cell];
-        [weakself commonDidVC:indexPath1];
-    };
-    cell.zanblock = ^(YXFindFootTableViewCell * cell) {
-        NSIndexPath * indexPath1 = [weakself.yxTableView indexPathForCell:cell];
-        [weakself requestDianZan_ZuJI_Action:indexPath1];
-    };
-    return cell;
-}
+
 -(void)commonDidVC:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.row];
     YXMineFootDetailViewController * VC = [[YXMineFootDetailViewController alloc]init];
     VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-    YX_MANAGER.isHaveIcon = NO;
+    
     [self.navigationController pushViewController:VC animated:YES];
 }
 #pragma mark ========== 点击头像 ==========
@@ -248,10 +228,10 @@
     if (tag == 1) {//晒图
         YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
         VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-        YX_MANAGER.isHaveIcon = NO;
+        
         [self.navigationController pushViewController:VC animated:YES];
     }else if (tag == 2){//文章
-        YX_MANAGER.isHaveIcon = NO;
+        
         YXMineEssayDetailViewController * VC = [[YXMineEssayDetailViewController alloc]init];
         VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
         [self.navigationController pushViewController:VC animated:YES];
@@ -259,7 +239,7 @@
         UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
         YXHomeXueJiaQuestionDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaQuestionDetailViewController"];
         VC.moment = [self setTestInfo:dic];
-        YX_MANAGER.isHaveIcon = YES;
+        
         [self.navigationController pushViewController:VC animated:YES];
     }else if (tag == 4){//足迹
         [self commonDidVC:indexPath];

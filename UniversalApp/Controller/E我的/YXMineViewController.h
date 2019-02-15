@@ -29,5 +29,6 @@
 @property (nonatomic,copy) NSString * userId;
 
 @property (weak, nonatomic) IBOutlet UIView *sliderView;
+@property (weak, nonatomic) IBOutlet UIView *lineView;
 
 @end

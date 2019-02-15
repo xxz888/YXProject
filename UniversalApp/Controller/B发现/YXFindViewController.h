@@ -7,8 +7,6 @@
 //
 
 #import "RootViewController.h"
-
-@interface YXFindViewController : RootViewController
-@property (strong, nonatomic) UITableView *yxTableView;
--(void)tableviewCon;
+#import "YXMineAndFindBaseViewController.h"
+@interface YXFindViewController : YXMineAndFindBaseViewController
 @end

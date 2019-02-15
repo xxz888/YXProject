@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YXMineAndFindBaseTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface YXFindImageTableViewCell : UITableViewCell
+@interface YXFindImageTableViewCell : YXMineAndFindBaseTableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *titleImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *timeLbl;
@@ -35,6 +36,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) BOOL whereCome;
 //cell方法
 -(void)setCellValue:(NSDictionary *)dic whereCome:(BOOL)whereCome;
+
+
+@property (weak, nonatomic) IBOutlet UIButton *searchBtn;
 
 //回话 查看全部 添加评论    跳转详情
 typedef void(^jumpDetailVCBlock)(YXFindImageTableViewCell *);

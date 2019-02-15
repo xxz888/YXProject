@@ -15,6 +15,8 @@
 @property (nonatomic,copy) NSString * startId;
 // 正文
 @property (nonatomic,copy) NSString *text;
+// 正文
+@property (nonatomic,copy) NSString *detailText;
 //头像
 @property (nonatomic,copy) NSString *photo;
 

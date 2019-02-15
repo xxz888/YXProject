@@ -401,6 +401,7 @@
                 <outlet property="pl1NameLbl" destination="QXm-PO-djn" id="LcI-cP-Qtf"/>
                 <outlet property="pl2ContentLbl" destination="XKY-ml-Vsf" id="yzF-Vb-hbY"/>
                 <outlet property="pl2NameLbl" destination="ooG-SR-Fem" id="Noo-LJ-nP1"/>
+                <outlet property="searchBtn" destination="iAS-hf-7or" id="6Og-yL-c11"/>
                 <outlet property="shareCount" destination="pI2-G1-BTv" id="F92-xO-Eyc"/>
                 <outlet property="talkCount" destination="LBj-fj-bxs" id="7hE-we-rEM"/>
                 <outlet property="timeLbl" destination="aK7-i1-beD" id="Rbc-b2-W8w"/>
@@ -412,7 +413,7 @@
                 <outlet property="titleTagtextViewHeight" destination="n3g-8d-Kkq" id="zHc-9W-tLU"/>
                 <outlet property="zanCount" destination="P2L-o9-g7p" id="krH-31-oUl"/>
             </connections>
-            <point key="canvasLocation" x="-1688" y="23.388305847076463"/>
+            <point key="canvasLocation" x="-2357" y="31"/>
         </tableViewCell>
     </objects>
     <resources>

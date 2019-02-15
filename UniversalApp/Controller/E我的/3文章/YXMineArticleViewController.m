@@ -83,7 +83,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.row];
-    YX_MANAGER.isHaveIcon = NO;
+    
     YXMineEssayDetailViewController * VC = [[YXMineEssayDetailViewController alloc]init];
     VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
     [self.navigationController pushViewController:VC animated:YES];

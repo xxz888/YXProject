@@ -14,11 +14,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *titleImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *timeLbl;
-@property (weak, nonatomic) IBOutlet UILabel *detailLbl;
+@property (weak, nonatomic) IBOutlet UILabel *oneLbl;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView1;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView2;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView3;
 @property (weak, nonatomic) IBOutlet UIView *totalImage;
+@property (weak, nonatomic) IBOutlet UILabel *twoLbl;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *twoLblHeight;
 
 @end
 

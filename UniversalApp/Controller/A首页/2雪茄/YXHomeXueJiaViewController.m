@@ -155,7 +155,7 @@
         [self.navigationController pushViewController:VC animated:YES];
 
     }else if (tag == 4){
-        YXHomeXueJiaQuestionViewController *  VCCoustom = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaQuestionViewController"];
+        YXHomeXueJiaQuestionViewController * VCCoustom = [[YXHomeXueJiaQuestionViewController alloc]init];
         VCCoustom.whereCome = TYPE_XUEJIA_1;
         [self.navigationController pushViewController:VCCoustom animated:YES];
     }

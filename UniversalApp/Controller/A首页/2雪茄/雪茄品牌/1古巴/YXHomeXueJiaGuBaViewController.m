@@ -17,15 +17,23 @@
 @implementation YXHomeXueJiaGuBaViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.title = @"雪茄品牌";
     [self requestCigar_brand:@"1"];
 }
 -(void)viewDidLoad{
     [super viewDidLoad];
+    self.title = @"雪茄品牌";
+
+    UILabel *label = [[UILabel alloc]init];
+    label.textColor = KBlackColor;
+    label.font = [UIFont systemFontOfSize:14];
+    label.frame = CGRectMake(15, 10 , 100, 30);
+    label.text = @"热门推荐";
+    [self.view addSubview:label];
+    
     self.indexArray = [[NSMutableArray alloc]init];
     self.dataArray = [[NSMutableArray alloc]init];
     self.hotDataArray = [[NSMutableArray alloc]init];
-    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(5, 10, KScreenWidth-10, kScreenHeight-kTopHeight-kTabBarHeight) style:0];
+    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(5, 40, KScreenWidth-10, kScreenHeight-kTopHeight-kTabBarHeight - 30) style:0];
     [self.view addSubview:self.yxTableView];
     self.yxTableView.delegate = self;
     self.yxTableView.dataSource= self;
@@ -117,7 +125,6 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     YXHomeXueJiaPinPaiTableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     [self requestCigar_brand_details:cell.id indexPath:indexPath isHot:NO];
 }

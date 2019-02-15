@@ -166,11 +166,11 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     _iconView.sd_layout
     .leftSpaceToView(contentView, margin)
     .topSpaceToView(contentView, margin + 5)
-    .widthIs(40)
+    .widthIs(YX_MANAGER.isHaveIcon ? 0 :40)
     .heightIs(40);
     
     _nameLable.sd_layout
-    .leftSpaceToView( YX_MANAGER.isHaveIcon ? self.contentView : _iconView, margin)
+    .leftSpaceToView(YX_MANAGER.isHaveIcon ? contentView : _iconView, margin)
     .topEqualToView(_iconView)
     .heightIs(18);
     [_nameLable setSingleLineAutoResizeWithMaxWidth:200];
@@ -182,6 +182,12 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     .widthIs(110)
     .heightIs(30);
     
+    _contentLabel.sd_layout
+    .leftEqualToView(_nameLable)
+    .topSpaceToView(_nameLable, 5)
+    .rightSpaceToView(contentView, margin)
+    .autoHeightRatio(0);
+    /*
     if (YX_MANAGER.isHaveIcon) {
         _contentLabel.sd_layout
         .centerYEqualToView(_nameLable)
@@ -196,7 +202,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
         .rightSpaceToView(contentView, margin)
         .autoHeightRatio(0);
     }
-
+*/
     
     // morebutton的高度在setmodel里面设置
     _moreButton.sd_layout

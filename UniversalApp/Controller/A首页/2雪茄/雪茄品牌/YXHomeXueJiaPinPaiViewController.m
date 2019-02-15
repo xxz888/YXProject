@@ -54,30 +54,10 @@
     NSArray* names = self.whereCome ? @[@"古巴",@"非古"] : @[@"古巴",@"非古",@"我的关注"];
     NSArray* controllers = @[VC1,VC2,VC3];
     [self setSegmentControllersArray:controllers title:names defaultIndex:0 top:self.whereCome ? kTopHeight : kTopHeight view:self.view];
-    
 }
--(void)textField1TextChange:(UITextField *)tf{
-    [self clickSearchBar];
-}
-- (void)clickSearchBar{
-    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"PYExampleSearchPlaceholderText", @"搜索编程语言") didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
-        [searchViewController.navigationController pushViewController:[[PYTempViewController alloc] init] animated:YES];
-    }];
-    searchViewController.hotSearchStyle = PYHotSearchStyleColorfulTag;
-    searchViewController.searchHistoryStyle = 1;
-    searchViewController.delegate = self;
-    searchViewController.searchViewControllerShowMode = PYSearchViewControllerShowModePush;
-    [self.navigationController pushViewController:searchViewController animated:YES];
-}
-
 -(void)clickBackAction{
     [self finishPublish];
 }
-
-
-
-
 #pragma mark - 完成发布
 //完成发布
 -(void)finishPublish{

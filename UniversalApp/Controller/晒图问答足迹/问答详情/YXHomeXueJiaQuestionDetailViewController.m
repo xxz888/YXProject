@@ -198,28 +198,30 @@ static CGFloat textFieldH = 0;
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeQuestionDetailHeaderView" owner:self options:nil];
     self.headerView = [nib objectAtIndex:0];
     self.headerView.frame = CGRectMake(0, 0, KScreenWidth, !AxcAE_IsiPhoneX ? 300 : 220);
-    NSString * str = [(NSMutableString *)self.moment.photo replaceAll:@" " target:@"%20"];
-    [self.headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    
     self.headerView.titleImageView.layer.masksToBounds = YES;
     self.headerView.titleImageView.layer.cornerRadius = self.headerView.titleImageView.frame.size.width / 2.0;
-    
-    self.headerView.titleLbl.text = self.moment.userName;
-    self.headerView.timeLbl.text = [ShareManager timestampSwitchTime:self.moment.time andFormatter:@""];
-    self.headerView.detailLbl.text = self.moment.text;
-    
-    NSString * str0 = [(NSMutableString *)self.moment.imageListArray[0] replaceAll:@" " target:@"%20"];
-    NSString * str1 = [(NSMutableString *)self.moment.imageListArray[1] replaceAll:@" " target:@"%20"];
-    NSString * str2 = [(NSMutableString *)self.moment.imageListArray[2] replaceAll:@" " target:@"%20"];
+
 
     // 图片区
     _imageListView = [[MMImageListView alloc] initWithFrame:CGRectZero];
     [self.headerView.totalImage addSubview:_imageListView];
+    
+    self.headerView.twoLbl.text = self.moment.detailText;
+    self.headerView.twoLblHeight.constant = [self cellAutoHeight:self.moment.detailText].height;
+    NSString * str = [(NSMutableString *)self.moment.photo replaceAll:@" " target:@"%20"];
+    [self.headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    self.headerView.titleLbl.text = self.moment.userName;
+    self.headerView.timeLbl.text = [ShareManager updateTimeForRow:self.moment.time];
+    self.headerView.oneLbl.text = self.moment.text;
+    NSString * str0 = [(NSMutableString *)self.moment.imageListArray[0] replaceAll:@" " target:@"%20"];
+    NSString * str1 = [(NSMutableString *)self.moment.imageListArray[1] replaceAll:@" " target:@"%20"];
+    NSString * str2 = [(NSMutableString *)self.moment.imageListArray[2] replaceAll:@" " target:@"%20"];
     Moment * moment = [[Moment alloc]init];
     moment.imageListArray = [NSMutableArray arrayWithObjects:str0,str1, str2, nil];
     moment.singleWidth = 500;
     moment.singleHeight = 315;
     moment.fileCount = 3;
-    // 图片
     _imageListView.moment = moment;
     if (moment.fileCount > 0) {
         _imageListView.origin = CGPointMake(0, 0);
@@ -227,7 +229,15 @@ static CGFloat textFieldH = 0;
     return self.headerView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return  200;
+    
+    return  230 + [self cellAutoHeight:self.moment.detailText].height;;
+}
+-(CGSize)cellAutoHeight:(NSString *)string {
+    //展开后得高度(计算出文本内容的高度+固定控件的高度)
+    NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
+    NSStringDrawingOptions option = (NSStringDrawingOptions)(NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading);
+    CGSize size = [string boundingRectWithSize:CGSizeMake(KScreenWidth- 20, 100000) options:option attributes:attribute context:nil].size;
+    return size;
 }
 #pragma mark ========== 请求子回答列表 ==========
 
@@ -295,6 +305,7 @@ static CGFloat textFieldH = 0;
     for (int i = 0; i < formalArray.count; i++) {
         SDTimeLineCellModel *model = [SDTimeLineCellModel new];
         NSMutableDictionary * pageDic = [[NSMutableDictionary alloc]init];
+        model.iconName = formalArray[i][@"user_photo"];
         model.name = [formalArray[i][@"user_name"] append:@":"];
         model.msgContent = formalArray[i][@"answer"];
         model.id =  kGetString(formalArray[i][@"id"]);
@@ -331,7 +342,6 @@ static CGFloat textFieldH = 0;
     SDTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:kTimeLineTableViewCellId];
     cell.indexPath = indexPath;
     
-    
     __weak typeof(self) weakSelf = self;
     if (!cell.moreButtonClickedBlock) {
         [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {
@@ -366,15 +376,15 @@ static CGFloat textFieldH = 0;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     // >>>>>>>>>>>>>>>>>>>>> * cell自适应 * >>>>>>>>>>>>>>>>>>>>>>>>
-    return 30;
-    /*
+//    return 30;
+    
     SDTimeLineCellModel * model = self.dataArray[indexPath.row];
     if (model.commentItemsArray.count == 0 ) {
         
-        return [self.yxTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[SDTimeLineCell class] contentViewWidth:[self cellContentViewWith]] - 20;
+        return [self.yxTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[SDTimeLineCell class] contentViewWidth:[self cellContentViewWith]] - 40;
     }
-    return [self.yxTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[SDTimeLineCell class] contentViewWidth:[self cellContentViewWith]] + 20;
-     */
+    return [self.yxTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[SDTimeLineCell class] contentViewWidth:[self cellContentViewWith]];
+    
 }
 - (CGFloat)cellContentViewWith{
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
