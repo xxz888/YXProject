@@ -26,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"首页";
+
     UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
 //    if (!TuiJianVC) {
 //        TuiJianVC = [[YXHomeTuiJianViewController alloc]init];

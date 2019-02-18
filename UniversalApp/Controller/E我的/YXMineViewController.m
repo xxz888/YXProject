@@ -87,7 +87,7 @@
     
     YXMineFootViewController * footVC = [[YXMineFootViewController alloc]init];
     footVC.userId = self.userId;
-    [self setSegmentControllersArray:@[AllVC,imageVC,footVC] title:@[@"全部",@"晒图",@"足迹"] defaultIndex:0 top:160 view:self.view];
+    [self setSegmentControllersArray:@[AllVC,imageVC,footVC] title:@[@"全部",@"晒图",@"足迹"] defaultIndex:0 top:140 view:self.view];
 }
 #pragma mark ========== 数据 ==========
 -(void)setViewData{

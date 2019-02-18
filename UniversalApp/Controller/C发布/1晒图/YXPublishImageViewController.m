@@ -177,6 +177,7 @@ static NSString *secretKey = @"官网获取";
 #pragma mark ========== 发布1 和 存草稿0  ==========
 - (IBAction)fabuAction:(UIButton *)btn {
     kWeakSelf(self);
+    [QMUITips showLoadingInView:self.view];
     //先上传到七牛云图片  再提交服务器
     [QiniuLoad uploadImageToQNFilePath:_photoImageList success:^(NSString *reslut) {
         NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];

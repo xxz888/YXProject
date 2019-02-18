@@ -393,9 +393,9 @@
     ZXSegmentController* segmentController = [[ZXSegmentController alloc] initWithControllers:controllers
                                                                                withTitleNames:titlesArray
                                                                              withDefaultIndex:index
-                                                                               withTitleColor:[UIColor grayColor]
-                                                                       withTitleSelectedColor:YXRGBAColor(88, 88, 88)
-                                                                              withSliderColor:YXRGBAColor(88, 88, 88)
+                                                                               withTitleColor:YXRGBAColor(129, 129, 129)
+                                                                       withTitleSelectedColor:KBlackColor
+                                                                              withSliderColor:KBlackColor
                                             ];
     kWeakSelf(self);
     [self addChildViewController:(self.segmentController = segmentController)];

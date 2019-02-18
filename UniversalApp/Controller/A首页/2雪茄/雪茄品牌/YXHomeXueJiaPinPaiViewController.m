@@ -31,30 +31,24 @@
         [self addNavigationItemWithImageNames:@[@"返回键"] isLeft:YES target:self action:@selector(clickBackAction) tags:nil];
     }else{
         self.title = @"雪茄品牌";
-        //[self setNavSearchView];
     }
     [self setInitCollection];
 }
 -(void)setInitCollection{
     UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-    if (!VC1) {
         VC1 = [[YXHomeXueJiaGuBaViewController alloc]init];
         VC1.whereCome = self.whereCome;
-    }
-    if (!VC2) {
+
         VC2 = [[YXHomeXueJiaFeiGuViewController alloc]init];
         VC2.whereCome = self.whereCome;
-    }
-    if (!VC3) {
+ 
         VC3 = [[YXHomeXueJiaMyGuanZhuViewController alloc]init];
-    }
-    if (!VC4) {
+
         VC4 = [stroryBoard instantiateViewControllerWithIdentifier:@"YXHomeXueJiaGuBaViewController"];
-    }
     //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
     NSArray* names = self.whereCome ? @[@"古巴",@"非古"] : @[@"古巴",@"非古",@"我的关注"];
     NSArray* controllers = @[VC1,VC2,VC3];
-    [self setSegmentControllersArray:controllers title:names defaultIndex:0 top:self.whereCome ? kTopHeight : kTopHeight view:self.view];
+    [self setSegmentControllersArray:controllers title:names defaultIndex:0 top: kTopHeight view:self.view];
 }
 -(void)clickBackAction{
     [self finishPublish];

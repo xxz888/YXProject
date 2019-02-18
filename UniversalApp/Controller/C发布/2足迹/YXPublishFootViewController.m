@@ -75,6 +75,7 @@
 #pragma mark ========== 发布 ==========
 - (IBAction)fabuAction:(id)sender {
     kWeakSelf(self);
+    [QMUITips showLoadingInView:self.view];
     //先上传到七牛云图片  再提交服务器
     [QiniuLoad uploadImageToQNFilePath:_photoImageList success:^(NSString *reslut) {
         NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
@@ -117,14 +118,11 @@
         
         //发布按钮
         [YX_MANAGER requestPost_track:dic success:^(id object) {
-            if ([object[@"status"] integerValue] == 1) {
                 [QMUITips showSucceed:object[@"message"] inView:weakself.view hideAfterDelay:2];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [weakself.navigationController popViewControllerAnimated:YES];
                 });
-            }else{
-                [QMUITips showError:@"发布失败,请稍后重试" inView:weakself.view hideAfterDelay:2];
-            }
+    
         }];
     } failure:^(NSString *error) {
         NSLog(@"%@",error);

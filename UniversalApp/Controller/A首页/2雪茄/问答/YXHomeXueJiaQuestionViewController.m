@@ -26,8 +26,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
      self.title = @"问答";
-     self.yxTableView.frame = CGRectMake(0, kTopHeight, k_screen_width, k_screen_height-kTopHeight);
+    UIButton * btn = [UIButton buttonWithType:0];
+    [btn setTitle:@"发布提问" forState:UIControlStateNormal];
+    btn.backgroundColor = YXRGBAColor(38, 38, 38);
+    btn.tintColor = YXRGBAColor(145, 123, 67);
+    btn.frame = CGRectMake(0, KScreenHeight-50, KScreenWidth,   50);
+    [btn addTarget:self action:@selector(pushTiWen) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+     self.yxTableView.frame = CGRectMake(0, kTopHeight, k_screen_width, k_screen_height-kTopHeight-50);
      [self requestQuestion];
+}
+-(void)pushTiWen{
+    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+    YXHomeQuestionFaBuViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeQuestionFaBuViewController"];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 -(void)headerRereshing{
     [super headerRereshing];

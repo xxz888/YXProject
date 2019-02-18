@@ -40,7 +40,7 @@
 -(CGSize)intrinsicContentSize
 {
 
-        return CGSizeMake(KScreenWidth-20, 40);
+        return CGSizeMake(KScreenWidth-40, 40);
 
 }
 - (IBAction)cancleAction:(id)sender{

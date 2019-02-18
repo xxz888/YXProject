@@ -32,6 +32,7 @@
 }
 -(void)setOtherAction{
     self.title = @"发现";
+    self.isShowLiftBack = NO;
     self.typeArray = [[NSMutableArray alloc]init];
     self.navigationItem.rightBarButtonItem = nil;
     self.yxTableView.frame = CGRectMake(0, kTopHeight + 40, KScreenWidth, KScreenHeight - kTopHeight-TabBarHeight - 40);

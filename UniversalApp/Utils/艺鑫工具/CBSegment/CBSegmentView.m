@@ -48,7 +48,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.bounces = NO;
+        self.bounces = YES;
         self.showsHorizontalScrollIndicator = NO;
         self.showsVerticalScrollIndicator = NO;
 //        self.layer.borderColor = CBColorA(204, 204, 204, 1).CGColor;
@@ -102,7 +102,7 @@
         
         UIView *slider = [[UIView alloc]init];
         slider.frame = CGRectMake(0, _HeaderH-3, 0, 2);
-        slider.backgroundColor = _titleSelectedColor;
+        slider.backgroundColor = KBlackColor;
         [self addSubview:slider];
         self.slider = slider;
         
@@ -110,7 +110,7 @@
     }
     
     [self.titleWidthArray removeAllObjects];
-    CGFloat totalWidth = 5;
+    CGFloat totalWidth = 15;
     CGFloat btnSpace = 15;
     for (NSInteger i = 0; i<titleArray.count; i++) {
 //        cache title width

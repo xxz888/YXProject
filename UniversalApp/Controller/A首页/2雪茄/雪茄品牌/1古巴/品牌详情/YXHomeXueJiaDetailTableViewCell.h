@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *zanCountLbl;
 
 
+@property (weak, nonatomic) IBOutlet UIView *lineView;
 @property (nonatomic,assign) BOOL whereCome;//yes为足迹进来 no为正常进入  足迹进来
 @end
 

@@ -108,7 +108,7 @@
         YXHomeXueJiaDetailTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaDetailTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle =UITableViewCellSelectionStyleNone;
         cell.delegate = self;
-
+        
         NSString * url = [cellData[@"photo_list"] count] > 0 ? cellData[@"photo_list"][0][@"photo_url"] : @"";
         NSString * str = [(NSMutableString *)url replaceAll:@" " target:@"%20"];
         [cell.section2ImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
@@ -122,9 +122,12 @@
         cell.section2Lbl6.text = [NSString stringWithFormat:@"%@/盒(%@支)",cellData[@"price_box_china"],cellData[@"box_size"]];
         cell.cigar_id = kGetString(cellData[@"id"]);
         //yes为足迹进来 no为正常进入  足迹进来
-        cell.stackView1.hidden = cell.likeBtn.hidden = cell.zanCountLbl.hidden = self.whereCome;
+        cell.stackView1.hidden = cell.likeBtn.hidden = cell.zanCountLbl.hidden = cell.lineView.hidden = self.whereCome;
         [cell.likeBtn setBackgroundImage:[cellData[@"is_collect"] integerValue] == 1  || !cellData[@"is_collect"] ? _selImage:_unImage forState:UIControlStateNormal];
         cell.zanCountLbl.text = kGetString(cellData[@"collect_number"]);
+        if (self.whereCome) {
+            tableView.separatorStyle = 0;
+        }
         return cell;
     }
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -148,7 +151,6 @@
              YXPublishFootViewController * footVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishFootViewController"];
             footVC.cigar_id = kGetString(self.dicData[@"data"][indexPath.row][@"id"]);
             [self.navigationController pushViewController:footVC animated:YES];
-
         }else{
             UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
             YXHomeXueJiaPinPaiLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiLastDetailViewController"];

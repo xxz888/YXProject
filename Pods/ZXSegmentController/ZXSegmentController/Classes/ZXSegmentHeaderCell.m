@@ -17,6 +17,13 @@
     if ( self = [super initWithFrame:frame] ){
         UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button addTarget:self action:@selector(didClickBtn:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        UIView *sliderAll = [[UIView alloc]init];
+        sliderAll.frame = CGRectMake(0, 39, 900, 2);
+        sliderAll.backgroundColor = [UIColor colorWithR:239 G:239 B:239];
+        [self addSubview:sliderAll];
+        
         //滑块view
         UIView* sliderView = [[UIView alloc] init];
 #pragma mark - 标记：滑块背景色
@@ -64,10 +71,10 @@
     }];
     
     [_sliderView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.button.mas_bottom).offset(-6);
+        make.top.equalTo(self.button.mas_bottom).offset(-2);
         make.centerX.mas_equalTo(0);
         make.width.mas_equalTo(0);
-        make.height.mas_equalTo(3);
+        make.height.mas_equalTo(2);
     }];
 }
 
@@ -99,9 +106,9 @@
         make.width.mas_equalTo([self caculateSliderViewWidth]*0.6);
     }];
     
-    [UIView animateWithDuration:0.25 animations:^{
-        [self layoutIfNeeded];
-    }];
+//    [UIView animateWithDuration:0.25 animations:^{
+//        [self layoutIfNeeded];
+//    }];
 }
 
 //滑块消失
@@ -110,9 +117,9 @@
         make.width.mas_equalTo(0);
     }];
     
-    [UIView animateWithDuration:0.25 animations:^{
-        [self layoutIfNeeded];
-    }];
+//    [UIView animateWithDuration:0.25 animations:^{
+//        [self layoutIfNeeded];
+//    }];
 }
 
 //计算滑块所需要的长度（title文字的长度）

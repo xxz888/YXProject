@@ -17,9 +17,12 @@
     NSString * strURl = [API_ROOT_URL_HTTP_FORMAL stringByAppendingString:pi];
     [[self commonAction] POST:strURl  parameters:parmeters progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [QMUITips hideAllTips];
         [weakself setCommonRespone:sucess pi:pi responseObject:responseObject];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [QMUITips hideAllTips];
         failure(error);
+
     }];
 }
 + (void)httpRequestGetPi:(NSString *)pi sucess:(SucessBlock)sucess failure:(FailureBlock)failure{
@@ -27,8 +30,10 @@
     NSString * url = [API_ROOT_URL_HTTP_FORMAL append:pi];
     [[self commonAction] GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [QMUITips hideAllTips];
         [weakself setCommonRespone:sucess pi:pi responseObject:responseObject];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [QMUITips hideAllTips];
 //        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         NSLog(@"%@",error);
         
@@ -45,6 +50,8 @@
     } else {
         view = [[UIApplication sharedApplication].windows lastObject];
     }
+    [QMUITips hideAllTips];
+
     //返回情况分为两种情况，第一种是NSInlineData 字符串类型， 一种是json字典
     if ([obj isKindOfClass:[NSArray class]]) {
         sucess(obj);
@@ -54,6 +61,9 @@
                 sucess(obj);
             }else{
                 [QMUITips showError:obj[@"message"] inView:view hideAfterDelay:1];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [QMUITips hideAllTips];
+                });
                 return;
             }
         }else{
