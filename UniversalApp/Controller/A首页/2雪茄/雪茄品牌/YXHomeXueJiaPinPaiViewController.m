@@ -24,6 +24,7 @@
 @end
 @implementation YXHomeXueJiaPinPaiViewController
 -(void)viewDidLoad{
+    [super viewDidLoad];
     //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
     if (self.whereCome) {
         self.title = @"请选择品牌";

@@ -106,8 +106,10 @@
 
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
-    [self clickSearchBar];
-    return YES;
+//    [self clickSearchBar];
+    [QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    return NO;
 }
 - (void)clickSearchBar{
     NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];

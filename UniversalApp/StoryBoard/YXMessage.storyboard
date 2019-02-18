@@ -16,7 +16,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VLc-BQ-Lhc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.94901960784313721" green="0.95686274509803915" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
                             <tableViewSection id="04Y-dp-5Vg">
                                 <cells>
@@ -148,15 +148,15 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="VrM-YN-9Ka">
-                                                    <rect key="frame" x="50" y="13" width="325" height="24"/>
+                                                    <rect key="frame" x="50" y="5" width="325" height="40"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="通知消息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iA-AN-EYz">
-                                                            <rect key="frame" x="0.0" y="0.0" width="325" height="12"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="325" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="没有消息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebT-sq-RgR">
-                                                            <rect key="frame" x="0.0" y="12" width="325" height="12"/>
+                                                            <rect key="frame" x="0.0" y="20" width="325" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -170,7 +170,7 @@
                                                 <constraint firstItem="4fh-AK-oPI" firstAttribute="leading" secondItem="j3j-cI-WFv" secondAttribute="leading" constant="20" id="Ffk-Jl-W1s"/>
                                                 <constraint firstAttribute="trailing" secondItem="VrM-YN-9Ka" secondAttribute="trailing" id="ZCl-Jj-WKx"/>
                                                 <constraint firstItem="VrM-YN-9Ka" firstAttribute="centerY" secondItem="4fh-AK-oPI" secondAttribute="centerY" id="bJ8-38-kRP"/>
-                                                <constraint firstItem="VrM-YN-9Ka" firstAttribute="height" secondItem="4fh-AK-oPI" secondAttribute="height" multiplier="1.2" id="uei-TV-Ljf"/>
+                                                <constraint firstItem="VrM-YN-9Ka" firstAttribute="height" secondItem="4fh-AK-oPI" secondAttribute="height" multiplier="2" id="uei-TV-Ljf"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

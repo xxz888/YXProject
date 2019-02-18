@@ -14,6 +14,9 @@
 @interface YXHomeXueJiaPinPaiDetailViewController()<ClickLikeBtnDelegate>{
     UIImage * _selImage;
     UIImage * _unImage;
+    CGFloat section0Height;
+    CGFloat tagHeight;
+    CGFloat stringHeight;
 }
 
 @end
@@ -21,12 +24,23 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    
+    tagHeight = 430;
+    
+    NSDictionary * cellData = self.dicStartData;
+    stringHeight = [ShareManager getSpaceLabelHeight:kGetString(cellData[@"intro"]) withFont:[UIFont systemFontOfSize:14] withWidth:KScreenWidth-20];
+    
+    section0Height = stringHeight  > 120 ? tagHeight : tagHeight - 120 + stringHeight ;
 
     [self initData];
+    
+    
+  
 }
 -(void)initData{
-    
-    self.navigationController.navigationBar.topItem.title = @"";
+    NSDictionary * cellData = self.dicStartData;
+    self.textViewHeight.constant = stringHeight  > 120 ? 120 : stringHeight ;
+
     self.tableView.estimatedRowHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
@@ -40,7 +54,6 @@
     _selImage = [UIImage imageNamed:@"Zan"];
     _unImage = [UIImage imageNamed:@"UnZan"];
 
-    NSDictionary * cellData = self.dicStartData;
     self.title = cellData[@"cigar_brand"];
     
     
@@ -101,9 +114,9 @@
         [cell.section2ImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         cell.whereCome = self.whereCome;
         cell.section2TitleLbl.text = cellData[@"cigar_name"];
-        cell.section2Lbl1.text = kGetString(cellData[@"ring_gauge"]) ;
-        cell.section2Lbl2.text = kGetString(cellData[@"length"]);
-        cell.section2Lbl3.text = kGetString(cellData[@"shape"]);
+        cell.section2Lbl1.text = [kGetString(cellData[@"ring_gauge"]) concate:@"环径:"] ;
+        cell.section2Lbl2.text = [kGetString(cellData[@"length"]) concate:@"长度:"];
+        cell.section2Lbl3.text = [kGetString(cellData[@"shape"]) concate:@"形状:"];
         cell.section2Lbl4.text = [kGetString(cellData[@"price_box_china"]) append:@"元"];
         cell.section2Lbl5.text = [kGetString(cellData[@"price_single_china"]) append:@"元/支"];
         cell.section2Lbl6.text = [NSString stringWithFormat:@"%@/盒(%@支)",cellData[@"price_box_china"],cellData[@"box_size"]];
@@ -117,13 +130,13 @@
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-  
-    if (indexPath.section == 1) {
+    if (indexPath.section == 0) {
+        //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
+        return self.whereCome ? 0 : section0Height;
+    }else{
         //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
         return self.whereCome ? 130 : 185;
     }
-    //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
-    return self.whereCome ? 0 : [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
@@ -185,4 +198,16 @@
     }];
 }
 
+- (IBAction)openAction:(id)sender {
+    if ([self.openBtn.titleLabel.text isEqualToString:@"↓ 展开"]) {
+        self.textViewHeight.constant =  stringHeight ;
+        section0Height =  tagHeight - 120 + stringHeight ;
+        [self.openBtn setTitle:@"↑ 收起" forState:UIControlStateNormal];
+    }else{
+        self.textViewHeight.constant = stringHeight  > 120 ? 120 : stringHeight ;
+        section0Height = stringHeight  > 120 ? tagHeight : tagHeight - 120 + stringHeight ;
+        [self.openBtn setTitle:@"↓ 展开" forState:UIControlStateNormal];
+    }
+    [self.tableView reloadData];
+}
 @end

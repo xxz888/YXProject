@@ -44,29 +44,9 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.requestPage = 1;
     
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
     
-//    self.navigationController.navigationBar.topItem.title = @"";
-
-    id target = self.navigationController.interactivePopGestureRecognizer.delegate;
-    
-    // handleNavigationTransition:为系统私有API,即系统自带侧滑手势的回调方法，我们在自己的手势上直接用它的回调方法
-    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:target action:@selector(handleNavigationTransition:)];
-    panGesture.delegate = self; // 设置手势代理，拦截手势触发
-    [self.view addGestureRecognizer:panGesture];
-    
-    // 一定要禁止系统自带的滑动手势
-    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-}
-// 什么时候调用，每次触发手势之前都会询问下代理方法，是否触发
-// 作用：拦截手势触发
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
-    // 当当前控制器是根控制器时，不可以侧滑返回，所以不能使其触发手势
-    if(self.navigationController.childViewControllers.count == 1)
-    {
-        return NO;
-    }
-    
-    return YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -397,7 +377,7 @@
     [self.navigationItem.titleView sizeToFit];
     self.navigationItem.titleView = searchHeaderView;
     UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:(UIBarButtonItemStyleDone) target:self action:@selector(cancleAction)];
-    [rightitem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:15],NSFontAttributeName,KDarkGaryColor,NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
+    [rightitem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:13],NSFontAttributeName,KDarkGaryColor,NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = rightitem;
 
 }

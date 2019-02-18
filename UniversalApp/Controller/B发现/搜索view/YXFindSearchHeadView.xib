@@ -20,7 +20,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
                     <subviews>
                         <searchBar contentMode="redraw" placeholder="搜索" translatesAutoresizingMaskIntoConstraints="NO" id="f0K-B3-5RC">
-                            <rect key="frame" x="0.0" y="18" width="375" height="34"/>
+                            <rect key="frame" x="0.0" y="9" width="375" height="34"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="0rH-YA-P81"/>
@@ -33,7 +33,7 @@
                     <constraints>
                         <constraint firstItem="f0K-B3-5RC" firstAttribute="leading" secondItem="7R4-GF-iRr" secondAttribute="leading" id="AyM-gK-1Pw"/>
                         <constraint firstAttribute="trailing" secondItem="f0K-B3-5RC" secondAttribute="trailing" id="QWq-VG-IEH"/>
-                        <constraint firstAttribute="bottom" secondItem="f0K-B3-5RC" secondAttribute="bottom" id="h9i-qk-JZS"/>
+                        <constraint firstItem="f0K-B3-5RC" firstAttribute="centerY" secondItem="7R4-GF-iRr" secondAttribute="centerY" id="qRv-qC-9Yv"/>
                     </constraints>
                 </view>
             </subviews>

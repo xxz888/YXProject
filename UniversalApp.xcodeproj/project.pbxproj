@@ -300,6 +300,7 @@
 		BB928F9821FB5D290090A044 /* BRPickerView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BB928F9021FB5D280090A044 /* BRPickerView.bundle */; };
 		BB928F9921FB5D290090A044 /* BRAddressPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F9221FB5D280090A044 /* BRAddressPickerView.m */; };
 		BB928F9D21FBFFD40090A044 /* YXMineTongYongTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F9C21FBFFD40090A044 /* YXMineTongYongTableViewController.m */; };
+		BB93DC98221A4BEA0094BADC /* RootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB93DC97221A4BEA0094BADC /* RootTableViewController.m */; };
 		BB9413D921F8B602007E800A /* IQTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9413B821F8B602007E800A /* IQTextView.m */; };
 		BB9413DA21F8B602007E800A /* IQToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9413BC21F8B602007E800A /* IQToolbar.m */; };
 		BB9413DB21F8B602007E800A /* IQTitleBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9413BE21F8B602007E800A /* IQTitleBarButtonItem.m */; };
@@ -1085,6 +1086,8 @@
 		BB928F9221FB5D280090A044 /* BRAddressPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAddressPickerView.m; sourceTree = "<group>"; };
 		BB928F9B21FBFFD40090A044 /* YXMineTongYongTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineTongYongTableViewController.h; sourceTree = "<group>"; };
 		BB928F9C21FBFFD40090A044 /* YXMineTongYongTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineTongYongTableViewController.m; sourceTree = "<group>"; };
+		BB93DC96221A4BEA0094BADC /* RootTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootTableViewController.h; sourceTree = "<group>"; };
+		BB93DC97221A4BEA0094BADC /* RootTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootTableViewController.m; sourceTree = "<group>"; };
 		BB9413B821F8B602007E800A /* IQTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQTextView.m; sourceTree = "<group>"; };
 		BB9413B921F8B602007E800A /* IQTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQTextView.h; sourceTree = "<group>"; };
 		BB9413BB21F8B602007E800A /* IQUIView+IQKeyboardToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIView+IQKeyboardToolbar.h"; sourceTree = "<group>"; };
@@ -2009,6 +2012,7 @@
 		293D45E11ECD8B72007C64A9 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				BB93DC95221A4BD10094BADC /* RootTableViewController */,
 				290A98151F4ABEB9006BF882 /* BaseRequestApi */,
 				290A98181F4ABEB9006BF882 /* BaseCell */,
 				293D45FE1ECDA56A007C64A9 /* TabbarController */,
@@ -3078,6 +3082,15 @@
 				BB928F9C21FBFFD40090A044 /* YXMineTongYongTableViewController.m */,
 			);
 			path = "通用";
+			sourceTree = "<group>";
+		};
+		BB93DC95221A4BD10094BADC /* RootTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BB93DC96221A4BEA0094BADC /* RootTableViewController.h */,
+				BB93DC97221A4BEA0094BADC /* RootTableViewController.m */,
+			);
+			path = RootTableViewController;
 			sourceTree = "<group>";
 		};
 		BB9413B621F8B602007E800A /* IQKeyboardManager */ = {
@@ -5468,6 +5481,7 @@
 				BBD2C90321E0F67700350DCD /* TZGifPhotoPreviewController.m in Sources */,
 				296DEA721F5D50D100C6FD00 /* TAPageControl.m in Sources */,
 				BB9413DD21F8B602007E800A /* IQUIView+IQKeyboardToolbar.m in Sources */,
+				BB93DC98221A4BEA0094BADC /* RootTableViewController.m in Sources */,
 				BB9413E421F8B602007E800A /* IQUIView+Hierarchy.m in Sources */,
 				BB928F9621FB5D290090A044 /* BRBaseView.m in Sources */,
 				29530FA61F60F0E800D24E05 /* DraggingCardViewController.m in Sources */,

@@ -24,13 +24,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pev-48-mzs">
-                    <rect key="frame" x="280.5" y="70" width="44.5" height="21"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                    <nil key="textColor"/>
+                    <rect key="frame" x="268.5" y="70" width="56.5" height="26.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <color key="textColor" red="0.69019607843137254" green="0.59215686274509804" blue="0.38823529411764707" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6dt-Zs-vHg">
-                    <rect key="frame" x="87.5" y="131" width="200" height="200"/>
+                    <rect key="frame" x="87.5" y="136.5" width="200" height="200"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="fF8-34-TEt"/>
@@ -38,25 +38,65 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7NU-DD-d8l">
-                    <rect key="frame" x="50" y="361" width="275" height="60"/>
+                    <rect key="frame" x="80" y="366.5" width="215" height="60"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="vbl-Sv-08T"/>
                     </constraints>
                 </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="圆" translatesAutoresizingMaskIntoConstraints="NO" id="OfP-0R-H7N" customClass="圆">
+                    <rect key="frame" x="25" y="381.5" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="6lz-Bf-qZd"/>
+                        <constraint firstAttribute="width" constant="30" id="Tte-KW-Oaz"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="圆圈" translatesAutoresizingMaskIntoConstraints="NO" id="qAz-So-xib" customClass="圆">
+                    <rect key="frame" x="32.5" y="389" width="15" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="15" id="Ljv-0l-LnR"/>
+                        <constraint firstAttribute="height" constant="15" id="osY-HT-cWo"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="圆" translatesAutoresizingMaskIntoConstraints="NO" id="pTd-r0-1Zg" customClass="圆">
+                    <rect key="frame" x="310" y="373.5" width="46" height="46"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="3hk-ja-76f"/>
+                        <constraint firstAttribute="width" constant="46" id="ES3-3v-UEm"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="圆圈" translatesAutoresizingMaskIntoConstraints="NO" id="Cnu-5H-9KJ" customClass="圆">
+                    <rect key="frame" x="321.5" y="385" width="23" height="23"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="23" id="sfv-fo-Z1m"/>
+                        <constraint firstAttribute="width" constant="23" id="trS-Nr-3rQ"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="7NU-DD-d8l" firstAttribute="top" secondItem="6dt-Zs-vHg" secondAttribute="bottom" constant="30" id="43T-Qi-g6K"/>
+                <constraint firstItem="OfP-0R-H7N" firstAttribute="centerY" secondItem="7NU-DD-d8l" secondAttribute="centerY" id="5ps-dI-eUE"/>
+                <constraint firstItem="pTd-r0-1Zg" firstAttribute="centerY" secondItem="7NU-DD-d8l" secondAttribute="centerY" id="78p-lG-W5m"/>
+                <constraint firstItem="Cnu-5H-9KJ" firstAttribute="centerX" secondItem="pTd-r0-1Zg" secondAttribute="centerX" id="Mbd-HE-zCG"/>
                 <constraint firstItem="6dt-Zs-vHg" firstAttribute="top" secondItem="Pev-48-mzs" secondAttribute="bottom" constant="40" id="Oun-pE-NCw"/>
+                <constraint firstItem="pTd-r0-1Zg" firstAttribute="leading" secondItem="7NU-DD-d8l" secondAttribute="trailing" constant="15" id="Out-uy-MCy"/>
                 <constraint firstItem="Pev-48-mzs" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="50" id="ROb-PR-Mfq"/>
+                <constraint firstItem="qAz-So-xib" firstAttribute="centerX" secondItem="OfP-0R-H7N" secondAttribute="centerX" id="RzY-A2-oGC"/>
                 <constraint firstItem="6dt-Zs-vHg" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="bxv-Mh-v8w"/>
-                <constraint firstItem="7NU-DD-d8l" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="50" id="cDe-L9-fBR"/>
+                <constraint firstItem="7NU-DD-d8l" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="80" id="cDe-L9-fBR"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Pev-48-mzs" secondAttribute="trailing" constant="50" id="eke-GM-I5X"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="7NU-DD-d8l" secondAttribute="trailing" constant="50" id="vCT-Lz-kJo"/>
+                <constraint firstItem="Cnu-5H-9KJ" firstAttribute="centerY" secondItem="pTd-r0-1Zg" secondAttribute="centerY" id="lvs-Pa-EHw"/>
+                <constraint firstItem="qAz-So-xib" firstAttribute="centerY" secondItem="7NU-DD-d8l" secondAttribute="centerY" id="qAa-nw-6ag"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="7NU-DD-d8l" secondAttribute="trailing" constant="80" id="vCT-Lz-kJo"/>
+                <constraint firstItem="7NU-DD-d8l" firstAttribute="leading" secondItem="OfP-0R-H7N" secondAttribute="trailing" constant="25" id="wIM-SE-y4Y"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="309.60000000000002" y="77.811094452773617"/>
         </view>
     </objects>
+    <resources>
+        <image name="圆" width="64" height="64"/>
+        <image name="圆圈" width="64" height="64"/>
+    </resources>
 </document>

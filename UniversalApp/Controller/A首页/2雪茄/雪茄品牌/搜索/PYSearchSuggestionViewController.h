@@ -5,6 +5,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RootTableViewController.h"
 
 typedef void(^PYSearchSuggestionDidSelectCellBlock)(UITableViewCell *selectedCell);
 
@@ -19,7 +20,7 @@ typedef void(^PYSearchSuggestionDidSelectCellBlock)(UITableViewCell *selectedCel
 
 @end
 
-@interface PYSearchSuggestionViewController : UITableViewController
+@interface PYSearchSuggestionViewController : RootTableViewController
 
 @property (nonatomic, weak) id<PYSearchSuggestionViewDataSource> dataSource;
 @property (nonatomic, copy) NSArray<NSString *> *searchSuggestions;

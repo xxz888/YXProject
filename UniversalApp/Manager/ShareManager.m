@@ -386,4 +386,41 @@ SINGLETON_FOR_CLASS(ShareManager);
         [_previewView removeFromSuperview];
     }];
 }
+
++(CGSize)cellAutoHeight:(NSString *)string {
+    //展开后得高度(计算出文本内容的高度+固定控件的高度)
+    NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
+    NSStringDrawingOptions option = (NSStringDrawingOptions)(NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading);
+    CGSize size = [string boundingRectWithSize:CGSizeMake(KScreenWidth- 20, 100000) options:option attributes:attribute context:nil].size;
+    return size;
+}
+
+
++(CGFloat)getSpaceLabelHeight:(NSString*)str withFont:(UIFont*)font withWidth:(CGFloat)width {
+    
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+    
+    paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    
+    paraStyle.alignment = NSTextAlignmentLeft;
+    
+    paraStyle.lineSpacing = 3.0f;
+    
+    paraStyle.hyphenationFactor = 1.0;
+    
+    paraStyle.firstLineHeadIndent = 0.0;
+    
+    paraStyle.paragraphSpacingBefore = 0.0;
+    
+    paraStyle.headIndent = 0;
+    
+    paraStyle.tailIndent = 0;
+    //, NSKernAttributeName:@1.5f
+    NSDictionary *dic = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paraStyle
+                          };
+    CGSize size = [str boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
+    
+    return  ceilf(size.height);
+    
+}
 @end

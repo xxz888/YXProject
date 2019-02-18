@@ -7,10 +7,11 @@
 //
 
 #import "RootViewController.h"
+#import "RootTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YXHomeXueJiaPinPaiDetailViewController : UITableViewController
+@interface YXHomeXueJiaPinPaiDetailViewController : RootTableViewController
 
 @property(nonatomic,strong)NSMutableDictionary * dicData;
 @property(nonatomic,strong)NSMutableDictionary * dicStartData;
@@ -23,7 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITextView *section1TextView;
 
 @property (nonatomic,assign) BOOL whereCome;//yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewHeight;
+@property (weak, nonatomic) IBOutlet UIButton *openBtn;
 
+- (IBAction)openAction:(id)sender;
 
 @end
 

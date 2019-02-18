@@ -42,7 +42,8 @@ SINGLETON_FOR_HEADER(ShareManager)
 +(void)inTextViewOutDifColorView:(UITextView *)tfView tag:(NSString *)tag;
 +(void)inTextFieldOutDifColorView:(UILabel *)tfView tag:(NSString *)tag;
 + (void)setBorderinView:(UIView *)view;
-
++(CGSize)cellAutoHeight:(NSString *)string;
++(CGFloat)getSpaceLabelHeight:(NSString*)str withFont:(UIFont*)font withWidth:(CGFloat)width;
 
 @property (nonatomic,strong) MMImagePreviewView * previewView;
 

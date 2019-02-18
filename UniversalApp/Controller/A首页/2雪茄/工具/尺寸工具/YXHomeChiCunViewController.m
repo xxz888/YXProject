@@ -20,27 +20,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.daxiaoLbl.text = @"50";
-    // Do any additional setup after loading the view, typically from a nib.
-    CGFloat left = 80;
-    CGFloat width = self.view.width - left*2;
-    
+    self.daxiaoLbl.text = @"60";
+
     UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 0, self.sliderView.frame.size.width, self.sliderView.frame.size.height)];
-    slider.minimumValue = 0.0;
-    slider.maximumValue = 1.0;
+    slider.tintColor  = YXRGBAColor(176, 151, 99);
+    slider.minimumValue = 0.3;
+    slider.maximumValue = 0.9;
     [self.sliderView addSubview:slider];
     [slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];// 针对值变化添加响应方法
     
-    CGFloat pro = 0.5;
+    CGFloat pro = 0.6;
     slider.value = pro;
     
-    [self huayuan:50];
+    [self huayuan:60];
 
 }
 // slider变动时改变label值
 - (void)sliderValueChanged:(id)sender {
     UISlider *slider = (UISlider *)sender;
-    CGFloat pro = slider.value;
+    slider.tintColor  = YXRGBAColor(176, 151, 99);
+    double pro = slider.value;
+    if (pro == 0.89999997615814208) {
+        pro = 0.90;
+    }
     self.daxiaoLbl.text = [NSString stringWithFormat:@"%d",(int)(pro * 100)];
     [self huayuan:(int)(pro * 100)];
 }
@@ -48,9 +50,9 @@
     [self.yuanView.layer.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
     CAShapeLayer *layer = [CAShapeLayer new];
     //圆环的宽度
-    layer.lineWidth = 1;
+    layer.lineWidth = 2;
     //圆环的颜色
-    layer.strokeColor = [UIColor darkGrayColor].CGColor;
+    layer.strokeColor = YXRGBAColor(176, 151, 99).CGColor;
     //背景填充色
     layer.fillColor = [UIColor clearColor].CGColor;
     //设置半径

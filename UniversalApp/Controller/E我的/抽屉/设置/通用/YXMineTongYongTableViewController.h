@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RootTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YXMineTongYongTableViewController : UITableViewController
+@interface YXMineTongYongTableViewController : RootTableViewController
 
 @end
 

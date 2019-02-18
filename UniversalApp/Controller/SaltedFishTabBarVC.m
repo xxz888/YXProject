@@ -25,7 +25,7 @@
 }
 - (void)addChildViewControllers{
     UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-    YXHomeViewController * homeVC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeViewController"];
+    YXHomeViewController * homeVC = [[YXHomeViewController alloc]init];
     RootNavigationController *nav1 = [[RootNavigationController alloc]initWithRootViewController:homeVC];
 
     YXFindViewController * findVC = [[YXFindViewController alloc]init];

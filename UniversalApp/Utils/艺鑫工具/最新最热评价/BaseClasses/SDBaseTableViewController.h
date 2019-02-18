@@ -28,8 +28,9 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "RootTableViewController.h"
 
-@interface SDBaseTableViewController : UITableViewController
+@interface SDBaseTableViewController : RootTableViewController
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 

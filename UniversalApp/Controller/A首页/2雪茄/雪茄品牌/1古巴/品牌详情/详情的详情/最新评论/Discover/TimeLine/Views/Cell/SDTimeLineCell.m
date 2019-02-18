@@ -235,8 +235,8 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     _zanButton.sd_layout
     .rightSpaceToView(self.contentView, margin+10)
     .centerYEqualToView(_timeLabel)
-    .heightIs(30)
-    .widthIs(30);
+    .heightIs(20)
+    .widthIs(20);
     
     _commentView.sd_layout
     .leftEqualToView(_contentLabel)
