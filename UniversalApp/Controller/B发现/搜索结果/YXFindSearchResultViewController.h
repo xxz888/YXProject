@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXFindSearchResultViewController : RootViewController
+@property (nonatomic,strong) NSString * searchText;
 
 @end
 

@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "tabar_plus_normal.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "tabar_plus_normal@2x.png",
       "scale" : "2x"
     },
     {

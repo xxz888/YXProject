@@ -7,7 +7,7 @@
 //
 
 #import "YXMineAndFindBaseViewController.h"
-
+#import "XHWebImageAutoSize.h"
 @interface YXMineAndFindBaseViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -44,22 +44,25 @@
     }
     
     if (tag == 1 || tag == 4) {
+        return [YXFindImageTableViewCell cellDefaultHeight:dicTag whereCome:tag==1?NO:YES];
+
         //根据isShowMoreText属性判断cell的高度
-        if ([dicTag[@"isShowMoreText"] isEqualToString:@"1"]){
-            return [YXFindImageTableViewCell cellMoreHeight:dicTag whereCome:tag==1?NO:YES];
-        }else{
-            return tag==1?670:700;
-        }
-        return 0;
+//        if ([dicTag[@"isShowMoreText"] isEqualToString:@"1"]){
+//            return [YXFindImageTableViewCell cellDefaultHeight:dicTag whereCome:tag==1?NO:YES];
+//        }else{
+//            return [YXFindImageTableViewCell cellDefaultHeight:dicTag whereCome:tag==1?NO:YES];
+//        }
+//        return 0;
     }else if (tag == 3){
-        
+        return [YXFindQuestionTableViewCell cellMoreHeight:dicTag];
+
         //根据isShowMoreText属性判断cell的高度
-        if ([dicTag[@"isShowMoreText"] isEqualToString:@"1"]){
-            return [YXFindQuestionTableViewCell cellMoreHeight:dicTag];
-        }else{
-            return 410;
-        }
-        return 0;
+//        if ([dicTag[@"isShowMoreText"] isEqualToString:@"1"]){
+//            return [YXFindQuestionTableViewCell cellMoreHeight:dicTag];
+//        }else{
+//            return [YXFindQuestionTableViewCell cellMoreHeight:dicTag];
+//        }
+//        return 0;
     }else{
         return 0;
     }
@@ -83,6 +86,18 @@
 #pragma mark ========== 图片 ==========
 -(YXFindImageTableViewCell *)customImageData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath whereCome:(BOOL)whereCome{
     YXFindImageTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFindImageTableViewCell" forIndexPath:indexPath];
+    
+    NSString * str = [(NSMutableString *) (whereCome ? dic[@"pic1"]:dic[@"photo1"]) replaceAll:@" " target:@"%20"];
+    [cell.midImageView sd_setImageWithURL:[NSURL URLWithString:str] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+        /**  缓存image size */
+        [XHWebImageAutoSize storeImageSize:image forURL:imageURL completed:^(BOOL result) {
+            /** reload */
+            if(result)  [self.yxTableView xh_reloadDataForURL:imageURL];
+        }];
+        
+    }];
+    
     cell.titleImageView.tag = indexPath.row;
     kWeakSelf(self);
     cell.clickImageBlock = ^(NSInteger tag) {
@@ -148,11 +163,7 @@
     return cell;
 }
 -(void)commonDidVC:(NSIndexPath *)indexPath{
-    NSDictionary * dic = self.dataArray[indexPath.row];
-    YXMineFootDetailViewController * VC = [[YXMineFootDetailViewController alloc]init];
-    VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-    
-    [self.navigationController pushViewController:VC animated:YES];
+  
 }
 #pragma mark ========== 晒图点赞 ==========
 -(void)requestDianZan_Image_Action:(NSIndexPath *)indexPath{
@@ -193,7 +204,8 @@
     if (tag == 1) {//晒图
         YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
         VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-        
+        YXFindImageTableViewCell * cell = [self.yxTableView cellForRowAtIndexPath:indexPath];
+        VC.height = cell.imvHeight.constant;
         [self.navigationController pushViewController:VC animated:YES];
     }else if (tag == 3){//问答
         UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
@@ -203,8 +215,12 @@
         
         [self.navigationController pushViewController:VC animated:YES];
     }else if (tag == 4){//足迹
-        [self commonDidVC:indexPath];
-    }
+        NSDictionary * dic = self.dataArray[indexPath.row];
+        YXMineFootDetailViewController * VC = [[YXMineFootDetailViewController alloc]init];
+        VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+        YXFindImageTableViewCell * cell = [self.yxTableView cellForRowAtIndexPath:indexPath];
+        VC.height = cell.imvHeight.constant;
+        [self.navigationController pushViewController:VC animated:YES];    }
 }
 
 -(Moment *)setTestInfo:(NSDictionary *)dic{

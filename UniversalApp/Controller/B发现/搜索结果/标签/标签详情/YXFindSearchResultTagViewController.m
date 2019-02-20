@@ -7,7 +7,7 @@
 //
 
 #import "YXFindSearchResultTagViewController.h"
-
+#import "YXHomeXueJiaTableViewCell.h"
 @interface YXFindSearchResultTagViewController ()
 
 @end
@@ -18,19 +18,22 @@
     [super viewDidLoad];
     [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:nil];
-    
+    self.isShowLiftBack = YES;
+    self.title = self.key;
     self.yxTableView.frame = CGRectMake(0, kTopHeight + 30 + 5, KScreenWidth, KScreenHeight-kTopHeight - 30 - 5);
-    
+    [self requestHotAndNew:@"3"];
+}
+-(void)requestHotAndNew:(NSString *)type{
+    kWeakSelf(self);
+    [YX_MANAGER requestSearchFind_all:@{@"key":self.key,@"page":NSIntegerToNSString(self.requestPage),@"type":type} success:^(id object) {
+        [weakself.dataArray removeAllObjects];
+        [weakself.dataArray addObjectsFromArray:object];
+        [weakself.yxTableView reloadData];
+    }];
 }
 
-/*
-#pragma mark - Navigation
+- (IBAction)segmentAction:(UISegmentedControl *)sender {
+    sender.selectedSegmentIndex == 0 ?     [self requestHotAndNew:@"3"] :     [self requestHotAndNew:@"4"];
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
-*/
-
 @end

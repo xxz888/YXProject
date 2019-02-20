@@ -87,6 +87,14 @@ typedef void(^clickQuestionShareBlock)(YXFindQuestionTableViewCell *);
 @property (weak, nonatomic) IBOutlet UILabel *shareCount;
 
 
+
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imvHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pl1Height;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pl2Height;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *plAllHeight;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameCenter;
 @end
 
 NS_ASSUME_NONNULL_END

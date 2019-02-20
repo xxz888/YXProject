@@ -7,21 +7,30 @@
 //
 
 #import "YXFindImageTableViewCell.h"
-/*
- whereCome = NO 为晒图  YES为足迹
- */
+#import "XHWebImageAutoSize.h"
+#import "UIImageView+WebCache.h"
 @implementation YXFindImageTableViewCell
-+(CGFloat)cellMoreHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
++(CGFloat)cellDefaultHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
+    NSArray * plArray = dic[@"comment_list"];
+    NSString * url = whereCome ? dic[@"pic1"]:dic[@"photo1"];
+    CGFloat imageHeight = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:0];
     NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
-    CGSize size = [YXMineAndFindBaseTableViewCell cellAutoHeight:titleText];
-    return size.height + (whereCome ? 710:680) - 30;
+    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:titleText];
+    CGFloat lastHeight =
+    (plArray.count == 1 ? 25 : 0) +
+    (plArray.count == 2 ? 25 : 0) +
+    (plArray.count == 2 ? 25 : 0) +
+    (whereCome ? 30 : 0) +
+    height_size +
+    imageHeight;
+    return lastHeight + 190;
 }
-- (void)layoutSubviews{
-    [super layoutSubviews];
-    NSString * titleText = [NSString stringWithFormat:@"%@%@",self.whereCome ? self.dataDic[@"content"]:self.dataDic[@"describe"],self.dataDic[@"index"]];
-    self.titleTagLbl.text = titleText;
-    [ShareManager inTextFieldOutDifColorView:self.titleTagLbl tag:self.dataDic[@"index"]];
-    [self openAndCloseAction:self.dataDic openBtn:self.openBtn layout:self.titleTagLblHeight text:titleText];
+
+-(CGFloat)getImageViewSize:(NSString *)imgUrl{
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:imgUrl]];
+    UIImage *showimage = [UIImage imageWithData:data];
+    CGFloat scale = showimage.size.height/showimage.size.width;
+    return KScreenWidth * scale;
 }
 - (IBAction)searchAllPlBtnAction:(id)sender{
     self.jumpDetailVCBlock(self);
@@ -29,21 +38,30 @@
 -(void)setCellValue:(NSDictionary *)dic whereCome:(BOOL)whereCome{
     [self cellValueDic:dic searchBtn:self.searchBtn pl1NameLbl:self.pl1NameLbl pl2NameLbl:self.pl2NameLbl pl1ContentLbl:self.pl1ContentLbl pl2ContentLbl:self.pl2ContentLbl titleImageView:self.titleImageView addPlImageView:self.addPlImageView talkCount:self.talkCount titleLbl:self.titleLbl timeLbl:self.timeLbl mapBtn:self.mapBtn likeBtn:self.likeBtn];
     
-    NSString * str = [(NSMutableString *) (whereCome ? dic[@"pic1"]:dic[@"photo1"]) replaceAll:@" " target:@"%20"];
-    [self.midImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    
+    self.pl1Height.constant = [self getPl1HeightPlArray:dic];
+    self.pl2Height.constant = [self getPl2HeightPlArray:dic];
+    self.plAllHeight.constant = [self getPlAllHeightPlArray:dic];
+    self.titleTagLblHeight.constant = [self getLblHeight:dic whereCome:whereCome];
+    self.titleTagtextViewHeight.constant = [self getTitleTagtextViewHeight:dic whereCome:whereCome];
+    self.imvHeight.constant = [self getImvHeight:dic whereCome:whereCome];
+
+    
+    if ([self.mapBtn.titleLabel.text isEqualToString:@""] || !self.mapBtn.titleLabel.text) {
+        self.nameCenter.constant = self.titleImageView.frame.origin.y;
+    }
+
+    
+    
+    
+    
     NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
     self.titleTagLbl.text = titleText;
-    [ShareManager inTextFieldOutDifColorView:self.titleTagLbl tag:dic[@"index"]];
-    if (whereCome) {
-        //足迹界面要 足迹这一行
-        self.titleTagtextViewHeight.constant = 30;
-        NSString * zuji = [NSString stringWithFormat:@"来自足迹·%@ %@",dic[@"cigar_info"][@"brand_name"],dic[@"cigar_info"][@"cigar_name"]];
-        self.titleTagtextView.text = zuji;
-    }else{
-        //晒图界面 不要这一行
-        self.titleTagtextViewHeight.constant = 0;
-    }
+    NSString * zuji = [NSString stringWithFormat:@"来自足迹·%@ %@",dic[@"cigar_info"][@"brand_name"],dic[@"cigar_info"][@"cigar_name"]];
+    self.titleTagtextView.text = zuji;
+    [ShareManager setLineSpace:9 withText:self.titleTagLbl.text inLabel:self.titleTagLbl tag:dic[@"index"]];
 }
+
 - (IBAction)likeBtnAction:(id)sender {
     if (![userManager loadUserInfo]) {
         KPostNotification(KNotificationLoginStateChange, @NO);
@@ -82,4 +100,34 @@
     NSUInteger tag = views.tag;
     self.clickImageBlock(tag);
 }
+
+-(CGFloat)getPl1HeightPlArray:(NSDictionary *)dic{
+    NSArray * plArray = dic[@"comment_list"];
+    return plArray.count >= 1 ? 25 : 0;
+}
+-(CGFloat)getPl2HeightPlArray:(NSDictionary *)dic{
+    NSArray * plArray = dic[@"comment_list"];
+    return plArray.count >= 2 ? 25 : 0;
+}
+-(CGFloat)getPlAllHeightPlArray:(NSDictionary *)dic{
+    NSArray * plArray = dic[@"comment_list"];
+    return plArray.count >= 2 ? 25 : 0;
+}
+
+
+
+-(CGFloat)getTitleTagtextViewHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
+    return whereCome ? 30 : 0;
+}
+-(CGFloat)getImvHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
+    NSString * url =  whereCome ? dic[@"pic1"]:dic[@"photo1"];
+    return    [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:0];
+}
+-(CGFloat)getLblHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
+    NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
+    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:titleText];
+    return height_size;
+}
+
+
 @end

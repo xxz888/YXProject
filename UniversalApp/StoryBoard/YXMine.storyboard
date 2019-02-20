@@ -418,10 +418,10 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nhq-fI-Rq3">
-                                <rect key="frame" x="245" y="55" width="120" height="20"/>
+                                <rect key="frame" x="215" y="52.5" width="130" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="Yb0-jr-xNl"/>
-                                    <constraint firstAttribute="height" constant="20" id="nTF-jb-rV0"/>
+                                    <constraint firstAttribute="width" constant="130" id="Yb0-jr-xNl"/>
+                                    <constraint firstAttribute="height" constant="25" id="nTF-jb-rV0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="查看并编辑个人资料">
@@ -449,7 +449,7 @@
                             <constraint firstItem="vzD-Vj-XZV" firstAttribute="leading" secondItem="IUk-c0-q79" secondAttribute="leading" constant="10" id="iWM-Dn-K88"/>
                             <constraint firstItem="39Y-AP-pM1" firstAttribute="height" secondItem="aJa-4I-rF2" secondAttribute="height" multiplier="0.5" id="j8L-pO-Gfc"/>
                             <constraint firstItem="aJa-4I-rF2" firstAttribute="leading" secondItem="IUk-c0-q79" secondAttribute="leading" constant="10" id="mrm-y9-SJX"/>
-                            <constraint firstItem="IUk-c0-q79" firstAttribute="trailing" secondItem="Nhq-fI-Rq3" secondAttribute="trailing" constant="10" id="qOw-En-Gt6"/>
+                            <constraint firstItem="IUk-c0-q79" firstAttribute="trailing" secondItem="Nhq-fI-Rq3" secondAttribute="trailing" constant="30" id="qOw-En-Gt6"/>
                             <constraint firstItem="39Y-AP-pM1" firstAttribute="top" secondItem="aJa-4I-rF2" secondAttribute="top" id="z5Z-nj-aPa"/>
                             <constraint firstItem="vzD-Vj-XZV" firstAttribute="top" secondItem="aJa-4I-rF2" secondAttribute="bottom" id="z9X-UH-HZA"/>
                         </constraints>

@@ -11,6 +11,8 @@
 @interface YXMineImageDetailHeaderView()<SDCycleScrollViewDelegate>
 @property(nonatomic)SDCycleScrollView *cycleScrollView3;
 @property (nonatomic,strong) UIWebView * webView;
+@property (nonatomic)NSInteger tatolCount;
+
 
 @end
 @implementation YXMineImageDetailHeaderView
@@ -18,7 +20,9 @@
 
 
 - (void)drawRect:(CGRect)rect {
-    // Drawing code
+    self.rightCountLbl.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.5f];
+    self.rightCountLbl.textColor = KWhiteColor;
+    ViewRadius(self.rightCountLbl, 10);
 }
 
 - (IBAction)lastSegmentAction:(id)sender{
@@ -30,28 +34,24 @@
 }
 
 //添加轮播图
-- (void)setUpSycleScrollView:(NSArray *)photoArray{
- 
+- (void)setUpSycleScrollView:(NSArray *)photoArray height:(CGFloat)height{
+    self.conViewHeight.constant = height;
+    _tatolCount = photoArray.count;
     if (!_cycleScrollView3) {
-        _cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth-10, 400) delegate:self placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        _cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, height) delegate:self placeholderImage:[UIImage imageNamed:@""]];
         [self.contentView addSubview:_cycleScrollView3];
     }
-    _cycleScrollView3.bannerImageViewContentMode =  3;
-    _cycleScrollView3.showPageControl = NO;
-    _cycleScrollView3.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
-    _cycleScrollView3.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
-    _cycleScrollView3.autoScrollTimeInterval = 4;
+    _cycleScrollView3.delegate = self;
+    _cycleScrollView3.bannerImageViewContentMode = 0;
    _cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];
+    _cycleScrollView3.showPageControl = YES;
+    _cycleScrollView3.autoScrollTimeInterval = 10000;
+    _cycleScrollView3.currentPageDotColor = KRedColor;
+    _cycleScrollView3.pageDotColor = YXRGBAColor(239, 239, 239);
+
 }
--(void)setSycleScrollView:(NSArray *)photoArray{
-    _cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];
-}
--(void)setUpWebView:(NSString *)htmlString{
-    if (!self.webView) {
-        self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
-        [self.contentView addSubview:self.webView];
-    }
-    [self.webView loadHTMLString:[ShareManager justFitImage:htmlString] baseURL:nil];
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index{
+    self.rightCountLbl.text = [NSString stringWithFormat:@"%ld/%ld",index+1,_tatolCount];
 }
 - (IBAction)editPersonAction:(id)sender {
 }

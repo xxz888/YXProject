@@ -33,6 +33,7 @@ static CGFloat textFieldH = 40;
     CGFloat _totalKeybordHeight;
     NSInteger _segmentIndex;
     NSMutableArray * _pageArray;//因每个cell都要分页，所以page要根据评论id来分，不能单独写
+    NSMutableArray * _imageArr;
 }
 @property(nonatomic,strong)YXMineImageDetailHeaderView * lastDetailView;
 @property(nonatomic,strong)YXHomeLastMyTalkView * lastMyTalkView;
@@ -63,7 +64,7 @@ static CGFloat textFieldH = 40;
     self.title = @"晒图详情";
     
     [ShareManager setBorderinView:self.clickPingLunBtn];
-    
+    _imageArr = [[NSMutableArray alloc]init];
 
 
     
@@ -97,23 +98,39 @@ static CGFloat textFieldH = 40;
         self.lastDetailView = [nib objectAtIndex:0];
     }
 
-    if (self.startDic[@"pic1"] || self.startDic[@"pic2"] || self.startDic[@"pic3"]) {
-        [self.lastDetailView setUpSycleScrollView:@[self.startDic[@"pic1"],self.startDic[@"pic2"],self.startDic[@"pic3"]]];
-    }else{
-        [self.lastDetailView setUpSycleScrollView:@[self.startDic[@"photo1"],self.startDic[@"photo2"],self.startDic[@"photo3"]]];
+    [_imageArr removeAllObjects];
+    if ([ShareManager getImageSizeWithURL:self.startDic[@"pic1"]] != 0) {
+        [_imageArr addObject:self.startDic[@"pic1"]];
+    }
+    if ([ShareManager getImageSizeWithURL:self.startDic[@"pic2"]] != 0) {
+        [_imageArr addObject:self.startDic[@"pic2"]];
+    }
+    if ([ShareManager getImageSizeWithURL:self.startDic[@"pic3"]] != 0) {
+        [_imageArr addObject:self.startDic[@"pic3"]];
+    }
+    if ([ShareManager getImageSizeWithURL:self.startDic[@"photo1"]] != 0) {
+        [_imageArr addObject:self.startDic[@"photo1"]];
+    }
+    if ([ShareManager getImageSizeWithURL:self.startDic[@"photo2"]] != 0) {
+        [_imageArr addObject:self.startDic[@"photo2"]];
+    }
+    if ([ShareManager getImageSizeWithURL:self.startDic[@"photo3"]] != 0) {
+        [_imageArr addObject:self.startDic[@"photo3"]];
     }
     
+    [self.lastDetailView setUpSycleScrollView:_imageArr height:self.height];
+    self.lastDetailView.rightCountLbl.text = [NSString stringWithFormat:@"%@/%ld",@"1",_imageArr.count];
     self.lastDetailView.titleLbl.text = self.startDic[@"user_name"];
     NSString * str1 = [(NSMutableString *)self.startDic[@"photo"] replaceAll:@" " target:@"%20"];
-    
     [self.lastDetailView.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     self.lastDetailView.titleImageView.layer.masksToBounds = YES;
     self.lastDetailView.titleImageView.layer.cornerRadius = self.lastDetailView.titleImageView.frame.size.width / 2.0;
     self.lastDetailView.titleTimeLbl.text = [ShareManager timestampSwitchTime:[self.startDic[@"publish_time"] longLongValue] andFormatter:@""];
+    self.lastDetailView.userInteractionEnabled = YES;
     return  self.lastDetailView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return  525;
+    return  100 + self.height;
 }
 #pragma mark ========== 获取晒图评论列表 ==========
 -(void)requestNewList{

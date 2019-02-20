@@ -17,15 +17,15 @@ typedef void(^SegmentActionBlock)(NSInteger index);
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *titleTimeLbl;
 @property (weak, nonatomic) IBOutlet UIButton *guanzhuBtn;
+@property (weak, nonatomic) IBOutlet UILabel *rightCountLbl;
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *lastSegmentControl;
 - (IBAction)lastSegmentAction:(id)sender;
 
-
--(void)setSycleScrollView:(NSArray *)photoArray;
-- (void)setUpSycleScrollView:(NSArray *)photoArray;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *conViewHeight;
 -(void)setUpWebView:(NSString *)htmlString;
+- (void)setUpSycleScrollView:(NSArray *)photoArray height:(CGFloat)height;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -56,7 +56,7 @@
     [self.view addSubview:self.yxCollectionView];
     //更换展示商品列表的按钮
     _changeShowTypeBtn = [[BKCustomSwitchBtn alloc]initWithFrame:CGRectZero];
-    _changeShowTypeBtn.hidden = NO;
+    _changeShowTypeBtn.hidden = YES;
     _changeShowTypeBtn.selected = YES;
     _changeShowTypeBtn.myDelegate = self;
     [_changeShowTypeBtn setDragEnable:YES];

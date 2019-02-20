@@ -67,13 +67,12 @@ static NSString *secretKey = @"官网获取";
     [self.cunCaogaoBtn setTitleColor:color1 forState:UIControlStateNormal];
     ViewBorderRadius(self.cunCaogaoBtn, 5, 1, color1);
     
-    [self.fabuBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
-    [self.fabuBtn setBackgroundColor:color1];
-    ViewBorderRadius(self.fabuBtn, 5, 1, color1);
-
     [self.buttonFabuBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
     [self.buttonFabuBtn setBackgroundColor:color1];
+    ViewBorderRadius(self.buttonFabuBtn, 5, 1, color1);
 
+    [self.fabuBtn setBackgroundColor:YXRGBAColor(51, 51, 51)];
+    [self.fabuBtn setTitleColor:YXRGBAColor(176, 151, 99) forState:UIControlStateNormal];
     _photoImageList = [[NSMutableArray alloc]init];
     
 }
@@ -202,6 +201,9 @@ static NSString *secretKey = @"官网获取";
         }else if (_textViewInput.length == 0){
             [QMUITips showError:@"请输入描述!" inView:self.view hideAfterDelay:2];
             return;
+        }else if (_textViewInput.length >  100){
+            [QMUITips showError:@"描述长度不能超过100字符" inView:self.view hideAfterDelay:2];
+            return;
         }
         NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         YXPublishImageTableViewCell * cell = [self.yxTableview cellForRowAtIndexPath:indexPath];
@@ -215,7 +217,7 @@ static NSString *secretKey = @"官网获取";
         if (_tagArray.count == 0) {
             [dic setValue:@"" forKey:@"tag"];//标签
         }else{
-            NSString *string = [_tagArray componentsJoinedByString:@","];
+            NSString *string = [_tagArray componentsJoinedByString:@" "];
             [dic setValue:string forKey:@"tag"];//标签
         }
         

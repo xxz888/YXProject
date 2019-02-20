@@ -44,7 +44,8 @@
 -(void)initAllCon{
     ViewRadius(self.xinhuatiBtn, 3);
     ViewRadius(self.moreBtn, 3);
-    
+    [self.fabuBtn setBackgroundColor:YXRGBAColor(51, 51, 51)];
+    [self.fabuBtn setTitleColor:YXRGBAColor(176, 151, 99) forState:UIControlStateNormal];
     self.qmuiTextView = [[QMUITextView alloc] init];
     self.qmuiTextView.frame = CGRectMake(0, 0, self.questionMainView.frame.size.width, self.questionMainView.frame.size.height);
     self.qmuiTextView.backgroundColor = YXRGBAColor(239, 239, 239);
@@ -102,13 +103,16 @@
         }else if (self.qmuiTextView.text.length == 0){
             [QMUITips showError:@"请输入要提问的问题!" inView:self.view hideAfterDelay:2];
             return;
+        }else if (self.qmuiTextView.text.length >  100){
+            [QMUITips showError:@"问题长度不能超过100字符" inView:self.view hideAfterDelay:2];
+            return;
         }
         [dic setValue: self.qmuiTextView.text forKey:@"question"];
         [dic setValue:self.questionTitleTf.text forKey:@"title"];//标题
-        [dic setValue:self.whereCome forKey:@"type"];//(1,"雪茄"),(2,"红酒"),(3,"高尔夫")
+        [dic setValue:@(1) forKey:@"type"];//(1,"雪茄"),(2,"红酒"),(3,"高尔夫")
         [dic setValue:self.switchBtn.isOn ? @(1) : @(2) forKey:@"to_find"];
         
-        NSString * tag  = _tagArray.count == 0 ? @"" : [_tagArray componentsJoinedByString:@","];
+        NSString * tag  = _tagArray.count == 0 ? @"" : [_tagArray componentsJoinedByString:@" "];
         [dic setValue:tag forKey:@"tag"];//标签
 
         NSString * publish_site = [self.locationBtn.titleLabel.text isEqualToString:@"你的位置"] ? @"" : self.locationBtn.titleLabel.text;
@@ -116,6 +120,7 @@
 
         //发布按钮
         [YX_MANAGER requestFaBuQuestionPOST:dic success:^(id object) {
+            [QMUITips hideAllTips];
                 [QMUITips showSucceed:@"发布成功" inView:weakself.view hideAfterDelay:2];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [weakself.navigationController popViewControllerAnimated:YES];

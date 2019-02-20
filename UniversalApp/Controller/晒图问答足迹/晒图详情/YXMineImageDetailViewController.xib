@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="f6d-vl-7wc">
-                    <rect key="frame" x="10" y="20" width="355" height="597"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="597"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="PDG-PR-CHy"/>
@@ -48,10 +48,10 @@
             <constraints>
                 <constraint firstItem="5dq-fY-RFm" firstAttribute="top" secondItem="f6d-vl-7wc" secondAttribute="bottom" constant="5" id="3ht-QM-ppb"/>
                 <constraint firstItem="f6d-vl-7wc" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="SxD-qU-OZQ"/>
-                <constraint firstItem="f6d-vl-7wc" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="10" id="W4U-WC-qDT"/>
+                <constraint firstItem="f6d-vl-7wc" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="W4U-WC-qDT"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="5dq-fY-RFm" secondAttribute="trailing" constant="5" id="gIv-Jm-xx0"/>
                 <constraint firstItem="5dq-fY-RFm" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="5" id="imt-AE-AoK"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="f6d-vl-7wc" secondAttribute="trailing" constant="10" id="x5l-fw-euL"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="f6d-vl-7wc" secondAttribute="trailing" id="x5l-fw-euL"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="5dq-fY-RFm" secondAttribute="bottom" constant="5" id="yF7-rj-fxG"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>

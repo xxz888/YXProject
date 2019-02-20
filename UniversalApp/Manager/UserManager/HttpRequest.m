@@ -42,6 +42,7 @@
 }
 #pragma mark ========== 请求成功处理参数的共同方法 ==========
 +(void)setCommonRespone:(SucessBlock)sucess pi:(NSString *)pi responseObject:(id)responseObject{
+    [QMUITips hideAllTips];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     id obj = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
     UIView * view;
@@ -50,7 +51,6 @@
     } else {
         view = [[UIApplication sharedApplication].windows lastObject];
     }
-    [QMUITips hideAllTips];
 
     //返回情况分为两种情况，第一种是NSInlineData 字符串类型， 一种是json字典
     if ([obj isKindOfClass:[NSArray class]]) {

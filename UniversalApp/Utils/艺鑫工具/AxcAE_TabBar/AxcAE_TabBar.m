@@ -63,6 +63,7 @@
     [self hiddenUITabBarButton]; // 8.4补丁
     [self addSubview:self.backgroundImageView]; // 添加背景图
     [self.backgroundImageView addSubview:self.effectView];
+    
 }
 #pragma mark - 常规配置
 // 设置items

@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
 @property(nonatomic,strong)NSDictionary * startDic;
 @property (weak, nonatomic) IBOutlet UIButton *clickPingLunBtn;
+@property (nonatomic,assign) CGFloat height;
 
 @end
 

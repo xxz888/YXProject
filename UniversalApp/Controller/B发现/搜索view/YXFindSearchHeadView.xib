@@ -20,7 +20,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
                     <subviews>
                         <searchBar contentMode="redraw" placeholder="搜索" translatesAutoresizingMaskIntoConstraints="NO" id="f0K-B3-5RC">
-                            <rect key="frame" x="0.0" y="9" width="355" height="34"/>
+                            <rect key="frame" x="0.0" y="9" width="375" height="34"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="0rH-YA-P81"/>
@@ -28,11 +28,24 @@
                             <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEd-G5-mml">
+                            <rect key="frame" x="375" y="11.5" width="0.0" height="29"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="取消">
+                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="cancleAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="21O-op-EXx"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="hEd-G5-mml" firstAttribute="centerY" secondItem="f0K-B3-5RC" secondAttribute="centerY" id="7nQ-0w-0e2"/>
                         <constraint firstItem="f0K-B3-5RC" firstAttribute="leading" secondItem="7R4-GF-iRr" secondAttribute="leading" id="AyM-gK-1Pw"/>
-                        <constraint firstAttribute="trailing" secondItem="f0K-B3-5RC" secondAttribute="trailing" constant="20" id="QWq-VG-IEH"/>
+                        <constraint firstAttribute="trailing" secondItem="hEd-G5-mml" secondAttribute="trailing" id="KyI-nK-LEw"/>
+                        <constraint firstAttribute="trailing" secondItem="f0K-B3-5RC" secondAttribute="trailing" id="QWq-VG-IEH"/>
+                        <constraint firstItem="hEd-G5-mml" firstAttribute="leading" secondItem="f0K-B3-5RC" secondAttribute="trailing" id="n2c-V4-Iwl"/>
                         <constraint firstItem="f0K-B3-5RC" firstAttribute="centerY" secondItem="7R4-GF-iRr" secondAttribute="centerY" id="qRv-qC-9Yv"/>
                     </constraints>
                 </view>
@@ -47,9 +60,11 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="cancleBtn" destination="hEd-G5-mml" id="v47-S0-e9u"/>
                 <outlet property="searchBar" destination="f0K-B3-5RC" id="FFI-V3-DmV"/>
+                <outlet property="searchBarHeight" destination="QWq-VG-IEH" id="BLV-kq-sjl"/>
             </connections>
-            <point key="canvasLocation" x="-614" y="-80"/>
+            <point key="canvasLocation" x="-783" y="-99"/>
         </view>
     </objects>
 </document>

@@ -290,31 +290,56 @@ SINGLETON_FOR_CLASS(ShareManager);
     return htmlString;
 }
 
-+(void)inTextViewOutDifColorView:(UITextView *)tfView tag:(NSString *)tag{
-    
-    //创建 NSMutableAttributedString
-    NSMutableAttributedString *attributedStr01 = [[NSMutableAttributedString alloc] initWithString: tfView.text];
-    //给所有字符设置字体为Zapfino，字体高度为15像素
-    [attributedStr01 addAttribute: NSFontAttributeName
-                            value:[UIFont systemFontOfSize:13]
-                            range: NSMakeRange(tfView.text.length-tag.length, tag.length)];
-    [attributedStr01 addAttribute: NSForegroundColorAttributeName value: YXRGBAColor(10, 96, 254) range: NSMakeRange(tfView.text.length-tag.length,tag.length )];
-    
-    //赋值给显示控件label01的 attributedText
-    tfView.attributedText = attributedStr01;
++(void)inTextViewOutDifColorView:(UILabel *)tfView tag:(NSString *)tag{
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:tfView.text];
+    NSRange range1 = [[str string] rangeOfString:tag];
+    [str addAttribute:NSForegroundColorAttributeName value:YXRGBAColor(10, 96, 254) range:range1];
+    tfView.attributedText = str;
 }
-+(void)inTextFieldOutDifColorView:(UILabel *)tfView tag:(NSString *)tag{
++(void)setLineSpace:(CGFloat)lineSpace withText:(NSString *)text inLabel:(UILabel *)label tag:(NSString *)tag{
+    if (!text || !label) {
+        return;
+    }
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = lineSpace;  //设置行间距
+    paragraphStyle.lineBreakMode = label.lineBreakMode;
+    paragraphStyle.alignment = label.textAlignment;
     
-    //创建 NSMutableAttributedString
-    NSMutableAttributedString *attributedStr01 = [[NSMutableAttributedString alloc] initWithString: tfView.text];
-    //给所有字符设置字体为Zapfino，字体高度为15像素
-    [attributedStr01 addAttribute: NSFontAttributeName
-                            value:[UIFont systemFontOfSize:13]
-                            range: NSMakeRange(tfView.text.length-tag.length, tag.length)];
-    [attributedStr01 addAttribute: NSForegroundColorAttributeName value: YXRGBAColor(10, 96, 254) range: NSMakeRange(tfView.text.length-tag.length,tag.length )];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [text length])];
+    NSRange range1 = [text rangeOfString:tag];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:YXRGBAColor(10, 96, 254) range:range1];
     
-    //赋值给显示控件label01的 attributedText
-    tfView.attributedText = attributedStr01;
+    label.attributedText = attributedString;
+}
++(CGFloat)inTextFieldOutDifColorView:(NSString *)string{
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+    
+    paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    
+    paraStyle.alignment = NSTextAlignmentLeft;
+    
+    
+    
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string attributes:@{NSKernAttributeName:@(9)}];
+
+
+
+    paraStyle.lineSpacing = 9.0f;
+    paraStyle.paragraphSpacing = 9.0f;
+    paraStyle.hyphenationFactor = 1.0;
+    
+    paraStyle.firstLineHeadIndent = 0.0;
+    
+    paraStyle.paragraphSpacingBefore = 0.0;
+    
+    paraStyle.headIndent = 0;
+    
+    paraStyle.tailIndent = 0;
+    //, NSKernAttributeName:@1.5f
+    NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:14], NSParagraphStyleAttributeName:paraStyle,NSParagraphStyleAttributeName:attributedString};
+    CGSize size = [string boundingRectWithSize:CGSizeMake(KScreenWidth-20, MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
+    return  ceilf(size.height);
 }
 + (void)setBorderinView:(UIView *)view{
     view.layer.borderColor = [[UIColor borderColor] CGColor];
@@ -423,4 +448,106 @@ SINGLETON_FOR_CLASS(ShareManager);
     return  ceilf(size.height);
     
 }
+
+// 根据图片url获取图片尺寸
+//+(CGFloat)getImageSizeWithURL:(id)imageURL
+//{
+//    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]];
+//    UIImage *showimage = [UIImage imageWithData:data];
+//    CGFloat scale = showimage.size.height/showimage.size.width;
+//    if (showimage.size.width == 0) {
+//        scale = 0;
+//    }
+//    return KScreenWidth * scale;
+//}
+/**
+ *  根据图片url获取网络图片尺寸
+ */
++(CGFloat)getImageSizeWithURL:(id)URL{
+    NSURL * url = nil;
+    if ([URL isKindOfClass:[NSURL class]]) {
+        url = URL;
+    }
+    if ([URL isKindOfClass:[NSString class]]) {
+        url = [NSURL URLWithString:URL];
+    }
+    if (!URL) {
+        return 0;
+    }
+    CGImageSourceRef imageSourceRef = CGImageSourceCreateWithURL((CFURLRef)url, NULL);
+    CGFloat width = 0, height = 0;
+    
+    if (imageSourceRef) {
+        
+        // 获取图像属性
+        CFDictionaryRef imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSourceRef, 0, NULL);
+        
+        //以下是对手机32位、64位的处理
+        if (imageProperties != NULL) {
+            
+            CFNumberRef widthNumberRef = CFDictionaryGetValue(imageProperties, kCGImagePropertyPixelWidth);
+            
+#if defined(__LP64__) && __LP64__
+            if (widthNumberRef != NULL) {
+                CFNumberGetValue(widthNumberRef, kCFNumberFloat64Type, &width);
+            }
+            
+            CFNumberRef heightNumberRef = CFDictionaryGetValue(imageProperties, kCGImagePropertyPixelHeight);
+            
+            if (heightNumberRef != NULL) {
+                CFNumberGetValue(heightNumberRef, kCFNumberFloat64Type, &height);
+            }
+#else
+            if (widthNumberRef != NULL) {
+                CFNumberGetValue(widthNumberRef, kCFNumberFloat32Type, &width);
+            }
+            
+            CFNumberRef heightNumberRef = CFDictionaryGetValue(imageProperties, kCGImagePropertyPixelHeight);
+            
+            if (heightNumberRef != NULL) {
+                CFNumberGetValue(heightNumberRef, kCFNumberFloat32Type, &height);
+            }
+#endif
+            /***************** 此处解决返回图片宽高相反问题 *****************/
+            // 图像旋转的方向属性
+            NSInteger orientation = [(__bridge NSNumber *)CFDictionaryGetValue(imageProperties, kCGImagePropertyOrientation) integerValue];
+            CGFloat temp = 0;
+            switch (orientation) {  // 如果图像的方向不是正的，则宽高互换
+                case UIImageOrientationLeft: // 向左逆时针旋转90度
+                case UIImageOrientationRight: // 向右顺时针旋转90度
+                case UIImageOrientationLeftMirrored: // 在水平翻转之后向左逆时针旋转90度
+                case UIImageOrientationRightMirrored: { // 在水平翻转之后向右顺时针旋转90度
+                    temp = width;
+                    width = height;
+                    height = temp;
+                }
+                    break;
+                default:
+                    break;
+            }
+            /***************** 此处解决返回图片宽高相反问题 *****************/
+            
+            CFRelease(imageProperties);
+        }
+        CFRelease(imageSourceRef);
+    }
+    return height;
+}
+
++(void)inTextFieldOutDifColorView:(UILabel *)tfView tag:(NSString *)tag{
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+        
+    //创建 NSMutableAttributedString
+        NSMutableAttributedString *attributedStr01 = [[NSMutableAttributedString alloc] initWithString: tfView.text];
+           //给所有字符设置字体为Zapfino，字体高度为15像素
+           [attributedStr01 addAttribute: NSFontAttributeName
+                                       value:[UIFont systemFontOfSize:13]
+                                        range: NSMakeRange(tfView.text.length-tag.length, tag.length)];
+            [attributedStr01 addAttribute: NSForegroundColorAttributeName value: YXRGBAColor(10, 96, 254) range: NSMakeRange(tfView.text.length-tag.length,tag.length )];
+           paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
+        
+        //赋值给显示控件label01的 attributedText
+           tfView.attributedText = attributedStr01;
+}
+
 @end

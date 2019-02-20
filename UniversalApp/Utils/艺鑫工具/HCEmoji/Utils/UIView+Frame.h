@@ -24,5 +24,5 @@
 @property (nonatomic, assign) CGFloat height;
 @property (nonatomic, assign) CGPoint origin;
 @property (nonatomic, assign) CGSize size;
-
+- (UIView*)subViewOfClassName:(NSString*)className;
 @end

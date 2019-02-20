@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 //block声明方法
 -(void)toDissmissSelf:(dismissBlock)block;
 
+@property (weak, nonatomic) IBOutlet UIButton *fabuBtn;
 
 
 @property (weak, nonatomic) IBOutlet UIView * questionMainView;

@@ -103,19 +103,17 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     
     
     
-    _huiFuButton = [UIButton buttonWithType:1];
-    [_huiFuButton setTitle:@"回复" forState:UIControlStateNormal];
+    _huiFuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [_huiFuButton setTitle:@"回复" forState:UIControlStateNormal];
     [_huiFuButton setTitleColor:KDarkGaryColor forState:UIControlStateNormal];
     [_huiFuButton setFont:[UIFont systemFontOfSize:13]];
     [_huiFuButton addTarget:self action:@selector(huifuAction:) forControlEvents:UIControlEventTouchUpInside];
+    [_huiFuButton setImage:[UIImage imageNamed:@"讨论"] forState:UIControlStateNormal];
     
     
-    _zanButton =[UIButton buttonWithType:1];
-    
-    
+    _zanButton =[UIButton buttonWithType:UIButtonTypeCustom];
 //    [_zanButton setTitle:@"赞" forState:UIControlStateNormal];
     [_zanButton setTitleColor:KDarkGaryColor forState:UIControlStateNormal];
-
     [_zanButton setFont:[UIFont systemFontOfSize:13]];
     [_zanButton addTarget:self action:@selector(zanAction:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -229,8 +227,8 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     _huiFuButton.sd_layout
     .rightSpaceToView(self.contentView, margin + 50)
     .centerYEqualToView(_timeLabel)
-    .heightIs(50)
-    .widthIs(50);
+    .heightIs(20)
+    .widthIs(20);
     
     _zanButton.sd_layout
     .rightSpaceToView(self.contentView, margin+10)

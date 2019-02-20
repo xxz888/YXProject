@@ -12,6 +12,8 @@
 
 @interface YXFindSearchResultUsersViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView * yxTableView;
+@property (nonatomic,strong)NSMutableArray * dataArray;
+
 @end
 
 @implementation YXFindSearchResultUsersViewController
@@ -19,6 +21,7 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    self.whereCome ?  [self requestFindAll_Tag:self.key] : [self requestFindAll_user:self.key];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -27,7 +30,19 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.dataArray = [[NSMutableArray alloc]init];
     [self createyxTableView];
+}
+-(void)headerRereshing{
+    [super headerRereshing];
+    self.whereCome ?  [self requestFindAll_Tag:self.key] : [self requestFindAll_user:self.key];
+}
+-(void)footerRereshing{
+    [super footerRereshing];
+    self.whereCome ?  [self requestFindAll_Tag:self.key] : [self requestFindAll_user:self.key];
+}
+-(void)requestAction{
+    self.whereCome ?  [self requestFindAll_Tag:self.key] : [self requestFindAll_user:self.key];
 }
 -(void)createyxTableView{
     if (!self.yxTableView) {
@@ -41,28 +56,57 @@
     self.yxTableView.separatorStyle = 0;
     
 }
+
+#pragma mark ========== 1111111-先请求tag列表,获取发现页标签数据 ==========
+-(void)requestFindAll_Tag:(NSString *)key{
+    if (!key) {
+        return;
+    }
+    kWeakSelf(self);
+    [YX_MANAGER requestSearchFind_all:@{@"key":key,@"page":NSIntegerToNSString(self.requestPage),@"type":@"2"} success:^(id object) {
+        [weakself.dataArray removeAllObjects];
+        [weakself.dataArray addObjectsFromArray:object];
+        [weakself.yxTableView reloadData];
+    }];
+}
+-(void)requestFindAll_user:(NSString *)key{
+    if (!key) {
+        return;
+    }
+    kWeakSelf(self);
+    [YX_MANAGER requestFind_user:@{@"name":@"username",@"page":NSIntegerToNSString(self.requestPage)} success:^(id object) {
+        [weakself.dataArray removeAllObjects];
+        [weakself.dataArray addObjectsFromArray:object];
+        [weakself.yxTableView reloadData];
+    }];
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.dataArray.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 60;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identify = @"YXHomeXueJiaTableViewCell";
-     YXHomeXueJiaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify forIndexPath:indexPath];
+    YXHomeXueJiaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify forIndexPath:indexPath];
     cell.cellImageView.layer.masksToBounds = YES;
     cell.cellImageView.layer.cornerRadius = cell.cellImageView.frame.size.width / 2.0;
-//    NSString * str = [(NSMutableString *)self.informationArray[indexPath.row][@"photo"] replaceAll:@" " target:@"%20"];
-    [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    cell.cellLbl.text = @"xxz";
-    cell.cellAutherLbl.text = @"浙江 杭州";
-    cell.cellDataLbl.text =  @"";
+    NSString * str = [(NSMutableString *)self.dataArray[indexPath.row][@"photo"] replaceAll:@" " target:@"%20"];
+    [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    cell.cellLbl.text = self.whereCome  ? self.dataArray[indexPath.row][@"tag"] : self.dataArray[indexPath.row][@"username"];
+    cell.cellAutherLbl.text = self.whereCome  ? kGetString(self.dataArray[indexPath.row][@"count_tag"]) : self.dataArray[indexPath.row][@"site"];
+    cell.cellDataLbl.hidden = YES;
     
     return cell;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    YXFindSearchResultTagViewController * VC = [[YXFindSearchResultTagViewController alloc]init];
-    [self.navigationController pushViewController:VC animated:YES];
+    if (self.whereCome) {
+        YXFindSearchResultTagViewController * VC = [[YXFindSearchResultTagViewController alloc]init];
+        VC.key = self.dataArray[indexPath.row][@"tag"];
+        [self.navigationController pushViewController:VC animated:YES];
+    }
+
 }
 
 

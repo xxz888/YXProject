@@ -10,8 +10,6 @@
 
 @implementation YXFindSearchHeadView
 - (void)drawRect:(CGRect)rect {
-    UIColor *color =  YXRGBAColor(217, 217, 217);
-//    ViewBorderRadius(self.searchBar, 15, 1, color);
     //拿到searchBar的输入框
     UITextField *searchTextField = [self.searchBar valueForKey:@"_searchField"];
     //字体大小

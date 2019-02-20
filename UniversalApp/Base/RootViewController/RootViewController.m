@@ -369,22 +369,21 @@
     NSLog(@"%@", searchText);
 }
 
+// called when keyboard search button pressed
+
 #pragma mark ==========  搜索相关 ==========
 -(void)setNavSearchView{
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXFindSearchHeadView" owner:self options:nil];
-    YXFindSearchHeadView * searchHeaderView = [nib objectAtIndex:0];
-    searchHeaderView.searchBar.delegate = self;
+    _searchHeaderView = [nib objectAtIndex:0];
+    _searchHeaderView.searchBar.delegate = self;
     [self.navigationItem.titleView sizeToFit];
-    self.navigationItem.titleView = searchHeaderView;
-    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:(UIBarButtonItemStyleDone) target:self action:@selector(cancleAction)];
-    [rightitem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:13],NSFontAttributeName,KDarkGaryColor,NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
-    self.navigationItem.rightBarButtonItem = rightitem;
+    self.navigationItem.titleView = _searchHeaderView;
+    
 
 }
 #pragma mark - gesture actions
 - (void)cancleAction{
-[[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-    
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
 -(void)textField1TextChange:(UITextField *)tf{
 //    [self clickSearchBar];

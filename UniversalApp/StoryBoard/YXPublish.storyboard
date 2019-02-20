@@ -63,7 +63,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="bwT-Ci-wUD"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="发布">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -106,9 +106,9 @@
                         <viewLayoutGuide key="safeArea" id="3Jo-v7-wIP"/>
                     </view>
                     <connections>
-                        <outlet property="buttonFabuBtn" destination="wnS-dv-FCQ" id="iK2-aw-ROB"/>
+                        <outlet property="buttonFabuBtn" destination="1Wr-5T-Rjo" id="b5o-HN-Ssy"/>
                         <outlet property="cunCaogaoBtn" destination="Ukg-EW-syb" id="gog-Yg-r7f"/>
-                        <outlet property="fabuBtn" destination="1Wr-5T-Rjo" id="la2-DM-YlS"/>
+                        <outlet property="fabuBtn" destination="wnS-dv-FCQ" id="GWX-Q8-IfT"/>
                         <outlet property="floatView" destination="17G-eK-AqH" id="D5M-cA-yeA"/>
                         <outlet property="yxTableview" destination="FGb-ec-nyp" id="HJU-4Q-1j7"/>
                     </connections>
@@ -287,7 +287,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="XGm-NB-e6o"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="发布足迹">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -372,6 +372,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="qhg-fw-drr"/>
                     <connections>
+                        <outlet property="fabuBtn" destination="0Xo-Nx-HZO" id="Lfp-bM-TpM"/>
                         <outlet property="floatView" destination="gRE-ha-bi7" id="Evg-Xd-sBN"/>
                         <outlet property="locationBtn" destination="PF9-uF-Fj2" id="dgG-cd-KoM"/>
                         <outlet property="moreBtn" destination="SWr-Ud-kaH" id="sfu-Pz-tyt"/>
@@ -388,7 +389,7 @@
     </scenes>
     <resources>
         <image name="井号" width="32" height="32"/>
-        <image name="定位" width="32" height="32"/>
+        <image name="定位" width="64" height="64"/>
         <image name="拍照" width="32" height="32"/>
         <image name="风车" width="32" height="32"/>
     </resources>

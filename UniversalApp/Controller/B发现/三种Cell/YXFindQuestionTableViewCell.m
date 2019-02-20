@@ -10,13 +10,14 @@
 
 @implementation YXFindQuestionTableViewCell
 +(CGFloat)cellMoreHeight:(NSDictionary *)dic{
-    CGSize size = [YXMineAndFindBaseTableViewCell cellAutoHeight:dic[@"question"]];
-    return size.height + 420 - 30;
-}
-- (void)layoutSubviews{
-    [super layoutSubviews];
-    self.titleTagLbl2.text = self.dataDic[@"question"];
-    [self openAndCloseAction:self.dataDic openBtn:self.openBtn layout:self.textHeight text:self.titleTagLbl2.text];
+    NSArray * plArray =  dic[@"answer"];
+    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:dic[@"question"]];
+    CGFloat lastHeight =
+    (plArray.count >= 1 ? 25 : 0) +
+    (plArray.count >= 2 ? 25 : 0) +
+    (plArray.count >= 2 ? 25 : 0) +
+    height_size;
+    return lastHeight + 305;
 }
 - (IBAction)openAction:(id)sender{
     //将当前对象的isShowMoreText属性设为相反值
@@ -27,6 +28,11 @@
 }
 -(void)setCellValue:(NSDictionary *)dic{
     [self cellValueDic:dic searchBtn:self.searchBtn pl1NameLbl:self.pl1NameLbl pl2NameLbl:self.pl2NameLbl pl1ContentLbl:self.pl1ContentLbl pl2ContentLbl:self.pl2ContentLbl titleImageView:self.titleImageView addPlImageView:self.addPlImageView talkCount:self.talkCount titleLbl:self.titleLbl timeLbl:self.timeLbl mapBtn:self.mapBtn likeBtn:self.likeBtn];
+    
+    self.pl1Height.constant = [self getPl1HeightPlArray:dic];
+    self.pl2Height.constant = [self getPl2HeightPlArray:dic];
+    self.plAllHeight.constant = [self getPlAllHeightPlArray:dic];
+    self.textHeight.constant = [self getLblHeight:dic];
     self.titleTagLbl1.text = dic[@"title"];
     self.titleTagLbl2.text = dic[@"question"];
     NSString * str1 = [(NSMutableString *)dic[@"pic1"] replaceAll:@" " target:@"%20"];
@@ -35,6 +41,31 @@
     [self.midImageView1 sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     [self.midImageView2 sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     [self.midImageView3 sd_setImageWithURL:[NSURL URLWithString:str3] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    
+    if ([self.mapBtn.titleLabel.text isEqualToString:@""] || !self.mapBtn.titleLabel.text) {
+        
+        self.nameCenter.constant = self.titleImageView.frame.origin.y;
+    }
+    [ShareManager setLineSpace:9 withText:self.titleTagLbl2.text inLabel:self.titleTagLbl2 tag:@""];
+
+}
+
+-(CGFloat)getPl1HeightPlArray:(NSDictionary *)dic{
+    NSArray * plArray =  dic[@"answer"];
+    return plArray.count >= 1 ? 25 : 0;
+}
+-(CGFloat)getPl2HeightPlArray:(NSDictionary *)dic{
+    NSArray * plArray =  dic[@"answer"];
+    return plArray.count >= 2 ? 25 : 0;
+}
+-(CGFloat)getPlAllHeightPlArray:(NSDictionary *)dic{
+    NSArray * plArray =  dic[@"answer"];
+    return plArray.count >= 2 ? 25 : 0;
+}
+-(CGFloat)getLblHeight:(NSDictionary *)dic{
+    NSString * titleText = dic[@"question"];
+    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:titleText];
+    return height_size;
 }
 - (IBAction)likeBtnAction:(id)sender {
     if (![userManager loadUserInfo]) {

@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)cancleAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property(nonatomic, assign) CGSize intrinsicContentSize;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchBarHeight;
 
 @end
 

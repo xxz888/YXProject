@@ -107,21 +107,27 @@
 
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
-//    [self clickSearchBar];
-    [QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
-    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-    return NO;
+    [self clickSearchBar];
+//    [QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
+//    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    return YES;
 }
 - (void)clickSearchBar{
-    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
-    YXFindSearchViewController *searchViewController = [YXFindSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"搜索", @"搜索") didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
-        
-        [searchViewController.navigationController pushViewController:[[YXFindSearchResultViewController alloc] init] animated:YES];
+    [YX_MANAGER requestGetFind_all:@"" success:^(id object) {
+        NSMutableArray * hotSeaches = [[NSMutableArray alloc]init];
+        for (NSDictionary * dic in object) {
+            [hotSeaches addObject:dic[@"key"]];
+        }
+        YXFindSearchViewController *searchViewController = [YXFindSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"搜索", @"搜索") didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+            YXFindSearchResultViewController * VC = [[YXFindSearchResultViewController alloc] init];
+            VC.searchText = searchText;
+            [searchViewController.navigationController pushViewController:VC animated:YES];
+        }];
+        searchViewController.hotSearchStyle = PYHotSearchStyleNormalTag;
+        searchViewController.searchHistoryStyle = 1;
+        searchViewController.delegate = self;
+        RootNavigationController *nav2 = [[RootNavigationController alloc]initWithRootViewController:searchViewController];
+        [self presentViewController:nav2 animated:NO completion:nil];
     }];
-    searchViewController.hotSearchStyle = PYHotSearchStyleBorderTag;
-    searchViewController.searchHistoryStyle = 1;
-    searchViewController.delegate = self;
-    RootNavigationController *nav2 = [[RootNavigationController alloc]initWithRootViewController:searchViewController];
-    [self presentViewController:nav2 animated:YES completion:nil];
 }
 @end

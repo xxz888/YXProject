@@ -216,6 +216,14 @@
 		BB29122A22156BDE00FF484E /* LLGifImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29122822156BDD00FF484E /* LLGifImageView.m */; };
 		BB29122E2215712000FF484E /* YXXingZhuangTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29122C2215712000FF484E /* YXXingZhuangTableViewCell.m */; };
 		BB29122F2215712000FF484E /* YXXingZhuangTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29122D2215712000FF484E /* YXXingZhuangTableViewCell.xib */; };
+		BB2A8EB6221BB0A300B6756A /* UILabel+String.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2A8EB5221BB0A300B6756A /* UILabel+String.m */; };
+		BB2A8EB9221BE73300B6756A /* UIImage+ImgSize.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2A8EB8221BE73300B6756A /* UIImage+ImgSize.m */; };
+		BB3DFE8A221D568D000C70B5 /* XHWebImageAutoSizeCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3DFE82221D568D000C70B5 /* XHWebImageAutoSizeCache.m */; };
+		BB3DFE8B221D568D000C70B5 /* UICollectionView+XHWebImageAutoSize.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3DFE84221D568D000C70B5 /* UICollectionView+XHWebImageAutoSize.m */; };
+		BB3DFE8C221D568D000C70B5 /* UITableView+XHWebImageAutoSize.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3DFE85221D568D000C70B5 /* UITableView+XHWebImageAutoSize.m */; };
+		BB3DFE8D221D568D000C70B5 /* XHWebImageAutoSizeConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3DFE86221D568D000C70B5 /* XHWebImageAutoSizeConst.m */; };
+		BB3DFE8E221D568D000C70B5 /* XHWebImageAutoSize.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3DFE87221D568D000C70B5 /* XHWebImageAutoSize.m */; };
+		BB3DFE8F221D568D000C70B5 /* NSString+XHWebImageAutoSize.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3DFE88221D568D000C70B5 /* NSString+XHWebImageAutoSize.m */; };
 		BB44F87D22140AFB0034CAEC /* HXEasyCustomShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB44F87B22140AFB0034CAEC /* HXEasyCustomShareView.m */; };
 		BB44F87E22140AFB0034CAEC /* HXShareScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB44F87C22140AFB0034CAEC /* HXShareScrollView.m */; };
 		BB5DC69B2189CA38003F1998 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */; };
@@ -932,6 +940,22 @@
 		BB29122B2215712000FF484E /* YXXingZhuangTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXXingZhuangTableViewCell.h; sourceTree = "<group>"; };
 		BB29122C2215712000FF484E /* YXXingZhuangTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXXingZhuangTableViewCell.m; sourceTree = "<group>"; };
 		BB29122D2215712000FF484E /* YXXingZhuangTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXXingZhuangTableViewCell.xib; sourceTree = "<group>"; };
+		BB2A8EB4221BB0A300B6756A /* UILabel+String.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+String.h"; sourceTree = "<group>"; };
+		BB2A8EB5221BB0A300B6756A /* UILabel+String.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+String.m"; sourceTree = "<group>"; };
+		BB2A8EB7221BE73300B6756A /* UIImage+ImgSize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImgSize.h"; sourceTree = "<group>"; };
+		BB2A8EB8221BE73300B6756A /* UIImage+ImgSize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImgSize.m"; sourceTree = "<group>"; };
+		BB3DFE7E221D568D000C70B5 /* UICollectionView+XHWebImageAutoSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+XHWebImageAutoSize.h"; sourceTree = "<group>"; };
+		BB3DFE7F221D568D000C70B5 /* UITableView+XHWebImageAutoSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+XHWebImageAutoSize.h"; sourceTree = "<group>"; };
+		BB3DFE80221D568D000C70B5 /* XHWebImageAutoSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHWebImageAutoSize.h; sourceTree = "<group>"; };
+		BB3DFE81221D568D000C70B5 /* XHWebImageAutoSizeConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHWebImageAutoSizeConst.h; sourceTree = "<group>"; };
+		BB3DFE82221D568D000C70B5 /* XHWebImageAutoSizeCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHWebImageAutoSizeCache.m; sourceTree = "<group>"; };
+		BB3DFE83221D568D000C70B5 /* NSString+XHWebImageAutoSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+XHWebImageAutoSize.h"; sourceTree = "<group>"; };
+		BB3DFE84221D568D000C70B5 /* UICollectionView+XHWebImageAutoSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+XHWebImageAutoSize.m"; sourceTree = "<group>"; };
+		BB3DFE85221D568D000C70B5 /* UITableView+XHWebImageAutoSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+XHWebImageAutoSize.m"; sourceTree = "<group>"; };
+		BB3DFE86221D568D000C70B5 /* XHWebImageAutoSizeConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHWebImageAutoSizeConst.m; sourceTree = "<group>"; };
+		BB3DFE87221D568D000C70B5 /* XHWebImageAutoSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHWebImageAutoSize.m; sourceTree = "<group>"; };
+		BB3DFE88221D568D000C70B5 /* NSString+XHWebImageAutoSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XHWebImageAutoSize.m"; sourceTree = "<group>"; };
+		BB3DFE89221D568D000C70B5 /* XHWebImageAutoSizeCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHWebImageAutoSizeCache.h; sourceTree = "<group>"; };
 		BB44F87922140AFB0034CAEC /* HXShareScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXShareScrollView.h; sourceTree = "<group>"; };
 		BB44F87A22140AFB0034CAEC /* HXEasyCustomShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXEasyCustomShareView.h; sourceTree = "<group>"; };
 		BB44F87B22140AFB0034CAEC /* HXEasyCustomShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXEasyCustomShareView.m; sourceTree = "<group>"; };
@@ -2720,6 +2744,25 @@
 			path = LLGifView;
 			sourceTree = "<group>";
 		};
+		BB3DFE7D221D568D000C70B5 /* XHWebImageAutoSize */ = {
+			isa = PBXGroup;
+			children = (
+				BB3DFE7E221D568D000C70B5 /* UICollectionView+XHWebImageAutoSize.h */,
+				BB3DFE7F221D568D000C70B5 /* UITableView+XHWebImageAutoSize.h */,
+				BB3DFE80221D568D000C70B5 /* XHWebImageAutoSize.h */,
+				BB3DFE81221D568D000C70B5 /* XHWebImageAutoSizeConst.h */,
+				BB3DFE82221D568D000C70B5 /* XHWebImageAutoSizeCache.m */,
+				BB3DFE83221D568D000C70B5 /* NSString+XHWebImageAutoSize.h */,
+				BB3DFE84221D568D000C70B5 /* UICollectionView+XHWebImageAutoSize.m */,
+				BB3DFE85221D568D000C70B5 /* UITableView+XHWebImageAutoSize.m */,
+				BB3DFE86221D568D000C70B5 /* XHWebImageAutoSizeConst.m */,
+				BB3DFE87221D568D000C70B5 /* XHWebImageAutoSize.m */,
+				BB3DFE88221D568D000C70B5 /* NSString+XHWebImageAutoSize.m */,
+				BB3DFE89221D568D000C70B5 /* XHWebImageAutoSizeCache.h */,
+			);
+			path = XHWebImageAutoSize;
+			sourceTree = "<group>";
+		};
 		BB44F87822140AFB0034CAEC /* 分享相关 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3475,6 +3518,7 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BB3DFE7D221D568D000C70B5 /* XHWebImageAutoSize */,
 				BB29122422156BDD00FF484E /* LLGifView */,
 				BB2911EB22156BB500FF484E /* 雪茄形状 */,
 				BB44F87822140AFB0034CAEC /* 分享相关 */,
@@ -3521,6 +3565,10 @@
 				BBA813B621DE0D37001B5EA1 /* NSString+CString.m */,
 				BB6D2A3D21EF206A00F5049F /* KeyBoardTableView.h */,
 				BB6D2A3E21EF206A00F5049F /* KeyBoardTableView.m */,
+				BB2A8EB4221BB0A300B6756A /* UILabel+String.h */,
+				BB2A8EB5221BB0A300B6756A /* UILabel+String.m */,
+				BB2A8EB7221BE73300B6756A /* UIImage+ImgSize.h */,
+				BB2A8EB8221BE73300B6756A /* UIImage+ImgSize.m */,
 			);
 			path = "艺鑫工具";
 			sourceTree = "<group>";
@@ -5249,6 +5297,7 @@
 				BB5DC69B2189CA38003F1998 /* SELUpdateAlert.m in Sources */,
 				BB6D2A3A21EEC63900F5049F /* SinglePageEmojiCell.m in Sources */,
 				BBDA2D2221EB30BF00EDCCFF /* UIView+SDExtension.m in Sources */,
+				BB3DFE8E221D568D000C70B5 /* XHWebImageAutoSize.m in Sources */,
 				BBDA2D0321EB30BF00EDCCFF /* SDContactsTableViewCell.m in Sources */,
 				BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */,
 				BB928F9521FB5D290090A044 /* BRDatePickerView.m in Sources */,
@@ -5273,6 +5322,7 @@
 				BBA812FA21DDEBEC001B5EA1 /* YXHomeTuiJianViewController.m in Sources */,
 				BBCC4B1921E8927700493F40 /* MLLabelUtil.m in Sources */,
 				BBADE4CE21F8015C0011E5FF /* RichTextViewController.m in Sources */,
+				BB3DFE8F221D568D000C70B5 /* NSString+XHWebImageAutoSize.m in Sources */,
 				293D46051ECDAA02007C64A9 /* RootNavigationController.m in Sources */,
 				BBECEEAF21F04D4B007E90AC /* YXQCDJCTableViewCell.m in Sources */,
 				BBA812EA21DDDE47001B5EA1 /* MDMultipleSegmentViewCell.m in Sources */,
@@ -5302,6 +5352,7 @@
 				BBA8130721DDFC81001B5EA1 /* YXHomeXueJiaTableViewCell.m in Sources */,
 				29530FAE1F60F10700D24E05 /* CardView.m in Sources */,
 				290A981E1F4ABEB9006BF882 /* BaseTableViewCell.m in Sources */,
+				BB3DFE8D221D568D000C70B5 /* XHWebImageAutoSizeConst.m in Sources */,
 				293D46011ECDA56A007C64A9 /* MainTabBarController.m in Sources */,
 				BB29122E2215712000FF484E /* YXXingZhuangTableViewCell.m in Sources */,
 				BB6D2A4221EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.m in Sources */,
@@ -5407,6 +5458,7 @@
 				BBDA2EF421ECC22B00EDCCFF /* SearchResultsController.m in Sources */,
 				BBE82BDC21E35FF1004E4144 /* ZZYPhotoHelper.m in Sources */,
 				BB5FD8A621FF529A00B5F1A8 /* YXMineAllImageTableViewCell.m in Sources */,
+				BB3DFE8B221D568D000C70B5 /* UICollectionView+XHWebImageAutoSize.m in Sources */,
 				BBD2C98521E1BC0A00350DCD /* PYSearchConst.m in Sources */,
 				BBDA2C6621EB308100EDCCFF /* SDTimeLineTableHeaderView.m in Sources */,
 				BBD2C83B21E0F44A00350DCD /* UIImageView+CircularImv.m in Sources */,
@@ -5444,6 +5496,7 @@
 				BBD2C9A021E2F4CA00350DCD /* YXHomeXueJiaPinPaiTableViewCell.m in Sources */,
 				BBD2C91721E0F67800350DCD /* LLImagePickerView.m in Sources */,
 				BBADE4D721F8655E0011E5FF /* YXMineImageDetailViewController.m in Sources */,
+				BB3DFE8C221D568D000C70B5 /* UITableView+XHWebImageAutoSize.m in Sources */,
 				BB9413DE21F8B602007E800A /* IQPreviousNextView.m in Sources */,
 				29280E881F063EE700BF52D9 /* XYTransition.m in Sources */,
 				BBDA2D0421EB30BF00EDCCFF /* SDAnalogDataGenerator.m in Sources */,
@@ -5460,6 +5513,7 @@
 				BBD2C9AD21E3029100350DCD /* YXHomeXueJiaPinPaiDetailViewController.m in Sources */,
 				BB928F6121FACAE20090A044 /* YXMineSettingTableViewController.m in Sources */,
 				BBD2C96521E10E5500350DCD /* LTTextView.m in Sources */,
+				BB2A8EB6221BB0A300B6756A /* UILabel+String.m in Sources */,
 				BBDA2D2021EB30BF00EDCCFF /* SDRefreshHeaderView.m in Sources */,
 				BB9413D921F8B602007E800A /* IQTextView.m in Sources */,
 				BB6D2A0521EDA7F400F5049F /* BKStrikeLabel.m in Sources */,
@@ -5482,6 +5536,7 @@
 				296DEA721F5D50D100C6FD00 /* TAPageControl.m in Sources */,
 				BB9413DD21F8B602007E800A /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				BB93DC98221A4BEA0094BADC /* RootTableViewController.m in Sources */,
+				BB3DFE8A221D568D000C70B5 /* XHWebImageAutoSizeCache.m in Sources */,
 				BB9413E421F8B602007E800A /* IQUIView+Hierarchy.m in Sources */,
 				BB928F9621FB5D290090A044 /* BRBaseView.m in Sources */,
 				29530FA61F60F0E800D24E05 /* DraggingCardViewController.m in Sources */,
@@ -5503,6 +5558,7 @@
 				BBD2C8FA21E0F67700350DCD /* NSBundle+TZImagePicker.m in Sources */,
 				BBC6180121F597EE00495619 /* YXGEFPinPaiLastDetailViewController.m in Sources */,
 				BBD2C95521E0F72800350DCD /* DALabeledCircularProgressView.m in Sources */,
+				BB2A8EB9221BE73300B6756A /* UIImage+ImgSize.m in Sources */,
 				293D460E1ECDAEDC007C64A9 /* MsgViewController.m in Sources */,
 				BB9413E321F8B602007E800A /* IQUIScrollView+Additions.m in Sources */,
 				BB5FD88A21FECBDB00B5F1A8 /* YXFindImageTableViewCell.m in Sources */,

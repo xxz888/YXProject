@@ -200,4 +200,8 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestDianZanFoot_PingLun:YX_BLOCK;
 #pragma mark ========== 获取其他人足迹列表 ==========
 -(void)requestGetOther_Track_list:YX_BLOCK;
+#pragma mark ==========搜索 ==========
+-(void)requestSearchFind_all:YX_BLOCK;
+#pragma mark ========== 热门关键字 ==========
+-(void)requestGetFind_all:YX_BLOCK;
 @end

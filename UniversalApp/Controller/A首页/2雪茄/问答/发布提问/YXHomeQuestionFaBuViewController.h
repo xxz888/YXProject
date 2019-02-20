@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UISwitch *switchBtn;
 @property (weak, nonatomic) IBOutlet UIButton *locationBtn;
 - (IBAction)locationBtnAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *fabuBtn;
 
 @end
 

@@ -19,8 +19,8 @@
     [super viewDidLoad];
 //    self.navigationController.navigationBar.topItem.title = @"";
     self.navigationController.navigationBar.translucent = NO;
-    ViewBorderRadius(self.searchBar, 2, 1, KDarkGaryColor);
-    self.searchBar.backgroundColor = YXRGBAColor(225, 225, 225);
+    
+
 }
 
 /*

@@ -45,7 +45,7 @@
     NSArray <NSDictionary *>*VCArray =
     @[@{@"vc":nav1,@"normalImg":@"home_normal",@"selectImg":@"home_highlight",@"itemTitle":@"首页"},
       @{@"vc":nav2,@"normalImg":@"mycity_normal",@"selectImg":@"mycity_highlight",@"itemTitle":@"发现"},
-      @{@"vc":[UIViewController new],@"normalImg":@"",@"selectImg":@"",@"itemTitle":@"发布"},
+      @{@"vc":[UIViewController new],@"normalImg":@"tabar_plus_normal",@"selectImg":@"tabar_plus_highlight",@"itemTitle":@"发布"},
       @{@"vc":nav3,@"normalImg":@"message_normal",@"selectImg":@"message_highlight",@"itemTitle":@"消息"},
       @{@"vc":nav4,@"normalImg":@"account_normal",@"selectImg":@"account_highlight",@"itemTitle":@"我的"}];
     // 1.遍历这个集合
@@ -61,11 +61,11 @@
         model.selectImageName = [obj objectForKey:@"selectImg"];
         model.normalImageName = [obj objectForKey:@"normalImg"];
         // 4.设置单个选中item标题状态下的颜色
-        model.selectColor = [UIColor blackColor];
-        model.normalColor = [UIColor blackColor];
+        model.selectColor =YXRGBAColor(176, 151, 99);
+        model.normalColor = AxcAE_TabBarRGBA(93, 93, 93, 1);
         
         /***********************************/
-        if (idx == 2 ) { // 如果是中间的
+        if (idx == 9 ) { // 如果是中间的
             // 设置凸出 矩形
             model.bulgeStyle = AxcAE_TabBarConfigBulgeStyleSquare;
             // 设置凸出高度
@@ -92,7 +92,7 @@
             // 来点效果好看
             model.interactionEffectStyle = AxcAE_TabBarInteractionEffectStyleSpring;
             // 点击背景稍微明显点吧
-            model.selectBackgroundColor = AxcAE_TabBarRGBA(248, 248, 248, 1);
+            model.selectBackgroundColor = AxcAE_TabBarRGBA(32, 33, 33, 1);
             model.normalBackgroundColor = [UIColor clearColor];
         }
         // 备注 如果一步设置的VC的背景颜色，VC就会提前绘制驻留，优化这方面的话最好不要这么写
@@ -122,7 +122,7 @@
     self.axcTabBar.tabBarConfig = tabBarConfs;
     // 7.设置委托
     self.axcTabBar.delegate = self;
-    self.axcTabBar.backgroundColor = [UIColor whiteColor];
+    self.axcTabBar.backgroundColor = YXRGBAColor(32, 33, 33);
     // 8.添加覆盖到上边
     [self.tabBar addSubview:self.axcTabBar];
     [self addLayoutTabBar]; // 10.添加适配

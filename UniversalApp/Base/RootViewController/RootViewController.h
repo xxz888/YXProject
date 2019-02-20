@@ -15,6 +15,7 @@
 #import "FCXRefreshFooterView.h"
 #import "FCXRefreshHeaderView.h"
 #import "UIScrollView+FCXRefresh.h"
+#import "YXFindSearchHeadView.h"
 typedef void (^ListenChangeIndexBlock)(NSInteger);
 
 /**
@@ -28,6 +29,7 @@ typedef void (^ListenChangeIndexBlock)(NSInteger);
 @property (nonatomic, assign) UIStatusBarStyle StatusBarStyle;
 
 @property (nonatomic,copy) ListenChangeIndexBlock getIndex;
+@property (nonatomic,strong) YXFindSearchHeadView * searchHeaderView;
 
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) UICollectionView * collectionView;
@@ -110,4 +112,6 @@ typedef void (^ListenChangeIndexBlock)(NSInteger);
 -(NSMutableArray *)commonCollectionAction:(id)obj dataArray:(NSMutableArray *)dataArray;
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar;
 - (void)cancleAction;
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar;
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar;
 @end

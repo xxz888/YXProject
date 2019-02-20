@@ -69,6 +69,7 @@ typedef void(^clickShareBlock)(YXFindImageTableViewCell *);
 @property(nonatomic, copy) void (^showMoreTextBlock)(YXFindImageTableViewCell  *currentCell,NSMutableDictionary * dataDic);
 ///展开后的高度
 +(CGFloat)cellMoreHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome;
++(CGFloat)cellDefaultHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome;
 @property (weak, nonatomic) IBOutlet UIButton *openBtn;
 
 
@@ -76,6 +77,15 @@ typedef void(^clickShareBlock)(YXFindImageTableViewCell *);
 @property (weak, nonatomic) IBOutlet UILabel *talkCount;
 @property (weak, nonatomic) IBOutlet UILabel *zanCount;
 @property (weak, nonatomic) IBOutlet UILabel *shareCount;
+
+
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imvHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pl1Height;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pl2Height;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *plAllHeight;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameCenter;
 @end
 
 NS_ASSUME_NONNULL_END

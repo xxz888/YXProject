@@ -45,7 +45,8 @@
 -(void)initAllCon{
     ViewRadius(self.xinhuatiBtn, 3);
     ViewRadius(self.moreBtn, 3);
-    
+    [self.fabuBtn setBackgroundColor:YXRGBAColor(51, 51, 51)];
+    [self.fabuBtn setTitleColor:YXRGBAColor(176, 151, 99) forState:UIControlStateNormal];
     self.qmuiTextView = [[QMUITextView alloc] init];
     self.qmuiTextView.frame = CGRectMake(0, 0, KScreenWidth - 20, self.questionMainView.frame.size.height);
     self.qmuiTextView.backgroundColor = YXRGBAColor(239, 239, 239);
@@ -100,6 +101,9 @@
         }else if (self.qmuiTextView.text.length == 0){
             [QMUITips showError:@"请输入足迹描述!" inView:self.view hideAfterDelay:2];
             return;
+        }else if (self.qmuiTextView.text.length >  100){
+            [QMUITips showError:@"足迹描述长度不能超过100字符" inView:self.view hideAfterDelay:2];
+            return;
         }
         
         [dic setValue:self.cigar_id forKey:@"cigar_id"];
@@ -110,7 +114,7 @@
         [dic setValue:@(1) forKey:@"type"];//(1,"雪茄"),(2,"红酒"),(3,"高尔夫")
         [dic setValue:self.switchBtn.isOn ? @(1) : @(2) forKey:@"to_find"];
         
-        NSString * tag  = _tagArray.count == 0 ? @"" : [_tagArray componentsJoinedByString:@","];
+        NSString * tag  = _tagArray.count == 0 ? @"" : [_tagArray componentsJoinedByString:@" "];
         [dic setValue:tag forKey:@"tag"];//标签
         
         NSString * publish_site = [self.locationBtn.titleLabel.text isEqualToString:@"你的位置"] ? @"" : self.locationBtn.titleLabel.text;

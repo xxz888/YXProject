@@ -84,32 +84,6 @@ static NSString *QiniuBucketName  = @"thegdlife";
 }
 
 +(void)uploadImageToQNFilePath:(NSArray *)photos success:(QNSuccessBlock)success failure:(QNFailureBlock)failure{
-    /*
-    NSMutableArray *imageAry =[NSMutableArray arrayWithArray:photos];
-    NSMutableArray *imageAdd = [NSMutableArray new];
-    //华东
-    QNConfiguration *config = [QNConfiguration build:^(QNConfigurationBuilder *builder) {
-        builder.zone = [QNFixedZone zone0];
-    }];
-    
-    
-//        UserInfo *userInfo = curUser;
-//        NSString * userId = userInfo.id;
-        NSString * key = [NSString stringWithFormat:@"%@_image_%@.jpg/",curUser.id,[ShareManager getNowTimeTimestamp3]];
-//        [YX_MANAGER requestQiniu_tokenGET:key success:^(id object) {
-//            NSString * token = object[@"token"];
-            NSString * token = [QiniuLoad makeToken:accessKey secretKey:secretKey];
-            NSString * filePath = [QiniuLoad getImagePath:imageAry[0]];
-            QNUploadManager *upManager = [[QNUploadManager alloc] initWithConfiguration:config];
-            QNUploadOption *uploadOption = [[QNUploadOption alloc] initWithMime:nil progressHandler:^(NSString *key, float percent) { }
-                     params:nil  checkCrc:NO cancellationSignal:nil];
-            [upManager putFile:filePath key:key token:token complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-                if (info.isOK) {
-                    success(resp[@"key"]);
-                }
-            }option:uploadOption];
-//        }];
-    */
     
     NSMutableArray *imageAry =[NSMutableArray new];
     NSMutableArray *imageAdd = [NSMutableArray new];
@@ -132,7 +106,7 @@ static NSString *QiniuBucketName  = @"thegdlife";
         }
         UserInfo *userInfo = curUser;
         NSString * userId = userInfo.id;
-        sleep(1);
+        sleep(0.5);
         NSString * key = [NSString stringWithFormat:@"%@_image_%@.jpg/",userId,[ShareManager getNowTimeTimestamp3]];
         [upManager putData:data key:key token:[QiniuLoad makeToken:accessKey secretKey:secretKey] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
             if (info.isOK) {

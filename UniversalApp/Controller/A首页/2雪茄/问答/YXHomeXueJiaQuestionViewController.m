@@ -26,10 +26,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
      self.title = @"问答";
-    UIButton * btn = [UIButton buttonWithType:0];
-    [btn setTitle:@"发布提问" forState:UIControlStateNormal];
-    btn.backgroundColor = YXRGBAColor(38, 38, 38);
-    btn.tintColor = YXRGBAColor(145, 123, 67);
+    UIButton * btn = [UIButton buttonWithType:1];
+    [btn setTitle:@"我要提问" forState:UIControlStateNormal];
+    [btn setBackgroundColor:YXRGBAColor(51, 51, 51)];
+    [btn setTitleColor:YXRGBAColor(176, 151, 99) forState:UIControlStateNormal];
+    btn.font = [UIFont systemFontOfSize:15];
     btn.frame = CGRectMake(0, KScreenHeight-50, KScreenWidth,   50);
     [btn addTarget:self action:@selector(pushTiWen) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];

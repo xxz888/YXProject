@@ -20,14 +20,32 @@
 @end
 
 @implementation YXFindSearchResultViewController
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:nil];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.isShowLiftBack = NO;
+    self.isShowLiftBack = YES;
     [self setNavSearchView];
-    
+    self.searchHeaderView.searchBar.text = self.searchText;
     allVC = [[YXFindSearchResultAllViewController alloc]init];
+    allVC.key = self.searchText;
     userVC = [[YXFindSearchResultUsersViewController alloc]init];
+    userVC.key = self.searchText;
+
+    userVC.whereCome = NO;
     tagVC = [[YXFindSearchResultUsersViewController alloc]init];
+    tagVC.key = self.searchText;
+
+    tagVC.whereCome = YES;
+
     NSArray* names = @[@"全部",@"用户",@"标签"];
     NSArray* controllers = @[allVC,userVC,tagVC];
     [self setSegmentControllersArray:controllers title:names defaultIndex:0 top:kTopHeight view:self.view];
@@ -35,5 +53,21 @@
 - (void)cancleAction{
     [self.navigationController popViewControllerAnimated:YES];
 }
+-(void)backBtnClicked{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    allVC.key = searchBar.text;
+    userVC.key = searchBar.text;
+    tagVC.key = searchBar.text;
+    [allVC requestFindAll:searchBar.text];
+}
 
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
+    if ([searchBar.text isEqualToString:@""]) {
+        [self.navigationController popViewControllerAnimated:YES];
+        return NO;
+    }
+    return YES;
+}
 @end
