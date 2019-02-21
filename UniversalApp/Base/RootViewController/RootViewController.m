@@ -368,9 +368,6 @@
     NSString *searchText = searchController.searchBar.text;
     NSLog(@"%@", searchText);
 }
-- (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text NS_AVAILABLE_IOS(3_0);{
-    return NO;
-}
 // called when keyboard search button pressed
 
 #pragma mark ==========  搜索相关 ==========

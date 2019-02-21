@@ -63,19 +63,8 @@
     [allVC requestFindAll:searchBar.text];
 }
 
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
-    if ([searchBar.text isEqualToString:@""]) {
-        [self.navigationController popViewControllerAnimated:YES];
-        return NO;
-    }
-    return YES;
-}
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     self.searchBlock(self.searchHeaderView.searchBar.text);
     [self.navigationController popViewControllerAnimated:YES];
-}
-- (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text NS_AVAILABLE_IOS(3_0){
-   
-    return NO;
 }
 @end

@@ -1,7 +1,23 @@
 #import "NSArray+TPDecription.h"
 
 @implementation NSArray (TPDecription)
-
+-(NSString *)descriptionWithLocale:(id)locale
+{
+    NSMutableString * stringM=[NSMutableString string];
+    [stringM appendString:@"(\r\n"];
+    [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if(idx!=self.count-1)
+        {
+            [stringM appendFormat:@"\t%@,\r\n",obj];
+        }
+        else
+        {
+            [stringM appendFormat:@"\t%@\r\n",obj];
+        }
+    }];
+    [stringM appendString:@")"];
+    return stringM.copy;
+}
 #if DEBUG
 - (NSString *)descriptionWithLocale:(id)locale indent:(NSUInteger)level {
     NSMutableString *desc = [NSMutableString string];

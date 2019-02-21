@@ -332,5 +332,45 @@
 - (NSString *)localizedString{
     return NSLocalizedString(self, @"");
 }
+- (NSString *)utf8ToUnicode{
+    
+    NSUInteger length = [self length];
+    NSMutableString *str = [NSMutableString stringWithCapacity:0];
+    for (int i = 0;i < length; i++){
+        NSMutableString *s = [NSMutableString stringWithCapacity:0];
+        unichar _char = [self characterAtIndex:i];
+        // 判断是否为英文和数字
+        if (_char <= '9' && _char >='0'){
+            [s appendFormat:@"\\%x",[self characterAtIndex:i]];
+        }else if(_char >='a' && _char <= 'z'){
+            [s appendFormat:@"\\%x",[self characterAtIndex:i]];
+        }else if(_char >='A' && _char <= 'Z')
+        {
+            [s appendFormat:@"\\%x",[self characterAtIndex:i]];
+        }else{
+            // 中文和字符
+            [s appendFormat:@"\\u%x",[self characterAtIndex:i]];
+            // 不足位数补0 否则解码不成功
+            if(s.length == 4) {
+                [s insertString:@"00" atIndex:2];
+            } else if (s.length == 5) {
+                [s insertString:@"0" atIndex:2];
+            }
+        }
+        [str appendFormat:@"%@", s];
+    }
+    return str;}
 
+-(NSString *)UnicodeToUtf8{
+    NSString *tempStr1=[self stringByReplacingOccurrencesOfString:@"\\u"withString:@"\\U"];
+    NSString *tempStr2=[tempStr1 stringByReplacingOccurrencesOfString:@"\""withString:@"\\\""];
+    NSString *tempStr3=[[@"\"" stringByAppendingString:tempStr2]stringByAppendingString:@"\""];
+    NSData *tempData=[tempStr3 dataUsingEncoding:NSUTF8StringEncoding];
+    NSString* returnStr =[NSPropertyListSerialization propertyListFromData:tempData
+                                                          mutabilityOption:NSPropertyListImmutable
+                                                                    format:NULL
+                                                          errorDescription:NULL];
+    
+    return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n"withString:@"\n"];
+}
 @end

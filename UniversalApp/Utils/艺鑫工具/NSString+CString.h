@@ -110,5 +110,6 @@
  * 获取本地化字符串
  */
 - (NSString *)localizedString;
-
+- (NSString *)utf8ToUnicode;
+-(NSString *)UnicodeToUtf8;
 @end

@@ -50,12 +50,15 @@
     //两条评论
     NSArray * commentArray = dic[@"comment_list"] ? dic[@"comment_list"] : dic[@"answer"];
     if (commentArray.count >= 1) {
-        pl1NameLbl.text = [commentArray[0][@"user_name"] append:@":"];
-        pl2NameLbl.text = commentArray[0][@"comment"] ? commentArray[0][@"comment"] : commentArray[0][@"answer"];
+        pl1NameLbl.text = [[commentArray[0][@"user_name"] UnicodeToUtf8] append:@":"];
+        pl2NameLbl.text = [commentArray[0][@"comment"] UnicodeToUtf8]  ?
+            [commentArray[0][@"comment"] UnicodeToUtf8] :
+            [commentArray[0][@"answer"] UnicodeToUtf8];
+        
     }
     if (commentArray.count >= 2){
-        pl1ContentLbl.text = [commentArray[1][@"user_name"] append:@":"];
-        pl2ContentLbl.text = commentArray[1][@"comment"] ? commentArray[1][@"comment"] : commentArray[1][@"answer"];
+        pl1ContentLbl.text = [[commentArray[1][@"user_name"] UnicodeToUtf8] append:@":"];
+        pl2ContentLbl.text = [commentArray[1][@"comment"] UnicodeToUtf8] ? [commentArray[1][@"comment"] UnicodeToUtf8]: [commentArray[1][@"answer"] UnicodeToUtf8];
     }
     //cell的头图片
     NSString * str1 = [(NSMutableString *)(dic[@"user_photo"] ? dic[@"user_photo"] : dic[@"photo"]) replaceAll:@" " target:@"%20"];

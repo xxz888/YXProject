@@ -194,13 +194,13 @@ static CGFloat textFieldH = 40;
                 commentItemModel.firstUserName = kGetString(dic[@"user_name"]);
                 commentItemModel.secondUserName = kGetString(dic[@"aim_name"]);
                 commentItemModel.secondUserId = kGetString(dic[@"aim_id"]);
-                commentItemModel.commentString = kGetString(dic[@"comment"]);
+                commentItemModel.commentString = [kGetString(dic[@"comment"]) UnicodeToUtf8];
 //
 //                self.isReplayingComment = YES;
             } else {
                 commentItemModel.firstUserId = kGetString(dic[@"user_id"]);
                 commentItemModel.firstUserName =kGetString(dic[@"user_name"]);
-                commentItemModel.commentString = kGetString(dic[@"comment"]);
+                commentItemModel.commentString = [kGetString(dic[@"comment"]) UnicodeToUtf8];
             }
             BOOL ishave = NO;
             for (SDTimeLineCellCommentItemModel * oldCommentItemModel in model.commentItemsArray) {
@@ -260,7 +260,7 @@ static CGFloat textFieldH = 40;
         NSMutableDictionary * pageDic = [[NSMutableDictionary alloc]init];
         model.iconName = formalArray[i][@"photo"];
         model.name = formalArray[i][@"user_name"];
-        model.msgContent = formalArray[i][@"comment"];
+        model.msgContent = [formalArray[i][@"comment"] UnicodeToUtf8];
         model.commontTime = [formalArray[i][@"update_time"] integerValue];
         model.praise = kGetString(formalArray[i][@"praise_number"]);
         model.id =  kGetString(formalArray[i][@"id"]);
@@ -280,7 +280,7 @@ static CGFloat textFieldH = 40;
                 commentItemModel.secondUserName = kGetString(child_listArray[i][@"aim_name"]);
                 commentItemModel.secondUserId = kGetString(child_listArray[i][@"aim_id"]);
             }
-            commentItemModel.commentString = child_listArray[i][@"comment"];
+            commentItemModel.commentString = [child_listArray[i][@"comment"] UnicodeToUtf8];
             [tempComments addObject:commentItemModel];
         }
         model.commentItemsArray = [tempComments copy];

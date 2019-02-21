@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface NSArray (TPDecription)
-
+-(NSString *)descriptionWithLocale:(id)locale;
 @end

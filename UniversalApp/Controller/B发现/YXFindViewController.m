@@ -116,15 +116,15 @@
     [YX_MANAGER requestGetFind_all:@"" success:^(id object) {
         NSMutableArray * hotSeaches = [[NSMutableArray alloc]init];
         for (NSDictionary * dic in object) {
-            [hotSeaches addObject:dic[@"key"]];
+            [hotSeaches addObject:[dic[@"key"] UnicodeToUtf8]];
         }
         kWeakSelf(self);
         YXFindSearchViewController *searchViewController = [YXFindSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"搜索", @"搜索") didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
             YXFindSearchResultViewController * VC = [[YXFindSearchResultViewController alloc] init];
             VC.searchBlock = ^(NSString * string) {
-                weakself.searchHeaderView.searchBar.text = string;
+                weakself.searchHeaderView.searchBar.text = [string UnicodeToUtf8];
             };
-            VC.searchText = searchText;
+            VC.searchText = [searchText UnicodeToUtf8];
             [searchViewController.navigationController pushViewController:VC animated:YES];
         }];
         searchViewController.hotSearchStyle = PYHotSearchStyleNormalTag;

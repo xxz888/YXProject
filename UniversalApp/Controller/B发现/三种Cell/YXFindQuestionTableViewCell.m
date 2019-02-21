@@ -33,8 +33,8 @@
     self.pl2Height.constant = [self getPl2HeightPlArray:dic];
     self.plAllHeight.constant = [self getPlAllHeightPlArray:dic];
     self.textHeight.constant = [self getLblHeight:dic];
-    self.titleTagLbl1.text = dic[@"title"];
-    self.titleTagLbl2.text = dic[@"question"];
+    self.titleTagLbl1.text = [dic[@"title"] UnicodeToUtf8];
+    self.titleTagLbl2.text = [dic[@"question"] UnicodeToUtf8];
     NSString * str1 = [(NSMutableString *)dic[@"pic1"] replaceAll:@" " target:@"%20"];
     NSString * str2 = [(NSMutableString *)dic[@"pic2"] replaceAll:@" " target:@"%20"];
     NSString * str3 = [(NSMutableString *)dic[@"pic3"] replaceAll:@" " target:@"%20"];
@@ -46,7 +46,7 @@
         
         self.nameCenter.constant = self.titleImageView.frame.origin.y;
     }
-    [ShareManager setLineSpace:9 withText:self.titleTagLbl2.text inLabel:self.titleTagLbl2 tag:@""];
+    [ShareManager setLineSpace:9 withText:[self.titleTagLbl2.text UnicodeToUtf8] inLabel:self.titleTagLbl2 tag:@""];
 
 }
 

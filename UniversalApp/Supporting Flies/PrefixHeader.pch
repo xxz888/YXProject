@@ -50,7 +50,7 @@
 #import "CommonMacros.h"
 #import "QMUIKit.h"
 #import "Utility.h"
-
+#import "NSString+CString.h"
 
 //基础类
 #import "AppDelegate.h"

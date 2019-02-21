@@ -181,13 +181,13 @@ static CGFloat textFieldH = 0;
             
             
             [weakself.pardic setValue:model.id forKey:@"answer_id"];
-            [weakself.pardic setValue:contents forKey:@"answer"];
+            [weakself.pardic setValue:[contents utf8ToUnicode] forKey:@"answer"];
             [weakself.pardic setValue:itemModel.firstUserId forKey:@"aim_id"];
             [weakself.pardic setValue:itemModel.firstUserName  forKey:@"aim_name"];
   
             [weakself requestFaBuHuiDaChild:weakself.pardic];
         }else{
-            [weakself.pardic setValue:contents forKey:@"answer"];
+            [weakself.pardic setValue:[contents utf8ToUnicode] forKey:@"answer"];
             [weakself requestFaBuHuiDa:weakself.pardic];
         }
 
@@ -204,14 +204,14 @@ static CGFloat textFieldH = 0;
     // 图片区
     _imageListView = [[MMImageListView alloc] initWithFrame:CGRectZero];
     [self.headerView.totalImage addSubview:_imageListView];
-    self.headerView.twoLblHeight.constant = [ShareManager inTextFieldOutDifColorView:self.moment.detailText];
-    [ShareManager setLineSpace:9 withText:self.moment.detailText inLabel:self.headerView.twoLbl tag:@""];
+    self.headerView.twoLblHeight.constant = [ShareManager inTextFieldOutDifColorView:[self.moment.detailText UnicodeToUtf8]] ;
+    [ShareManager setLineSpace:9 withText:[self.moment.detailText UnicodeToUtf8] inLabel:self.headerView.twoLbl tag:@""];
 
     NSString * str = [(NSMutableString *)self.moment.photo replaceAll:@" " target:@"%20"];
     [self.headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     self.headerView.titleLbl.text = self.moment.userName;
     self.headerView.timeLbl.text = [ShareManager updateTimeForRow:self.moment.time];
-    self.headerView.oneLbl.text = self.moment.text;
+    self.headerView.oneLbl.text = [self.moment.text UnicodeToUtf8];
     NSString * str0 = [(NSMutableString *)self.moment.imageListArray[0] replaceAll:@" " target:@"%20"];
     NSString * str1 = [(NSMutableString *)self.moment.imageListArray[1] replaceAll:@" " target:@"%20"];
     NSString * str2 = [(NSMutableString *)self.moment.imageListArray[2] replaceAll:@" " target:@"%20"];
@@ -259,13 +259,13 @@ static CGFloat textFieldH = 0;
                 commentItemModel.firstUserName = kGetString(dic[@"user_name"]);
                 commentItemModel.secondUserName = kGetString(dic[@"aim_name"]);
                 commentItemModel.secondUserId = kGetString(dic[@"aim_id"]);
-                commentItemModel.commentString = kGetString(dic[@"answer"]);
+                commentItemModel.commentString = [kGetString(dic[@"answer"]) UnicodeToUtf8];
                 
                 self.isReplayingComment = YES;
             } else {
                 commentItemModel.firstUserId = kGetString(dic[@"user_id"]);
                 commentItemModel.firstUserName =kGetString(dic[@"user_name"]);
-                commentItemModel.commentString = kGetString(dic[@"answer"]);
+                commentItemModel.commentString = [kGetString(dic[@"answer"]) UnicodeToUtf8];
             }
             BOOL ishave = NO;
             for (SDTimeLineCellCommentItemModel * oldCommentItemModel in model.commentItemsArray) {
@@ -302,7 +302,7 @@ static CGFloat textFieldH = 0;
         NSMutableDictionary * pageDic = [[NSMutableDictionary alloc]init];
         model.iconName = formalArray[i][@"user_photo"];
         model.name = [formalArray[i][@"user_name"] append:@":"];
-        model.msgContent = formalArray[i][@"answer"];
+        model.msgContent = [formalArray[i][@"answer"] UnicodeToUtf8];
         model.id =  kGetString(formalArray[i][@"id"]);
         
         [pageDic setValue:@([model.id intValue]) forKey:@"id"];

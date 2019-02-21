@@ -64,7 +64,7 @@
         return;
     }
     kWeakSelf(self);
-    [YX_MANAGER requestFind_user:@{@"name":key,@"page":NSIntegerToNSString(self.requestPage)} success:^(id object) {
+    [YX_MANAGER requestFind_user:@{@"name":key,@"page":NSIntegerToNSString(self.requestPage),@"name_unicode":[key utf8ToUnicode]} success:^(id object) {
         [weakself.dataArray removeAllObjects];
         [weakself.dataArray addObjectsFromArray:object];
         [weakself.yxTableView reloadData];
