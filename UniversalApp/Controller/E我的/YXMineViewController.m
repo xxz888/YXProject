@@ -56,6 +56,8 @@
 }
 #pragma mark ========== UI界面 ==========
 -(void)setViewUI{
+    self.navigationItem.title = @"我的";
+
     NSArray * menuArray = nil;
     if (self.whereCome) {
         self.guanzhuBtn.hidden = NO;
