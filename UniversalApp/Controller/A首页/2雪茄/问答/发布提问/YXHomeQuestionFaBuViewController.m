@@ -75,7 +75,7 @@
 #pragma mark ========== 发布 ==========
 - (IBAction)fabuAction:(id)sender {
     kWeakSelf(self);
-    [QMUITips showLoadingInView:self.view];
+    
     //先上传到七牛云图片  再提交服务器
     [QiniuLoad uploadImageToQNFilePath:_photoImageList success:^(NSString *reslut) {
         NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];

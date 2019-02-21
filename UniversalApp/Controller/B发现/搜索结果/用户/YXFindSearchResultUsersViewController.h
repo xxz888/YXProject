@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface YXFindSearchResultUsersViewController : RootViewController
 @property (nonatomic,assign) BOOL whereCome; //yes 为标签 no为用户
 @property (nonatomic,strong) NSString *key;
--(void)requestFindAll_Tag:(NSString *)key;
--(void)requestFindAll_user:(NSString *)key;
 @end
 
 NS_ASSUME_NONNULL_END

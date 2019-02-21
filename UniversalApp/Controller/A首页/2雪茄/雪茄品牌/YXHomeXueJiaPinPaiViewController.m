@@ -15,6 +15,7 @@
 #import "YXHomeXueJiaFeiGuViewController.h"
 #import "YXHomeXueJiaMyGuanZhuViewController.h"
 #import "YXHomeXueJiaGuBaViewController.h"
+#import "YXHomeXueJiaPinPaiSearchViewController.h"
 @interface YXHomeXueJiaPinPaiViewController() <PYSearchViewControllerDelegate> {
         YXHomeXueJiaGuBaViewController *  VC1;
         YXHomeXueJiaFeiGuViewController*  VC2;
@@ -23,6 +24,21 @@
 }
 @end
 @implementation YXHomeXueJiaPinPaiViewController
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:nil];
+}
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
+    YXHomeXueJiaPinPaiSearchViewController * VC = [[YXHomeXueJiaPinPaiSearchViewController alloc]init];
+    [self.navigationController pushViewController:VC animated:YES];
+    return YES;
+}
 -(void)viewDidLoad{
     [super viewDidLoad];
     //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
@@ -31,9 +47,11 @@
         [self addNavigationItemWithImageNames:@[@"返回键"] isLeft:YES target:self action:@selector(clickBackAction) tags:nil];
     }else{
         self.title = @"雪茄品牌";
+        [self setNavSearchView];
     }
     [self setInitCollection];
 }
+
 -(void)setInitCollection{
     UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
         VC1 = [[YXHomeXueJiaGuBaViewController alloc]init];

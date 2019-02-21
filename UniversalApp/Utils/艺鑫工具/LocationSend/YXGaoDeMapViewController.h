@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 typedef void(^locationStringBlock)(NSString *);
-@interface YXGaoDeMapViewController : UIViewController
+@interface YXGaoDeMapViewController : RootViewController
 @property (nonatomic,copy) locationStringBlock block;
 
 @end

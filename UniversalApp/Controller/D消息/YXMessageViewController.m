@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.title = @"我的消息";
+    self.navigationController.title = @"我的消息";
     self.view.backgroundColor = YXRGBAColor(239, 239, 239);
 }
 

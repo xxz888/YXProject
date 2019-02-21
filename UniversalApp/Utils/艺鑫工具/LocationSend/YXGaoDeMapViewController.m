@@ -71,6 +71,7 @@
 {
     [super viewDidLoad];
     self.title = @"地理位置";
+    self.isShowLiftBack = YES;
     [self setNavigationBar];
     [self setTopTableView];
     [self setMapView];

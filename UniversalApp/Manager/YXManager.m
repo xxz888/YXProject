@@ -623,6 +623,15 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
+
+
+#pragma mark ==========搜索雪茄品牌 ==========
+-(void)requestSearchCigar_brand:YX_BLOCK{
+    NSString * url = @"/cigar/cigar_brand/1/";
+    [HTTP_POST(url)  Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

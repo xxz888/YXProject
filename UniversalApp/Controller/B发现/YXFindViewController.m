@@ -110,7 +110,7 @@
     [self clickSearchBar];
 //    [QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
 //    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-    return YES;
+    return NO;
 }
 - (void)clickSearchBar{
     [YX_MANAGER requestGetFind_all:@"" success:^(id object) {
@@ -118,8 +118,12 @@
         for (NSDictionary * dic in object) {
             [hotSeaches addObject:dic[@"key"]];
         }
+        kWeakSelf(self);
         YXFindSearchViewController *searchViewController = [YXFindSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"搜索", @"搜索") didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
             YXFindSearchResultViewController * VC = [[YXFindSearchResultViewController alloc] init];
+            VC.searchBlock = ^(NSString * string) {
+                weakself.searchHeaderView.searchBar.text = string;
+            };
             VC.searchText = searchText;
             [searchViewController.navigationController pushViewController:VC animated:YES];
         }];

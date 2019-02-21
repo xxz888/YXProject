@@ -11,10 +11,12 @@
 #import "YXFindSearchResultUsersViewController.h"
 #import "YXFindSearchResultAllViewController.h"
 #import "UIView+PYSearchExtension.h"
+#import "YXFindSearchTagViewController.h"
+
 @interface YXFindSearchResultViewController (){
     YXFindSearchResultAllViewController * allVC;
     YXFindSearchResultUsersViewController * userVC;
-    YXFindSearchResultUsersViewController * tagVC;
+    YXFindSearchTagViewController * tagVC;
 }
 
 @end
@@ -41,10 +43,8 @@
     userVC.key = self.searchText;
 
     userVC.whereCome = NO;
-    tagVC = [[YXFindSearchResultUsersViewController alloc]init];
+    tagVC = [[YXFindSearchTagViewController alloc]init];
     tagVC.key = self.searchText;
-
-    tagVC.whereCome = YES;
 
     NSArray* names = @[@"全部",@"用户",@"标签"];
     NSArray* controllers = @[allVC,userVC,tagVC];
@@ -69,5 +69,13 @@
         return NO;
     }
     return YES;
+}
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    self.searchBlock(self.searchHeaderView.searchBar.text);
+    [self.navigationController popViewControllerAnimated:YES];
+}
+- (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text NS_AVAILABLE_IOS(3_0){
+   
+    return NO;
 }
 @end

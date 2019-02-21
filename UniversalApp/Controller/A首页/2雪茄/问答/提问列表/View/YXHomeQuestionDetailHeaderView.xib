@@ -39,7 +39,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="uol-fn-n9k"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jjy-Ib-Lta">
@@ -53,10 +53,16 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="ugi-FI-RMk"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jAa-mh-Z7Q">
+                    <rect key="frame" x="0.0" y="225" width="375" height="5"/>
+                    <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="5" id="Qoi-db-ow9"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -67,6 +73,7 @@
                 <constraint firstItem="Tki-14-HNg" firstAttribute="height" secondItem="xNf-3U-80t" secondAttribute="height" id="8yk-Bb-WNT"/>
                 <constraint firstItem="xNf-3U-80t" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="95l-vc-1Jw"/>
                 <constraint firstItem="Jjy-Ib-Lta" firstAttribute="top" secondItem="OFF-c6-hVg" secondAttribute="bottom" constant="5" id="9E1-64-Hds"/>
+                <constraint firstAttribute="bottom" secondItem="jAa-mh-Z7Q" secondAttribute="bottom" id="Bpg-WC-xW0"/>
                 <constraint firstItem="5iJ-8E-Jkw" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="FXB-Fp-F7R"/>
                 <constraint firstItem="OFF-c6-hVg" firstAttribute="leading" secondItem="5iJ-8E-Jkw" secondAttribute="leading" id="GZ2-G8-pcZ"/>
                 <constraint firstItem="OFF-c6-hVg" firstAttribute="top" secondItem="5iJ-8E-Jkw" secondAttribute="bottom" constant="5" id="HOS-kP-dfj"/>
@@ -75,6 +82,8 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Jjy-Ib-Lta" secondAttribute="trailing" constant="10" id="iJ1-jj-Nok"/>
                 <constraint firstItem="pcA-fN-vMW" firstAttribute="centerY" secondItem="Tki-14-HNg" secondAttribute="centerY" id="kAQ-un-vQs"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5iJ-8E-Jkw" secondAttribute="trailing" id="kSG-Dq-Iwb"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="jAa-mh-Z7Q" secondAttribute="trailing" id="mcf-wy-Cc0"/>
+                <constraint firstItem="jAa-mh-Z7Q" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="vkN-RZ-TEr"/>
                 <constraint firstItem="Jjy-Ib-Lta" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="wxk-XB-bfW"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -88,7 +97,7 @@
                 <outlet property="twoLbl" destination="OFF-c6-hVg" id="TfI-hQ-Qtl"/>
                 <outlet property="twoLblHeight" destination="ugi-FI-RMk" id="xrN-s7-81M"/>
             </connections>
-            <point key="canvasLocation" x="-1234.4000000000001" y="-521.73913043478262"/>
+            <point key="canvasLocation" x="-1375" y="-552"/>
         </view>
     </objects>
 </document>

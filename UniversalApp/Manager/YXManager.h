@@ -204,4 +204,6 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestSearchFind_all:YX_BLOCK;
 #pragma mark ========== 热门关键字 ==========
 -(void)requestGetFind_all:YX_BLOCK;
+#pragma mark ==========搜索雪茄品牌 ==========
+-(void)requestSearchCigar_brand:YX_BLOCK;
 @end

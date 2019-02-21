@@ -108,7 +108,7 @@ static CGFloat textFieldH = 40;
     [self.lastDetailView setUpSycleScrollView:_imageArr height:self.height];
     self.lastDetailView.rightCountLbl.text = [NSString stringWithFormat:@"%@/%ld",@"1",_imageArr.count];
     self.lastDetailView.titleLbl.text = self.startDic[@"user_name"];
-    NSString * str1 = [(NSMutableString *)self.startDic[@"photo"] replaceAll:@" " target:@"%20"];
+    NSString * str1 = [(NSMutableString *)self.startDic[@"user_photo"] replaceAll:@" " target:@"%20"];
     [self.lastDetailView.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     self.lastDetailView.titleImageView.layer.masksToBounds = YES;
     self.lastDetailView.titleImageView.layer.cornerRadius = self.lastDetailView.titleImageView.frame.size.width / 2.0;

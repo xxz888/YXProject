@@ -1,27 +1,27 @@
 //
-//  YXFindSearchResultUsersViewController.m
+//  YXFindSearchTagViewController.m
 //  UniversalApp
 //
-//  Created by 小小醉 on 2019/2/12.
+//  Created by 小小醉 on 2019/2/21.
 //  Copyright © 2019年 徐阳. All rights reserved.
 //
 
-#import "YXFindSearchResultUsersViewController.h"
+#import "YXFindSearchTagViewController.h"
 #import "YXFindSearchTableViewCell.h"
 #import "YXFindSearchResultTagViewController.h"
-
-@interface YXFindSearchResultUsersViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface YXFindSearchTagViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView * yxTableView;
 @property (nonatomic,strong)NSMutableArray * dataArray;
 
 @end
 
-@implementation YXFindSearchResultUsersViewController
+@implementation YXFindSearchTagViewController
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    [self requestFindAll_user:self.key];
+    [self requestFindAll_Tag:self.key];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -35,19 +35,18 @@
 }
 -(void)headerRereshing{
     [super headerRereshing];
-    [self requestFindAll_user:self.key];
+    [self requestFindAll_Tag:self.key];
 }
 -(void)footerRereshing{
     [super footerRereshing];
-    [self requestFindAll_user:self.key];
+    [self requestFindAll_Tag:self.key];
 }
 -(void)requestAction{
-    [self requestFindAll_user:self.key];
+    [self requestFindAll_Tag:self.key];
 }
 -(void)createyxTableView{
     if (!self.yxTableView) {
         self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-kTopHeight-40) style:UITableViewStylePlain];
-        self.yxTableView.separatorStyle =  UITableViewCellSeparatorStyleSingleLine;
         [self.view addSubview:self.yxTableView];
     }
     self.yxTableView.backgroundColor = KWhiteColor;
@@ -58,13 +57,13 @@
     
 }
 
-
--(void)requestFindAll_user:(NSString *)key{
+#pragma mark ========== 1111111-先请求tag列表,获取发现页标签数据 ==========
+-(void)requestFindAll_Tag:(NSString *)key{
     if (!key) {
         return;
     }
     kWeakSelf(self);
-    [YX_MANAGER requestFind_user:@{@"name":key,@"page":NSIntegerToNSString(self.requestPage)} success:^(id object) {
+    [YX_MANAGER requestSearchFind_all:@{@"key":key,@"page":NSIntegerToNSString(self.requestPage),@"type":@"2"} success:^(id object) {
         [weakself.dataArray removeAllObjects];
         [weakself.dataArray addObjectsFromArray:object];
         [weakself.yxTableView reloadData];
@@ -79,19 +78,20 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identify = @"YXFindSearchTableViewCell";
     YXFindSearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify forIndexPath:indexPath];
-    cell.cellImageView.layer.masksToBounds = YES;
-    cell.cellImageView.layer.cornerRadius = cell.cellImageView.frame.size.width / 2.0;
+        cell.cellImageView.layer.masksToBounds = YES;
+        cell.cellImageView.layer.cornerRadius = cell.cellImageView.frame.size.width / 2.0;
     NSString * str = [(NSMutableString *)self.dataArray[indexPath.row][@"photo"] replaceAll:@" " target:@"%20"];
     [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    cell.cellLbl.text = self.dataArray[indexPath.row][@"username"];
-    cell.cellAutherLbl.text = self.dataArray[indexPath.row][@"site"];
+    cell.cellLbl.text =  self.dataArray[indexPath.row][@"tag"] ;
+    cell.cellAutherLbl.text = kGetString(self.dataArray[indexPath.row][@"count_tag"]);
     
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+        YXFindSearchResultTagViewController * VC = [[YXFindSearchResultTagViewController alloc]init];
+        VC.key = self.dataArray[indexPath.row][@"tag"];
+        [self.navigationController pushViewController:VC animated:YES];
 }
-
 
 @end

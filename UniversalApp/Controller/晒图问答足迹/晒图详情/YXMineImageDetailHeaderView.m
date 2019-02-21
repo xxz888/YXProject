@@ -35,6 +35,7 @@
 
 //添加轮播图
 - (void)setUpSycleScrollView:(NSArray *)photoArray height:(CGFloat)height{
+    self.rightCountLbl.hidden = height == 0 ;
     self.conViewHeight.constant = height;
     _tatolCount = photoArray.count;
     if (!_cycleScrollView3) {

@@ -47,7 +47,7 @@
 -(void)collectionViewCon{
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    CGFloat heightKK = 70;
+    CGFloat heightKK = 50;
     CGFloat height =  user_id_BOOL ? 64 : 0;
     CGRect frame = CGRectMake(0, 0, KScreenWidth,KScreenHeight - 175 -kTopHeight - heightKK + height);
     self.yxCollectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:layout];

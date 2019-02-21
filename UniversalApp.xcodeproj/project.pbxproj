@@ -224,6 +224,11 @@
 		BB3DFE8D221D568D000C70B5 /* XHWebImageAutoSizeConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3DFE86221D568D000C70B5 /* XHWebImageAutoSizeConst.m */; };
 		BB3DFE8E221D568D000C70B5 /* XHWebImageAutoSize.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3DFE87221D568D000C70B5 /* XHWebImageAutoSize.m */; };
 		BB3DFE8F221D568D000C70B5 /* NSString+XHWebImageAutoSize.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3DFE88221D568D000C70B5 /* NSString+XHWebImageAutoSize.m */; };
+		BB3DFE94221E4C6D000C70B5 /* YXHomeXueJiaPinPaiSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3DFE92221E4C6D000C70B5 /* YXHomeXueJiaPinPaiSearchViewController.m */; };
+		BB3DFE95221E4C6D000C70B5 /* YXHomeXueJiaPinPaiSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB3DFE93221E4C6D000C70B5 /* YXHomeXueJiaPinPaiSearchViewController.xib */; };
+		BB3DFE98221E7F14000C70B5 /* YXFindSearchTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3DFE97221E7F14000C70B5 /* YXFindSearchTagViewController.m */; };
+		BB3DFE9C221E8566000C70B5 /* YXFindSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3DFE9A221E8566000C70B5 /* YXFindSearchTableViewCell.m */; };
+		BB3DFE9D221E8566000C70B5 /* YXFindSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB3DFE9B221E8566000C70B5 /* YXFindSearchTableViewCell.xib */; };
 		BB44F87D22140AFB0034CAEC /* HXEasyCustomShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB44F87B22140AFB0034CAEC /* HXEasyCustomShareView.m */; };
 		BB44F87E22140AFB0034CAEC /* HXShareScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB44F87C22140AFB0034CAEC /* HXShareScrollView.m */; };
 		BB5DC69B2189CA38003F1998 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */; };
@@ -956,6 +961,14 @@
 		BB3DFE87221D568D000C70B5 /* XHWebImageAutoSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHWebImageAutoSize.m; sourceTree = "<group>"; };
 		BB3DFE88221D568D000C70B5 /* NSString+XHWebImageAutoSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XHWebImageAutoSize.m"; sourceTree = "<group>"; };
 		BB3DFE89221D568D000C70B5 /* XHWebImageAutoSizeCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHWebImageAutoSizeCache.h; sourceTree = "<group>"; };
+		BB3DFE91221E4C6D000C70B5 /* YXHomeXueJiaPinPaiSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaPinPaiSearchViewController.h; sourceTree = "<group>"; };
+		BB3DFE92221E4C6D000C70B5 /* YXHomeXueJiaPinPaiSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaPinPaiSearchViewController.m; sourceTree = "<group>"; };
+		BB3DFE93221E4C6D000C70B5 /* YXHomeXueJiaPinPaiSearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeXueJiaPinPaiSearchViewController.xib; sourceTree = "<group>"; };
+		BB3DFE96221E7F14000C70B5 /* YXFindSearchTagViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchTagViewController.h; sourceTree = "<group>"; };
+		BB3DFE97221E7F14000C70B5 /* YXFindSearchTagViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchTagViewController.m; sourceTree = "<group>"; };
+		BB3DFE99221E8566000C70B5 /* YXFindSearchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchTableViewCell.h; sourceTree = "<group>"; };
+		BB3DFE9A221E8566000C70B5 /* YXFindSearchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchTableViewCell.m; sourceTree = "<group>"; };
+		BB3DFE9B221E8566000C70B5 /* YXFindSearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFindSearchTableViewCell.xib; sourceTree = "<group>"; };
 		BB44F87922140AFB0034CAEC /* HXShareScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXShareScrollView.h; sourceTree = "<group>"; };
 		BB44F87A22140AFB0034CAEC /* HXEasyCustomShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXEasyCustomShareView.h; sourceTree = "<group>"; };
 		BB44F87B22140AFB0034CAEC /* HXEasyCustomShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXEasyCustomShareView.m; sourceTree = "<group>"; };
@@ -2763,6 +2776,16 @@
 			path = XHWebImageAutoSize;
 			sourceTree = "<group>";
 		};
+		BB3DFE90221E4C4A000C70B5 /* 雪茄品牌搜索 */ = {
+			isa = PBXGroup;
+			children = (
+				BB3DFE91221E4C6D000C70B5 /* YXHomeXueJiaPinPaiSearchViewController.h */,
+				BB3DFE92221E4C6D000C70B5 /* YXHomeXueJiaPinPaiSearchViewController.m */,
+				BB3DFE93221E4C6D000C70B5 /* YXHomeXueJiaPinPaiSearchViewController.xib */,
+			);
+			path = "雪茄品牌搜索";
+			sourceTree = "<group>";
+		};
 		BB44F87822140AFB0034CAEC /* 分享相关 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2970,6 +2993,9 @@
 			children = (
 				BB7025452212A4D9009EBE39 /* YXFindSearchResultUsersViewController.h */,
 				BB7025462212A4D9009EBE39 /* YXFindSearchResultUsersViewController.m */,
+				BB3DFE99221E8566000C70B5 /* YXFindSearchTableViewCell.h */,
+				BB3DFE9A221E8566000C70B5 /* YXFindSearchTableViewCell.m */,
+				BB3DFE9B221E8566000C70B5 /* YXFindSearchTableViewCell.xib */,
 			);
 			path = "用户";
 			sourceTree = "<group>";
@@ -2977,6 +3003,8 @@
 		BB7025412212A3F4009EBE39 /* 标签 */ = {
 			isa = PBXGroup;
 			children = (
+				BB3DFE96221E7F14000C70B5 /* YXFindSearchTagViewController.h */,
+				BB3DFE97221E7F14000C70B5 /* YXFindSearchTagViewController.m */,
 				BB7025482212AE22009EBE39 /* 标签详情 */,
 			);
 			path = "标签";
@@ -4216,6 +4244,7 @@
 			children = (
 				BBD2C96D21E1B0FB00350DCD /* YXHomeXueJiaPinPaiViewController.h */,
 				BBD2C96E21E1B0FB00350DCD /* YXHomeXueJiaPinPaiViewController.m */,
+				BB3DFE90221E4C4A000C70B5 /* 雪茄品牌搜索 */,
 				BBD2C99421E1C7A900350DCD /* 1古巴 */,
 				BBD2C99621E1C7A900350DCD /* 2非古 */,
 				BBD2C99321E1C7A900350DCD /* 3我的关注 */,
@@ -5035,6 +5064,7 @@
 				2917D2091EE007C300E76185 /* MBHUD_Info@2x.png in Resources */,
 				BBDA2C5E21EB308100EDCCFF /* SDDiscoverTableViewController.storyboard in Resources */,
 				293D46521ECDBB63007C64A9 /* icon_tabbar_nearby.png in Resources */,
+				BB3DFE95221E4C6D000C70B5 /* YXHomeXueJiaPinPaiSearchViewController.xib in Resources */,
 				BBD2C9B221E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib in Resources */,
 				BBD2C90421E0F67700350DCD /* README.md in Resources */,
 				290A97E21F4AB24A006BF882 /* stepPk_win_colour4@2x.png in Resources */,
@@ -5106,6 +5136,7 @@
 				BB29120A22156BB500FF484E /* Petit Pyramid.gif in Resources */,
 				BBC6180421F5AD5A00495619 /* YXHomeGolf.storyboard in Resources */,
 				BB29121D22156BB500FF484E /* Giant Perfecto.gif in Resources */,
+				BB3DFE9D221E8566000C70B5 /* YXFindSearchTableViewCell.xib in Resources */,
 				BBC6180E21F5AE8200495619 /* YXHomeGolfScoreHeaderView.xib in Resources */,
 				296F9A341F04F39000909CDB /* 5.jpg in Resources */,
 				BBCC4AA421E83DC000493F40 /* YXColorViewController.xib in Resources */,
@@ -5363,6 +5394,7 @@
 				BBE82D0021E44A7D004E4144 /* ZLPhotoPickerGroup.m in Sources */,
 				BB928F9921FB5D290090A044 /* BRAddressPickerView.m in Sources */,
 				2914E4871F20A45C001C01DB /* PersonListViewController.m in Sources */,
+				BB3DFE9C221E8566000C70B5 /* YXFindSearchTableViewCell.m in Sources */,
 				BBA812FD21DDEBFB001B5EA1 /* YXHomeXueJiaViewController.m in Sources */,
 				BBD2C92321E0F67800350DCD /* UIImage+MWPhotoBrowser.m in Sources */,
 				BBDA2D2321EB30BF00EDCCFF /* SDRefreshFooterView.m in Sources */,
@@ -5373,6 +5405,7 @@
 				BBA812C721DDBF6A001B5EA1 /* UIFactory.m in Sources */,
 				BB6D2A0221EDA7F400F5049F /* ClassifyCollection.m in Sources */,
 				2914E4931F20A4F8001C01DB /* ProfileViewController.m in Sources */,
+				BB3DFE98221E7F14000C70B5 /* YXFindSearchTagViewController.m in Sources */,
 				BBA812AA21DDAB7A001B5EA1 /* YXHomeViewController.m in Sources */,
 				BBCC4B8F21E894CD00493F40 /* Comment.m in Sources */,
 				BBCC4A9821E82D3400493F40 /* YXHomeXueJiaWenHuaTableViewCell.m in Sources */,
@@ -5456,6 +5489,7 @@
 				BB9413E121F8B602007E800A /* IQNSArray+Sort.m in Sources */,
 				BB44F87E22140AFB0034CAEC /* HXShareScrollView.m in Sources */,
 				BBDA2EF421ECC22B00EDCCFF /* SearchResultsController.m in Sources */,
+				BB3DFE94221E4C6D000C70B5 /* YXHomeXueJiaPinPaiSearchViewController.m in Sources */,
 				BBE82BDC21E35FF1004E4144 /* ZZYPhotoHelper.m in Sources */,
 				BB5FD8A621FF529A00B5F1A8 /* YXMineAllImageTableViewCell.m in Sources */,
 				BB3DFE8B221D568D000C70B5 /* UICollectionView+XHWebImageAutoSize.m in Sources */,

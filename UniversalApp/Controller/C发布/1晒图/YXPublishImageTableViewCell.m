@@ -26,10 +26,11 @@
     self.qmuiTextView = [[QMUITextView alloc] init];
     self.qmuiTextView.frame = CGRectMake(10, 0, KScreenWidth - 20, self.ttView.frame.size.height);
     self.qmuiTextView.backgroundColor = YXRGBAColor(239, 239, 239);
-    self.qmuiTextView.font = UIFontMake(15);
+    self.qmuiTextView.font = UIFontMake(16);
     self.qmuiTextView.placeholder = @"说点什么....";
     self.qmuiTextView.layer.cornerRadius = 8;
     self.qmuiTextView.clipsToBounds = YES;
+
     [self.qmuiTextView becomeFirstResponder];
     [self.ttView addSubview:self.qmuiTextView];
     

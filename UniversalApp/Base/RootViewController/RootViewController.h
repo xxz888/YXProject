@@ -39,7 +39,7 @@ typedef void (^ListenChangeIndexBlock)(NSInteger);
 @property (nonatomic,assign) NSInteger requestPage;
 -(NSMutableArray *)commonAction:(id)obj dataArray:(NSMutableArray *)dataArray;
 -(NSMutableArray *)addCollectionViewRefreshView:(id)obj dataArray:(NSMutableArray *)dataArray;
-
+- (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text NS_AVAILABLE_IOS(3_0);
 /**
  *  显示没有数据页面
  */
@@ -113,5 +113,4 @@ typedef void (^ListenChangeIndexBlock)(NSInteger);
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar;
 - (void)cancleAction;
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar;
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar;
 @end

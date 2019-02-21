@@ -201,14 +201,12 @@ static CGFloat textFieldH = 0;
     
     self.headerView.titleImageView.layer.masksToBounds = YES;
     self.headerView.titleImageView.layer.cornerRadius = self.headerView.titleImageView.frame.size.width / 2.0;
-
-
     // 图片区
     _imageListView = [[MMImageListView alloc] initWithFrame:CGRectZero];
     [self.headerView.totalImage addSubview:_imageListView];
-    
-    self.headerView.twoLbl.text = self.moment.detailText;
-    self.headerView.twoLblHeight.constant = [self cellAutoHeight:self.moment.detailText].height;
+    self.headerView.twoLblHeight.constant = [ShareManager inTextFieldOutDifColorView:self.moment.detailText];
+    [ShareManager setLineSpace:9 withText:self.moment.detailText inLabel:self.headerView.twoLbl tag:@""];
+
     NSString * str = [(NSMutableString *)self.moment.photo replaceAll:@" " target:@"%20"];
     [self.headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     self.headerView.titleLbl.text = self.moment.userName;
@@ -223,14 +221,11 @@ static CGFloat textFieldH = 0;
     moment.singleHeight = 315;
     moment.fileCount = 3;
     _imageListView.moment = moment;
-    if (moment.fileCount > 0) {
-        _imageListView.origin = CGPointMake(0, 0);
-    }
     return self.headerView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-    return  230 + [self cellAutoHeight:self.moment.detailText].height;;
+    return  260 - 30 + [ShareManager inTextFieldOutDifColorView:self.moment.detailText];
 }
 -(CGSize)cellAutoHeight:(NSString *)string {
     //展开后得高度(计算出文本内容的高度+固定控件的高度)
@@ -341,7 +336,10 @@ static CGFloat textFieldH = 0;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SDTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:kTimeLineTableViewCellId];
     cell.indexPath = indexPath;
-    
+    cell.nameLable.textColor = KBlackColor;
+    cell.contentLabel.textColor = KDarkGaryColor;
+//    cell.nameLable.font = [UIFont systemFontOfSize:14];
+//    cell.contentLabel.font =[UIFont systemFontOfSize:14];
     __weak typeof(self) weakSelf = self;
     if (!cell.moreButtonClickedBlock) {
         [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {

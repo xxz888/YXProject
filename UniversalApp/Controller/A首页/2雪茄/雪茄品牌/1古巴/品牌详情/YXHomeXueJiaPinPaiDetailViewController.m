@@ -66,19 +66,18 @@
 
     ViewBorderRadius(self.section1GuanZhuBtn, 5, 1, self.section1GuanZhuBtn.titleLabel.textColor);
     
+    [self setguanzhu];
     
     
-    
-    
-    //用的不是一个字典的东西
-    self.section1countLbl.text = [kGetString(self.dicStartData[@"concern_number"]) append:@" 人关注"];
-    BOOL isGuanZhu = [self.dicStartData[@"is_concern"] integerValue] == 1;
-    [ShareManager setGuanZhuStatus:self.section1GuanZhuBtn status:!isGuanZhu];
     
 
 }
 
-
+-(void)setguanzhu{
+    self.section1countLbl.text = [kGetString(self.dicData[@"concern_number"]) append:@" 人关注"];
+    BOOL isGuanZhu = [self.dicData[@"is_concern"] integerValue] == 1;
+    [ShareManager setGuanZhuStatus:self.section1GuanZhuBtn status:!isGuanZhu];
+}
 
 
 //cell的缩进级别，动态静态cell必须重写，否则会造成崩溃
@@ -188,6 +187,7 @@
     [YX_MANAGER requestCigar_brand_detailsPOST:@{@"cigar_brand_id":kGetString(self.dicStartData[@"id"])} success:^(id object) {
         weakself.dicData = [NSMutableDictionary dictionaryWithDictionary:object];
         [weakself.tableView reloadData];
+        [weakself setguanzhu];
     }];
 }
 #pragma mark ========== 请求是否关注 ==========
@@ -195,8 +195,9 @@
     kWeakSelf(self);
     NSDictionary * cellData = self.dicStartData;
     [YX_MANAGER requestMy_concern_cigarPOST:@{@"cigar_brand_id":cellData[@"id"]} success:^(id object) {
-        BOOL isGuanZhu = [weakself.dicData[@"is_concern"] integerValue] == 1;
-        [ShareManager setGuanZhuStatus:weakself.section1GuanZhuBtn status:isGuanZhu];
+        [weakself requestCigar_brand_details];
+//        BOOL isGuanZhu = [weakself.dicData[@"is_concern"] integerValue] == 1;
+//        [ShareManager setGuanZhuStatus:weakself.section1GuanZhuBtn status:isGuanZhu];
     }];
 }
 
