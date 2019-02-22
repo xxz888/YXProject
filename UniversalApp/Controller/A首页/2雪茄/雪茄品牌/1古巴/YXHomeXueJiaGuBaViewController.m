@@ -132,7 +132,7 @@
 
 -(void)requestCigar_brand_details:(NSString *)cigar_brand_id indexPath:(NSIndexPath *)indexPath isHot:(BOOL)isHot{
     kWeakSelf(self);
-    [YX_MANAGER requestCigar_brand_detailsPOST:@{@"cigar_brand_id":cigar_brand_id} success:^(id object) {
+    [YX_MANAGER requestCigar_brand_detailsPOST:@{@"cigar_brand_id":@([cigar_brand_id intValue])} success:^(id object) {
         UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
         YXHomeXueJiaPinPaiDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiDetailViewController"];
         VC.dicData = [NSMutableDictionary dictionaryWithDictionary:object];
@@ -148,7 +148,9 @@
         [weakself.navigationController pushViewController:VC animated:YES];
     }];
 }
-
+-(void)backBtnClicked{
+    
+}
 
 
 
@@ -206,7 +208,7 @@
         NSString *str1=[NSString stringWithFormat:@"%c",i];
         for(int j=0;j<modelArr.count;j++){
             NSDictionary * dic = [modelArr objectAtIndex:j];  //这个model 是我自己创建的 里面包含用户的姓名 手机号 和 转化成功后的首字母
-            if([[self getLetter:dic[@"cigar_brand"]] isEqualToString:str1]){
+            if([[self firstCharactor:[self getLetter:dic[@"cigar_brand"]]] isEqualToString:str1]){
                 [rulesArray addObject:dic];    //把首字母相同的人物model 放到同一个数组里面
                 [modelArr removeObject:dic];   //model 放到 rulesArray 里面说明这个model 已经拍好序了 所以从总的modelArr里面删除
                 j--;
@@ -231,6 +233,20 @@
 //    CFStringTransform((CFMutableStringRef)str,NULL, kCFStringTransformMandarinLatin,NO);
 //    //再转换为不带声调的拼音
 //    CFStringTransform((CFMutableStringRef)str,NULL, kCFStringTransformStripDiacritics,NO);
+    //转化为大写拼音
+    NSString *pinYin = [str capitalizedString];
+    //获取并返回首字母
+    return [pinYin substringToIndex:1];
+}
+//获取拼音首字母(传入汉字字符串, 返回大写拼音首字母)
+- (NSString *)firstCharactor:(NSString *)aString
+{
+    //转成了可变字符串
+    NSMutableString *str = [NSMutableString stringWithString:aString];
+    //先转换为带声调的拼音
+    CFStringTransform((CFMutableStringRef)str,NULL, kCFStringTransformMandarinLatin,NO);
+    //再转换为不带声调的拼音
+    CFStringTransform((CFMutableStringRef)str,NULL, kCFStringTransformStripDiacritics,NO);
     //转化为大写拼音
     NSString *pinYin = [str capitalizedString];
     //获取并返回首字母

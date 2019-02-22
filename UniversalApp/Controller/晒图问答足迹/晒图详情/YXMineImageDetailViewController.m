@@ -499,14 +499,14 @@ static CGFloat textFieldH = 40;
             if ([itemModel.secondUserName isEqualToString:self.commentToUser]) {
                 farther_id = [itemModel.secondUserId intValue];
             }
-            [self requestpost_comment_child:@{@"comment":textField.text,
+            [self requestpost_comment_child:@{@"comment":[textField.text utf8ToUnicode],
                                                @"father_id":@([model.id intValue]),
                                                @"aim_id":@(farther_id),
                                                @"aim_name":self.commentToUser
                                                }];
             self.isReplayingComment = NO;
         }else{
-            [self pinglunFatherPic:@{@"comment":textField.text,
+            [self pinglunFatherPic:@{@"comment":[textField.text utf8ToUnicode],
                                      @"post_id":@([self.startDic[@"id"] intValue]),
                                      }];
             

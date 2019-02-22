@@ -84,7 +84,7 @@
                          [self.parDic[@"mouthfeel"] intValue]) / 4;
     
     [self.parDic setValue:@(average_score) forKey:@"average_score"];
-    [self.parDic setValue:self.qmuiTextView.text forKey:@"comment"];
+    [self.parDic setValue:[self.qmuiTextView.text utf8ToUnicode] forKey:@"comment"];
     [YX_MANAGER requestCigar_commentPOST:self.parDic success:^(id object) {
         [QMUITips showSucceed:@"评论成功" inView:self hideAfterDelay:2];
         weakself.block();

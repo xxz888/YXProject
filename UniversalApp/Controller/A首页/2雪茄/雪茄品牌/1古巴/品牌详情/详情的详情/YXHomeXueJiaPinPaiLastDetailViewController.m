@@ -65,7 +65,6 @@ static CGFloat textFieldH = 40;
 }
 
 -(void)initAllControl{
-    kWeakSelf(self);
     self.title = self.startDic[@"cigar_name"];
     _segmentIndex = 0;
     _dataArray = [[NSMutableArray alloc]init];
@@ -77,6 +76,12 @@ static CGFloat textFieldH = 40;
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeTop;
+   
+    [self setupTextField];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    kWeakSelf(self);
     //添加分隔线颜色设置
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeLastDetailView" owner:self options:nil];
     self.lastDetailView = [nib objectAtIndex:0];
@@ -89,14 +94,14 @@ static CGFloat textFieldH = 40;
         _segmentIndex = index;
     };
     self.lastDetailView.searchAllBlock = ^{
-//        UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
-//        YXMineImageViewController * imageVC = [[YXMineImageViewController alloc]init];
-//        [weakself.navigationController pushViewController:imageVC animated:YES];
+        //        UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+        //        YXMineImageViewController * imageVC = [[YXMineImageViewController alloc]init];
+        //        [weakself.navigationController pushViewController:imageVC animated:YES];
     };
-    [self setupTextField];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
-    
-    
+    return self.lastDetailView;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 1000;
 }
 -(void)requestNewList{
     kWeakSelf(self);
@@ -506,14 +511,14 @@ static CGFloat textFieldH = 40;
             if ([itemModel.secondUserName isEqualToString:self.commentToUser]) {
                 farther_id = [itemModel.secondUserId intValue];
             }
-            [self requestCigar_comment_child:@{@"comment":textField.text,
+            [self requestCigar_comment_child:@{@"comment":[textField.text utf8ToUnicode],
                                                @"father_id":@([model.id intValue]),
                                                @"aim_id":@(farther_id),
                                                @"aim_name":self.commentToUser
                                                }];
             self.isReplayingComment = NO;
         }else{
-            [self requestCigar_comment_child:@{@"comment":textField.text,
+            [self requestCigar_comment_child:@{@"comment":[textField.text utf8ToUnicode],
                                                @"father_id":@([model.id intValue]),
                                                @"aim_id":@(0),
                                                @"aim_name":@""

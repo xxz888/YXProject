@@ -2757,6 +2757,16 @@
 			path = LLGifView;
 			sourceTree = "<group>";
 		};
+		BB3CA492221F90E600C6793D /* 4提问 */ = {
+			isa = PBXGroup;
+			children = (
+				BBCC4B7921E894CD00493F40 /* YXHomeQuestionFaBuViewController.h */,
+				BBCC4B7B21E894CD00493F40 /* YXHomeQuestionFaBuViewController.m */,
+			);
+			name = "4提问";
+			path = "UniversalApp/Controller/C发布/4提问";
+			sourceTree = SOURCE_ROOT;
+		};
 		BB3DFE7D221D568D000C70B5 /* XHWebImageAutoSize */ = {
 			isa = PBXGroup;
 			children = (
@@ -3417,6 +3427,7 @@
 				BBD2C84821E0F46500350DCD /* 1晒图 */,
 				BBD2C84B21E0F46500350DCD /* 2足迹 */,
 				BBD2C84721E0F46500350DCD /* 3文章 */,
+				BB3CA492221F90E600C6793D /* 4提问 */,
 			);
 			path = "C发布";
 			sourceTree = "<group>";
@@ -3830,8 +3841,6 @@
 		BBCC4B7821E894CD00493F40 /* 发布提问 */ = {
 			isa = PBXGroup;
 			children = (
-				BBCC4B7921E894CD00493F40 /* YXHomeQuestionFaBuViewController.h */,
-				BBCC4B7B21E894CD00493F40 /* YXHomeQuestionFaBuViewController.m */,
 			);
 			path = "发布提问";
 			sourceTree = "<group>";

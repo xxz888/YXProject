@@ -66,8 +66,8 @@ static CGFloat textFieldH = 40;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeTop;
     [ShareManager setBorderinView:self.clickPingLunBtn];
-    self.clickPingLunBtn.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
-    self.clickPingLunBtn.layer.borderWidth = 1;
+//    self.clickPingLunBtn.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
+//    self.clickPingLunBtn.layer.borderWidth = 1;
     //点击segment
     self.lastDetailView.block = ^(NSInteger index) {
         index == 0 ? [weakself requestNewList] : [weakself requestHotList];
@@ -504,13 +504,13 @@ static CGFloat textFieldH = 40;
             if ([itemModel.secondUserName isEqualToString:self.commentToUser]) {
                 farther_id = [itemModel.secondUserId intValue];
             }
-            [self requestpost_comment_child:@{@"comment":textField.text,
+            [self requestpost_comment_child:@{@"comment":[textField.text utf8ToUnicode],
                                               @"father_id":@([model.id intValue]),
                                               @"aim_id":@(farther_id),
                                               }];
             self.isReplayingComment = NO;
         }else{
-            [self pinglunFatherPic:@{@"comment":textField.text,
+            [self pinglunFatherPic:@{@"comment":[textField.text utf8ToUnicode],
                                      @"track_id":@([self.startDic[@"id"] intValue]),
                                      }];
             

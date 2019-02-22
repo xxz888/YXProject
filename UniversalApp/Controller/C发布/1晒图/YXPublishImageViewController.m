@@ -57,7 +57,8 @@ static NSString *secretKey = @"官网获取";
     [self initControl];
     //初始化选择图片
     [self initImagePhontoView];
-    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+
 }
 -(void)initControl{
 
@@ -176,6 +177,7 @@ static NSString *secretKey = @"官网获取";
 #pragma mark ========== 发布1 和 存草稿0  ==========
 - (IBAction)fabuAction:(UIButton *)btn {
     kWeakSelf(self);
+    [QMUITips showLoadingInView:self.view];
     
     //先上传到七牛云图片  再提交服务器
     [QiniuLoad uploadImageToQNFilePath:_photoImageList success:^(NSString *reslut) {
@@ -208,7 +210,7 @@ static NSString *secretKey = @"官网获取";
         NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         YXPublishImageTableViewCell * cell = [self.yxTableview cellForRowAtIndexPath:indexPath];
         _textViewInput = cell.qmuiTextView.text;
-        [dic setValue:_textViewInput forKey:@"describe"];//描述
+        [dic setValue:[_textViewInput utf8ToUnicode] forKey:@"describe"];//描述
         
         
         
@@ -238,6 +240,7 @@ static NSString *secretKey = @"官网获取";
     kWeakSelf(self);
     //发布按钮
     [YX_MANAGER requestFaBuImagePOST:dic success:^(id object) {
+            [QMUITips hideAllTipsInView:weakself.view];
             [QMUITips showSucceed:@"发布成功" inView:weakself.view hideAfterDelay:2];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [weakself finishPublish];

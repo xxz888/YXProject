@@ -17,10 +17,10 @@
     NSString * strURl = [API_ROOT_URL_HTTP_FORMAL stringByAppendingString:pi];
     [[self commonAction] POST:strURl  parameters:parmeters progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [QMUITips hideAllTips];
+        
         [weakself setCommonRespone:sucess pi:pi responseObject:responseObject];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [QMUITips hideAllTips];
+        
         failure(error);
 
     }];
@@ -30,10 +30,10 @@
     NSString * url = [API_ROOT_URL_HTTP_FORMAL append:pi];
     [[self commonAction] GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [QMUITips hideAllTips];
+        
         [weakself setCommonRespone:sucess pi:pi responseObject:responseObject];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [QMUITips hideAllTips];
+        
 //        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         NSLog(@"%@",error);
         
@@ -42,7 +42,7 @@
 }
 #pragma mark ========== 请求成功处理参数的共同方法 ==========
 +(void)setCommonRespone:(SucessBlock)sucess pi:(NSString *)pi responseObject:(id)responseObject{
-    [QMUITips hideAllTips];
+    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     id obj = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
     UIView * view;
@@ -62,7 +62,7 @@
             }else{
                 [QMUITips showError:obj[@"message"] inView:view hideAfterDelay:1];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [QMUITips hideAllTips];
+                    
                 });
                 return;
             }

@@ -44,7 +44,8 @@
     //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
     if (self.whereCome) {
         self.title = @"请选择品牌";
-        [self addNavigationItemWithImageNames:@[@"返回键"] isLeft:YES target:self action:@selector(clickBackAction) tags:nil];
+        self.isShowLiftBack = YES;
+//        [self addNavigationItemWithImageNames:@[@"返回键"] isLeft:YES target:self action:@selector(clickBackAction) tags:nil];
     }else{
         self.title = @"雪茄品牌";
         [self setNavSearchView];

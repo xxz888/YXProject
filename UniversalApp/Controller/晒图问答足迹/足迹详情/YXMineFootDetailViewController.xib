@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="p7Z-02-whh">
-                    <rect key="frame" x="0.0" y="20" width="375" height="602"/>
+                    <rect key="frame" x="0.0" y="90" width="375" height="537"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="WEU-wa-5BJ"/>
@@ -31,7 +30,7 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jla-Qg-pK9">
-                    <rect key="frame" x="5" y="622" width="365" height="40"/>
+                    <rect key="frame" x="0.0" y="627" width="375" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="1VS-wr-bQ1"/>
                     </constraints>
@@ -46,15 +45,14 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="p7Z-02-whh" secondAttribute="trailing" id="Ca3-UD-U7c"/>
-                <constraint firstItem="p7Z-02-whh" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="GzB-88-31D"/>
+                <constraint firstAttribute="trailing" secondItem="p7Z-02-whh" secondAttribute="trailing" id="Ca3-UD-U7c"/>
+                <constraint firstItem="p7Z-02-whh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GzB-88-31D"/>
                 <constraint firstItem="jla-Qg-pK9" firstAttribute="top" secondItem="p7Z-02-whh" secondAttribute="bottom" id="NgS-ol-Doy"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="jla-Qg-pK9" secondAttribute="trailing" constant="5" id="YWw-RK-YLR"/>
-                <constraint firstItem="p7Z-02-whh" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="kjk-cq-4ya"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="jla-Qg-pK9" secondAttribute="bottom" constant="5" id="s4P-qw-QbT"/>
-                <constraint firstItem="jla-Qg-pK9" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="5" id="u73-GR-lYW"/>
+                <constraint firstAttribute="trailing" secondItem="jla-Qg-pK9" secondAttribute="trailing" id="YWw-RK-YLR"/>
+                <constraint firstItem="p7Z-02-whh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="90" id="kjk-cq-4ya"/>
+                <constraint firstAttribute="bottom" secondItem="jla-Qg-pK9" secondAttribute="bottom" id="s4P-qw-QbT"/>
+                <constraint firstItem="jla-Qg-pK9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="u73-GR-lYW"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="39.200000000000003" y="46.326836581709152"/>
         </view>
     </objects>

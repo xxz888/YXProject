@@ -62,7 +62,7 @@
         model.normalImageName = [obj objectForKey:@"normalImg"];
         // 4.设置单个选中item标题状态下的颜色
         model.selectColor =YXRGBAColor(176, 151, 99);
-        model.normalColor = AxcAE_TabBarRGBA(93, 93, 93, 1);
+        model.normalColor = YXRGBAColor(200, 200, 200);
         
         /***********************************/
         if (idx == 9 ) { // 如果是中间的
