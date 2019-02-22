@@ -87,7 +87,6 @@ static CGFloat textFieldH = 40;
     self.lastDetailView = [nib objectAtIndex:0];
     self.lastDetailView.frame = CGRectMake(0, 0, KScreenWidth, 1000);
     self.lastDetailView.delegate = self;
-    self.yxTableView.tableHeaderView = self.lastDetailView;
     //点击segment
     self.lastDetailView.block = ^(NSInteger index) {
         index == 0 ? [weakself requestNewList] : [weakself requestHotList];

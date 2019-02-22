@@ -7,23 +7,11 @@
 //
 
 #import "RootViewController.h"
+#import "YXFaBuBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YXHomeQuestionFaBuViewController : RootViewController
-@property (weak, nonatomic) IBOutlet UITextField *questionTitleTf;
-@property (weak, nonatomic) IBOutlet UIView *questionMainView;
-@property (weak, nonatomic) IBOutlet UIView *questionImageView;
-@property (weak, nonatomic) IBOutlet UIButton *xinhuatiBtn;
-@property (weak, nonatomic) IBOutlet UIButton *moreBtn;
-- (IBAction)xinhuatiAction:(id)sender;
-- (IBAction)moreAction:(id)sender;
-@property(nonatomic,strong)NSString * whereCome;
-@property (weak, nonatomic) IBOutlet UISwitch *switchBtn;
-@property (weak, nonatomic) IBOutlet UIButton *locationBtn;
-- (IBAction)locationBtnAction:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *fabuBtn;
-
+@interface YXHomeQuestionFaBuViewController : YXFaBuBaseViewController
 @end
 
 NS_ASSUME_NONNULL_END

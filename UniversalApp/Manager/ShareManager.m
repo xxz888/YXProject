@@ -339,7 +339,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     //, NSKernAttributeName:@1.5f
     NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:14], NSParagraphStyleAttributeName:paraStyle,NSParagraphStyleAttributeName:attributedString};
     CGSize size = [string boundingRectWithSize:CGSizeMake(KScreenWidth-20, MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
-    return  ceilf(size.height);
+    return  ceilf(size.height) <= 30 ? 30 : ceilf(size.height);
 }
 + (void)setBorderinView:(UIView *)view{
     view.layer.borderColor = [[UIColor borderColor] CGColor];

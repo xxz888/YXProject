@@ -122,8 +122,10 @@
     self.fensiCountLbl.text = kGetString(object[@"fans_number"]);
     self.tieshuCountLbl.text = kGetString(object[@"publish_number"]);
     NSInteger tag = [object[@"is_like"] integerValue];
+    [ShareManager setGuanZhuStatus:self.guanzhuBtn status:tag == 0];
     NSString * islike = tag == 1 ? @"互相关注" : tag == 2 ? @"已关注" : @"关注";
     [self.guanzhuBtn setTitle:islike forState:UIControlStateNormal];
+
     self.userInfoDic = [NSDictionary dictionaryWithDictionary:object];
 }
 - (IBAction)guanzhuOtherAction:(id)sender {
@@ -183,10 +185,10 @@
 }
 #pragma mark ========== 右上角菜单按钮 ==========
 -(void)setLayoutCol{
-    CGRect frame = CGRectMake(0,AxcAE_IsiPhoneX ? kTopHeight : 0, KScreenWidth/1.5, AxcAE_IsiPhoneX ? KScreenHeight - kTopHeight :KScreenHeight);
+    CGRect frame = CGRectMake(0,AxcAE_IsiPhoneX ? kTopHeight + 40 : 0, KScreenWidth/1.5, AxcAE_IsiPhoneX ? KScreenHeight - kTopHeight :KScreenHeight);
     self.yxTableView = [[UITableView alloc]initWithFrame:frame style:1];
     [self.yxTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Identifier"];
-    titleArray = @[@"更多",@"我的草稿",@"发现好友",@"我的收藏",@"我的点赞",@"我的点评",@"设置"];
+    titleArray = @[@"",@"更多",@"我的草稿",@"发现好友",@"我的收藏",@"我的点赞",@"我的点评",@"设置"];
     self.yxTableView.backgroundColor = UIColorWhite;
     self.yxTableView.layer.cornerRadius = 6;
     self.yxTableView.delegate = self;
@@ -194,6 +196,7 @@
     self.yxTableView.estimatedRowHeight = 0;
     self.yxTableView.estimatedSectionFooterHeight = KScreenHeight-titleArray.count * 50;
     self.yxTableView.estimatedSectionHeaderHeight = 0;
+    self.yxTableView.separatorStyle = 0;
 }
 #pragma mark ========== 菜单view的方法 ==========
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -208,11 +211,13 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
     }
-    if (indexPath.row != 0) {
+    if (indexPath.row == 1) {
+        cell.textLabel.font = [UIFont systemFontOfSize:20.0f];
+    }else if (indexPath.row == 0){
+        cell.selectionStyle =UITableViewCellSelectionStyleNone;
+    }else{
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.font = [UIFont systemFontOfSize:16.0f];
-    }else{
-        cell.textLabel.font = [UIFont systemFontOfSize:20.0f];
     }
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor clearColor];

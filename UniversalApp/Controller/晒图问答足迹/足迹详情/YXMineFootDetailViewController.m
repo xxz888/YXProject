@@ -47,6 +47,7 @@ static CGFloat textFieldH = 40;
 @implementation YXMineFootDetailViewController
 - (void)viewDidLoad{
     [super viewDidLoad];
+    YX_MANAGER.isHaveIcon = NO;
     //初始化所有的控件
     [self initAllControl];
     [self requestNewList];

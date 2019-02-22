@@ -15,15 +15,15 @@
     NSString * url = whereCome ? dic[@"pic1"]:dic[@"photo1"];
     CGFloat imageHeight = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:0];
     NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
-    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:titleText];
+    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:[titleText UnicodeToUtf8]];
     CGFloat lastHeight =
-    (plArray.count == 1 ? 25 : 0) +
-    (plArray.count == 2 ? 25 : 0) +
-    (plArray.count == 2 ? 25 : 0) +
+    (plArray.count >= 1 ? 25 : 0) +
+    (plArray.count >= 2 ? 25 : 0) +
+    (plArray.count >= 2 ? 25 : 0) +
     (whereCome ? 30 : 0) +
     height_size +
     imageHeight;
-    return lastHeight + 190;
+    return lastHeight + 180;
 }
 
 -(CGFloat)getImageViewSize:(NSString *)imgUrl{
@@ -125,7 +125,7 @@
 }
 -(CGFloat)getLblHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
     NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
-    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:titleText];
+    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:[titleText UnicodeToUtf8]];
     return height_size;
 }
 

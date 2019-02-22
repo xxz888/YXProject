@@ -13,6 +13,7 @@
 #import "YXPublishFootViewController.h"
 #import "YXHomeXueJiaPinPaiViewController.h"
 
+#import "YXFaBuBaseViewController.h"
 
 @interface XWPopMenuController (){
     UIImageView *_imageView;
@@ -207,42 +208,15 @@
     __weak typeof(self) weakSelf = self;
     UIStoryboard * stroryBoard3 = [UIStoryboard storyboardWithName:@"YXPublish" bundle:nil];
     if (btn.tag == 1000) {//晒图
-        YXPublishImageViewController * imageVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishImageViewController"];
-//        [imageVC toDissmissSelf:^{
-//            self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(returnUpVC) userInfo:nil repeats:YES];
-//            [UIView animateWithDuration:0.1 animations:^{
-//                _closeImgView.transform = CGAffineTransformRotate(_closeImgView.transform, -M_PI_2*1.5);
-//            }];
-//        }];
+        YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
         [weakSelf presentViewController:imageVC animated:YES completion:nil];
-    }else if (btn.tag == 1002){//文章
-        RichTextViewController * ctrl=[RichTextViewController ViewController];
-        [ctrl toDissmissSelf:^{
-            self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(returnUpVC) userInfo:nil repeats:YES];
-            [UIView animateWithDuration:0.1 animations:^{
-                _closeImgView.transform = CGAffineTransformRotate(_closeImgView.transform, -M_PI_2*1.5);
-            }];
-        }];
-        [weakSelf presentViewController:ctrl animated:YES completion:nil];
     }else{
         UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
         YXHomeXueJiaPinPaiViewController * pinpaiVC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiViewController"];
         pinpaiVC.whereCome = YES; //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
         RootNavigationController * nav1 = [[RootNavigationController alloc]initWithRootViewController:pinpaiVC];
-        
-//        [pinpaiVC toDissmissSelf:^{
-//            self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(returnUpVC) userInfo:nil repeats:YES];
-//            [UIView animateWithDuration:0.1 animations:^{
-//                _closeImgView.transform = CGAffineTransformRotate(_closeImgView.transform, -M_PI_2*1.5);
-//            }];
-//        }];
         [weakSelf presentViewController:nav1 animated:YES completion:nil];
     }
-//    [UIView animateWithDuration:0.5 animations:^{
-//        btn.transform = CGAffineTransformMakeScale(2.0, 2.0);
-//        btn.alpha = 0;
-//    }];
-    
 }
 
 

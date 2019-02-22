@@ -11,6 +11,7 @@
 #import "YXMineImageDetailViewController.h"
 #import "BKCustomSwitchBtn.h"
 #import "YXMineImageCollectionViewCell.h"
+#import "XHWebImageAutoSize.h"
 @interface YXMineImageViewController ()<UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UICollectionViewDelegate,BKCustomSwitchBtnDelegate>{
     NSInteger page ;
 }
@@ -47,7 +48,7 @@
 -(void)collectionViewCon{
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    CGFloat heightKK = 50;
+    CGFloat heightKK = AxcAE_IsiPhoneX ? 88 : 60;
     CGFloat height =  user_id_BOOL ? 64 : 0;
     CGRect frame = CGRectMake(0, 0, KScreenWidth,KScreenHeight - 175 -kTopHeight - heightKK + height);
     self.yxCollectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:layout];
@@ -119,7 +120,7 @@
     cell.essayTitleImageView.tag = indexPath.row;
     NSString * str1 = [(NSMutableString *)dic[@"photo1"] replaceAll:@" " target:@"%20"];
     [cell.midImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    cell.titleLbl.text = dic[@"describe"];
+    cell.titleLbl.text = [dic[@"describe"] UnicodeToUtf8];
     BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
     UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
     [cell.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
@@ -132,10 +133,19 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
     YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
     VC.startDic = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[indexPath.row]];
-    
+    NSString * url = VC.startDic[@"photo1"];
+    CGFloat imageHeight = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:0];
+    VC.height = imageHeight;
     [self.navigationController pushViewController:VC animated:YES];
+    
+    
+//    YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
+//    VC.startDic = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[indexPath.row]];
+//    [self.navigationController pushViewController:VC animated:YES];
 }
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {

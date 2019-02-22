@@ -11,7 +11,7 @@
 @implementation YXFindQuestionTableViewCell
 +(CGFloat)cellMoreHeight:(NSDictionary *)dic{
     NSArray * plArray =  dic[@"answer"];
-    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:dic[@"question"]];
+    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:[dic[@"question"] UnicodeToUtf8]];
     CGFloat lastHeight =
     (plArray.count >= 1 ? 25 : 0) +
     (plArray.count >= 2 ? 25 : 0) +
@@ -64,7 +64,7 @@
 }
 -(CGFloat)getLblHeight:(NSDictionary *)dic{
     NSString * titleText = dic[@"question"];
-    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:titleText];
+    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:[titleText UnicodeToUtf8]];
     return height_size;
 }
 - (IBAction)likeBtnAction:(id)sender {

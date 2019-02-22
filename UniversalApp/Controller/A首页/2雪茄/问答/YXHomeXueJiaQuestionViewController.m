@@ -39,8 +39,8 @@
 }
 -(void)pushTiWen{
     UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-    YXHomeQuestionFaBuViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeQuestionFaBuViewController"];
-    [self.navigationController pushViewController:VC animated:YES];
+    YXHomeQuestionFaBuViewController * VC = [[YXHomeQuestionFaBuViewController alloc]init];
+    [self presentViewController:VC animated:YES completion:nil];
 }
 -(void)headerRereshing{
     [super headerRereshing];

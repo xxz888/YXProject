@@ -43,7 +43,9 @@
     //头图片
     NSString * string =[startDic[@"photo_list"] count] > 0 ? startDic[@"photo_list"][0][@"photo_url"] : @"";
     NSString * str = [(NSMutableString *)string replaceAll:@" " target:@"%20"];
-   [self.lastImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    if (str) {
+        [self.lastImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@""]];
+    }
 
     //头名字
     self.lastTitleLbl.text = kGetString(startDic[@"cigar_name"]);

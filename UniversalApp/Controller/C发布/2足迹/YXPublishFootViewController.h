@@ -7,28 +7,12 @@
 //
 
 #import "YXHomeQuestionFaBuViewController.h"
-typedef void(^dismissBlock) ();
+#import "YXFaBuBaseViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YXPublishFootViewController : RootViewController
-//block声明属性
-@property (nonatomic, copy) dismissBlock mDismissBlock;
-//block声明方法
--(void)toDissmissSelf:(dismissBlock)block;
-
-@property (weak, nonatomic) IBOutlet UIButton *fabuBtn;
-
-
-@property (weak, nonatomic) IBOutlet UIView * questionMainView;
-@property (weak, nonatomic) IBOutlet UIView * questionImageView;
-@property (weak, nonatomic) IBOutlet UIButton *xinhuatiBtn;
-@property (weak, nonatomic) IBOutlet UIButton *moreBtn;
-- (IBAction)xinhuatiAction:(id)sender;
-- (IBAction)moreAction:(id)sender;
+@interface YXPublishFootViewController : YXFaBuBaseViewController
 @property(nonatomic,strong)NSString * cigar_id;
-@property (weak, nonatomic) IBOutlet UISwitch *switchBtn;
-@property (weak, nonatomic) IBOutlet UIButton *locationBtn;
-- (IBAction)locationBtnAction:(id)sender;
+
 
 
 @end

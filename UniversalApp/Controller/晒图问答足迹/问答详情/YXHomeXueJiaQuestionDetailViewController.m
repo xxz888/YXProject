@@ -52,6 +52,8 @@ static CGFloat textFieldH = 0;
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    YX_MANAGER.isHaveIcon = YES;
+
     //初始化所有的控件
     [self initAllControl];
     
@@ -225,7 +227,7 @@ static CGFloat textFieldH = 0;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-    return  260 - 30 + [ShareManager inTextFieldOutDifColorView:self.moment.detailText];
+    return  260 - 30 + [ShareManager inTextFieldOutDifColorView:[self.moment.detailText UnicodeToUtf8]];
 }
 -(CGSize)cellAutoHeight:(NSString *)string {
     //展开后得高度(计算出文本内容的高度+固定控件的高度)

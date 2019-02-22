@@ -35,10 +35,8 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXXingZhuangTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXXingZhuangTableViewCell" forIndexPath:indexPath];
     NSString *filePath = [[NSBundle mainBundle] pathForResource:self.xuejiaNameArray[indexPath.row] ofType:@"gif"];
-    cell.gifImageView.gifData = [NSData dataWithContentsOfFile:filePath];
-
+    cell.gifImageView.image = [UIImage imageNamed:filePath];
     cell.nameLbl.text = self.xuejiaNameArray[indexPath.row];
-
     cell.selectionStyle = 0;
     return cell;
 }

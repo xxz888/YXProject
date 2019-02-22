@@ -62,7 +62,7 @@
     [self.section1ImageView setContentMode:UIViewContentModeScaleAspectFit];
     
     self.section1TextView.text = kGetString(cellData[@"intro"]);
-    self.section1TitleLbl.text = [NSString stringWithFormat:@"%@/%@",cellData[@"sort"],cellData[@"cigar_brand"]];
+    self.section1TitleLbl.text = [NSString stringWithFormat:@"%@",cellData[@"cigar_brand"]];
 
     ViewBorderRadius(self.section1GuanZhuBtn, 5, 1, self.section1GuanZhuBtn.titleLabel.textColor);
     
@@ -146,10 +146,9 @@
         
          //yes为足迹进来 no为正常进入
         if (self.whereCome) {
-            UIStoryboard * stroryBoard3 = [UIStoryboard storyboardWithName:@"YXPublish" bundle:nil];
-             YXPublishFootViewController * footVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishFootViewController"];
+             YXPublishFootViewController * footVC = [[YXPublishFootViewController alloc]init];
             footVC.cigar_id = kGetString(self.dicData[@"data"][indexPath.row][@"id"]);
-            [self.navigationController pushViewController:footVC animated:YES];
+            [self presentViewController:footVC animated:YES completion:nil];
         }else{
             UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
             YXHomeXueJiaPinPaiLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiLastDetailViewController"];

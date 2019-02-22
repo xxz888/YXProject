@@ -112,8 +112,11 @@
     // NSArray *dataSource = [weakSelf getAddressDataSource];  //从外部传入地区数据源
     NSArray *dataSource = nil; // dataSource 为空时，就默认使用框架内部提供的数据源（即 BRCity.plist）
     [BRAddressPickerView showAddressPickerWithShowType:BRAddressPickerModeArea dataSource:dataSource defaultSelected:@[] isAutoSelect:YES themeColor:nil resultBlock:^(BRProvinceModel *province, BRCityModel *city, BRAreaModel *area) {
-        NSString * address = [NSString stringWithFormat:@"%@%@%@", province.name, city.name, area.name];
-        [weakself.adressBtn setTitle:address forState:UIControlStateNormal];
+        if (province.name && city.name && area.name) {
+            NSString * address = [NSString stringWithFormat:@"%@%@%@", province.name, city.name, area.name];
+            [weakself.adressBtn setTitle:address forState:UIControlStateNormal];
+        }
+     
     } cancelBlock:^{
     }];
 }

@@ -17,7 +17,7 @@
 @implementation YXMineAllViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    CGFloat heightKK = 50;
+    CGFloat heightKK = AxcAE_IsiPhoneX ? 88 : 60;
     CGFloat height =  user_id_BOOL ? 64 : 0;
 
     self.yxTableView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight - 175 -kTopHeight - heightKK + height);

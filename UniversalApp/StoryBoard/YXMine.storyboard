@@ -257,7 +257,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="keN-lp-1gr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1180" y="167"/>
+            <point key="canvasLocation" x="-780" y="167"/>
         </scene>
         <!--Mine View Controller-->
         <scene sceneID="LKn-cE-VIM">
@@ -280,8 +280,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRo-SK-n3O">
-                                <rect key="frame" x="90" y="60" width="6.5" height="35"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRo-SK-n3O">
+                                <rect key="frame" x="90" y="60" width="137" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -292,7 +292,7 @@
                                     <constraint firstAttribute="height" constant="30" id="QqE-cH-hcg"/>
                                     <constraint firstAttribute="width" constant="80" id="ihx-tQ-lRv"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="已关注">
                                     <color key="titleColor" red="0.31372549020000001" green="0.3294117647" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -418,12 +418,12 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nhq-fI-Rq3">
-                                <rect key="frame" x="240" y="52.5" width="130" height="25"/>
+                                <rect key="frame" x="230" y="52.5" width="140" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="Yb0-jr-xNl"/>
+                                    <constraint firstAttribute="width" constant="140" id="Yb0-jr-xNl"/>
                                     <constraint firstAttribute="height" constant="25" id="nTF-jb-rV0"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="查看并编辑个人资料">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -443,6 +443,7 @@
                             <constraint firstItem="aJa-4I-rF2" firstAttribute="top" secondItem="IUk-c0-q79" secondAttribute="top" constant="10" id="PIi-vI-PId"/>
                             <constraint firstItem="HRo-SK-n3O" firstAttribute="top" secondItem="39Y-AP-pM1" secondAttribute="bottom" constant="-5" id="Qqe-zf-I22"/>
                             <constraint firstItem="SSz-Yb-qGf" firstAttribute="leading" secondItem="IUk-c0-q79" secondAttribute="leading" id="VVJ-Xu-z3x"/>
+                            <constraint firstItem="Nhq-fI-Rq3" firstAttribute="leading" secondItem="HRo-SK-n3O" secondAttribute="trailing" constant="3" id="VbI-by-nYx"/>
                             <constraint firstItem="IUk-c0-q79" firstAttribute="trailing" secondItem="gEb-Ro-YvK" secondAttribute="trailing" constant="10" id="WZQ-Kd-xsr"/>
                             <constraint firstItem="Nhq-fI-Rq3" firstAttribute="centerY" secondItem="aJa-4I-rF2" secondAttribute="centerY" id="X71-ZG-MfV"/>
                             <constraint firstItem="SSz-Yb-qGf" firstAttribute="top" secondItem="vzD-Vj-XZV" secondAttribute="bottom" id="Zh3-ZL-AfP"/>
@@ -469,7 +470,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xff-ce-7qs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-535.20000000000005" y="154.27286356821591"/>
+            <point key="canvasLocation" x="-1285.5999999999999" y="166.8665667166417"/>
         </scene>
         <!--Mine Guan Zhu View Controller-->
         <scene sceneID="STZ-kW-axn">

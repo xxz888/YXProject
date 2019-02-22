@@ -218,6 +218,8 @@
 		BB29122F2215712000FF484E /* YXXingZhuangTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29122D2215712000FF484E /* YXXingZhuangTableViewCell.xib */; };
 		BB2A8EB6221BB0A300B6756A /* UILabel+String.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2A8EB5221BB0A300B6756A /* UILabel+String.m */; };
 		BB2A8EB9221BE73300B6756A /* UIImage+ImgSize.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2A8EB8221BE73300B6756A /* UIImage+ImgSize.m */; };
+		BB3CA496221F948E00C6793D /* YXFaBuBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3CA495221F948E00C6793D /* YXFaBuBaseViewController.m */; };
+		BB3CA498221F95FC00C6793D /* YXFaBuBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB3CA497221F95FC00C6793D /* YXFaBuBaseViewController.xib */; };
 		BB3DFE8A221D568D000C70B5 /* XHWebImageAutoSizeCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3DFE82221D568D000C70B5 /* XHWebImageAutoSizeCache.m */; };
 		BB3DFE8B221D568D000C70B5 /* UICollectionView+XHWebImageAutoSize.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3DFE84221D568D000C70B5 /* UICollectionView+XHWebImageAutoSize.m */; };
 		BB3DFE8C221D568D000C70B5 /* UITableView+XHWebImageAutoSize.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3DFE85221D568D000C70B5 /* UITableView+XHWebImageAutoSize.m */; };
@@ -949,6 +951,9 @@
 		BB2A8EB5221BB0A300B6756A /* UILabel+String.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+String.m"; sourceTree = "<group>"; };
 		BB2A8EB7221BE73300B6756A /* UIImage+ImgSize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImgSize.h"; sourceTree = "<group>"; };
 		BB2A8EB8221BE73300B6756A /* UIImage+ImgSize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImgSize.m"; sourceTree = "<group>"; };
+		BB3CA494221F948E00C6793D /* YXFaBuBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFaBuBaseViewController.h; sourceTree = "<group>"; };
+		BB3CA495221F948E00C6793D /* YXFaBuBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFaBuBaseViewController.m; sourceTree = "<group>"; };
+		BB3CA497221F95FC00C6793D /* YXFaBuBaseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFaBuBaseViewController.xib; sourceTree = "<group>"; };
 		BB3DFE7E221D568D000C70B5 /* UICollectionView+XHWebImageAutoSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+XHWebImageAutoSize.h"; sourceTree = "<group>"; };
 		BB3DFE7F221D568D000C70B5 /* UITableView+XHWebImageAutoSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+XHWebImageAutoSize.h"; sourceTree = "<group>"; };
 		BB3DFE80221D568D000C70B5 /* XHWebImageAutoSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHWebImageAutoSize.h; sourceTree = "<group>"; };
@@ -2767,6 +2772,16 @@
 			path = "UniversalApp/Controller/C发布/4提问";
 			sourceTree = SOURCE_ROOT;
 		};
+		BB3CA493221F947600C6793D /* 所有发布界面复用 */ = {
+			isa = PBXGroup;
+			children = (
+				BB3CA494221F948E00C6793D /* YXFaBuBaseViewController.h */,
+				BB3CA495221F948E00C6793D /* YXFaBuBaseViewController.m */,
+				BB3CA497221F95FC00C6793D /* YXFaBuBaseViewController.xib */,
+			);
+			path = "所有发布界面复用";
+			sourceTree = "<group>";
+		};
 		BB3DFE7D221D568D000C70B5 /* XHWebImageAutoSize */ = {
 			isa = PBXGroup;
 			children = (
@@ -3897,6 +3912,7 @@
 		BBD1C7782216A98D0063002F /* 晒图问答足迹 */ = {
 			isa = PBXGroup;
 			children = (
+				BB3CA493221F947600C6793D /* 所有发布界面复用 */,
 				BBD1C77122166AB40063002F /* 发现和我的界面复用 */,
 				BBD1C7792216AA090063002F /* 问答详情 */,
 				BBADE4D321F865400011E5FF /* 晒图详情 */,
@@ -5170,6 +5186,7 @@
 				BBD2C8FD21E0F67700350DCD /* TZImagePickerController.bundle in Resources */,
 				BBD2C94821E0F67800350DCD /* ImageSelectedOn@2x.png in Resources */,
 				293D46501ECDBB63007C64A9 /* icon_tabbar_misc_selected.png in Resources */,
+				BB3CA498221F95FC00C6793D /* YXFaBuBaseViewController.xib in Resources */,
 				BBD2C92921E0F67800350DCD /* UIBarButtonItemArrowLeft.png in Resources */,
 				BBCC4AA921E83DD100493F40 /* YXXingZhuangViewController.xib in Resources */,
 				BB6D2A0A21EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.xib in Resources */,
@@ -5596,6 +5613,7 @@
 				BBD2C8F821E0F67700350DCD /* TZVideoPlayerController.m in Sources */,
 				BBD2C8FB21E0F67700350DCD /* UIView+Layout.m in Sources */,
 				BBD2C83A21E0F44A00350DCD /* VTingTimeView.m in Sources */,
+				BB3CA496221F948E00C6793D /* YXFaBuBaseViewController.m in Sources */,
 				BBE82CE521E3A125004E4144 /* QiniuLoad.m in Sources */,
 				BBD2C92121E0F67800350DCD /* MWCaptionView.m in Sources */,
 				BBD2C8FA21E0F67700350DCD /* NSBundle+TZImagePicker.m in Sources */,
