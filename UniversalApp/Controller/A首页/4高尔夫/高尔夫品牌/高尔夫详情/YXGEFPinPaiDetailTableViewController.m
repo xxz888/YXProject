@@ -78,7 +78,7 @@
     BOOL isGuanZhu = self.dicData[@"is_like"];
     self.headerView.delegate = self;
     self.headerView.segmentDelegate = self;
-    [ShareManager setGuanZhuStatus:self.headerView.section1GuanZhuBtn status:isGuanZhu];
+    [ShareManager setGuanZhuStatus:self.headerView.section1GuanZhuBtn status:isGuanZhu alertView:NO];
     
 
 }
@@ -137,7 +137,7 @@
     if ([userManager loadUserInfo]) {
         [YX_MANAGER requestGolf_brand_like:kGetString(self.dicStartData[@"id"]) success:^(id object) {
             BOOL isGuanZhu = weakself.dicData[@"is_like"];
-            [ShareManager setGuanZhuStatus:weakself.headerView.section1GuanZhuBtn status:!isGuanZhu];
+            [ShareManager setGuanZhuStatus:weakself.headerView.section1GuanZhuBtn status:!isGuanZhu alertView:YES];
         }];
     }else{
         KPostNotification(KNotificationLoginStateChange, @NO)

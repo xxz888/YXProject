@@ -32,8 +32,7 @@ SINGLETON_FOR_HEADER(ShareManager)
 +(NSString *)timestampSwitchTime:(NSInteger)timestamp andFormatter:(NSString *)format;
 + (NSString *)updateTimeForRow:(long)timestamp;
 //关注按钮初始化状态
-+(void)setGuanZhuStatus:(UIButton *)btn status:(BOOL)statusBool;
-
++(void)setGuanZhuStatus:(UIButton *)btn status:(BOOL)statusBool alertView:(BOOL)isAlertView;
 +(XHStarRateView *)fiveStarView:(CGFloat)score view:(UIView *)view;
 //添加轮播图
 +(SDCycleScrollView *)setUpSycleScrollView:(NSMutableArray *)imageArray;
@@ -49,4 +48,5 @@ SINGLETON_FOR_HEADER(ShareManager)
 @property (nonatomic,strong) MMImagePreviewView * previewView;
 +(void)inTextFieldOutDifColorView:(UILabel *)tfView tag:(NSString *)tag;
 +(void)setLineSpace:(CGFloat)lineSpace withText:(NSString *)text inLabel:(UILabel *)label tag:(NSString *)tag;
++(UIView *)getMainView;
 @end

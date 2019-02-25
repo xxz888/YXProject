@@ -23,7 +23,7 @@
     (whereCome ? 30 : 0) +
     height_size +
     imageHeight;
-    return lastHeight + 180;
+    return lastHeight + 174;
 }
 
 -(CGFloat)getImageViewSize:(NSString *)imgUrl{
@@ -36,7 +36,7 @@
     self.jumpDetailVCBlock(self);
 }
 -(void)setCellValue:(NSDictionary *)dic whereCome:(BOOL)whereCome{
-    [self cellValueDic:dic searchBtn:self.searchBtn pl1NameLbl:self.pl1NameLbl pl2NameLbl:self.pl2NameLbl pl1ContentLbl:self.pl1ContentLbl pl2ContentLbl:self.pl2ContentLbl titleImageView:self.titleImageView addPlImageView:self.addPlImageView talkCount:self.talkCount titleLbl:self.titleLbl timeLbl:self.timeLbl mapBtn:self.mapBtn likeBtn:self.likeBtn];
+    [self cellValueDic:dic searchBtn:self.searchBtn pl1NameLbl:self.pl1NameLbl pl2NameLbl:self.pl2NameLbl pl1ContentLbl:self.pl1ContentLbl pl2ContentLbl:self.pl2ContentLbl titleImageView:self.titleImageView addPlImageView:self.addPlImageView talkCount:self.talkCount titleLbl:self.titleLbl timeLbl:self.timeLbl mapBtn:self.mapBtn likeBtn:self.likeBtn zanCount:self.zanCount];
     
     
     self.pl1Height.constant = [self getPl1HeightPlArray:dic];

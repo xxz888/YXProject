@@ -72,7 +72,7 @@
     NSString * str1 = [(NSMutableString *)imgString replaceAll:@" " target:@"%20"];
 
     [cell.common1ImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    [ShareManager setGuanZhuStatus:cell.common1GuanzhuBtn status:NO];
+    [ShareManager setGuanZhuStatus:cell.common1GuanzhuBtn status:NO alertView:NO];
     return cell;
 }
 -(void)clickBtnAction:(NSInteger)common_id tag:(NSInteger)tag{
@@ -86,8 +86,7 @@
     NSString * common_id_string = NSIntegerToNSString(common_id);
     [YX_MANAGER requestLikesActionGET:common_id_string success:^(id object) {
         BOOL is_like = [cell.common1GuanzhuBtn.titleLabel.text isEqualToString:@"关注"] == 1;
-        [QMUITips showSucceed:is_like ?@"关注成功": @"已取消关注" inView:weakself.view hideAfterDelay:2];
-        [ShareManager setGuanZhuStatus:cell.common1GuanzhuBtn status:!is_like];
+        [ShareManager setGuanZhuStatus:cell.common1GuanzhuBtn status:!is_like alertView:YES];
     }];
 }
 @end

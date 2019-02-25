@@ -224,20 +224,24 @@ SINGLETON_FOR_CLASS(ShareManager);
         return @"刚刚";
     }
 }
-+(void)setGuanZhuStatus:(UIButton *)btn status:(BOOL)statusBool{
-    UIColor * color1 = [UIColor darkGrayColor];
++(void)setGuanZhuStatus:(UIButton *)btn status:(BOOL)statusBool alertView:(BOOL)isAlertView{
+    UIView * view;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11) {
+        view = [[UIApplication sharedApplication].windows firstObject];
+    } else {
+        view = [[UIApplication sharedApplication].windows lastObject];
+    }
      if (statusBool) {
         [btn setTitle:@"关注" forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor darkGrayColor] forState:0];
-        [btn setBackgroundColor:KWhiteColor];
-        ViewBorderRadius(btn, 5, 1, color1);
-
+         isAlertView ? [QMUITips showSucceed:@"取消关注成功"] : nil;
     }else{
         [btn setTitle:@"已关注" forState:UIControlStateNormal];
-        [btn setTitleColor:KWhiteColor forState:0];
-        [btn setBackgroundColor:YXRGBAColor(255, 51, 51)];
-        ViewBorderRadius(btn, 5, 0, KClearColor);
+        isAlertView ?  [QMUITips showSucceed:@"关注成功"] : nil;
+
     }
+    [btn setTitleColor:A_COlOR forState:0];
+    [btn setBackgroundColor:KWhiteColor];
+    ViewBorderRadius(btn, 5, 1, A_COlOR);
 }
 
 
@@ -549,5 +553,13 @@ SINGLETON_FOR_CLASS(ShareManager);
         //赋值给显示控件label01的 attributedText
            tfView.attributedText = attributedStr01;
 }
-
++(UIView *)getMainView{
+    UIView * view;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11) {
+        view = [[UIApplication sharedApplication].windows firstObject];
+    } else {
+        view = [[UIApplication sharedApplication].windows lastObject];
+    }
+    return view;
+}
 @end

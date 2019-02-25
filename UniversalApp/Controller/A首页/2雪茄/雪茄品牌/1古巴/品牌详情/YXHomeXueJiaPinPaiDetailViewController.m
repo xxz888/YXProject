@@ -66,17 +66,17 @@
 
     ViewBorderRadius(self.section1GuanZhuBtn, 5, 1, self.section1GuanZhuBtn.titleLabel.textColor);
     
-    [self setguanzhu];
-    
+    self.section1countLbl.text = [kGetString(self.dicData[@"concern_number"]) append:@" 人关注"];
+    BOOL isGuanZhu = [self.dicData[@"is_concern"] integerValue] == 1;
+      [ShareManager setGuanZhuStatus:self.section1GuanZhuBtn status:!isGuanZhu alertView:NO];
     
     
 
 }
 
 -(void)setguanzhu{
-    self.section1countLbl.text = [kGetString(self.dicData[@"concern_number"]) append:@" 人关注"];
-    BOOL isGuanZhu = [self.dicData[@"is_concern"] integerValue] == 1;
-    [ShareManager setGuanZhuStatus:self.section1GuanZhuBtn status:!isGuanZhu];
+
+  
 }
 
 
@@ -186,7 +186,9 @@
     [YX_MANAGER requestCigar_brand_detailsPOST:@{@"cigar_brand_id":kGetString(self.dicStartData[@"id"])} success:^(id object) {
         weakself.dicData = [NSMutableDictionary dictionaryWithDictionary:object];
         [weakself.tableView reloadData];
-        [weakself setguanzhu];
+        weakself.section1countLbl.text = [kGetString(self.dicData[@"concern_number"]) append:@" 人关注"];
+        BOOL isGuanZhu = [self.dicData[@"is_concern"] integerValue] == 1;
+        [ShareManager setGuanZhuStatus:self.section1GuanZhuBtn status:!isGuanZhu alertView:YES];
     }];
 }
 #pragma mark ========== 请求是否关注 ==========

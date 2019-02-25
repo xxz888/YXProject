@@ -105,7 +105,8 @@
     };
     cell.zanblock = ^(YXFindImageTableViewCell * cell) {
         NSIndexPath * indexPath1 = [weakself.yxTableView indexPathForCell:cell];
-        [weakself requestDianZan_Image_Action:indexPath1];
+        
+        whereCome ?  [weakself requestDianZan_ZuJI_Action:indexPath1] : [weakself requestDianZan_Image_Action:indexPath1];
     };
     cell.shareblock = ^(YXFindImageTableViewCell * cell) {
         [weakself addGuanjiaShareView];

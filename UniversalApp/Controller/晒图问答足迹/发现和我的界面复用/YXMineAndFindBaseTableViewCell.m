@@ -35,11 +35,12 @@
     }
 }
 
--(void)cellValueDic:(NSDictionary *)dic searchBtn:(UIButton *)searchBtn pl1NameLbl:(UILabel *)pl1NameLbl pl2NameLbl:(UILabel *)pl2NameLbl pl1ContentLbl:(UILabel *)pl1ContentLbl pl2ContentLbl:(UILabel *)pl2ContentLbl titleImageView:(UIImageView *)titleImageView addPlImageView:(UIImageView *)addPlImageView talkCount:(UILabel *)talkCount titleLbl:(UILabel *)titleLbl timeLbl:(UILabel *)timeLbl mapBtn:(UIButton *)mapBtn likeBtn:(UIButton *)likeBtn{
+-(void)cellValueDic:(NSDictionary *)dic searchBtn:(UIButton *)searchBtn pl1NameLbl:(UILabel *)pl1NameLbl pl2NameLbl:(UILabel *)pl2NameLbl pl1ContentLbl:(UILabel *)pl1ContentLbl pl2ContentLbl:(UILabel *)pl2ContentLbl titleImageView:(UIImageView *)titleImageView addPlImageView:(UIImageView *)addPlImageView talkCount:(UILabel *)talkCount titleLbl:(UILabel *)titleLbl timeLbl:(UILabel *)timeLbl mapBtn:(UIButton *)mapBtn likeBtn:(UIButton *)likeBtn zanCount:(UILabel *)zanCount{
     
 
     
     NSString * talkNum = dic[@"comment_number"] ? kGetString(dic[@"comment_number"]) :kGetString(dic[@"answer_number"]);
+    NSString * praisNum = kGetString(dic[@"praise_number"]);
     //查看多少评论按钮
     NSString * allString = [NSString stringWithFormat:@"  查看全部%@条评论",talkNum];
     allString = [allString isEqualToString:@"  查看全部(null)条评论"] || [allString isEqualToString:@"  查看全部0条评论"] ? @"  查看全部评论" : allString;
@@ -69,6 +70,7 @@
     [addPlImageView sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     //评论数量
     talkCount.text = talkNum;
+    zanCount.text = praisNum;
     //头名字
     titleLbl.text = dic[@"user_name"];
     //头时间
@@ -80,8 +82,11 @@
     UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
     [likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
     
-    if ([talkNum isEqualToString:@"0"]) {
+    if ([talkNum isEqualToString:@"0"] || [talkNum isEqualToString:@"(null)"]) {
         talkCount.text = @"";
+    }
+    if ([praisNum isEqualToString:@"0"] || [praisNum isEqualToString:@"(null)"]) {
+        zanCount.text = @"";
     }
     
 }

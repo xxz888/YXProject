@@ -13,7 +13,7 @@
 #import "TZAssetCell.h"
 #import "UIView+Layout.h"
 #import "TZImageManager.h"
-
+#import "JJImagePicker.h"
 @interface TZImagePickerController () {
     NSTimer *_timer;
     UILabel *_tipLabel;
@@ -458,9 +458,10 @@
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    if (iOS7Later) viewController.automaticallyAdjustsScrollViewInsets = NO;
-    if (_timer) { [_timer invalidate]; _timer = nil;}
-    [super pushViewController:viewController animated:animated];
+   
+//    if (iOS7Later) viewController.automaticallyAdjustsScrollViewInsets = NO;
+//    if (_timer) { [_timer invalidate]; _timer = nil;}
+//    [super pushViewController:viewController animated:animated];
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {

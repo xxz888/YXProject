@@ -27,7 +27,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xlw-G1-xrK">
-                        <rect key="frame" x="100" y="15" width="240" height="39.5"/>
+                        <rect key="frame" x="85" y="15" width="255" height="39.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -39,7 +39,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHm-jh-2QH">
-                        <rect key="frame" x="100" y="60.5" width="33" height="16"/>
+                        <rect key="frame" x="85" y="60.5" width="33" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.31372549020000001" green="0.3294117647" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -50,7 +50,7 @@
                     <constraint firstAttribute="trailing" secondItem="qdM-2m-MGZ" secondAttribute="trailing" constant="10" id="NiI-gf-uDV"/>
                     <constraint firstItem="Xlw-G1-xrK" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.4" id="PME-2n-Odh"/>
                     <constraint firstItem="EHm-jh-2QH" firstAttribute="leading" secondItem="Xlw-G1-xrK" secondAttribute="leading" id="WeY-Xe-qSa"/>
-                    <constraint firstItem="Xlw-G1-xrK" firstAttribute="leading" secondItem="ued-mw-r6K" secondAttribute="trailing" constant="20" id="X3M-Uf-88Z"/>
+                    <constraint firstItem="Xlw-G1-xrK" firstAttribute="leading" secondItem="ued-mw-r6K" secondAttribute="trailing" constant="5" id="X3M-Uf-88Z"/>
                     <constraint firstItem="Xlw-G1-xrK" firstAttribute="top" secondItem="ued-mw-r6K" secondAttribute="top" id="bhd-Iy-mdb"/>
                     <constraint firstAttribute="trailing" secondItem="Xlw-G1-xrK" secondAttribute="trailing" constant="10" id="cWe-uR-Bms"/>
                     <constraint firstItem="ued-mw-r6K" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="mUQ-oS-fAw"/>

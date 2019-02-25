@@ -90,6 +90,7 @@ static NSString *QiniuBucketName  = @"thegdlife";
     } else {
         view = [[UIApplication sharedApplication].windows lastObject];
     }
+    [QMUITips showLoadingInView:view];
     NSMutableArray *imageAry =[NSMutableArray new];
     NSMutableArray *imageAdd = [NSMutableArray new];
     //主要是把图片或者文件转成nsdata类型就可以了

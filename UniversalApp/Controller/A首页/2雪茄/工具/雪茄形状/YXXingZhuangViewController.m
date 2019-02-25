@@ -26,19 +26,31 @@
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXXingZhuangTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXXingZhuangTableViewCell"];
     self.xuejiaNameArray = @[@"Cigarillo",@"Small Panetela",@"Slim Panetela",@"Short Panetela",@"Panetela",@"Long Panetela",@"Petit Corona",@"Corona",@"Long Corona",@"Lonsdale",@"Corona Extra",@"Grand Corona",@"Double Corona",@"Giant Corona",@"Churchill",@"Petit Robusto",@"Robusto",@"Robusto Extra",@"Double Robusto",@"Giant Robusto",@"Culebras",@"Petit Pyramid",@"Pyramid",@"Double Pyramid",@"Petit Perfecto",@"Perfecto",@"Double Perfecto",@"Giant Perfecto"];
 }
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
-}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return  self.xuejiaNameArray.count;
 }
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    YXXingZhuangTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXXingZhuangTableViewCell" forIndexPath:indexPath];
+
+
+#pragma mark-  UITableView
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *filePath = [[NSBundle mainBundle] pathForResource:self.xuejiaNameArray[indexPath.row] ofType:@"gif"];
+    UIImage * img = [UIImage imageNamed:filePath];
+    CGFloat height = img.size.height;
+    return (height/img.size.width)*KScreenWidth;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    YXXingZhuangTableViewCell   *cell = [tableView dequeueReusableCellWithIdentifier:@"YXXingZhuangTableViewCell"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [self confirmCell:cell atIndexPath:indexPath];
+    return cell;
+}
+- (void)confirmCell:(YXXingZhuangTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath{
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:self.xuejiaNameArray[indexPath.row] ofType:@"gif"];
+    UIImage * img = [UIImage imageNamed:filePath];
+    cell.imageViewWid.constant = img.size.width / 3;
     cell.gifImageView.image = [UIImage imageNamed:filePath];
     cell.nameLbl.text = self.xuejiaNameArray[indexPath.row];
-    cell.selectionStyle = 0;
-    return cell;
 }
 /*
 #pragma mark - Navigation

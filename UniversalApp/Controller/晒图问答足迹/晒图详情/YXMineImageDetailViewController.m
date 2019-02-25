@@ -41,12 +41,16 @@ static CGFloat textFieldH = 40;
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, assign) BOOL isReplayingComment;
 @property (nonatomic, strong) NSIndexPath *currentEditingIndexthPath;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *clickbtnHeight;
+
 @property (nonatomic, copy) NSString *commentToUser;
 @end
 @implementation YXMineImageDetailViewController
 - (void)viewDidLoad{
     [super viewDidLoad];
     YX_MANAGER.isHaveIcon = NO;
+    self.clickbtnHeight.constant = AxcAE_IsiPhoneX ? 70 : 40;
+
     //初始化所有的控件
     [self initAllControl];
     [self requestNewList];
@@ -64,7 +68,6 @@ static CGFloat textFieldH = 40;
     kWeakSelf(self);
     self.title = @"晒图详情";
     
-    [ShareManager setBorderinView:self.clickPingLunBtn];
     _imageArr = [[NSMutableArray alloc]init];
 
 
@@ -80,8 +83,7 @@ static CGFloat textFieldH = 40;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeTop;
     
-    self.clickPingLunBtn.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
-    self.clickPingLunBtn.layer.borderWidth = 1;
+
     //点击segment
     self.lastDetailView.block = ^(NSInteger index) {
         index == 0 ? [weakself requestNewList] : [weakself requestHotList];
@@ -90,6 +92,8 @@ static CGFloat textFieldH = 40;
     [self setupTextField];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
+    
+  
     
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

@@ -22,9 +22,15 @@ typedef void(^LLImagePickerHeightBlock)(CGFloat height);
 
 typedef void(^LLSelecttImageBackBlock)(NSArray<LLImagePickerModel *> *list);
 
+
 // 负责展示的V
 @interface LLImagePickerView : UIView
+/** MWPhoto对象数组 */
+@property (nonatomic, strong) NSMutableArray *photos;
+@property (nonatomic, strong) UICollectionView *collectionView;
 
+typedef void(^LLImageNPickerHeightBlock_New)(void);
+@property (nonatomic,copy) LLImageNPickerHeightBlock_New LLImageNPickerHeightBlock_NewBlock;
 /**
  * 需要展示的媒体的资源类型：如仅显示图片等，默认是 LLImageTypePhotoAndCamera
  */

@@ -17,7 +17,7 @@
     (plArray.count >= 2 ? 25 : 0) +
     (plArray.count >= 2 ? 25 : 0) +
     height_size;
-    return lastHeight + 305;
+    return lastHeight + 308;
 }
 - (IBAction)openAction:(id)sender{
     //将当前对象的isShowMoreText属性设为相反值
@@ -27,7 +27,7 @@
     }
 }
 -(void)setCellValue:(NSDictionary *)dic{
-    [self cellValueDic:dic searchBtn:self.searchBtn pl1NameLbl:self.pl1NameLbl pl2NameLbl:self.pl2NameLbl pl1ContentLbl:self.pl1ContentLbl pl2ContentLbl:self.pl2ContentLbl titleImageView:self.titleImageView addPlImageView:self.addPlImageView talkCount:self.talkCount titleLbl:self.titleLbl timeLbl:self.timeLbl mapBtn:self.mapBtn likeBtn:self.likeBtn];
+    [self cellValueDic:dic searchBtn:self.searchBtn pl1NameLbl:self.pl1NameLbl pl2NameLbl:self.pl2NameLbl pl1ContentLbl:self.pl1ContentLbl pl2ContentLbl:self.pl2ContentLbl titleImageView:self.titleImageView addPlImageView:self.addPlImageView talkCount:self.talkCount titleLbl:self.titleLbl timeLbl:self.timeLbl mapBtn:self.mapBtn likeBtn:self.likeBtn zanCount:self.zanCount];
     
     self.pl1Height.constant = [self getPl1HeightPlArray:dic];
     self.pl2Height.constant = [self getPl2HeightPlArray:dic];
@@ -72,9 +72,9 @@
         KPostNotification(KNotificationLoginStateChange, @NO);
         return;
     }
-    if (self.zanblock) {
-        self.zanblock(self);
-    }
+//    if (self.zanblock) {
+//        self.zanblock(self);
+//    }
 }
 - (IBAction)searchAllPlBtnAction:(id)sender{
     self.jumpDetail1VCBlock(self);

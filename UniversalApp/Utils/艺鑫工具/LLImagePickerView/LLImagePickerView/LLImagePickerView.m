@@ -18,7 +18,6 @@ static NSInteger countOfRow;
 
 @interface LLImagePickerView ()<UICollectionViewDelegate,UICollectionViewDataSource,TZImagePickerControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MWPhotoBrowserDelegate>
 
-@property (nonatomic, strong) UICollectionView *collectionView;
 
 @property (nonatomic, copy) LLImagePickerHeightBlock block;
 
@@ -36,8 +35,7 @@ static NSInteger countOfRow;
 /** 记录从相册中已选的Video model*/
 @property (nonatomic, strong) NSMutableArray *selectedVideoModels;
 
-/** MWPhoto对象数组 */
-@property (nonatomic, strong) NSMutableArray *photos;
+
 
 @end
 
@@ -77,7 +75,7 @@ static NSInteger countOfRow;
 
 - (void)configureCollectionView {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.itemSize = CGSizeMake(110, 110);
+    layout.itemSize = CGSizeMake(110, 120);
     layout.minimumLineSpacing = 0;
     layout.minimumInteritemSpacing = 0;
     layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
@@ -229,6 +227,7 @@ static NSInteger countOfRow;
 
 #pragma mark - collection view delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    self.LLImageNPickerHeightBlock_NewBlock();
     if (indexPath.row == _mediaArray.count && _mediaArray.count >= _maxImageSelected) {
         [UIAlertController showAlertWithTitle:[NSString stringWithFormat:@"最多只能选择%ld张",(long)_maxImageSelected] message:nil actionTitles:@[@"确定"] cancelTitle:nil style:UIAlertControllerStyleAlert completion:nil];
         return;

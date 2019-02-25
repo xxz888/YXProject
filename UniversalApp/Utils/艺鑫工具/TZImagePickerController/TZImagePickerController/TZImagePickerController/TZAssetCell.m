@@ -84,8 +84,8 @@
 - (void)setType:(TZAssetCellType)type {
     _type = type;
     if (type == TZAssetCellTypePhoto || type == TZAssetCellTypeLivePhoto || (type == TZAssetCellTypePhotoGif && !self.allowPickingGif)) {
-        _selectImageView.hidden = NO;
-        _selectPhotoButton.hidden = NO;
+        _selectImageView.hidden = YES;
+        _selectPhotoButton.hidden = YES;
         _bottomView.hidden = YES;
     } else { // Video of Gif
         _selectImageView.hidden = YES;

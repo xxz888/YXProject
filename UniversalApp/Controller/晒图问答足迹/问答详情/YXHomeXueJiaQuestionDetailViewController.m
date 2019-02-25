@@ -322,7 +322,7 @@ static CGFloat textFieldH = 0;
                 commentItemModel.secondUserName = [kGetString(child_listArray[i][@"aim_name"]) append:@":"];
                 commentItemModel.secondUserId = kGetString(child_listArray[i][@"aim_id"]);
             }
-            commentItemModel.commentString = child_listArray[i][@"answer"];
+            commentItemModel.commentString = [child_listArray[i][@"answer"] UnicodeToUtf8];
             [tempComments addObject:commentItemModel];
         }
         model.commentItemsArray = [tempComments copy];

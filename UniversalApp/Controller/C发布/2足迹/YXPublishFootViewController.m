@@ -24,6 +24,8 @@
 
 #pragma mark ========== 发布 ==========
 - (IBAction)fabuAction:(id)sender {
+    [super fabuAction:sender];
+
     kWeakSelf(self);
     [QMUITips showLoadingInView:self.view];
     //先上传到七牛云图片  再提交服务器
@@ -69,7 +71,8 @@
                 [QMUITips hideAllTipsInView:weakself.view];
                 [QMUITips showSucceed:object[@"message"] inView:weakself.view hideAfterDelay:1];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [weakself.navigationController popViewControllerAnimated:YES];
+                    [weakself dismissViewControllerAnimated:YES completion:nil];
+                    
                 });
         }];
     } failure:^(NSString *error) {

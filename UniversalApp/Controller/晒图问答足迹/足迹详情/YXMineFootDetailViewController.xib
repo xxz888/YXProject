@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YXMineFootDetailViewController">
             <connections>
                 <outlet property="clickPingLunBtn" destination="jla-Qg-pK9" id="Pz2-Xb-VML"/>
+                <outlet property="clickbtnHeight" destination="0SE-c4-3JR" id="ao0-rG-pks"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="yxTableView" destination="p7Z-02-whh" id="zcb-gd-o0I"/>
             </connections>
@@ -22,36 +23,58 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="p7Z-02-whh">
-                    <rect key="frame" x="0.0" y="90" width="375" height="537"/>
+                    <rect key="frame" x="0.0" y="90" width="375" height="507"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="WEU-wa-5BJ"/>
                         <outlet property="delegate" destination="-1" id="usT-HS-oIf"/>
                     </connections>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jla-Qg-pK9">
-                    <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rfo-fg-UoM">
+                    <rect key="frame" x="0.0" y="597" width="375" height="70"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jla-Qg-pK9">
+                            <rect key="frame" x="0.0" y="1" width="375" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="1VS-wr-bQ1"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="  点击评论...">
+                                <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="clickPingLunAction:" destination="-1" eventType="touchUpInside" id="Vpz-AD-Iib"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJC-yX-5hA">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                            <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="2SK-hR-6Bv"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="1VS-wr-bQ1"/>
+                        <constraint firstAttribute="height" constant="70" id="0SE-c4-3JR"/>
+                        <constraint firstItem="jla-Qg-pK9" firstAttribute="leading" secondItem="Rfo-fg-UoM" secondAttribute="leading" id="0y0-4y-XI2"/>
+                        <constraint firstAttribute="trailing" secondItem="jla-Qg-pK9" secondAttribute="trailing" id="3X8-XV-cL1"/>
+                        <constraint firstAttribute="trailing" secondItem="nJC-yX-5hA" secondAttribute="trailing" id="H7X-VN-V66"/>
+                        <constraint firstItem="jla-Qg-pK9" firstAttribute="top" secondItem="Rfo-fg-UoM" secondAttribute="top" constant="1" id="UMl-1D-aYp"/>
+                        <constraint firstItem="nJC-yX-5hA" firstAttribute="top" secondItem="Rfo-fg-UoM" secondAttribute="top" id="c9a-1w-e16"/>
+                        <constraint firstItem="nJC-yX-5hA" firstAttribute="leading" secondItem="Rfo-fg-UoM" secondAttribute="leading" id="lph-mN-eDJ"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <state key="normal" title="  点击评论...">
-                        <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                    <connections>
-                        <action selector="clickPingLunAction:" destination="-1" eventType="touchUpInside" id="Vpz-AD-Iib"/>
-                    </connections>
-                </button>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="Rfo-fg-UoM" secondAttribute="bottom" id="4VL-H2-V4m"/>
                 <constraint firstAttribute="trailing" secondItem="p7Z-02-whh" secondAttribute="trailing" id="Ca3-UD-U7c"/>
                 <constraint firstItem="p7Z-02-whh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GzB-88-31D"/>
-                <constraint firstItem="jla-Qg-pK9" firstAttribute="top" secondItem="p7Z-02-whh" secondAttribute="bottom" id="NgS-ol-Doy"/>
-                <constraint firstAttribute="trailing" secondItem="jla-Qg-pK9" secondAttribute="trailing" id="YWw-RK-YLR"/>
+                <constraint firstAttribute="trailing" secondItem="Rfo-fg-UoM" secondAttribute="trailing" id="kMp-Sc-Ydf"/>
                 <constraint firstItem="p7Z-02-whh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="90" id="kjk-cq-4ya"/>
-                <constraint firstAttribute="bottom" secondItem="jla-Qg-pK9" secondAttribute="bottom" id="s4P-qw-QbT"/>
-                <constraint firstItem="jla-Qg-pK9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="u73-GR-lYW"/>
+                <constraint firstItem="Rfo-fg-UoM" firstAttribute="top" secondItem="p7Z-02-whh" secondAttribute="bottom" id="rOu-Fc-ZPd"/>
+                <constraint firstItem="Rfo-fg-UoM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xCY-vP-hiH"/>
             </constraints>
             <point key="canvasLocation" x="39.200000000000003" y="46.326836581709152"/>
         </view>

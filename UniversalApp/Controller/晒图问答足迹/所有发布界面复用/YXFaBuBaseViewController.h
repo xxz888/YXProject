@@ -65,7 +65,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UILabel *faxianLbl;
 @property (weak, nonatomic) IBOutlet UIImageView *fengcheView;
+@property (weak, nonatomic) IBOutlet UIView *lineView3;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *floatHeight_Tag;
+@property (weak, nonatomic) IBOutlet UIImageView *img1;
+@property (weak, nonatomic) IBOutlet UIImageView *img2;
+@property (weak, nonatomic) IBOutlet UIImageView *img3;
 
+@property (weak, nonatomic) IBOutlet UIButton *del1;
+@property (weak, nonatomic) IBOutlet UIButton *del2;
+@property (weak, nonatomic) IBOutlet UIButton *del3;
+
+- (IBAction)delAction:(id)sender;
 
 @end
 

@@ -137,7 +137,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3JD-yY-wqO">
-                                <rect key="frame" x="275" y="0.0" width="25" height="25"/>
+                                <rect key="frame" x="272" y="0.0" width="25" height="25"/>
                                 <state key="normal" backgroundImage="UnZan"/>
                                 <connections>
                                     <action selector="likeBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Dd6-7Y-DA8"/>
@@ -149,14 +149,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Evk-HM-gdT">
-                                <rect key="frame" x="218" y="0.0" width="25" height="25"/>
+                                <rect key="frame" x="220" y="0.0" width="25" height="25"/>
                                 <state key="normal" backgroundImage="讨论"/>
                                 <connections>
                                     <action selector="searchAllPlBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="fMu-D9-57T"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBj-fj-bxs">
-                                <rect key="frame" x="246" y="-4.5" width="5" height="12"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBj-fj-bxs">
+                                <rect key="frame" x="248" y="1.5" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -175,7 +175,7 @@
                             <constraint firstItem="Evk-HM-gdT" firstAttribute="height" secondItem="dS2-j4-khz" secondAttribute="height" id="Wis-c5-OCL"/>
                             <constraint firstAttribute="trailing" secondItem="P2L-o9-g7p" secondAttribute="trailing" id="XWh-6e-cV9"/>
                             <constraint firstItem="LBj-fj-bxs" firstAttribute="leading" secondItem="Evk-HM-gdT" secondAttribute="trailing" constant="3" id="Y4G-AQ-zpx"/>
-                            <constraint firstItem="P2L-o9-g7p" firstAttribute="leading" secondItem="3JD-yY-wqO" secondAttribute="trailing" id="YEb-2d-7bJ"/>
+                            <constraint firstItem="P2L-o9-g7p" firstAttribute="leading" secondItem="3JD-yY-wqO" secondAttribute="trailing" constant="3" id="YEb-2d-7bJ"/>
                             <constraint firstItem="pI2-G1-BTv" firstAttribute="leading" secondItem="dS2-j4-khz" secondAttribute="trailing" constant="3" id="dao-fL-h7K"/>
                             <constraint firstItem="pI2-G1-BTv" firstAttribute="top" secondItem="OvO-TR-4Gt" secondAttribute="top" constant="-5" id="deI-uh-ejy"/>
                             <constraint firstItem="Evk-HM-gdT" firstAttribute="width" secondItem="dS2-j4-khz" secondAttribute="width" id="gVK-QS-edd"/>
@@ -358,7 +358,7 @@
                 <outlet property="titleTagtextViewHeight" destination="n3g-8d-Kkq" id="zHc-9W-tLU"/>
                 <outlet property="zanCount" destination="P2L-o9-g7p" id="krH-31-oUl"/>
             </connections>
-            <point key="canvasLocation" x="-3218" y="-432"/>
+            <point key="canvasLocation" x="-3219.1999999999998" y="-432.23388305847078"/>
         </tableViewCell>
     </objects>
     <resources>

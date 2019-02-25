@@ -122,7 +122,7 @@
     self.fensiCountLbl.text = kGetString(object[@"fans_number"]);
     self.tieshuCountLbl.text = kGetString(object[@"publish_number"]);
     NSInteger tag = [object[@"is_like"] integerValue];
-    [ShareManager setGuanZhuStatus:self.guanzhuBtn status:tag == 0];
+    [ShareManager setGuanZhuStatus:self.guanzhuBtn status:tag == 0 alertView:NO];
     NSString * islike = tag == 1 ? @"互相关注" : tag == 2 ? @"已关注" : @"关注";
     [self.guanzhuBtn setTitle:islike forState:UIControlStateNormal];
 
@@ -136,8 +136,7 @@
     kWeakSelf(self);
     [YX_MANAGER requestLikesActionGET:self.userId success:^(id object) {
         BOOL is_like = [weakself.guanzhuBtn.titleLabel.text isEqualToString:@"关注"] == 1;
-        [QMUITips showSucceed:is_like ?@"关注成功": @"已取消关注" inView:weakself.view hideAfterDelay:2];
-        [ShareManager setGuanZhuStatus:weakself.guanzhuBtn status:!is_like];
+        [ShareManager setGuanZhuStatus:weakself.guanzhuBtn status:!is_like alertView:YES];
     }];
 }
 #pragma mark ========== 关注按钮 ==========
@@ -232,22 +231,22 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 1){
+    if (indexPath.row == 2){
         YXMineMyCaoGaoViewController * VC = [[YXMineMyCaoGaoViewController alloc]init];
         [self.navigationController pushViewController:VC animated:YES];
-    }else if(indexPath.row == 2){
+    }else if(indexPath.row == 3){
         [QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
     }
-    else if (indexPath.row == 3) {
+    else if (indexPath.row == 4) {
         YXMineMyCollectionViewController * VC = [[YXMineMyCollectionViewController alloc]init];
         [self.navigationController pushViewController:VC animated:YES];
-    } else if (indexPath.row == 4){
+    } else if (indexPath.row == 5){
         YXMineMyDianZanViewController * VC = [[YXMineMyDianZanViewController alloc]init];
         [self.navigationController pushViewController:VC animated:YES];
-    }else if (indexPath.row == 5){
+    }else if (indexPath.row == 6){
         YXMinePingLunViewController * VC = [[YXMinePingLunViewController alloc]init];
         [self.navigationController pushViewController:VC animated:YES];
-    }else if (indexPath.row == 6){
+    }else if (indexPath.row == 7){
         UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
         YXMineSettingTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineSettingTableViewController"];
         [self.navigationController pushViewController:VC animated:YES];
