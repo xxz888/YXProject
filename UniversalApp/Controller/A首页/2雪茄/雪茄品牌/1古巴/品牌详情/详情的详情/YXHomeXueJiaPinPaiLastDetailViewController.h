@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface YXHomeXueJiaPinPaiLastDetailViewController : RootViewController
 @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
 @property(nonatomic,strong)NSMutableDictionary * startDic;
+@property (nonatomic,strong) NSMutableArray * imageArray;
+
 @end
 
 NS_ASSUME_NONNULL_END

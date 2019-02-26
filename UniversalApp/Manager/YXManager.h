@@ -18,6 +18,9 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 
 @property(nonatomic,strong)NSMutableArray * advertisingArray;
 @property(nonatomic,strong)NSMutableArray * informationArray;
+@property(nonatomic,strong)NSMutableDictionary * cache1Dic;
+@property(nonatomic,strong)NSMutableArray * cache1Array;
+@property(nonatomic,strong)NSMutableArray * cache2Array;
 
 @property(nonatomic)BOOL isHaveIcon;
 #pragma mark ========== GET请求模版 ==========

@@ -48,7 +48,6 @@ static CGFloat textFieldH = 40;
 @implementation YXMineImageDetailViewController
 - (void)viewDidLoad{
     [super viewDidLoad];
-    YX_MANAGER.isHaveIcon = NO;
     self.clickbtnHeight.constant = AxcAE_IsiPhoneX ? 70 : 40;
 
     //初始化所有的控件
@@ -69,9 +68,6 @@ static CGFloat textFieldH = 40;
     self.title = @"晒图详情";
     
     _imageArr = [[NSMutableArray alloc]init];
-
-
-    
     _segmentIndex = 0;
     _dataArray = [[NSMutableArray alloc]init];
     _pageArray = [[NSMutableArray alloc]init];
@@ -147,7 +143,7 @@ static CGFloat textFieldH = 40;
             weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
             [weakself refreshTableView];
         }else{
-            [weakself.yxTableView.mj_footer endRefreshing];
+            [weakself.yxTableView.mj_header endRefreshing];
             [weakself.yxTableView.mj_footer endRefreshing];
         }
     }];
@@ -161,7 +157,7 @@ static CGFloat textFieldH = 40;
             weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
             [weakself refreshTableView];
         }else{
-            [weakself.yxTableView.mj_footer endRefreshing];
+            [weakself.yxTableView.mj_header endRefreshing];
             [weakself.yxTableView.mj_footer endRefreshing];
             
         }
@@ -230,28 +226,6 @@ static CGFloat textFieldH = 40;
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-}
-
-#pragma mark ========== 点击我来评论 ==========
--(void)clickMyTalkAction{
-    
-    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeLastMyTalkView" owner:self options:nil];
-    self.lastMyTalkView = [nib objectAtIndex:0];
-    self.lastMyTalkView.frame = CGRectMake(0, 0,KScreenWidth, 340);
-    self.lastMyTalkView.backgroundColor = UIColorWhite;
-    self.lastMyTalkView.layer.masksToBounds = YES;
-    self.lastMyTalkView.layer.cornerRadius = 6;
-    self.lastMyTalkView.parDic = [[NSMutableDictionary alloc]init];
-    kWeakSelf(self);
-    self.lastMyTalkView.block = ^{
-        _segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
-    };
-    [self.lastMyTalkView.parDic setValue:@([self.startDic[@"id"] intValue]) forKey:@"cigar_id"];
-    
-    QMUIModalPresentationViewController *modalViewController = [[QMUIModalPresentationViewController alloc] init];
-    modalViewController.animationStyle = QMUIModalPresentationAnimationStyleSlide;
-    modalViewController.contentView = self.lastMyTalkView;
-    [modalViewController showWithAnimated:YES completion:nil];
 }
 
 #pragma mark ========== tableview数据 ==========
@@ -354,12 +328,6 @@ static CGFloat textFieldH = 40;
         width = [UIScreen mainScreen].bounds.size.height;
     }
     return width;
-}
-#pragma mark ========== 评论子晒图 ==========
--(void)requestPingLunShaiTu:(NSDictionary *)dic{
-    [YX_MANAGER requestpost_comment_childPOST:dic success:^(id object) {
-        
-    }];
 }
 #pragma mark ========== 点击跟多评论按钮 ==========
 -(void)showMoreComment:(UITableViewCell *)cell{

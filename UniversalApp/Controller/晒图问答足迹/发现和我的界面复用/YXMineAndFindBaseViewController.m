@@ -209,11 +209,8 @@
         VC.height = cell.imvHeight.constant;
         [self.navigationController pushViewController:VC animated:YES];
     }else if (tag == 3){//问答
-        UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-        YXHomeXueJiaQuestionDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaQuestionDetailViewController"];
-        YX_MANAGER.isHaveIcon = YES;
+        YXHomeXueJiaQuestionDetailViewController * VC = [[YXHomeXueJiaQuestionDetailViewController alloc]init];
         VC.moment = [self setTestInfo:dic];
-        
         [self.navigationController pushViewController:VC animated:YES];
     }else if (tag == 4){//足迹
         NSDictionary * dic = self.dataArray[indexPath.row];

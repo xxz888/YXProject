@@ -11,6 +11,8 @@
 #import "CatZanButton.h"
 #import "YXHomeXueJiaPinPaiLastDetailViewController.h"
 #import "YXPublishFootViewController.h"
+#import "POPAnimation.h"
+
 @interface YXHomeXueJiaPinPaiDetailViewController()<ClickLikeBtnDelegate>{
     UIImage * _selImage;
     UIImage * _unImage;
@@ -25,18 +27,58 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
-    tagHeight = 430;
-    
-    NSDictionary * cellData = self.dicStartData;
-    stringHeight = [ShareManager getSpaceLabelHeight:kGetString(cellData[@"intro"]) withFont:[UIFont systemFontOfSize:14] withWidth:KScreenWidth-20];
-    
-    section0Height = stringHeight  > 120 ? tagHeight : tagHeight - 120 + stringHeight ;
+    [self setSpace];
 
     [self initData];
-    
-    
-  
 }
+-(void)setSpace{
+    tagHeight = 430;
+    
+    
+    
+    NSDictionary * cellData = self.dicStartData;
+    //    textview 改变字体的行间距
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = 10;// 字体的行间距
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName:[UIFont systemFontOfSize:16],
+                                 NSParagraphStyleAttributeName:paragraphStyle
+                                 };
+    self.section1TextView.attributedText = [[NSAttributedString alloc] initWithString:kGetString(cellData[@"intro"]) attributes:attributes];
+    stringHeight = [self getSpaceLabelHeight:kGetString(cellData[@"intro"]) withFont:[UIFont systemFontOfSize:16] withWidth:KScreenWidth] + 50;
+    section0Height = stringHeight  > 120 ? tagHeight : tagHeight - 120 + stringHeight ;
+    
+    
+}
+
+-(CGFloat)getSpaceLabelHeight:(NSString*)str withFont:(UIFont*)font withWidth:(CGFloat)width {
+    
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+    
+    paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    
+    paraStyle.alignment = NSTextAlignmentLeft;
+    
+    paraStyle.lineSpacing = 10.0;
+    
+    paraStyle.hyphenationFactor = 1.0;
+    
+    paraStyle.firstLineHeadIndent = 0.0;
+    
+    paraStyle.paragraphSpacingBefore = 0.0;
+    
+    paraStyle.headIndent = 0;
+    
+    paraStyle.tailIndent = 0;
+    //, NSKernAttributeName:@1.5f
+    NSDictionary *dic = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paraStyle
+                          };
+    CGSize size = [str boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
+    
+    return  ceilf(size.height);
+    
+}
+
 -(void)initData{
     NSDictionary * cellData = self.dicStartData;
     self.textViewHeight.constant = stringHeight  > 120 ? 120 : stringHeight ;
@@ -110,6 +152,8 @@
         
         NSString * url = [cellData[@"photo_list"] count] > 0 ? cellData[@"photo_list"][0][@"photo_url"] : @"";
         NSString * str = [(NSMutableString *)url replaceAll:@" " target:@"%20"];
+        str = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
         [cell.section2ImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         cell.whereCome = self.whereCome;
         cell.section2TitleLbl.text = cellData[@"cigar_name"];
@@ -150,15 +194,33 @@
             footVC.cigar_id = kGetString(self.dicData[@"data"][indexPath.row][@"id"]);
             [self presentViewController:footVC animated:YES completion:nil];
         }else{
-            UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-            YXHomeXueJiaPinPaiLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiLastDetailViewController"];
-            VC.startDic = [NSMutableDictionary dictionaryWithDictionary:self.dicData[@"data"][indexPath.row]];
-            [VC.startDic setValue:self.title forKey:@"cigar_brand"];
+            kWeakSelf(self);
+  
+                
+                UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+                YXHomeXueJiaPinPaiLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiLastDetailViewController"];
+                VC.startDic = [NSMutableDictionary dictionaryWithDictionary:self.dicData[@"data"][indexPath.row]];
             
-            [self.navigationController pushViewController:VC animated:YES];
+            //请求六宫格图片
+                NSString * tag = VC.startDic[@"cigar_name"];
+                [YX_MANAGER requestGetDetailListPOST:@{@"type":@(1),@"tag":tag,@"page":@(1)} success:^(id object) {
+                NSMutableArray * imageArray = [NSMutableArray array];
+                for (NSDictionary * dic in object) {
+                    [imageArray addObject:dic[@"photo1"]];
+                }
+
+                [VC.startDic setValue:self.title forKey:@"cigar_brand"];
+                VC.imageArray = [NSMutableArray arrayWithArray:imageArray];
+                [self.navigationController pushViewController:VC animated:YES];
+                
+            }];
+    
         }
 
     }
+}
+-(void)requestLiuGongGe{
+
 }
 #pragma mark ========== 关注作者的方法 ==========
 - (IBAction)section1GuanZhuAction:(id)sender {
@@ -205,12 +267,19 @@
 - (IBAction)openAction:(id)sender {
     if ([self.openBtn.titleLabel.text isEqualToString:@"↓ 展开"]) {
         self.textViewHeight.constant =  stringHeight ;
-        section0Height =  tagHeight - 120 + stringHeight ;
+        section0Height =  tagHeight - 120 + 20 + stringHeight ;
         [self.openBtn setTitle:@"↑ 收起" forState:UIControlStateNormal];
+        
+        self.zhushiHeight.constant = 22;
+
+
     }else{
         self.textViewHeight.constant = stringHeight  > 120 ? 120 : stringHeight ;
         section0Height = stringHeight  > 120 ? tagHeight : tagHeight - 120 + stringHeight ;
         [self.openBtn setTitle:@"↓ 展开" forState:UIControlStateNormal];
+        [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
+        self.zhushiHeight.constant = 0;
+
     }
     [self.tableView reloadData];
 }

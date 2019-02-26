@@ -165,7 +165,13 @@
         PublishMenuButton *btn = [PublishMenuButton buttonWithType:UIButtonTypeCustom];
         
         //图标图片和文本
-        UIImage *img = [UIImage imageNamed:self.ary[i]];
+        UIImage *img;
+        if (i == 0) {
+           img  = [UIImage imageNamed:@"2"];
+        }else if (i == 1){
+            img  = [UIImage imageNamed:@"3"];
+
+        }
         NSString *title = arrTitle[i];
         
         [btn setImage:img forState:UIControlStateNormal];

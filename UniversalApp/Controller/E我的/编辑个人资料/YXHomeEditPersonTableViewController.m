@@ -83,9 +83,13 @@
     }];
 }
 - (IBAction)finishAction:(id)sender {
+    [_nameTf resignFirstResponder];
+
     [self upData];
 }
 - (IBAction)changeTitleImgAction:(id)sender {
+    [_nameTf resignFirstResponder];
+
     [self.view endEditing:YES];
     kWeakSelf(self);
     [imagePicker dwSetPresentDelegateVC:self SheetShowInView:self.view InfoDictionaryKeys:(long)nil];
@@ -101,6 +105,8 @@
     }];
 }
 - (IBAction)sexBtnAction:(id)sender {
+    [_nameTf resignFirstResponder];
+
     kWeakSelf(self);
     [BRStringPickerView showStringPickerWithTitle:@"性别" dataSource:@[@"男", @"女", @"其他"] defaultSelValue:@"" resultBlock:^(id selectValue) {
         [weakself.sexBtn setTitle:selectValue forState:UIControlStateNormal];
@@ -108,6 +114,7 @@
 }
 
 - (IBAction)addressBtnAction:(id)sender {
+    [_nameTf resignFirstResponder];
     kWeakSelf(self);
     // NSArray *dataSource = [weakSelf getAddressDataSource];  //从外部传入地区数据源
     NSArray *dataSource = nil; // dataSource 为空时，就默认使用框架内部提供的数据源（即 BRCity.plist）
@@ -122,6 +129,8 @@
 }
 
 - (IBAction)birthBtnAction:(id)sender {
+    [_nameTf resignFirstResponder];
+
     kWeakSelf(self);
     NSDate *minDate = [NSDate br_setYear:1990 month:3 day:12];
     NSDate *maxDate = [NSDate date];

@@ -46,7 +46,13 @@
     [YX_MANAGER requestCigar_brand:type success:^(id object) {
         [weakself.dataArray removeAllObjects];
         [weakself.hotDataArray removeAllObjects];
-        weakself.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:object[@"brand_list"]]];
+        if (YX_MANAGER.cache1Array && YX_MANAGER.cache1Array.count != 0) {
+            [weakself.dataArray addObjectsFromArray:YX_MANAGER.cache1Array];
+        }else{
+            weakself.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:object[@"brand_list"]]];
+            [YX_MANAGER.cache1Array removeAllObjects];
+            [YX_MANAGER.cache1Array addObjectsFromArray:weakself.dataArray];
+        }
         [weakself.hotDataArray addObjectsFromArray:object[@"hot_brand_list"]];
         [weakself createMiddleCollection];
         [weakself.yxTableView reloadData];
@@ -96,7 +102,7 @@
 //返回右侧索引标题数组
 //这个标题的内容时和分区标题相对应
 -(NSArray*)sectionIndexTitlesForTableView:(UITableView *)tableView{
-    return _indexArray;
+    return YX_MANAGER.cache2Array.count == 0 ? _indexArray : YX_MANAGER.cache2Array;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -186,7 +192,7 @@
     HeaderLabel.backgroundColor = YXRGBAColor(247, 249, 251);
     HeaderLabel.font = [UIFont boldSystemFontOfSize:13];
     HeaderLabel.textAlignment = NSTextAlignmentLeft;
-    HeaderLabel.text = _indexArray[section];
+    HeaderLabel.text = (YX_MANAGER.cache2Array.count == 0 ? _indexArray : YX_MANAGER.cache2Array)[section];
     [view addSubview:HeaderLabel];
     
     return view;
@@ -224,6 +230,9 @@
         [array addObject:modelArr];
         [_indexArray addObject:@"#"];  //把首字母不是A~Z里的字符全部放到 array里面 然后返回
     }
+    [YX_MANAGER.cache2Array removeAllObjects];
+    [YX_MANAGER.cache2Array addObjectsFromArray:_indexArray];
+
     return array;
 }
 -(NSString *) getLetter:(NSString *) strInput{

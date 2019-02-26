@@ -18,7 +18,10 @@ typedef void(^SearchAllActionBlock)(void);
 
 @interface YXHomeLastDetailView : UIView
 //重新赋值
--(void)againSetDetailView:(NSDictionary *)startDic  allDataDic:(NSDictionary *)allDataDic;
+-(void)againSetDetailView:(NSDictionary *)startDic;
+-(void)fiveStarViewUIAllDataDic:(NSDictionary *)allDataDic;
+-(void)fiveStarViewUIAllDataDic_GeRenFen:(NSDictionary *)allDataDic;
+-(void)fiveStarViewUIAllDataDic_PingJunFen:(NSDictionary *)allDataDic;
 //六宫格图片
 -(void)setSixPhotoView:(NSMutableArray *)imageArray;
 //点击我的点评
@@ -55,6 +58,7 @@ typedef void(^SearchAllActionBlock)(void);
 @property (weak, nonatomic) IBOutlet UILabel *lastChangDuLbl;
 @property (weak, nonatomic) IBOutlet UILabel *lastXiangWeiLbl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *lastSegmentControl;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *sixViewHeight;
 - (IBAction)lastSegmentAction:(id)sender;
 @end
 

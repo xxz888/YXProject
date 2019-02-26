@@ -57,11 +57,12 @@ static CGFloat textFieldH = 40;
     [super viewDidLoad];
     //初始化所有的控件
     [self initAllControl];
-    
+
+
     [self requestPingJunFen];
     [self requestGeRenFen];
     [self requestNewList];
-    [self requestLiuGongGe];
+    [self setupTableHeaderView];
 }
 
 -(void)initAllControl{
@@ -80,6 +81,49 @@ static CGFloat textFieldH = 40;
     [self setupTextField];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
+#pragma mark - 设置tableHeaderView
+- (void)setupTableHeaderView{
+    CGFloat height = 0.0;
+    if (self.imageArray.count == 0) {
+        height = 0;
+    }
+    if (self.imageArray.count >0 && self.imageArray.count <=3) {
+        height = 100;
+    }
+    if (self.imageArray.count > 4) {
+        height = 200;
+    }
+    
+    
+    kWeakSelf(self);
+    //添加分隔线颜色设置
+    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeLastDetailView" owner:self options:nil];
+    self.lastDetailView = [nib objectAtIndex:0];
+    self.lastDetailView.delegate = self;
+    //点击segment
+    self.lastDetailView.block = ^(NSInteger index) {
+        index == 0 ? [weakself requestNewList] : [weakself requestHotList];
+        _segmentIndex = index;
+    };
+    [self.lastDetailView againSetDetailView:weakself.startDic];
+    
+    [self.lastDetailView setSixPhotoView:self.imageArray];
+    
+    
+    self.lastDetailView.searchAllBlock = ^{
+        //        UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+        //        YXMineImageViewController * imageVC = [[YXMineImageViewController alloc]init];
+        //        [weakself.navigationController pushViewController:imageVC animated:YES];
+    };
+    
+    
+    // 设置 view 的 frame(将设置 frame 提到设置 tableHeaderView 之前)
+    self.lastDetailView.frame = CGRectMake(0, 0, kScreenWidth, AxcAE_IsiPhoneX ? 665 : 730 + height);
+    // 设置 tableHeaderView
+    self.yxTableView.tableHeaderView = self.lastDetailView;
+    
+}
+/*
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     kWeakSelf(self);
     //添加分隔线颜色设置
@@ -92,6 +136,11 @@ static CGFloat textFieldH = 40;
         index == 0 ? [weakself requestNewList] : [weakself requestHotList];
         _segmentIndex = index;
     };
+    [self.lastDetailView againSetDetailView:weakself.startDic];
+    
+    [self.lastDetailView setSixPhotoView:self.imageArray];
+
+    
     self.lastDetailView.searchAllBlock = ^{
         //        UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
         //        YXMineImageViewController * imageVC = [[YXMineImageViewController alloc]init];
@@ -100,8 +149,19 @@ static CGFloat textFieldH = 40;
     return self.lastDetailView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 1000;
+    CGFloat height = 0.0;
+    if (self.imageArray.count == 0) {
+        height = 0;
+    }
+    if (self.imageArray.count >0 && self.imageArray.count <=3) {
+        height = 100;
+    }
+    if (self.imageArray.count > 4) {
+        height = 200;
+    }
+    return 750 + height;
 }
+ */
 -(void)requestNewList{
     kWeakSelf(self);
     //请求评价列表 最新评论列表
@@ -119,37 +179,27 @@ static CGFloat textFieldH = 40;
     }];
 }
 -(void)refreshTableView{
-    if (_currentEditingIndexthPath) {
-        [self.yxTableView reloadRowsAtIndexPaths:@[_currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
-    }else{
+//    if (_currentEditingIndexthPath) {
+//        [self.yxTableView reloadRowsAtIndexPaths:@[_currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
+//    }else{
         [self.yxTableView reloadData];
-    }
+//    }
 }
 -(void)requestPingJunFen{
     kWeakSelf(self);
     //请求评价列表 平均分
     [YX_MANAGER requestCigar_commentGET:[self getParamters:@"1"] success:^(id object) {
-        [weakself.lastDetailView againSetDetailView:weakself.startDic allDataDic:object];
+        [weakself.lastDetailView fiveStarViewUIAllDataDic_PingJunFen:object];
     }];
 }
 -(void)requestGeRenFen{
+    kWeakSelf(self);
     //请求评价列表 个人分
     [YX_MANAGER requestCigar_commentGET:[self getParamters:@"2"] success:^(id object) {
-        
+        [weakself.lastDetailView fiveStarViewUIAllDataDic_GeRenFen:object];
     }];
 }
--(void)requestLiuGongGe{
-    kWeakSelf(self);
-    //请求六宫格图片
-    NSString * tag = self.startDic[@"cigar_name"];
-    [YX_MANAGER requestGetDetailListPOST:@{@"type":@(1),@"tag":tag,@"page":@(1)} success:^(id object) {
-        NSMutableArray * imageArray = [NSMutableArray array];
-        for (NSDictionary * dic in object) {
-            [imageArray addObject:dic[@"photo1"]];
-        }
-        [weakself.lastDetailView setSixPhotoView:imageArray];
-    }];
-}
+
 -(void)requestCigar_comment_child:(NSDictionary *)dic{
     kWeakSelf(self);
     [YX_MANAGER requestCigar_comment_childPOST:dic success:^(id object) {
@@ -178,13 +228,13 @@ static CGFloat textFieldH = 40;
                 commentItemModel.firstUserName = kGetString(dic[@"user_name"]);
                 commentItemModel.secondUserName = kGetString(dic[@"aim_name"]);
                 commentItemModel.secondUserId = kGetString(dic[@"aim_id"]);
-                commentItemModel.commentString = kGetString(dic[@"comment"]);
+                commentItemModel.commentString = [kGetString(dic[@"comment"]) UnicodeToUtf8];
                 
                 self.isReplayingComment = YES;
             } else {
                 commentItemModel.firstUserId = kGetString(dic[@"user_id"]);
                 commentItemModel.firstUserName =kGetString(dic[@"user_name"]);
-                commentItemModel.commentString = kGetString(dic[@"comment"]);
+                commentItemModel.commentString = [kGetString(dic[@"comment"]) UnicodeToUtf8];
             }
             BOOL ishave = NO;
             for (SDTimeLineCellCommentItemModel * oldCommentItemModel in model.commentItemsArray) {
@@ -250,7 +300,7 @@ static CGFloat textFieldH = 40;
         NSMutableDictionary * pageDic = [[NSMutableDictionary alloc]init];
         model.iconName = formalArray[i][@"user_photo"];
         model.name = formalArray[i][@"user_name"];
-        model.msgContent = formalArray[i][@"comment"];
+        model.msgContent = [formalArray[i][@"comment"] UnicodeToUtf8];
         model.commontTime = [formalArray[i][@"update_time"] integerValue];
         model.score = [formalArray[i][@"average_score"] floatValue];
         model.praise = kGetString(formalArray[i][@"praise"]);
@@ -272,7 +322,7 @@ static CGFloat textFieldH = 40;
                 commentItemModel.secondUserName = kGetString(child_listArray[i][@"aim_name"]);
                 commentItemModel.secondUserId = kGetString(child_listArray[i][@"aim_id"]);
             }
-            commentItemModel.commentString = child_listArray[i][@"comment"];
+            commentItemModel.commentString = [child_listArray[i][@"comment"] UnicodeToUtf8];
             [tempComments addObject:commentItemModel];
         }
         model.commentItemsArray = [tempComments copy];

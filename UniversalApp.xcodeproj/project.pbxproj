@@ -411,6 +411,8 @@
 		BBBFD7902222D7D300D377AC /* TOCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBFD7822222D7D300D377AC /* TOCropView.m */; };
 		BBBFD7912222D7D300D377AC /* TOCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBFD7832222D7D300D377AC /* TOCropOverlayView.m */; };
 		BBBFD7922222D7D300D377AC /* TOCropToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBFD7842222D7D300D377AC /* TOCropToolbar.m */; };
+		BBBFD7942223BE4700D377AC /* YXHomeXueJiaQuestionDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBBFD7932223BE4700D377AC /* YXHomeXueJiaQuestionDetailViewController.xib */; };
+		BBBFD7972223F6A200D377AC /* POPAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBFD7962223F6A200D377AC /* POPAnimation.m */; };
 		BBC16284217AD6EA00008907 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC16283217AD6EA00008907 /* Login.storyboard */; };
 		BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */; };
 		BBC6180121F597EE00495619 /* YXGEFPinPaiLastDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC617FF21F597EE00495619 /* YXGEFPinPaiLastDetailViewController.m */; };
@@ -1333,6 +1335,9 @@
 		BBBFD7842222D7D300D377AC /* TOCropToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCropToolbar.m; sourceTree = "<group>"; };
 		BBBFD7852222D7D300D377AC /* TOCropScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropScrollView.h; sourceTree = "<group>"; };
 		BBBFD7862222D7D300D377AC /* TOCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropViewController.h; sourceTree = "<group>"; };
+		BBBFD7932223BE4700D377AC /* YXHomeXueJiaQuestionDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeXueJiaQuestionDetailViewController.xib; sourceTree = "<group>"; };
+		BBBFD7952223F6A200D377AC /* POPAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POPAnimation.h; sourceTree = "<group>"; };
+		BBBFD7962223F6A200D377AC /* POPAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POPAnimation.m; sourceTree = "<group>"; };
 		BBC16283217AD6EA00008907 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		BBC162D0217B111C00008907 /* QMUIConfigurationTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfigurationTemplate.h; sourceTree = "<group>"; };
 		BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIConfigurationTemplate.m; sourceTree = "<group>"; };
@@ -4044,6 +4049,7 @@
 			children = (
 				BB6D2A4021EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.h */,
 				BB6D2A4121EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.m */,
+				BBBFD7932223BE4700D377AC /* YXHomeXueJiaQuestionDetailViewController.xib */,
 			);
 			path = "问答详情";
 			sourceTree = "<group>";
@@ -4478,6 +4484,8 @@
 			children = (
 				BBD2C9AB21E3029100350DCD /* YXHomeXueJiaPinPaiDetailViewController.h */,
 				BBD2C9AC21E3029100350DCD /* YXHomeXueJiaPinPaiDetailViewController.m */,
+				BBBFD7952223F6A200D377AC /* POPAnimation.h */,
+				BBBFD7962223F6A200D377AC /* POPAnimation.m */,
 				BBD2C9AE21E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.h */,
 				BBD2C9AF21E324DF00350DCD /* YXHomeXueJiaDetailTableViewCell.m */,
 				BBD2C9B121E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib */,
@@ -5340,6 +5348,7 @@
 				290A97EF1F4ABC02006BF882 /* dengji@2x.png in Resources */,
 				BB29121C22156BB500FF484E /* Double Pyramid.gif in Resources */,
 				BBD2C94621E0F67800350DCD /* PlayButtonOverlayLarge.png in Resources */,
+				BBBFD7942223BE4700D377AC /* YXHomeXueJiaQuestionDetailViewController.xib in Resources */,
 				290A97E11F4AB24A006BF882 /* stepPk_win_colour3@2x.png in Resources */,
 				BB29121122156BB500FF484E /* Giant Robusto.gif in Resources */,
 				BBD2C93721E0F67800350DCD /* UIBarButtonItemArrowRight.png in Resources */,
@@ -5773,6 +5782,7 @@
 				BBA812E621DDDE47001B5EA1 /* WJSliderView.m in Sources */,
 				BBECEEB421F05B32007E90AC /* YXQCDJCHeaderView.m in Sources */,
 				290A97FD1F4ABC12006BF882 /* MineTableViewCell.m in Sources */,
+				BBBFD7972223F6A200D377AC /* POPAnimation.m in Sources */,
 				296DEA781F5D530E00C6FD00 /* ScrollBannerVC.m in Sources */,
 				2940C5381F0A3EC5008BC29F /* GetWaterFallListAPI.m in Sources */,
 				29CD2C6B1F30227100A0F5DC /* TableViewCell.m in Sources */,

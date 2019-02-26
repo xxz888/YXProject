@@ -32,7 +32,16 @@
         //顶部广告请求
         [weakself requestAdvertising];
     });
-
+    
+    
+    //老板说第二页太卡，在这里做个缓存吧
+//    [self requestCigar_brand:@"1"];
+}
+-(void)requestCigar_brand:(NSString *)type{
+    [YX_MANAGER requestCigar_brand:type success:^(id object) {
+        [YX_MANAGER.cache1Dic removeAllObjects];
+        YX_MANAGER.cache1Dic = object;
+    }];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

@@ -31,22 +31,30 @@
 - (void)awakeFromNib{
     [super awakeFromNib];
     //使用一个字典同时设置字体大小和背景色在某种状态下
-
     _previewView = [[MMImagePreviewView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     ViewBorderRadius(self.scoreView, 3, 1, YXRGBAColor(200, 200, 200));
     ViewBorderRadius(self.self.lastSixPhotoView, 3, 1, YXRGBAColor(200, 200, 200));
-    //我来点评
-//    ViewBorderRadius(self.lastMyTalkBtn, 5, 1, YXRGBAColor(134, 81, 82));
+    //外观
+    [self fiveStarView:5 view:self.lastWaiGuanFiveView];
+    //燃烧
+    [self fiveStarView:5 view:self.lastRanShaoFiveView];
+    //香味
+    [self fiveStarView:5 view:self.lastXiangWeiFiveView];
+    //口感
+    [self fiveStarView:5 view:self.lastKouGanFiveView];
+    //总分的五颗星
+    [self fiveStarView:5 view:self.lastAllScoreFiveView];
 
 }
--(void)againSetDetailView:(NSDictionary *)startDic  allDataDic:(NSDictionary *)allDataDic{
+
+-(void)againSetDetailView:(NSDictionary *)startDic {
     //头图片
     NSString * string =[startDic[@"photo_list"] count] > 0 ? startDic[@"photo_list"][0][@"photo_url"] : @"";
     NSString * str = [(NSMutableString *)string replaceAll:@" " target:@"%20"];
+    str = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     if (str) {
         [self.lastImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@""]];
     }
-
     //头名字
     self.lastTitleLbl.text = kGetString(startDic[@"cigar_name"]);
     //国内售价
@@ -55,19 +63,6 @@
     self.lastPrice2Lbl.text = kGetString(startDic[@"price_box_hongkong"]);
     //海外售价
     self.lastPrice3Lbl.text = kGetString(startDic[@"price_box_overswas"]);
-
-    //总分的五颗星
-    [self fiveStarView:nsstringToFloat(allDataDic[@"average_score__avg"]) view:self.lastAllScoreFiveView];
-    //外观
-    [self fiveStarView:nsstringToFloat(allDataDic[@"out_looking__avg"]) view:self.lastWaiGuanFiveView];
-    //燃烧
-    [self fiveStarView:nsstringToFloat(allDataDic[@"burn__avg"]) view:self.lastRanShaoFiveView];
-    //香味
-    [self fiveStarView:nsstringToFloat(allDataDic[@"fragrance__avg"]) view:self.lastXiangWeiFiveView];
-    //口感
-    [self fiveStarView:nsstringToFloat(allDataDic[@"mouthfeel__avg"]) view:self.lastKouGanFiveView];
-    //六宫格
-//    [self sixPhotoviewValue];
     //品牌
     self.lastPinPaiLbl.text = kGetString(startDic[@"cigar_brand"]);
     //环径
@@ -76,6 +71,20 @@
     self.lastChangDuLbl.text = kGetString(startDic[@"length"]);
     //口味
     self.lastXiangWeiLbl.text = kGetString(startDic[@"flavour"]);
+}
+-(void)fiveStarViewUIAllDataDic_PingJunFen:(NSDictionary *)allDataDic{
+    //总分的五颗星
+    [self fiveStarView:nsstringToFloat(allDataDic[@"average_score__avg"]) view:self.lastAllScoreFiveView];
+}
+-(void)fiveStarViewUIAllDataDic_GeRenFen:(NSDictionary *)allDataDic{
+    //外观
+    [self fiveStarView:nsstringToFloat(allDataDic[@"out_looking__avg"]) view:self.lastWaiGuanFiveView];
+    //燃烧
+    [self fiveStarView:nsstringToFloat(allDataDic[@"burn__avg"]) view:self.lastRanShaoFiveView];
+    //香味
+    [self fiveStarView:nsstringToFloat(allDataDic[@"fragrance__avg"]) view:self.lastXiangWeiFiveView];
+    //口感
+    [self fiveStarView:nsstringToFloat(allDataDic[@"mouthfeel__avg"]) view:self.lastKouGanFiveView];
 }
 -(void)fiveStarView:(CGFloat)score view:(UIView *)view{
     XHStarRateView *starRateView = [[XHStarRateView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
@@ -86,22 +95,35 @@
     [view addSubview:starRateView];
     starRateView.userInteractionEnabled = NO;
 }
+
+
 -(void)setSixPhotoView:(NSMutableArray *)imageArray{
     _imageCount = imageArray.count;
     [self sixPhotoviewValue:imageArray];
 }
 -(void)sixPhotoviewValue:(NSMutableArray *)imageArray{
     [self.lastSixPhotoView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-
-    
     if (!self.gridView) {
         self.gridView = [[QMUIGridView alloc] init];
     }
-    float height = self.lastSixPhotoView.frame.size.height;
+    CGFloat height = 0.0;
+    if (imageArray.count == 0) {
+        height = 0;
+    }
+    if (imageArray.count >0 && imageArray.count <=3) {
+        height = 100;
+    }
+    if (imageArray.count > 4) {
+        height = 200;
+    }
+
     NSInteger count = imageArray.count;
-    self.gridView.frame = CGRectMake(0, 0, self.lastSixPhotoView.frame.size.width, height/2);
+    self.gridView.frame = CGRectMake(0, 0, self.lastSixPhotoView.frame.size.width, height);
     [self.lastSixPhotoView addSubview:self.gridView];
+    self.sixViewHeight.constant = height;
+
     
+
     self.gridView.columnCount = 3;
     self.gridView.rowHeight = height;
     self.gridView.separatorWidth = PixelOne;

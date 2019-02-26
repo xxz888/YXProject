@@ -60,7 +60,9 @@
             if ([obj[@"status"] integerValue] == 1) {
                 sucess(obj);
             }else{
-                [QMUITips showError:obj[@"message"] inView:view hideAfterDelay:1];
+                if (![obj[@"message"] isEqualToString:@"查询无数据"]) {
+                    [QMUITips showError:obj[@"message"] inView:view hideAfterDelay:1];
+                }
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     
                 });
