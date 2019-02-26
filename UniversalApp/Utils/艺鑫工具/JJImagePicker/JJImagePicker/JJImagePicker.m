@@ -123,7 +123,7 @@ static dispatch_once_t JJImagePickerDispatch_once = 0;
 
 - (TOCropViewController *)defaultCropViewControllerWithImage:(UIImage *)image{
    TOCropViewController * cropController = [[TOCropViewController alloc] initWithImage:image];
-    cropController.aspectRatioLockEnabled = YES;
+    cropController.aspectRatioLockEnabled = NO;
     cropController.resetAspectRatioEnabled = NO;
     //        //设置选择宽比例
     cropController.aspectRatioPreset = TOCropViewControllerAspectRatioPresetSquare;

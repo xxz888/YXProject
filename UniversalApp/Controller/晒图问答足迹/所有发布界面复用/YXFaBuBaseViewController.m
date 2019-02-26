@@ -87,16 +87,13 @@
 }
 -(void)addThreeImageView:(UIImageView *)img{
     _selectImageView = img;
-    
-
-
     JJImagePicker *picker = [JJImagePicker sharedInstance];
     //自定义裁剪图片的ViewController
     picker.customCropViewController = ^TOCropViewController *(UIImage *image) {
-        if (picker.type == JJImagePickerTypePhoto) {
-            //使用默认
-            return nil;
-        }
+//        if (picker.type == JJImagePickerTypePhoto) {
+//            //使用默认
+//            return nil;
+//        }
         TOCropViewController  *cropController = [[TOCropViewController alloc] initWithImage:image];
         //选择框可以按比例来手动调节
         cropController.aspectRatioLockEnabled = NO;
@@ -138,22 +135,6 @@
       
     }];
 };
-//    kWeakSelf(self);
-//    LLImagePickerView *pickerV = [LLImagePickerView ImagePickerViewWithFrame:CGRectMake(0, 0, self.threeImageView.frame.size.width,self.threeImageView.frame.size.height) CountOfRow:3];
-//    pickerV.LLImageNPickerHeightBlock_NewBlock = ^{
-//
-//    [self.threeImageView addSubview:pickerV];
-
-    
-//    pickerV.type = LLImageTypePhotoAndCamera;
-//    pickerV.maxImageSelected = 3;
-//    pickerV.allowPickingVideo = NO;
-//    [pickerV observeSelectedMediaArray:^(NSArray<LLImagePickerModel *> *list) {
-//        [_photoImageList removeAllObjects];
-//        for (LLImagePickerModel * model in list) {
-//            [_photoImageList addObject:model.image];
-//        }
-//    }];
 - (IBAction)delAction:(UIButton *)btn {
     switch (btn.tag) {
         case 201:{

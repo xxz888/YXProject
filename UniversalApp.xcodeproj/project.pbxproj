@@ -2824,8 +2824,6 @@
 		BB3CA492221F90E600C6793D /* 4提问 */ = {
 			isa = PBXGroup;
 			children = (
-				BBCC4B7921E894CD00493F40 /* YXHomeQuestionFaBuViewController.h */,
-				BBCC4B7B21E894CD00493F40 /* YXHomeQuestionFaBuViewController.m */,
 			);
 			name = "4提问";
 			path = "UniversalApp/Controller/C发布/4提问";
@@ -2906,7 +2904,7 @@
 			path = AxcAE_TabBar;
 			sourceTree = "<group>";
 		};
-		BB5FD88621FECBB500B5F1A8 /* 三种Cell */ = {
+		BB5FD88621FECBB500B5F1A8 /* 两种Cell */ = {
 			isa = PBXGroup;
 			children = (
 				BB5FD88721FECBDB00B5F1A8 /* YXFindImageTableViewCell.h */,
@@ -2916,7 +2914,7 @@
 				BB5FD88D21FECC0600B5F1A8 /* YXFindQuestionTableViewCell.m */,
 				BB5FD88E21FECC0600B5F1A8 /* YXFindQuestionTableViewCell.xib */,
 			);
-			path = "三种Cell";
+			path = "两种Cell";
 			sourceTree = "<group>";
 		};
 		BB5FD89621FF488E00B5F1A8 /* XWPopMenu */ = {
@@ -3104,14 +3102,16 @@
 			path = "标签详情";
 			sourceTree = "<group>";
 		};
-		BB7AF12D22004B8A00989896 /* 足迹详情 */ = {
+		BB7AF12D22004B8A00989896 /* 足迹 */ = {
 			isa = PBXGroup;
 			children = (
+				BB7AF12A2200035700989896 /* YXPublishFootViewController.h */,
+				BB7AF12B2200035700989896 /* YXPublishFootViewController.m */,
 				BB7AF13122004FE600989896 /* YXMineFootDetailViewController.h */,
 				BB7AF13222004FE600989896 /* YXMineFootDetailViewController.m */,
 				BB7AF13322004FE600989896 /* YXMineFootDetailViewController.xib */,
 			);
-			path = "足迹详情";
+			path = "足迹";
 			sourceTree = "<group>";
 		};
 		BB928F5321FABC2A0090A044 /* 我的点评 */ = {
@@ -3487,7 +3487,6 @@
 				BB70253622126E67009EBE39 /* YXFindSearchViewController.m */,
 				BB70253E2212A3A7009EBE39 /* 搜索结果 */,
 				BB702538221297E3009EBE39 /* 搜索view */,
-				BB5FD88621FECBB500B5F1A8 /* 三种Cell */,
 			);
 			path = "B发现";
 			sourceTree = "<group>";
@@ -3499,7 +3498,6 @@
 				BB5FD8A021FF49DD00B5F1A8 /* XWPopMenuController.m */,
 				BB9EFE6C21F5CC7F00180813 /* 更多标签 */,
 				BBD2C84821E0F46500350DCD /* 1晒图 */,
-				BBD2C84B21E0F46500350DCD /* 2足迹 */,
 				BBD2C84721E0F46500350DCD /* 3文章 */,
 				BB3CA492221F90E600C6793D /* 4提问 */,
 			);
@@ -3734,17 +3732,16 @@
 			path = DWImagePicker;
 			sourceTree = "<group>";
 		};
-		BBADE4D321F865400011E5FF /* 晒图详情 */ = {
+		BBADE4D321F865400011E5FF /* 晒图 */ = {
 			isa = PBXGroup;
 			children = (
+				BBD2C84A21E0F46500350DCD /* YXPublishImageViewController.h */,
+				BBD2C84921E0F46500350DCD /* YXPublishImageViewController.m */,
 				BBADE4D421F8655E0011E5FF /* YXMineImageDetailViewController.h */,
 				BBADE4D521F8655E0011E5FF /* YXMineImageDetailViewController.m */,
 				BBADE4D621F8655E0011E5FF /* YXMineImageDetailViewController.xib */,
-				BBADE4D921F8665A0011E5FF /* YXMineImageDetailHeaderView.h */,
-				BBADE4DA21F8665A0011E5FF /* YXMineImageDetailHeaderView.m */,
-				BBADE4DC21F866670011E5FF /* YXMineImageDetailHeaderView.xib */,
 			);
-			path = "晒图详情";
+			path = "晒图";
 			sourceTree = "<group>";
 		};
 		BBADE4DE21F8A6D30011E5FF /* CBSegment */ = {
@@ -4028,6 +4025,9 @@
 				BBD1C77322166AD40063002F /* YXMineAndFindBaseViewController.m */,
 				BBD1C775221670CD0063002F /* YXMineAndFindBaseTableViewCell.h */,
 				BBD1C776221670CD0063002F /* YXMineAndFindBaseTableViewCell.m */,
+				BBADE4D921F8665A0011E5FF /* YXMineImageDetailHeaderView.h */,
+				BBADE4DA21F8665A0011E5FF /* YXMineImageDetailHeaderView.m */,
+				BBADE4DC21F866670011E5FF /* YXMineImageDetailHeaderView.xib */,
 			);
 			path = "发现和我的界面复用";
 			sourceTree = "<group>";
@@ -4037,21 +4037,24 @@
 			children = (
 				BB3CA493221F947600C6793D /* 所有发布界面复用 */,
 				BBD1C77122166AB40063002F /* 发现和我的界面复用 */,
-				BBD1C7792216AA090063002F /* 问答详情 */,
-				BBADE4D321F865400011E5FF /* 晒图详情 */,
-				BB7AF12D22004B8A00989896 /* 足迹详情 */,
+				BB5FD88621FECBB500B5F1A8 /* 两种Cell */,
+				BBADE4D321F865400011E5FF /* 晒图 */,
+				BBD1C7792216AA090063002F /* 问答 */,
+				BB7AF12D22004B8A00989896 /* 足迹 */,
 			);
 			path = "晒图问答足迹";
 			sourceTree = "<group>";
 		};
-		BBD1C7792216AA090063002F /* 问答详情 */ = {
+		BBD1C7792216AA090063002F /* 问答 */ = {
 			isa = PBXGroup;
 			children = (
+				BBCC4B7921E894CD00493F40 /* YXHomeQuestionFaBuViewController.h */,
+				BBCC4B7B21E894CD00493F40 /* YXHomeQuestionFaBuViewController.m */,
 				BB6D2A4021EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.h */,
 				BB6D2A4121EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.m */,
 				BBBFD7932223BE4700D377AC /* YXHomeXueJiaQuestionDetailViewController.xib */,
 			);
-			path = "问答详情";
+			path = "问答";
 			sourceTree = "<group>";
 		};
 		BBD2C7FF21E0F41F00350DCD /* 3文章 */ = {
@@ -4148,22 +4151,11 @@
 		BBD2C84821E0F46500350DCD /* 1晒图 */ = {
 			isa = PBXGroup;
 			children = (
-				BBD2C84A21E0F46500350DCD /* YXPublishImageViewController.h */,
-				BBD2C84921E0F46500350DCD /* YXPublishImageViewController.m */,
 				BBD2C95D21E10A9300350DCD /* YXPublishImageTableViewCell.h */,
 				BBD2C95E21E10A9300350DCD /* YXPublishImageTableViewCell.m */,
 				BBD2C96021E10AA100350DCD /* YXPublishImageTableViewCell.xib */,
 			);
 			path = "1晒图";
-			sourceTree = "<group>";
-		};
-		BBD2C84B21E0F46500350DCD /* 2足迹 */ = {
-			isa = PBXGroup;
-			children = (
-				BB7AF12A2200035700989896 /* YXPublishFootViewController.h */,
-				BB7AF12B2200035700989896 /* YXPublishFootViewController.m */,
-			);
-			path = "2足迹";
 			sourceTree = "<group>";
 		};
 		BBD2C85E21E0F67600350DCD /* TZImagePickerController */ = {
