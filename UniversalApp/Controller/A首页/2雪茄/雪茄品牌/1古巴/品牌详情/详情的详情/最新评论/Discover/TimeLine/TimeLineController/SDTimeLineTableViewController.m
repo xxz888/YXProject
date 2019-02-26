@@ -368,7 +368,7 @@ static CGFloat textFieldH = 40;
 - (void)didClickcCommentButtonInCell:(UITableViewCell *)cell
 {
     [_textField becomeFirstResponder];
-    _currentEditingIndexthPath = [self.tableView indexPathForCell:cell];
+    self.currentEditingIndexthPath = [self.tableView indexPathForCell:cell];
     
     [self adjustTableViewToFitKeyboard];
     
@@ -385,10 +385,10 @@ static CGFloat textFieldH = 40;
         NSInteger lastValue = 0;
         if ([model.praise isEqualToString:@"1"]) {
             lastValue = [likeString integerValue] - 1;
-            [cell.zanButton setBackgroundImage:[UIImage imageNamed:@"未赞"] forState:UIControlStateNormal];
+            [cell.zanButton setBackgroundImage:[UIImage imageNamed:@"UnZan"] forState:UIControlStateNormal];
         }else{
             lastValue = [likeString integerValue] + 1;
-            [cell.zanButton setBackgroundImage:[UIImage imageNamed:@"已赞"] forState:UIControlStateNormal];
+            [cell.zanButton setBackgroundImage:[UIImage imageNamed:@"Zan"] forState:UIControlStateNormal];
         }
         cell.commentView.likeLabel.text = [NSString stringWithFormat:@"%ld",lastValue];
         
@@ -422,7 +422,7 @@ static CGFloat textFieldH = 40;
 - (void)adjustTableViewToFitKeyboard
 {
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:_currentEditingIndexthPath];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.currentEditingIndexthPath];
     CGRect rect = [cell.superview convertRect:cell.frame toView:window];
     [self adjustTableViewToFitKeyboardWithRect:rect];
 }
@@ -448,7 +448,7 @@ static CGFloat textFieldH = 40;
     if (textField.text.length) {
         [_textField resignFirstResponder];
         
-        SDTimeLineCellModel *model = self.dataArray[_currentEditingIndexthPath.row];
+        SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
         NSMutableArray *temp = [NSMutableArray new];
         [temp addObjectsFromArray:model.commentItemsArray];
         SDTimeLineCellCommentItemModel *commentItemModel = [SDTimeLineCellCommentItemModel new];
@@ -468,7 +468,7 @@ static CGFloat textFieldH = 40;
         }
         [temp addObject:commentItemModel];
         model.commentItemsArray = [temp copy];
-        [self.tableView reloadRowsAtIndexPaths:@[_currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView reloadRowsAtIndexPaths:@[self.currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
         
         _textField.text = @"";
         _textField.placeholder = nil;

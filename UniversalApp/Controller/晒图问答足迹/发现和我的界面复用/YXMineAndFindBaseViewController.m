@@ -141,6 +141,10 @@
     cell.clickImageBlock = ^(NSInteger tag) {
         [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
     };
+    cell.zanblock1 = ^(YXFindQuestionTableViewCell * cell) {
+        NSIndexPath * indexPath1 = [weakself.yxTableView indexPathForCell:cell];
+        [weakself requestDianZan_WenDa_Action:indexPath1];
+    };
     cell.jumpDetail1VCBlock = ^(YXFindQuestionTableViewCell * cell) {
         NSIndexPath * indexPathSelect = [weakself.yxTableView indexPathForCell:cell];
         [weakself tableView:weakself.yxTableView didSelectRowAtIndexPath:indexPathSelect];
@@ -179,6 +183,14 @@
     kWeakSelf(self);
     NSString* track_id = kGetString(self.dataArray[indexPath.row][@"id"]);
     [YX_MANAGER requestDianZanFoot:@{@"track_id":track_id} success:^(id object) {
+        [weakself requestAction];
+    }];
+}
+#pragma mark ========== 问答点赞 ==========
+-(void)requestDianZan_WenDa_Action:(NSIndexPath *)indexPath{
+    kWeakSelf(self);
+    NSString* track_id = kGetString(self.dataArray[indexPath.row][@"id"]);
+    [YX_MANAGER requestPraise_question:track_id success:^(id object) {
         [weakself requestAction];
     }];
 }
@@ -229,17 +241,25 @@
     moment.text = dic[@"title"];
     moment.detailText = dic[@"question"];
     moment.time = dic[@"publish_date"] ? [dic[@"publish_date"] longLongValue] : [dic[@"publish_time"] longLongValue];
-    moment.singleWidth = 500;
-    moment.singleHeight = 315;
+    moment.singleWidth = (KScreenWidth-30)/3;
+    moment.singleHeight = 100;
     moment.location = @"";
     moment.isPraise = NO;
     moment.photo =dic[@"user_photo"];
     moment.startId = dic[@"id"];
-    moment.fileCount = 3;
-    moment.imageListArray = [NSMutableArray arrayWithObjects:
-                             dic[@"pic1"],
-                             dic[@"pic2"],
-                             dic[@"pic3"], nil];
+    NSMutableArray * imgArr = [NSMutableArray array];
+    if ([dic[@"pic1"] length] >= 5) {
+        [imgArr addObject:dic[@"pic1"]];
+    }
+    if ([dic[@"pic2"] length] >= 5) {
+        [imgArr addObject:dic[@"pic2"]];
+    }
+    if ([dic[@"pic3"] length] >= 5) {
+        [imgArr addObject:dic[@"pic3"]];
+    }
+    moment.imageListArray = [NSMutableArray arrayWithArray:imgArr];
+    moment.fileCount = imgArr.count;
+
     commentList = [[NSMutableArray alloc] init];
     int num = (int)[dic[@"answer"] count];
     for (int j = 0; j < num; j ++) {

@@ -33,6 +33,7 @@
 
 @property (nonatomic, copy) NSString *iconName;
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *userID;
 @property (nonatomic, copy) NSString *msgContent;
 @property (nonatomic, strong) NSArray *picNamesArray;
 

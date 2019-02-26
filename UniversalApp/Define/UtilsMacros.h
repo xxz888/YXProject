@@ -20,8 +20,8 @@
 #define REFRESH_NO_DATA @"没有更多数据"
 
 
-#define Handle_IMG [UIImage imageNamed:@"已赞"]
-#define un_Handle_IMG [UIImage imageNamed:@"未赞"]
+#define Handle_IMG [UIImage imageNamed:@"Zan"]
+#define un_Handle_IMG [UIImage imageNamed:@"UnZan"]
 #define SHOW_FUTURE_DEV @"功能正在开发中..."
 
 #define YX_USER_FaBuCaoGao @"YX_FaBuCaoGao"

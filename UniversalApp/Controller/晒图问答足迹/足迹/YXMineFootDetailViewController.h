@@ -7,16 +7,10 @@
 //
 
 #import "RootViewController.h"
-
+#import "YXBaseFaXianDetailViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YXMineFootDetailViewController : RootViewController
-
-@property (weak, nonatomic) IBOutlet UITableView *yxTableView;
-@property(nonatomic,strong)NSDictionary * startDic;
-@property (weak, nonatomic) IBOutlet UIButton *clickPingLunBtn;
-@property (nonatomic,assign) CGFloat height;
-
+@interface YXMineFootDetailViewController : YXBaseFaXianDetailViewController
 @end
 
 NS_ASSUME_NONNULL_END

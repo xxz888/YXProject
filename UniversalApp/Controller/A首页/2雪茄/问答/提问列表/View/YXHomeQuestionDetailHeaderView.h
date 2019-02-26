@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *totalImage;
 @property (weak, nonatomic) IBOutlet UILabel *twoLbl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *twoLblHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imvHeight;
 
 @end
 

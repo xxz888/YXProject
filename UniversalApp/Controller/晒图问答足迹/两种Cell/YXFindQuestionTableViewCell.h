@@ -73,7 +73,7 @@ typedef void(^jumpDetail1VCBlock)(YXFindQuestionTableViewCell *);
 typedef void(^clickQuestionZanBlock)(YXFindQuestionTableViewCell *);
 @property (weak, nonatomic) IBOutlet UIButton *likeBtn;
 - (IBAction)likeBtnAction:(id)sender;
-@property (nonatomic,copy) clickQuestionZanBlock zanblock;
+@property (nonatomic,copy) clickQuestionZanBlock zanblock1;
 
 
 //分享

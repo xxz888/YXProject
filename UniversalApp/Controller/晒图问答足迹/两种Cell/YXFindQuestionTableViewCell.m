@@ -7,17 +7,19 @@
 //
 
 #import "YXFindQuestionTableViewCell.h"
-
+#import "XHWebImageAutoSize.h"
 @implementation YXFindQuestionTableViewCell
 +(CGFloat)cellMoreHeight:(NSDictionary *)dic{
     NSArray * plArray =  dic[@"answer"];
     CGFloat height_size = [ShareManager inTextFieldOutDifColorView:[dic[@"question"] UnicodeToUtf8]];
+    CGFloat imageHeight = [dic[@"pic1"] length] <= 5 ? 0 : 100;
     CGFloat lastHeight =
     (plArray.count >= 1 ? 25 : 0) +
     (plArray.count >= 2 ? 25 : 0) +
     (plArray.count >= 2 ? 25 : 0) +
-    height_size;
-    return lastHeight + 308;
+    height_size +
+    imageHeight;
+    return lastHeight + 215 ;
 }
 - (IBAction)openAction:(id)sender{
     //将当前对象的isShowMoreText属性设为相反值
@@ -35,15 +37,32 @@
     self.textHeight.constant = [self getLblHeight:dic];
     self.titleTagLbl1.text = [dic[@"title"] UnicodeToUtf8];
     self.titleTagLbl2.text = [dic[@"question"] UnicodeToUtf8];
+    
+    
     NSString * str1 = [(NSMutableString *)dic[@"pic1"] replaceAll:@" " target:@"%20"];
     NSString * str2 = [(NSMutableString *)dic[@"pic2"] replaceAll:@" " target:@"%20"];
     NSString * str3 = [(NSMutableString *)dic[@"pic3"] replaceAll:@" " target:@"%20"];
-    [self.midImageView1 sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    [self.midImageView2 sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    [self.midImageView3 sd_setImageWithURL:[NSURL URLWithString:str3] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     
+    
+    if (str1.length <= 0) {
+        self.midImageView1.image = [UIImage imageNamed:@""];
+    }else{
+        [self.midImageView1 sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    }
+    if (str2.length <= 0) {
+        self.midImageView2.image = [UIImage imageNamed:@""];
+    }else{
+        [self.midImageView2 sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    }
+    if (str3.length <= 0) {
+        self.midImageView3.image = [UIImage imageNamed:@""];
+    }else{
+        [self.midImageView3 sd_setImageWithURL:[NSURL URLWithString:str3] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    }
+    if (str1.length<=0 && str2.length<=0 && str3.length<=0) {
+        self.imvHeight.constant = 0;
+    }
     if ([self.mapBtn.titleLabel.text isEqualToString:@""] || !self.mapBtn.titleLabel.text) {
-        
         self.nameCenter.constant = self.titleImageView.frame.origin.y;
     }
     [ShareManager setLineSpace:9 withText:[self.titleTagLbl2.text UnicodeToUtf8] inLabel:self.titleTagLbl2 tag:@""];
@@ -72,9 +91,9 @@
         KPostNotification(KNotificationLoginStateChange, @NO);
         return;
     }
-//    if (self.zanblock) {
-//        self.zanblock(self);
-//    }
+    if (self.zanblock1) {
+        self.zanblock1(self);
+    }
 }
 - (IBAction)searchAllPlBtnAction:(id)sender{
     self.jumpDetail1VCBlock(self);

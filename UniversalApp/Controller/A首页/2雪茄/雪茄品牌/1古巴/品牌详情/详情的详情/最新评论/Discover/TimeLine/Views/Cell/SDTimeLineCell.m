@@ -334,9 +334,9 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     [self fiveStarView:model.score view:_starView];
 
     if ([model.praise isEqualToString:@"1"]) {
-        [self.zanButton setBackgroundImage:[UIImage imageNamed:@"已赞"] forState:UIControlStateNormal];
+        [self.zanButton setBackgroundImage:[UIImage imageNamed:@"Zan"] forState:UIControlStateNormal];
     }else if ([model.praise isEqualToString:@"0"]){
-        [self.zanButton setBackgroundImage:[UIImage imageNamed:@"未赞"] forState:UIControlStateNormal];
+        [self.zanButton setBackgroundImage:[UIImage imageNamed:@"UnZan"] forState:UIControlStateNormal];
     }
 }
 

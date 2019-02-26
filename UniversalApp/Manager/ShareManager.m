@@ -467,6 +467,12 @@ SINGLETON_FOR_CLASS(ShareManager);
 /**
  *  根据图片url获取网络图片尺寸
  */
++(CGFloat)getOldImageSizeWithURL:(id)URL{
+    UIImage *result;
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:URL]];
+    result = [UIImage imageWithData:data];
+    return result.size.height;
+}
 +(CGFloat)getImageSizeWithURL:(id)URL{
     NSURL * url = nil;
     if ([URL isKindOfClass:[NSURL class]]) {

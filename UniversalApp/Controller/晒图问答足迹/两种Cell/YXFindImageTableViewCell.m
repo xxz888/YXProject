@@ -47,10 +47,12 @@
     self.imvHeight.constant = [self getImvHeight:dic whereCome:whereCome];
 
     
-    if ([self.mapBtn.titleLabel.text isEqualToString:@""] || !self.mapBtn.titleLabel.text) {
+    if ([self.mapBtn.titleLabel.text isEqualToString:@""] || !self.mapBtn.titleLabel.text ) {
         self.nameCenter.constant = self.titleImageView.frame.origin.y;
     }
-
+    if ([self.mapBtn.titleLabel.text isEqualToString:@"获取地理位置"]) {
+        self.mapBtn.titleLabel.text = @"";
+    }
     
     
     

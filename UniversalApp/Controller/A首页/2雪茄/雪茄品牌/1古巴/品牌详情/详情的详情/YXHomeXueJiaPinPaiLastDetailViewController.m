@@ -179,8 +179,8 @@ static CGFloat textFieldH = 40;
     }];
 }
 -(void)refreshTableView{
-//    if (_currentEditingIndexthPath) {
-//        [self.yxTableView reloadRowsAtIndexPaths:@[_currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
+//    if (self.currentEditingIndexthPath) {
+//        [self.yxTableView reloadRowsAtIndexPaths:@[self.currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
 //    }else{
         [self.yxTableView reloadData];
 //    }
@@ -216,7 +216,7 @@ static CGFloat textFieldH = 40;
             return ;
         }
         
-        SDTimeLineCellModel *model = self.dataArray[_currentEditingIndexthPath.row];
+        SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
         NSMutableArray *temp = [NSMutableArray new];
         [temp addObjectsFromArray:model.commentItemsArray];
         //判断评论数组是否添加过新数据，如果添加过就不添加了
@@ -256,7 +256,7 @@ static CGFloat textFieldH = 40;
             }
      
         }
-        [self.yxTableView reloadRowsAtIndexPaths:@[_currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
+        [self.yxTableView reloadRowsAtIndexPaths:@[self.currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
     }];
     
     
@@ -408,8 +408,8 @@ static CGFloat textFieldH = 40;
 }
 #pragma mark ========== 点击跟多评论按钮 ==========
 -(void)showMoreComment:(UITableViewCell *)cell{
-    _currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
-    SDTimeLineCellModel *model = self.dataArray[_currentEditingIndexthPath.row];
+    self.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
+    SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
     NSMutableArray * copyArray = [NSMutableArray arrayWithArray:_pageArray];
     for (NSDictionary * dic in copyArray) {
         if ([dic[@"id"] intValue] == [model.id intValue]) {
@@ -425,8 +425,8 @@ static CGFloat textFieldH = 40;
 #pragma mark ========== tableview 点击评论按钮 ==========
 - (void)didClickcCommentButtonInCell:(UITableViewCell *)cell{
     [_textField becomeFirstResponder];
-    _currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
-    SDTimeLineCellModel *model = self.dataArray[_currentEditingIndexthPath.row];
+    self.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
+    SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
     self.commentToUser = model.name;
     [self adjustTableViewToFitKeyboard];
 }
@@ -436,7 +436,7 @@ static CGFloat textFieldH = 40;
     NSIndexPath *index = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel *model = self.dataArray[index.row];
     [YX_MANAGER requestPraise_cigaPr_commentPOST:@{@"comment_id":@([model.id intValue])} success:^(id object) {
-        _currentEditingIndexthPath = index;
+        self.currentEditingIndexthPath = index;
         _segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];
     /*
@@ -520,7 +520,7 @@ static CGFloat textFieldH = 40;
 #pragma mark ========== 以下为所有自适应和不常用的方法 ==========
 - (void)adjustTableViewToFitKeyboard{
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    UITableViewCell *cell = [self.yxTableView cellForRowAtIndexPath:_currentEditingIndexthPath];
+    UITableViewCell *cell = [self.yxTableView cellForRowAtIndexPath:self.currentEditingIndexthPath];
     CGRect rect = [cell.superview convertRect:cell.frame toView:window];
     [self adjustTableViewToFitKeyboardWithRect:rect];
 }
@@ -545,7 +545,7 @@ static CGFloat textFieldH = 40;
 {
     if (textField.text.length) {
         [_textField resignFirstResponder];
-        SDTimeLineCellModel *model = self.dataArray[_currentEditingIndexthPath.row];
+        SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
         SDTimeLineCellCommentItemModel * itemModel;
         if (self.isReplayingComment) {
             for (SDTimeLineCellCommentItemModel * oldItemModel in model.commentItemsArray) {
@@ -595,7 +595,7 @@ static CGFloat textFieldH = 40;
         [temp addObject:commentItemModel];
         model.commentItemsArray = [temp copy];
 
-        [self.yxTableView reloadRowsAtIndexPaths:@[_currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
+        [self.yxTableView reloadRowsAtIndexPaths:@[self.currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
   */
         _textField.text = @"";
         _textField.placeholder = nil;

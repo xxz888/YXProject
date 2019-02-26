@@ -49,4 +49,5 @@ SINGLETON_FOR_HEADER(ShareManager)
 +(void)inTextFieldOutDifColorView:(UILabel *)tfView tag:(NSString *)tag;
 +(void)setLineSpace:(CGFloat)lineSpace withText:(NSString *)text inLabel:(UILabel *)label tag:(NSString *)tag;
 +(UIView *)getMainView;
++(CGFloat)getOldImageSizeWithURL:(id)URL;
 @end

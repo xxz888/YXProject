@@ -80,8 +80,8 @@
         
         //单张图片需计算实际显示size
         if (count == 1) {
-            CGSize singleSize = [Utility getSingleSize:CGSizeMake(moment.singleWidth, moment.singleHeight)];
-            frame = CGRectMake(0, 0, singleSize.width, singleSize.height);
+//            CGSize singleSize = [Utility getSingleSize:CGSizeMake(moment.singleWidth, moment.singleHeight)];
+            frame = CGRectMake(0, 0, moment.singleWidth, moment.singleHeight);
         }
         imageView = [self viewWithTag:1000+i];
         imageView.hidden = NO;

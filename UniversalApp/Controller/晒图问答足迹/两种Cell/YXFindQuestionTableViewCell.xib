@@ -241,7 +241,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="syb-pQ-BGb">
-                                <rect key="frame" x="275" y="0.0" width="25" height="25"/>
+                                <rect key="frame" x="272" y="0.0" width="25" height="25"/>
                                 <state key="normal" backgroundImage="UnZan"/>
                                 <connections>
                                     <action selector="likeBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="f4l-xi-aW0"/>
@@ -253,11 +253,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deq-Xq-p8U">
-                                <rect key="frame" x="218" y="0.0" width="25" height="25"/>
+                                <rect key="frame" x="215" y="0.0" width="25" height="25"/>
                                 <state key="normal" backgroundImage="讨论"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBk-sM-VDJ">
-                                <rect key="frame" x="246" y="-4.5" width="5" height="12"/>
+                                <rect key="frame" x="243" y="-4.5" width="5" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -267,7 +267,7 @@
                             <constraint firstItem="syb-pQ-BGb" firstAttribute="width" secondItem="fwr-oT-U7O" secondAttribute="width" id="4MK-ay-MUQ"/>
                             <constraint firstItem="awZ-9s-u6t" firstAttribute="leading" secondItem="fwr-oT-U7O" secondAttribute="trailing" constant="3" id="6Id-Tx-LDk"/>
                             <constraint firstItem="syb-pQ-BGb" firstAttribute="height" secondItem="fwr-oT-U7O" secondAttribute="height" id="Ble-lI-Y3x"/>
-                            <constraint firstItem="oDv-US-eQQ" firstAttribute="leading" secondItem="syb-pQ-BGb" secondAttribute="trailing" id="FAq-Zw-9Xb"/>
+                            <constraint firstItem="oDv-US-eQQ" firstAttribute="leading" secondItem="syb-pQ-BGb" secondAttribute="trailing" constant="3" id="FAq-Zw-9Xb"/>
                             <constraint firstItem="dBk-sM-VDJ" firstAttribute="centerY" secondItem="awZ-9s-u6t" secondAttribute="centerY" id="Nxj-Ud-jVh"/>
                             <constraint firstAttribute="height" constant="25" id="OtW-46-2Vr"/>
                             <constraint firstItem="syb-pQ-BGb" firstAttribute="leading" secondItem="dBk-sM-VDJ" secondAttribute="trailing" constant="24" id="T37-Hf-ulR"/>
@@ -342,6 +342,8 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="addPlImageView" destination="WdG-EQ-D5p" id="R1K-do-Oah"/>
+                <outlet property="imvHeight" destination="8t1-ks-8LZ" id="RWg-eT-oDX"/>
+                <outlet property="likeBtn" destination="syb-pQ-BGb" id="6b7-WK-lOG"/>
                 <outlet property="mapBtn" destination="8EQ-ay-nxW" id="mbO-yn-75Q"/>
                 <outlet property="midImageView1" destination="R5O-8J-lIX" id="6Yo-5R-fFD"/>
                 <outlet property="midImageView2" destination="Ws7-gX-ace" id="b5u-K3-WDf"/>
@@ -368,7 +370,7 @@
                 <outlet property="topViewConstraint" destination="8mc-CO-4aW" id="TfC-ni-Mx4"/>
                 <outlet property="zanCount" destination="oDv-US-eQQ" id="aOo-VB-gBi"/>
             </connections>
-            <point key="canvasLocation" x="-2819" y="-233"/>
+            <point key="canvasLocation" x="-3605" y="-253"/>
         </tableViewCell>
     </objects>
     <resources>

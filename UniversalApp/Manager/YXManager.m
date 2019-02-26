@@ -632,6 +632,22 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
+
+
+#pragma mark ========== 点赞取消提问 ==========
+-(void)requestPraise_question:YX_BLOCK{
+    NSString * url = @"/users/praise_question/";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ========== 点赞取消回答 ==========
+-(void)requestPraise_answer:YX_BLOCK{
+    NSString * url = @"/users/praise_answer/";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

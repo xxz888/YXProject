@@ -40,6 +40,19 @@
         failure(error);
     }];
 }
+
+/*
+var a = "a"
+var b = "b"
+
+if(isHave){
+    a = "aa";
+}else{
+    a = "aaaaaa"
+}
+var c = a + b
+*/
+
 #pragma mark ========== 请求成功处理参数的共同方法 ==========
 +(void)setCommonRespone:(SucessBlock)sucess pi:(NSString *)pi responseObject:(id)responseObject{
     
