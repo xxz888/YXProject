@@ -50,4 +50,5 @@ SINGLETON_FOR_HEADER(ShareManager)
 +(void)setLineSpace:(CGFloat)lineSpace withText:(NSString *)text inLabel:(UILabel *)label tag:(NSString *)tag;
 +(UIView *)getMainView;
 +(CGFloat)getOldImageSizeWithURL:(id)URL;
++ (void)updateApp;
 @end

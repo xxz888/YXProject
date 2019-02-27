@@ -29,7 +29,7 @@
 
 #define BASE_URL
 #if (ENVIRONMENT_TAG == 0)             //正式
-#define API_URL                  @"47.99.113.177:8001"
+#define API_URL                  @"thegoodlife.com"
 #elif (ENVIRONMENT_TAG == 1)           //测试
 #define API_URL                  @"192.168.0.12:8001"
 #else
@@ -42,7 +42,7 @@
 
 
 #define UPDATE_APP_URL @"http://itunes.apple.com/lookup?id="
-#define UPDATE_App_ID @"1358751725"
+#define UPDATE_App_ID @"1454467501"
 
 
 #import <QMapKit/QMapKit.h>

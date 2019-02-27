@@ -10,6 +10,7 @@
 #import <UShareUI/UShareUI.h>
 #import "UIColor+MyColor.h"
 #import "MMImageListView.h"
+#import "SELUpdateAlert.h"
 @implementation ShareManager
 
 SINGLETON_FOR_CLASS(ShareManager);
@@ -567,5 +568,41 @@ SINGLETON_FOR_CLASS(ShareManager);
         view = [[UIApplication sharedApplication].windows lastObject];
     }
     return view;
+}
+
+
++ (void)updateApp{
+    kWeakSelf(self);
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", UPDATE_APP_URL, UPDATE_App_ID];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (data) {
+            NSDictionary *appInfoDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
+            if (error) {
+                NSLog(@"%@", error.description);
+                return;
+            }
+            NSArray *resultArray = [appInfoDict objectForKey:@"results"];
+            if (![resultArray count]) {
+                NSLog(@"error : resultArray == nil");
+                return;
+            }
+            NSDictionary *infoDict = [resultArray objectAtIndex:0];
+            //获取服务器上应用的最新版本号－－－> connect获得的appstore版本号
+            NSString * updateVersion = infoDict[@"version"];
+            long updateVersionLong = [[updateVersion stringByReplacingOccurrencesOfString:@"." withString:@""] longLongValue];
+            //获取当前设备中应用的版本号  －－－> 工程build的版本号
+            NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+            NSString * currentVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
+            long currentVersionLong = [[currentVersion stringByReplacingOccurrencesOfString:@"." withString:@""] longLongValue];
+            //判断两个版本是否相同
+            if (currentVersionLong  < updateVersionLong) {
+                [SELUpdateAlert showUpdateAlertWithVersion:updateVersion Description:@"" focTag:NO];
+            }
+        }
+    }];
+    [dataTask resume];
 }
 @end
