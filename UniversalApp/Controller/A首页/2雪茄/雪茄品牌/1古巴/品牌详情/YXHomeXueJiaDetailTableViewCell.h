@@ -6,13 +6,13 @@
 //  Copyright © 2019年 徐阳. All rights reserved.
 //
 
-#import "TableViewCell.h"
+#import "BaseTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol ClickLikeBtnDelegate <NSObject>
 -(void)clickLikeBtn:(BOOL)isZan cigar_id:(NSString *)cigar_id likeBtn:(UIButton *)likeBtn;
 @end 
-@interface YXHomeXueJiaDetailTableViewCell : UITableViewCell
+@interface YXHomeXueJiaDetailTableViewCell : BaseTableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *section2TitleLbl;
 @property (weak, nonatomic) IBOutlet UIImageView *section2ImageView;
 @property (weak, nonatomic) IBOutlet UILabel *section2Lbl1;

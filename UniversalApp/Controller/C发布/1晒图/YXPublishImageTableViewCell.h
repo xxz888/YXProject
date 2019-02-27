@@ -6,7 +6,7 @@
 //  Copyright © 2019年 徐阳. All rights reserved.
 //
 
-#import "TableViewCell.h"
+#import "BaseTableViewCell.h"
 #import "LTTextView.h"
 #import "QMUITextView.h"
 
@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-@interface YXPublishImageTableViewCell : TableViewCell
+@interface YXPublishImageTableViewCell : BaseTableViewCell
 typedef void(^tagStringBlock)(NSString *);
 typedef void(^locationBlock)(YXPublishImageTableViewCell *);
 typedef void(^moreBlock)(void);

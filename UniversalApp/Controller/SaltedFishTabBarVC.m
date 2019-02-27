@@ -130,7 +130,20 @@
 // 9.实现代理，如下：
 static NSInteger lastIdx = 0;
 - (void)axcAE_TabBar:(AxcAE_TabBar *)tabbar selectIndex:(NSInteger)index{
-    if (index != 2) { // 不是中间的就切换
+    if (index == 2 || index == 3) { // 不是中间的就切换
+        if (![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
+        
+        [self.axcTabBar setSelectIndex:lastIdx WithAnimation:NO]; // 换回上一个选中状态
+        // 或者
+        //        self.axcTabBar.selectIndex = lastIdx; // 不去切换TabBar的选中状态
+        NSLog(@"点击发布按钮->");
+        XWPopMenuController *vc = [[XWPopMenuController alloc]init];
+        [self presentViewController:vc animated:NO completion:nil];
+       
+    }else{ // 点击了中间的
         
         UIView * view;
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11) {
@@ -142,27 +155,14 @@ static NSInteger lastIdx = 0;
             KPostNotification(KNotificationLoginStateChange, @NO);
             return;
         }
-//        if (index == 3) {
-//            [QMUITips showInfo:SHOW_FUTURE_DEV inView:view hideAfterDelay:1];
-//            return;
-//        }
+        //        if (index == 3) {
+        //            [QMUITips showInfo:SHOW_FUTURE_DEV inView:view hideAfterDelay:1];
+        //            return;
+        //        }
         // 通知 切换视图控制器
         [self setSelectedIndex:index];
         lastIdx = index;
-    }else{ // 点击了中间的
-        
-      
-        if (![userManager loadUserInfo]) {
-            KPostNotification(KNotificationLoginStateChange, @NO);
-            return;
-        }
-        
-        [self.axcTabBar setSelectIndex:lastIdx WithAnimation:NO]; // 换回上一个选中状态
-        // 或者
-//        self.axcTabBar.selectIndex = lastIdx; // 不去切换TabBar的选中状态
-        NSLog(@"点击发布按钮->");
-        XWPopMenuController *vc = [[XWPopMenuController alloc]init];
-        [self presentViewController:vc animated:NO completion:nil];
+
     }
 }
 - (void)setSelectedIndex:(NSUInteger)selectedIndex{

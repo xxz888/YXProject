@@ -9,14 +9,6 @@
 #import "MainTabBarController.h"
 
 #import "RootNavigationController.h"
-#import "HomeViewController.h"
-#import "WaterFallListViewController.h"
-#import "PersonListViewController.h"
-#import "MakeFriendsViewController.h"
-#import "MsgViewController.h"
-#import "MineViewController.h"
-#import "ToolDemoViewController.h"
-#import "DraggingCardViewController.h"
 #import "UITabBar+CustomBadge.h"
 #import "XYTabBar.h"
 

@@ -6,11 +6,11 @@
 //  Copyright © 2019年 徐阳. All rights reserved.
 //
 
-#import "TableViewCell.h"
+#import "BaseTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YXHomeXueJiaPinPaiTableViewCell : TableViewCell
+@interface YXHomeXueJiaPinPaiTableViewCell : BaseTableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *cellImageView;
 @property (weak, nonatomic) IBOutlet UILabel *cellLbl;
 @property (nonatomic,strong) NSString * id;

@@ -29,7 +29,7 @@
 
 #define BASE_URL
 #if (ENVIRONMENT_TAG == 0)             //正式
-#define API_URL                  @"thegoodlife.com"
+#define API_URL                  @"thegdlife.com:8001"
 #elif (ENVIRONMENT_TAG == 1)           //测试
 #define API_URL                  @"192.168.0.12:8001"
 #else
