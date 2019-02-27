@@ -21,15 +21,18 @@
     CGFloat height =  user_id_BOOL ? 64 : 0;
 
     self.yxTableView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight - 175 -kTopHeight - heightKK + height);
+    
+}
+-(void)requestAction{
     user_id_BOOL ? [self requestOther_AllList] : [self requestMine_AllList];
 }
 -(void)headerRereshing{
     [super headerRereshing];
-    user_id_BOOL ? [self requestOther_AllList] : [self requestMine_AllList];
+    [self requestAction];
 }
 -(void)footerRereshing{
     [super footerRereshing];
-    user_id_BOOL ? [self requestOther_AllList] : [self requestMine_AllList];
+    [self requestAction];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -56,7 +59,7 @@
     kWeakSelf(self);
     NSString* post_id = kGetString(self.dataArray[indexPath.row][@"id"]);
     [YX_MANAGER requestPost_praisePOST:@{@"post_id":post_id} success:^(id object) {
-        user_id_BOOL ? [weakself requestOther_AllList] : [weakself requestMine_AllList];
+        [self requestAction];
     }];
 }
 #pragma mark ========== 足迹点赞 ==========
@@ -64,7 +67,7 @@
     kWeakSelf(self);
     NSString* track_id = kGetString(self.dataArray[indexPath.row][@"id"]);
     [YX_MANAGER requestDianZanFoot:@{@"track_id":track_id} success:^(id object) {
-        user_id_BOOL ? [weakself requestOther_AllList] : [weakself requestMine_AllList];
+        [self requestAction];
     }];
 }
 @end

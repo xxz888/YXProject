@@ -15,9 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YXFindQuestionTableViewCell : YXMineAndFindBaseTableViewCell
 
+
 @property (nonatomic,strong) NSMutableDictionary * dataDic;
-
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewConstraint;
 @property (weak, nonatomic) IBOutlet UIView *topView;
 

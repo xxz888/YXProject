@@ -46,7 +46,7 @@
     @[@{@"vc":nav1,@"normalImg":@"home_normal",@"selectImg":@"home_highlight",@"itemTitle":@"首页"},
       @{@"vc":nav2,@"normalImg":@"mycity_normal",@"selectImg":@"mycity_highlight",@"itemTitle":@"发现"},
       @{@"vc":[UIViewController new],@"normalImg":@"tabar_plus_normal",@"selectImg":@"tabar_plus_highlight",@"itemTitle":@"发布"},
-      @{@"vc":nav3,@"normalImg":@"message_normal",@"selectImg":@"message_highlight",@"itemTitle":@"消息"},
+      //@{@"vc":nav3,@"normalImg":@"message_normal",@"selectImg":@"message_highlight",@"itemTitle":@"消息"},
       @{@"vc":nav4,@"normalImg":@"account_normal",@"selectImg":@"account_highlight",@"itemTitle":@"我的"}];
     // 1.遍历这个集合
     // 1.1 设置一个保存构造器的数组

@@ -213,4 +213,10 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestPraise_question:YX_BLOCK;
 #pragma mark ========== 点赞取消回答 ==========
 -(void)requestPraise_answer:YX_BLOCK;
+#pragma mark ========== 删除足迹 ==========
+-(void)requestDel_ZuJi:YX_BLOCK;
+#pragma mark ========== 删除问答 ==========
+-(void)requestDel_WenDa:YX_BLOCK;
+#pragma mark ========== 删除晒图 ==========
+-(void)requestDel_ShaiTU:YX_BLOCK;
 @end

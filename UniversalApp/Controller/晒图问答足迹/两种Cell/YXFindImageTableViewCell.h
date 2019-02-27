@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @interface YXFindImageTableViewCell : YXMineAndFindBaseTableViewCell
+
 @property (weak, nonatomic) IBOutlet UIImageView *titleImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *timeLbl;

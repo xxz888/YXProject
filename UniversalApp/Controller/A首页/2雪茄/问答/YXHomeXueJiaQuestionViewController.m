@@ -38,7 +38,10 @@
      [self requestQuestion];
 }
 -(void)pushTiWen{
-    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
     YXHomeQuestionFaBuViewController * VC = [[YXHomeQuestionFaBuViewController alloc]init];
     [self presentViewController:VC animated:YES completion:nil];
 }

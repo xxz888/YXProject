@@ -37,6 +37,9 @@
 @property (nonatomic,strong) UIButton *cancleButton;//取消
 @property (nonatomic,assign) BOOL showsHorizontalScrollIndicator;//是否显示滚动条
 
+@property (nonatomic,strong) NSString * isWho;
+- (void)tappedCancel;
+
 - (void)setShareAry:(NSArray *)shareAry delegate:(id)delegate;
 - (float)getBoderViewHeight:(NSArray *)shareAry firstCount:(NSInteger)count;
 

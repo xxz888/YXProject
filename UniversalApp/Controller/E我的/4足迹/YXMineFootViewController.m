@@ -23,15 +23,18 @@
     CGFloat height =  user_id_BOOL ? 64 : 0;
     
     self.yxTableView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight - 175 -kTopHeight - heightKK + height);
+    [self requestAction];
+}
+-(void)requestAction{
     user_id_BOOL ? [self requestZuJi_Other] : [self requestZuJi];
 }
 -(void)headerRereshing{
     [super headerRereshing];
-    user_id_BOOL ? [self requestZuJi_Other] : [self requestZuJi];
+    [self requestAction];
 }
 -(void)footerRereshing{
     [super footerRereshing];
-    user_id_BOOL ? [self requestZuJi_Other] : [self requestZuJi];
+    [self requestAction];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -62,8 +65,5 @@
     }
     self.dataArray = [self commonAction:object dataArray:self.dataArray];
     [self.yxTableView reloadData];
-}
--(void)requestAction{
-    user_id_BOOL ? [self requestZuJi_Other] : [self requestZuJi];
 }
 @end

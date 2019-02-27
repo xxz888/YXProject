@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark ========== 晒图点赞 ==========
 -(void)requestDianZan_Image_Action:(NSIndexPath *)indexPath;
 -(void)requestAction;
+-(void)requestMine_AllList;
 @end
 
 NS_ASSUME_NONNULL_END

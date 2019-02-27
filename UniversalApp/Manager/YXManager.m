@@ -633,7 +633,27 @@ successBlock(responseObject);\
     } failure:^(NSError *error) {}];
 }
 
-
+#pragma mark ========== 删除晒图 ==========
+-(void)requestDel_ShaiTU:YX_BLOCK{
+    NSString * url = @"/users/delete_post/";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ========== 删除问答 ==========
+-(void)requestDel_WenDa:YX_BLOCK{
+    NSString * url = @"/users/delete_question/";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ========== 删除足迹 ==========
+-(void)requestDel_ZuJi:YX_BLOCK{
+    NSString * url = @"/users/delete_track/";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 #pragma mark ========== 点赞取消提问 ==========
 -(void)requestPraise_question:YX_BLOCK{
     NSString * url = @"/users/praise_question/";

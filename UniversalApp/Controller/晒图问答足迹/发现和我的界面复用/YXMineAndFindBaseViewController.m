@@ -86,7 +86,7 @@
 #pragma mark ========== 图片 ==========
 -(YXFindImageTableViewCell *)customImageData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath whereCome:(BOOL)whereCome{
     YXFindImageTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFindImageTableViewCell" forIndexPath:indexPath];
-    
+    cell.tagId = [dic[@"id"] integerValue];
     NSString * str = [(NSMutableString *) (whereCome ? dic[@"pic1"]:dic[@"photo1"]) replaceAll:@" " target:@"%20"];
     [cell.midImageView sd_setImageWithURL:[NSURL URLWithString:str] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         
@@ -109,7 +109,9 @@
         whereCome ?  [weakself requestDianZan_ZuJI_Action:indexPath1] : [weakself requestDianZan_Image_Action:indexPath1];
     };
     cell.shareblock = ^(YXFindImageTableViewCell * cell) {
-        [weakself addGuanjiaShareView];
+        UserInfo * userInfo = curUser;
+        BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [userInfo.id integerValue];
+        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:cell.whereCome ? @"3" : @"1" tag:cell.tagId];
     };
     cell.jumpDetailVCBlock = ^(YXFindImageTableViewCell * cell) {
         NSIndexPath * indexPathSelect = [weakself.yxTableView indexPathForCell:cell];
@@ -135,6 +137,7 @@
 #pragma mark ========== 问答 ==========
 -(YXFindQuestionTableViewCell *)customQuestionData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath{
     YXFindQuestionTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFindQuestionTableViewCell" forIndexPath:indexPath];
+    cell.tagId = [dic[@"id"] integerValue];
     cell.titleImageView.tag = indexPath.row;
     cell.dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
     kWeakSelf(self);
@@ -150,7 +153,9 @@
         [weakself tableView:weakself.yxTableView didSelectRowAtIndexPath:indexPathSelect];
     };
     cell.shareQuestionblock = ^(YXFindQuestionTableViewCell * cell) {
-        [weakself addGuanjiaShareView];
+        UserInfo * userInfo = curUser;
+        BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [userInfo.id integerValue];
+        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"2" tag:cell.tagId];
     };
     //自定义cell的回调，获取要展开/收起的cell。刷新点击的cell
     cell.showMoreTextBlock = ^(YXFindQuestionTableViewCell * cell,NSMutableDictionary * dataDic){
@@ -274,26 +279,21 @@
     return moment;
 }
 #pragma mark ========== 分享 ==========
-- (void)addGuanjiaShareView {
-    NSArray *shareAry = @[@{@"image":@"shareView_wx",
-                            @"title":@"微信"},
-                          @{@"image":@"shareView_friend",
-                            @"title":@"朋友圈"},
-                          @{@"image":@"shareView_wb",
-                            @"title":@"新浪微博"},
-                          @{@"image":@"shareView_qq",
-                            @"title":@"QQ"},
-                          @{@"image":@"shareView_rr",
-                            @"title":@"其他"},
-                          @{@"image":@"",
-                            @"title":@""},
-                          @{@"image":@"",
-                            @"title":@""},
-                          @{@"image":@"share_copyLink",
-                            @"title":@"删除"},
-                          @{@"image":@"",
-                            @"title":@""}];
-    
+- (void)addGuanjiaShareViewIsOwn:(BOOL)isOwn isWho:(NSString *)isWho tag:(NSInteger)tagId{
+    NSMutableArray * shareAry = [NSMutableArray arrayWithObjects:
+                                 @{@"image":@"shareView_wx",
+                                   @"title":@"微信"},
+                                 @{@"image":@"shareView_friend",
+                                   @"title":@"朋友圈"},
+                                 @{@"image":@"shareView_wb",
+                                   @"title":@"新浪微博"},
+                                 @{@"image":@"shareView_rr",
+                                   @"title":@"其他"},
+                                 @{@"image":@"share_copyLink",
+                                   @"title":@"删除"},nil];
+    if (!isOwn) {
+        [shareAry removeObjectAtIndex:4];
+    }
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 54)];
     headerView.backgroundColor = [UIColor clearColor];
     
@@ -313,11 +313,13 @@
     lineLabel1.backgroundColor = [UIColor colorWithRed:208/255.0 green:208/255.0 blue:208/255.0 alpha:1.0];
     
     HXEasyCustomShareView *shareView = [[HXEasyCustomShareView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+    shareView.tag = tagId;
+    shareView.isWho = isWho;
     shareView.backView.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
     shareView.headerView = headerView;
-    float height = [shareView getBoderViewHeight:shareAry firstCount:7];
+    float height = [shareView getBoderViewHeight:shareAry firstCount:isOwn ? shareAry.count-1 : shareAry.count+1];
     shareView.boderView.frame = CGRectMake(0, 0, shareView.frame.size.width, height);
-    shareView.middleLineLabel.hidden = YES;
+    shareView.middleLineLabel.hidden = NO;
     [shareView.cancleButton addSubview:lineLabel1];
     shareView.cancleButton.frame = CGRectMake(shareView.cancleButton.frame.origin.x, shareView.cancleButton.frame.origin.y, shareView.cancleButton.frame.size.width, 54);
     shareView.cancleButton.titleLabel.font = [UIFont systemFontOfSize:16];
@@ -331,7 +333,24 @@
 #pragma mark HXEasyCustomShareViewDelegate
 
 - (void)easyCustomShareViewButtonAction:(HXEasyCustomShareView *)shareView title:(NSString *)title {
+    [shareView tappedCancel];
     NSLog(@"当前点击:%@",title);
+    kWeakSelf(self);
+    if ([title isEqualToString:@"删除"]) {
+        if ([shareView.isWho isEqualToString:@"1"]) {
+            [YX_MANAGER requestDel_ShaiTU:NSIntegerToNSString(shareView.tag) success:^(id object) {
+                [weakself requestAction];
+            }];
+        }else if ([shareView.isWho isEqualToString:@"2"]){
+            [YX_MANAGER requestDel_WenDa:NSIntegerToNSString(shareView.tag) success:^(id object) {
+                [weakself requestAction];
+            }];
+        }else if ([shareView.isWho isEqualToString:@"3"]){
+            [YX_MANAGER requestDel_ZuJi:NSIntegerToNSString(shareView.tag) success:^(id object) {
+                [weakself requestAction];
+            }];
+        }
+    }
 }
 
 

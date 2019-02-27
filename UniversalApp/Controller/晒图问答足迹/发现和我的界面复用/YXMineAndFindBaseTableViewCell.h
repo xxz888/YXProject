@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXMineAndFindBaseTableViewCell : UITableViewCell
+@property (nonatomic,assign) NSInteger tagId;
 +(CGSize)cellAutoHeight:(NSString *)string;
 -(void)openAndCloseAction:(NSDictionary *)dic openBtn:(UIButton *)openBtn layout:(NSLayoutConstraint *)layout text:(NSString *)text;
 -(void)cellValueDic:(NSDictionary *)dic searchBtn:(UIButton *)searchBtn pl1NameLbl:(UILabel *)pl1NameLbl pl2NameLbl:(UILabel *)pl2NameLbl pl1ContentLbl:(UILabel *)pl1ContentLbl pl2ContentLbl:(UILabel *)pl2ContentLbl titleImageView:(UIImageView *)titleImageView addPlImageView:(UIImageView *)addPlImageView talkCount:(UILabel *)talkCount titleLbl:(UILabel *)titleLbl timeLbl:(UILabel *)timeLbl mapBtn:(UIButton *)mapBtn likeBtn:(UIButton *)likeBtn zanCount:(UILabel *)zanCount;

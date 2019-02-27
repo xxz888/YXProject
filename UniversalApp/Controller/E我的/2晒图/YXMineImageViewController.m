@@ -31,18 +31,22 @@
     self.dataArray = [[NSMutableArray alloc]init];
     [self collectionViewCon];
     [self addCollectionViewRefreshView:self.yxCollectionView];
+    [self requestAction];
+}
+-(void)requestAction{
     user_id_BOOL ? [self requestOtherShaiTuList] : [self requestMineShaiTuList];
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 }
 -(void)headerRereshing{
     [super headerRereshing];
-    user_id_BOOL ? [self requestOtherShaiTuList] : [self requestMineShaiTuList];
+    [self requestAction];
 }
 -(void)footerRereshing{
     [super footerRereshing];
-    user_id_BOOL ? [self requestOtherShaiTuList] : [self requestMineShaiTuList];
+    [self requestAction];
 }
 
 -(void)collectionViewCon{
@@ -104,7 +108,7 @@
     kWeakSelf(self);
     NSString* post_id = kGetString(self.dataArray[indexPath.row][@"id"]);
     [YX_MANAGER requestPost_praisePOST:@{@"post_id":post_id} success:^(id object) {
-        user_id_BOOL ? [weakself requestOtherShaiTuList] : [weakself requestMineShaiTuList];
+        [self requestAction];
     }];
 }
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
