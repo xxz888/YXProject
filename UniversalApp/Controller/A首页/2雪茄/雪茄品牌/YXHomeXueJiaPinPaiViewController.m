@@ -18,7 +18,7 @@
 #import "YXHomeXueJiaPinPaiSearchViewController.h"
 @interface YXHomeXueJiaPinPaiViewController() <PYSearchViewControllerDelegate> {
         YXHomeXueJiaGuBaViewController *  VC1;
-        YXHomeXueJiaFeiGuViewController*  VC2;
+        YXHomeXueJiaFeiGuViewController*  VC22;
         YXHomeXueJiaMyGuanZhuViewController *  VC3;
         YXHomeXueJiaGuBaViewController *  VC4;
 }
@@ -58,7 +58,7 @@
         VC1 = [[YXHomeXueJiaGuBaViewController alloc]init];
         VC1.whereCome = self.whereCome;
 
-        VC2 = [[YXHomeXueJiaFeiGuViewController alloc]init];
+        VC22 = [[YXHomeXueJiaFeiGuViewController alloc]init];
         VC2.whereCome = self.whereCome;
  
         VC3 = [[YXHomeXueJiaMyGuanZhuViewController alloc]init];
@@ -66,7 +66,7 @@
         VC4 = [stroryBoard instantiateViewControllerWithIdentifier:@"YXHomeXueJiaGuBaViewController"];
     //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
     NSArray* names = self.whereCome ? @[@"古巴",@"非古"] : @[@"古巴",@"非古",@"我的关注"];
-    NSArray* controllers = @[VC1,VC2,VC3];
+    NSArray* controllers = @[VC1,VC22,VC3];
     [self setSegmentControllersArray:controllers title:names defaultIndex:0 top: kTopHeight view:self.view];
 }
 -(void)clickBackAction{
