@@ -214,7 +214,7 @@
         NSString *str1=[NSString stringWithFormat:@"%c",i];
         for(int j=0;j<modelArr.count;j++){
             NSDictionary * dic = [modelArr objectAtIndex:j];  //这个model 是我自己创建的 里面包含用户的姓名 手机号 和 转化成功后的首字母
-            if([[self firstCharactor:[self getLetter:dic[@"cigar_brand"]]] isEqualToString:str1]){
+            if([[self getLetter:dic[@"sort"]] isEqualToString:str1]){
                 [rulesArray addObject:dic];    //把首字母相同的人物model 放到同一个数组里面
                 [modelArr removeObject:dic];   //model 放到 rulesArray 里面说明这个model 已经拍好序了 所以从总的modelArr里面删除
                 j--;
