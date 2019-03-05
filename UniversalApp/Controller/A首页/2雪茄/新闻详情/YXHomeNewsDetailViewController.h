@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YXHomeNewsDetailViewController : RootWebViewController
 @property (nonatomic,strong) NSMutableDictionary * webDic;
+@property (nonatomic,strong) NSString * indexContent;
 
 @end
 

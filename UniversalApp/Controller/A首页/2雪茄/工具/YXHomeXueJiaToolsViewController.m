@@ -29,16 +29,9 @@
     [self setSegment];
 }
 -(void)setSegment{
-    if (!VC1) {
         VC1 = [[YXColorViewController alloc]init];
-    }
-    if (!VC2) {
         VC2 = [[YXXingZhuangViewController alloc]init];
-    }
-    if (!VC3) {
         VC3 = [[YXHomeChiCunViewController alloc]init];
-    }
-    
     
     NSArray* names = @[@"雪茄颜色",@"雪茄形状",@"尺寸工具"];
     NSArray* controllers = @[VC1,VC2,VC3];

@@ -152,7 +152,7 @@
 }
 - (IBAction)closeLoginView:(id)sender {
     [self dismissViewControllerAnimated:NO completion:^{
-        [[AppDelegate shareAppDelegate].mainTabBar setSelectedIndex:0];
+    
     }];
 
 

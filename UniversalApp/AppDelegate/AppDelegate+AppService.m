@@ -120,7 +120,10 @@
         anima.duration = 0.3f;
         
 //        self.window.rootViewController = loginNavi;
-        [self.window.rootViewController presentViewController:loginNavi animated:YES completion:nil];
+        [self.window.rootViewController presentViewController:loginNavi animated:YES completion:^{
+            VC.navigationController.tabBarController.hidesBottomBarWhenPushed=NO;
+            VC.navigationController.tabBarController.selectedIndex=0;
+        }];
         [kAppWindow.layer addAnimation:anima forKey:@"revealAnimation"];
         
     }

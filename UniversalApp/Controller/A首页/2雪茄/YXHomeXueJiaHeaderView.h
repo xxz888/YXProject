@@ -22,6 +22,7 @@ typedef void(^clickScrollImgBlock)(NSInteger);
 @property (nonatomic,weak) id<ClickGridView> delegate;
 @property(nonatomic, strong) NSArray *titleArray;
 @property(nonatomic, strong) NSArray *titleTagArray;
+@property(nonatomic,strong)NSMutableArray * scrollImgArray;
 
 @property (nonatomic,copy) clickScrollImgBlock scrollImgBlock;
 

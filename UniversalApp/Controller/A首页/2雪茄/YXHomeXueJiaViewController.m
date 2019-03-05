@@ -26,16 +26,29 @@
     //tableview列表
     [self createBottomTableView];
     //tableview请求
-    [self requestInformation];
-    kWeakSelf(self);
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        //顶部广告请求
-        [weakself requestAdvertising];
-    });
-    
-    
+    [self commonRequest];
+    [self addRefreshView:self.bottomTableView];
+
     //老板说第二页太卡，在这里做个缓存吧
 //    [self requestCigar_brand:@"1"];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+}
+-(void)commonRequest{
+    //tableview请求
+    [self requestInformation];
+    kWeakSelf(self);
+        //顶部广告请求
+        [self requestAdvertising];
+}
+-(void)headerRereshing{
+    [self commonRequest];
+}
+-(void)footerRereshing{
+    [self commonRequest];
+
 }
 -(void)requestCigar_brand:(NSString *)type{
     [YX_MANAGER requestCigar_brand:type success:^(id object) {
@@ -43,19 +56,14 @@
         YX_MANAGER.cache1Dic = object;
     }];
 }
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-
-
-  
-}
 -(void)requestInformation{
     kWeakSelf(self);
     [YX_MANAGER requestGETInformation:TYPE_XUEJIA_1 success:^(id object) {
         [weakself.informationArray removeAllObjects];
         [weakself.informationArray addObjectsFromArray:object];
         [weakself.bottomTableView reloadData];
-  
+        [weakself.bottomTableView.mj_footer endRefreshing];
+        [weakself.bottomTableView.mj_header endRefreshing];
 
     }];
 
@@ -63,15 +71,11 @@
 -(void)requestAdvertising{
     kWeakSelf(self);
     [YX_MANAGER requestGETAdvertising:TYPE_XUEJIA_1 success:^(id object) {
-        if ([object count] > 0) {
-            [weakself.headerView setUpSycleScrollView:object];
+//            [weakself.headerView setUpSycleScrollView:object];
             [weakself.scrollImgArray removeAllObjects];
             [weakself.scrollImgArray addObjectsFromArray:object];
-        }else{
             [weakself.bottomTableView.mj_footer endRefreshing];
-            [weakself.bottomTableView.mj_footer endRefreshing];
-
-        }
+            [weakself.bottomTableView.mj_header endRefreshing];
     }];
 }
 
@@ -100,12 +104,13 @@
     self.headerView.delegate = self;
     self.headerView.titleArray = @[@"雪茄品牌",@"雪茄文化",@"雪茄配件",@"工具",@"问答",@"品鉴足迹"];
     self.headerView.titleTagArray = @[@"Cigar Brand",@"Culture",@"Accessories",@"Tools",@"Q&A",@"Journey"];
+    self.headerView.scrollImgArray = [NSMutableArray arrayWithArray:self.scrollImgArray];
     kWeakSelf(self);
     self.headerView.scrollImgBlock = ^(NSInteger index) {
         YXHomeNewsDetailViewController * VC = [YXHomeNewsDetailViewController alloc];
         NSDictionary * dic = weakself.scrollImgArray[index];
         VC.webDic =[NSMutableDictionary dictionaryWithDictionary:dic];
-        [VC.webDic setValue:dic[@"character"] forKey:@"title"];
+        [VC.webDic setValue:dic[@"title"] forKey:@"title"];
         [VC.webDic setValue:@"" forKey:@"date"];
         [VC.webDic setValue:dic[@"character"] forKey:@"details"];
         [VC.webDic setValue:@"" forKey:@"author"];

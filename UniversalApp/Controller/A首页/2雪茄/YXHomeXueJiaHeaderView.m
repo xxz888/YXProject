@@ -12,7 +12,7 @@
 
 @interface YXHomeXueJiaHeaderView()<SDCycleScrollViewDelegate>
 @property(nonatomic)NSMutableArray * photoArray;
-@property(nonatomic)SDCycleScrollView *cycleScrollView3;
+@property(nonatomic,strong)SDCycleScrollView *cycleScrollView3;
 
 
 @end
@@ -24,6 +24,7 @@
 - (void)drawRect:(CGRect)rect {
     //九宫格
     [self createMiddleCollection:_titleArray titleTagArray:_titleTagArray];
+    [self setUpSycleScrollView:self.scrollImgArray];
 }
 
 
@@ -35,28 +36,30 @@
 }
 //添加轮播图
 - (void)setUpSycleScrollView:(NSMutableArray *)imageArray{
+    [self.underView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+
     NSMutableArray * photoArray = [NSMutableArray array];
     NSMutableArray * titleArray = [NSMutableArray array];
     for (NSDictionary * dic in imageArray) {
         [photoArray addObject:dic[@"photo"]];
-        [titleArray addObject:dic[@"character"]];
+        [titleArray addObject:dic[@"title"]];
     }
     
 
     if (!_cycleScrollView3) {
-            _cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, self.underView.frame.size.height) delegate:self placeholderImage:[UIImage imageNamed:@"img_moren"]];
-            [self.underView addSubview:_cycleScrollView3];
+            _cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, self.underView.frame.size.height) delegate:self placeholderImage:[UIImage imageNamed:@""]];
     }
+    [self.underView addSubview:_cycleScrollView3];
 
 
     _cycleScrollView3.bannerImageViewContentMode =  3;
     _cycleScrollView3.showPageControl = NO;
-    _cycleScrollView3.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
-    _cycleScrollView3.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
+    _cycleScrollView3.currentPageDotImage = [UIImage imageNamed:@""];
+    _cycleScrollView3.pageDotImage = [UIImage imageNamed:@""];
     _cycleScrollView3.autoScrollTimeInterval = 4;
     _cycleScrollView3.titlesGroup = titleArray;
     _cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];
-    
+
     
 
 }   

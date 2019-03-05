@@ -19,6 +19,7 @@
     self.title = _webDic[@"title"];
     self.webView.navigationDelegate = self;
     self.webView.frame =  CGRectMake(0, 0, KScreenWidth, KScreenHeight-kTopHeight);
+    
     //获取bundlePath 路径
     NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
     //获取本地html目录 basePath
@@ -29,9 +30,10 @@
     //html 路径
     NSString *indexPath = [NSString stringWithFormat:@"%@/HomeNewsDetail.html",basePath];
     //html 文件中内容
-    NSString *indexContent = [NSString stringWithContentsOfFile: indexPath encoding: NSUTF8StringEncoding error:nil];
+    //NSString *indexContent = [NSString stringWithContentsOfFile: indexPath encoding: NSUTF8StringEncoding error:nil];
+    
     //显示内容
-    [self.webView loadHTMLString: indexContent baseURL: baseUrl];
+    [self.webView loadHTMLString:_webDic[@"details"] baseURL: baseUrl];
 }
 #pragma mark - WKNavigationDelegate
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{

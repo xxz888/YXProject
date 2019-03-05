@@ -142,6 +142,7 @@
         self.titleColor = titleColor;
         self.titleSelectedColor = titleSelectedColor;
         self.sliderColor = sliderColor;
+        self.controllers = controllers;
     }
     return self;
 };

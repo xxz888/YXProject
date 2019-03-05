@@ -33,8 +33,6 @@
 
     [self.qmuiTextView becomeFirstResponder];
     [self.ttView addSubview:self.qmuiTextView];
-    
-
 }
 
 //新话题

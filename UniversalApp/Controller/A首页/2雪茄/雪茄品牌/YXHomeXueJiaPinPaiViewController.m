@@ -59,7 +59,7 @@
         VC1.whereCome = self.whereCome;
 
         VC22 = [[YXHomeXueJiaFeiGuViewController alloc]init];
-        VC2.whereCome = self.whereCome;
+        VC22.whereCome = self.whereCome;
  
         VC3 = [[YXHomeXueJiaMyGuanZhuViewController alloc]init];
 
