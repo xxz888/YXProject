@@ -7,6 +7,7 @@
 //
 
 #import "YXMessageViewController.h"
+#import "YXMessageThreeDetailViewController.h"
 
 @interface YXMessageViewController ()
 
@@ -19,21 +20,72 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.navigationItem.title = @"我的消息";
     self.view.backgroundColor = YXRGBAColor(239, 239, 239);
+    
+    [self setUI];
+    
+    [self getNewMessageNumeber];
+}
+-(void)setUI{
+    self.zanjb.layer.masksToBounds = YES;
+    self.zanjb.layer.cornerRadius = self.zanjb.frame.size.width / 2.0;
+    
+    self.fensijb.layer.masksToBounds = YES;
+    self.fensijb.layer.cornerRadius = self.fensijb.frame.size.width / 2.0;
+    
+    self.hdjb.layer.masksToBounds = YES;
+    self.hdjb.layer.cornerRadius = self.hdjb.frame.size.width / 2.0;
+    
+    //view添加点击事件
+    UITapGestureRecognizer *tapGesturRecognizer1=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
+    self.view1.tag = 1001;
+    [self.view1 addGestureRecognizer:tapGesturRecognizer1];
+    
+    UITapGestureRecognizer *tapGesturRecognizer2=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
+    self.view2.tag = 1002;
+    [self.view2 addGestureRecognizer:tapGesturRecognizer2];
+    
+    UITapGestureRecognizer *tapGesturRecognizer3 =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
+    self.view3.tag = 1003;
+    [self.view3 addGestureRecognizer:tapGesturRecognizer3];
+}
+-(void)tapAction:(id)sender{
+    UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;
+    UIView *views = (UIView*) tap.view;
+    NSUInteger tag = views.tag;
+    YXMessageThreeDetailViewController * VC = [[YXMessageThreeDetailViewController alloc]init];
+    switch (tag) {
+        case 1001:
+            VC.title = @"点赞消息";
+            VC.whereCome = 1;
+            break;
+        case 1002:
+            VC.title = @"新增粉丝";
+            VC.whereCome = 2;
+            break;
+        case 1003:
+            VC.title = @"评论互动";
+            VC.whereCome = 3;
+            break;
+        default:
+            break;
+    }
+    [self.navigationController pushViewController:VC animated:YES];
+}
+-(void)getNewMessageNumeber{
+    kWeakSelf(self);
+    [YX_MANAGER requestGETNewMessageNumber:@"" success:^(id object) {
+        weakself.zanjb.text = kGetString(object[@"praise_number"]);
+        weakself.fensijb.text = kGetString(object[@"comment_number"]);
+        weakself.hdjb.text = kGetString(object[@"fans_number"]);
+        
+        weakself.zanjb.hidden = [weakself.zanjb.text isEqualToString:@"0"];
+        weakself.fensijb.hidden = [weakself.fensijb.text isEqualToString:@"0"];
+        weakself.hdjb.hidden = [weakself.hdjb.text isEqualToString:@"0"];
+     
+    }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

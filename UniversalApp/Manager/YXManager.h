@@ -219,4 +219,13 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestDel_WenDa:YX_BLOCK;
 #pragma mark ========== 删除晒图 ==========
 -(void)requestDel_ShaiTU:YX_BLOCK;
+
+#pragma mark ========== 获取获取新消息数量 ==========
+-(void)requestGETNewMessageNumber:YX_BLOCK;
+#pragma mark ========== 获取新点赞信息 ==========
+-(void)requestGETCommenHistory:YX_BLOCK;
+#pragma mark ========== 获取新增粉丝列表 ==========
+-(void)requestGETFansHistory:YX_BLOCK;
+#pragma mark ========== 获取新评论历史记录 ==========
+-(void)requestGETPraiseHistory:YX_BLOCK;
 @end

@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *section1GuanZhuBtn;
 - (IBAction)section1GuanZhuAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextView *section1TextView;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @property (nonatomic,assign) BOOL whereCome;//yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewHeight;

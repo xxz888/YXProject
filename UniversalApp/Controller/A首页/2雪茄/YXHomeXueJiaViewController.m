@@ -10,6 +10,7 @@
 #import "YXHomeXueJiaViewController.h"
 #import <ZXSegmentController/ZXSegmentController.h>
 #import "YXHomeNewsDetailViewController.h"
+#import "GCDAsyncUdpSocket.h"
 
 @interface YXHomeXueJiaViewController ()<UITableViewDelegate,UITableViewDataSource,ClickGridView>
 
@@ -29,19 +30,32 @@
     [self commonRequest];
     [self addRefreshView:self.bottomTableView];
 
+    
+    [self getNewMessageNumeber];
     //老板说第二页太卡，在这里做个缓存吧
 //    [self requestCigar_brand:@"1"];
 }
+-(void)getNewMessageNumeber{
+    kWeakSelf(self);
+    [YX_MANAGER requestGETNewMessageNumber:@"" success:^(id object) {
+        NSInteger count = [object[@"fans_number"] integerValue] +
+        [object[@"comment_number"] integerValue] +
+        [object[@"praise_number"] integerValue];
+//        if (count > 0) {
+        [[AppDelegate shareAppDelegate].mainTabBar.axcTabBar setBadge:NSIntegerToNSString(count) index:3];
+
+//        }
+    }];
+}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
 }
+
 -(void)commonRequest{
     //tableview请求
     [self requestInformation];
-    kWeakSelf(self);
         //顶部广告请求
-        [self requestAdvertising];
+    [self requestAdvertising];
 }
 -(void)headerRereshing{
     [self commonRequest];
@@ -76,6 +90,8 @@
             [weakself.scrollImgArray addObjectsFromArray:object];
             [weakself.bottomTableView.mj_footer endRefreshing];
             [weakself.bottomTableView.mj_header endRefreshing];
+            [weakself.bottomTableView reloadData];
+
     }];
 }
 

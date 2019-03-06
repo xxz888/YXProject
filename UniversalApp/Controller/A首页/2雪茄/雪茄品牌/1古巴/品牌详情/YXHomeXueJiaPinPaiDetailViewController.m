@@ -38,16 +38,50 @@
     
     NSDictionary * cellData = self.dicStartData;
     //    textview 改变字体的行间距
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.lineSpacing = 10;// 字体的行间距
-    NSDictionary *attributes = @{
-                                 NSFontAttributeName:[UIFont systemFontOfSize:16],
-                                 NSParagraphStyleAttributeName:paragraphStyle
-                                 };
-    self.section1TextView.attributedText = [[NSAttributedString alloc] initWithString:kGetString(cellData[@"intro"]) attributes:attributes];
-    stringHeight = [self getSpaceLabelHeight:kGetString(cellData[@"intro"]) withFont:[UIFont systemFontOfSize:16] withWidth:KScreenWidth] + 50;
-    section0Height = stringHeight  > 120 ? tagHeight : tagHeight - 120 + stringHeight ;
+//    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+//    paragraphStyle.lineSpacing = 10;// 字体的行间距
+//    NSDictionary *attributes = @{
+//                                 NSFontAttributeName:[UIFont systemFontOfSize:16],
+//                                 NSParagraphStyleAttributeName:paragraphStyle
+//                                 };
+//    self.section1TextView.attributedText = [[NSAttributedString alloc] initWithString:kGetString(cellData[@"intro"]) attributes:attributes];
+//    stringHeight = [self getSpaceLabelHeight:kGetString(cellData[@"intro"]) withFont:[UIFont systemFontOfSize:16] withWidth:KScreenWidth] + 50;
+//    section0Height = stringHeight  > 120 ? tagHeight : tagHeight - 120 + stringHeight ;
     
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[cellData[@"intro"] dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    self.section1TextView.attributedText = attributedString;
+    
+//    NSString *str = [NSString stringWithFormat:@"<head><style>img{width:%f !important;height:auto}</style></head>%@",self.section1TextView.width,cellData[@"intro"]];
+//    
+//    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType }documentAttributes:nil error:nil];
+//    
+//     self.section1TextView.attributedText= attributedString;
+    //获取bundlePath 路径
+    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
+    //获取本地html目录 basePath
+    NSString *basePath = [NSString stringWithFormat:@"%@/%@",bundlePath,@"html"];
+    //获取本地html目录 baseUrl
+    NSURL *baseUrl = [NSURL fileURLWithPath: basePath isDirectory: YES];
+    NSString * html = [NSString stringWithFormat:@"<html> \n"
+                       "<head> \n"
+                       "<style type=\"text/css\"> \n"
+                       "body {font-size:15px;}\n"
+                       "</style> \n"
+                       "</head> \n"
+                       "<body>"
+                       "<script type='text/javascript'>"
+                       "window.onload = function(){\n"
+                       "var $img = document.getElementsByTagName('img');\n"
+                       "for(var p in  $img){\n"
+                       " $img[p].style.width = '100%%';\n"
+                       "$img[p].style.height ='auto'\n"
+                       "}\n"
+                       "}"
+                       "</script>%@"
+                       "</body>"
+                       "</html>",cellData[@"intro"]];
+    //显示内容
+    [self.webView loadHTMLString:html baseURL: baseUrl];
     
 }
 
@@ -178,7 +212,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
-        return self.whereCome ? 0 : section0Height;
+        return self.whereCome ? 0 : 430;
     }else{
         //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
         return self.whereCome ? 130 : 185;

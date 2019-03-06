@@ -668,6 +668,41 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
+
+
+
+#pragma mark ========== 获取获取新消息数量 ==========
+-(void)requestGETNewMessageNumber:YX_BLOCK{
+    NSString * url = @"/users/new_message_number/";
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {
+    }];
+}
+#pragma mark ========== 获取新增粉丝列表 ==========
+-(void)requestGETFansHistory:YX_BLOCK{
+    NSString * url = @"/users/fans_history/";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {
+    }];
+}
+#pragma mark ========== 获取新点赞信息 ==========
+-(void)requestGETCommenHistory:YX_BLOCK{
+    NSString * url = @"/users/comment_history/";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {
+    }];
+}
+#pragma mark ========== 获取新评论历史记录 ==========
+-(void)requestGETPraiseHistory:YX_BLOCK{
+    NSString * url = @"/users/praise_history/";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {
+    }];
+}
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

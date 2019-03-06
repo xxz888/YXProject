@@ -18,8 +18,16 @@
     [super viewDidLoad];
     self.title = _webDic[@"title"];
     self.webView.navigationDelegate = self;
-    self.webView.frame =  CGRectMake(0, 0, KScreenWidth, KScreenHeight-kTopHeight);
-    
+    self.webView.frame =  CGRectMake(5, 0, KScreenWidth-10, KScreenHeight-kTopHeight-34);
+    // 去掉webView的滚动条
+    for (UIView *subView in [self.webView subviews])
+    {
+        if ([subView isKindOfClass:[UIScrollView class]])
+        {
+            // 不显示竖直的滚动条
+            [(UIScrollView *)subView setShowsVerticalScrollIndicator:NO];
+        }
+    }
     //获取bundlePath 路径
     NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
     //获取本地html目录 basePath
@@ -31,9 +39,26 @@
     NSString *indexPath = [NSString stringWithFormat:@"%@/HomeNewsDetail.html",basePath];
     //html 文件中内容
     //NSString *indexContent = [NSString stringWithContentsOfFile: indexPath encoding: NSUTF8StringEncoding error:nil];
-    
+    NSString * html = [NSString stringWithFormat:@"<html> \n"
+                       "<head> \n"
+                       "<style type=\"text/css\"> \n"
+                       "body {font-size:15px;}\n"
+                       "</style> \n"
+                       "</head> \n"
+                       "<body>"
+                       "<script type='text/javascript'>"
+                       "window.onload = function(){\n"
+                       "var $img = document.getElementsByTagName('img');\n"
+                       "for(var p in  $img){\n"
+                       " $img[p].style.width = '100%%';\n"
+                       "$img[p].style.height ='auto'\n"
+                       "}\n"
+                       "}"
+                       "</script>%@"
+                       "</body>"
+                       "</html>",_webDic[@"details"]];
     //显示内容
-    [self.webView loadHTMLString:_webDic[@"details"] baseURL: baseUrl];
+    [self.webView loadHTMLString:html baseURL: baseUrl];
 }
 #pragma mark - WKNavigationDelegate
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{

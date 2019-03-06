@@ -10,5 +10,11 @@
 #import "RootTableViewController.h"
 
 @interface YXMessageViewController : RootTableViewController
+@property (weak, nonatomic) IBOutlet UILabel *zanjb;
+@property (weak, nonatomic) IBOutlet UILabel *fensijb;
+@property (weak, nonatomic) IBOutlet UILabel *hdjb;
+@property (weak, nonatomic) IBOutlet UIView *view1;
+@property (weak, nonatomic) IBOutlet UIView *view2;
+@property (weak, nonatomic) IBOutlet UIView *view3;
 
 @end

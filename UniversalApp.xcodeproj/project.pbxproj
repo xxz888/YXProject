@@ -558,6 +558,13 @@
 		BBECEEFF21F18404007E90AC /* YXGEPPinPaiDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBECEEFE21F18404007E90AC /* YXGEPPinPaiDetailHeaderView.xib */; };
 		BBECEF0621F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECEF0421F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.m */; };
 		BBECEF0721F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBECEF0521F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.xib */; };
+		BBF45E52222FC649005C52C4 /* YXMessageThreeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF45E51222FC648005C52C4 /* YXMessageThreeDetailViewController.m */; };
+		BBF45E56222FC680005C52C4 /* YXMessageThreeDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF45E54222FC680005C52C4 /* YXMessageThreeDetailViewCell.m */; };
+		BBF45E57222FC680005C52C4 /* YXMessageThreeDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBF45E55222FC680005C52C4 /* YXMessageThreeDetailViewCell.xib */; };
+		BBF45E5E222FD29A005C52C4 /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = BBF45E59222FD29A005C52C4 /* Documentation.html */; };
+		BBF45E5F222FD29A005C52C4 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF45E5A222FD29A005C52C4 /* GCDAsyncUdpSocket.m */; };
+		BBF45E60222FD29A005C52C4 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF45E5B222FD29A005C52C4 /* GCDAsyncSocket.m */; };
+		BBF45E63222FD478005C52C4 /* UDPManage.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF45E62222FD478005C52C4 /* UDPManage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1531,6 +1538,18 @@
 		BBECEF0321F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXGEFPinPaiDetailTableViewCell.h; sourceTree = "<group>"; };
 		BBECEF0421F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXGEFPinPaiDetailTableViewCell.m; sourceTree = "<group>"; };
 		BBECEF0521F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXGEFPinPaiDetailTableViewCell.xib; sourceTree = "<group>"; };
+		BBF45E50222FC648005C52C4 /* YXMessageThreeDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMessageThreeDetailViewController.h; sourceTree = "<group>"; };
+		BBF45E51222FC648005C52C4 /* YXMessageThreeDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMessageThreeDetailViewController.m; sourceTree = "<group>"; };
+		BBF45E53222FC680005C52C4 /* YXMessageThreeDetailViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMessageThreeDetailViewCell.h; sourceTree = "<group>"; };
+		BBF45E54222FC680005C52C4 /* YXMessageThreeDetailViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMessageThreeDetailViewCell.m; sourceTree = "<group>"; };
+		BBF45E55222FC680005C52C4 /* YXMessageThreeDetailViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMessageThreeDetailViewCell.xib; sourceTree = "<group>"; };
+		BBF45E59222FD29A005C52C4 /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Documentation.html; sourceTree = "<group>"; };
+		BBF45E5A222FD29A005C52C4 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
+		BBF45E5B222FD29A005C52C4 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		BBF45E5C222FD29A005C52C4 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		BBF45E5D222FD29A005C52C4 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		BBF45E61222FD478005C52C4 /* UDPManage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UDPManage.h; sourceTree = "<group>"; };
+		BBF45E62222FD478005C52C4 /* UDPManage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UDPManage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1681,6 +1700,8 @@
 				2917D2161EE02F9C00E76185 /* ShareManager.m */,
 				290A98031F4ABCD9006BF882 /* IAPManager.h */,
 				290A98041F4ABCD9006BF882 /* IAPManager.m */,
+				BBF45E61222FD478005C52C4 /* UDPManage.h */,
+				BBF45E62222FD478005C52C4 /* UDPManage.m */,
 				29AD6C681ED41E2100B0879C /* UserManager */,
 			);
 			path = Manager;
@@ -2855,6 +2876,11 @@
 			children = (
 				BBA812B121DDABC1001B5EA1 /* YXMessageViewController.h */,
 				BBA812B221DDABC1001B5EA1 /* YXMessageViewController.m */,
+				BBF45E50222FC648005C52C4 /* YXMessageThreeDetailViewController.h */,
+				BBF45E51222FC648005C52C4 /* YXMessageThreeDetailViewController.m */,
+				BBF45E53222FC680005C52C4 /* YXMessageThreeDetailViewCell.h */,
+				BBF45E54222FC680005C52C4 /* YXMessageThreeDetailViewCell.m */,
+				BBF45E55222FC680005C52C4 /* YXMessageThreeDetailViewCell.xib */,
 			);
 			path = "D消息";
 			sourceTree = "<group>";
@@ -2975,6 +3001,7 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BBF45E58222FD29A005C52C4 /* GCD */,
 				BBBFD7572222D7D300D377AC /* JJImagePicker */,
 				BB3DFE7D221D568D000C70B5 /* XHWebImageAutoSize */,
 				BB29122422156BDD00FF484E /* LLGifView */,
@@ -4427,6 +4454,18 @@
 			path = "球场及度假村";
 			sourceTree = "<group>";
 		};
+		BBF45E58222FD29A005C52C4 /* GCD */ = {
+			isa = PBXGroup;
+			children = (
+				BBF45E59222FD29A005C52C4 /* Documentation.html */,
+				BBF45E5A222FD29A005C52C4 /* GCDAsyncUdpSocket.m */,
+				BBF45E5B222FD29A005C52C4 /* GCDAsyncSocket.m */,
+				BBF45E5C222FD29A005C52C4 /* GCDAsyncUdpSocket.h */,
+				BBF45E5D222FD29A005C52C4 /* GCDAsyncSocket.h */,
+			);
+			path = GCD;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -4661,6 +4700,7 @@
 				BBC6180421F5AD5A00495619 /* YXHomeGolf.storyboard in Resources */,
 				BB29121D22156BB500FF484E /* Giant Perfecto.gif in Resources */,
 				BB3DFE9D221E8566000C70B5 /* YXFindSearchTableViewCell.xib in Resources */,
+				BBF45E57222FC680005C52C4 /* YXMessageThreeDetailViewCell.xib in Resources */,
 				BBC6180E21F5AE8200495619 /* YXHomeGolfScoreHeaderView.xib in Resources */,
 				BBCC4AA421E83DC000493F40 /* YXColorViewController.xib in Resources */,
 				BBDA2D0F21EB30BF00EDCCFF /* MLEmoji_Expression.plist in Resources */,
@@ -4734,6 +4774,7 @@
 				BB29121722156BB500FF484E /* Giant Corona.gif in Resources */,
 				293D46431ECDBB63007C64A9 /* icon_tabbar_homepage@2x.png in Resources */,
 				293D46441ECDBB63007C64A9 /* icon_tabbar_homepage_selected.png in Resources */,
+				BBF45E5E222FD29A005C52C4 /* Documentation.html in Resources */,
 				293D46491ECDBB63007C64A9 /* icon_tabbar_merchant_selected@2x.png in Resources */,
 				BB29122222156BB500FF484E /* Double Perfecto.gif in Resources */,
 				299610291ED84B5100BCED2A /* UMSocialSDKPromptResources.bundle in Resources */,
@@ -4823,6 +4864,7 @@
 				BB5FD89D21FF488E00B5F1A8 /* PublishMenuButton.m in Sources */,
 				BBD2C91621E0F67800350DCD /* LLImagePickerModel.m in Sources */,
 				29AD6C631ED3E4D600B0879C /* AppDelegate.m in Sources */,
+				BBF45E63222FD478005C52C4 /* UDPManage.m in Sources */,
 				290471B81F98D9A80081CCA1 /* UITabBar+CustomBadge.m in Sources */,
 				BBADE4C621F801080011E5FF /* UIColor+HEX.m in Sources */,
 				BBCC4AB821E86B6500493F40 /* YXHomeXueJiaFootViewController.m in Sources */,
@@ -4922,6 +4964,7 @@
 				BB6D2A4521EF7D8400F5049F /* YXHomeQuestionDetailHeaderView.m in Sources */,
 				BBBDCAB82226612200A9F2CB /* LoginLogic.m in Sources */,
 				29629EF11F78E669002CFCBD /* XLJSHandler.m in Sources */,
+				BBF45E52222FC649005C52C4 /* YXMessageThreeDetailViewController.m in Sources */,
 				29AD6C6B1ED41E2100B0879C /* UserManager.m in Sources */,
 				BBDA2C6821EB308100EDCCFF /* SDTimeLineRefreshHeader.m in Sources */,
 				29AD6C671ED41BA100B0879C /* AdPageView.m in Sources */,
@@ -5013,6 +5056,7 @@
 				290A981D1F4ABEB9006BF882 /* BaseRequestAPI.m in Sources */,
 				BB9832742201700C0048D103 /* FCXRefreshBaseView.m in Sources */,
 				BB6D2A3721EEC63900F5049F /* EmojiToolBar.m in Sources */,
+				BBF45E56222FC680005C52C4 /* YXMessageThreeDetailViewCell.m in Sources */,
 				BBD2C80E21E0F41F00350DCD /* YXMineImageViewController.m in Sources */,
 				BBD2C80D21E0F41F00350DCD /* YXMineFootViewController.m in Sources */,
 				BBADE4C821F801080011E5FF /* NSAttributedString+RichText.m in Sources */,
@@ -5038,6 +5082,7 @@
 				BB928F6121FACAE20090A044 /* YXMineSettingTableViewController.m in Sources */,
 				BBD2C96521E10E5500350DCD /* LTTextView.m in Sources */,
 				BB2A8EB6221BB0A300B6756A /* UILabel+String.m in Sources */,
+				BBF45E5F222FD29A005C52C4 /* GCDAsyncUdpSocket.m in Sources */,
 				BBDA2D2021EB30BF00EDCCFF /* SDRefreshHeaderView.m in Sources */,
 				BB9413D921F8B602007E800A /* IQTextView.m in Sources */,
 				BB6D2A0521EDA7F400F5049F /* BKStrikeLabel.m in Sources */,
@@ -5054,6 +5099,7 @@
 				29AD6C4D1ED3D51200B0879C /* OpenUDID.m in Sources */,
 				BBA812B321DDABC1001B5EA1 /* YXMessageViewController.m in Sources */,
 				BB9832722201700C0048D103 /* UIScrollView+FCXRefresh.m in Sources */,
+				BBF45E60222FD29A005C52C4 /* GCDAsyncSocket.m in Sources */,
 				BBD2C90321E0F67700350DCD /* TZGifPhotoPreviewController.m in Sources */,
 				296DEA721F5D50D100C6FD00 /* TAPageControl.m in Sources */,
 				BB9413DD21F8B602007E800A /* IQUIView+IQKeyboardToolbar.m in Sources */,

@@ -658,6 +658,13 @@
                                                         <action selector="section1GuanZhuAction:" destination="20N-5a-4Hm" eventType="touchUpInside" id="yDH-eI-wud"/>
                                                     </connections>
                                                 </button>
+                                                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NLR-xy-YFO">
+                                                    <rect key="frame" x="10" y="264" width="355" height="120"/>
+                                                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="20N-5a-4Hm" id="4IQ-fh-jPG"/>
+                                                    </connections>
+                                                </webView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="cwP-JO-zdH" firstAttribute="leading" secondItem="98x-WU-Gus" secondAttribute="leading" id="0Po-vH-RJr"/>
@@ -670,9 +677,12 @@
                                                 <constraint firstItem="pzz-vu-1jH" firstAttribute="top" secondItem="Nbb-Vg-PvY" secondAttribute="bottom" constant="20" id="M4L-Gl-B3H"/>
                                                 <constraint firstAttribute="trailing" secondItem="cwP-JO-zdH" secondAttribute="trailing" id="MfE-eA-fdS"/>
                                                 <constraint firstItem="7pD-IJ-QiE" firstAttribute="centerX" secondItem="pzz-vu-1jH" secondAttribute="centerX" multiplier="1.2" id="PM1-Ul-KUT"/>
+                                                <constraint firstItem="NLR-xy-YFO" firstAttribute="centerY" secondItem="cmT-Vd-Ofv" secondAttribute="centerY" id="PjC-Vq-WVE"/>
                                                 <constraint firstAttribute="trailing" secondItem="tD6-1U-ukQ" secondAttribute="trailing" id="Pz0-gW-1tX"/>
+                                                <constraint firstItem="NLR-xy-YFO" firstAttribute="width" secondItem="cmT-Vd-Ofv" secondAttribute="width" id="TUk-7O-8hV"/>
                                                 <constraint firstAttribute="trailing" secondItem="OY7-b8-owG" secondAttribute="trailing" id="UpO-GK-vVs"/>
                                                 <constraint firstItem="lCx-o6-84t" firstAttribute="top" secondItem="eLo-hq-TYk" secondAttribute="bottom" constant="-2.5" id="YnL-fR-ScY"/>
+                                                <constraint firstItem="NLR-xy-YFO" firstAttribute="centerX" secondItem="cmT-Vd-Ofv" secondAttribute="centerX" id="a0d-5z-DOI"/>
                                                 <constraint firstItem="eLo-hq-TYk" firstAttribute="top" secondItem="pzz-vu-1jH" secondAttribute="bottom" constant="10.5" id="aVG-T8-dNm"/>
                                                 <constraint firstItem="Nbb-Vg-PvY" firstAttribute="centerX" secondItem="98x-WU-Gus" secondAttribute="centerX" id="bPy-5e-RqY"/>
                                                 <constraint firstAttribute="bottom" secondItem="tD6-1U-ukQ" secondAttribute="bottom" id="d4b-r1-0w3"/>
@@ -683,6 +693,7 @@
                                                 <constraint firstItem="cmT-Vd-Ofv" firstAttribute="leading" secondItem="lCx-o6-84t" secondAttribute="leading" id="r4O-tK-NMo"/>
                                                 <constraint firstItem="lCx-o6-84t" firstAttribute="leading" secondItem="98x-WU-Gus" secondAttribute="leading" constant="10" id="wSK-ux-1r0"/>
                                                 <constraint firstItem="OY7-b8-owG" firstAttribute="leading" secondItem="98x-WU-Gus" secondAttribute="leading" id="y9l-qM-eg7"/>
+                                                <constraint firstItem="NLR-xy-YFO" firstAttribute="height" secondItem="cmT-Vd-Ofv" secondAttribute="height" id="yse-Qh-0As"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -713,7 +724,7 @@
                         <outlet property="section1TextView" destination="cmT-Vd-Ofv" id="UXL-7F-f5f"/>
                         <outlet property="section1TitleLbl" destination="pzz-vu-1jH" id="EDi-LW-gZC"/>
                         <outlet property="section1countLbl" destination="eLo-hq-TYk" id="4Ia-nJ-GCZ"/>
-                        <outlet property="textViewHeight" destination="NUM-ox-318" id="9Vu-hv-Sy1"/>
+                        <outlet property="webView" destination="NLR-xy-YFO" id="3yP-2a-zem"/>
                         <outlet property="zhushiHeight" destination="iOi-LP-wZq" id="Oxq-fT-HXU"/>
                     </connections>
                 </tableViewController>
