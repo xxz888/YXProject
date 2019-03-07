@@ -22,7 +22,11 @@
     self.dataArray = [[NSMutableArray alloc]init];
     [self tableviewCon];
     [self addRefreshView:self.yxTableView];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self commonRequest];
+
 }
 -(void)commonRequest{
     //点赞
@@ -109,6 +113,11 @@
         cell.lbl1Height.constant = 35;
         cell.lbl2Height.constant = 0;
         cell.guanZhuBtn.hidden = NO;
+       
+        NSInteger tag = [dic[@"is_like"] integerValue];
+        [ShareManager setGuanZhuStatus:cell.guanZhuBtn status:tag == 0 alertView:NO];
+        NSString * islike = tag == 1 ? @"互相关注" : @"关注";
+        [cell.guanZhuBtn setTitle:islike forState:UIControlStateNormal];
         cell.gzBlock = ^(YXMessageThreeDetailViewCell * cell) {
             [YX_MANAGER requestLikesActionGET:kGetString(cell.userId) success:^(id object) {
                 BOOL is_like = [cell.guanZhuBtn.titleLabel.text isEqualToString:@"关注"] == 1;

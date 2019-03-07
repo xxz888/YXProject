@@ -14,7 +14,6 @@
     [super awakeFromNib];
     self.titleImg.layer.masksToBounds = YES;
     self.titleImg.layer.cornerRadius = self.titleImg.frame.size.width / 2.0;
-    [ShareManager setGuanZhuStatus:self.guanZhuBtn status:YES alertView:NO];
     UITapGestureRecognizer *tapGesturRecognizer1=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
     self.titleImg.tag = 1001;
     [self.titleImg addGestureRecognizer:tapGesturRecognizer1];
