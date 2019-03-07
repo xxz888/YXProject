@@ -27,7 +27,6 @@
     //tableview列表
     [self createBottomTableView];
     //tableview请求
-    [self commonRequest];
     [self addRefreshView:self.bottomTableView];
 
     
@@ -49,6 +48,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self commonRequest];
 }
 
 -(void)commonRequest{

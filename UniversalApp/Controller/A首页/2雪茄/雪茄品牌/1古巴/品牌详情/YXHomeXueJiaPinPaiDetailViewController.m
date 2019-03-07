@@ -13,7 +13,7 @@
 #import "YXPublishFootViewController.h"
 #import "POPAnimation.h"
 
-@interface YXHomeXueJiaPinPaiDetailViewController()<ClickLikeBtnDelegate>{
+@interface YXHomeXueJiaPinPaiDetailViewController()<ClickLikeBtnDelegate,UIWebViewDelegate>{
     UIImage * _selImage;
     UIImage * _unImage;
     CGFloat section0Height;
@@ -32,59 +32,79 @@
     [self initData];
 }
 -(void)setSpace{
-    tagHeight = 430;
-    
-    
     
     NSDictionary * cellData = self.dicStartData;
-    //    textview 改变字体的行间距
-//    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-//    paragraphStyle.lineSpacing = 10;// 字体的行间距
-//    NSDictionary *attributes = @{
-//                                 NSFontAttributeName:[UIFont systemFontOfSize:16],
-//                                 NSParagraphStyleAttributeName:paragraphStyle
-//                                 };
-//    self.section1TextView.attributedText = [[NSAttributedString alloc] initWithString:kGetString(cellData[@"intro"]) attributes:attributes];
-//    stringHeight = [self getSpaceLabelHeight:kGetString(cellData[@"intro"]) withFont:[UIFont systemFontOfSize:16] withWidth:KScreenWidth] + 50;
-//    section0Height = stringHeight  > 120 ? tagHeight : tagHeight - 120 + stringHeight ;
+
     
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[cellData[@"intro"] dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
-    self.section1TextView.attributedText = attributedString;
     
-//    NSString *str = [NSString stringWithFormat:@"<head><style>img{width:%f !important;height:auto}</style></head>%@",self.section1TextView.width,cellData[@"intro"]];
-//    
-//    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType }documentAttributes:nil error:nil];
-//    
-//     self.section1TextView.attributedText= attributedString;
+    self.section1TextView.attributedText = attributedString;
+ 
+    
+    
+    self.webView.delegate = self;
     //获取bundlePath 路径
     NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
     //获取本地html目录 basePath
     NSString *basePath = [NSString stringWithFormat:@"%@/%@",bundlePath,@"html"];
     //获取本地html目录 baseUrl
     NSURL *baseUrl = [NSURL fileURLWithPath: basePath isDirectory: YES];
-    NSString * html = [NSString stringWithFormat:@"<html> \n"
-                       "<head> \n"
-                       "<style type=\"text/css\"> \n"
-                       "body {font-size:15px;}\n"
-                       "</style> \n"
-                       "</head> \n"
-                       "<body>"
-                       "<script type='text/javascript'>"
-                       "window.onload = function(){\n"
-                       "var $img = document.getElementsByTagName('img');\n"
-                       "for(var p in  $img){\n"
-                       " $img[p].style.width = '100%%';\n"
-                       "$img[p].style.height ='auto'\n"
-                       "}\n"
-                       "}"
-                       "</script>%@"
-                       "</body>"
-                       "</html>",cellData[@"intro"]];
     //显示内容
-    [self.webView loadHTMLString:html baseURL: baseUrl];
+    [self.webView loadHTMLString:[self adaptWebViewForHtml:cellData[@"intro"]] baseURL: baseUrl];
+
+}
+- (void)webViewDidFinishLoad:(UIWebView *)wb{
+      tagHeight = [[wb stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
+    [self.tableView reloadData];
+}
+//HTML适配图片文字
+- (NSString *)adaptWebViewForHtml:(NSString *) htmlStr
+{
+    NSMutableString *headHtml = [[NSMutableString alloc] initWithCapacity:0];
+    [headHtml appendString : @"<html>" ];
+    
+    [headHtml appendString : @"<head>" ];
+    
+    [headHtml appendString : @"<meta charset=\"utf-8\">" ];
+    
+    [headHtml appendString : @"<meta id=\"viewport\" name=\"viewport\" content=\"width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=false\" />" ];
+    
+    [headHtml appendString : @"<meta name=\"apple-mobile-web-app-capable\" content=\"yes\" />" ];
+    
+    [headHtml appendString : @"<meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black\" />" ];
+    
+    [headHtml appendString : @"<meta name=\"black\" name=\"apple-mobile-web-app-status-bar-style\" />" ];
+    
+    //适配图片宽度，让图片宽度等于屏幕宽度
+    //[headHtml appendString : @"<style>img{width:100%;}</style>" ];
+    //[headHtml appendString : @"<style>img{height:auto;}</style>" ];
+    
+    //适配图片宽度，让图片宽度最大等于屏幕宽度
+    //    [headHtml appendString : @"<style>img{max-width:100%;width:auto;height:auto;}</style>"];
+    
+    
+    //适配图片宽度，如果图片宽度超过手机屏幕宽度，就让图片宽度等于手机屏幕宽度，高度自适应，如果图片宽度小于屏幕宽度，就显示图片大小
+    [headHtml appendString : @"<script type='text/javascript'>"
+     "window.onload = function(){\n"
+     "var maxwidth=document.body.clientWidth;\n" //屏幕宽度
+     "for(i=0;i <document.images.length;i++){\n"
+     "var myimg = document.images[i];\n"
+     "if(myimg.width > maxwidth){\n"
+     "myimg.style.width = '100%';\n"
+     "myimg.style.height = 'auto'\n;"
+     "}\n"
+     "}\n"
+     "}\n"
+     "</script>\n"];
+    
+    [headHtml appendString : @"<style>table{width:100%;}</style>" ];
+    [headHtml appendString : @"<title>webview</title>" ];
+    NSString *bodyHtml;
+    bodyHtml = [NSString stringWithString:headHtml];
+    bodyHtml = [bodyHtml stringByAppendingString:htmlStr];
+    return bodyHtml;
     
 }
-
 -(CGFloat)getSpaceLabelHeight:(NSString*)str withFont:(UIFont*)font withWidth:(CGFloat)width {
     
     NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
@@ -115,7 +135,6 @@
 
 -(void)initData{
     NSDictionary * cellData = self.dicStartData;
-    self.textViewHeight.constant = stringHeight  > 120 ? 120 : stringHeight ;
 
     self.tableView.estimatedRowHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
@@ -212,7 +231,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
-        return self.whereCome ? 0 : 430;
+        return self.whereCome ? 0 : [self.openBtn.titleLabel.text isEqualToString:@"↑ 收起"]  ? 430-120+tagHeight + 22 : 430;
     }else{
         //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
         return self.whereCome ? 130 : 185;
@@ -300,19 +319,21 @@
 
 - (IBAction)openAction:(id)sender {
     if ([self.openBtn.titleLabel.text isEqualToString:@"↓ 展开"]) {
-        self.textViewHeight.constant =  stringHeight ;
-        section0Height =  tagHeight - 120 + 20 + stringHeight ;
-        [self.openBtn setTitle:@"↑ 收起" forState:UIControlStateNormal];
-        
+//        self.textViewHeight.constant =  stringHeight ;
+//        section0Height =  tagHeight - 120 + 20 + stringHeight ;
         self.zhushiHeight.constant = 22;
-
+        self.textViewHeight.constant = tagHeight;
+        [self.openBtn setTitle:@"↑ 收起" forState:UIControlStateNormal];
 
     }else{
-        self.textViewHeight.constant = stringHeight  > 120 ? 120 : stringHeight ;
-        section0Height = stringHeight  > 120 ? tagHeight : tagHeight - 120 + stringHeight ;
-        [self.openBtn setTitle:@"↓ 展开" forState:UIControlStateNormal];
+//        self.textViewHeight.constant = stringHeight  > 120 ? 120 : stringHeight ;
+//        section0Height = stringHeight  > 120 ? tagHeight : tagHeight - 120 + stringHeight ;
         [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
         self.zhushiHeight.constant = 0;
+        self.textViewHeight.constant = 120;
+
+        [self.openBtn setTitle:@"↓ 展开" forState:UIControlStateNormal];
+
 
     }
     [self.tableView reloadData];
