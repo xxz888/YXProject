@@ -105,7 +105,7 @@
         [YX_MANAGER requestGetFind_user_id:user_id_BOOL ? self.userId : self.userInfo.id success:^(id object) {
             [weakself personValue:object];
         }];
-        [YX_MANAGER requestLikesGET:@"4" success:^(id object) {
+        [YX_MANAGER requestLikesGET:@"4/0/1/" success:^(id object) {
             weakself.guanzhuCountLbl.text = kGetString(object[@"like_number"]);
             weakself.fensiCountLbl.text = kGetString(object[@"fans_number"]);
             weakself.tieshuCountLbl.text = kGetString(object[@"pubulish_number"]);

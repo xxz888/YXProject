@@ -11,6 +11,7 @@
 #import "UIColor+MyColor.h"
 #import "MMImageListView.h"
 #import "SELUpdateAlert.h"
+#import "UDPManage.h"
 @implementation ShareManager
 
 SINGLETON_FOR_CLASS(ShareManager);
@@ -604,5 +605,18 @@ SINGLETON_FOR_CLASS(ShareManager);
         }
     }];
     [dataTask resume];
+}
+
++(void)upDataPersionIP{
+    UserInfo *userInfo = curUser;
+    NSDictionary * dic = @{@"username":kGetString(userInfo.username),
+                           @"gender":kGetString(userInfo.gender),
+                           @"photo":kGetString(userInfo.photo),
+                           @"birthday":kGetString(userInfo.birthday),
+                           @"site":kGetString(userInfo.site),
+                           @"ip":[[UDPManage shareUDPManage] getIPAddress:YES]};
+    [YX_MANAGER requestUpdate_userPOST:dic success:^(id object) {
+        
+    }];
 }
 @end

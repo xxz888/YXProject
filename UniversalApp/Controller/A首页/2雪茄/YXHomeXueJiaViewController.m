@@ -11,7 +11,7 @@
 #import <ZXSegmentController/ZXSegmentController.h>
 #import "YXHomeNewsDetailViewController.h"
 #import "GCDAsyncUdpSocket.h"
-
+#import "UDPManage.h"
 @interface YXHomeXueJiaViewController ()<UITableViewDelegate,UITableViewDataSource,ClickGridView>
 
 @end
@@ -30,22 +30,15 @@
     [self addRefreshView:self.bottomTableView];
 
     
-    [self getNewMessageNumeber];
+    if ([userManager loadUserInfo]) {
+        [ShareManager upDataPersionIP];
+        [[UDPManage shareUDPManage] getNewMessageNumeber];
+        [[UDPManage shareUDPManage] createClientUdpSocket];
+    }
     //老板说第二页太卡，在这里做个缓存吧
 //    [self requestCigar_brand:@"1"];
 }
--(void)getNewMessageNumeber{
-    kWeakSelf(self);
-    [YX_MANAGER requestGETNewMessageNumber:@"" success:^(id object) {
-        NSInteger count = [object[@"fans_number"] integerValue] +
-        [object[@"comment_number"] integerValue] +
-        [object[@"praise_number"] integerValue];
-//        if (count > 0) {
-        [[AppDelegate shareAppDelegate].mainTabBar.axcTabBar setBadge:NSIntegerToNSString(count) index:3];
 
-//        }
-    }];
-}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self commonRequest];

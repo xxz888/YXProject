@@ -51,4 +51,5 @@ SINGLETON_FOR_HEADER(ShareManager)
 +(UIView *)getMainView;
 +(CGFloat)getOldImageSizeWithURL:(id)URL;
 + (void)updateApp;
++(void)upDataPersionIP;
 @end

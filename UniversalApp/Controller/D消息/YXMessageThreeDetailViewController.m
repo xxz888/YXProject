@@ -8,6 +8,7 @@
 
 #import "YXMessageThreeDetailViewController.h"
 #import "YXMessageThreeDetailViewCell.h"
+#import "YXMineViewController.h"
 @interface YXMessageThreeDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView * yxTableView;
 @property(nonatomic,strong)NSMutableArray * dataArray;
@@ -89,6 +90,11 @@
     [cell.titleImg sd_setImageWithURL:[NSURL URLWithString:dic[@"user_photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cell.lbl1.text = dic[@"user_name"];
     cell.lbl3.text =  [ShareManager timestampSwitchTime:[dic[@"fans_time"] integerValue] andFormatter:@""];
+    cell.userId = dic[@"user_id"];
+    kWeakSelf(self);
+    cell.imgBlock = ^(YXMessageThreeDetailViewCell * cell) {
+        [weakself clickUserImageView:kGetString(cell.userId)];
+    };
     //点赞
     if (self.whereCome == 1) {
         cell.lbl1Tag.text = @"赞了你的帖子";
@@ -102,6 +108,15 @@
         cell.lbl3.text =  [ShareManager timestampSwitchTime:[dic[@"fans_time"] integerValue] andFormatter:@""];
         cell.lbl1Height.constant = 35;
         cell.lbl2Height.constant = 0;
+        cell.guanZhuBtn.hidden = NO;
+        cell.gzBlock = ^(YXMessageThreeDetailViewCell * cell) {
+            [YX_MANAGER requestLikesActionGET:kGetString(cell.userId) success:^(id object) {
+                BOOL is_like = [cell.guanZhuBtn.titleLabel.text isEqualToString:@"关注"] == 1;
+                [ShareManager setGuanZhuStatus:cell.guanZhuBtn status:!is_like alertView:YES];
+                NSString * islike = is_like ? @"互相关注" : @"关注";
+                [cell.guanZhuBtn setTitle:islike forState:UIControlStateNormal];
+            }];
+        };
 
     }else if(self.whereCome == 3){
         cell.lbl1Tag.text = @"评论了你的帖子";
@@ -115,6 +130,21 @@
     
     return cell;
 }
+#pragma mark ========== 头像点击 ==========
+-(void)clickUserImageView:(NSString *)userId{
+    UserInfo *userInfo = curUser;
+    if ([userInfo.id isEqualToString:userId]) {
+        self.navigationController.tabBarController.selectedIndex = 4;
+        return;
+    }
+    UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+    YXMineViewController * mineVC = [stroryBoard5 instantiateViewControllerWithIdentifier:@"YXMineViewController"];
+    mineVC.userId = userId;
+    mineVC.whereCome = YES;    //  YES为其他人 NO为自己
+    [self.navigationController pushViewController:mineVC animated:YES];
+    
+}
+
 /*
 #pragma mark - Navigation
 

@@ -12,7 +12,7 @@
 //#import "OpenUDID.h"
 #import <YTKNetwork.h>
 #import "SaltedFishTabBarVC.h"
-
+#import "UDPManage.h"
 @implementation AppDelegate (AppService)
 
 
@@ -225,7 +225,6 @@
 {
     // 网络状态改变一次, networkStatusWithBlock就会响应一次
     [PPNetworkHelper networkStatusWithBlock:^(PPNetworkStatusType networkStatus) {
-        
         switch (networkStatus) {
                 // 未知网络
             case PPNetworkStatusUnknown:
@@ -244,7 +243,11 @@
                 KPostNotification(KNotificationNetWorkStateChange, @YES);
                 break;
         }
-        
+        if ([userManager loadUserInfo]) {
+            [ShareManager upDataPersionIP];
+            [[UDPManage shareUDPManage] getNewMessageNumeber];
+            [[UDPManage shareUDPManage] createClientUdpSocket];
+        }
     }];
     
 }

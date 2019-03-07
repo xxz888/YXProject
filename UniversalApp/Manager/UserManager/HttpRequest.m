@@ -74,17 +74,12 @@ var c = a + b
                 sucess(obj);
             }else{
                 if (![obj[@"message"] isEqualToString:@"查询无数据"]) {
-                    /*
+                
                     if ([obj[@"message"] isEqualToString:@"未登陆"] && [obj[@"status"] integerValue] == -1){
-                        if (![userManager loadUserInfo]) {
-                            KPostNotification(KNotificationLoginStateChange, @NO);
-                           
-                            //0表示返回到tabor第一个按钮的主页面，依此类推
-                            return;
-                        }
+                     
+                    }else{
+                        [QMUITips showError:obj[@"message"] inView:view hideAfterDelay:1];
                     }
-                     */
-                    [QMUITips showError:obj[@"message"] inView:view hideAfterDelay:1];
                 }
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     

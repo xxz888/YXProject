@@ -13,6 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UDPManage : NSObject
 +(instancetype)shareUDPManage;
 -(void)broadcast;
+-(void)beginReceiving;
+-(void)createClientUdpSocket;
+-(void)getNewMessageNumeber;
+- (NSString *)getIPAddress:(BOOL)preferIPv4;
 @end
 
 NS_ASSUME_NONNULL_END

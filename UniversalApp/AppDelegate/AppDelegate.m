@@ -37,7 +37,7 @@
     [self initUserManager];
     
     //网络监听
-    //[self monitorNetworkStatus];
+    [self monitorNetworkStatus];
     
     
     //初始化QMUI

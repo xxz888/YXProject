@@ -194,8 +194,13 @@ static AxcAE_TabBarItem *lastItem;
 }
 - (void)setBadge:(NSString *)Badge index:(NSUInteger)index{
     if (index < self.items.count) {
+       
         AxcAE_TabBarItem *item = self.items[index];
         item.badge = Badge;
+        if ([Badge isEqualToString:@"0"]) {
+            item.badgeLabel.hidden = YES;
+        }
+
     }else{
         NSException *excp = [NSException exceptionWithName:@"AxcAE_TabBar Error"
                                                     reason:@"设置脚标越界！" userInfo:nil];

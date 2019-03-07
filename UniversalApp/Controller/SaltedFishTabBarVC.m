@@ -145,6 +145,9 @@ static NSInteger lastIdx = 0;
         [self presentViewController:vc animated:NO completion:nil];
     }else{ // 点击了中间的
         
+        if (index == 3) {
+            [[AppDelegate shareAppDelegate].mainTabBar.axcTabBar setBadge:NSIntegerToNSString(0) index:3];
+        }
         UIView * view;
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11) {
             view = [[UIApplication sharedApplication].windows firstObject];

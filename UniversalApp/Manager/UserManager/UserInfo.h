@@ -38,6 +38,8 @@ typedef NS_ENUM(NSInteger,UserGender){
 @property (nonatomic, strong)NSString *  photo;
 @property (nonatomic, strong)NSString *  token;
 @property (nonatomic, strong)NSString *  province;
+@property (nonatomic, strong)NSString *  birthday;
 
+@property (nonatomic, strong)NSString *  site;
 
 @end

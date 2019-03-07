@@ -10,7 +10,7 @@
 #import <UMSocialCore/UMSocialCore.h>
 #import <AVFoundation/AVFoundation.h>
 #import "UIButton+CountDown.h"
-
+#import "UDPManage.h"
 @interface LoginViewController ()
 //1 播放器
 @property (strong, nonatomic) AVPlayer *player;

@@ -23,7 +23,11 @@
     
     [self setUI];
     
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self getNewMessageNumeber];
+
 }
 -(void)setUI{
     self.zanjb.layer.masksToBounds = YES;
@@ -57,14 +61,17 @@
         case 1001:
             VC.title = @"点赞消息";
             VC.whereCome = 1;
+            self.zanjb.hidden = YES;
             break;
         case 1002:
             VC.title = @"新增粉丝";
             VC.whereCome = 2;
+            self.fensijb.hidden = YES;
             break;
         case 1003:
             VC.title = @"评论互动";
             VC.whereCome = 3;
+            self.hdjb.hidden = YES;
             break;
         default:
             break;
