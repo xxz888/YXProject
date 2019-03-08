@@ -75,7 +75,7 @@ var c = a + b
             }else{
                 if (![obj[@"message"] isEqualToString:@"查询无数据"]) {
                 
-                    if ([obj[@"message"] isEqualToString:@"未登陆"] && [obj[@"status"] integerValue] == -1){
+                    if ([obj[@"status"] integerValue] == -1){
                      
                     }else{
                         [QMUITips showError:obj[@"message"] inView:view hideAfterDelay:1];

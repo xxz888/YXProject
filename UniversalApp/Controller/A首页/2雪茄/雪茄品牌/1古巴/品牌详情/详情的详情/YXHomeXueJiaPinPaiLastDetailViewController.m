@@ -118,7 +118,7 @@ static CGFloat textFieldH = 40;
     
     
     // 设置 view 的 frame(将设置 frame 提到设置 tableHeaderView 之前)
-    self.lastDetailView.frame = CGRectMake(0, 0, kScreenWidth, AxcAE_IsiPhoneX ? 665 : 730 + height);
+    self.lastDetailView.frame = CGRectMake(0, 0, kScreenWidth,  800 + height);
     // 设置 tableHeaderView
     self.yxTableView.tableHeaderView = self.lastDetailView;
     

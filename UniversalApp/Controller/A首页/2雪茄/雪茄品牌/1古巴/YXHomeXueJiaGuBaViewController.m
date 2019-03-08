@@ -17,28 +17,25 @@
 @implementation YXHomeXueJiaGuBaViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self requestCigar_brand:@"1"];
 }
 -(void)viewDidLoad{
     [super viewDidLoad];
     self.title = @"雪茄品牌";
 
-    UILabel *label = [[UILabel alloc]init];
-    label.textColor = KBlackColor;
-    label.font = [UIFont systemFontOfSize:14];
-    label.frame = CGRectMake(15, 10 , 100, 30);
-    label.text = @"热门推荐";
-    [self.view addSubview:label];
+
     
     self.indexArray = [[NSMutableArray alloc]init];
     self.dataArray = [[NSMutableArray alloc]init];
     self.hotDataArray = [[NSMutableArray alloc]init];
-    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(5, 40, KScreenWidth-10, kScreenHeight-kTopHeight-kTabBarHeight - 30) style:0];
+    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(5, 0, KScreenWidth-10, kScreenHeight-kTopHeight-kTabBarHeight - 30) style:0];
     [self.view addSubview:self.yxTableView];
     self.yxTableView.delegate = self;
     self.yxTableView.dataSource= self;
     self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaPinPaiTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaPinPaiTableViewCell"];
+    
+    [self requestCigar_brand:@"1"];
+
 }
 -(void)requestCigar_brand:(NSString *)type{
     kWeakSelf(self);
@@ -61,14 +58,36 @@
 //九宫格
 - (void)createMiddleCollection{
    [self.yxTableView.tableHeaderView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+
+ 
     if (!self.gridView) {
         self.gridView = [[QMUIGridView alloc] init];
     }
+    
+    
+    
+    
+    
+    
     float height = 80;
     NSInteger count = [self.hotDataArray count];
     count = count <= 4 ? 1 : 2;
-    self.gridView.frame = CGRectMake(10, 0, KScreenWidth-20, height*count);
-    self.yxTableView.tableHeaderView = self.gridView;
+    
+    
+    UIView * view = [[UIView alloc]init];
+    view.frame = CGRectMake(10, 0, KScreenWidth-20, height*count + 40);
+    UILabel *label = [[UILabel alloc]init];
+    label.textColor = KBlackColor;
+    label.font = [UIFont systemFontOfSize:14];
+    label.frame = CGRectMake(10, 5 , 100, 30);
+    label.text = @"热门推荐";
+    [view addSubview:label];
+    
+    self.gridView.frame = CGRectMake(10, 30, KScreenWidth-20, height*count);
+    [view addSubview:self.gridView];
+    
+    
+    self.yxTableView.tableHeaderView = view;
 
     self.gridView.columnCount = 4;
     self.gridView.rowHeight = height;

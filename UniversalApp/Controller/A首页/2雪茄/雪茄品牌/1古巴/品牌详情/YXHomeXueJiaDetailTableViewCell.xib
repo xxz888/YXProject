@@ -269,7 +269,7 @@
                 <outlet property="stackView1" destination="yyQ-iC-pjL" id="6X0-DW-x8S"/>
                 <outlet property="zanCountLbl" destination="0K4-m0-ddS" id="Wce-HW-7pK"/>
             </connections>
-            <point key="canvasLocation" x="-2097" y="-127"/>
+            <point key="canvasLocation" x="-2098.4000000000001" y="-127.736131934033"/>
         </view>
     </objects>
     <resources>

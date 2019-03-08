@@ -47,7 +47,9 @@ typedef void(^SearchAllActionBlock)(void);
 @property (weak, nonatomic) IBOutlet UIView *lastRanShaoFiveView;
 @property (weak, nonatomic) IBOutlet UIView *lastKouGanFiveView;
 @property (weak, nonatomic) IBOutlet UIView *lastXiangWeiFiveView;
+@property (weak, nonatomic) IBOutlet UILabel *xingzhuangLbl;
 
+@property (weak, nonatomic) IBOutlet UILabel *zhongwenName;
 
 @property (weak, nonatomic) IBOutlet UIButton *lastSearchAllBtn;
 - (IBAction)lastSearchAllAction:(id)sender;
@@ -59,6 +61,7 @@ typedef void(^SearchAllActionBlock)(void);
 @property (weak, nonatomic) IBOutlet UILabel *lastXiangWeiLbl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *lastSegmentControl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *sixViewHeight;
+@property (weak, nonatomic) IBOutlet UILabel *nongduLbl;
 - (IBAction)lastSegmentAction:(id)sender;
 @end
 

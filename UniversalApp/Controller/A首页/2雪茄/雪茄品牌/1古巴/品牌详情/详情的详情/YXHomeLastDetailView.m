@@ -71,6 +71,12 @@
     self.lastChangDuLbl.text = kGetString(startDic[@"length"]);
     //口味
     self.lastXiangWeiLbl.text = kGetString(startDic[@"flavour"]);
+    //中文名
+    self.zhongwenName.text = kGetString(startDic[@"cigar_name_CN"]);
+    //形状
+    self.xingzhuangLbl.text = kGetString(startDic[@"shape"]);
+    //浓度
+    self.nongduLbl.text = kGetString(startDic[@"strength"]);
 }
 -(void)fiveStarViewUIAllDataDic_PingJunFen:(NSDictionary *)allDataDic{
     //总分的五颗星

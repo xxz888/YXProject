@@ -212,7 +212,7 @@
         cell.section2TitleLbl.text = cellData[@"cigar_name"];
         cell.section2Lbl1.text = [kGetString(cellData[@"ring_gauge"]) concate:@"环径:"] ;
         cell.section2Lbl2.text = [kGetString(cellData[@"length"]) concate:@"长度:"];
-        cell.section2Lbl3.text = [kGetString(cellData[@"shape"]) concate:@"形状:"];
+        cell.section2Lbl3.text = [kGetString(cellData[@"shape"]) concate:@"品型:"];
         cell.section2Lbl4.text = [kGetString(cellData[@"price_box_china"]) append:@"元"];
         cell.section2Lbl5.text = [kGetString(cellData[@"price_single_china"]) append:@"元/支"];
         cell.section2Lbl6.text = [NSString stringWithFormat:@"%@/盒(%@支)",cellData[@"price_box_china"],cellData[@"box_size"]];
