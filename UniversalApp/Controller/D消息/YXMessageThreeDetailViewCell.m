@@ -17,6 +17,8 @@
     UITapGestureRecognizer *tapGesturRecognizer1=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
     self.titleImg.tag = 1001;
     [self.titleImg addGestureRecognizer:tapGesturRecognizer1];
+    
+    ViewRadius(self.rightImv, 3);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

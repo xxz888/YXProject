@@ -10,7 +10,7 @@
 #import "XHStarRateView.h"
 #import "SDCycleScrollView.h"
 #import "MMImagePreviewView.h"
-
+#import "Moment.h"
 /**
  分享 相关服务
  */
@@ -52,4 +52,5 @@ SINGLETON_FOR_HEADER(ShareManager)
 +(CGFloat)getOldImageSizeWithURL:(id)URL;
 + (void)updateApp;
 +(void)upDataPersionIP;
++(Moment *)setTestInfo:(NSDictionary *)dic;
 @end

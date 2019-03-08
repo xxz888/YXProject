@@ -9,6 +9,13 @@
 #import "YXMessageThreeDetailViewController.h"
 #import "YXMessageThreeDetailViewCell.h"
 #import "YXMineViewController.h"
+#import "YXMineImageDetailViewController.h"
+#import "YXFindImageTableViewCell.h"
+#import "YXMineFootDetailViewController.h"
+#import "YXFindImageTableViewCell.h"
+#import "YXHomeXueJiaQuestionDetailViewController.h"
+#import "XHWebImageAutoSize.h"
+#import "YXHomeXueJiaPinPaiLastDetailViewController.h"
 @interface YXMessageThreeDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView * yxTableView;
 @property(nonatomic,strong)NSMutableArray * dataArray;
@@ -95,14 +102,22 @@
     cell.lbl1.text = dic[@"user_name"];
     cell.lbl3.text =  [ShareManager timestampSwitchTime:[dic[@"fans_time"] integerValue] andFormatter:@""];
     cell.userId = dic[@"user_id"];
+    
+    
+    [cell.rightImv sd_setImageWithURL:[NSURL URLWithString:dic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+
     kWeakSelf(self);
     cell.imgBlock = ^(YXMessageThreeDetailViewCell * cell) {
         [weakself clickUserImageView:kGetString(cell.userId)];
     };
+    NSString * nameTitle = [kGetString(dic[@"post_type"])  isEqualToString:@"1"] ? @"晒图" :
+    [kGetString(dic[@"post_type"]) isEqualToString:@"2"] ? @"足迹" :
+    [kGetString(dic[@"post_type"]) isEqualToString:@"3"] ? @"问答" : @"雪茄点评";
     //点赞
     if (self.whereCome == 1) {
-        cell.lbl1Tag.text = @"赞了你的帖子";
+        cell.lbl1Tag.text = [@"赞了你的" append:nameTitle];
         cell.lbl2.hidden = YES;
+        cell.rightImv.hidden = NO;
         cell.lbl3.text =  [ShareManager timestampSwitchTime:[dic[@"praise_time"] integerValue] andFormatter:@""];
         cell.lbl1Height.constant = 35;
         cell.lbl2Height.constant = 0;
@@ -128,7 +143,8 @@
         };
 
     }else if(self.whereCome == 3){
-        cell.lbl1Tag.text = @"评论了你的帖子";
+        cell.lbl1Tag.text = [@"评论了你的" append:nameTitle];
+        cell.rightImv.hidden = NO;
         cell.lbl2.hidden = NO;
         cell.lbl3.text =  [ShareManager timestampSwitchTime:[dic[@"comment_time"] integerValue] andFormatter:@""];
         cell.lbl1Height.constant = 70/3;
@@ -136,7 +152,9 @@
 
         cell.lbl2.text = [dic[@"comment"] UnicodeToUtf8];
     }
-    
+    if ([kGetString(dic[@"photo"]) isEqualToString:@""]) {
+        cell.rightImv.hidden = YES;
+    }
     return cell;
 }
 #pragma mark ========== 头像点击 ==========
@@ -152,6 +170,79 @@
     mineVC.whereCome = YES;    //  YES为其他人 NO为自己
     [self.navigationController pushViewController:mineVC animated:YES];
     
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary * dic = self.dataArray[indexPath.row];
+    switch (self.whereCome) {
+        case 1:
+            [self dianzanAction:dic];
+            break;
+        case 2:
+            [self fensiAction:dic];
+            break;
+        case 3:
+            [self dianzanAction:dic];
+            break;
+        default:
+            break;
+    }
+}
+-(void)dianzanAction:(NSDictionary *)dic{
+    NSString * post_id = kGetString(dic[@"post_id"]);
+    NSString * post_type = kGetString(dic[@"post_type"]);
+    kWeakSelf(self);
+    if ([post_type isEqualToString:@"1"]) {
+        [YX_MANAGER requestget_post_by_id:post_id success:^(id object) {
+            [weakself jumpAction:post_type dic:object];
+        }];
+    }else if ([post_type isEqualToString:@"2"]){
+        [YX_MANAGER requestget_track_by_id:post_id success:^(id object) {
+            [weakself jumpAction:post_type dic:object];
+        }];
+    }else if ([post_type isEqualToString:@"3"]){
+        [YX_MANAGER requestget_question_by_id:post_id success:^(id object) {
+            [weakself jumpAction:post_type dic:object];
+        }];
+    }else if ([post_type isEqualToString:@"4"]){
+        [YX_MANAGER requestget_cigar_by_id:post_id success:^(id object) {
+            UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+            YXHomeXueJiaPinPaiLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiLastDetailViewController"];
+            VC.startDic = [NSMutableDictionary dictionaryWithDictionary:object];
+            [VC.startDic setValue:@"" forKey:@"cigar_brand"];
+            weakself.whereCome = YES;
+                [self.navigationController pushViewController:VC animated:YES];
+        }];
+    }
+    
+}
+-(void)fensiAction:(NSDictionary *)dic{
+    
+}
+-(void)hudongAction:(NSDictionary *)dic{
+    
+}
+
+-(void)jumpAction:(NSString *)tagString dic:(NSDictionary *)dic{
+    NSInteger tag = [tagString integerValue];
+    if (tag == 1) {//晒图
+        YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
+        VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+        NSString * url = dic[@"photo1"];
+        CGFloat imageHeight = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:0];
+        VC.height = imageHeight;
+        [self.navigationController pushViewController:VC animated:YES];
+    }else if (tag == 3){//问答
+        YXHomeXueJiaQuestionDetailViewController * VC = [[YXHomeXueJiaQuestionDetailViewController alloc]init];
+        VC.moment = [ShareManager setTestInfo:dic];
+        [self.navigationController pushViewController:VC animated:YES];
+    }else if (tag == 2){//足迹
+        YXMineFootDetailViewController * VC = [[YXMineFootDetailViewController alloc]init];
+        NSString * url = dic[@"pic1"];
+        CGFloat imageHeight = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:0];
+        VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+        VC.height = imageHeight;
+        [self.navigationController pushViewController:VC animated:YES];
+    }
 }
 
 /*

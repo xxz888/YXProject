@@ -703,6 +703,40 @@ successBlock(responseObject);\
     } failure:^(NSError *error) {
     }];
 }
+
+
+#pragma mark ========== 通过id获取足迹 ==========
+-(void)requestget_track_by_id:YX_BLOCK{
+    NSString * url = @"/users/get_track_by_id/";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {
+    }];
+}
+#pragma mark ========== 通过id获取晒图 ==========
+-(void)requestget_post_by_id:YX_BLOCK{
+    NSString * url = @"/users/get_post_by_id/";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {
+    }];
+}
+#pragma mark ========== 通过id获取提问 ==========
+-(void)requestget_question_by_id:YX_BLOCK{
+    NSString * url = @"/users/get_question_by_id/";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {
+    }];
+}
+#pragma mark ========== 通过id获取雪茄 ==========
+-(void)requestget_cigar_by_id:YX_BLOCK{
+    NSString * url = @"/cigar/get_cigar_by_id/";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {
+    }];
+}
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

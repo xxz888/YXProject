@@ -79,7 +79,7 @@
     self.qmuiTextView.frame = CGRectMake(0,0, self.detailView.qmui_width, self.detailView.qmui_height);
     self.qmuiTextView.backgroundColor = YXRGBAColor(239, 239, 239);
     self.qmuiTextView.font = UIFontMake(15);
-    self.qmuiTextView.placeholder = @"发表你的提问";
+    self.qmuiTextView.placeholder = @"写点什么...";
     self.qmuiTextView.layer.cornerRadius = 8;
     self.qmuiTextView.clipsToBounds = YES;
     [self.qmuiTextView becomeFirstResponder];

@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
 @property(nonatomic,strong)NSMutableDictionary * startDic;
 @property (nonatomic,strong) NSMutableArray * imageArray;
-
+@property (nonatomic,assign) BOOL whereCome;//NO代表正常 YES代表消息界面
 @end
 
 NS_ASSUME_NONNULL_END

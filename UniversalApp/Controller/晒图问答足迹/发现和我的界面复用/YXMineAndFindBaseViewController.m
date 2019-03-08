@@ -235,7 +235,8 @@
         VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
         YXFindImageTableViewCell * cell = [self.yxTableView cellForRowAtIndexPath:indexPath];
         VC.height = cell.imvHeight.constant;
-        [self.navigationController pushViewController:VC animated:YES];    }
+        [self.navigationController pushViewController:VC animated:YES];
+    }
 }
 
 -(Moment *)setTestInfo:(NSDictionary *)dic{
@@ -264,7 +265,7 @@
     }
     moment.imageListArray = [NSMutableArray arrayWithArray:imgArr];
     moment.fileCount = imgArr.count;
-
+    
     commentList = [[NSMutableArray alloc] init];
     int num = (int)[dic[@"answer"] count];
     for (int j = 0; j < num; j ++) {

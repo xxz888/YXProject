@@ -228,4 +228,13 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestGETFansHistory:YX_BLOCK;
 #pragma mark ========== 获取新评论历史记录 ==========
 -(void)requestGETPraiseHistory:YX_BLOCK;
+
+#pragma mark ========== 通过id获取足迹 ==========
+-(void)requestget_track_by_id:YX_BLOCK;
+#pragma mark ========== 通过id获取晒图 ==========
+-(void)requestget_post_by_id:YX_BLOCK;
+#pragma mark ========== 通过id获取提问 ==========
+-(void)requestget_question_by_id:YX_BLOCK;
+#pragma mark ========== 通过id获取雪茄 ==========
+-(void)requestget_cigar_by_id:YX_BLOCK;
 @end

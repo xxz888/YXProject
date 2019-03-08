@@ -12,6 +12,7 @@
 #import "MMImageListView.h"
 #import "SELUpdateAlert.h"
 #import "UDPManage.h"
+#import "Comment.h"
 @implementation ShareManager
 
 SINGLETON_FOR_CLASS(ShareManager);
@@ -618,5 +619,46 @@ SINGLETON_FOR_CLASS(ShareManager);
     [YX_MANAGER requestUpdate_userPOST:dic success:^(id object) {
         
     }];
+}
+
++(Moment *)setTestInfo:(NSDictionary *)dic{
+    NSMutableArray *commentList = nil;
+    Moment *moment = [[Moment alloc] init];
+    moment.praiseNameList = nil;
+    moment.userName = dic[@"user_name"];
+    moment.text = dic[@"title"];
+    moment.detailText = dic[@"question"];
+    moment.time = dic[@"publish_date"] ? [dic[@"publish_date"] longLongValue] : [dic[@"publish_time"] longLongValue];
+    moment.singleWidth = (KScreenWidth-30)/3;
+    moment.singleHeight = 100;
+    moment.location = @"";
+    moment.isPraise = NO;
+    moment.photo =dic[@"user_photo"];
+    moment.startId = dic[@"id"];
+    NSMutableArray * imgArr = [NSMutableArray array];
+    if ([dic[@"pic1"] length] >= 5) {
+        [imgArr addObject:dic[@"pic1"]];
+    }
+    if ([dic[@"pic2"] length] >= 5) {
+        [imgArr addObject:dic[@"pic2"]];
+    }
+    if ([dic[@"pic3"] length] >= 5) {
+        [imgArr addObject:dic[@"pic3"]];
+    }
+    moment.imageListArray = [NSMutableArray arrayWithArray:imgArr];
+    moment.fileCount = imgArr.count;
+    
+    commentList = [[NSMutableArray alloc] init];
+    int num = (int)[dic[@"answer"] count];
+    for (int j = 0; j < num; j ++) {
+        Comment *comment = [[Comment alloc] init];
+        comment.userName = dic[@"answer"][j][@"user_name"];
+        comment.text =  dic[@"answer"][j][@"answer"];
+        comment.time = 1487649503;
+        comment.pk = j;
+        [commentList addObject:comment];
+    }
+    [moment setValue:commentList forKey:@"commentList"];
+    return moment;
 }
 @end

@@ -23,6 +23,7 @@ typedef void(^guanzhuAction)(YXMessageThreeDetailViewCell *);
 @property (nonatomic,copy) guanzhuAction gzBlock;
 @property (nonatomic,strong) NSString * userId;
 
+@property (weak, nonatomic) IBOutlet UIImageView *rightImv;
 
 typedef void(^titleImgAction)(YXMessageThreeDetailViewCell *);
 @property (nonatomic,copy) titleImgAction imgBlock;

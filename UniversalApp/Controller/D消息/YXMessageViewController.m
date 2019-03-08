@@ -82,8 +82,8 @@
     kWeakSelf(self);
     [YX_MANAGER requestGETNewMessageNumber:@"" success:^(id object) {
         weakself.zanjb.text = kGetString(object[@"praise_number"]);
-        weakself.fensijb.text = kGetString(object[@"comment_number"]);
-        weakself.hdjb.text = kGetString(object[@"fans_number"]);
+        weakself.fensijb.text = kGetString(object[@"fans_number"]);
+        weakself.hdjb.text = kGetString(object[@"comment_number"]);
         
         weakself.zanjb.hidden = [weakself.zanjb.text isEqualToString:@"0"];
         weakself.fensijb.hidden = [weakself.fensijb.text isEqualToString:@"0"];

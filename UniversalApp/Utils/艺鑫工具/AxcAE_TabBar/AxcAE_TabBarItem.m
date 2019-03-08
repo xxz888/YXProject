@@ -273,6 +273,7 @@
 - (AxcAE_TabBarBadge *)badgeLabel{
     if (!_badgeLabel) {
         _badgeLabel = [AxcAE_TabBarBadge new];
+        _badgeLabel.backgroundColor = A_COlOR;
         [self addSubview:_badgeLabel];
     }
     return _badgeLabel;
