@@ -75,8 +75,11 @@
 }
 #pragma mark ========== 发布1 和 存草稿0  ==========
 - (IBAction)fabuAction:(UIButton *)btn {
-    [QMUITips showLoadingInView:self.view];
     [super fabuAction:btn];
+    [MBProgressHUD showActivityMessageInView:@""];
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    
+/*
     kWeakSelf(self);
     if (self.photoImageList.count == 0) {
         [self commonAction:self.photoImageList btn:btn];
@@ -89,6 +92,7 @@
             NSLog(@"%@",error);
         }];
     }
+ */
 }
 -(void)commonAction:(NSMutableArray *)imgArray btn:(UIButton *)btn{
     NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
@@ -129,8 +133,8 @@
     //这里区别寸草稿还是发布
     if (btn.tag == 301) {
         UserDefaultsSET(dic, YX_USER_FaBuCaoGao);
-        [QMUITips hideAllTipsInView:[ShareManager getMainView]];
-        [QMUITips showSucceed:@"存草稿成功" inView:self.view hideAfterDelay:2];
+//        [QMUITips hideAllTipsInView:[ShareManager getMainView]];
+//        [QMUITips showSucceed:@"存草稿成功" inView:self.view hideAfterDelay:2];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self dismissViewControllerAnimated:YES completion:nil];
         });
@@ -142,8 +146,6 @@
     kWeakSelf(self);
     //发布按钮
     [YX_MANAGER requestFaBuImagePOST:dic success:^(id object) {
-            [QMUITips hideAllTipsInView:[ShareManager getMainView]];
-            [QMUITips showSucceed:@"发布成功" inView:weakself.view hideAfterDelay:2];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self dismissViewControllerAnimated:YES completion:nil];
             });

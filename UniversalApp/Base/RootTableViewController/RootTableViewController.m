@@ -98,6 +98,8 @@
         
         if (isLeft) {
             [btn setContentEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 10)];
+            [btn setImageEdgeInsets:UIEdgeInsetsMake(5.5, 0, 5.5, 0)];
+
         }else{
             [btn setContentEdgeInsets:UIEdgeInsetsMake(0, 10, 0, -10)];
         }

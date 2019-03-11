@@ -253,10 +253,10 @@
 {
     NSMutableArray * items = [[NSMutableArray alloc] init];
     //调整按钮位置
-    //    UIBarButtonItem* spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    //    //将宽度设为负值
-    //    spaceItem.width= -5;
-    //    [items addObject:spaceItem];
+        UIBarButtonItem* spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+        //将宽度设为负值
+        spaceItem.width= -5;
+        [items addObject:spaceItem];
     NSInteger i = 0;
     for (NSString * imageName in imageNames) {
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -266,6 +266,7 @@
         
         if (isLeft) {
             [btn setContentEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 10)];
+                 [btn setImageEdgeInsets:UIEdgeInsetsMake(5.5, 0, 5.5, 0)];
         }else{
             [btn setContentEdgeInsets:UIEdgeInsetsMake(0, 10, 0, -10)];
         }

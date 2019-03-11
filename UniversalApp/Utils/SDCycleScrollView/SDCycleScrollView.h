@@ -160,6 +160,11 @@ typedef enum {
 /** 分页控件距离轮播图的右边间距（在默认间距基础上）的偏移量 */
 @property (nonatomic, assign) CGFloat pageControlRightOffset;
 
+
+@property (nonatomic, assign) CGFloat lastContentOffset;
+@property(nonatomic) BOOL isLeftScroll;
+
+
 /** 分页控件小圆标大小 */
 @property (nonatomic, assign) CGSize pageControlDotSize;
 
@@ -201,5 +206,7 @@ typedef enum {
 
 /** 清除图片缓存（兼容旧版本方法） */
 - (void)clearCache;
+
+
 
 @end

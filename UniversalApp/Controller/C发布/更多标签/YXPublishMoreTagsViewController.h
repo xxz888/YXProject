@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^returnTagString)(NSDictionary *);
 @interface YXPublishMoreTagsViewController : RootViewController
+@property (weak, nonatomic) IBOutlet UIView *topview;
 @property (nonatomic,copy) returnTagString tagBlock;
 @end
 

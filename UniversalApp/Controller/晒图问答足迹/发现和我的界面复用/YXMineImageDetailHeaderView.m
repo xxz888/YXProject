@@ -40,9 +40,12 @@
     self.conViewHeight.constant = height;
     _tatolCount = photoArray.count;
     if (!_cycleScrollView3) {
-        _cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, height) delegate:self placeholderImage:[UIImage imageNamed:@""]];
+//        _cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, height) delegate:self placeholderImage:[UIImage imageNamed:@""]];
+        _cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, height) shouldInfiniteLoop:NO imageNamesGroup:[NSArray arrayWithArray:photoArray]];
+        _cycleScrollView3.delegate = self;
         [self.contentView addSubview:_cycleScrollView3];
     }
+
     _cycleScrollView3.delegate = self;
     _cycleScrollView3.bannerImageViewContentMode = 0;
    _cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];
@@ -50,10 +53,14 @@
     _cycleScrollView3.showPageControl = YES;
     _cycleScrollView3.autoScrollTimeInterval = 10000;
     _cycleScrollView3.pageDotColor = YXRGBAColor(239, 239, 239);
+    
 
 }
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index{
     self.rightCountLbl.text = [NSString stringWithFormat:@"%ld/%ld",index+1,_tatolCount];
+//    if (cycleScrollView.isLeftScroll && index == 1) {
+//        self.rightBlock();
+//    }
 }
 - (IBAction)editPersonAction:(id)sender {
 }

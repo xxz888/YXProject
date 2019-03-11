@@ -84,13 +84,6 @@ static NSString *QiniuBucketName  = @"thegdlife";
 }
 
 +(void)uploadImageToQNFilePath:(NSArray *)photos success:(QNSuccessBlock)success failure:(QNFailureBlock)failure{
-    UIView * view;
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11) {
-        view = [[UIApplication sharedApplication].windows firstObject];
-    } else {
-        view = [[UIApplication sharedApplication].windows lastObject];
-    }
-    [QMUITips showLoadingInView:view];
     NSMutableArray *imageAry =[NSMutableArray new];
     NSMutableArray *imageAdd = [NSMutableArray new];
     //主要是把图片或者文件转成nsdata类型就可以了
@@ -112,7 +105,6 @@ static NSString *QiniuBucketName  = @"thegdlife";
         }
         UserInfo *userInfo = curUser;
         NSString * userId = userInfo.id;
-        sleep(1);
         NSString * key = [NSString stringWithFormat:@"%@_image_%@.jpg",userId,[ShareManager getNowTimeTimestamp3]];
         [upManager putData:data key:key token:[QiniuLoad makeToken:accessKey secretKey:secretKey] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
             if (info.isOK) {
@@ -125,7 +117,6 @@ static NSString *QiniuBucketName  = @"thegdlife";
                     NSLog(@"--------------上传七牛云成功，并返回了数据-------------");
                     success([imageAdd componentsJoinedByString:@";"]);
                 }else{
-                    [QMUITips hideAllTipsInView:view];
                     [QMUITips showError:@"上传图片失败,请稍后再试"];
 
                 }

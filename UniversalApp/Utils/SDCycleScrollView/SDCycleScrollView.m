@@ -628,8 +628,20 @@ NSString * const ID = @"SDCycleScrollViewCell";
 
 #pragma mark - UIScrollViewDelegate
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    //判断左右滑动时
+    if (scrollView.contentOffset.x < _lastContentOffset ){
+        //向右
+        NSLog(@"左滑");
+        self.isLeftScroll = YES;
+    } else if (scrollView. contentOffset.x > _lastContentOffset ){
+        //向左
+        NSLog(@"右滑");
+        self.isLeftScroll = YES;
+
+    }
+    
     if (!self.imagePathsGroup.count) return; // 解决清除timer时偶尔会出现的问题
     int itemIndex = [self currentIndex];
     int indexOnPageControl = [self pageControlIndexWithCurrentCellIndex:itemIndex];
@@ -648,6 +660,9 @@ NSString * const ID = @"SDCycleScrollViewCell";
     if (self.autoScroll) {
         [self invalidateTimer];
     }
+    
+    _lastContentOffset = scrollView.contentOffset.x;//判断左右滑动时
+
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate

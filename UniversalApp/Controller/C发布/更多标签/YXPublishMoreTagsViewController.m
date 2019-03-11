@@ -36,13 +36,17 @@
     [super viewDidLoad];
     self.type = @"1";
     [self.yxTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
-    self.yxTableView.tableHeaderView = [self headerView];
+    [self.topview addSubview: [self headerView]];
+    self.yxTableView.separatorColor = YXRGBAColor(239, 239, 239);
+
     [self setNavSearchView];
     self.tagArray = [[NSMutableArray alloc]init];
     self.dataArray = [[NSMutableArray alloc]init];
     [self addRefreshView:self.yxTableView];
     //    [self requestGetTag];
     [self requestFindTag];
+    
+    
 }
 -(void)headerRereshing{
     [super headerRereshing];
@@ -70,7 +74,7 @@
 #pragma mark ========== 根据标签请求列表 ==========
 -(void)requestGetTagLIst:(NSString *)page{
     kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"%@/%@",NSIntegerToNSString(self.requestPage),@"1"];
+    NSString * par = [NSString stringWithFormat:@"%@/%@",NSIntegerToNSString(self.requestPage),page];
     [YX_MANAGER requestGetTagList:par success:^(id object) {
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
@@ -133,6 +137,8 @@
         weakself.tagBlock(weakself.dataArray[indexPath.row]);
     }];
 }
-
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+}
 
 @end

@@ -13,6 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface YXMineImageDetailHeaderView : UIView
 typedef void(^SegmentActionBlock)(NSInteger index);
 @property (nonatomic,copy) SegmentActionBlock block;
+
+typedef void(^rightScrollReturn)();
+@property (nonatomic,copy) rightScrollReturn rightBlock;
+
 @property (weak, nonatomic) IBOutlet UIImageView *titleImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *titleTimeLbl;

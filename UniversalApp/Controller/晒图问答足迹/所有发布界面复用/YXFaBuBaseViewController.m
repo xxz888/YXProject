@@ -44,6 +44,15 @@
     _img3.image = zhanweiImage;
     
     
+    self.del1.layer.masksToBounds = YES;
+    self.del1.layer.cornerRadius = self.del1.frame.size.width / 2.0;
+    
+    self.del2.layer.masksToBounds = YES;
+    self.del2.layer.cornerRadius = self.del2.frame.size.width / 2.0;
+    
+    self.del3.layer.masksToBounds = YES;
+    self.del3.layer.cornerRadius = self.del2.frame.size.width / 2.0;
+    
     
     _img1.hidden =  NO;
     _img2.hidden = _img3.hidden = _del1.hidden = _del2.hidden = _del3.hidden = YES;
@@ -76,7 +85,7 @@
     if (!self.qmuiTextView) {
         self.qmuiTextView = [[QMUITextView alloc] init];
     }
-    self.qmuiTextView.frame = CGRectMake(0,0, self.detailView.qmui_width, self.detailView.qmui_height);
+    self.qmuiTextView.frame = CGRectMake(0,0, KScreenWidth-20, self.detailView.qmui_height);
     self.qmuiTextView.backgroundColor = YXRGBAColor(239, 239, 239);
     self.qmuiTextView.font = UIFontMake(15);
     self.qmuiTextView.placeholder = @"写点什么...";
@@ -191,6 +200,7 @@
 }
 - (IBAction)fabuAction:(UIButton *)btn{
     [_photoImageList removeAllObjects];
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
     if (_img1.image && _img1.image != zhanweiImage) {
         [_photoImageList addObject:_img1.image];
     }

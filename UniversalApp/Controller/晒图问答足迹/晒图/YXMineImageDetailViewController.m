@@ -76,6 +76,10 @@
     self.lastDetailView.contentHeight.constant = [self getLblHeight:self.startDic];
     [ShareManager setLineSpace:9 withText:self.lastDetailView.contentLbl.text inLabel:self.lastDetailView.contentLbl tag:@""];
 
+    
+    self.lastDetailView.rightBlock = ^{
+        [self.navigationController popViewControllerAnimated:YES];
+    };
     return  self.lastDetailView;
 }
 

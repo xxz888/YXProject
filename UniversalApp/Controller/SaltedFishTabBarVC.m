@@ -141,10 +141,11 @@ static NSInteger lastIdx = 0;
         [self.axcTabBar setSelectIndex:lastIdx WithAnimation:NO]; // 换回上一个选中状态
         //self.axcTabBar.selectIndex = lastIdx; // 不去切换TabBar的选中状态
         NSLog(@"点击发布按钮->");
+        
         XWPopMenuController *vc = [[XWPopMenuController alloc]init];
         [self presentViewController:vc animated:NO completion:nil];
     }else{ // 点击了中间的
-        
+
         if (index == 3) {
             [[AppDelegate shareAppDelegate].mainTabBar.axcTabBar setBadge:NSIntegerToNSString(0) index:3];
         }
