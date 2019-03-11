@@ -36,6 +36,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self requestAction];
 }
 #pragma mark ========== 我自己的所有 ==========
 -(void)requestMine_AllList{

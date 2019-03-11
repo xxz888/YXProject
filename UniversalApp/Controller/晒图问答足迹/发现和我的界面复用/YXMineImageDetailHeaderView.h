@@ -25,6 +25,8 @@ typedef void(^SegmentActionBlock)(NSInteger index);
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *conViewHeight;
 -(void)setUpWebView:(NSString *)htmlString;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentHeight;
+@property (weak, nonatomic) IBOutlet UILabel *contentLbl;
 - (void)setUpSycleScrollView:(NSArray *)photoArray height:(CGFloat)height;
 @end
 

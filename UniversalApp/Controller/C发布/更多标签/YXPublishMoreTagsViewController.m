@@ -22,9 +22,19 @@
 @end
 
 @implementation YXPublishMoreTagsViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:nil];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.type = @"1";
     [self.yxTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     self.yxTableView.tableHeaderView = [self headerView];
     [self setNavSearchView];
@@ -33,11 +43,6 @@
     [self addRefreshView:self.yxTableView];
     //    [self requestGetTag];
     [self requestFindTag];
-}
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-
-
 }
 -(void)headerRereshing{
     [super headerRereshing];
@@ -82,15 +87,17 @@
 }
 
 #pragma mark ========== 搜索标签 ==========
--(void)searchTagResult{
+-(void)searchTagResult:(NSString *)text{
     kWeakSelf(self);
-    [YX_MANAGER requestGetTagList_Tag:@{@"type":@"1",@"key":searchBar.text,@"page":@"1"} success:^(id object) {
-        [weakself.dataArray removeAllObjects];
-        [weakself.dataArray addObjectsFromArray:object];
+    [YX_MANAGER requestGetTagList_Tag:@{@"type":self.type,@"key":text,@"page":@"1"} success:^(id object) {
+        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
     }];
 }
-
+-(BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    [self searchTagResult:text];
+    return YES;
+}
 
 
 
@@ -103,8 +110,6 @@
 -(void)textField1TextChange:(UITextField *)tf{
     if (tf.text.length == 0) {
         [self requestGetTagLIst:self.type];
-    }else{
-        [self searchTagResult];
     }
 }
 -(void)closeView{

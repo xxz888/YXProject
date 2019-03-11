@@ -46,6 +46,10 @@
     [super viewWillAppear:animated];
     
 }
+-(void)backBtnClicked{
+    self.navigationController.tabBarController.selectedIndex = 1;
+
+}
 -(void)headerRereshing{
     [super headerRereshing];
     [self requestZuJi:_isreverse1];

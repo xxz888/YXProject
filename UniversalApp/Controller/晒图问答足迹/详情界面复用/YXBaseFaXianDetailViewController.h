@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) CGFloat height;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *clickbtnHeight;
 
-
+@property (nonatomic,assign) BOOL whereCome;
 @property(nonatomic,strong)YXMineImageDetailHeaderView * lastDetailView;
 @property(nonatomic,strong)YXHomeLastMyTalkView * lastMyTalkView;
 @property (nonatomic, strong) NSMutableArray *dataArray;

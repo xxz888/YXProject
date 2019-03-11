@@ -23,6 +23,7 @@
     self.rightCountLbl.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.5f];
     self.rightCountLbl.textColor = KWhiteColor;
     ViewRadius(self.rightCountLbl, 10);
+
 }
 
 - (IBAction)lastSegmentAction:(id)sender{
@@ -45,9 +46,9 @@
     _cycleScrollView3.delegate = self;
     _cycleScrollView3.bannerImageViewContentMode = 0;
    _cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];
+    _cycleScrollView3.currentPageDotColor = A_COlOR;
     _cycleScrollView3.showPageControl = YES;
     _cycleScrollView3.autoScrollTimeInterval = 10000;
-    _cycleScrollView3.currentPageDotColor = KRedColor;
     _cycleScrollView3.pageDotColor = YXRGBAColor(239, 239, 239);
 
 }
@@ -56,4 +57,11 @@
 }
 - (IBAction)editPersonAction:(id)sender {
 }
+
+-(CGFloat)getLblHeight:(NSDictionary *)dic{
+    NSString * titleText = [NSString stringWithFormat:@"%@%@",dic[@"content"] ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
+    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:[titleText UnicodeToUtf8]];
+    return height_size;
+}
+
 @end

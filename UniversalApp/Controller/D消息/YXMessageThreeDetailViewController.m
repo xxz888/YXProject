@@ -152,7 +152,7 @@
 
         cell.lbl2.text = [dic[@"comment"] UnicodeToUtf8];
     }
-    if ([kGetString(dic[@"photo"]) isEqualToString:@""]) {
+    if ([kGetString(dic[@"photo"]) isEqualToString:@""] || [nameTitle isEqualToString:@"雪茄点评"]) {
         cell.rightImv.hidden = YES;
     }
     return cell;

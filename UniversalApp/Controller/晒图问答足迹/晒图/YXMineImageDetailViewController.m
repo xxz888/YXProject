@@ -7,8 +7,10 @@
 //
 
 #import "YXMineImageDetailViewController.h"
-
-@interface YXMineImageDetailViewController ()
+#import "XHWebImageAutoSize.h"
+@interface YXMineImageDetailViewController (){
+    CGFloat imageHeight;
+}
 @end
 @implementation YXMineImageDetailViewController
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
@@ -17,6 +19,10 @@
 }
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    if ([self.startDic[@"photo1"] length] >= 5) {
+        imageHeight   = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:self.startDic[@"photo1"]] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:0];
+    }
     //初始化所有的控件
     [self initAllControl];
     [self addRefreshView:self.yxTableView];
@@ -46,19 +52,18 @@
         NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXMineImageDetailHeaderView" owner:self options:nil];
         self.lastDetailView = [nib objectAtIndex:0];
     }
-
     [self.imageArr removeAllObjects];
     if ([self.startDic[@"photo1"] length] >= 5) {
         [self.imageArr addObject:self.startDic[@"photo1"]];
     }
-    if ([self.startDic[@"photo1"] length] >= 5) {
+    if ([self.startDic[@"photo2"] length] >= 5) {
         [self.imageArr addObject:self.startDic[@"photo2"]];
     }
-    if ([self.startDic[@"photo1"] length] >= 5) {
+    if ([self.startDic[@"photo3"] length] >= 5) {
         [self.imageArr addObject:self.startDic[@"photo3"]];
     }
-    
-    [self.lastDetailView setUpSycleScrollView:self.imageArr height:self.height];
+
+    [self.lastDetailView setUpSycleScrollView:self.imageArr height:imageHeight];
     self.lastDetailView.rightCountLbl.text = [NSString stringWithFormat:@"%@/%ld",@"1",self.imageArr.count];
     self.lastDetailView.titleLbl.text = self.startDic[@"user_name"];
     NSString * str1 = [(NSMutableString *)self.startDic[@"photo"] replaceAll:@" " target:@"%20"];
@@ -66,11 +71,23 @@
     self.lastDetailView.titleImageView.layer.masksToBounds = YES;
     self.lastDetailView.titleImageView.layer.cornerRadius = self.lastDetailView.titleImageView.frame.size.width / 2.0;
     self.lastDetailView.titleTimeLbl.text = [ShareManager timestampSwitchTime:[self.startDic[@"publish_time"] longLongValue] andFormatter:@""];
+    self.lastDetailView.contentLbl.text =  [[NSString stringWithFormat:@"%@%@",self.startDic[@"content"] ? self.startDic[@"content"]:self.startDic[@"describe"],self.startDic[@"index"]] UnicodeToUtf8];
     self.lastDetailView.userInteractionEnabled = YES;
+    self.lastDetailView.contentHeight.constant = [self getLblHeight:self.startDic];
+    [ShareManager setLineSpace:9 withText:self.lastDetailView.contentLbl.text inLabel:self.lastDetailView.contentLbl tag:@""];
+
     return  self.lastDetailView;
 }
+
+-(CGFloat)getLblHeight:(NSDictionary *)dic{
+    NSString * titleText = [NSString stringWithFormat:@"%@%@",dic[@"content"] ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
+    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:[titleText UnicodeToUtf8]];
+    return height_size;
+}
+
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return  100 + self.height;
+    return  100 + imageHeight + [self getLblHeight:self.startDic];
 }
 #pragma mark ========== 获取晒图评论列表 ==========
 -(void)requestNewList{

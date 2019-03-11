@@ -46,7 +46,79 @@
         [[UIScrollView appearance] setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
     }
 }
-
+- (void)closeAllPresentedViewControllers {
+    
+    
+    
+    if (![self.window.rootViewController isKindOfClass:[SaltedFishTabBarVC class]]) {
+        
+        return;
+        
+    }
+    
+    SaltedFishTabBarVC *mainVC = (SaltedFishTabBarVC *)self.window.rootViewController;
+    
+    RootNavigationController *currentNav = mainVC.viewControllers[mainVC.selectedIndex];
+    
+    UIViewController *currentVC = currentNav.topViewController;
+    
+    
+    
+    //第一部分 导航控制器的顶部控制器弹出的模态
+    
+    UIViewController *vcPresentVC = currentVC.presentedViewController;
+    
+    if (vcPresentVC) {
+        
+        while (vcPresentVC.presentedViewController)  {
+            
+            vcPresentVC = vcPresentVC.presentedViewController;
+            
+        }
+        
+        [vcPresentVC dismissViewControllerAnimated:NO completion:nil];
+        
+    }
+    
+    
+    
+    //第二部分 导航控制器弹出的模态
+    
+    UIViewController *navPresentVC = currentNav.presentedViewController;
+    
+    if (navPresentVC) {
+        
+        while (navPresentVC.presentedViewController)  {
+            
+            navPresentVC = navPresentVC.presentedViewController;
+            
+        }
+        
+        [navPresentVC dismissViewControllerAnimated:NO completion:nil];
+        
+    }
+    
+    
+    
+    //第三部分 tab控制器弹出的模态
+    
+    UIViewController *tabPresentVC = mainVC.presentedViewController;
+    
+    if (tabPresentVC) {
+        
+        while (tabPresentVC.presentedViewController)  {
+            
+            tabPresentVC = tabPresentVC.presentedViewController;
+            
+        }
+        
+        [tabPresentVC dismissViewControllerAnimated:NO completion:nil];
+        
+    }
+    
+    
+    
+}
 #pragma mark ————— 初始化网络配置 —————
 -(void)NetWorkConfig{
     YTKNetworkConfig *config = [YTKNetworkConfig sharedConfig];

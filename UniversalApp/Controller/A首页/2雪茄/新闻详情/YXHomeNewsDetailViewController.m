@@ -43,8 +43,8 @@
     [self.webView loadHTMLString:[self adaptWebViewForHtml:_webDic[@"details"]] baseURL: baseUrl];
 }
 //HTML适配图片文字
-- (NSString *)adaptWebViewForHtml:(NSString *) htmlStr
-{
+- (NSString *)adaptWebViewForHtml:(NSString *) htmlStr{
+    
     NSMutableString *headHtml = [[NSMutableString alloc] initWithCapacity:0];
     [headHtml appendString : @"<html>" ];
     

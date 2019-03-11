@@ -44,4 +44,6 @@
 -(UIViewController*) getCurrentVC;
 
 -(UIViewController*) getCurrentUIVC;
+
+- (void)closeAllPresentedViewControllers;
 @end

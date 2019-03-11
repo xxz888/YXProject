@@ -218,7 +218,10 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
     //返回 对应的分区索引
-    return index-1;
+    if (index+1 == _indexArray.count) {
+        return index+1;
+    }
+    return index;
 }
 //cell 内容的向右缩进 级别
 - (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath {
