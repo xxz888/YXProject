@@ -74,14 +74,14 @@
     _likeLabel.font = [UIFont systemFontOfSize:13];
     _likeLabel.linkTextAttributes = @{NSForegroundColorAttributeName : TimeLineCellHighlightedColor};
     _likeLabel.isAttributedContent = YES;
-    [self addSubview:_likeLabel];
+//    [self addSubview:_likeLabel];
     
     _likeStringLabel = [MLLinkLabel new];
     _likeStringLabel.text = @"人觉得很赞";
     _likeStringLabel.font = [UIFont systemFontOfSize:13];
     _likeStringLabel.linkTextAttributes = @{NSForegroundColorAttributeName : TimeLineCellHighlightedColor};
     _likeStringLabel.isAttributedContent = YES;
-    [self addSubview:_likeStringLabel];
+//    [self addSubview:_likeStringLabel];
     
     _likeLableBottomLine = [UIView new];
     [self addSubview:_likeLableBottomLine];
@@ -240,7 +240,7 @@
     _likeStringLabel.sd_layout.leftSpaceToView(_likeLabel, 2)
     .centerYEqualToView(_likeLabel)
     .widthIs(100)
-    .heightIs(20);
+    .heightIs(0);
     [self setupAutoHeightWithBottomView:lastTopView bottomMargin:6];
 }
 

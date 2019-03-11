@@ -7,13 +7,15 @@
 //
 
 #import "YXMineFootDetailViewController.h"
+#import "XHWebImageAutoSize.h"
 
 
 
 
 
-
-@interface YXMineFootDetailViewController ()<SDCycleScrollViewDelegate>
+@interface YXMineFootDetailViewController ()<SDCycleScrollViewDelegate>{
+    CGFloat imageHeight;
+}
 
 @end
 @implementation YXMineFootDetailViewController
@@ -23,6 +25,9 @@
 }
 - (void)viewDidLoad{
     [super viewDidLoad];
+    if ([self.startDic[@"photo1"] length] >= 5) {
+        imageHeight   = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:self.startDic[@"pic1"]] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:0];
+    }
     //初始化所有的控件
     [self initAllControl];
     [self addRefreshView:self.yxTableView];
@@ -54,7 +59,7 @@
     if ([self.startDic[@"pic3"] length] >= 5) {
         [self.imageArr addObject:self.startDic[@"pic3"]];
     }
-    [self.lastDetailView setUpSycleScrollView:self.imageArr height:self.height];
+    [self.lastDetailView setUpSycleScrollView:self.imageArr height:imageHeight];
     self.lastDetailView.rightCountLbl.text = [NSString stringWithFormat:@"%@/%ld",@"1",self.imageArr.count];
     self.lastDetailView.titleLbl.text = self.startDic[@"user_name"];
     NSString * str1 = [(NSMutableString *)self.startDic[@"user_photo"] replaceAll:@" " target:@"%20"];
@@ -63,10 +68,23 @@
     self.lastDetailView.titleImageView.layer.cornerRadius = self.lastDetailView.titleImageView.frame.size.width / 2.0;
     self.lastDetailView.titleTimeLbl.text = [ShareManager timestampSwitchTime:[self.startDic[@"publish_time"] longLongValue] andFormatter:@""];
     self.lastDetailView.userInteractionEnabled = YES;
+    
+    
+    
+    
+    self.lastDetailView.contentLbl.text =  [[NSString stringWithFormat:@"%@%@",self.startDic[@"content"] ? self.startDic[@"content"]:self.startDic[@"describe"],self.startDic[@"index"]] UnicodeToUtf8];
+    self.lastDetailView.userInteractionEnabled = YES;
+    self.lastDetailView.contentHeight.constant = [self getLblHeight:self.startDic];
+    [ShareManager setLineSpace:9 withText:self.lastDetailView.contentLbl.text inLabel:self.lastDetailView.contentLbl tag:@""];
     return  self.lastDetailView;
 }
+-(CGFloat)getLblHeight:(NSDictionary *)dic{
+    NSString * titleText = [NSString stringWithFormat:@"%@%@",dic[@"content"] ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
+    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:[titleText UnicodeToUtf8]];
+    return height_size;
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return  100 + self.height;
+    return  100 + imageHeight + [self getLblHeight:self.startDic];
 }
 -(void)headerRereshing{
     [super headerRereshing];

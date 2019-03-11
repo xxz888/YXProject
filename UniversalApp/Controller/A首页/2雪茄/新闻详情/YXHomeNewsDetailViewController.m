@@ -16,7 +16,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = _webDic[@"title"];
     self.webView.navigationDelegate = self;
     self.webView.frame =  CGRectMake(0, 0, KScreenWidth, KScreenHeight-kTopHeight-34);
     // 去掉webView的滚动条

@@ -238,8 +238,8 @@
     cell.indexPath = indexPath;
     cell.nameLable.textColor = KBlackColor;
     cell.contentLabel.textColor = KDarkGaryColor;
-//    cell.commentView.likeStringLabel.hidden = YES;
-//    cell.commentView.likeLabel.hidden = YES;
+    cell.commentView.likeStringLabel.hidden = YES;
+    cell.commentView.likeLabel.hidden = YES;
     __weak typeof(self) weakSelf = self;
     if (!cell.moreButtonClickedBlock) {
         [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {

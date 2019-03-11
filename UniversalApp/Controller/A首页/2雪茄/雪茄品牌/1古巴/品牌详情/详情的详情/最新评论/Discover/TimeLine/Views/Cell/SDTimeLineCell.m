@@ -117,6 +117,11 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     [_zanButton setFont:[UIFont systemFontOfSize:13]];
     [_zanButton addTarget:self action:@selector(zanAction:) forControlEvents:UIControlEventTouchUpInside];
     
+    _zanCountLable = [UILabel new];
+    _zanCountLable.font = [UIFont systemFontOfSize:10];
+    _zanCountLable.textColor = KBlackColor;
+    _zanCountLable.text = @"123123123";
+    
     
     
     _picContainerView = [SDWeiXinPhotoContainerView new];
@@ -235,6 +240,13 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     .centerYEqualToView(_timeLabel)
     .heightIs(20)
     .widthIs(20);
+    
+    _zanCountLable.sd_layout
+    .rightSpaceToView(self.contentView, margin)
+    .centerYEqualToView(_zanButton)
+    .widthIs(10)
+    .heightIs(10)
+    ;
     
     _commentView.sd_layout
     .leftEqualToView(_contentLabel)
