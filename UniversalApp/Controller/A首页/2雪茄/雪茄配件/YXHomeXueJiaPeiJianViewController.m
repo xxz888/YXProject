@@ -72,7 +72,7 @@
     
     self.gridView.columnCount = 2;
     self.gridView.rowHeight = 120;
-    self.gridView.separatorWidth = PixelOne;
+    self.gridView.separatorWidth = 10;
     self.gridView.separatorColor = UIColorClear;
     self.gridView.separatorDashed = YES;
     self.yxTableView.tableHeaderView = self.gridView;

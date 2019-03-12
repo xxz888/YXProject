@@ -74,7 +74,7 @@
     self.gridView.frame = CGRectMake(0, 0, self.middleView.frame.size.width, self.middleView.frame.size.height);
     self.gridView.columnCount = 3;
     self.gridView.rowHeight = 75;
-    self.gridView.separatorWidth = PixelOne;
+    self.gridView.separatorWidth = 10;
     self.gridView.separatorColor = KClearColor;
     self.gridView.separatorDashed = NO;
     

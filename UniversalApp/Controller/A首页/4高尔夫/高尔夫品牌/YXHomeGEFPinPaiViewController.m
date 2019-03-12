@@ -58,7 +58,7 @@
     
     self.gridView.columnCount = 3;
     self.gridView.rowHeight = height;
-    self.gridView.separatorWidth = PixelOne;
+    self.gridView.separatorWidth = 10;
     self.gridView.separatorColor = UIColorSeparator;
     self.gridView.separatorDashed = NO;
     

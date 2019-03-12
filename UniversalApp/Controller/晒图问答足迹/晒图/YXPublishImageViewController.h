@@ -8,6 +8,8 @@
 
 #import "RootViewController.h"
 #import "YXFaBuBaseViewController.h"
+
+
 @interface YXPublishImageViewController : YXFaBuBaseViewController
 
 @end

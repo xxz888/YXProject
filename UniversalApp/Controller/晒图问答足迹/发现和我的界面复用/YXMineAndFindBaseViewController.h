@@ -18,6 +18,7 @@
 #import "YXMineViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
+
 @interface YXMineAndFindBaseViewController : RootViewController
 @property(nonatomic,strong)NSMutableArray * dataArray;
 @property (strong, nonatomic) UITableView *yxTableView;
@@ -29,6 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)requestDianZan_Image_Action:(NSIndexPath *)indexPath;
 -(void)requestAction;
 -(void)requestMine_AllList;
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

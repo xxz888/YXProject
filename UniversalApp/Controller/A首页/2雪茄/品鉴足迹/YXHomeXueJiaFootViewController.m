@@ -44,11 +44,9 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
 }
 -(void)backBtnClicked{
-    self.navigationController.tabBarController.selectedIndex = 1;
-
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 -(void)headerRereshing{
     [super headerRereshing];

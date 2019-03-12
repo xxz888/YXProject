@@ -46,7 +46,19 @@
     
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnFindVC:) name:@"returnFind" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnHomeVC:) name:@"returnHome" object:nil];
+
+}
+- (void)returnFindVC:(NSNotification *)notification{
+    self.navigationController.tabBarController.selectedIndex = 1;
+}
+- (void)returnHomeVC:(NSNotification *)notification{
+//    self.navigationController.tabBarController.selectedIndex = 0;
+    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+    RootViewController * VC = nil;
+    VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaFootViewController"];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -396,6 +408,8 @@
                                                                        withTitleSelectedColor:KBlackColor
                                                                               withSliderColor:KBlackColor
                                             ];
+    segmentController.enableSwipeGestureRecognizer = NO
+    ;
     kWeakSelf(self);
     [self addChildViewController:(self.segmentController = segmentController)];
     [segmentController didMoveToParentViewController:self];

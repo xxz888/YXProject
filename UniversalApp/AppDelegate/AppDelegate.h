@@ -19,5 +19,7 @@
 
 @property (strong, nonatomic) MainTabBarController *mainTabBar;
 
+@property (nonatomic,strong) UIViewController * presentingController;
+
 @end
 

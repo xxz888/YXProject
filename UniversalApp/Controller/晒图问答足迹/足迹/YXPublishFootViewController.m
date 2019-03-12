@@ -24,20 +24,12 @@
 
 #pragma mark ========== 发布 ==========
 - (IBAction)fabuAction:(UIButton *)btn {
-    [QMUITips showLoadingInView:self.view];
     [super fabuAction:btn];
-    if (self.photoImageList.count == 0) {
-        [self commonAction:self.photoImageList btn:btn];
-    }else{
-        kWeakSelf(self);
-        //先上传到七牛云图片  再提交服务器
-        [QiniuLoad uploadImageToQNFilePath:self.photoImageList success:^(NSString *reslut) {
-            NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
-            [weakself commonAction:qiniuArray btn:btn];
-        } failure:^(NSString *error) {
-            NSLog(@"%@",error);
-        }];
-    }
+    [QMUITips showLoadingInView:self.view];
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    [self commonAction:self.photoImageList btn:btn];
+    
+
 }
 -(void)commonAction:(NSMutableArray *)imgArray btn:(UIButton *)btn{
     NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
@@ -70,20 +62,37 @@
     
     [dic setValue: [self.qmuiTextView.text utf8ToUnicode]  forKey:@"content"];
     [dic setValue:@(1) forKey:@"type"];//(1,"雪茄"),(2,"红酒"),(3,"高尔夫")
-    [dic setValue:self.switchBtn.isOn ? @(1) : @(2) forKey:@"to_find"];
+    [dic setValue:self.switchBtn.isOn ? @(1) : @(0) forKey:@"to_find"];
     NSString * tag  = self.tagArray.count == 0 ? @"" : [self.tagArray componentsJoinedByString:@" "];
     [dic setValue:tag forKey:@"tag"];//标签
     
     NSString * publish_site = [self.locationBtn.titleLabel.text isEqualToString:@"获取地理位置"] ? @"" : self.locationBtn.titleLabel.text;
     [dic setValue:publish_site forKey:@"publish_site"];
-    
-    //发布按钮
-    [YX_MANAGER requestPost_track:dic success:^(id object) {
-        [QMUITips hideAllTipsInView:self.view];
-        [QMUITips showSucceed:object[@"message"] inView:self.view hideAfterDelay:1];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self dismissViewControllerAnimated:YES completion:nil];
-        });
-    }];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(imgArray.count+1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //发布按钮
+        [YX_MANAGER requestPost_track:dic success:^(id object) {
+            [QMUITips hideAllTipsInView:self.view];
+
+            if (self.switchBtn.isOn) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"returnFind" object:nil];
+                [self.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:^{
+                    [QMUITips showSucceed:object[@"message"] inView:[ShareManager getMainView] hideAfterDelay:1];
+                }];
+            }else{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"returnHome" object:nil];
+                [self.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:^{
+                    [QMUITips showSucceed:object[@"message"] inView:[ShareManager getMainView] hideAfterDelay:1];
+                }];
+            }
+            
+        
+        }];
+    });
 }
+
+- (IBAction)closeViewAction:(id)sender{
+    [self.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 @end

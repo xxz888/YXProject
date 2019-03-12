@@ -96,7 +96,7 @@
         NSInteger newIndex = self.headerView.index+1;
         if ( newIndex < self.controllers.count ){
 //            NSLog(@"%ld",newIndex);
-            [self.headerView clickHeaderViewWithIndex:[NSIndexPath indexPathForRow:newIndex inSection:0]];
+//            [self.headerView clickHeaderViewWithIndex:[NSIndexPath indexPathForRow:newIndex inSection:0]];
         }
     }
     
@@ -105,7 +105,7 @@
         NSInteger newIndex = self.headerView.index-1;
         if ( newIndex >= 0 ){
 //            NSLog(@"%ld",newIndex);
-            [self.headerView clickHeaderViewWithIndex:[NSIndexPath indexPathForRow:newIndex inSection:0]];
+   //         [self.headerView clickHeaderViewWithIndex:[NSIndexPath indexPathForRow:newIndex inSection:0]];
         }
     }
 }
@@ -211,8 +211,8 @@
 
     [self transitionFromViewController:oldController
                       toViewController:newController
-                              duration:1
-                               options:UIViewAnimationOptionLayoutSubviews
+                              duration:0
+                               options:UIViewAnimationOptionTransitionNone
                             animations:^{
                                 [newController.view mas_updateConstraints:^(MASConstraintMaker *make) {
                                     make.top.equalTo(self.headerView.mas_bottom);

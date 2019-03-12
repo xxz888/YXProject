@@ -15,6 +15,7 @@
 #import "QiniuLoad.h"
 
 NS_ASSUME_NONNULL_BEGIN
+typedef void(^dismissBlock) ();
 
 @interface YXFaBuBaseViewController : RootViewController
 @property (weak, nonatomic) IBOutlet UITextField *titleTf;
@@ -76,7 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *del3;
 
 - (IBAction)delAction:(id)sender;
-
+- (IBAction)closeViewAction:(id)sender;
 @end
 
 NS_ASSUME_NONNULL_END

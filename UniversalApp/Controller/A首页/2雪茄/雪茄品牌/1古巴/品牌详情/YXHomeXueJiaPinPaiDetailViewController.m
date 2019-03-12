@@ -245,8 +245,8 @@
         if (self.whereCome) {
              YXPublishFootViewController * footVC = [[YXPublishFootViewController alloc]init];
             footVC.cigar_id = kGetString(self.dicData[@"data"][indexPath.row][@"id"]);
-            [self.navigationController pushViewController:footVC animated:YES];
-//            [self presentViewController:footVC animated:YES completion:nil];
+//            [self.navigationController pushViewController:footVC animated:YES];
+            [self presentViewController:footVC animated:YES completion:nil];
         }else{
             kWeakSelf(self);
   
@@ -339,4 +339,5 @@
     }
     [self.tableView reloadData];
 }
+
 @end

@@ -90,7 +90,7 @@
         self.titleSelectedColor = titleSelectedColor;
         self.sliderColor = sliderColor;
         
-        self.scrollEnabled = YES;
+        self.scrollEnabled = NO;
         if ( model.indexs.count < self.maxDisplayItem ){
             self.scrollEnabled = NO;
         }

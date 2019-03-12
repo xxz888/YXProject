@@ -80,7 +80,7 @@
     
     self.gridView.columnCount = 4;
     self.gridView.rowHeight = height;
-    self.gridView.separatorWidth = PixelOne;
+    self.gridView.separatorWidth = 10;
     self.gridView.separatorColor = KClearColor;
     self.gridView.separatorDashed = NO;
     

@@ -58,11 +58,11 @@
     //头名字
     self.lastTitleLbl.text = kGetString(startDic[@"cigar_name"]);
     //国内售价
-    self.lastPrice1Lbl.text = kGetString(startDic[@"price_box_china"]);
+    self.lastPrice1Lbl.text = kGetString(startDic[@"price_single_china"]);
     //香港售价
-    self.lastPrice2Lbl.text = kGetString(startDic[@"price_box_hongkong"]);
+    self.lastPrice2Lbl.text = kGetString(startDic[@"price_single_hongkong"]);
     //海外售价
-    self.lastPrice3Lbl.text = kGetString(startDic[@"price_box_overswas"]);
+    self.lastPrice3Lbl.text = kGetString(startDic[@"price_single_overseas"]);
     //品牌
     self.lastPinPaiLbl.text = kGetString(startDic[@"cigar_brand"]);
     //环径
@@ -132,7 +132,7 @@
 
     self.gridView.columnCount = 3;
     self.gridView.rowHeight = height;
-    self.gridView.separatorWidth = PixelOne;
+    self.gridView.separatorWidth = 10;
     self.gridView.separatorColor = UIColorSeparator;
     self.gridView.separatorDashed = NO;
     

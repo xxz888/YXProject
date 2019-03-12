@@ -140,6 +140,17 @@
             if (_selectImageView.tag == 13) {
                 _del3.hidden = NO;
             }
+            
+            
+            //先上传到七牛云图片  再提交服务器
+            [QiniuLoad uploadImageToQNFilePath:@[image] success:^(NSString *reslut) {
+                NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
+                if (qiniuArray.count > 0) {
+                    [weakself.photoImageList addObject:qiniuArray[0]];
+                }
+            } failure:^(NSString *error) {
+                NSLog(@"%@",error);
+            }];
         }
       
     }];
@@ -165,7 +176,7 @@
             _del1.hidden = [self inImageViewOutIsHidden:_img1];
             _del2.hidden = [self inImageViewOutIsHidden:_img2];
             _del3.hidden = [self inImageViewOutIsHidden:_img3];
-
+            [self.photoImageList removeObjectAtIndex:0];
         }
             break;
         case 202:{
@@ -179,6 +190,8 @@
             _del1.hidden = [self inImageViewOutIsHidden:_img1];
             _del2.hidden = [self inImageViewOutIsHidden:_img2];
             _del3.hidden = [self inImageViewOutIsHidden:_img3];
+            [self.photoImageList removeObjectAtIndex:1];
+
         }
             break;
         case 203:{
@@ -186,6 +199,7 @@
             _del1.hidden = [self inImageViewOutIsHidden:_img1];
             _del2.hidden = [self inImageViewOutIsHidden:_img2];
             _del3.hidden = [self inImageViewOutIsHidden:_img3];
+            [self.photoImageList removeObjectAtIndex:2];
         }
             break;
         default:
@@ -199,17 +213,17 @@
     return  NO;
 }
 - (IBAction)fabuAction:(UIButton *)btn{
-    [_photoImageList removeAllObjects];
+//    [_photoImageList removeAllObjects];
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-    if (_img1.image && _img1.image != zhanweiImage) {
-        [_photoImageList addObject:_img1.image];
-    }
-    if (_img2.image && _img2.image != zhanweiImage) {
-        [_photoImageList addObject:_img2.image];
-    }
-    if (_img3.image && _img3.image != zhanweiImage) {
-        [_photoImageList addObject:_img3.image];
-    }
+//    if (_img1.image && _img1.image != zhanweiImage) {
+//        [_photoImageList addObject:_img1.image];
+//    }
+//    if (_img2.image && _img2.image != zhanweiImage) {
+//        [_photoImageList addObject:_img2.image];
+//    }
+//    if (_img3.image && _img3.image != zhanweiImage) {
+//        [_photoImageList addObject:_img3.image];
+//    }
 }
 
 - (IBAction)locationBtnAction:(id)sender{
@@ -315,8 +329,8 @@
     [modalViewController showWithAnimated:YES completion:nil];
 }
 - (IBAction)closeViewAction:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [self.navigationController popViewControllerAnimated:YES];
-}
+   [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+ 
 
+}
 @end

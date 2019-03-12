@@ -223,6 +223,7 @@
         RootNavigationController * nav1 = [[RootNavigationController alloc]initWithRootViewController:pinpaiVC];
         [weakSelf presentViewController:nav1 animated:YES completion:nil];
     }
+    
 }
 
 

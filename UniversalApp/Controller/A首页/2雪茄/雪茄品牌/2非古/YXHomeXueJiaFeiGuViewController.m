@@ -66,10 +66,9 @@
     
     self.gridView.columnCount = 4;
     self.gridView.rowHeight = height;
-    self.gridView.separatorWidth = PixelOne;
+    self.gridView.separatorWidth = 10;
     self.gridView.separatorColor = KClearColor;
     self.gridView.separatorDashed = NO;
-    
     for (NSInteger i = 0; i < [self.hotDataArray count]; i++) {
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10,0 , self.gridView.frame.size.width-20, self.gridView.frame.size.height)];
         //        [imageView setContentMode:UIViewContentModeScaleAspectFit];

@@ -78,20 +78,20 @@
     [super fabuAction:btn];
     [QMUITips showLoadingInView:self.view];
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-    
+    [self commonAction:self.photoImageList btn:btn];
 
-    kWeakSelf(self);
-    if (self.photoImageList.count == 0) {
-        [self commonAction:self.photoImageList btn:btn];
-    }else{
-        //先上传到七牛云图片  再提交服务器
-        [QiniuLoad uploadImageToQNFilePath:self.photoImageList success:^(NSString *reslut) {
-            NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
-            [weakself commonAction:qiniuArray btn:btn];
-        } failure:^(NSString *error) {
-            NSLog(@"%@",error);
-        }];
-    }
+
+//    kWeakSelf(self);
+//    if (self.photoImageList.count == 0) {
+//    }else{
+//        //先上传到七牛云图片  再提交服务器
+//        [QiniuLoad uploadImageToQNFilePath:self.photoImageList success:^(NSString *reslut) {
+//            NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
+//            [weakself commonAction:qiniuArray btn:btn];
+//        } failure:^(NSString *error) {
+//            NSLog(@"%@",error);
+//        }];
+//    }
  
 }
 -(void)commonAction:(NSMutableArray *)imgArray btn:(UIButton *)btn{
@@ -130,27 +130,27 @@
         NSString *string = [self.tagArray componentsJoinedByString:@" "];
         [dic setValue:string forKey:@"tag"];//标签
     }
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(imgArray.count+1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //这里区别寸草稿还是发布
+        if (btn.tag == 301) {
+            UserDefaultsSET(dic, YX_USER_FaBuCaoGao);
             [QMUITips hideAllTipsInView:self.view];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }else{
+            [self requestFabu:dic];
+        }
+    });
 
-    //这里区别寸草稿还是发布
-//    if (btn.tag == 301) {
-//        UserDefaultsSET(dic, YX_USER_FaBuCaoGao);
-//        [QMUITips hideAllTipsInView:[ShareManager getMainView]];
-////        [QMUITips showSucceed:@"存草稿成功" inView:self.view hideAfterDelay:2];
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            [self dismissViewControllerAnimated:YES completion:nil];
-//        });
-//    }else{
-//        [self requestFabu:dic];
-//    }
 }
 -(void)requestFabu:(NSMutableDictionary *)dic{
     kWeakSelf(self);
     //发布按钮
     [YX_MANAGER requestFaBuImagePOST:dic success:^(id object) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self dismissViewControllerAnimated:YES completion:nil];
-            });
+        [QMUITips hideAllTipsInView:weakself.view];
+        [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:^{
+            [QMUITips showSucceed:object[@"message"] inView:[ShareManager getMainView] hideAfterDelay:1];
+        }];
     }];
 }
 
