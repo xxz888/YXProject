@@ -79,7 +79,7 @@
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYK-Pv-vDJ">
-                                            <rect key="frame" x="103" y="1" width="18" height="18"/>
+                                            <rect key="frame" x="97" y="1" width="18" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="18" id="1fC-Eu-uqD"/>
                                                 <constraint firstAttribute="width" constant="18" id="QXO-XU-cle"/>
@@ -93,7 +93,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="QxS-ly-1GR" firstAttribute="centerX" secondItem="C1O-xE-bVw" secondAttribute="centerX" id="4zq-2p-HVd"/>
-                                        <constraint firstItem="DYK-Pv-vDJ" firstAttribute="trailing" secondItem="QxS-ly-1GR" secondAttribute="trailing" constant="15" id="6Ph-by-ecU"/>
+                                        <constraint firstItem="DYK-Pv-vDJ" firstAttribute="trailing" secondItem="QxS-ly-1GR" secondAttribute="trailing" constant="9" id="6Ph-by-ecU"/>
                                         <constraint firstItem="QxS-ly-1GR" firstAttribute="centerY" secondItem="C1O-xE-bVw" secondAttribute="centerY" id="Tj7-XK-iD9"/>
                                         <constraint firstItem="DYK-Pv-vDJ" firstAttribute="top" secondItem="QxS-ly-1GR" secondAttribute="top" constant="-9" id="r1N-3T-CZ5"/>
                                     </constraints>
@@ -109,7 +109,7 @@
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" tag="202" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="50r-e8-c9X">
-                                            <rect key="frame" x="103" y="1" width="18" height="18"/>
+                                            <rect key="frame" x="97" y="1" width="18" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="18" id="SKy-RO-2Cf"/>
                                                 <constraint firstAttribute="height" constant="18" id="Wle-YD-n42"/>
@@ -123,7 +123,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="50r-e8-c9X" firstAttribute="top" secondItem="LKf-fM-uXn" secondAttribute="top" constant="-9" id="N8E-nR-txG"/>
-                                        <constraint firstItem="50r-e8-c9X" firstAttribute="trailing" secondItem="LKf-fM-uXn" secondAttribute="trailing" constant="15" id="PJI-bu-KrJ"/>
+                                        <constraint firstItem="50r-e8-c9X" firstAttribute="trailing" secondItem="LKf-fM-uXn" secondAttribute="trailing" constant="9" id="PJI-bu-KrJ"/>
                                         <constraint firstItem="LKf-fM-uXn" firstAttribute="centerX" secondItem="3fR-Z3-xcj" secondAttribute="centerX" id="lvA-V0-6ST"/>
                                         <constraint firstItem="LKf-fM-uXn" firstAttribute="centerY" secondItem="3fR-Z3-xcj" secondAttribute="centerY" id="wj3-Jo-deA"/>
                                     </constraints>
@@ -139,7 +139,7 @@
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" tag="203" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Qf-tP-vOF">
-                                            <rect key="frame" x="102.5" y="1" width="18" height="18"/>
+                                            <rect key="frame" x="96.5" y="1" width="18" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="18" id="eub-Dh-g4J"/>
                                                 <constraint firstAttribute="width" constant="18" id="kSY-Hq-zqb"/>
@@ -154,7 +154,7 @@
                                     <constraints>
                                         <constraint firstItem="9Qi-Yi-Bod" firstAttribute="centerY" secondItem="Gpy-V9-dgM" secondAttribute="centerY" id="A8i-ms-s92"/>
                                         <constraint firstItem="8Qf-tP-vOF" firstAttribute="top" secondItem="9Qi-Yi-Bod" secondAttribute="top" constant="-9" id="aae-Ct-FGW"/>
-                                        <constraint firstItem="8Qf-tP-vOF" firstAttribute="trailing" secondItem="9Qi-Yi-Bod" secondAttribute="trailing" constant="15" id="bQ5-nq-4wa"/>
+                                        <constraint firstItem="8Qf-tP-vOF" firstAttribute="trailing" secondItem="9Qi-Yi-Bod" secondAttribute="trailing" constant="9" id="bQ5-nq-4wa"/>
                                         <constraint firstItem="9Qi-Yi-Bod" firstAttribute="centerX" secondItem="Gpy-V9-dgM" secondAttribute="centerX" id="uGP-ao-0tE"/>
                                     </constraints>
                                 </view>

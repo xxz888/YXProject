@@ -101,8 +101,7 @@
     [YX_MANAGER requestGetNewFootList:[self getParamters:@"1" page:NSIntegerToNSString(self.requestPage)] success:^(id object) {
         
         if ([object count] > 0) {
-            weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
-            weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
+          weakself.dataArray = [weakself commonAction:[weakself creatModelsWithCount:object] dataArray:weakself.dataArray];
             [weakself refreshTableView];
         }else{
             [weakself.yxTableView.mj_header endRefreshing];
@@ -115,8 +114,7 @@
     //请求评价列表 最热评论列表
     [YX_MANAGER requestGetHotFootList:[self getParamters:@"2" page:NSIntegerToNSString(self.requestPage)] success:^(id object) {
         if ([object count] > 0) {
-            weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
-            weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
+           weakself.dataArray = [weakself commonAction:[weakself creatModelsWithCount:object] dataArray:weakself.dataArray]; 
             [weakself refreshTableView];
         }else{
             [weakself.yxTableView.mj_header endRefreshing];
@@ -201,7 +199,8 @@
         model.name = formalArray[i][@"user_name"];
         model.msgContent = [formalArray[i][@"comment"] UnicodeToUtf8];
         model.commontTime = [formalArray[i][@"update_time"] integerValue];
-        model.praise = kGetString(formalArray[i][@"praise_number"]);
+        model.praise = kGetString(formalArray[i][@"is_praise"]);
+        model.praise_num = kGetString(formalArray[i][@"praise_number"]);
         model.id =  kGetString(formalArray[i][@"id"]);
         model.postid = kGetString(formalArray[i][@"track_id"]);
         [pageDic setValue:@([model.id intValue]) forKey:@"id"];

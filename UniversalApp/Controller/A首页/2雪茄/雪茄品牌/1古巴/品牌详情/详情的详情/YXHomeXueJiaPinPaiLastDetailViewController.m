@@ -303,7 +303,8 @@ static CGFloat textFieldH = 40;
         model.msgContent = [formalArray[i][@"comment"] UnicodeToUtf8];
         model.commontTime = [formalArray[i][@"update_time"] integerValue];
         model.score = [formalArray[i][@"average_score"] floatValue];
-        model.praise = kGetString(formalArray[i][@"praise"]);
+        model.praise = kGetString(formalArray[i][@"is_praise"]);
+        model.praise_num = kGetString(formalArray[i][@"praise_number"]);
         model.id =  kGetString(formalArray[i][@"id"]);
         
         [pageDic setValue:@([model.id intValue]) forKey:@"id"];

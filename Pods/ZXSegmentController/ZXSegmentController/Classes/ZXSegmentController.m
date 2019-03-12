@@ -211,8 +211,8 @@
 
     [self transitionFromViewController:oldController
                       toViewController:newController
-                              duration:0
-                               options:UIViewAnimationOptionTransitionNone
+                              duration:1
+                               options:UIViewAnimationOptionLayoutSubviews
                             animations:^{
                                 [newController.view mas_updateConstraints:^(MASConstraintMaker *make) {
                                     make.top.equalTo(self.headerView.mas_bottom);

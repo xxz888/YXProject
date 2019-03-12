@@ -65,10 +65,10 @@
 - (void)setupViews
 {
     _bgImageView = [UIImageView new];
-        UIImage *bgImage = [UIImage imageNamed:@""];
-    _bgImageView.image = bgImage;
-    _bgImageView.backgroundColor = YXRGBAColor(236, 236, 236);
-    [self addSubview:_bgImageView];
+//        UIImage *bgImage = [UIImage imageNamed:@""];
+//    _bgImageView.image = bgImage;
+    //self.backgroundColor = YXRGBAColor(236, 236, 236);
+    //[self addSubview:_bgImageView];
     
     _likeLabel = [MLLinkLabel new];
     _likeLabel.font = [UIFont systemFontOfSize:13];
@@ -241,7 +241,7 @@
     .centerYEqualToView(_likeLabel)
     .widthIs(100)
     .heightIs(0);
-    [self setupAutoHeightWithBottomView:lastTopView bottomMargin:6];
+    [self setupAutoHeightWithBottomView:lastTopView bottomMargin:0];
 }
 
 - (void)setFrame:(CGRect)frame

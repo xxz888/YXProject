@@ -149,7 +149,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     
-    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"]; // （@"YYYY-MM-dd hh:mm:ss"）----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    [formatter setDateFormat:@"MM-dd"]; // （@"YYYY-MM-dd hh:mm:ss"）----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
     
     NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
     
@@ -164,6 +164,28 @@ SINGLETON_FOR_CLASS(ShareManager);
     
     
     //NSLog(@"&&&&&&&confromTimespStr = : %@",confromTimespStr);
+    
+    NSCalendar * calendar = [NSCalendar currentCalendar];
+    BOOL isday  = [calendar isDateInToday:confromTimesp];
+    BOOL isYestarday  = [calendar isDateInYesterday:confromTimesp];
+    if (isday) {//如果是今天
+        [formatter setDateFormat:@"HH:mm"];
+        NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
+        [formatter setTimeZone:timeZone];
+        NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:timestamp];
+        NSString *confromTimespStr = [formatter stringFromDate:confromTimesp];
+        NSString * str = [NSString stringWithFormat:@"今天 %@",confromTimespStr];
+        return str;
+    }
+    if (isYestarday) {//如果是昨天
+        [formatter setDateFormat:@"HH:mm"];
+        NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
+        [formatter setTimeZone:timeZone];
+        NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:timestamp];
+        NSString *confromTimespStr = [formatter stringFromDate:confromTimesp];
+        NSString * str = [NSString stringWithFormat:@"昨天 %@",confromTimespStr];
+        return str;
+    }
     
     
     

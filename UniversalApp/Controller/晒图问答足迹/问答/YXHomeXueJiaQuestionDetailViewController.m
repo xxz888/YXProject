@@ -32,8 +32,7 @@
     kWeakSelf(self);
     [YX_MANAGER requestAnswerListGET:par success:^(id object) {
         if ([object count] != 0) {
-            weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
-            weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:weakself.dataArray]];
+       weakself.dataArray = [weakself commonAction:[weakself creatModelsWithCount:object] dataArray:weakself.dataArray]; 
             [weakself refreshTableView];
         }else{
             [weakself.yxTableView.mj_footer endRefreshing];
@@ -200,7 +199,8 @@
         model.userID =formalArray[i][@"user_id"];
         model.msgContent = [formalArray[i][@"answer"] UnicodeToUtf8] ;
         model.commontTime = [formalArray[i][@"publish_date"] integerValue];
-        model.praise = kGetString(formalArray[i][@"praise_number"]);
+        model.praise = kGetString(formalArray[i][@"is_praise"]);
+        model.praise_num = kGetString(formalArray[i][@"praise_number"]);
         model.id =  kGetString(formalArray[i][@"id"]);
         model.postid = kGetString(formalArray[i][@"question_id"]);
         [pageDic setValue:@([model.id intValue]) forKey:@"id"];

@@ -53,7 +53,7 @@
     _cycleScrollView3.showPageControl = YES;
     _cycleScrollView3.autoScrollTimeInterval = 10000;
     _cycleScrollView3.pageDotColor = YXRGBAColor(239, 239, 239);
-    
+    _cycleScrollView3.backgroundColor = KWhiteColor;
 
 }
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index{

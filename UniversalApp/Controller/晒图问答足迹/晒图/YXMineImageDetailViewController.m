@@ -99,8 +99,7 @@
     //请求评价列表 最新评论列表
     [YX_MANAGER requestPost_comment:[self getParamters:@"1" page:NSIntegerToNSString(self.requestPage)] success:^(id object) {
         if ([object count] > 0) {
-            weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
-            weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
+            weakself.dataArray = [weakself commonAction:[weakself creatModelsWithCount:object] dataArray:weakself.dataArray];
             [weakself refreshTableView];
         }else{
             [weakself.yxTableView.mj_header endRefreshing];
@@ -113,8 +112,7 @@
     //请求评价列表 最热评论列表
     [YX_MANAGER requestPost_comment:[self getParamters:@"2" page:NSIntegerToNSString(self.requestPage)] success:^(id object) {
         if ([object count] > 0) {
-            weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
-            weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
+            weakself.dataArray = [weakself commonAction:[weakself creatModelsWithCount:object] dataArray:weakself.dataArray]; 
             [weakself refreshTableView];
         }else{
             [weakself.yxTableView.mj_header endRefreshing];
@@ -195,9 +193,18 @@
         model.name = formalArray[i][@"user_name"];
         model.msgContent = [formalArray[i][@"comment"] UnicodeToUtf8] ;
         model.commontTime = [formalArray[i][@"update_time"] integerValue];
-        model.praise = kGetString(formalArray[i][@"praise_number"]);
+        model.praise = kGetString(formalArray[i][@"is_praise"]);
+        model.praise_num = kGetString(formalArray[i][@"praise_number"]);
+
+        
         model.id =  kGetString(formalArray[i][@"id"]);
         model.postid = kGetString(formalArray[i][@"postid"]);
+        if ([formalArray[i][@"child_list"] count] == 0) {
+            model.moreCountPL = @"0";
+        }else{
+              model.moreCountPL = [NSString stringWithFormat:@"%ld",[formalArray[i][@"child_number"] integerValue] - [formalArray[i][@"child_list"] count]];
+        }
+      
         [pageDic setValue:@([model.id intValue]) forKey:@"id"];
         [pageDic setValue:@(0) forKey:@"page"];
         [self.pageArray addObject:pageDic];

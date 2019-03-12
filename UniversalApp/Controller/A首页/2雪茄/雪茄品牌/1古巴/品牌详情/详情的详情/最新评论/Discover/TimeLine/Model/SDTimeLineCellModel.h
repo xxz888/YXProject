@@ -50,8 +50,11 @@
 @property (nonatomic, copy) NSString * zanCount;
 @property (nonatomic) CGFloat score;
 @property (nonatomic,copy) NSString * praise;
+@property (nonatomic,copy) NSString * praise_num;
+
 @property (nonatomic,copy) NSString * id;
 @property (nonatomic,copy) NSString * postid;
+@property (nonatomic,copy) NSString * moreCountPL;
 
 
 @end

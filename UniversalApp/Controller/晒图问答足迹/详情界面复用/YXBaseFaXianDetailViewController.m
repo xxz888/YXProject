@@ -35,6 +35,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SDTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:kTimeLineTableViewCellId];
+    
+    cell.model = self.dataArray[indexPath.row];
+
+    CGFloat height1 = cell.model.moreCountPL.integerValue <= 0 ? 0 : 20;
+    [cell.showMoreCommentBtn setTitle:height1 == 0 ? @"" : @"显示更多回复 >>"  forState:UIControlStateNormal];
+    cell.showMoreCommentBtn.hidden = height1 == 0;
+    
+
     cell.indexPath = indexPath;
     __weak typeof(self) weakSelf = self;
     if (!cell.moreButtonClickedBlock) {
@@ -58,7 +66,6 @@
     }
     ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
-    cell.model = self.dataArray[indexPath.row];
     
     cell.starView.hidden = YES;
     return cell;
@@ -68,8 +75,10 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     // >>>>>>>>>>>>>>>>>>>>> * cell自适应 * >>>>>>>>>>>>>>>>>>>>>>>>
-    id model = self.dataArray[indexPath.row];
-    return [self.yxTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[SDTimeLineCell class] contentViewWidth:[self cellContentViewWith]] + 20;
+    SDTimeLineCellModel * model = self.dataArray[indexPath.row];
+    CGFloat height1 = model.moreCountPL.integerValue <= 0 ? 0 : 20;
+
+    return [self.yxTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[SDTimeLineCell class] contentViewWidth:[self cellContentViewWith]] + height1;
 }
 - (CGFloat)cellContentViewWith{
     CGFloat width = [UIScreen mainScreen].bounds.size.width;

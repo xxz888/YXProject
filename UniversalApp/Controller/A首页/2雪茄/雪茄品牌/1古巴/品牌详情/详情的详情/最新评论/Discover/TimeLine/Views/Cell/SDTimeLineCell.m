@@ -120,8 +120,8 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     _zanCountLable = [UILabel new];
     _zanCountLable.font = [UIFont systemFontOfSize:10];
     _zanCountLable.textColor = KBlackColor;
-    _zanCountLable.text = @"123123123";
-    
+    _zanCountLable.text = @"";
+    _zanCountLable.textAlignment = NSTextAlignmentLeft;
     
     
     _picContainerView = [SDWeiXinPhotoContainerView new];
@@ -135,15 +135,15 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     
     
     _showMoreCommentBtn = [UIButton new];
-    [_showMoreCommentBtn setTitle:@"显示更多评论 >>" forState:UIControlStateNormal];
-    [_showMoreCommentBtn setTitleColor:KDarkGaryColor forState:UIControlStateNormal];
+    
+    [_showMoreCommentBtn setTitleColor:TimeLineCellHighlightedColor forState:UIControlStateNormal];
     [_showMoreCommentBtn addTarget:self action:@selector(showMoreCommentAction) forControlEvents:UIControlEventTouchUpInside];
-    _showMoreCommentBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    _showMoreCommentBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     
     
     _timeLabel = [UILabel new];
-    _timeLabel.font = [UIFont systemFontOfSize:13];
-    
+    _timeLabel.font = [UIFont systemFontOfSize:11];
+    _timeLabel.textColor = KDarkGaryColor;
     
     _operationMenu = [SDTimeLineCellOperationMenu new];
     __weak typeof(self) weakSelf = self;
@@ -159,7 +159,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     }];
     
     
-    NSArray *views = @[_iconView, _nameLable,_starView, _contentLabel, _moreButton, _picContainerView, _timeLabel, _huiFuButton,_zanButton, _operationMenu, _commentView,_showMoreCommentBtn];
+    NSArray *views = @[_iconView, _nameLable,_starView, _contentLabel, _moreButton, _picContainerView, _timeLabel, _huiFuButton,_zanButton, _operationMenu, _commentView,_showMoreCommentBtn,_zanCountLable];
     
     [self.contentView sd_addSubviews:views];
     
@@ -181,13 +181,21 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     
     _starView.sd_layout
     .rightSpaceToView(self.contentView, margin)
-    .topEqualToView(_nameLable)
+    .topEqualToView(self.contentView)
     .widthIs(110)
     .heightIs(30);
     
-    _contentLabel.sd_layout
+    
+    _timeLabel.sd_layout
     .leftEqualToView(_nameLable)
     .topSpaceToView(_nameLable, 5)
+    .heightIs(15);
+
+    [_timeLabel setSingleLineAutoResizeWithMaxWidth:200];
+    
+    _contentLabel.sd_layout
+    .leftEqualToView(_nameLable)
+    .topSpaceToView(_timeLabel, margin)
     .rightSpaceToView(contentView, margin)
     .autoHeightRatio(0);
     /*
@@ -205,6 +213,19 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
         .rightSpaceToView(contentView, margin)
         .autoHeightRatio(0);
     }
+     
+     
+     _timeLabel.sd_layout
+     .leftEqualToView(_contentLabel)
+     .topSpaceToView(_picContainerView, margin)
+     .heightIs(15);
+     [_timeLabel setSingleLineAutoResizeWithMaxWidth:200];
+     
+     _contentLabel.sd_layout
+     .leftEqualToView(_nameLable)
+     .topSpaceToView(_nameLable, 5)
+     .rightSpaceToView(contentView, margin)
+     .autoHeightRatio(0);
 */
     
     // morebutton的高度在setmodel里面设置
@@ -217,11 +238,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     _picContainerView.sd_layout
     .leftEqualToView(_contentLabel); // 已经在内部实现宽度和高度自适应所以不需要再设置宽度高度，top值是具体有无图片在setModel方法中设置
     
-    _timeLabel.sd_layout
-    .leftEqualToView(_contentLabel)
-    .topSpaceToView(_picContainerView, margin)
-    .heightIs(15);
-    [_timeLabel setSingleLineAutoResizeWithMaxWidth:200];
+
     
 //    _operationButton.sd_layout
 //    .rightSpaceToView(contentView, margin)
@@ -230,35 +247,37 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
 //    .widthIs(25);
     
     _huiFuButton.sd_layout
-    .rightSpaceToView(self.contentView, margin + 50)
+    .rightSpaceToView(self.contentView, margin + 60)
     .centerYEqualToView(_timeLabel)
     .heightIs(20)
     .widthIs(20);
     
     _zanButton.sd_layout
-    .rightSpaceToView(self.contentView, margin+10)
+    .rightSpaceToView(self.contentView, margin+20)
     .centerYEqualToView(_timeLabel)
     .heightIs(20)
     .widthIs(20);
     
     _zanCountLable.sd_layout
-    .rightSpaceToView(self.contentView, margin)
-    .centerYEqualToView(_zanButton)
-    .widthIs(10)
+    .rightSpaceToView(self.contentView, margin -4)
+    .centerYIs(38)
+    .widthIs(20)
     .heightIs(10)
     ;
     
     _commentView.sd_layout
     .leftEqualToView(_contentLabel)
     .rightSpaceToView(self.contentView, margin)
-    .topSpaceToView(_timeLabel, margin); // 已经在内部实现高度自适应所以不需要再设置高度
+    .topSpaceToView(_contentLabel, margin); // 已经在内部实现高度自适应所以不需要再设置高度
     
     
     _showMoreCommentBtn.sd_layout
     .topSpaceToView(_commentView, 10)
-    .centerXEqualToView(_commentView)
+    .rightSpaceToView(self.contentView, -10)
     .widthIs(200)
     .heightIs(20);
+    
+    
     
     _operationMenu.sd_layout
     .rightSpaceToView(_operationButton, 0)
@@ -342,7 +361,10 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     
     _timeLabel.text = [ShareManager timestampSwitchTime:model.commontTime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
     
-    
+    _zanCountLable.text = model.praise_num;
+    if ( [model.praise_num isEqualToString:@"0"]) {
+        _zanCountLable.text = @"";
+    }
     [self fiveStarView:model.score view:_starView];
 
     if ([model.praise isEqualToString:@"1"]) {
