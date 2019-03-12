@@ -31,7 +31,7 @@
 
     
     if ([userManager loadUserInfo]) {
-        [ShareManager upDataPersionIP];
+//        [ShareManager upDataPersionIP];
         [[UDPManage shareUDPManage] getNewMessageNumeber];
         [[UDPManage shareUDPManage] createClientUdpSocket];
     }

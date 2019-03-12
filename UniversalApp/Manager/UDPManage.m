@@ -40,15 +40,35 @@ static UDPManage *myUDPManage = nil;
     });
     return myUDPManage;
 }
-
+#pragma mark 字典转化字符串
+-(NSString*)dictionaryToJson:(NSDictionary *)dic
+{
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
 -(void)createClientUdpSocket{
     //创建udp socket
     if (!_udpSocket){
         _udpSocket=nil;
     }
     _udpSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
-    [_udpSocket bindToPort:6666 error:nil];
+
+
+
+ 
+    
     [_udpSocket receiveOnce:nil];
+    
+    UserInfo * infor = curUser;
+    NSString * str1 = [self dictionaryToJson:@{@"user_id":kGetString(infor.id)}];
+    NSData *msgData = [str1 dataUsingEncoding:NSUTF8StringEncoding];
+    [_udpSocket sendData:msgData toHost:@"47.99.113.177" port:6666 withTimeout:60 tag:1];
+
+}
+-(void)udpSocket:(GCDAsyncUdpSocket *)sock didNotSendDataWithTag:(long)tag dueToError:(NSError *)error{
+    NSLog(@"标记为tag %ld的发送失败 失败原因 %@",tag, error);
 }
 //接收到数据
 -(void)udpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data fromAddress:(NSData *)address withFilterContext:(id)filterContext{

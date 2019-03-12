@@ -637,7 +637,7 @@ SINGLETON_FOR_CLASS(ShareManager);
                            @"photo":kGetString(userInfo.photo),
                            @"birthday":kGetString(userInfo.birthday),
                            @"site":kGetString(userInfo.site),
-                           @"ip":[[UDPManage shareUDPManage] getIPAddress:YES]};
+                           };
     [YX_MANAGER requestUpdate_userPOST:dic success:^(id object) {
         
     }];

@@ -44,7 +44,7 @@
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    self.type = @"1";
+    self.type = @"0";
     [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:nil];
 }
@@ -77,6 +77,10 @@
     NSMutableArray * array = [[NSMutableArray alloc]init];
     [YX_MANAGER requestGet_users_find_tag:@"" success:^(id object) {
         [weakself.typeArray removeAllObjects];
+        
+        [array addObject:@"晒图"];
+
+        [weakself.typeArray addObject:@"0"];
         for (NSDictionary * dic in object) {
             [array addObject:dic[@"type"]];
             [weakself.typeArray addObject:dic[@"id"]];
