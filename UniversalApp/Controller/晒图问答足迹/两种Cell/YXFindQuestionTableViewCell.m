@@ -72,8 +72,10 @@
     }else{
         [self.midImageView3 sd_setImageWithURL:[NSURL URLWithString:str3] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     }
-    if (str1.length<=0 && str2.length<=0 && str3.length<=0) {
+    if (str1.length<=5 && str2.length<=5 && str3.length<=5) {
         self.imvHeight.constant = 0;
+    }else{
+        self.imvHeight.constant = 100;
     }
     if ([self.mapBtn.titleLabel.text isEqualToString:@""] || !self.mapBtn.titleLabel.text) {
         self.nameCenter.constant = self.titleImageView.frame.origin.y;

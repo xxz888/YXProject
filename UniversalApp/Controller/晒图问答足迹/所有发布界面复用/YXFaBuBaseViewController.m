@@ -329,8 +329,12 @@
     [modalViewController showWithAnimated:YES completion:nil];
 }
 - (IBAction)closeViewAction:(id)sender {
-   [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-
-
+//   [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    
+    UIViewController *controller = self;
+    while(controller.presentingViewController != nil){
+        controller = controller.presentingViewController;
+    }
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 @end
