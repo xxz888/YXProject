@@ -33,7 +33,7 @@
     if ([userManager loadUserInfo]) {
 //        [ShareManager upDataPersionIP];
         [[UDPManage shareUDPManage] getNewMessageNumeber];
-        [[UDPManage shareUDPManage] createClientUdpSocket];
+//        [[UDPManage shareUDPManage] createClientUdpSocket];
     }
     //老板说第二页太卡，在这里做个缓存吧
 //    [self requestCigar_brand:@"1"];

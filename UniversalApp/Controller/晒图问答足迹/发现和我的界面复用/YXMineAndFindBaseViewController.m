@@ -8,7 +8,9 @@
 
 #import "YXMineAndFindBaseViewController.h"
 #import "XHWebImageAutoSize.h"
-@interface YXMineAndFindBaseViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface YXMineAndFindBaseViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>{
+    CGFloat _autoPLHeight;
+}
 
 @end
 
@@ -16,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _autoPLHeight = 0;
     [self tableviewCon];
     [self addRefreshView:self.yxTableView];
 
@@ -30,9 +33,13 @@
     self.yxTableView.dataSource= self;
     self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.yxTableView.showsVerticalScrollIndicator = NO;
+    self.yxTableView.estimatedRowHeight = 0;
+    self.yxTableView.estimatedSectionHeaderHeight = 0;
+    self.yxTableView.estimatedSectionFooterHeight = 0;
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindImageTableViewCell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindQuestionTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindQuestionTableViewCell"];
-    
+    [self setupTextField];
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 #pragma mark ========== tableview代理方法 ==========
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -129,10 +136,105 @@
         
         [weakself.yxTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexRow, nil] withRowAnimation:UITableViewRowAnimationNone];
     };
+    cell.addPlActionblock = ^(YXFindImageTableViewCell * cell) {
+        NSIndexPath *indexRow = [weakself.yxTableView indexPathForCell:cell];
+        [weakself.textField becomeFirstResponder];
+        weakself.textField.tag = indexRow.row ;
+        
+        
+//       weakself.currentEditingIndexthPath = indexRow;
+//        [weakself adjustTableViewToFitKeyboard];
+    };
     cell.dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
     cell.whereCome = whereCome;
     [cell setCellValue:dic whereCome:whereCome];
     return cell;
+}
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.textField resignFirstResponder];
+  
+    
+    if (textField.text.length) {
+        if (textField.tag >= 10000) {
+            NSString * inputText = textField.text;
+            NSInteger index = textField.tag -10000 ;
+            YXFindQuestionTableViewCell * cell = [self.yxTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+            UserInfo * userInfo = curUser;
+            NSString * str = [NSString stringWithFormat:@"\n%@:%@",userInfo.username,textField.text];
+            cell.plLbl.text = [cell.plLbl.text append:str];
+            cell.pl1Height.constant = [ShareManager inTextFieldOutDifColorView:cell.plLbl.text];
+            [ShareManager setLineSpace:9 withText:cell.plLbl.text inLabel:cell.plLbl tag:@""];
+            self.textField.text = @"";
+            
+            NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[index]];
+            [dic setValue:floatToNSString(cell.pl1Height.constant) forKey:@"plHeight"];
+            [dic setValue:cell.plLbl.text forKey:@"plContent"];
+            
+            [self.dataArray replaceObjectAtIndex:index withObject:dic];
+            NSIndexPath *indexRow = [self.yxTableView indexPathForCell:cell];
+            
+            
+            [self.yxTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexRow, nil] withRowAnimation:UITableViewRowAnimationNone];
+            
+            
+            
+            
+            [self requestFaBuHuiDa:@{
+                                     @"answer":[inputText utf8ToUnicode],
+                                     @"question_id":@(cell.tagId)
+                                     }];
+        }else{
+            NSString * inputText = textField.text;
+            NSInteger index = textField.tag ;
+            YXFindImageTableViewCell * cell = [self.yxTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+            UserInfo * userInfo = curUser;
+            NSString * str = [NSString stringWithFormat:@"\n%@:%@",userInfo.username,textField.text];
+            cell.plLbl.text = [cell.plLbl.text append:str];
+            cell.pl1Height.constant = [ShareManager inTextFieldOutDifColorView:cell.plLbl.text];
+            [ShareManager setLineSpace:9 withText:cell.plLbl.text inLabel:cell.plLbl tag:@""];
+            self.textField.text = @"";
+            
+            NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[index]];
+            [dic setValue:floatToNSString(cell.pl1Height.constant) forKey:@"plHeight"];
+            [dic setValue:cell.plLbl.text forKey:@"plContent"];
+            
+            [self.dataArray replaceObjectAtIndex:index withObject:dic];
+            NSIndexPath *indexRow = [self.yxTableView indexPathForCell:cell];
+            
+            
+            [self.yxTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexRow, nil] withRowAnimation:UITableViewRowAnimationNone];
+            
+         
+                if (cell.whereCome) {
+                    [self pinglunFatherPic_zuji:@{@"comment":[inputText utf8ToUnicode] ,
+                                                  @"track_id":@(cell.tagId),
+                                                  }];
+                    
+                }else{
+                    [self pinglunFatherPic_shaitu:@{@"comment":[inputText utf8ToUnicode],
+                                                    @"post_id":@(cell.tagId)}];
+                }
+            
+            
+            //        [self.yxTableView scrollToRowAtIndexPath:self.currentEditingIndexthPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+            return YES;
+        }
+
+    }
+    return NO;
+}
+#pragma mark ========== 评论晒图 ==========
+-(void)pinglunFatherPic_shaitu:(NSDictionary *)dic{
+    [YX_MANAGER requestPost_commentPOST:dic success:^(id object) {}];
+}
+#pragma mark ========== 评论足迹 ==========
+-(void)pinglunFatherPic_zuji:(NSDictionary *)dic{
+    [YX_MANAGER requestPingLunFoot:dic success:^(id object) {}];
+}
+#pragma mark ========== 发布回答 ==========
+-(void)requestFaBuHuiDa:(NSDictionary *)dic{
+    [YX_MANAGER requestFaBuHuiDaPOST:dic success:^(id object) { }];
 }
 #pragma mark ========== 问答 ==========
 -(YXFindQuestionTableViewCell *)customQuestionData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath{
@@ -168,6 +270,12 @@
             }
         }
         [weakself.yxTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexRow, nil] withRowAnimation:UITableViewRowAnimationNone];
+    };
+    cell.addPlActionblock = ^(YXFindQuestionTableViewCell * cell) {
+        NSIndexPath *indexRow = [weakself.yxTableView indexPathForCell:cell];
+        [weakself.textField becomeFirstResponder];
+        weakself.textField.tag = indexRow.row + 10000;
+
     };
     [cell setCellValue:dic];
     return cell;
@@ -354,6 +462,77 @@
     }
 }
 
+- (void)setupTextField{
+    _textField = [UITextField new];
+    _textField.returnKeyType = UIReturnKeyDone;
+    _textField.delegate = self;
+    _textField.placeholder = @"开始评论..";
+    _textField.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
+    _textField.layer.borderWidth = 1;
+    [_textField setFont:[UIFont systemFontOfSize:14]];
+    //为textfield添加背景颜色 字体颜色的设置 还有block设置 , 在block中改变它的键盘样式 (当然背景颜色和字体颜色也可以直接在block中写)
+    _textField.backgroundColor = [UIColor whiteColor];
+    _textField.textColor = [UIColor blackColor];
+    _textField.keyboardAppearance = UIKeyboardAppearanceDefault;
+    if ([_textField isFirstResponder]) {
+        [_textField resignFirstResponder];
+        [_textField becomeFirstResponder];
+    }
+    _textField.frame = CGRectMake(0, KScreenHeight, KScreenWidth, 40);
+    [[UIApplication sharedApplication].keyWindow addSubview:_textField];
+    
+    //    [_textField becomeFirstResponder];
+    //    [_textField resignFirstResponder];
+}
+- (void)keyboardNotification:(NSNotification *)notification{
+    CGPoint offset = CGPointMake(0, 0);
+//    [self.yxTableView setContentOffset:offset animated:YES];
+    
+    NSDictionary *dict = notification.userInfo;
+    CGRect rect = [dict[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
+    CGRect textFieldRect = CGRectMake(0, rect.origin.y - textFieldH, rect.size.width, textFieldH);
+    if (rect.origin.y == [UIScreen mainScreen].bounds.size.height) {
+        textFieldRect = rect;
+    }
+    [UIView animateWithDuration:0.25 animations:^{
+        _textField.frame = textFieldRect;
+    }];
+    CGFloat h = rect.size.height + textFieldH;
+    if (_totalKeybordHeight != h) {
+        _totalKeybordHeight = h;
+        //[self adjustTableViewToFitKeyboard];
+    }
+}
 
+#pragma mark ========== 以下为所有自适应和不常用的方法 ==========
+- (void)adjustTableViewToFitKeyboard{
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UITableViewCell *cell = [self.yxTableView cellForRowAtIndexPath:self.currentEditingIndexthPath];
+    CGRect rect = [cell.superview convertRect:cell.frame toView:window];
+    [self adjustTableViewToFitKeyboardWithRect:rect];
+}
 
+- (void)adjustTableViewToFitKeyboardWithRect:(CGRect)rect{
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    CGFloat delta = CGRectGetMaxY(rect) - (window.bounds.size.height - _totalKeybordHeight);
+    
+    CGPoint offset = self.yxTableView.contentOffset;
+    offset.y += delta;
+    if (offset.y < 0) {
+        offset.y = 0;
+    }
+    
+    [self.yxTableView setContentOffset:offset animated:YES];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [_textField resignFirstResponder];
+}
+
+- (void)dealloc{
+    [_textField removeFromSuperview];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [_textField resignFirstResponder];
+}
 @end

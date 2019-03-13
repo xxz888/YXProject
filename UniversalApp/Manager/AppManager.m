@@ -50,7 +50,6 @@ SINGLETON_FOR_CLASS(AppManager);
             }
             NSArray *resultArray = [appInfoDict objectForKey:@"results"];
             if (![resultArray count]) {
-                NSLog(@"error : resultArray == nil");
                 return;
             }
             NSDictionary *infoDict = [resultArray objectAtIndex:0];

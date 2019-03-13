@@ -355,7 +355,7 @@ SINGLETON_FOR_CLASS(ShareManager);
 
 
     paraStyle.lineSpacing = 9.0f;
-    paraStyle.paragraphSpacing = 9.0f;
+    paraStyle.paragraphSpacing = 0.0f;
     paraStyle.hyphenationFactor = 1.0;
     
     paraStyle.firstLineHeadIndent = 0.0;
@@ -368,7 +368,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     //, NSKernAttributeName:@1.5f
     NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:14], NSParagraphStyleAttributeName:paraStyle,NSParagraphStyleAttributeName:attributedString};
     CGSize size = [string boundingRectWithSize:CGSizeMake(KScreenWidth-20, MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
-    return  ceilf(size.height) <= 30 ? 30 : ceilf(size.height);
+    return  ceilf(size.height);
 }
 + (void)setBorderinView:(UIView *)view{
     view.layer.borderColor = [[UIColor borderColor] CGColor];
@@ -568,22 +568,6 @@ SINGLETON_FOR_CLASS(ShareManager);
     }
     return height;
 }
-
-+(void)inTextFieldOutDifColorView:(UILabel *)tfView tag:(NSString *)tag{
-    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
-        
-    //创建 NSMutableAttributedString
-        NSMutableAttributedString *attributedStr01 = [[NSMutableAttributedString alloc] initWithString: tfView.text];
-           //给所有字符设置字体为Zapfino，字体高度为15像素
-           [attributedStr01 addAttribute: NSFontAttributeName
-                                       value:[UIFont systemFontOfSize:13]
-                                        range: NSMakeRange(tfView.text.length-tag.length, tag.length)];
-            [attributedStr01 addAttribute: NSForegroundColorAttributeName value: YXRGBAColor(10, 96, 254) range: NSMakeRange(tfView.text.length-tag.length,tag.length )];
-           paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
-        
-        //赋值给显示控件label01的 attributedText
-           tfView.attributedText = attributedStr01;
-}
 +(UIView *)getMainView{
     UIView * view;
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11) {
@@ -610,7 +594,6 @@ SINGLETON_FOR_CLASS(ShareManager);
             }
             NSArray *resultArray = [appInfoDict objectForKey:@"results"];
             if (![resultArray count]) {
-                NSLog(@"error : resultArray == nil");
                 return;
             }
             NSDictionary *infoDict = [resultArray objectAtIndex:0];

@@ -22,7 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface YXMineAndFindBaseViewController : RootViewController
 @property(nonatomic,strong)NSMutableArray * dataArray;
 @property (strong, nonatomic) UITableView *yxTableView;
-
+@property (nonatomic,assign) CGFloat lastScrollViewOffsetY;
+@property (nonatomic,assign) CGFloat totalKeybordHeight;
+@property (nonatomic, strong) UITextField *textField;
+@property (nonatomic, strong) NSIndexPath *currentEditingIndexthPath;
 
 #pragma mark ========== 足迹点赞 ==========
 -(void)requestDianZan_ZuJI_Action:(NSIndexPath *)indexPath;

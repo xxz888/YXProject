@@ -51,21 +51,42 @@ static UDPManage *myUDPManage = nil;
 -(void)createClientUdpSocket{
     //创建udp socket
     if (!_udpSocket){
+        [_udpSocket close];
         _udpSocket=nil;
+
     }
+    
+    
     _udpSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
 
 
 
  
     
-    [_udpSocket receiveOnce:nil];
-    
     UserInfo * infor = curUser;
     NSString * str1 = [self dictionaryToJson:@{@"user_id":kGetString(infor.id)}];
     NSData *msgData = [str1 dataUsingEncoding:NSUTF8StringEncoding];
-    [_udpSocket sendData:msgData toHost:@"47.99.113.177" port:6666 withTimeout:60 tag:1];
+    [_udpSocket enableBroadcast:YES error:nil]; //如果你发送广播，这里必须先enableBroadcast
+    [_udpSocket sendData:msgData toHost:@"47.99.113.177" port:6666 withTimeout:-1 tag:100];
 
+}
+- (void)udpSocket:(GCDAsyncUdpSocket *)sock didSendDataWithTag:(long)tag{
+    // 当前tag这个数据包发送完成
+    if (tag == 100) {
+        // 证明tag 100
+        NSLog(@"tag 100 packet send finished");
+        [YX_MANAGER requestGetIP:@"" success:^(id object) {
+            NSLog(@"%@",object);
+            NSInteger port = [object[@"port"] integerValue];
+            NSError * error ;
+           BOOL bindBOOL = [_udpSocket bindToPort:port error:&error];
+            if (error) {
+                NSLog(@"客户端绑定失败");
+            }
+            [_udpSocket beginReceiving:nil];
+
+        }];
+    }
 }
 -(void)udpSocket:(GCDAsyncUdpSocket *)sock didNotSendDataWithTag:(long)tag dueToError:(NSError *)error{
     NSLog(@"标记为tag %ld的发送失败 失败原因 %@",tag, error);

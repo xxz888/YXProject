@@ -237,4 +237,6 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestget_question_by_id:YX_BLOCK;
 #pragma mark ========== 通过id获取雪茄 ==========
 -(void)requestget_cigar_by_id:YX_BLOCK;
+#pragma mark ========== get_ip ==========
+-(void)requestGetIP:YX_BLOCK;
 @end

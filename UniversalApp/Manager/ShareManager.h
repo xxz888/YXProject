@@ -46,7 +46,6 @@ SINGLETON_FOR_HEADER(ShareManager)
 // 根据图片url获取图片尺寸
 +(CGFloat)getImageSizeWithURL:(id)imageURL;
 @property (nonatomic,strong) MMImagePreviewView * previewView;
-+(void)inTextFieldOutDifColorView:(UILabel *)tfView tag:(NSString *)tag;
 +(void)setLineSpace:(CGFloat)lineSpace withText:(NSString *)text inLabel:(UILabel *)label tag:(NSString *)tag;
 +(UIView *)getMainView;
 +(CGFloat)getOldImageSizeWithURL:(id)URL;

@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewConstraint;
 @property (weak, nonatomic) IBOutlet UIView *topView;
 
+@property (weak, nonatomic) IBOutlet UILabel *plLbl;
 
 @property (weak, nonatomic) IBOutlet UIImageView *titleImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
@@ -94,6 +95,13 @@ typedef void(^clickQuestionShareBlock)(YXFindQuestionTableViewCell *);
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *plAllHeight;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameCenter;
+
+
+
+
+typedef void(^addPlFootActionBlock)(YXFindQuestionTableViewCell *);
+- (IBAction)addPlAction:(id)sender;
+@property (nonatomic,copy) addPlFootActionBlock addPlActionblock;
 @end
 
 NS_ASSUME_NONNULL_END

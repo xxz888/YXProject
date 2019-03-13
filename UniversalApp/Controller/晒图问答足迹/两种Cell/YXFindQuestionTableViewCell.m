@@ -13,13 +13,23 @@
     NSArray * plArray =  dic[@"answer"];
     CGFloat height_size = [ShareManager inTextFieldOutDifColorView:[dic[@"question"] UnicodeToUtf8]];
     CGFloat imageHeight = [dic[@"pic1"] length] <= 5 ? 0 : 100;
+    
+    
+    CGFloat plHeight = 0;
+    if (dic[@"plHeight"]) {
+        plHeight = [dic[@"plHeight"] floatValue];
+    }else{
+        plHeight =
+        (plArray.count >= 1 ? 25 : 0) +
+        (plArray.count >= 2 ? 25 : 0) ;
+    }
+    
+    
     CGFloat lastHeight =
-    (plArray.count >= 1 ? 25 : 0) +
-    (plArray.count >= 2 ? 25 : 0) +
-    (plArray.count >= 2 ? 25 : 0) +
+    plHeight +
     height_size +
     imageHeight;
-    return lastHeight + 215 ;
+    return lastHeight + 215 + 25;
 }
 - (IBAction)openAction:(id)sender{
     //将当前对象的isShowMoreText属性设为相反值
@@ -29,11 +39,14 @@
     }
 }
 -(void)setCellValue:(NSDictionary *)dic{
-    [self cellValueDic:dic searchBtn:self.searchBtn pl1NameLbl:self.pl1NameLbl pl2NameLbl:self.pl2NameLbl pl1ContentLbl:self.pl1ContentLbl pl2ContentLbl:self.pl2ContentLbl titleImageView:self.titleImageView addPlImageView:self.addPlImageView talkCount:self.talkCount titleLbl:self.titleLbl timeLbl:self.timeLbl mapBtn:self.mapBtn likeBtn:self.likeBtn zanCount:self.zanCount];
+    [self cellValueDic:dic searchBtn:self.searchBtn pl1NameLbl:self.pl1NameLbl pl2NameLbl:self.pl2NameLbl pl1ContentLbl:self.pl1ContentLbl pl2ContentLbl:self.pl2ContentLbl titleImageView:self.titleImageView addPlImageView:self.addPlImageView talkCount:self.talkCount titleLbl:self.titleLbl timeLbl:self.timeLbl mapBtn:self.mapBtn likeBtn:self.likeBtn zanCount:self.zanCount plLbl:self.plLbl];
     
-    self.pl1Height.constant = [self getPl1HeightPlArray:dic];
-    self.pl2Height.constant = [self getPl2HeightPlArray:dic];
-    self.plAllHeight.constant = [self getPlAllHeightPlArray:dic];
+    
+    //评论高度
+    [ShareManager setLineSpace:9 withText:self.plLbl.text inLabel:self.plLbl tag:@""];
+    self.pl1Height.constant = self.plLbl.text.length == 0 ? 0 :[ShareManager inTextFieldOutDifColorView:self.plLbl.text];
+    
+    self.plAllHeight.constant = 25;//[self getPlAllHeightPlArray:dic];
     self.textHeight.constant = [self getLblHeight:dic];
     self.titleTagLbl1.text = [dic[@"title"] UnicodeToUtf8];
     self.titleTagLbl2.text = [dic[@"question"] UnicodeToUtf8];
@@ -124,4 +137,11 @@
     NSUInteger tag = views.tag;
     self.clickImageBlock(tag);
 }
+
+
+- (IBAction)addPlAction:(id)sender {
+    self.addPlActionblock(self);
+}
+
+
 @end

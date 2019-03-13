@@ -737,6 +737,17 @@ successBlock(responseObject);\
     } failure:^(NSError *error) {
     }];
 }
+
+
+#pragma mark ========== get_ip ==========
+-(void)requestGetIP:YX_BLOCK{
+    NSString * url = @"/users/get_ip/";
+    [HTTP_GET(url) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
+
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

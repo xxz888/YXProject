@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface YXFindImageTableViewCell : YXMineAndFindBaseTableViewCell
+@interface YXFindImageTableViewCell : YXMineAndFindBaseTableViewCell<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *titleImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
@@ -80,13 +80,20 @@ typedef void(^clickShareBlock)(YXFindImageTableViewCell *);
 @property (weak, nonatomic) IBOutlet UILabel *shareCount;
 
 
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imvHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *pl1Height;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *pl2Height;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *plAllHeight;
+@property (weak, nonatomic) IBOutlet UILabel *plLbl;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameCenter;
+
+
+
+typedef void(^addPlActionBlock)(YXFindImageTableViewCell *);
+- (IBAction)addPlAction:(id)sender;
+@property (nonatomic,copy) addPlActionBlock addPlActionblock;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -35,32 +35,51 @@
     }
 }
 
--(void)cellValueDic:(NSDictionary *)dic searchBtn:(UIButton *)searchBtn pl1NameLbl:(UILabel *)pl1NameLbl pl2NameLbl:(UILabel *)pl2NameLbl pl1ContentLbl:(UILabel *)pl1ContentLbl pl2ContentLbl:(UILabel *)pl2ContentLbl titleImageView:(UIImageView *)titleImageView addPlImageView:(UIImageView *)addPlImageView talkCount:(UILabel *)talkCount titleLbl:(UILabel *)titleLbl timeLbl:(UILabel *)timeLbl mapBtn:(UIButton *)mapBtn likeBtn:(UIButton *)likeBtn zanCount:(UILabel *)zanCount{
+-(void)cellValueDic:(NSDictionary *)dic searchBtn:(UIButton *)searchBtn pl1NameLbl:(UILabel *)pl1NameLbl pl2NameLbl:(UILabel *)pl2NameLbl pl1ContentLbl:(UILabel *)pl1ContentLbl pl2ContentLbl:(UILabel *)pl2ContentLbl titleImageView:(UIImageView *)titleImageView addPlImageView:(UIImageView *)addPlImageView talkCount:(UILabel *)talkCount titleLbl:(UILabel *)titleLbl timeLbl:(UILabel *)timeLbl mapBtn:(UIButton *)mapBtn likeBtn:(UIButton *)likeBtn zanCount:(UILabel *)zanCount plLbl:(nonnull UILabel *)plLbl{
     
 
     
     NSString * talkNum = dic[@"comment_number"] ? kGetString(dic[@"comment_number"]) :kGetString(dic[@"answer_number"]);
     NSString * praisNum = kGetString(dic[@"praise_number"]);
     //查看多少评论按钮
-    NSString * allString = [NSString stringWithFormat:@"  查看全部%@条评论",talkNum];
-    allString = [allString isEqualToString:@"  查看全部(null)条评论"] || [allString isEqualToString:@"  查看全部0条评论"] ? @"  查看全部评论" : allString;
+    NSString * allString = [NSString stringWithFormat:@"查看全部%@条评论",talkNum];
+    allString = [allString isEqualToString:@"查看全部(null)条评论"] || [allString isEqualToString:@"查看全部0条评论"] ? @"查看全部评论" : allString;
     [searchBtn setTitle:allString forState:UIControlStateNormal];
-    if ([self getPlAllHeightPlArray:dic] == 0) {
-        [searchBtn setTitle:@"" forState:UIControlStateNormal];
-    }
+
+    
+    
+    
+    
     //两条评论
     NSArray * commentArray = dic[@"comment_list"] ? dic[@"comment_list"] : dic[@"answer"];
-    if (commentArray.count >= 1) {
-        pl1NameLbl.text = [[commentArray[0][@"user_name"] UnicodeToUtf8] append:@":"];
-        pl2NameLbl.text = [commentArray[0][@"comment"] UnicodeToUtf8]  ?
-            [commentArray[0][@"comment"] UnicodeToUtf8] :
-            [commentArray[0][@"answer"] UnicodeToUtf8];
-        
+    NSString * connectStr = @"";
+    
+    
+    
+    for (int i = 0; i < (commentArray.count > 2 ? 2 : commentArray.count); i++) {
+        NSString * str1 = [[commentArray[i][@"user_name"] UnicodeToUtf8] append:@":"];
+        NSString * str2= [commentArray[i][@"comment"] UnicodeToUtf8]  ?
+                         [commentArray[i][@"comment"] UnicodeToUtf8] :
+                         [commentArray[i][@"answer"] UnicodeToUtf8];
+        connectStr = [connectStr append:[NSString stringWithFormat:@"%@%@%@",str1,str2,(i==commentArray.count-1 || i==1 || commentArray.count == 1)?@"":@"\n"]];
     }
-    if (commentArray.count >= 2){
-        pl1ContentLbl.text = [[commentArray[1][@"user_name"] UnicodeToUtf8] append:@":"];
-        pl2ContentLbl.text = [commentArray[1][@"comment"] UnicodeToUtf8] ? [commentArray[1][@"comment"] UnicodeToUtf8]: [commentArray[1][@"answer"] UnicodeToUtf8];
+    plLbl.text = connectStr;
+    
+    if (dic[@"plContent"]) {
+        plLbl.text = dic[@"plContent"];
     }
+    
+//    if (commentArray.count >= 1) {
+//        pl1NameLbl.text = [[commentArray[0][@"user_name"] UnicodeToUtf8] append:@":"];
+//        pl2NameLbl.text = [commentArray[0][@"comment"] UnicodeToUtf8]  ?
+//            [commentArray[0][@"comment"] UnicodeToUtf8] :
+//            [commentArray[0][@"answer"] UnicodeToUtf8];
+//
+//    }
+//    if (commentArray.count >= 2){
+//        pl1ContentLbl.text = [[commentArray[1][@"user_name"] UnicodeToUtf8] append:@":"];
+//        pl2ContentLbl.text = [commentArray[1][@"comment"] UnicodeToUtf8] ? [commentArray[1][@"comment"] UnicodeToUtf8]: [commentArray[1][@"answer"] UnicodeToUtf8];
+//    }
     //cell的头图片
     NSString * str1 = [(NSMutableString *)(dic[@"user_photo"] ? dic[@"user_photo"] : dic[@"photo"]) replaceAll:@" " target:@"%20"];
     [titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];

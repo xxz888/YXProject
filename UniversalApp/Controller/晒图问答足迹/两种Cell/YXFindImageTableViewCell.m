@@ -16,14 +16,23 @@
     CGFloat imageHeight = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:0];
     NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
     CGFloat height_size = [ShareManager inTextFieldOutDifColorView:[titleText UnicodeToUtf8]];
+    CGFloat plHeight = 0;
+    if (dic[@"plHeight"]) {
+        plHeight = [dic[@"plHeight"] floatValue];
+    }else{
+        plHeight =
+        (plArray.count >= 1 ? 25 : 0) +
+        (plArray.count >= 2 ? 25 : 0) ;
+    }
+    
+
+    
     CGFloat lastHeight =
-    (plArray.count >= 1 ? 25 : 0) +
-    (plArray.count >= 2 ? 25 : 0) +
-    (plArray.count >= 2 ? 25 : 0) +
+    plHeight+
     (whereCome ? 30 : 0) +
     height_size +
     imageHeight;
-    return lastHeight + 174;
+    return lastHeight + 200 ;
 }
 
 -(CGFloat)getImageViewSize:(NSString *)imgUrl{
@@ -35,17 +44,35 @@
 - (IBAction)searchAllPlBtnAction:(id)sender{
     self.jumpDetailVCBlock(self);
 }
+
 -(void)setCellValue:(NSDictionary *)dic whereCome:(BOOL)whereCome{
-    [self cellValueDic:dic searchBtn:self.searchBtn pl1NameLbl:self.pl1NameLbl pl2NameLbl:self.pl2NameLbl pl1ContentLbl:self.pl1ContentLbl pl2ContentLbl:self.pl2ContentLbl titleImageView:self.titleImageView addPlImageView:self.addPlImageView talkCount:self.talkCount titleLbl:self.titleLbl timeLbl:self.timeLbl mapBtn:self.mapBtn likeBtn:self.likeBtn zanCount:self.zanCount];
+    [self cellValueDic:dic searchBtn:self.searchBtn pl1NameLbl:self.pl1NameLbl pl2NameLbl:self.pl2NameLbl pl1ContentLbl:self.pl1ContentLbl pl2ContentLbl:self.pl2ContentLbl titleImageView:self.titleImageView addPlImageView:self.addPlImageView talkCount:self.talkCount titleLbl:self.titleLbl timeLbl:self.timeLbl mapBtn:self.mapBtn likeBtn:self.likeBtn zanCount:self.zanCount plLbl:self.plLbl];
     
     
-    self.pl1Height.constant = [self getPl1HeightPlArray:dic];
-    self.pl2Height.constant = [self getPl2HeightPlArray:dic];
-    self.plAllHeight.constant = [self getPlAllHeightPlArray:dic];
-    self.titleTagLblHeight.constant = [self getLblHeight:dic whereCome:whereCome];
+    //评论高度
+    [ShareManager setLineSpace:9 withText:self.plLbl.text inLabel:self.plLbl tag:@""];
+    self.pl1Height.constant = self.plLbl.text.length == 0 ? 0 : [ShareManager inTextFieldOutDifColorView:self.plLbl.text];
+
+    //查看所有多少评论
+    self.plAllHeight.constant = 25;//[self getPlAllHeightPlArray:dic];
+    
+    
+    //足迹的那一栏
     self.titleTagtextViewHeight.constant = [self getTitleTagtextViewHeight:dic whereCome:whereCome];
+    
+    
+    //图片高度
     self.imvHeight.constant = [self getImvHeight:dic whereCome:whereCome];
 
+    
+    //title
+    NSString * titleText = [[NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"index"]] UnicodeToUtf8];
+    self.titleTagLbl.text = titleText;
+    [ShareManager setLineSpace:5 withText:self.titleTagLbl.text inLabel:self.titleTagLbl tag:@""];
+    self.titleTagLblHeight.constant = [ShareManager inTextFieldOutDifColorView:self.titleTagLbl.text];
+    
+    
+    
     
     if ([self.mapBtn.titleLabel.text isEqualToString:@""] || !self.mapBtn.titleLabel.text ) {
         self.nameCenter.constant = self.titleImageView.frame.origin.y;
@@ -57,11 +84,10 @@
     
     
     
-    NSString * titleText = [[NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"index"]] UnicodeToUtf8];
-    self.titleTagLbl.text = titleText;
+
     NSString * zuji = [NSString stringWithFormat:@"来自足迹·%@ %@",dic[@"cigar_info"][@"brand_name"],dic[@"cigar_info"][@"cigar_name"]];
     self.titleTagtextView.text = zuji;
-    [ShareManager setLineSpace:9 withText:self.titleTagLbl.text inLabel:self.titleTagLbl tag:dic[@"index"]];
+
 }
 
 - (IBAction)likeBtnAction:(id)sender {
@@ -111,6 +137,8 @@
     NSArray * plArray = dic[@"comment_list"];
     return plArray.count >= 2 ? 25 : 0;
 }
+
+
 -(CGFloat)getPlAllHeightPlArray:(NSDictionary *)dic{
     NSArray * plArray = dic[@"comment_list"];
     return plArray.count >= 2 ? 25 : 0;
@@ -130,6 +158,13 @@
     CGFloat height_size = [ShareManager inTextFieldOutDifColorView:[titleText UnicodeToUtf8]];
     return height_size;
 }
+
+
+- (IBAction)addPlAction:(id)sender {
+    self.addPlActionblock(self);
+}
+
+
 
 
 @end
