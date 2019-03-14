@@ -55,12 +55,18 @@
     }
     if (self.titleTf.text.length == 0){
         [QMUITips showError:@"请输入标题!" inView:self.view hideAfterDelay:2];
+        [QMUITips hideAllTipsInView:self.view];
+
         return;
     }else if (self.qmuiTextView.text.length == 0){
         [QMUITips showError:@"请输入要提问的问题!" inView:self.view hideAfterDelay:2];
+        [QMUITips hideAllTipsInView:self.view];
+
         return;
     }else if (self.qmuiTextView.text.length >  100){
         [QMUITips showError:@"问题长度不能超过100字符" inView:self.view hideAfterDelay:2];
+        [QMUITips hideAllTipsInView:self.view];
+
         return;
     }
     [dic setValue: [self.qmuiTextView.text utf8ToUnicode]  forKey:@"question"];

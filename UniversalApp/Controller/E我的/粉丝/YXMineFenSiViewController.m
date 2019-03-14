@@ -69,16 +69,22 @@
     cell.common1GuanzhuBtn.tag = [self.dataArray[indexPath.row][key2] integerValue];
     NSString * imgString = self.dataArray[indexPath.row][key3];
     BOOL is_like = [self.dataArray[indexPath.row][@"is_like"] integerValue] == 1;
+    [ShareManager setGuanZhuStatus:cell.common1GuanzhuBtn status:is_like alertView:NO];
     if (is_like) {
         [cell.common1GuanzhuBtn setTitle:@"互相关注" forState:UIControlStateNormal];
-        [cell.common1GuanzhuBtn setTitleColor:KWhiteColor forState:0];
-        [cell.common1GuanzhuBtn setBackgroundColor:YXRGBAColor(255, 51, 51)];
-        ViewBorderRadius(cell.common1GuanzhuBtn, 5, 0, KClearColor);
     }else{
         [cell.common1GuanzhuBtn setTitle:@"关注" forState:UIControlStateNormal];
-        [cell.common1GuanzhuBtn setTitleColor:[UIColor darkGrayColor] forState:0];
-        [cell.common1GuanzhuBtn setBackgroundColor:KWhiteColor];
     }
+//    if (is_like) {
+//        [cell.common1GuanzhuBtn setTitle:@"互相关注" forState:UIControlStateNormal];
+//        [cell.common1GuanzhuBtn setTitleColor:KWhiteColor forState:0];
+//        [cell.common1GuanzhuBtn setBackgroundColor:YXRGBAColor(255, 51, 51)];
+//        ViewBorderRadius(cell.common1GuanzhuBtn, 5, 0, KClearColor);
+//    }else{
+//        [cell.common1GuanzhuBtn setTitle:@"关注" forState:UIControlStateNormal];
+//        [cell.common1GuanzhuBtn setTitleColor:[UIColor darkGrayColor] forState:0];
+//        [cell.common1GuanzhuBtn setBackgroundColor:KWhiteColor];
+//    }
     NSString * str1 = [(NSMutableString *)imgString replaceAll:@" " target:@"%20"];
 
     [cell.common1ImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];

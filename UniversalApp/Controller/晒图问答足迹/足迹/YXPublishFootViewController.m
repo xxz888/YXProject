@@ -54,10 +54,12 @@
         [dic setValue:imgArray[2] forKey:@"pic3"];
     }
     if (self.qmuiTextView.text.length == 0){
+        [QMUITips hideAllTipsInView:self.view];
         [QMUITips showError:@"请输入足迹描述!" inView:self.view hideAfterDelay:2];
         return;
     }else if (self.qmuiTextView.text.length >  100){
         [QMUITips showError:@"足迹描述长度不能超过100字符" inView:self.view hideAfterDelay:2];
+        [QMUITips hideAllTipsInView:self.view];
         return;
     }
     

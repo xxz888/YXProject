@@ -62,13 +62,41 @@
             
         }];
         
+        [cell setDidLongClickCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow, SDTimeLineCell *cell) {
+            //在此添加你想要完成的功能
+            QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {}];
+            QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"删除" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+                [QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
+
+            }];
+            QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"确定删除？" message:@"删除后将无法恢复，请慎重考虑" preferredStyle:QMUIAlertControllerStyleActionSheet];
+            [alertController addAction:action1];
+            [alertController addAction:action2];
+            [alertController showWithAnimated:YES];
+        }];
         cell.delegate = self;
     }
     ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
     
     cell.starView.hidden = YES;
+    
+
     return cell;
+}
+-(void)cellLongPress:(UILongPressGestureRecognizer *)longRecognizer{
+    if (longRecognizer.state==UIGestureRecognizerStateBegan) {
+        //成为第一响应者，需重写该方法
+        [self becomeFirstResponder];
+        CGPoint location = [longRecognizer locationInView:self.yxTableView];
+        NSIndexPath * indexPath = [self.yxTableView indexPathForRowAtPoint:location];
+        //可以得到此时你点击的哪一行
+        SDTimeLineCellModel * model = self.dataArray[indexPath.row];
+
+ 
+    }
+    
+    
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     

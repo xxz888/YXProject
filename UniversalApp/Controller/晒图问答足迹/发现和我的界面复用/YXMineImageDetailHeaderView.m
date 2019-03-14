@@ -67,7 +67,7 @@
 
 -(CGFloat)getLblHeight:(NSDictionary *)dic{
     NSString * titleText = [NSString stringWithFormat:@"%@%@",dic[@"content"] ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
-    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:[titleText UnicodeToUtf8]];
+    CGFloat height_size = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8]];
     return height_size;
 }
 

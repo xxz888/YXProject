@@ -61,7 +61,8 @@
     }
     [self.lastDetailView setUpSycleScrollView:self.imageArr height:imageHeight];
     self.lastDetailView.rightCountLbl.text = [NSString stringWithFormat:@"%@/%ld",@"1",self.imageArr.count];
-        self.lastDetailView.rightCountLbl.hidden = [self.lastDetailView.rightCountLbl.text isEqualToString:@"1/1"];
+    self.lastDetailView.rightCountLbl.hidden = [self.lastDetailView.rightCountLbl.text isEqualToString:@"1/1"] ||
+    [self.lastDetailView.rightCountLbl.text isEqualToString:@"1/0"];
     self.lastDetailView.titleLbl.text = self.startDic[@"user_name"];
     NSString * str1 = [(NSMutableString *)self.startDic[@"user_photo"] replaceAll:@" " target:@"%20"];
     [self.lastDetailView.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
@@ -81,7 +82,7 @@
 }
 -(CGFloat)getLblHeight:(NSDictionary *)dic{
     NSString * titleText = [NSString stringWithFormat:@"%@%@",dic[@"content"] ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
-    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:[titleText UnicodeToUtf8]];
+    CGFloat height_size = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8]];
     return height_size;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -208,7 +209,11 @@
         [pageDic setValue:@([model.id intValue]) forKey:@"id"];
         [pageDic setValue:@(0) forKey:@"page"];
         [self.pageArray addObject:pageDic];
-        
+        if ([formalArray[i][@"child_list"] count] == 0) {
+            model.moreCountPL = @"0";
+        }else{
+            model.moreCountPL = [NSString stringWithFormat:@"%ld",[formalArray[i][@"child_number"] integerValue] - [formalArray[i][@"child_list"] count]];
+        }
         // 模拟随机评论数据
         NSMutableArray *tempComments = [NSMutableArray new];
         NSArray * child_listArray =  [NSArray arrayWithArray:formalArray[i][@"child_list"]];

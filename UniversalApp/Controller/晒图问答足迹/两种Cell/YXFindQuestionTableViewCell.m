@@ -10,26 +10,50 @@
 #import "XHWebImageAutoSize.h"
 @implementation YXFindQuestionTableViewCell
 +(CGFloat)cellMoreHeight:(NSDictionary *)dic{
-    NSArray * plArray =  dic[@"answer"];
-    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:[dic[@"question"] UnicodeToUtf8]];
+    NSArray * commentArray =  dic[@"answer"];
+    CGFloat height_size = [ShareManager inTextOutHeight:[dic[@"question"] UnicodeToUtf8]];
     CGFloat imageHeight = [dic[@"pic1"] length] <= 5 ? 0 : 100;
     
     
     CGFloat plHeight = 0;
+    BOOL showPlAllLbl = NO;
+
     if (dic[@"plHeight"]) {
         plHeight = [dic[@"plHeight"] floatValue];
     }else{
-        plHeight =
-        (plArray.count >= 1 ? 25 : 0) +
-        (plArray.count >= 2 ? 25 : 0) ;
+        NSString * connectStr = @"";
+        NSString * comment_number = @"";
+        if (dic[@"answer"]) {
+            commentArray = dic[@"answer"];
+            if (commentArray && commentArray.count>=1) {
+                NSString * str1 = [[commentArray[0][@"user_name"] UnicodeToUtf8] append:@":"];
+                NSString * str2= [commentArray[0][@"answer"] UnicodeToUtf8];
+                if (commentArray.count == 1) {
+                    connectStr = [connectStr append:[NSString stringWithFormat:@"%@%@",str1,str2]];
+                }else{
+                    connectStr = [connectStr append:[NSString stringWithFormat:@"%@%@\n",str1,str2]];
+                }
+            }
+            if (commentArray && commentArray.count>=2) {
+                NSString * str1 = [[commentArray[1][@"user_name"] UnicodeToUtf8] append:@":"];
+                NSString * str2= [commentArray[1][@"answer"] UnicodeToUtf8];
+                connectStr = [connectStr append:[NSString stringWithFormat:@"%@%@",str1,str2]];
+            }
+            if ([dic[@"comment_number"] integerValue] > commentArray.count) {
+                showPlAllLbl = YES;
+            }
+            comment_number = kGetString(dic[@"comment_number"]);
+        }
+        plHeight = [ShareManager inTextOutHeight:connectStr];
     }
-    
+
     
     CGFloat lastHeight =
+    (showPlAllLbl ? 25 : 0) +
     plHeight +
     height_size +
     imageHeight;
-    return lastHeight + 215 + 25;
+    return lastHeight + 200 ;
 }
 - (IBAction)openAction:(id)sender{
     //将当前对象的isShowMoreText属性设为相反值
@@ -42,11 +66,51 @@
     [self cellValueDic:dic searchBtn:self.searchBtn pl1NameLbl:self.pl1NameLbl pl2NameLbl:self.pl2NameLbl pl1ContentLbl:self.pl1ContentLbl pl2ContentLbl:self.pl2ContentLbl titleImageView:self.titleImageView addPlImageView:self.addPlImageView talkCount:self.talkCount titleLbl:self.titleLbl timeLbl:self.timeLbl mapBtn:self.mapBtn likeBtn:self.likeBtn zanCount:self.zanCount plLbl:self.plLbl];
     
     
-    //评论高度
-    [ShareManager setLineSpace:9 withText:self.plLbl.text inLabel:self.plLbl tag:@""];
-    self.pl1Height.constant = self.plLbl.text.length == 0 ? 0 :[ShareManager inTextFieldOutDifColorView:self.plLbl.text];
     
-    self.plAllHeight.constant = 25;//[self getPlAllHeightPlArray:dic];
+    
+    NSArray * commentArray;
+    NSString * connectStr = @"";
+    NSString * comment_number = @"";
+    BOOL showPlAllLbl = NO;
+    if (dic[@"plContent"]) {
+        connectStr = dic[@"plContent"];
+    }else{
+        if (dic[@"answer"]) {
+            commentArray = dic[@"answer"];
+            if (commentArray && commentArray.count>=1) {
+                NSString * str1 = [[commentArray[0][@"user_name"] UnicodeToUtf8] append:@":"];
+                NSString * str2= [commentArray[0][@"answer"] UnicodeToUtf8];
+                if (commentArray.count == 1) {
+                    connectStr = [connectStr append:[NSString stringWithFormat:@"%@%@",str1,str2]];
+                }else{
+                    connectStr = [connectStr append:[NSString stringWithFormat:@"%@%@\n",str1,str2]];
+                }
+            }
+            if (commentArray && commentArray.count>=2) {
+                NSString * str1 = [[commentArray[1][@"user_name"] UnicodeToUtf8] append:@":"];
+                NSString * str2= [commentArray[1][@"answer"] UnicodeToUtf8];
+                connectStr = [connectStr append:[NSString stringWithFormat:@"%@%@",str1,str2]];
+            }
+            
+            if ([dic[@"comment_number"] integerValue] > commentArray.count) {
+                showPlAllLbl = YES;
+            }
+            comment_number = kGetString(dic[@"comment_number"]);
+        }
+    }
+    self.plLbl.text = connectStr;
+ 
+    //评论高度
+    self.pl1Height.constant = [ShareManager inTextOutHeight:self.plLbl.text];
+    if ([connectStr contains:@"\n"]) {
+        [ShareManager setLineSpace:9 withText:self.plLbl.text inLabel:self.plLbl tag:dic[@"index"]];
+    }
+    //查看所有多少评论
+    self.plAllHeight.constant = showPlAllLbl ? 25 : 0;
+    NSString * allPlCountString = [NSString stringWithFormat:@"查看全部%@评论",comment_number];
+    allPlCountString = self.plAllHeight.constant == 0 ? @"" : allPlCountString;
+    [self.searchBtn setTitle:allPlCountString forState:UIControlStateNormal];
+    
     self.textHeight.constant = [self getLblHeight:dic];
     self.titleTagLbl1.text = [dic[@"title"] UnicodeToUtf8];
     self.titleTagLbl2.text = [dic[@"question"] UnicodeToUtf8];
@@ -84,21 +148,9 @@
 
 }
 
--(CGFloat)getPl1HeightPlArray:(NSDictionary *)dic{
-    NSArray * plArray =  dic[@"answer"];
-    return plArray.count >= 1 ? 25 : 0;
-}
--(CGFloat)getPl2HeightPlArray:(NSDictionary *)dic{
-    NSArray * plArray =  dic[@"answer"];
-    return plArray.count >= 2 ? 25 : 0;
-}
--(CGFloat)getPlAllHeightPlArray:(NSDictionary *)dic{
-    NSArray * plArray =  dic[@"answer"];
-    return plArray.count >= 2 ? 25 : 0;
-}
 -(CGFloat)getLblHeight:(NSDictionary *)dic{
     NSString * titleText = dic[@"question"];
-    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:[titleText UnicodeToUtf8]];
+    CGFloat height_size = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8]];
     return height_size;
 }
 - (IBAction)likeBtnAction:(id)sender {

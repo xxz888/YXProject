@@ -38,11 +38,9 @@ SINGLETON_FOR_HEADER(ShareManager)
 +(SDCycleScrollView *)setUpSycleScrollView:(NSMutableArray *)imageArray;
 //html
 +(NSString *)justFitImage:(NSString *)essay;
-+(void)inTextViewOutDifColorView:(UILabel *)tfView tag:(NSString *)tag;
-+(CGFloat)inTextFieldOutDifColorView:(NSString *)string;
++(CGFloat)inTextOutHeight:(NSString *)string;
 + (void)setBorderinView:(UIView *)view;
 +(CGSize)cellAutoHeight:(NSString *)string;
-+(CGFloat)getSpaceLabelHeight:(NSString*)str withFont:(UIFont*)font withWidth:(CGFloat)width;
 // 根据图片url获取图片尺寸
 +(CGFloat)getImageSizeWithURL:(id)imageURL;
 @property (nonatomic,strong) MMImagePreviewView * previewView;

@@ -747,7 +747,20 @@ successBlock(responseObject);\
     } failure:^(NSError *error) {}];
 }
 
-
+#pragma mark ========== 删除晒图评论子评论 ==========
+-(void)requestDelChildPl_ShaiTu:YX_BLOCK{
+    NSString * url = @"/users/post_comment_child/";
+    [HTTP_GET([[url append:dic] append:@"/0/0/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ========== 删除足迹评论子评论 ==========
+-(void)requestDelChildPl_Zuji:YX_BLOCK{
+    NSString * url = @"/users/track_comment_child/";
+    [HTTP_GET([[url append:dic] append:@"/0/0/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

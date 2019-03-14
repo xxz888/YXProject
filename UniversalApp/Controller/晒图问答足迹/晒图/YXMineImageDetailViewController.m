@@ -64,7 +64,8 @@
     }
     [self.lastDetailView setUpSycleScrollView:self.imageArr height:imageHeight];
     self.lastDetailView.rightCountLbl.text = [NSString stringWithFormat:@"%@/%ld",@"1",self.imageArr.count];
-    self.lastDetailView.rightCountLbl.hidden = [self.lastDetailView.rightCountLbl.text isEqualToString:@"1/1"];
+    self.lastDetailView.rightCountLbl.hidden = [self.lastDetailView.rightCountLbl.text isEqualToString:@"1/1"] ||
+    [self.lastDetailView.rightCountLbl.text isEqualToString:@"1/0"];
     self.lastDetailView.titleLbl.text = self.startDic[@"user_name"];
     NSString * str1 = [(NSMutableString *)self.startDic[@"photo"] replaceAll:@" " target:@"%20"];
     [self.lastDetailView.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
@@ -85,7 +86,7 @@
 
 -(CGFloat)getLblHeight:(NSDictionary *)dic{
     NSString * titleText = [NSString stringWithFormat:@"%@%@",dic[@"content"] ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
-    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:[titleText UnicodeToUtf8]];
+    CGFloat height_size = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8]];
     return height_size;
 }
 

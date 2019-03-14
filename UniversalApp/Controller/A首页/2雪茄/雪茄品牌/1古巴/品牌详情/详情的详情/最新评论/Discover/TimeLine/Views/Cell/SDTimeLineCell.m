@@ -131,7 +131,10 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     [_commentView setDidClickCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow) {
         weakself.didClickCommentLabelBlock(commentId, rectInWindow, weakself);
     }];
-    
+
+    [_commentView setDidClickLongCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow) {
+        weakself.didLongClickCommentLabelBlock(commentId, rectInWindow, weakself);
+    }];
     
     
     _showMoreCommentBtn = [UIButton new];

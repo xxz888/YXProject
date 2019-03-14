@@ -281,7 +281,9 @@
 
 - (void)didClickLink:(MLLink *)link linkText:(NSString *)linkText linkLabel:(MLLinkLabel *)linkLabel{
     self.didClickCommentLabelBlock(link.linkValue, CGRectMake(0, 0, KScreenWidth, 20));
-    NSLog(@"%@", link.linkValue);
 }
+- (void)didLongPressLink:(MLLink*)link linkText:(NSString*)linkText linkLabel:(MLLinkLabel*)linkLabel{
+    self.didClickLongCommentLabelBlock(link.linkValue, CGRectMake(0, 0, KScreenWidth, 20));
 
+}
 @end

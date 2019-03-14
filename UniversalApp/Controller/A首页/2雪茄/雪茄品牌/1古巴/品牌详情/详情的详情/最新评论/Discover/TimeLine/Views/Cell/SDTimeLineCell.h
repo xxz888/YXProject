@@ -61,7 +61,7 @@
 @property (nonatomic, copy) void (^moreButtonClickedBlock)(NSIndexPath *indexPath);
 
 @property (nonatomic, copy) void (^didClickCommentLabelBlock)(NSString *commentId, CGRect rectInWindow, SDTimeLineCell *cell);
-
+@property (nonatomic, copy) void (^didLongClickCommentLabelBlock)(NSString *commentId, CGRect rectInWindow, SDTimeLineCell *cell);
 @property (nonatomic, strong) UIButton * zanButton;
 @property (nonatomic, strong) UILabel * zanCountLable;
 

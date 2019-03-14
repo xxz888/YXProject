@@ -239,4 +239,9 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestget_cigar_by_id:YX_BLOCK;
 #pragma mark ========== get_ip ==========
 -(void)requestGetIP:YX_BLOCK;
+
+#pragma mark ========== 删除晒图评论子评论 ==========
+-(void)requestDelChildPl_ShaiTu:YX_BLOCK;
+#pragma mark ========== 删除足迹评论子评论 ==========
+-(void)requestDelChildPl_Zuji:YX_BLOCK;
 @end

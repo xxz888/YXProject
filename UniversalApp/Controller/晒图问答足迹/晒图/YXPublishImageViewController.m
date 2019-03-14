@@ -134,9 +134,13 @@
     
     if (self.textViewInput.length == 0){
         [QMUITips showError:@"请输入描述!" inView:self.view hideAfterDelay:2];
+        [QMUITips hideAllTipsInView:self.view];
+
         return;
     }else if (self.textViewInput.length >  100){
         [QMUITips showError:@"描述长度不能超过100字符" inView:self.view hideAfterDelay:2];
+        [QMUITips hideAllTipsInView:self.view];
+
         return;
     }
     [dic setValue:[self.textViewInput utf8ToUnicode] forKey:@"describe"];//描述

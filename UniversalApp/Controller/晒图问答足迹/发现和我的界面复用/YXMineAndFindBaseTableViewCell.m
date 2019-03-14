@@ -42,32 +42,16 @@
     NSString * talkNum = dic[@"comment_number"] ? kGetString(dic[@"comment_number"]) :kGetString(dic[@"answer_number"]);
     NSString * praisNum = kGetString(dic[@"praise_number"]);
     //查看多少评论按钮
-    NSString * allString = [NSString stringWithFormat:@"查看全部%@条评论",talkNum];
-    allString = [allString isEqualToString:@"查看全部(null)条评论"] || [allString isEqualToString:@"查看全部0条评论"] ? @"查看全部评论" : allString;
-    [searchBtn setTitle:allString forState:UIControlStateNormal];
+//    NSString * allString = [NSString stringWithFormat:@"查看全部%@条评论",talkNum];
+//    allString = [allString isEqualToString:@"查看全部(null)条评论"] || [allString isEqualToString:@"查看全部0条评论"] ? @"查看全部评论" : allString;
+//    [searchBtn setTitle:allString forState:UIControlStateNormal];
 
     
     
     
-    
-    //两条评论
-    NSArray * commentArray = dic[@"comment_list"] ? dic[@"comment_list"] : dic[@"answer"];
-    NSString * connectStr = @"";
-    
-    
-    
-    for (int i = 0; i < (commentArray.count > 2 ? 2 : commentArray.count); i++) {
-        NSString * str1 = [[commentArray[i][@"user_name"] UnicodeToUtf8] append:@":"];
-        NSString * str2= [commentArray[i][@"comment"] UnicodeToUtf8]  ?
-                         [commentArray[i][@"comment"] UnicodeToUtf8] :
-                         [commentArray[i][@"answer"] UnicodeToUtf8];
-        connectStr = [connectStr append:[NSString stringWithFormat:@"%@%@%@",str1,str2,(i==commentArray.count-1 || i==1 || commentArray.count == 1)?@"":@"\n"]];
-    }
-    plLbl.text = connectStr;
-    
-    if (dic[@"plContent"]) {
-        plLbl.text = dic[@"plContent"];
-    }
+
+
+
     
 //    if (commentArray.count >= 1) {
 //        pl1NameLbl.text = [[commentArray[0][@"user_name"] UnicodeToUtf8] append:@":"];

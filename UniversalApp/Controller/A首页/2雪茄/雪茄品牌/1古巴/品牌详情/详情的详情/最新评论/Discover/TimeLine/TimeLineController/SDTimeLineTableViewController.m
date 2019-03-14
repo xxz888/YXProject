@@ -209,6 +209,8 @@ static CGFloat textFieldH = 40;
     });
     
     _textField.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height, self.view.width_sd, textFieldH);
+    _textField.tag = 99999;
+    [[[UIApplication sharedApplication].keyWindow viewWithTag:99999] removeFromSuperview];
     [[UIApplication sharedApplication].keyWindow addSubview:_textField];
     
     [_textField becomeFirstResponder];

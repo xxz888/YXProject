@@ -10,29 +10,88 @@
 #import "XHWebImageAutoSize.h"
 #import "UIImageView+WebCache.h"
 @implementation YXFindImageTableViewCell
+
+-(CGFloat)getTitleTagLblHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
+     NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
+    return [ShareManager inTextOutHeight:[titleText UnicodeToUtf8]];
+}
+-(CGFloat)getTitleTagtextViewHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
+    return whereCome ? 30 : 0;
+}
+-(CGFloat)getImvHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
+    NSString * url =  whereCome ? dic[@"pic1"]:dic[@"photo1"];
+    return    [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:0];
+}
 +(CGFloat)cellDefaultHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
-    NSArray * plArray = dic[@"comment_list"];
+    NSArray * plArray;
+    NSDictionary * max_hot_commentDic;
+    if (whereCome) {
+        plArray = dic[@"comment_list"];
+    }else{
+        max_hot_commentDic = dic[@"max_hot_comment"];
+    }
     NSString * url = whereCome ? dic[@"pic1"]:dic[@"photo1"];
     CGFloat imageHeight = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:0];
     NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
-    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:[titleText UnicodeToUtf8]];
+    
+    //内容
+    CGFloat height_size = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8]];
+    //评论高度
+    //两条评论
+    BOOL showPlAllLbl = NO;
     CGFloat plHeight = 0;
+    NSString  * connectStr = @"";
     if (dic[@"plHeight"]) {
         plHeight = [dic[@"plHeight"] floatValue];
     }else{
-        plHeight =
-        (plArray.count >= 1 ? 25 : 0) +
-        (plArray.count >= 2 ? 25 : 0) ;
+        if (whereCome) {
+            if (plArray && plArray.count>=1) {
+                NSString * str1 = [[plArray[0][@"user_name"] UnicodeToUtf8] append:@":"];
+                NSString * str2= [plArray[0][@"comment"] UnicodeToUtf8];
+                if (plArray.count == 1) {
+                    connectStr = [connectStr append:[NSString stringWithFormat:@"%@%@",str1,str2]];
+                }else{
+                    connectStr = [connectStr append:[NSString stringWithFormat:@"%@%@\n",str1,str2]];
+                }
+            }
+            if (plArray && plArray.count>=2) {
+                NSString * str1 = [[plArray[1][@"user_name"] UnicodeToUtf8] append:@":"];
+                NSString * str2= [plArray[1][@"comment"] UnicodeToUtf8];
+                connectStr = [connectStr append:[NSString stringWithFormat:@"%@%@",str1,str2]];
+            }
+            if ([dic[@"comment_number"] integerValue] > plArray.count) {
+                showPlAllLbl = YES;
+            }
+        }else{
+            if (max_hot_commentDic) {
+                NSString * str1 = [[max_hot_commentDic[@"user_name"] UnicodeToUtf8] append:@":"];
+                NSString * str2= [max_hot_commentDic[@"comment"] UnicodeToUtf8];
+                if ([[max_hot_commentDic allKeys] count] > 0) {
+                    connectStr = [connectStr append:[NSString stringWithFormat:@"%@%@",str1,str2]];
+                    showPlAllLbl = YES;
+                }
+            }
+        }
+        plHeight = [ShareManager inTextOutHeight:connectStr];
     }
     
+    
+
+    
+
+    
+    NSLog(@"--cell-pl1Height-外部%f",plHeight);
+    NSLog(@"--cell-titleTagtextViewHeight-外部%f",(whereCome ? 30.0 : 0));
+    NSLog(@"--cell-titleTagLblHeight-外部%f",height_size);
 
     
     CGFloat lastHeight =
     plHeight+
+    (showPlAllLbl ? 25 : 0) +
     (whereCome ? 30 : 0) +
     height_size +
     imageHeight;
-    return lastHeight + 200 ;
+    return lastHeight + 170 ;
 }
 
 -(CGFloat)getImageViewSize:(NSString *)imgUrl{
@@ -49,17 +108,76 @@
     [self cellValueDic:dic searchBtn:self.searchBtn pl1NameLbl:self.pl1NameLbl pl2NameLbl:self.pl2NameLbl pl1ContentLbl:self.pl1ContentLbl pl2ContentLbl:self.pl2ContentLbl titleImageView:self.titleImageView addPlImageView:self.addPlImageView talkCount:self.talkCount titleLbl:self.titleLbl timeLbl:self.timeLbl mapBtn:self.mapBtn likeBtn:self.likeBtn zanCount:self.zanCount plLbl:self.plLbl];
     
     
-    //评论高度
-    [ShareManager setLineSpace:9 withText:self.plLbl.text inLabel:self.plLbl tag:@""];
-    self.pl1Height.constant = self.plLbl.text.length == 0 ? 0 : [ShareManager inTextFieldOutDifColorView:self.plLbl.text];
+
+    
+    
+    
+    //两条评论
+    NSArray * commentArray;
+    NSDictionary * max_hot_commentDic;
+    NSString * connectStr = @"";
+    NSString * comment_number = @"";
+    BOOL showPlAllLbl = NO;
+    if (dic[@"plContent"]) {
+        connectStr = dic[@"plContent"];
+    }else{
+        if (dic[@"comment_list"]) {
+            commentArray = dic[@"comment_list"];
+            if (commentArray && commentArray.count>=1) {
+                NSString * str1 = [[commentArray[0][@"user_name"] UnicodeToUtf8] append:@":"];
+                NSString * str2= [commentArray[0][@"comment"] UnicodeToUtf8];
+                if (commentArray.count == 1) {
+                    connectStr = [connectStr append:[NSString stringWithFormat:@"%@%@",str1,str2]];
+                }else{
+                    connectStr = [connectStr append:[NSString stringWithFormat:@"%@%@\n",str1,str2]];
+                }
+            }
+            
+            if (commentArray && commentArray.count>=2) {
+                NSString * str1 = [[commentArray[1][@"user_name"] UnicodeToUtf8] append:@":"];
+                NSString * str2= [commentArray[1][@"comment"] UnicodeToUtf8];
+                connectStr = [connectStr append:[NSString stringWithFormat:@"%@%@",str1,str2]];
+            }
+            
+            if ([dic[@"comment_number"] integerValue] > commentArray.count) {
+                showPlAllLbl = YES;
+            }
+            comment_number = kGetString(dic[@"comment_number"]);
+        }
+        if (dic[@"max_hot_comment"]) {
+            max_hot_commentDic = dic[@"max_hot_comment"];
+            if ([max_hot_commentDic.allKeys count] > 0) {
+                NSString * str1 = [[max_hot_commentDic[@"user_name"] UnicodeToUtf8] append:@":"];
+                NSString * str2= [max_hot_commentDic[@"comment"] UnicodeToUtf8];
+                connectStr = [connectStr append:[NSString stringWithFormat:@"%@%@",str1,str2]];
+                showPlAllLbl = YES;
+            }
+            comment_number = kGetString(dic[@"comment_number"]);
+        }
+    }
+
 
     //查看所有多少评论
-    self.plAllHeight.constant = 25;//[self getPlAllHeightPlArray:dic];
+    self.plAllHeight.constant = showPlAllLbl ? 25 : 0;
+    NSString * allPlCountString = [NSString stringWithFormat:@"查看全部%@评论",comment_number];
+    allPlCountString = self.plAllHeight.constant == 0 ? @"" : allPlCountString;
+    [self.searchBtn setTitle:allPlCountString forState:UIControlStateNormal];
+  
+    
+    
+    self.plLbl.text = connectStr;
+    //评论高度
+    self.pl1Height.constant =  [ShareManager inTextOutHeight:self.plLbl.text];
+    if ([connectStr contains:@"\n"]) {
+        [ShareManager setLineSpace:9 withText:self.plLbl.text inLabel:self.plLbl tag:dic[@"index"]];
+    }
+
     
     
     //足迹的那一栏
     self.titleTagtextViewHeight.constant = [self getTitleTagtextViewHeight:dic whereCome:whereCome];
-    
+
+
     
     //图片高度
     self.imvHeight.constant = [self getImvHeight:dic whereCome:whereCome];
@@ -68,10 +186,10 @@
     //title
     NSString * titleText = [[NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"index"]] UnicodeToUtf8];
     self.titleTagLbl.text = titleText;
-    [ShareManager setLineSpace:5 withText:self.titleTagLbl.text inLabel:self.titleTagLbl tag:@""];
-    self.titleTagLblHeight.constant = [ShareManager inTextFieldOutDifColorView:self.titleTagLbl.text];
-    
-    
+   [ShareManager setLineSpace:9 withText:self.titleTagLbl.text inLabel:self.titleTagLbl tag:dic[@"index"]];
+    self.titleTagLblHeight.constant = [self getTitleTagLblHeight:dic whereCome:whereCome];
+
+    //全部评论
     
     
     if ([self.mapBtn.titleLabel.text isEqualToString:@""] || !self.mapBtn.titleLabel.text ) {
@@ -80,10 +198,6 @@
     if ([self.mapBtn.titleLabel.text isEqualToString:@"获取地理位置"]) {
         self.mapBtn.titleLabel.text = @"";
     }
-    
-    
-    
-    
 
     NSString * zuji = [NSString stringWithFormat:@"来自足迹·%@ %@",dic[@"cigar_info"][@"brand_name"],dic[@"cigar_info"][@"cigar_name"]];
     self.titleTagtextView.text = zuji;
@@ -127,36 +241,6 @@
     UIView *views = (UIView*) tap.view;
     NSUInteger tag = views.tag;
     self.clickImageBlock(tag);
-}
-
--(CGFloat)getPl1HeightPlArray:(NSDictionary *)dic{
-    NSArray * plArray = dic[@"comment_list"];
-    return plArray.count >= 1 ? 25 : 0;
-}
--(CGFloat)getPl2HeightPlArray:(NSDictionary *)dic{
-    NSArray * plArray = dic[@"comment_list"];
-    return plArray.count >= 2 ? 25 : 0;
-}
-
-
--(CGFloat)getPlAllHeightPlArray:(NSDictionary *)dic{
-    NSArray * plArray = dic[@"comment_list"];
-    return plArray.count >= 2 ? 25 : 0;
-}
-
-
-
--(CGFloat)getTitleTagtextViewHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
-    return whereCome ? 30 : 0;
-}
--(CGFloat)getImvHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
-    NSString * url =  whereCome ? dic[@"pic1"]:dic[@"photo1"];
-    return    [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:0];
-}
--(CGFloat)getLblHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
-    NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
-    CGFloat height_size = [ShareManager inTextFieldOutDifColorView:[titleText UnicodeToUtf8]];
-    return height_size;
 }
 
 

@@ -163,8 +163,8 @@
             UserInfo * userInfo = curUser;
             NSString * str = [NSString stringWithFormat:@"\n%@:%@",userInfo.username,textField.text];
             cell.plLbl.text = [cell.plLbl.text append:str];
-            cell.pl1Height.constant = [ShareManager inTextFieldOutDifColorView:cell.plLbl.text];
-            [ShareManager setLineSpace:9 withText:cell.plLbl.text inLabel:cell.plLbl tag:@""];
+            
+            cell.pl1Height.constant = [ShareManager inTextOutHeight:cell.plLbl.text];
             self.textField.text = @"";
             
             NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[index]];
@@ -191,8 +191,7 @@
             UserInfo * userInfo = curUser;
             NSString * str = [NSString stringWithFormat:@"\n%@:%@",userInfo.username,textField.text];
             cell.plLbl.text = [cell.plLbl.text append:str];
-            cell.pl1Height.constant = [ShareManager inTextFieldOutDifColorView:cell.plLbl.text];
-            [ShareManager setLineSpace:9 withText:cell.plLbl.text inLabel:cell.plLbl tag:@""];
+            cell.pl1Height.constant = [ShareManager inTextOutHeight:cell.plLbl.text];
             self.textField.text = @"";
             
             NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[index]];
@@ -475,9 +474,6 @@
     _textField.textColor = [UIColor blackColor];
     _textField.tag = 99999;
     _textField.frame = CGRectMake(0, KScreenHeight, KScreenWidth, 40);
-    [[[UIApplication sharedApplication].keyWindow viewWithTag:99999] removeFromSuperview];
-    
-    
     [[UIApplication sharedApplication].keyWindow addSubview:_textField];
     
     //    [_textField becomeFirstResponder];
@@ -528,6 +524,7 @@
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [_textField resignFirstResponder];
+    [[[UIApplication sharedApplication].keyWindow viewWithTag:99999] removeFromSuperview];
 }
 
 - (void)dealloc{

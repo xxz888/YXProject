@@ -333,42 +333,27 @@ SINGLETON_FOR_CLASS(ShareManager);
     paragraphStyle.lineSpacing = lineSpace;  //设置行间距
     paragraphStyle.lineBreakMode = label.lineBreakMode;
     paragraphStyle.alignment = label.textAlignment;
-    
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text];
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [text length])];
     NSRange range1 = [text rangeOfString:tag];
     [attributedString addAttribute:NSForegroundColorAttributeName value:YXRGBAColor(10, 96, 254) range:range1];
-    
     label.attributedText = attributedString;
+
+    
+    
 }
-+(CGFloat)inTextFieldOutDifColorView:(NSString *)string{
++(CGFloat)inTextOutHeight:(NSString *)string{
+    if (string.length == 0) {
+        return 0;
+    }
     NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
-    
     paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
-    
     paraStyle.alignment = NSTextAlignmentLeft;
-    
-    
-    
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string attributes:@{NSKernAttributeName:@(9)}];
-
-
-
     paraStyle.lineSpacing = 9.0f;
-    paraStyle.paragraphSpacing = 0.0f;
-    paraStyle.hyphenationFactor = 1.0;
-    
-    paraStyle.firstLineHeadIndent = 0.0;
-    
-    paraStyle.paragraphSpacingBefore = 0.0;
-    
-    paraStyle.headIndent = 0;
-    
-    paraStyle.tailIndent = 0;
-    //, NSKernAttributeName:@1.5f
     NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:14], NSParagraphStyleAttributeName:paraStyle,NSParagraphStyleAttributeName:attributedString};
     CGSize size = [string boundingRectWithSize:CGSizeMake(KScreenWidth-20, MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
-    return  ceilf(size.height);
+    return  ceil(size.height);
 }
 + (void)setBorderinView:(UIView *)view{
     view.layer.borderColor = [[UIColor borderColor] CGColor];
@@ -376,8 +361,6 @@ SINGLETON_FOR_CLASS(ShareManager);
     view.layer.masksToBounds = YES;
     view.layer.cornerRadius = 7;
 }
-
-
 
 #pragma mark - 小图单击
 -(void)singleTapSmallViewCallback:(MMImageView *)imageView{
@@ -448,50 +431,6 @@ SINGLETON_FOR_CLASS(ShareManager);
     CGSize size = [string boundingRectWithSize:CGSizeMake(KScreenWidth- 20, 100000) options:option attributes:attribute context:nil].size;
     return size;
 }
-
-
-+(CGFloat)getSpaceLabelHeight:(NSString*)str withFont:(UIFont*)font withWidth:(CGFloat)width {
-    
-    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
-    
-    paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
-    
-    paraStyle.alignment = NSTextAlignmentLeft;
-    
-    paraStyle.lineSpacing = 3.0f;
-    
-    paraStyle.hyphenationFactor = 1.0;
-    
-    paraStyle.firstLineHeadIndent = 0.0;
-    
-    paraStyle.paragraphSpacingBefore = 0.0;
-    
-    paraStyle.headIndent = 0;
-    
-    paraStyle.tailIndent = 0;
-    //, NSKernAttributeName:@1.5f
-    NSDictionary *dic = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paraStyle
-                          };
-    CGSize size = [str boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
-    
-    return  ceilf(size.height);
-    
-}
-
-// 根据图片url获取图片尺寸
-//+(CGFloat)getImageSizeWithURL:(id)imageURL
-//{
-//    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]];
-//    UIImage *showimage = [UIImage imageWithData:data];
-//    CGFloat scale = showimage.size.height/showimage.size.width;
-//    if (showimage.size.width == 0) {
-//        scale = 0;
-//    }
-//    return KScreenWidth * scale;
-//}
-/**
- *  根据图片url获取网络图片尺寸
- */
 +(CGFloat)getOldImageSizeWithURL:(id)URL{
     UIImage *result;
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:URL]];
