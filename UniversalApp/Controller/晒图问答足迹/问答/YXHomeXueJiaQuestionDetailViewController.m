@@ -342,6 +342,7 @@
     [self.textField becomeFirstResponder];
     self.isReplayingComment = YES;
     self.commentToUser = model.name;
+    self.commentToUserID = model.userID;
     [self adjustTableViewToFitKeyboard];
 }
 #pragma mark ========== tableview 点赞按钮 ==========
@@ -364,35 +365,11 @@
             
             
             SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
-            SDTimeLineCellCommentItemModel * itemModel;
-            for (SDTimeLineCellCommentItemModel * oldItemModel in model.commentItemsArray) {
-                if ([oldItemModel.firstUserName isEqualToString:self.commentToUser]) {
-                    itemModel = oldItemModel;
-                }
-            }
-            if (itemModel) {
-                if ([itemModel.firstUserName isEqualToString:self.commentToUser]) {
-                    itemModel.firstUserId = itemModel.firstUserId;
-                    itemModel.firstUserName = itemModel.firstUserName;
-                }
-                if ([itemModel.secondUserName isEqualToString:self.commentToUser]) {
-                    itemModel.firstUserId = itemModel.secondUserId;
-                    itemModel.firstUserName = itemModel.firstUserName;
-                }
-                
-            }else{
-                itemModel = [[SDTimeLineCellCommentItemModel alloc]init];
-                if ([model.name isEqualToString:self.commentToUser]) {
-                    itemModel.firstUserId = model.userID;
-                    itemModel.firstUserName = model.name;
-                }
-            }
-
             
             [self.pardic setValue:model.id forKey:@"answer_id"];
             [self.pardic setValue:[textField.text utf8ToUnicode] forKey:@"answer"];
-            [self.pardic setValue:itemModel.firstUserId forKey:@"aim_id"];
-            [self.pardic setValue:itemModel.firstUserName  forKey:@"aim_name"];
+            [self.pardic setValue:self.commentToUserID forKey:@"aim_id"];
+            [self.pardic setValue:self.commentToUser  forKey:@"aim_name"];
             
             [self requestFaBuHuiDaChild:self.pardic];
         }else{
@@ -410,7 +387,7 @@
 }
 #pragma mark ========== 发布回答 ==========
 -(void)requestFaBuHuiDa:(NSMutableDictionary *)dic{
-    [dic setValue:self.moment.startId forKey:@"question_id"];
+    [dic setValue:kGetString(self.moment.startId) forKey:@"question_id"];
     if (!dic[@"question_id"]) {
         [QMUITips showError:@"问题不存在,请返回重新进入" inView:self.yxTableView hideAfterDelay:1];
         return;

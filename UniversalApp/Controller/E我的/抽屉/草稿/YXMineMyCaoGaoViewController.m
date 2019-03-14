@@ -8,7 +8,7 @@
 
 #import "YXMineMyCaoGaoViewController.h"
 #import "YXHomeXueJiaTableViewCell.h"
-
+#import "YXPublishImageViewController.h"
 @interface YXMineMyCaoGaoViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
 @property(nonatomic,strong)NSMutableArray * caoGaoArray;
@@ -20,6 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self addNavigationItemWithTitles:@[@"清空"] isLeft:NO target:self action:@selector(clearCachae) tags:@[@1000]];
+
     self.title = @"我的草稿";
     self.caoGaoArray = [[NSMutableArray alloc]init];
     self.caoGaoDic = [[NSMutableDictionary alloc]init];
@@ -30,12 +32,19 @@
     self.yxTableView.tableFooterView = [[UIView alloc]init];
     self.caoGaoDic = UserDefaultsGET(YX_USER_FaBuCaoGao);
     [self.yxTableView reloadData];
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 
 }
-
+-(void)clearCachae{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:YX_USER_FaBuCaoGao];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    self.caoGaoDic = UserDefaultsGET(YX_USER_FaBuCaoGao);
+    [self.yxTableView reloadData];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.caoGaoDic ? 1 : 0;
 }
@@ -51,12 +60,14 @@
     NSString * str = [(NSMutableString *)self.caoGaoDic[@"photo1"] replaceAll:@" " target:@"%20"];
     [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cell.cellLbl.text = self.caoGaoDic[@"tag"];
-    cell.cellAutherLbl.text = self.caoGaoDic[@"describe"];
+    cell.cellAutherLbl.text = [self.caoGaoDic[@"describe"] UnicodeToUtf8];
     cell.cellDataLbl.hidden = YES;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
+    imageVC.whereComeCaogao = YES;
+    [self presentViewController:imageVC animated:YES completion:nil];
 }
 /*
 #pragma mark - Navigation

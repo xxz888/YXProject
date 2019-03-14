@@ -8,7 +8,7 @@
 
 #import "YXFaBuBaseViewController.h"
 #import "JJImagePicker.h"
-@interface YXFaBuBaseViewController (){
+@interface YXFaBuBaseViewController ()<UITextFieldDelegate>{
     UIImageView * _selectImageView;
     UIImage * zhanweiImage;
 }
@@ -308,6 +308,7 @@
     _xinhuatiTf.placeholder = @"请输入新话题";
     _xinhuatiTf.borderStyle = UITextBorderStyleRoundedRect;
     _xinhuatiTf.font = UIFontMake(16);
+    _xinhuatiTf.delegate = self;
     [contentView addSubview:_xinhuatiTf];
     [_xinhuatiTf becomeFirstResponder];
     
@@ -328,9 +329,18 @@
     modalViewController.contentView = contentView;
     [modalViewController showWithAnimated:YES completion:nil];
 }
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if ([string isEqualToString:@" "]) {
+        return NO;
+    }
+    return YES;
+}
 - (IBAction)closeViewAction:(id)sender {
 //   [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     
+    [self closeViewAAA];
+}
+-(void)closeViewAAA{
     UIViewController *controller = self;
     while(controller.presentingViewController != nil){
         controller = controller.presentingViewController;

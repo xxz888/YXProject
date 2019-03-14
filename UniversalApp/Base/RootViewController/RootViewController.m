@@ -315,7 +315,7 @@
         [btn setTitle:title forState:UIControlStateNormal];
         [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
         btn.titleLabel.font = SYSTEMFONT(16);
-        [btn setTitleColor:KWhiteColor forState:UIControlStateNormal];
+        [btn setTitleColor:KBlackColor forState:UIControlStateNormal];
         btn.tag = [tags[i++] integerValue];
         [btn sizeToFit];
         

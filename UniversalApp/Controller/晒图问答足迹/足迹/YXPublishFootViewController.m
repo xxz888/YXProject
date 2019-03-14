@@ -37,19 +37,23 @@
         [dic setValue:@"" forKey:@"pic1"];
         [dic setValue:@"" forKey:@"pic2"];
         [dic setValue:@"" forKey:@"pic3"];
-    }else if (imgArray.count == 1){
+    }
+    if (imgArray.count >= 1){
         [dic setValue:imgArray[0] forKey:@"pic1"];
         [dic setValue:@"" forKey:@"pic2"];
         [dic setValue:@"" forKey:@"pic3"];
-    }else if (imgArray.count == 2){
+    }
+    if (imgArray.count >= 2){
         [dic setValue:imgArray[0] forKey:@"pic1"];
         [dic setValue:imgArray[1] forKey:@"pic2"];
         [dic setValue:@"" forKey:@"pic3"];
-    }else if (imgArray.count == 3){
+    }
+    if (imgArray.count >= 3){
         [dic setValue:imgArray[0] forKey:@"pic1"];
         [dic setValue:imgArray[1] forKey:@"pic2"];
         [dic setValue:imgArray[2] forKey:@"pic3"];
-    }else if (self.qmuiTextView.text.length == 0){
+    }
+    if (self.qmuiTextView.text.length == 0){
         [QMUITips showError:@"请输入足迹描述!" inView:self.view hideAfterDelay:2];
         return;
     }else if (self.qmuiTextView.text.length >  100){

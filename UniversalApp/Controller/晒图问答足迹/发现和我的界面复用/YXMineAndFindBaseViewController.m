@@ -463,7 +463,7 @@
 }
 
 - (void)setupTextField{
-    _textField = [UITextField new];
+    _textField = [[UITextField alloc]init];
     _textField.returnKeyType = UIReturnKeyDone;
     _textField.delegate = self;
     _textField.placeholder = @"开始评论..";
@@ -473,16 +473,18 @@
     //为textfield添加背景颜色 字体颜色的设置 还有block设置 , 在block中改变它的键盘样式 (当然背景颜色和字体颜色也可以直接在block中写)
     _textField.backgroundColor = [UIColor whiteColor];
     _textField.textColor = [UIColor blackColor];
-    _textField.keyboardAppearance = UIKeyboardAppearanceDefault;
-    if ([_textField isFirstResponder]) {
-        [_textField resignFirstResponder];
-        [_textField becomeFirstResponder];
-    }
+    _textField.tag = 99999;
     _textField.frame = CGRectMake(0, KScreenHeight, KScreenWidth, 40);
+    [[[UIApplication sharedApplication].keyWindow viewWithTag:99999] removeFromSuperview];
+    
+    
     [[UIApplication sharedApplication].keyWindow addSubview:_textField];
     
     //    [_textField becomeFirstResponder];
     //    [_textField resignFirstResponder];
+}
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    
 }
 - (void)keyboardNotification:(NSNotification *)notification{
     CGPoint offset = CGPointMake(0, 0);
@@ -533,6 +535,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    [_textField resignFirstResponder];
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
 @end

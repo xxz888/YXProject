@@ -26,26 +26,27 @@
                             <constraint firstAttribute="width" secondItem="ued-mw-r6K" secondAttribute="height" multiplier="1:1" id="aRv-9A-83C"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xlw-G1-xrK">
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xlw-G1-xrK">
                         <rect key="frame" x="85" y="15" width="255" height="39.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdM-2m-MGZ">
-                        <rect key="frame" x="307" y="60.5" width="33" height="16"/>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdM-2m-MGZ">
+                        <rect key="frame" x="333.5" y="23" width="6.5" height="53.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.31372549020000001" green="0.3294117647" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHm-jh-2QH">
-                        <rect key="frame" x="85" y="60.5" width="33" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHm-jh-2QH">
+                        <rect key="frame" x="85" y="42" width="6.5" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.31372549020000001" green="0.3294117647" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="EHm-jh-2QH" firstAttribute="centerY" secondItem="ued-mw-r6K" secondAttribute="centerY" id="5HN-vq-ggG"/>
                     <constraint firstItem="ued-mw-r6K" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="FbB-wU-bUZ"/>
                     <constraint firstAttribute="trailing" secondItem="qdM-2m-MGZ" secondAttribute="trailing" constant="10" id="NiI-gf-uDV"/>
                     <constraint firstItem="Xlw-G1-xrK" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.4" id="PME-2n-Odh"/>

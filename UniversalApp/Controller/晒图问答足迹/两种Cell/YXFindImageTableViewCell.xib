@@ -46,8 +46,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oE4-Xp-Bai">
-                                <rect key="frame" x="60" y="30" width="220" height="20"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <rect key="frame" x="65" y="30" width="215" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <state key="normal" title="-">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -57,7 +57,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="671-HB-U62"/>
                             <constraint firstItem="oE4-Xp-Bai" firstAttribute="height" secondItem="3UK-wW-Nms" secondAttribute="height" id="IjE-wR-NJk"/>
-                            <constraint firstItem="oE4-Xp-Bai" firstAttribute="leading" secondItem="3UK-wW-Nms" secondAttribute="leading" id="Iu0-UO-9TS"/>
+                            <constraint firstItem="oE4-Xp-Bai" firstAttribute="leading" secondItem="3UK-wW-Nms" secondAttribute="leading" constant="5" id="Iu0-UO-9TS"/>
                             <constraint firstItem="vvP-Q3-HSP" firstAttribute="leading" secondItem="8lP-WS-6cI" secondAttribute="leading" constant="10" id="MyL-5u-FH8"/>
                             <constraint firstAttribute="bottom" secondItem="vvP-Q3-HSP" secondAttribute="bottom" id="Nix-Km-UVA"/>
                             <constraint firstItem="oE4-Xp-Bai" firstAttribute="trailing" secondItem="3UK-wW-Nms" secondAttribute="trailing" id="RxV-Jg-9YD"/>

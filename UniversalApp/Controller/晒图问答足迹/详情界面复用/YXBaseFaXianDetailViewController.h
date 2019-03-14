@@ -42,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isReplayingComment;
 @property (nonatomic, strong) NSIndexPath *currentEditingIndexthPath;
 @property (nonatomic, copy) NSString *commentToUser;
+@property (nonatomic, copy) NSString *commentToUserID;
+
 - (void)setupTextField;
 -(void)initAllControl;
 - (void)adjustTableViewToFitKeyboard;

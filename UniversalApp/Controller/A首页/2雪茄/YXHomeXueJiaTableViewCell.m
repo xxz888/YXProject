@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-   
+    ViewRadius(self.cellImageView, 3);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

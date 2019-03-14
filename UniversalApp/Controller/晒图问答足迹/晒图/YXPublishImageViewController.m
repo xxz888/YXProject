@@ -32,13 +32,26 @@
     self.floatHeight_Tag.constant = -10;
     self.switchBtn.hidden = self.fengcheView.hidden = self.faxianLbl.hidden = self.lineView3.hidden = YES;
     
-    if (self.caoGaoDic) {
+    //如果是从草稿进来，并且有值
+    if (self.whereComeCaogao && self.caoGaoDic) {
         NSString * photo1 = self.caoGaoDic[@"photo1"];
         NSString * photo2 = self.caoGaoDic[@"photo2"];
         NSString * photo3 = self.caoGaoDic[@"photo3"];
     
         if ([self.caoGaoDic[@"describe"] length] > 0) {
             self.qmuiTextView.text = [self.caoGaoDic[@"describe"] UnicodeToUtf8];
+            if ([photo1 length] > 5) {
+                self.img1.hidden = NO;
+                [self.img1 sd_setImageWithURL:[NSURL URLWithString:photo1] placeholderImage:[UIImage imageNamed:@""]];
+            }
+            if ([photo2 length] > 5) {
+                self.img2.hidden = NO;
+                [self.img2 sd_setImageWithURL:[NSURL URLWithString:photo2] placeholderImage:[UIImage imageNamed:@""]];
+            }
+            if ([photo3 length] > 5) {
+                self.img3.hidden = NO;
+                [self.img3 sd_setImageWithURL:[NSURL URLWithString:photo3] placeholderImage:[UIImage imageNamed:@""]];
+            }
         }
         UIImage *  zhanweiImage = [UIImage imageNamed:@"AddMedia"];
 
@@ -101,20 +114,25 @@
         [dic setValue:@"" forKey:@"photo1"];
         [dic setValue:@"" forKey:@"photo2"];
         [dic setValue:@"" forKey:@"photo3"];
-    }else if (imgArray.count == 1){
+    }
+    if (imgArray.count >= 1){
         [dic setValue:imgArray[0] forKey:@"photo1"];
         [dic setValue:@"" forKey:@"photo2"];
         [dic setValue:@"" forKey:@"photo3"];
-    }else if (imgArray.count == 2){
+    }
+    if (imgArray.count >= 2){
         [dic setValue:imgArray[0] forKey:@"photo1"];
         [dic setValue:imgArray[1] forKey:@"photo2"];
         [dic setValue:@"" forKey:@"photo3"];
         
-    }else if (imgArray.count == 3){
+    }
+    if (imgArray.count >= 3){
         [dic setValue:imgArray[0] forKey:@"photo1"];
         [dic setValue:imgArray[1] forKey:@"photo2"];
         [dic setValue:imgArray[2] forKey:@"photo3"];
-    }else if (self.textViewInput.length == 0){
+    }
+    
+    if (self.textViewInput.length == 0){
         [QMUITips showError:@"请输入描述!" inView:self.view hideAfterDelay:2];
         return;
     }else if (self.textViewInput.length >  100){
@@ -130,15 +148,17 @@
         NSString *string = [self.tagArray componentsJoinedByString:@" "];
         [dic setValue:string forKey:@"tag"];//标签
     }
-    
+    kWeakSelf(self);
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(imgArray.count+1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //这里区别寸草稿还是发布
         if (btn.tag == 301) {
             UserDefaultsSET(dic, YX_USER_FaBuCaoGao);
             [QMUITips hideAllTipsInView:self.view];
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [weakself closeViewAAA];
+
         }else{
-            [self requestFabu:dic];
+            [weakself requestFabu:dic];
         }
     });
 
@@ -148,9 +168,8 @@
     //发布按钮
     [YX_MANAGER requestFaBuImagePOST:dic success:^(id object) {
         [QMUITips hideAllTipsInView:weakself.view];
-        [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:^{
-            [QMUITips showSucceed:object[@"message"] inView:[ShareManager getMainView] hideAfterDelay:1];
-        }];
+        [QMUITips showSucceed:object[@"message"] inView:[ShareManager getMainView] hideAfterDelay:1];
+        [weakself closeViewAAA];
     }];
 }
 

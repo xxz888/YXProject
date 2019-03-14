@@ -37,19 +37,23 @@
         [dic setValue:@"" forKey:@"pic1"];
         [dic setValue:@"" forKey:@"pic2"];
         [dic setValue:@"" forKey:@"pic3"];
-    }else if (imgArray.count == 1){
+    }
+    if (imgArray.count >= 1){
         [dic setValue:imgArray[0] forKey:@"pic1"];
         [dic setValue:@"" forKey:@"pic2"];
         [dic setValue:@"" forKey:@"pic3"];
-    }else if (imgArray.count == 2){
+    }
+    if (imgArray.count >= 2){
         [dic setValue:imgArray[0] forKey:@"pic1"];
         [dic setValue:imgArray[1] forKey:@"pic2"];
         [dic setValue:@"" forKey:@"pic3"];
-    }else if (imgArray.count == 3){
+    }
+    if (imgArray.count >= 3){
         [dic setValue:imgArray[0] forKey:@"pic1"];
         [dic setValue:imgArray[1] forKey:@"pic2"];
         [dic setValue:imgArray[2] forKey:@"pic3"];
-    }else if (self.titleTf.text.length == 0){
+    }
+    if (self.titleTf.text.length == 0){
         [QMUITips showError:@"请输入标题!" inView:self.view hideAfterDelay:2];
         return;
     }else if (self.qmuiTextView.text.length == 0){
@@ -68,14 +72,14 @@
     
     NSString * publish_site = [self.locationBtn.titleLabel.text isEqualToString:@"获取地理位置"] ? @"" : self.locationBtn.titleLabel.text;
     [dic setValue:publish_site forKey:@"publish_site"];
-    
+    kWeakSelf(self);
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(imgArray.count + 1  * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //发布按钮
         [YX_MANAGER requestFaBuQuestionPOST:dic success:^(id object) {
             [QMUITips hideAllTipsInView:self.view];
-            [self dismissViewControllerAnimated:YES completion:^{
-                [QMUITips showSucceed:object[@"message"] inView:self.view hideAfterDelay:1];
-            }];
+            [QMUITips showSucceed:object[@"message"] inView:self.view hideAfterDelay:1];
+            [weakself closeViewAAA];
             
         }];
     });

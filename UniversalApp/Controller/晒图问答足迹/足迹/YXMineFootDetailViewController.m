@@ -197,6 +197,7 @@
         NSMutableDictionary * pageDic = [[NSMutableDictionary alloc]init];
         model.iconName = formalArray[i][@"photo"];
         model.name = formalArray[i][@"user_name"];
+        model.userID = formalArray[i][@"user_id"];
         model.msgContent = [formalArray[i][@"comment"] UnicodeToUtf8];
         model.commontTime = [formalArray[i][@"update_time"] integerValue];
         model.praise = kGetString(formalArray[i][@"is_praise"]);
@@ -255,6 +256,7 @@
     [self.textField becomeFirstResponder];
     self.isReplayingComment = YES;
     self.commentToUser = model.name;
+    self.commentToUserID = model.userID;
     [self adjustTableViewToFitKeyboard];
 }
 #pragma mark ========== tableview 点赞按钮 ==========
@@ -332,22 +334,9 @@
         [self.textField resignFirstResponder];
         if (self.isReplayingComment) {
             SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
-            SDTimeLineCellCommentItemModel * itemModel;
-            for (SDTimeLineCellCommentItemModel * oldItemModel in model.commentItemsArray) {
-                if ([oldItemModel.firstUserName isEqualToString:self.commentToUser]) {
-                    itemModel = oldItemModel;
-                }
-            }
-            int farther_id = 0;
-            if ([itemModel.firstUserName isEqualToString:self.commentToUser]) {
-                farther_id = [itemModel.firstUserId intValue];
-            }
-            if ([itemModel.secondUserName isEqualToString:self.commentToUser]) {
-                farther_id = [itemModel.secondUserId intValue];
-            }
             [self requestpost_comment_child:@{@"comment":[textField.text utf8ToUnicode],
                                               @"father_id":@([model.id intValue]),
-                                              @"aim_id":@(farther_id),
+                                              @"aim_id":self.commentToUserID,
                                               }];
             self.isReplayingComment = NO;
         }else{

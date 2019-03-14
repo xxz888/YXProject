@@ -49,11 +49,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8EQ-ay-nxW">
-                                <rect key="frame" x="60" y="30" width="220" height="20"/>
+                                <rect key="frame" x="65" y="30" width="215" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="sZx-yA-LP2"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <state key="normal" title="-">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -70,7 +70,7 @@
                             <constraint firstItem="8EQ-ay-nxW" firstAttribute="top" secondItem="WdQ-Hc-Bej" secondAttribute="bottom" id="T9Y-G0-oCV"/>
                             <constraint firstItem="X6Q-AZ-ukr" firstAttribute="leading" secondItem="WdQ-Hc-Bej" secondAttribute="trailing" constant="10" id="iQd-qS-chB"/>
                             <constraint firstAttribute="bottom" secondItem="qm7-h2-uxC" secondAttribute="bottom" id="k4M-Uz-YCa"/>
-                            <constraint firstItem="8EQ-ay-nxW" firstAttribute="leading" secondItem="WdQ-Hc-Bej" secondAttribute="leading" id="msv-qz-lW9"/>
+                            <constraint firstItem="8EQ-ay-nxW" firstAttribute="leading" secondItem="WdQ-Hc-Bej" secondAttribute="leading" constant="5" id="msv-qz-lW9"/>
                             <constraint firstItem="WdQ-Hc-Bej" firstAttribute="top" secondItem="qm7-h2-uxC" secondAttribute="top" id="pLG-Pr-v4N"/>
                         </constraints>
                     </view>

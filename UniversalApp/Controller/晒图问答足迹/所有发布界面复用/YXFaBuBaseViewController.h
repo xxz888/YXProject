@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^dismissBlock) ();
 
 @interface YXFaBuBaseViewController : RootViewController
+@property (nonatomic,assign) BOOL whereComeCaogao;//yes是草稿进来
+
 @property (weak, nonatomic) IBOutlet UITextField *titleTf;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleTfHeight;
 @property (weak, nonatomic) IBOutlet UIView *detailView;
@@ -76,8 +78,14 @@ typedef void(^dismissBlock) ();
 @property (weak, nonatomic) IBOutlet UIButton *del2;
 @property (weak, nonatomic) IBOutlet UIButton *del3;
 
+
+@property (nonatomic,strong) NSString * photo1;
+@property (nonatomic,strong) NSString * photo2;
+@property (nonatomic,strong) NSString * photo3;
+
 - (IBAction)delAction:(id)sender;
 - (IBAction)closeViewAction:(id)sender;
+-(void)closeViewAAA;
 @end
 
 NS_ASSUME_NONNULL_END

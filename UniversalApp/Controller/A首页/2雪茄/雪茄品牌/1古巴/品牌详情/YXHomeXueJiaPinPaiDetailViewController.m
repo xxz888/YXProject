@@ -50,7 +50,10 @@
     //获取本地html目录 baseUrl
     NSURL *baseUrl = [NSURL fileURLWithPath: basePath isDirectory: YES];
     //显示内容
-    [self.webView loadHTMLString:[self adaptWebViewForHtml:cellData[@"intro"]] baseURL: baseUrl];
+    if (cellData[@"intro"]) {
+        [self.webView loadHTMLString:[self adaptWebViewForHtml:cellData[@"intro"]] baseURL: baseUrl];
+
+    }
 
 }
 - (void)webViewDidFinishLoad:(UIWebView *)wb{
@@ -58,8 +61,8 @@
     [self.tableView reloadData];
 }
 //HTML适配图片文字
-- (NSString *)adaptWebViewForHtml:(NSString *) htmlStr
-{
+- (NSString *)adaptWebViewForHtml:(NSString *) htmlStr{
+    
     NSMutableString *headHtml = [[NSMutableString alloc] initWithCapacity:0];
     [headHtml appendString : @"<html>" ];
     
