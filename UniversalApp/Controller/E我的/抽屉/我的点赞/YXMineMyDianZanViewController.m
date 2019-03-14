@@ -51,7 +51,7 @@
     return self.dataArray.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 350;
+    return 508;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXMineEssayTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMineEssayTableViewCell" forIndexPath:indexPath];
@@ -70,8 +70,8 @@
     [cell.midView addSubview:mineImageView];
     [mineImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"img_moren"]];
     ViewRadius(mineImageView, 3);
-    cell.mineImageLbl.text = dic[@"describe"];
-    cell.mineTimeLbl.text = [@"☉ " append:dic[@"publish_site"]];
+    cell.mineImageLbl.text = [dic[@"describe"] UnicodeToUtf8];
+    cell.mineTimeLbl.text = dic[@"publish_site"];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

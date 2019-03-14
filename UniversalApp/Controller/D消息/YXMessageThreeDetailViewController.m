@@ -228,7 +228,7 @@
         YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
         VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
         NSString * url = dic[@"photo1"];
-        CGFloat imageHeight = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:0];
+        CGFloat imageHeight = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:400];
         VC.height = imageHeight;
         [self.navigationController pushViewController:VC animated:YES];
     }else if (tag == 3){//问答
@@ -238,7 +238,7 @@
     }else if (tag == 2){//足迹
         YXMineFootDetailViewController * VC = [[YXMineFootDetailViewController alloc]init];
         NSString * url = dic[@"pic1"];
-        CGFloat imageHeight = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:0];
+        CGFloat imageHeight = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:400];
         VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
         VC.height = imageHeight;
         [self.navigationController pushViewController:VC animated:YES];

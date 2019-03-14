@@ -141,9 +141,6 @@
     
     YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
     VC.startDic = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[indexPath.row]];
-    NSString * url = VC.startDic[@"photo1"];
-    CGFloat imageHeight = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:0];
-    VC.height = imageHeight;
     [self.navigationController pushViewController:VC animated:YES];
     
     

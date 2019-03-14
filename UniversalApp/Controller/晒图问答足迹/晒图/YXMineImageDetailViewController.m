@@ -21,7 +21,7 @@
     [super viewDidLoad];
     
     if ([self.startDic[@"photo1"] length] >= 5) {
-        imageHeight   = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:self.startDic[@"photo1"]] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:0];
+        imageHeight   = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:self.startDic[@"photo1"]] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:400];
     }
     //初始化所有的控件
     [self initAllControl];
@@ -62,9 +62,9 @@
     if ([self.startDic[@"photo3"] length] >= 5) {
         [self.imageArr addObject:self.startDic[@"photo3"]];
     }
-
     [self.lastDetailView setUpSycleScrollView:self.imageArr height:imageHeight];
     self.lastDetailView.rightCountLbl.text = [NSString stringWithFormat:@"%@/%ld",@"1",self.imageArr.count];
+    self.lastDetailView.rightCountLbl.hidden = [self.lastDetailView.rightCountLbl.text isEqualToString:@"1/1"];
     self.lastDetailView.titleLbl.text = self.startDic[@"user_name"];
     NSString * str1 = [(NSMutableString *)self.startDic[@"photo"] replaceAll:@" " target:@"%20"];
     [self.lastDetailView.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
