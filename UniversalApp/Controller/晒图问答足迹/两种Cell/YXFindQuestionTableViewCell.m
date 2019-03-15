@@ -141,8 +141,11 @@
     }else{
         self.imvHeight.constant = 100;
     }
-    if ([self.mapBtn.titleLabel.text isEqualToString:@""] || !self.mapBtn.titleLabel.text) {
+    
+    if ([dic[@"publish_site"] isEqualToString:@""] || !dic[@"publish_site"] ) {
         self.nameCenter.constant = self.titleImageView.frame.origin.y;
+    }else{
+        self.nameCenter.constant = 0;
     }
     [ShareManager setLineSpace:9 withText:[self.titleTagLbl2.text UnicodeToUtf8] inLabel:self.titleTagLbl2 tag:@""];
 

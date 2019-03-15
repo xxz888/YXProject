@@ -192,11 +192,10 @@
     //全部评论
     
     
-    if ([self.mapBtn.titleLabel.text isEqualToString:@""] || !self.mapBtn.titleLabel.text ) {
+    if ([dic[@"publish_site"] isEqualToString:@""] || !dic[@"publish_site"] ) {
         self.nameCenter.constant = self.titleImageView.frame.origin.y;
-    }
-    if ([self.mapBtn.titleLabel.text isEqualToString:@"获取地理位置"]) {
-        self.mapBtn.titleLabel.text = @"";
+    }else{
+        self.nameCenter.constant = 0;
     }
 
     NSString * zuji = [NSString stringWithFormat:@"来自足迹·%@ %@",dic[@"cigar_info"][@"brand_name"],dic[@"cigar_info"][@"cigar_name"]];
