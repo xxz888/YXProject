@@ -8,6 +8,7 @@
 
 #import "YXMineAndFindBaseViewController.h"
 #import "XHWebImageAutoSize.h"
+#import "HGPersonalCenterViewController.h"
 @interface YXMineAndFindBaseViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>{
     CGFloat _autoPLHeight;
 }
@@ -317,7 +318,8 @@
         return;
     }
      UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
-     YXMineViewController * mineVC = [stroryBoard5 instantiateViewControllerWithIdentifier:@"YXMineViewController"];
+//     YXMineViewController * mineVC = [stroryBoard5 instantiateViewControllerWithIdentifier:@"YXMineViewController"];
+    HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
      mineVC.userId = userId;
      mineVC.whereCome = YES;    //  YES为其他人 NO为自己
      [self.navigationController pushViewController:mineVC animated:YES];

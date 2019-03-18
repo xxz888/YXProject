@@ -12,6 +12,8 @@
 #import "YXMessageViewController.h"
 #import "YXMineViewController.h"
 #import "XWPopMenuController.h"
+#import "HGPersonalCenterViewController.h"
+
 @interface SaltedFishTabBarVC ()<AxcAE_TabBarDelegate>
 
 @end
@@ -35,12 +37,15 @@
     YXMessageViewController * messageVC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMessageViewController"];
     RootNavigationController *nav3 = [[RootNavigationController alloc]initWithRootViewController:messageVC];
 
-    UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
-    YXMineViewController * mineVC = [stroryBoard5 instantiateViewControllerWithIdentifier:@"YXMineViewController"];
-    RootNavigationController *nav4 = [[RootNavigationController alloc]initWithRootViewController:mineVC];
+//    UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+//    YXMineViewController * mineVC = [stroryBoard5 instantiateViewControllerWithIdentifier:@"YXMineViewController"];
+//    RootNavigationController *nav4 = [[RootNavigationController alloc]initWithRootViewController:mineVC];
 
     
-    
+    HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
+    RootNavigationController *nav4 = [[RootNavigationController alloc]initWithRootViewController:mineVC];
+    mineVC.isEnlarge = YES;
+    mineVC.selectedIndex = 0;
     // 创建选项卡的数据 想怎么写看自己，这块我就写笨点了
     NSArray <NSDictionary *>*VCArray =
     @[@{@"vc":nav1,@"normalImg":@"home_normal",@"selectImg":@"home_highlight",@"itemTitle":@"首页"},

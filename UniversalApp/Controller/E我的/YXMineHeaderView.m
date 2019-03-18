@@ -10,12 +10,26 @@
 
 @implementation YXMineHeaderView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
+}
+- (IBAction)editPersonAction:(id)sender{
+    self.editPersionblock();
+}
+- (IBAction)guanzhuAction:(id)sender{
+    self.guanzhublock();
+}
+- (IBAction)fensiAction:(id)sender{
+    self.fensiblock();
+    
+}
+- (IBAction)tieshuAction:(id)sender{
+    self.tieshublock();
+}
+-(void)setViewUI{
+
+}
+- (IBAction)guanZhuOtherAction:(id)sender {
+    self.guanZhuOtherblock();
+}
 @end

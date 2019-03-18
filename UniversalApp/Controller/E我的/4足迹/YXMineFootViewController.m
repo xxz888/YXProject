@@ -19,10 +19,11 @@
 @implementation YXMineFootViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    CGFloat heightKK = AxcAE_IsiPhoneX ? 88 : 60;
-    CGFloat height =  user_id_BOOL ? 64 : 0;
+    CGFloat heightKK = AxcAE_IsiPhoneX ? 212 : 155;
+    CGFloat height =  user_id_BOOL ? (AxcAE_IsiPhoneX ? - 64 : -54) : 0;
+    CGRect frame = CGRectMake(0, 0, KScreenWidth,KScreenHeight - heightKK - height);
     
-    self.yxTableView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight - 175 -kTopHeight - heightKK + height);
+    self.yxTableView.frame =frame;
     [self requestAction];
 }
 -(void)requestAction{

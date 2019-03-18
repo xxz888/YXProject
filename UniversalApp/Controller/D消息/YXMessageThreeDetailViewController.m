@@ -16,6 +16,8 @@
 #import "YXHomeXueJiaQuestionDetailViewController.h"
 #import "XHWebImageAutoSize.h"
 #import "YXHomeXueJiaPinPaiLastDetailViewController.h"
+#import "HGPersonalCenterViewController.h"
+
 @interface YXMessageThreeDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView * yxTableView;
 @property(nonatomic,strong)NSMutableArray * dataArray;
@@ -164,8 +166,9 @@
         self.navigationController.tabBarController.selectedIndex = 4;
         return;
     }
-    UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
-    YXMineViewController * mineVC = [stroryBoard5 instantiateViewControllerWithIdentifier:@"YXMineViewController"];
+//    UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+//    YXMineViewController * mineVC = [stroryBoard5 instantiateViewControllerWithIdentifier:@"YXMineViewController"];
+    HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
     mineVC.userId = userId;
     mineVC.whereCome = YES;    //  YES为其他人 NO为自己
     [self.navigationController pushViewController:mineVC animated:YES];

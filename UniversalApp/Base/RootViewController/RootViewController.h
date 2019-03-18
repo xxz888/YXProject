@@ -16,6 +16,13 @@
 #import "FCXRefreshHeaderView.h"
 #import "UIScrollView+FCXRefresh.h"
 #import "YXFindSearchHeadView.h"
+
+#import "HGCategoryView.h"
+
+@protocol HGPageViewControllerDelegate <NSObject>
+- (void)pageViewControllerLeaveTop;
+@end
+
 typedef void (^ListenChangeIndexBlock)(NSInteger);
 
 /**
@@ -113,4 +120,17 @@ typedef void (^ListenChangeIndexBlock)(NSInteger);
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar;
 - (void)cancleAction;
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar;
+
+
+
+
+
+@property (nonatomic, weak) id<HGPageViewControllerDelegate> delegate;
+@property (nonatomic) NSInteger pageIndex;
+
+- (void)makePageViewControllerScroll:(BOOL)canScroll;
+- (void)makePageViewControllerScrollToTop;
+
+
+
 @end
