@@ -65,6 +65,7 @@ static CGFloat const HeaderImageViewHeight =240;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self updateNavigationBarBackgroundColor];
+    [self setViewData];
 }
 
 #pragma mark - Private Methods
@@ -88,14 +89,14 @@ static CGFloat const HeaderImageViewHeight =240;
 //        make.bottom.mas_equalTo(-40);
 //    }];
     NSArray * menuArray = @[@"菜单"];
-//        [self addNavigationItemWithImageNames:menuArray isLeft:NO target:self action:@selector(handleShowContentView) tags:nil];
+        [self addNavigationItemWithImageNames:menuArray isLeft:NO target:self action:@selector(handleShowContentView) tags:nil];
 }
 #pragma mark ========== 点击菜单按钮的方法 ==========
 - (void)handleShowContentView {
     if (!_modalViewController) {
         _modalViewController = [[QMUIModalPresentationViewController alloc] init];
     }
-    _modalViewController.contentViewMargins = UIEdgeInsetsMake(0, _modalViewController.view.frame.size.width/2.5, 0, 0);
+    _modalViewController.contentViewMargins = UIEdgeInsetsMake(0, _modalViewController.view.frame.size.width/2, 0, 0);
     _modalViewController.contentView = self.menuTableView;
     [_modalViewController showWithAnimated:YES completion:nil];
     [self.menuTableView reloadData];
@@ -268,12 +269,12 @@ static CGFloat const HeaderImageViewHeight =240;
             cell.selectionStyle =UITableViewCellSelectionStyleNone;
         }else{
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.textLabel.font = [UIFont systemFontOfSize:16.0f];
+            cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
         }
         cell.selectionStyle =UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
         UIImage * icon =[UIImage imageNamed:titleArray[indexPath.row]];
-        CGSize itemSize = CGSizeMake(25, 25);//固定图片大小为36*36
+        CGSize itemSize = CGSizeMake(20, 20);//固定图片大小为36*36
         UIGraphicsBeginImageContextWithOptions(itemSize, NO, 0.0);//*1
         CGRect imageRect = CGRectMake(0, 0, itemSize.width, itemSize.height);
         [icon drawInRect:imageRect];

@@ -9,13 +9,6 @@
 		<string>北京市</string>
 		<key>citylist</key>
 		<array>
-			<dict>
-				<key>code</key>
-				<string>110000</string>
-				<key>name</key>
-				<string>北京市</string>
-				<key>arealist</key>
-				<array>
 					<dict>
 						<key>name</key>
 						<string>东城区</string>
@@ -112,8 +105,6 @@
 						<key>code</key>
 						<string>110116</string>
 					</dict>
-				</array>
-			</dict>
 		</array>
 	</dict>
 	<dict>
@@ -123,13 +114,6 @@
 		<string>天津市</string>
 		<key>citylist</key>
 		<array>
-			<dict>
-				<key>code</key>
-				<string>120000</string>
-				<key>name</key>
-				<string>天津市</string>
-				<key>arealist</key>
-				<array>
 					<dict>
 						<key>name</key>
 						<string>和平区</string>
@@ -226,8 +210,6 @@
 						<key>code</key>
 						<string>120116</string>
 					</dict>
-				</array>
-			</dict>
 		</array>
 	</dict>
 	<dict>
@@ -5076,9 +5058,6 @@
 		<string>上海市</string>
 		<key>citylist</key>
 		<array>
-			<dict>
-				<key>arealist</key>
-				<array>
 					<dict>
 						<key>name</key>
 						<string>黄浦区</string>
@@ -5175,12 +5154,6 @@
 						<key>code</key>
 						<string>310230</string>
 					</dict>
-				</array>
-				<key>name</key>
-				<string>上海市</string>
-				<key>code</key>
-				<string>310000</string>
-			</dict>
 		</array>
 	</dict>
 	<dict>
@@ -14998,9 +14971,6 @@
 		<string>重庆市</string>
 		<key>citylist</key>
 		<array>
-			<dict>
-				<key>arealist</key>
-				<array>
 					<dict>
 						<key>name</key>
 						<string>万州区</string>
@@ -15145,12 +15115,6 @@
                         <key>code</key>
                         <string>500234</string>
                     </dict>
-				</array>
-				<key>name</key>
-				<string>重庆市</string>
-				<key>code</key>
-				<string>500000</string>
-			</dict>
             <dict>
                 <key>arealist</key>
                 <array>
@@ -15239,10 +15203,7 @@
                         <string>500243</string>
                     </dict>
                 </array>
-                <key>name</key>
-                <string>县</string>
-                <key>code</key>
-                <string>500200</string>
+
             </dict>
 		</array>
 	</dict>
