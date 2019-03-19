@@ -8,8 +8,10 @@
 
 #import "RootViewController.h"
 #import "YXFaBuBaseViewController.h"
+#import "YXShaiTuModel.h"
 
 
 @interface YXPublishImageViewController : YXFaBuBaseViewController
+@property(nonatomic,strong)YXShaiTuModel * model;
 
 @end

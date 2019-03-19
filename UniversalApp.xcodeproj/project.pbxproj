@@ -570,6 +570,14 @@
 		BBF26E08223FA92D0000AEF5 /* HWCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E02223FA92D0000AEF5 /* HWCircleView.m */; };
 		BBF26E09223FA92D0000AEF5 /* HWProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E04223FA92D0000AEF5 /* HWProgressView.m */; };
 		BBF26E0A223FA92D0000AEF5 /* HWInstallView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E06223FA92D0000AEF5 /* HWInstallView.m */; };
+		BBF26E1B22408B0E0000AEF5 /* JQFMDB.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E0D22408B0E0000AEF5 /* JQFMDB.m */; };
+		BBF26E1C22408B0E0000AEF5 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E1122408B0E0000AEF5 /* FMDatabaseQueue.m */; };
+		BBF26E1D22408B0E0000AEF5 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E1422408B0E0000AEF5 /* FMDatabaseAdditions.m */; };
+		BBF26E1E22408B0E0000AEF5 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E1522408B0E0000AEF5 /* FMDatabase.m */; };
+		BBF26E1F22408B0E0000AEF5 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E1922408B0E0000AEF5 /* FMDatabasePool.m */; };
+		BBF26E2022408B0E0000AEF5 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E1A22408B0E0000AEF5 /* FMResultSet.m */; };
+		BBF26E2322408B7D0000AEF5 /* YXShaiTuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E2222408B7D0000AEF5 /* YXShaiTuModel.m */; };
+		BBF26E25224091CE0000AEF5 /* JQFMDB.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E24224091CD0000AEF5 /* JQFMDB.xcdatamodel */; };
 		BBF45E52222FC649005C52C4 /* YXMessageThreeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF45E51222FC648005C52C4 /* YXMessageThreeDetailViewController.m */; };
 		BBF45E56222FC680005C52C4 /* YXMessageThreeDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF45E54222FC680005C52C4 /* YXMessageThreeDetailViewCell.m */; };
 		BBF45E57222FC680005C52C4 /* YXMessageThreeDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBF45E55222FC680005C52C4 /* YXMessageThreeDetailViewCell.xib */; };
@@ -1573,6 +1581,22 @@
 		BBF26E04223FA92D0000AEF5 /* HWProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWProgressView.m; sourceTree = "<group>"; };
 		BBF26E05223FA92D0000AEF5 /* HWCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWCircleView.h; sourceTree = "<group>"; };
 		BBF26E06223FA92D0000AEF5 /* HWInstallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWInstallView.m; sourceTree = "<group>"; };
+		BBF26E0D22408B0E0000AEF5 /* JQFMDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JQFMDB.m; sourceTree = "<group>"; };
+		BBF26E0E22408B0E0000AEF5 /* JQFMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JQFMDB.h; sourceTree = "<group>"; };
+		BBF26E1022408B0E0000AEF5 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		BBF26E1122408B0E0000AEF5 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		BBF26E1222408B0E0000AEF5 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		BBF26E1322408B0E0000AEF5 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		BBF26E1422408B0E0000AEF5 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		BBF26E1522408B0E0000AEF5 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		BBF26E1622408B0E0000AEF5 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		BBF26E1722408B0E0000AEF5 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		BBF26E1822408B0E0000AEF5 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		BBF26E1922408B0E0000AEF5 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		BBF26E1A22408B0E0000AEF5 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		BBF26E2122408B7D0000AEF5 /* YXShaiTuModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXShaiTuModel.h; sourceTree = "<group>"; };
+		BBF26E2222408B7D0000AEF5 /* YXShaiTuModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXShaiTuModel.m; sourceTree = "<group>"; };
+		BBF26E24224091CD0000AEF5 /* JQFMDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JQFMDB.xcdatamodel; sourceTree = "<group>"; };
 		BBF45E50222FC648005C52C4 /* YXMessageThreeDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMessageThreeDetailViewController.h; sourceTree = "<group>"; };
 		BBF45E51222FC648005C52C4 /* YXMessageThreeDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMessageThreeDetailViewController.m; sourceTree = "<group>"; };
 		BBF45E53222FC680005C52C4 /* YXMessageThreeDetailViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMessageThreeDetailViewCell.h; sourceTree = "<group>"; };
@@ -1962,6 +1986,7 @@
 		296F9EBB1ECC64CE0063A255 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BBF26E24224091CD0000AEF5 /* JQFMDB.xcdatamodel */,
 				293D459B1ECD6422007C64A9 /* Assets.xcassets */,
 				293D459C1ECD6422007C64A9 /* Base.lproj */,
 				293D459F1ECD6422007C64A9 /* Info.plist */,
@@ -3040,6 +3065,8 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BBF26E0F22408B0E0000AEF5 /* fmdb */,
+				BBF26E0C22408B0E0000AEF5 /* JQFMDB */,
 				BBBCDBA0223F65530056C7DD /* HGPersonalCenterExtend */,
 				BBF45E58222FD29A005C52C4 /* GCD */,
 				BBBFD7572222D7D300D377AC /* JJImagePicker */,
@@ -3152,6 +3179,8 @@
 				BBD2C84921E0F46500350DCD /* YXPublishImageViewController.m */,
 				BBADE4D421F8655E0011E5FF /* YXMineImageDetailViewController.h */,
 				BBADE4D521F8655E0011E5FF /* YXMineImageDetailViewController.m */,
+				BBF26E2122408B7D0000AEF5 /* YXShaiTuModel.h */,
+				BBF26E2222408B7D0000AEF5 /* YXShaiTuModel.m */,
 			);
 			path = "晒图";
 			sourceTree = "<group>";
@@ -4545,6 +4574,33 @@
 			path = "UniversalApp/Utils/艺鑫工具/View";
 			sourceTree = SOURCE_ROOT;
 		};
+		BBF26E0C22408B0E0000AEF5 /* JQFMDB */ = {
+			isa = PBXGroup;
+			children = (
+				BBF26E0D22408B0E0000AEF5 /* JQFMDB.m */,
+				BBF26E0E22408B0E0000AEF5 /* JQFMDB.h */,
+			);
+			path = JQFMDB;
+			sourceTree = "<group>";
+		};
+		BBF26E0F22408B0E0000AEF5 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				BBF26E1022408B0E0000AEF5 /* FMDatabase.h */,
+				BBF26E1122408B0E0000AEF5 /* FMDatabaseQueue.m */,
+				BBF26E1222408B0E0000AEF5 /* FMResultSet.h */,
+				BBF26E1322408B0E0000AEF5 /* FMDatabasePool.h */,
+				BBF26E1422408B0E0000AEF5 /* FMDatabaseAdditions.m */,
+				BBF26E1522408B0E0000AEF5 /* FMDatabase.m */,
+				BBF26E1622408B0E0000AEF5 /* FMDatabaseQueue.h */,
+				BBF26E1722408B0E0000AEF5 /* FMDB.h */,
+				BBF26E1822408B0E0000AEF5 /* FMDatabaseAdditions.h */,
+				BBF26E1922408B0E0000AEF5 /* FMDatabasePool.m */,
+				BBF26E1A22408B0E0000AEF5 /* FMResultSet.m */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
 		BBF45E58222FD29A005C52C4 /* GCD */ = {
 			isa = PBXGroup;
 			children = (
@@ -4947,6 +5003,7 @@
 				BBCC4B9321E894CD00493F40 /* MMOperateMenuView.m in Sources */,
 				BB9413E521F8B602007E800A /* IQUIViewController+Additions.m in Sources */,
 				BB29122922156BDE00FF484E /* LLGifView.m in Sources */,
+				BBF26E25224091CE0000AEF5 /* JQFMDB.xcdatamodel in Sources */,
 				BBBCDBB6223F65910056C7DD /* HGBaseViewController.m in Sources */,
 				BB5FD88521FEB8CE00B5F1A8 /* YXMineEssayTableViewCell.m in Sources */,
 				2917D2111EE0268A00E76185 /* UIViewController+AlertViewAndActionSheet.m in Sources */,
@@ -5051,6 +5108,7 @@
 				BBBCDBAF223F65540056C7DD /* HGCenterBaseTableView.m in Sources */,
 				2973A81A1EDEE6BE002751F0 /* GameInfo.m in Sources */,
 				BBDA2C6921EB308100EDCCFF /* SDWeiXinPhotoContainerView.m in Sources */,
+				BBF26E2322408B7D0000AEF5 /* YXShaiTuModel.m in Sources */,
 				BB7AF1382200869400989896 /* YXMineHeaderView.m in Sources */,
 				296DEA711F5D50D100C6FD00 /* TADotView.m in Sources */,
 				BBD2C92221E0F67800350DCD /* MWZoomingScrollView.m in Sources */,
@@ -5112,6 +5170,7 @@
 				BBD2C91A21E0F67800350DCD /* UIImage+LLGif.m in Sources */,
 				BBA812C621DDBF6A001B5EA1 /* UIView+TBFrame.m in Sources */,
 				2924783E1ED6857300BB097A /* AppDelegate+PushService.m in Sources */,
+				BBF26E1F22408B0E0000AEF5 /* FMDatabasePool.m in Sources */,
 				BBECEEFD21F183FB007E90AC /* YXGEPPinPaiDetailHeaderView.m in Sources */,
 				BBDA2D0B21EB30BF00EDCCFF /* LEETheme.m in Sources */,
 				BB6D2A3521EEC63900F5049F /* UIColor+MyColor.m in Sources */,
@@ -5185,11 +5244,13 @@
 				BB2A8EB6221BB0A300B6756A /* UILabel+String.m in Sources */,
 				BBF45E5F222FD29A005C52C4 /* GCDAsyncUdpSocket.m in Sources */,
 				BBDA2D2021EB30BF00EDCCFF /* SDRefreshHeaderView.m in Sources */,
+				BBF26E1C22408B0E0000AEF5 /* FMDatabaseQueue.m in Sources */,
 				BB9413D921F8B602007E800A /* IQTextView.m in Sources */,
 				BB6D2A0521EDA7F400F5049F /* BKStrikeLabel.m in Sources */,
 				BBD2C95C21E0FAEC00350DCD /* YXGridView.m in Sources */,
 				BBD2C98821E1BC0A00350DCD /* UIView+PYSearchExtension.m in Sources */,
 				BBA8131321DE0814001B5EA1 /* HttpRequest.m in Sources */,
+				BBF26E1B22408B0E0000AEF5 /* JQFMDB.m in Sources */,
 				BB29122A22156BDE00FF484E /* LLGifImageView.m in Sources */,
 				293ECC2D1EE56D1D008061A1 /* IMManager.m in Sources */,
 				BB9832702201700C0048D103 /* FCXRefreshFooterView.m in Sources */,
@@ -5231,6 +5292,7 @@
 				BB2A8EB9221BE73300B6756A /* UIImage+ImgSize.m in Sources */,
 				BB9413E321F8B602007E800A /* IQUIScrollView+Additions.m in Sources */,
 				BB5FD88A21FECBDB00B5F1A8 /* YXFindImageTableViewCell.m in Sources */,
+				BBF26E1E22408B0E0000AEF5 /* FMDatabase.m in Sources */,
 				BB9832792201E0C90048D103 /* YXHomeNewsDetailViewController.m in Sources */,
 				BBD2C84C21E0F46500350DCD /* YXPublishImageViewController.m in Sources */,
 				29AD6C711ED41ED200B0879C /* UserInfo.m in Sources */,
@@ -5280,6 +5342,7 @@
 				29AD6C5A1ED3E28800B0879C /* HeaderModel.m in Sources */,
 				BB928F5721FABCC30090A044 /* YXMinePingLunViewController.m in Sources */,
 				BBBCDBB9223F65C50056C7DD /* HGPersonalCenterViewController.m in Sources */,
+				BBF26E1D22408B0E0000AEF5 /* FMDatabaseAdditions.m in Sources */,
 				BBD30CE121E5CD79000D3244 /* YXMineGuanZhuViewController.m in Sources */,
 				BBD1C777221670CD0063002F /* YXMineAndFindBaseTableViewCell.m in Sources */,
 				BB95F63F21E6E0880071A369 /* XHStarRateView.m in Sources */,
@@ -5303,6 +5366,7 @@
 				BBE82CFF21E44A7D004E4144 /* ZLPhotoPickerDatas.m in Sources */,
 				BBA812C521DDBF6A001B5EA1 /* UITabBar+TBBadge.m in Sources */,
 				296DEA751F5D50D100C6FD00 /* UIView+SDExtension.m in Sources */,
+				BBF26E2022408B0E0000AEF5 /* FMResultSet.m in Sources */,
 				29D3C0091F4D11A200FD3914 /* FFTagsView.m in Sources */,
 				BBD2C96F21E1B0FB00350DCD /* YXHomeXueJiaPinPaiViewController.m in Sources */,
 				BBA8131021DE06BE001B5EA1 /* YXManager.m in Sources */,

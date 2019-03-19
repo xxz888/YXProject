@@ -171,7 +171,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     
     _iconView.sd_layout
     .leftSpaceToView(contentView, margin)
-    .topSpaceToView(contentView, margin + 5)
+    .topSpaceToView(contentView, margin)
     .widthIs(YX_MANAGER.isHaveIcon ? 0 :40)
     .heightIs(40);
     
@@ -184,9 +184,9 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     
     _starView.sd_layout
     .rightSpaceToView(self.contentView, margin)
-    .topEqualToView(self.contentView)
+    .topSpaceToView(contentView, margin)
     .widthIs(110)
-    .heightIs(30);
+    .heightIs(20);
     
     
     _timeLabel.sd_layout

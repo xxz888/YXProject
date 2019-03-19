@@ -9,9 +9,11 @@
 #import "YXMineMyCaoGaoViewController.h"
 #import "YXHomeXueJiaTableViewCell.h"
 #import "YXPublishImageViewController.h"
+#import "JQFMDB.h"
+#import "YXShaiTuModel.h"
 @interface YXMineMyCaoGaoViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
-@property(nonatomic,strong)NSMutableArray * caoGaoArray;
+@property(nonatomic,strong)NSArray * caoGaoArray;
 @property(nonatomic,strong)NSMutableDictionary * caoGaoDic;
 
 @end
@@ -20,17 +22,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self addNavigationItemWithTitles:@[@"清空"] isLeft:NO target:self action:@selector(clearCachae) tags:@[@1000]];
+    [self addNavigationItemWithTitles:@[@"清空所有"] isLeft:NO target:self action:@selector(clearCachae) tags:@[@1000]];
 
     self.title = @"我的草稿";
-    self.caoGaoArray = [[NSMutableArray alloc]init];
     self.caoGaoDic = [[NSMutableDictionary alloc]init];
     self.yxTableView.backgroundColor = KWhiteColor;
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaTableViewCell"];
     self.yxTableView.delegate= self;
     self.yxTableView.dataSource = self;
     self.yxTableView.tableFooterView = [[UIView alloc]init];
-    self.caoGaoDic = UserDefaultsGET(YX_USER_FaBuCaoGao);
+    
+    JQFMDB *db = [JQFMDB shareDatabase];
+    self.caoGaoArray = [db jq_lookupTable:YX_USER_FaBuCaoGao dicOrModel:[YXShaiTuModel class] whereFormat:nil];
     [self.yxTableView reloadData];
     
 }
@@ -39,14 +42,26 @@
 
 }
 -(void)clearCachae{
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:YX_USER_FaBuCaoGao];
-    [[NSUserDefaults standardUserDefaults]synchronize];
-    self.caoGaoDic = UserDefaultsGET(YX_USER_FaBuCaoGao);
-    [self.yxTableView reloadData];
-    [self.navigationController popViewControllerAnimated:YES];
+    kWeakSelf(self);
+    QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:NULL];
+    QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"删除" style:QMUIAlertActionStyleDestructive handler:^(__kindof QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+        JQFMDB *db = [JQFMDB shareDatabase];
+        if ([db jq_isExistTable:YX_USER_FaBuCaoGao]) {
+            [db jq_deleteAllDataFromTable:YX_USER_FaBuCaoGao];
+        }
+        weakself.caoGaoArray = [db jq_lookupTable:YX_USER_FaBuCaoGao dicOrModel:[YXShaiTuModel class] whereFormat:nil];
+        [weakself.yxTableView reloadData];
+    }];
+    QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"确定删除？" message:@"删除后将无法恢复，请慎重考虑" preferredStyle:QMUIAlertControllerStyleAlert];
+    [alertController addAction:action1];
+    [alertController addAction:action2];
+    [alertController showWithAnimated:YES];
+    
+    
+ 
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.caoGaoDic ? 1 : 0;
+    return self.caoGaoArray.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 100;
@@ -57,16 +72,17 @@
     if (!cell) {
         cell = [[YXHomeXueJiaTableViewCell alloc]initWithStyle:0 reuseIdentifier:identify];
     }
-    NSString * str = [(NSMutableString *)self.caoGaoDic[@"photo1"] replaceAll:@" " target:@"%20"];
+  
+     YXShaiTuModel * model =  self.caoGaoArray[indexPath.row];
+    NSString * str = [(NSMutableString *)model.photo1 replaceAll:@" " target:@"%20"];
     [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    cell.cellLbl.text = self.caoGaoDic[@"tag"];
-    cell.cellAutherLbl.text = [self.caoGaoDic[@"describe"] UnicodeToUtf8];
+    cell.cellAutherLbl.text = [model.describe UnicodeToUtf8];
     cell.cellDataLbl.hidden = YES;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
-    imageVC.whereComeCaogao = YES;
+    imageVC.model = self.caoGaoArray[indexPath.row];
     [self presentViewController:imageVC animated:YES completion:nil];
 }
 /*
@@ -78,5 +94,23 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    
+    
+    YXShaiTuModel * model = self.caoGaoArray[indexPath.row];
+    kWeakSelf(self);
+    //删除
+    UIContextualAction *deleteRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"delete" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+        JQFMDB *db = [JQFMDB shareDatabase];
+        NSString * sql = [@"WHERE shaituid = " append:kGetString(model.shaituid)];
+        [db jq_deleteTable:YX_USER_FaBuCaoGao whereFormat:sql];
+        completionHandler (YES);
+        weakself.caoGaoArray = [db jq_lookupTable:YX_USER_FaBuCaoGao dicOrModel:[YXShaiTuModel class] whereFormat:nil];
+        [weakself.yxTableView reloadData];
+    }];
+    UISwipeActionsConfiguration *config = [UISwipeActionsConfiguration configurationWithActions:@[deleteRowAction]];
+    return config;
+}
 @end

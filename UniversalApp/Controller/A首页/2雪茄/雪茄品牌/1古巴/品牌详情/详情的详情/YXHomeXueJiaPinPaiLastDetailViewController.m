@@ -303,13 +303,20 @@ static CGFloat textFieldH = 40;
         model.msgContent = [formalArray[i][@"comment"] UnicodeToUtf8];
         model.commontTime = [formalArray[i][@"update_time"] integerValue];
         model.score = [formalArray[i][@"average_score"] floatValue];
-        model.praise = kGetString(formalArray[i][@"is_praise"]);
+        model.praise = kGetString(formalArray[i][@"praise"]);
         model.praise_num = kGetString(formalArray[i][@"praise_number"]);
         model.id =  kGetString(formalArray[i][@"id"]);
         
         [pageDic setValue:@([model.id intValue]) forKey:@"id"];
         [pageDic setValue:@(0) forKey:@"page"];
   
+        
+        if ([formalArray[i][@"child_list"] count] == 0) {
+            model.moreCountPL = @"0";
+        }else{
+            NSArray * array = formalArray[i][@"child_list"];
+            model.moreCountPL = [NSString stringWithFormat:@"%ld",[formalArray[i][@"child_number"] integerValue] - [array count]];
+        }
         [_pageArray addObject:pageDic];
      
         // 模拟随机评论数据
@@ -361,6 +368,11 @@ static CGFloat textFieldH = 40;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SDTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:kTimeLineTableViewCellId];
     cell.indexPath = indexPath;
+    
+    
+    CGFloat height1 = cell.model.moreCountPL.integerValue <= 0 ? 0 : 20;
+    [cell.showMoreCommentBtn setTitle:height1 == 0 ? @"" : @"显示更多回复 >>"  forState:UIControlStateNormal];
+    cell.showMoreCommentBtn.hidden = height1 == 0;
     __weak typeof(self) weakSelf = self;
     if (!cell.moreButtonClickedBlock) {
         [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {
@@ -718,4 +730,5 @@ static CGFloat textFieldH = 40;
 -(NSString *)getParamters:(NSString *)type{
     return [NSString stringWithFormat:@"%@/%@/%@",type,self.startDic[@"id"],@"1"];
 }
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{};
 @end

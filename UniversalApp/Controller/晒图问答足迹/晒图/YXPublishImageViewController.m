@@ -8,13 +8,14 @@
 
 #import "YXPublishImageViewController.h"
 #import "YXFaBuBaseViewController.h"
+
 #define photo1_BOOL photo1 && photo1.length > 5
 #define photo2_BOOL photo2 && photo2.length > 5
 #define photo3_BOOL photo3 && photo3.length > 5
+#import "JQFMDB.h"
 
 @interface YXPublishImageViewController ()
 
-@property(nonatomic,strong)NSMutableDictionary * caoGaoDic;
 
 @end
 
@@ -25,21 +26,23 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.caoGaoDic = [[NSMutableDictionary alloc]init];
-    self.caoGaoDic = UserDefaultsGET(YX_USER_FaBuCaoGao);
     self.titleTfHeight.constant = 0;
     self.view3Height.constant = 0;
     self.floatHeight_Tag.constant = -10;
     self.switchBtn.hidden = self.fengcheView.hidden = self.faxianLbl.hidden = self.lineView3.hidden = YES;
-    
+    JQFMDB *db = [JQFMDB shareDatabase];
+    if (![db jq_isExistTable:YX_USER_FaBuCaoGao]) {
+        [db jq_createTable:YX_USER_FaBuCaoGao dicOrModel:[YXShaiTuModel class]];
+    }
+
     //如果是从草稿进来，并且有值
-    if (self.whereComeCaogao && self.caoGaoDic) {
-        NSString * photo1 = self.caoGaoDic[@"photo1"];
-        NSString * photo2 = self.caoGaoDic[@"photo2"];
-        NSString * photo3 = self.caoGaoDic[@"photo3"];
+    if (_model) {
+        NSString * photo1 = _model.photo1;
+        NSString * photo2 = _model.photo2;
+        NSString * photo3 = _model.photo3;
     
-        if ([self.caoGaoDic[@"describe"] length] > 0) {
-            self.qmuiTextView.text = [self.caoGaoDic[@"describe"] UnicodeToUtf8];
+        if ([_model.describe length] > 0) {
+            self.qmuiTextView.text = [_model.describe UnicodeToUtf8];
             if ([photo1 length] > 5) {
                 self.img1.hidden = NO;
                 [self.img1 sd_setImageWithURL:[NSURL URLWithString:photo1] placeholderImage:[UIImage imageNamed:@""]];
@@ -124,7 +127,6 @@
         [dic setValue:imgArray[0] forKey:@"photo1"];
         [dic setValue:imgArray[1] forKey:@"photo2"];
         [dic setValue:@"" forKey:@"photo3"];
-        
     }
     if (imgArray.count >= 3){
         [dic setValue:imgArray[0] forKey:@"photo1"];
@@ -154,20 +156,44 @@
     }
     kWeakSelf(self);
 
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(imgArray.count+1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //这里区别寸草稿还是发布
         if (btn.tag == 301) {
             UserInfo *userInfo = curUser;
             NSString * userId = userInfo.id;
-            NSString * key = [NSString stringWithFormat:@"%@_%@",userId,[ShareManager getNowTimeTimestamp3]];
-            UserDefaultsSET(dic, key);
+            NSString * key = [NSString stringWithFormat:@"%@%@",userId,[ShareManager getNowTimeTimestamp3]];
+            JQFMDB *db = [JQFMDB shareDatabase];
+            YXShaiTuModel * model = [[YXShaiTuModel alloc]init];
+            if (imgArray.count == 0) {
+                model.photo1 = @"";
+                model.photo2 = @"";
+                model.photo3 = @"";
+            }
+            if (imgArray.count >= 1){
+                model.photo1 = imgArray[0];
+                model.photo2 = @"";
+                model.photo3 = @"";
+            }
+            if (imgArray.count >= 2){
+                model.photo1 = imgArray[0];
+                model.photo2 = imgArray[1];
+                model.photo3 = @"";
+            }
+            if (imgArray.count >= 3){
+                model.photo1 = imgArray[0];
+                model.photo2 = imgArray[1];
+                model.photo3 = imgArray[2];
+            }
+            model.describe = self.qmuiTextView.text;
+            model.shaituid = key;
+            [db jq_inDatabase:^{
+                [db jq_insertTable:YX_USER_FaBuCaoGao dicOrModel:model];
+            }];
             [QMUITips hideAllTipsInView:self.view];
             [weakself closeViewAAA];
 
         }else{
             [weakself requestFabu:dic];
         }
-    });
 
 }
 -(void)requestFabu:(NSMutableDictionary *)dic{
