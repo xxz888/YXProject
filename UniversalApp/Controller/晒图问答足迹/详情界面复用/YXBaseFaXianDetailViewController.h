@@ -54,8 +54,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) NSInteger segmentIndex;
 @property (nonatomic,strong) NSMutableArray * pageArray;//因每个cell都要分页，所以page要根据评论id来分，不能单独写
 @property (nonatomic,strong) NSMutableArray * imageArr;
+-(void)requestNewList;
 
-
+-(void)requestHotList;
+-(void)delePingLun:(NSInteger)tag;
 @end
 
 NS_ASSUME_NONNULL_END

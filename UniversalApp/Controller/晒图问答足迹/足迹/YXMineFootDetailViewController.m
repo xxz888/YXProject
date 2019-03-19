@@ -160,12 +160,16 @@
                 commentItemModel.secondUserName = kGetString(dic[@"aim_name"]);
                 commentItemModel.secondUserId = kGetString(dic[@"aim_id"]);
                 commentItemModel.commentString = [kGetString(dic[@"comment"]) UnicodeToUtf8];
+                commentItemModel.labelTag = [dic[@"id"] integerValue];
+
 //
 //                self.isReplayingComment = YES;
             } else {
                 commentItemModel.firstUserId = kGetString(dic[@"user_id"]);
                 commentItemModel.firstUserName =kGetString(dic[@"user_name"]);
                 commentItemModel.commentString = [kGetString(dic[@"comment"]) UnicodeToUtf8];
+                commentItemModel.labelTag = [dic[@"id"] integerValue];
+
             }
             BOOL ishave = NO;
             for (SDTimeLineCellCommentItemModel * oldCommentItemModel in model.commentItemsArray) {
@@ -225,6 +229,7 @@
                 commentItemModel.secondUserName = kGetString(child_listArray[i][@"aim_name"]);
                 commentItemModel.secondUserId = kGetString(child_listArray[i][@"aim_id"]);
             }
+            commentItemModel.labelTag = [child_listArray[i][@"id"] integerValue];
             commentItemModel.commentString = [child_listArray[i][@"comment"] UnicodeToUtf8];
             [tempComments addObject:commentItemModel];
         }
@@ -369,5 +374,11 @@
 -(NSString *)getParamters:(NSString *)type page:(NSString *)page{
     return [NSString stringWithFormat:@"%@/%@",self.startDic[@"id"],page];
 }
-
+-(void)delePingLun:(NSInteger)tag{
+    kWeakSelf(self);
+    [YX_MANAGER requestDelChildPl_Zuji:NSIntegerToNSString(tag) success:^(id object) {
+        [QMUITips showSucceed:@"删除成功"];
+        weakself.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
+    }];
+}
 @end

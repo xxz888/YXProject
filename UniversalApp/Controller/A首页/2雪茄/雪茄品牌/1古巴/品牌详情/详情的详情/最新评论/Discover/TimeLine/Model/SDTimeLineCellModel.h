@@ -83,5 +83,5 @@
 @property (nonatomic, copy) SDTimeLineCellCommentItemModel *commentItemModel;
 
 @property (nonatomic, copy) NSAttributedString *attributedContent;
-
+@property (nonatomic,assign) NSInteger labelTag;
 @end

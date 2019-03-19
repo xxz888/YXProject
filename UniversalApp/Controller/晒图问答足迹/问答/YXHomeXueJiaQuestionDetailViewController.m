@@ -226,6 +226,8 @@
                 commentItemModel.secondUserId = kGetString(child_listArray[i][@"aim_id"]);
             }
             commentItemModel.commentString = [child_listArray[i][@"answer"] UnicodeToUtf8];
+            commentItemModel.labelTag = [child_listArray[i][@"id"] integerValue];
+
             [tempComments addObject:commentItemModel];
         }
         model.commentItemsArray = [tempComments copy];
@@ -263,7 +265,18 @@
             weakSelf.commentToUser = commentId;
             
         }];
-        
+        [cell setDidLongClickCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow, SDTimeLineCell *cell,NSInteger tag) {
+            //在此添加你想要完成的功能
+            QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {}];
+            QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"删除" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+
+                [weakSelf delePingLun:tag];
+            }];
+            QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"确定删除？" message:@"删除后将无法恢复，请慎重考虑" preferredStyle:QMUIAlertControllerStyleActionSheet];
+            [alertController addAction:action1];
+            [alertController addAction:action2];
+            [alertController showWithAnimated:YES];
+        }];
         cell.delegate = self;
     }
     ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
@@ -311,12 +324,15 @@
                 commentItemModel.secondUserName = kGetString(dic[@"aim_name"]);
                 commentItemModel.secondUserId = kGetString(dic[@"aim_id"]);
                 commentItemModel.commentString = [kGetString(dic[@"answer"]) UnicodeToUtf8];
-                
+                commentItemModel.labelTag = [dic[@"id"] integerValue];
+
 //                self.isReplayingComment = YES;
             } else {
                 commentItemModel.firstUserId = kGetString(dic[@"user_id"]);
                 commentItemModel.firstUserName =kGetString(dic[@"user_name"]);
                 commentItemModel.commentString = [kGetString(dic[@"answer"]) UnicodeToUtf8];
+                commentItemModel.labelTag = [dic[@"id"] integerValue];
+
             }
             BOOL ishave = NO;
             for (SDTimeLineCellCommentItemModel * oldCommentItemModel in model.commentItemsArray) {
@@ -424,5 +440,11 @@
 -(NSString *)getParamters:(NSString *)type page:(NSString *)page{
     return [NSString stringWithFormat:@"%@/0/%@/%@",type,self.startDic[@"id"],page];
 }
-
+-(void)delePingLun:(NSInteger)tag{
+    kWeakSelf(self);
+    [YX_MANAGER requestDelChildPl_WenDa:NSIntegerToNSString(tag) success:^(id object) {
+        [QMUITips showSucceed:@"删除成功"];
+        [weakself requestAnserList];
+    }];
+}
 @end

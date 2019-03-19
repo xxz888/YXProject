@@ -244,4 +244,8 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestDelChildPl_ShaiTu:YX_BLOCK;
 #pragma mark ========== 删除足迹评论子评论 ==========
 -(void)requestDelChildPl_Zuji:YX_BLOCK;
+#pragma mark ========== 删除问答评论子评论 ==========
+-(void)requestDelChildPl_WenDa:YX_BLOCK;
+#pragma mark ========== 删除雪茄评论子评论 ==========
+-(void)requestDelCigarPl_WenDa:YX_BLOCK;
 @end

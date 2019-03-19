@@ -62,12 +62,14 @@
             
         }];
         
-        [cell setDidLongClickCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow, SDTimeLineCell *cell) {
+        [cell setDidLongClickCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow, SDTimeLineCell *cell,NSInteger tag) {
             //在此添加你想要完成的功能
             QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {}];
             QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"删除" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
-                [QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
-
+                
+                [weakSelf delePingLun:tag];
+                
+           
             }];
             QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"确定删除？" message:@"删除后将无法恢复，请慎重考虑" preferredStyle:QMUIAlertControllerStyleActionSheet];
             [alertController addAction:action1];
@@ -83,6 +85,9 @@
     
 
     return cell;
+}
+-(void)delePingLun:(NSInteger)tag{
+    
 }
 -(void)cellLongPress:(UILongPressGestureRecognizer *)longRecognizer{
     if (longRecognizer.state==UIGestureRecognizerStateBegan) {
@@ -205,5 +210,8 @@
 - (void)deallocsetContentViewValue{
     [self.textField removeFromSuperview];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
 }
 @end

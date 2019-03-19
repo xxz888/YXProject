@@ -761,6 +761,21 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
+#pragma mark ========== 删除问答评论子评论 ==========
+-(void)requestDelChildPl_WenDa:YX_BLOCK{
+    NSString * url = @"/users/delete_answer_child/";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
+#pragma mark ========== 删除雪茄评论子评论 ==========
+-(void)requestDelCigarPl_WenDa:YX_BLOCK{
+    NSString * url = @"/cigar/cigar_comment_child/0/0/0/";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

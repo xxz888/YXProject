@@ -135,6 +135,7 @@
             model.attributedContent = [self generateAttributedStringWithCommentItemModel:model];
         }
         label.attributedText = model.attributedContent;
+        label.tag = model.labelTag;
     }
 }
 
@@ -283,7 +284,7 @@
     self.didClickCommentLabelBlock(link.linkValue, CGRectMake(0, 0, KScreenWidth, 20));
 }
 - (void)didLongPressLink:(MLLink*)link linkText:(NSString*)linkText linkLabel:(MLLinkLabel*)linkLabel{
-    self.didClickLongCommentLabelBlock(link.linkValue, CGRectMake(0, 0, KScreenWidth, 20));
+    self.didClickLongCommentLabelBlock(link.linkValue, CGRectMake(0, 0, KScreenWidth, 20),linkLabel.tag);
 
 }
 @end

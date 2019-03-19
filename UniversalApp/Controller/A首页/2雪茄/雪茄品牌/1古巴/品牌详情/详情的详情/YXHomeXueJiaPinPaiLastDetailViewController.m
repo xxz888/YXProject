@@ -46,6 +46,7 @@ static CGFloat textFieldH = 40;
 @property (nonatomic, assign) BOOL isReplayingComment;
 @property (nonatomic, strong) NSIndexPath *currentEditingIndexthPath;
 @property (nonatomic, copy) NSString *commentToUser;
+@property (nonatomic, copy) NSString *commentToUserID;
 
 
 @end
@@ -74,7 +75,7 @@ static CGFloat textFieldH = 40;
     self.yxTableView.estimatedRowHeight = 0;
     self.yxTableView.estimatedSectionHeaderHeight = 0;
     self.yxTableView.estimatedSectionFooterHeight = 0;
-    
+    self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeTop;
    
@@ -229,12 +230,14 @@ static CGFloat textFieldH = 40;
                 commentItemModel.secondUserName = kGetString(dic[@"aim_name"]);
                 commentItemModel.secondUserId = kGetString(dic[@"aim_id"]);
                 commentItemModel.commentString = [kGetString(dic[@"comment"]) UnicodeToUtf8];
-                
+                commentItemModel.labelTag = [dic[@"id"] integerValue];
+
                 self.isReplayingComment = YES;
             } else {
                 commentItemModel.firstUserId = kGetString(dic[@"user_id"]);
                 commentItemModel.firstUserName =kGetString(dic[@"user_name"]);
                 commentItemModel.commentString = [kGetString(dic[@"comment"]) UnicodeToUtf8];
+                commentItemModel.labelTag = [dic[@"id"] integerValue];
             }
             BOOL ishave = NO;
             for (SDTimeLineCellCommentItemModel * oldCommentItemModel in model.commentItemsArray) {
@@ -300,6 +303,8 @@ static CGFloat textFieldH = 40;
         NSMutableDictionary * pageDic = [[NSMutableDictionary alloc]init];
         model.iconName = formalArray[i][@"user_photo"];
         model.name = formalArray[i][@"user_name"];
+        model.userID = formalArray[i][@"user_id"];
+
         model.msgContent = [formalArray[i][@"comment"] UnicodeToUtf8];
         model.commontTime = [formalArray[i][@"update_time"] integerValue];
         model.score = [formalArray[i][@"average_score"] floatValue];
@@ -329,8 +334,11 @@ static CGFloat textFieldH = 40;
             if (child_listArray[i][@"aim_id"] != 0) {
                 commentItemModel.secondUserName = kGetString(child_listArray[i][@"aim_name"]);
                 commentItemModel.secondUserId = kGetString(child_listArray[i][@"aim_id"]);
+                
             }
             commentItemModel.commentString = [child_listArray[i][@"comment"] UnicodeToUtf8];
+            commentItemModel.labelTag = [child_listArray[i][@"id"] integerValue];
+
             [tempComments addObject:commentItemModel];
         }
         model.commentItemsArray = [tempComments copy];
@@ -368,8 +376,8 @@ static CGFloat textFieldH = 40;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SDTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:kTimeLineTableViewCellId];
     cell.indexPath = indexPath;
-    
-    
+    cell.model = self.dataArray[indexPath.row];
+
     CGFloat height1 = cell.model.moreCountPL.integerValue <= 0 ? 0 : 20;
     [cell.showMoreCommentBtn setTitle:height1 == 0 ? @"" : @"显示更多回复 >>"  forState:UIControlStateNormal];
     cell.showMoreCommentBtn.hidden = height1 == 0;
@@ -378,19 +386,38 @@ static CGFloat textFieldH = 40;
         [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {
             SDTimeLineCellModel *model = weakSelf.dataArray[indexPath.row];
             model.isOpening = !model.isOpening;
-            [weakSelf.yxTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [weakSelf.yxTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         }];
-        
+        /*
         [cell setDidClickCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow, SDTimeLineCell * cell) {
             weakSelf.textField.placeholder = [NSString stringWithFormat:@"  回复：%@", commentId];
             weakSelf.currentEditingIndexthPath = cell.indexPath;
             [weakSelf.textField becomeFirstResponder];
             weakSelf.isReplayingComment = YES;
             weakSelf.commentToUser = commentId;
+            
             [weakSelf adjustTableViewToFitKeyboard];
             
         }];
-        
+        */
+        [cell setDidLongClickCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow, SDTimeLineCell *cell,NSInteger tag) {
+            //在此添加你想要完成的功能
+            QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {}];
+            QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"删除" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+                
+                kWeakSelf(self);
+                [YX_MANAGER requestDelCigarPl_WenDa:NSIntegerToNSString(tag) success:^(id object) {
+                    [QMUITips showSucceed:@"删除成功"];
+                    _segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
+                }];
+                
+                
+            }];
+            QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"确定删除？" message:@"删除后将无法恢复，请慎重考虑" preferredStyle:QMUIAlertControllerStyleActionSheet];
+            [alertController addAction:action1];
+            [alertController addAction:action2];
+            [alertController showWithAnimated:YES];
+        }];
         cell.delegate = self;
     }
     ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
@@ -441,6 +468,7 @@ static CGFloat textFieldH = 40;
     self.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
     self.commentToUser = model.name;
+    self.commentToUserID = model.userID;
     [self adjustTableViewToFitKeyboard];
 }
 #pragma mark ========== tableview 点赞按钮 ==========
@@ -559,35 +587,11 @@ static CGFloat textFieldH = 40;
     if (textField.text.length) {
         [_textField resignFirstResponder];
         SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
-        SDTimeLineCellCommentItemModel * itemModel;
-        if (self.isReplayingComment) {
-            for (SDTimeLineCellCommentItemModel * oldItemModel in model.commentItemsArray) {
-                if ([oldItemModel.firstUserName isEqualToString:self.commentToUser]) {
-                    itemModel = oldItemModel;
-                }
-            }
-            int farther_id = 0;
-            if ([itemModel.firstUserName isEqualToString:self.commentToUser]) {
-                farther_id = [itemModel.firstUserId intValue];
-            }
-            if ([itemModel.secondUserName isEqualToString:self.commentToUser]) {
-                farther_id = [itemModel.secondUserId intValue];
-            }
-            [self requestCigar_comment_child:@{@"comment":[textField.text utf8ToUnicode],
+        [self requestCigar_comment_child:@{@"comment":[textField.text utf8ToUnicode],
                                                @"father_id":@([model.id intValue]),
-                                               @"aim_id":@(farther_id),
+                                               @"aim_id":self.commentToUserID,
                                                @"aim_name":self.commentToUser
                                                }];
-            self.isReplayingComment = NO;
-        }else{
-            [self requestCigar_comment_child:@{@"comment":[textField.text utf8ToUnicode],
-                                               @"father_id":@([model.id intValue]),
-                                               @"aim_id":@(0),
-                                               @"aim_name":@""
-                                               }];
-            
-        }
-
         /*
         NSMutableArray *temp = [NSMutableArray new];
         [temp addObjectsFromArray:model.commentItemsArray];
