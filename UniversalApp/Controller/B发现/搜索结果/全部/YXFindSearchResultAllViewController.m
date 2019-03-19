@@ -90,5 +90,7 @@
         [weakself.yxTableView reloadData];
     }];
 }
-
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+}
 @end

@@ -75,16 +75,6 @@
         plHeight = [ShareManager inTextOutHeight:connectStr];
     }
     
-    
-
-    
-
-    
-    NSLog(@"--cell-pl1Height-外部%f",plHeight);
-    NSLog(@"--cell-titleTagtextViewHeight-外部%f",(whereCome ? 30.0 : 0));
-    NSLog(@"--cell-titleTagLblHeight-外部%f",height_size);
-
-    
     CGFloat lastHeight =
     plHeight+
     (showPlAllLbl ? 25 : 0) +

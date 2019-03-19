@@ -65,7 +65,6 @@ static CGFloat const HeaderImageViewHeight =240;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self updateNavigationBarBackgroundColor];
-    [self setViewData];
 }
 
 #pragma mark - Private Methods

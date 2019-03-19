@@ -75,5 +75,7 @@
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
-
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+}
 @end

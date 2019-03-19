@@ -141,13 +141,15 @@
                 _del3.hidden = NO;
             }
             
-            
+            [QMUITips showLoadingInView:_selectImageView];
             //先上传到七牛云图片  再提交服务器
             [QiniuLoad uploadImageToQNFilePath:@[image] success:^(NSString *reslut) {
                 NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
                 if (qiniuArray.count > 0) {
                     [weakself.photoImageList addObject:qiniuArray[0]];
                 }
+                [QMUITips hideAllTipsInView:_selectImageView];
+
             } failure:^(NSString *error) {
                 NSLog(@"%@",error);
             }];

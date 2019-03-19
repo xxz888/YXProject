@@ -236,9 +236,7 @@
 - (void)handleNavigationTransition:(UIScreenEdgePanGestureRecognizer*)recognizer
 {
     CGFloat progress = [recognizer translationInView:self.view].x / (self.view.bounds.size.width);
-    //    progress = MIN(1.0, MAX(0.0, progress));
-    NSLog(@"右划progress %.2f",progress);
-    
+    //    progress = MIN(1.0, MAX(0.0, progress));    
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         self.interactivePopTransition = [[UIPercentDrivenInteractiveTransition alloc] init];
         [self popViewControllerAnimated:YES];

@@ -157,7 +157,10 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(imgArray.count+1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //这里区别寸草稿还是发布
         if (btn.tag == 301) {
-            UserDefaultsSET(dic, YX_USER_FaBuCaoGao);
+            UserInfo *userInfo = curUser;
+            NSString * userId = userInfo.id;
+            NSString * key = [NSString stringWithFormat:@"%@_%@",userId,[ShareManager getNowTimeTimestamp3]];
+            UserDefaultsSET(dic, key);
             [QMUITips hideAllTipsInView:self.view];
             [weakself closeViewAAA];
 
@@ -176,5 +179,31 @@
         [weakself closeViewAAA];
     }];
 }
-
+-(void)closeViewAction:(id)sender{
+    if (self.photoImageList.count > 0 || self.qmuiTextView.text.length > 0) {
+        kWeakSelf(self);
+        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        }];
+        UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"不保存" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [weakself closeViewAAA];
+        }];
+        UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"保存" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [weakself fabuAction:self.cunCaoGaoBtn];
+        }];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"你将退出发布,是否保存草稿?" preferredStyle:UIAlertControllerStyleActionSheet];
+        [alertController addAction:action3];
+        [alertController addAction:action2];
+        [alertController addAction:action1];
+        if (IS_IPAD) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:2];
+            CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
+            CGRect cellRectInSelfView = [self.view convertRect:cellRect fromView:self.tableView];
+            alertController.popoverPresentationController.sourceView = self.view;
+            alertController.popoverPresentationController.sourceRect = cellRectInSelfView;
+        }
+        [self presentViewController:alertController animated:YES completion:NULL];
+    }else{
+        [self closeViewAAA];
+    }
+}
 @end

@@ -566,6 +566,10 @@
 		BBECEEFF21F18404007E90AC /* YXGEPPinPaiDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBECEEFE21F18404007E90AC /* YXGEPPinPaiDetailHeaderView.xib */; };
 		BBECEF0621F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBECEF0421F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.m */; };
 		BBECEF0721F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBECEF0521F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.xib */; };
+		BBF26E07223FA92D0000AEF5 /* HWWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26DFF223FA92D0000AEF5 /* HWWaveView.m */; };
+		BBF26E08223FA92D0000AEF5 /* HWCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E02223FA92D0000AEF5 /* HWCircleView.m */; };
+		BBF26E09223FA92D0000AEF5 /* HWProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E04223FA92D0000AEF5 /* HWProgressView.m */; };
+		BBF26E0A223FA92D0000AEF5 /* HWInstallView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E06223FA92D0000AEF5 /* HWInstallView.m */; };
 		BBF45E52222FC649005C52C4 /* YXMessageThreeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF45E51222FC648005C52C4 /* YXMessageThreeDetailViewController.m */; };
 		BBF45E56222FC680005C52C4 /* YXMessageThreeDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF45E54222FC680005C52C4 /* YXMessageThreeDetailViewCell.m */; };
 		BBF45E57222FC680005C52C4 /* YXMessageThreeDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBF45E55222FC680005C52C4 /* YXMessageThreeDetailViewCell.xib */; };
@@ -1561,6 +1565,14 @@
 		BBECEF0321F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXGEFPinPaiDetailTableViewCell.h; sourceTree = "<group>"; };
 		BBECEF0421F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXGEFPinPaiDetailTableViewCell.m; sourceTree = "<group>"; };
 		BBECEF0521F1A180007E90AC /* YXGEFPinPaiDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXGEFPinPaiDetailTableViewCell.xib; sourceTree = "<group>"; };
+		BBF26DFF223FA92D0000AEF5 /* HWWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWWaveView.m; sourceTree = "<group>"; };
+		BBF26E00223FA92D0000AEF5 /* HWInstallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWInstallView.h; sourceTree = "<group>"; };
+		BBF26E01223FA92D0000AEF5 /* HWProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWProgressView.h; sourceTree = "<group>"; };
+		BBF26E02223FA92D0000AEF5 /* HWCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWCircleView.m; sourceTree = "<group>"; };
+		BBF26E03223FA92D0000AEF5 /* HWWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWWaveView.h; sourceTree = "<group>"; };
+		BBF26E04223FA92D0000AEF5 /* HWProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWProgressView.m; sourceTree = "<group>"; };
+		BBF26E05223FA92D0000AEF5 /* HWCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWCircleView.h; sourceTree = "<group>"; };
+		BBF26E06223FA92D0000AEF5 /* HWInstallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWInstallView.m; sourceTree = "<group>"; };
 		BBF45E50222FC648005C52C4 /* YXMessageThreeDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMessageThreeDetailViewController.h; sourceTree = "<group>"; };
 		BBF45E51222FC648005C52C4 /* YXMessageThreeDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMessageThreeDetailViewController.m; sourceTree = "<group>"; };
 		BBF45E53222FC680005C52C4 /* YXMessageThreeDetailViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMessageThreeDetailViewCell.h; sourceTree = "<group>"; };
@@ -3156,6 +3168,7 @@
 		BBBCDBA0223F65530056C7DD /* HGPersonalCenterExtend */ = {
 			isa = PBXGroup;
 			children = (
+				BBF26DFE223FA92D0000AEF5 /* View */,
 				BBBCDBA1223F65530056C7DD /* HGPersonalCenterExtend */,
 				BBBCDBAC223F65530056C7DD /* LICENSE */,
 				BBBCDBAD223F65530056C7DD /* README.md */,
@@ -4516,6 +4529,22 @@
 			path = "球场及度假村";
 			sourceTree = "<group>";
 		};
+		BBF26DFE223FA92D0000AEF5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BBF26DFF223FA92D0000AEF5 /* HWWaveView.m */,
+				BBF26E00223FA92D0000AEF5 /* HWInstallView.h */,
+				BBF26E01223FA92D0000AEF5 /* HWProgressView.h */,
+				BBF26E02223FA92D0000AEF5 /* HWCircleView.m */,
+				BBF26E03223FA92D0000AEF5 /* HWWaveView.h */,
+				BBF26E04223FA92D0000AEF5 /* HWProgressView.m */,
+				BBF26E05223FA92D0000AEF5 /* HWCircleView.h */,
+				BBF26E06223FA92D0000AEF5 /* HWInstallView.m */,
+			);
+			name = View;
+			path = "UniversalApp/Utils/艺鑫工具/View";
+			sourceTree = SOURCE_ROOT;
+		};
 		BBF45E58222FD29A005C52C4 /* GCD */ = {
 			isa = PBXGroup;
 			children = (
@@ -5067,6 +5096,7 @@
 				BBCC4AC021E86EC200493F40 /* YXHomeXueJiaFootTableViewCell.m in Sources */,
 				296DEA731F5D50D100C6FD00 /* SDCollectionViewCell.m in Sources */,
 				BBDA2EE621EC84C600EDCCFF /* UIView+CBExtension.m in Sources */,
+				BBF26E08223FA92D0000AEF5 /* HWCircleView.m in Sources */,
 				BB9413E221F8B602007E800A /* IQUITextFieldView+Additions.m in Sources */,
 				BBDA2D0721EB30BF00EDCCFF /* SDChatTableViewController.m in Sources */,
 				296DEA741F5D50D100C6FD00 /* SDCycleScrollView.m in Sources */,
@@ -5105,6 +5135,7 @@
 				BBBE071C2224E32D00CDD11E /* YXBaseFaXianDetailViewController.m in Sources */,
 				BBDA2D1221EB30BF00EDCCFF /* MLEmojiLabel.m in Sources */,
 				BB5FD89F21FF488E00B5F1A8 /* UIImage+XW.m in Sources */,
+				BBF26E09223FA92D0000AEF5 /* HWProgressView.m in Sources */,
 				BBD2C90021E0F67700350DCD /* TZPhotoPickerController.m in Sources */,
 				BBDA2C5F21EB308100EDCCFF /* SDDiscoverTableViewController.m in Sources */,
 				BBA8130021DDEC10001B5EA1 /* YXHomeMeiJiuViewController.m in Sources */,
@@ -5135,6 +5166,7 @@
 				BBBCDBB0223F65540056C7DD /* HGSegmentedPageViewController.m in Sources */,
 				BB3DFE8C221D568D000C70B5 /* UITableView+XHWebImageAutoSize.m in Sources */,
 				BB9413DE21F8B602007E800A /* IQPreviousNextView.m in Sources */,
+				BBF26E0A223FA92D0000AEF5 /* HWInstallView.m in Sources */,
 				BBBCDBB1223F65540056C7DD /* HGCategoryView.m in Sources */,
 				29280E881F063EE700BF52D9 /* XYTransition.m in Sources */,
 				BBDA2D0421EB30BF00EDCCFF /* SDAnalogDataGenerator.m in Sources */,
@@ -5210,6 +5242,7 @@
 				BBA812AD21DDAB9D001B5EA1 /* YXFindViewController.m in Sources */,
 				BBA812E621DDDE47001B5EA1 /* WJSliderView.m in Sources */,
 				BBECEEB421F05B32007E90AC /* YXQCDJCHeaderView.m in Sources */,
+				BBF26E07223FA92D0000AEF5 /* HWWaveView.m in Sources */,
 				BBBFD7972223F6A200D377AC /* POPAnimation.m in Sources */,
 				BBDA2CFE21EB30BF00EDCCFF /* SDBaseNavigationController.m in Sources */,
 				BBD2C92521E0F67800350DCD /* MWPhoto.m in Sources */,

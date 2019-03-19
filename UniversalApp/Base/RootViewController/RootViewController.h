@@ -121,6 +121,7 @@ typedef void (^ListenChangeIndexBlock)(NSInteger);
 - (void)cancleAction;
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar;
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView;
 
 
 
