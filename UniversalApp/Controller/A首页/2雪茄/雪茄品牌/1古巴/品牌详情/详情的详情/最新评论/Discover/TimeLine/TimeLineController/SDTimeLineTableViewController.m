@@ -179,12 +179,13 @@ static CGFloat textFieldH = 40;
 
 - (void)setupTextField
 {
+
     _textField = [UITextField new];
     _textField.returnKeyType = UIReturnKeyDone;
     _textField.delegate = self;
     _textField.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
     _textField.layer.borderWidth = 1;
-    
+    _textField.tag = 8899;
     //为textfield添加背景颜色 字体颜色的设置 还有block设置 , 在block中改变它的键盘样式 (当然背景颜色和字体颜色也可以直接在block中写)
     
     _textField.lee_theme
@@ -209,12 +210,29 @@ static CGFloat textFieldH = 40;
     });
     
     _textField.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height, self.view.width_sd, textFieldH);
-    _textField.tag = 99999;
-    [[[UIApplication sharedApplication].keyWindow viewWithTag:99999] removeFromSuperview];
-    [[UIApplication sharedApplication].keyWindow addSubview:_textField];
-    
-    [_textField becomeFirstResponder];
-    [_textField resignFirstResponder];
+    BOOL isHave = NO;
+    for (UIView * view in [UIApplication sharedApplication].keyWindow.subviews) {
+        if (view.tag == 8899) {
+            isHave = YES;
+            break;
+        }
+    }
+    if (isHave) {
+        return;
+    }else{
+        //依次遍历self.view中的所有子视图
+        for(id tmpView in [UIApplication sharedApplication].keyWindow.subviews){
+            //找到要删除的子视图的对象
+            if([tmpView isKindOfClass:[UITextField class]])
+            {
+                UITextField * tf = (UITextField *)tmpView;
+                if(tf)   //判断是否满足自己要删除的子视图的条件
+                {
+                    [tf removeFromSuperview]; //删除子视图
+                    break;  //跳出for循环，因为子视图已经找到，无须往下遍历
+                }
+            }    }    [[UIApplication sharedApplication].keyWindow addSubview:_textField];    }
+
 }
 
 // 右栏目按钮点击事件
