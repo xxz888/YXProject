@@ -25,8 +25,10 @@
 }
 - (void)viewDidLoad{
     [super viewDidLoad];
-    if ([self.startDic[@"photo1"] length] >= 5) {
-        imageHeight   = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:self.startDic[@"pic1"]] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:400];
+    if ([self.startDic[@"pic1"] length] >= 5) {
+        NSString * str1 = [(NSMutableString *)self.startDic[@"pic1"] replaceAll:@" " target:@"%20"];
+
+        imageHeight   = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:str1] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:400];
     }
     //初始化所有的控件
     [self initAllControl];

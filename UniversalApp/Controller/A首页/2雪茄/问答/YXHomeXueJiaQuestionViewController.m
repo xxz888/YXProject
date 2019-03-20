@@ -73,6 +73,9 @@
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
