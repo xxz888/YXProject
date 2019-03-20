@@ -70,6 +70,7 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    [[[UIApplication sharedApplication].keyWindow viewWithTag:99999] removeFromSuperview];
 }
 
 
