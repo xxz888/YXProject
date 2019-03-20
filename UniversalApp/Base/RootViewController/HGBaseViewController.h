@@ -8,6 +8,24 @@
 
 #import <UIKit/UIKit.h>
 #import "RootViewController.h"
+#import "HGCategoryView.h"
+
+@protocol HGPageViewControllerDelegate <NSObject>
+- (void)pageViewControllerLeaveTop;
+@end
+
 @interface HGBaseViewController : RootViewController
 @property (nonatomic, strong, readonly) UIView *navigationBar;
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView;
+
+
+
+
+@property (nonatomic, weak) id<HGPageViewControllerDelegate> delegate;
+@property (nonatomic) NSInteger pageIndex;
+
+- (void)makePageViewControllerScroll:(BOOL)canScroll;
+- (void)makePageViewControllerScrollToTop;
 @end

@@ -345,6 +345,7 @@ static CGFloat const HeaderImageViewHeight =240;
         _yxTableView.showsVerticalScrollIndicator = NO;
         _yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
+    _yxTableView.tag = 7788;
     return _yxTableView;
 }
 

@@ -234,4 +234,7 @@
     //获取并返回首字母
     return [pinYin substringToIndex:1];
 }
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+}
 @end

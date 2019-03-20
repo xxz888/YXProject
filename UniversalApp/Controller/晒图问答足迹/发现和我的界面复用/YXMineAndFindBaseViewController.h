@@ -16,10 +16,12 @@
 #import "YXHomeXueJiaQuestionDetailViewController.h"
 #import "Comment.h"
 #import "YXMineViewController.h"
+#import "HGBaseViewController.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface YXMineAndFindBaseViewController : RootViewController
+@interface YXMineAndFindBaseViewController : HGBaseViewController
 @property(nonatomic,strong)NSMutableArray * dataArray;
 @property (strong, nonatomic) UITableView *yxTableView;
 @property (nonatomic,assign) CGFloat lastScrollViewOffsetY;

@@ -55,7 +55,7 @@
                         <constraint firstAttribute="height" constant="400" id="S2N-De-MKs"/>
                     </constraints>
                 </view>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1TT-c3-BLe">
+                <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1TT-c3-BLe">
                     <rect key="frame" x="0.0" y="528" width="375" height="26"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -89,10 +89,18 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 精彩评论" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTE-P3-dDv">
+                    <rect key="frame" x="0.0" y="528" width="375" height="25"/>
+                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="VTE-P3-dDv" firstAttribute="centerX" secondItem="1TT-c3-BLe" secondAttribute="centerX" id="2DD-Ql-EVN"/>
                 <constraint firstItem="QdQ-KE-MVT" firstAttribute="top" secondItem="udX-Ca-1TN" secondAttribute="bottom" constant="10" id="4xK-mO-QJi"/>
+                <constraint firstItem="VTE-P3-dDv" firstAttribute="height" secondItem="1TT-c3-BLe" secondAttribute="height" id="Do4-eg-Pqj"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Htd-wh-6Zb" secondAttribute="trailing" id="FwS-Wn-NV7"/>
                 <constraint firstItem="8UY-PL-yvX" firstAttribute="leading" secondItem="udX-Ca-1TN" secondAttribute="trailing" constant="10" id="GcP-2U-18G"/>
                 <constraint firstItem="qqq-vP-12W" firstAttribute="top" secondItem="8UY-PL-yvX" secondAttribute="bottom" id="KCQ-nN-2lQ"/>
@@ -103,6 +111,7 @@
                 <constraint firstItem="1TT-c3-BLe" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="QDy-VN-gqI"/>
                 <constraint firstItem="LRQ-xY-7jh" firstAttribute="top" secondItem="QdQ-KE-MVT" secondAttribute="bottom" constant="10" id="Qyv-ZO-l2m"/>
                 <constraint firstItem="8UY-PL-yvX" firstAttribute="height" secondItem="udX-Ca-1TN" secondAttribute="height" multiplier="0.5" id="UCc-co-QDT"/>
+                <constraint firstItem="VTE-P3-dDv" firstAttribute="centerY" secondItem="1TT-c3-BLe" secondAttribute="centerY" id="UFV-Bz-8Ua"/>
                 <constraint firstItem="udX-Ca-1TN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="UXC-5z-KXR"/>
                 <constraint firstItem="1TT-c3-BLe" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="WMa-y2-zEz"/>
                 <constraint firstItem="QdQ-KE-MVT" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="aq3-9b-CmC"/>
@@ -112,6 +121,7 @@
                 <constraint firstItem="VUB-Aq-eZ9" firstAttribute="top" secondItem="udX-Ca-1TN" secondAttribute="bottom" constant="20" id="lIM-o2-YVM"/>
                 <constraint firstItem="qqq-vP-12W" firstAttribute="height" secondItem="8UY-PL-yvX" secondAttribute="height" id="rPH-Qp-kcA"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="LRQ-xY-7jh" secondAttribute="trailing" id="tbX-RX-vbU"/>
+                <constraint firstItem="VTE-P3-dDv" firstAttribute="width" secondItem="1TT-c3-BLe" secondAttribute="width" id="vas-Rb-9ow"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="QdQ-KE-MVT" secondAttribute="trailing" id="ySp-Uf-FWr"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

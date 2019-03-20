@@ -58,7 +58,7 @@ static NSString * const SegmentHeaderViewCollectionViewCellIdentifier = @"Segmen
         _cellSpacing = 0;
         _leftAndRightMargin = _cellSpacing;
         self.titleNormalColor = [UIColor grayColor];
-        self.titleSelectedColor = [UIColor redColor];
+        self.titleSelectedColor = A_COlOR;
         self.titleNomalFont = [UIFont systemFontOfSize:14];
         self.titleSelectedFont = [UIFont systemFontOfSize:15];
         [self setupSubViews];
@@ -71,7 +71,8 @@ static NSString * const SegmentHeaderViewCollectionViewCellIdentifier = @"Segmen
     [super layoutSubviews];
     if (self.originalIndex > 0) {
         self.selectedIndex = self.originalIndex;
-    } else {
+    }
+    else {
         _selectedIndex = 0;
         [self setupMoveLineDefaultLocation];
     }
@@ -144,8 +145,8 @@ static NSString * const SegmentHeaderViewCollectionViewCellIdentifier = @"Segmen
 - (void)setupMoveLineDefaultLocation {
     CGFloat cellWidth = [self getWidthWithContent:self.titles[0]];
     [self.underline mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(KScreenWidth/3);
-        make.left.mas_equalTo(self.leftAndRightMargin);
+        make.width.mas_equalTo(30);
+        make.left.mas_equalTo((KScreenWidth/3-cellWidth)/2);
     }];
 }
 
@@ -155,7 +156,8 @@ static NSString * const SegmentHeaderViewCollectionViewCellIdentifier = @"Segmen
         [self.underline mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.height - self.underlineHeight - HG_ONE_PIXEL);
             make.height.mas_equalTo(self.underlineHeight);
-            make.width.centerX.equalTo(cell.titleLabel);
+            make.centerX.equalTo(cell.titleLabel);
+            make.width.mas_equalTo(30);
         }];
         [self.collectionView setNeedsLayout];
         [self.collectionView layoutIfNeeded];

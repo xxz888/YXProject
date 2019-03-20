@@ -183,7 +183,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     
     
     _starView.sd_layout
-    .rightSpaceToView(self.contentView, margin)
+    .leftSpaceToView(_nameLable, margin)
     .topSpaceToView(contentView, margin)
     .widthIs(110)
     .heightIs(20);

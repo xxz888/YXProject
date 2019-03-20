@@ -8,10 +8,11 @@
 
 #import "HGBaseViewController.h"
 
-@interface HGBaseViewController ()
+@interface HGBaseViewController ()<UIScrollViewDelegate>
 @property (nonatomic, strong) UIView *navigationBar;
 @property (nonatomic, strong) UIButton *cancelButton;
-
+@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic) BOOL canScroll;
 @end
 
 @implementation HGBaseViewController
@@ -82,6 +83,33 @@
     }
     return _cancelButton;
 }
+- (void)makePageViewControllerScroll:(BOOL)canScroll {
+    self.canScroll = canScroll;
+    self.scrollView.showsVerticalScrollIndicator = canScroll;
+    if (!canScroll) {
+        self.scrollView.contentOffset = CGPointZero;
+    }
+}
 
+- (void)makePageViewControllerScrollToTop{
+    [self.scrollView setContentOffset:CGPointZero];
+}
+
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+        self.scrollView = scrollView;
+        
+        if (self.canScroll) {
+            CGFloat offsetY = scrollView.contentOffset.y;
+            if (offsetY <= 0) {
+                [self makePageViewControllerScroll:NO];
+                if (self.delegate && [self.delegate respondsToSelector:@selector(pageViewControllerLeaveTop)]) {
+                    [self.delegate pageViewControllerLeaveTop];
+                }
+            }
+        } else {
+            [self makePageViewControllerScroll:NO];
+        }    
+}
 @end
 

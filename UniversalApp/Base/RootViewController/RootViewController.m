@@ -18,8 +18,7 @@
     UITableView * _yxTableView;
     UICollectionView * _yxCollectionView;
 }
-@property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic) BOOL canScroll;
+
 @property (nonatomic,strong) UIImageView* noDataView;
 
 @end
@@ -437,32 +436,5 @@
     [view addSubview:starRateView];
     starRateView.userInteractionEnabled = NO;
 }
-- (void)makePageViewControllerScroll:(BOOL)canScroll {
-    self.canScroll = canScroll;
-    self.scrollView.showsVerticalScrollIndicator = canScroll;
-    if (!canScroll) {
-        self.scrollView.contentOffset = CGPointZero;
-    }
-}
 
-- (void)makePageViewControllerScrollToTop{
-    [self.scrollView setContentOffset:CGPointZero];
-}
-
-#pragma mark - UIScrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    self.scrollView = scrollView;
-    
-    if (self.canScroll) {
-        CGFloat offsetY = scrollView.contentOffset.y;
-        if (offsetY <= 0) {
-            [self makePageViewControllerScroll:NO];
-            if (self.delegate && [self.delegate respondsToSelector:@selector(pageViewControllerLeaveTop)]) {
-                [self.delegate pageViewControllerLeaveTop];
-            }
-        }
-    } else {
-        [self makePageViewControllerScroll:NO];
-    }
-}
 @end
