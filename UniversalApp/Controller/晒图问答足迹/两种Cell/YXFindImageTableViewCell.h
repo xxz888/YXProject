@@ -92,7 +92,7 @@ typedef void(^clickShareBlock)(YXFindImageTableViewCell *);
 
 typedef void(^addPlActionBlock)(YXFindImageTableViewCell *);
 - (IBAction)addPlAction:(id)sender;
-@property (nonatomic,copy) addPlActionBlock addPlActionblock;
+@property (nonatomic) addPlActionBlock addPlActionblock;
 
 @end
 

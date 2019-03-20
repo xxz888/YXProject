@@ -79,7 +79,6 @@ static CGFloat textFieldH = 40;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeTop;
    
-    [self setupTextField];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 #pragma mark - 设置tableHeaderView
@@ -266,7 +265,7 @@ static CGFloat textFieldH = 40;
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
+    [self setupTextField];
 }
 
 
@@ -646,9 +645,10 @@ static CGFloat textFieldH = 40;
         [self adjustTableViewToFitKeyboard];
     }
 }
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated{
     [_textField resignFirstResponder];
+    [_textField removeFromSuperview];
+
 }
 
 - (void)dealloc
@@ -656,73 +656,22 @@ static CGFloat textFieldH = 40;
     [_refreshHeader removeFromSuperview];
     [_refreshFooter removeFromSuperview];
     
-    [_textField removeFromSuperview];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
-- (void)setupTextField
-{
-
-    _textField = [UITextField new];
+- (void)setupTextField{
+    [_textField removeFromSuperview];
+    _textField = [[UITextField alloc]init];
     _textField.returnKeyType = UIReturnKeyDone;
     _textField.delegate = self;
+    _textField.placeholder = @"开始评论..";
     _textField.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
     _textField.layer.borderWidth = 1;
-    _textField.tag = 8899;
-    //为textfield添加背景颜色 字体颜色的设置 还有block设置 , 在block中改变它的键盘样式 (当然背景颜色和字体颜色也可以直接在block中写)
+    [_textField setFont:[UIFont systemFontOfSize:14]];
     _textField.backgroundColor = [UIColor whiteColor];
     _textField.textColor = [UIColor blackColor];
-    _textField.keyboardAppearance = UIKeyboardAppearanceDefault;
-    if ([_textField isFirstResponder]) {
-        [_textField resignFirstResponder];
-        [_textField becomeFirstResponder];
-    }
-    
-    /*
-    _textField.lee_theme
-    .LeeAddBackgroundColor(DAY , [UIColor whiteColor])
-    .LeeAddBackgroundColor(NIGHT , [UIColor blackColor])
-    .LeeAddTextColor(DAY , [UIColor blackColor])
-    .LeeAddTextColor(NIGHT , [UIColor grayColor])
-    .LeeAddCustomConfig(DAY , ^(UITextField *item){
-        
-        item.keyboardAppearance = UIKeyboardAppearanceDefault;
-        if ([item isFirstResponder]) {
-            [item resignFirstResponder];
-            [item becomeFirstResponder];
-        }
-    }).LeeAddCustomConfig(NIGHT , ^(UITextField *item){
-        
-        item.keyboardAppearance = UIKeyboardAppearanceDark;
-        if ([item isFirstResponder]) {
-            [item resignFirstResponder];
-            [item becomeFirstResponder];
-        }
-    });
-    */
-    _textField.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height, self.view.width_sd, textFieldH);
-    BOOL isHave = NO;
-    for (UIView * view in [UIApplication sharedApplication].keyWindow.subviews) {
-        if (view.tag == 8899) {
-            isHave = YES;
-            break;
-        }
-    }
-    if (isHave) {
-        return;
-    }else{
-        //依次遍历self.view中的所有子视图
-        for(id tmpView in [UIApplication sharedApplication].keyWindow.subviews){
-            //找到要删除的子视图的对象
-            if([tmpView isKindOfClass:[UITextField class]])
-            {
-                UITextField * tf = (UITextField *)tmpView;
-                if(tf)   //判断是否满足自己要删除的子视图的条件
-                {
-                    [tf removeFromSuperview]; //删除子视图
-                    break;  //跳出for循环，因为子视图已经找到，无须往下遍历
-                }
-            }   }     [[UIApplication sharedApplication].keyWindow addSubview:_textField];    }
+    _textField.tag = 8899;
+    _textField.frame = CGRectMake(0, KScreenHeight, KScreenWidth, 40);
+    [[UIApplication sharedApplication].keyWindow addSubview:_textField];
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];

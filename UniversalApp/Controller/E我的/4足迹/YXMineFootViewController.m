@@ -38,7 +38,7 @@
     [self requestAction];
 }
 -(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+    //[super viewWillAppear:animated];
 }
 -(void)requestZuJi{
     kWeakSelf(self);

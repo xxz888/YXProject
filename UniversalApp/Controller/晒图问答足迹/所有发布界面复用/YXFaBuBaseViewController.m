@@ -347,6 +347,8 @@
     while(controller.presentingViewController != nil){
         controller = controller.presentingViewController;
     }
-    [controller dismissViewControllerAnimated:YES completion:nil];
+    [controller dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 @end
