@@ -72,6 +72,7 @@
 -(void)requestCollection:(NSString *)type{
     kWeakSelf(self);
     NSString * par = [NSString stringWithFormat:@"%@/%@/%@",type,NSIntegerToNSString(self.requestPage),self.startDic[@"brand_name"]];
+    par = [par replaceAll:@" " target:@"%20"];
     [YX_MANAGER requestCigar_accessoriesGET:par success:^(id object) {
         weakself.collectionView.dataArray = [weakself commonAction:object dataArray:weakself.collectionView.dataArray];
         [weakself.collectionView reloadData];
