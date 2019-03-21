@@ -80,7 +80,7 @@
     for (NSDictionary * dic in imageArray) {
         [photoArray addObject:dic[@"photo"]];
     }
-    SDCycleScrollView *cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, self.titleView.frame.size.height * 1.3, self.titleView.frame.size.height) delegate:self placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    SDCycleScrollView *cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, self.titleView.frame.size.height, self.titleView.frame.size.height) delegate:self placeholderImage:[UIImage imageNamed:@""]];
     cycleScrollView3.centerX = self.titleView.centerX;
     cycleScrollView3.bannerImageViewContentMode =  3;
     cycleScrollView3.showPageControl = NO;
@@ -88,6 +88,7 @@
     cycleScrollView3.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
     cycleScrollView3.autoScrollTimeInterval = 4;
     cycleScrollView3.titlesGroup = titleArray;
+    cycleScrollView3.backgroundColor = KWhiteColor;
     cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];
     [self.titleView addSubview:cycleScrollView3];
 }

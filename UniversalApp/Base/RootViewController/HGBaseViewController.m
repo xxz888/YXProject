@@ -24,16 +24,16 @@
 //    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 //    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]};
 //    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    [self.view addSubview:self.navigationBar];
-    [self.navigationBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(self.view);
-        make.height.mas_equalTo(NAVIGATION_BAR_HEIGHT);
-    }];
+//    [self.view addSubview:self.navigationBar];
+//    [self.navigationBar mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.left.right.equalTo(self.view);
+//        make.height.mas_equalTo(NAVIGATION_BAR_HEIGHT);
+//    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-        [self.navigationController setNavigationBarHidden:YES];
+//        [self.navigationController setNavigationBarHidden:YES];
     if (self.navigationController.viewControllers.count > 1) {
         self.cancelButton.hidden = NO;
     } else {

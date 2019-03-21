@@ -82,7 +82,7 @@
 - (void)createUI{
     self.goodsShowType = signleLineShowDoubleGoods;
     UICollectionViewFlowLayout *layout1 = [[UICollectionViewFlowLayout alloc]init];
-    self.collectionView = [[ClassifyCollection alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) collectionViewLayout:layout1];
+    self.collectionView = [[ClassifyCollection alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-kTopHeight-40) collectionViewLayout:layout1];
     //self.collectionView.myDelegate = self;
     [self.view addSubview:self.collectionView];
     self.collectionView.showType = self.goodsShowType;

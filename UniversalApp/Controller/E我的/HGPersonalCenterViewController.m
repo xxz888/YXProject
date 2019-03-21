@@ -65,11 +65,12 @@ static CGFloat const HeaderImageViewHeight =240;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self updateNavigationBarBackgroundColor];
+
 }
 
 #pragma mark - Private Methods
 - (void)setupSubViews {
-    [self.view insertSubview:self.yxTableView belowSubview:self.navigationBar];
+    [self.view insertSubview:self.yxTableView belowSubview:self.navigationController.navigationBar];
     [self.yxTableView addSubview:self.headerView];
 //    [self.headerImageView addSubview:self.avatarImageView];
 //    [self.headerImageView addSubview:self.nickNameLabel];

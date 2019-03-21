@@ -144,7 +144,7 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="bev-2z-XVI" secondAttribute="trailing" id="E9h-08-49C"/>
                 <constraint firstItem="pev-HB-7Zy" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="H7E-Mi-QKD"/>
                 <constraint firstItem="8Pk-Vp-hyh" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="LOR-hc-8C7"/>
-                <constraint firstItem="8Pk-Vp-hyh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="LUf-7g-c9L"/>
+                <constraint firstItem="8Pk-Vp-hyh" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="44" id="LUf-7g-c9L"/>
                 <constraint firstItem="f9M-GG-OO7" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Rgb-cI-I4N"/>
                 <constraint firstItem="f9M-GG-OO7" firstAttribute="top" secondItem="JS8-RS-YJC" secondAttribute="bottom" id="SAo-na-xgt"/>
                 <constraint firstItem="JS8-RS-YJC" firstAttribute="top" secondItem="oSI-rh-gmX" secondAttribute="bottom" constant="10" id="TNt-hk-cJi"/>
@@ -163,7 +163,7 @@
                 <constraint firstItem="kYv-m1-0aK" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="10" id="yh2-0Y-j3r"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="-860" y="54.422788605697157"/>
+            <point key="canvasLocation" x="-447" y="41"/>
         </view>
     </objects>
 </document>

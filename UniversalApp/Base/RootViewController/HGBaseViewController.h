@@ -15,7 +15,7 @@
 @end
 
 @interface HGBaseViewController : RootViewController
-@property (nonatomic, strong, readonly) UIView *navigationBar;
+//@property (nonatomic, strong, readonly) UIView *navigationBar;
 
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView;

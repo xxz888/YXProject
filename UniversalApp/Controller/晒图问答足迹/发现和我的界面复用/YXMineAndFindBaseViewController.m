@@ -111,16 +111,25 @@
         [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
     };
     cell.zanblock = ^(YXFindImageTableViewCell * cell) {
+        if (![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
         NSIndexPath * indexPath1 = [weakself.yxTableView indexPathForCell:cell];
         
         whereCome ?  [weakself requestDianZan_ZuJI_Action:indexPath1] : [weakself requestDianZan_Image_Action:indexPath1];
     };
     cell.shareblock = ^(YXFindImageTableViewCell * cell) {
+        if (![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
         UserInfo * userInfo = curUser;
         BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [userInfo.id integerValue];
         [weakself addGuanjiaShareViewIsOwn:isOwn isWho:cell.whereCome ? @"3" : @"1" tag:cell.tagId];
     };
     cell.jumpDetailVCBlock = ^(YXFindImageTableViewCell * cell) {
+        
         NSIndexPath * indexPathSelect = [weakself.yxTableView indexPathForCell:cell];
         [weakself tableView:weakself.yxTableView didSelectRowAtIndexPath:indexPathSelect];
     };
@@ -137,6 +146,10 @@
         [weakself.yxTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexRow, nil] withRowAnimation:UITableViewRowAnimationNone];
     };
     cell.addPlActionblock = ^(YXFindImageTableViewCell * cell) {
+        if (![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
         NSIndexPath *indexRow = [weakself.yxTableView indexPathForCell:cell];
         [weakself.textField becomeFirstResponder];
         weakself.textField.tag = indexRow.row ;
@@ -246,6 +259,10 @@
         [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
     };
     cell.zanblock1 = ^(YXFindQuestionTableViewCell * cell) {
+        if (![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
         NSIndexPath * indexPath1 = [weakself.yxTableView indexPathForCell:cell];
         [weakself requestDianZan_WenDa_Action:indexPath1];
     };
@@ -254,6 +271,10 @@
         [weakself tableView:weakself.yxTableView didSelectRowAtIndexPath:indexPathSelect];
     };
     cell.shareQuestionblock = ^(YXFindQuestionTableViewCell * cell) {
+        if (![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
         UserInfo * userInfo = curUser;
         BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [userInfo.id integerValue];
         [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"2" tag:cell.tagId];
@@ -271,6 +292,10 @@
         [weakself.yxTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexRow, nil] withRowAnimation:UITableViewRowAnimationNone];
     };
     cell.addPlActionblock = ^(YXFindQuestionTableViewCell * cell) {
+        if (![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
         NSIndexPath *indexRow = [weakself.yxTableView indexPathForCell:cell];
         [weakself.textField becomeFirstResponder];
         weakself.textField.tag = indexRow.row + 10000;
