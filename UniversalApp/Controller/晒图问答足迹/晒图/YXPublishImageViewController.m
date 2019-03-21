@@ -189,6 +189,8 @@
                 [db jq_insertTable:YX_USER_FaBuCaoGao dicOrModel:model];
             }];
             [QMUITips hideAllTipsInView:self.view];
+
+            [QMUITips showSucceed:@"存草稿成功"];
             [weakself closeViewAAA];
 
         }else{

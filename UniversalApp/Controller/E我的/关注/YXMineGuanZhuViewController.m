@@ -8,6 +8,7 @@
 
 #import "YXMineGuanZhuViewController.h"
 #import "YXMineCommon1TableViewCell.h"
+#import "HGPersonalCenterViewController.h"
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
 
 @interface YXMineGuanZhuViewController ()<UITableViewDelegate,UITableViewDataSource,ClickBtnDelegate>
@@ -55,7 +56,7 @@
     }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
+    return 60;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -88,5 +89,11 @@
         BOOL is_like = [cell.common1GuanzhuBtn.titleLabel.text isEqualToString:@"关注"] == 1;
         [ShareManager setGuanZhuStatus:cell.common1GuanzhuBtn status:!is_like alertView:YES];
     }];
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
+    mineVC.userId = kGetString(self.dataArray[indexPath.row][@"aim_id"]);
+    mineVC.whereCome = YES;    //  YES为其他人 NO为自己
+    [self.navigationController pushViewController:mineVC animated:YES];
 }
 @end
