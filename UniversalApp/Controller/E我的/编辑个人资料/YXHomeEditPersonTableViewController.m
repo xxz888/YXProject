@@ -62,14 +62,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [super tableView:tableView numberOfRowsInSection:section];
+    return [super tableView:tableView numberOfRowsInSection:section] ;
 }
 -(void)upData{
     kWeakSelf(self);
     NSDictionary * dic = @{@"username":self.nameTf.text,
                            @"gender":[self.sexBtn.titleLabel.text isEqualToString:@"男"] ? @"1" :@"0",
                            @"photo":self.photo,
-                           @"birthday":self.birthBtn.titleLabel.text,
+                           @"birthday":@"",//self.birthBtn.titleLabel.text,
                            @"site":self.adressBtn.titleLabel.text,
                            };
     [YX_MANAGER requestUpdate_userPOST:dic success:^(id object) {
