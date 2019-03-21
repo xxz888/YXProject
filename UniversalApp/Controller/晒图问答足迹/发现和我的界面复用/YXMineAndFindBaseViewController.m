@@ -423,7 +423,9 @@
                                  @{@"image":@"shareView_rr",
                                    @"title":@"其他"},
                                  @{@"image":@"share_copyLink",
-                                   @"title":@"删除"},nil];
+                                   @"title":@"删除"},
+                                 @{@"image":@"share_copyLink",
+                                   @"title":@"举报"},nil];
     if (!isOwn) {
         [shareAry removeObjectAtIndex:4];
     }
@@ -450,7 +452,7 @@
     shareView.isWho = isWho;
     shareView.backView.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
     shareView.headerView = headerView;
-    float height = [shareView getBoderViewHeight:shareAry firstCount:isOwn ? shareAry.count-1 : shareAry.count+1];
+    float height = [shareView getBoderViewHeight:shareAry firstCount:isOwn ? shareAry.count-2 : shareAry.count+2];
     shareView.boderView.frame = CGRectMake(0, 0, shareView.frame.size.width, height);
     shareView.middleLineLabel.hidden = NO;
     [shareView.cancleButton addSubview:lineLabel1];
@@ -488,6 +490,29 @@
                 [weakself requestAction];
             }];
         }
+    }
+    if ([title isEqualToString:@"举报"]) {
+        QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+        }];
+        QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"不友善内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+            [QMUITips showSucceed:@"举报成功"];
+
+        }];
+        QMUIAlertAction *action3 = [QMUIAlertAction actionWithTitle:@"有害内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+            [QMUITips showSucceed:@"举报成功"];
+
+        }];
+        QMUIAlertAction *action4 = [QMUIAlertAction actionWithTitle:@"抄袭内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+            [QMUITips showSucceed:@"举报成功"];
+
+        }];
+        QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:QMUIAlertControllerStyleActionSheet];
+        [alertController addAction:action1];
+        [alertController addAction:action2];
+        [alertController addAction:action3];
+        [alertController addAction:action4];
+
+        [alertController showWithAnimated:YES];
     }
 }
 

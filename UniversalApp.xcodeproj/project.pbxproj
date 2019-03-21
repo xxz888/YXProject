@@ -578,6 +578,7 @@
 		BBF26E2022408B0E0000AEF5 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E1A22408B0E0000AEF5 /* FMResultSet.m */; };
 		BBF26E2322408B7D0000AEF5 /* YXShaiTuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E2222408B7D0000AEF5 /* YXShaiTuModel.m */; };
 		BBF26E25224091CE0000AEF5 /* JQFMDB.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E24224091CD0000AEF5 /* JQFMDB.xcdatamodel */; };
+		BBF26E2A224391870000AEF5 /* YXHomeSearchMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E29224391870000AEF5 /* YXHomeSearchMoreViewController.m */; };
 		BBF45E52222FC649005C52C4 /* YXMessageThreeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF45E51222FC648005C52C4 /* YXMessageThreeDetailViewController.m */; };
 		BBF45E56222FC680005C52C4 /* YXMessageThreeDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF45E54222FC680005C52C4 /* YXMessageThreeDetailViewCell.m */; };
 		BBF45E57222FC680005C52C4 /* YXMessageThreeDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBF45E55222FC680005C52C4 /* YXMessageThreeDetailViewCell.xib */; };
@@ -1597,6 +1598,8 @@
 		BBF26E2122408B7D0000AEF5 /* YXShaiTuModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXShaiTuModel.h; sourceTree = "<group>"; };
 		BBF26E2222408B7D0000AEF5 /* YXShaiTuModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXShaiTuModel.m; sourceTree = "<group>"; };
 		BBF26E24224091CD0000AEF5 /* JQFMDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JQFMDB.xcdatamodel; sourceTree = "<group>"; };
+		BBF26E28224391870000AEF5 /* YXHomeSearchMoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeSearchMoreViewController.h; sourceTree = "<group>"; };
+		BBF26E29224391870000AEF5 /* YXHomeSearchMoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeSearchMoreViewController.m; sourceTree = "<group>"; };
 		BBF45E50222FC648005C52C4 /* YXMessageThreeDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMessageThreeDetailViewController.h; sourceTree = "<group>"; };
 		BBF45E51222FC648005C52C4 /* YXMessageThreeDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMessageThreeDetailViewController.m; sourceTree = "<group>"; };
 		BBF45E53222FC680005C52C4 /* YXMessageThreeDetailViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMessageThreeDetailViewCell.h; sourceTree = "<group>"; };
@@ -4046,6 +4049,7 @@
 		BBD30CEB21E5F531000D3244 /* 详情的详情 */ = {
 			isa = PBXGroup;
 			children = (
+				BBF26E27224391450000AEF5 /* 查看更多 */,
 				BBDA2C3821EB308100EDCCFF /* 最新评论 */,
 				BBD30CEC21E5F562000D3244 /* YXHomeXueJiaPinPaiLastDetailViewController.h */,
 				BBD30CED21E5F562000D3244 /* YXHomeXueJiaPinPaiLastDetailViewController.m */,
@@ -4600,6 +4604,16 @@
 			);
 			path = fmdb;
 			sourceTree = "<group>";
+		};
+		BBF26E27224391450000AEF5 /* 查看更多 */ = {
+			isa = PBXGroup;
+			children = (
+				BBF26E28224391870000AEF5 /* YXHomeSearchMoreViewController.h */,
+				BBF26E29224391870000AEF5 /* YXHomeSearchMoreViewController.m */,
+			);
+			name = "查看更多";
+			path = "UniversalApp/Controller/A首页/2雪茄/雪茄品牌/1古巴/品牌详情/详情的详情/查看更多";
+			sourceTree = SOURCE_ROOT;
 		};
 		BBF45E58222FD29A005C52C4 /* GCD */ = {
 			isa = PBXGroup;
@@ -5297,6 +5311,7 @@
 				BBD2C84C21E0F46500350DCD /* YXPublishImageViewController.m in Sources */,
 				29AD6C711ED41ED200B0879C /* UserInfo.m in Sources */,
 				BB6D29F021ED8D6E00F5049F /* YXHomeXueJiaPeiJianDetailViewController.m in Sources */,
+				BBF26E2A224391870000AEF5 /* YXHomeSearchMoreViewController.m in Sources */,
 				BBD2C92721E0F67800350DCD /* MWGridViewController.m in Sources */,
 				BBDA2D2621EB30BF00EDCCFF /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				BB9EFE8F21F6B92300180813 /* YXQCDJCDetailTableViewController.m in Sources */,

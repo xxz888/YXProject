@@ -132,8 +132,8 @@
 
     self.gridView.columnCount = 3;
     self.gridView.rowHeight = height;
-    self.gridView.separatorWidth = 10;
-    self.gridView.separatorColor = UIColorSeparator;
+    self.gridView.separatorWidth = 5;
+    self.gridView.separatorColor = KClearColor;
     self.gridView.separatorDashed = NO;
     
     for (NSInteger i = 0; i < count; i++) {
@@ -145,8 +145,8 @@
         [self.gridView addSubview:imageView];
         imageView.tag = i;
         //view添加点击事件
-//        UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapSmallViewCallback:)];
-//        [imageView addGestureRecognizer:tapGesturRecognizer];
+        UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
+        [imageView addGestureRecognizer:tapGesturRecognizer];
     }
 }
 
@@ -155,7 +155,7 @@
     UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;
     UIView *views = (UIView*) tap.view;
     NSUInteger tag = views.tag;
-    
+    self.fixBlock(tag);
 }
 -(void)initAllControl{
     

@@ -23,11 +23,11 @@
 #import "UIView+SDAutoLayout.h"
 #import "LEETheme.h"
 #import "GlobalDefines.h"
+#import "YXHomeSearchMoreViewController.h"
 
 #define kTimeLineTableViewCellId @"SDTimeLineCell"
 
-static CGFloat textFieldH = 40;
-
+#define textFieldH 40
 
 @interface YXHomeXueJiaPinPaiLastDetailViewController ()<UITableViewDelegate,UITableViewDataSource,clickMyTalkDelegate,SDTimeLineCellDelegate, UITextFieldDelegate>{
     SDTimeLineRefreshFooter *_refreshFooter;
@@ -111,11 +111,19 @@ static CGFloat textFieldH = 40;
     
     
     self.lastDetailView.searchAllBlock = ^{
-        //        UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
-        //        YXMineImageViewController * imageVC = [[YXMineImageViewController alloc]init];
-        //        [weakself.navigationController pushViewController:imageVC animated:YES];
+        
+        
+        YXHomeSearchMoreViewController * VC = [[YXHomeSearchMoreViewController alloc]init];
+        VC.tag = weakself.startDic[@"cigar_name"];
+        VC.scrollIndex = 0;
+        [weakself.navigationController pushViewController:VC animated:YES];
     };
-    
+    self.lastDetailView.fixBlock = ^(NSInteger index) {
+        YXHomeSearchMoreViewController * VC = [[YXHomeSearchMoreViewController alloc]init];
+        VC.tag = weakself.startDic[@"cigar_name"];
+        VC.scrollIndex = index;
+        [weakself.navigationController pushViewController:VC animated:YES];
+    };
     
     // 设置 view 的 frame(将设置 frame 提到设置 tableHeaderView 之前)
     self.lastDetailView.frame = CGRectMake(0, 0, kScreenWidth,  800 + height);

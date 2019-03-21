@@ -233,7 +233,7 @@
             
             //请求六宫格图片
                 NSString * tag = VC.startDic[@"cigar_name"];
-                [YX_MANAGER requestGetDetailListPOST:@{@"type":@(1),@"tag":tag,@"page":@(1)} success:^(id object) {
+                [YX_MANAGER requestGetDetailListPOST:@{@"type":@(0),@"tag":tag,@"page":@(1)} success:^(id object) {
                 NSMutableArray * imageArray = [NSMutableArray array];
                 for (NSDictionary * dic in object) {
                     [imageArray addObject:dic[@"photo1"]];

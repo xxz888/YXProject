@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^SegmentActionBlock)(NSInteger index);
 typedef void(^SearchAllActionBlock)(void);
-
+typedef void(^fixBoxActionBlock)(NSInteger index);
 @interface YXHomeLastDetailView : UIView
 //重新赋值
 -(void)againSetDetailView:(NSDictionary *)startDic;
@@ -26,6 +26,7 @@ typedef void(^SearchAllActionBlock)(void);
 -(void)setSixPhotoView:(NSMutableArray *)imageArray;
 //点击我的点评
 @property (nonatomic,weak) id<clickMyTalkDelegate> delegate;
+@property (nonatomic,copy) fixBoxActionBlock fixBlock;
 @property (nonatomic,copy)SegmentActionBlock block;
 @property (nonatomic,copy)SearchAllActionBlock searchAllBlock;
 @property (weak, nonatomic) IBOutlet UIView *scoreView;
