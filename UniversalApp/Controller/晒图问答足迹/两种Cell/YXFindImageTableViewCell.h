@@ -93,6 +93,9 @@ typedef void(^clickShareBlock)(YXFindImageTableViewCell *);
 typedef void(^addPlActionBlock)(YXFindImageTableViewCell *);
 - (IBAction)addPlAction:(id)sender;
 @property (nonatomic) addPlActionBlock addPlActionblock;
+@property (weak, nonatomic) IBOutlet UIView *lunBoView;
+@property (weak, nonatomic) IBOutlet UILabel *rightCountLbl;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *conViewHeight;
 
 @end
 

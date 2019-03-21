@@ -71,6 +71,20 @@
     PrivateLetterTap3.numberOfTouchesRequired = 1; //手指数
     PrivateLetterTap3.numberOfTapsRequired = 1; //tap次数
     [self.img3 addGestureRecognizer:PrivateLetterTap3];
+    
+    
+    
+    
+    //1. 初始化轻扫手势对象, 并设置轻扫时触发的方法
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
+    //2. 轻扫方向( | :表示两个方向都可以)
+    //#轻扫手势的默认轻扫方向是向右的, 若需要向左扫描时也能触发向右的扫描方法, 需要指定扫描方向为以下属性:
+    swipe.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft |UISwipeGestureRecognizerDirectionUp |UISwipeGestureRecognizerDirectionDown;
+    //3. 添加手势到view对象上
+    [self.view addGestureRecognizer:swipe];
+}
+- (void)swipeAction: (UITapGestureRecognizer *)gesture{
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
 - (void)tapAvatarView1: (UITapGestureRecognizer *)gesture{
     [self addThreeImageView:self.img1];

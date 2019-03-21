@@ -94,17 +94,16 @@
 -(YXFindImageTableViewCell *)customImageData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath whereCome:(BOOL)whereCome{
     YXFindImageTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFindImageTableViewCell" forIndexPath:indexPath];
     cell.tagId = [dic[@"id"] integerValue];
+    /*
     NSString * str = [(NSMutableString *) (whereCome ? dic[@"pic1"]:dic[@"photo1"]) replaceAll:@" " target:@"%20"];
     [cell.midImageView sd_setImageWithURL:[NSURL URLWithString:str] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         
-        /**  缓存image size */
         [XHWebImageAutoSize storeImageSize:image forURL:imageURL completed:^(BOOL result) {
-            /** reload */
             if(result)  [self.yxTableView xh_reloadDataForURL:imageURL];
         }];
         
     }];
-    
+    */
     cell.titleImageView.tag = indexPath.row;
     kWeakSelf(self);
     cell.clickImageBlock = ^(NSInteger tag) {
@@ -473,14 +472,19 @@
     if ([title isEqualToString:@"删除"]) {
         if ([shareView.isWho isEqualToString:@"1"]) {
             [YX_MANAGER requestDel_ShaiTU:NSIntegerToNSString(shareView.tag) success:^(id object) {
+                [QMUITips showSucceed:@"删除成功"];
                 [weakself requestAction];
             }];
         }else if ([shareView.isWho isEqualToString:@"2"]){
             [YX_MANAGER requestDel_WenDa:NSIntegerToNSString(shareView.tag) success:^(id object) {
+                [QMUITips showSucceed:@"删除成功"];
+
                 [weakself requestAction];
             }];
         }else if ([shareView.isWho isEqualToString:@"3"]){
             [YX_MANAGER requestDel_ZuJi:NSIntegerToNSString(shareView.tag) success:^(id object) {
+                [QMUITips showSucceed:@"删除成功"];
+
                 [weakself requestAction];
             }];
         }
