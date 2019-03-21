@@ -26,7 +26,7 @@
 #import "YXMineMyDianZanViewController.h"
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
 
-static CGFloat const HeaderImageViewHeight =220;
+static CGFloat const HeaderImageViewHeight =240;
 
 @interface HGPersonalCenterViewController () <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, HGSegmentedPageViewControllerDelegate, HGPageViewControllerDelegate>{
     QMUIModalPresentationViewController * _modalViewController;

@@ -75,7 +75,7 @@
     self.lastDetailView.contentLbl.text =  [[NSString stringWithFormat:@"%@%@",self.startDic[@"content"] ? self.startDic[@"content"]:self.startDic[@"describe"],self.startDic[@"index"]] UnicodeToUtf8];
     self.lastDetailView.userInteractionEnabled = YES;
     self.lastDetailView.contentHeight.constant = [self getLblHeight:self.startDic];
-    [ShareManager setLineSpace:9 withText:self.lastDetailView.contentLbl.text inLabel:self.lastDetailView.contentLbl tag:@""];
+    [ShareManager setLineSpace:9 withText:self.lastDetailView.contentLbl.text inLabel:self.lastDetailView.contentLbl tag:self.startDic[@"index"]];
 
     
     self.lastDetailView.rightBlock = ^{
