@@ -27,7 +27,7 @@
     self.indexArray = [[NSMutableArray alloc]init];
     self.dataArray = [[NSMutableArray alloc]init];
     self.hotDataArray = [[NSMutableArray alloc]init];
-    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(5, 0, KScreenWidth-10, kScreenHeight-kTopHeight-kTabBarHeight - 30) style:0];
+    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(5, 0, KScreenWidth-10, kScreenHeight-kTopHeight-kTabBarHeight) style:0];
     [self.view addSubview:self.yxTableView];
     self.yxTableView.delegate = self;
     self.yxTableView.dataSource= self;

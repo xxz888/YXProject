@@ -177,7 +177,6 @@
 }
 
 - (void)setupTextField{
-    [_textField removeFromSuperview];
     _textField = [[UITextField alloc]init];
     _textField.returnKeyType = UIReturnKeyDone;
     _textField.delegate = self;

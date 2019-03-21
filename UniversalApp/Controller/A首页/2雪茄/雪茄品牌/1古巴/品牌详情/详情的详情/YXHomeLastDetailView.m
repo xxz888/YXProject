@@ -49,7 +49,7 @@
 
 -(void)againSetDetailView:(NSDictionary *)startDic {
     //头图片
-    NSString * string =[startDic[@"photo_list"] count] > 0 ? startDic[@"photo_list"][0][@"photo_url"] : @"";
+    NSString * string =[startDic[@"photo_list_details"] count] > 0 ? startDic[@"photo_list_details"][0][@"photo_url"] : @"";
     NSString * str = [(NSMutableString *)string replaceAll:@" " target:@"%20"];
     str = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     if (str) {
