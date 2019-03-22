@@ -25,7 +25,7 @@
     self.yxTableVIew.tableFooterView = [[UIView alloc]init];
     [self addRefreshView:self.yxTableVIew];
     [self requestMyDianPing];
-
+    self.yxTableVIew.separatorStyle = 0 ;
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -53,14 +53,14 @@
     return self.dataArray.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 300;
+    return 260;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXMinePingLunTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMinePingLunTableViewCell" forIndexPath:indexPath];
     NSDictionary * dic = self.dataArray[indexPath.row];
-    NSString * string = [dic[@"photo_list"] count] > 0 ? dic[@"photo_list"][0][@"photo_url"] : @"";
+    NSString * string = [dic[@"photo_list_details"] count] > 0 ? dic[@"photo_list_details"][0][@"photo_url"] : @"";
     NSString * str1 = [(NSMutableString *)string replaceAll:@" " target:@"%20"];
-
+    cell.selectionStyle = 0;
     [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
   
     cell.cnLbl.text =  [kGetString(dic[@"price_box_china"]) append:@"元"];
@@ -69,7 +69,7 @@
 
     cell.titleLbl.text = dic[@"cigar_name"];
     
-    cell.timeLbl.text = [ShareManager timestampSwitchTime:[kGetString(dic[@"comment_time"]) longLongValue] andFormatter:@""];
+    cell.timeLbl.text = [[ShareManager timestampSwitchTime:[kGetString(dic[@"comment_time"]) longLongValue] andFormatter:@""] append:@"   点评了"];
     
     cell.plLbl.text = dic[@"comment"];
     return cell;

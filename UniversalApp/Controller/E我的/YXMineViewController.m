@@ -235,12 +235,12 @@
         YXMineMyCaoGaoViewController * VC = [[YXMineMyCaoGaoViewController alloc]init];
         [self.navigationController pushViewController:VC animated:YES];
     }else if(indexPath.row == 3){
-        [QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
+        //[QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
     }else if (indexPath.row == 4) {
         YXMineMyCollectionViewController * VC = [[YXMineMyCollectionViewController alloc]init];
         [self.navigationController pushViewController:VC animated:YES];
     } else if (indexPath.row == 5){
-        [QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
+        //[QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
 //        YXMineMyDianZanViewController * VC = [[YXMineMyDianZanViewController alloc]init];
 //        [self.navigationController pushViewController:VC animated:YES];
     }else if (indexPath.row == 6){

@@ -177,9 +177,9 @@
 }
 
 - (IBAction)wxLoginAction:(id)sender {
-     [QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
+    //[self WXLogin];
 }
 - (IBAction)qqLoginAction:(id)sender {
-    [QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
+    //[QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
 }
 @end

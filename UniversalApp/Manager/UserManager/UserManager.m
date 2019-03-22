@@ -32,9 +32,6 @@ SINGLETON_FOR_CLASS(UserManager);
 
 #pragma mark ————— 带参数登录 —————
 -(void)login:(UserLoginType )loginType params:(NSDictionary *)params completion:(loginBlock)completion{
-    
-    [self loginToServer:params completion:completion];
-    return;
     //友盟登录类型
     UMSocialPlatformType platFormType;
     
@@ -82,6 +79,8 @@ SINGLETON_FOR_CLASS(UserManager);
         }];
     }else{
         //账号登录 暂未提供
+        
+        [self loginToServer:params completion:completion];
     }
 }
 

@@ -62,10 +62,11 @@
                 [_dataSourceTemp addObject:dic];
             }
             object=_dataSourceTemp;
+            weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
+            [weakself.yxTableView reloadData];
+            [weakself.yxTableView scrollToRow:weakself.scrollIndex inSection:0 atScrollPosition:UITableViewScrollPositionNone animated:nil];
         }
-        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
-        [weakself.yxTableView reloadData];
-        [weakself.yxTableView scrollToRow:weakself.scrollIndex inSection:0 atScrollPosition:UITableViewScrollPositionNone animated:nil];
+
     }];
     
 }

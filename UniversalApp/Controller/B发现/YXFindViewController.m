@@ -111,7 +111,7 @@
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
     [self clickSearchBar];
-//    [QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
+//    //[QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
 //    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
     return NO;
 }

@@ -27,8 +27,12 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>weixin</string>
 			<key>CFBundleURLSchemes</key>
-			<array/>
+			<array>
+				<string>wx71c480cd96774ef7</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>

@@ -328,7 +328,6 @@
 		BBBCDBB3223F65540056C7DD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BBBCDBAD223F65530056C7DD /* README.md */; };
 		BBBCDBB6223F65910056C7DD /* HGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBCDBB5223F65910056C7DD /* HGBaseViewController.m */; };
 		BBBCDBB9223F65C50056C7DD /* HGPersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBCDBB8223F65C50056C7DD /* HGPersonalCenterViewController.m */; };
-		BBBDCAB82226612200A9F2CB /* LoginLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBDCAB32226612200A9F2CB /* LoginLogic.m */; };
 		BBBDCAB92226612200A9F2CB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBDCAB62226612200A9F2CB /* LoginViewController.m */; };
 		BBBE071C2224E32D00CDD11E /* YXBaseFaXianDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBE071B2224E32D00CDD11E /* YXBaseFaXianDetailViewController.m */; };
 		BBBE071E2224E36100CDD11E /* YXBaseFaXianDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBBE071D2224E36100CDD11E /* YXBaseFaXianDetailViewController.xib */; };
@@ -579,6 +578,8 @@
 		BBF26E2322408B7D0000AEF5 /* YXShaiTuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E2222408B7D0000AEF5 /* YXShaiTuModel.m */; };
 		BBF26E25224091CE0000AEF5 /* JQFMDB.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E24224091CD0000AEF5 /* JQFMDB.xcdatamodel */; };
 		BBF26E2A224391870000AEF5 /* YXHomeSearchMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E29224391870000AEF5 /* YXHomeSearchMoreViewController.m */; };
+		BBF26E3622448D2E0000AEF5 /* YXBindPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E3422448D2E0000AEF5 /* YXBindPhoneViewController.m */; };
+		BBF26E3722448D2E0000AEF5 /* YXBindPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBF26E3522448D2E0000AEF5 /* YXBindPhoneViewController.xib */; };
 		BBF45E52222FC649005C52C4 /* YXMessageThreeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF45E51222FC648005C52C4 /* YXMessageThreeDetailViewController.m */; };
 		BBF45E56222FC680005C52C4 /* YXMessageThreeDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF45E54222FC680005C52C4 /* YXMessageThreeDetailViewCell.m */; };
 		BBF45E57222FC680005C52C4 /* YXMessageThreeDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBF45E55222FC680005C52C4 /* YXMessageThreeDetailViewCell.xib */; };
@@ -1146,8 +1147,6 @@
 		BBBCDBB5223F65910056C7DD /* HGBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGBaseViewController.m; sourceTree = "<group>"; };
 		BBBCDBB7223F65C50056C7DD /* HGPersonalCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGPersonalCenterViewController.h; sourceTree = "<group>"; };
 		BBBCDBB8223F65C50056C7DD /* HGPersonalCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGPersonalCenterViewController.m; sourceTree = "<group>"; };
-		BBBDCAB32226612200A9F2CB /* LoginLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginLogic.m; sourceTree = "<group>"; };
-		BBBDCAB42226612200A9F2CB /* LoginLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginLogic.h; sourceTree = "<group>"; };
 		BBBDCAB62226612200A9F2CB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		BBBDCAB72226612200A9F2CB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		BBBE071A2224E32D00CDD11E /* YXBaseFaXianDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXBaseFaXianDetailViewController.h; sourceTree = "<group>"; };
@@ -1600,6 +1599,9 @@
 		BBF26E24224091CD0000AEF5 /* JQFMDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JQFMDB.xcdatamodel; sourceTree = "<group>"; };
 		BBF26E28224391870000AEF5 /* YXHomeSearchMoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeSearchMoreViewController.h; sourceTree = "<group>"; };
 		BBF26E29224391870000AEF5 /* YXHomeSearchMoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeSearchMoreViewController.m; sourceTree = "<group>"; };
+		BBF26E3322448D2E0000AEF5 /* YXBindPhoneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXBindPhoneViewController.h; sourceTree = "<group>"; };
+		BBF26E3422448D2E0000AEF5 /* YXBindPhoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXBindPhoneViewController.m; sourceTree = "<group>"; };
+		BBF26E3522448D2E0000AEF5 /* YXBindPhoneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXBindPhoneViewController.xib; sourceTree = "<group>"; };
 		BBF45E50222FC648005C52C4 /* YXMessageThreeDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMessageThreeDetailViewController.h; sourceTree = "<group>"; };
 		BBF45E51222FC648005C52C4 /* YXMessageThreeDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMessageThreeDetailViewController.m; sourceTree = "<group>"; };
 		BBF45E53222FC680005C52C4 /* YXMessageThreeDetailViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMessageThreeDetailViewCell.h; sourceTree = "<group>"; };
@@ -1971,7 +1973,6 @@
 			children = (
 				BB98327E2202C9340048D103 /* html */,
 				BBA8129F21DDAB00001B5EA1 /* Controller */,
-				BBBDCAB02226612200A9F2CB /* Modules */,
 				BBC16282217AD6DE00008907 /* StoryBoard */,
 				29AD6C5D1ED3E4D600B0879C /* AppDelegate */,
 				293D45A81ECD6926007C64A9 /* Manager */,
@@ -2866,6 +2867,7 @@
 				BB5FD86921FE9B2F00B5F1A8 /* SaltedFishTabBarVC.h */,
 				BB5FD86821FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m */,
 				BBD1C7782216A98D0063002F /* 晒图问答足迹 */,
+				BBF26E2C224489C80000AEF5 /* 0登录 */,
 				BBA812A421DDAB7A001B5EA1 /* A首页 */,
 				BBA812A721DDAB7A001B5EA1 /* B发现 */,
 				BBA812A821DDAB7A001B5EA1 /* C发布 */,
@@ -3230,42 +3232,6 @@
 				BBBCDBAB223F65530056C7DD /* HGSegmentedPageViewController.h */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		BBBDCAB02226612200A9F2CB /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-				BBBDCAB12226612200A9F2CB /* Login */,
-			);
-			name = Modules;
-			path = UniversalApp/Modules;
-			sourceTree = SOURCE_ROOT;
-		};
-		BBBDCAB12226612200A9F2CB /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				BBBDCAB22226612200A9F2CB /* Logic */,
-				BBBDCAB52226612200A9F2CB /* Controller */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		BBBDCAB22226612200A9F2CB /* Logic */ = {
-			isa = PBXGroup;
-			children = (
-				BBBDCAB32226612200A9F2CB /* LoginLogic.m */,
-				BBBDCAB42226612200A9F2CB /* LoginLogic.h */,
-			);
-			path = Logic;
-			sourceTree = "<group>";
-		};
-		BBBDCAB52226612200A9F2CB /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				BBBDCAB72226612200A9F2CB /* LoginViewController.h */,
-				BBBDCAB62226612200A9F2CB /* LoginViewController.m */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		BBBE07192224E2EE00CDD11E /* 详情界面复用 */ = {
@@ -4615,6 +4581,18 @@
 			path = "UniversalApp/Controller/A首页/2雪茄/雪茄品牌/1古巴/品牌详情/详情的详情/查看更多";
 			sourceTree = SOURCE_ROOT;
 		};
+		BBF26E2C224489C80000AEF5 /* 0登录 */ = {
+			isa = PBXGroup;
+			children = (
+				BBBDCAB72226612200A9F2CB /* LoginViewController.h */,
+				BBBDCAB62226612200A9F2CB /* LoginViewController.m */,
+				BBF26E3322448D2E0000AEF5 /* YXBindPhoneViewController.h */,
+				BBF26E3422448D2E0000AEF5 /* YXBindPhoneViewController.m */,
+				BBF26E3522448D2E0000AEF5 /* YXBindPhoneViewController.xib */,
+			);
+			path = "0登录";
+			sourceTree = "<group>";
+		};
 		BBF45E58222FD29A005C52C4 /* GCD */ = {
 			isa = PBXGroup;
 			children = (
@@ -4827,6 +4805,7 @@
 				BBDA2D2121EB30BF00EDCCFF /* sdRefeshView_arrow@2x.png in Resources */,
 				BBD2C93021E0F67800350DCD /* PlayButtonOverlayLargeTap@2x.png in Resources */,
 				293D45A11ECD6422007C64A9 /* Assets.xcassets in Resources */,
+				BBF26E3722448D2E0000AEF5 /* YXBindPhoneViewController.xib in Resources */,
 				BBE82BD921E340AD004E4144 /* EffectImage.png in Resources */,
 				BB29122322156BB500FF484E /* Panetela.gif in Resources */,
 				BBBE071E2224E36100CDD11E /* YXBaseFaXianDetailViewController.xib in Resources */,
@@ -5130,7 +5109,6 @@
 				BBBFD7912222D7D300D377AC /* TOCropOverlayView.m in Sources */,
 				BBC6180C21F5AE6E00495619 /* YXHomeGolfScoreHeaderView.m in Sources */,
 				BB6D2A4521EF7D8400F5049F /* YXHomeQuestionDetailHeaderView.m in Sources */,
-				BBBDCAB82226612200A9F2CB /* LoginLogic.m in Sources */,
 				29629EF11F78E669002CFCBD /* XLJSHandler.m in Sources */,
 				BBF45E52222FC649005C52C4 /* YXMessageThreeDetailViewController.m in Sources */,
 				29AD6C6B1ED41E2100B0879C /* UserManager.m in Sources */,
@@ -5307,6 +5285,7 @@
 				BB9413E321F8B602007E800A /* IQUIScrollView+Additions.m in Sources */,
 				BB5FD88A21FECBDB00B5F1A8 /* YXFindImageTableViewCell.m in Sources */,
 				BBF26E1E22408B0E0000AEF5 /* FMDatabase.m in Sources */,
+				BBF26E3622448D2E0000AEF5 /* YXBindPhoneViewController.m in Sources */,
 				BB9832792201E0C90048D103 /* YXHomeNewsDetailViewController.m in Sources */,
 				BBD2C84C21E0F46500350DCD /* YXPublishImageViewController.m in Sources */,
 				29AD6C711ED41ED200B0879C /* UserInfo.m in Sources */,

@@ -12,11 +12,11 @@
 #define ThirdMacros_h
 
 // 友盟统计
-#define UMengKey @"59281b4a5312dd3f5f0005ed"
+#define UMengKey @"5c9449f561f564c5fc000ed0"
 
 //微信
-#define kAppKey_Wechat          @"wx38ae805374bd9c73"
-#define kSecret_Wechat          @"b319a731d49e8c67eec203731d05dd45"
+#define kAppKey_Wechat          @"wx71c480cd96774ef7"
+#define kSecret_Wechat          @"fd1a082a0a2a0a905ff90d2088c3fa75"
 
 // 腾讯
 #define kAppKey_Tencent          @"1106139910"
