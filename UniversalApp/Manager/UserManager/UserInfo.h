@@ -41,5 +41,7 @@ typedef NS_ENUM(NSInteger,UserGender){
 @property (nonatomic, strong)NSString *  birthday;
 
 @property (nonatomic, strong)NSString *  site;
+@property (nonatomic,strong) NSString *weixin_name;
+@property (nonatomic,strong) NSString *weibo_name;
 
 @end

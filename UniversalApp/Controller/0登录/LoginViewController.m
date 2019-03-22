@@ -104,6 +104,7 @@
             VC.bindBlock = ^{
                 [weakself closeViewAAA];
             };
+            VC.whereCome = NO;
             VC.unique_id = des;
             [weakself presentViewController:VC animated:YES completion:nil];
         }

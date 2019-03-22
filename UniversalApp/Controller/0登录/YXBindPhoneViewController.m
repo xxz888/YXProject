@@ -21,8 +21,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UserInfo *userInfo = curUser;
-    self.phoneTf.text = userInfo.mobile;
-    self.phoneTf.userInteractionEnabled = NO;
+    
+    if (self.whereCome) {
+        self.phoneTf.text = userInfo.mobile;
+        self.phoneTf.userInteractionEnabled = NO;
+    }else{
+    
+    }
+
     
     self.tipTopLbl.text = [NSString stringWithFormat:@"当前绑定手机号是%@,请在下方输入你希望绑定的手机号",userInfo.mobile];
     

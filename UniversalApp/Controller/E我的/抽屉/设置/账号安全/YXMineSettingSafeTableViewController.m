@@ -19,8 +19,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UserInfo *userInfo = curUser;
-
     self.phoneTf.text = userInfo.mobile;
+    if (!userInfo.weibo_name || [userInfo.weibo_name isEqualToString:@""]) {
+        self.wbTf.text = @"未绑定";
+    }else{
+        self.wbTf.text = userInfo.weibo_name;
+    }
+    
+    if (!userInfo.weixin_name || [userInfo.weixin_name isEqualToString:@""]) {
+        self.wxAccTf.text = @"未绑定";
+    }else{
+        self.wxAccTf.text = userInfo.weixin_name;
+    }
     //解决方案
     self.automaticallyAdjustsScrollViewInsets=false;
     self.edgesForExtendedLayout = UIRectEdgeNone;

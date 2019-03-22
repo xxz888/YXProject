@@ -297,6 +297,9 @@ static CGFloat const HeaderImageViewHeight =240;
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView.tag == 9000) {
+        if (indexPath.row == 3) {
+            return 0;
+        }
         return 50;
     }
     return SCREEN_HEIGHT;
