@@ -11,6 +11,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "UIButton+CountDown.h"
 #import "UDPManage.h"
+#import "YXBindPhoneViewController.h"
 @interface LoginViewController ()
 //1 播放器
 @property (strong, nonatomic) AVPlayer *player;
@@ -87,17 +88,36 @@
     
     //[self.view addSubview:skipBtn];
     
-    self.getMes_codeBtn.backgroundColor = [UIColor colorWithRed:84 / 255.0 green:180 / 255.0 blue:98 / 255.0 alpha:1.0f];
+    ViewBorderRadius(self.getMes_codeBtn, 5, 1, A_COlOR);
     [self.getMes_codeBtn addTarget:self action:@selector(getSms_CodeAction) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)WXLogin{
+    kWeakSelf(self);
     [userManager login:kUserLoginTypeWeChat completion:^(BOOL success, NSString *des) {
         if (success) {
-            DLog(@"登录成功");
+            [weakself closeViewAAA];
         }else{
+            //第一次登录,请绑定手机号.
             DLog(@"登录失败：%@", des);
+            YXBindPhoneViewController * VC = [[YXBindPhoneViewController alloc]init];
+            VC.bindBlock = ^{
+                [weakself closeViewAAA];
+            };
+            VC.unique_id = des;
+            [weakself presentViewController:VC animated:YES completion:nil];
         }
+    }];
+}
+-(void)closeViewAAA{
+    UIViewController *controller = self;
+    while(controller.presentingViewController != nil){
+        controller = controller.presentingViewController;
+    }
+    [controller dismissViewControllerAnimated:NO completion:^{
+        [QMUITips showSucceed:@"登录成功"];
+        [[AppDelegate shareAppDelegate].mainTabBar setSelectedIndex:0];
+
     }];
 }
 -(void)QQLogin{
@@ -144,8 +164,8 @@
     [YX_MANAGER requestLoginPOST:@{@"mobile":self.phoneTf.text,@"sms_code":self.codeTf.text} success:^(id object) {
             [userManager login:kUserLoginTypePwd params:object completion:^(BOOL success, NSString *des) {
                 [weakself dismissViewControllerAnimated:YES completion:nil];
-                [QMUITips showSucceed:@"登录成功" inView:self.view hideAfterDelay:2];
                 [[AppDelegate shareAppDelegate].mainTabBar setSelectedIndex:0];
+                [QMUITips showSucceed:@"登录成功"];
             }];
    
     }];
@@ -159,13 +179,17 @@
     
 }
 - (void)getSms_CodeAction{
-    [YX_MANAGER requestSmscodeGET:self.phoneTf.text success:^(id object) {
+    if (self.phoneTf.text.length <= 10) {
+        [QMUITips showError:@"请输入正确的手机号"];
+        return;
+    }
+    [YX_MANAGER requestSmscodeGET:[self.phoneTf.text append:@"/1/"] success:^(id object) {
             [QMUITips showSucceed:@"验证码发送成功" inView:self.view hideAfterDelay:2];
             [self.getMes_codeBtn startWithTime:180
                                          title:@"点击重新获取"
                                 countDownTitle:@"s"
-                                     mainColor:[UIColor colorWithRed:84 / 255.0 green:180 / 255.0 blue:98 / 255.0 alpha:1.0f]
-                                    countColor:[UIColor colorWithRed:84 / 255.0 green:180 / 255.0 blue:98 / 255.0 alpha:1.0f]];
+                                     mainColor:C_COLOR
+                                    countColor:C_COLOR];
     }];
     
 }
@@ -177,7 +201,7 @@
 }
 
 - (IBAction)wxLoginAction:(id)sender {
-    //[self WXLogin];
+    [self WXLogin];
 }
 - (IBAction)qqLoginAction:(id)sender {
     //[QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];

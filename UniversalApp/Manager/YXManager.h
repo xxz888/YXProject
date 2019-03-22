@@ -248,4 +248,11 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestDelChildPl_WenDa:YX_BLOCK;
 #pragma mark ========== 删除雪茄评论子评论 ==========
 -(void)requestDelCigarPl_WenDa:YX_BLOCK;
+
+#pragma mark ========== 第三方登录 ==========
+-(void)requestPostThird_party:YX_BLOCK;
+#pragma mark ========== 第三方登录绑定手机号 ==========
+-(void)requestPostBinding_party:YX_BLOCK;
+#pragma mark ========== 更改手机号 ==========
+-(void)requestChange_mobile:YX_BLOCK;
 @end

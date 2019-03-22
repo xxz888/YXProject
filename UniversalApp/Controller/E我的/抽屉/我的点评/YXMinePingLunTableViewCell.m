@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    ViewBorderRadius(self.outsideView, 5, 1, YXRGBAColor(242, 242, 242));
+    ViewBorderRadius(self.outsideView, 5, 1, C_COLOR);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

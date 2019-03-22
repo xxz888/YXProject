@@ -776,6 +776,30 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
+
+
+#pragma mark ========== 第三方登录 ==========
+-(void)requestPostThird_party:YX_BLOCK{
+    NSString * url = @"/users/third_party/";
+    [HTTP_POST(url) Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+    
+}
+#pragma mark ========== 第三方登录绑定手机号 ==========
+-(void)requestPostBinding_party:YX_BLOCK{
+    NSString * url = @"/users/binding_phone/";
+    [HTTP_POST(url) Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+#pragma mark ========== 更改手机号 ==========
+-(void)requestChange_mobile:YX_BLOCK{
+    NSString * url = @"/users/change_mobile/";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

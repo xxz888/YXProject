@@ -765,38 +765,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="50" id="Ewk-PC-lAp">
-                                        <rect key="frame" x="0.0" y="100" width="375" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ewk-PC-lAp" id="e5h-ea-lFd">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="49.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微博账号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLe-tw-Z01">
-                                                    <rect key="frame" x="10" y="17" width="70" height="16"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="70" id="Wn5-3y-mSh"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WFW-Vz-skk">
-                                                    <rect key="frame" x="100" y="0.0" width="231" height="49.5"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="WFW-Vz-skk" secondAttribute="bottom" id="Hte-mM-A5f"/>
-                                                <constraint firstItem="WFW-Vz-skk" firstAttribute="leading" secondItem="zLe-tw-Z01" secondAttribute="trailing" constant="20" id="RYi-HA-xt1"/>
-                                                <constraint firstItem="zLe-tw-Z01" firstAttribute="leading" secondItem="e5h-ea-lFd" secondAttribute="leading" constant="10" id="cj3-o9-R0f"/>
-                                                <constraint firstItem="zLe-tw-Z01" firstAttribute="centerY" secondItem="e5h-ea-lFd" secondAttribute="centerY" id="ctZ-3S-I6n"/>
-                                                <constraint firstItem="WFW-Vz-skk" firstAttribute="top" secondItem="e5h-ea-lFd" secondAttribute="top" id="qpJ-xm-YQH"/>
-                                                <constraint firstAttribute="trailing" secondItem="WFW-Vz-skk" secondAttribute="trailing" constant="10" id="v6L-jO-3nx"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -808,7 +776,6 @@
                     <navigationItem key="navigationItem" id="Tc7-iM-8Lr"/>
                     <connections>
                         <outlet property="phoneTf" destination="54f-mR-BoG" id="vDm-F9-zev"/>
-                        <outlet property="wbTf" destination="WFW-Vz-skk" id="vjL-Nx-2ue"/>
                         <outlet property="wxAccTf" destination="75s-XX-H0L" id="pKb-vJ-3rZ"/>
                     </connections>
                 </tableViewController>

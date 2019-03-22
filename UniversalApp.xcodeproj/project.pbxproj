@@ -497,6 +497,8 @@
 		BBD30CEE21E5F562000D3244 /* YXHomeXueJiaPinPaiLastDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD30CED21E5F562000D3244 /* YXHomeXueJiaPinPaiLastDetailViewController.m */; };
 		BBD30CF121E5F7AD000D3244 /* YXHomeLastDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD30CF021E5F7AD000D3244 /* YXHomeLastDetailView.m */; };
 		BBD30CF321E5F7C5000D3244 /* YXHomeLastDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD30CF221E5F7C5000D3244 /* YXHomeLastDetailView.xib */; };
+		BBD7796B2244DD390077E44D /* YXBindPhoneNextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD779682244DD380077E44D /* YXBindPhoneNextViewController.m */; };
+		BBD7796C2244DD390077E44D /* YXBindPhoneNextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD7796A2244DD380077E44D /* YXBindPhoneNextViewController.xib */; };
 		BBDA2C5E21EB308100EDCCFF /* SDDiscoverTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBDA2C3B21EB308100EDCCFF /* SDDiscoverTableViewController.storyboard */; };
 		BBDA2C5F21EB308100EDCCFF /* SDDiscoverTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDA2C3C21EB308100EDCCFF /* SDDiscoverTableViewController.m */; };
 		BBDA2C6021EB308100EDCCFF /* SDDiscoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDA2C3F21EB308100EDCCFF /* SDDiscoverTableViewCell.m */; };
@@ -1446,6 +1448,9 @@
 		BBD30CEF21E5F7AD000D3244 /* YXHomeLastDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeLastDetailView.h; sourceTree = "<group>"; };
 		BBD30CF021E5F7AD000D3244 /* YXHomeLastDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeLastDetailView.m; sourceTree = "<group>"; };
 		BBD30CF221E5F7C5000D3244 /* YXHomeLastDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeLastDetailView.xib; sourceTree = "<group>"; };
+		BBD779682244DD380077E44D /* YXBindPhoneNextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXBindPhoneNextViewController.m; sourceTree = "<group>"; };
+		BBD779692244DD380077E44D /* YXBindPhoneNextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXBindPhoneNextViewController.h; sourceTree = "<group>"; };
+		BBD7796A2244DD380077E44D /* YXBindPhoneNextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YXBindPhoneNextViewController.xib; sourceTree = "<group>"; };
 		BBDA2C3B21EB308100EDCCFF /* SDDiscoverTableViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SDDiscoverTableViewController.storyboard; sourceTree = "<group>"; };
 		BBDA2C3C21EB308100EDCCFF /* SDDiscoverTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDDiscoverTableViewController.m; sourceTree = "<group>"; };
 		BBDA2C3D21EB308100EDCCFF /* SDDiscoverTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDiscoverTableViewController.h; sourceTree = "<group>"; };
@@ -4589,6 +4594,9 @@
 				BBF26E3322448D2E0000AEF5 /* YXBindPhoneViewController.h */,
 				BBF26E3422448D2E0000AEF5 /* YXBindPhoneViewController.m */,
 				BBF26E3522448D2E0000AEF5 /* YXBindPhoneViewController.xib */,
+				BBD779692244DD380077E44D /* YXBindPhoneNextViewController.h */,
+				BBD779682244DD380077E44D /* YXBindPhoneNextViewController.m */,
+				BBD7796A2244DD380077E44D /* YXBindPhoneNextViewController.xib */,
 			);
 			path = "0登录";
 			sourceTree = "<group>";
@@ -4807,6 +4815,7 @@
 				293D45A11ECD6422007C64A9 /* Assets.xcassets in Resources */,
 				BBF26E3722448D2E0000AEF5 /* YXBindPhoneViewController.xib in Resources */,
 				BBE82BD921E340AD004E4144 /* EffectImage.png in Resources */,
+				BBD7796C2244DD390077E44D /* YXBindPhoneNextViewController.xib in Resources */,
 				BB29122322156BB500FF484E /* Panetela.gif in Resources */,
 				BBBE071E2224E36100CDD11E /* YXBaseFaXianDetailViewController.xib in Resources */,
 				BB9413DF21F8B602007E800A /* IQKeyboardManager.bundle in Resources */,
@@ -5268,6 +5277,7 @@
 				BB70254F2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m in Sources */,
 				BB44F87D22140AFB0034CAEC /* HXEasyCustomShareView.m in Sources */,
 				BBBFD7882222D7D300D377AC /* UILabel+JJImagePicker.m in Sources */,
+				BBD7796B2244DD390077E44D /* YXBindPhoneNextViewController.m in Sources */,
 				BBA812F721DDEBBB001B5EA1 /* SegmentTapView.m in Sources */,
 				BBCC4AA321E83DC000493F40 /* YXColorViewController.m in Sources */,
 				BB928F9721FB5D290090A044 /* BRAddressModel.m in Sources */,

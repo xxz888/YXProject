@@ -18,6 +18,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UserInfo *userInfo = curUser;
+
+    self.phoneTf.text = userInfo.mobile;
     //解决方案
     self.automaticallyAdjustsScrollViewInsets=false;
     self.edgesForExtendedLayout = UIRectEdgeNone;

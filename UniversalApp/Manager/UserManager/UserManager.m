@@ -69,12 +69,22 @@ SINGLETON_FOR_CLASS(UserManager);
 //                // 第三方平台SDK源数据
 //                NSLog(@"QQ originalResponse: %@", resp.originalResponse);
                 
+                NSString * cityName = [resp.originalResponse[@"province"] append:resp.originalResponse[@"city"]];
                 //登录参数
-                NSDictionary *params = @{@"openid":resp.openid, @"nickname":resp.name, @"photo":resp.iconurl, @"sex":[resp.unionGender isEqualToString:@"男"]?@1:@2, @"cityname":resp.originalResponse[@"city"], @"fr":@(loginType)};
-                
+                NSDictionary *params = @{@"third_type":@"1",
+                                         @"unique_id":resp.openid,
+                                         @"username":resp.name,
+                                         @"photo":resp.iconurl,
+                                         @"gender":[resp.unionGender isEqualToString:@"男"] ? @"1":@"0",
+                                         @"site":cityName
+                                         };
                 self.loginType = loginType;
-                //登录到服务器
-                [self loginToServer:params completion:completion];
+                
+                
+                //第三方回调完，开始请求到服务器
+                [self autoLoginToServer:params completion:completion];
+                
+                
             }
         }];
     }else{
@@ -101,15 +111,30 @@ SINGLETON_FOR_CLASS(UserManager);
 }
 
 #pragma mark ————— 自动登录到服务器 —————
--(void)autoLoginToServer:(loginBlock)completion{
-    [PPNetworkHelper POST:NSStringFormat(@"%@%@",API_ROOT_URL_HTTP_FORMAL,URL_user_auto_login) parameters:nil success:^(id responseObject) {
-        [self LoginSuccess:responseObject completion:completion];
-        
-    } failure:^(NSError *error) {
-        if (completion) {
-            completion(NO,error.localizedDescription);
+-(void)autoLoginToServer:(NSDictionary *)params completion:(loginBlock)completion{
+    kWeakSelf(self);
+    [YX_MANAGER requestPostThird_party:params success:^(id object) {
+        [MBProgressHUD hideHUD];
+        if ([object[@"message"] isEqualToString:@"第一次登录,请绑定手机号."]) {
+            if (completion) {
+                completion(NO,object[@"unique_id"]);
+            }
+        }else{
+            [weakself LoginSuccess:object completion:completion];
         }
     }];
+    
+    
+    
+    
+//    [PPNetworkHelper POST:NSStringFormat(@"%@%@",API_ROOT_URL_HTTP_FORMAL,URL_user_auto_login) parameters:nil success:^(id responseObject) {
+//        [self LoginSuccess:responseObject completion:completion];
+//
+//    } failure:^(NSError *error) {
+//        if (completion) {
+//            completion(NO,error.localizedDescription);
+//        }
+//    }];
 }
 
 #pragma mark ————— 登录成功处理 —————
@@ -185,6 +210,8 @@ SINGLETON_FOR_CLASS(UserManager);
 }
 #pragma mark ————— 退出登录 —————
 - (void)logout:(void (^)(BOOL, NSString *))completion{
+    [[AppDelegate shareAppDelegate].mainTabBar setSelectedIndex:0];
+
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
     [[UIApplication sharedApplication] unregisterForRemoteNotifications];
@@ -203,7 +230,7 @@ SINGLETON_FOR_CLASS(UserManager);
             completion(YES,nil);
         }
     }];
-    
     KPostNotification(KNotificationLoginStateChange, @NO);
+
 }
 @end

@@ -116,6 +116,7 @@
     self.headerView.scrollImgArray = [NSMutableArray arrayWithArray:self.scrollImgArray];
     kWeakSelf(self);
     self.headerView.scrollImgBlock = ^(NSInteger index) {
+        return;
         YXHomeNewsDetailViewController * VC = [YXHomeNewsDetailViewController alloc];
         NSDictionary * dic = weakself.scrollImgArray[index];
         VC.webDic =[NSMutableDictionary dictionaryWithDictionary:dic];
@@ -151,6 +152,7 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     YXHomeNewsDetailViewController * VC = [YXHomeNewsDetailViewController alloc];
     VC.webDic =[NSMutableDictionary dictionaryWithDictionary:self.informationArray[indexPath.row]];
     [self.navigationController pushViewController:VC animated:YES];

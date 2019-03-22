@@ -56,7 +56,32 @@
   
 }
 - (IBAction)exitAppAction:(id)sender {
-    [userManager logout:nil];
+    [self.navigationController popViewControllerAnimated:NO];
+    kWeakSelf(self);
+    [userManager logout:^(BOOL success, NSString *des) {
+    }];
+}
+
+-(void)jumpVC:(UIViewController *)vc{
+    NSArray *vcs = self.navigationController.viewControllers;
+    NSMutableArray *newVCS = [NSMutableArray array];
+    if ([vcs count] > 0) {
+        for (int i=0; i < [vcs count]-1; i++) {
+            [newVCS addObject:[vcs objectAtIndex:i]];
+        }
+    }
+    [newVCS addObject:vc];
+    [self.navigationController setViewControllers:newVCS animated:YES];
+    
+}
+-(void)closeViewAAA{
+    UIViewController *controller = self;
+    while(controller.presentingViewController != nil){
+        controller = controller.presentingViewController;
+    }
+    [controller dismissViewControllerAnimated:NO completion:^{
+
+    }];
 }
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
