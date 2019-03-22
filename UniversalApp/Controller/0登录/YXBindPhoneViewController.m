@@ -18,13 +18,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-
+    self.closeBtn.hidden = self.whereCome;
     self.phoneTf.layer.masksToBounds = YES;
     self.phoneTf.layer.cornerRadius = 3;
     self.codeTf.layer.masksToBounds = YES;
     self.codeTf.layer.cornerRadius = 3;
-    self.getMes_codeBtn.backgroundColor = [UIColor colorWithRed:84 / 255.0 green:180 / 255.0 blue:98 / 255.0 alpha:1.0f];
+    ViewBorderRadius(self.getMes_codeBtn, 5, 1, A_COlOR);
     [self.getMes_codeBtn addTarget:self action:@selector(getSms_CodeAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    ViewBorderRadius(self.phoneTf, 2, 1, KDarkGaryColor);
+    ViewBorderRadius(self.codeTf, 2, 1,KDarkGaryColor);
+    self.title = @"更换手机号";
 }
 - (void)getSms_CodeAction{
     [YX_MANAGER requestSmscodeGET:self.phoneTf.text success:^(id object) {
@@ -47,4 +51,9 @@
 }
 */
 
+- (IBAction)closeAction:(id)sender {
+}
+
+- (IBAction)bindAction:(id)sender {
+}
 @end

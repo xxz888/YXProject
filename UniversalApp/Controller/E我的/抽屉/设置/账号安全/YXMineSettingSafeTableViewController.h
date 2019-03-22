@@ -12,6 +12,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXMineSettingSafeTableViewController : RootTableViewController
+@property (weak, nonatomic) IBOutlet UITextField *phoneTf;
+@property (weak, nonatomic) IBOutlet UITextField *wxAccTf;
+@property (weak, nonatomic) IBOutlet UITextField *wbTf;
 
 @end
 

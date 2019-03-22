@@ -35,10 +35,12 @@
     return [super tableView:tableView numberOfRowsInSection:section];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //账号与安全
     if (indexPath.section == 0 && indexPath.row == 1) {
         UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
         YXMineSettingSafeTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineSettingSafeTableViewController"];
         [self.navigationController pushViewController:VC animated:YES];
+    //个人资料
     }else if (indexPath.section == 0 && indexPath.row == 0){
         UserInfo * userInfo= curUser;
         [YX_MANAGER requestGetUserothers:userInfo.id success:^(id object) {

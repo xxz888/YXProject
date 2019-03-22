@@ -7,6 +7,7 @@
 //
 
 #import "YXMineSettingSafeTableViewController.h"
+#import "YXBindPhoneViewController.h"
 
 @interface YXMineSettingSafeTableViewController ()
 
@@ -34,7 +35,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [super tableView:tableView numberOfRowsInSection:section];
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        YXBindPhoneViewController * VC = [[YXBindPhoneViewController alloc]init];
+        VC.whereCome = YES;
+        [self.navigationController pushViewController:VC animated:YES];
+    }
+}
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
