@@ -24,6 +24,8 @@
 #import "YXMineSettingTableViewController.h"
 #import "YXMineMyCaoGaoViewController.h"
 #import "YXMineMyDianZanViewController.h"
+#import "YXMineFindViewController.h"
+
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
 
 static CGFloat const HeaderImageViewHeight =240;
@@ -297,9 +299,6 @@ static CGFloat const HeaderImageViewHeight =240;
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView.tag == 9000) {
-        if (indexPath.row == 3) {
-            return 0;
-        }
         return 50;
     }
     return SCREEN_HEIGHT;
@@ -464,12 +463,12 @@ static CGFloat const HeaderImageViewHeight =240;
             YXMineMyCaoGaoViewController * VC = [[YXMineMyCaoGaoViewController alloc]init];
             [self.navigationController pushViewController:VC animated:YES];
         }else if(indexPath.row == 3){
-            //[QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
+            YXMineFindViewController * VC = [[YXMineFindViewController alloc]init];
+            [self.navigationController pushViewController:VC animated:YES];
         }else if (indexPath.row == 4) {
             YXMineMyCollectionViewController * VC = [[YXMineMyCollectionViewController alloc]init];
             [self.navigationController pushViewController:VC animated:YES];
         } else if (indexPath.row == 5){
-            //[QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
             YXMineMyDianZanViewController * VC = [[YXMineMyDianZanViewController alloc]init];
             [self.navigationController pushViewController:VC animated:YES];
         }else if (indexPath.row == 6){
