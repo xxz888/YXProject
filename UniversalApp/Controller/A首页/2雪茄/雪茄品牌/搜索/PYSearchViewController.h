@@ -428,4 +428,5 @@ didSelectSearchSuggestionAtIndex:(NSInteger)index
                                searchBarPlaceholder:(NSString *)placeholder
                                      didSearchBlock:(PYDidSearchBlock)block;
 - (void)cancelDidClick;
+-(void)emptySearchHistoryDidClick;
 @end

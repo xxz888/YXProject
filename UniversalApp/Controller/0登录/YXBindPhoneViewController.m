@@ -53,7 +53,7 @@
         [QMUITips showError:@"请输入正确的手机号"];
         return;
     }
-    NSString * par = [NSString stringWithFormat:@"%@/%@/",self.phoneTf.text,self.whereCome ? @"3" : @"4"];
+    NSString * par = [NSString stringWithFormat:@"%@/%@/",self.phoneTf.text,self.whereCome ? @"3" : @"2"];
     [YX_MANAGER requestSmscodeGET:par success:^(id object) {
         [QMUITips showSucceed:@"验证码发送成功" inView:self.view hideAfterDelay:2];
         [self.getMes_codeBtn startWithTime:180

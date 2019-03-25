@@ -1180,9 +1180,10 @@
         line.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [cell.contentView addSubview:line];
     }
-    
-    cell.imageView.image = [NSBundle py_imageNamed:@"search_history"];
-    cell.textLabel.text = self.searchHistories[indexPath.row];
+        cell.imageView.image = [NSBundle py_imageNamed:@"search_history"];
+        cell.textLabel.text = self.searchHistories[indexPath.row];
+
+
     
     return cell;
 }

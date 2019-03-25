@@ -30,5 +30,6 @@
  */
 + (void)showUpdateAlertWithVersion:(NSString *)version Description:(NSString *)description focTag:(BOOL)tagBOOl;
 +(void)hiddenCancelButton;
++ (void)returnUpdateVersio;
 
 @end

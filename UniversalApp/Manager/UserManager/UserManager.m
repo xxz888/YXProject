@@ -222,7 +222,7 @@ SINGLETON_FOR_CLASS(UserManager);
     
     self.curUserInfo = nil;
     self.isLogined = NO;
-
+    YX_MANAGER.isClear = NO;
 //    //移除缓存
     YYCache *cache = [[YYCache alloc]initWithName:KUserCacheName];
     [cache removeAllObjectsWithBlock:^{

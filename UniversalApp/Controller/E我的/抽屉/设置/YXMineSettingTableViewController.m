@@ -9,6 +9,8 @@
 #import "YXMineSettingTableViewController.h"
 #import "YXMineSettingSafeTableViewController.h"
 #import "YXHomeEditPersonTableViewController.h"
+#import "YXMineTongYongTableViewController.h"
+
 @interface YXMineSettingTableViewController ()
 
 @end
@@ -35,25 +37,47 @@
     return [super tableView:tableView numberOfRowsInSection:section];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //账号与安全
-    if (indexPath.section == 0 && indexPath.row == 1) {
-        UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
-        YXMineSettingSafeTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineSettingSafeTableViewController"];
-        [self.navigationController pushViewController:VC animated:YES];
-    //个人资料
-    }else if (indexPath.section == 0 && indexPath.row == 0){
-        UserInfo * userInfo= curUser;
-        [YX_MANAGER requestGetUserothers:userInfo.id success:^(id object) {
-            UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
-            YXHomeEditPersonTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXHomeEditPersonTableViewController"];
-            VC.userInfoDic = [NSDictionary dictionaryWithDictionary:[NSDictionary dictionaryWithDictionary:object]];
-            [self.navigationController pushViewController:VC animated:YES];
-        }];
- 
-    }else{
-        //[QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
+    UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+
+    switch (indexPath.section) {
+        case 0:
+            //账号与安全
+            if (indexPath.row == 0) {
+                UserInfo * userInfo= curUser;
+                [YX_MANAGER requestGetUserothers:userInfo.id success:^(id object) {
+                    YXHomeEditPersonTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXHomeEditPersonTableViewController"];
+                    VC.userInfoDic = [NSDictionary dictionaryWithDictionary:[NSDictionary dictionaryWithDictionary:object]];
+                    [self.navigationController pushViewController:VC animated:YES];
+                }];
+            //个人资料
+            }else if (indexPath.row == 1) {
+                YXMineSettingSafeTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineSettingSafeTableViewController"];
+                [self.navigationController pushViewController:VC animated:YES];
+            }else if (indexPath.row == 2){
+                YXMineTongYongTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineTongYongTableViewController"];
+                [self.navigationController pushViewController:VC animated:YES];
+            }else if (indexPath.row == 3){
+                
+            }else if (indexPath.row == 4){
+                
+            }else if (indexPath.row == 5){
+                
+            }
+                
+            break;
+        case 1:
+            //去appstore评分
+            if (indexPath.row == 0) {
+                [ShareManager returnUpdateVersion];
+            //关于我们
+            }else if (indexPath.row == 1){
+                
+            }
+            break;
+            
+        default:
+            break;
     }
-  
 }
 - (IBAction)exitAppAction:(id)sender {
     [self.navigationController popViewControllerAnimated:NO];

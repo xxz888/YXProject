@@ -50,4 +50,5 @@ SINGLETON_FOR_HEADER(ShareManager)
 + (void)updateApp;
 +(void)upDataPersionIP;
 +(Moment *)setTestInfo:(NSDictionary *)dic;
++ (void)returnUpdateVersion;
 @end

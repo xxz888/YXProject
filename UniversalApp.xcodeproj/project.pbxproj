@@ -499,6 +499,7 @@
 		BBD30CF321E5F7C5000D3244 /* YXHomeLastDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD30CF221E5F7C5000D3244 /* YXHomeLastDetailView.xib */; };
 		BBD7796B2244DD390077E44D /* YXBindPhoneNextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD779682244DD380077E44D /* YXBindPhoneNextViewController.m */; };
 		BBD7796C2244DD390077E44D /* YXBindPhoneNextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD7796A2244DD380077E44D /* YXBindPhoneNextViewController.xib */; };
+		BBD7796F22487DA60077E44D /* YXMineTuiSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD7796E22487DA60077E44D /* YXMineTuiSongViewController.m */; };
 		BBDA2C5E21EB308100EDCCFF /* SDDiscoverTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBDA2C3B21EB308100EDCCFF /* SDDiscoverTableViewController.storyboard */; };
 		BBDA2C5F21EB308100EDCCFF /* SDDiscoverTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDA2C3C21EB308100EDCCFF /* SDDiscoverTableViewController.m */; };
 		BBDA2C6021EB308100EDCCFF /* SDDiscoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDA2C3F21EB308100EDCCFF /* SDDiscoverTableViewCell.m */; };
@@ -1451,6 +1452,8 @@
 		BBD779682244DD380077E44D /* YXBindPhoneNextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXBindPhoneNextViewController.m; sourceTree = "<group>"; };
 		BBD779692244DD380077E44D /* YXBindPhoneNextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXBindPhoneNextViewController.h; sourceTree = "<group>"; };
 		BBD7796A2244DD380077E44D /* YXBindPhoneNextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YXBindPhoneNextViewController.xib; sourceTree = "<group>"; };
+		BBD7796D22487DA60077E44D /* YXMineTuiSongViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineTuiSongViewController.h; sourceTree = "<group>"; };
+		BBD7796E22487DA60077E44D /* YXMineTuiSongViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineTuiSongViewController.m; sourceTree = "<group>"; };
 		BBDA2C3B21EB308100EDCCFF /* SDDiscoverTableViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SDDiscoverTableViewController.storyboard; sourceTree = "<group>"; };
 		BBDA2C3C21EB308100EDCCFF /* SDDiscoverTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDDiscoverTableViewController.m; sourceTree = "<group>"; };
 		BBDA2C3D21EB308100EDCCFF /* SDDiscoverTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDiscoverTableViewController.h; sourceTree = "<group>"; };
@@ -2673,6 +2676,8 @@
 			children = (
 				BB928F9B21FBFFD40090A044 /* YXMineTongYongTableViewController.h */,
 				BB928F9C21FBFFD40090A044 /* YXMineTongYongTableViewController.m */,
+				BBD7796D22487DA60077E44D /* YXMineTuiSongViewController.h */,
+				BBD7796E22487DA60077E44D /* YXMineTuiSongViewController.m */,
 			);
 			path = "通用";
 			sourceTree = "<group>";
@@ -5189,6 +5194,7 @@
 				BB3DFE8B221D568D000C70B5 /* UICollectionView+XHWebImageAutoSize.m in Sources */,
 				BBD2C98521E1BC0A00350DCD /* PYSearchConst.m in Sources */,
 				BBDA2C6621EB308100EDCCFF /* SDTimeLineTableHeaderView.m in Sources */,
+				BBD7796F22487DA60077E44D /* YXMineTuiSongViewController.m in Sources */,
 				BBD2C83B21E0F44A00350DCD /* UIImageView+CircularImv.m in Sources */,
 				BBDA2D0221EB30BF00EDCCFF /* SDContactModel.m in Sources */,
 				BBD2C98221E1BC0A00350DCD /* UIColor+PYSearchExtension.m in Sources */,
@@ -5547,7 +5553,6 @@
 			baseConfigurationReference = A51AB222BA7ACF202B5B1330 /* Pods-UniversalApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V458Z29RD7;
@@ -5583,7 +5588,6 @@
 			baseConfigurationReference = 14ED69325E9FD4BDB1CA95F8 /* Pods-UniversalApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V458Z29RD7;

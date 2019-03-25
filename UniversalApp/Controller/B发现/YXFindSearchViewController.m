@@ -20,6 +20,7 @@
 //    self.navigationController.navigationBar.topItem.title = @"";
     self.navigationController.navigationBar.translucent = NO;
     
+    
 
 }
 

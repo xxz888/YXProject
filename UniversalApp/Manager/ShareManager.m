@@ -605,4 +605,10 @@ SINGLETON_FOR_CLASS(ShareManager);
     [moment setValue:commentList forKey:@"commentList"];
     return moment;
 }
+/**  */
++ (void)returnUpdateVersion
+{
+    NSString *str = [NSString stringWithFormat:@"http://itunes.apple.com/app/id%@", UPDATE_App_ID];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+}
 @end
