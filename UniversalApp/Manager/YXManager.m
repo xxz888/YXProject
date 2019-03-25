@@ -808,7 +808,13 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
-
+#pragma mark ========== 绑定第三方 ==========
+-(void)requestPostBinding_Accparty:YX_BLOCK{
+    NSString * url = @"/users/bind_third_party/";
+    [HTTP_POST(url) Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

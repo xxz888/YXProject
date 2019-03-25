@@ -38,7 +38,42 @@
     self.title = @"账号安全";
     self.tableView.tableFooterView = [[UIView alloc]init];
 }
-
+-(void)bingAction{
+    [MBProgressHUD showActivityMessageInView:@"授权中..."];
+    [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_WechatSession currentViewController:nil completion:^(id result, NSError *error) {
+        if (error) {
+            [MBProgressHUD hideHUD];
+        } else {
+            
+            UMSocialUserInfoResponse *resp = result;
+            //
+            //                // 授权信息
+            //                NSLog(@"QQ uid: %@", resp.uid);
+            //                NSLog(@"QQ openid: %@", resp.openid);
+            //                NSLog(@"QQ accessToken: %@", resp.accessToken);
+            //                NSLog(@"QQ expiration: %@", resp.expiration);
+            //
+            //                // 用户信息
+            //                NSLog(@"QQ name: %@", resp.name);
+            //                NSLog(@"QQ iconurl: %@", resp.iconurl);
+            //                NSLog(@"QQ gender: %@", resp.unionGender);
+            //
+            //                // 第三方平台SDK源数据
+            //                NSLog(@"QQ originalResponse: %@", resp.originalResponse);
+            
+            NSString * cityName = [resp.originalResponse[@"province"] append:resp.originalResponse[@"city"]];
+            //登录参数
+            NSDictionary *params = @{@"third_type":@"1",
+                                     @"third_name":resp.name,
+                                     @"unique_id":resp.openid,
+                                     };
+            [YX_MANAGER requestPostBinding_Accparty:params success:^(id object) {
+                [QMUITips showSucceed:@"绑定成功"];
+            }];
+            
+        }
+    }];
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -53,6 +88,10 @@
         YXBindPhoneViewController * VC = [[YXBindPhoneViewController alloc]init];
         VC.whereCome = YES;
         [self.navigationController pushViewController:VC animated:YES];
+    }else if (indexPath.row == 1){
+        if ([self.wxAccTf.text isEqualToString:@"未绑定"]) {
+            [self bingAction];
+        }
     }
 }
 /*

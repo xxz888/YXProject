@@ -257,4 +257,6 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestChange_mobile:YX_BLOCK;
 #pragma mark ========== 获取用户协议 ==========
 -(void)requestAgreement:YX_BLOCK;
+#pragma mark ========== 绑定第三方 ==========
+-(void)requestPostBinding_Accparty:YX_BLOCK;
 @end
