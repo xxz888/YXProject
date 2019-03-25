@@ -800,6 +800,15 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
+
+#pragma mark ========== 获取用户协议 ==========
+-(void)requestAgreement:YX_BLOCK{
+    NSString * url = @"/pub/agreement/";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

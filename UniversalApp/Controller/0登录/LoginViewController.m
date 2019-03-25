@@ -12,9 +12,13 @@
 #import "UIButton+CountDown.h"
 #import "UDPManage.h"
 #import "YXBindPhoneViewController.h"
+#import "YXLoginXieYiViewController.h"
+
 @interface LoginViewController ()
 //1 播放器
 @property (strong, nonatomic) AVPlayer *player;
+- (IBAction)btn1Action:(id)sender;
+- (IBAction)btn2Action:(id)sender;
 @property(nonatomic,strong)QMUIButton * button;
 @end
 
@@ -159,6 +163,20 @@
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playToEnd) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
     }
     return _player;
+}
+
+- (IBAction)btn1Action:(id)sender {
+    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+    YXLoginXieYiViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXLoginXieYiViewController"];
+    VC.type = @"1";
+    [self.navigationController pushViewController:VC animated:YES];
+}
+
+- (IBAction)btn2Action:(id)sender {
+    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+    YXLoginXieYiViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXLoginXieYiViewController"];
+    VC.type = @"2";
+    [self.navigationController pushViewController:VC animated:YES];
 }
 - (IBAction)loginAction:(id)sender {
     kWeakSelf(self);

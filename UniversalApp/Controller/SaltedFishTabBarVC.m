@@ -145,8 +145,8 @@ static NSInteger lastIdx = 0;
     }
     
     if (index == 2) { // 发布
-       // [self.axcTabBar setSelectIndex:lastIdx WithAnimation:NO]; // 换回上一个选中状态
-        self.axcTabBar.selectIndex = 0; // 不去切换TabBar的选中状态
+        [self.axcTabBar setSelectIndex:lastIdx WithAnimation:NO]; // 换回上一个选中状态
+       // self.axcTabBar.selectIndex = 0; // 不去切换TabBar的选中状态
         NSLog(@"点击发布按钮->");
         
         XWPopMenuController *vc = [[XWPopMenuController alloc]init];

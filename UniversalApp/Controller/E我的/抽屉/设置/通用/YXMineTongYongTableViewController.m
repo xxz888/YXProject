@@ -73,7 +73,7 @@
                     [QMUITips showSucceed:@"清除成功"];
                     NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
                     
-                    self.cacheLbl.text = [self getCacheSizeWithFilePath:docPath];
+                    self.cacheLbl.text = @"";
                 }];
                 QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"" message:@"确定要清除缓存" preferredStyle:QMUIAlertControllerStyleActionSheet];
                 [alertController addAction:action1];
