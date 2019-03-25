@@ -11,6 +11,12 @@
 #import "SDCycleScrollView.h"
 #import "MMImagePreviewView.h"
 #import "Moment.h"
+#import <UShareUI/UShareUI.h>
+#import "UIColor+MyColor.h"
+#import "MMImageListView.h"
+#import "SELUpdateAlert.h"
+#import "UDPManage.h"
+#import "Comment.h"
 /**
  分享 相关服务
  */
@@ -25,7 +31,7 @@ SINGLETON_FOR_HEADER(ShareManager)
  */
 -(void)showShareView;
 //获取当前时间戳  （以毫秒为单位）
-
+- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType;
 +(NSString *)getNowTimeTimestamp3;
 #pragma mark - 将某个时间戳转化成 时间
 +(NSString *)getNowTimeMiaoShu;

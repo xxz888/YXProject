@@ -13,9 +13,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    ViewBorderRadius(self.guanzhuBtn, 12, 1, A_COlOR);
-    self.guanzhuBtn.layer.masksToBounds = YES;
-    self.guanzhuBtn.layer.cornerRadius = self.guanzhuBtn.frame.size.width / 2.0;
+    ViewBorderRadius(self.guanzhuBtn, 13, 1, A_COlOR);
+    self.titleImv.layer.masksToBounds = YES;
+    self.titleImv.layer.cornerRadius = self.titleImv.frame.size.width / 2.0;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

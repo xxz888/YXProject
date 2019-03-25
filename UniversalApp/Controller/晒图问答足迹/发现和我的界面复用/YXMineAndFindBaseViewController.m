@@ -414,7 +414,7 @@
 #pragma mark ========== 分享 ==========
 - (void)addGuanjiaShareViewIsOwn:(BOOL)isOwn isWho:(NSString *)isWho tag:(NSInteger)tagId{
     NSMutableArray * shareAry = [NSMutableArray arrayWithObjects:
-                                 @{@"image":@"shareView_wx",
+                                 @{@"image":@"raiders_weichat",
                                    @"title":@"微信"},
                                  @{@"image":@"shareView_friend",
                                    @"title":@"朋友圈"},
@@ -471,6 +471,12 @@
     [shareView tappedCancel];
     NSLog(@"当前点击:%@",title);
     kWeakSelf(self);
+    if ([title isEqualToString:@"微信"]) {
+        [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatSession];
+    }
+    if ([title isEqualToString:@"朋友圈"]) {
+        [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine];
+    }
     if ([title isEqualToString:@"删除"]) {
         if ([shareView.isWho isEqualToString:@"1"]) {
             [YX_MANAGER requestDel_ShaiTU:NSIntegerToNSString(shareView.tag) success:^(id object) {

@@ -42,7 +42,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSH-4I-Rda">
-                                <rect key="frame" x="210" y="12.5" width="75" height="25"/>
+                                <rect key="frame" x="205" y="12.5" width="75" height="25"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="8pe-MF-zIo"/>
@@ -61,9 +61,6 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="guanzhuAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="sKk-Xo-yXa"/>
@@ -101,7 +98,7 @@
                             <constraint firstItem="VSb-xt-hzI" firstAttribute="leading" secondItem="iQV-I9-hkg" secondAttribute="leading" constant="10" id="dhc-Wl-4na"/>
                             <constraint firstItem="kHF-kN-9d6" firstAttribute="height" secondItem="iQV-I9-hkg" secondAttribute="height" id="gK8-l9-GUW"/>
                             <constraint firstItem="aih-ul-JxF" firstAttribute="bottom" secondItem="Av6-PS-2tZ" secondAttribute="bottom" id="gOt-8g-5cx"/>
-                            <constraint firstItem="kHF-kN-9d6" firstAttribute="leading" secondItem="uSH-4I-Rda" secondAttribute="trailing" id="hfF-0S-YQT"/>
+                            <constraint firstItem="kHF-kN-9d6" firstAttribute="leading" secondItem="uSH-4I-Rda" secondAttribute="trailing" constant="5" id="hfF-0S-YQT"/>
                             <constraint firstItem="rm1-d6-GO1" firstAttribute="leading" secondItem="Av6-PS-2tZ" secondAttribute="trailing" constant="10" id="izX-Iu-9LT"/>
                             <constraint firstItem="aih-ul-JxF" firstAttribute="leading" secondItem="rm1-d6-GO1" secondAttribute="leading" id="lec-BN-Zck"/>
                             <constraint firstItem="Av6-PS-2tZ" firstAttribute="leading" secondItem="iQV-I9-hkg" secondAttribute="leading" constant="20" id="vYT-Qd-Bye"/>
@@ -121,7 +118,7 @@
                 <outlet property="titleImv" destination="Av6-PS-2tZ" id="clW-qa-TAX"/>
                 <outlet property="titleLbl" destination="rm1-d6-GO1" id="ZcT-ga-6cj"/>
             </connections>
-            <point key="canvasLocation" x="129.59999999999999" y="155.62218890554723"/>
+            <point key="canvasLocation" x="-229" y="269"/>
         </tableViewCell>
     </objects>
     <resources>

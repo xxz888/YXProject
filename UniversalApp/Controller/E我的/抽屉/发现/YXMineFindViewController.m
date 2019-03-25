@@ -23,7 +23,7 @@
     self.yxTableView.separatorStyle = 0;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return 0;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 50;
@@ -34,9 +34,12 @@
     return cell;
 }
 - (IBAction)wechat1:(id)sender {
-    
+    [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatSession];
 }
 - (IBAction)wechat2:(id)sender {
+    [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine];
+
+    
 }
 - (IBAction)wechat3:(id)sender {
 }

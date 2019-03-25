@@ -7,12 +7,7 @@
 //
 
 #import "ShareManager.h"
-#import <UShareUI/UShareUI.h>
-#import "UIColor+MyColor.h"
-#import "MMImageListView.h"
-#import "SELUpdateAlert.h"
-#import "UDPManage.h"
-#import "Comment.h"
+
 @implementation ShareManager
 
 SINGLETON_FOR_CLASS(ShareManager);
@@ -31,10 +26,11 @@ SINGLETON_FOR_CLASS(ShareManager);
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     
     //创建网页内容对象
-    NSString* thumbURL =  @"https://mobile.umeng.com/images/pic/home/social/img-1.png";
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"欢迎使用【友盟+】社会化组件U-Share" descr:@"欢迎使用【友盟+】社会化组件U-Share，SDK包最小，集成成本最低，助力您的产品开发、运营与推广！" thumImage:thumbURL];
+//    NSString* thumbURL =  @"https://mobile.umeng.com/images/pic/home/social/img-1.png";
+    UIImage * thumbURL = [UIImage imageNamed:@"appicon"];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"The Good Life，分享美好生活方式的平台。" descr:@"为雪茄爱好者提供专业的相关知识及资讯，内容包括雪茄产品库，雪茄文化，品鉴足迹等丰富内容！" thumImage:thumbURL];
     //设置网页地址
-    shareObject.webpageUrl = @"http://mobile.umeng.com/social";
+    shareObject.webpageUrl = @"http://www.thegdlife.com/jumpMarket.html";
     
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;
@@ -55,7 +51,7 @@ SINGLETON_FOR_CLASS(ShareManager);
                 UMSocialLogInfo(@"response data is %@",data);
             }
         }
-        [self alertWithError:error];
+        //[self alertWithError:error];
     }];
 }
 
@@ -63,7 +59,7 @@ SINGLETON_FOR_CLASS(ShareManager);
 {
     NSString *result = nil;
     if (!error) {
-        result = [NSString stringWithFormat:@"Share succeed"];
+        result = [NSString stringWithFormat:@"分享成功"];
     }
     else{
         NSMutableString *str = [NSMutableString string];
@@ -79,10 +75,10 @@ SINGLETON_FOR_CLASS(ShareManager);
             result = [NSString stringWithFormat:@"Share fail"];
         }
     }
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"share"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享"
                                                     message:result
                                                    delegate:nil
-                                          cancelButtonTitle:NSLocalizedString(@"sure", @"确定")
+                                          cancelButtonTitle:NSLocalizedString(@"确定", @"确定")
                                           otherButtonTitles:nil];
     [alert show];
 }
