@@ -10,7 +10,9 @@
 #import "SDCycleScrollView.h"
 #import "QMUITextView.h"
 
-@interface YXHomeXueJiaPeiJianLastDetailViewController ()<SDCycleScrollViewDelegate>
+@interface YXHomeXueJiaPeiJianLastDetailViewController ()<SDCycleScrollViewDelegate,UIWebViewDelegate>{
+    CGFloat tagHeight;
+}
 @property(nonatomic, strong) QMUITextView * qmuiTextView;
 @property(nonatomic, strong) QMUITextView * spxxqmuiTextView;
 
@@ -20,55 +22,94 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets=false;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    self.tableView.tableFooterView = [[UIView alloc]init];
     self.title = self.dic[@"name"];
     
     [self setUpSycleScrollView:[NSArray arrayWithArray:self.dic[@"photo_list"]]];
-    
-    [self shangpinxinxi];
-    [self goumaixuzhi];
+
     
     self.priceLbl.text = [kGet2fDouble([self.dic[@"price"] doubleValue]) concate:@"¥ "];
     self.titleLbl.text = self.dic[@"name"];
+    
+    
+    
+    //获取bundlePath 路径
+    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
+    //获取本地html目录 basePath
+    NSString *basePath = [NSString stringWithFormat:@"%@/%@",bundlePath,@"html"];
+    //获取本地html目录 baseUrl
+    NSURL *baseUrl = [NSURL fileURLWithPath: basePath isDirectory: YES];
+    //显示内容
+    if (self.dic[@"info"] && [self.dic[@"info"] length] > 0) {
+        [self.webView loadHTMLString:[self adaptWebViewForHtml:self.dic[@"info"]] baseURL: baseUrl];
+    }
+    
+}
+- (void)webViewDidFinishLoad:(UIWebView *)wb{
+    tagHeight = [[wb stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
+    [self.tableView reloadData];
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return tagHeight;
+}
+//HTML适配图片文字
+- (NSString *)adaptWebViewForHtml:(NSString *) htmlStr{
+    
+    NSMutableString *headHtml = [[NSMutableString alloc] initWithCapacity:0];
+    [headHtml appendString : @"<html>" ];
+    
+    [headHtml appendString : @"<head>" ];
+    
+    [headHtml appendString : @"<meta charset=\"utf-8\">" ];
+    
+    [headHtml appendString : @"<meta id=\"viewport\" name=\"viewport\" content=\"width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=false\" />" ];
+    
+    [headHtml appendString : @"<meta name=\"apple-mobile-web-app-capable\" content=\"yes\" />" ];
+    
+    [headHtml appendString : @"<meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black\" />" ];
+    
+    [headHtml appendString : @"<meta name=\"black\" name=\"apple-mobile-web-app-status-bar-style\" />" ];
+    
+    //适配图片宽度，让图片宽度等于屏幕宽度
+    //[headHtml appendString : @"<style>img{width:100%;}</style>" ];
+    //[headHtml appendString : @"<style>img{height:auto;}</style>" ];
+    
+    //适配图片宽度，让图片宽度最大等于屏幕宽度
+    //    [headHtml appendString : @"<style>img{max-width:100%;width:auto;height:auto;}</style>"];
+    
+    
+    //适配图片宽度，如果图片宽度超过手机屏幕宽度，就让图片宽度等于手机屏幕宽度，高度自适应，如果图片宽度小于屏幕宽度，就显示图片大小
+    [headHtml appendString : @"<script type='text/javascript'>"
+     "window.onload = function(){\n"
+     "var maxwidth=document.body.clientWidth;\n" //屏幕宽度
+     "for(i=0;i <document.images.length;i++){\n"
+     "var myimg = document.images[i];\n"
+     "if(myimg.width > maxwidth){\n"
+     "myimg.style.width = '100%';\n"
+     "myimg.style.height = 'auto'\n;"
+     "}\n"
+     "}\n"
+     "}\n"
+     "</script>\n"];
+    
+    [headHtml appendString : @"<style>table{width:100%;}</style>" ];
+    [headHtml appendString : @"<title>webview</title>" ];
+    NSString *bodyHtml;
+    bodyHtml = [NSString stringWithString:headHtml];
+    bodyHtml = [bodyHtml stringByAppendingString:htmlStr];
+    return bodyHtml;
     
 }
 -(void)shangpinxinxi{
     self.shangpinxinxiLbl.numberOfLines = 0;
     self.shangpinxinxiLbl.lineBreakMode = UILineBreakModeWordWrap;
     NSString *str = [self.dic[@"info"] stringByReplacingOccurrencesOfString: @"\\n" withString:@"\n"];
-
     self.shangpinxinxiLbl.text = str ;
-//    self.spxxqmuiTextView = [[QMUITextView alloc] init];
-//    self.spxxqmuiTextView.frame = CGRectMake(0, 0, self.shangpinxinxiView.frame.size.width, self.shangpinxinxiView.frame.size.height);
-//    self.spxxqmuiTextView.backgroundColor =KWhiteColor;
-//    self.spxxqmuiTextView.font = UIFontMake(13);
-//    self.spxxqmuiTextView.text = self.dic[@"info"];
-//    //    self.qmuiTextView.textContainerInset = UIEdgeInsetsMake(16, 12, 16, 12);
-//
-//    self.spxxqmuiTextView.text = [NSString stringWithFormat:@"%@",[self.dic[@"info"] stringByReplacingOccurrencesOfString:@"\n" withString:@" \r\n"]];
-////    self.spxxqmuiTextView.text.numberOfLines = 0;//自动换行
-//    self.spxxqmuiTextView.layer.cornerRadius = 8;
-//    self.spxxqmuiTextView.clipsToBounds = YES;
-//    [self.spxxqmuiTextView becomeFirstResponder];
-//    [self.shangpinxinxiView addSubview:self.spxxqmuiTextView];
-//    self.spxxqmuiTextView.userInteractionEnabled = NO;
-}
--(void)goumaixuzhi{
-    self.goumaixuzhiLbl.numberOfLines = 0;
-    self.goumaixuzhiLbl.lineBreakMode = UILineBreakModeWordWrap;
-    NSString *str = [self.dic[@"notice"] stringByReplacingOccurrencesOfString: @"\\n" withString:@"\n"];
-
-        self.goumaixuzhiLbl.text = str ;
-//    self.qmuiTextView = [[QMUITextView alloc] init];
-//    self.qmuiTextView.frame = CGRectMake(0, 0, self.goumaixuzhiView.frame.size.width, self.goumaixuzhiView.frame.size.height);
-//    self.qmuiTextView.backgroundColor =KWhiteColor;
-//    self.qmuiTextView.font = UIFontMake(13);
-//    self.qmuiTextView.text = self.dic[@"notice"];
-//    //    self.qmuiTextView.textContainerInset = UIEdgeInsetsMake(16, 12, 16, 12);
-//    self.qmuiTextView.layer.cornerRadius = 8;
-//    self.qmuiTextView.clipsToBounds = YES;
-//    [self.qmuiTextView becomeFirstResponder];
-//    [self.goumaixuzhiView addSubview:self.qmuiTextView];
-//    self.qmuiTextView.userInteractionEnabled = NO;
+    
+    
     
 }
 //添加轮播图
@@ -80,9 +121,9 @@
     for (NSDictionary * dic in imageArray) {
         [photoArray addObject:dic[@"photo"]];
     }
-    SDCycleScrollView *cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, self.titleView.frame.size.height, self.titleView.frame.size.height) delegate:self placeholderImage:[UIImage imageNamed:@""]];
+    SDCycleScrollView *cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, KScreenWidth, 180) delegate:self placeholderImage:[UIImage imageNamed:@""]];
     cycleScrollView3.centerX = self.titleView.centerX;
-    cycleScrollView3.bannerImageViewContentMode =  3;
+    cycleScrollView3.bannerImageViewContentMode =  1;
     cycleScrollView3.showPageControl = NO;
     cycleScrollView3.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
     cycleScrollView3.pageDotImage = [UIImage imageNamed:@"pageControlDot"];

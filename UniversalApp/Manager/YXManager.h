@@ -259,4 +259,6 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestAgreement:YX_BLOCK;
 #pragma mark ========== 绑定第三方 ==========
 -(void)requestPostBinding_Accparty:YX_BLOCK;
+#pragma mark ========== 获取雪茄配件商品页标签 ==========
+-(void)requestGetCigar_accessories_type:YX_BLOCK;
 @end

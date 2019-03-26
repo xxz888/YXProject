@@ -6,19 +6,17 @@
 //  Copyright © 2019年 徐阳. All rights reserved.
 //
 
-#import "RootViewController.h"
+#import "RootTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YXHomeXueJiaPeiJianLastDetailViewController : RootViewController
+@interface YXHomeXueJiaPeiJianLastDetailViewController : RootTableViewController
 @property (weak, nonatomic) IBOutlet UIView *titleView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *priceLbl;
-@property (weak, nonatomic) IBOutlet UIView *goumaixuzhiView;
-@property (weak, nonatomic) IBOutlet UIView *shangpinxinxiView;
 @property (weak, nonatomic) IBOutlet UILabel *shangpinxinxiLbl;
-@property (weak, nonatomic) IBOutlet UILabel *goumaixuzhiLbl;
 
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property(nonatomic,strong)NSDictionary * dic;
 @end
 

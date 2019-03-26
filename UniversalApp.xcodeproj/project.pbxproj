@@ -185,7 +185,6 @@
 		BB6D2A0421EDA7F400F5049F /* BKSingleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D29FE21EDA7F400F5049F /* BKSingleCollectionViewCell.m */; };
 		BB6D2A0521EDA7F400F5049F /* BKStrikeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D29FF21EDA7F400F5049F /* BKStrikeLabel.m */; };
 		BB6D2A0921EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A0721EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.m */; };
-		BB6D2A0A21EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB6D2A0821EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.xib */; };
 		BB6D2A0D21EDD1F000F5049F /* YXHeaderView1.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A0C21EDD1F000F5049F /* YXHeaderView1.m */; };
 		BB6D2A0F21EDD1F900F5049F /* YXHeaderView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB6D2A0E21EDD1F900F5049F /* YXHeaderView1.xib */; };
 		BB6D2A3121EEC63900F5049F /* ExpandingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A1721EEC63900F5049F /* ExpandingCell.m */; };
@@ -895,7 +894,6 @@
 		BB6D2A0021EDA7F400F5049F /* ClassifyCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifyCollection.h; sourceTree = "<group>"; };
 		BB6D2A0621EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaPeiJianLastDetailViewController.h; sourceTree = "<group>"; };
 		BB6D2A0721EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaPeiJianLastDetailViewController.m; sourceTree = "<group>"; };
-		BB6D2A0821EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeXueJiaPeiJianLastDetailViewController.xib; sourceTree = "<group>"; };
 		BB6D2A0B21EDD1F000F5049F /* YXHeaderView1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHeaderView1.h; sourceTree = "<group>"; };
 		BB6D2A0C21EDD1F000F5049F /* YXHeaderView1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHeaderView1.m; sourceTree = "<group>"; };
 		BB6D2A0E21EDD1F900F5049F /* YXHeaderView1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHeaderView1.xib; sourceTree = "<group>"; };
@@ -2400,7 +2398,6 @@
 				BB6D29F321ED8EED00F5049F /* YXHomeXueJiaPeiJianDetailTuiJianViewController.m */,
 				BB6D2A0621EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.h */,
 				BB6D2A0721EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.m */,
-				BB6D2A0821EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.xib */,
 				BB6D29F621EDA7F400F5049F /* commpent */,
 			);
 			path = "推荐";
@@ -4910,7 +4907,6 @@
 				BB3CA498221F95FC00C6793D /* YXFaBuBaseViewController.xib in Resources */,
 				BBD2C92921E0F67800350DCD /* UIBarButtonItemArrowLeft.png in Resources */,
 				BBCC4AA921E83DD100493F40 /* YXXingZhuangViewController.xib in Resources */,
-				BB6D2A0A21EDBD7600F5049F /* YXHomeXueJiaPeiJianLastDetailViewController.xib in Resources */,
 				BB6D2A0F21EDD1F900F5049F /* YXHeaderView1.xib in Resources */,
 				BBD2C8F521E0F67700350DCD /* LICENSE in Resources */,
 				BB9832872202D77C0048D103 /* Images.xcassets in Resources */,

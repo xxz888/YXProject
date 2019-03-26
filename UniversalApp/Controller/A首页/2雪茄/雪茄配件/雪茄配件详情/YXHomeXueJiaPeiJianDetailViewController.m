@@ -27,34 +27,27 @@
     [super viewDidLoad];
     self.title = self.startDic[@"brand_name"];
 
-    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-    VC1 = [[YXHomeXueJiaPeiJianDetailTuiJianViewController alloc]init];
-    VC1.startDic = [NSDictionary dictionaryWithDictionary:self.startDic];
-    VC1.segIndex = @"1";
+
+    kWeakSelf(self);
+    [YX_MANAGER requestGetCigar_accessories_type:@"" success:^(id object) {
+        
+        
+        UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+        
+        NSMutableArray * names = [NSMutableArray array];
+        NSMutableArray * controllers = [NSMutableArray array];
+
+        for (NSDictionary * dic in object) {
+            YXHomeXueJiaPeiJianDetailTuiJianViewController * VC = [[YXHomeXueJiaPeiJianDetailTuiJianViewController alloc]init];
+            VC.startDic = [NSDictionary dictionaryWithDictionary:self.startDic];
+            VC.segIndex = kGetString(dic[@"id"]);
+            [names addObject:kGetString(dic[@"type"])];
+            [controllers addObject:VC];
+        }
+        [self setSegmentControllersArray:controllers title:names defaultIndex:0 top:kTopHeight view:self.view  ];
+    }];
     
-    VC2 = [[YXHomeXueJiaPeiJianDetailTuiJianViewController alloc]init];
-    VC2.startDic = [NSDictionary dictionaryWithDictionary:self.startDic];
-    VC2.segIndex = @"2";
-
-    VC3 = [[YXHomeXueJiaPeiJianDetailTuiJianViewController alloc]init];
-    VC3.startDic = [NSDictionary dictionaryWithDictionary:self.startDic];
-    VC3.segIndex = @"3";
-
-    VC4 = [[YXHomeXueJiaPeiJianDetailTuiJianViewController alloc]init];
-    VC4.startDic = [NSDictionary dictionaryWithDictionary:self.startDic];
-    VC4.segIndex = @"4";
-
-    VC5 = [[YXHomeXueJiaPeiJianDetailTuiJianViewController alloc]init];
-    VC5.startDic = [NSDictionary dictionaryWithDictionary:self.startDic];
-    VC5.segIndex = @"5";
-
-    VC6 = [[YXHomeXueJiaPeiJianDetailTuiJianViewController alloc]init];
-    VC6.startDic = [NSDictionary dictionaryWithDictionary:self.startDic];
-    VC4.segIndex = @"6";
-
-    NSArray* names = @[@"推荐",@"雪茄剪",@"打火机",@"保湿盒",@"雪茄盒",@"烟灰缸"];
-    NSArray* controllers = @[VC1,VC2,VC3,VC4,VC5,VC6];
-    [self setSegmentControllersArray:controllers title:names defaultIndex:0 top:kTopHeight view:self.view  ];
+ 
 }
 
 

@@ -815,6 +815,14 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) { }];
 }
+#pragma mark ========== 获取雪茄配件商品页标签 ==========
+-(void)requestGetCigar_accessories_type:YX_BLOCK{
+    NSString * url = @"/cigar/cigar_accessories_type/";
+    [HTTP_GET(url) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

@@ -104,7 +104,8 @@
     
     kWeakSelf(self);
     self.collectionView.block = ^(NSInteger index) {
-        YXHomeXueJiaPeiJianLastDetailViewController * VC = [[YXHomeXueJiaPeiJianLastDetailViewController alloc]init];
+        UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+        YXHomeXueJiaPeiJianLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPeiJianLastDetailViewController"];
         VC.dic = weakself.collectionView.dataArray[index];
         [weakself.navigationController pushViewController:VC animated:YES];
     };
