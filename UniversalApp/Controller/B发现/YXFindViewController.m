@@ -62,6 +62,7 @@
     kWeakSelf(self);
     sliderSegmentView = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, kTopHeight, KScreenWidth, 40)];
     sliderSegmentView.titleChooseReturn = ^(NSInteger x) {
+        [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
         [weakself.dataArray removeAllObjects];
         weakself.type = weakself.typeArray[x];
         weakself.requestPage = 1;

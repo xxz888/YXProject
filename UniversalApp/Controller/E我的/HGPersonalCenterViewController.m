@@ -330,6 +330,7 @@ static CGFloat const HeaderImageViewHeight =240;
 }
 
 - (void)segmentedPageViewControllerDidEndDragging {
+
     self.yxTableView.scrollEnabled = YES;
 }
 
