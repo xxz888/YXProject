@@ -122,7 +122,7 @@
             height = 100;
         }
     }
-    return  160 - 30 + [ShareManager inTextOutHeight:[self.moment.detailText UnicodeToUtf8]] + height;
+    return  180 - 30 + [ShareManager inTextOutHeight:[self.moment.detailText UnicodeToUtf8]] + height;
 }
 -(CGSize)cellAutoHeight:(NSString *)string {
     //展开后得高度(计算出文本内容的高度+固定控件的高度)

@@ -88,7 +88,7 @@
     return height_size;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return  100 + imageHeight + [self getLblHeight:self.startDic];
+    return  120 + imageHeight + [self getLblHeight:self.startDic];
 }
 -(void)headerRereshing{
     [super headerRereshing];

@@ -25,14 +25,16 @@
     if (self.whereCome) {
         self.phoneTf.text = userInfo.mobile;
         self.phoneTf.userInteractionEnabled = NO;
+        self.title =@"更换手机号";
     }else{
-    
+        self.title =@"绑定手机号";
+
     }
 
     
     self.tipTopLbl.text = [NSString stringWithFormat:@"当前绑定手机号是%@,请在下方输入你希望绑定的手机号",userInfo.mobile];
     
-     self.closeBtn.hidden = self.whereCome;
+     self.closeBtn.hidden = YES;
     self.tipTopLbl.hidden = !self.whereCome;
     [self.bingBtn setTitle:self.whereCome ? @"下一步" :@"绑定" forState:UIControlStateNormal];
     self.phoneTf.layer.masksToBounds = YES;
@@ -44,7 +46,6 @@
     isSend = NO;
     ViewBorderRadius(self.phoneTf, 2, 1, C_COLOR);
     ViewBorderRadius(self.codeTf, 2, 1,C_COLOR);
-    self.title = @"更换手机号";
     
 }
 - (void)getSms_CodeAction{

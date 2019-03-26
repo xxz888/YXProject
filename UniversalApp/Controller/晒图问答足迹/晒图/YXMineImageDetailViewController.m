@@ -92,7 +92,7 @@
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return  100 + imageHeight + [self getLblHeight:self.startDic];
+    return  120 + imageHeight + [self getLblHeight:self.startDic];
 }
 #pragma mark ========== 获取晒图评论列表 ==========
 -(void)requestNewList{

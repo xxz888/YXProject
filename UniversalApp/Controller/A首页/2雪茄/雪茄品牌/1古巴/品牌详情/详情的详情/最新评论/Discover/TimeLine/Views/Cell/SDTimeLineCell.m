@@ -155,6 +155,8 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
             [weakSelf.delegate didClickLikeButtonInCell:weakSelf];
         }
     }];
+    
+    
     [_operationMenu setCommentButtonClickedOperation:^{
         if ([weakSelf.delegate respondsToSelector:@selector(didClickcCommentButtonInCell:)]) {
             [weakSelf.delegate didClickcCommentButtonInCell:weakSelf];
@@ -162,7 +164,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     }];
     
     
-    NSArray *views = @[_iconView, _nameLable,_starView, _contentLabel, _moreButton, _picContainerView, _timeLabel, _huiFuButton,_zanButton, _operationMenu, _commentView,_showMoreCommentBtn,_zanCountLable];
+    NSArray *views = @[_iconView, _nameLable,_starView, _contentLabel, _moreButton, _picContainerView, _timeLabel,_zanButton, _operationMenu, _commentView,_showMoreCommentBtn,_zanCountLable];
     
     [self.contentView sd_addSubviews:views];
     
@@ -371,9 +373,9 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     [self fiveStarView:model.score view:_starView];
 
     if ([model.praise isEqualToString:@"1"]) {
-        [self.zanButton setBackgroundImage:[UIImage imageNamed:@"Zan"] forState:UIControlStateNormal];
+        [self.zanButton setBackgroundImage:[UIImage imageNamed:@"已赞"] forState:UIControlStateNormal];
     }else if ([model.praise isEqualToString:@"0"]){
-        [self.zanButton setBackgroundImage:[UIImage imageNamed:@"UnZan"] forState:UIControlStateNormal];
+        [self.zanButton setBackgroundImage:[UIImage imageNamed:@"未赞"] forState:UIControlStateNormal];
     }
 }
 

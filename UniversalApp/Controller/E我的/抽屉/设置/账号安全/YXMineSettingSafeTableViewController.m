@@ -39,6 +39,7 @@
     self.tableView.tableFooterView = [[UIView alloc]init];
 }
 -(void)bingAction{
+    kWeakSelf(self);
     [MBProgressHUD showActivityMessageInView:@"授权中..."];
     [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_WechatSession currentViewController:nil completion:^(id result, NSError *error) {
         if (error) {
@@ -69,6 +70,7 @@
                                      };
             [YX_MANAGER requestPostBinding_Accparty:params success:^(id object) {
                 [QMUITips showSucceed:@"绑定成功"];
+                weakself.wxAccTf.text = resp.name;
             }];
             
         }

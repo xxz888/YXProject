@@ -126,7 +126,7 @@
     };
     
     // 设置 view 的 frame(将设置 frame 提到设置 tableHeaderView 之前)
-    self.lastDetailView.frame = CGRectMake(0, 0, kScreenWidth,  800 + height);
+    self.lastDetailView.frame = CGRectMake(0, 0, kScreenWidth,  820 + height);
     // 设置 tableHeaderView
     self.yxTableView.tableHeaderView = self.lastDetailView;
     
@@ -433,7 +433,25 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
+    
+    
+    
+    SDTimeLineCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+    self.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
+    SDTimeLineCellModel * model = self.dataArray[self.currentEditingIndexthPath.row];
+    self.textField.placeholder = [NSString stringWithFormat:@"  回复：%@",model.name];
+    self.currentEditingIndexthPath = cell.indexPath;
+    [self.textField becomeFirstResponder];
+    self.isReplayingComment = YES;
+    self.commentToUser = model.name;
+    self.commentToUserID = model.userID;
+    [self adjustTableViewToFitKeyboard];
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -47,22 +47,34 @@
     __weak typeof(self) weakSelf = self;
     if (!cell.moreButtonClickedBlock) {
         [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {
+            
             SDTimeLineCellModel *model = weakSelf.dataArray[indexPath.row];
             model.isOpening = !model.isOpening;
             [weakSelf.yxTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }];
         
         [cell setDidClickCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow, SDTimeLineCell * cell) {
+            
+            
+            if (![userManager loadUserInfo]) {
+                KPostNotification(KNotificationLoginStateChange, @NO);
+                return;
+            }
+            
             weakSelf.textField.placeholder = [NSString stringWithFormat:@"  回复：%@", commentId];
             weakSelf.currentEditingIndexthPath = cell.indexPath;
             [weakSelf.textField becomeFirstResponder];
             weakSelf.isReplayingComment = YES;
             weakSelf.commentToUser = commentId;
             [weakSelf adjustTableViewToFitKeyboard];
-            
         }];
         
         [cell setDidLongClickCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow, SDTimeLineCell *cell,NSInteger tag) {
+            
+            if (![userManager loadUserInfo]) {
+                KPostNotification(KNotificationLoginStateChange, @NO);
+                return;
+            }
             //在此添加你想要完成的功能
             QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {}];
             QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"删除" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
@@ -86,6 +98,28 @@
 
     return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
+
+    
+    
+    SDTimeLineCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+    self.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
+    SDTimeLineCellModel * model = self.dataArray[self.currentEditingIndexthPath.row];
+    self.textField.placeholder = [NSString stringWithFormat:@"  回复：%@",model.name];
+    self.currentEditingIndexthPath = cell.indexPath;
+    [self.textField becomeFirstResponder];
+    self.isReplayingComment = YES;
+    self.commentToUser = model.name;
+    self.commentToUserID = model.userID;
+    [self adjustTableViewToFitKeyboard];
+    
+}
+
 -(void)delePingLun:(NSInteger)tag{
     
 }
@@ -101,9 +135,6 @@
  
     }
     
-    
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

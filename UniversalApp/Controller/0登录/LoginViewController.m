@@ -105,12 +105,19 @@
             //第一次登录,请绑定手机号.
             DLog(@"登录失败：%@", des);
             YXBindPhoneViewController * VC = [[YXBindPhoneViewController alloc]init];
+            VC.title = @"绑定手机号";
+            RootNavigationController *nav = [[RootNavigationController alloc]initWithRootViewController:VC];
+            
             VC.bindBlock = ^{
                 [weakself closeViewAAA];
             };
             VC.whereCome = NO;
             VC.unique_id = des;
-            [weakself presentViewController:VC animated:YES completion:nil];
+//            [weakself.navigationController pushViewController:nav animated:YES];
+            
+            
+            
+            [weakself presentViewController:nav animated:YES completion:nil];
         }
     }];
 }
