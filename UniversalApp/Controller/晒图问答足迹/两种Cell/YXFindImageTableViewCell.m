@@ -277,6 +277,11 @@
     self.titleImageView.layer.cornerRadius = self.titleImageView.frame.size.width / 2.0;
     self.addPlImageView.layer.masksToBounds = YES;
     self.addPlImageView.layer.cornerRadius = self.addPlImageView.frame.size.width / 2.0;
+    
+    
+    
+
+    
     ViewRadius(self.midImageView, 3);
     //图片这种类型的view默认是没有点击事件的，所以要把用户交互的属性打开
     self.titleImageView.userInteractionEnabled = YES;

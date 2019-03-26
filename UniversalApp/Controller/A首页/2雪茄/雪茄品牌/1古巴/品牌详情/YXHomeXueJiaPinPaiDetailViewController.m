@@ -207,10 +207,10 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
-        return self.whereCome ? 0 : [self.openBtn.titleLabel.text isEqualToString:@"↑ 收起"]  ? 430-120+tagHeight + 22 : 430;
+        return self.whereCome ? 0 : [self.openBtn.titleLabel.text isEqualToString:@"↑ 收起"]  ? 430-120+tagHeight + 22  : 430 ;
     }else{
         //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
-        return self.whereCome ? 130 : 185;
+        return self.whereCome ? 130 - 35 : 185 - 35 ;
     }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

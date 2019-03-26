@@ -633,11 +633,11 @@ NSString * const ID = @"SDCycleScrollViewCell";
     //判断左右滑动时
     if (scrollView.contentOffset.x < _lastContentOffset ){
         //向右
-        NSLog(@"左滑");
+        //NSLog(@"左滑");
         self.isLeftScroll = YES;
     } else if (scrollView. contentOffset.x > _lastContentOffset ){
         //向左
-        NSLog(@"右滑");
+        //NSLog(@"右滑");
         self.isLeftScroll = YES;
 
     }

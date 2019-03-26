@@ -173,7 +173,12 @@
             NSInteger index = textField.tag -10000 ;
             YXFindQuestionTableViewCell * cell = [self.yxTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
             UserInfo * userInfo = curUser;
-            NSString * str = [NSString stringWithFormat:@"\n%@:%@",userInfo.username,textField.text];
+            NSString * str = @"";
+            if ([cell.plLbl.text concate:@"\n"] && ![cell.plLbl.text isEqualToString:@""]) {
+                str = [NSString stringWithFormat:@"\n%@:%@",userInfo.username,textField.text];
+            }else{
+                str = [NSString stringWithFormat:@"%@:%@",userInfo.username,textField.text];
+            }
             cell.plLbl.text = [cell.plLbl.text append:str];
             
             cell.pl1Height.constant = [ShareManager inTextOutHeight:cell.plLbl.text];
@@ -201,7 +206,12 @@
             NSInteger index = textField.tag ;
             YXFindImageTableViewCell * cell = [self.yxTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
             UserInfo * userInfo = curUser;
-            NSString * str = [NSString stringWithFormat:@"\n%@:%@",userInfo.username,textField.text];
+            NSString * str = @"";
+            if ([cell.plLbl.text concate:@"\n"] && ![cell.plLbl.text isEqualToString:@""]) {
+                 str = [NSString stringWithFormat:@"\n%@:%@",userInfo.username,textField.text];
+            }else{
+                str = [NSString stringWithFormat:@"%@:%@",userInfo.username,textField.text];
+            }
             cell.plLbl.text = [cell.plLbl.text append:str];
             cell.pl1Height.constant = [ShareManager inTextOutHeight:cell.plLbl.text];
             self.textField.text = @"";
