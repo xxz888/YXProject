@@ -44,7 +44,8 @@ SINGLETON_FOR_HEADER(ShareManager)
 +(SDCycleScrollView *)setUpSycleScrollView:(NSMutableArray *)imageArray;
 //html
 +(NSString *)justFitImage:(NSString *)essay;
-+(CGFloat)inTextOutHeight:(NSString *)string;
+//+(CGFloat)inTextOutHeight:(NSString *)string;
++(CGFloat)inTextOutHeight:(NSString *)string lineSpace:(CGFloat)lineSpacing fontSize:(CGFloat)fontSize;
 + (void)setBorderinView:(UIView *)view;
 +(CGSize)cellAutoHeight:(NSString *)string;
 // 根据图片url获取图片尺寸
@@ -57,4 +58,6 @@ SINGLETON_FOR_HEADER(ShareManager)
 +(void)upDataPersionIP;
 +(Moment *)setTestInfo:(NSDictionary *)dic;
 + (void)returnUpdateVersion;
+//HTML适配图片文字
++ (NSString *)adaptWebViewForHtml:(NSString *) htmlStr;
 @end

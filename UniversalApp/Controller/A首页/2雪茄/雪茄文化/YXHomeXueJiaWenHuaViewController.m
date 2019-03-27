@@ -8,7 +8,8 @@
 
 #import "YXHomeXueJiaWenHuaViewController.h"
 #import "YXHomeXueJiaWenHuaTableViewCell.h"
-#import "YXHomeNewsDetailViewController.h"
+#import "YXXueJiaXXZWHViewController.h"
+#import "YXMineImageDetailViewController.h"
 @interface YXHomeXueJiaWenHuaViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)NSMutableArray * dataArray;
 @end
@@ -17,14 +18,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.dataArray = [[NSMutableArray alloc]init];
-    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaWenHuaTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaWenHuaTableViewCell"];
-    self.yxTableView.delegate=  self;
-    self.yxTableView.dataSource = self;
     self.title = @"雪茄文化";
+    [self tableviewCon];
     [self addRefreshView:self.yxTableView];
     [self requestCrgar];
 
+}
+#pragma mark ========== 创建tableview ==========
+-(void)tableviewCon{
+    self.dataArray = [[NSMutableArray alloc]init];
+    self.yxTableView = [[UITableView alloc]init];
+       self.yxTableView.frame = CGRectMake(0,kTopHeight, KScreenWidth, KScreenHeight - kTopHeight);
+    [self.view addSubview:self.yxTableView];
+    self.yxTableView.delegate = self;
+    self.yxTableView.dataSource= self;
+    self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.yxTableView.showsVerticalScrollIndicator = NO;
+    self.yxTableView.estimatedRowHeight = 0;
+    self.yxTableView.estimatedSectionHeaderHeight = 0;
+    self.yxTableView.estimatedSectionFooterHeight = 0;
+    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaWenHuaTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaWenHuaTableViewCell"];
 }
 -(void)headerRereshing{
     [super headerRereshing];
@@ -36,7 +49,8 @@
 }
 -(void)requestCrgar{
     kWeakSelf(self);
-    [YX_MANAGER requestCigar_cultureGET:NSIntegerToNSString(self.requestPage) success:^(id object) {
+    NSString * par = [NSString stringWithFormat:@"%@/%@",NSIntegerToNSString(self.requestPage),@"1"];
+    [YX_MANAGER requestCigar_cultureGET:par success:^(id object) {
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
     }];
@@ -49,25 +63,23 @@
     return self.dataArray.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 260;
+    NSDictionary * dic = self.dataArray[indexPath.row];
+    return [YXHomeXueJiaWenHuaTableViewCell cellDefaultHeight:dic];
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXHomeXueJiaWenHuaTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaWenHuaTableViewCell" forIndexPath:indexPath];
-    NSString * str = [(NSMutableString *)self.dataArray[indexPath.row][@"picture"] replaceAll:@" " target:@"%20"];
-    [cell.wenhuaImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    cell.wenhuaLbl.text = self.dataArray[indexPath.row][@"title"];
-    cell.timeLbl.text = [ShareManager timestampSwitchTime:[self.dataArray[indexPath.row][@"publish_time"] integerValue] andFormatter:@""];
+    NSDictionary * dic = self.dataArray[indexPath.row];
+    [cell setCellData:dic];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    YXHomeNewsDetailViewController * VC = [YXHomeNewsDetailViewController alloc];
-    NSDictionary * dic = self.dataArray[indexPath.row];
-    VC.webDic =[NSMutableDictionary dictionaryWithDictionary:dic];
-    [VC.webDic setValue:dic[@"picture"] forKey:@"photo"];
-    [VC.webDic setValue:dic[@"publish_time"] forKey:@"date"];
-    [VC.webDic setValue:dic[@"essay"] forKey:@"details"];
-    [VC.webDic setValue:@"" forKey:@"author"];
-
+    YXXueJiaXXZWHViewController * VC = [[YXXueJiaXXZWHViewController alloc]init];
+        NSDictionary * dic = self.dataArray[indexPath.row];
+        VC.webDic =[NSMutableDictionary dictionaryWithDictionary:dic];
     [self.navigationController pushViewController:VC animated:YES];
+//    YXHomeXueJiaWenHuaDetailViewController * VC = [YXHomeXueJiaWenHuaDetailViewController alloc];
+
+//    VC.height = 200;
+//    [self.navigationController pushViewController:VC animated:YES];
 }
 @end

@@ -14,7 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *wenhuaImageView;
 @property (weak, nonatomic) IBOutlet UILabel *wenhuaLbl;
 @property (weak, nonatomic) IBOutlet UILabel *timeLbl;
-
+@property (weak, nonatomic) IBOutlet UILabel *talkNumLbl;
+@property (weak, nonatomic) IBOutlet UILabel *zanNumLbl;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleHeight;
+-(void)setCellData:(NSDictionary *)dic;
++(CGFloat)cellDefaultHeight:(NSDictionary *)dic;
 @end
 
 NS_ASSUME_NONNULL_END

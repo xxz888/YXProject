@@ -26,37 +26,36 @@
                             <constraint firstAttribute="width" secondItem="ued-mw-r6K" secondAttribute="height" multiplier="1:1" id="aRv-9A-83C"/>
                         </constraints>
                     </imageView>
-                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xlw-G1-xrK">
-                        <rect key="frame" x="85" y="15" width="255" height="39.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <nil key="textColor"/>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xlw-G1-xrK">
+                        <rect key="frame" x="85" y="15" width="255" height="35"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdM-2m-MGZ">
-                        <rect key="frame" x="333.5" y="23" width="6.5" height="53.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <rect key="frame" x="334" y="70.5" width="6" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.31372549020000001" green="0.3294117647" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHm-jh-2QH">
-                        <rect key="frame" x="85" y="42" width="6.5" height="16"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" red="0.31372549020000001" green="0.3294117647" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <rect key="frame" x="85" y="70.5" width="255" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.31372549019607843" green="0.32941176470588235" blue="0.32156862745098036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="EHm-jh-2QH" firstAttribute="centerY" secondItem="ued-mw-r6K" secondAttribute="centerY" id="5HN-vq-ggG"/>
                     <constraint firstItem="ued-mw-r6K" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="FbB-wU-bUZ"/>
+                    <constraint firstItem="EHm-jh-2QH" firstAttribute="bottom" secondItem="ued-mw-r6K" secondAttribute="bottom" id="Nh8-If-YJ5"/>
                     <constraint firstAttribute="trailing" secondItem="qdM-2m-MGZ" secondAttribute="trailing" constant="10" id="NiI-gf-uDV"/>
-                    <constraint firstItem="Xlw-G1-xrK" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.4" id="PME-2n-Odh"/>
                     <constraint firstItem="EHm-jh-2QH" firstAttribute="leading" secondItem="Xlw-G1-xrK" secondAttribute="leading" id="WeY-Xe-qSa"/>
                     <constraint firstItem="Xlw-G1-xrK" firstAttribute="leading" secondItem="ued-mw-r6K" secondAttribute="trailing" constant="5" id="X3M-Uf-88Z"/>
+                    <constraint firstItem="EHm-jh-2QH" firstAttribute="width" secondItem="Xlw-G1-xrK" secondAttribute="width" id="YLU-Lb-Qp5"/>
                     <constraint firstItem="Xlw-G1-xrK" firstAttribute="top" secondItem="ued-mw-r6K" secondAttribute="top" id="bhd-Iy-mdb"/>
                     <constraint firstAttribute="trailing" secondItem="Xlw-G1-xrK" secondAttribute="trailing" constant="10" id="cWe-uR-Bms"/>
+                    <constraint firstItem="Xlw-G1-xrK" firstAttribute="height" secondItem="ued-mw-r6K" secondAttribute="height" multiplier="0.5" id="dcn-yW-L1F"/>
                     <constraint firstItem="ued-mw-r6K" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="mUQ-oS-fAw"/>
-                    <constraint firstItem="EHm-jh-2QH" firstAttribute="centerY" secondItem="qdM-2m-MGZ" secondAttribute="centerY" id="nrv-Lb-EBs"/>
-                    <constraint firstItem="qdM-2m-MGZ" firstAttribute="bottom" secondItem="ued-mw-r6K" secondAttribute="bottom" multiplier="0.9" id="rkk-FO-Oxw"/>
+                    <constraint firstItem="qdM-2m-MGZ" firstAttribute="bottom" secondItem="ued-mw-r6K" secondAttribute="bottom" id="rkk-FO-Oxw"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
@@ -66,7 +65,7 @@
                 <outlet property="cellImageView" destination="ued-mw-r6K" id="oVi-c9-5U9"/>
                 <outlet property="cellLbl" destination="Xlw-G1-xrK" id="YI6-Mk-eRa"/>
             </connections>
-            <point key="canvasLocation" x="-960" y="-157"/>
+            <point key="canvasLocation" x="-1246" y="-154"/>
         </tableViewCell>
     </objects>
 </document>

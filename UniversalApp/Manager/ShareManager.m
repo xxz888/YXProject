@@ -338,7 +338,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     
     
 }
-+(CGFloat)inTextOutHeight:(NSString *)string{
++(CGFloat)inTextOutHeight:(NSString *)string lineSpace:(CGFloat)lineSpacing fontSize:(CGFloat)fontSize{
     if (string.length == 0) {
         return 0;
     }
@@ -346,8 +346,8 @@ SINGLETON_FOR_CLASS(ShareManager);
     paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
     paraStyle.alignment = NSTextAlignmentLeft;
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string attributes:@{NSKernAttributeName:@(9)}];
-    paraStyle.lineSpacing = 9.0f;
-    NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:14], NSParagraphStyleAttributeName:paraStyle,NSParagraphStyleAttributeName:attributedString};
+    paraStyle.lineSpacing = lineSpacing;
+    NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:fontSize], NSParagraphStyleAttributeName:paraStyle,NSParagraphStyleAttributeName:attributedString};
     CGSize size = [string boundingRectWithSize:CGSizeMake(KScreenWidth-20, MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
     return  ceil(size.height);
 }
@@ -606,5 +606,55 @@ SINGLETON_FOR_CLASS(ShareManager);
 {
     NSString *str = [NSString stringWithFormat:@"http://itunes.apple.com/app/id%@", UPDATE_App_ID];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+}
+
+
+//HTML适配图片文字
++ (NSString *)adaptWebViewForHtml:(NSString *) htmlStr{
+    
+    NSMutableString *headHtml = [[NSMutableString alloc] initWithCapacity:0];
+    [headHtml appendString : @"<html>" ];
+    
+    [headHtml appendString : @"<head>" ];
+    
+    [headHtml appendString : @"<meta charset=\"utf-8\">" ];
+    
+    [headHtml appendString : @"<meta id=\"viewport\" name=\"viewport\" content=\"width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=false\" />" ];
+    
+    [headHtml appendString : @"<meta name=\"apple-mobile-web-app-capable\" content=\"yes\" />" ];
+    
+    [headHtml appendString : @"<meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black\" />" ];
+    
+    [headHtml appendString : @"<meta name=\"black\" name=\"apple-mobile-web-app-status-bar-style\" />" ];
+    
+    //适配图片宽度，让图片宽度等于屏幕宽度
+    //[headHtml appendString : @"<style>img{width:100%;}</style>" ];
+    //[headHtml appendString : @"<style>img{height:auto;}</style>" ];
+    
+    //适配图片宽度，让图片宽度最大等于屏幕宽度
+    //    [headHtml appendString : @"<style>img{max-width:100%;width:auto;height:auto;}</style>"];
+    
+    
+    //适配图片宽度，如果图片宽度超过手机屏幕宽度，就让图片宽度等于手机屏幕宽度，高度自适应，如果图片宽度小于屏幕宽度，就显示图片大小
+    [headHtml appendString : @"<script type='text/javascript'>"
+     "window.onload = function(){\n"
+     "var maxwidth=document.body.clientWidth;\n" //屏幕宽度
+     "for(i=0;i <document.images.length;i++){\n"
+     "var myimg = document.images[i];\n"
+     "if(myimg.width > maxwidth){\n"
+     "myimg.style.width = '100%';\n"
+     "myimg.style.height = 'auto'\n;"
+     "}\n"
+     "}\n"
+     "}\n"
+     "</script>\n"];
+    
+    [headHtml appendString : @"<style>table{width:100%;}</style>" ];
+    [headHtml appendString : @"<title>webview</title>" ];
+    NSString *bodyHtml;
+    bodyHtml = [NSString stringWithString:headHtml];
+    bodyHtml = [bodyHtml stringByAppendingString:htmlStr];
+    return bodyHtml;
+    
 }
 @end

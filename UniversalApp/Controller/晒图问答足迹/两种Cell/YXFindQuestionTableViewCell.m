@@ -11,7 +11,7 @@
 @implementation YXFindQuestionTableViewCell
 +(CGFloat)cellMoreHeight:(NSDictionary *)dic{
     NSArray * commentArray =  dic[@"answer"];
-    CGFloat height_size = [ShareManager inTextOutHeight:[dic[@"question"] UnicodeToUtf8]];
+    CGFloat height_size = [ShareManager inTextOutHeight:[dic[@"question"] UnicodeToUtf8] lineSpace:9 fontSize:14];
     CGFloat imageHeight = [dic[@"pic1"] length] <= 5 ? 0 : 100;
     
     
@@ -44,7 +44,7 @@
             }
             comment_number = kGetString(dic[@"comment_number"]);
         }
-        plHeight = [ShareManager inTextOutHeight:connectStr];
+        plHeight = [ShareManager inTextOutHeight:connectStr lineSpace:9 fontSize:14];
     }
 
     
@@ -101,7 +101,7 @@
     self.plLbl.text = connectStr;
  
     //评论高度
-    self.pl1Height.constant = [ShareManager inTextOutHeight:self.plLbl.text];
+    self.pl1Height.constant = [ShareManager inTextOutHeight:self.plLbl.text lineSpace:9 fontSize:14];
     if ([connectStr contains:@"\n"]) {
         [ShareManager setLineSpace:9 withText:self.plLbl.text inLabel:self.plLbl tag:dic[@"index"]];
     }
@@ -153,7 +153,7 @@
 
 -(CGFloat)getLblHeight:(NSDictionary *)dic{
     NSString * titleText = dic[@"question"];
-    CGFloat height_size = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8]];
+    CGFloat height_size = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
     return height_size;
 }
 - (IBAction)likeBtnAction:(id)sender {

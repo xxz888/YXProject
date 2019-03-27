@@ -148,7 +148,7 @@
     cell.cellDataLbl.text =  [ShareManager timestampSwitchTime:[self.informationArray[indexPath.row][@"date"] integerValue] andFormatter:@""];
     cell.cellImageView.layer.masksToBounds = YES;
     cell.cellImageView.layer.cornerRadius = 3;
-    
+    cell.cellLbl.hidden = cell.cellAutherLbl.hidden = cell.cellDataLbl.hidden = NO;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

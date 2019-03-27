@@ -67,7 +67,7 @@
 
 -(CGFloat)getLblHeight:(NSDictionary *)dic{
     NSString * titleText = [NSString stringWithFormat:@"%@%@",dic[@"content"] ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
-    CGFloat height_size = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8]];
+    CGFloat height_size = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
     return height_size;
 }
 

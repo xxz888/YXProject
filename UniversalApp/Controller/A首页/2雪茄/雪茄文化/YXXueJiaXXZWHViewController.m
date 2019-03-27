@@ -1,32 +1,64 @@
 //
-//  YXMineImageDetailViewController.m
+//  YXXueJiaXXZWHViewController.m
 //  UniversalApp
 //
-//  Created by 小小醉 on 2019/1/23.
+//  Created by 小小醉 on 2019/3/27.
 //  Copyright © 2019年 徐阳. All rights reserved.
 //
 
-#import "YXMineImageDetailViewController.h"
-#import "XHWebImageAutoSize.h"
-@interface YXMineImageDetailViewController (){
+#import "YXXueJiaXXZWHViewController.h"
+
+@interface YXXueJiaXXZWHViewController ()<UIWebViewDelegate>{
     CGFloat imageHeight;
+    CGFloat tagHeight;
+
 }
+@property (nonatomic,strong) UIWebView *xxzWebView;
+
 @end
-@implementation YXMineImageDetailViewController
+
+@implementation YXXueJiaXXZWHViewController
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:NSStringFromClass([self.superclass class]) bundle:nibBundleOrNil];
      return self;
 }
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
-    if ([self.startDic[@"photo1"] length] >= 5) {
-        imageHeight   = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:self.startDic[@"photo1"]] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:400];
-    }
+
     //初始化所有的控件
     [self initAllControl];
     [self addRefreshView:self.yxTableView];
     [self requestNewList];
+    
+}
+
+-(UIView *)xxzWebView{
+    if (!_xxzWebView) {
+        _xxzWebView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, 200)];
+        _xxzWebView.delegate = self;
+        //获取bundlePath 路径
+        NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
+        //获取本地html目录 basePath
+        NSString *basePath = [NSString stringWithFormat:@"%@/%@",bundlePath,@"html"];
+        //获取本地html目录 baseUrl
+        NSURL *baseUrl = [NSURL fileURLWithPath: basePath isDirectory: YES];
+        //显示内容
+        [_xxzWebView loadHTMLString:[ShareManager adaptWebViewForHtml:_webDic[@"essay"]] baseURL: baseUrl];
+    }
+    return _xxzWebView;
+}
+- (void)webViewDidFinishLoad:(UIWebView *)wb{
+    tagHeight = [[wb stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
+    _xxzWebView.frame = CGRectMake(0, 0, KScreenWidth, tagHeight);
+
+    [self.yxTableView reloadData];
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return self.xxzWebView;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return  tagHeight == 0 ? 1 : tagHeight;
 }
 -(void)headerRereshing{
     [super headerRereshing];
@@ -46,59 +78,13 @@
     };
     [self setupTextField];
 }
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (!self.lastDetailView) {
-        //添加分隔线颜色设置
-        NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXMineImageDetailHeaderView" owner:self options:nil];
-        self.lastDetailView = [nib objectAtIndex:0];
-    }
-    [self.imageArr removeAllObjects];
-    if ([self.startDic[@"photo1"] length] >= 5) {
-        [self.imageArr addObject:self.startDic[@"photo1"]];
-    }
-    if ([self.startDic[@"photo2"] length] >= 5) {
-        [self.imageArr addObject:self.startDic[@"photo2"]];
-    }
-    if ([self.startDic[@"photo3"] length] >= 5) {
-        [self.imageArr addObject:self.startDic[@"photo3"]];
-    }
-    [self.lastDetailView setUpSycleScrollView:self.imageArr height:imageHeight];
-    self.lastDetailView.rightCountLbl.text = [NSString stringWithFormat:@"%@/%ld",@"1",self.imageArr.count];
-    self.lastDetailView.rightCountLbl.hidden = [self.lastDetailView.rightCountLbl.text isEqualToString:@"1/1"] ||
-    [self.lastDetailView.rightCountLbl.text isEqualToString:@"1/0"];
-    self.lastDetailView.titleLbl.text = self.startDic[@"user_name"];
-    NSString * str1 = [(NSMutableString *)self.startDic[@"photo"] replaceAll:@" " target:@"%20"];
-    [self.lastDetailView.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    self.lastDetailView.titleImageView.layer.masksToBounds = YES;
-    self.lastDetailView.titleImageView.layer.cornerRadius = self.lastDetailView.titleImageView.frame.size.width / 2.0;
-    self.lastDetailView.titleTimeLbl.text = [ShareManager timestampSwitchTime:[self.startDic[@"publish_time"] longLongValue] andFormatter:@""];
-    self.lastDetailView.contentLbl.text =  [[NSString stringWithFormat:@"%@%@",self.startDic[@"content"] ? self.startDic[@"content"]:self.startDic[@"describe"],self.startDic[@"index"]] UnicodeToUtf8];
-    self.lastDetailView.userInteractionEnabled = YES;
-    self.lastDetailView.contentHeight.constant = [self getLblHeight:self.startDic];
-    [ShareManager setLineSpace:9 withText:self.lastDetailView.contentLbl.text inLabel:self.lastDetailView.contentLbl tag:self.startDic[@"index"]];
-
-    
-    self.lastDetailView.rightBlock = ^{
-        [self.navigationController popViewControllerAnimated:YES];
-    };
-    return  self.lastDetailView;
-}
-
--(CGFloat)getLblHeight:(NSDictionary *)dic{
-    NSString * titleText = [NSString stringWithFormat:@"%@%@",dic[@"content"] ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
-    CGFloat height_size = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
-    return height_size;
-}
-
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return  120 + imageHeight + [self getLblHeight:self.startDic];
-}
 #pragma mark ========== 获取晒图评论列表 ==========
 -(void)requestNewList{
+
     kWeakSelf(self);
     //请求评价列表 最新评论列表
-    [YX_MANAGER requestPost_comment:[self getParamters:@"1" page:NSIntegerToNSString(self.requestPage)] success:^(id object) {
+    NSString * par = [NSString stringWithFormat:@"%@/%@/",_webDic[@"id"],NSIntegerToNSString(self.requestPage)];
+    [YX_MANAGER requestGetCigar_culture_comment:par success:^(id object) {
         if ([object count] > 0) {
             weakself.dataArray = [weakself commonAction:[weakself creatModelsWithCount:object] dataArray:weakself.dataArray];
             [weakself refreshTableView];
@@ -109,18 +95,6 @@
     }];
 }
 -(void)requestHotList{
-    kWeakSelf(self);
-    //请求评价列表 最热评论列表
-    [YX_MANAGER requestPost_comment:[self getParamters:@"2" page:NSIntegerToNSString(self.requestPage)] success:^(id object) {
-        if ([object count] > 0) {
-            weakself.dataArray = [weakself commonAction:[weakself creatModelsWithCount:object] dataArray:weakself.dataArray]; 
-            [weakself refreshTableView];
-        }else{
-            [weakself.yxTableView.mj_header endRefreshing];
-            [weakself.yxTableView.mj_footer endRefreshing];
-            
-        }
-    }];
 }
 -(void)refreshTableView{
     [self.yxTableView reloadData];
@@ -128,7 +102,7 @@
 #pragma mark ========== 评论子评论 ==========
 -(void)requestpost_comment_child:(NSDictionary *)dic{
     kWeakSelf(self);
-    [YX_MANAGER requestpost_comment_childPOST:dic success:^(id object) {
+    [YX_MANAGER requestFaBuCigar_culture_comment_child:dic success:^(id object) {
         self.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];
 }
@@ -136,7 +110,7 @@
 -(void)requestMoreCigar_comment_child:(NSString *)farther_id page:(NSString *)page{
     kWeakSelf(self);
     NSString * string = [NSString stringWithFormat:@"%@/%@",farther_id,page];
-    [YX_MANAGER requestPost_comment_child:string success:^(id object) {
+    [YX_MANAGER requestGetCigar_culture_comment_child:string success:^(id object) {
         if ([object count] == 0) {
             [QMUITips showInfo:@"没有更多评论了" detailText:@"" inView:weakself.yxTableView hideAfterDelay:1];
             return ;
@@ -154,14 +128,14 @@
                 commentItemModel.secondUserId = kGetString(dic[@"aim_id"]);
                 commentItemModel.commentString = [kGetString(dic[@"comment"]) UnicodeToUtf8];
                 commentItemModel.labelTag = [dic[@"id"] integerValue];
-
-//                self.isReplayingComment = YES;
+                
+                //                self.isReplayingComment = YES;
             } else {
                 commentItemModel.firstUserId = kGetString(dic[@"user_id"]);
                 commentItemModel.firstUserName =kGetString(dic[@"user_name"]);
                 commentItemModel.commentString = [kGetString(dic[@"comment"]) UnicodeToUtf8];
                 commentItemModel.labelTag = [dic[@"id"] integerValue];
-
+                
             }
             BOOL ishave = NO;
             for (SDTimeLineCellCommentItemModel * oldCommentItemModel in model.commentItemsArray) {
@@ -196,21 +170,21 @@
         model.iconName = formalArray[i][@"photo"];
         model.name = formalArray[i][@"user_name"];
         model.userID = formalArray[i][@"user_id"];
-
+        
         model.msgContent = [formalArray[i][@"comment"] UnicodeToUtf8] ;
         model.commontTime = [formalArray[i][@"update_time"] integerValue];
         model.praise = kGetString(formalArray[i][@"is_praise"]);
         model.praise_num = kGetString(formalArray[i][@"praise_number"]);
-
+        
         
         model.id =  kGetString(formalArray[i][@"id"]);
         model.postid = kGetString(formalArray[i][@"postid"]);
         if ([formalArray[i][@"child_list"] count] == 0) {
             model.moreCountPL = @"0";
         }else{
-              model.moreCountPL = [NSString stringWithFormat:@"%ld",[formalArray[i][@"child_number"] integerValue] - [formalArray[i][@"child_list"] count]];
+            model.moreCountPL = [NSString stringWithFormat:@"%ld",[formalArray[i][@"child_number"] integerValue] - [formalArray[i][@"child_list"] count]];
         }
-      
+        
         [pageDic setValue:@([model.id intValue]) forKey:@"id"];
         [pageDic setValue:@(0) forKey:@"page"];
         [self.pageArray addObject:pageDic];
@@ -273,7 +247,7 @@
     kWeakSelf(self);
     NSIndexPath *index = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel *model = self.dataArray[index.row];
-    [YX_MANAGER requestPost_comment_praisePOST:@{@"comment_id":@([model.id intValue])} success:^(id object) {
+    [YX_MANAGER requestGetCigar_culture_praise:kGetString(model.id) success:^(id object) {
         self.currentEditingIndexthPath = index;
         self.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];
@@ -285,14 +259,14 @@
         if (self.isReplayingComment) {
             SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
             [self requestpost_comment_child:@{@"comment":[textField.text utf8ToUnicode],
-                                               @"father_id":@([model.id intValue]),
-                                               @"aim_id":self.commentToUserID,
-                                               @"aim_name":self.commentToUser
-                                               }];
+                                              @"father_id":@([model.id intValue]),
+                                              @"aim_id":self.commentToUserID,
+                                              @"aim_name":self.commentToUser
+                                              }];
             self.isReplayingComment = NO;
         }else{
             [self pinglunFatherPic:@{@"comment":[textField.text utf8ToUnicode],
-                                     @"post_id":@([self.startDic[@"id"] intValue]),
+                                     @"cigar_culture_id":@([self.webDic[@"id"] intValue]),
                                      }];
             
         }
@@ -303,21 +277,22 @@
     }
     return NO;
 }
-#pragma mark ========== 评论晒图 ==========
+#pragma mark ========== 评论 ==========
 -(void)pinglunFatherPic:(NSDictionary *)dic{
     kWeakSelf(self);
-    [YX_MANAGER requestPost_commentPOST:dic success:^(id object) {
+    [YX_MANAGER requestPostCigar_culture_comment:dic success:^(id object) {
         self.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];
 }
 -(NSString *)getParamters:(NSString *)type page:(NSString *)page{
-    return [NSString stringWithFormat:@"%@/0/%@/%@",type,self.startDic[@"id"],page];
+    return [NSString stringWithFormat:@"%@/0/%@/%@",type,self.webDic[@"id"],page];
 }
 -(void)delePingLun:(NSInteger)tag{
     kWeakSelf(self);
-    [YX_MANAGER requestDelChildPl_ShaiTu:NSIntegerToNSString(tag) success:^(id object) {
+    [YX_MANAGER requestDelGetCigar_culture_comment_child:NSIntegerToNSString(tag) success:^(id object) {
         [QMUITips showSucceed:@"删除成功"];
         weakself.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];
 }
+
 @end

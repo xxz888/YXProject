@@ -181,7 +181,7 @@
             }
             cell.plLbl.text = [cell.plLbl.text append:str];
             
-            cell.pl1Height.constant = [ShareManager inTextOutHeight:cell.plLbl.text];
+            cell.pl1Height.constant = [ShareManager inTextOutHeight:cell.plLbl.text lineSpace:9 fontSize:14];
             self.textField.text = @"";
             
             NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[index]];
@@ -213,7 +213,7 @@
                 str = [NSString stringWithFormat:@"%@:%@",userInfo.username,textField.text];
             }
             cell.plLbl.text = [cell.plLbl.text append:str];
-            cell.pl1Height.constant = [ShareManager inTextOutHeight:cell.plLbl.text];
+            cell.pl1Height.constant = [ShareManager inTextOutHeight:cell.plLbl.text lineSpace:9 fontSize:14];
             self.textField.text = @"";
             
             NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[index]];

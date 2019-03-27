@@ -224,7 +224,7 @@ successBlock(responseObject);\
 #pragma mark ==========雪茄配件列表==========
 -(void)requestCigar_accessories_CbrandGET:YX_BLOCK{
     NSString * url = @"/cigar/cigar_accessories_brand/";
-    [HTTP_GET(url)  sucess:^(id responseObject) {
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
@@ -823,6 +823,67 @@ successBlock(responseObject);\
     } failure:^(NSError *error) {}];
 }
 
+#pragma mark ========== 获取雪茄文化评论列表 ==========
+-(void)requestGetCigar_culture_comment:YX_BLOCK{
+    NSString * url = @"/cigar/cigar_culture_comment/1/0/";
+    [HTTP_GET([url append:dic]) sucess:^(id responseObject){
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ========== 评论雪茄文化 ==========
+-(void)requestPostCigar_culture_comment:YX_BLOCK{
+    NSString * url = @"/cigar/cigar_culture_comment/0/0/0/0/";
+    [HTTP_POST(url) Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+
+#pragma mark ========== 点赞/取消点赞雪茄文化 ==========
+-(void)requestGetCigar_culture_praise:YX_BLOCK{
+    NSString * url = @"/cigar/cigar_culture_praise/";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
+
+#pragma mark ========== 删除雪茄文化评论 ==========
+-(void)requestGetDelCigar_culture_comment:YX_BLOCK{
+    NSString * url = @"/cigar/cigar_culture_comment/0/";
+    [HTTP_GET([[url append:dic] append:@"/0/0/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
+#pragma mark ==========点赞/取消点赞雪茄文化评论 ==========
+-(void)requestDianZanCigar_culture_comment_praise:YX_BLOCK{
+    NSString * url = @"/cigar/cigar_culture_comment_praise/";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
+#pragma mark ==========获取雪茄文化评论子评论列表 ==========
+-(void)requestGetCigar_culture_comment_child:YX_BLOCK{
+    NSString * url = @"/cigar/cigar_culture_comment_child/0/";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ==========删除雪茄文化评论子评论 ==========
+-(void)requestDelGetCigar_culture_comment_child:YX_BLOCK{
+    NSString * url = @"/cigar/cigar_culture_comment_child/";
+    [HTTP_GET([[url append:dic] append:@"/0/0/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ==========发布雪茄文化评论子评论 ==========
+-(void)requestFaBuCigar_culture_comment_child:YX_BLOCK{
+    NSString * url = @"/cigar/cigar_culture_comment_child/0/0/0/";
+    [HTTP_POST(url)  Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

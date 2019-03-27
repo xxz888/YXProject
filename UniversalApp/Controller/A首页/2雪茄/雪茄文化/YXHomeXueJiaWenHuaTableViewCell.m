@@ -7,20 +7,27 @@
 //
 
 #import "YXHomeXueJiaWenHuaTableViewCell.h"
-
+//280+titleHeight
 @implementation YXHomeXueJiaWenHuaTableViewCell
++(CGFloat)cellDefaultHeight:(NSDictionary *)dic{
+    //内容
+    CGFloat height_size = [ShareManager inTextOutHeight:dic[@"title"] lineSpace:9 fontSize:20];
+    return 320 + height_size;
+}
+
+-(void)setCellData:(NSDictionary *)dic{
+    NSString * str = [dic[@"picture"] replaceAll:@" " target:@"%20"];
+    [self.wenhuaImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    self.wenhuaLbl.text = dic[@"title"];
+    self.titleHeight.constant = [ShareManager inTextOutHeight:dic[@"title"] lineSpace:9 fontSize:20];
+}
+
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.wenhuaImageView.layer.masksToBounds = YES;
     self.wenhuaImageView.layer.cornerRadius = 3;
-    
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

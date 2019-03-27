@@ -19,7 +19,7 @@
 
 -(CGFloat)getTitleTagLblHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
      NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
-    return [ShareManager inTextOutHeight:[titleText UnicodeToUtf8]];
+    return [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
 }
 -(CGFloat)getTitleTagtextViewHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
     return whereCome ? 30 : 0;
@@ -47,8 +47,7 @@
     NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
     
     //内容
-    CGFloat height_size = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8]];
-    //评论高度
+    CGFloat height_size = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
     //两条评论
     BOOL showPlAllLbl = NO;
     CGFloat plHeight = 0;
@@ -84,7 +83,7 @@
                 }
             }
         }
-        plHeight = [ShareManager inTextOutHeight:connectStr];
+        plHeight = [ShareManager inTextOutHeight:connectStr lineSpace:9 fontSize:14];
     }
     
     CGFloat lastHeight =
@@ -218,7 +217,7 @@
     
     self.plLbl.text = connectStr;
     //评论高度
-    self.pl1Height.constant =  [ShareManager inTextOutHeight:self.plLbl.text];
+    self.pl1Height.constant =  [ShareManager inTextOutHeight:self.plLbl.text lineSpace:9 fontSize:14];
     if ([connectStr contains:@"\n"]) {
         [ShareManager setLineSpace:9 withText:self.plLbl.text inLabel:self.plLbl tag:dic[@"index"]];
     }

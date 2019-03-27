@@ -261,4 +261,25 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestPostBinding_Accparty:YX_BLOCK;
 #pragma mark ========== 获取雪茄配件商品页标签 ==========
 -(void)requestGetCigar_accessories_type:YX_BLOCK;
+
+
+#pragma mark ========== 获取雪茄文化评论列表 ==========
+-(void)requestGetCigar_culture_comment:YX_BLOCK;
+#pragma mark ========== 评论雪茄文化 ==========
+-(void)requestPostCigar_culture_comment:YX_BLOCK;
+#pragma mark ========== 点赞/取消点赞雪茄文化 ==========
+-(void)requestGetCigar_culture_praise:YX_BLOCK;
+#pragma mark ========== 删除雪茄文化评论 ==========
+-(void)requestGetDelCigar_culture_comment:YX_BLOCK;
+#pragma mark ==========点赞/取消点赞雪茄文化评论 ==========
+-(void)requestDianZanCigar_culture_comment_praise:YX_BLOCK;
+#pragma mark ==========获取雪茄文化评论子评论列表 ==========
+-(void)requestGetCigar_culture_comment_child:YX_BLOCK;
+#pragma mark ==========发布雪茄文化评论子评论 ==========
+-(void)requestFaBuCigar_culture_comment_child:YX_BLOCK;
+#pragma mark ==========获取雪茄文化评论子评论列表 ==========
+-(void)requestGetCigar_culture_comment_child:YX_BLOCK;
+#pragma mark ==========删除雪茄文化评论子评论 ==========
+-(void)requestDelGetCigar_culture_comment_child:YX_BLOCK;
+
 @end

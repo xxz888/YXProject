@@ -65,7 +65,7 @@
     // 图片区
     _imageListView = [[MMImageListView alloc] initWithFrame:CGRectZero];
     [self.headerView.totalImage addSubview:_imageListView];
-    self.headerView.twoLblHeight.constant = [ShareManager inTextOutHeight:[self.moment.detailText UnicodeToUtf8]] ;
+    self.headerView.twoLblHeight.constant = [ShareManager inTextOutHeight:[self.moment.detailText UnicodeToUtf8] lineSpace:9 fontSize:14];
     [ShareManager setLineSpace:9 withText:[self.moment.detailText UnicodeToUtf8] inLabel:self.headerView.twoLbl tag:@""];
     NSString * str = [(NSMutableString *)self.moment.photo replaceAll:@" " target:@"%20"];
     [self.headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
@@ -122,7 +122,7 @@
             height = 100;
         }
     }
-    return  180 - 30 + [ShareManager inTextOutHeight:[self.moment.detailText UnicodeToUtf8]] + height;
+    return  180 - 30 + [ShareManager inTextOutHeight:[self.moment.detailText UnicodeToUtf8] lineSpace:9 fontSize:14] + height;
 }
 -(CGSize)cellAutoHeight:(NSString *)string {
     //展开后得高度(计算出文本内容的高度+固定控件的高度)
