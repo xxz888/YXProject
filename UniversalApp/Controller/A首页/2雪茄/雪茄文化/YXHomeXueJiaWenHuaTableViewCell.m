@@ -20,6 +20,11 @@
     [self.wenhuaImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     self.wenhuaLbl.text = dic[@"title"];
     self.titleHeight.constant = [ShareManager inTextOutHeight:dic[@"title"] lineSpace:9 fontSize:20];
+    
+    self.talkNumLbl.text = kGetString(dic[@"comment_number"]);
+    self.zanNumLbl.text = kGetString(dic[@"praise_number"]);
+
+    
 }
 
 

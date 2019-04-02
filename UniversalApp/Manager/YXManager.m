@@ -884,6 +884,14 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
+
+#pragma mark ==========产地列表 ==========
+-(void)requestGetCigar_brand_site:YX_BLOCK{
+    NSString * url = @"/cigar/cigar_brand_site/";
+    [HTTP_GET(url)  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

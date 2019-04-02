@@ -408,8 +408,7 @@
                                                                        withTitleSelectedColor:KBlackColor
                                                                               withSliderColor:KBlackColor
                                             ];
-    segmentController.enableSwipeGestureRecognizer = NO
-    ;
+    segmentController.enableSwipeGestureRecognizer = NO;
     kWeakSelf(self);
     [self addChildViewController:(self.segmentController = segmentController)];
     [segmentController didMoveToParentViewController:self];

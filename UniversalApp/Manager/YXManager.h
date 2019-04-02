@@ -282,4 +282,6 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 #pragma mark ==========删除雪茄文化评论子评论 ==========
 -(void)requestDelGetCigar_culture_comment_child:YX_BLOCK;
 
+#pragma mark ==========产地列表 ==========
+-(void)requestGetCigar_brand_site:YX_BLOCK;
 @end

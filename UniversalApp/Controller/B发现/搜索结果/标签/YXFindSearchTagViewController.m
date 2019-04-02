@@ -63,7 +63,7 @@
         return;
     }
     kWeakSelf(self);
-    [YX_MANAGER requestSearchFind_all:@{@"key":key,@"page":NSIntegerToNSString(self.requestPage),@"type":@"2"} success:^(id object) {
+    [YX_MANAGER requestSearchFind_all:@{@"key":key,@"key_unicode":[key utf8ToUnicode],@"page":NSIntegerToNSString(self.requestPage),@"type":@"2"} success:^(id object) {
         [weakself.dataArray removeAllObjects];
         [weakself.dataArray addObjectsFromArray:object];
         [weakself.yxTableView reloadData];

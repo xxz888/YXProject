@@ -31,7 +31,25 @@
     [self requestNewList];
     
 }
-
+- (void)keyboardNotification:(NSNotification *)notification{
+    CGPoint offset = CGPointMake(0, 0);
+    [self.yxTableView setContentOffset:offset animated:YES];
+    
+    NSDictionary *dict = notification.userInfo;
+    CGRect rect = [dict[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
+    CGRect textFieldRect = CGRectMake(0, rect.origin.y - textFieldH, rect.size.width, textFieldH);
+    if (rect.origin.y == [UIScreen mainScreen].bounds.size.height) {
+        textFieldRect = rect;
+    }
+    [UIView animateWithDuration:0.25 animations:^{
+        self.textField.frame = textFieldRect;
+    }];
+    CGFloat h = rect.size.height + textFieldH;
+    if (self.totalKeybordHeight != h) {
+        self.totalKeybordHeight = h;
+        [self adjustTableViewToFitKeyboard];
+    }
+}
 -(UIView *)xxzWebView{
     if (!_xxzWebView) {
         _xxzWebView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, 200)];
@@ -247,7 +265,7 @@
     kWeakSelf(self);
     NSIndexPath *index = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel *model = self.dataArray[index.row];
-    [YX_MANAGER requestGetCigar_culture_praise:kGetString(model.id) success:^(id object) {
+    [YX_MANAGER requestDianZanCigar_culture_comment_praise:kGetString(model.id) success:^(id object) {
         self.currentEditingIndexthPath = index;
         self.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];

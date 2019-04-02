@@ -65,7 +65,7 @@
 
         VC4 = [stroryBoard instantiateViewControllerWithIdentifier:@"YXHomeXueJiaGuBaViewController"];
     //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
-    NSArray* names = self.whereCome ? @[@"古巴",@"非古"] : @[@"古巴",@"非古",@"我的关注"];
+    NSArray* names = self.whereCome ? @[@"全部",@"国家地区"] : @[@"全部",@"国家地区",@"我的关注"];
     NSArray* controllers = @[VC1,VC22,VC3];
     [self setSegmentControllersArray:controllers title:names defaultIndex:0 top: kTopHeight view:self.view];
 }

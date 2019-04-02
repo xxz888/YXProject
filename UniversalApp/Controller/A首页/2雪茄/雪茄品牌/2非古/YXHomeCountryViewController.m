@@ -1,127 +1,75 @@
 //
-//  YXHomeXueJiaGuBaViewController.m
+//  YXHomeCountryViewController.m
 //  UniversalApp
 //
-//  Created by 小小醉 on 2019/1/6.
+//  Created by 小小醉 on 2019/4/1.
 //  Copyright © 2019年 徐阳. All rights reserved.
 //
 
-#import "YXHomeXueJiaGuBaViewController.h"
+#import "YXHomeCountryViewController.h"
 #import "YXGridView.h"
 #import "YXHomeXueJiaPinPaiTableViewCell.h"
 #import "YXHomeXueJiaPinPaiDetailViewController.h"
-@interface YXHomeXueJiaGuBaViewController()<UITableViewDelegate,UITableViewDataSource>
+#import "CBGroupAndStreamView.h"
+#import "YXHomeXueJiaPinPaiSearchViewController.h"
+@interface YXHomeCountryViewController ()
+<UITableViewDelegate,UITableViewDataSource>{
+    BOOL ishave;
+}
 @property(nonatomic, strong) QMUIGridView *gridView;
-
 @end
-@implementation YXHomeXueJiaGuBaViewController
+
+@implementation YXHomeCountryViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:nil];
+}
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
+    YXHomeXueJiaPinPaiSearchViewController * VC = [[YXHomeXueJiaPinPaiSearchViewController alloc]init];
+    [self.navigationController pushViewController:VC animated:YES];
+    return YES;
 }
 -(void)viewDidLoad{
     [super viewDidLoad];
-    self.title = @"雪茄品牌";
-
+    
+    [self setNavSearchView];
 
     
     self.indexArray = [[NSMutableArray alloc]init];
     self.dataArray = [[NSMutableArray alloc]init];
     self.hotDataArray = [[NSMutableArray alloc]init];
-    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(5, 0, KScreenWidth-10, kScreenHeight-kTopHeight-kTabBarHeight) style:0];
+    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(5, kTopHeight, KScreenWidth-10, kScreenHeight-kTopHeight) style:0];
     [self.view addSubview:self.yxTableView];
     self.yxTableView.delegate = self;
     self.yxTableView.dataSource= self;
     self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaPinPaiTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaPinPaiTableViewCell"];
     
-    [self requestCigar_brand:@"0"];
+    [self requestCigar_brand:self.cigar_id];
 
 }
 -(void)requestCigar_brand:(NSString *)type{
     kWeakSelf(self);
-
+    
     [YX_MANAGER requestCigar_brand:type success:^(id object) {
         [weakself.dataArray removeAllObjects];
         [weakself.hotDataArray removeAllObjects];
-//        if (YX_MANAGER.cache1Array && YX_MANAGER.cache1Array.count != 0) {
-//            [weakself.dataArray addObjectsFromArray:YX_MANAGER.cache1Array];
-//        }else{
-            weakself.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:object[@"brand_list"]]];
-            [YX_MANAGER.cache1Array removeAllObjects];
-            [YX_MANAGER.cache1Array addObjectsFromArray:weakself.dataArray];
-//        }
+        weakself.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:object[@"brand_list"]]];
         [weakself.hotDataArray addObjectsFromArray:object[@"hot_brand_list"]];
-        [weakself createMiddleCollection];
         [weakself.yxTableView reloadData];
     }];
 }
-//九宫格
-- (void)createMiddleCollection{
-   [self.yxTableView.tableHeaderView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
 
- 
-    if (!self.gridView) {
-        self.gridView = [[QMUIGridView alloc] init];
-    }
-    
-    
-    
-    
-    
-    
-    float height = 80;
-    NSInteger count = [self.hotDataArray count];
-    count = count <= 4 ? 1 : 2;
-    
-    
-    UIView * view = [[UIView alloc]init];
-    view.frame = CGRectMake(10, 0, KScreenWidth-20, height*count + 40);
-    UILabel *label = [[UILabel alloc]init];
-    label.textColor = KBlackColor;
-    label.font = [UIFont systemFontOfSize:14];
-    label.frame = CGRectMake(10, 5 , 100, 30);
-    label.text = @"热门推荐";
-    [view addSubview:label];
-    
-    self.gridView.frame = CGRectMake(10, 30, KScreenWidth-20, height*count);
-    [view addSubview:self.gridView];
-    
-    
-    self.yxTableView.tableHeaderView = view;
-
-    self.gridView.columnCount = 4;
-    self.gridView.rowHeight = height;
-    self.gridView.separatorWidth = 10;
-    self.gridView.separatorColor = KClearColor;
-    self.gridView.separatorDashed = NO;
-
-    for (NSInteger i = 0; i < [self.hotDataArray count]; i++) {
-        UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10,0 , self.gridView.frame.size.width-20, self.gridView.frame.size.height)];
-        [imageView setContentMode:UIViewContentModeScaleAspectFit];
-        NSString * str = [(NSMutableString *)self.hotDataArray[i][@"photo"] replaceAll:@" " target:@"%20"];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:str]
-                     placeholderImage:[UIImage imageNamed:@"img_moren"]
-                              options:SDWebImageAllowInvalidSSLCertificates];
-        imageView.tag = i;//[self.hotDataArray[@"id"] integerValue];
-        [self.gridView addSubview:imageView];
-        imageView.userInteractionEnabled = YES;
-        //view添加点击事件
-        UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
-        [imageView addGestureRecognizer:tapGesturRecognizer];
-    }
-}
--(void)tapAction:(id)sender{
-    UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;
-    UIView *views = (UIView*) tap.view;
-    NSUInteger tag = views.tag;
-    NSString * cellid = kGetString(self.hotDataArray[tag][@"id"]);
-    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:tag inSection:0];
-    [self requestCigar_brand_details:cellid indexPath:indexPath isHot:YES];
-}
 //返回右侧索引标题数组
 //这个标题的内容时和分区标题相对应
 -(NSArray*)sectionIndexTitlesForTableView:(UITableView *)tableView{
-    return YX_MANAGER.cache2Array.count == 0 ? _indexArray : YX_MANAGER.cache2Array;
+    return _indexArray;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -139,7 +87,7 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXHomeXueJiaPinPaiTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaPinPaiTableViewCell" forIndexPath:indexPath];
-
+    
     NSString * str = [(NSMutableString *)self.dataArray[indexPath.section][indexPath.row][@"photo"] replaceAll:@" " target:@"%20"];
     [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     [cell.cellImageView setContentMode:UIViewContentModeScaleAspectFit];
@@ -150,14 +98,24 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     YXHomeXueJiaPinPaiTableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     [self requestCigar_brand_details:cell.id indexPath:indexPath isHot:NO];
 }
+-(void)tapAction:(id)sender{
+    UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;
+    UIView *views = (UIView*) tap.view;
+    NSUInteger tag = views.tag;
+    NSString * cellid = kGetString(self.hotDataArray[tag][@"id"]);
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:tag inSection:0];
+    [self requestCigar_brand_details:cellid indexPath:indexPath isHot:YES];
+}
+
 
 
 -(void)requestCigar_brand_details:(NSString *)cigar_brand_id indexPath:(NSIndexPath *)indexPath isHot:(BOOL)isHot{
     kWeakSelf(self);
-    [YX_MANAGER requestCigar_brand_detailsPOST:@{@"cigar_brand_id":@([cigar_brand_id intValue])} success:^(id object) {
+    [YX_MANAGER requestCigar_brand_detailsPOST:@{@"cigar_brand_id":cigar_brand_id} success:^(id object) {
         UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
         YXHomeXueJiaPinPaiDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiDetailViewController"];
         VC.dicData = [NSMutableDictionary dictionaryWithDictionary:object];
@@ -167,20 +125,12 @@
         }else{
             VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[indexPath.section][indexPath.row]];
         }
- 
+        
         VC.whereCome = self.whereCome;
         
         [weakself.navigationController pushViewController:VC animated:YES];
     }];
 }
--(void)backBtnClicked{
-    
-}
-
-
-
-
-
 
 
 
@@ -211,17 +161,14 @@
     HeaderLabel.backgroundColor = YXRGBAColor(247, 249, 251);
     HeaderLabel.font = [UIFont boldSystemFontOfSize:13];
     HeaderLabel.textAlignment = NSTextAlignmentLeft;
-    HeaderLabel.text = (YX_MANAGER.cache2Array.count == 0 ? _indexArray : YX_MANAGER.cache2Array)[section];
+    HeaderLabel.text = _indexArray[section];
     [view addSubview:HeaderLabel];
     
     return view;
 }
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
     //返回 对应的分区索引
-    if (index+1 == _indexArray.count) {
-        return index+1;
-    }
-    return index;
+    return index-1;
 }
 //cell 内容的向右缩进 级别
 - (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -254,16 +201,16 @@
     }
     [YX_MANAGER.cache2Array removeAllObjects];
     [YX_MANAGER.cache2Array addObjectsFromArray:_indexArray];
-
+    
     return array;
 }
 -(NSString *) getLetter:(NSString *) strInput{
     //转成了可变字符串
     NSMutableString *str = [NSMutableString stringWithString:strInput];
-//    //先转换为带声调的拼音
-//    CFStringTransform((CFMutableStringRef)str,NULL, kCFStringTransformMandarinLatin,NO);
-//    //再转换为不带声调的拼音
-//    CFStringTransform((CFMutableStringRef)str,NULL, kCFStringTransformStripDiacritics,NO);
+    //    //先转换为带声调的拼音
+    //    CFStringTransform((CFMutableStringRef)str,NULL, kCFStringTransformMandarinLatin,NO);
+    //    //再转换为不带声调的拼音
+    //    CFStringTransform((CFMutableStringRef)str,NULL, kCFStringTransformStripDiacritics,NO);
     //转化为大写拼音
     NSString *pinYin = [str capitalizedString];
     //获取并返回首字母
