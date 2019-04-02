@@ -11,8 +11,9 @@
 #import "QMUIGridView.h"
 #import "MMImageListView.h"
 #import "MMImagePreviewView.h"
+#import "YXHomeLastListTableViewCell.h"
 
-@interface YXHomeLastDetailView (){
+@interface YXHomeLastDetailView ()<UITableViewDataSource,UITableViewDelegate>{
     NSInteger _imageCount;
 }
 @property(nonatomic)QMUIGridView * gridView;
@@ -45,9 +46,41 @@
     //总分的五颗星
     [self fiveStarView:5 view:self.lastAllScoreFiveView];
 
+    [self.listTableView registerNib:[UINib nibWithNibName:@"YXHomeLastListTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeLastListTableViewCell"];
+    
+    self.listData = [NSMutableArray array];
+    self.listTableView.delegate = self;
+    self.listTableView.dataSource = self;
+    
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 40;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.listData.count;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    YXHomeLastListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeLastListTableViewCell" forIndexPath:indexPath];
+    NSDictionary * dic = self.listData[indexPath.row];
+    cell.nameLbl.text = dic.allKeys[0];
+    cell.valueLbl.text = dic[dic.allKeys[0]];
 
+    return cell;
+}
 -(void)againSetDetailView:(NSDictionary *)startDic {
+
+    //listview
+    [self.listData removeAllObjects];
+    if (startDic[@"argument"]) {
+        NSDictionary * dic = [self dictionaryWithJsonString:kGetString(startDic[@"argument"])];
+        for (NSString * key in dic) {
+            NSString * listKey = [key UnicodeToUtf8];
+            NSString * listValue = [[dic objectForKey:key] UnicodeToUtf8];
+            [self.listData addObject:@{listKey:listValue}];
+        }
+    }
+    [self.listTableView reloadData];
+    self.listViewHeight.constant = self.listData.count * 40 + 40;
     //头图片
     NSString * string =[startDic[@"photo_list_details"] count] > 0 ? startDic[@"photo_list_details"][0][@"photo_url"] : @"";
     NSString * str = [(NSMutableString *)string replaceAll:@" " target:@"%20"];
@@ -115,21 +148,24 @@
     CGFloat height = 0.0;
     if (imageArray.count == 0) {
         height = 0;
+        self.searchAllView.hidden = YES;
+        self.searchAllRowHeight.constant = 0;
     }
     if (imageArray.count >0 && imageArray.count <=3) {
         height = 100;
+        self.searchAllView.hidden = NO;
+        self.searchAllRowHeight.constant = 40;
     }
     if (imageArray.count > 4) {
         height = 200;
+        self.searchAllView.hidden = NO;
+        self.searchAllRowHeight.constant = 40;
     }
 
     NSInteger count = imageArray.count;
     self.gridView.frame = CGRectMake(0, 0, self.lastSixPhotoView.frame.size.width, height);
     [self.lastSixPhotoView addSubview:self.gridView];
     self.sixViewHeight.constant = height;
-
-    
-
     self.gridView.columnCount = 3;
     self.gridView.rowHeight = height;
     self.gridView.separatorWidth = 5;
@@ -174,70 +210,23 @@
 }
 
 
-#pragma mark - 小图单击
-- (void)singleTapSmallViewCallback:(id)sender
-{
-    
-    UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;
-    UIView *views = (UIView*) tap.view;
-    if (_imageCount == 0) {
-        return;
-    }
-    UIWindow *window = [[UIApplication sharedApplication].windows objectAtIndex:0];
-    // 解除隐藏
-    [window addSubview:_previewView];
-    [window bringSubviewToFront:_previewView];
-    // 清空
-    [_previewView.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    // 添加子视图
-    NSInteger index = views.tag-1000;
-    NSInteger count = _imageCount;
-    CGRect convertRect;
-    if (count == 1) {
-        [_previewView.pageControl removeFromSuperview];
-    }
-    for (NSInteger i = 0; i < count; i ++)
-    {
-        // 转换Frame
-        MMImageView *pImageView = (MMImageView *)[self viewWithTag:1000+i];
-        convertRect = [[pImageView superview] convertRect:pImageView.frame toView:window];
-        // 添加
-        MMScrollView *scrollView = [[MMScrollView alloc] initWithFrame:CGRectMake(i*_previewView.width, 0, _previewView.width, _previewView.height)];
-        scrollView.tag = 100+i;
-        scrollView.maximumZoomScale = 2.0;
-        scrollView.image = pImageView.image;
-        scrollView.contentRect = convertRect;
-        // 单击
-        [scrollView setTapBigView:^(MMScrollView *scrollView){
-            [self singleTapBigViewCallback:scrollView];
-        }];
-        [_previewView.scrollView addSubview:scrollView];
-        if (i == index) {
-            [UIView animateWithDuration:0.3 animations:^{
-                _previewView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0];
-                _previewView.pageControl.hidden = NO;
-                [scrollView updateOriginRect];
-            }];
-        } else {
-            [scrollView updateOriginRect];
-        }
-    }
-    // 更新offset
-    CGPoint offset = _previewView.scrollView.contentOffset;
-    offset.x = index * k_screen_width;
-    _previewView.scrollView.contentOffset = offset;
-}
 
-#pragma mark - 大图单击||长按
-- (void)singleTapBigViewCallback:(MMScrollView *)scrollView
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString
 {
-    [UIView animateWithDuration:0.3 animations:^{
-        _previewView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-        _previewView.pageControl.hidden = YES;
-        scrollView.contentRect = scrollView.contentRect;
-        scrollView.zoomScale = 1.0;
-    } completion:^(BOOL finished) {
-        [_previewView removeFromSuperview];
-    }];
+    if (jsonString == nil) {
+        return nil;
+    }
+    
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err)
+    {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
 }
 @end

@@ -70,6 +70,21 @@
     YXHomeXueJiaWenHuaTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaWenHuaTableViewCell" forIndexPath:indexPath];
     NSDictionary * dic = self.dataArray[indexPath.row];
     [cell setCellData:dic];
+    kWeakSelf(self);
+    cell.zanblock = ^(YXHomeXueJiaWenHuaTableViewCell * cell) {
+        if (![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
+        NSIndexPath * indexPath = [weakself.yxTableView indexPathForCell:cell];
+        NSString* wenhua_id = kGetString(weakself.dataArray[indexPath.row][@"id"]);
+
+        [YX_MANAGER requestGetCigar_culture_praise:wenhua_id success:^(id object) {
+            [weakself requestCrgar];
+        }];
+    };
+    
+    
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

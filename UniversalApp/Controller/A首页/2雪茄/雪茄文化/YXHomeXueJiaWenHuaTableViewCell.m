@@ -24,7 +24,17 @@
     self.talkNumLbl.text = kGetString(dic[@"comment_number"]);
     self.zanNumLbl.text = kGetString(dic[@"praise_number"]);
 
+    BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
+    UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
+    [self.zanBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
     
+    if ([self.talkNumLbl.text isEqualToString:@"0"]) {
+        self.talkNumLbl.text = @"";
+    }
+    
+    if ([self.zanNumLbl.text isEqualToString:@"0"]) {
+        self.zanNumLbl.text = @"";
+    }
 }
 
 
@@ -35,4 +45,7 @@
     self.wenhuaImageView.layer.cornerRadius = 3;
 }
 
+- (IBAction)zanAction:(id)sender {
+    self.zanblock(self);
+}
 @end

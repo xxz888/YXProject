@@ -7,7 +7,6 @@
 //
 
 #import "BaseTableViewCell.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXHomeXueJiaWenHuaTableViewCell : BaseTableViewCell
@@ -15,10 +14,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *wenhuaLbl;
 @property (weak, nonatomic) IBOutlet UILabel *timeLbl;
 @property (weak, nonatomic) IBOutlet UILabel *talkNumLbl;
+- (IBAction)zanAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *zanNumLbl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleHeight;
 -(void)setCellData:(NSDictionary *)dic;
 +(CGFloat)cellDefaultHeight:(NSDictionary *)dic;
+
+
+typedef void(^zanBlock)(YXHomeXueJiaWenHuaTableViewCell *);
+@property (nonatomic,copy) zanBlock zanblock;
+@property (weak, nonatomic) IBOutlet UIButton *zanBtn;
+
 @end
 
 NS_ASSUME_NONNULL_END

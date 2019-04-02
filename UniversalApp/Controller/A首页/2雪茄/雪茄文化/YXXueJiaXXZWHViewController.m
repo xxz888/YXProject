@@ -235,6 +235,12 @@
 }
 #pragma mark ========== 点击跟多评论按钮 ==========
 -(void)showMoreComment:(UITableViewCell *)cell{
+    
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
+
     self.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
     NSMutableArray * copyArray = [NSMutableArray arrayWithArray:self.pageArray];
@@ -250,6 +256,12 @@
 }
 #pragma mark ========== tableview 点击评论按钮 ==========
 - (void)didClickcCommentButtonInCell:(SDTimeLineCell *)cell{
+    
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
+
     self.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel * model = self.dataArray[self.currentEditingIndexthPath.row];
     self.textField.placeholder = [NSString stringWithFormat:@"  回复：%@",model.name];
@@ -262,6 +274,12 @@
 }
 #pragma mark ========== tableview 点赞按钮 ==========
 - (void)didClickLikeButtonInCell:(SDTimeLineCell *)cell{
+    
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
+
     kWeakSelf(self);
     NSIndexPath *index = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel *model = self.dataArray[index.row];

@@ -50,6 +50,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E2T-rP-dWw">
                                         <rect key="frame" x="57" y="0.0" width="25" height="25"/>
                                         <state key="normal" backgroundImage="UnZan"/>
+                                        <connections>
+                                            <action selector="zanAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="h7b-be-fkk"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJ5-dh-5RO">
                                         <rect key="frame" x="5" y="0.0" width="25" height="25"/>
@@ -65,10 +68,6 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BPv-C3-d5H">
                                         <rect key="frame" x="85" y="-5" width="0.0" height="0.0"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" id="igH-Ya-fSO"/>
-                                            <constraint firstAttribute="width" id="nPa-Vl-C5z"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -76,14 +75,14 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="dJ5-dh-5RO" firstAttribute="leading" secondItem="dJx-W1-o7R" secondAttribute="leading" constant="5" id="0GS-vT-qTB"/>
+                                    <constraint firstItem="BPv-C3-d5H" firstAttribute="leading" secondItem="E2T-rP-dWw" secondAttribute="trailing" constant="3" id="5BE-Qy-Hd8"/>
                                     <constraint firstItem="E2T-rP-dWw" firstAttribute="leading" secondItem="U6q-Bi-pUR" secondAttribute="trailing" constant="24" id="8l4-Gn-AaV"/>
-                                    <constraint firstItem="BPv-C3-d5H" firstAttribute="leading" secondItem="E2T-rP-dWw" secondAttribute="trailing" constant="3" id="LHO-fr-gjW"/>
+                                    <constraint firstItem="BPv-C3-d5H" firstAttribute="centerY" secondItem="U6q-Bi-pUR" secondAttribute="centerY" id="BJG-8x-pgr"/>
                                     <constraint firstItem="U6q-Bi-pUR" firstAttribute="top" secondItem="dJ5-dh-5RO" secondAttribute="top" constant="-5" id="OUG-yF-8A6"/>
                                     <constraint firstItem="E2T-rP-dWw" firstAttribute="centerY" secondItem="dJ5-dh-5RO" secondAttribute="centerY" id="btO-bM-Elz"/>
                                     <constraint firstItem="dJ5-dh-5RO" firstAttribute="centerY" secondItem="dJx-W1-o7R" secondAttribute="centerY" id="cZ4-Sc-UaZ"/>
                                     <constraint firstItem="E2T-rP-dWw" firstAttribute="width" secondItem="dJ5-dh-5RO" secondAttribute="width" id="fEP-98-ZMZ"/>
                                     <constraint firstItem="U6q-Bi-pUR" firstAttribute="leading" secondItem="dJ5-dh-5RO" secondAttribute="trailing" constant="3" id="hRD-Se-Zg0"/>
-                                    <constraint firstItem="BPv-C3-d5H" firstAttribute="centerY" secondItem="U6q-Bi-pUR" secondAttribute="centerY" id="jWT-dy-LyU"/>
                                     <constraint firstAttribute="height" constant="25" id="kiT-fG-vyc"/>
                                     <constraint firstItem="E2T-rP-dWw" firstAttribute="height" secondItem="dJ5-dh-5RO" secondAttribute="height" id="wOD-uE-be1"/>
                                     <constraint firstItem="dJ5-dh-5RO" firstAttribute="height" secondItem="dJx-W1-o7R" secondAttribute="height" id="xG2-eo-zYB"/>
@@ -118,6 +117,7 @@
                 <outlet property="titleHeight" destination="x9c-UZ-TsM" id="mHx-s7-R0d"/>
                 <outlet property="wenhuaImageView" destination="LIl-8h-jbr" id="Um6-if-voO"/>
                 <outlet property="wenhuaLbl" destination="JNh-8N-SFn" id="3GE-Ln-Hdh"/>
+                <outlet property="zanBtn" destination="E2T-rP-dWw" id="fNQ-Ne-3re"/>
                 <outlet property="zanNumLbl" destination="BPv-C3-d5H" id="w3B-Tm-UdB"/>
             </connections>
             <point key="canvasLocation" x="-1491.2" y="-241.07946026986508"/>

@@ -109,6 +109,8 @@
 		5BC8C50C0BEF57AA0780D5DC /* libPods-UniversalApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E884624664B432D4FE5044F /* libPods-UniversalApp.a */; };
 		BB0AE5BB2251ECB800CC07EC /* YXHomeXueJiaFeiGuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0AE5BA2251ECB800CC07EC /* YXHomeXueJiaFeiGuViewController.m */; };
 		BB0AE5BF22525B3400CC07EC /* YXHomeCountryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0AE5BE22525B3400CC07EC /* YXHomeCountryViewController.m */; };
+		BB0AE5C322531E7000CC07EC /* YXHomeLastListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0AE5C122531E7000CC07EC /* YXHomeLastListTableViewCell.m */; };
+		BB0AE5C422531E7000CC07EC /* YXHomeLastListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB0AE5C222531E7000CC07EC /* YXHomeLastListTableViewCell.xib */; };
 		BB29120822156BB500FF484E /* Cigarillo.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911EC22156BB500FF484E /* Cigarillo.gif */; };
 		BB29120922156BB500FF484E /* Petit Corona.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911ED22156BB500FF484E /* Petit Corona.gif */; };
 		BB29120A22156BB500FF484E /* Petit Pyramid.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911EE22156BB500FF484E /* Petit Pyramid.gif */; };
@@ -779,6 +781,9 @@
 		BB0AE5BA2251ECB800CC07EC /* YXHomeXueJiaFeiGuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaFeiGuViewController.m; sourceTree = "<group>"; };
 		BB0AE5BD22525B3400CC07EC /* YXHomeCountryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeCountryViewController.h; sourceTree = "<group>"; };
 		BB0AE5BE22525B3400CC07EC /* YXHomeCountryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeCountryViewController.m; sourceTree = "<group>"; };
+		BB0AE5C022531E7000CC07EC /* YXHomeLastListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeLastListTableViewCell.h; sourceTree = "<group>"; };
+		BB0AE5C122531E7000CC07EC /* YXHomeLastListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeLastListTableViewCell.m; sourceTree = "<group>"; };
+		BB0AE5C222531E7000CC07EC /* YXHomeLastListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeLastListTableViewCell.xib; sourceTree = "<group>"; };
 		BB2911EC22156BB500FF484E /* Cigarillo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Cigarillo.gif; sourceTree = "<group>"; };
 		BB2911ED22156BB500FF484E /* Petit Corona.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Petit Corona.gif"; sourceTree = "<group>"; };
 		BB2911EE22156BB500FF484E /* Petit Pyramid.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Petit Pyramid.gif"; sourceTree = "<group>"; };
@@ -4063,6 +4068,9 @@
 				BBD30CEF21E5F7AD000D3244 /* YXHomeLastDetailView.h */,
 				BBD30CF021E5F7AD000D3244 /* YXHomeLastDetailView.m */,
 				BBD30CF221E5F7C5000D3244 /* YXHomeLastDetailView.xib */,
+				BB0AE5C022531E7000CC07EC /* YXHomeLastListTableViewCell.h */,
+				BB0AE5C122531E7000CC07EC /* YXHomeLastListTableViewCell.m */,
+				BB0AE5C222531E7000CC07EC /* YXHomeLastListTableViewCell.xib */,
 				BB95F64421E715CB0071A369 /* 我来点评 */,
 			);
 			path = "详情的详情";
@@ -4956,6 +4964,7 @@
 				BB8376F02248AE930091A1A8 /* YXMineFindViewController.xib in Resources */,
 				BBD2C96121E10AA100350DCD /* YXPublishImageTableViewCell.xib in Resources */,
 				BB7AF13A2200869E00989896 /* YXMineHeaderView.xib in Resources */,
+				BB0AE5C422531E7000CC07EC /* YXHomeLastListTableViewCell.xib in Resources */,
 				BBD2C94B21E0F67800350DCD /* README.md in Resources */,
 				BBD2C95721E0F72800350DCD /* README.md in Resources */,
 				293D46401ECDBB63007C64A9 /* icon_tabbar_discovery.png in Resources */,
@@ -5076,6 +5085,7 @@
 				BB6D2A0421EDA7F400F5049F /* BKSingleCollectionViewCell.m in Sources */,
 				2917D1FF1EDFC89A00E76185 /* YYFPSLabel.m in Sources */,
 				BBCC4A9321E82CEE00493F40 /* YXHomeXueJiaWenHuaViewController.m in Sources */,
+				BB0AE5C322531E7000CC07EC /* YXHomeLastListTableViewCell.m in Sources */,
 				BB6D2A3921EEC63900F5049F /* EmojiCollectionView.m in Sources */,
 				BB928F9D21FBFFD40090A044 /* YXMineTongYongTableViewController.m in Sources */,
 				BBADE4DB21F8665A0011E5FF /* YXMineImageDetailHeaderView.m in Sources */,

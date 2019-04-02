@@ -84,14 +84,18 @@
 #pragma mark - 设置tableHeaderView
 - (void)setupTableHeaderView{
     CGFloat height = 0.0;
+    CGFloat tagHeight = 0;
     if (self.imageArray.count == 0) {
         height = 0;
+        tagHeight = 0;
     }
     if (self.imageArray.count >0 && self.imageArray.count <=3) {
         height = 100;
+        tagHeight = 40;
     }
     if (self.imageArray.count > 4) {
         height = 200;
+        tagHeight = 40;
     }
     
     
@@ -106,13 +110,9 @@
         _segmentIndex = index;
     };
     [self.lastDetailView againSetDetailView:weakself.startDic];
-    
     [self.lastDetailView setSixPhotoView:self.imageArray];
     
-    
     self.lastDetailView.searchAllBlock = ^{
-        
-        
         YXHomeSearchMoreViewController * VC = [[YXHomeSearchMoreViewController alloc]init];
         VC.tag = weakself.startDic[@"cigar_name"];
         VC.scrollIndex = 0;
@@ -125,8 +125,23 @@
         [weakself.navigationController pushViewController:VC animated:YES];
     };
     
+
+    //listview
+    CGFloat listHeight = 0;
+    NSMutableArray * listData = [NSMutableArray array];
+    if (self.startDic[@"argument"]) {
+        NSDictionary * dic = [self dictionaryWithJsonString:kGetString(self.startDic[@"argument"])];
+        for (NSString * key in dic) {
+            NSString * listKey = [key UnicodeToUtf8];
+            NSString * listValue = [[dic objectForKey:key] UnicodeToUtf8];
+            [listData addObject:@{listKey:listValue}];
+        }
+        listHeight  = listData.count * 40 ;
+    }
+    
+    
     // 设置 view 的 frame(将设置 frame 提到设置 tableHeaderView 之前)
-    self.lastDetailView.frame = CGRectMake(0, 0, kScreenWidth,  820 + height);
+    self.lastDetailView.frame = CGRectMake(0, 0, kScreenWidth,  450 + height + tagHeight + listHeight);
     // 设置 tableHeaderView
     self.yxTableView.tableHeaderView = self.lastDetailView;
     
@@ -727,4 +742,22 @@
     return [NSString stringWithFormat:@"%@/%@/%@",type,self.startDic[@"id"],@"1"];
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{};
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString
+{
+    if (jsonString == nil) {
+        return nil;
+    }
+    
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err)
+    {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
+}
 @end

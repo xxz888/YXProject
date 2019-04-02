@@ -43,6 +43,8 @@
         silde.contentNorColor = KWhiteColor;
         silde.selColor = A_COlOR;
         silde.contentSelColor = KWhiteColor;
+        silde.maragin_x = 15;
+        silde.maragin_y = 20;
 
         silde.butHeight = 30;
         
