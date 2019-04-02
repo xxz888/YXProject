@@ -111,6 +111,9 @@
 		BB0AE5BF22525B3400CC07EC /* YXHomeCountryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0AE5BE22525B3400CC07EC /* YXHomeCountryViewController.m */; };
 		BB0AE5C322531E7000CC07EC /* YXHomeLastListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0AE5C122531E7000CC07EC /* YXHomeLastListTableViewCell.m */; };
 		BB0AE5C422531E7000CC07EC /* YXHomeLastListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB0AE5C222531E7000CC07EC /* YXHomeLastListTableViewCell.xib */; };
+		BB0AE5C72253384000CC07EC /* YXFindSearchTagHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0AE5C62253384000CC07EC /* YXFindSearchTagHeaderView.m */; };
+		BB0AE5C92253384900CC07EC /* YXFindSearchTagHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB0AE5C82253384900CC07EC /* YXFindSearchTagHeaderView.xib */; };
+		BB0AE5CC22533CDA00CC07EC /* YXFindSearchTagDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0AE5CB22533CDA00CC07EC /* YXFindSearchTagDetailViewController.m */; };
 		BB29120822156BB500FF484E /* Cigarillo.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911EC22156BB500FF484E /* Cigarillo.gif */; };
 		BB29120922156BB500FF484E /* Petit Corona.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911ED22156BB500FF484E /* Petit Corona.gif */; };
 		BB29120A22156BB500FF484E /* Petit Pyramid.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911EE22156BB500FF484E /* Petit Pyramid.gif */; };
@@ -215,7 +218,6 @@
 		BB7025472212A4D9009EBE39 /* YXFindSearchResultUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7025462212A4D9009EBE39 /* YXFindSearchResultUsersViewController.m */; };
 		BB70254B2212AF3F009EBE39 /* YXFindSearchResultAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB70254A2212AF3F009EBE39 /* YXFindSearchResultAllViewController.m */; };
 		BB70254F2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB70254D2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m */; };
-		BB7025502212BAE2009EBE39 /* YXFindSearchResultTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB70254E2212BAE2009EBE39 /* YXFindSearchResultTagViewController.xib */; };
 		BB7AF12C2200035700989896 /* YXPublishFootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7AF12B2200035700989896 /* YXPublishFootViewController.m */; };
 		BB7AF13422004FE600989896 /* YXMineFootDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7AF13222004FE600989896 /* YXMineFootDetailViewController.m */; };
 		BB7AF1382200869400989896 /* YXMineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7AF1372200869400989896 /* YXMineHeaderView.m */; };
@@ -784,6 +786,11 @@
 		BB0AE5C022531E7000CC07EC /* YXHomeLastListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeLastListTableViewCell.h; sourceTree = "<group>"; };
 		BB0AE5C122531E7000CC07EC /* YXHomeLastListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeLastListTableViewCell.m; sourceTree = "<group>"; };
 		BB0AE5C222531E7000CC07EC /* YXHomeLastListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeLastListTableViewCell.xib; sourceTree = "<group>"; };
+		BB0AE5C52253384000CC07EC /* YXFindSearchTagHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchTagHeaderView.h; sourceTree = "<group>"; };
+		BB0AE5C62253384000CC07EC /* YXFindSearchTagHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchTagHeaderView.m; sourceTree = "<group>"; };
+		BB0AE5C82253384900CC07EC /* YXFindSearchTagHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFindSearchTagHeaderView.xib; sourceTree = "<group>"; };
+		BB0AE5CA22533CDA00CC07EC /* YXFindSearchTagDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchTagDetailViewController.h; sourceTree = "<group>"; };
+		BB0AE5CB22533CDA00CC07EC /* YXFindSearchTagDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchTagDetailViewController.m; sourceTree = "<group>"; };
 		BB2911EC22156BB500FF484E /* Cigarillo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Cigarillo.gif; sourceTree = "<group>"; };
 		BB2911ED22156BB500FF484E /* Petit Corona.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Petit Corona.gif"; sourceTree = "<group>"; };
 		BB2911EE22156BB500FF484E /* Petit Pyramid.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Petit Pyramid.gif"; sourceTree = "<group>"; };
@@ -953,7 +960,6 @@
 		BB70254A2212AF3F009EBE39 /* YXFindSearchResultAllViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchResultAllViewController.m; sourceTree = "<group>"; };
 		BB70254C2212BAE2009EBE39 /* YXFindSearchResultTagViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchResultTagViewController.h; sourceTree = "<group>"; };
 		BB70254D2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchResultTagViewController.m; sourceTree = "<group>"; };
-		BB70254E2212BAE2009EBE39 /* YXFindSearchResultTagViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFindSearchResultTagViewController.xib; sourceTree = "<group>"; };
 		BB7AF12A2200035700989896 /* YXPublishFootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXPublishFootViewController.h; sourceTree = "<group>"; };
 		BB7AF12B2200035700989896 /* YXPublishFootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXPublishFootViewController.m; sourceTree = "<group>"; };
 		BB7AF13122004FE600989896 /* YXMineFootDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineFootDetailViewController.h; sourceTree = "<group>"; };
@@ -2558,7 +2564,11 @@
 			children = (
 				BB70254C2212BAE2009EBE39 /* YXFindSearchResultTagViewController.h */,
 				BB70254D2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m */,
-				BB70254E2212BAE2009EBE39 /* YXFindSearchResultTagViewController.xib */,
+				BB0AE5C52253384000CC07EC /* YXFindSearchTagHeaderView.h */,
+				BB0AE5C62253384000CC07EC /* YXFindSearchTagHeaderView.m */,
+				BB0AE5C82253384900CC07EC /* YXFindSearchTagHeaderView.xib */,
+				BB0AE5CA22533CDA00CC07EC /* YXFindSearchTagDetailViewController.h */,
+				BB0AE5CB22533CDA00CC07EC /* YXFindSearchTagDetailViewController.m */,
 			);
 			path = "标签详情";
 			sourceTree = "<group>";
@@ -4838,7 +4848,6 @@
 				BBD2C9B221E324EF00350DCD /* YXHomeXueJiaDetailTableViewCell.xib in Resources */,
 				BBD2C90421E0F67700350DCD /* README.md in Resources */,
 				29FEE77B1ECED1E200C81B60 /* MBHUD_Warn@2x.png in Resources */,
-				BB7025502212BAE2009EBE39 /* YXFindSearchResultTagViewController.xib in Resources */,
 				BBD2C94121E0F67800350DCD /* UIBarButtonItemArrowLeft@3x.png in Resources */,
 				2917D2071EE007C300E76185 /* MBHUD_Success@2x.png in Resources */,
 				BB29121222156BB500FF484E /* Double Robusto.gif in Resources */,
@@ -4942,6 +4951,7 @@
 				BB98327F2202C9350048D103 /* html in Resources */,
 				BBECEEAB21F04C8B007E90AC /* YXQCDJCViewController.xib in Resources */,
 				293D46561ECDBB63007C64A9 /* icon_tabbar_onsite_selected@2x.png in Resources */,
+				BB0AE5C92253384900CC07EC /* YXFindSearchTagHeaderView.xib in Resources */,
 				BBDA2D1121EB30BF00EDCCFF /* MLEmoji_ExpressionImage.plist in Resources */,
 				296F85081FED04EF005612D1 /* close_icon@3x.png in Resources */,
 				BB29120E22156BB500FF484E /* Long Panetela.gif in Resources */,
@@ -5052,6 +5062,7 @@
 				BBCC4B9321E894CD00493F40 /* MMOperateMenuView.m in Sources */,
 				BB9413E521F8B602007E800A /* IQUIViewController+Additions.m in Sources */,
 				BB29122922156BDE00FF484E /* LLGifView.m in Sources */,
+				BB0AE5C72253384000CC07EC /* YXFindSearchTagHeaderView.m in Sources */,
 				BBF26E25224091CE0000AEF5 /* JQFMDB.xcdatamodel in Sources */,
 				BB0AE5BF22525B3400CC07EC /* YXHomeCountryViewController.m in Sources */,
 				BBBCDBB6223F65910056C7DD /* HGBaseViewController.m in Sources */,
@@ -5432,6 +5443,7 @@
 				BBDA2D1321EB30BF00EDCCFF /* TTTAttributedLabel.m in Sources */,
 				BBBFD78F2222D7D300D377AC /* TOCropScrollView.m in Sources */,
 				BBADE4D221F8064A0011E5FF /* ImagePicker.m in Sources */,
+				BB0AE5CC22533CDA00CC07EC /* YXFindSearchTagDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

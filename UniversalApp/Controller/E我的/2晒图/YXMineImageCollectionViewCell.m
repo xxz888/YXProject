@@ -15,7 +15,8 @@
     self.essayTitleImageView.layer.masksToBounds = YES;
     self.essayTitleImageView.layer.cornerRadius = self.essayTitleImageView.frame.size.width / 2.0;
     ViewRadius(self.midImageView, 3);
-    
+    self.userImageView.layer.masksToBounds = YES;
+    self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2.0;
 }
 
 - (IBAction)likeBtnAction:(id)sender {

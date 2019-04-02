@@ -10,10 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YXFindSearchResultTagViewController : YXFindSearchResultAllViewController
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segment;
-- (IBAction)segmentAction:(UISegmentedControl *)sender;
+@interface YXFindSearchResultTagViewController : HGBaseViewController
 @property (nonatomic,strong) NSString *key;
+@property (nonatomic, assign) NSUInteger selectedIndex;
+@property (nonatomic, assign) BOOL isEnlarge;
+@property (nonatomic,strong) NSDictionary * startDic;
 
 @end
 

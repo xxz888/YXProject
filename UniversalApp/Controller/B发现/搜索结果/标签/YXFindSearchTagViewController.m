@@ -9,6 +9,7 @@
 #import "YXFindSearchTagViewController.h"
 #import "YXFindSearchTableViewCell.h"
 #import "YXFindSearchResultTagViewController.h"
+#import "YXFindSearchTagDetailViewController.h"
 @interface YXFindSearchTagViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView * yxTableView;
 @property (nonatomic,strong)NSMutableArray * dataArray;
@@ -89,9 +90,12 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-        YXFindSearchResultTagViewController * VC = [[YXFindSearchResultTagViewController alloc]init];
-        VC.key = self.dataArray[indexPath.row][@"tag"];
-        [self.navigationController pushViewController:VC animated:YES];
+    YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
+    VC.type = @"3";
+    VC.key = self.dataArray[indexPath.row][@"tag"];
+    VC.startDic = [NSDictionary dictionaryWithDictionary:self.dataArray[indexPath.row]];
+    [self.navigationController pushViewController:VC animated:YES];
+    
 }
 
 @end

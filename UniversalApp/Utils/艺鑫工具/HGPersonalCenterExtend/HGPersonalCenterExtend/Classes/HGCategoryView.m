@@ -146,7 +146,7 @@ static NSString * const SegmentHeaderViewCollectionViewCellIdentifier = @"Segmen
     CGFloat cellWidth = [self getWidthWithContent:self.titles[0]];
     [self.underline mas_updateConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(30);
-        make.left.mas_equalTo((KScreenWidth/3-cellWidth)/2);
+        make.left.mas_equalTo((KScreenWidth/self.titles.count-cellWidth)/2);
     }];
 }
 
@@ -176,7 +176,7 @@ static NSString * const SegmentHeaderViewCollectionViewCellIdentifier = @"Segmen
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat itemWidth = [self getWidthWithContent:self.titles[indexPath.row]];
-    return CGSizeMake(KScreenWidth/3, self.height - HG_ONE_PIXEL);
+    return CGSizeMake(KScreenWidth/self.titles.count, self.height - HG_ONE_PIXEL);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {

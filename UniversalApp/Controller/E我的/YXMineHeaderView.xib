@@ -212,7 +212,7 @@
                 <outlet property="mineTitle" destination="sE9-Ps-Bqa" id="Agm-YL-gRl"/>
                 <outlet property="tieshuCountLbl" destination="ukU-fa-8my" id="4S9-gs-cck"/>
             </connections>
-            <point key="canvasLocation" x="130.40000000000001" y="-38.680659670164921"/>
+            <point key="canvasLocation" x="377" y="-50"/>
         </view>
     </objects>
 </document>

@@ -94,8 +94,11 @@
     self.gridView.separatorWidth = 10;
     self.gridView.separatorColor = KClearColor;
     self.gridView.separatorDashed = NO;
-
-    for (NSInteger i = 0; i < [self.hotDataArray count]; i++) {
+    NSInteger count1 = self.hotDataArray.count;
+    if (count1 > 8) {
+        count1 = 8;
+    }
+    for (NSInteger i = 0; i < count1; i++) {
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10,0 , self.gridView.frame.size.width-20, self.gridView.frame.size.height)];
         [imageView setContentMode:UIViewContentModeScaleAspectFit];
         NSString * str = [(NSMutableString *)self.hotDataArray[i][@"photo"] replaceAll:@" " target:@"%20"];

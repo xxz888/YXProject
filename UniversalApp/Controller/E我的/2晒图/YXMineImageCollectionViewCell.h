@@ -19,6 +19,9 @@ typedef void(^clickZanBlock)(YXMineImageCollectionViewCell *);
 @property (nonatomic,strong) NSString *post_id;
 @property (weak, nonatomic) IBOutlet UIImageView *midImageView;
 - (IBAction)likeBtnAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
+@property (weak, nonatomic) IBOutlet UILabel *zanLbl;
+@property (weak, nonatomic) IBOutlet UILabel *userLbl;
 
 
 @property (nonatomic,copy) clickZanBlock block;

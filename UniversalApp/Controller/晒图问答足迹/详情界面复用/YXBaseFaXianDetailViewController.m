@@ -241,4 +241,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
 }
+-(void)backBtnClicked{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end
