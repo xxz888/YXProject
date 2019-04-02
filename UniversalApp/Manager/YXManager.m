@@ -224,7 +224,7 @@ successBlock(responseObject);\
 #pragma mark ==========雪茄配件列表==========
 -(void)requestCigar_accessories_CbrandGET:YX_BLOCK{
     NSString * url = @"/cigar/cigar_accessories_brand/";
-    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+    [HTTP_GET(url)  sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
@@ -818,7 +818,7 @@ successBlock(responseObject);\
 #pragma mark ========== 获取雪茄配件商品页标签 ==========
 -(void)requestGetCigar_accessories_type:YX_BLOCK{
     NSString * url = @"/cigar/cigar_accessories_type/";
-    [HTTP_GET(url) sucess:^(id responseObject) {
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }

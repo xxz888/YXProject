@@ -29,7 +29,7 @@
 
 
     kWeakSelf(self);
-    [YX_MANAGER requestGetCigar_accessories_type:@"" success:^(id object) {
+    [YX_MANAGER requestGetCigar_accessories_type:kGetString(self.startDic[@"id"]) success:^(id object) {
         
         
         UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
