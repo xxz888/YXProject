@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "YXMineAndFindBaseTableViewCell.h"
-
+#import "IXAttributeTapLabel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 
@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *timeLbl;
 @property (weak, nonatomic) IBOutlet UIImageView *midImageView;
 
-@property (weak, nonatomic) IBOutlet UILabel *titleTagLbl;
+@property (weak, nonatomic) IBOutlet IXAttributeTapLabel *titleTagLbl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleTagLblHeight;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleTagtextViewHeight;
@@ -96,6 +96,11 @@ typedef void(^addPlActionBlock)(YXFindImageTableViewCell *);
 @property (weak, nonatomic) IBOutlet UIView *lunBoView;
 @property (weak, nonatomic) IBOutlet UILabel *rightCountLbl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *conViewHeight;
+
+
+typedef void(^clickTagBlock)(NSString *);
+@property (nonatomic,copy) clickTagBlock clickTagblock;
+
 
 @end
 

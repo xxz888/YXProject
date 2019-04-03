@@ -236,6 +236,28 @@
     //title
     NSString * titleText = [[NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"index"]] UnicodeToUtf8];
     self.titleTagLbl.text = titleText;
+    
+    kWeakSelf(self);
+    //文本点击回调
+    self.titleTagLbl.tapBlock = ^(NSString *string) {
+        NSLog(@" -- %@ --",string);
+        weakself.clickTagblock(string);
+    };
+    NSArray * indexArray = [dic[@"index"] split:@" "];
+    NSMutableArray * modelArray = [NSMutableArray array];
+    for (NSString * string in indexArray) {
+        //设置需要点击的字符串，并配置此字符串的样式及位置
+        IXAttributeModel    * model = [IXAttributeModel new];
+        model.range = [titleText rangeOfString:string];
+        model.string = string;
+        model.attributeDic = @{NSForegroundColorAttributeName : [UIColor blueColor]};
+        [modelArray addObject:model];
+    }
+    //label内容赋值
+    [self.titleTagLbl setText:titleText attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
+               tapStringArray:modelArray];
+    
+    
    [ShareManager setLineSpace:9 withText:self.titleTagLbl.text inLabel:self.titleTagLbl tag:dic[@"index"]];
     self.titleTagLblHeight.constant = [self getTitleTagLblHeight:dic whereCome:whereCome];
 

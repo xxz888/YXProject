@@ -65,8 +65,17 @@
     // 图片区
     _imageListView = [[MMImageListView alloc] initWithFrame:CGRectZero];
     [self.headerView.totalImage addSubview:_imageListView];
-    self.headerView.twoLblHeight.constant = [ShareManager inTextOutHeight:[self.moment.detailText UnicodeToUtf8] lineSpace:9 fontSize:14];
-    [ShareManager setLineSpace:9 withText:[self.moment.detailText UnicodeToUtf8] inLabel:self.headerView.twoLbl tag:@""];
+    
+    
+    
+    //title
+    NSString * titleText = [[NSString stringWithFormat:@"%@%@",self.moment.detailText,self.moment.index] UnicodeToUtf8];
+    self.headerView.twoLblHeight.constant = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
+    [ShareManager setLineSpace:9 withText:[titleText UnicodeToUtf8] inLabel:self.headerView.twoLbl tag:self.moment.index];
+    
+    
+    
+    
     NSString * str = [(NSMutableString *)self.moment.photo replaceAll:@" " target:@"%20"];
     [self.headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     self.headerView.titleLbl.text = self.moment.userName;

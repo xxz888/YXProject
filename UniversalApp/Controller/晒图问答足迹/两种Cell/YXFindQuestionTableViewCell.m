@@ -11,7 +11,9 @@
 @implementation YXFindQuestionTableViewCell
 +(CGFloat)cellMoreHeight:(NSDictionary *)dic{
     NSArray * commentArray =  dic[@"answer"];
-    CGFloat height_size = [ShareManager inTextOutHeight:[dic[@"question"] UnicodeToUtf8] lineSpace:9 fontSize:14];
+    
+    NSString * titleText = [[NSString stringWithFormat:@"%@%@",dic[@"question"],dic[@"index"]] UnicodeToUtf8];
+    CGFloat height_size = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:14];
     CGFloat imageHeight = [dic[@"pic1"] length] <= 5 ? 0 : 100;
     
     
@@ -103,7 +105,7 @@
     //评论高度
     self.pl1Height.constant = [ShareManager inTextOutHeight:self.plLbl.text lineSpace:9 fontSize:14];
     if ([connectStr contains:@"\n"]) {
-        [ShareManager setLineSpace:9 withText:self.plLbl.text inLabel:self.plLbl tag:dic[@"index"]];
+        [ShareManager setLineSpace:9 withText:self.plLbl.text inLabel:self.plLbl tag:@""];
     }
     //查看所有多少评论
     self.plAllHeight.constant = showPlAllLbl ? 25 : 0;
@@ -111,10 +113,34 @@
     allPlCountString = self.plAllHeight.constant == 0 ? @"" : allPlCountString;
     [self.searchBtn setTitle:allPlCountString forState:UIControlStateNormal];
     
-    self.textHeight.constant = [self getLblHeight:dic];
     self.titleTagLbl1.text = [dic[@"title"] UnicodeToUtf8];
-    self.titleTagLbl2.text = [dic[@"question"] UnicodeToUtf8];
     
+    
+    
+    NSString * titleText = [[NSString stringWithFormat:@"%@%@",dic[@"question"],dic[@"index"]] UnicodeToUtf8];
+    kWeakSelf(self);
+    self.titleTagLbl2.userInteractionEnabled = YES;
+    //文本点击回调
+    self.titleTagLbl2.tapBlock = ^(NSString *string) {
+        NSLog(@" -- %@ --",string);
+        weakself.clickTagblock(string);
+    };
+    NSArray * indexArray = [dic[@"index"] split:@" "];
+    NSMutableArray * modelArray = [NSMutableArray array];
+    for (NSString * string in indexArray) {
+        //设置需要点击的字符串，并配置此字符串的样式及位置
+        IXAttributeModel    * model = [IXAttributeModel new];
+        model.range = [titleText rangeOfString:string];
+        model.string = string;
+        model.attributeDic = @{NSForegroundColorAttributeName : [UIColor blueColor]};
+        [modelArray addObject:model];
+    }
+    //label内容赋值
+    [self.titleTagLbl2 setText:titleText attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
+               tapStringArray:modelArray];
+    [ShareManager setLineSpace:9 withText:[self.titleTagLbl2.text UnicodeToUtf8] inLabel:self.titleTagLbl2 tag:dic[@"index"]];
+    self.textHeight.constant = [self getLblHeight:dic];
+
     
     NSString * str1 = [(NSMutableString *)dic[@"pic1"] replaceAll:@" " target:@"%20"];
     NSString * str2 = [(NSMutableString *)dic[@"pic2"] replaceAll:@" " target:@"%20"];
@@ -147,14 +173,13 @@
     }else{
         self.nameCenter.constant = 0;
     }
-    [ShareManager setLineSpace:9 withText:[self.titleTagLbl2.text UnicodeToUtf8] inLabel:self.titleTagLbl2 tag:@""];
 
 }
 
 -(CGFloat)getLblHeight:(NSDictionary *)dic{
-    NSString * titleText = dic[@"question"];
-    CGFloat height_size = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
-    return height_size;
+    
+    NSString * titleText = [NSString stringWithFormat:@"%@%@",dic[@"question"],dic[@"index"]];
+    return [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
 }
 - (IBAction)likeBtnAction:(id)sender {
     if (![userManager loadUserInfo]) {

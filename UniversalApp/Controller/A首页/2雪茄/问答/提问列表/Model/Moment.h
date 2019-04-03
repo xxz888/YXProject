@@ -45,5 +45,7 @@
 // Moment对应cell高度
 @property (nonatomic,assign) CGFloat rowHeight;
 @property (nonatomic, strong) NSMutableArray * imageListArray;
+@property (nonatomic,copy) NSString * index;
+
 
 @end

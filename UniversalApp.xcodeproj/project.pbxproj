@@ -114,6 +114,7 @@
 		BB0AE5C72253384000CC07EC /* YXFindSearchTagHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0AE5C62253384000CC07EC /* YXFindSearchTagHeaderView.m */; };
 		BB0AE5C92253384900CC07EC /* YXFindSearchTagHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB0AE5C82253384900CC07EC /* YXFindSearchTagHeaderView.xib */; };
 		BB0AE5CC22533CDA00CC07EC /* YXFindSearchTagDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0AE5CB22533CDA00CC07EC /* YXFindSearchTagDetailViewController.m */; };
+		BB0AE5CF2254636900CC07EC /* IXAttributeTapLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0AE5CE2254636900CC07EC /* IXAttributeTapLabel.m */; };
 		BB29120822156BB500FF484E /* Cigarillo.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911EC22156BB500FF484E /* Cigarillo.gif */; };
 		BB29120922156BB500FF484E /* Petit Corona.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911ED22156BB500FF484E /* Petit Corona.gif */; };
 		BB29120A22156BB500FF484E /* Petit Pyramid.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911EE22156BB500FF484E /* Petit Pyramid.gif */; };
@@ -791,6 +792,8 @@
 		BB0AE5C82253384900CC07EC /* YXFindSearchTagHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFindSearchTagHeaderView.xib; sourceTree = "<group>"; };
 		BB0AE5CA22533CDA00CC07EC /* YXFindSearchTagDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchTagDetailViewController.h; sourceTree = "<group>"; };
 		BB0AE5CB22533CDA00CC07EC /* YXFindSearchTagDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchTagDetailViewController.m; sourceTree = "<group>"; };
+		BB0AE5CD2254636900CC07EC /* IXAttributeTapLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IXAttributeTapLabel.h; sourceTree = "<group>"; };
+		BB0AE5CE2254636900CC07EC /* IXAttributeTapLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IXAttributeTapLabel.m; sourceTree = "<group>"; };
 		BB2911EC22156BB500FF484E /* Cigarillo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Cigarillo.gif; sourceTree = "<group>"; };
 		BB2911ED22156BB500FF484E /* Petit Corona.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Petit Corona.gif"; sourceTree = "<group>"; };
 		BB2911EE22156BB500FF484E /* Petit Pyramid.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Petit Pyramid.gif"; sourceTree = "<group>"; };
@@ -3123,6 +3126,8 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BB0AE5CD2254636900CC07EC /* IXAttributeTapLabel.h */,
+				BB0AE5CE2254636900CC07EC /* IXAttributeTapLabel.m */,
 				BBF26E0F22408B0E0000AEF5 /* fmdb */,
 				BBF26E0C22408B0E0000AEF5 /* JQFMDB */,
 				BBBCDBA0223F65530056C7DD /* HGPersonalCenterExtend */,
@@ -5339,6 +5344,7 @@
 				BBD2C99921E1C7D600350DCD /* YXHomeXueJiaGuBaViewController.m in Sources */,
 				BB95F64721E715CB0071A369 /* YXHomeLastMyTalkView.m in Sources */,
 				BB7025472212A4D9009EBE39 /* YXFindSearchResultUsersViewController.m in Sources */,
+				BB0AE5CF2254636900CC07EC /* IXAttributeTapLabel.m in Sources */,
 				BB70254F2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m in Sources */,
 				BB44F87D22140AFB0034CAEC /* HXEasyCustomShareView.m in Sources */,
 				BBBFD7882222D7D300D377AC /* UILabel+JJImagePicker.m in Sources */,

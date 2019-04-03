@@ -9,8 +9,10 @@
 #import "YXMineAndFindBaseViewController.h"
 #import "XHWebImageAutoSize.h"
 #import "HGPersonalCenterViewController.h"
+#import "YXFindSearchTagDetailViewController.h"
 @interface YXMineAndFindBaseViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>{
     CGFloat _autoPLHeight;
+    BOOL _tagSelectBool;
 }
 
 @end
@@ -157,11 +159,28 @@
 //       weakself.currentEditingIndexthPath = indexRow;
 //        [weakself adjustTableViewToFitKeyboard];
     };
+    cell.clickTagblock = ^(NSString * string) {
+        kWeakSelf(self);
+        _tagSelectBool = YES;
+        [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":@"1",@"type":@"2"} success:^(id object) {
+            if ([object count] > 0) {
+                YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
+                VC.type = @"3";
+                VC.key = object[0][@"tag"];
+                VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
+                [self.navigationController pushViewController:VC animated:YES];
+            }else{
+                [QMUITips showInfo:@"无此标签的信息"];
+            }
+            _tagSelectBool = NO;
+        }];
+    };
     cell.dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
     cell.whereCome = whereCome;
     [cell setCellValue:dic whereCome:whereCome];
     return cell;
 }
+
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self.textField resignFirstResponder];
@@ -310,6 +329,22 @@
         weakself.textField.tag = indexRow.row + 10000;
 
     };
+    cell.clickTagblock = ^(NSString * string) {
+        kWeakSelf(self);
+        _tagSelectBool = YES;
+        [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":@"1",@"type":@"2"} success:^(id object) {
+            if ([object count] > 0) {
+                YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
+                VC.type = @"3";
+                VC.key = object[0][@"tag"];
+                VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
+                [self.navigationController pushViewController:VC animated:YES];
+            }else{
+                [QMUITips showInfo:@"无此标签的信息"];
+            }
+            _tagSelectBool = NO;
+        }];
+    };
     [cell setCellValue:dic];
     return cell;
 }
@@ -359,6 +394,9 @@
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (_tagSelectBool) {
+        return;
+    }
     NSDictionary * dic = self.dataArray[indexPath.row];
     NSInteger tag = [dic[@"obj"] integerValue];
     if (tag == 1) {//晒图
@@ -388,6 +426,7 @@
     moment.userName = dic[@"user_name"];
     moment.text = dic[@"title"];
     moment.detailText = dic[@"question"];
+    moment.index = dic[@"index"];
     moment.time = dic[@"publish_date"] ? [dic[@"publish_date"] longLongValue] : [dic[@"publish_time"] longLongValue];
     moment.singleWidth = (KScreenWidth-30)/3;
     moment.singleHeight = 100;

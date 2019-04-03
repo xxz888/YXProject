@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "YXMineAndFindBaseTableViewCell.h"
-
+#import "IXAttributeTapLabel.h"
 @class YXFindQuestionTableViewCell;
 typedef void(^jumpDetailVC)(YXFindQuestionTableViewCell *);
 NS_ASSUME_NONNULL_BEGIN
@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *timeLbl;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleTagLbl1;
-@property (weak, nonatomic) IBOutlet UILabel *titleTagLbl2;
+@property (weak, nonatomic) IBOutlet IXAttributeTapLabel *titleTagLbl2;
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *midImageView1;
@@ -102,6 +102,10 @@ typedef void(^clickQuestionShareBlock)(YXFindQuestionTableViewCell *);
 typedef void(^addPlFootActionBlock)(YXFindQuestionTableViewCell *);
 - (IBAction)addPlAction:(id)sender;
 @property (nonatomic,copy) addPlFootActionBlock addPlActionblock;
+
+
+typedef void(^clickWenDaTagBlock)(NSString *);
+@property (nonatomic,copy) clickWenDaTagBlock clickTagblock;
 @end
 
 NS_ASSUME_NONNULL_END
