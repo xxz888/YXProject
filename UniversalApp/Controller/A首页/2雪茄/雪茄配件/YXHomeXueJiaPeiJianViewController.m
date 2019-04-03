@@ -63,9 +63,9 @@
         height = 120;
     }else if (count >= 3 && count < 5){
         height = 120 * 2;
-    }else if (count > 5 && count < 7){
+    }else if (count >= 5 && count < 7){
         height = 120 * 3;
-    }else if (count > 7 && count < 9){
+    }else if (count >= 7 && count < 9){
         height = 120 * 4;
     }
     self.gridView.frame = CGRectMake(0, 0, KScreenWidth, height);
@@ -91,13 +91,13 @@
         NSString * str = [(NSMutableString *)self.dataArray[i][@"brand_logo"] replaceAll:@" " target:@"%20"];
 
         [headerView1.titleImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-        headerView1.titleImageView.tag = i;
+        headerView1.tag = i;
         headerView1.titleLbl.text = self.dataArray[i][@"brand_name"];
         [self.gridView addSubview:headerView1];
         //view添加点击事件
-        headerView1.titleImageView.userInteractionEnabled = YES;
+        headerView1.userInteractionEnabled = YES;
         UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
-        [headerView1.titleImageView addGestureRecognizer:tapGesturRecognizer];
+        [headerView1 addGestureRecognizer:tapGesturRecognizer];
         
     }
 }

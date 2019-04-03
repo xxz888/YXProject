@@ -40,7 +40,7 @@
 }
 -(void)bingAction{
     kWeakSelf(self);
-    [MBProgressHUD showActivityMessageInView:@"授权中..."];
+//    [MBProgressHUD showActivityMessageInView:@"授权中..."];
     [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_WechatSession currentViewController:nil completion:^(id result, NSError *error) {
         if (error) {
             [MBProgressHUD hideHUD];

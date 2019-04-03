@@ -81,6 +81,8 @@
 
 
 - (void)createUI{
+    self.view.backgroundColor = KWhiteColor;
+
     self.goodsShowType = signleLineShowDoubleGoods;
     UICollectionViewFlowLayout *layout1 = [[UICollectionViewFlowLayout alloc]init];
     self.collectionView = [[ClassifyCollection alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-kTopHeight-40) collectionViewLayout:layout1];

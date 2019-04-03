@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = self.startDic[@"brand_name"];
-
+    self.view.backgroundColor = KWhiteColor;
 
     kWeakSelf(self);
     [YX_MANAGER requestGetCigar_accessories_type:kGetString(self.startDic[@"id"]) success:^(id object) {

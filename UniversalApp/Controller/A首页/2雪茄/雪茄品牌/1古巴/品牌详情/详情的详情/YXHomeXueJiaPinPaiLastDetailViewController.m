@@ -71,6 +71,7 @@
     _segmentIndex = 0;
     _dataArray = [[NSMutableArray alloc]init];
     _pageArray = [[NSMutableArray alloc]init];
+    self.yxTableView.tableFooterView = [[UIView alloc]init];
     [self.yxTableView registerClass:[SDTimeLineCell class] forCellReuseIdentifier:kTimeLineTableViewCellId];
     self.yxTableView.estimatedRowHeight = 0;
     self.yxTableView.estimatedSectionHeaderHeight = 0;
@@ -141,7 +142,7 @@
     
     
     // 设置 view 的 frame(将设置 frame 提到设置 tableHeaderView 之前)
-    self.lastDetailView.frame = CGRectMake(0, 0, kScreenWidth,  450 + height + tagHeight + listHeight);
+    self.lastDetailView.frame = CGRectMake(0, 0, kScreenWidth, (AxcAE_IsiPhoneX ? 450 : 540) + height + tagHeight + listHeight);
     // 设置 tableHeaderView
     self.yxTableView.tableHeaderView = self.lastDetailView;
     

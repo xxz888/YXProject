@@ -408,6 +408,7 @@
                                                                        withTitleSelectedColor:KBlackColor
                                                                               withSliderColor:KBlackColor
                                             ];
+    segmentController.view.backgroundColor = KWhiteColor;
     segmentController.enableSwipeGestureRecognizer = NO;
     kWeakSelf(self);
     [self addChildViewController:(self.segmentController = segmentController)];

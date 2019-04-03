@@ -44,7 +44,7 @@ SINGLETON_FOR_CLASS(UserManager);
     }
     //第三方登录
     if (loginType != kUserLoginTypePwd) {
-        [MBProgressHUD showActivityMessageInView:@"授权中..."];
+//        [MBProgressHUD showActivityMessageInView:@"授权中..."];
         [[UMSocialManager defaultManager] getUserInfoWithPlatform:platFormType currentViewController:nil completion:^(id result, NSError *error) {
             if (error) {
                 [MBProgressHUD hideHUD];

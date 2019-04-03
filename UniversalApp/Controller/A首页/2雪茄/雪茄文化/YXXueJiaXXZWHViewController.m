@@ -33,7 +33,7 @@
 }
 - (void)keyboardNotification:(NSNotification *)notification{
     CGPoint offset = CGPointMake(0, 0);
-    [self.yxTableView setContentOffset:offset animated:YES];
+   // [self.yxTableView setContentOffset:offset animated:YES];
     
     NSDictionary *dict = notification.userInfo;
     CGRect rect = [dict[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
@@ -47,7 +47,7 @@
     CGFloat h = rect.size.height + textFieldH;
     if (self.totalKeybordHeight != h) {
         self.totalKeybordHeight = h;
-        [self adjustTableViewToFitKeyboard];
+        //[self adjustTableViewToFitKeyboard];
     }
 }
 -(UIView *)xxzWebView{
