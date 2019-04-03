@@ -338,6 +338,23 @@ SINGLETON_FOR_CLASS(ShareManager);
     
     
 }
++(void)setLineSpace_Price:(CGFloat)lineSpace withText:(NSString *)text inLabel:(UILabel *)label tag:(NSString *)tag{
+    if (!text || !label) {
+        return;
+    }
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = lineSpace;  //设置行间距
+    paragraphStyle.lineBreakMode = label.lineBreakMode;
+    paragraphStyle.alignment = label.textAlignment;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [text length])];
+    NSRange range1 = [text rangeOfString:tag];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:YXRGBAColor(255, 51, 51) range:range1];
+    label.attributedText = attributedString;
+    
+    
+    
+}
 +(CGFloat)inTextOutHeight:(NSString *)string lineSpace:(CGFloat)lineSpacing fontSize:(CGFloat)fontSize{
     if (string.length == 0) {
         return 0;

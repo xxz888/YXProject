@@ -60,4 +60,5 @@ SINGLETON_FOR_HEADER(ShareManager)
 + (void)returnUpdateVersion;
 //HTML适配图片文字
 + (NSString *)adaptWebViewForHtml:(NSString *) htmlStr;
++(void)setLineSpace_Price:(CGFloat)lineSpace withText:(NSString *)text inLabel:(UILabel *)label tag:(NSString *)tag;
 @end

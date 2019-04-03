@@ -12,7 +12,8 @@
 #import "YXHomeXueJiaTableViewCell.h"
 #import "UIView+SDAutoLayout.h"
 #import "YXHeaderView1.h"
-
+#import "YXHomeXueJiaWenHuaTableViewCell.h"
+#import "YXXueJiaXXZWHViewController.h"
 @interface YXHomeXueJiaPeiJianViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
 @property(nonatomic, strong) QMUIGridView *gridView;
@@ -33,16 +34,30 @@
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaTableViewCell"];
     self.yxTableView.tableFooterView = [[UIView alloc]init];
     
+    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaWenHuaTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaWenHuaTableViewCell"];
+    
     kWeakSelf(self);
     [YX_MANAGER requestCigar_accessories_CbrandGET:@"" success:^(id object) {
         [weakself.dataArray removeAllObjects];
         [weakself.dataArray addObjectsFromArray:object];
         [weakself createMiddleCollection];
     }];
-    
-    [YX_MANAGER requestCigar_accessories_cultureGET:@"1" success:^(id object) {
-        [weakself.cellDataArray removeAllObjects];
-        [weakself.cellDataArray addObjectsFromArray:object];
+    [self addRefreshView:self.yxTableView];
+    [self requestCrgar];
+}
+-(void)headerRereshing{
+    [super headerRereshing];
+    [self requestCrgar];
+}
+-(void)footerRereshing{
+    [super footerRereshing];
+    [self requestCrgar];
+}
+-(void)requestCrgar{
+    kWeakSelf(self);
+    NSString * par = [NSString stringWithFormat:@"%@/%@",@"2",NSIntegerToNSString(self.requestPage)];
+    [YX_MANAGER requestCigar_cultureGET:par success:^(id object) {
+        weakself.cellDataArray = [weakself commonAction:object dataArray:weakself.cellDataArray];
         [weakself.yxTableView reloadData];
     }];
 }
@@ -68,14 +83,26 @@
     }else if (count >= 7 && count < 9){
         height = 120 * 4;
     }
-    self.gridView.frame = CGRectMake(0, 0, KScreenWidth, height);
     
     self.gridView.columnCount = 2;
     self.gridView.rowHeight = 120;
     self.gridView.separatorWidth = 10;
     self.gridView.separatorColor = UIColorClear;
     self.gridView.separatorDashed = YES;
-    self.yxTableView.tableHeaderView = self.gridView;
+    
+    self.gridView.frame = CGRectMake(0, 0, KScreenWidth, height);
+
+    UIView * view = [[UIView alloc]init];
+    view.frame = CGRectMake(0, 0, KScreenWidth, height + 15);
+    
+    UILabel *label = [[UILabel alloc]init];
+    label.backgroundColor = YXRGBAColor(239, 239, 239);
+    label.font = [UIFont systemFontOfSize:14];
+    label.frame = CGRectMake(0, height+5, KScreenWidth, 10);
+    [view addSubview:self.gridView];
+    [view addSubview:label];
+    
+    self.yxTableView.tableHeaderView = view;
     UIView * lineView = [[UIView alloc]init];
     lineView.sd_layout.leftSpaceToView(self.yxTableView.tableHeaderView, 0)
     .rightSpaceToView(self.yxTableView.tableHeaderView, 0)
@@ -114,16 +141,36 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.cellDataArray.count;
-
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    YXHomeXueJiaTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaTableViewCell" forIndexPath:indexPath];
-    NSString * str = [(NSMutableString *)self.cellDataArray[indexPath.row][@"photo"] replaceAll:@" " target:@"%20"];
-    [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    cell.cellLbl.text = self.cellDataArray[indexPath.row][@"title"];
-    cell.cellAutherLbl.text = self.cellDataArray[indexPath.row][@"author"];
-    cell.cellDataLbl.text = [ShareManager timestampSwitchTime:[self.cellDataArray[indexPath.row][@"update_time"] integerValue] andFormatter:@""];
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary * dic = self.cellDataArray[indexPath.row];
+    return [YXHomeXueJiaWenHuaTableViewCell cellDefaultHeight:dic];
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    YXHomeXueJiaWenHuaTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaWenHuaTableViewCell" forIndexPath:indexPath];
+    NSDictionary * dic = self.cellDataArray[indexPath.row];
+    [cell setCellData:dic];
+    kWeakSelf(self);
+    cell.zanblock = ^(YXHomeXueJiaWenHuaTableViewCell * cell) {
+        if (![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
+        NSIndexPath * indexPath = [weakself.yxTableView indexPathForCell:cell];
+        NSString* wenhua_id = kGetString(weakself.dataArray[indexPath.row][@"id"]);
+        
+        [YX_MANAGER requestGetCigar_culture_praise:wenhua_id success:^(id object) {
+            [weakself requestCrgar];
+        }];
+    };
+    
+    
     return cell;
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    YXXueJiaXXZWHViewController * VC = [[YXXueJiaXXZWHViewController alloc]init];
+    NSDictionary * dic = self.cellDataArray[indexPath.row];
+    VC.webDic =[NSMutableDictionary dictionaryWithDictionary:dic];
+    [self.navigationController pushViewController:VC animated:YES];
+}
 @end

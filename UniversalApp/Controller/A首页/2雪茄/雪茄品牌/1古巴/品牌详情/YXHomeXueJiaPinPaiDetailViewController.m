@@ -189,12 +189,33 @@
         
         
         cell.section2TitleLbl.text = cellData[@"cigar_name"];
-        cell.section2Lbl1.text = [kGetString(cellData[@"price_single_china"]) concate:@"国内售价:"] ;
-        cell.section2Lbl2.text = [kGetString(cellData[@"price_single_hongkong"]) concate:@"香港PCC:"];
-        cell.section2Lbl3.text = [kGetString(cellData[@"price_single_overseas"]) concate:@"比站:"];
+        
+        NSString * string = @"暂无售价";
+        NSString * str1 = [kGetString(cellData[@"price_single_china"]) isEqualToString:@"0"] ? string : kGetString(cellData[@"price_single_china"]) ;
+        cell.section2Lbl1.text = [str1 concate:@"国内售价:"] ;
+        [ShareManager setLineSpace_Price:1 withText:cell.section2Lbl1.text inLabel:cell.section2Lbl1 tag:[cell.section2Lbl1.text split:@":"][1]];
+
+        
+        NSString * str2 = [kGetString(cellData[@"price_single_hongkong"]) isEqualToString:@"0"] ? string :
+        kGetString(cellData[@"price_single_hongkong"]);
+        cell.section2Lbl2.text = [str2 concate:@"香港PCC:"];
+           [ShareManager setLineSpace_Price:1 withText:cell.section2Lbl2.text inLabel:cell.section2Lbl2 tag:[cell.section2Lbl2.text split:@":"][1]];
+        
+        
+        NSString * str3 = [kGetString(cellData[@"price_single_overseas"]) isEqualToString:@"0"] ? string :
+        kGetString(cellData[@"price_single_overseas"]);
+        cell.section2Lbl3.text = [str3 concate:@"比站:"];
+                   [ShareManager setLineSpace_Price:1 withText:cell.section2Lbl3.text inLabel:cell.section2Lbl3 tag:[cell.section2Lbl3.text split:@":"][1]];
+        
+        
+        
         cell.section2Lbl4.text = [kGetString(cellData[@"price_box_china"]) append:@"元"];
         cell.section2Lbl5.text = [kGetString(cellData[@"price_single_china"]) append:@"元/支"];
         cell.section2Lbl6.text = [NSString stringWithFormat:@"%@/盒(%@支)",cellData[@"price_box_china"],cellData[@"box_size"]];
+           [ShareManager setLineSpace_Price:1 withText:cell.section2Lbl1.text inLabel:cell.section2Lbl1 tag:[cell.section2Lbl1.text split:@":"][1]];
+        
+        
+        
         cell.cigar_id = kGetString(cellData[@"id"]);
         //yes为足迹进来 no为正常进入  足迹进来
         cell.stackView1.hidden = cell.likeBtn.hidden = cell.zanCountLbl.hidden = cell.lineView.hidden = self.whereCome;

@@ -88,14 +88,26 @@
     if (str) {
         [self.lastImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@""]];
     }
+    
+    
+    NSString * string123 = @"暂无售价";
+    NSString * str1 = [kGetString(startDic[@"price_single_china"]) isEqualToString:@"0"] ? string123 : kGetString(startDic[@"price_single_china"]) ;
+    
+    NSString * str2 = [kGetString(startDic[@"price_single_hongkong"]) isEqualToString:@"0"] ? string123 :
+    kGetString(startDic[@"price_single_hongkong"]);
+    
+    NSString * str3 = [kGetString(startDic[@"price_single_overseas"]) isEqualToString:@"0"] ? string123 :
+    kGetString(startDic[@"price_single_overseas"]);
+    
+    
     //头名字
     self.lastTitleLbl.text = kGetString(startDic[@"cigar_name"]);
     //国内售价
-    self.lastPrice1Lbl.text = kGetString(startDic[@"price_single_china"]);
+    self.lastPrice1Lbl.text = str1;
     //香港PCC
-    self.lastPrice2Lbl.text = kGetString(startDic[@"price_single_hongkong"]);
+    self.lastPrice2Lbl.text = str2;
     //比站
-    self.lastPrice3Lbl.text = kGetString(startDic[@"price_single_overseas"]);
+    self.lastPrice3Lbl.text = str3;
     //品牌
     self.lastPinPaiLbl.text = kGetString(startDic[@"cigar_brand"]);
     //环径

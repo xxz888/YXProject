@@ -62,13 +62,24 @@
         NSURL *baseUrl = [NSURL fileURLWithPath: basePath isDirectory: YES];
         //显示内容
         [_xxzWebView loadHTMLString:[ShareManager adaptWebViewForHtml:_webDic[@"essay"]] baseURL: baseUrl];
+        
+   
     }
     return _xxzWebView;
 }
 - (void)webViewDidFinishLoad:(UIWebView *)wb{
     tagHeight = [[wb stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
-    _xxzWebView.frame = CGRectMake(0, 0, KScreenWidth, tagHeight);
+    _xxzWebView.frame = CGRectMake(0, 0, KScreenWidth, tagHeight + 30);
 
+    
+    
+    UILabel *label = [[UILabel alloc]init];
+    label.backgroundColor = YXRGBAColor(239, 239, 239);
+    label.font = [UIFont systemFontOfSize:14];
+    label.frame = CGRectMake(0, tagHeight, KScreenWidth, 30);
+    label.text = @" 精彩评论";
+    [_xxzWebView addSubview:label];
+    
     [self.yxTableView reloadData];
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -76,7 +87,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return  tagHeight == 0 ? 1 : tagHeight;
+    return  tagHeight == 0 ? 1 : tagHeight + 30;
 }
 -(void)headerRereshing{
     [super headerRereshing];
