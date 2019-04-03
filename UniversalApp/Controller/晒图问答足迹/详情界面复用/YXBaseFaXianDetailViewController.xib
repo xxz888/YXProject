@@ -34,14 +34,17 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EIu-ZK-u7S">
                     <rect key="frame" x="0.0" y="627" width="375" height="40"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZw-k5-9IL">
-                            <rect key="frame" x="0.0" y="1" width="375" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="91q-63-RxC"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="  点击评论...">
-                                <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fZw-k5-9IL">
+                            <rect key="frame" x="10" y="5" width="355" height="30"/>
+                            <state key="normal">
+                                <attributedString key="attributedTitle">
+                                    <fragment content="    点击评论...">
+                                        <attributes>
+                                            <color key="NSColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <font key="NSFont" size="14" name=".AppleSystemUIFont"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                             </state>
                             <connections>
                                 <action selector="clickPingLunAction:" destination="-1" eventType="touchUpInside" id="5zq-jN-Xul"/>
@@ -57,9 +60,10 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="fZw-k5-9IL" firstAttribute="top" secondItem="EIu-ZK-u7S" secondAttribute="top" constant="1" id="Iu3-CA-ooc"/>
-                        <constraint firstAttribute="trailing" secondItem="fZw-k5-9IL" secondAttribute="trailing" id="lrq-w5-547"/>
-                        <constraint firstItem="fZw-k5-9IL" firstAttribute="leading" secondItem="EIu-ZK-u7S" secondAttribute="leading" id="mg9-Kz-553"/>
+                        <constraint firstAttribute="bottom" secondItem="fZw-k5-9IL" secondAttribute="bottom" constant="5" id="1dY-1X-mPa"/>
+                        <constraint firstItem="fZw-k5-9IL" firstAttribute="top" secondItem="EIu-ZK-u7S" secondAttribute="top" constant="5" id="Iu3-CA-ooc"/>
+                        <constraint firstAttribute="trailing" secondItem="fZw-k5-9IL" secondAttribute="trailing" constant="10" id="lrq-w5-547"/>
+                        <constraint firstItem="fZw-k5-9IL" firstAttribute="leading" secondItem="EIu-ZK-u7S" secondAttribute="leading" constant="10" id="mg9-Kz-553"/>
                         <constraint firstItem="DU1-V7-RYh" firstAttribute="leading" secondItem="EIu-ZK-u7S" secondAttribute="leading" id="o7x-Rd-vah"/>
                         <constraint firstAttribute="trailing" secondItem="DU1-V7-RYh" secondAttribute="trailing" id="sZI-q3-oSd"/>
                         <constraint firstItem="DU1-V7-RYh" firstAttribute="top" secondItem="EIu-ZK-u7S" secondAttribute="top" id="tx9-Ny-gvm"/>
@@ -78,6 +82,7 @@
                 <constraint firstItem="EIu-ZK-u7S" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="gnc-C6-Mep"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-246" y="27"/>
         </view>
     </objects>
 </document>

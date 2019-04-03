@@ -284,7 +284,7 @@
 }
 - (IBAction)clickPingLunAction:(id)sender {
     [self.textField becomeFirstResponder];
-    self.textField.placeholder = @"开始评论...";
+    self.textField.placeholder = @" 开始评论...";;
 }
 
 

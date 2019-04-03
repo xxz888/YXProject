@@ -324,7 +324,7 @@ static CGFloat textFieldH = 40;
 }
 - (IBAction)clickPingLunAction:(id)sender {
     [_textField becomeFirstResponder];
-    _textField.placeholder = @"开始评论...";
+    _textField.placeholder = @" 开始评论...";;
 }
 
 
@@ -510,14 +510,21 @@ static CGFloat textFieldH = 40;
     _textField = [[UITextField alloc]init];
     _textField.returnKeyType = UIReturnKeyDone;
     _textField.delegate = self;
-    _textField.placeholder = @"开始评论..";
+    _textField.placeholder = @" 开始评论...";
     _textField.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
     _textField.layer.borderWidth = 1;
     [_textField setFont:[UIFont systemFontOfSize:14]];
     _textField.backgroundColor = [UIColor whiteColor];
     _textField.textColor = [UIColor blackColor];
     _textField.tag = 8899;
-    _textField.frame = CGRectMake(0, KScreenHeight, KScreenWidth, 40);
+    _textField.frame = CGRectMake(10, KScreenHeight, KScreenWidth-20, 30);
+         ViewBorderRadius(_textField, 10, 1, YXRGBAColor(238, 238, 238));
+
+    UILabel * leftView = [[UILabel alloc] initWithFrame:CGRectMake(20,0,7,26)];
+    leftView.backgroundColor = [UIColor clearColor];
+    _textField.leftView = leftView;
+    _textField.leftViewMode = UITextFieldViewModeAlways;
+    _textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [[UIApplication sharedApplication].keyWindow addSubview:_textField];
 }
 - (void)viewDidAppear:(BOOL)animated{

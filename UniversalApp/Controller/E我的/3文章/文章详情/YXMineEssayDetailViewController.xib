@@ -28,7 +28,7 @@
                         <constraint firstAttribute="height" constant="40" id="znp-KB-u0W"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <state key="normal" title="  点击评论...">
+                    <state key="normal" title="    点击评论...">
                         <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>

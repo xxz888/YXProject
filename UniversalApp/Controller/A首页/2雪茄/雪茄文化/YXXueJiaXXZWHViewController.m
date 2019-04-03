@@ -32,6 +32,10 @@
     
 }
 - (void)keyboardNotification:(NSNotification *)notification{
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
     CGPoint offset = CGPointMake(0, 0);
    // [self.yxTableView setContentOffset:offset animated:YES];
     
