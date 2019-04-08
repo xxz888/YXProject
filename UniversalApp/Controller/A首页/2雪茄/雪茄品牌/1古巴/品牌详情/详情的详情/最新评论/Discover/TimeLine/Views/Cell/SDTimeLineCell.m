@@ -291,7 +291,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     .widthIs(0);
 }
 -(void)fiveStarView:(NSString *)score view:(UIView *)view{
-    
+    [view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0,view.frame.size.width, view.frame.size.height)];
     label.text = score;
     label.font = [UIFont systemFontOfSize:13];

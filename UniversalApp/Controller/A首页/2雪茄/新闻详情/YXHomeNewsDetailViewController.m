@@ -25,14 +25,22 @@
             [(UIScrollView *)subView setShowsVerticalScrollIndicator:NO];
         }
     }
-    //获取bundlePath 路径
-    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
-    //获取本地html目录 basePath
-    NSString *basePath = [NSString stringWithFormat:@"%@/%@",bundlePath,@"html"];
-    //获取本地html目录 baseUrl
-    NSURL *baseUrl = [NSURL fileURLWithPath: basePath isDirectory: YES];
-    //显示内容
-    [self.webView loadHTMLString:[ShareManager adaptWebViewForHtml:_webDic[@"details"]] baseURL: baseUrl];
+    self.title = kGetString(self.webDic[@"title"]);
+    if ([self.webDic[@"is_reprint"] boolValue]) {
+        NSURL *url = [NSURL URLWithString:kGetString(self.webDic[@"reprint_url"])];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [self.webView loadRequest:request];
+        }else{
+        //获取bundlePath 路径
+        NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
+        //获取本地html目录 basePath
+        NSString *basePath = [NSString stringWithFormat:@"%@/%@",bundlePath,@"html"];
+        //获取本地html目录 baseUrl
+        NSURL *baseUrl = [NSURL fileURLWithPath: basePath isDirectory: YES];
+        //显示内容
+        [self.webView loadHTMLString:[ShareManager adaptWebViewForHtml:_webDic[@"details"]] baseURL: baseUrl];
+    }
+
 }
 
 #pragma mark - WKNavigationDelegate
