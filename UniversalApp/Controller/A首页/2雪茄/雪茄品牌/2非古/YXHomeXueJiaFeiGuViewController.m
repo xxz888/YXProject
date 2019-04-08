@@ -37,7 +37,7 @@
         silde = [[CBGroupAndStreamView alloc] initWithFrame:CGRectMake(5, 0, KScreenWidth-10, kScreenHeight-kTopHeight-kTabBarHeight)];
         silde.isSingle = YES;
         silde.radius = 5;
-        silde.font = [UIFont systemFontOfSize:12];
+        silde.font = [UIFont systemFontOfSize:15];
         silde.titleTextFont = [UIFont systemFontOfSize:18];
         silde.norColor = A_COlOR;
         silde.contentNorColor = KWhiteColor;
@@ -46,7 +46,7 @@
         silde.maragin_x = 15;
         silde.maragin_y = 20;
 
-        silde.butHeight = 30;
+        silde.butHeight = 35;
         
         [silde setContentView:@[contentArr] titleArr:titleArr];
         

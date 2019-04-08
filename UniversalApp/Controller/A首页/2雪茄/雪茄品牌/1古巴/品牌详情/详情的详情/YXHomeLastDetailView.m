@@ -38,7 +38,7 @@
     
     
     
-    CGAffineTransform transform = CGAffineTransformMakeScale(1.0f, 3.0f);
+    CGAffineTransform transform = CGAffineTransformMakeScale(1.0f, 4.0f);
     self.progress1.transform = transform;//设定宽高
     self.porgress2.transform = transform;//设定宽高
     self.progress3.transform = transform;//设定宽高
