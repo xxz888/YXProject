@@ -117,6 +117,10 @@
         [dic setValue:@"" forKey:@"photo1"];
         [dic setValue:@"" forKey:@"photo2"];
         [dic setValue:@"" forKey:@"photo3"];
+        [QMUITips hideAllTipsInView:self.view];
+
+        [QMUITips showInfo:@"请至少上传一张图片" inView:self.view hideAfterDelay:2];
+        return;
     }
     if (imgArray.count >= 1){
         [dic setValue:imgArray[0] forKey:@"photo1"];

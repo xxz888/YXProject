@@ -48,7 +48,7 @@
 
 @property (nonatomic)NSInteger commontTime;
 @property (nonatomic, copy) NSString * zanCount;
-@property (nonatomic) CGFloat score;
+@property (nonatomic, copy) NSString * score;
 @property (nonatomic,copy) NSString * praise;
 @property (nonatomic,copy) NSString * praise_num;
 

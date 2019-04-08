@@ -290,13 +290,20 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     .centerYEqualToView(_operationButton)
     .widthIs(0);
 }
--(void)fiveStarView:(CGFloat)score view:(UIView *)view{
+-(void)fiveStarView:(NSString *)score view:(UIView *)view{
+    
+    UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0,view.frame.size.width, view.frame.size.height)];
+    label.text = score;
+    label.font = [UIFont systemFontOfSize:13];
+    [view addSubview:label];
+    /*
     XHStarRateView *starRateView = [[XHStarRateView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
     starRateView.isAnimation = YES;
     starRateView.rateStyle = HalfStar;
     starRateView.tag = 1;
     starRateView.currentScore = score;
     [view addSubview:starRateView];
+     */
 }
 - (void)configTheme{
     self.lee_theme

@@ -43,7 +43,6 @@
     [super awakeFromNib];
     self.wenhuaImageView.layer.masksToBounds = YES;
     self.wenhuaImageView.layer.cornerRadius = 3;
-    self.backgroundColor = KWhiteColor;
 }
 
 - (IBAction)zanAction:(id)sender {

@@ -142,7 +142,7 @@
     
     
     // 设置 view 的 frame(将设置 frame 提到设置 tableHeaderView 之前)
-    self.lastDetailView.frame = CGRectMake(0, 0, kScreenWidth, (AxcAE_IsiPhoneX ? 450 : 540) + height + tagHeight + listHeight);
+    self.lastDetailView.frame = CGRectMake(0, 0, kScreenWidth, (AxcAE_IsiPhoneX ? 410 : 500) + height + tagHeight + listHeight);
     // 设置 tableHeaderView
     self.yxTableView.tableHeaderView = self.lastDetailView;
     
@@ -298,7 +298,7 @@
     
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeLastMyTalkView" owner:self options:nil];
     self.lastMyTalkView = [nib objectAtIndex:0];
-    self.lastMyTalkView.frame = CGRectMake(0, 0,KScreenWidth, 340);
+    self.lastMyTalkView.frame = CGRectMake(0, 0,KScreenWidth, 340-75);
     self.lastMyTalkView.backgroundColor = UIColorWhite;
     self.lastMyTalkView.layer.masksToBounds = YES;
     self.lastMyTalkView.layer.cornerRadius = 6;
@@ -306,6 +306,9 @@
     kWeakSelf(self);
     self.lastMyTalkView.block = ^{
         _segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
+    };
+    self.lastMyTalkView.selectBlock = ^(NSString * str) {
+        
     };
     [self.lastMyTalkView.parDic setValue:@([self.startDic[@"id"] intValue]) forKey:@"cigar_id"];
     
@@ -330,7 +333,8 @@
 
         model.msgContent = [formalArray[i][@"comment"] UnicodeToUtf8];
         model.commontTime = [formalArray[i][@"update_time"] integerValue];
-        model.score = [formalArray[i][@"average_score"] floatValue];
+        model.score = [formalArray[i][@"recommend"] integerValue] == 1 ? @"(推荐)" :
+                      [formalArray[i][@"recommend"] integerValue] == 2 ? @"(中立)" : @"(不推荐)";  //[formalArray[i][@"average_score"] floatValue];
         model.praise = kGetString(formalArray[i][@"praise"]);
         model.praise_num = kGetString(formalArray[i][@"praise_number"]);
         model.id =  kGetString(formalArray[i][@"id"]);

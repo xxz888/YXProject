@@ -35,6 +35,15 @@
     _previewView = [[MMImagePreviewView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     ViewBorderRadius(self.scoreView, 3, 1, YXRGBAColor(200, 200, 200));
     ViewBorderRadius(self.self.lastSixPhotoView, 3, 1, YXRGBAColor(200, 200, 200));
+    
+    
+    
+    CGAffineTransform transform = CGAffineTransformMakeScale(1.0f, 3.0f);
+    self.progress1.transform = transform;//设定宽高
+    self.porgress2.transform = transform;//设定宽高
+    self.progress3.transform = transform;//设定宽高
+
+    /*
     //外观
     [self fiveStarView:5 view:self.lastWaiGuanFiveView];
     //燃烧
@@ -45,7 +54,7 @@
     [self fiveStarView:5 view:self.lastKouGanFiveView];
     //总分的五颗星
     [self fiveStarView:5 view:self.lastAllScoreFiveView];
-
+*/
     [self.listTableView registerNib:[UINib nibWithNibName:@"YXHomeLastListTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeLastListTableViewCell"];
     
     self.listData = [NSMutableArray array];
@@ -124,10 +133,41 @@
     self.nongduLbl.text = kGetString(startDic[@"strength"]);
 }
 -(void)fiveStarViewUIAllDataDic_PingJunFen:(NSDictionary *)allDataDic{
+    /*
     //总分的五颗星
     [self fiveStarView:nsstringToFloat(allDataDic[@"average_score__avg"]) view:self.lastAllScoreFiveView];
+     */
+
+    
+    NSString * str1 = kGetString(allDataDic[@"is_recommend_number"]);
+    NSString * str2 = kGetString(allDataDic[@"neutrality_number"]);
+    NSString * str3 = kGetString(allDataDic[@"dont_recommend_number"]);
+    NSString * sum = kGetString(allDataDic[@"sum"]);
+    
+    //推荐指数
+    double average_score = [str1 doubleValue] / [sum doubleValue];
+    self.tuijianAll.text = [NSString stringWithFormat:@"%.0f%%",average_score*100];
+    //推荐
+    double average_score1 = [str1 doubleValue] / [sum doubleValue];
+    self.lbl1score.text = [NSString stringWithFormat:@"(%.0f%%)",average_score1*100];
+    self.lbl1people.text = [NSString stringWithFormat:@"(%@人)",str1];
+    self.progress1.progress = average_score1;
+    //中立
+    double average_score2 = [str2 doubleValue] / [sum doubleValue];
+    self.lbl2score.text = [NSString stringWithFormat:@"(%.0f%%)",average_score2*100];
+    self.lbl2people.text = [NSString stringWithFormat:@"(%@人)",str2];
+    self.porgress2.progress = average_score2;
+
+    //不推荐
+    double average_score3 = [str3 doubleValue] / [sum doubleValue];
+    self.lbl3score.text = [NSString stringWithFormat:@"(%.0f%%)",average_score3*100];
+    self.lbl3people.text = [NSString stringWithFormat:@"(%@人)",str3];
+    self.progress3.progress = average_score3;
+
+    
 }
 -(void)fiveStarViewUIAllDataDic_GeRenFen:(NSDictionary *)allDataDic{
+    /*
     //外观
     [self fiveStarView:nsstringToFloat(allDataDic[@"out_looking__avg"]) view:self.lastWaiGuanFiveView];
     //燃烧
@@ -136,6 +176,7 @@
     [self fiveStarView:nsstringToFloat(allDataDic[@"fragrance__avg"]) view:self.lastXiangWeiFiveView];
     //口感
     [self fiveStarView:nsstringToFloat(allDataDic[@"mouthfeel__avg"]) view:self.lastKouGanFiveView];
+     */
 }
 -(void)fiveStarView:(CGFloat)score view:(UIView *)view{
     XHStarRateView *starRateView = [[XHStarRateView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];

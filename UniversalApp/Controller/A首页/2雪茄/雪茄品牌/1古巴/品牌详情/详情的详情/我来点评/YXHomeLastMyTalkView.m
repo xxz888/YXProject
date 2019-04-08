@@ -32,6 +32,8 @@
     self.qmuiTextView.clipsToBounds = YES;
     [self.qmuiTextView becomeFirstResponder];
     [self.bottomView addSubview:self.qmuiTextView];
+    
+    self.recommend = @"1";
 }
 -(void)fiveStarView:(CGFloat)score view:(UIView *)view{
     XHStarRateView *starRateView = [[XHStarRateView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
@@ -42,11 +44,12 @@
     starRateView.delegate =self;
     [view addSubview:starRateView];
     
-    
+    /*
     [self.parDic setValue:@(5) forKey:@"out_looking"];
     [self.parDic setValue:@(5) forKey:@"burn"];
     [self.parDic setValue:@(5) forKey:@"fragrance"];
     [self.parDic setValue:@(5) forKey:@"mouthfeel"];
+     */
 
 }
 -(void)starRateView:(XHStarRateView *)starRateView currentScore:(CGFloat)currentScore{
@@ -64,6 +67,7 @@
 
 - (IBAction)fabiaoAction:(id)sender {
     kWeakSelf(self);
+    /*
     if (self.parDic[@"out_looking"] && [self.parDic[@"out_looking"] integerValue] < 0) {
         [QMUITips showError:@"外观分数不能为0" inView:self hideAfterDelay:2];
         return;
@@ -77,14 +81,17 @@
         [QMUITips showError:@"口感分数不能为0" inView:self hideAfterDelay:2];
         return;
     }
-    
+  
     int average_score = ([self.parDic[@"out_looking"] intValue] +
                          [self.parDic[@"burn"] intValue] +
                          [self.parDic[@"fragrance"] intValue] +
                          [self.parDic[@"mouthfeel"] intValue]) / 4;
-    
+   
     [self.parDic setValue:@(average_score) forKey:@"average_score"];
+    */
     [self.parDic setValue:[self.qmuiTextView.text utf8ToUnicode] forKey:@"comment"];
+
+    [self.parDic setValue:self.recommend forKey:@"recommend"];
     [YX_MANAGER requestCigar_commentPOST:self.parDic success:^(id object) {
         [QMUITips showSucceed:@"评论成功" inView:self hideAfterDelay:2];
         weakself.block();
@@ -102,4 +109,28 @@
 //mouthfeel    int        口感
 //comment    char(500)        评论
 
+- (IBAction)btnAction:(UIButton *)btn{
+    self.recommend =  NSIntegerToNSString(btn.tag-1000);
+    UIImage * image1 = [UIImage imageNamed:@"点评单选"];
+    UIImage * image2 = [UIImage imageNamed:@"单选未选中"];
+
+    if (btn.tag == 1001) {
+        
+        [self.btn1 setImage:image1 forState:UIControlStateNormal];
+        [self.btn2 setImage:image2 forState:UIControlStateNormal];
+        [self.btn3 setImage:image2 forState:UIControlStateNormal];
+
+    }else  if (btn.tag == 1002) {
+        
+        [self.btn1 setImage:image2 forState:UIControlStateNormal];
+        [self.btn2 setImage:image1 forState:UIControlStateNormal];
+        [self.btn3 setImage:image2 forState:UIControlStateNormal];
+        
+    }else  if (btn.tag == 1003) {
+        
+        [self.btn1 setImage:image2 forState:UIControlStateNormal];
+        [self.btn2 setImage:image2 forState:UIControlStateNormal];
+        [self.btn3 setImage:image1 forState:UIControlStateNormal];
+    }
+}
 @end

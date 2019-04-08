@@ -227,7 +227,8 @@ static CGFloat textFieldH = 40;
         model.name = formalArray[i][@"user_name"];
         model.msgContent = formalArray[i][@"comment"];
         model.commontTime = [formalArray[i][@"update_time"] integerValue];
-        model.score = [formalArray[i][@"average_score"] floatValue];
+        model.score = [formalArray[i][@"recommend"] integerValue] == 1 ? @"(推荐)" :
+        [formalArray[i][@"recommend"] integerValue] == 2 ? @"(中立)" : @"(不推荐)";  //[formalArray[i][@"average_score"] floatValue];
         model.praise = kGetString(formalArray[i][@"is_praise"]);
         model.praise_num = kGetString(formalArray[i][@"praise_number"]);
         model.id =  kGetString(formalArray[i][@"id"]);

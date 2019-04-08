@@ -72,6 +72,20 @@ typedef void(^fixBoxActionBlock)(NSInteger index);
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *sixViewHeight;
 @property (weak, nonatomic) IBOutlet UILabel *nongduLbl;
 - (IBAction)lastSegmentAction:(id)sender;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *tuijianAll;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbl1score;
+@property (weak, nonatomic) IBOutlet UILabel *lbl2score;
+@property (weak, nonatomic) IBOutlet UILabel *lbl3score;
+@property (weak, nonatomic) IBOutlet UILabel *lbl1people;
+@property (weak, nonatomic) IBOutlet UILabel *lbl2people;
+@property (weak, nonatomic) IBOutlet UILabel *lbl3people;
+@property (weak, nonatomic) IBOutlet UIProgressView *progress1;
+@property (weak, nonatomic) IBOutlet UIProgressView *porgress2;
+@property (weak, nonatomic) IBOutlet UIProgressView *progress3;
+
 @end
 
 NS_ASSUME_NONNULL_END
