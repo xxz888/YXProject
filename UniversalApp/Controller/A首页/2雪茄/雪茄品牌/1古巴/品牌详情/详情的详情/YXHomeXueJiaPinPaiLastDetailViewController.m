@@ -295,7 +295,10 @@
 
 #pragma mark ========== 点击我来评论 ==========
 -(void)clickMyTalkAction{
-    
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeLastMyTalkView" owner:self options:nil];
     self.lastMyTalkView = [nib objectAtIndex:0];
     self.lastMyTalkView.frame = CGRectMake(0, 0,KScreenWidth, 340-75);
@@ -415,8 +418,12 @@
             model.isOpening = !model.isOpening;
             [weakSelf.yxTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         }];
-        /*
+        
         [cell setDidClickCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow, SDTimeLineCell * cell) {
+            if (![userManager loadUserInfo]) {
+                KPostNotification(KNotificationLoginStateChange, @NO);
+                return;
+            }
             weakSelf.textField.placeholder = [NSString stringWithFormat:@"  回复：%@", commentId];
             weakSelf.currentEditingIndexthPath = cell.indexPath;
             [weakSelf.textField becomeFirstResponder];
@@ -426,8 +433,12 @@
             [weakSelf adjustTableViewToFitKeyboard];
             
         }];
-        */
+        
         [cell setDidLongClickCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow, SDTimeLineCell *cell,NSInteger tag) {
+            if (![userManager loadUserInfo]) {
+                KPostNotification(KNotificationLoginStateChange, @NO);
+                return;
+            }
             //在此添加你想要完成的功能
             QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {}];
             QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"删除" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
@@ -509,6 +520,10 @@
 }
 #pragma mark ========== tableview 点击评论按钮 ==========
 - (void)didClickcCommentButtonInCell:(UITableViewCell *)cell{
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
     [_textField becomeFirstResponder];
     self.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
@@ -518,6 +533,10 @@
 }
 #pragma mark ========== tableview 点赞按钮 ==========
 - (void)didClickLikeButtonInCell:(SDTimeLineCell *)cell{
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
     kWeakSelf(self);
     NSIndexPath *index = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel *model = self.dataArray[index.row];
