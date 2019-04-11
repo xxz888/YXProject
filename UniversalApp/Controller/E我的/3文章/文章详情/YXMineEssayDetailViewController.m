@@ -10,7 +10,7 @@
 #import "YXHomeLastDetailView.h"
 #import "YXHomeLastMyTalkView.h"
 #import "XHStarRateView.h"
-
+#import "HGPersonalCenterViewController.h"
 #import "YXMineImageDetailHeaderView.h"
 
 #import "SDTimeLineTableHeaderView.h"
@@ -236,6 +236,18 @@ static CGFloat textFieldH = 40;
     SDTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:kTimeLineTableViewCellId];
     cell.indexPath = indexPath;
     __weak typeof(self) weakSelf = self;
+    cell.imgBlock = ^(SDTimeLineCell * cell) {
+        UserInfo *userInfo = curUser;
+        NSString * cellUserId = kGetString(cell.model.userID);
+        if ([userInfo.id isEqualToString:cellUserId]) {
+            self.navigationController.tabBarController.selectedIndex = 4;
+            return;
+        }
+        HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
+        mineVC.userId = cellUserId;
+        mineVC.whereCome = YES;    //  YES为其他人 NO为自己
+        [self.navigationController pushViewController:mineVC animated:YES];
+    };
     if (!cell.moreButtonClickedBlock) {
         [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {
             SDTimeLineCellModel *model = weakSelf.dataArray[indexPath.row];

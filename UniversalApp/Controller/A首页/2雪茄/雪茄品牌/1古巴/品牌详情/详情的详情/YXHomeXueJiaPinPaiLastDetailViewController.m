@@ -24,7 +24,7 @@
 #import "LEETheme.h"
 #import "GlobalDefines.h"
 #import "YXHomeSearchMoreViewController.h"
-
+#import "HGPersonalCenterViewController.h"
 #define kTimeLineTableViewCellId @"SDTimeLineCell"
 
 #define textFieldH 40
@@ -412,6 +412,30 @@
     [cell.showMoreCommentBtn setTitle:height1 == 0 ? @"" : @"显示更多回复 >>"  forState:UIControlStateNormal];
     cell.showMoreCommentBtn.hidden = height1 == 0;
     __weak typeof(self) weakSelf = self;
+    cell.imgBlock = ^(SDTimeLineCell * cell) {
+        UserInfo *userInfo = curUser;
+        NSString * cellUserId = kGetString(cell.model.userID);
+        if ([userInfo.id isEqualToString:cellUserId]) {
+            self.navigationController.tabBarController.selectedIndex = 4;
+            return;
+        }
+        HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
+        mineVC.userId = cellUserId;
+        mineVC.whereCome = YES;    //  YES为其他人 NO为自己
+        [self.navigationController pushViewController:mineVC animated:YES];
+    };
+    cell.imgBlock = ^(SDTimeLineCell * cell) {
+        UserInfo *userInfo = curUser;
+        NSString * cellUserId = kGetString(cell.model.userID);
+        if ([userInfo.id isEqualToString:cellUserId]) {
+            self.navigationController.tabBarController.selectedIndex = 4;
+            return;
+        }
+        HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
+        mineVC.userId = cellUserId;
+        mineVC.whereCome = YES;    //  YES为其他人 NO为自己
+        [self.navigationController pushViewController:mineVC animated:YES];
+    };
     if (!cell.moreButtonClickedBlock) {
         [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {
             SDTimeLineCellModel *model = weakSelf.dataArray[indexPath.row];

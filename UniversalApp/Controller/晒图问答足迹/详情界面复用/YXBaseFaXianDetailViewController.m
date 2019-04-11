@@ -7,6 +7,7 @@
 //
 
 #import "YXBaseFaXianDetailViewController.h"
+#import "HGPersonalCenterViewController.h"
 
 @interface YXBaseFaXianDetailViewController ()<UITextFieldDelegate,SDTimeLineCellDelegate>
 
@@ -45,6 +46,18 @@
 
     cell.indexPath = indexPath;
     __weak typeof(self) weakSelf = self;
+    cell.imgBlock = ^(SDTimeLineCell * cell) {
+        UserInfo *userInfo = curUser;
+        NSString * cellUserId = kGetString(cell.model.userID);
+        if ([userInfo.id isEqualToString:cellUserId]) {
+            self.navigationController.tabBarController.selectedIndex = 4;
+            return;
+        }
+        HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
+        mineVC.userId = cellUserId;
+        mineVC.whereCome = YES;    //  YES为其他人 NO为自己
+        [self.navigationController pushViewController:mineVC animated:YES];
+    };
     if (!cell.moreButtonClickedBlock) {
         [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {
             

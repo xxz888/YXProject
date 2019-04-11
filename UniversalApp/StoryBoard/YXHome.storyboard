@@ -593,7 +593,7 @@
                                         <constraint firstAttribute="height" constant="22" id="xWM-M0-tiI"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" red="1" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>

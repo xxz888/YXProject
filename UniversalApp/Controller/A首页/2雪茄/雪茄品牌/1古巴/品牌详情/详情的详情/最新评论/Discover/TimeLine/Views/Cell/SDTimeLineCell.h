@@ -78,4 +78,7 @@
 @property (nonatomic, strong)  UIButton *huiFuButton;
 @property (nonatomic, strong)  UIView * starView;
 
+
+typedef void(^clickTitleImgBlock)(SDTimeLineCell *);
+@property (nonatomic,copy) clickTitleImgBlock imgBlock;
 @end

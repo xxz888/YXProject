@@ -29,9 +29,7 @@
     self.title = self.dic[@"name"];
     
     [self setUpSycleScrollView:[NSArray arrayWithArray:self.dic[@"photo_list"]]];
-
-    
-    self.priceLbl.text = [kGet2fDouble([self.dic[@"price"] doubleValue]) concate:@"¥ "];
+    self.priceLbl.text = kGetString(self.dic[@"price"]);
     self.titleLbl.text = self.dic[@"name"];
     
     

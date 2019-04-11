@@ -76,7 +76,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     self.selectionStyle = 0;
     
     _iconView = [UIImageView new];
-    
+    _iconView.userInteractionEnabled = YES;
     _nameLable = [UILabel new];
     _nameLable.font = [UIFont systemFontOfSize:14];
     _nameLable.textColor = KDarkGaryColor;
@@ -163,11 +163,17 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
         }
     }];
     
+
+    
     
     NSArray *views = @[_iconView, _nameLable,_starView, _contentLabel, _moreButton, _picContainerView, _timeLabel,_zanButton, _operationMenu, _commentView,_showMoreCommentBtn,_zanCountLable];
     
     [self.contentView sd_addSubviews:views];
     
+    
+    
+    UITapGestureRecognizer *tapGesturRecognizer1=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
+    [_iconView addGestureRecognizer:tapGesturRecognizer1];
     UIView *contentView = self.contentView;
     CGFloat margin = 10;
     
@@ -289,6 +295,9 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     .heightIs(36)
     .centerYEqualToView(_operationButton)
     .widthIs(0);
+}
+-(void)tapAction:(id)sender{
+    self.imgBlock(self);
 }
 -(void)fiveStarView:(NSString *)score view:(UIView *)view{
     [view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];

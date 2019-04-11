@@ -227,10 +227,10 @@
     for (int i = 0; i < self.commentItemsArray.count; i++) {
         UILabel *label = (UILabel *)self.commentLabelsArray[i];
         label.hidden = NO;
-        CGFloat topMargin = (i == 0 && likeItemsArray.count == 0) ? 10 : 5;
+        CGFloat topMargin = 10 ;//(i == 0 && likeItemsArray.count == 0) ? 10 : 5;
         label.sd_layout
-        .leftSpaceToView(self, 8)
-        .rightSpaceToView(self, 5)
+        .leftSpaceToView(self, 0)
+        .rightSpaceToView(self, 0)
         .topSpaceToView(lastTopView, topMargin)
         .autoHeightRatio(0);
         

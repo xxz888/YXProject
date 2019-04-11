@@ -56,7 +56,7 @@
         }
                                                                   withMaxDisplayItem:6
                                                                       withItemHeight:40
-                                                                        withFontSize:20];
+                                                                        withFontSize:17];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(endScrollingAnimation:)

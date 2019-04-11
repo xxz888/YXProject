@@ -9,7 +9,7 @@
 #import "ZXSegmentHeaderCell.h"
 
 
-#define MaxDisplayItem 4
+#define MaxDisplayItem 6
 #define ItemHeight 60.0
 #define FontSize 17
 
@@ -138,6 +138,10 @@
     headerCell.sliderColor = self.sliderColor;
     //设置title字体大小
     [headerCell.button.titleLabel setFont:[UIFont systemFontOfSize:self.scaleFontSize]];
+    headerCell.button.titleLabel.adjustsFontSizeToFitWidth = YES;
+        headerCell.button.titleLabel.minimumScaleFactor=0.5;
+    
+
     headerCell.block = ^(ZXSegmentHeaderCell *cell) {
         // 执行控制器翻页.......
         self.block(cell.index);

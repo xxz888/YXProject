@@ -410,6 +410,7 @@
                                             ];
     segmentController.view.backgroundColor = KWhiteColor;
     segmentController.enableSwipeGestureRecognizer = NO;
+    
     kWeakSelf(self);
     [self addChildViewController:(self.segmentController = segmentController)];
     [segmentController didMoveToParentViewController:self];

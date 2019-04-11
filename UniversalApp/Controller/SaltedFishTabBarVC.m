@@ -24,6 +24,7 @@
     [super viewDidLoad];
     // 添加子VC
     [self addChildViewControllers];
+    [[UITabBar appearance] setTranslucent:NO];
 }
 - (void)addChildViewControllers{
     UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];

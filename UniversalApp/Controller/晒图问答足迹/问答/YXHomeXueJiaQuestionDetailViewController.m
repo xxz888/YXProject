@@ -8,6 +8,8 @@
 
 #import "YXHomeXueJiaQuestionDetailViewController.h"
 #import "YXHomeQuestionDetailHeaderView.h"
+#import "HGPersonalCenterViewController.h"
+
 @interface YXHomeXueJiaQuestionDetailViewController ()<UITextFieldDelegate,SDTimeLineCellDelegate>
 @property(nonatomic)YXHomeQuestionDetailHeaderView * headerView;
 @property (nonatomic, strong) NSMutableDictionary * pardic;;
@@ -259,6 +261,18 @@
     cell.commentView.likeStringLabel.hidden = YES;
     cell.commentView.likeLabel.hidden = YES;
     __weak typeof(self) weakSelf = self;
+    cell.imgBlock = ^(SDTimeLineCell * cell) {
+        UserInfo *userInfo = curUser;
+        NSString * cellUserId = kGetString(cell.model.userID);
+        if ([userInfo.id isEqualToString:cellUserId]) {
+            self.navigationController.tabBarController.selectedIndex = 4;
+            return;
+        }
+        HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
+        mineVC.userId = cellUserId;
+        mineVC.whereCome = YES;    //  YES为其他人 NO为自己
+        [self.navigationController pushViewController:mineVC animated:YES];
+    };
     if (!cell.moreButtonClickedBlock) {
         [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {
             SDTimeLineCellModel *model = weakSelf.dataArray[indexPath.row];
