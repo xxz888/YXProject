@@ -31,7 +31,6 @@
     self.dataArray = [[NSMutableArray alloc]init];
     [self collectionViewCon];
     [self addCollectionViewRefreshView:self.yxCollectionView];
-    [self requestAction];
 }
 -(void)requestAction{
     user_id_BOOL ? [self requestOtherShaiTuList] : [self requestMineShaiTuList];
@@ -39,6 +38,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self requestAction];
 }
 -(void)headerRereshing{
     [super headerRereshing];

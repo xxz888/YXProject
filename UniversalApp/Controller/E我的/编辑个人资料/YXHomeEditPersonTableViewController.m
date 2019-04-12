@@ -66,6 +66,7 @@
 }
 -(void)upData{
     kWeakSelf(self);
+//    [QMUITips showLoadingInView:self.view];
     NSDictionary * dic = @{@"username":self.nameTf.text,
                            @"gender":[self.sexBtn.titleLabel.text isEqualToString:@"男"] ? @"1" :@"0",
                            @"photo":self.photo,
@@ -73,13 +74,29 @@
                            @"site":self.adressBtn.titleLabel.text,
                            };
     [YX_MANAGER requestUpdate_userPOST:dic success:^(id object) {
-        [QMUITips showSucceed:@"修改成功" inView:weakself.view hideAfterDelay:2];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [weakself.navigationController popViewControllerAnimated:YES];
-        });
-        
+//        [self.navigationController popViewControllerAnimated:NO];
+//        kWeakSelf(self);
+//        [userManager logout:^(BOOL success, NSString *des) {
+//
+//        }];
+//        [QMUITips showSucceed:@"修改成功,请重新登录"];
+
+        [QMUITips hideAllTipsInView:self.view];
+        [QMUITips showSucceed:@"修改成功"];
         UserInfo *userInfo = curUser;
         [userInfo setToken:object[@"token"]];
+        
+        
+        if (userInfo) {
+            YYCache *cache = [[YYCache alloc]initWithName:KUserCacheName];
+            NSDictionary *dic = [userInfo modelToJSONObject];
+            [cache setObject:dic forKey:KUserModelCache];
+        }
+        
+        
+        [weakself.navigationController popViewControllerAnimated:YES];
+        
+   
     }];
 }
 - (IBAction)finishAction:(id)sender {
@@ -89,15 +106,17 @@
 }
 - (IBAction)changeTitleImgAction:(id)sender {
     [_nameTf resignFirstResponder];
-
     [self.view endEditing:YES];
     kWeakSelf(self);
     [imagePicker dwSetPresentDelegateVC:self SheetShowInView:self.view InfoDictionaryKeys:(long)nil];
     [imagePicker dwGetpickerTypeStr:^(NSString *pickerTypeStr) {
     } pickerImagePic:^(UIImage *pickerImagePic) {
-        [weakself.titleImgView setImage:pickerImagePic];
+        [QMUITips showLoadingInView:self.view];
         [QiniuLoad uploadImageToQNFilePath:@[pickerImagePic] success:^(NSString *reslut) {
+            [weakself.titleImgView setImage:pickerImagePic];
+
             weakself.photo = [NSMutableArray arrayWithArray:[reslut split:@";"]][0];
+            [QMUITips hideAllTipsInView:self.view];
         } failure:^(NSString *error) {
             
         }];

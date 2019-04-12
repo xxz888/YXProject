@@ -17,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="GBa-bF-gmT">
-                    <rect key="frame" x="10" y="95" width="355.5" height="50"/>
+                    <rect key="frame" x="10" y="115" width="355.5" height="50"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JJn-gx-ZgR">
                             <rect key="frame" x="0.0" y="0.0" width="118.5" height="50"/>
@@ -186,7 +186,7 @@
                 <constraint firstItem="bsO-10-iXb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Ccg-84-S4Q"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="VWP-2f-qbq" secondAttribute="trailing" constant="10" id="CpW-nE-KxU"/>
                 <constraint firstItem="zre-9E-FTM" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="F0Q-6L-gOm"/>
-                <constraint firstItem="GBa-bF-gmT" firstAttribute="top" secondItem="zre-9E-FTM" secondAttribute="bottom" constant="5" id="HuO-u7-7aE"/>
+                <constraint firstItem="GBa-bF-gmT" firstAttribute="top" secondItem="zre-9E-FTM" secondAttribute="bottom" constant="25" id="HuO-u7-7aE"/>
                 <constraint firstItem="bsO-10-iXb" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Llt-6C-Kqt"/>
                 <constraint firstItem="MYU-Fr-ZbL" firstAttribute="top" secondItem="sE9-Ps-Bqa" secondAttribute="bottom" constant="-5" id="UEC-pj-hF0"/>
                 <constraint firstItem="bsO-10-iXb" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="UOQ-BI-Y2C"/>

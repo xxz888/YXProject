@@ -119,16 +119,25 @@
     for (NSDictionary * dic in imageArray) {
         [photoArray addObject:dic[@"photo"]];
     }
-    SDCycleScrollView *cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, KScreenWidth, 180) delegate:self placeholderImage:[UIImage imageNamed:@""]];
+    
+    SDCycleScrollView *cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, 180) shouldInfiniteLoop:NO imageNamesGroup:[NSArray arrayWithArray:imageArray]];
+    
+    
+//    SDCycleScrollView *cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, KScreenWidth, 180) delegate:self placeholderImage:[UIImage imageNamed:@""]];
     cycleScrollView3.centerX = self.titleView.centerX;
     cycleScrollView3.bannerImageViewContentMode =  1;
-    cycleScrollView3.showPageControl = NO;
-    cycleScrollView3.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
-    cycleScrollView3.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
-    cycleScrollView3.autoScrollTimeInterval = 4;
+    cycleScrollView3.showPageControl = YES;
+    cycleScrollView3.autoScrollTimeInterval = 1;
     cycleScrollView3.titlesGroup = titleArray;
     cycleScrollView3.backgroundColor = KWhiteColor;
     cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];
+    
+    
+    cycleScrollView3.currentPageDotColor = A_COlOR;
+    cycleScrollView3.showPageControl = YES;
+    cycleScrollView3.autoScrollTimeInterval = 10000;
+    cycleScrollView3.pageDotColor = YXRGBAColor(239, 239, 239);
+    cycleScrollView3.backgroundColor = KWhiteColor;
     [self.titleView addSubview:cycleScrollView3];
 }
 - (IBAction)addCarShopAction:(id)sender {

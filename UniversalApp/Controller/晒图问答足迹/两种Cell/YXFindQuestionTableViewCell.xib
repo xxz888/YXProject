@@ -217,7 +217,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="syb-pQ-BGb">
-                                <rect key="frame" x="272" y="0.0" width="25" height="25"/>
+                                <rect key="frame" x="277" y="2.5" width="20" height="20"/>
                                 <state key="normal" backgroundImage="UnZan"/>
                                 <connections>
                                     <action selector="likeBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="f4l-xi-aW0"/>
@@ -229,32 +229,32 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deq-Xq-p8U">
-                                <rect key="frame" x="215" y="0.0" width="25" height="25"/>
+                                <rect key="frame" x="225" y="2.5" width="20" height="20"/>
                                 <state key="normal" backgroundImage="讨论"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBk-sM-VDJ">
-                                <rect key="frame" x="243" y="-4.5" width="5" height="12"/>
+                                <rect key="frame" x="248" y="-4.5" width="5" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="syb-pQ-BGb" firstAttribute="width" secondItem="fwr-oT-U7O" secondAttribute="width" id="4MK-ay-MUQ"/>
+                            <constraint firstItem="syb-pQ-BGb" firstAttribute="width" secondItem="fwr-oT-U7O" secondAttribute="width" constant="-5" id="4MK-ay-MUQ"/>
                             <constraint firstItem="awZ-9s-u6t" firstAttribute="leading" secondItem="fwr-oT-U7O" secondAttribute="trailing" constant="3" id="6Id-Tx-LDk"/>
-                            <constraint firstItem="syb-pQ-BGb" firstAttribute="height" secondItem="fwr-oT-U7O" secondAttribute="height" id="Ble-lI-Y3x"/>
+                            <constraint firstItem="syb-pQ-BGb" firstAttribute="height" secondItem="fwr-oT-U7O" secondAttribute="height" constant="-5" id="Ble-lI-Y3x"/>
                             <constraint firstItem="oDv-US-eQQ" firstAttribute="leading" secondItem="syb-pQ-BGb" secondAttribute="trailing" constant="3" id="FAq-Zw-9Xb"/>
                             <constraint firstItem="dBk-sM-VDJ" firstAttribute="centerY" secondItem="awZ-9s-u6t" secondAttribute="centerY" id="Nxj-Ud-jVh"/>
                             <constraint firstAttribute="height" constant="25" id="OtW-46-2Vr"/>
                             <constraint firstItem="syb-pQ-BGb" firstAttribute="leading" secondItem="dBk-sM-VDJ" secondAttribute="trailing" constant="24" id="T37-Hf-ulR"/>
-                            <constraint firstItem="deq-Xq-p8U" firstAttribute="height" secondItem="fwr-oT-U7O" secondAttribute="height" id="U87-hc-9HP"/>
+                            <constraint firstItem="deq-Xq-p8U" firstAttribute="height" secondItem="fwr-oT-U7O" secondAttribute="height" constant="-5" id="U87-hc-9HP"/>
                             <constraint firstItem="fwr-oT-U7O" firstAttribute="leading" secondItem="aUX-zQ-99x" secondAttribute="leading" id="VvU-T5-Bwn"/>
                             <constraint firstItem="awZ-9s-u6t" firstAttribute="top" secondItem="aUX-zQ-99x" secondAttribute="top" constant="-5" id="XV3-PO-WTd"/>
                             <constraint firstItem="syb-pQ-BGb" firstAttribute="centerY" secondItem="fwr-oT-U7O" secondAttribute="centerY" id="ZUV-AN-sHr"/>
                             <constraint firstItem="fwr-oT-U7O" firstAttribute="centerY" secondItem="aUX-zQ-99x" secondAttribute="centerY" id="cKm-7x-aZN"/>
                             <constraint firstItem="oDv-US-eQQ" firstAttribute="centerY" secondItem="awZ-9s-u6t" secondAttribute="centerY" id="lkS-Rb-6Tg"/>
                             <constraint firstItem="fwr-oT-U7O" firstAttribute="height" secondItem="aUX-zQ-99x" secondAttribute="height" id="qef-0c-rBD"/>
-                            <constraint firstItem="deq-Xq-p8U" firstAttribute="width" secondItem="fwr-oT-U7O" secondAttribute="width" id="qiQ-Sw-pIf"/>
+                            <constraint firstItem="deq-Xq-p8U" firstAttribute="width" secondItem="fwr-oT-U7O" secondAttribute="width" constant="-5" id="qiQ-Sw-pIf"/>
                             <constraint firstAttribute="trailing" secondItem="oDv-US-eQQ" secondAttribute="trailing" id="rKu-NE-Ufo"/>
                             <constraint firstItem="deq-Xq-p8U" firstAttribute="centerY" secondItem="fwr-oT-U7O" secondAttribute="centerY" id="x60-lk-kag"/>
                             <constraint firstItem="dBk-sM-VDJ" firstAttribute="leading" secondItem="deq-Xq-p8U" secondAttribute="trailing" constant="3" id="zZL-Wi-Bwu"/>
@@ -345,7 +345,7 @@
     </objects>
     <resources>
         <image name="UnZan" width="64" height="64"/>
-        <image name="分享" width="64" height="64"/>
+        <image name="分享" width="48" height="48"/>
         <image name="更多" width="64" height="64"/>
         <image name="讨论" width="64" height="64"/>
     </resources>

@@ -24,7 +24,6 @@
     CGRect frame = CGRectMake(0, 0, KScreenWidth,KScreenHeight - heightKK - height);
     
     self.yxTableView.frame =frame;
-    [self requestAction];
 }
 -(void)requestAction{
     user_id_BOOL ? [self requestZuJi_Other] : [self requestZuJi];
@@ -39,6 +38,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     //[super viewWillAppear:animated];
+    [self requestAction];
 }
 -(void)requestZuJi{
     kWeakSelf(self);

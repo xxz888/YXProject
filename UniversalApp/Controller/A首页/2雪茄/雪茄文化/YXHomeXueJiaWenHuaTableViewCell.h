@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)setCellData:(NSDictionary *)dic;
 +(CGFloat)cellDefaultHeight:(NSDictionary *)dic;
 
+@property (weak, nonatomic) IBOutlet UIView *outsideView;
 
 typedef void(^zanBlock)(YXHomeXueJiaWenHuaTableViewCell *);
 @property (nonatomic,copy) zanBlock zanblock;

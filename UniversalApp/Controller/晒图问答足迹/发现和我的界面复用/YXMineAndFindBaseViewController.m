@@ -469,8 +469,6 @@
                                    @"title":@"朋友圈"},
                                  @{@"image":@"shareView_wb",
                                    @"title":@"新浪微博"},
-                                 @{@"image":@"shareView_rr",
-                                   @"title":@"其他"},
                                  @{@"image":@"share_copyLink",
                                    @"title":@"删除"},
                                  @{@"image":@"share_copyLink",

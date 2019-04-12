@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"雪茄文化";
+    self.title = @"文化";
     [self tableviewCon];
     [self addRefreshView:self.yxTableView];
     [self requestCrgar];
