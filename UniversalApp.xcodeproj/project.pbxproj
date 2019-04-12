@@ -357,6 +357,8 @@
 		BBBFD7972223F6A200D377AC /* POPAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBFD7962223F6A200D377AC /* POPAnimation.m */; };
 		BBC16284217AD6EA00008907 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC16283217AD6EA00008907 /* Login.storyboard */; };
 		BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */; };
+		BBC1CC5F226073B800778C2A /* YXHomePeiJianHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC1CC5E226073B800778C2A /* YXHomePeiJianHeaderView.m */; };
+		BBC1CC61226073C300778C2A /* YXHomePeiJianHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC1CC60226073C300778C2A /* YXHomePeiJianHeaderView.xib */; };
 		BBC6180121F597EE00495619 /* YXGEFPinPaiLastDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC617FF21F597EE00495619 /* YXGEFPinPaiLastDetailViewController.m */; };
 		BBC6180221F597EE00495619 /* YXGEFPinPaiLastDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC6180021F597EE00495619 /* YXGEFPinPaiLastDetailViewController.xib */; };
 		BBC6180421F5AD5A00495619 /* YXHomeGolf.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC6180321F5AD5A00495619 /* YXHomeGolf.storyboard */; };
@@ -1233,6 +1235,9 @@
 		BBC16283217AD6EA00008907 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		BBC162D0217B111C00008907 /* QMUIConfigurationTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfigurationTemplate.h; sourceTree = "<group>"; };
 		BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIConfigurationTemplate.m; sourceTree = "<group>"; };
+		BBC1CC5D226073B800778C2A /* YXHomePeiJianHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomePeiJianHeaderView.h; sourceTree = "<group>"; };
+		BBC1CC5E226073B800778C2A /* YXHomePeiJianHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomePeiJianHeaderView.m; sourceTree = "<group>"; };
+		BBC1CC60226073C300778C2A /* YXHomePeiJianHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomePeiJianHeaderView.xib; sourceTree = "<group>"; };
 		BBC617FE21F597EE00495619 /* YXGEFPinPaiLastDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXGEFPinPaiLastDetailViewController.h; sourceTree = "<group>"; };
 		BBC617FF21F597EE00495619 /* YXGEFPinPaiLastDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXGEFPinPaiLastDetailViewController.m; sourceTree = "<group>"; };
 		BBC6180021F597EE00495619 /* YXGEFPinPaiLastDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXGEFPinPaiLastDetailViewController.xib; sourceTree = "<group>"; };
@@ -2407,6 +2412,9 @@
 			children = (
 				BB6D29EE21ED8D6E00F5049F /* YXHomeXueJiaPeiJianDetailViewController.h */,
 				BB6D29EF21ED8D6E00F5049F /* YXHomeXueJiaPeiJianDetailViewController.m */,
+				BBC1CC5D226073B800778C2A /* YXHomePeiJianHeaderView.h */,
+				BBC1CC5E226073B800778C2A /* YXHomePeiJianHeaderView.m */,
+				BBC1CC60226073C300778C2A /* YXHomePeiJianHeaderView.xib */,
 				BB6D29F121ED8ED500F5049F /* 推荐 */,
 			);
 			path = "雪茄配件详情";
@@ -4822,6 +4830,7 @@
 				BB29121922156BB500FF484E /* Slim Panetela.gif in Resources */,
 				BB29121522156BB500FF484E /* Small Panetela.gif in Resources */,
 				BBCC4AC121E86EC200493F40 /* YXHomeXueJiaFootTableViewCell.xib in Resources */,
+				BBC1CC61226073C300778C2A /* YXHomePeiJianHeaderView.xib in Resources */,
 				BB8376F52248B5730091A1A8 /* YXMineFindTableViewCell.xib in Resources */,
 				BBA8129E21DDAA15001B5EA1 /* YXMine.storyboard in Resources */,
 				BB6D2A3C21EEC63900F5049F /* Resources.bundle in Resources */,
@@ -5188,6 +5197,7 @@
 				BB8376F42248B5730091A1A8 /* YXMineFindTableViewCell.m in Sources */,
 				BBC6180C21F5AE6E00495619 /* YXHomeGolfScoreHeaderView.m in Sources */,
 				BB6D2A4521EF7D8400F5049F /* YXHomeQuestionDetailHeaderView.m in Sources */,
+				BBC1CC5F226073B800778C2A /* YXHomePeiJianHeaderView.m in Sources */,
 				29629EF11F78E669002CFCBD /* XLJSHandler.m in Sources */,
 				BBF45E52222FC649005C52C4 /* YXMessageThreeDetailViewController.m in Sources */,
 				29AD6C6B1ED41E2100B0879C /* UserManager.m in Sources */,

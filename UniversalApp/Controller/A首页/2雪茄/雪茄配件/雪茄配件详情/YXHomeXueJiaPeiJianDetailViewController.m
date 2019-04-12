@@ -17,7 +17,6 @@
     YXHomeXueJiaPeiJianDetailTuiJianViewController * VC4;
     YXHomeXueJiaPeiJianDetailTuiJianViewController * VC5;
     YXHomeXueJiaPeiJianDetailTuiJianViewController * VC6;
-
 }
 
 @end

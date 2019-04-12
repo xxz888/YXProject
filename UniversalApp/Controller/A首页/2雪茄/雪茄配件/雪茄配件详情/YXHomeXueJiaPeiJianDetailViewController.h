@@ -7,11 +7,12 @@
 //
 
 #import "RootViewController.h"
-
+#import "HGBaseViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YXHomeXueJiaPeiJianDetailViewController : RootViewController
+@interface YXHomeXueJiaPeiJianDetailViewController : HGBaseViewController
 @property(nonatomic,strong)NSDictionary * startDic;
+@property (nonatomic, assign) BOOL isEnlarge;
 
 @end
 
