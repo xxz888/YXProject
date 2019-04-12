@@ -88,12 +88,12 @@
     self.collectionView = [[ClassifyCollection alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-kTopHeight-40) collectionViewLayout:layout1];
     //self.collectionView.myDelegate = self;
     [self.view addSubview:self.collectionView];
-    self.collectionView.showType = self.goodsShowType;
+    self.collectionView.showType = singleLineShowOneGoods;
     
     
     //更换展示商品列表的按钮
     _changeShowTypeBtn = [[BKCustomSwitchBtn alloc]initWithFrame:CGRectZero];
-    _changeShowTypeBtn.hidden = NO;
+    _changeShowTypeBtn.hidden = YES;
     _changeShowTypeBtn.selected = YES;
     _changeShowTypeBtn.myDelegate = self;
     [_changeShowTypeBtn setDragEnable:YES];

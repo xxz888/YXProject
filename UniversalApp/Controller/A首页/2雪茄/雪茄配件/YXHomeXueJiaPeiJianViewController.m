@@ -91,7 +91,6 @@
     self.gridView.separatorDashed = YES;
     
     self.gridView.frame = CGRectMake(0, 0, KScreenWidth, height);
-
     UIView * view = [[UIView alloc]init];
     view.frame = CGRectMake(0, 0, KScreenWidth, height + 15);
     
@@ -118,6 +117,7 @@
         NSString * str = [(NSMutableString *)self.dataArray[i][@"brand_logo"] replaceAll:@" " target:@"%20"];
 
         [headerView1.titleImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        headerView1.titleImageView.contentMode = 1;
         headerView1.tag = i;
         headerView1.titleLbl.text = self.dataArray[i][@"brand_name"];
         [self.gridView addSubview:headerView1];

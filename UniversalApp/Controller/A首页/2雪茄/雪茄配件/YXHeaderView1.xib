@@ -18,7 +18,7 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lzb-0E-Pry">
                     <rect key="frame" x="0.0" y="0.0" width="380" height="187"/>
-                    <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eD4-km-Xc0">
                     <rect key="frame" x="0.0" y="187" width="380" height="47"/>
@@ -27,7 +27,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eD4-km-Xc0" secondAttribute="trailing" id="85W-Dg-kTQ"/>
                 <constraint firstItem="eD4-km-Xc0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="97X-zO-t7Z"/>
@@ -45,7 +45,7 @@
                 <outlet property="titleImageView" destination="lzb-0E-Pry" id="5wi-5u-sgd"/>
                 <outlet property="titleLbl" destination="eD4-km-Xc0" id="kO1-oU-DV4"/>
             </connections>
-            <point key="canvasLocation" x="19.199999999999999" y="-71.964017991004496"/>
+            <point key="canvasLocation" x="-166" y="-83"/>
         </view>
     </objects>
 </document>

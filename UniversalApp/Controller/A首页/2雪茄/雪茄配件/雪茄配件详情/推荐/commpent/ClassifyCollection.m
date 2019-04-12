@@ -55,6 +55,7 @@
         }else{
             [cell.goodsImgeView setImage:[UIImage imageNamed:@"img_moren"]];
         }
+        cell.goodsImgeView.contentMode = 1;
         cell.goodsPriceLabel.text = kGetString(self.dataArray[indexPath.row][@"price"]);
         return cell;
     }else{
