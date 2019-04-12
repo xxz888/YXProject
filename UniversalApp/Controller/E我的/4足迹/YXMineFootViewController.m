@@ -67,4 +67,7 @@
     self.dataArray = [self commonAction:object dataArray:self.dataArray];
     [self.yxTableView reloadData];
 }
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+}
 @end

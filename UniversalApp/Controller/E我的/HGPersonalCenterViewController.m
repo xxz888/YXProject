@@ -185,6 +185,7 @@ static CGFloat const HeaderImageViewHeight =260;
  * 因为要实现下拉头部放大的问题，tableView设置了contentInset，所以试图刚加载的时候会调用一遍这个方法，所以要做一些特殊处理，
  */
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+
     //第一部分：处理导航栏
     [self updateNavigationBarBackgroundColor];
     
@@ -212,7 +213,7 @@ static CGFloat const HeaderImageViewHeight =260;
          */
         if (self.cannotScroll) {
             //“维持吸顶状态”
-            scrollView.contentOffset = CGPointMake(0, criticalPointOffsetY);
+//            scrollView.contentOffset = CGPointMake(0, criticalPointOffsetY);
         } else {
             /* 吸顶状态 -> 不吸顶状态
              * pageViewController.scrollView.contentOffsetY <= 0时，会通过代理HGPageViewControllerDelegate来改变当前控制器self.cannotScroll的值；

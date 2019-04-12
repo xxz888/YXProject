@@ -71,4 +71,8 @@
         [self requestAction];
     }];
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+}
 @end
