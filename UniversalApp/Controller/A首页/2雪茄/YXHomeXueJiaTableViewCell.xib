@@ -65,7 +65,7 @@
                 <outlet property="cellImageView" destination="ued-mw-r6K" id="oVi-c9-5U9"/>
                 <outlet property="cellLbl" destination="Xlw-G1-xrK" id="YI6-Mk-eRa"/>
             </connections>
-            <point key="canvasLocation" x="-1709" y="-163"/>
+            <point key="canvasLocation" x="-1891" y="-164"/>
         </tableViewCell>
     </objects>
 </document>

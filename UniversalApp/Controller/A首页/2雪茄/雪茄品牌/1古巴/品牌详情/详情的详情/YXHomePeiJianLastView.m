@@ -147,20 +147,36 @@
     //推荐指数
     double average_score = [str1 doubleValue] / [sum doubleValue];
     self.tuijianAll.text = [NSString stringWithFormat:@"%.0f%%",average_score*100];
+    NSString * replace = @"(nan%)";
+    if ([self.tuijianAll.text isEqualToString:@"nan%"]) {
+        self.tuijianAll.text = @"0%";
+    }
     //推荐
     double average_score1 = [str1 doubleValue] / [sum doubleValue];
-    self.lbl1score.text = [NSString stringWithFormat:@"(%.0f%%)",average_score1*100];
+  
+        self.lbl1score.text = [NSString stringWithFormat:@"(%.0f%%)",average_score1*100];
+    if ([self.lbl1score.text isEqualToString:replace]) {
+        self.lbl1score.text = @"0%";
+    }
     self.lbl1people.text = [NSString stringWithFormat:@"(%@人)",str1];
     self.progress1.progress = average_score1;
     //中立
     double average_score2 = [str2 doubleValue] / [sum doubleValue];
-    self.lbl2score.text = [NSString stringWithFormat:@"(%.0f%%)",average_score2*100];
+  
+        self.lbl2score.text = [NSString stringWithFormat:@"(%.0f%%)",average_score2*100];
+    if ([self.lbl2score.text isEqualToString:replace]) {
+        self.lbl2score.text = @"0%";
+    }
     self.lbl2people.text = [NSString stringWithFormat:@"(%@人)",str2];
     self.porgress2.progress = average_score2;
     
     //不推荐
     double average_score3 = [str3 doubleValue] / [sum doubleValue];
-    self.lbl3score.text = [NSString stringWithFormat:@"(%.0f%%)",average_score3*100];
+
+        self.lbl3score.text = [NSString stringWithFormat:@"(%.0f%%)",average_score3*100];
+    if ([self.lbl3score.text isEqualToString:replace]) {
+        self.lbl3score.text = @"0%";
+    }
     self.lbl3people.text = [NSString stringWithFormat:@"(%@人)",str3];
     self.progress3.progress = average_score3;
     

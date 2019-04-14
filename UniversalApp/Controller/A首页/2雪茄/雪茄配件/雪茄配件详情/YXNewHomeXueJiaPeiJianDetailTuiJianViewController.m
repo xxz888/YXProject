@@ -52,6 +52,10 @@
             }
             weakself.segIndex = kGetString(object[0][@"id"]);
             [weakself requestInfo];
+            
+  
+            
+            
             CBSegmentView *sliderSegmentView = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
             [weakself.segmentView addSubview:sliderSegmentView];
             [sliderSegmentView setTitleArray:names withStyle:CBSegmentStyleSlider];
@@ -215,8 +219,8 @@
         cell.cellAutherLbl.text = strprice;
         cell.cellImageView.layer.masksToBounds = YES;
         cell.cellImageView.layer.cornerRadius = 3;
-        cell.cellDataLbl.hidden = YES;
         cell.cellLbl.hidden = cell.cellAutherLbl.hidden = cell.cellDataLbl.hidden = NO;
+        cell.cellDataLbl.hidden = YES;
 
         return cell;
     }
