@@ -202,6 +202,9 @@
             <connections>
                 <outlet property="cnLbl" destination="YU8-WA-u1I" id="IPD-9n-yeQ"/>
                 <outlet property="hwLbl" destination="BaS-RI-fSz" id="RHO-TL-3yN"/>
+                <outlet property="lbl1" destination="wc4-rX-e2z" id="7Jd-34-bDC"/>
+                <outlet property="lbl2" destination="RuY-dL-7es" id="hjZ-iU-TnT"/>
+                <outlet property="lbl3" destination="aNV-K0-Cth" id="lEK-p4-G51"/>
                 <outlet property="outsideView" destination="dDe-eb-QKi" id="8hX-4v-4YL"/>
                 <outlet property="plLbl" destination="uVX-7e-YCK" id="6el-Ce-YE5"/>
                 <outlet property="skLbl" destination="cUK-cQ-agc" id="z4x-df-g9Q"/>

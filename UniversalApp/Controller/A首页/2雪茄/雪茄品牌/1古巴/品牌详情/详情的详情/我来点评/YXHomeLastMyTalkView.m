@@ -90,15 +90,25 @@
     [self.parDic setValue:@(average_score) forKey:@"average_score"];
     */
     [self.parDic setValue:[self.qmuiTextView.text utf8ToUnicode] forKey:@"comment"];
-
     [self.parDic setValue:self.recommend forKey:@"recommend"];
-    [YX_MANAGER requestCigar_commentPOST:self.parDic success:^(id object) {
-        [QMUITips showSucceed:@"评论成功" inView:self hideAfterDelay:2];
-        weakself.block();
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [weakself.superview removeFromSuperview];
-        });
-    }];
+    if (self.PeiJianOrPinPai) {
+        [YX_MANAGER requestCigar_accessories_commentPOST:self.parDic success:^(id object) {
+            [QMUITips showSucceed:@"评论成功" inView:self hideAfterDelay:2];
+            weakself.block();
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakself.superview removeFromSuperview];
+            });
+        }];
+    }else{
+        [YX_MANAGER requestCigar_commentPOST:self.parDic success:^(id object) {
+            [QMUITips showSucceed:@"评论成功" inView:self hideAfterDelay:2];
+            weakself.block();
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakself.superview removeFromSuperview];
+            });
+        }];
+    }
+  
     
 }
 //cigar_id    int        雪茄id

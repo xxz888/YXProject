@@ -895,8 +895,8 @@ successBlock(responseObject);\
 
 
 #pragma mark ========== 获取雪茄配件点评信息 ==========
--(void)requestCigarCommentList:YX_BLOCK{
-    NSString * url = @"/cigar/requestCigarCommentList/";
+-(void)requestCigar_accessories_commentGet:YX_BLOCK{
+    NSString * url = @"/cigar/cigar_accessories_comment/";
     [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
@@ -916,7 +916,7 @@ successBlock(responseObject);\
 }
 #pragma mark ==========发布雪茄配件评论信息子评论==========
 -(void)requestCigar_accessories_comment_childPOST:YX_BLOCK{
-    [HTTP_POST(@"/cigar//cigar/cigar_accessories_comment_child/0/0/0/0//") Parameters:dic sucess:^(id responseObject) {
+    [HTTP_POST(@"/cigar/cigar_accessories_comment_child/0/0/0/0/") Parameters:dic sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) { }];
 }

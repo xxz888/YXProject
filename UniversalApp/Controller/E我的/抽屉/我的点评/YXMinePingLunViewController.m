@@ -58,20 +58,40 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXMinePingLunTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMinePingLunTableViewCell" forIndexPath:indexPath];
     NSDictionary * dic = self.dataArray[indexPath.row];
-    NSString * string = [dic[@"photo_list_details"] count] > 0 ? dic[@"photo_list_details"][0][@"photo_url"] : @"";
-    NSString * str1 = [(NSMutableString *)string replaceAll:@" " target:@"%20"];
-    cell.selectionStyle = 0;
-    [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-  
-    cell.cnLbl.text =  [kGetString(dic[@"price_box_china"]) append:@"元"];
-    cell.skLbl.text =  [kGetString(dic[@"price_box_hongkong"]) append:@"元"];
-    cell.hwLbl.text =  [kGetString(dic[@"price_box_overswas"]) append:@"元"];
+    if ([dic[@"commodity_type"] integerValue] == 1) {
+        NSString * string = [dic[@"photo_list_details"] count] > 0 ? dic[@"photo_list_details"][0][@"photo_url"] : @"";
+        NSString * str1 = [(NSMutableString *)string replaceAll:@" " target:@"%20"];
+        cell.selectionStyle = 0;
+        [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        
+        cell.cnLbl.text =  kGetString(dic[@"price_box_china"]);
+                            cell.skLbl.text =  kGetString(dic[@"price_box_hongkong"]);
+                                                cell.hwLbl.text =  kGetString(dic[@"price_box_overswas"]);
+        cell.lbl1.text = @"国内";
+        cell.lbl2.text = kGetString(dic[@"store_overseas"]);
+        cell.lbl3.text = kGetString(dic[@"store_hongkong"]);
 
-    cell.titleLbl.text = dic[@"cigar_name"];
-    
-    cell.timeLbl.text = [[ShareManager timestampSwitchTime:[kGetString(dic[@"comment_time"]) longLongValue] andFormatter:@""] append:@"   点评了"];
-    
-    cell.plLbl.text = dic[@"comment"];
+        cell.titleLbl.text = dic[@"cigar_name"];
+    }else{
+        NSString * string = [dic[@"photo_list"] count] > 0 ? dic[@"photo_list"][0][@"photo"] : @"";
+        NSString * str1 = [(NSMutableString *)string replaceAll:@" " target:@"%20"];
+        cell.selectionStyle = 0;
+        [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        
+        cell.cnLbl.text =  kGetString(dic[@"price_a"]);
+        cell.skLbl.text =  kGetString(dic[@"price_b"]);
+        cell.hwLbl.text =  kGetString(dic[@"price_c"]);
+        
+        cell.titleLbl.text = dic[@"name"];
+        
+        cell.lbl1.text =  kGetString(dic[@"store_a"]);
+        cell.lbl2.text = kGetString(dic[@"store_b"]);
+        cell.lbl3.text = kGetString(dic[@"store_c"]);
+        
+    }
+            cell.timeLbl.text = [[ShareManager timestampSwitchTime:[kGetString(dic[@"comment_time"]) longLongValue] andFormatter:@""] append:@"   点评了"];
+    cell.plLbl.text = [dic[@"comment"] UnicodeToUtf8];
+
     return cell;
 }
 /*

@@ -151,6 +151,8 @@
 		BB29122F2215712000FF484E /* YXXingZhuangTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29122D2215712000FF484E /* YXXingZhuangTableViewCell.xib */; };
 		BB2A8EB6221BB0A300B6756A /* UILabel+String.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2A8EB5221BB0A300B6756A /* UILabel+String.m */; };
 		BB2A8EB9221BE73300B6756A /* UIImage+ImgSize.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2A8EB8221BE73300B6756A /* UIImage+ImgSize.m */; };
+		BB320A2522630293005D9925 /* YXHomePeiJianLastView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB320A2422630293005D9925 /* YXHomePeiJianLastView.m */; };
+		BB320A27226302A5005D9925 /* YXHomePeiJianLastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB320A26226302A5005D9925 /* YXHomePeiJianLastView.xib */; };
 		BB35639C224B784B006B7A93 /* YXXueJiaXXZWHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB35639B224B784B006B7A93 /* YXXueJiaXXZWHViewController.m */; };
 		BB3CA496221F948E00C6793D /* YXFaBuBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3CA495221F948E00C6793D /* YXFaBuBaseViewController.m */; };
 		BB3CA498221F95FC00C6793D /* YXFaBuBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB3CA497221F95FC00C6793D /* YXFaBuBaseViewController.xib */; };
@@ -841,6 +843,9 @@
 		BB2A8EB5221BB0A300B6756A /* UILabel+String.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+String.m"; sourceTree = "<group>"; };
 		BB2A8EB7221BE73300B6756A /* UIImage+ImgSize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImgSize.h"; sourceTree = "<group>"; };
 		BB2A8EB8221BE73300B6756A /* UIImage+ImgSize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImgSize.m"; sourceTree = "<group>"; };
+		BB320A2322630293005D9925 /* YXHomePeiJianLastView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomePeiJianLastView.h; sourceTree = "<group>"; };
+		BB320A2422630293005D9925 /* YXHomePeiJianLastView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomePeiJianLastView.m; sourceTree = "<group>"; };
+		BB320A26226302A5005D9925 /* YXHomePeiJianLastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomePeiJianLastView.xib; sourceTree = "<group>"; };
 		BB35639A224B784B006B7A93 /* YXXueJiaXXZWHViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXXueJiaXXZWHViewController.h; sourceTree = "<group>"; };
 		BB35639B224B784B006B7A93 /* YXXueJiaXXZWHViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXXueJiaXXZWHViewController.m; sourceTree = "<group>"; };
 		BB3CA494221F948E00C6793D /* YXFaBuBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFaBuBaseViewController.h; sourceTree = "<group>"; };
@@ -4101,6 +4106,9 @@
 				BBD30CEF21E5F7AD000D3244 /* YXHomeLastDetailView.h */,
 				BBD30CF021E5F7AD000D3244 /* YXHomeLastDetailView.m */,
 				BBD30CF221E5F7C5000D3244 /* YXHomeLastDetailView.xib */,
+				BB320A2322630293005D9925 /* YXHomePeiJianLastView.h */,
+				BB320A2422630293005D9925 /* YXHomePeiJianLastView.m */,
+				BB320A26226302A5005D9925 /* YXHomePeiJianLastView.xib */,
 				BB0AE5C022531E7000CC07EC /* YXHomeLastListTableViewCell.h */,
 				BB0AE5C122531E7000CC07EC /* YXHomeLastListTableViewCell.m */,
 				BB0AE5C222531E7000CC07EC /* YXHomeLastListTableViewCell.xib */,
@@ -5014,6 +5022,7 @@
 				293D46481ECDBB63007C64A9 /* icon_tabbar_merchant_selected.png in Resources */,
 				BBD2C93521E0F67800350DCD /* ImageError@3x.png in Resources */,
 				BB5FD89021FECC0600B5F1A8 /* YXFindQuestionTableViewCell.xib in Resources */,
+				BB320A27226302A5005D9925 /* YXHomePeiJianLastView.xib in Resources */,
 				BBD2C94221E0F67800350DCD /* ImageSelectedOff@3x.png in Resources */,
 				BB928F5821FABCC30090A044 /* YXMinePingLunViewController.xib in Resources */,
 				2917D20A1EE007C300E76185 /* MBHUD_Error@3x.png in Resources */,
@@ -5416,6 +5425,7 @@
 				BBA812B921DDBE47001B5EA1 /* TBTabBar.m in Sources */,
 				BB5FD88F21FECC0600B5F1A8 /* YXFindQuestionTableViewCell.m in Sources */,
 				BBBFD78D2222D7D300D377AC /* TOCroppedImageAttributes.m in Sources */,
+				BB320A2522630293005D9925 /* YXHomePeiJianLastView.m in Sources */,
 				29FEE7681ECEC27900C81B60 /* MBProgressHUD+XY.m in Sources */,
 				BB6D2A3221EEC63900F5049F /* HCInputBar.m in Sources */,
 				BBD2C91C21E0F67800350DCD /* UIView+LLExtension.m in Sources */,

@@ -243,18 +243,10 @@
             UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
             YXHomeXueJiaPinPaiLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiLastDetailViewController"];
             VC.startDic = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[indexPath.row]];
-            
-            //请求六宫格图片
-            NSString * tag = VC.startDic[@"cigar_name"];
-            [YX_MANAGER requestGetDetailListPOST:@{@"type":@(0),@"tag":tag,@"page":@(1)} success:^(id object) {
-                NSMutableArray * imageArray = [NSMutableArray array];
-                for (NSDictionary * dic in object) {
-                    [imageArray addObject:dic[@"photo1"]];
-                }
-                [VC.startDic setValue:self.title forKey:@"cigar_brand"];
-                VC.imageArray = [NSMutableArray arrayWithArray:imageArray];
-                [weakself.navigationController pushViewController:VC animated:YES];
-            }];
+            [VC.startDic setValue:self.title forKey:@"cigar_brand"];
+            VC.imageArray = [NSMutableArray array];
+            VC.PeiJianOrPinPai = YES;
+            [weakself.navigationController pushViewController:VC animated:YES];
     }
 }
 -(void)requestLiuGongGe{

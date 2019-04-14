@@ -288,7 +288,7 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 
 
 #pragma mark ========== 获取雪茄配件点评信息 ==========
--(void)requestCigarCommentList:YX_BLOCK;
+-(void)requestCigar_accessories_commentGet:YX_BLOCK;
 #pragma mark ==========发布/修改雪茄配件点评==========
 -(void)requestCigar_accessories_commentPOST:YX_BLOCK;
 #pragma mark ==========点赞/取消点赞雪茄配件评论信息==========

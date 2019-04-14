@@ -25,6 +25,7 @@
 #import "GlobalDefines.h"
 #import "YXHomeSearchMoreViewController.h"
 #import "HGPersonalCenterViewController.h"
+#import "YXHomePeiJianLastView.h"
 #define kTimeLineTableViewCellId @"SDTimeLineCell"
 
 #define textFieldH 40
@@ -39,6 +40,8 @@
 }
 @property(nonatomic,strong)YXHomeLastDetailView * lastDetailView;
 @property(nonatomic,strong)YXHomeLastMyTalkView * lastMyTalkView;
+@property(nonatomic,strong)YXHomePeiJianLastView * lastPeiJianlastDetailView;
+
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
 
@@ -67,7 +70,11 @@
 }
 
 -(void)initAllControl{
-    self.title = self.startDic[@"cigar_name"];
+    if (self.PeiJianOrPinPai) {
+        self.title = self.startDic[@"name"];
+    }else{
+        self.title = self.startDic[@"cigar_name"];
+    }
     _segmentIndex = 0;
     _dataArray = [[NSMutableArray alloc]init];
     _pageArray = [[NSMutableArray alloc]init];
@@ -84,67 +91,81 @@
 }
 #pragma mark - 设置tableHeaderView
 - (void)setupTableHeaderView{
-    CGFloat height = 0.0;
-    CGFloat tagHeight = 0;
-    if (self.imageArray.count == 0) {
-        height = 0;
-        tagHeight = 0;
-    }
-    if (self.imageArray.count >0 && self.imageArray.count <=3) {
-        height = 100;
-        tagHeight = 40;
-    }
-    if (self.imageArray.count > 4) {
-        height = 200;
-        tagHeight = 40;
-    }
-    
-    
-    kWeakSelf(self);
-    //添加分隔线颜色设置
-    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeLastDetailView" owner:self options:nil];
-    self.lastDetailView = [nib objectAtIndex:0];
-    self.lastDetailView.delegate = self;
-    //点击segment
-    self.lastDetailView.block = ^(NSInteger index) {
-        index == 0 ? [weakself requestNewList] : [weakself requestHotList];
-        _segmentIndex = index;
-    };
-    [self.lastDetailView againSetDetailView:weakself.startDic];
-    [self.lastDetailView setSixPhotoView:self.imageArray];
-    
-    self.lastDetailView.searchAllBlock = ^{
-        YXHomeSearchMoreViewController * VC = [[YXHomeSearchMoreViewController alloc]init];
-        VC.tag = weakself.startDic[@"cigar_name"];
-        VC.scrollIndex = 0;
-        [weakself.navigationController pushViewController:VC animated:YES];
-    };
-    self.lastDetailView.fixBlock = ^(NSInteger index) {
-        YXHomeSearchMoreViewController * VC = [[YXHomeSearchMoreViewController alloc]init];
-        VC.tag = weakself.startDic[@"cigar_name"];
-        VC.scrollIndex = index;
-        [weakself.navigationController pushViewController:VC animated:YES];
-    };
-    
-
-    //listview
-    CGFloat listHeight = 0;
-    NSMutableArray * listData = [NSMutableArray array];
-    if (self.startDic[@"argument"]) {
-        NSDictionary * dic = [self dictionaryWithJsonString:kGetString(self.startDic[@"argument"])];
-        for (NSString * key in dic) {
-            NSString * listKey = [key UnicodeToUtf8];
-            NSString * listValue = [[dic objectForKey:key] UnicodeToUtf8];
-            [listData addObject:@{listKey:listValue}];
+    if (self.PeiJianOrPinPai) {
+        kWeakSelf(self);
+        //添加分隔线颜色设置
+        NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomePeiJianLastView" owner:self options:nil];
+        self.lastPeiJianlastDetailView = [nib objectAtIndex:0];
+        self.lastPeiJianlastDetailView.delegate = self;
+        //点击segment
+        self.lastPeiJianlastDetailView.block = ^(NSInteger index) {
+            index == 0 ? [weakself requestNewList] : [weakself requestHotList];
+            _segmentIndex = index;
+        };
+        [self.lastPeiJianlastDetailView againSetDetailView:weakself.startDic];
+        self.lastPeiJianlastDetailView.PeiJianOrPinPai = self.PeiJianOrPinPai;
+        // 设置 view 的 frame(将设置 frame 提到设置 tableHeaderView 之前)
+        self.lastPeiJianlastDetailView.frame = CGRectMake(0, 0, kScreenWidth, (AxcAE_IsiPhoneX ? 640 : 500));
+        // 设置 tableHeaderView
+        self.yxTableView.tableHeaderView = self.lastPeiJianlastDetailView;
+    }else{
+        CGFloat height = 0.0;
+        CGFloat tagHeight = 0;
+        if (self.imageArray.count == 0) {
+            height = 0;
+            tagHeight = 0;
         }
-        listHeight  = listData.count * 40 ;
+        if (self.imageArray.count >0 && self.imageArray.count <=3) {
+            height = 100;
+            tagHeight = 40;
+        }
+        if (self.imageArray.count > 4) {
+            height = 200;
+            tagHeight = 40;
+        }
+        kWeakSelf(self);
+        //添加分隔线颜色设置
+        NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeLastDetailView" owner:self options:nil];
+        self.lastDetailView = [nib objectAtIndex:0];
+        self.lastDetailView.delegate = self;
+        //点击segment
+        self.lastDetailView.block = ^(NSInteger index) {
+            index == 0 ? [weakself requestNewList] : [weakself requestHotList];
+            _segmentIndex = index;
+        };
+        [self.lastDetailView againSetDetailView:weakself.startDic];
+        [self.lastDetailView setSixPhotoView:self.imageArray];
+        self.lastDetailView.searchAllBlock = ^{
+            YXHomeSearchMoreViewController * VC = [[YXHomeSearchMoreViewController alloc]init];
+            VC.tag = weakself.startDic[@"cigar_name"];
+            VC.scrollIndex = 0;
+            [weakself.navigationController pushViewController:VC animated:YES];
+        };
+        self.lastDetailView.fixBlock = ^(NSInteger index) {
+            YXHomeSearchMoreViewController * VC = [[YXHomeSearchMoreViewController alloc]init];
+            VC.tag = weakself.startDic[@"cigar_name"];
+            VC.scrollIndex = index;
+            [weakself.navigationController pushViewController:VC animated:YES];
+        };
+        //listview
+        CGFloat listHeight = 0;
+        NSMutableArray * listData = [NSMutableArray array];
+        if (self.startDic[@"argument"]) {
+            NSDictionary * dic = [self dictionaryWithJsonString:kGetString(self.startDic[@"argument"])];
+            for (NSString * key in dic) {
+                NSString * listKey = [key UnicodeToUtf8];
+                NSString * listValue = [[dic objectForKey:key] UnicodeToUtf8];
+                [listData addObject:@{listKey:listValue}];
+            }
+            listHeight  = listData.count * 40 ;
+        }
+        // 设置 view 的 frame(将设置 frame 提到设置 tableHeaderView 之前)
+        self.lastDetailView.frame = CGRectMake(0, 0, kScreenWidth, (AxcAE_IsiPhoneX ? 410 : 500) + height + tagHeight + listHeight);
+        // 设置 tableHeaderView
+        self.yxTableView.tableHeaderView = self.lastDetailView;
     }
     
     
-    // 设置 view 的 frame(将设置 frame 提到设置 tableHeaderView 之前)
-    self.lastDetailView.frame = CGRectMake(0, 0, kScreenWidth, (AxcAE_IsiPhoneX ? 410 : 500) + height + tagHeight + listHeight);
-    // 设置 tableHeaderView
-    self.yxTableView.tableHeaderView = self.lastDetailView;
     
 }
 /*
@@ -188,11 +209,20 @@
  */
 -(void)requestNewList{
     kWeakSelf(self);
-    //请求评价列表 最新评论列表
-    [YX_MANAGER requestCigar_commentGET:[self getParamters:@"3"] success:^(id object) {
-        weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
-        [weakself refreshTableView];
-    }];
+  
+    if (self.PeiJianOrPinPai) {
+        //请求评价列表 最新评论列表
+        [YX_MANAGER requestCigar_accessories_commentGet:[self getParamters:@"3"] success:^(id object) {
+            weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
+            [weakself refreshTableView];
+        }];
+    }else{
+        //请求评价列表 最新评论列表
+        [YX_MANAGER requestCigar_commentGET:[self getParamters:@"3"] success:^(id object) {
+            weakself.dataArray = [NSMutableArray arrayWithArray:[weakself creatModelsWithCount:object]];
+            [weakself refreshTableView];
+        }];
+    }
 }
 -(void)requestHotList{
     kWeakSelf(self);
@@ -211,82 +241,116 @@
 }
 -(void)requestPingJunFen{
     kWeakSelf(self);
-    //请求评价列表 平均分
-    [YX_MANAGER requestCigar_commentGET:[self getParamters:@"1"] success:^(id object) {
-        [weakself.lastDetailView fiveStarViewUIAllDataDic_PingJunFen:object];
-    }];
+    if (self.PeiJianOrPinPai) {
+        //请求评价列表 平均分
+        [YX_MANAGER requestCigar_accessories_commentGet:[self getParamters:@"1"] success:^(id object) {
+            [weakself.lastPeiJianlastDetailView fiveStarViewUIAllDataDic_PingJunFen:object];
+        }];
+    }else{
+        //请求评价列表 平均分
+        [YX_MANAGER requestCigar_commentGET:[self getParamters:@"1"] success:^(id object) {
+            [weakself.lastDetailView fiveStarViewUIAllDataDic_PingJunFen:object];
+        }];
+    }
+  
 }
 -(void)requestGeRenFen{
     kWeakSelf(self);
-    //请求评价列表 个人分
-    [YX_MANAGER requestCigar_commentGET:[self getParamters:@"2"] success:^(id object) {
-        [weakself.lastDetailView fiveStarViewUIAllDataDic_GeRenFen:object];
-    }];
+    if (self.PeiJianOrPinPai) {
+        //请求评价列表 平均分
+        [YX_MANAGER requestCigar_accessories_commentGet:[self getParamters:@"2"] success:^(id object) {
+            [weakself.lastPeiJianlastDetailView fiveStarViewUIAllDataDic_GeRenFen:object];
+        }];
+    }else{
+        //请求评价列表 平均分
+        [YX_MANAGER requestCigar_commentGET:[self getParamters:@"2"] success:^(id object) {
+            [weakself.lastDetailView fiveStarViewUIAllDataDic_GeRenFen:object];
+        }];
+    }
 }
 
 -(void)requestCigar_comment_child:(NSDictionary *)dic{
     kWeakSelf(self);
-    [YX_MANAGER requestCigar_comment_childPOST:dic success:^(id object) {
-        _segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
-    }];
+
+    if (self.PeiJianOrPinPai) {
+        [YX_MANAGER requestCigar_accessories_comment_childPOST:dic success:^(id object) {
+            _segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
+        }];
+    }else{
+        [YX_MANAGER requestCigar_comment_childPOST:dic success:^(id object) {
+            _segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
+        }];
+    }
+ 
 }
 -(void)requestMoreCigar_comment_child:(NSString *)farther_id page:(NSString *)page{
     kWeakSelf(self);
     NSString * string = [NSString stringWithFormat:@"%@/%@",page,farther_id];
-    [YX_MANAGER requestCigar_comment_childGET:string success:^(id object) {
-        
-        if ([object count] == 0) {
-             [QMUITips showInfo:@"没有更多评论了" detailText:@"" inView:weakself.yxTableView hideAfterDelay:1];
-            return ;
-        }
-        
-        SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
-        NSMutableArray *temp = [NSMutableArray new];
-        [temp addObjectsFromArray:model.commentItemsArray];
-        //判断评论数组是否添加过新数据，如果添加过就不添加了
-        
-        for (NSDictionary * dic in object) {
-            SDTimeLineCellCommentItemModel *commentItemModel = [SDTimeLineCellCommentItemModel new];
-            if ([dic[@"aim_id"] integerValue] != 0) {
-                commentItemModel.firstUserId = kGetString(dic[@"user_id"]);
-                commentItemModel.firstUserName = kGetString(dic[@"user_name"]);
-                commentItemModel.secondUserName = kGetString(dic[@"aim_name"]);
-                commentItemModel.secondUserId = kGetString(dic[@"aim_id"]);
-                commentItemModel.commentString = [kGetString(dic[@"comment"]) UnicodeToUtf8];
-                commentItemModel.labelTag = [dic[@"id"] integerValue];
+    if (self.PeiJianOrPinPai) {
+        [YX_MANAGER requestCigar_accessories_comment_childGet:string success:^(id object) {
+            [weakself commonMoreCigar_comment_Child:object];
+        }];
+    }else{
+        [YX_MANAGER requestCigar_comment_childGET:string success:^(id object) {
+            [weakself commonMoreCigar_comment_Child:object];
+        }];
+    }
+    
 
-                self.isReplayingComment = YES;
-            } else {
-                commentItemModel.firstUserId = kGetString(dic[@"user_id"]);
-                commentItemModel.firstUserName =kGetString(dic[@"user_name"]);
-                commentItemModel.commentString = [kGetString(dic[@"comment"]) UnicodeToUtf8];
-                commentItemModel.labelTag = [dic[@"id"] integerValue];
-            }
-            BOOL ishave = NO;
-            for (SDTimeLineCellCommentItemModel * oldCommentItemModel in model.commentItemsArray) {
-                if ([oldCommentItemModel.firstUserId integerValue] == [commentItemModel.firstUserId integerValue] &&
-                    [oldCommentItemModel.firstUserName isEqualToString:commentItemModel.firstUserName]   &&
-                    [oldCommentItemModel.commentString isEqualToString:commentItemModel.commentString]
-                    ) {
-                    ishave = YES;
-                }else{
-                    ishave = NO;
-                    break;
-                }
-            }
-            if (ishave) {
-                
-            }else{
-                [temp addObject:commentItemModel];
-                model.commentItemsArray = [temp copy];
-            }
-     
-        }
-        [self.yxTableView reloadRowsAtIndexPaths:@[self.currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
-    }];
     
     
 }
+-(void)commonMoreCigar_comment_Child:(id)object{
+    kWeakSelf(self)
+    if ([object count] == 0) {
+        [QMUITips showInfo:@"没有更多评论了" detailText:@"" inView:weakself.yxTableView hideAfterDelay:1];
+        return ;
+    }
+    SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
+    NSMutableArray *temp = [NSMutableArray new];
+    [temp addObjectsFromArray:model.commentItemsArray];
+    //判断评论数组是否添加过新数据，如果添加过就不添加了
+    
+    for (NSDictionary * dic in object) {
+        SDTimeLineCellCommentItemModel *commentItemModel = [SDTimeLineCellCommentItemModel new];
+        if ([dic[@"aim_id"] integerValue] != 0) {
+            commentItemModel.firstUserId = kGetString(dic[@"user_id"]);
+            commentItemModel.firstUserName = kGetString(dic[@"user_name"]);
+            commentItemModel.secondUserName = kGetString(dic[@"aim_name"]);
+            commentItemModel.secondUserId = kGetString(dic[@"aim_id"]);
+            commentItemModel.commentString = [kGetString(dic[@"comment"]) UnicodeToUtf8];
+            commentItemModel.labelTag = [dic[@"id"] integerValue];
+            
+            self.isReplayingComment = YES;
+        } else {
+            commentItemModel.firstUserId = kGetString(dic[@"user_id"]);
+            commentItemModel.firstUserName =kGetString(dic[@"user_name"]);
+            commentItemModel.commentString = [kGetString(dic[@"comment"]) UnicodeToUtf8];
+            commentItemModel.labelTag = [dic[@"id"] integerValue];
+        }
+        BOOL ishave = NO;
+        for (SDTimeLineCellCommentItemModel * oldCommentItemModel in model.commentItemsArray) {
+            if ([oldCommentItemModel.firstUserId integerValue] == [commentItemModel.firstUserId integerValue] &&
+                [oldCommentItemModel.firstUserName isEqualToString:commentItemModel.firstUserName]   &&
+                [oldCommentItemModel.commentString isEqualToString:commentItemModel.commentString]
+                ) {
+                ishave = YES;
+            }else{
+                ishave = NO;
+                break;
+            }
+        }
+        if (ishave) {
+            
+        }else{
+            [temp addObject:commentItemModel];
+            model.commentItemsArray = [temp copy];
+        }
+        
+    }
+    [self.yxTableView reloadRowsAtIndexPaths:@[self.currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self setupTextField];
@@ -301,6 +365,7 @@
     }
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeLastMyTalkView" owner:self options:nil];
     self.lastMyTalkView = [nib objectAtIndex:0];
+    self.lastMyTalkView.PeiJianOrPinPai = self.PeiJianOrPinPai;
     self.lastMyTalkView.frame = CGRectMake(0, 0,KScreenWidth, 340-75);
     self.lastMyTalkView.backgroundColor = UIColorWhite;
     self.lastMyTalkView.layer.masksToBounds = YES;
@@ -313,7 +378,11 @@
     self.lastMyTalkView.selectBlock = ^(NSString * str) {
         
     };
-    [self.lastMyTalkView.parDic setValue:@([self.startDic[@"id"] intValue]) forKey:@"cigar_id"];
+    if(self.PeiJianOrPinPai){
+        [self.lastMyTalkView.parDic setValue:@([self.startDic[@"id"] intValue]) forKey:@"cigar_accessories_id"];
+    }else{
+        [self.lastMyTalkView.parDic setValue:@([self.startDic[@"id"] intValue]) forKey:@"cigar_id"];
+    }
     
     QMUIModalPresentationViewController *modalViewController = [[QMUIModalPresentationViewController alloc] init];
     modalViewController.animationStyle = QMUIModalPresentationAnimationStyleSlide;
@@ -564,10 +633,19 @@
     kWeakSelf(self);
     NSIndexPath *index = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel *model = self.dataArray[index.row];
-    [YX_MANAGER requestPraise_cigaPr_commentPOST:@{@"comment_id":@([model.id intValue])} success:^(id object) {
-        self.currentEditingIndexthPath = index;
-        _segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
-    }];
+    
+    if (self.PeiJianOrPinPai) {
+        [YX_MANAGER requestPraise_cigar_accessories_commentPOST:@{@"comment_id":@([model.id intValue])} success:^(id object) {
+            self.currentEditingIndexthPath = index;
+            _segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
+        }];
+    }else{
+        [YX_MANAGER requestPraise_cigaPr_commentPOST:@{@"comment_id":@([model.id intValue])} success:^(id object) {
+            self.currentEditingIndexthPath = index;
+            _segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
+        }];
+    }
+
     /*
      if (!model.isLiked) {
      SDTimeLineCellLikeItemModel *likeModel = [SDTimeLineCellLikeItemModel new];

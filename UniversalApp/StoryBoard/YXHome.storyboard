@@ -79,7 +79,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gbp-6u-uUm">
-                                <rect key="frame" x="0.0" y="40" width="375" height="617"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="637"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="v9Y-Gd-tcH" id="iud-Pn-MY4"/>
@@ -89,7 +89,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Gbp-6u-uUm" firstAttribute="top" secondItem="Iir-Ii-0Om" secondAttribute="top" constant="20" id="U18-gc-5mm"/>
+                            <constraint firstItem="Gbp-6u-uUm" firstAttribute="top" secondItem="Iir-Ii-0Om" secondAttribute="top" id="U18-gc-5mm"/>
                             <constraint firstItem="Gbp-6u-uUm" firstAttribute="leading" secondItem="Iir-Ii-0Om" secondAttribute="leading" id="mBP-nt-rsM"/>
                             <constraint firstItem="Iir-Ii-0Om" firstAttribute="bottom" secondItem="Gbp-6u-uUm" secondAttribute="bottom" constant="10" id="rgn-sM-49f"/>
                             <constraint firstAttribute="trailing" secondItem="Gbp-6u-uUm" secondAttribute="trailing" id="w3w-8V-Wt7"/>

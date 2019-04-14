@@ -32,6 +32,7 @@ typedef void(^selectOption)(NSString *);
 @property (nonatomic,strong) NSString *recommend;
 
 @property (nonatomic,copy) selectOption selectBlock;
+@property (nonatomic,assign) BOOL PeiJianOrPinPai;//NO代表品牌 YES代表配件
 
 
 

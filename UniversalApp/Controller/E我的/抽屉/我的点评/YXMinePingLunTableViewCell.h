@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *hwLbl;
 @property (weak, nonatomic) IBOutlet UILabel *plLbl;
 @property (weak, nonatomic) IBOutlet UIView *outsideView;
+@property (weak, nonatomic) IBOutlet UILabel *lbl1;
+@property (weak, nonatomic) IBOutlet UILabel *lbl2;
+@property (weak, nonatomic) IBOutlet UILabel *lbl3;
 
 @end
 
