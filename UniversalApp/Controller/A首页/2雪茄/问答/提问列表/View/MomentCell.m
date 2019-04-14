@@ -327,7 +327,7 @@ CGFloat maxLimitHeight = 0;
 {
     _comment = comment;
     _linkLabel.attributedText = kMLLinkLabelAttributedText(comment);
-    CGSize attrStrSize = [_linkLabel preferredSizeWithMaxWidth:kTextWidth];
+     [_linkLabel preferredSizeWithMaxWidth:kTextWidth];
 //    _linkLabel.frame = CGRectMake(5, 3, KScreenWidth - 20, 30);
     CGSize maximumLabelSize = CGSizeMake(KScreenWidth-20, 9999);
     CGSize expectSize = [_linkLabel sizeThatFits:maximumLabelSize];//这里会得到一个由label文本长度计算出来的一个宽高的CGSize结构体。

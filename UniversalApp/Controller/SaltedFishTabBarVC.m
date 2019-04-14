@@ -27,7 +27,7 @@
     [[UITabBar appearance] setTranslucent:NO];
 }
 - (void)addChildViewControllers{
-    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+
     YXHomeViewController * homeVC = [[YXHomeViewController alloc]init];
     RootNavigationController *nav1 = [[RootNavigationController alloc]initWithRootViewController:homeVC];
 
@@ -157,12 +157,6 @@ static NSInteger lastIdx = 0;
 
         if (index == 3) {
             [[AppDelegate shareAppDelegate].mainTabBar.axcTabBar setBadge:NSIntegerToNSString(0) index:3];
-        }
-        UIView * view;
-        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11) {
-            view = [[UIApplication sharedApplication].windows firstObject];
-        } else {
-            view = [[UIApplication sharedApplication].windows lastObject];
         }
         if (index == 4 && ![userManager loadUserInfo]) {
             KPostNotification(KNotificationLoginStateChange, @NO);

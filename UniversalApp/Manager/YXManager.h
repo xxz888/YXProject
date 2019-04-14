@@ -284,4 +284,19 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 
 #pragma mark ==========产地列表 ==========
 -(void)requestGetCigar_brand_site:YX_BLOCK;
+
+
+
+#pragma mark ========== 获取雪茄配件点评信息 ==========
+-(void)requestCigarCommentList:YX_BLOCK;
+#pragma mark ==========发布/修改雪茄配件点评==========
+-(void)requestCigar_accessories_commentPOST:YX_BLOCK;
+#pragma mark ==========点赞/取消点赞雪茄配件评论信息==========
+-(void)requestPraise_cigar_accessories_commentPOST:YX_BLOCK;
+#pragma mark ==========发布雪茄配件评论信息子评论==========
+-(void)requestCigar_accessories_comment_childPOST:YX_BLOCK;
+#pragma mark ========== 删除雪茄配件评论信息子评论 ==========
+-(void)requestCigar_accessories_comment_child:YX_BLOCK;
+#pragma mark ========== 获取子评论列表 ==========
+-(void)requestCigar_accessories_comment_childGet:YX_BLOCK;
 @end

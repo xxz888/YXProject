@@ -246,12 +246,6 @@ SINGLETON_FOR_CLASS(ShareManager);
     }
 }
 +(void)setGuanZhuStatus:(UIButton *)btn status:(BOOL)statusBool alertView:(BOOL)isAlertView{
-    UIView * view;
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11) {
-        view = [[UIApplication sharedApplication].windows firstObject];
-    } else {
-        view = [[UIApplication sharedApplication].windows lastObject];
-    }
      if (statusBool) {
         [btn setTitle:@"关注" forState:UIControlStateNormal];
          isAlertView ? [QMUITips showSucceed:@"取消关注成功"] : nil;

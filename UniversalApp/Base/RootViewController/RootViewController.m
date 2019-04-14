@@ -46,6 +46,8 @@
     
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnFindVC:) name:@"returnFind" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnHomeVC:) name:@"returnHome" object:nil];
 

@@ -25,7 +25,7 @@
     [self requestMyXueJia_CollectionListGet];
 }
 -(void)viewWillAppear:(BOOL)animated{
-  
+    [super viewWillAppear:animated];
 }
 -(void)requestMyXueJia_CollectionListGet{
     kWeakSelf(self);

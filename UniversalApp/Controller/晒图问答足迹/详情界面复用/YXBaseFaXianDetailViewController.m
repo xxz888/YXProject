@@ -209,6 +209,8 @@
     [self.yxTableView setContentOffset:offset animated:YES];
 }
 - (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+
     [_textField resignFirstResponder];
     [_textField removeFromSuperview];
 }

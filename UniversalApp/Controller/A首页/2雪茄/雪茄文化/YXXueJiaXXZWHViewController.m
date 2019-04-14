@@ -36,7 +36,7 @@
         KPostNotification(KNotificationLoginStateChange, @NO);
         return;
     }
-    CGPoint offset = CGPointMake(0, 0);
+//    CGPoint offset = CGPointMake(0, 0);
    // [self.yxTableView setContentOffset:offset animated:YES];
     
     NSDictionary *dict = notification.userInfo;

@@ -26,6 +26,7 @@
 #pragma mark - 1 viewWillAppear 就进行播放
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
     //视频播放
     //[self.player play];

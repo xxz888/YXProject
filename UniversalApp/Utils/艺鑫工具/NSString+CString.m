@@ -338,7 +338,7 @@
     NSMutableString *str = [NSMutableString stringWithCapacity:0];
     for (int i = 0;i < length; i++){
         NSMutableString *s = [NSMutableString stringWithCapacity:0];
-        unichar _char = [self characterAtIndex:i];
+//        unichar _char = [self characterAtIndex:i];
         // 判断是否为英文和数字
 //        if (_char <= '9' && _char >='0'){
 //            [s appendFormat:@"\\%x",[self characterAtIndex:i]];

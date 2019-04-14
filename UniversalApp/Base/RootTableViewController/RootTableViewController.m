@@ -8,7 +8,10 @@
 
 #import "RootTableViewController.h"
 
-@interface RootTableViewController ()<UIGestureRecognizerDelegate>
+@interface RootTableViewController ()<UIGestureRecognizerDelegate>{
+    UITableView * _yxTableView;
+
+}
 
 @end
 
@@ -33,7 +36,7 @@
     
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
-    
+    self.requestPage = 1;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -115,7 +118,47 @@
         self.navigationItem.rightBarButtonItems = items;
     }
 }
-
+- (void)addRefreshView:(UITableView *)yxTableView{
+    _yxTableView = yxTableView;
+    yxTableView.showsHorizontalScrollIndicator = YES;
+    yxTableView.estimatedRowHeight = 0;
+    yxTableView.estimatedSectionFooterHeight = 0;
+    yxTableView.estimatedSectionHeaderHeight = 0;
+    //头部刷新
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(headerRereshing)];
+    header.automaticallyChangeAlpha = YES;
+    header.lastUpdatedTimeLabel.hidden = YES;
+    yxTableView.mj_header = header;
+    
+    //底部刷新
+    yxTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
+}
+-(void)headerRereshing{
+    self.requestPage = 1;
+    
+}
+-(void)footerRereshing{
+    self.requestPage += 1;
+    
+}
+-(NSMutableArray *)commonAction:(id)obj dataArray:(NSMutableArray *)dataArray{
+    NSMutableArray * nnnArray = [NSMutableArray arrayWithArray:dataArray];
+    if (self.requestPage == 1) {
+        [nnnArray removeAllObjects];
+        [nnnArray addObjectsFromArray:obj];
+    }else{
+        if ([obj count] == 0) {
+            //            [QMUITips showInfo:REFRESH_NO_DATA inView:self.view hideAfterDelay:1];
+            [_yxTableView.mj_footer endRefreshing];
+        }
+        nnnArray = [NSMutableArray arrayWithArray:[nnnArray arrayByAddingObjectsFromArray:obj]];
+    }
+    DO_IN_MAIN_QUEUE_AFTER(0.5f, ^{
+        [_yxTableView.mj_header endRefreshing];
+        [_yxTableView.mj_footer endRefreshing];
+    });
+    return nnnArray;
+}
 #pragma mark ————— 导航栏 添加文字按钮 —————
 - (NSMutableArray<UIButton *> *)addNavigationItemWithTitles:(NSArray *)titles isLeft:(BOOL)isLeft target:(id)target action:(SEL)action tags:(NSArray *)tags
 {

@@ -10,15 +10,10 @@
 #import <Masonry/Masonry.h>
 #import <ZXSegmentController/ZXSegmentController.h>
 #import "YXHomeXueJiaPeiJianDetailTuiJianViewController.h"
-@interface YXHomeXueJiaPeiJianDetailViewController (){
-    YXHomeXueJiaPeiJianDetailTuiJianViewController * VC1;
-    YXHomeXueJiaPeiJianDetailTuiJianViewController * VC2;
-    YXHomeXueJiaPeiJianDetailTuiJianViewController * VC3;
-    YXHomeXueJiaPeiJianDetailTuiJianViewController * VC4;
-    YXHomeXueJiaPeiJianDetailTuiJianViewController * VC5;
-    YXHomeXueJiaPeiJianDetailTuiJianViewController * VC6;
-}
+#import "YXHomeXueJiaPinPaiDetailViewController.h"
+#import "YXNewHomeXueJiaPeiJianDetailTuiJianViewController.h"
 
+@interface YXHomeXueJiaPeiJianDetailViewController ()
 @end
 
 @implementation YXHomeXueJiaPeiJianDetailViewController
@@ -31,15 +26,26 @@
     [YX_MANAGER requestGetCigar_accessories_type:kGetString(self.startDic[@"id"]) success:^(id object) {
         
         
-        UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-        
         NSMutableArray * names = [NSMutableArray array];
         NSMutableArray * controllers = [NSMutableArray array];
 
         for (NSDictionary * dic in object) {
-            YXHomeXueJiaPeiJianDetailTuiJianViewController * VC = [[YXHomeXueJiaPeiJianDetailTuiJianViewController alloc]init];
-            VC.startDic = [NSDictionary dictionaryWithDictionary:self.startDic];
+            
+            
+            
+            
+//            YXHomeXueJiaPeiJianDetailTuiJianViewController * VC = [[YXHomeXueJiaPeiJianDetailTuiJianViewController alloc]init];
+//            VC.startDic = [NSDictionary dictionaryWithDictionary:self.startDic];
+//            VC.segIndex = kGetString(dic[@"id"]);
+//            [names addObject:kGetString(dic[@"type"])];
+//            [controllers addObject:VC];
+            
+            
+            UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+            YXNewHomeXueJiaPeiJianDetailTuiJianViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXNewHomeXueJiaPeiJianDetailTuiJianViewController"];
+            VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:self.startDic];
             VC.segIndex = kGetString(dic[@"id"]);
+            VC.whereCome = NO;
             [names addObject:kGetString(dic[@"type"])];
             [controllers addObject:VC];
         }
@@ -48,6 +54,8 @@
     
  
 }
+-(void)requestCigar_brand_details:(NSString *)cigar_brand_id indexPath:(NSIndexPath *)indexPath isHot:(BOOL)isHot{
 
+}
 
 @end

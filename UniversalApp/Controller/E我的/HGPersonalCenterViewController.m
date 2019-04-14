@@ -417,9 +417,12 @@ static CGFloat const HeaderImageViewHeight =260;
     self.navigationItem.title = kGetString(object[@"username"]);
     self.headerView.mineTitle.text =kGetString(object[@"username"]);
     self.headerView.mineAdress.text = kGetString(object[@"site"]);
-//    self.headerView.guanzhuCountLbl.text = kGetString(object[@"likes_number"]);
-//    self.headerView.fensiCountLbl.text = kGetString(object[@"fans_number"]);
-//    self.headerView.tieshuCountLbl.text = kGetString(object[@"publish_number"]);
+    if (self.whereCome) {
+            self.headerView.guanzhuCountLbl.text = kGetString(object[@"likes_number"]);
+            self.headerView.fensiCountLbl.text = kGetString(object[@"fans_number"]);
+            self.headerView.tieshuCountLbl.text = kGetString(object[@"publish_number"]);
+    }
+
     NSInteger tag = [object[@"is_like"] integerValue];
     [ShareManager setGuanZhuStatus:self.headerView.guanzhuBtn status:tag == 0 alertView:NO];
     NSString * islike = tag == 1 ? @"互相关注" : tag == 2 ? @"已关注" : @"关注";

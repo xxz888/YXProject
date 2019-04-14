@@ -892,6 +892,50 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
+
+
+#pragma mark ========== 获取雪茄配件点评信息 ==========
+-(void)requestCigarCommentList:YX_BLOCK{
+    NSString * url = @"/cigar/requestCigarCommentList/";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ==========发布/修改雪茄配件点评==========
+-(void)requestCigar_accessories_commentPOST:YX_BLOCK{
+    [HTTP_POST(@"/cigar/cigar_accessories_comment/0/0/0/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+
+#pragma mark ==========点赞/取消点赞雪茄配件评论信息==========
+-(void)requestPraise_cigar_accessories_commentPOST:YX_BLOCK{
+    [HTTP_POST(@"/cigar/praise_cigar_accessories_comment/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+#pragma mark ==========发布雪茄配件评论信息子评论==========
+-(void)requestCigar_accessories_comment_childPOST:YX_BLOCK{
+    [HTTP_POST(@"/cigar//cigar/cigar_accessories_comment_child/0/0/0/0//") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+
+#pragma mark ========== 删除雪茄配件评论信息子评论 ==========
+-(void)requestCigar_accessories_comment_child:YX_BLOCK{
+    NSString * url = @"/cigar/cigar_accessories_comment_child/0/0/0/";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ========== 获取子评论列表 ==========
+-(void)requestCigar_accessories_comment_childGet:YX_BLOCK{
+    NSString * url = @"/cigar/cigar_accessories_comment_child/1/";
+    [HTTP_GET([[url append:dic] append:@"/0/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];
     self.informationArray = [[NSMutableArray alloc]init];

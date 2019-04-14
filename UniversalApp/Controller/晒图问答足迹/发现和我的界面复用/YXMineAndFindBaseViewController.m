@@ -385,7 +385,7 @@
         self.navigationController.tabBarController.selectedIndex = 4;
         return;
     }
-     UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+//     UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
 //     YXMineViewController * mineVC = [stroryBoard5 instantiateViewControllerWithIdentifier:@"YXMineViewController"];
     HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
      mineVC.userId = userId;
@@ -598,7 +598,7 @@
     
 }
 - (void)keyboardNotification:(NSNotification *)notification{
-    CGPoint offset = CGPointMake(0, 0);
+//    CGPoint offset = CGPointMake(0, 0);
 //    [self.yxTableView setContentOffset:offset animated:YES];
     
     NSDictionary *dict = notification.userInfo;

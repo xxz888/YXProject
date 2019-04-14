@@ -508,6 +508,7 @@ static CGFloat textFieldH = 40;
     }
 }
 - (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     [_textField resignFirstResponder];
     [_textField removeFromSuperview];
 }

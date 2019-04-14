@@ -107,6 +107,7 @@
 		29FEE77B1ECED1E200C81B60 /* MBHUD_Warn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 29FEE7731ECED1E200C81B60 /* MBHUD_Warn@2x.png */; };
 		29FEE77C1ECED1E200C81B60 /* MBHUD_Warn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 29FEE7741ECED1E200C81B60 /* MBHUD_Warn@3x.png */; };
 		5BC8C50C0BEF57AA0780D5DC /* libPods-UniversalApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E884624664B432D4FE5044F /* libPods-UniversalApp.a */; };
+		BB0599022262D35A00E73255 /* YXNewHomeXueJiaPeiJianDetailTuiJianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0599012262D35A00E73255 /* YXNewHomeXueJiaPeiJianDetailTuiJianViewController.m */; };
 		BB0AE5BB2251ECB800CC07EC /* YXHomeXueJiaFeiGuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0AE5BA2251ECB800CC07EC /* YXHomeXueJiaFeiGuViewController.m */; };
 		BB0AE5BF22525B3400CC07EC /* YXHomeCountryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0AE5BE22525B3400CC07EC /* YXHomeCountryViewController.m */; };
 		BB0AE5C322531E7000CC07EC /* YXHomeLastListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0AE5C122531E7000CC07EC /* YXHomeLastListTableViewCell.m */; };
@@ -783,6 +784,8 @@
 		29FEE7741ECED1E200C81B60 /* MBHUD_Warn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MBHUD_Warn@3x.png"; sourceTree = "<group>"; };
 		9E884624664B432D4FE5044F /* libPods-UniversalApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UniversalApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A51AB222BA7ACF202B5B1330 /* Pods-UniversalApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalApp/Pods-UniversalApp.debug.xcconfig"; sourceTree = "<group>"; };
+		BB0599002262D35A00E73255 /* YXNewHomeXueJiaPeiJianDetailTuiJianViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXNewHomeXueJiaPeiJianDetailTuiJianViewController.h; sourceTree = "<group>"; };
+		BB0599012262D35A00E73255 /* YXNewHomeXueJiaPeiJianDetailTuiJianViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXNewHomeXueJiaPeiJianDetailTuiJianViewController.m; sourceTree = "<group>"; };
 		BB0AE5B92251ECB800CC07EC /* YXHomeXueJiaFeiGuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaFeiGuViewController.h; sourceTree = "<group>"; };
 		BB0AE5BA2251ECB800CC07EC /* YXHomeXueJiaFeiGuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaFeiGuViewController.m; sourceTree = "<group>"; };
 		BB0AE5BD22525B3400CC07EC /* YXHomeCountryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeCountryViewController.h; sourceTree = "<group>"; };
@@ -2410,6 +2413,8 @@
 		BB6D29ED21ED8D5600F5049F /* 雪茄配件详情 */ = {
 			isa = PBXGroup;
 			children = (
+				BB0599002262D35A00E73255 /* YXNewHomeXueJiaPeiJianDetailTuiJianViewController.h */,
+				BB0599012262D35A00E73255 /* YXNewHomeXueJiaPeiJianDetailTuiJianViewController.m */,
 				BB6D29EE21ED8D6E00F5049F /* YXHomeXueJiaPeiJianDetailViewController.h */,
 				BB6D29EF21ED8D6E00F5049F /* YXHomeXueJiaPeiJianDetailViewController.m */,
 				BBC1CC5D226073B800778C2A /* YXHomePeiJianHeaderView.h */,
@@ -5107,6 +5112,7 @@
 				BBDA2D2221EB30BF00EDCCFF /* UIView+SDExtension.m in Sources */,
 				BB3DFE8E221D568D000C70B5 /* XHWebImageAutoSize.m in Sources */,
 				BBDA2D0321EB30BF00EDCCFF /* SDContactsTableViewCell.m in Sources */,
+				BB0599022262D35A00E73255 /* YXNewHomeXueJiaPeiJianDetailTuiJianViewController.m in Sources */,
 				BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */,
 				BB928F9521FB5D290090A044 /* BRDatePickerView.m in Sources */,
 				BBA812B621DDABD3001B5EA1 /* YXMineViewController.m in Sources */,

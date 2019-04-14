@@ -62,7 +62,7 @@
             //                // 第三方平台SDK源数据
             //                NSLog(@"QQ originalResponse: %@", resp.originalResponse);
             
-            NSString * cityName = [resp.originalResponse[@"province"] append:resp.originalResponse[@"city"]];
+//            NSString * cityName = [resp.originalResponse[@"province"] append:resp.originalResponse[@"city"]];
             //登录参数
             NSDictionary *params = @{@"third_type":@"1",
                                      @"third_name":resp.name,

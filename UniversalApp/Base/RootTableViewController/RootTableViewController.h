@@ -27,6 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
  是否隐藏导航栏
  */
 @property (nonatomic, assign) BOOL isHidenNaviBar;
+
+@property (nonatomic,assign) NSInteger requestPage;
+
 @end
 
 NS_ASSUME_NONNULL_END

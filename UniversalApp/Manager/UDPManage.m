@@ -79,7 +79,7 @@ static UDPManage *myUDPManage = nil;
             NSLog(@"%@",object);
             NSInteger port = [object[@"port"] integerValue];
             NSError * error ;
-           BOOL bindBOOL = [_udpSocket bindToPort:port error:&error];
+            [_udpSocket bindToPort:port error:&error];
             if (error) {
                 NSLog(@"客户端绑定失败");
             }

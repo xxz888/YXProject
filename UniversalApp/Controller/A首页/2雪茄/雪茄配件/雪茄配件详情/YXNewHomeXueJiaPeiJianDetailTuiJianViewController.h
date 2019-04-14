@@ -1,19 +1,17 @@
 //
-//  YXHomeXueJiaPinPaiDetailViewController.h
+//  YXNewHomeXueJiaPeiJianDetailTuiJianViewController.h
 //  UniversalApp
 //
-//  Created by 小小醉 on 2019/1/7.
+//  Created by 小小醉 on 2019/4/14.
 //  Copyright © 2019年 徐阳. All rights reserved.
 //
 
-#import "RootViewController.h"
 #import "RootTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YXHomeXueJiaPinPaiDetailViewController : RootTableViewController
-
-@property(nonatomic,strong)NSMutableDictionary * dicData;
+@interface YXNewHomeXueJiaPeiJianDetailTuiJianViewController : RootTableViewController
+@property(nonatomic,strong)NSMutableArray * dataArray;
 @property(nonatomic,strong)NSMutableDictionary * dicStartData;
 
 @property (weak, nonatomic) IBOutlet UIImageView *section1ImageView;
@@ -30,7 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (IBAction)openAction:(id)sender;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *zhushiHeight;
+@property (weak, nonatomic) IBOutlet UIView *segmentView;
 @property(nonatomic,strong)NSString * segIndex;
+-(NSMutableArray *)commonAction:(id)obj dataArray:(NSMutableArray *)dataArray;
 @end
 
 NS_ASSUME_NONNULL_END

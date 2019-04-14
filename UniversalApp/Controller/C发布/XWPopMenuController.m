@@ -212,7 +212,7 @@
     
     
     __weak typeof(self) weakSelf = self;
-    UIStoryboard * stroryBoard3 = [UIStoryboard storyboardWithName:@"YXPublish" bundle:nil];
+//    UIStoryboard * stroryBoard3 = [UIStoryboard storyboardWithName:@"YXPublish" bundle:nil];
     if (btn.tag == 1000) {//晒图
         YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
         [weakSelf presentViewController:imageVC animated:YES completion:nil];

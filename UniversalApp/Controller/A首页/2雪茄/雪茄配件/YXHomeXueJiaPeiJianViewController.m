@@ -14,6 +14,8 @@
 #import "YXHeaderView1.h"
 #import "YXHomeXueJiaWenHuaTableViewCell.h"
 #import "YXXueJiaXXZWHViewController.h"
+#import "YXNewHomeXueJiaPeiJianDetailTuiJianViewController.h"
+
 @interface YXHomeXueJiaPeiJianViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
 @property(nonatomic, strong) QMUIGridView *gridView;
@@ -133,8 +135,8 @@
     UIView *views = (UIView*) tap.view;
     NSUInteger tag = views.tag;
     UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-    YXHomeXueJiaPeiJianDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPeiJianDetailViewController"];
-    VC.startDic = [NSDictionary dictionaryWithDictionary:self.dataArray[tag]];
+    YXNewHomeXueJiaPeiJianDetailTuiJianViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXNewHomeXueJiaPeiJianDetailTuiJianViewController"];
+    VC.dicStartData = [NSDictionary dictionaryWithDictionary:self.dataArray[tag]];
     [self.navigationController pushViewController:VC animated:YES];
 
 

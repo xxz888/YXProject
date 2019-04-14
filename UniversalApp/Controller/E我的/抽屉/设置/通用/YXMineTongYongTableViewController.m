@@ -71,7 +71,7 @@
                     YX_MANAGER.isClear = YES;
                     [NSKeyedArchiver archiveRootObject:@[] toFile:PYSEARCH_SEARCH_HISTORY_CACHE_PATH];
                     [QMUITips showSucceed:@"清除成功"];
-                    NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+//                    NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
                     
                     self.cacheLbl.text = @"";
                 }];
