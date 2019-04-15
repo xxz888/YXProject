@@ -13,6 +13,7 @@
 @interface YXMineAndFindBaseViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>{
     CGFloat _autoPLHeight;
     BOOL _tagSelectBool;
+    NSString * shareString;
 }
 
 @end
@@ -22,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _autoPLHeight = 0;
+    shareString = @"";
     [self tableviewCon];
     [self addRefreshView:self.yxTableView];
 
@@ -92,6 +94,14 @@
         return nil;
     }
 }
+#pragma mark 字典转化字符串
+-(NSString*)dictionaryToJson:(NSDictionary *)dic
+{
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
 #pragma mark ========== 图片 ==========
 -(YXFindImageTableViewCell *)customImageData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath whereCome:(BOOL)whereCome{
     YXFindImageTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFindImageTableViewCell" forIndexPath:indexPath];
@@ -127,6 +137,7 @@
         }
         UserInfo * userInfo = curUser;
         BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [userInfo.id integerValue];
+        shareString = [self dictionaryToJson:cell.dataDic];
         [weakself addGuanjiaShareViewIsOwn:isOwn isWho:cell.whereCome ? @"3" : @"1" tag:cell.tagId];
     };
     cell.jumpDetailVCBlock = ^(YXFindImageTableViewCell * cell) {
@@ -514,15 +525,15 @@
 
 #pragma mark HXEasyCustomShareViewDelegate
 
-- (void)easyCustomShareViewButtonAction:(HXEasyCustomShareView *)shareView title:(NSString *)title {
+- (void)easyCustomShareViewButtonAction:(HXEasyCustomShareView *)shareView title:(NSString *)title{
     [shareView tappedCancel];
     NSLog(@"当前点击:%@",title);
     kWeakSelf(self);
     if ([title isEqualToString:@"微信"]) {
-        [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatSession];
+        [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatSession obj:shareString];
     }
     if ([title isEqualToString:@"朋友圈"]) {
-        [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine];
+        [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine obj:shareString];
     }
     if ([title isEqualToString:@"删除"]) {
         if ([shareView.isWho isEqualToString:@"1"]) {

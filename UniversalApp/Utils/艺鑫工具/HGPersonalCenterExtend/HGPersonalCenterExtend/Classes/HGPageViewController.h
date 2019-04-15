@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "HGCategoryView.h"
 
-@protocol HGPageViewControllerDelegate <NSObject>
+@protocol HGPageViewControllerDelegate1 <NSObject>
 - (void)pageViewControllerLeaveTop;
 @end
 
 @interface HGPageViewController : UIViewController
-@property (nonatomic, weak) id<HGPageViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<HGPageViewControllerDelegate1> delegate;
 @property (nonatomic) NSInteger pageIndex;
 
 - (void)makePageViewControllerScroll:(BOOL)canScroll;

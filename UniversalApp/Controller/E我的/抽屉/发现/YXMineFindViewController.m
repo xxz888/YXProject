@@ -34,10 +34,10 @@
     return cell;
 }
 - (IBAction)wechat1:(id)sender {
-    [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatSession];
+//    [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatSession];
 }
 - (IBAction)wechat2:(id)sender {
-    [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine];
+//    [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine];
 
     
 }

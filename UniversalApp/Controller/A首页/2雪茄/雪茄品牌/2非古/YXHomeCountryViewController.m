@@ -60,7 +60,16 @@
     [YX_MANAGER requestCigar_brand:type success:^(id object) {
         [weakself.dataArray removeAllObjects];
         [weakself.hotDataArray removeAllObjects];
-        weakself.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:object[@"brand_list"]]];
+        NSMutableArray * arrayCopy  =[[NSMutableArray alloc]init];
+
+        for (NSDictionary * dic in object[@"brand_list"]) {
+            if ([dic[@"is_show"] integerValue] == 1) {
+                [arrayCopy addObject:dic];
+            }
+        }
+        
+        
+        weakself.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:arrayCopy]];
         [weakself.hotDataArray addObjectsFromArray:object[@"hot_brand_list"]];
         [weakself.yxTableView reloadData];
     }];

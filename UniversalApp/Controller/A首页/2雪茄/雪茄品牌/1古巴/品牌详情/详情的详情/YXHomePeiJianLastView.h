@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@protocol clickMyTalkDelegate <NSObject>
+@protocol clickMyTalkDelegate1 <NSObject>
 -(void)clickMyTalkAction;
 @end
 
@@ -28,7 +28,7 @@ typedef void(^fixBoxActionBlock)(NSInteger index);
 //六宫格图片
 -(void)setSixPhotoView:(NSMutableArray *)imageArray;
 //点击我的点评
-@property (nonatomic,weak) id<clickMyTalkDelegate> delegate;
+@property (nonatomic,weak) id<clickMyTalkDelegate1> delegate;
 @property (nonatomic,copy) fixBoxActionBlock fixBlock;
 @property (nonatomic,copy)SegmentActionBlock block;
 @property (nonatomic,copy)SearchAllActionBlock searchAllBlock;

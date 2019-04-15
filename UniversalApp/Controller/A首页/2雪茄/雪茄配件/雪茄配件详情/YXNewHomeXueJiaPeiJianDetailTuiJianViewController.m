@@ -215,7 +215,7 @@
         [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         
         cell.cellLbl.text = cellData[@"name"];
-        NSString * strprice = [NSString stringWithFormat:@"%@:%@",kGetString(cellData[@"price_a"]),kGetString(cellData[@"price_a"])];
+        NSString * strprice = [NSString stringWithFormat:@"%@:%@",kGetString(cellData[@"store_a"]),kGetString(cellData[@"price_a"])];
         cell.cellAutherLbl.text = strprice;
         cell.cellImageView.layer.masksToBounds = YES;
         cell.cellImageView.layer.cornerRadius = 3;

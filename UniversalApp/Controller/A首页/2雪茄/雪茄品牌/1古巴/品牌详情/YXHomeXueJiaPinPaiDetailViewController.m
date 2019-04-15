@@ -306,7 +306,19 @@
 -(void)requestCigar_brand_details{
     kWeakSelf(self);
     [YX_MANAGER requestCigar_brand_detailsPOST:@{@"cigar_brand_id":kGetString(self.dicStartData[@"id"])} success:^(id object) {
-        weakself.dicData = [NSMutableDictionary dictionaryWithDictionary:object];
+        
+        
+        NSMutableDictionary * dicCopy  =[[NSMutableDictionary alloc]initWithDictionary:object];
+        NSMutableArray * copyArray = [[NSMutableArray alloc] initWithArray:dicCopy[@"data"]];
+        for (NSInteger i = 0; i < [object[@"data"] count]; i++) {
+            NSDictionary * dic = object[@"data"][i];
+            if ([dic[@"is_show"] integerValue] == 0) {
+                [copyArray removeObjectAtIndex:i];
+            }
+        }
+        [dicCopy setValue:copyArray forKey:@"data"];
+        
+       weakself.dicData = [NSMutableDictionary dictionaryWithDictionary:dicCopy];
         [weakself.tableView reloadData];
         weakself.section1countLbl.text = [kGetString(self.dicData[@"concern_number"]) append:@" 人关注"];
         BOOL isGuanZhu = [self.dicData[@"is_concern"] integerValue] == 1;

@@ -35,8 +35,6 @@
         [[UDPManage shareUDPManage] getNewMessageNumeber];
 //        [[UDPManage shareUDPManage] createClientUdpSocket];
     }
-    //老板说第二页太卡，在这里做个缓存吧
-//    [self requestCigar_brand:@"1"];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -56,12 +54,6 @@
 -(void)footerRereshing{
     [self commonRequest];
 
-}
--(void)requestCigar_brand:(NSString *)type{
-    [YX_MANAGER requestCigar_brand:type success:^(id object) {
-        [YX_MANAGER.cache1Dic removeAllObjects];
-        YX_MANAGER.cache1Dic = object;
-    }];
 }
 -(void)requestInformation{
     kWeakSelf(self);

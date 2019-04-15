@@ -12,26 +12,25 @@
 
 SINGLETON_FOR_CLASS(ShareManager);
 
--(void)showShareView{
+-(void)showShareView:(NSString *)obj{
     kWeakSelf(self);
     //显示分享面板
     [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
         // 根据获取的platformType确定所选平台进行下一步操作
-        [weakself shareWebPageToPlatformType:platformType];
+        [weakself shareWebPageToPlatformType:platformType obj:obj];
     }];
 }
 
-- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType
+- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType obj:(NSString *)obj
 {
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
-    messageObject.text = @"收到了开发建设的李奎福建省到了开发建设带来狂风巨浪上岛咖啡就离开";
     //创建网页内容对象
 //    NSString* thumbURL =  @"https://mobile.umeng.com/images/pic/home/social/img-1.png";
     UIImage * thumbURL = [UIImage imageNamed:@"appicon"];
     UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"The Good Life，分享美好生活方式的平台。" descr:@"为雪茄爱好者提供专业的相关知识及资讯，内容包括雪茄产品库，雪茄文化，品鉴足迹等丰富内容！" thumImage:thumbURL];
     //设置网页地址
-    shareObject.webpageUrl = @"http://www.thegdlife.com/jumpMarket.html?par=收到了开发建设的李奎福建省到了开发建设带来狂风巨浪上岛咖啡就离开";
+    shareObject.webpageUrl = [@"http://192.168.0.4:63340/weShare/weShare.html?" append:obj];
     
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;

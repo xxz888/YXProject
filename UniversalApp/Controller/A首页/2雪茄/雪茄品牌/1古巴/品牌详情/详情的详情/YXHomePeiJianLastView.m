@@ -154,7 +154,7 @@
     //推荐
     double average_score1 = [str1 doubleValue] / [sum doubleValue];
   
-        self.lbl1score.text = [NSString stringWithFormat:@"(%.0f%%)",average_score1*100];
+    self.lbl1score.text = [NSString stringWithFormat:@"(%.0f%%)",average_score1*100];
     if ([self.lbl1score.text isEqualToString:replace]) {
         self.lbl1score.text = @"0%";
     }

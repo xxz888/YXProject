@@ -30,7 +30,7 @@
 #import "YXFindSearchTagDetailViewController.h"
 static CGFloat const HeaderImageViewHeight = 130;
 
-@interface YXFindSearchResultTagViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, HGSegmentedPageViewControllerDelegate, HGPageViewControllerDelegate>{
+@interface YXFindSearchResultTagViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>{
     QMUIModalPresentationViewController * _modalViewController;
     NSArray * titleArray;
     

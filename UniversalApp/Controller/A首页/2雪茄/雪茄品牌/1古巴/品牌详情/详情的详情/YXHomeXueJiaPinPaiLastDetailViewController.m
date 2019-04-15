@@ -30,7 +30,7 @@
 
 #define textFieldH 40
 
-@interface YXHomeXueJiaPinPaiLastDetailViewController ()<UITableViewDelegate,UITableViewDataSource,clickMyTalkDelegate,SDTimeLineCellDelegate, UITextFieldDelegate>{
+@interface YXHomeXueJiaPinPaiLastDetailViewController ()<UITableViewDelegate,UITableViewDataSource,clickMyTalkDelegate,clickMyTalkDelegate1,SDTimeLineCellDelegate, UITextFieldDelegate>{
     SDTimeLineRefreshFooter *_refreshFooter;
     SDTimeLineRefreshHeader *_refreshHeader;
     CGFloat _lastScrollViewOffsetY;

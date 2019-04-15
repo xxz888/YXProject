@@ -30,7 +30,7 @@
 
 static CGFloat const HeaderImageViewHeight =260;
 
-@interface HGPersonalCenterViewController () <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, HGSegmentedPageViewControllerDelegate, HGPageViewControllerDelegate>{
+@interface HGPersonalCenterViewController () <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, HGSegmentedPageViewControllerDelegate, HGPageViewControllerDelegate,HGPageViewControllerDelegate1>{
     QMUIModalPresentationViewController * _modalViewController;
     NSArray * titleArray;
 

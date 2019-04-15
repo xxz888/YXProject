@@ -43,13 +43,15 @@
     [YX_MANAGER requestCigar_brand:type success:^(id object) {
         [weakself.dataArray removeAllObjects];
         [weakself.hotDataArray removeAllObjects];
-//        if (YX_MANAGER.cache1Array && YX_MANAGER.cache1Array.count != 0) {
-//            [weakself.dataArray addObjectsFromArray:YX_MANAGER.cache1Array];
-//        }else{
-            weakself.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:object[@"brand_list"]]];
-            [YX_MANAGER.cache1Array removeAllObjects];
-            [YX_MANAGER.cache1Array addObjectsFromArray:weakself.dataArray];
-//        }
+        NSMutableArray * arrayCopy  =[[NSMutableArray alloc]init];
+        for (NSDictionary * dic in object[@"brand_list"]) {
+            if ([dic[@"is_show"] integerValue] == 1) {
+                [arrayCopy addObject:dic];
+            }
+        }
+        
+        
+        weakself.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:arrayCopy]];
         [weakself.hotDataArray addObjectsFromArray:object[@"hot_brand_list"]];
         [weakself createMiddleCollection];
         [weakself.yxTableView reloadData];
@@ -163,7 +165,20 @@
     [YX_MANAGER requestCigar_brand_detailsPOST:@{@"cigar_brand_id":@([cigar_brand_id intValue])} success:^(id object) {
         UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
         YXHomeXueJiaPinPaiDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiDetailViewController"];
-        VC.dicData = [NSMutableDictionary dictionaryWithDictionary:object];
+        
+        NSMutableDictionary * dicCopy  =[[NSMutableDictionary alloc]initWithDictionary:object];
+        NSMutableArray * copyArray = [[NSMutableArray alloc] initWithArray:dicCopy[@"data"]];
+        for (NSInteger i = 0; i < [object[@"data"] count]; i++) {
+            NSDictionary * dic = object[@"data"][i];
+            if ([dic[@"is_show"] integerValue] == 0) {
+                [copyArray removeObjectAtIndex:i];
+            }
+        }
+        [dicCopy setValue:copyArray forKey:@"data"];
+        
+        VC.dicData = [NSMutableDictionary dictionaryWithDictionary:dicCopy];
+        
+        
         
         if (isHot) {
             VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:self.hotDataArray[indexPath.row]];
