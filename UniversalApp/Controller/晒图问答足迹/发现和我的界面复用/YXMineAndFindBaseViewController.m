@@ -315,6 +315,7 @@
         }
         UserInfo * userInfo = curUser;
         BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [userInfo.id integerValue];
+        shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
         [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"2" tag:cell.tagId];
     };
     //自定义cell的回调，获取要展开/收起的cell。刷新点击的cell

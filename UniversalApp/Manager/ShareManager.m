@@ -29,28 +29,103 @@ SINGLETON_FOR_CLASS(ShareManager);
 //    NSString* thumbURL =  @"https://mobile.umeng.com/images/pic/home/social/img-1.png";
     UIImage * thumbURL = [UIImage imageNamed:@"appicon"];
     UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"The Good Life，分享美好生活方式的平台。" descr:@"为雪茄爱好者提供专业的相关知识及资讯，内容包括雪茄产品库，雪茄文化，品鉴足迹等丰富内容！" thumImage:thumbURL];
- 
-    NSString * objTag = [NSString stringWithFormat:@"obj=%@",kGetString(obj[@"obj"])];
-    NSString * user_name = [NSString stringWithFormat:@"user_name=%@",kGetString(obj[@"user_name"])];
-    NSString * photo = [NSString stringWithFormat:@"photo=%@",kGetString(obj[@"photo"])];
-    NSString * photo1 = [NSString stringWithFormat:@"photo1=%@",kGetString(obj[@"photo1"])];
-    NSString * photo2 = [NSString stringWithFormat:@"photo2=%@",kGetString(obj[@"photo2"])];
-    NSString * photo3 = [NSString stringWithFormat:@"photo3=%@",kGetString(obj[@"photo3"])];
-    NSString * describe = [NSString stringWithFormat:@"describe=%@",[kGetString(obj[@"describe"]) UnicodeToUtf8]];
-    NSString * comment1 = [NSString stringWithFormat:@"comment1=%@:%@",
-                            kGetString(obj[@"user_name"]),
-                           [kGetString(obj[@"max_hot_comment"][@"comment"]) UnicodeToUtf8]];
-    NSString * comment2 = [NSString stringWithFormat:@"comment2=%@:%@",
-                           kGetString(obj[@"user_name"]),
-                           [kGetString(obj[@"max_hot_comment"][@"comment"]) UnicodeToUtf8]];
-    UserInfo * info = curUser;
-    NSString * selfPhoto = [NSString stringWithFormat:@"selfPhoto=%@",kGetString(info.photo)];
-    NSString * timeCopy =  [ShareManager timestampSwitchTime:[obj[@"time"] integerValue] andFormatter:@""];
-    NSString * time = [NSString stringWithFormat:@"time=%@",timeCopy];
     
-    NSString * resultString = [NSString stringWithFormat:@"%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&",objTag,user_name,photo,photo1,photo2,photo3,describe,comment1,comment2,selfPhoto,time];
-    //设置网页地址
-    shareObject.webpageUrl = [@"http://192.168.0.4:63340/weShare/weShare.html?" append:resultString];
+    if (obj) {
+        NSString * resultString = @"";
+        NSString * user_name = [NSString stringWithFormat:@"user_name=%@",kGetString(obj[@"user_name"])];
+        NSString * tag = [NSString stringWithFormat:@"tag=%@",obj[@"tag"]];
+        
+        NSString * photo =@"";
+        NSString * photo1 = @"";
+        NSString * photo2 = @"";
+        NSString * photo3 =@"";
+        NSString * describe =@"";
+        NSString * question = @"";
+        NSString * brand_name = @"";
+        NSString * comment1 = @"";
+        NSString * comment2 = @"";
+        NSString * time = @"";;
+        //足迹
+        if ([obj[@"obj"] integerValue] == 4) {
+            photo = [NSString stringWithFormat:@"photo=%@",kGetString(obj[@"user_photo"])];
+            photo1 = [NSString stringWithFormat:@"photo1=%@",kGetString(obj[@"pic1"])];
+            photo2 = [NSString stringWithFormat:@"photo2=%@",kGetString(obj[@"pic2"])];
+            photo3 = [NSString stringWithFormat:@"photo3=%@",kGetString(obj[@"pic3"])];
+            describe = [NSString stringWithFormat:@"describe=%@",[kGetString(obj[@"content"]) UnicodeToUtf8]];
+            brand_name = [NSString stringWithFormat:@"brand_name=%@",kGetString(obj[@"cigar_info"][@"brand_name"])];
+            if ([obj[@"comment_list"] count] == 0) {
+                comment1 = @"";
+                comment2 = @"";
+            }else if ([obj[@"comment_list"] count] == 1) {
+                comment1 = [NSString stringWithFormat:@"comment1=%@:%@",
+                            kGetString(obj[@"comment_list"][0][@"user_name"]),
+                            [kGetString(obj[@"comment_list"][0][@"comment"]) UnicodeToUtf8]];
+                comment2 = @"";
+            }else if ([obj[@"comment_list"] count] == 2) {
+                comment1 = [NSString stringWithFormat:@"comment1=%@:%@",
+                            kGetString(obj[@"comment_list"][0][@"user_name"]),
+                            [kGetString(obj[@"comment_list"][0][@"comment"]) UnicodeToUtf8]];
+                comment2 = [NSString stringWithFormat:@"comment2=%@:%@",
+                            kGetString(obj[@"comment_list"][1][@"user_name"]),
+                            [kGetString(obj[@"comment_list"][1][@"comment"]) UnicodeToUtf8]];
+            }
+            
+            NSString * timeCopy =  [ShareManager timestampSwitchTime:[obj[@"publish_time"] integerValue] andFormatter:@""];
+            time = [NSString stringWithFormat:@"time=%@",timeCopy];
+        }else if ([obj[@"obj"] integerValue] == 3){
+            photo = [NSString stringWithFormat:@"photo=%@",kGetString(obj[@"user_photo"])];
+            photo1 = [NSString stringWithFormat:@"photo1=%@",kGetString(obj[@"pic1"])];
+            photo2 = [NSString stringWithFormat:@"photo2=%@",kGetString(obj[@"pic2"])];
+            photo3 = [NSString stringWithFormat:@"photo3=%@",kGetString(obj[@"pic3"])];
+            describe = [NSString stringWithFormat:@"describe=%@",[kGetString(obj[@"title"]) UnicodeToUtf8]];
+            brand_name = [NSString stringWithFormat:@"brand_name=%@",kGetString(obj[@"cigar_info"][@"brand_name"])];
+            question = [NSString stringWithFormat:@"question=%@",[kGetString(obj[@"question"]) UnicodeToUtf8]];
+            if ([obj[@"answer"] count] == 0) {
+                comment1 = @"";
+                comment2 = @"";
+            }else if ([obj[@"answer"] count] == 1) {
+                comment1 = [NSString stringWithFormat:@"comment1=%@:%@",
+                            kGetString(obj[@"answer"][0][@"user_name"]),
+                            [kGetString(obj[@"answer"][0][@"answer"]) UnicodeToUtf8]];
+                comment2 = @"";
+            }else if ([obj[@"answer"] count] == 2) {
+                comment1 = [NSString stringWithFormat:@"comment1=%@:%@",
+                            kGetString(obj[@"answer"][0][@"user_name"]),
+                            [kGetString(obj[@"answer"][0][@"answer"]) UnicodeToUtf8]];
+                comment2 = [NSString stringWithFormat:@"comment2=%@:%@",
+                            kGetString(obj[@"answer"][1][@"user_name"]),
+                            [kGetString(obj[@"answer"][1][@"answer"]) UnicodeToUtf8]];
+            }
+            
+            NSString * timeCopy =  [ShareManager timestampSwitchTime:[obj[@"publish_time"] integerValue] andFormatter:@""];
+            time = [NSString stringWithFormat:@"time=%@",timeCopy];
+        }else{
+            photo = [NSString stringWithFormat:@"photo=%@",kGetString(obj[@"photo"])];
+            photo1 = [NSString stringWithFormat:@"photo1=%@",kGetString(obj[@"photo1"])];
+            photo2 = [NSString stringWithFormat:@"photo2=%@",kGetString(obj[@"photo2"])];
+            photo3 = [NSString stringWithFormat:@"photo3=%@",kGetString(obj[@"photo3"])];
+            describe = [NSString stringWithFormat:@"describe=%@",[kGetString(obj[@"describe"]) UnicodeToUtf8]];
+            brand_name = [NSString stringWithFormat:@"brand_name=%@",@""];
+            comment1 = [NSString stringWithFormat:@"comment1=%@:%@",
+                        kGetString(obj[@"user_name"]),
+                        [kGetString(obj[@"max_hot_comment"][@"comment"]) UnicodeToUtf8]];
+            comment2 = [NSString stringWithFormat:@"comment2=%@:%@",
+                        kGetString(obj[@"user_name"]),
+                        [kGetString(obj[@"max_hot_comment"][@"comment"]) UnicodeToUtf8]];
+            NSString * timeCopy =  [ShareManager timestampSwitchTime:[obj[@"time"] integerValue] andFormatter:@""];
+            time = [NSString stringWithFormat:@"time=%@",timeCopy];
+        }
+        resultString = [NSString stringWithFormat:@"%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@",
+                        user_name,photo,photo1,photo2,photo3,describe,comment1,comment2,time,brand_name,tag,question];
+        resultString = [resultString stringByReplacingOccurrencesOfString:@" " withString:@""];
+        
+        //设置网页地址
+        shareObject.webpageUrl = [@"http://www.thegdlife.com/jumpMarket.html?" append:resultString];
+    }else{
+        shareObject.webpageUrl = @"http://www.thegdlife.com/jumpMarket.html";
+
+    }
+  
     
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;
