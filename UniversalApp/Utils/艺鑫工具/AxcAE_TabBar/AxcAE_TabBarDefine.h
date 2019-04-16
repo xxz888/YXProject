@@ -18,7 +18,7 @@
 #define AxcAE_TabBarItemSlectBlue AxcAE_TabBarRGB(59,185,222)
 #define AxcAE_TabBarItemBadgeRed  AxcAE_TabBarRGB(255,38,0)
 
-#define AxcAE_IsiPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+//#define AxcAE_IsiPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
 
-
+#define AxcAE_IsiPhoneX ([[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0 ? YES : NO)
 #endif /* AxcAE_TabBarDefine_h */
