@@ -76,8 +76,9 @@ static CGFloat const HeaderImageViewHeight = 130;
 - (void)setupSubViews {
     [self.view insertSubview:self.yxTableView belowSubview:self.navigationController.navigationBar];
     [self.yxTableView addSubview:self.headerView];
+    kWeakSelf(self);
     [self.yxTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.edges.equalTo(weakself.view);
     }];
 }
 - (void)updateNavigationBarBackgroundColor {

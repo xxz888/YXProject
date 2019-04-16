@@ -55,9 +55,10 @@
         return;
     }
     NSString * par = [NSString stringWithFormat:@"%@/%@/",self.phoneTf.text,self.whereCome ? @"3" : @"2"];
+    kWeakSelf(self);
     [YX_MANAGER requestSmscodeGET:par success:^(id object) {
-        [QMUITips showSucceed:@"验证码发送成功" inView:self.view hideAfterDelay:2];
-        [self.getMes_codeBtn startWithTime:180
+        [QMUITips showSucceed:@"验证码发送成功" inView:weakself.view hideAfterDelay:2];
+        [weakself.getMes_codeBtn startWithTime:180
                                      title:@"点击重新获取"
                             countDownTitle:@"s"
                                  mainColor:C_COLOR

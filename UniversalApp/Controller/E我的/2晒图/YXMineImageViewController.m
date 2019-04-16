@@ -108,7 +108,7 @@
     kWeakSelf(self);
     NSString* post_id = kGetString(self.dataArray[indexPath.row][@"id"]);
     [YX_MANAGER requestPost_praisePOST:@{@"post_id":post_id} success:^(id object) {
-        [self requestAction];
+        [weakself requestAction];
     }];
 }
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{

@@ -38,7 +38,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
-
+    kWeakSelf(self);
     switch (indexPath.section) {
         case 0:
             //账号与安全
@@ -47,7 +47,7 @@
                 [YX_MANAGER requestGetUserothers:userInfo.id success:^(id object) {
                     YXHomeEditPersonTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXHomeEditPersonTableViewController"];
                     VC.userInfoDic = [NSDictionary dictionaryWithDictionary:[NSDictionary dictionaryWithDictionary:object]];
-                    [self.navigationController pushViewController:VC animated:YES];
+                    [weakself.navigationController pushViewController:VC animated:YES];
                 }];
             //个人资料
             }else if (indexPath.row == 1) {

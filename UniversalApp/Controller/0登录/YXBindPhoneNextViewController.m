@@ -34,9 +34,10 @@
         [QMUITips showError:@"请输入正确的手机号"];
         return;
     }
+    kWeakSelf(self);
     [YX_MANAGER requestSmscodeGET:[self.nPhoneTf.text append:@"/4/"]  success:^(id object) {
-        [QMUITips showSucceed:@"验证码发送成功" inView:self.view hideAfterDelay:2];
-        [self.getMes_codeBtn startWithTime:180
+        [QMUITips showSucceed:@"验证码发送成功" inView:weakself.view hideAfterDelay:2];
+        [weakself.getMes_codeBtn startWithTime:180
                                      title:@"点击重新获取"
                             countDownTitle:@"s"
                                  mainColor:C_COLOR

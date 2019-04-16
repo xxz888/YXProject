@@ -138,7 +138,7 @@
 -(void)requestpost_comment_child:(NSDictionary *)dic{
     kWeakSelf(self);
     [YX_MANAGER requestFaBuFoot_child_PingLun:dic success:^(id object) {
-        self.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
+        weakself.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];
 }
 #pragma mark ========== 更多评论 ==========
@@ -150,7 +150,7 @@
             [QMUITips showInfo:@"没有更多评论了" detailText:@"" inView:weakself.yxTableView hideAfterDelay:1];
             return ;
         }
-        SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
+        SDTimeLineCellModel *model = weakself.dataArray[weakself.currentEditingIndexthPath.row];
         NSMutableArray *temp = [NSMutableArray new];
         [temp addObjectsFromArray:model.commentItemsArray];
         //判断评论数组是否添加过新数据，如果添加过就不添加了
@@ -193,7 +193,7 @@
             }
             
         }
-        [self.yxTableView reloadRowsAtIndexPaths:@[self.currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
+        [weakself.yxTableView reloadRowsAtIndexPaths:@[self.currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
     }];
 }
 #pragma mark ========== tableview数据 ==========
@@ -278,8 +278,8 @@
     NSIndexPath *index = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel *model = self.dataArray[index.row];
     [YX_MANAGER requestDianZanFoot_PingLun:@{@"comment_id":@([model.id intValue])} success:^(id object) {
-        self.currentEditingIndexthPath = index;
-        self.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
+        weakself.currentEditingIndexthPath = index;
+        weakself.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];
 }
 - (IBAction)clickPingLunAction:(id)sender {
@@ -369,7 +369,7 @@
 -(void)pinglunFatherPic:(NSDictionary *)dic{
     kWeakSelf(self);
     [YX_MANAGER requestPingLunFoot:dic success:^(id object) {
-        self.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
+        weakself.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];
 }
 

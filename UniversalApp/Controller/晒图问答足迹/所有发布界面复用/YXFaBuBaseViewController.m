@@ -247,7 +247,7 @@
     YXGaoDeMapViewController * VC = [[YXGaoDeMapViewController alloc]init];
     VC.block = ^(NSString * locationString) {
         _locationString = locationString;
-        [self.locationBtn setTitle:locationString forState:0];
+        [weakself.locationBtn setTitle:locationString forState:0];
         [weakself dismissViewControllerAnimated:YES completion:nil];
     };
     RootNavigationController *nav = [[RootNavigationController alloc]initWithRootViewController:VC];
@@ -262,9 +262,9 @@
     YXPublishMoreTagsViewController * VC = [[YXPublishMoreTagsViewController alloc]init];
     RootNavigationController *nav = [[RootNavigationController alloc]initWithRootViewController:VC];
     VC.tagBlock = ^(NSDictionary * dic) {
-        [_tagArray addObject:[@"#" append:dic[@"tag"]]];
+        [weakself.tagArray addObject:[@"#" append:dic[@"tag"]]];
         if (weakself.menueView) {
-            [_menueView setContentView:@[_tagArray] titleArr:@[]];
+            [weakself.menueView setContentView:@[weakself.tagArray] titleArr:@[]];
         }else{
             [weakself addNewTags];
         }
@@ -304,8 +304,8 @@
         [array removeObjectAtIndex:index];
         [weakself.tagArray removeAllObjects];
         [weakself.tagArray addObjectsFromArray:array];
-        [_menueView setContentView:@[weakself.tagArray] titleArr:@[]];
-        [self addNewTags];
+        [weakself.menueView setContentView:@[weakself.tagArray] titleArr:@[]];
+        [weakself addNewTags];
 
 
         

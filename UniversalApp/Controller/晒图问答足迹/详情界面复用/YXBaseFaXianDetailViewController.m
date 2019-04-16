@@ -50,13 +50,13 @@
         UserInfo *userInfo = curUser;
         NSString * cellUserId = kGetString(cell.model.userID);
         if ([userInfo.id isEqualToString:cellUserId]) {
-            self.navigationController.tabBarController.selectedIndex = 4;
+            weakSelf.navigationController.tabBarController.selectedIndex = 4;
             return;
         }
         HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
         mineVC.userId = cellUserId;
         mineVC.whereCome = YES;    //  YES为其他人 NO为自己
-        [self.navigationController pushViewController:mineVC animated:YES];
+        [weakSelf.navigationController pushViewController:mineVC animated:YES];
     };
     if (!cell.moreButtonClickedBlock) {
         [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {
@@ -101,7 +101,7 @@
             [alertController addAction:action2];
             [alertController showWithAnimated:YES];
         }];
-        cell.delegate = self;
+        cell.delegate = weakSelf;
     }
     ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
@@ -179,8 +179,9 @@
     if (rect.origin.y == [UIScreen mainScreen].bounds.size.height) {
         textFieldRect = rect;
     }
+    kWeakSelf(self);
     [UIView animateWithDuration:0.25 animations:^{
-        _textField.frame = textFieldRect;
+        weakself.textField.frame = textFieldRect;
     }];
     CGFloat h = rect.size.height + textFieldH;
     if (_totalKeybordHeight != h) {

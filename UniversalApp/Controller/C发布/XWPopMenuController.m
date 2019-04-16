@@ -248,13 +248,14 @@
 - (void)setDownOneBtnAnim:(UIButton *)btn
 {
     
+    kWeakSelf(self);
     [UIView animateWithDuration:0.6 animations:^{
         
         btn.transform = CGAffineTransformMakeTranslation(0, self.view.bounds.size.height);
         
     } completion:^(BOOL finished) {
         
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [weakself dismissViewControllerAnimated:YES completion:nil];
         
     }];
     

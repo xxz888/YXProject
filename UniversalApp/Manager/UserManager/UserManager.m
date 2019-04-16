@@ -34,7 +34,7 @@ SINGLETON_FOR_CLASS(UserManager);
 -(void)login:(UserLoginType )loginType params:(NSDictionary *)params completion:(loginBlock)completion{
     //友盟登录类型
     UMSocialPlatformType platFormType;
-    
+    kWeakSelf(self);
     if (loginType == kUserLoginTypeQQ) {
         platFormType = UMSocialPlatformType_QQ;
     }else if (loginType == kUserLoginTypeWeChat){
@@ -78,11 +78,11 @@ SINGLETON_FOR_CLASS(UserManager);
                                          @"gender":[resp.unionGender isEqualToString:@"男"] ? @"1":@"0",
                                          @"site":cityName
                                          };
-                self.loginType = loginType;
+                weakself.loginType = loginType;
                 
                 
                 //第三方回调完，开始请求到服务器
-                [self autoLoginToServer:params completion:completion];
+                [weakself autoLoginToServer:params completion:completion];
                 
                 
             }

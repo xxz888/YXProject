@@ -129,7 +129,7 @@
 -(void)requestpost_comment_child:(NSDictionary *)dic{
     kWeakSelf(self);
     [YX_MANAGER requestpost_comment_childPOST:dic success:^(id object) {
-        self.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
+        weakself.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];
 }
 #pragma mark ========== 更多评论 ==========
@@ -183,7 +183,7 @@
             }
             
         }
-        [self.yxTableView reloadRowsAtIndexPaths:@[self.currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
+        [weakself.yxTableView reloadRowsAtIndexPaths:@[weakself.currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
     }];
 }
 #pragma mark ========== tableview数据 ==========
@@ -274,8 +274,8 @@
     NSIndexPath *index = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel *model = self.dataArray[index.row];
     [YX_MANAGER requestPost_comment_praisePOST:@{@"comment_id":@([model.id intValue])} success:^(id object) {
-        self.currentEditingIndexthPath = index;
-        self.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
+        weakself.currentEditingIndexthPath = index;
+        weakself.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];
 }
 #pragma mark - UITextFieldDelegate
@@ -307,7 +307,7 @@
 -(void)pinglunFatherPic:(NSDictionary *)dic{
     kWeakSelf(self);
     [YX_MANAGER requestPost_commentPOST:dic success:^(id object) {
-        self.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
+        weakself.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];
 }
 -(NSString *)getParamters:(NSString *)type page:(NSString *)page{

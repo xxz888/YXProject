@@ -178,7 +178,7 @@
                 VC.type = @"3";
                 VC.key = object[0][@"tag"];
                 VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
-                [self.navigationController pushViewController:VC animated:YES];
+                [weakself.navigationController pushViewController:VC animated:YES];
             }else{
                 [QMUITips showInfo:@"无此标签的信息"];
             }
@@ -349,7 +349,7 @@
                 VC.type = @"3";
                 VC.key = object[0][@"tag"];
                 VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
-                [self.navigationController pushViewController:VC animated:YES];
+                [weakself.navigationController pushViewController:VC animated:YES];
             }else{
                 [QMUITips showInfo:@"无此标签的信息"];
             }
@@ -618,8 +618,9 @@
     if (rect.origin.y == [UIScreen mainScreen].bounds.size.height) {
         textFieldRect = rect;
     }
+    kWeakSelf(self);
     [UIView animateWithDuration:0.25 animations:^{
-        _textField.frame = textFieldRect;
+        weakself.textField.frame = textFieldRect;
     }];
     CGFloat h = rect.size.height + textFieldH;
     if (_totalKeybordHeight != h) {

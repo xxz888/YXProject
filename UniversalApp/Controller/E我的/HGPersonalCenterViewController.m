@@ -72,13 +72,14 @@ static CGFloat const HeaderImageViewHeight =260;
 
 #pragma mark - Private Methods
 - (void)setupSubViews {
+    kWeakSelf(self);
     [self.view insertSubview:self.yxTableView belowSubview:self.navigationController.navigationBar];
     [self.yxTableView addSubview:self.headerView];
 //    [self.headerImageView addSubview:self.avatarImageView];
 //    [self.headerImageView addSubview:self.nickNameLabel];
     
     [self.yxTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.edges.equalTo(weakself.view);
     }];
 //    [self.avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.centerX.equalTo(self.headerImageView);

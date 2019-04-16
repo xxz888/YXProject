@@ -240,13 +240,13 @@ static CGFloat textFieldH = 40;
         UserInfo *userInfo = curUser;
         NSString * cellUserId = kGetString(cell.model.userID);
         if ([userInfo.id isEqualToString:cellUserId]) {
-            self.navigationController.tabBarController.selectedIndex = 4;
+            weakSelf.navigationController.tabBarController.selectedIndex = 4;
             return;
         }
         HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
         mineVC.userId = cellUserId;
         mineVC.whereCome = YES;    //  YES为其他人 NO为自己
-        [self.navigationController pushViewController:mineVC animated:YES];
+        [weakSelf.navigationController pushViewController:mineVC animated:YES];
     };
     if (!cell.moreButtonClickedBlock) {
         [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {

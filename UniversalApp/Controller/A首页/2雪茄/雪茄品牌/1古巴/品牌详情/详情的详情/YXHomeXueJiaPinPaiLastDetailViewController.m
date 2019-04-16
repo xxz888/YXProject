@@ -491,19 +491,19 @@
         HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
         mineVC.userId = cellUserId;
         mineVC.whereCome = YES;    //  YES为其他人 NO为自己
-        [self.navigationController pushViewController:mineVC animated:YES];
+        [weakSelf.navigationController pushViewController:mineVC animated:YES];
     };
     cell.imgBlock = ^(SDTimeLineCell * cell) {
         UserInfo *userInfo = curUser;
         NSString * cellUserId = kGetString(cell.model.userID);
         if ([userInfo.id isEqualToString:cellUserId]) {
-            self.navigationController.tabBarController.selectedIndex = 4;
+            weakSelf.navigationController.tabBarController.selectedIndex = 4;
             return;
         }
         HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
         mineVC.userId = cellUserId;
         mineVC.whereCome = YES;    //  YES为其他人 NO为自己
-        [self.navigationController pushViewController:mineVC animated:YES];
+        [weakSelf.navigationController pushViewController:mineVC animated:YES];
     };
     if (!cell.moreButtonClickedBlock) {
         [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {
@@ -569,9 +569,9 @@
     SDTimeLineCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     self.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel * model = self.dataArray[self.currentEditingIndexthPath.row];
-    self.textField.placeholder = [NSString stringWithFormat:@"  回复：%@",model.name];
+    _textField.placeholder = [NSString stringWithFormat:@"  回复：%@",model.name];
     self.currentEditingIndexthPath = cell.indexPath;
-    [self.textField becomeFirstResponder];
+    [_textField becomeFirstResponder];
     self.isReplayingComment = YES;
     self.commentToUser = model.name;
     self.commentToUserID = model.userID;
@@ -814,7 +814,7 @@
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-
+    _textField = nil;
     [_textField resignFirstResponder];
     [_textField removeFromSuperview];
 
@@ -822,6 +822,7 @@
 
 - (void)dealloc
 {
+    _textField = nil;
     [_refreshHeader removeFromSuperview];
     [_refreshFooter removeFromSuperview];
     

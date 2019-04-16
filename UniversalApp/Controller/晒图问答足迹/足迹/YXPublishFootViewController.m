@@ -62,7 +62,7 @@
         [QMUITips hideAllTipsInView:self.view];
         return;
     }
-    
+    kWeakSelf(self);
     [dic setValue:self.cigar_id forKey:@"cigar_id"];
     [dic setValue:[ShareManager getNowTimeMiaoShu] forKey:@"publish_time"];
     
@@ -77,16 +77,16 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(imgArray.count+1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //发布按钮
         [YX_MANAGER requestPost_track:dic success:^(id object) {
-            [QMUITips hideAllTipsInView:self.view];
+            [QMUITips hideAllTipsInView:weakself.view];
 
-            if (self.switchBtn.isOn) {
+            if (weakself.switchBtn.isOn) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"returnFind" object:nil];
-                [self.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:^{
+                [weakself.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:^{
                     [QMUITips showSucceed:object[@"message"] inView:[ShareManager getMainView] hideAfterDelay:1];
                 }];
             }else{
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"returnHome" object:nil];
-                [self.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:^{
+                [weakself.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:^{
                     [QMUITips showSucceed:object[@"message"] inView:[ShareManager getMainView] hideAfterDelay:1];
                 }];
             }
