@@ -13,7 +13,7 @@
 @interface YXMineAndFindBaseViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>{
     CGFloat _autoPLHeight;
     BOOL _tagSelectBool;
-    NSString * shareString;
+    NSDictionary * shareDic;
 }
 
 @end
@@ -23,7 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _autoPLHeight = 0;
-    shareString = @"";
     [self tableviewCon];
     [self addRefreshView:self.yxTableView];
 
@@ -137,7 +136,7 @@
         }
         UserInfo * userInfo = curUser;
         BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [userInfo.id integerValue];
-        shareString = [self dictionaryToJson:cell.dataDic];
+        shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
         [weakself addGuanjiaShareViewIsOwn:isOwn isWho:cell.whereCome ? @"3" : @"1" tag:cell.tagId];
     };
     cell.jumpDetailVCBlock = ^(YXFindImageTableViewCell * cell) {
@@ -530,10 +529,10 @@
     NSLog(@"当前点击:%@",title);
     kWeakSelf(self);
     if ([title isEqualToString:@"微信"]) {
-        [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatSession obj:shareString];
+        [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatSession obj:shareDic];
     }
     if ([title isEqualToString:@"朋友圈"]) {
-        [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine obj:shareString];
+        [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine obj:shareDic];
     }
     if ([title isEqualToString:@"删除"]) {
         if ([shareView.isWho isEqualToString:@"1"]) {

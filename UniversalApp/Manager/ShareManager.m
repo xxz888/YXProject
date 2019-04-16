@@ -21,7 +21,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     }];
 }
 
-- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType obj:(NSString *)obj
+- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType obj:(id)obj
 {
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
@@ -29,8 +29,28 @@ SINGLETON_FOR_CLASS(ShareManager);
 //    NSString* thumbURL =  @"https://mobile.umeng.com/images/pic/home/social/img-1.png";
     UIImage * thumbURL = [UIImage imageNamed:@"appicon"];
     UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"The Good Life，分享美好生活方式的平台。" descr:@"为雪茄爱好者提供专业的相关知识及资讯，内容包括雪茄产品库，雪茄文化，品鉴足迹等丰富内容！" thumImage:thumbURL];
+ 
+    NSString * objTag = [NSString stringWithFormat:@"obj=%@",kGetString(obj[@"obj"])];
+    NSString * user_name = [NSString stringWithFormat:@"user_name=%@",kGetString(obj[@"user_name"])];
+    NSString * photo = [NSString stringWithFormat:@"photo=%@",kGetString(obj[@"photo"])];
+    NSString * photo1 = [NSString stringWithFormat:@"photo1=%@",kGetString(obj[@"photo1"])];
+    NSString * photo2 = [NSString stringWithFormat:@"photo2=%@",kGetString(obj[@"photo2"])];
+    NSString * photo3 = [NSString stringWithFormat:@"photo3=%@",kGetString(obj[@"photo3"])];
+    NSString * describe = [NSString stringWithFormat:@"describe=%@",[kGetString(obj[@"describe"]) UnicodeToUtf8]];
+    NSString * comment1 = [NSString stringWithFormat:@"comment1=%@:%@",
+                            kGetString(obj[@"user_name"]),
+                           [kGetString(obj[@"max_hot_comment"][@"comment"]) UnicodeToUtf8]];
+    NSString * comment2 = [NSString stringWithFormat:@"comment2=%@:%@",
+                           kGetString(obj[@"user_name"]),
+                           [kGetString(obj[@"max_hot_comment"][@"comment"]) UnicodeToUtf8]];
+    UserInfo * info = curUser;
+    NSString * selfPhoto = [NSString stringWithFormat:@"selfPhoto=%@",kGetString(info.photo)];
+    NSString * timeCopy =  [ShareManager timestampSwitchTime:[obj[@"time"] integerValue] andFormatter:@""];
+    NSString * time = [NSString stringWithFormat:@"time=%@",timeCopy];
+    
+    NSString * resultString = [NSString stringWithFormat:@"%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&",objTag,user_name,photo,photo1,photo2,photo3,describe,comment1,comment2,selfPhoto,time];
     //设置网页地址
-    shareObject.webpageUrl = [@"http://192.168.0.4:63340/weShare/weShare.html?" append:obj];
+    shareObject.webpageUrl = [@"http://192.168.0.4:63340/weShare/weShare.html?" append:resultString];
     
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;
@@ -54,7 +74,13 @@ SINGLETON_FOR_CLASS(ShareManager);
         //[self alertWithError:error];
     }];
 }
-
+-(NSString*)dictionaryToJson:(NSDictionary *)dic
+{
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
 - (void)alertWithError:(NSError *)error
 {
     NSString *result = nil;

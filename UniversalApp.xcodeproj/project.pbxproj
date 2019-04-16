@@ -151,6 +151,7 @@
 		BB29122F2215712000FF484E /* YXXingZhuangTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29122D2215712000FF484E /* YXXingZhuangTableViewCell.xib */; };
 		BB2A8EB6221BB0A300B6756A /* UILabel+String.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2A8EB5221BB0A300B6756A /* UILabel+String.m */; };
 		BB2A8EB9221BE73300B6756A /* UIImage+ImgSize.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2A8EB8221BE73300B6756A /* UIImage+ImgSize.m */; };
+		BB3154C422657474005737DE /* YXHomeYiFuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3154C322657474005737DE /* YXHomeYiFuViewController.m */; };
 		BB320A2522630293005D9925 /* YXHomePeiJianLastView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB320A2422630293005D9925 /* YXHomePeiJianLastView.m */; };
 		BB320A27226302A5005D9925 /* YXHomePeiJianLastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB320A26226302A5005D9925 /* YXHomePeiJianLastView.xib */; };
 		BB35639C224B784B006B7A93 /* YXXueJiaXXZWHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB35639B224B784B006B7A93 /* YXXueJiaXXZWHViewController.m */; };
@@ -843,6 +844,8 @@
 		BB2A8EB5221BB0A300B6756A /* UILabel+String.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+String.m"; sourceTree = "<group>"; };
 		BB2A8EB7221BE73300B6756A /* UIImage+ImgSize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImgSize.h"; sourceTree = "<group>"; };
 		BB2A8EB8221BE73300B6756A /* UIImage+ImgSize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImgSize.m"; sourceTree = "<group>"; };
+		BB3154C222657474005737DE /* YXHomeYiFuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeYiFuViewController.h; sourceTree = "<group>"; };
+		BB3154C322657474005737DE /* YXHomeYiFuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeYiFuViewController.m; sourceTree = "<group>"; };
 		BB320A2322630293005D9925 /* YXHomePeiJianLastView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomePeiJianLastView.h; sourceTree = "<group>"; };
 		BB320A2422630293005D9925 /* YXHomePeiJianLastView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomePeiJianLastView.m; sourceTree = "<group>"; };
 		BB320A26226302A5005D9925 /* YXHomePeiJianLastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomePeiJianLastView.xib; sourceTree = "<group>"; };
@@ -2308,6 +2311,15 @@
 			path = LLGifView;
 			sourceTree = "<group>";
 		};
+		BB3154BE22657354005737DE /* 套装搭配 */ = {
+			isa = PBXGroup;
+			children = (
+				BB3154C222657474005737DE /* YXHomeYiFuViewController.h */,
+				BB3154C322657474005737DE /* YXHomeYiFuViewController.m */,
+			);
+			path = "套装搭配";
+			sourceTree = "<group>";
+		};
 		BB3CA492221F90E600C6793D /* 4提问 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3483,6 +3495,7 @@
 			children = (
 				BBCC4A9A21E83CFE00493F40 /* YXHomeXueJiaToolsViewController.h */,
 				BBCC4A9B21E83CFE00493F40 /* YXHomeXueJiaToolsViewController.m */,
+				BB3154BE22657354005737DE /* 套装搭配 */,
 				BBCC4A9D21E83D9500493F40 /* 尺寸工具 */,
 				BBCC4A9E21E83D9500493F40 /* 雪茄形状 */,
 				BBCC4A9F21E83D9500493F40 /* 雪茄颜色 */,
@@ -4795,6 +4808,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 				"zh-Hans",
@@ -5158,6 +5172,7 @@
 				BBBFD7872222D7D300D377AC /* JJImagePicker.m in Sources */,
 				BB9413E021F8B602007E800A /* IQKeyboardManager.m in Sources */,
 				BBADE4C921F801080011E5FF /* NSAttributedString+html.m in Sources */,
+				BB3154C422657474005737DE /* YXHomeYiFuViewController.m in Sources */,
 				BBCC4B8E21E894CD00493F40 /* Moment.m in Sources */,
 				BB6D2A3321EEC63900F5049F /* UIFont+MyFont.m in Sources */,
 				BBBFD78A2222D7D300D377AC /* TOActivityCroppedImageProvider.m in Sources */,
