@@ -28,7 +28,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     //创建网页内容对象
 //    NSString* thumbURL =  @"https://mobile.umeng.com/images/pic/home/social/img-1.png";
     UIImage * thumbURL = [UIImage imageNamed:@"appicon"];
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"The Good Life，分享美好生活方式的平台。" descr:@"为雪茄爱好者提供专业的相关知识及资讯，内容包括雪茄产品库，雪茄文化，品鉴足迹等丰富内容！" thumImage:thumbURL];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"The Good Life，分享美好生活方式的平台。" descr:@"【The Good Life APP】您的Ultimate生活方式平台。在这里，收录有如马六甲手杖，巴拿马草帽等小众精致产品的著名品牌安利和介绍，致力提供全面准确的国内外报价，每日精选的生活方式文章，以及西装与鞋子的颜色搭配手册、着装规范（Dress Code）、酒杯指南、雪茄环径测量等等一系列强大的实用工具。" thumImage:thumbURL];
     
     if (obj) {
         NSString * resultString = @"";

@@ -47,15 +47,13 @@
     
 
     if (!_cycleScrollView3) {
-            _cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, self.underView.frame.size.height) delegate:self placeholderImage:[UIImage imageNamed:@""]];
+            _cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, self.underView.frame.size.height) delegate:self placeholderImage:[UIImage imageNamed:@"img_moren"]];
     }
     [self.underView addSubview:_cycleScrollView3];
 
 
     _cycleScrollView3.bannerImageViewContentMode =  3;
     _cycleScrollView3.showPageControl = NO;
-    _cycleScrollView3.currentPageDotImage = [UIImage imageNamed:@""];
-    _cycleScrollView3.pageDotImage = [UIImage imageNamed:@""];
     _cycleScrollView3.autoScrollTimeInterval = 4;
     _cycleScrollView3.titlesGroup = titleArray;
     _cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];

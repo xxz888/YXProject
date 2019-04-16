@@ -105,7 +105,7 @@
         [self.lastPeiJianlastDetailView againSetDetailView:weakself.startDic];
         self.lastPeiJianlastDetailView.PeiJianOrPinPai = self.PeiJianOrPinPai;
         // 设置 view 的 frame(将设置 frame 提到设置 tableHeaderView 之前)
-        self.lastPeiJianlastDetailView.frame = CGRectMake(0, 0, kScreenWidth, (AxcAE_IsiPhoneX ? 640 : 500));
+        self.lastPeiJianlastDetailView.frame = CGRectMake(0, 0, kScreenWidth, (AxcAE_IsiPhoneX ? 640 : 730));
         // 设置 tableHeaderView
         self.yxTableView.tableHeaderView = self.lastPeiJianlastDetailView;
     }else{
