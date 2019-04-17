@@ -12,12 +12,14 @@
 #import "YXFindSearchResultAllViewController.h"
 #import "UIView+PYSearchExtension.h"
 #import "YXFindSearchTagViewController.h"
+#import "HGSegmentedPageViewController.h"
 
 @interface YXFindSearchResultViewController (){
     YXFindSearchResultAllViewController * allVC;
     YXFindSearchResultUsersViewController * userVC;
     YXFindSearchTagViewController * tagVC;
 }
+@property (nonatomic, strong) HGSegmentedPageViewController *segmentedPageViewController;
 
 @end
 
@@ -37,18 +39,38 @@
     self.isShowLiftBack = YES;
     [self setNavSearchView];
     self.searchHeaderView.searchBar.text = self.searchText;
-    allVC = [[YXFindSearchResultAllViewController alloc]init];
-    allVC.key = self.searchText;
-    userVC = [[YXFindSearchResultUsersViewController alloc]init];
-    userVC.key = self.searchText;
 
-    userVC.whereCome = NO;
-    tagVC = [[YXFindSearchTagViewController alloc]init];
-    tagVC.key = self.searchText;
+    
+    
+    [self addChildViewController:self.segmentedPageViewController];
+    [self.view addSubview:self.segmentedPageViewController.view];
+    [self.segmentedPageViewController didMoveToParentViewController:self];
+    kWeakSelf(self);
+    [self.segmentedPageViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(weakself.view).mas_offset(UIEdgeInsetsMake(kTopHeight, 0, 0, 0));
+    }];
+}
 
-    NSArray* names = @[@"全部",@"用户",@"标签"];
-    NSArray* controllers = @[allVC,userVC,tagVC];
-    [self setSegmentControllersArray:controllers title:names defaultIndex:0 top:kTopHeight view:self.view];
+- (HGSegmentedPageViewController *)segmentedPageViewController {
+    if (!_segmentedPageViewController) {
+        allVC = [[YXFindSearchResultAllViewController alloc]init];
+        allVC.key = self.searchText;
+        userVC = [[YXFindSearchResultUsersViewController alloc]init];
+        userVC.key = self.searchText;
+        
+        userVC.whereCome = NO;
+        tagVC = [[YXFindSearchTagViewController alloc]init];
+        tagVC.key = self.searchText;
+        
+        NSArray* titles = @[@"全部",@"用户",@"标签"];
+        NSArray* controllers = @[allVC,userVC,tagVC];
+        
+        _segmentedPageViewController = [[HGSegmentedPageViewController alloc] init];
+        _segmentedPageViewController.pageViewControllers = controllers.copy;
+        _segmentedPageViewController.categoryView.titles = titles;
+        _segmentedPageViewController.categoryView.originalIndex = 0;
+    }
+    return _segmentedPageViewController;
 }
 - (void)cancleAction{
     [self.navigationController popViewControllerAnimated:YES];

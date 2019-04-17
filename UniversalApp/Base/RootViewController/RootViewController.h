@@ -16,7 +16,7 @@
 #import "FCXRefreshHeaderView.h"
 #import "UIScrollView+FCXRefresh.h"
 #import "YXFindSearchHeadView.h"
-
+#import "HGSegmentedPageViewController.h"
 
 
 typedef void (^ListenChangeIndexBlock)(NSInteger);

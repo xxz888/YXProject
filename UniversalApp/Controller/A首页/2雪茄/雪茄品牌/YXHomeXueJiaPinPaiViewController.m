@@ -16,12 +16,16 @@
 #import "YXHomeXueJiaMyGuanZhuViewController.h"
 #import "YXHomeXueJiaGuBaViewController.h"
 #import "YXHomeXueJiaPinPaiSearchViewController.h"
+#import "HGSegmentedPageViewController.h"
+
 @interface YXHomeXueJiaPinPaiViewController() <PYSearchViewControllerDelegate> {
         YXHomeXueJiaGuBaViewController *  VC1;
         YXHomeXueJiaFeiGuViewController*  VC22;
         YXHomeXueJiaMyGuanZhuViewController *  VC3;
         YXHomeXueJiaGuBaViewController *  VC4;
 }
+@property (nonatomic, strong) HGSegmentedPageViewController *segmentedPageViewController;
+
 @end
 @implementation YXHomeXueJiaPinPaiViewController
 -(void)viewWillAppear:(BOOL)animated{
@@ -50,25 +54,40 @@
         self.title = @"雪茄品牌";
         [self setNavSearchView];
     }
-    [self setInitCollection];
+    
+    
+    [self addChildViewController:self.segmentedPageViewController];
+    [self.view addSubview:self.segmentedPageViewController.view];
+    [self.segmentedPageViewController didMoveToParentViewController:self];
+    kWeakSelf(self);
+    [self.segmentedPageViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(weakself.view).mas_offset(UIEdgeInsetsMake(kTopHeight, 0, 0, 0));
+    }];
 }
 
--(void)setInitCollection{
-    UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+- (HGSegmentedPageViewController *)segmentedPageViewController {
+    if (!_segmentedPageViewController) {
+        UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
         VC1 = [[YXHomeXueJiaGuBaViewController alloc]init];
         VC1.whereCome = self.whereCome;
-
+        
         VC22 = [[YXHomeXueJiaFeiGuViewController alloc]init];
         VC22.whereCome = self.whereCome;
- 
+        
         VC3 = [[YXHomeXueJiaMyGuanZhuViewController alloc]init];
-
+        
         VC4 = [stroryBoard instantiateViewControllerWithIdentifier:@"YXHomeXueJiaGuBaViewController"];
-    //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
-    NSArray* names = self.whereCome ? @[@"全部",@"国家地区"] : @[@"全部",@"国家地区",@"我的关注"];
-    NSArray* controllers = @[VC1,VC22,VC3];
-    [self setSegmentControllersArray:controllers title:names defaultIndex:0 top: kTopHeight view:self.view];
+        //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
+        NSArray* titles = self.whereCome ? @[@"全部",@"国家地区"] : @[@"全部",@"国家地区",@"我的关注"];
+        NSArray* controllers = @[VC1,VC22,VC3];
+        _segmentedPageViewController = [[HGSegmentedPageViewController alloc] init];
+        _segmentedPageViewController.pageViewControllers = controllers.copy;
+        _segmentedPageViewController.categoryView.titles = titles;
+        _segmentedPageViewController.categoryView.originalIndex = 0;
+    }
+    return _segmentedPageViewController;
 }
+
 -(void)clickBackAction{
     [self finishPublish];
 }

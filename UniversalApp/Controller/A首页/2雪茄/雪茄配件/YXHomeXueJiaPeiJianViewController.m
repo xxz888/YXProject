@@ -8,7 +8,6 @@
 
 #import "YXHomeXueJiaPeiJianViewController.h"
 #import "QMUIGridView.h"
-#import "YXHomeXueJiaPeiJianDetailViewController.h"
 #import "YXHomeXueJiaTableViewCell.h"
 #import "UIView+SDAutoLayout.h"
 #import "YXHeaderView1.h"
