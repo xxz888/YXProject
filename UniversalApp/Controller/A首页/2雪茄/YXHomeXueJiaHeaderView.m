@@ -52,8 +52,8 @@
     [self.underView addSubview:_cycleScrollView3];
 
 
-    _cycleScrollView3.bannerImageViewContentMode =  3;
-    _cycleScrollView3.showPageControl = NO;
+    _cycleScrollView3.bannerImageViewContentMode =  0;
+    _cycleScrollView3.showPageControl = YES;
     _cycleScrollView3.autoScrollTimeInterval = 4;
     _cycleScrollView3.titlesGroup = titleArray;
     _cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];

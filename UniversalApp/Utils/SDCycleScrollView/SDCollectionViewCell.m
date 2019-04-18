@@ -133,7 +133,7 @@
         _pageLabel.frame = CGRectMake(self.frame.size.width-40, 0, self.frame.size.width,40);
     } else {
         _imageView.frame = self.bounds;
-        [_imageView setHeight:self.height-15];
+        [_imageView setHeight:self.height];
         CGFloat titleLabelW = self.sd_width;
         CGFloat titleLabelH = _titleLabelHeight;
         CGFloat titleLabelX = 0;
