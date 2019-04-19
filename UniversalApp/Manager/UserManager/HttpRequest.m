@@ -22,7 +22,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [QMUITips hideAllTipsInView:[ShareManager getMainView]];
         failure(error);
-
     }];
 }
 + (void)httpRequestGetPi:(NSString *)pi sucess:(SucessBlock)sucess failure:(FailureBlock)failure{

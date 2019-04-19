@@ -92,7 +92,6 @@
 #pragma mark ========== 发布1 和 存草稿0  ==========
 - (IBAction)fabuAction:(UIButton *)btn {
     [super fabuAction:btn];
-    [QMUITips showLoadingInView:self.view];
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
     [self commonAction:self.photoImageList btn:btn];
 
@@ -117,8 +116,6 @@
         [dic setValue:@"" forKey:@"photo1"];
         [dic setValue:@"" forKey:@"photo2"];
         [dic setValue:@"" forKey:@"photo3"];
-        [QMUITips hideAllTipsInView:self.view];
-
         [QMUITips showInfo:@"请至少上传一张图片" inView:self.view hideAfterDelay:2];
         return;
     }
@@ -137,18 +134,17 @@
         [dic setValue:imgArray[1] forKey:@"photo2"];
         [dic setValue:imgArray[2] forKey:@"photo3"];
     }
-    
     if (self.textViewInput.length == 0){
         [QMUITips showError:@"请输入描述!" inView:self.view hideAfterDelay:2];
-        [QMUITips hideAllTipsInView:self.view];
-
-        return;
-    }else if (self.textViewInput.length >  100){
-        [QMUITips showError:@"描述长度不能超过100字符" inView:self.view hideAfterDelay:2];
-        [QMUITips hideAllTipsInView:self.view];
-
         return;
     }
+    /*
+    else if (self.textViewInput.length >  100){
+        [QMUITips hideAllTipsInView:self.view];
+        [QMUITips showError:@"描述长度不能超过100字符" inView:self.view hideAfterDelay:2];
+        return;
+    }
+     */
     [dic setValue:[self.textViewInput utf8ToUnicode] forKey:@"describe"];//描述
     NSString * publish_site = [self.locationString isEqualToString:@"获取地理位置"] ? @"" : self.locationString;
     [dic setValue:publish_site forKey:@"publish_site"];//地点
@@ -192,8 +188,6 @@
             [db jq_inDatabase:^{
                 [db jq_insertTable:YX_USER_FaBuCaoGao dicOrModel:model];
             }];
-            [QMUITips hideAllTipsInView:self.view];
-
             [QMUITips showSucceed:@"存草稿成功"];
             [weakself closeViewAAA];
 
@@ -204,9 +198,9 @@
 }
 -(void)requestFabu:(NSMutableDictionary *)dic{
     kWeakSelf(self);
+    [QMUITips showLoadingInView:[ShareManager getMainView]];
     //发布按钮
     [YX_MANAGER requestFaBuImagePOST:dic success:^(id object) {
-        [QMUITips hideAllTipsInView:weakself.view];
         [QMUITips showSucceed:object[@"message"] inView:[ShareManager getMainView] hideAfterDelay:1];
         [weakself closeViewAAA];
     }];

@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "回收.png",
+      "filename" : "icon_删除-线40.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "回收@2x.png",
+      "filename" : "icon_删除-线80.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "回收@3x.png",
+      "filename" : "icon_删除-线.png",
       "scale" : "3x"
     }
   ],

@@ -480,9 +480,9 @@
                                    @"title":@"朋友圈"},
                                  @{@"image":@"shareView_wb",
                                    @"title":@"新浪微博"},
-                                 @{@"image":@"share_copyLink",
+                                 @{@"image":@"回收",
                                    @"title":@"删除"},
-                                 @{@"image":@"share_copyLink",
+                                 @{@"image":@"举报",
                                    @"title":@"举报"},nil];
     if (!isOwn) {
         [shareAry removeObjectAtIndex:4];

@@ -14,6 +14,7 @@
     
     NSString * titleText = [[NSString stringWithFormat:@"%@%@",dic[@"question"],dic[@"index"]] UnicodeToUtf8];
     CGFloat height_size = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:14];
+    CGFloat height_QuestionTitle = [ShareManager inTextOutHeight:[dic[@"title"] UnicodeToUtf8] lineSpace:9 fontSize:14];
     CGFloat imageHeight = [dic[@"pic1"] length] <= 5 ? 0 : 100;
     
     
@@ -52,10 +53,11 @@
     
     CGFloat lastHeight =
     (showPlAllLbl ? 25 : 0) +
+    height_QuestionTitle +
     plHeight +
     height_size +
     imageHeight;
-    return lastHeight + 200 ;
+    return lastHeight + 195 ;
 }
 - (IBAction)openAction:(id)sender{
     //将当前对象的isShowMoreText属性设为相反值
@@ -113,8 +115,7 @@
     allPlCountString = self.plAllHeight.constant == 0 ? @"" : allPlCountString;
     [self.searchBtn setTitle:allPlCountString forState:UIControlStateNormal];
     
-    self.titleTagLbl1.text = [dic[@"title"] UnicodeToUtf8];
-    
+
     
     
     NSString * titleText = [[NSString stringWithFormat:@"%@%@",dic[@"question"],dic[@"index"]] UnicodeToUtf8];
@@ -141,6 +142,10 @@
     [ShareManager setLineSpace:9 withText:[self.titleTagLbl2.text UnicodeToUtf8] inLabel:self.titleTagLbl2 tag:dic[@"index"]];
     self.textHeight.constant = [self getLblHeight:dic];
 
+    
+    self.titleTagLbl1.text = [dic[@"title"] UnicodeToUtf8];
+    [ShareManager setLineSpace:9 withText:[self.titleTagLbl1.text UnicodeToUtf8] inLabel:self.titleTagLbl1 tag:@""];
+    self.questionTitleHeight.constant = [ShareManager inTextOutHeight:self.titleTagLbl1.text lineSpace:9 fontSize:14];
     
     NSString * str1 = [(NSMutableString *)dic[@"pic1"] replaceAll:@" " target:@"%20"];
     NSString * str2 = [(NSMutableString *)dic[@"pic2"] replaceAll:@" " target:@"%20"];
@@ -177,7 +182,6 @@
 }
 
 -(CGFloat)getLblHeight:(NSDictionary *)dic{
-    
     NSString * titleText = [NSString stringWithFormat:@"%@%@",dic[@"question"],dic[@"index"]];
     return [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
 }

@@ -60,7 +60,7 @@
     //添加分隔线颜色设置
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeQuestionDetailHeaderView" owner:self options:nil];
     self.headerView = [nib objectAtIndex:0];
-    self.headerView.frame = CGRectMake(0, 0, KScreenWidth, !AxcAE_IsiPhoneX ? 300 : 220);
+    self.headerView.frame = CGRectMake(0, 0, KScreenWidth, !AxcAE_IsiPhoneX ? 285 : 305);
     
     self.headerView.titleImageView.layer.masksToBounds = YES;
     self.headerView.titleImageView.layer.cornerRadius = self.headerView.titleImageView.frame.size.width / 2.0;
@@ -75,14 +75,15 @@
     self.headerView.twoLblHeight.constant = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
     [ShareManager setLineSpace:9 withText:[titleText UnicodeToUtf8] inLabel:self.headerView.twoLbl tag:self.moment.index];
     
-    
-    
+  
     
     NSString * str = [(NSMutableString *)self.moment.photo replaceAll:@" " target:@"%20"];
     [self.headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     self.headerView.titleLbl.text = self.moment.userName;
     self.headerView.timeLbl.text = [ShareManager updateTimeForRow:self.moment.time];
     self.headerView.oneLbl.text = [self.moment.text UnicodeToUtf8];
+    [ShareManager setLineSpace:9 withText:[self.headerView.oneLbl.text UnicodeToUtf8] inLabel:self.headerView.oneLbl tag:@""];
+    self.headerView.questionTitleHeight.constant = [ShareManager inTextOutHeight:self.headerView.oneLbl.text lineSpace:9 fontSize:14];
     
     NSString * str0;
     if (self.moment.imageListArray.count >= 1) {

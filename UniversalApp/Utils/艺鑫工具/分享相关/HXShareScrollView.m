@@ -75,7 +75,7 @@
     view.backgroundColor = [UIColor clearColor];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake((view.frame.size.width-icoImage.size.width)/2, 0, icoImage.size.width, icoImage.size.height);
+    button.frame = CGRectMake((view.frame.size.width-30)/2, 10, 30, 30);
     button.titleLabel.font = [UIFont systemFontOfSize:_titleSize];
     [button setTitle:title forState:UIControlStateNormal];
     [button setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];

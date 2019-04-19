@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UILabel *titleTagLbl1;
 @property (weak, nonatomic) IBOutlet IXAttributeTapLabel *titleTagLbl2;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *questionTitleHeight;
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *midImageView1;
