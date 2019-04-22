@@ -12,11 +12,42 @@
 #import "YXHomeNewsDetailViewController.h"
 #import "GCDAsyncUdpSocket.h"
 #import "UDPManage.h"
-@interface YXHomeXueJiaViewController ()<UITableViewDelegate,UITableViewDataSource,ClickGridView>
-
+@interface YXHomeXueJiaViewController ()<UITableViewDelegate,UITableViewDataSource,ClickGridView,UIGestureRecognizerDelegate>
+@property (nonatomic) BOOL isCanBack;
 @end
 
 @implementation YXHomeXueJiaViewController
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self forbiddenSideBack];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self resetSideBack];
+}
+#pragma mark -- 禁用边缘返回
+-(void)forbiddenSideBack{
+    self.isCanBack = NO;
+    //关闭ios右滑返回
+    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate=self;
+    }
+}
+#pragma mark --恢复边缘返回
+- (void)resetSideBack {
+    self.isCanBack=YES;
+    //开启ios右滑返回
+    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+    }
+}
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer*)gestureRecognizer {
+    return self.isCanBack;
+}
+
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -141,6 +172,9 @@
     cell.cellImageView.layer.masksToBounds = YES;
     cell.cellImageView.layer.cornerRadius = 3;
     cell.cellLbl.hidden = cell.cellAutherLbl.hidden = cell.cellDataLbl.hidden = NO;
+    
+    
+    [ShareManager setLineSpace:9 withText:cell.cellLbl.text inLabel:cell.cellLbl tag:@""];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

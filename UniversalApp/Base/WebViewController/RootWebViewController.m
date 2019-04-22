@@ -24,11 +24,11 @@
 -(void)updateNavigationItems{
     if (_isShowCloseBtn) {
         if (self.webView.canGoBack) {
-            self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+//            self.navigationController.interactivePopGestureRecognizer.enabled = NO;
             [self addNavigationItemWithImageNames:@[@"back_icon",@"close_icon"] isLeft:YES target:self action:@selector(leftBtnClick:) tags:@[@2000,@2001]];
             
         }else{
-            self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+//            self.navigationController.interactivePopGestureRecognizer.enabled = YES;
             
             //iOS8系统下发现的问题：在导航栏侧滑过程中，执行添加导航栏按钮操作，会出现按钮重复，导致导航栏一系列错乱问题
             //解决方案待尝试：每个vc显示时，遍历 self.navigationController.navigationBar.subviews 根据tag去重

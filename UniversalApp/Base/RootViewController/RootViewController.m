@@ -21,9 +21,17 @@
 
 @property (nonatomic,strong) UIImageView* noDataView;
 
+@property (nonatomic) BOOL isCanBack;
+
 @end
 
 @implementation RootViewController
+
+
+
+
+
+
 
 - (UIStatusBarStyle)preferredStatusBarStyle{
     return _StatusBarStyle;
@@ -43,10 +51,6 @@
     [[UINavigationBar appearance] setTintColor:KBlackColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.requestPage = 1;
-    
-    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
-    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnFindVC:) name:@"returnFind" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnHomeVC:) name:@"returnHome" object:nil];

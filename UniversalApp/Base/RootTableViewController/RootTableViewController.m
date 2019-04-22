@@ -12,6 +12,7 @@
     UITableView * _yxTableView;
 
 }
+@property (nonatomic) BOOL isCanUseSideBack;
 
 @end
 
@@ -33,12 +34,8 @@
     self.StatusBarStyle = 0;
     [[UINavigationBar appearance] setTintColor:KBlackColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
     self.requestPage = 1;
 }
-
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;

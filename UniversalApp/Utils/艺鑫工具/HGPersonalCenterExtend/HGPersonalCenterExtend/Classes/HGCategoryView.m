@@ -145,19 +145,20 @@ static NSString * const SegmentHeaderViewCollectionViewCellIdentifier = @"Segmen
 - (void)setupMoveLineDefaultLocation {
     CGFloat cellWidth = [self getWidthWithContent:self.titles[0]];
     [self.underline mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(30);
+        make.width.mas_equalTo(cellWidth);
         make.left.mas_equalTo((KScreenWidth/self.titles.count-cellWidth)/2);
     }];
 }
 
 - (void)updateMoveLineLocation {
     HGCategoryViewCollectionViewCell *cell = [self getCell:self.selectedIndex];
+    CGFloat cellWidth = [self getWidthWithContent:self.titles[0]];
     [UIView animateWithDuration:0.15 animations:^{
         [self.underline mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.height - self.underlineHeight - HG_ONE_PIXEL);
             make.height.mas_equalTo(self.underlineHeight);
             make.centerX.equalTo(cell.titleLabel);
-            make.width.mas_equalTo(30);
+            make.width.mas_equalTo(cellWidth);
         }];
         [self.collectionView setNeedsLayout];
         [self.collectionView layoutIfNeeded];
