@@ -105,7 +105,7 @@
         [self.lastPeiJianlastDetailView againSetDetailView:weakself.startDic];
         self.lastPeiJianlastDetailView.PeiJianOrPinPai = self.PeiJianOrPinPai;
         // 设置 view 的 frame(将设置 frame 提到设置 tableHeaderView 之前)
-        self.lastPeiJianlastDetailView.frame = CGRectMake(0, 0, kScreenWidth, (AxcAE_IsiPhoneX ? 640 : 730));
+        self.lastPeiJianlastDetailView.frame = CGRectMake(0, 0, kScreenWidth, (AxcAE_IsiPhoneX ? 670 : 760));
         // 设置 tableHeaderView
         self.yxTableView.tableHeaderView = self.lastPeiJianlastDetailView;
     }else{
@@ -150,17 +150,31 @@
         //listview
         CGFloat listHeight = 0;
         NSMutableArray * listData = [NSMutableArray array];
+        
+
         if (self.startDic[@"argument"]) {
-            NSDictionary * dic = [self dictionaryWithJsonString:kGetString(self.startDic[@"argument"])];
-            for (NSString * key in dic) {
-                NSString * listKey = [key UnicodeToUtf8];
-                NSString * listValue = [[dic objectForKey:key] UnicodeToUtf8];
+            NSString * fenhaoString = kGetString(self.startDic[@"argument"]);
+            NSArray * fenhaoArray = [fenhaoString split:@";"];
+            for (NSInteger i = 0 ; i < [fenhaoArray count] ; i++) {
+                NSArray * konggeArray = [fenhaoArray[i] split:@","];
+                NSString * listKey;
+                NSString * listValue;
+                if (konggeArray.count > 0) {
+                    listKey = konggeArray[0];
+                    listValue = @"";
+                }
+                if (konggeArray.count > 1) {
+                    listKey = konggeArray[0];
+                    listValue = konggeArray[1];
+                }
+                
                 [listData addObject:@{listKey:listValue}];
+                
             }
             listHeight  = listData.count * 40 ;
         }
         // 设置 view 的 frame(将设置 frame 提到设置 tableHeaderView 之前)
-        self.lastDetailView.frame = CGRectMake(0, 0, kScreenWidth, (AxcAE_IsiPhoneX ? 410 : 500) + height + tagHeight + listHeight);
+        self.lastDetailView.frame = CGRectMake(0, 0, kScreenWidth, (AxcAE_IsiPhoneX ? 420 : 510) + height + tagHeight + listHeight);
         // 设置 tableHeaderView
         self.yxTableView.tableHeaderView = self.lastDetailView;
     }

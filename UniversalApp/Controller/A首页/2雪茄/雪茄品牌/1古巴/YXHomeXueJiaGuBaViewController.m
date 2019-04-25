@@ -43,15 +43,9 @@
     [YX_MANAGER requestCigar_brand:type success:^(id object) {
         [weakself.dataArray removeAllObjects];
         [weakself.hotDataArray removeAllObjects];
-        NSMutableArray * arrayCopy  =[[NSMutableArray alloc]init];
-        for (NSDictionary * dic in object[@"brand_list"]) {
-            if ([dic[@"is_show"] integerValue] == 1) {
-                [arrayCopy addObject:dic];
-            }
-        }
+
         
-        
-        weakself.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:arrayCopy]];
+        weakself.dataArray = [weakself userSorting:[NSMutableArray arrayWithArray:object[@"brand_list"]]];
         [weakself.hotDataArray addObjectsFromArray:object[@"hot_brand_list"]];
         [weakself createMiddleCollection];
         [weakself.yxTableView reloadData];
@@ -166,17 +160,7 @@
         UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
         YXHomeXueJiaPinPaiDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiDetailViewController"];
         
-        NSMutableDictionary * dicCopy  =[[NSMutableDictionary alloc]initWithDictionary:object];
-        NSMutableArray * copyArray = [[NSMutableArray alloc] initWithArray:dicCopy[@"data"]];
-        for (NSInteger i = 0; i < [object[@"data"] count]; i++) {
-            NSDictionary * dic = object[@"data"][i];
-            if ([dic[@"is_show"] integerValue] == 0) {
-                [copyArray removeObjectAtIndex:i];
-            }
-        }
-        [dicCopy setValue:copyArray forKey:@"data"];
-        
-        VC.dicData = [NSMutableDictionary dictionaryWithDictionary:dicCopy];
+        VC.dicData = [NSMutableDictionary dictionaryWithDictionary:object];
         
         
         

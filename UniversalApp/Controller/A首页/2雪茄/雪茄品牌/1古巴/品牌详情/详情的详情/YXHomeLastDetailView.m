@@ -81,12 +81,30 @@
     //listview
     [self.listData removeAllObjects];
     if (startDic[@"argument"]) {
-        NSDictionary * dic = [self dictionaryWithJsonString:kGetString(startDic[@"argument"])];
-        for (NSString * key in dic) {
-            NSString * listKey = [key UnicodeToUtf8];
-            NSString * listValue = [[dic objectForKey:key] UnicodeToUtf8];
+        NSString * fenhaoString = kGetString(startDic[@"argument"]);
+        NSArray * fenhaoArray = [fenhaoString split:@";"];
+        for (NSInteger i = 0 ; i < [fenhaoArray count] ; i++) {
+            NSArray * konggeArray = [fenhaoArray[i] split:@","];
+            NSString * listKey;
+            NSString * listValue;
+            if (konggeArray.count > 0) {
+                listKey = konggeArray[0];
+                listValue = @"";
+            }
+            if (konggeArray.count > 1) {
+                listKey = konggeArray[0];
+                listValue = konggeArray[1];
+            }
+            
             [self.listData addObject:@{listKey:listValue}];
+
         }
+//        NSDictionary * dic = [self dictionaryWithJsonString:kGetString(startDic[@"argument"])];
+//        for (NSString * key in dic) {
+//            NSString * listKey = [key UnicodeToUtf8];
+//            NSString * listValue = [[dic objectForKey:key] UnicodeToUtf8];
+//            [self.listData addObject:@{listKey:listValue}];
+//        }
     }
     [self.listTableView reloadData];
     self.listViewHeight.constant = self.listData.count * 40 + 40;

@@ -313,6 +313,7 @@
     cycleScrollView3.autoScrollTimeInterval = 10000;
     cycleScrollView3.pageDotColor = YXRGBAColor(239, 239, 239);
     cycleScrollView3.backgroundColor = KWhiteColor;
+    cycleScrollView3.pageControlBottomOffset = -40;
     [self.titleView addSubview:cycleScrollView3];
 }
 @end

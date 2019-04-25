@@ -113,14 +113,14 @@ successBlock(responseObject);\
 
 #pragma mark ========== 请求品牌 ==========
 -(void)requestCigar_brand:YX_BLOCK{
-    NSString * url = @"/cigar/admin_cigar_brand/";
+    NSString * url = @"/cigar/cigar_brand/";
     [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
 #pragma mark ========== 品牌详情 ==========
 -(void)requestCigar_brand_detailsPOST:YX_BLOCK{
-    [HTTP_POST(@"/cigar/admin_cigar_brand_details/") Parameters:dic sucess:^(id responseObject) {
+    [HTTP_POST(@"/cigar/cigar_brand_details/") Parameters:dic sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
