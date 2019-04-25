@@ -56,9 +56,9 @@
         
         _HeaderH = frame.size.height;
         _SegmentStyle = CBSegmentStyleSlider;
-        _titleColor = YXRGBAColor(129, 129, 129);
-        _titleSelectedColor = KBlackColor;
-        _titleFont = 13;
+        _titleColor = KDarkGaryColor;
+        _titleSelectedColor = A_COlOR;
+        _titleFont = 14;
     }
     return self;
 }
@@ -96,13 +96,13 @@
         [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         
         UIView *sliderAll = [[UIView alloc]init];
-        sliderAll.frame = CGRectMake(0,_HeaderH-3 , KScreenWidth*2, 2);
+        sliderAll.frame = CGRectMake(-100,_HeaderH-3 , KScreenWidth*3, 2);
         sliderAll.backgroundColor = YXRGBAColor(239, 239, 239);
         [self addSubview:sliderAll];
         
         UIView *slider = [[UIView alloc]init];
         slider.frame = CGRectMake(0, _HeaderH-3, 0, 2);
-        slider.backgroundColor = KBlackColor;
+        slider.backgroundColor = A_COlOR;
         [self addSubview:slider];
         self.slider = slider;
         
@@ -125,14 +125,23 @@
         }else{
             btnW =  (KScreenWidth - titleWidth)/2;
         }
+       
         btn.frame =  CGRectMake(totalWidth, 0.5, btnW, _HeaderH-0.5-2);
+        
+        if (titleArray.count == 1) {
+            btn.frame = CGRectMake(0, 0, self.frame.size.width, _HeaderH-0.5-2);
+        }
         btn.contentMode = UIViewContentModeCenter;
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         btn.tag = i;
         [btn setTitle:titleArray[i] forState:UIControlStateNormal];
-        [btn setTitleColor:_titleColor forState:UIControlStateNormal];
-        [btn setTitleColor:_titleSelectedColor forState:UIControlStateSelected];
-        [btn.titleLabel setFont:[UIFont systemFontOfSize:_titleFont]];
+        
+        
+        
+        
+        [btn setTitleColor:KGrayColor forState:UIControlStateNormal];
+        [btn setTitleColor:A_COlOR forState:UIControlStateSelected];
+        [btn.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [btn addTarget:self action:@selector(titleButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
         totalWidth = totalWidth+btnW+btnSpace;
 
@@ -169,14 +178,14 @@
         }];
     }
     self.selectedBtn = btn;
-    CGFloat offsetX = btn.cb_CenterX - self.frame.size.width*0.5;
-    if (offsetX<0) {
-        offsetX = 0;
-    }
-    if (offsetX>self.contentSize.width-self.frame.size.width) {
-        offsetX = self.contentSize.width-self.frame.size.width;
-    }
-    [self setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+//    CGFloat offsetX = btn.cb_CenterX - self.frame.size.width;
+//    if (offsetX<0) {
+//        offsetX = 0;
+//    }
+//    if (offsetX>self.contentSize.width-self.frame.size.width) {
+//        offsetX = self.contentSize.width-self.frame.size.width;
+//    }
+//    [self setContentOffset:CGPointMake(offsetX, 0) animated:YES];
     if (self.titleChooseReturn) {
         self.titleChooseReturn(btn.tag);
     }

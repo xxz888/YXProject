@@ -57,6 +57,7 @@
             
             
             CBSegmentView *sliderSegmentView = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
+            
             [weakself.segmentView addSubview:sliderSegmentView];
             [sliderSegmentView setTitleArray:names withStyle:CBSegmentStyleSlider];
             sliderSegmentView.titleChooseReturn = ^(NSInteger x) {
@@ -158,7 +159,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaTableViewCell"];
     
     self.tableView.tableFooterView = [[UIView alloc]init];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//推荐该方法
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//推荐该方法
     
     
     
@@ -213,7 +214,6 @@
         NSString * str = [(NSMutableString *)url replaceAll:@" " target:@"%20"];
         str = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-        
         cell.cellLbl.text = cellData[@"name"];
         cell.cellLbl.font = [UIFont systemFontOfSize:14];
         NSString * strprice = [NSString stringWithFormat:@"%@:%@",kGetString(cellData[@"store_a"]),kGetString(cellData[@"price_a"])];
@@ -225,8 +225,13 @@
         cell.cellDataLbl.hidden = YES;
 
         return cell;
+    }else{
+        UITableViewCell * cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+        [cell setSeparatorInset:UIEdgeInsetsMake(0, 0, 0, MAXFLOAT)];
+
+        return cell;
     }
-    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
@@ -239,7 +244,7 @@
         
     }else{
         //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
-        return 100;
+        return 120;
     }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
