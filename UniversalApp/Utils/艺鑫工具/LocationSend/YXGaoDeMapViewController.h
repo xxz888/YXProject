@@ -10,6 +10,7 @@
 typedef void(^locationStringBlock)(NSString *);
 @interface YXGaoDeMapViewController : RootViewController
 @property (nonatomic,copy) locationStringBlock block;
+@property (nonatomic,strong)UISearchController *searchController;
 
 @end
 

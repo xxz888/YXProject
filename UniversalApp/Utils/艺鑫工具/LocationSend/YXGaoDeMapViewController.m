@@ -22,7 +22,6 @@
 #import "MJRefresh.h"
 
 @interface YXGaoDeMapViewController ()<UITableViewDelegate,UITableViewDataSource,QMapViewDelegate,UISearchResultsUpdating,UISearchControllerDelegate,QMSSearchDelegate>
-@property (nonatomic,strong)UISearchController *searchController;
 @property (nonatomic,strong)SearchResultsController *searchResultsController;
 @property (nonatomic,strong)QMapView *mapView;
 @property (nonatomic,strong)UITableView *topTableView;
@@ -113,6 +112,7 @@
 {
     self.navigationController.navigationBar.translucent = YES;
     self.pageIndex = 1;
+    [self addNavigationItemWithTitles:@[@"不使用位置"] isLeft:NO target:self action:@selector(bushiyongweizhi) tags:nil];
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发送" style:UIBarButtonItemStyleDone target:self action:@selector(clickRightBarButtonItem)];
 }
 
@@ -133,7 +133,7 @@
     self.topTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 110) style:UITableViewStylePlain];
     self.topTableView.tableFooterView = [[UIView alloc] init];
     self.topTableView.scrollEnabled = NO;
-    self.topTableView.tableHeaderView = self.searchController.searchBar;
+//    self.topTableView.tableHeaderView = self.searchController.searchBar;
     [self.view addSubview:self.topTableView];
     
     //QMSSearcher
@@ -251,7 +251,9 @@
     QMSPoiData * model = self.dataList[indexPath.row];
     self.block(model.title);
 }
-
+-(void)bushiyongweizhi{
+    self.block(@"");
+}
 #pragma mark - UISearchControllerDelegate / UISearchResultsUpdating
 //将要输入
 - (void)willPresentSearchController:(UISearchController *)searchController

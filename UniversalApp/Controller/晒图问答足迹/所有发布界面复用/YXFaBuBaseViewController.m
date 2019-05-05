@@ -247,7 +247,13 @@
     YXGaoDeMapViewController * VC = [[YXGaoDeMapViewController alloc]init];
     VC.block = ^(NSString * locationString) {
         _locationString = locationString;
-        [weakself.locationBtn setTitle:locationString forState:0];
+        if ([locationString isEqualToString:@""]) {
+            [weakself.locationBtn setTitle:@"获取地理位置" forState:0];
+
+        }else{
+            [weakself.locationBtn setTitle:locationString forState:0];
+
+        }
         [weakself dismissViewControllerAnimated:YES completion:nil];
     };
     RootNavigationController *nav = [[RootNavigationController alloc]initWithRootViewController:VC];
