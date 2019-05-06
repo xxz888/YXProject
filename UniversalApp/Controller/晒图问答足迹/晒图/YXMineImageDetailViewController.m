@@ -8,7 +8,9 @@
 
 #import "YXMineImageDetailViewController.h"
 #import "XHWebImageAutoSize.h"
-@interface YXMineImageDetailViewController (){
+#import "ZInputToolbar.h"
+#import "UIView+LSExtension.h"
+@interface YXMineImageDetailViewController ()<ZInputToolbarDelegate>{
     CGFloat imageHeight;
 }
 @end
@@ -44,8 +46,8 @@
         index == 0 ? [weakself requestNewList] : [weakself requestHotList];
         weakself.segmentIndex = index;
     };
-    [self setupTextField];
 }
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (!self.lastDetailView) {
         //添加分隔线颜色设置
@@ -101,11 +103,12 @@
     [YX_MANAGER requestPost_comment:[self getParamters:@"1" page:NSIntegerToNSString(self.requestPage)] success:^(id object) {
         if ([object count] > 0) {
             weakself.dataArray = [weakself commonAction:[weakself creatModelsWithCount:object] dataArray:weakself.dataArray];
-            [weakself refreshTableView];
         }else{
             [weakself.yxTableView.mj_header endRefreshing];
             [weakself.yxTableView.mj_footer endRefreshing];
         }
+        [weakself refreshTableView];
+
     }];
 }
 -(void)requestHotList{
@@ -114,12 +117,11 @@
     [YX_MANAGER requestPost_comment:[self getParamters:@"2" page:NSIntegerToNSString(self.requestPage)] success:^(id object) {
         if ([object count] > 0) {
             weakself.dataArray = [weakself commonAction:[weakself creatModelsWithCount:object] dataArray:weakself.dataArray]; 
-            [weakself refreshTableView];
         }else{
             [weakself.yxTableView.mj_header endRefreshing];
             [weakself.yxTableView.mj_footer endRefreshing];
-            
         }
+        [weakself refreshTableView];
     }];
 }
 -(void)refreshTableView{
@@ -258,11 +260,14 @@
 }
 #pragma mark ========== tableview 点击评论按钮 ==========
 - (void)didClickcCommentButtonInCell:(SDTimeLineCell *)cell{
+
+    
+    [self setupTextField];
+
     self.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel * model = self.dataArray[self.currentEditingIndexthPath.row];
     self.textField.placeholder = [NSString stringWithFormat:@"  回复：%@",model.name];
     self.currentEditingIndexthPath = cell.indexPath;
-    [self.textField becomeFirstResponder];
     self.isReplayingComment = YES;
     self.commentToUser = model.name;
     self.commentToUserID = model.userID;
@@ -278,24 +283,14 @@
         weakself.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];
 }
+
+
+
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     if (textField.text.length) {
         [self.textField resignFirstResponder];
-        if (self.isReplayingComment) {
-            SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
-            [self requestpost_comment_child:@{@"comment":[textField.text utf8ToUnicode],
-                                               @"father_id":@([model.id intValue]),
-                                               @"aim_id":self.commentToUserID,
-                                               @"aim_name":self.commentToUser
-                                               }];
-            self.isReplayingComment = NO;
-        }else{
-            [self pinglunFatherPic:@{@"comment":[textField.text utf8ToUnicode],
-                                     @"post_id":@([self.startDic[@"id"] intValue]),
-                                     }];
-            
-        }
+        
         self.textField.text = @"";
         self.textField.placeholder = nil;
         
@@ -319,5 +314,56 @@
         [QMUITips showSucceed:@"删除成功"];
         weakself.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];
+}
+-(void)deleFather_PingLun:(NSString *)tag{
+    kWeakSelf(self);
+    [YX_MANAGER requestDelFatherPl_ShaiTu:tag success:^(id object) {
+        [QMUITips showSucceed:@"删除成功"];
+        weakself.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
+    }];
+}
+
+- (IBAction)clickPingLunAction:(id)sender{
+    [self setupTextField];
+    [self.inputToolbar.textInput becomeFirstResponder];
+}
+
+- (void)setupTextField{
+    [self.inputToolbar removeFromSuperview];
+    self.inputToolbar = [[ZInputToolbar alloc] initWithFrame:CGRectMake(0,self.view.height, self.view.width, 60)];
+    self.inputToolbar.textViewMaxLine = 5;
+    self.inputToolbar.delegate = self;
+    self.inputToolbar.placeholderLabel.text = @"开始评论...";
+    [self.view addSubview:self.inputToolbar];
+}
+#pragma mark - ZInputToolbarDelegate
+-(void)inputToolbar:(ZInputToolbar *)inputToolbar sendContent:(NSString *)sendContent {
+    if (sendContent.length > 50) {
+        [QMUITips showInfo:@"不能超过50个字"];
+        return;
+    }
+    
+    [self finishTextView:inputToolbar.textInput];
+    // 清空输入框文字
+    [self.inputToolbar sendSuccessEndEditing];
+}
+
+
+#pragma mark - UITextFieldDelegate
+-(void)finishTextView:(UITextView *)textField{
+    if (self.isReplayingComment) {
+        SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
+        [self requestpost_comment_child:@{@"comment":[textField.text utf8ToUnicode],
+                                          @"father_id":@([model.id intValue]),
+                                          @"aim_id":self.commentToUserID,
+                                          @"aim_name":self.commentToUser
+                                          }];
+        self.isReplayingComment = NO;
+    }else{
+        [self pinglunFatherPic:@{@"comment":[textField.text utf8ToUnicode],
+                                 @"post_id":@([self.startDic[@"id"] intValue]),
+                                 }];
+        
+    }
 }
 @end

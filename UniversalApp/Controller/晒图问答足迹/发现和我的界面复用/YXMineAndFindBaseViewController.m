@@ -10,11 +10,14 @@
 #import "XHWebImageAutoSize.h"
 #import "HGPersonalCenterViewController.h"
 #import "YXFindSearchTagDetailViewController.h"
-@interface YXMineAndFindBaseViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>{
+#import "ZInputToolbar.h"
+#import "UIView+LSExtension.h"
+@interface YXMineAndFindBaseViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,ZInputToolbarDelegate>{
     CGFloat _autoPLHeight;
     BOOL _tagSelectBool;
     NSDictionary * shareDic;
 }
+@property (nonatomic, strong) ZInputToolbar *inputToolbar;
 
 @end
 
@@ -42,7 +45,7 @@
     self.yxTableView.estimatedSectionFooterHeight = 0;
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindImageTableViewCell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindQuestionTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindQuestionTableViewCell"];
-      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
+//      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 #pragma mark ========== tableview代理方法 ==========
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -162,12 +165,9 @@
             return;
         }
         NSIndexPath *indexRow = [weakself.yxTableView indexPathForCell:cell];
-        [weakself.textField becomeFirstResponder];
-        weakself.textField.tag = indexRow.row ;
-        
-        
-//       weakself.currentEditingIndexthPath = indexRow;
-//        [weakself adjustTableViewToFitKeyboard];
+        [weakself setupTextField];
+        weakself.inputToolbar.textInput.tag = indexRow.row;
+        [weakself.inputToolbar.textInput becomeFirstResponder];
     };
     cell.clickTagblock = ^(NSString * string) {
         kWeakSelf(self);
@@ -191,11 +191,22 @@
     return cell;
 }
 
-#pragma mark - UITextFieldDelegate
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [self.textField resignFirstResponder];
-  
+#pragma mark - ZInputToolbarDelegate
+-(void)inputToolbar:(ZInputToolbar *)inputToolbar sendContent:(NSString *)sendContent {
+    if (sendContent.length > 50) {
+        [QMUITips showInfo:@"不能超过50个字"];
+        return;
+    }
     
+    [self finishTextView:inputToolbar.textInput];
+    // 清空输入框文字
+    [self.inputToolbar sendSuccessEndEditing];
+}
+
+
+#pragma mark - UITextFieldDelegate
+-(void)finishTextView:(UITextView *)textField{
+ 
     if (textField.text.length) {
         if (textField.tag >= 10000) {
             NSString * inputText = textField.text;
@@ -209,23 +220,13 @@
                 str = [NSString stringWithFormat:@"%@:%@",userInfo.username,textField.text];
             }
             cell.plLbl.text = [cell.plLbl.text append:str];
-            
             cell.pl1Height.constant = [ShareManager inTextOutHeight:cell.plLbl.text lineSpace:9 fontSize:14];
-            self.textField.text = @"";
-            
             NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[index]];
             [dic setValue:floatToNSString(cell.pl1Height.constant) forKey:@"plHeight"];
             [dic setValue:cell.plLbl.text forKey:@"plContent"];
-            
             [self.dataArray replaceObjectAtIndex:index withObject:dic];
             NSIndexPath *indexRow = [self.yxTableView indexPathForCell:cell];
-            
-            
             [self.yxTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexRow, nil] withRowAnimation:UITableViewRowAnimationNone];
-            
-            
-            
-            
             [self requestFaBuHuiDa:@{
                                      @"answer":[inputText utf8ToUnicode],
                                      @"question_id":@(cell.tagId)
@@ -234,57 +235,52 @@
             NSString * inputText = textField.text;
             NSInteger index = textField.tag ;
             YXFindImageTableViewCell * cell = [self.yxTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-            UserInfo * userInfo = curUser;
-            NSString * str = @"";
-            if ([cell.plLbl.text concate:@"\n"] && ![cell.plLbl.text isEqualToString:@""]) {
-                 str = [NSString stringWithFormat:@"\n%@:%@",userInfo.username,textField.text];
-            }else{
-                str = [NSString stringWithFormat:@"%@:%@",userInfo.username,textField.text];
-            }
-            cell.plLbl.text = [cell.plLbl.text append:str];
-            cell.pl1Height.constant = [ShareManager inTextOutHeight:cell.plLbl.text lineSpace:9 fontSize:14];
-            self.textField.text = @"";
-            
-            NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[index]];
-            [dic setValue:floatToNSString(cell.pl1Height.constant) forKey:@"plHeight"];
-            [dic setValue:cell.plLbl.text forKey:@"plContent"];
-            
-            [self.dataArray replaceObjectAtIndex:index withObject:dic];
-            NSIndexPath *indexRow = [self.yxTableView indexPathForCell:cell];
-            
-            
-            [self.yxTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexRow, nil] withRowAnimation:UITableViewRowAnimationNone];
-            
-         
-                if (cell.whereCome) {
+            [self coustom1:cell tf:textField index:index];
+            if (cell.whereCome) {
                     [self pinglunFatherPic_zuji:@{@"comment":[inputText utf8ToUnicode] ,
                                                   @"track_id":@(cell.tagId),
-                                                  }];
-                    
+                                                  } tview:textField];
                 }else{
                     [self pinglunFatherPic_shaitu:@{@"comment":[inputText utf8ToUnicode],
                                                     @"post_id":@(cell.tagId)}];
                 }
-            
-            
-            //        [self.yxTableView scrollToRowAtIndexPath:self.currentEditingIndexthPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
-            return YES;
         }
-
     }
-    return NO;
+}
+-(void)coustom1:(YXFindImageTableViewCell *)cell tf:(UITextView *)textField index:(NSInteger)index{
+    UserInfo * userInfo = curUser;
+    NSString * str = @"";
+    if ([cell.plLbl.text concate:@"\n"] && ![cell.plLbl.text isEqualToString:@""]) {
+        str = [NSString stringWithFormat:@"\n%@:%@",userInfo.username,textField.text];
+    }else{
+        str = [NSString stringWithFormat:@"%@:%@",userInfo.username,textField.text];
+    }
+    cell.plLbl.text = [cell.plLbl.text append:str];
+    cell.pl1Height.constant = [ShareManager inTextOutHeight:cell.plLbl.text lineSpace:9 fontSize:14];
+    NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[index]];
+    [dic setValue:floatToNSString(cell.pl1Height.constant) forKey:@"plHeight"];
+    [dic setValue:cell.plLbl.text forKey:@"plContent"];
+    [self.dataArray replaceObjectAtIndex:index withObject:dic];
+    NSIndexPath *indexRow = [self.yxTableView indexPathForCell:cell];
+    [self.yxTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexRow, nil] withRowAnimation:UITableViewRowAnimationNone];
 }
 #pragma mark ========== 评论晒图 ==========
 -(void)pinglunFatherPic_shaitu:(NSDictionary *)dic{
-    [YX_MANAGER requestPost_commentPOST:dic success:^(id object) {}];
+    [YX_MANAGER requestPost_commentPOST:dic success:^(id object) {
+        
+    }];
 }
 #pragma mark ========== 评论足迹 ==========
--(void)pinglunFatherPic_zuji:(NSDictionary *)dic{
-    [YX_MANAGER requestPingLunFoot:dic success:^(id object) {}];
+-(void)pinglunFatherPic_zuji:(NSDictionary *)dic tview:(UITextView *)textfield{
+    kWeakSelf(self);
+    [YX_MANAGER requestPingLunFoot:dic success:^(id object) {
+    }];
 }
 #pragma mark ========== 发布回答 ==========
 -(void)requestFaBuHuiDa:(NSDictionary *)dic{
-    [YX_MANAGER requestFaBuHuiDaPOST:dic success:^(id object) { }];
+    [YX_MANAGER requestFaBuHuiDaPOST:dic success:^(id object) {
+        
+    }];
 }
 #pragma mark ========== 问答 ==========
 -(YXFindQuestionTableViewCell *)customQuestionData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath{
@@ -336,8 +332,10 @@
             return;
         }
         NSIndexPath *indexRow = [weakself.yxTableView indexPathForCell:cell];
-        [weakself.textField becomeFirstResponder];
-        weakself.textField.tag = indexRow.row + 10000;
+//        [weakself.textField becomeFirstResponder];
+        [weakself setupTextField];
+        weakself.inputToolbar.textInput.tag = indexRow.row + 10000;
+        [weakself.inputToolbar.textInput becomeFirstResponder];
 
     };
     cell.clickTagblock = ^(NSString * string) {
@@ -408,6 +406,7 @@
     if (_tagSelectBool) {
         return;
     }
+    [self.inputToolbar.textInput resignFirstResponder];
     NSDictionary * dic = self.dataArray[indexPath.row];
     NSInteger tag = [dic[@"obj"] integerValue];
     if (tag == 1) {//晒图
@@ -581,29 +580,38 @@
 }
 
 - (void)setupTextField{
-    [_textField removeFromSuperview];
-    _textField = nil;
-    _textField = [[UITextField alloc]init];
-    _textField.returnKeyType = UIReturnKeyDone;
-    _textField.delegate = self;
-    _textField.placeholder = @" 开始评论...";
-    _textField.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
-    _textField.layer.borderWidth = 1;
-    [_textField setFont:[UIFont systemFontOfSize:14]];
-    _textField.backgroundColor = [UIColor whiteColor];
-    _textField.textColor = [UIColor blackColor];
-    _textField.tag = 8899;
-    _textField.frame = CGRectMake(10, KScreenHeight, KScreenWidth-20, 30);
-    
-    
-           ViewBorderRadius(_textField, 10, 1, YXRGBAColor(238, 238, 238));
+    [self.inputToolbar removeFromSuperview];
+    self.inputToolbar = [[ZInputToolbar alloc] initWithFrame:CGRectMake(0,self.view.height, self.view.width, 60)];
+    self.inputToolbar.textViewMaxLine = 5;
+    self.inputToolbar.delegate = self;
+    self.inputToolbar.placeholderLabel.text = @"开始评论...";
+    [self.view addSubview:self.inputToolbar];
 
-    UILabel * leftView = [[UILabel alloc] initWithFrame:CGRectMake(20,0,7,26)];
-    leftView.backgroundColor = [UIColor clearColor];
-    _textField.leftView = leftView;
-    _textField.leftViewMode = UITextFieldViewModeAlways;
-    _textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    [[UIApplication sharedApplication].keyWindow addSubview:_textField];
+    
+    
+//    [_textField removeFromSuperview];
+//    _textField = nil;
+//    _textField = [[UITextField alloc]init];
+//    _textField.returnKeyType = UIReturnKeyDone;
+//    _textField.delegate = self;
+//    _textField.placeholder = @" 开始评论...";
+//    _textField.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
+//    _textField.layer.borderWidth = 1;
+//    [_textField setFont:[UIFont systemFontOfSize:14]];
+//    _textField.backgroundColor = [UIColor whiteColor];
+//    _textField.textColor = [UIColor blackColor];
+//    _textField.tag = 8899;
+//    _textField.frame = CGRectMake(10, KScreenHeight, KScreenWidth-20, 30);
+//
+//
+//           ViewBorderRadius(_textField, 10, 1, YXRGBAColor(238, 238, 238));
+//
+//    UILabel * leftView = [[UILabel alloc] initWithFrame:CGRectMake(20,0,7,26)];
+//    leftView.backgroundColor = [UIColor clearColor];
+//    _textField.leftView = leftView;
+//    _textField.leftViewMode = UITextFieldViewModeAlways;
+//    _textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+//    [[UIApplication sharedApplication].keyWindow addSubview:_textField];
 }
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
     
@@ -656,7 +664,6 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self setupTextField];
 }
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];

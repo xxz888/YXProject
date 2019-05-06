@@ -747,9 +747,32 @@ successBlock(responseObject);\
     } failure:^(NSError *error) {}];
 }
 
+
+#pragma mark ========== 删除晒图评论 ==========
+-(void)requestDelFatherPl_ShaiTu:YX_BLOCK{
+    NSString * url = @"/users/post_comment/0/";
+    [HTTP_GET([[url append:dic] append:@"/0/0/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
 #pragma mark ========== 删除晒图评论子评论 ==========
 -(void)requestDelChildPl_ShaiTu:YX_BLOCK{
     NSString * url = @"/users/post_comment_child/";
+    [HTTP_GET([[url append:dic] append:@"/0/0/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ========== 删除问答评论 ==========
+-(void)requestDelFatherPl_WenDa:YX_BLOCK{
+    NSString * url = @"/users/delete_answer/";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ========== 删除足迹评论 ==========
+-(void)requestDelFatherPl_Zuji:YX_BLOCK{
+    NSString * url = @"/users/track_comment/0/";
     [HTTP_GET([[url append:dic] append:@"/0/0/"]) sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) {}];

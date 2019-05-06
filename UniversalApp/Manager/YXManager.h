@@ -299,4 +299,13 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestCigar_accessories_comment_child:YX_BLOCK;
 #pragma mark ========== 获取子评论列表 ==========
 -(void)requestCigar_accessories_comment_childGet:YX_BLOCK;
+
+
+
+#pragma mark ========== 删除足迹评论 ==========
+-(void)requestDelFatherPl_Zuji:YX_BLOCK;
+#pragma mark ========== 删除问答评论 ==========
+-(void)requestDelFatherPl_WenDa:YX_BLOCK;
+#pragma mark ========== 删除晒图评论 ==========
+-(void)requestDelFatherPl_ShaiTu:YX_BLOCK;
 @end

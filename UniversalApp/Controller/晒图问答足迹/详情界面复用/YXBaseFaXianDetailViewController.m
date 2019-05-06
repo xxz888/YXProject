@@ -23,12 +23,9 @@
     _imageArr = [[NSMutableArray alloc]init];
     _dataArray = [[NSMutableArray alloc]init];
     _pageArray = [[NSMutableArray alloc]init];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
-- (IBAction)clickPingLunAction:(id)sender {
-    [_textField becomeFirstResponder];
-    _textField.placeholder = @" 开始评论...";;
-}
+
 #pragma mark ========== tableview代理和所有方法 ==========
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArray.count;
@@ -74,12 +71,12 @@
                 return;
             }
             
-            weakSelf.textField.placeholder = [NSString stringWithFormat:@"  回复：%@", commentId];
+             weakSelf.inputToolbar.placeholderLabel.text = [NSString stringWithFormat:@"  回复：%@", commentId];
             weakSelf.currentEditingIndexthPath = cell.indexPath;
-            [weakSelf.textField becomeFirstResponder];
+            [weakSelf.inputToolbar.textInput becomeFirstResponder];
             weakSelf.isReplayingComment = YES;
             weakSelf.commentToUser = commentId;
-            [weakSelf adjustTableViewToFitKeyboard];
+            //[weakSelf adjustTableViewToFitKeyboard];
         }];
         
         [cell setDidLongClickCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow, SDTimeLineCell *cell,NSInteger tag) {
@@ -117,37 +114,42 @@
         KPostNotification(KNotificationLoginStateChange, @NO);
         return;
     }
+    
+    kWeakSelf(self);
+    //在此添加你想要完成的功能
+    QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {}];
+    QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"回复" style:QMUIAlertActionStyleDefault handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+        
+        [weakself setupTextField];
+        SDTimeLineCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+        weakself.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
+        SDTimeLineCellModel * model = self.dataArray[self.currentEditingIndexthPath.row];
+        weakself.inputToolbar.placeholderLabel.text = [NSString stringWithFormat:@"  回复：%@",model.name];
+        weakself.currentEditingIndexthPath = cell.indexPath;
+        [weakself.inputToolbar.textInput becomeFirstResponder];
+        weakself.isReplayingComment = YES;
+        weakself.commentToUser = model.name;
+        weakself.commentToUserID = model.userID;
+//        [weakself adjustTableViewToFitKeyboard];
+    }];
+    QMUIAlertAction *action3 = [QMUIAlertAction actionWithTitle:@"删除" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+        SDTimeLineCellModel * model = weakself.dataArray[weakself.currentEditingIndexthPath.row];
+        [weakself deleFather_PingLun:model.id];
+    }];
+    QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"" message:@"操作" preferredStyle:QMUIAlertControllerStyleActionSheet];
+    [alertController addAction:action1];
+    [alertController addAction:action2];
+    [alertController addAction:action3];
 
+    [alertController showWithAnimated:YES];
     
     
-    SDTimeLineCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-    self.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
-    SDTimeLineCellModel * model = self.dataArray[self.currentEditingIndexthPath.row];
-    self.textField.placeholder = [NSString stringWithFormat:@"  回复：%@",model.name];
-    self.currentEditingIndexthPath = cell.indexPath;
-    [self.textField becomeFirstResponder];
-    self.isReplayingComment = YES;
-    self.commentToUser = model.name;
-    self.commentToUserID = model.userID;
-    [self adjustTableViewToFitKeyboard];
+    
+
     
 }
 
 -(void)delePingLun:(NSInteger)tag{
-    
-}
--(void)cellLongPress:(UILongPressGestureRecognizer *)longRecognizer{
-    if (longRecognizer.state==UIGestureRecognizerStateBegan) {
-        //成为第一响应者，需重写该方法
-        [self becomeFirstResponder];
-        CGPoint location = [longRecognizer locationInView:self.yxTableView];
-        NSIndexPath * indexPath = [self.yxTableView indexPathForRowAtPoint:location];
-        //可以得到此时你点击的哪一行
-        SDTimeLineCellModel * model = self.dataArray[indexPath.row];
-
- 
-    }
-    
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -166,85 +168,19 @@
     return width;
 }
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    [self.textField resignFirstResponder];
-    self.textField.placeholder = nil;
-}
-- (void)keyboardNotification:(NSNotification *)notification{
-    CGPoint offset = CGPointMake(0, 0);
-    [self.yxTableView setContentOffset:offset animated:YES];
-
-    NSDictionary *dict = notification.userInfo;
-    CGRect rect = [dict[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
-    CGRect textFieldRect = CGRectMake(0, rect.origin.y - textFieldH, rect.size.width, textFieldH);
-    if (rect.origin.y == [UIScreen mainScreen].bounds.size.height) {
-        textFieldRect = rect;
-    }
-    kWeakSelf(self);
-    [UIView animateWithDuration:0.25 animations:^{
-        weakself.textField.frame = textFieldRect;
-    }];
-    CGFloat h = rect.size.height + textFieldH;
-    if (_totalKeybordHeight != h) {
-        _totalKeybordHeight = h;
-        [self adjustTableViewToFitKeyboard];
-    }
-}
-#pragma mark ========== 以下为所有自适应和不常用的方法 ==========
-- (void)adjustTableViewToFitKeyboard{
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    UITableViewCell *cell = [self.yxTableView cellForRowAtIndexPath:self.currentEditingIndexthPath];
-    CGRect rect = [cell.superview convertRect:cell.frame toView:window];
-    [self adjustTableViewToFitKeyboardWithRect:rect];
-}
-
-- (void)adjustTableViewToFitKeyboardWithRect:(CGRect)rect{
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    CGFloat delta = CGRectGetMaxY(rect) - (window.bounds.size.height - _totalKeybordHeight);
-    
-    CGPoint offset = self.yxTableView.contentOffset;
-    offset.y += delta;
-    if (offset.y < 0) {
-        offset.y = 0;
-    }
-    
-    [self.yxTableView setContentOffset:offset animated:YES];
+    [self.inputToolbar.textInput resignFirstResponder];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-
-    [_textField resignFirstResponder];
-    [_textField removeFromSuperview];
+    [self.inputToolbar.textInput resignFirstResponder];
+    [self.inputToolbar.textInput removeFromSuperview];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self setupTextField];
+
 }
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)setupTextField{
-    _textField = [[UITextField alloc]init];
-    _textField.returnKeyType = UIReturnKeyDone;
-    _textField.delegate = self;
-    _textField.placeholder = @" 开始评论...";
-    _textField.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
-    _textField.layer.borderWidth = 1;
-    [_textField setFont:[UIFont systemFontOfSize:14]];
-    _textField.backgroundColor = [UIColor whiteColor];
-    _textField.textColor = [UIColor blackColor];
-    _textField.tag = 8899;
-    _textField.frame = CGRectMake(10, KScreenHeight, KScreenWidth-20, 30);
-    
-           ViewBorderRadius(_textField, 10, 1, YXRGBAColor(238, 238, 238));
-
-    UILabel * leftView = [[UILabel alloc] initWithFrame:CGRectMake(20,0,7,26)];
-    leftView.backgroundColor = [UIColor clearColor];
-    _textField.leftView = leftView;
-    _textField.leftViewMode = UITextFieldViewModeAlways;
-    _textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    
-    [[UIApplication sharedApplication].keyWindow addSubview:_textField];
 }
 
 -(void)initAllControl{

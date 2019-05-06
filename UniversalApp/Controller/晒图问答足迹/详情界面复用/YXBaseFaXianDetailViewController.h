@@ -18,7 +18,8 @@
 #import "YXHomeLastDetailView.h"
 #import "YXHomeLastMyTalkView.h"
 #import "XHStarRateView.h"
-
+#import "ZInputToolbar.h"
+#import "UIView+LSExtension.h"
 #import "YXMineImageDetailHeaderView.h"
 
 #import "UITableView+SDAutoTableViewCellHeight.h"
@@ -44,6 +45,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *commentToUser;
 @property (nonatomic, copy) NSString *commentToUserID;
 
+
+@property (nonatomic, strong) ZInputToolbar *inputToolbar;
+
 - (void)setupTextField;
 -(void)initAllControl;
 - (void)adjustTableViewToFitKeyboard;
@@ -58,6 +62,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)requestHotList;
 -(void)delePingLun:(NSInteger)tag;
+-(void)deleFather_PingLun:(NSString *)tag;
+- (IBAction)clickPingLunAction:(id)sender;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

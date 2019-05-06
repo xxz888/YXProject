@@ -8,12 +8,13 @@
 
 #import "YXMineFootDetailViewController.h"
 #import "XHWebImageAutoSize.h"
+#import "ZInputToolbar.h"
+#import "UIView+LSExtension.h"
 
 
 
 
-
-@interface YXMineFootDetailViewController ()<SDCycleScrollViewDelegate>{
+@interface YXMineFootDetailViewController ()<SDCycleScrollViewDelegate,ZInputToolbarDelegate>{
     CGFloat imageHeight;
 }
 
@@ -42,9 +43,7 @@
     self.lastDetailView.block = ^(NSInteger index) {
         index == 0 ? [weakself requestNewList] : [weakself requestHotList];
         weakself.segmentIndex = index;
-    };
-    [self setupTextField];
-}
+    };}
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (!self.lastDetailView) {
         //添加分隔线颜色设置
@@ -106,11 +105,12 @@
         
         if ([object count] > 0) {
           weakself.dataArray = [weakself commonAction:[weakself creatModelsWithCount:object] dataArray:weakself.dataArray];
-            [weakself refreshTableView];
         }else{
             [weakself.yxTableView.mj_header endRefreshing];
             [weakself.yxTableView.mj_footer endRefreshing];
         }
+        [weakself refreshTableView];
+
     }];
 }
 -(void)requestHotList{
@@ -119,12 +119,14 @@
     [YX_MANAGER requestGetHotFootList:[self getParamters:@"2" page:NSIntegerToNSString(self.requestPage)] success:^(id object) {
         if ([object count] > 0) {
            weakself.dataArray = [weakself commonAction:[weakself creatModelsWithCount:object] dataArray:weakself.dataArray]; 
-            [weakself refreshTableView];
         }else{
+
             [weakself.yxTableView.mj_header endRefreshing];
             [weakself.yxTableView.mj_footer endRefreshing];
             
         }
+        [weakself refreshTableView];
+
     }];
 }
 -(void)refreshTableView{
@@ -264,13 +266,14 @@
 - (void)didClickcCommentButtonInCell:(SDTimeLineCell *)cell{
     self.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel * model = self.dataArray[self.currentEditingIndexthPath.row];
-    self.textField.placeholder = [NSString stringWithFormat:@"  回复：%@",model.name];
+    self.inputToolbar.placeholderLabel.text = [NSString stringWithFormat:@"  回复：%@",model.name];
     self.currentEditingIndexthPath = cell.indexPath;
-    [self.textField becomeFirstResponder];
+    [self setupTextField];
+    [self.inputToolbar.textInput becomeFirstResponder];
     self.isReplayingComment = YES;
     self.commentToUser = model.name;
     self.commentToUserID = model.userID;
-    [self adjustTableViewToFitKeyboard];
+//    [self adjustTableViewToFitKeyboard];
 }
 #pragma mark ========== tableview 点赞按钮 ==========
 - (void)didClickLikeButtonInCell:(SDTimeLineCell *)cell{
@@ -283,8 +286,16 @@
     }];
 }
 - (IBAction)clickPingLunAction:(id)sender {
-    [self.textField becomeFirstResponder];
-    self.textField.placeholder = @" 开始评论...";;
+    [self setupTextField];
+    [self.inputToolbar.textInput becomeFirstResponder];
+}
+- (void)setupTextField{
+    [self.inputToolbar removeFromSuperview];
+    self.inputToolbar = [[ZInputToolbar alloc] initWithFrame:CGRectMake(0,self.view.height, self.view.width, 60)];
+    self.inputToolbar.textViewMaxLine = 5;
+    self.inputToolbar.delegate = self;
+    self.inputToolbar.placeholderLabel.text = @"开始评论...";
+    [self.view addSubview:self.inputToolbar];
 }
 
 
@@ -330,8 +341,35 @@
 
 
 
+#pragma mark - ZInputToolbarDelegate
+-(void)inputToolbar:(ZInputToolbar *)inputToolbar sendContent:(NSString *)sendContent {
+    if (sendContent.length > 50) {
+        [QMUITips showInfo:@"不能超过50个字"];
+        return;
+    }
+    
+    [self finishTextView:inputToolbar.textInput];
+    // 清空输入框文字
+    [self.inputToolbar sendSuccessEndEditing];
+}
 
 
+#pragma mark - UITextFieldDelegate
+-(void)finishTextView:(UITextView *)textField{
+    if (self.isReplayingComment) {
+        SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
+        [self requestpost_comment_child:@{@"comment":[textField.text utf8ToUnicode],
+                                          @"father_id":@([model.id intValue]),
+                                          @"aim_id":self.commentToUserID,
+                                          }];
+        self.isReplayingComment = NO;
+    }else{
+        [self pinglunFatherPic:@{@"comment":[textField.text utf8ToUnicode],
+                                 @"track_id":@([self.startDic[@"id"] intValue]),
+                                 }];
+        
+    }
+}
 
 
 
@@ -345,19 +383,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     if (textField.text.length) {
         [self.textField resignFirstResponder];
-        if (self.isReplayingComment) {
-            SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
-            [self requestpost_comment_child:@{@"comment":[textField.text utf8ToUnicode],
-                                              @"father_id":@([model.id intValue]),
-                                              @"aim_id":self.commentToUserID,
-                                              }];
-            self.isReplayingComment = NO;
-        }else{
-            [self pinglunFatherPic:@{@"comment":[textField.text utf8ToUnicode],
-                                     @"track_id":@([self.startDic[@"id"] intValue]),
-                                     }];
-            
-        }
+      
         self.textField.text = @"";
         self.textField.placeholder = nil;
         
@@ -379,6 +405,13 @@
 -(void)delePingLun:(NSInteger)tag{
     kWeakSelf(self);
     [YX_MANAGER requestDelChildPl_Zuji:NSIntegerToNSString(tag) success:^(id object) {
+        [QMUITips showSucceed:@"删除成功"];
+        weakself.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
+    }];
+}
+-(void)deleFather_PingLun:(NSString *)tag{
+    kWeakSelf(self);
+    [YX_MANAGER requestDelFatherPl_Zuji:tag success:^(id object) {
         [QMUITips showSucceed:@"删除成功"];
         weakself.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];
