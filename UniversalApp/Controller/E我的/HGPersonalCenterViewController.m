@@ -429,6 +429,9 @@ static CGFloat const HeaderImageViewHeight =260;
         
     }else{
         self.userInfo = curUser;
+        
+
+        
         [YX_MANAGER requestGetFind_user_id:user_id_BOOL ? self.userId : self.userInfo.id success:^(id object) {
             [weakself personValue:object];
         }];
@@ -439,8 +442,17 @@ static CGFloat const HeaderImageViewHeight =260;
         }];
     }
 }
+
 -(void)personValue:(id)object{
     NSString * str = [(NSMutableString *)object[@"photo"] replaceAll:@" " target:@"%20"];
+    if (self.userInfo) {
+        YYCache *cache = [[YYCache alloc]initWithName:KUserCacheName];
+        NSDictionary *dic = [self.userInfo modelToJSONObject];
+        [dic setValue:str forKey:@"photo"];
+        [cache setObject:dic forKey:KUserModelCache];
+    }
+    
+    
     [self.headerView.mineImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     self.navigationItem.title = kGetString(object[@"username"]);
     self.headerView.mineTitle.text =kGetString(object[@"username"]);

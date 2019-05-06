@@ -106,6 +106,11 @@
 }
 //添加轮播图
 - (void)setUpSycleScrollView:(NSArray *)photoArray height:(CGFloat)height{
+    [_cycleScrollView3 removeFromSuperview];
+    _cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, 200) shouldInfiniteLoop:NO imageNamesGroup:@[]];
+    _cycleScrollView3.delegate = self;
+    [self.lunBoView addSubview:_cycleScrollView3];
+    
     self.rightCountLbl.hidden = height == 0 ;
     
     _tatolCount = photoArray.count;
@@ -121,6 +126,7 @@
     _cycleScrollView3.autoScrollTimeInterval = 10000;
     _cycleScrollView3.pageDotColor = YXRGBAColor(239, 239, 239);
     _cycleScrollView3.backgroundColor = KWhiteColor;
+    
 }
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index{
     self.rightCountLbl.text = [NSString stringWithFormat:@"%ld/%ld",index+1,_tatolCount];
@@ -152,11 +158,11 @@
         [self setUpSycleScrollView:imgArray height:[self getImvHeight:dic whereCome:whereCome]];
         _cycleScrollView3.hidden = NO;
 
-
     }else{
         self.conViewHeight.constant = 0;
         _cycleScrollView3.hidden = YES;
     }
+
     _rightCountLbl.text = [NSString stringWithFormat:@"%@/%ld",@"1",imgArray.count];
     _rightCountLbl.hidden = [_rightCountLbl.text isEqualToString:@"1/1"] ||
     [_rightCountLbl.text isEqualToString:@"1/0"];
@@ -317,9 +323,7 @@
     ViewRadius(self.rightCountLbl, 10);
     
     
-    _cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, 200) shouldInfiniteLoop:NO imageNamesGroup:@[]];
-    _cycleScrollView3.delegate = self;
-    [self.lunBoView addSubview:_cycleScrollView3];
+
 }
 -(void)clickAction:(id)sender{
     UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;

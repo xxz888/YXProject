@@ -107,7 +107,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:SearchResultsControllerDidSelectRow object:nil userInfo:@{@"data":[self.dataSource objectAtIndex:indexPath.row]}];
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
