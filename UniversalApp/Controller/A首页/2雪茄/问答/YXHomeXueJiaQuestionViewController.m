@@ -26,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
      self.title = @"问答";
+    self.view.insetsLayoutMarginsFromSafeArea = NO;
     UIButton * btn = [UIButton buttonWithType:1];
     [btn setTitle:@"我要提问" forState:UIControlStateNormal];
     [btn setBackgroundColor:YXRGBAColor(51, 51, 51)];

@@ -102,13 +102,9 @@
             comment_number = kGetString(dic[@"comment_number"]);
         }
     }
-    self.plLbl.text = connectStr;
- 
-    //评论高度
-    self.pl1Height.constant = [ShareManager inTextOutHeight:self.plLbl.text lineSpace:9 fontSize:14];
-    if ([connectStr contains:@"\n"]) {
-        [ShareManager setLineSpace:9 withText:self.plLbl.text inLabel:self.plLbl tag:@""];
-    }
+
+    
+    
     //查看所有多少评论
     self.plAllHeight.constant = showPlAllLbl ? 25 : 0;
     NSString * allPlCountString = [NSString stringWithFormat:@"查看全部%@评论",comment_number];
@@ -116,7 +112,13 @@
     [self.searchBtn setTitle:allPlCountString forState:UIControlStateNormal];
     
 
+    self.plLbl.text = connectStr;
     
+    //评论高度
+    self.pl1Height.constant = [ShareManager inTextOutHeight:self.plLbl.text lineSpace:9 fontSize:14];
+//    if ([connectStr contains:@"\n"]) {
+        [ShareManager setLineSpace:9 withText:self.plLbl.text inLabel:self.plLbl tag:dic[@"index"]];
+//    }
     
     NSString * titleText = [[NSString stringWithFormat:@"%@%@",dic[@"question"],dic[@"index"]] UnicodeToUtf8];
     kWeakSelf(self);

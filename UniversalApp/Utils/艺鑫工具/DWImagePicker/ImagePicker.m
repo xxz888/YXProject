@@ -132,7 +132,8 @@ static ImagePicker *sharedManager = nil;
 }
 
 - (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
+    picker.navigationBar.translucent = NO; //去除毛玻璃效果
+
     if (buttonIndex == 0) {
         
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;

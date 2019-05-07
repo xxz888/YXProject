@@ -71,8 +71,8 @@
 - (void)setTextViewMaxLine:(NSInteger)textViewMaxLine
 {
     _textViewMaxLine = textViewMaxLine;
-    _textInputMaxHeight = ceil(self.textInput.font.lineHeight * (textViewMaxLine - 1) +
-                               self.textInput.textContainerInset.top + self.textInput.textContainerInset.bottom);
+    _textInputMaxHeight = 100000;//ceil(self.textInput.font.lineHeight * (textViewMaxLine - 1) +
+                              // self.textInput.textContainerInset.top + self.textInput.textContainerInset.bottom);
 }
 
 // 添加通知
@@ -91,8 +91,8 @@
     line.backgroundColor = RGBACOLOR(227, 228, 232, 1);
     [self addSubview:line];
     
-    self.textInput = [[UITextView alloc] initWithFrame:CGRectMake(5, (self.height - kInputHeight)/2, self.width - kButtonW - 10, 37)];;
-    self.textInput.backgroundColor = RGBACOLOR(245, 244, 248, 1.0);
+    self.textInput = [[UITextView alloc] initWithFrame:CGRectMake(5, (self.height - kInputHeight)/2, self.width - kButtonW - 10, 34)];;
+    self.textInput.backgroundColor = RGBACOLOR(244, 245, 248, 1.0);
     self.textInput.font = [UIFont systemFontOfSize:15];
     self.textInput.layer.cornerRadius = 5;
     //    self.textInput.layer.borderColor = [UIColor colorWithRed:210 green:210 blue:210 alpha:1].CGColor;
@@ -103,8 +103,8 @@
     self.textInput.enablesReturnKeyAutomatically = YES;
     self.textInput.delegate = self;
     [self addSubview:self.textInput];
-    
-    self.placeholderLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, (self.height - kInputHeight)/2, self.width - kButtonW - 20, 37)];
+
+    self.placeholderLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, (self.height - kInputHeight)/2, self.width - kButtonW - 20, 34)];
     self.placeholderLabel.textColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
     self.placeholderLabel.font = self.textInput.font;
     if (!self.placeholderLabel.text.length) {
@@ -182,8 +182,11 @@
         [UIView setAnimationDuration:0.3];
         [UIView setAnimationCurve:7];
         self.textInput.height = _textInputHeight;
-        self.y = SCREEN_HEIGHT - _keyboardHeight - _textInputHeight - 5 - 8;
-        self.height = _textInputHeight + 15;
+        
+        //计算空间高度
+        CGFloat h = 26;
+        self.y = SCREEN_HEIGHT - _keyboardHeight - _textInputHeight - h;
+        self.height = _textInputHeight + h;
         self.sendBtn.y = self.height - kButtonH - kButtonMargin;
         [UIView commitAnimations];
     }

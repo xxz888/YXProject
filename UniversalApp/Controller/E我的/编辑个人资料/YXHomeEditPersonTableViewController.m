@@ -41,6 +41,7 @@
     
     self.titleImgView.layer.masksToBounds = YES;
     self.titleImgView.layer.cornerRadius = self.titleImgView.frame.size.width / 2.0;
+    
     if (self.userInfoDic) {
         NSString * str = [(NSMutableString *)self.userInfoDic[@"photo"] replaceAll:@" " target:@"%20"];
         [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
@@ -67,11 +68,12 @@
 -(void)upData{
     kWeakSelf(self);
 //    [QMUITips showLoadingInView:self.view];
+    NSString * site = self.adressBtn.titleLabel.text ? self.adressBtn.titleLabel.text : @"";
     NSDictionary * dic = @{@"username":self.nameTf.text,
                            @"gender":[self.sexBtn.titleLabel.text isEqualToString:@"男"] ? @"1" :@"0",
                            @"photo":self.photo,
                            @"birthday":@"",//self.birthBtn.titleLabel.text,
-                           @"site":self.adressBtn.titleLabel.text,
+                           @"site":site,
                            };
     [YX_MANAGER requestUpdate_userPOST:dic success:^(id object) {
 //        [self.navigationController popViewControllerAnimated:NO];

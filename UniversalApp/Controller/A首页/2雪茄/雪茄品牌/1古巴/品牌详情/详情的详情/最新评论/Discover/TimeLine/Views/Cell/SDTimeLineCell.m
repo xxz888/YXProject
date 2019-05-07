@@ -84,7 +84,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     _starView = [[UIView alloc]init];
     _starView.userInteractionEnabled = NO;
     _contentLabel = [UILabel new];
-    _contentLabel.font = [UIFont systemFontOfSize:contentLabelFontSize];
+    _contentLabel.font = [UIFont systemFontOfSize:13];
     _contentLabel.numberOfLines = 0;
     if (maxContentLabelHeight == 0) {
         maxContentLabelHeight = _contentLabel.font.lineHeight * 3;
@@ -321,11 +321,11 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     
     _contentLabel.lee_theme
     .LeeAddTextColor(DAY , [UIColor blackColor])
-    .LeeAddTextColor(NIGHT , [UIColor grayColor]);
+    .LeeAddTextColor(NIGHT , [UIColor blackColor]);
 
     _timeLabel.lee_theme
-    .LeeAddTextColor(DAY , [UIColor lightGrayColor])
-    .LeeAddTextColor(NIGHT , [UIColor grayColor]);
+    .LeeAddTextColor(DAY , [UIColor blackColor])
+    .LeeAddTextColor(NIGHT , [UIColor blackColor]);
 }
 
 - (void)dealloc
@@ -347,8 +347,11 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     _iconView.layer.cornerRadius = _iconView.frame.size.width / 2.0;
     _nameLable.text = model.name;
     _contentLabel.text = model.msgContent;
+//    [ShareManager setLineSpace:5 withText:_contentLabel.text inLabel:_contentLabel tag:@""];
+    _contentLabel.textColor = KBlackColor;
     _picContainerView.picPathStringsArray = model.picNamesArray;
-    
+
+
     if (model.shouldShowMoreButton) { // 如果文字高度超过60
         _moreButton.sd_layout.heightIs(20);
         _moreButton.hidden = NO;
@@ -393,6 +396,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     }else if ([model.praise isEqualToString:@"0"]){
         [self.zanButton setBackgroundImage:[UIImage imageNamed:@"未赞"] forState:UIControlStateNormal];
     }
+
 }
 
 - (void)setFrame:(CGRect)frame

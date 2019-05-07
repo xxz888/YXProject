@@ -338,11 +338,7 @@
 }
 #pragma mark - ZInputToolbarDelegate
 -(void)inputToolbar:(ZInputToolbar *)inputToolbar sendContent:(NSString *)sendContent {
-    if (sendContent.length > 50) {
-        [QMUITips showInfo:@"不能超过50个字"];
-        return;
-    }
-    
+
     [self finishTextView:inputToolbar.textInput];
     // 清空输入框文字
     [self.inputToolbar sendSuccessEndEditing];

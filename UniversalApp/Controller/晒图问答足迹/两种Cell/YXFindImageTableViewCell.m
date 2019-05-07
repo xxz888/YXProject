@@ -224,9 +224,9 @@
     self.plLbl.text = connectStr;
     //评论高度
     self.pl1Height.constant =  [ShareManager inTextOutHeight:self.plLbl.text lineSpace:9 fontSize:14];
-    if ([connectStr contains:@"\n"]) {
+//    if ([connectStr contains:@"\n"]) {
         [ShareManager setLineSpace:9 withText:self.plLbl.text inLabel:self.plLbl tag:dic[@"index"]];
-    }
+//    }
 
     
     

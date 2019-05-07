@@ -27,10 +27,11 @@
 #import "HGPersonalCenterViewController.h"
 #import "YXHomePeiJianLastView.h"
 #define kTimeLineTableViewCellId @"SDTimeLineCell"
-
+#import "ZInputToolbar.h"
+#import "UIView+LSExtension.h"
 #define textFieldH 40
 
-@interface YXHomeXueJiaPinPaiLastDetailViewController ()<UITableViewDelegate,UITableViewDataSource,clickMyTalkDelegate,clickMyTalkDelegate1,SDTimeLineCellDelegate, UITextFieldDelegate>{
+@interface YXHomeXueJiaPinPaiLastDetailViewController ()<UITableViewDelegate,UITableViewDataSource,clickMyTalkDelegate,clickMyTalkDelegate1,SDTimeLineCellDelegate, UITextFieldDelegate,ZInputToolbarDelegate>{
     SDTimeLineRefreshFooter *_refreshFooter;
     SDTimeLineRefreshHeader *_refreshHeader;
     CGFloat _lastScrollViewOffsetY;
@@ -50,6 +51,7 @@
 @property (nonatomic, strong) NSIndexPath *currentEditingIndexthPath;
 @property (nonatomic, copy) NSString *commentToUser;
 @property (nonatomic, copy) NSString *commentToUserID;
+@property (nonatomic, strong) ZInputToolbar *inputToolbar;
 
 
 @end
@@ -75,6 +77,7 @@
     }else{
         self.title = self.startDic[@"cigar_name"];
     }
+    self.view.insetsLayoutMarginsFromSafeArea = NO;
     _segmentIndex = 0;
     _dataArray = [[NSMutableArray alloc]init];
     _pageArray = [[NSMutableArray alloc]init];
@@ -367,7 +370,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self setupTextField];
 }
 
 
@@ -531,9 +533,10 @@
                 KPostNotification(KNotificationLoginStateChange, @NO);
                 return;
             }
-            weakSelf.textField.placeholder = [NSString stringWithFormat:@"  回复：%@", commentId];
+            [self setupTextField];
+            weakSelf.inputToolbar.placeholderLabel.text = [NSString stringWithFormat:@"  回复：%@", commentId];
             weakSelf.currentEditingIndexthPath = cell.indexPath;
-            [weakSelf.textField becomeFirstResponder];
+            [weakSelf.inputToolbar.textInput becomeFirstResponder];
             weakSelf.isReplayingComment = YES;
             weakSelf.commentToUser = commentId;
             
@@ -579,13 +582,13 @@
     }
     
     
-    
+    [self setupTextField];
     SDTimeLineCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     self.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel * model = self.dataArray[self.currentEditingIndexthPath.row];
-    _textField.placeholder = [NSString stringWithFormat:@"  回复：%@",model.name];
+    self.inputToolbar.placeholderLabel.text = [NSString stringWithFormat:@"  回复：%@",model.name];
     self.currentEditingIndexthPath = cell.indexPath;
-    [_textField becomeFirstResponder];
+    [self.inputToolbar.textInput becomeFirstResponder];
     self.isReplayingComment = YES;
     self.commentToUser = model.name;
     self.commentToUserID = model.userID;
@@ -598,8 +601,7 @@
     return [self.yxTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[SDTimeLineCell class] contentViewWidth:[self cellContentViewWith]] + 20;
 }
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    [_textField resignFirstResponder];
-    _textField.placeholder = nil;
+    [self.inputToolbar.textInput resignFirstResponder];
 }
 - (CGFloat)cellContentViewWith{
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
@@ -631,7 +633,9 @@
         KPostNotification(KNotificationLoginStateChange, @NO);
         return;
     }
-    [_textField becomeFirstResponder];
+    [self setupTextField];
+    [self.inputToolbar.textInput becomeFirstResponder];
+    
     self.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
     self.commentToUser = model.name;
@@ -766,34 +770,7 @@
 {
     if (textField.text.length) {
         [_textField resignFirstResponder];
-        SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
-        [self requestCigar_comment_child:@{@"comment":[textField.text utf8ToUnicode],
-                                               @"father_id":@([model.id intValue]),
-                                               @"aim_id":self.commentToUserID,
-                                               @"aim_name":self.commentToUser
-                                               }];
-        /*
-        NSMutableArray *temp = [NSMutableArray new];
-        [temp addObjectsFromArray:model.commentItemsArray];
-        SDTimeLineCellCommentItemModel *commentItemModel = [SDTimeLineCellCommentItemModel new];
-        if (self.isReplayingComment) {
-            commentItemModel.firstUserName = @"GSD_iOS";
-            commentItemModel.firstUserId = @"GSD_iOS";
-            commentItemModel.secondUserName = self.commentToUser;
-            commentItemModel.secondUserId = self.commentToUser;
-            commentItemModel.commentString = textField.text;
-            
-            self.isReplayingComment = NO;
-        } else {
-            commentItemModel.firstUserName = @"GSD_iOS";
-            commentItemModel.commentString = textField.text;
-            commentItemModel.firstUserId = @"GSD_iOS";
-        }
-        [temp addObject:commentItemModel];
-        model.commentItemsArray = [temp copy];
 
-        [self.yxTableView reloadRowsAtIndexPaths:@[self.currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
-  */
         _textField.text = @"";
         _textField.placeholder = nil;
         
@@ -843,27 +820,28 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void)setupTextField{
-    [_textField removeFromSuperview];
-    _textField = [[UITextField alloc]init];
-    _textField.returnKeyType = UIReturnKeyDone;
-    _textField.delegate = self;
-    _textField.placeholder = @" 开始评论...";
-    _textField.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
-    _textField.layer.borderWidth = 1;
-    [_textField setFont:[UIFont systemFontOfSize:14]];
-    _textField.backgroundColor = [UIColor whiteColor];
-    _textField.textColor = [UIColor blackColor];
-    _textField.tag = 8899;
-    _textField.frame = CGRectMake(10, KScreenHeight, KScreenWidth-20, 30);
+    [self.inputToolbar removeFromSuperview];
+    self.inputToolbar = [[ZInputToolbar alloc] initWithFrame:CGRectMake(0,self.view.height, self.view.width, 60)];
+    self.inputToolbar.textViewMaxLine = 5;
+    self.inputToolbar.delegate = self;
+    self.inputToolbar.placeholderLabel.text = @"开始评论...";
+    [self.view addSubview:self.inputToolbar];
+}
+#pragma mark - ZInputToolbarDelegate
+-(void)inputToolbar:(ZInputToolbar *)inputToolbar sendContent:(NSString *)sendContent {
     
-           ViewBorderRadius(_textField, 10, 1, YXRGBAColor(238, 238, 238));
-
-    UILabel * leftView = [[UILabel alloc] initWithFrame:CGRectMake(20,0,7,26)];
-    leftView.backgroundColor = [UIColor clearColor];
-    _textField.leftView = leftView;
-    _textField.leftViewMode = UITextFieldViewModeAlways;
-    _textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    [[UIApplication sharedApplication].keyWindow addSubview:_textField];
+    [self finishTextView:inputToolbar.textInput];
+    // 清空输入框文字
+    [self.inputToolbar sendSuccessEndEditing];
+}
+#pragma mark - UITextFieldDelegate
+-(void)finishTextView:(UITextView *)textField{
+    SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
+    [self requestCigar_comment_child:@{@"comment":[textField.text utf8ToUnicode],
+                                       @"father_id":@([model.id intValue]),
+                                       @"aim_id":self.commentToUserID,
+                                       @"aim_name":self.commentToUser
+                                       }];
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];

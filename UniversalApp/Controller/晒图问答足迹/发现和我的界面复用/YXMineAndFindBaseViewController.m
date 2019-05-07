@@ -193,10 +193,7 @@
 
 #pragma mark - ZInputToolbarDelegate
 -(void)inputToolbar:(ZInputToolbar *)inputToolbar sendContent:(NSString *)sendContent {
-    if (sendContent.length > 50) {
-        [QMUITips showInfo:@"不能超过50个字"];
-        return;
-    }
+   
     
     [self finishTextView:inputToolbar.textInput];
     // 清空输入框文字
@@ -332,10 +329,14 @@
             return;
         }
         NSIndexPath *indexRow = [weakself.yxTableView indexPathForCell:cell];
-//        [weakself.textField becomeFirstResponder];
-        [weakself setupTextField];
-        weakself.inputToolbar.textInput.tag = indexRow.row + 10000;
-        [weakself.inputToolbar.textInput becomeFirstResponder];
+        if ([self.parentViewController isKindOfClass:[HGSegmentedPageViewController class]]) {
+            [self tableView:weakself.yxTableView didSelectRowAtIndexPath:indexRow];
+        }else{
+            [weakself setupTextField];
+            weakself.inputToolbar.textInput.tag = indexRow.row + 10000;
+            [weakself.inputToolbar.textInput becomeFirstResponder];
+        }
+
 
     };
     cell.clickTagblock = ^(NSString * string) {
@@ -586,32 +587,6 @@
     self.inputToolbar.delegate = self;
     self.inputToolbar.placeholderLabel.text = @"开始评论...";
     [self.view addSubview:self.inputToolbar];
-
-    
-    
-//    [_textField removeFromSuperview];
-//    _textField = nil;
-//    _textField = [[UITextField alloc]init];
-//    _textField.returnKeyType = UIReturnKeyDone;
-//    _textField.delegate = self;
-//    _textField.placeholder = @" 开始评论...";
-//    _textField.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
-//    _textField.layer.borderWidth = 1;
-//    [_textField setFont:[UIFont systemFontOfSize:14]];
-//    _textField.backgroundColor = [UIColor whiteColor];
-//    _textField.textColor = [UIColor blackColor];
-//    _textField.tag = 8899;
-//    _textField.frame = CGRectMake(10, KScreenHeight, KScreenWidth-20, 30);
-//
-//
-//           ViewBorderRadius(_textField, 10, 1, YXRGBAColor(238, 238, 238));
-//
-//    UILabel * leftView = [[UILabel alloc] initWithFrame:CGRectMake(20,0,7,26)];
-//    leftView.backgroundColor = [UIColor clearColor];
-//    _textField.leftView = leftView;
-//    _textField.leftViewMode = UITextFieldViewModeAlways;
-//    _textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-//    [[UIApplication sharedApplication].keyWindow addSubview:_textField];
 }
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
     

@@ -121,7 +121,7 @@
         label.linkTextAttributes = @{NSForegroundColorAttributeName : highLightColor};
         label.lee_theme
         .LeeAddTextColor(DAY , [UIColor blackColor])
-        .LeeAddTextColor(NIGHT , [UIColor grayColor]);
+        .LeeAddTextColor(NIGHT , [UIColor blackColor]);
         label.font = [UIFont systemFontOfSize:14];
         label.delegate = self;
         [self addSubview:label];

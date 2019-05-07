@@ -53,7 +53,9 @@ static dispatch_once_t JJImagePickerDispatch_once = 0;
         self.imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
         _type = JJImagePickerTypePhoto;
     }
+    self.imagePickerController.navigationBar.translucent = NO; //去除毛玻璃效果
     
+
     self.imagePickerController.allowsEditing = NO;
     [JJImagePicker sharedInstance].viewController = viewController;
     [viewController presentViewController:self.imagePickerController animated:YES completion:nil];

@@ -407,6 +407,8 @@ static NSInteger countOfRow;
     picker.delegate = self;
     picker.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    picker.navigationBar.translucent = NO; //去除毛玻璃效果
+
     picker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:picker.sourceType];
     picker.allowsEditing = YES;
     

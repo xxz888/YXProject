@@ -33,7 +33,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SDTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:kTimeLineTableViewCellId];
-    
     cell.model = self.dataArray[indexPath.row];
 
     CGFloat height1 = cell.model.moreCountPL.integerValue <= 0 ? 0 : 20;
@@ -182,7 +181,6 @@
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
 -(void)initAllControl{
     kWeakSelf(self);
     self.title = @"详情";
