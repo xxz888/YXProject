@@ -86,6 +86,7 @@ typedef void(^dismissBlock) ();
 - (IBAction)delAction:(id)sender;
 - (IBAction)closeViewAction:(id)sender;
 -(void)closeViewAAA;
+-(void)addNewTags;
 @end
 
 NS_ASSUME_NONNULL_END

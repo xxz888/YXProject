@@ -308,4 +308,6 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestDelFatherPl_WenDa:YX_BLOCK;
 #pragma mark ========== 删除晒图评论 ==========
 -(void)requestDelFatherPl_ShaiTu:YX_BLOCK;
+#pragma mark ========== 编辑晒图 ==========
+-(void)requestEditFaBuImagePOST:YX_BLOCK;
 @end

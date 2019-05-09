@@ -13,5 +13,6 @@
 
 @interface YXPublishImageViewController : YXFaBuBaseViewController
 @property(nonatomic,strong)YXShaiTuModel * model;
+@property(nonatomic,strong)NSMutableDictionary * startDic;
 
 @end

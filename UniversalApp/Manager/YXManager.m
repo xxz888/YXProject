@@ -156,6 +156,12 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
+#pragma mark ========== 编辑晒图 ==========
+-(void)requestEditFaBuImagePOST:YX_BLOCK{
+    [HTTP_POST(@"/users/update_post/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 #pragma mark ==========晒图列表==========
 -(void)requestImageListGET:YX_BLOCK{
     NSString * url = @"/users/post/2/0/";

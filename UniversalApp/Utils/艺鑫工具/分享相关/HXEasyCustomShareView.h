@@ -21,7 +21,7 @@
 
 @protocol HXEasyCustomShareViewDelegate <NSObject>
 
-- (void)easyCustomShareViewButtonAction:(HXEasyCustomShareView *)shareView title:(NSString *)title;
+- (void)easyCustomShareViewButtonAction:(HXEasyCustomShareView *)shareView title:(NSString *)title startDic:(NSDictionary *)dic;
 
 @end
 
@@ -38,6 +38,8 @@
 @property (nonatomic,assign) BOOL showsHorizontalScrollIndicator;//是否显示滚动条
 
 @property (nonatomic,strong) NSString * isWho;
+@property (nonatomic,strong) NSDictionary * startDic;
+
 - (void)tappedCancel;
 
 - (void)setShareAry:(NSArray *)shareAry delegate:(id)delegate;

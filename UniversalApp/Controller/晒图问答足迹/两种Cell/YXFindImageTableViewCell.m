@@ -18,7 +18,7 @@
 @implementation YXFindImageTableViewCell
 
 -(CGFloat)getTitleTagLblHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
-     NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
+     NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"tag"]];
     return [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
 }
 -(CGFloat)getTitleTagtextViewHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
@@ -44,7 +44,7 @@
     if (url.length < 5) {
         imageHeight = 0;
     }
-    NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"index"]];
+    NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"tag"]];
     
     //内容
     CGFloat height_size = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
@@ -225,7 +225,7 @@
     //评论高度
     self.pl1Height.constant =  [ShareManager inTextOutHeight:self.plLbl.text lineSpace:9 fontSize:14];
 //    if ([connectStr contains:@"\n"]) {
-        [ShareManager setLineSpace:9 withText:self.plLbl.text inLabel:self.plLbl tag:dic[@"index"]];
+        [ShareManager setLineSpace:9 withText:self.plLbl.text inLabel:self.plLbl tag:dic[@"tag"]];
 //    }
 
     
@@ -252,7 +252,7 @@
 
     
     //title
-    NSString * titleText = [[NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"index"]] UnicodeToUtf8];
+    NSString * titleText = [[NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"tag"]] UnicodeToUtf8];
     self.titleTagLbl.text = titleText;
     
     kWeakSelf(self);
@@ -261,7 +261,7 @@
         NSLog(@" -- %@ --",string);
         weakself.clickTagblock(string);
     };
-    NSArray * indexArray = [dic[@"index"] split:@" "];
+    NSArray * indexArray = [dic[@"tag"] split:@" "];
     NSMutableArray * modelArray = [NSMutableArray array];
     for (NSString * string in indexArray) {
         //设置需要点击的字符串，并配置此字符串的样式及位置
@@ -277,10 +277,10 @@
     self.titleTagLblHeight.constant = [self getTitleTagLblHeight:dic whereCome:whereCome];
 
     if (self.titleTagLblHeight.constant < 30) {
-        [ShareManager setLineSpace:0 withText:self.titleTagLbl.text inLabel:self.titleTagLbl tag:dic[@"index"]];
+        [ShareManager setLineSpace:0 withText:self.titleTagLbl.text inLabel:self.titleTagLbl tag:dic[@"tag"]];
 
     }else{
-       [ShareManager setLineSpace:9 withText:self.titleTagLbl.text inLabel:self.titleTagLbl tag:dic[@"index"]];
+       [ShareManager setLineSpace:9 withText:self.titleTagLbl.text inLabel:self.titleTagLbl tag:dic[@"tag"]];
     }
 
     //全部评论

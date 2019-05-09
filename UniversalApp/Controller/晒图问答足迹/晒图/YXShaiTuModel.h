@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)NSString * photo1;
 @property (nonatomic, strong)NSString * photo2;
 @property (nonatomic, strong)NSString * photo3;
+@property (nonatomic, strong)NSString * publish_site;
+@property (nonatomic, strong)NSString * tag;
 
 @end
 

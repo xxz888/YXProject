@@ -110,8 +110,8 @@
 #pragma mark HXShareScrollViewDelegate
 
 - (void)shareScrollViewButtonAction:(HXShareScrollView *)shareScrollView title:(NSString *)title {
-    if (_delegate && [_delegate respondsToSelector:@selector(easyCustomShareViewButtonAction:title:)]) {
-        [_delegate easyCustomShareViewButtonAction:self title:title];
+    if (_delegate && [_delegate respondsToSelector:@selector(easyCustomShareViewButtonAction:title:startDic:)]) {
+        [_delegate easyCustomShareViewButtonAction:self title:title startDic:self.startDic];
     }
 }
 

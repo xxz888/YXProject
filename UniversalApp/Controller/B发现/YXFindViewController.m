@@ -56,9 +56,9 @@
     [self headerView];
     //其他方法
     [self setOtherAction];
-    //请求
-    [self requestFindTag];
+
 }
+
 -(void)setOtherAction{
     self.title = @"发现";
     self.isShowLiftBack = NO;
@@ -72,6 +72,8 @@
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = NO;
     [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
+    //请求
+    [self requestFindTag];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];

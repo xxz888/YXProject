@@ -12,6 +12,7 @@
 #import "YXFindSearchTagDetailViewController.h"
 #import "ZInputToolbar.h"
 #import "UIView+LSExtension.h"
+#import "YXPublishImageViewController.h"
 @interface YXMineAndFindBaseViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,ZInputToolbarDelegate>{
     CGFloat _autoPLHeight;
     BOOL _tagSelectBool;
@@ -140,7 +141,7 @@
         UserInfo * userInfo = curUser;
         BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [userInfo.id integerValue];
         shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
-        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:cell.whereCome ? @"3" : @"1" tag:cell.tagId];
+        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:cell.whereCome ? @"3" : @"1" tag:cell.tagId startDic:cell.whereCome ? nil : cell.dataDic];
     };
     cell.jumpDetailVCBlock = ^(YXFindImageTableViewCell * cell) {
         
@@ -309,7 +310,7 @@
         UserInfo * userInfo = curUser;
         BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [userInfo.id integerValue];
         shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
-        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"2" tag:cell.tagId];
+        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"2" tag:cell.tagId startDic:cell.dataDic];
     };
     //自定义cell的回调，获取要展开/收起的cell。刷新点击的cell
     cell.showMoreTextBlock = ^(YXFindQuestionTableViewCell * cell,NSMutableDictionary * dataDic){
@@ -472,23 +473,24 @@
     return moment;
 }
 #pragma mark ========== 分享 ==========
-- (void)addGuanjiaShareViewIsOwn:(BOOL)isOwn isWho:(NSString *)isWho tag:(NSInteger)tagId{
+- (void)addGuanjiaShareViewIsOwn:(BOOL)isOwn isWho:(NSString *)isWho tag:(NSInteger)tagId startDic:(NSDictionary *)startDic{
     NSMutableArray * shareAry = [NSMutableArray arrayWithObjects:
                                  @{@"image":@"raiders_weichat",
                                    @"title":@"微信"},
                                  @{@"image":@"shareView_friend",
                                    @"title":@"朋友圈"},
-//                                 @{@"image":@"shareView_wb",
-//                                   @"title":@"新浪微博"},
                                  @{@"image":@"回收",
                                    @"title":@"删除"},
                                  @{@"image":@"举报",
-                                   @"title":@"举报"},nil];
+                                   @"title":@"举报"},
+                                 @{@"image":@"编辑",
+                                   @"title":@"编辑"},nil];
     if (isOwn) {
         [shareAry removeObjectAtIndex:3];
 
     }else{
         [shareAry removeObjectAtIndex:2];
+        [shareAry removeObjectAtIndex:3];
 
     }
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 54)];
@@ -510,6 +512,7 @@
     lineLabel1.backgroundColor = [UIColor colorWithRed:208/255.0 green:208/255.0 blue:208/255.0 alpha:1.0];
     
     HXEasyCustomShareView *shareView = [[HXEasyCustomShareView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+    shareView.startDic = [NSDictionary dictionaryWithDictionary:startDic];
     shareView.tag = tagId;
     shareView.isWho = isWho;
     shareView.backView.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
@@ -529,7 +532,7 @@
 
 #pragma mark HXEasyCustomShareViewDelegate
 
-- (void)easyCustomShareViewButtonAction:(HXEasyCustomShareView *)shareView title:(NSString *)title{
+- (void)easyCustomShareViewButtonAction:(HXEasyCustomShareView *)shareView title:(NSString *)title startDic:(NSDictionary *)dic{
     [shareView tappedCancel];
     NSLog(@"当前点击:%@",title);
     kWeakSelf(self);
@@ -581,6 +584,11 @@
         [alertController addAction:action4];
 
         [alertController showWithAnimated:YES];
+    }
+    if([title isEqualToString:@"编辑"]){
+        YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
+        imageVC.startDic = [[NSMutableDictionary alloc]initWithDictionary:dic];
+        [weakself presentViewController:imageVC animated:YES completion:nil];
     }
 }
 
