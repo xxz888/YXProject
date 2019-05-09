@@ -150,13 +150,16 @@
     NSDictionary * dic = self.dataArray[indexPath.row];
     YXMineImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YXMineImageCollectionViewCell" forIndexPath:indexPath];
     cell.essayTitleImageView.tag = indexPath.row;
-    NSString * str1 = [(NSMutableString *)dic[@"pic1"] replaceAll:@" " target:@"%20"];
+    NSString * photoString = dic[@"pic1"] ? dic[@"pic1"] : dic[@"photo1"];
+    NSString * str1 = [(NSMutableString *)photoString replaceAll:@" " target:@"%20"];
     [cell.midImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cell.titleLbl.text = [dic[@"content"] UnicodeToUtf8];
     BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
     UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
     [cell.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
-    [cell.userImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"user_photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * photoString1 = dic[@"user_photo"] ? dic[@"user_photo"] : dic[@"photo"];
+
+    [cell.userImageView sd_setImageWithURL:[NSURL URLWithString:photoString1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     NSString * praisNum = kGetString(dic[@"praise_number"]);
     cell.zanLbl.text = praisNum;
     cell.userLbl.text = dic[@"user_name"];

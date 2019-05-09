@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"品鉴足迹";
+    self.title = @"足迹";
     self.dataArray = [[NSMutableArray alloc]init];
     _sort = @"1";
     _isreverse1 = _isreverse2 = _isreverse3 = _isreverse4 = @"1";

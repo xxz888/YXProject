@@ -62,7 +62,7 @@
     //添加分隔线颜色设置
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeQuestionDetailHeaderView" owner:self options:nil];
     self.headerView = [nib objectAtIndex:0];
-    self.headerView.frame = CGRectMake(0, 0, KScreenWidth, !AxcAE_IsiPhoneX ? 285 : 305);
+    self.headerView.frame = CGRectMake(0, 0, KScreenWidth, AxcAE_IsiPhoneX ? 285 : 305);
     
     self.headerView.titleImageView.layer.masksToBounds = YES;
     self.headerView.titleImageView.layer.cornerRadius = self.headerView.titleImageView.frame.size.width / 2.0;
@@ -84,8 +84,15 @@
     self.headerView.titleLbl.text = self.moment.userName;
     self.headerView.timeLbl.text = [ShareManager updateTimeForRow:self.moment.time];
     self.headerView.oneLbl.text = [self.moment.text UnicodeToUtf8];
-    [ShareManager setLineSpace:9 withText:[self.headerView.oneLbl.text UnicodeToUtf8] inLabel:self.headerView.oneLbl tag:@""];
     self.headerView.questionTitleHeight.constant = [ShareManager inTextOutHeight:self.headerView.oneLbl.text lineSpace:9 fontSize:14];
+    
+    
+    if (self.headerView.questionTitleHeight.constant < 30) {
+           [ShareManager setLineSpace:0 withText:[self.headerView.oneLbl.text UnicodeToUtf8] inLabel:self.headerView.oneLbl tag:@""];
+    }else{
+        [ShareManager setLineSpace:9 withText:[self.headerView.oneLbl.text UnicodeToUtf8] inLabel:self.headerView.oneLbl tag:@""];
+
+    }
     
     NSString * str0;
     if (self.moment.imageListArray.count >= 1) {
@@ -136,7 +143,8 @@
             height = 100;
         }
     }
-    return  180 - 30 + [ShareManager inTextOutHeight:[self.moment.detailText UnicodeToUtf8] lineSpace:9 fontSize:14] + height;
+    
+    return  75 + 50 + (height == 0 ? -10 : 0) + [ShareManager inTextOutHeight:[self.moment.detailText UnicodeToUtf8] lineSpace:9 fontSize:14] + height;
 }
 -(CGSize)cellAutoHeight:(NSString *)string {
     //展开后得高度(计算出文本内容的高度+固定控件的高度)

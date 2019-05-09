@@ -61,27 +61,27 @@
 - (void)setShareAry:(NSArray *)shareAry delegate:(id)delegate {
     _delegate = delegate;
     
-    if (_firstCount > shareAry.count || _firstCount == 0) {
+//    if (_firstCount > shareAry.count || _firstCount == 0) {
         _firstCount = shareAry.count;
-    }
+//    }
 
-    NSArray *ary1 = [shareAry subarrayWithRange:NSMakeRange(0,_firstCount)];
-    NSArray *ary2 = [shareAry subarrayWithRange:NSMakeRange(_firstCount,shareAry.count-_firstCount)];
+//    NSArray *ary1 = [shareAry subarrayWithRange:NSMakeRange(0,_firstCount)];
+//    NSArray *ary2 = [shareAry subarrayWithRange:NSMakeRange(_firstCount,shareAry.count-_firstCount)];
 
     HXShareScrollView *shareScrollView = [[HXShareScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, [HXShareScrollView getShareScrollViewHeight])];
-    [shareScrollView setShareAry:ary1 delegate:self];
+    [shareScrollView setShareAry:shareAry delegate:self];
     shareScrollView.showsHorizontalScrollIndicator = _showsHorizontalScrollIndicator;
     [_boderView addSubview:shareScrollView];
     
-    if (_firstCount < shareAry.count) {
-        //分割线
-        self.middleLineLabel.frame = CGRectMake(0, shareScrollView.frame.origin.y+shareScrollView.frame.size.height, self.frame.size.width, 0.5);
-        
-        shareScrollView = [[HXShareScrollView alloc] initWithFrame:CGRectMake(0, _middleLineLabel.frame.origin.y+_middleLineLabel.frame.size.height, self.frame.size.width, [HXShareScrollView getShareScrollViewHeight])];
-        [shareScrollView setShareAry:ary2 delegate:self];
-        shareScrollView.showsHorizontalScrollIndicator = _showsHorizontalScrollIndicator;
-        [_boderView addSubview:shareScrollView];
-    }
+//    if (_firstCount < shareAry.count) {
+//        //分割线
+//        self.middleLineLabel.frame = CGRectMake(0, shareScrollView.frame.origin.y+shareScrollView.frame.size.height, self.frame.size.width, 0.5);
+//
+//        shareScrollView = [[HXShareScrollView alloc] initWithFrame:CGRectMake(0, _middleLineLabel.frame.origin.y+_middleLineLabel.frame.size.height, self.frame.size.width, [HXShareScrollView getShareScrollViewHeight])];
+//        [shareScrollView setShareAry:ary2 delegate:self];
+//        shareScrollView.showsHorizontalScrollIndicator = _showsHorizontalScrollIndicator;
+//        [_boderView addSubview:shareScrollView];
+//    }
 }
 
 - (UILabel *)middleLineLabel {
@@ -97,13 +97,13 @@
     _firstCount = count;
     float height = [HXShareScrollView getShareScrollViewHeight];
     
-    if (_firstCount > shareAry.count || _firstCount == 0) {
+//    if (_firstCount > shareAry.count || _firstCount == 0) {
         return height;
-    }
+//    }
     
-    if (_firstCount < shareAry.count) {
-        return height*2+1;
-    }
+//    if (_firstCount < shareAry.count) {
+//        return height*2+1;
+//    }
     return 0;
 }
 
@@ -125,7 +125,7 @@
 
 - (void)tappedCancel {
     
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:0.2 animations:^{
         UIView *zhezhaoView = (UIView *)[self viewWithTag:100];
         zhezhaoView.alpha = 0;
     
@@ -213,7 +213,7 @@
         _backView.hidden = NO;
     }
     
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:0.2 animations:^{
         
         if (_cancleButton) {
             _cancleButton.frame = CGRectMake(0, _cancleButton.frame.origin.y - _backView.frame.size.height, _cancleButton.frame.size.width, _cancleButton.frame.size.height);

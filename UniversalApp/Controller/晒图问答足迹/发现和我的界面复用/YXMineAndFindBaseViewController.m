@@ -478,14 +478,18 @@
                                    @"title":@"微信"},
                                  @{@"image":@"shareView_friend",
                                    @"title":@"朋友圈"},
-                                 @{@"image":@"shareView_wb",
-                                   @"title":@"新浪微博"},
+//                                 @{@"image":@"shareView_wb",
+//                                   @"title":@"新浪微博"},
                                  @{@"image":@"回收",
                                    @"title":@"删除"},
                                  @{@"image":@"举报",
                                    @"title":@"举报"},nil];
-    if (!isOwn) {
-        [shareAry removeObjectAtIndex:4];
+    if (isOwn) {
+        [shareAry removeObjectAtIndex:3];
+
+    }else{
+        [shareAry removeObjectAtIndex:2];
+
     }
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 54)];
     headerView.backgroundColor = [UIColor clearColor];
@@ -510,7 +514,7 @@
     shareView.isWho = isWho;
     shareView.backView.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
     shareView.headerView = headerView;
-    float height = [shareView getBoderViewHeight:shareAry firstCount:isOwn ? shareAry.count-2 : shareAry.count+2];
+    float height = [shareView getBoderViewHeight:shareAry firstCount:isOwn ? shareAry.count-1 : shareAry.count+1];
     shareView.boderView.frame = CGRectMake(0, 0, shareView.frame.size.width, height);
     shareView.middleLineLabel.hidden = NO;
     [shareView.cancleButton addSubview:lineLabel1];

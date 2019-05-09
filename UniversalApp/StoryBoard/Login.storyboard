@@ -140,14 +140,14 @@
                                 <rect key="frame" x="122.5" y="541" width="130" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zWN-sU-X4f">
-                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="130" height="40"/>
                                         <state key="normal" image="raiders_weichat"/>
                                         <connections>
                                             <action selector="wxLoginAction:" destination="qpk-B8-sWH" eventType="touchUpInside" id="CQU-XQ-PyU"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xzi-ZG-UwV">
-                                        <rect key="frame" x="90" y="0.0" width="40" height="40"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xzi-ZG-UwV">
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="40"/>
                                         <state key="normal" image="raiders_qq"/>
                                         <connections>
                                             <action selector="qqLoginAction:" destination="qpk-B8-sWH" eventType="touchUpInside" id="cwP-dV-EXH"/>
@@ -870,7 +870,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FFx-cn-atX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="487" y="-495"/>
+            <point key="canvasLocation" x="470" y="-508"/>
         </scene>
     </scenes>
     <resources>

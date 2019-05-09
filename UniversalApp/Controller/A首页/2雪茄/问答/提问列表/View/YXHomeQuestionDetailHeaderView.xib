@@ -99,7 +99,7 @@
                 <outlet property="twoLbl" destination="OFF-c6-hVg" id="TfI-hQ-Qtl"/>
                 <outlet property="twoLblHeight" destination="ugi-FI-RMk" id="xrN-s7-81M"/>
             </connections>
-            <point key="canvasLocation" x="-1375" y="-552"/>
+            <point key="canvasLocation" x="-1375.2" y="-552.3238380809596"/>
         </view>
     </objects>
 </document>

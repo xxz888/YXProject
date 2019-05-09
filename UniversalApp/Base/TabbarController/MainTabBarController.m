@@ -54,7 +54,7 @@
 - (void)setUpMidelTabbarItem {
     images = [NSMutableArray array];
     titles = [NSMutableArray arrayWithObjects:@"晒图",@"足迹",@"文章",nil];
-    titlesTag =  [NSMutableArray arrayWithObjects:@"定格美好瞬间",@"记录品鉴足迹",@"分享你的故事",nil];
+    titlesTag =  [NSMutableArray arrayWithObjects:@"定格美好瞬间",@"记录足迹",@"分享你的故事",nil];
     for (int i = 0; i<3; i++) {
         if (i<3) {
             [images addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%d",i+1]]];

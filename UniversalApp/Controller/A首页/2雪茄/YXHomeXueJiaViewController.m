@@ -134,7 +134,7 @@
     self.headerView = [nib objectAtIndex:0];
     self.headerView.frame = CGRectMake(0, 0, KScreenWidth, 380);
     self.headerView.delegate = self;
-    self.headerView.titleArray = @[@"品牌",@"文化",@"配件",@"工具",@"问答",@"品鉴足迹"];
+    self.headerView.titleArray = @[@"品牌",@"文化",@"配件",@"工具",@"问答",@"足迹"];
     self.headerView.titleTagArray = @[@"Brand",@"Culture",@"Accessories",@"Tools",@"Q&A",@"Journey"];
     self.headerView.scrollImgArray = [NSMutableArray arrayWithArray:self.scrollImgArray];
     kWeakSelf(self);

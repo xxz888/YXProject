@@ -53,13 +53,18 @@
     }
     
     //遍历标签数组,将标签显示在界面上,并给每个标签打上tag加以区分
-    for (NSDictionary *shareDic in shareAry) {
+    for (NSInteger i = 0 ; i < shareAry.count; i++) {
         
-        NSUInteger i = [shareAry indexOfObject:shareDic];
         
+//        NSUInteger i = [shareAry indexOfObject:shareDic];
+        NSDictionary * shareDic = shareAry[i];
         CGRect frame = CGRectMake(_originX+i*(_icoWidth+_horizontalSpace), _originY, _icoWidth, _icoWidth+_icoAndTitleSpace+_titleSize);;
         UIView *view = [self ittemShareViewWithFrame:frame dic:shareDic];
         [self addSubview:view];
+    }
+    for (NSDictionary *shareDic in shareAry) {
+        
+     
     }
 }
 
@@ -75,16 +80,27 @@
     view.backgroundColor = [UIColor clearColor];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake((view.frame.size.width-30)/2, 10, 30, 30);
+    button.frame = CGRectMake((view.frame.size.width-50)/2, 0, 50, 50);
     button.titleLabel.font = [UIFont systemFontOfSize:_titleSize];
     [button setTitle:title forState:UIControlStateNormal];
     [button setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+    
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;//使图片和文字水平居中显示
+    
+    [button setTitleEdgeInsets:UIEdgeInsetsMake(button.imageView.frame.size.height+10 ,-button.imageView.frame.size.width, 0.0,0.0)];//文字距离上边框的距离增加imageView的高度，距离左边框减少imageView的宽度，距离下边框和右边框距离不变
+    [button setImageEdgeInsets:UIEdgeInsetsMake(-10, 0.0,0.0, -button.titleLabel.bounds.size.width)];//图片距离右边框距离减少图片的宽度，其它不边
+    
+    
+
+    
     if (image.length > 0) {
         [button setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
     }
     if (highlightedImage.length > 0) {
         [button setImage:[UIImage imageNamed:highlightedImage] forState:UIControlStateHighlighted];
     }
+
+    
     [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:button];
     

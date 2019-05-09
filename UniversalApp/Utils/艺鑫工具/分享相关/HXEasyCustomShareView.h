@@ -12,9 +12,9 @@
 #define HXOriginY 15.0 //ico起点Y坐标
 #define HXIcoWidth 57.0 //正方形图标宽度
 #define HXIcoAndTitleSpace 10.0 //图标和标题间的间隔
-#define HXTitleSize 10.0 //标签字体大小
+#define HXTitleSize 13.0 //标签字体大小
 #define HXTitleColor [UIColor colorWithRed:52/255.0 green:52/255.0 blue:50/255.0 alpha:1.0] //标签字体颜色
-#define HXLastlySpace 15.0 //尾部间隔
+#define HXLastlySpace 5.0 //尾部间隔
 #define HXHorizontalSpace 15.0 //横向间距
 
 @class HXEasyCustomShareView;

@@ -229,6 +229,18 @@
 //    }
 
     
+    NSString * name1 = @"";
+    NSString * name2 = @"";
+    if ([connectStr contains:@"\n"]) {
+        name1 = [[connectStr split:@"\n"][0] split:@":"][0];
+        name2 = [[connectStr split:@"\n"][1] split:@":"][0];
+        [self messageAction:self.plLbl changeString:name1 andMarkFondSize:13];
+        [self messageAction:self.plLbl changeString:name2 andMarkFondSize:13];
+    }else{
+        name1 = [connectStr split:@":"][0];
+        [self messageAction:self.plLbl changeString:name1 andMarkFondSize:13];
+    }
+    
     
     //足迹的那一栏
     self.titleTagtextViewHeight.constant = [self getTitleTagtextViewHeight:dic whereCome:whereCome];
@@ -262,10 +274,14 @@
     //label内容赋值
     [self.titleTagLbl setText:titleText attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
                tapStringArray:modelArray];
-    
-    
-   [ShareManager setLineSpace:9 withText:self.titleTagLbl.text inLabel:self.titleTagLbl tag:dic[@"index"]];
     self.titleTagLblHeight.constant = [self getTitleTagLblHeight:dic whereCome:whereCome];
+
+    if (self.titleTagLblHeight.constant < 30) {
+        [ShareManager setLineSpace:0 withText:self.titleTagLbl.text inLabel:self.titleTagLbl tag:dic[@"index"]];
+
+    }else{
+       [ShareManager setLineSpace:9 withText:self.titleTagLbl.text inLabel:self.titleTagLbl tag:dic[@"index"]];
+    }
 
     //全部评论
     
@@ -280,7 +296,30 @@
     self.titleTagtextView.text = zuji;
 
 }
-
+- (void)messageAction:(UILabel *)theLab changeString:(NSString *)change andMarkFondSize:(float)fontSize {
+    NSString *tempStr = theLab.text;
+    NSMutableAttributedString *strAtt = [[NSMutableAttributedString alloc] initWithString:tempStr];
+    
+    
+    NSString *string1=tempStr;
+    NSString *string2=change;
+    
+    NSArray *array=[string1 componentsSeparatedByString:string2];
+    NSMutableArray *arrayOfLocation=[NSMutableArray new];
+    int d=0;
+    for (int i=0; i<array.count-1; i++) {
+        NSString *string=array[i];
+        NSNumber *number=[NSNumber numberWithInt:d+=string.length];
+        d+=string2.length;
+        [arrayOfLocation addObject:number];
+    }
+    for (int i=0; i<arrayOfLocation.count; i++) {
+        NSRange  markRange  = NSMakeRange([arrayOfLocation[i] integerValue], change.length);
+        [strAtt addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"STHeitiTC-Medium" size:fontSize] range:markRange];
+        theLab.attributedText = strAtt;
+    }
+    
+}
 - (IBAction)likeBtnAction:(id)sender {
     if (![userManager loadUserInfo]) {
         KPostNotification(KNotificationLoginStateChange, @NO);

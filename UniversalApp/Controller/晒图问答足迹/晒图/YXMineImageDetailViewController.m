@@ -77,8 +77,14 @@
     self.lastDetailView.contentLbl.text =  [[NSString stringWithFormat:@"%@%@",self.startDic[@"content"] ? self.startDic[@"content"]:self.startDic[@"describe"],self.startDic[@"index"]] UnicodeToUtf8];
     self.lastDetailView.userInteractionEnabled = YES;
     self.lastDetailView.contentHeight.constant = [self getLblHeight:self.startDic];
-    [ShareManager setLineSpace:9 withText:self.lastDetailView.contentLbl.text inLabel:self.lastDetailView.contentLbl tag:self.startDic[@"index"]];
+    
+    if ( self.lastDetailView.contentHeight.constant < 30) {
+        [ShareManager setLineSpace:0 withText:self.lastDetailView.contentLbl.text inLabel:self.lastDetailView.contentLbl tag:self.startDic[@"index"]];
+    }else{
+        [ShareManager setLineSpace:9 withText:self.lastDetailView.contentLbl.text inLabel:self.lastDetailView.contentLbl tag:self.startDic[@"index"]];
 
+    }
+    
     
     self.lastDetailView.rightBlock = ^{
         [self.navigationController popViewControllerAnimated:YES];

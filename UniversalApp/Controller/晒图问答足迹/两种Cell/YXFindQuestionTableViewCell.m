@@ -57,7 +57,7 @@
     plHeight +
     height_size +
     imageHeight;
-    return lastHeight + 195 ;
+    return lastHeight + 183 ;
 }
 - (IBAction)openAction:(id)sender{
     //将当前对象的isShowMoreText属性设为相反值
@@ -117,8 +117,20 @@
     //评论高度
     self.pl1Height.constant = [ShareManager inTextOutHeight:self.plLbl.text lineSpace:9 fontSize:14];
 //    if ([connectStr contains:@"\n"]) {
-        [ShareManager setLineSpace:9 withText:self.plLbl.text inLabel:self.plLbl tag:dic[@"index"]];
+        [ShareManager setLineSpace:9 withText:self.plLbl.text inLabel:self.plLbl tag:@""];
 //    }
+    
+    NSString * name1 = @"";
+    NSString * name2 = @"";
+    if ([connectStr contains:@"\n"]) {
+        name1 = [[connectStr split:@"\n"][0] split:@":"][0];
+        name2 = [[connectStr split:@"\n"][1] split:@":"][0];
+        [self messageAction:self.plLbl changeString:name1 andMarkFondSize:14];
+        [self messageAction:self.plLbl changeString:name2 andMarkFondSize:14];
+    }else{
+        name1 = [connectStr split:@":"][0];
+        [self messageAction:self.plLbl changeString:name1 andMarkFondSize:14];
+    }
     
     NSString * titleText = [[NSString stringWithFormat:@"%@%@",dic[@"question"],dic[@"index"]] UnicodeToUtf8];
     kWeakSelf(self);
@@ -141,9 +153,13 @@
     //label内容赋值
     [self.titleTagLbl2 setText:titleText attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
                tapStringArray:modelArray];
-    [ShareManager setLineSpace:9 withText:[self.titleTagLbl2.text UnicodeToUtf8] inLabel:self.titleTagLbl2 tag:dic[@"index"]];
     self.textHeight.constant = [self getLblHeight:dic];
+    if (self.textHeight.constant < 30) {
+        [ShareManager setLineSpace:0 withText:[self.titleTagLbl2.text UnicodeToUtf8] inLabel:self.titleTagLbl2 tag:dic[@"index"]];
 
+    }else{
+        [ShareManager setLineSpace:9 withText:[self.titleTagLbl2.text UnicodeToUtf8] inLabel:self.titleTagLbl2 tag:dic[@"index"]];
+    }
     
     self.titleTagLbl1.text = [dic[@"title"] UnicodeToUtf8];
     [ShareManager setLineSpace:9 withText:[self.titleTagLbl1.text UnicodeToUtf8] inLabel:self.titleTagLbl1 tag:@""];
@@ -182,6 +198,31 @@
     }
 
 }
+- (void)messageAction:(UILabel *)theLab changeString:(NSString *)change andMarkFondSize:(float)fontSize {
+    NSString *tempStr = theLab.text;
+    NSMutableAttributedString *strAtt = [[NSMutableAttributedString alloc] initWithString:tempStr];
+    
+    
+    NSString *string1=tempStr;
+    NSString *string2=change;
+    
+    NSArray *array=[string1 componentsSeparatedByString:string2];
+    NSMutableArray *arrayOfLocation=[NSMutableArray new];
+    int d=0;
+    for (int i=0; i<array.count-1; i++) {
+        NSString *string=array[i];
+        NSNumber *number=[NSNumber numberWithInt:d+=string.length];
+        d+=string2.length;
+        [arrayOfLocation addObject:number];
+    }
+    for (int i=0; i<arrayOfLocation.count; i++) {
+        NSRange  markRange  = NSMakeRange([arrayOfLocation[i] integerValue], change.length);
+        [strAtt addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"STHeitiTC-Medium" size:fontSize] range:markRange];
+        theLab.attributedText = strAtt;
+    }
+
+}
+
 
 -(CGFloat)getLblHeight:(NSDictionary *)dic{
     NSString * titleText = [NSString stringWithFormat:@"%@%@",dic[@"question"],dic[@"index"]];
