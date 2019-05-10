@@ -102,6 +102,15 @@ typedef void(^clickTagBlock)(NSString *);
 @property (nonatomic,copy) clickTagBlock clickTagblock;
 
 
+
++(CGFloat)cellNewDetailNeedHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome;
+- (void)setUpSycleScrollView:(NSArray *)photoArray height:(CGFloat)height;
+@property(nonatomic)SDCycleScrollView *cycleScrollView3;
+@property (nonatomic)NSInteger tatolCount;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomLineHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *addPlViewHeight;
+@property (weak, nonatomic) IBOutlet UIView *addPlView;
+
 @end
 
 NS_ASSUME_NONNULL_END

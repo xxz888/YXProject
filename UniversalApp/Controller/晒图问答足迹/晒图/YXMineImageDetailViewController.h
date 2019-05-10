@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXMineImageDetailViewController : YXBaseFaXianDetailViewController
+@property (nonatomic,assign) CGFloat headerViewHeight;
 @end
 
 NS_ASSUME_NONNULL_END

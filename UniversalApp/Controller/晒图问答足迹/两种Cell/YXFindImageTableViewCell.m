@@ -11,11 +11,28 @@
 #import "UIImageView+WebCache.h"
 #import "SDCycleScrollView.h"
 @interface YXFindImageTableViewCell()<SDCycleScrollViewDelegate>
-@property(nonatomic)SDCycleScrollView *cycleScrollView3;
-@property (nonatomic)NSInteger tatolCount;
+
 
 @end
 @implementation YXFindImageTableViewCell
++(CGFloat)cellNewDetailNeedHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
+    NSString * url = whereCome ? dic[@"pic1"]:dic[@"photo1"];
+    CGFloat imageHeight = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:400];
+    if (url.length < 5) {
+        imageHeight = 0;
+    }
+    NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"tag"]];
+    
+    //内容
+    CGFloat height_size = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
+    
+    CGFloat lastHeight =
+    (whereCome ? 30 : 0) +
+    height_size +
+    imageHeight;
+    return lastHeight + 140 ;
+}
+
 
 -(CGFloat)getTitleTagLblHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
      NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"tag"]];

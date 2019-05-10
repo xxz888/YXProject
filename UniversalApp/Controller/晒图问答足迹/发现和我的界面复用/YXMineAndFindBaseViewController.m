@@ -413,6 +413,9 @@
     NSInteger tag = [dic[@"obj"] integerValue];
     if (tag == 1) {//晒图
         YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
+        CGFloat h = [YXFindImageTableViewCell cellNewDetailNeedHeight:dic whereCome:NO];
+        VC.headerViewHeight = h;
+        //因为详情界面复用了外边cell，只是少了评论区和点击评论，所以这个高度要减去评论和点击评论的高度
         VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
         YXFindImageTableViewCell * cell = [self.yxTableView cellForRowAtIndexPath:indexPath];
         VC.height = cell.imvHeight.constant;
@@ -526,12 +529,9 @@
     [shareView.cancleButton setTitleColor:[UIColor colorWithRed:184/255.0 green:184/255.0 blue:184/255.0 alpha:1.0] forState:UIControlStateNormal];
     [shareView setShareAry:shareAry delegate:self];
     [[UIApplication sharedApplication].keyWindow addSubview:shareView];
-    
-    
 }
 
-#pragma mark HXEasyCustomShareViewDelegate
-
+#pragma mark 分享按钮
 - (void)easyCustomShareViewButtonAction:(HXEasyCustomShareView *)shareView title:(NSString *)title startDic:(NSDictionary *)dic{
     [shareView tappedCancel];
     NSLog(@"当前点击:%@",title);

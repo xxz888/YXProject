@@ -182,7 +182,7 @@
                                 </constraints>
                                 <state key="normal" backgroundImage="讨论"/>
                                 <connections>
-                                    <action selector="searchAllPlBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="fMu-D9-57T"/>
+                                    <action selector="addPlAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="tWm-rV-o9P"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBj-fj-bxs">
@@ -330,6 +330,9 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="addPlImageView" destination="dwL-sm-UJu" id="5L7-hL-k0y"/>
+                <outlet property="addPlView" destination="Zpo-IY-Wru" id="H02-df-pTi"/>
+                <outlet property="addPlViewHeight" destination="l7i-Rj-1oX" id="lDJ-VV-JW9"/>
+                <outlet property="bottomLineHeight" destination="iOE-XE-ymg" id="E3j-8u-bFd"/>
                 <outlet property="conViewHeight" destination="5J8-VV-nsR" id="bsw-Rz-j0y"/>
                 <outlet property="imvHeight" destination="H96-QO-2Jv" id="tGX-ki-dum"/>
                 <outlet property="likeBtn" destination="3JD-yY-wqO" id="f0v-NA-n4M"/>
