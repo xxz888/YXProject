@@ -107,6 +107,15 @@ typedef void(^addPlFootActionBlock)(YXFindQuestionTableViewCell *);
 
 typedef void(^clickWenDaTagBlock)(NSString *);
 @property (nonatomic,copy) clickWenDaTagBlock clickTagblock;
+
+
++(CGFloat)cellNewDetailNeedHeight:(NSDictionary *)dic;
+
+
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomLineHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *addPlViewHeight;
+@property (weak, nonatomic) IBOutlet UIView *addPlView;
 @end
 
 NS_ASSUME_NONNULL_END

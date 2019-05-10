@@ -183,7 +183,7 @@
         [self.navigationController pushViewController:VC animated:YES];
     }else if (tag == 3){//问答
         YXHomeXueJiaQuestionDetailViewController * VC = [[YXHomeXueJiaQuestionDetailViewController alloc]init];
-        VC.moment = [self setTestInfo:dic];
+//        VC.moment = [self setTestInfo:dic];
         [self.navigationController pushViewController:VC animated:YES];
     }else if (tag == 4){//足迹
         NSDictionary * dic = self.dataArray[indexPath.row];

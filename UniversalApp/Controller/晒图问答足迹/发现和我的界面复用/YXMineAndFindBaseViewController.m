@@ -404,6 +404,7 @@
      [self.navigationController pushViewController:mineVC animated:YES];
     
 }
+#pragma mark ========== tableViewcell点击 ==========
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (_tagSelectBool) {
         return;
@@ -413,20 +414,25 @@
     NSInteger tag = [dic[@"obj"] integerValue];
     if (tag == 1) {//晒图
         YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
+        //因为详情界面复用了外边cell，只是少了评论区和点击评论，所以这个高度要减去评论和点击评论的高度
         CGFloat h = [YXFindImageTableViewCell cellNewDetailNeedHeight:dic whereCome:NO];
         VC.headerViewHeight = h;
-        //因为详情界面复用了外边cell，只是少了评论区和点击评论，所以这个高度要减去评论和点击评论的高度
         VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
         YXFindImageTableViewCell * cell = [self.yxTableView cellForRowAtIndexPath:indexPath];
         VC.height = cell.imvHeight.constant;
         [self.navigationController pushViewController:VC animated:YES];
     }else if (tag == 3){//问答
         YXHomeXueJiaQuestionDetailViewController * VC = [[YXHomeXueJiaQuestionDetailViewController alloc]init];
-        VC.moment = [self setTestInfo:dic];
+        CGFloat h = [YXFindQuestionTableViewCell cellNewDetailNeedHeight:dic];
+        VC.headerViewHeight = h;
+        VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
         [self.navigationController pushViewController:VC animated:YES];
     }else if (tag == 4){//足迹
         NSDictionary * dic = self.dataArray[indexPath.row];
         YXMineFootDetailViewController * VC = [[YXMineFootDetailViewController alloc]init];
+        //因为详情界面复用了外边cell，只是少了评论区和点击评论，所以这个高度要减去评论和点击评论的高度
+        CGFloat h = [YXFindImageTableViewCell cellNewDetailNeedHeight:dic whereCome:YES];
+        VC.headerViewHeight = h;
         VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
         YXFindImageTableViewCell * cell = [self.yxTableView cellForRowAtIndexPath:indexPath];
         VC.height = cell.imvHeight.constant;
@@ -490,11 +496,12 @@
                                    @"title":@"编辑"},nil];
     if (isOwn) {
         [shareAry removeObjectAtIndex:3];
-
+        if (![isWho isEqualToString:@"1"]) {
+            [shareAry removeObjectAtIndex:3];
+        }
     }else{
         [shareAry removeObjectAtIndex:2];
         [shareAry removeObjectAtIndex:3];
-
     }
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 54)];
     headerView.backgroundColor = [UIColor clearColor];

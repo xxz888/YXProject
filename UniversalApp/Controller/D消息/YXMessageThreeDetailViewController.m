@@ -236,7 +236,7 @@
         [self.navigationController pushViewController:VC animated:YES];
     }else if (tag == 3){//问答
         YXHomeXueJiaQuestionDetailViewController * VC = [[YXHomeXueJiaQuestionDetailViewController alloc]init];
-        VC.moment = [ShareManager setTestInfo:dic];
+//        VC.moment = [ShareManager setTestInfo:dic];
         [self.navigationController pushViewController:VC animated:YES];
     }else if (tag == 2){//足迹
         YXMineFootDetailViewController * VC = [[YXMineFootDetailViewController alloc]init];

@@ -13,7 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXHomeXueJiaQuestionDetailViewController : YXBaseFaXianDetailViewController
-@property (nonatomic) Moment *moment;
+@property (nonatomic,assign) CGFloat headerViewHeight;
 @end
 
 NS_ASSUME_NONNULL_END

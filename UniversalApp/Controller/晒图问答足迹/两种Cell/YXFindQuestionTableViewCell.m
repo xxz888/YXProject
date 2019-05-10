@@ -9,6 +9,17 @@
 #import "YXFindQuestionTableViewCell.h"
 #import "XHWebImageAutoSize.h"
 @implementation YXFindQuestionTableViewCell
++(CGFloat)cellNewDetailNeedHeight:(NSDictionary *)dic{
+    NSString * titleText = [[NSString stringWithFormat:@"%@%@",dic[@"question"],dic[@"index"]] UnicodeToUtf8];
+    CGFloat height_size = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:14];
+    CGFloat height_QuestionTitle = [ShareManager inTextOutHeight:[dic[@"title"] UnicodeToUtf8] lineSpace:9 fontSize:14];
+    CGFloat imageHeight = [dic[@"pic1"] length] <= 5 ? 0 : 100;
+    CGFloat lastHeight =
+    height_QuestionTitle +
+    height_size +
+    imageHeight;
+    return lastHeight + 153 ;
+}
 +(CGFloat)cellMoreHeight:(NSDictionary *)dic{
     NSArray * commentArray =  dic[@"answer"];
     

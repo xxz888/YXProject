@@ -12,9 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YXPublishFootViewController : YXFaBuBaseViewController
 @property(nonatomic,strong)NSString * cigar_id;
-
-
-
+@property (nonatomic,assign) CGFloat headerViewHeight;
 @end
 
 NS_ASSUME_NONNULL_END

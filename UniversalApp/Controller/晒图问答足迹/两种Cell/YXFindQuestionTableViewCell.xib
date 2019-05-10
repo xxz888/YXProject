@@ -232,6 +232,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deq-Xq-p8U">
                                 <rect key="frame" x="225" y="2.5" width="20" height="20"/>
                                 <state key="normal" backgroundImage="讨论"/>
+                                <connections>
+                                    <action selector="addPlAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gw2-8R-KBt"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBk-sM-VDJ">
                                 <rect key="frame" x="248" y="-4.5" width="5" height="12"/>
@@ -297,7 +300,6 @@
                     <constraint firstAttribute="trailing" secondItem="KZo-Rh-FCj" secondAttribute="trailing" id="Zjm-5S-faR"/>
                     <constraint firstItem="Qo2-wZ-p1o" firstAttribute="top" secondItem="emh-fs-Xl1" secondAttribute="bottom" constant="3" id="abb-Am-d3i"/>
                     <constraint firstItem="cf8-aN-YP0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="bLs-UE-76s"/>
-                    <constraint firstItem="aVm-3F-pD8" firstAttribute="top" secondItem="Qo2-wZ-p1o" secondAttribute="bottom" constant="3" id="dhF-1q-46Z"/>
                     <constraint firstItem="Qo2-wZ-p1o" firstAttribute="trailing" secondItem="emh-fs-Xl1" secondAttribute="trailing" id="f7S-40-Bj2"/>
                     <constraint firstAttribute="trailing" secondItem="CUY-ln-shk" secondAttribute="trailing" id="gEI-GC-rYH"/>
                     <constraint firstAttribute="trailing" secondItem="KZo-Rh-FCj" secondAttribute="trailing" id="j4g-oV-Ti7"/>
@@ -316,6 +318,9 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="addPlImageView" destination="WdG-EQ-D5p" id="R1K-do-Oah"/>
+                <outlet property="addPlView" destination="Qo2-wZ-p1o" id="6Vb-zV-R62"/>
+                <outlet property="addPlViewHeight" destination="fBw-VR-fBj" id="wlE-lr-87H"/>
+                <outlet property="bottomLineHeight" destination="JXD-tc-bdK" id="XPp-ex-qW1"/>
                 <outlet property="imvHeight" destination="8t1-ks-8LZ" id="RWg-eT-oDX"/>
                 <outlet property="likeBtn" destination="syb-pQ-BGb" id="6b7-WK-lOG"/>
                 <outlet property="mapBtn" destination="8EQ-ay-nxW" id="mbO-yn-75Q"/>

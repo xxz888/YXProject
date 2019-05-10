@@ -11,9 +11,14 @@
 #import "HGPersonalCenterViewController.h"
 #import "ZInputToolbar.h"
 #import "UIView+LSExtension.h"
-
-
-@interface YXHomeXueJiaQuestionDetailViewController ()<UITextFieldDelegate,SDTimeLineCellDelegate,ZInputToolbarDelegate>
+#import "YXFindQuestionTableViewCell.h"
+#import "YXFindSearchTagDetailViewController.h"
+#import "HXEasyCustomShareView.h"
+@interface YXHomeXueJiaQuestionDetailViewController ()<UITextFieldDelegate,SDTimeLineCellDelegate,ZInputToolbarDelegate>{
+    YXFindQuestionTableViewCell * cell;
+    BOOL zanBool;
+    NSDictionary * shareDic;
+}
 @property(nonatomic)YXHomeQuestionDetailHeaderView * headerView;
 @property (nonatomic, strong) NSMutableDictionary * pardic;;
 @property (nonatomic, strong) MMImageListView *imageListView;
@@ -27,12 +32,12 @@
     [super viewDidLoad];
     //初始化所有的控件
     [self initAllControl];
-    [self addRefreshView:self.yxTableView];
+//    [self addRefreshView:self.yxTableView];
     [self requestAnserList];
 }
 #pragma mark ========== 请求回答列表 ==========
 -(void)requestAnserList{
-    NSString * par = [NSString stringWithFormat:@"%@/%@",self.moment.startId,NSIntegerToNSString(self.requestPage)];
+    NSString * par = [NSString stringWithFormat:@"%@/%@",self.startDic[@"id"],NSIntegerToNSString(self.requestPage)];
     //获取回答列表
     kWeakSelf(self);
     [YX_MANAGER requestAnswerListGET:par success:^(id object) {
@@ -46,10 +51,6 @@
 
     }];
 }
--(void)headerRereshing{
-    [super headerRereshing];
-    [self requestAnserList];
-}
 -(void)footerRereshing{
     [super footerRereshing];
     [self requestAnserList];
@@ -59,92 +60,168 @@
     _pardic = [[NSMutableDictionary alloc]init];
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    //添加分隔线颜色设置
-    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeQuestionDetailHeaderView" owner:self options:nil];
-    self.headerView = [nib objectAtIndex:0];
-    self.headerView.frame = CGRectMake(0, 0, KScreenWidth, AxcAE_IsiPhoneX ? 285 : 305);
+    cell = [[[NSBundle mainBundle]loadNibNamed:@"YXFindQuestionTableViewCell" owner:self options:nil]lastObject];
+    NSDictionary * dic = [NSDictionary dictionaryWithDictionary:self.startDic];
+    NSString * talkNum = dic[@"comment_number"] ? kGetString(dic[@"comment_number"]) :kGetString(dic[@"answer_number"]);
+    NSString * praisNum = kGetString(dic[@"praise_number"]);
+    //cell的头图片
+    NSString * str11 = [(NSMutableString *)(dic[@"user_photo"] ? dic[@"user_photo"] : dic[@"photo"]) replaceAll:@" " target:@"%20"];
+    [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:str11] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    //自己的头图像
+    UserInfo *userInfo = curUser;
+    NSString * str22 = [(NSMutableString *)userInfo.photo replaceAll:@" " target:@"%20"];
+    [cell.addPlImageView sd_setImageWithURL:[NSURL URLWithString:str22] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    //评论数量
+    cell.talkCount.text = talkNum;
+    cell.zanCount.text = praisNum;
+    //头名字
+    cell.titleLbl.text = dic[@"user_name"];
+    //头时间
+    cell.timeLbl.text = [ShareManager updateTimeForRow:[dic[@"publish_time"] longLongValue]];
+    //地点button
+    [cell.mapBtn setTitle:dic[@"publish_site"] forState:UIControlStateNormal];
+    //赞
+    BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
+    zanBool = isp;
+    UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
+    [cell.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
     
-    self.headerView.titleImageView.layer.masksToBounds = YES;
-    self.headerView.titleImageView.layer.cornerRadius = self.headerView.titleImageView.frame.size.width / 2.0;
-    // 图片区
-    _imageListView = [[MMImageListView alloc] initWithFrame:CGRectZero];
-    [self.headerView.totalImage addSubview:_imageListView];
-    
-    
-    
-    //title
-    NSString * titleText = [[NSString stringWithFormat:@"%@%@",self.moment.detailText,self.moment.index] UnicodeToUtf8];
-    self.headerView.twoLblHeight.constant = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
-    [ShareManager setLineSpace:9 withText:[titleText UnicodeToUtf8] inLabel:self.headerView.twoLbl tag:self.moment.index];
-    
-  
-    
-    NSString * str = [(NSMutableString *)self.moment.photo replaceAll:@" " target:@"%20"];
-    [self.headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    self.headerView.titleLbl.text = self.moment.userName;
-    self.headerView.timeLbl.text = [ShareManager updateTimeForRow:self.moment.time];
-    self.headerView.oneLbl.text = [self.moment.text UnicodeToUtf8];
-    self.headerView.questionTitleHeight.constant = [ShareManager inTextOutHeight:self.headerView.oneLbl.text lineSpace:9 fontSize:14];
-    
-    
-    if (self.headerView.questionTitleHeight.constant < 30) {
-           [ShareManager setLineSpace:0 withText:[self.headerView.oneLbl.text UnicodeToUtf8] inLabel:self.headerView.oneLbl tag:@""];
+    if ([talkNum isEqualToString:@"0"] || [talkNum isEqualToString:@"(null)"]) {
+        cell.talkCount.text = @"";
+    }
+    if ([praisNum isEqualToString:@"0"] || [praisNum isEqualToString:@"(null)"]) {
+        cell.zanCount.text = @"";
+    }
+
+    kWeakSelf(self);
+    NSString * titleText = [[NSString stringWithFormat:@"%@%@",dic[@"question"],dic[@"index"]] UnicodeToUtf8];
+    cell.titleTagLbl2.userInteractionEnabled = YES;
+    //文本点击回调
+    cell.titleTagLbl2.tapBlock = ^(NSString *string) {
+        kWeakSelf(self);
+        [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":@"1",@"type":@"2"} success:^(id object) {
+            if ([object count] > 0) {
+                YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
+                VC.type = @"3";
+                VC.key = object[0][@"tag"];
+                VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
+                [weakself.navigationController pushViewController:VC animated:YES];
+            }else{
+                [QMUITips showInfo:@"无此标签的信息"];
+            }
+        }];
+        
+    };
+    NSArray * indexArray = [dic[@"index"] split:@" "];
+    NSMutableArray * modelArray = [NSMutableArray array];
+    for (NSString * string in indexArray) {
+        //设置需要点击的字符串，并配置此字符串的样式及位置
+        IXAttributeModel    * model = [IXAttributeModel new];
+        model.range = [titleText rangeOfString:string];
+        model.string = string;
+        model.attributeDic = @{NSForegroundColorAttributeName : [UIColor blueColor]};
+        [modelArray addObject:model];
+    }
+    //label内容赋值
+    [cell.titleTagLbl2 setText:titleText attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
+                tapStringArray:modelArray];
+    cell.textHeight.constant = [self getLblHeight:dic];
+    if (cell.textHeight.constant < 30) {
+        [ShareManager setLineSpace:0 withText:[cell.titleTagLbl2.text UnicodeToUtf8] inLabel:cell.titleTagLbl2 tag:dic[@"index"]];
+        
     }else{
-        [ShareManager setLineSpace:9 withText:[self.headerView.oneLbl.text UnicodeToUtf8] inLabel:self.headerView.oneLbl tag:@""];
-
+        [ShareManager setLineSpace:9 withText:[cell.titleTagLbl2.text UnicodeToUtf8] inLabel:cell.titleTagLbl2 tag:dic[@"index"]];
     }
     
-    NSString * str0;
-    if (self.moment.imageListArray.count >= 1) {
-        str0 = [(NSMutableString *)self.moment.imageListArray[0] replaceAll:@" " target:@"%20"];
-    }
-    NSString * str1;
-    if (self.moment.imageListArray.count >= 2) {
-        str1 = [(NSMutableString *)self.moment.imageListArray[1] replaceAll:@" " target:@"%20"];
-    }
-    NSString * str2;
-    if (self.moment.imageListArray.count >= 3) {
-        str2 = [(NSMutableString *)self.moment.imageListArray[2] replaceAll:@" " target:@"%20"];
-    }
+    cell.titleTagLbl1.text = [dic[@"title"] UnicodeToUtf8];
+    [ShareManager setLineSpace:9 withText:[cell.titleTagLbl1.text UnicodeToUtf8] inLabel:cell.titleTagLbl1 tag:@""];
+    cell.questionTitleHeight.constant = [ShareManager inTextOutHeight:cell.titleTagLbl1.text lineSpace:9 fontSize:14];
     
-    NSMutableArray * imvArr = [NSMutableArray array];
+    NSString * str1 = [(NSMutableString *)dic[@"pic1"] replaceAll:@" " target:@"%20"];
+    NSString * str2 = [(NSMutableString *)dic[@"pic2"] replaceAll:@" " target:@"%20"];
+    NSString * str3 = [(NSMutableString *)dic[@"pic3"] replaceAll:@" " target:@"%20"];
     
-    if (str0.length > 5) {
-        [imvArr addObject:str0];
-
+    
+    if (str1.length <= 0) {
+        cell.midImageView1.image = [UIImage imageNamed:@""];
     }else{
+        [cell.midImageView1 sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    }
+    if (str2.length <= 0) {
+        cell.midImageView2.image = [UIImage imageNamed:@""];
+    }else{
+        [cell.midImageView2 sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    }
+    if (str3.length <= 0) {
+        cell.midImageView3.image = [UIImage imageNamed:@""];
+    }else{
+        [cell.midImageView3 sd_setImageWithURL:[NSURL URLWithString:str3] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    }
+    if (str1.length<=5 && str2.length<=5 && str3.length<=5) {
+        cell.imvHeight.constant = 0;
+    }else{
+        cell.imvHeight.constant = 100;
+    }
 
-        self.headerView.imvHeight.constant = 100;
+    if ([dic[@"publish_site"] isEqualToString:@""] || !dic[@"publish_site"] ) {
+        cell.nameCenter.constant = cell.titleImageView.frame.origin.y;
+    }else{
+        cell.nameCenter.constant = 0;
     }
-    if (str1.length > 5) {
-        [imvArr addObject:str1];
-    }
-    if (str2.length > 5) {
-        [imvArr addObject:str2];
-
-    }
-    if (str0.length<=0 && str1.length<=0 && str2.length<=0) {
-        self.headerView.imvHeight.constant = 0;
-    }
-    
-    Moment * moment = [[Moment alloc]init];
-    moment.imageListArray = [NSMutableArray arrayWithArray:imvArr];
-    moment.singleWidth = (KScreenWidth-30)/3;
-    moment.singleHeight = 100;
-    moment.fileCount = imvArr.count;
-    _imageListView.moment = moment;
-    return self.headerView;
+    cell.clickImageBlock = ^(NSInteger i) {
+        
+    };
+    cell.plAllHeight.constant = 0;
+    cell.addPlViewHeight.constant = 0;
+    cell.addPlView.hidden = YES;
+    cell.zanblock1 = ^(YXFindQuestionTableViewCell * cell) {
+        if (![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
+        NSIndexPath * indexPath1 = [weakself.yxTableView indexPathForCell:cell];
+        [weakself requestDianZan_WenDa_Action:indexPath1];
+    };
+    cell.shareQuestionblock = ^(YXFindQuestionTableViewCell * cell) {
+        if (![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
+        UserInfo * userInfo = curUser;
+        BOOL isOwn = [self.startDic[@"user_id"] integerValue] == [userInfo.id integerValue];
+        shareDic = [NSDictionary dictionaryWithDictionary:self.startDic];
+        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"2" tag:[weakself.startDic[@"id"] integerValue]  startDic:weakself.startDic];
+    };
+    cell.addPlActionblock = ^(YXFindQuestionTableViewCell * cell) {
+        if (![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
+        [weakself setupTextField];
+        [weakself.inputToolbar.textInput becomeFirstResponder];
+    };
+    return cell;
+}
+#pragma mark ========== 问答点赞 ==========
+-(void)requestDianZan_WenDa_Action:(NSIndexPath *)indexPath{
+    kWeakSelf(self);
+    NSString* track_id = kGetString(self.startDic[@"id"]);
+    [YX_MANAGER requestPraise_question:track_id success:^(id object) {
+        //赞
+        zanBool = !zanBool;
+        UIImage * likeImage = zanBool ? ZAN_IMG : UNZAN_IMG;
+        [cell.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
+        
+        NSInteger zhengfuValue = zanBool ? 1 : -1;
+        cell.zanCount.text = NSIntegerToNSString([cell.zanCount.text integerValue] + zhengfuValue);
+        
+        if ([cell.zanCount.text isEqualToString:@"0"]) {
+            cell.zanCount.text= @"";
+        }
+    }];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    CGFloat height = 0;
-    if (self.moment.imageListArray.count >=1) {
-        NSString * str0 = [(NSMutableString *)self.moment.imageListArray[0] replaceAll:@" " target:@"%20"];
-        if (str0.length > 5) {
-            height = 100;
-        }
-    }
-    
-    return  75 + 50 + (height == 0 ? -10 : 0) + [ShareManager inTextOutHeight:[self.moment.detailText UnicodeToUtf8] lineSpace:9 fontSize:14] + height;
+    return _headerViewHeight;
 }
 -(CGSize)cellAutoHeight:(NSString *)string {
     //展开后得高度(计算出文本内容的高度+固定控件的高度)
@@ -414,24 +491,10 @@
         [weakself requestAnserList];
     }];
 }
-#pragma mark - UITextFieldDelegate
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    if (textField.text.length) {
-        [self.textField resignFirstResponder];
-        
-      
-        
-    
-        self.textField.text = @"";
-        self.textField.placeholder = nil;
-        
-        return YES;
-    }
-    return NO;
-}
+
 #pragma mark ========== 发布回答 ==========
 -(void)requestFaBuHuiDa:(NSMutableDictionary *)dic{
-    [dic setValue:kGetString(self.moment.startId) forKey:@"question_id"];
+    [dic setValue:kGetString(self.startDic[@"id"]) forKey:@"question_id"];
     if (!dic[@"question_id"]) {
         [QMUITips showError:@"问题不存在,请返回重新进入" inView:self.yxTableView hideAfterDelay:1];
         return;
@@ -523,4 +586,102 @@
     }
 }
 
+-(CGFloat)getLblHeight:(NSDictionary *)dic{
+    NSString * titleText = [NSString stringWithFormat:@"%@%@",dic[@"question"],dic[@"index"]];
+    return [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
+}
+
+#pragma mark ========== 分享 ==========
+- (void)addGuanjiaShareViewIsOwn:(BOOL)isOwn isWho:(NSString *)isWho tag:(NSInteger)tagId startDic:(NSDictionary *)startDic{
+    NSMutableArray * shareAry = [NSMutableArray arrayWithObjects:
+                                 @{@"image":@"raiders_weichat",
+                                   @"title":@"微信"},
+                                 @{@"image":@"shareView_friend",
+                                   @"title":@"朋友圈"},
+                                 @{@"image":@"回收",
+                                   @"title":@"删除"},
+                                 @{@"image":@"举报",
+                                   @"title":@"举报"},
+                                 nil];
+    if (isOwn) {
+        [shareAry removeObjectAtIndex:3];
+        
+    }else{
+        [shareAry removeObjectAtIndex:2];
+    }
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 54)];
+    headerView.backgroundColor = [UIColor clearColor];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, headerView.frame.size.width, 15)];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor blackColor];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont systemFontOfSize:15];
+    label.text = @"分享到";
+    [headerView addSubview:label];
+    
+    UILabel *lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, headerView.frame.size.height-0.5, headerView.frame.size.width, 0.5)];
+    lineLabel.backgroundColor = [UIColor colorWithRed:208/255.0 green:208/255.0 blue:208/255.0 alpha:1.0];
+    [headerView addSubview:lineLabel];
+    
+    UILabel *lineLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, headerView.frame.size.width, 0.5)];
+    lineLabel1.backgroundColor = [UIColor colorWithRed:208/255.0 green:208/255.0 blue:208/255.0 alpha:1.0];
+    
+    HXEasyCustomShareView *shareView = [[HXEasyCustomShareView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+    shareView.startDic = [NSDictionary dictionaryWithDictionary:startDic];
+    shareView.tag = tagId;
+    shareView.isWho = isWho;
+    shareView.backView.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+    shareView.headerView = headerView;
+    float height = [shareView getBoderViewHeight:shareAry firstCount:isOwn ? shareAry.count-1 : shareAry.count+1];
+    shareView.boderView.frame = CGRectMake(0, 0, shareView.frame.size.width, height);
+    shareView.middleLineLabel.hidden = NO;
+    [shareView.cancleButton addSubview:lineLabel1];
+    shareView.cancleButton.frame = CGRectMake(shareView.cancleButton.frame.origin.x, shareView.cancleButton.frame.origin.y, shareView.cancleButton.frame.size.width, 54);
+    shareView.cancleButton.titleLabel.font = [UIFont systemFontOfSize:16];
+    [shareView.cancleButton setTitleColor:[UIColor colorWithRed:184/255.0 green:184/255.0 blue:184/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [shareView setShareAry:shareAry delegate:self];
+    [[UIApplication sharedApplication].keyWindow addSubview:shareView];
+}
+#pragma mark 分享按钮
+- (void)easyCustomShareViewButtonAction:(HXEasyCustomShareView *)shareView title:(NSString *)title startDic:(NSDictionary *)dic{
+    [shareView tappedCancel];
+    NSLog(@"当前点击:%@",title);
+    kWeakSelf(self);
+    if ([title isEqualToString:@"微信"]) {
+        [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatSession obj:shareDic];
+    }
+    if ([title isEqualToString:@"朋友圈"]) {
+        [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine obj:shareDic];
+    }
+    if ([title isEqualToString:@"删除"]) {
+            [YX_MANAGER requestDel_WenDa:kGetString(self.startDic[@"id"]) success:^(id object) {
+                [QMUITips showSucceed:@"删除成功"];
+                [weakself.navigationController popViewControllerAnimated:YES];
+            }];
+    }
+    if ([title isEqualToString:@"举报"]) {
+        QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+        }];
+        QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"不友善内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+            [QMUITips showSucceed:@"举报成功"];
+            
+        }];
+        QMUIAlertAction *action3 = [QMUIAlertAction actionWithTitle:@"有害内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+            [QMUITips showSucceed:@"举报成功"];
+            
+        }];
+        QMUIAlertAction *action4 = [QMUIAlertAction actionWithTitle:@"抄袭内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+            [QMUITips showSucceed:@"举报成功"];
+            
+        }];
+        QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:QMUIAlertControllerStyleActionSheet];
+        [alertController addAction:action1];
+        [alertController addAction:action2];
+        [alertController addAction:action3];
+        [alertController addAction:action4];
+        
+        [alertController showWithAnimated:YES];
+    }
+}
 @end

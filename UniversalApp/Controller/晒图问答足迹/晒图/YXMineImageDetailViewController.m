@@ -33,7 +33,7 @@
     }
     //初始化所有的控件
     [self initAllControl];
-    [self addRefreshView:self.yxTableView];
+//    [self addRefreshView:self.yxTableView];
     [self requestNewList];
 }
 -(void)headerRereshing{
@@ -185,9 +185,9 @@
             return;
         }
         UserInfo * userInfo = curUser;
-        BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [userInfo.id integerValue];
-        shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
-        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:cell.whereCome ? @"3" : @"1" tag:cell.tagId startDic:cell.whereCome ? nil : cell.dataDic];
+        BOOL isOwn = [self.startDic[@"user_id"] integerValue] == [userInfo.id integerValue];
+        shareDic = [NSDictionary dictionaryWithDictionary:self.startDic];
+        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:[weakself.startDic[@"id"] integerValue]  startDic: weakself.startDic];
     };
     return cell;
 }
