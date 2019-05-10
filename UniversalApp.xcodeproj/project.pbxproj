@@ -284,6 +284,7 @@
 		BB9832872202D77C0048D103 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB9832862202D77C0048D103 /* Images.xcassets */; };
 		BB9ECD4C228002EA00A12952 /* ZInputToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9ECD48228002E900A12952 /* ZInputToolbar.m */; };
 		BB9ECD4D228002EA00A12952 /* UIView+LSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9ECD49228002E900A12952 /* UIView+LSExtension.m */; };
+		BB9ECD502285211600A12952 /* UIScrollView+FanHui.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9ECD4F2285211600A12952 /* UIScrollView+FanHui.m */; };
 		BB9EFE7021F5CCBA00180813 /* YXPublishMoreTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFE6E21F5CCBA00180813 /* YXPublishMoreTagsViewController.m */; };
 		BB9EFE7121F5CCBA00180813 /* YXPublishMoreTagsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB9EFE6F21F5CCBA00180813 /* YXPublishMoreTagsViewController.xib */; };
 		BB9EFE8F21F6B92300180813 /* YXQCDJCDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFE8D21F6B92300180813 /* YXQCDJCDetailTableViewController.m */; };
@@ -1087,6 +1088,8 @@
 		BB9ECD49228002E900A12952 /* UIView+LSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LSExtension.m"; sourceTree = "<group>"; };
 		BB9ECD4A228002E900A12952 /* UIView+LSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LSExtension.h"; sourceTree = "<group>"; };
 		BB9ECD4B228002E900A12952 /* ZInputToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZInputToolbar.h; sourceTree = "<group>"; };
+		BB9ECD4E2285211600A12952 /* UIScrollView+FanHui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+FanHui.h"; sourceTree = "<group>"; };
+		BB9ECD4F2285211600A12952 /* UIScrollView+FanHui.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+FanHui.m"; sourceTree = "<group>"; };
 		BB9EFE6D21F5CCBA00180813 /* YXPublishMoreTagsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXPublishMoreTagsViewController.h; sourceTree = "<group>"; };
 		BB9EFE6E21F5CCBA00180813 /* YXPublishMoreTagsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXPublishMoreTagsViewController.m; sourceTree = "<group>"; };
 		BB9EFE6F21F5CCBA00180813 /* YXPublishMoreTagsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXPublishMoreTagsViewController.xib; sourceTree = "<group>"; };
@@ -3227,6 +3230,8 @@
 				BB2A8EB5221BB0A300B6756A /* UILabel+String.m */,
 				BB2A8EB7221BE73300B6756A /* UIImage+ImgSize.h */,
 				BB2A8EB8221BE73300B6756A /* UIImage+ImgSize.m */,
+				BB9ECD4E2285211600A12952 /* UIScrollView+FanHui.h */,
+				BB9ECD4F2285211600A12952 /* UIScrollView+FanHui.m */,
 			);
 			path = "艺鑫工具";
 			sourceTree = "<group>";
@@ -5139,6 +5144,7 @@
 				BBDA2D2221EB30BF00EDCCFF /* UIView+SDExtension.m in Sources */,
 				BB3DFE8E221D568D000C70B5 /* XHWebImageAutoSize.m in Sources */,
 				BBDA2D0321EB30BF00EDCCFF /* SDContactsTableViewCell.m in Sources */,
+				BB9ECD502285211600A12952 /* UIScrollView+FanHui.m in Sources */,
 				BB0599022262D35A00E73255 /* YXNewHomeXueJiaPeiJianDetailTuiJianViewController.m in Sources */,
 				BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */,
 				BB928F9521FB5D290090A044 /* BRDatePickerView.m in Sources */,
