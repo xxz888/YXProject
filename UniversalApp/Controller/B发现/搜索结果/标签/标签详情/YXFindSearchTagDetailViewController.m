@@ -153,7 +153,7 @@
     NSString * photoString = dic[@"pic1"] ? dic[@"pic1"] : dic[@"photo1"];
     NSString * str1 = [(NSMutableString *)photoString replaceAll:@" " target:@"%20"];
     [cell.midImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    cell.titleLbl.text = [dic[@"content"] UnicodeToUtf8];
+    cell.titleLbl.text = dic[@"content"] ? [dic[@"content"] UnicodeToUtf8] : [dic[@"describe"] UnicodeToUtf8];
     BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
     UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
     [cell.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];

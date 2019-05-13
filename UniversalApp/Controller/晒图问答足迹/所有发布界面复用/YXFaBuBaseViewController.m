@@ -201,8 +201,7 @@
                 _img3.hidden = YES;
             }else{
                 _img2.image = _img3.image;
-                _img3.image = zhanweiImage;
-            }
+                _img3.image = zhanweiImage;             }
             _del1.hidden = [self inImageViewOutIsHidden:_img1];
             _del2.hidden = [self inImageViewOutIsHidden:_img2];
             _del3.hidden = [self inImageViewOutIsHidden:_img3];
