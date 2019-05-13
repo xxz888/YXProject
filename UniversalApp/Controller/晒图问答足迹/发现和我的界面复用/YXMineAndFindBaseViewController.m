@@ -122,6 +122,10 @@
     cell.titleImageView.tag = indexPath.row;
     kWeakSelf(self);
     cell.clickImageBlock = ^(NSInteger tag) {
+        if (![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
         [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
     };
     cell.zanblock = ^(YXFindImageTableViewCell * cell) {
@@ -288,6 +292,10 @@
     cell.dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
     kWeakSelf(self);
     cell.clickImageBlock = ^(NSInteger tag) {
+        if (![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
         [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
     };
     cell.zanblock1 = ^(YXFindQuestionTableViewCell * cell) {
@@ -398,7 +406,7 @@
     }
 //     UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
 //     YXMineViewController * mineVC = [stroryBoard5 instantiateViewControllerWithIdentifier:@"YXMineViewController"];
-    HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
+     HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
      mineVC.userId = userId;
      mineVC.whereCome = YES;    //  YES为其他人 NO为自己
      [self.navigationController pushViewController:mineVC animated:YES];
