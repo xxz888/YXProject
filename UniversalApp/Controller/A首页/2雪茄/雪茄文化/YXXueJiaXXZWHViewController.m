@@ -8,7 +8,7 @@
 
 #import "YXXueJiaXXZWHViewController.h"
 
-@interface YXXueJiaXXZWHViewController ()<UIWebViewDelegate>{
+@interface YXXueJiaXXZWHViewController ()<UIWebViewDelegate,ZInputToolbarDelegate>{
     CGFloat imageHeight;
     CGFloat tagHeight;
 
@@ -24,35 +24,13 @@
 }
 - (void)viewDidLoad{
     [super viewDidLoad];
+    self.view.insetsLayoutMarginsFromSafeArea = NO;
 
     //初始化所有的控件
     [self initAllControl];
     [self addRefreshView:self.yxTableView];
     [self requestNewList];
     
-}
-- (void)keyboardNotification:(NSNotification *)notification{
-    if (![userManager loadUserInfo]) {
-        KPostNotification(KNotificationLoginStateChange, @NO);
-        return;
-    }
-//    CGPoint offset = CGPointMake(0, 0);
-   // [self.yxTableView setContentOffset:offset animated:YES];
-    
-    NSDictionary *dict = notification.userInfo;
-    CGRect rect = [dict[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
-    CGRect textFieldRect = CGRectMake(0, rect.origin.y - textFieldH, rect.size.width, textFieldH);
-    if (rect.origin.y == [UIScreen mainScreen].bounds.size.height) {
-        textFieldRect = rect;
-    }
-    [UIView animateWithDuration:0.25 animations:^{
-        self.textField.frame = textFieldRect;
-    }];
-    CGFloat h = rect.size.height + textFieldH;
-    if (self.totalKeybordHeight != h) {
-        self.totalKeybordHeight = h;
-        //[self adjustTableViewToFitKeyboard];
-    }
 }
 -(UIView *)xxzWebView{
     if (!_xxzWebView) {
@@ -119,6 +97,41 @@
     };
     [self setupTextField];
 }
+- (void)setupTextField{
+    [self.inputToolbar removeFromSuperview];
+    self.inputToolbar = [[ZInputToolbar alloc] initWithFrame:CGRectMake(0,self.view.height+200, self.view.width, 60)];
+    self.inputToolbar.textViewMaxLine = 5;
+    self.inputToolbar.delegate = self;
+    self.inputToolbar.placeholderLabel.text = @"开始评论...";
+    [self.view addSubview:self.inputToolbar];
+}
+#pragma mark - ZInputToolbarDelegate
+-(void)inputToolbar:(ZInputToolbar *)inputToolbar sendContent:(NSString *)sendContent {
+    
+    [self finishTextView:inputToolbar.textInput];
+    // 清空输入框文字
+    [self.inputToolbar sendSuccessEndEditing];
+}
+
+
+#pragma mark - UITextFieldDelegate
+-(void)finishTextView:(UITextView *)textField{
+    if (self.isReplayingComment) {
+        SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
+        [self requestpost_comment_child:@{@"comment":[textField.text utf8ToUnicode],
+                                          @"father_id":@([model.id intValue]),
+                                          @"aim_id":self.commentToUserID,
+                                          @"aim_name":self.commentToUser
+                                          }];
+        self.isReplayingComment = NO;
+    }else{
+        [self pinglunFatherPic:@{@"comment":[textField.text utf8ToUnicode],
+                                 @"cigar_culture_id":@([self.webDic[@"id"] intValue]),
+                                 }];
+        
+    }
+}
+
 #pragma mark ========== 获取晒图评论列表 ==========
 -(void)requestNewList{
 
@@ -287,9 +300,12 @@
 
     self.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel * model = self.dataArray[self.currentEditingIndexthPath.row];
-    self.textField.placeholder = [NSString stringWithFormat:@"  回复：%@",model.name];
+    [self setupTextField];
+    
+    [self.inputToolbar.textInput becomeFirstResponder];
+    self.inputToolbar.placeholderLabel.text = [NSString stringWithFormat:@"  回复：%@",model.name];
+    
     self.currentEditingIndexthPath = cell.indexPath;
-    [self.textField becomeFirstResponder];
     self.isReplayingComment = YES;
     self.commentToUser = model.name;
     self.commentToUserID = model.userID;
@@ -311,31 +327,7 @@
         self.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];
 }
-#pragma mark - UITextFieldDelegate
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    if (textField.text.length) {
-        [self.textField resignFirstResponder];
-        if (self.isReplayingComment) {
-            SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
-            [self requestpost_comment_child:@{@"comment":[textField.text utf8ToUnicode],
-                                              @"father_id":@([model.id intValue]),
-                                              @"aim_id":self.commentToUserID,
-                                              @"aim_name":self.commentToUser
-                                              }];
-            self.isReplayingComment = NO;
-        }else{
-            [self pinglunFatherPic:@{@"comment":[textField.text utf8ToUnicode],
-                                     @"cigar_culture_id":@([self.webDic[@"id"] intValue]),
-                                     }];
-            
-        }
-        self.textField.text = @"";
-        self.textField.placeholder = nil;
-        
-        return YES;
-    }
-    return NO;
-}
+
 #pragma mark ========== 评论 ==========
 -(void)pinglunFatherPic:(NSDictionary *)dic{
     kWeakSelf(self);
@@ -353,5 +345,8 @@
         weakself.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
     }];
 }
-
+- (IBAction)clickPingLunAction:(id)sender{
+    [self setupTextField];
+    [self.inputToolbar.textInput becomeFirstResponder];
+}
 @end
