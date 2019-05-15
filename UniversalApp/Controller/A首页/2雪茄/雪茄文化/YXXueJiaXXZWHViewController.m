@@ -120,7 +120,7 @@
         SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
         [self requestpost_comment_child:@{@"comment":[textField.text utf8ToUnicode],
                                           @"father_id":@([model.id intValue]),
-                                          @"aim_id":self.commentToUserID,
+                                        @"aim_id":self.commentToUserID,
                                           @"aim_name":self.commentToUser
                                           }];
         self.isReplayingComment = NO;

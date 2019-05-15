@@ -23,6 +23,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"发布提问";
+    self.switchBtn.hidden = self.fengcheView.hidden = self.faxianLbl.hidden = self.lineView3.hidden = YES;
+
 }
 #pragma mark ========== 发布 ==========
 - (IBAction)fabuAction:(UIButton *)btn {
@@ -76,7 +78,7 @@
     kWeakSelf(self);
     [QMUITips showLoadingInView:[ShareManager getMainView]];
     [YX_MANAGER requestFaBuQuestionPOST:dic success:^(id object) {
-            [QMUITips showSucceed:object[@"message"] inView:self.view hideAfterDelay:1];
+            [QMUITips showSucceed:object[@"message"] inView:self.view hideAfterDelay:2];
             [weakself closeViewAAA];
     }];
 }

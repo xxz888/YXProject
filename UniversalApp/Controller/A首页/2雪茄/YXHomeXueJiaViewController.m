@@ -132,10 +132,10 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomeXueJiaHeaderView" owner:self options:nil];
     self.headerView = [nib objectAtIndex:0];
-    self.headerView.frame = CGRectMake(0, 0, KScreenWidth, 380);
+    self.headerView.frame = CGRectMake(0, 0, KScreenWidth, 100);
     self.headerView.delegate = self;
-    self.headerView.titleArray = @[@"品牌",@"文化",@"配件",@"工具",@"问答",@"足迹"];
-    self.headerView.titleTagArray = @[@"Brand",@"Culture",@"Accessories",@"Tools",@"Q&A",@"Journey"];
+    self.headerView.titleArray = @[@"品牌",@"文化",@"工具",@"问答"];
+    self.headerView.titleTagArray = @[@"Brand",@"Culture",@"Tools",@"Q&A"];
     self.headerView.scrollImgArray = [NSMutableArray arrayWithArray:self.scrollImgArray];
     kWeakSelf(self);
     self.headerView.scrollImgBlock = ^(NSInteger index) {
@@ -153,7 +153,7 @@
     return self.headerView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 400;
+    return 350;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.informationArray.count;
@@ -197,19 +197,23 @@
         VC = [[YXHomeXueJiaWenHuaViewController alloc]init];
         [self.navigationController pushViewController:VC animated:YES];
 
-    }else if (tag == 2){
+    }
+    /*
+    else if (tag == 2){
         VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPeiJianViewController"];
         [self.navigationController pushViewController:VC animated:YES];
 
-    }else if(tag == 3){
+    }*/
+     else if(tag == 2){
         VC = [[YXHomeXueJiaToolsViewController alloc]init];
         [self.navigationController pushViewController:VC animated:YES];
 
-    }else if (tag == 4){
+    }else if (tag == 3){
         YXHomeXueJiaQuestionViewController * VCCoustom = [[YXHomeXueJiaQuestionViewController alloc]init];
         VCCoustom.whereCome = TYPE_XUEJIA_1;
         [self.navigationController pushViewController:VCCoustom animated:YES];
     }
+    /*
     else if(tag == 5){
         if (![userManager loadUserInfo]) {
             KPostNotification(KNotificationLoginStateChange, @NO);
@@ -218,7 +222,7 @@
         VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaFootViewController"];
         [self.navigationController pushViewController:VC animated:YES];
     }
-
+*/
 }
 
 

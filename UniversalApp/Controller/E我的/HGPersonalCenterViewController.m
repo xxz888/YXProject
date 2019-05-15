@@ -384,7 +384,7 @@ static CGFloat const HeaderImageViewHeight =260;
 
 - (HGSegmentedPageViewController *)segmentedPageViewController {
     if (!_segmentedPageViewController) {
-        NSArray *titles = @[@"全部", @"晒图", @"足迹"];
+        NSArray *titles = @[@"全部", @"晒图"];
         NSMutableArray *controllers = [NSMutableArray array];
         for (int i = 0; i < titles.count; i++) {
             if (i == 0) {
@@ -398,12 +398,14 @@ static CGFloat const HeaderImageViewHeight =260;
                 controller.delegate = self;
                 controller.userId = self.userId;
                 [controllers addObject:controller];
-            } else {
+            }
+            /*
+            else {
                 YXMineFootViewController * controller = [[YXMineFootViewController alloc] init];
                 controller.delegate = self;
                 controller.userId = self.userId;
                 [controllers addObject:controller];
-            }
+            }*/
             
         }
         _segmentedPageViewController = [[HGSegmentedPageViewController alloc] init];

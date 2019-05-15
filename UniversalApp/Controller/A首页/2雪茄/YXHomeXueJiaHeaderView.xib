@@ -13,7 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="YXHomeXueJiaHeaderView">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="355"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Il-xe-gvF">
@@ -24,17 +24,17 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Beb-ND-97B">
-                    <rect key="frame" x="0.0" y="250" width="375" height="150"/>
+                    <rect key="frame" x="0.0" y="250" width="375" height="100"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="150" id="POJ-Mc-GJk"/>
+                        <constraint firstAttribute="height" constant="100" id="POJ-Mc-GJk"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJ8-iD-KTW">
-                    <rect key="frame" x="0.0" y="400" width="375" height="5"/>
+                    <rect key="frame" x="0.0" y="350" width="375" height="0.0"/>
                     <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="5" id="bQV-hf-5d3"/>
+                        <constraint firstAttribute="height" id="bQV-hf-5d3"/>
                     </constraints>
                 </view>
             </subviews>
@@ -56,7 +56,7 @@
                 <outlet property="middleView" destination="Beb-ND-97B" id="OvZ-x1-K4T"/>
                 <outlet property="underView" destination="5Il-xe-gvF" id="u4d-TG-p8B"/>
             </connections>
-            <point key="canvasLocation" x="-311.19999999999999" y="-208.69565217391306"/>
+            <point key="canvasLocation" x="-1018" y="-222"/>
         </view>
     </objects>
 </document>

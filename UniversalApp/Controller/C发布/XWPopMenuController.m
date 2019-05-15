@@ -161,7 +161,7 @@
     
     for (int i = 0; i < self.ary.count; i++) {
         
-        NSArray *arrTitle = @[@"晒图",@"足迹"];
+        NSArray *arrTitle = @[@"晒图",@"问答"];
         PublishMenuButton *btn = [PublishMenuButton buttonWithType:UIButtonTypeCustom];
         
         //图标图片和文本
@@ -217,11 +217,17 @@
         YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
         [weakSelf presentViewController:imageVC animated:YES completion:nil];
     }else{
+        YXHomeQuestionFaBuViewController * VC = [[YXHomeQuestionFaBuViewController alloc]init];
+        [self presentViewController:VC animated:YES completion:nil];
+        
+        
+        /*
         UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
         YXHomeXueJiaPinPaiViewController * pinpaiVC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiViewController"];
         pinpaiVC.whereCome = YES; //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
         RootNavigationController * nav1 = [[RootNavigationController alloc]initWithRootViewController:pinpaiVC];
         [weakSelf presentViewController:nav1 animated:YES completion:nil];
+         */
     }
     
 }
