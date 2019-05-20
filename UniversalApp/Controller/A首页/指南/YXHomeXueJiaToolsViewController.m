@@ -31,13 +31,23 @@
     [super viewDidLoad];
     self.title = @"文化";
     [self tableviewCon];
+    [self addRefreshView:self.yxTableView];
     [self requestZhiNan1Get];
+}
+-(void)headerRereshing{
+    [super headerRereshing];
+    [self requestZhiNan1Get];
+}
+-(void)footerRereshing{
+    [super footerRereshing];
+    [self.yxTableView.mj_footer endRefreshing];
 }
 -(void)requestZhiNan1Get{
     kWeakSelf(self);
     [YXPLUS_MANAGER requestZhiNan1Get:@"1/0" success:^(id object) {
-        [weakself.titleArray removeAllObjects];
-        [weakself.titleArray addObjectsFromArray:object];
+        
+        
+        weakself.titleArray = [weakself commonAction:object dataArray:weakself.titleArray];
         [weakself.yxTableView reloadData];
     }];
 }
@@ -47,7 +57,7 @@
     
     self.titleArray = [[NSMutableArray alloc]init];
     self.yxTableView = [[UITableView alloc]init];
-    self.yxTableView.frame = CGRectMake(0,0, KScreenWidth,self.view.frame.size.height-kTopHeight-kTabBarHeight);
+    self.yxTableView.frame = CGRectMake(0,0, KScreenWidth,self.view.frame.size.height-kTopHeight-kTabBarHeight+10);
     self.yxTableView.delegate = self;
     self.yxTableView.dataSource= self;
     self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -62,7 +72,7 @@
     return self.titleArray.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 200;
+    return (KScreenHeight - 40 - kTabBarHeight)/3.2;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXHomeXueJiaToolsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaToolsTableViewCell" forIndexPath:indexPath];

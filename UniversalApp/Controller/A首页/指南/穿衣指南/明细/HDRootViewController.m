@@ -37,29 +37,49 @@
 //    [_fly2 startGIF];
 //    [_fly3 startGIF];
     _scrollView.delegate = self;
-    
 }
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = NO;
 
+}
+-(void)requestZhiNanGet{
+    kWeakSelf(self);
+    
+    NSString * par = [NSString stringWithFormat:@"0/%@",self.startDic[@"id"]];
+    [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
+        if ([object count] > 0) {
+            float picHeight = KScreenWidth * 7972 /1242.0;
+            UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, picHeight)];
+            NSString * str1 = [(NSMutableString *)object[0][@"photo"] replaceAll:@" " target:@"%20"];
+            [imageV sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+            [weakself.scrollView addSubview:imageV];
+        }
+   
+    }];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = KWhiteColor;
-    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
-    [self.view addSubview:_scrollView];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+    [self.view addSubview:self.scrollView];
     float picHeight = KScreenWidth * 7972 /1242.0;
-    _scrollView.contentSize = CGSizeMake(KScreenWidth,picHeight);
-    _scrollView.bounces = NO;
-    _scrollView.showsHorizontalScrollIndicator = NO;
-    _scrollView.showsVerticalScrollIndicator = NO;
-    _scrollView.delegate = self;
-    UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, picHeight)];
-    imageV.image = [UIImage imageNamed:self.startDic[@"photo"]];
-    [_scrollView addSubview:imageV];
+    self.scrollView.contentSize = CGSizeMake(KScreenWidth,picHeight);
+    self.scrollView.bounces = NO;
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    self.scrollView.delegate = self;
+    [self requestZhiNanGet];
+
+    
+
 
 //    [self addScrollViewSubviews];
 //  [self addButterflyAnimations];
 //    [self addEmitterAnimations];
 
 }
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];

@@ -21,16 +21,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initTableView];
+    [self addRefreshView:self.yxTableView];
     [self requestZhiNanGet];
 }
-
+-(void)headerRereshing{
+    [super headerRereshing];
+    [self requestZhiNanGet];
+}
+-(void)footerRereshing{
+    [super footerRereshing];
+    [self.yxTableView.mj_footer endRefreshing];
+}
 -(void)requestZhiNanGet{
     kWeakSelf(self);
     NSString * par = [NSString stringWithFormat:@"1/%@",self.startDic[@"id"]];
     [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
-        [weakself.dataArray removeAllObjects];
-        [weakself.dataArray addObjectsFromArray:object];
+        
+        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
+
     }];
 }
 

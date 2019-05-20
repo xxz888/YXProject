@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "RootViewController.h"
 @interface HDRootViewController : UIViewController
 @property (nonatomic,strong) NSDictionary * startDic;
 

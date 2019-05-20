@@ -28,7 +28,7 @@
 -(void)tableviewCon{
     self.dataArray = [[NSMutableArray alloc]init];
     self.yxTableView = [[UITableView alloc]init];
-       self.yxTableView.frame = CGRectMake(0,kTopHeight, KScreenWidth, KScreenHeight - kTopHeight);
+       self.yxTableView.frame = CGRectMake(0,0, KScreenWidth, KScreenHeight - kTopHeight - kTabBarHeight+10);
     [self.view addSubview:self.yxTableView];
     self.yxTableView.delegate = self;
     self.yxTableView.dataSource= self;
@@ -57,7 +57,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
+    
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArray.count;
