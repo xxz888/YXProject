@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-
-NS_ASSUME_NONNULL_BEGIN
+typedef void(^SuccessdBlockType)();
+typedef void(^FailBlockType)();
+typedef void(^SuccessdBlockTypeParameter)(id object);
+#define YX_BLOCK (id)dic success:(SuccessdBlockTypeParameter)successBlock
 
 @interface YXPlusManager : NSObject
-
++ (instancetype)sharedInstance;
+-(void)requestZhiNan1Get:YX_BLOCK;
 @end
 
-NS_ASSUME_NONNULL_END

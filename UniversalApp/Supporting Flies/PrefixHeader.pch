@@ -65,6 +65,7 @@
 #import "IMManager.h"
 #import "UIButton+XYButton.h"
 #import "YXManager.h"
+#import "YXPlusManager.h"
 #import "CBSegmentView.h"
 
 //第三方

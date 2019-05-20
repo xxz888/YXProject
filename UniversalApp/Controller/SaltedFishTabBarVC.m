@@ -7,13 +7,12 @@
 //
 
 #import "SaltedFishTabBarVC.h"
-#import "YXHomeViewController.h"
 #import "YXFindViewController.h"
 #import "YXMessageViewController.h"
 #import "YXMineViewController.h"
 #import "XWPopMenuController.h"
 #import "HGPersonalCenterViewController.h"
-
+#import "YXHomeXueJiaViewController.h"
 @interface SaltedFishTabBarVC ()<AxcAE_TabBarDelegate>
 
 @end
@@ -28,7 +27,10 @@
 }
 - (void)addChildViewControllers{
 
-    YXHomeViewController * homeVC = [[YXHomeViewController alloc]init];
+    
+    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+    YXHomeXueJiaViewController *    homeVC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaViewController"];
+//    YXHomeViewController * homeVC = [[YXHomeViewController alloc]init];
     RootNavigationController *nav1 = [[RootNavigationController alloc]initWithRootViewController:homeVC];
 
     YXFindViewController * findVC = [[YXFindViewController alloc]init];

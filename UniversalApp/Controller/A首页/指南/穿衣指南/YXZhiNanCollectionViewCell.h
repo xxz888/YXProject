@@ -11,6 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXZhiNanCollectionViewCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *collImageView;
+@property (weak, nonatomic) IBOutlet UIView *baseView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 
 @end
 

@@ -54,9 +54,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.informationArray = [NSMutableArray array];
+    [self initSegment];
     
+
+    /*
+    self.informationArray = [NSMutableArray array];
     self.scrollImgArray = [NSMutableArray array];
 
     //tableview列表
@@ -70,16 +72,83 @@
         [[UDPManage shareUDPManage] getNewMessageNumeber];
 //        [[UDPManage shareUDPManage] createClientUdpSocket];
     }
-    
-    [self initSegment];
+*/
+
 
 }
-
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setHidden:YES];
-    [self commonRequest];
+//    [self.navigationController.navigationBar setHidden:YES];
+    //[self commonRequest];
 }
+-(void)initSegment{
+    [self addChildViewController:self.segmentedPageViewController];
+    [self.view addSubview:self.segmentedPageViewController.view];
+    [self.segmentedPageViewController didMoveToParentViewController:self];
+    kWeakSelf(self);
+    [self.segmentedPageViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(weakself.view).mas_offset(UIEdgeInsetsMake(40, 0, 0, 0));
+    }];
+}
+- (HGSegmentedPageViewController *)segmentedPageViewController {
+    if (!_segmentedPageViewController) {
+        UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+        //品牌
+        YXHomeXueJiaPinPaiViewController * vc1 = [stroryBoard instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiViewController"];
+        //文化
+        YXHomeXueJiaWenHuaViewController * vc2 = [[YXHomeXueJiaWenHuaViewController alloc]init];
+        //工具
+        YXHomeXueJiaToolsViewController * vc3 = [[YXHomeXueJiaToolsViewController alloc]init];
+        //问答
+        YXHomeXueJiaQuestionViewController * vc4 = [[YXHomeXueJiaQuestionViewController alloc]init];
+        vc4.whereCome = TYPE_XUEJIA_1;
+        //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
+        NSArray* titles =  @[@"指南",@"品牌",@"Article",@"问答"];
+        NSArray* controllers = @[vc3,vc1,vc2,vc4];
+        _segmentedPageViewController = [[HGSegmentedPageViewController alloc] init];
+        _segmentedPageViewController.categoryView.titleNomalFont = [UIFont systemFontOfSize:17];
+        _segmentedPageViewController.categoryView.titleSelectedFont = [UIFont systemFontOfSize:21 weight:UIFontWeightBold];
+        
+        _segmentedPageViewController.pageViewControllers = controllers.copy;
+        _segmentedPageViewController.categoryView.titles = titles;
+        _segmentedPageViewController.categoryView.originalIndex = 0;
+    }
+    return _segmentedPageViewController;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 -(void)commonRequest{
     //tableview请求
@@ -242,35 +311,5 @@
     return [dateFormatter stringFromDate:date];
 }
 
--(void)initSegment{
-    [self addChildViewController:self.segmentedPageViewController];
-    [self.view addSubview:self.segmentedPageViewController.view];
-    [self.segmentedPageViewController didMoveToParentViewController:self];
-    kWeakSelf(self);
-    [self.segmentedPageViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(weakself.view).mas_offset(UIEdgeInsetsMake(kTopHeight, 0, 0, 0));
-    }];
-}
-- (HGSegmentedPageViewController *)segmentedPageViewController {
-    if (!_segmentedPageViewController) {
-        UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-        //品牌
-        YXHomeXueJiaPinPaiViewController * vc1 = [stroryBoard instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiViewController"];
-        //文化
-        YXHomeXueJiaWenHuaViewController * vc2 = [[YXHomeXueJiaWenHuaViewController alloc]init];
-        //工具
-        YXHomeXueJiaToolsViewController * vc3 = [[YXHomeXueJiaToolsViewController alloc]init];
-        //问答
-        YXHomeXueJiaQuestionViewController * vc4 = [[YXHomeXueJiaQuestionViewController alloc]init];
-        vc4.whereCome = TYPE_XUEJIA_1;
-        //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
-        NSArray* titles =  @[@"工具",@"品牌",@"文化",@"问答"];
-        NSArray* controllers = @[vc3,vc1,vc2,vc4];
-        _segmentedPageViewController = [[HGSegmentedPageViewController alloc] init];
-        _segmentedPageViewController.pageViewControllers = controllers.copy;
-        _segmentedPageViewController.categoryView.titles = titles;
-        _segmentedPageViewController.categoryView.originalIndex = 0;
-    }
-    return _segmentedPageViewController;
-}
+
 @end

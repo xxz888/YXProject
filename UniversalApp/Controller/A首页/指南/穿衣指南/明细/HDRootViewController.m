@@ -29,22 +29,20 @@
 
 
 @implementation HDRootViewController
-
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    self.navigationController.navigationBarHidden = YES;
+    self.navigationController.navigationBarHidden = YES;
 //  self.navigationController.delegate = self;
-    [_fly1 startGIF];
-    [_fly2 startGIF];
-    [_fly3 startGIF];
+//    [_fly1 startGIF];
+//    [_fly2 startGIF];
+//    [_fly3 startGIF];
     _scrollView.delegate = self;
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = KWhiteColor;
     _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
     [self.view addSubview:_scrollView];
     float picHeight = KScreenWidth * 7972 /1242.0;
@@ -54,12 +52,12 @@
     _scrollView.showsVerticalScrollIndicator = NO;
     _scrollView.delegate = self;
     UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, picHeight)];
-    imageV.image = [UIImage imageNamed:@"rootImage1"];
+    imageV.image = [UIImage imageNamed:self.startDic[@"photo"]];
     [_scrollView addSubview:imageV];
 
-    [self addScrollViewSubviews];
+//    [self addScrollViewSubviews];
 //  [self addButterflyAnimations];
-    [self addEmitterAnimations];
+//    [self addEmitterAnimations];
 
 }
 - (void)viewDidDisappear:(BOOL)animated

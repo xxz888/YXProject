@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface HDRootViewController : UIViewController
+@property (nonatomic,strong) NSDictionary * startDic;
 
 @end

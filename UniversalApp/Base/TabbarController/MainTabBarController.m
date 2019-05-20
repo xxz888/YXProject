@@ -12,7 +12,6 @@
 #import "UITabBar+CustomBadge.h"
 #import "XYTabBar.h"
 
-#import "YXHomeViewController.h"
 #import "YXMessageViewController.h"
 #import "YXMineViewController.h"
 #import "TBTabBar.h"

@@ -35,8 +35,12 @@
     btn.frame = CGRectMake(0, KScreenHeight-50, KScreenWidth,   50);
     [btn addTarget:self action:@selector(pushTiWen) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
-     self.yxTableView.frame = CGRectMake(0, kTopHeight, k_screen_width, k_screen_height-kTopHeight-50);
-     [self requestQuestion];
+     self.yxTableView.frame = CGRectMake(0, 0, k_screen_width, k_screen_height-50);
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [self requestQuestion];
 }
 -(void)pushTiWen{
     if (![userManager loadUserInfo]) {
@@ -75,10 +79,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 }
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
 }

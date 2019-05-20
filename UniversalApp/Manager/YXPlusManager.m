@@ -7,7 +7,50 @@
 //
 
 #import "YXPlusManager.h"
+#import "HttpRequest.h"
 
+#define RREQUEST_POST(paramters)     [HTTP_POST(paramters) Parameters:dic sucess:^(id responseObject) {\
+successBlock(responseObject);\
+} failure:^(NSError *error) {\
+}];
+
+
+#define RREQUEST_GET(paramters)     [HTTP_GET(paramters)  sucess:^(id responseObject) {\
+successBlock(responseObject);\
+} failure:^(NSError *error) {\
+}];
+
+#define HTTP_POST(pi) HttpRequest httpRequestPostPi:pi
+#define HTTP_GET(pi)  HttpRequest httpRequestGetPi:pi
 @implementation YXPlusManager
+/*单例*/
++ (instancetype)sharedInstance{
+    static YXPlusManager *s_instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        s_instance = [[YXPlusManager alloc]init];
+    });
+    return s_instance;
+}
+#pragma mark ==========GET请求模版==========
+-(void)requestGET:YX_BLOCK{
+    NSString * url = @"";
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ==========POST请求模版==========
+-(void)requestPOST:YX_BLOCK{
+    [HTTP_POST(@"") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
 
+
+-(void)requestZhiNan1Get:YX_BLOCK{
+    NSString * url = @"/pub/option/";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 @end

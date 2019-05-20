@@ -11,6 +11,8 @@
 #ifndef CommonMacros_h
 #define CommonMacros_h
 #define YX_MANAGER [YXManager sharedInstance]
+#define YXPLUS_MANAGER [YXPlusManager sharedInstance]
+
 #import "NSString+CString.h"
 
 #pragma mark - ——————— 用户相关 ————————
