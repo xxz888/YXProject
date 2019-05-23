@@ -72,7 +72,7 @@
     return self.titleArray.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return (KScreenHeight - 40 - kTabBarHeight)/3.2;
+    return (KScreenWidth-30)/1.6;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXHomeXueJiaToolsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaToolsTableViewCell" forIndexPath:indexPath];
@@ -87,6 +87,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     YXZhiNanViewController * vc1 = [[YXZhiNanViewController alloc]init];
     vc1.startDic = [NSDictionary dictionaryWithDictionary:self.titleArray[indexPath.row]];
+    vc1.title = self.titleArray[indexPath.row][@"name"];
     [self.navigationController pushViewController:vc1 animated:YES];
 }
 

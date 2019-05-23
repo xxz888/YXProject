@@ -593,55 +593,90 @@
 
 #pragma mark ========== 分享 ==========
 - (void)addGuanjiaShareViewIsOwn:(BOOL)isOwn isWho:(NSString *)isWho tag:(NSInteger)tagId startDic:(NSDictionary *)startDic{
-    NSMutableArray * shareAry = [NSMutableArray arrayWithObjects:
-                                 @{@"image":@"raiders_weichat",
-                                   @"title":@"微信"},
-                                 @{@"image":@"shareView_friend",
-                                   @"title":@"朋友圈"},
-                                 @{@"image":@"回收",
-                                   @"title":@"删除"},
-                                 @{@"image":@"举报",
-                                   @"title":@"举报"},
-                                 nil];
+    QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
+    kWeakSelf(self);
+    // 如果你的 item 是确定的，则可以直接通过 items 属性来显示，如果 item 需要经过一些判断才能确定下来，请看第二个示例
+    NSMutableArray * itemsArray1 = [[NSMutableArray alloc]init];
+    [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_remove") title:@"删除" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+        [moreOperationController hideToBottom];
+        [YX_MANAGER requestDel_WenDa:kGetString(self.startDic[@"id"]) success:^(id object) {
+            [QMUITips showSucceed:@"删除成功"];
+            [weakself.navigationController popViewControllerAnimated:YES];
+        }];
+    }]],
+    [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_report") title:@"举报" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+        [moreOperationController hideToBottom];
+        QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+        }];
+        QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"不友善内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+            [QMUITips showSucceed:@"举报成功"];
+        }];
+        QMUIAlertAction *action3 = [QMUIAlertAction actionWithTitle:@"有害内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+            [QMUITips showSucceed:@"举报成功"];
+        }];
+        QMUIAlertAction *action4 = [QMUIAlertAction actionWithTitle:@"抄袭内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+            [QMUITips showSucceed:@"举报成功"];
+        }];
+        QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:QMUIAlertControllerStyleActionSheet];
+        [alertController addAction:action1];
+        [alertController addAction:action2];
+        [alertController addAction:action3];
+        [alertController addAction:action4];
+        [alertController showWithAnimated:YES];
+    }]];
+    
     if (isOwn) {
-        [shareAry removeObjectAtIndex:3];
-        
+        [itemsArray1 removeObjectAtIndex:2];
+        if (![isWho isEqualToString:@"1"]) {
+            [itemsArray1 removeObjectAtIndex:0];
+        }
     }else{
-        [shareAry removeObjectAtIndex:2];
+        [itemsArray1 removeObjectAtIndex:0];
+        [itemsArray1 removeObjectAtIndex:0];
     }
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 54)];
-    headerView.backgroundColor = [UIColor clearColor];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, headerView.frame.size.width, 15)];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = [UIColor blackColor];
-    label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont systemFontOfSize:15];
-    label.text = @"分享到";
-    [headerView addSubview:label];
     
-    UILabel *lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, headerView.frame.size.height-0.5, headerView.frame.size.width, 0.5)];
-    lineLabel.backgroundColor = [UIColor colorWithRed:208/255.0 green:208/255.0 blue:208/255.0 alpha:1.0];
-    [headerView addSubview:lineLabel];
     
-    UILabel *lineLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, headerView.frame.size.width, 0.5)];
-    lineLabel1.backgroundColor = [UIColor colorWithRed:208/255.0 green:208/255.0 blue:208/255.0 alpha:1.0];
     
-    HXEasyCustomShareView *shareView = [[HXEasyCustomShareView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
-    shareView.startDic = [NSDictionary dictionaryWithDictionary:startDic];
-    shareView.tag = tagId;
-    shareView.isWho = isWho;
-    shareView.backView.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
-    shareView.headerView = headerView;
-    float height = [shareView getBoderViewHeight:shareAry firstCount:isOwn ? shareAry.count-1 : shareAry.count+1];
-    shareView.boderView.frame = CGRectMake(0, 0, shareView.frame.size.width, height);
-    shareView.middleLineLabel.hidden = NO;
-    [shareView.cancleButton addSubview:lineLabel1];
-    shareView.cancleButton.frame = CGRectMake(shareView.cancleButton.frame.origin.x, shareView.cancleButton.frame.origin.y, shareView.cancleButton.frame.size.width, 54);
-    shareView.cancleButton.titleLabel.font = [UIFont systemFontOfSize:16];
-    [shareView.cancleButton setTitleColor:[UIColor colorWithRed:184/255.0 green:184/255.0 blue:184/255.0 alpha:1.0] forState:UIControlStateNormal];
-    [shareView setShareAry:shareAry delegate:self];
-    [[UIApplication sharedApplication].keyWindow addSubview:shareView];
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    moreOperationController.items = @[
+                                      // 第一行
+                                      @[
+                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareFriend") title:@"分享给微信好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                                              [moreOperationController hideToBottom];
+                                              [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatSession obj:shareDic];
+                                          }],
+                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareMoment") title:@"分享到朋友圈" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                                              [moreOperationController hideToBottom];
+                                              [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine obj:shareDic];
+                                          }],
+                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_QQ") title:@"分享给QQ好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                                              [moreOperationController hideToBottom];
+                                              [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_QQ obj:shareDic];
+                                          }],
+                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                                              [moreOperationController hideToBottom];
+                                              [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_Qzone obj:shareDic];
+                                          }],
+                                          ],
+                                      itemsArray1
+                                      // 第二行
+                                      
+                                      ];
+    [moreOperationController showFromBottom];
 }
 #pragma mark 分享按钮
 - (void)easyCustomShareViewButtonAction:(HXEasyCustomShareView *)shareView title:(NSString *)title startDic:(NSDictionary *)dic{

@@ -37,16 +37,22 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>QQ</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>prefs</string>
+				<string>QQ60DF14F0</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>tencent</string>
 			<key>CFBundleURLSchemes</key>
-			<array/>
+			<array>
+				<string>tencent101577039</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>

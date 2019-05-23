@@ -19,8 +19,8 @@
 #define kSecret_Wechat          @"fd1a082a0a2a0a905ff90d2088c3fa75"
 
 // 腾讯
-#define kAppKey_Tencent          @"1106139910"
-
+#define kAppKey_Tencent          @"101577039"
+#define kAppKey_Tencent_Secret   @"757aaf2dfe128e6e9eca744b22cf8b66"
 
 //网易云信
 #define kIMAppKey @"afc7265de3857bbaa7404b4ea92b191e"

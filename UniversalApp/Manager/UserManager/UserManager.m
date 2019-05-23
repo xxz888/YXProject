@@ -52,26 +52,22 @@ SINGLETON_FOR_CLASS(UserManager);
                     completion(NO,error.localizedDescription);
                 }
             } else {
-                
                 UMSocialUserInfoResponse *resp = result;
-//                
 //                // 授权信息
 //                NSLog(@"QQ uid: %@", resp.uid);
 //                NSLog(@"QQ openid: %@", resp.openid);
 //                NSLog(@"QQ accessToken: %@", resp.accessToken);
 //                NSLog(@"QQ expiration: %@", resp.expiration);
-//                
 //                // 用户信息
 //                NSLog(@"QQ name: %@", resp.name);
 //                NSLog(@"QQ iconurl: %@", resp.iconurl);
 //                NSLog(@"QQ gender: %@", resp.unionGender);
-//                
 //                // 第三方平台SDK源数据
 //                NSLog(@"QQ originalResponse: %@", resp.originalResponse);
                 
                 NSString * cityName = [resp.originalResponse[@"province"] append:resp.originalResponse[@"city"]];
                 //登录参数
-                NSDictionary *params = @{@"third_type":@"1",
+                NSDictionary *params = @{@"third_type":@"3",
                                          @"unique_id":resp.openid,
                                          @"username":resp.name,
                                          @"photo":resp.iconurl,

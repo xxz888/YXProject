@@ -61,4 +61,5 @@ SINGLETON_FOR_HEADER(ShareManager)
 //HTML适配图片文字
 + (NSString *)adaptWebViewForHtml:(NSString *) htmlStr;
 +(void)setLineSpace_Price:(CGFloat)lineSpace withText:(NSString *)text inLabel:(UILabel *)label tag:(NSString *)tag;
++(void)setLineSpace_Price_RedColor:(CGFloat)lineSpace withText:(NSString *)text inLabel:(UILabel *)label tag:(NSString *)tag;
 @end

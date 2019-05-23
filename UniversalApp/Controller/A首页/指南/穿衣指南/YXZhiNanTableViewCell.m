@@ -42,6 +42,8 @@
         [weakself.dataArray removeAllObjects];
         [weakself.dataArray addObjectsFromArray:object];
         [weakself.yxCollectionView reloadData];
+        weakself.countLbl.text = [NSString stringWithFormat:@"(%ld)",weakself.dataArray.count];
+
     }];
 }
 -(void)setCellData:(NSDictionary *)dic{

@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^ClickCollectionItemBlock)(NSDictionary *);
 @interface YXZhiNanTableViewCell : UITableViewCell<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionView *yxCollectionView;
+@property (weak, nonatomic) IBOutlet UILabel *countLbl;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 @property (nonatomic,strong) NSDictionary * collViewDic;

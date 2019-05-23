@@ -3471,16 +3471,16 @@
 			isa = PBXGroup;
 			children = (
 				BBB59A30228CF8CA0029D3D0 /* YXHomeXueJiaPinPaiLastDetailViewController.h */,
+				BBB59A63228CF8CA0029D3D0 /* YXHomeXueJiaPinPaiLastDetailViewController.m */,
 				BBB59A31228CF8CA0029D3D0 /* YXHomeLastDetailView.h */,
-				BBB59A32228CF8CA0029D3D0 /* YXHomeLastListTableViewCell.m */,
-				BBB59A33228CF8CA0029D3D0 /* 我来点评 */,
+				BBB59A65228CF8CA0029D3D0 /* YXHomeLastDetailView.m */,
 				BBB59A37228CF8CA0029D3D0 /* YXHomeLastDetailView.xib */,
+				BBB59A64228CF8CA0029D3D0 /* YXHomeLastListTableViewCell.h */,
+				BBB59A32228CF8CA0029D3D0 /* YXHomeLastListTableViewCell.m */,
 				BBB59A38228CF8CA0029D3D0 /* YXHomeLastListTableViewCell.xib */,
+				BBB59A33228CF8CA0029D3D0 /* 我来点评 */,
 				BBB59A39228CF8CA0029D3D0 /* 查看更多 */,
 				BBB59A3C228CF8CA0029D3D0 /* 最新评论 */,
-				BBB59A63228CF8CA0029D3D0 /* YXHomeXueJiaPinPaiLastDetailViewController.m */,
-				BBB59A64228CF8CA0029D3D0 /* YXHomeLastListTableViewCell.h */,
-				BBB59A65228CF8CA0029D3D0 /* YXHomeLastDetailView.m */,
 			);
 			path = "详情的详情";
 			sourceTree = "<group>";

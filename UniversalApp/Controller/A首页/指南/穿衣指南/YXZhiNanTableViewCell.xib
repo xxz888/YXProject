@@ -55,23 +55,36 @@
                             <constraint firstAttribute="height" constant="1" id="MQf-x3-A6z"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(1)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rww-LX-NHc">
+                        <rect key="frame" x="40" y="10" width="50" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="OIw-e0-ZhE"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="tTM-6a-Chu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="0Ob-iG-AcJ"/>
                     <constraint firstAttribute="trailing" secondItem="JFu-KG-Q4R" secondAttribute="trailing" id="31h-hJ-pqu"/>
                     <constraint firstItem="g0f-6r-CpJ" firstAttribute="top" secondItem="tTM-6a-Chu" secondAttribute="bottom" constant="5" id="FMj-Aw-bdJ"/>
+                    <constraint firstItem="Rww-LX-NHc" firstAttribute="height" secondItem="tTM-6a-Chu" secondAttribute="height" id="GXM-Ah-qxk"/>
                     <constraint firstItem="g0f-6r-CpJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="M86-Ao-t0P"/>
                     <constraint firstItem="tTM-6a-Chu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="SBK-by-WxL"/>
                     <constraint firstItem="JFu-KG-Q4R" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="VOb-ZD-v0E"/>
                     <constraint firstItem="abe-Hc-EVt" firstAttribute="top" secondItem="g0f-6r-CpJ" secondAttribute="bottom" constant="5" id="YA9-33-rpY"/>
+                    <constraint firstItem="Rww-LX-NHc" firstAttribute="centerY" secondItem="tTM-6a-Chu" secondAttribute="centerY" id="YhT-wT-Fwz"/>
                     <constraint firstAttribute="bottom" secondItem="JFu-KG-Q4R" secondAttribute="bottom" id="m2g-qd-vB1"/>
                     <constraint firstAttribute="trailing" secondItem="abe-Hc-EVt" secondAttribute="trailing" id="suJ-Bb-wXw"/>
                     <constraint firstAttribute="trailing" secondItem="g0f-6r-CpJ" secondAttribute="trailing" id="wE3-5j-MU2"/>
                     <constraint firstItem="abe-Hc-EVt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="yXv-8I-BHt"/>
+                    <constraint firstItem="Rww-LX-NHc" firstAttribute="leading" secondItem="tTM-6a-Chu" secondAttribute="trailing" constant="2" id="z8o-jN-Bo6"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="countLbl" destination="Rww-LX-NHc" id="o5c-BP-ywc"/>
                 <outlet property="titleLbl" destination="tTM-6a-Chu" id="eGr-lk-FFE"/>
                 <outlet property="yxCollectionView" destination="abe-Hc-EVt" id="GzM-0t-DKP"/>
             </connections>

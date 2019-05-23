@@ -37,6 +37,20 @@
 //    [_fly2 startGIF];
 //    [_fly3 startGIF];
     _scrollView.delegate = self;
+    
+}
+-(void)addBackBtn{
+    UIButton * btn = [UIButton buttonWithType:0];
+    btn.frame = CGRectMake(20, 60, 30, 30);
+    [btn setImage:[UIImage imageNamed:@"返回圆"] forState:UIControlStateNormal];
+    [btn setTitleColor:KBlueColor forState:UIControlStateNormal];
+    btn.backgroundColor = KClearColor;
+    [self.view addSubview:btn];
+    
+    [btn addTarget:self action:@selector(createBackAction:) forControlEvents:UIControlEventTouchUpInside];
+}
+-(void)createBackAction:(UIButton *)btn{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -70,6 +84,7 @@
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.delegate = self;
     [self requestZhiNanGet];
+    [self addBackBtn];
 
     
 

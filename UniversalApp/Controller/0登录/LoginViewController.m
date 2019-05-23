@@ -103,21 +103,32 @@
         if (success) {
             [weakself closeViewAAA];
         }else{
-            //第一次登录,请绑定手机号.
-            DLog(@"登录失败：%@", des);
             YXBindPhoneViewController * VC = [[YXBindPhoneViewController alloc]init];
             VC.title = @"绑定手机号";
             RootNavigationController *nav = [[RootNavigationController alloc]initWithRootViewController:VC];
-            
             VC.bindBlock = ^{
                 [weakself closeViewAAA];
             };
             VC.whereCome = NO;
             VC.unique_id = des;
-//            [weakself.navigationController pushViewController:nav animated:YES];
-            
-            
-            
+            [weakself presentViewController:nav animated:YES completion:nil];
+        }
+    }];
+}
+-(void)QQLogin{
+    kWeakSelf(self);
+    [userManager login:kUserLoginTypeQQ completion:^(BOOL success, NSString *des) {
+        if (success) {
+            [weakself closeViewAAA];
+        }else{
+            YXBindPhoneViewController * VC = [[YXBindPhoneViewController alloc]init];
+            VC.title = @"绑定手机号";
+            RootNavigationController *nav = [[RootNavigationController alloc]initWithRootViewController:VC];
+            VC.bindBlock = ^{
+                [weakself closeViewAAA];
+            };
+            VC.whereCome = NO;
+            VC.unique_id = des;
             [weakself presentViewController:nav animated:YES completion:nil];
         }
     }];
@@ -128,18 +139,20 @@
         controller = controller.presentingViewController;
     }
     [controller dismissViewControllerAnimated:NO completion:^{
-        [QMUITips showSucceed:@"登录成功"];
-        [[AppDelegate shareAppDelegate].mainTabBar setSelectedIndex:0];
-
-    }];
-}
--(void)QQLogin{
-    [userManager login:kUserLoginTypeQQ completion:^(BOOL success, NSString *des) {
-        if (success) {
-            DLog(@"登录成功");
+        
+        
+        if ([userManager loadUserInfo]) {
+            [QMUITips showSucceed:@"登录成功"];
+            [[AppDelegate shareAppDelegate].mainTabBar setSelectedIndex:0];
         }else{
-            DLog(@"登录失败：%@", des);
+            [QMUITips showSucceed:@"绑定成功,请重新登录"];
+            KPostNotification(KNotificationLoginStateChange, @NO);
         }
+        
+        
+        
+
+
     }];
 }
 
@@ -232,6 +245,7 @@
     [self WXLogin];
 }
 - (IBAction)qqLoginAction:(id)sender {
-    //[QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
+    [self QQLogin];
+
 }
 @end

@@ -257,7 +257,7 @@ static QMUIMoreOperationController *moreOperationViewControllerAppearance;
     QMUIModalPresentationViewController *modalPresentationViewController = [[QMUIModalPresentationViewController alloc] init];
     modalPresentationViewController.delegate = self;
     modalPresentationViewController.maximumContentViewWidth = self.contentMaximumWidth;
-    modalPresentationViewController.contentViewMargins = UIEdgeInsetsMake(self.contentEdgeMargin, self.contentEdgeMargin, self.contentEdgeMargin, self.contentEdgeMargin);
+    modalPresentationViewController.contentViewMargins = UIEdgeInsetsMake(self.contentEdgeMargin, 5, 5, 5);
     modalPresentationViewController.contentViewController = self;
     
     __weak __typeof(modalPresentationViewController)weakModalController = modalPresentationViewController;

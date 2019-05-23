@@ -73,7 +73,6 @@
 }
 -(void)initTableView{
     [self.navigationController.navigationBar setHidden:NO];
-    self.title = @"穿衣指南";
     self.dataArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNanTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXZhiNanTableViewCell"];
     

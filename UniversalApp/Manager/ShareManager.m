@@ -125,11 +125,8 @@ SINGLETON_FOR_CLASS(ShareManager);
         shareObject.webpageUrl = @"http://www.thegdlife.com/jumpMarket.html";
 
     }
-  
-    
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;
-    
     //调用分享接口
     [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:nil completion:^(id data, NSError *error) {
         if (error) {
@@ -141,12 +138,10 @@ SINGLETON_FOR_CLASS(ShareManager);
                 UMSocialLogInfo(@"response message is %@",resp.message);
                 //第三方原始返回的数据
                 UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
-                
             }else{
                 UMSocialLogInfo(@"response data is %@",data);
             }
         }
-        //[self alertWithError:error];
     }];
 }
 -(NSString*)dictionaryToJson:(NSDictionary *)dic
@@ -446,9 +441,20 @@ SINGLETON_FOR_CLASS(ShareManager);
     NSRange range1 = [text rangeOfString:tag];
     [attributedString addAttribute:NSForegroundColorAttributeName value:YXRGBAColor(10, 96, 254) range:range1];
     label.attributedText = attributedString;
-    
-    
-    
+}
++(void)setLineSpace_Price_RedColor:(CGFloat)lineSpace withText:(NSString *)text inLabel:(UILabel *)label tag:(NSString *)tag{
+    if (!text || !label) {
+        return;
+    }
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = lineSpace;  //设置行间距
+    paragraphStyle.lineBreakMode =NSLineBreakByCharWrapping;
+    paragraphStyle.alignment = label.textAlignment;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [text length])];
+    NSRange range1 = [text rangeOfString:tag];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:YXRGBAColor(255, 51, 51) range:range1];
+    label.attributedText = attributedString;
 }
 +(CGFloat)inTextOutHeight:(NSString *)string lineSpace:(CGFloat)lineSpacing fontSize:(CGFloat)fontSize{
     if (string.length == 0) {
