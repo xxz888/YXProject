@@ -29,7 +29,7 @@
 }
 -(void)requestMyXueJia_CollectionListGet{
     kWeakSelf(self);
-    [YX_MANAGER requestMyXueJia_CollectionListGet:@"" success:^(id object) {
+    [YX_MANAGER requestMyXueJia_CollectionListGet:@"0/1" success:^(id object) {
         weakself.dicData = [NSMutableDictionary dictionaryWithDictionary:@{@"data":object}];
         [weakself.tableView reloadData];
     }];

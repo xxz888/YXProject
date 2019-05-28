@@ -53,4 +53,13 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
+
+
+-(void)requestCollect_optionGet:YX_BLOCK{
+    NSString * url = @"/pub/collect_option/";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
 @end

@@ -62,4 +62,5 @@ SINGLETON_FOR_HEADER(ShareManager)
 + (NSString *)adaptWebViewForHtml:(NSString *) htmlStr;
 +(void)setLineSpace_Price:(CGFloat)lineSpace withText:(NSString *)text inLabel:(UILabel *)label tag:(NSString *)tag;
 +(void)setLineSpace_Price_RedColor:(CGFloat)lineSpace withText:(NSString *)text inLabel:(UILabel *)label tag:(NSString *)tag;
++(CGFloat)inTextZhiNanOutHeight:(NSString *)str lineSpace:(CGFloat)lineSpacing fontSize:(CGFloat)fontSize;
 @end

@@ -295,8 +295,8 @@
 -(void)clickLikeBtn:(BOOL)isZan cigar_id:(NSString *)cigar_id likeBtn:(nonnull UIButton *)likeBtn{
     kWeakSelf(self);
     if ([userManager loadUserInfo]) {
-        [YX_MANAGER requestCollect_cigarPOST:@{@"cigar_id":cigar_id} success:^(id object) {
-            [likeBtn setBackgroundImage:isZan ? _selImage:_unImage forState:UIControlStateNormal];
+        
+        [YXPLUS_MANAGER requestCollect_optionGet:[@"1/" append:cigar_id] success:^(id object) {
             [weakself requestCigar_brand_details];
         }];
     }else{
@@ -330,10 +330,8 @@
 -(void)requestMy_concern_cigar{
     kWeakSelf(self);
     NSDictionary * cellData = self.dicStartData;
-    [YX_MANAGER requestMy_concern_cigarPOST:@{@"cigar_brand_id":cellData[@"id"]} success:^(id object) {
+    [YXPLUS_MANAGER requestCollect_optionGet:[@"2/" append:kGetString(cellData[@"id"])] success:^(id object) {
         [weakself requestCigar_brand_details];
-//        BOOL isGuanZhu = [weakself.dicData[@"is_concern"] integerValue] == 1;
-//        [ShareManager setGuanZhuStatus:weakself.section1GuanZhuBtn status:isGuanZhu];
     }];
 }
 

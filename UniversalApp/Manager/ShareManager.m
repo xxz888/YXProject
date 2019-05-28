@@ -344,10 +344,10 @@ SINGLETON_FOR_CLASS(ShareManager);
 +(void)setGuanZhuStatus:(UIButton *)btn status:(BOOL)statusBool alertView:(BOOL)isAlertView{
      if (statusBool) {
         [btn setTitle:@"关注" forState:UIControlStateNormal];
-         isAlertView ? [QMUITips showSucceed:@"取消关注成功"] : nil;
+         isAlertView ? [QMUITips showSucceed:@"操作成功"] : nil;
     }else{
         [btn setTitle:@"已关注" forState:UIControlStateNormal];
-        isAlertView ?  [QMUITips showSucceed:@"关注成功"] : nil;
+        isAlertView ?  [QMUITips showSucceed:@"操作成功"] : nil;
 
     }
     [btn setTitleColor:A_COlOR forState:0];
@@ -467,6 +467,24 @@ SINGLETON_FOR_CLASS(ShareManager);
     paraStyle.lineSpacing = lineSpacing;
     NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:fontSize], NSParagraphStyleAttributeName:paraStyle,NSParagraphStyleAttributeName:attributedString};
     CGSize size = [string boundingRectWithSize:CGSizeMake(KScreenWidth-20, MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
+    return  ceil(size.height);
+}
++(CGFloat)inTextZhiNanOutHeight:(NSString *)str lineSpace:(CGFloat)lineSpacing fontSize:(CGFloat)fontSize{
+    if (str.length == 0) {
+        return 0;
+    }
+    
+    NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:str];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = lineSpacing; // 设置行间距
+    paragraphStyle.alignment = NSTextAlignmentLeft; //设置两端对齐显示
+    NSDictionary *dic = @{NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:18.f]};
+    
+    
+    [attributedStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedStr.length)];
+    CGSize size = [str boundingRectWithSize:CGSizeMake(KScreenWidth-20, MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
+    
+    
     return  ceil(size.height);
 }
 + (void)setBorderinView:(UIView *)view{

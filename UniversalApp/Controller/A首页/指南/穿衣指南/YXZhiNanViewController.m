@@ -8,7 +8,7 @@
 
 #import "YXZhiNanViewController.h"
 #import "YXZhiNanTableViewCell.h"
-#import "HDRootViewController.h"
+#import "YXZhiNanDetailViewController.h"
 
 @interface YXZhiNanViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) NSMutableArray * dataArray;
@@ -17,12 +17,15 @@
 @end
 
 @implementation YXZhiNanViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setHidden:NO];
+    [self requestZhiNanGet];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initTableView];
     [self addRefreshView:self.yxTableView];
-    [self requestZhiNanGet];
 }
 -(void)headerRereshing{
     [super headerRereshing];
@@ -62,7 +65,7 @@
     kWeakSelf(self);
     //block
     cell.clickCollectionItemBlock = ^(NSDictionary * dic) {
-        HDRootViewController * vc = [[HDRootViewController alloc]init];
+        YXZhiNanDetailViewController * vc = [[YXZhiNanDetailViewController alloc]init];
         vc.startDic = [NSDictionary dictionaryWithDictionary:dic];
         [weakself.navigationController pushViewController:vc animated:YES];
     };

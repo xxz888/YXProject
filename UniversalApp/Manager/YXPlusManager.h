@@ -15,5 +15,6 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 @interface YXPlusManager : NSObject
 + (instancetype)sharedInstance;
 -(void)requestZhiNan1Get:YX_BLOCK;
+-(void)requestCollect_optionGet:YX_BLOCK;
 @end
 
