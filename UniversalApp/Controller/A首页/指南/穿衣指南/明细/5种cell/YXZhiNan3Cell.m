@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    ViewRadius(self.photoImgView, 5);
 }
 -(void)setCellData:(NSDictionary *)dic{
     NSString * str = [(NSMutableString *)dic[@"detail"] replaceAll:@" " target:@"%20"];

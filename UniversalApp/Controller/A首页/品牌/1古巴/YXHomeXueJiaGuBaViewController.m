@@ -161,9 +161,7 @@
         YXHomeXueJiaPinPaiDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiDetailViewController"];
         
         VC.dicData = [NSMutableDictionary dictionaryWithDictionary:object];
-        
-        
-        
+
         if (isHot) {
             VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:self.hotDataArray[indexPath.row]];
         }else{

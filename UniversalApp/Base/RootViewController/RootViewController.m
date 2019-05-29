@@ -145,7 +145,6 @@
         [nnnArray addObjectsFromArray:obj];
     }else{
         if ([obj count] == 0) {
-//            [QMUITips showInfo:REFRESH_NO_DATA inView:self.view hideAfterDelay:1];
             [_yxTableView.mj_footer endRefreshing];
         }
         nnnArray = [NSMutableArray arrayWithArray:[nnnArray arrayByAddingObjectsFromArray:obj]];
@@ -284,7 +283,7 @@
         
         if (isLeft) {
             [btn setContentEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 10)];
-                 [btn setImageEdgeInsets:UIEdgeInsetsMake(5.5, 0, 5.5, 0)];
+            [btn setImageEdgeInsets:UIEdgeInsetsMake(5.5, 0, 5.5, 0)];
         }else{
             [btn setContentEdgeInsets:UIEdgeInsetsMake(0, 10, 0, -10)];
         }

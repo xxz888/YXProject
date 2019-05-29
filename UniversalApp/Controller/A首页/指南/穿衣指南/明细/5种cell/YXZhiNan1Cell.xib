@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjj-oR-4J5">
-                        <rect key="frame" x="10" y="10" width="15" height="25"/>
+                        <rect key="frame" x="10" y="15" width="15" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="WhF-bj-WPY"/>
                         </constraints>
@@ -38,7 +38,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="mjj-oR-4J5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="RA5-ey-daO"/>
-                    <constraint firstItem="mjj-oR-4J5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="d4s-Vp-yh2"/>
+                    <constraint firstItem="mjj-oR-4J5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="d4s-Vp-yh2"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>

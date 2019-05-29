@@ -254,6 +254,9 @@
 		BB98327F2202C9350048D103 /* html in Resources */ = {isa = PBXBuildFile; fileRef = BB98327E2202C9340048D103 /* html */; };
 		BB9832852202CD9A0048D103 /* XLDouYinLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9832832202CD9A0048D103 /* XLDouYinLoading.m */; };
 		BB9832872202D77C0048D103 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB9832862202D77C0048D103 /* Images.xcassets */; };
+		BB98329A229E165A00894FAF /* YXMineMyCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB983299229E165A00894FAF /* YXMineMyCollectionViewController.xib */; };
+		BB98329E229E190000894FAF /* YXMineMyCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB98329C229E190000894FAF /* YXMineMyCollectionTableViewCell.m */; };
+		BB98329F229E190000894FAF /* YXMineMyCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB98329D229E190000894FAF /* YXMineMyCollectionTableViewCell.xib */; };
 		BB9ECD4C228002EA00A12952 /* ZInputToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9ECD48228002E900A12952 /* ZInputToolbar.m */; };
 		BB9ECD4D228002EA00A12952 /* UIView+LSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9ECD49228002E900A12952 /* UIView+LSExtension.m */; };
 		BB9ECD502285211600A12952 /* UIScrollView+FanHui.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9ECD4F2285211600A12952 /* UIScrollView+FanHui.m */; };
@@ -420,14 +423,6 @@
 		BBB59B3D228CF92D0029D3D0 /* YXHomeXueJiaHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB59B37228CF92D0029D3D0 /* YXHomeXueJiaHeaderView.xib */; };
 		BBB59B46228D02B70029D3D0 /* YXHomeXueJiaToolsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB59B44228D02B70029D3D0 /* YXHomeXueJiaToolsTableViewCell.m */; };
 		BBB59B47228D02B70029D3D0 /* YXHomeXueJiaToolsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB59B45228D02B70029D3D0 /* YXHomeXueJiaToolsTableViewCell.xib */; };
-		BBB59B64228E5BB10029D3D0 /* HDRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB59B51228E5BB00029D3D0 /* HDRootViewController.m */; };
-		BBB59B65228E5BB10029D3D0 /* UIImageView+MyImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB59B55228E5BB00029D3D0 /* UIImageView+MyImageView.m */; };
-		BBB59B66228E5BB10029D3D0 /* UIButton+MyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB59B57228E5BB00029D3D0 /* UIButton+MyButton.m */; };
-		BBB59B67228E5BB10029D3D0 /* butterfly.gif in Resources */ = {isa = PBXBuildFile; fileRef = BBB59B58228E5BB00029D3D0 /* butterfly.gif */; };
-		BBB59B68228E5BB10029D3D0 /* ImageContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB59B5A228E5BB00029D3D0 /* ImageContentView.m */; };
-		BBB59B69228E5BB10029D3D0 /* GIFImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB59B5D228E5BB00029D3D0 /* GIFImageView.m */; };
-		BBB59B6A228E5BB10029D3D0 /* UIImageView+MyImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB59B61228E5BB10029D3D0 /* UIImageView+MyImageView.m */; };
-		BBB59B6B228E5BB10029D3D0 /* UIButton+MyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB59B63228E5BB10029D3D0 /* UIButton+MyButton.m */; };
 		BBB59B78228E8D200029D3D0 /* YXZhiNanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB59B76228E8D200029D3D0 /* YXZhiNanViewController.m */; };
 		BBB59B79228E8D200029D3D0 /* YXZhiNanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB59B77228E8D200029D3D0 /* YXZhiNanViewController.xib */; };
 		BBB59B7D228E972B0029D3D0 /* YXZhiNanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB59B7B228E972B0029D3D0 /* YXZhiNanTableViewCell.m */; };
@@ -1062,6 +1057,10 @@
 		BB9832832202CD9A0048D103 /* XLDouYinLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLDouYinLoading.m; sourceTree = "<group>"; };
 		BB9832842202CD9A0048D103 /* XLDouYinLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLDouYinLoading.h; sourceTree = "<group>"; };
 		BB9832862202D77C0048D103 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BB983299229E165A00894FAF /* YXMineMyCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineMyCollectionViewController.xib; sourceTree = "<group>"; };
+		BB98329B229E190000894FAF /* YXMineMyCollectionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineMyCollectionTableViewCell.h; sourceTree = "<group>"; };
+		BB98329C229E190000894FAF /* YXMineMyCollectionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineMyCollectionTableViewCell.m; sourceTree = "<group>"; };
+		BB98329D229E190000894FAF /* YXMineMyCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineMyCollectionTableViewCell.xib; sourceTree = "<group>"; };
 		BB9ECD48228002E900A12952 /* ZInputToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZInputToolbar.m; sourceTree = "<group>"; };
 		BB9ECD49228002E900A12952 /* UIView+LSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LSExtension.m"; sourceTree = "<group>"; };
 		BB9ECD4A228002E900A12952 /* UIView+LSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LSExtension.h"; sourceTree = "<group>"; };
@@ -1349,21 +1348,6 @@
 		BBB59B43228D02B70029D3D0 /* YXHomeXueJiaToolsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaToolsTableViewCell.h; sourceTree = "<group>"; };
 		BBB59B44228D02B70029D3D0 /* YXHomeXueJiaToolsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaToolsTableViewCell.m; sourceTree = "<group>"; };
 		BBB59B45228D02B70029D3D0 /* YXHomeXueJiaToolsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHomeXueJiaToolsTableViewCell.xib; sourceTree = "<group>"; };
-		BBB59B51228E5BB00029D3D0 /* HDRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDRootViewController.m; sourceTree = "<group>"; };
-		BBB59B54228E5BB00029D3D0 /* UIButton+MyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+MyButton.h"; sourceTree = "<group>"; };
-		BBB59B55228E5BB00029D3D0 /* UIImageView+MyImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+MyImageView.m"; sourceTree = "<group>"; };
-		BBB59B56228E5BB00029D3D0 /* UIImageView+MyImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+MyImageView.h"; sourceTree = "<group>"; };
-		BBB59B57228E5BB00029D3D0 /* UIButton+MyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+MyButton.m"; sourceTree = "<group>"; };
-		BBB59B58228E5BB00029D3D0 /* butterfly.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = butterfly.gif; sourceTree = "<group>"; };
-		BBB59B5A228E5BB00029D3D0 /* ImageContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageContentView.m; sourceTree = "<group>"; };
-		BBB59B5B228E5BB00029D3D0 /* GIFImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIFImageView.h; sourceTree = "<group>"; };
-		BBB59B5C228E5BB00029D3D0 /* ImageContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageContentView.h; sourceTree = "<group>"; };
-		BBB59B5D228E5BB00029D3D0 /* GIFImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIFImageView.m; sourceTree = "<group>"; };
-		BBB59B5E228E5BB10029D3D0 /* HDRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDRootViewController.h; sourceTree = "<group>"; };
-		BBB59B60228E5BB10029D3D0 /* UIButton+MyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+MyButton.h"; sourceTree = "<group>"; };
-		BBB59B61228E5BB10029D3D0 /* UIImageView+MyImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+MyImageView.m"; sourceTree = "<group>"; };
-		BBB59B62228E5BB10029D3D0 /* UIImageView+MyImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+MyImageView.h"; sourceTree = "<group>"; };
-		BBB59B63228E5BB10029D3D0 /* UIButton+MyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+MyButton.m"; sourceTree = "<group>"; };
 		BBB59B75228E8D200029D3D0 /* YXZhiNanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXZhiNanViewController.h; sourceTree = "<group>"; };
 		BBB59B76228E8D200029D3D0 /* YXZhiNanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXZhiNanViewController.m; sourceTree = "<group>"; };
 		BBB59B77228E8D200029D3D0 /* YXZhiNanViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXZhiNanViewController.xib; sourceTree = "<group>"; };
@@ -2691,6 +2675,10 @@
 			children = (
 				BB928F6D21FAD1410090A044 /* YXMineMyCollectionViewController.h */,
 				BB928F6E21FAD1410090A044 /* YXMineMyCollectionViewController.m */,
+				BB983299229E165A00894FAF /* YXMineMyCollectionViewController.xib */,
+				BB98329B229E190000894FAF /* YXMineMyCollectionTableViewCell.h */,
+				BB98329C229E190000894FAF /* YXMineMyCollectionTableViewCell.m */,
+				BB98329D229E190000894FAF /* YXMineMyCollectionTableViewCell.xib */,
 			);
 			path = "我的收藏";
 			sourceTree = "<group>";
@@ -3899,55 +3887,8 @@
 				BBABDF22229BB15C0046683A /* YXZhiNanDetailHeaderView.m */,
 				BBABDF24229BB16E0046683A /* YXZhiNanDetailHeaderView.xib */,
 				BBABDF30229BC3190046683A /* 5种cell */,
-				BBB59B5E228E5BB10029D3D0 /* HDRootViewController.h */,
-				BBB59B51228E5BB00029D3D0 /* HDRootViewController.m */,
-				BBB59B5F228E5BB10029D3D0 /* General */,
-				BBB59B52228E5BB00029D3D0 /* Resource */,
-				BBB59B59228E5BB00029D3D0 /* View */,
 			);
 			path = "明细";
-			sourceTree = "<group>";
-		};
-		BBB59B52228E5BB00029D3D0 /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				BBB59B53228E5BB00029D3D0 /* General */,
-				BBB59B58228E5BB00029D3D0 /* butterfly.gif */,
-			);
-			path = Resource;
-			sourceTree = "<group>";
-		};
-		BBB59B53228E5BB00029D3D0 /* General */ = {
-			isa = PBXGroup;
-			children = (
-				BBB59B54228E5BB00029D3D0 /* UIButton+MyButton.h */,
-				BBB59B55228E5BB00029D3D0 /* UIImageView+MyImageView.m */,
-				BBB59B56228E5BB00029D3D0 /* UIImageView+MyImageView.h */,
-				BBB59B57228E5BB00029D3D0 /* UIButton+MyButton.m */,
-			);
-			path = General;
-			sourceTree = "<group>";
-		};
-		BBB59B59228E5BB00029D3D0 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				BBB59B5A228E5BB00029D3D0 /* ImageContentView.m */,
-				BBB59B5B228E5BB00029D3D0 /* GIFImageView.h */,
-				BBB59B5C228E5BB00029D3D0 /* ImageContentView.h */,
-				BBB59B5D228E5BB00029D3D0 /* GIFImageView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		BBB59B5F228E5BB10029D3D0 /* General */ = {
-			isa = PBXGroup;
-			children = (
-				BBB59B60228E5BB10029D3D0 /* UIButton+MyButton.h */,
-				BBB59B61228E5BB10029D3D0 /* UIImageView+MyImageView.m */,
-				BBB59B62228E5BB10029D3D0 /* UIImageView+MyImageView.h */,
-				BBB59B63228E5BB10029D3D0 /* UIButton+MyButton.m */,
-			);
-			path = General;
 			sourceTree = "<group>";
 		};
 		BBB59B71228E8C520029D3D0 /* 雪茄 */ = {
@@ -5095,7 +5036,6 @@
 				BB5FD87F21FEB87400B5F1A8 /* YXMineImageCollectionViewCell.xib in Resources */,
 				BBB59B1A228CF8CB0029D3D0 /* YXToolsColorTableViewCell.xib in Resources */,
 				BB29121E22156BB500FF484E /* Culebras.gif in Resources */,
-				BBB59B67228E5BB10029D3D0 /* butterfly.gif in Resources */,
 				BB5FD8A721FF529A00B5F1A8 /* YXMineAllImageTableViewCell.xib in Resources */,
 				BBD30CEA21E5CE26000D3244 /* YXMineCommon1TableViewCell.xib in Resources */,
 				BBB59AEE228CF8CB0029D3D0 /* YXHomeXueJiaDetailTableViewCell.xib in Resources */,
@@ -5190,6 +5130,7 @@
 				BBDA2D1021EB30BF00EDCCFF /* MLEmoji_Expression.bundle in Resources */,
 				BBD2C83921E0F44A00350DCD /* timeView.xib in Resources */,
 				BB70253D22129812009EBE39 /* YXFindSearchHeadView.xib in Resources */,
+				BB98329F229E190000894FAF /* YXMineMyCollectionTableViewCell.xib in Resources */,
 				293D46471ECDBB63007C64A9 /* icon_tabbar_merchant_normal@2x.png in Resources */,
 				BBD2C92E21E0F67800350DCD /* VideoOverlay@2x.png in Resources */,
 				BBD2C93221E0F67800350DCD /* ImageSelectedSmallOff@2x.png in Resources */,
@@ -5261,6 +5202,7 @@
 				BBD2C93F21E0F67800350DCD /* VideoOverlay.png in Resources */,
 				293D46481ECDBB63007C64A9 /* icon_tabbar_merchant_selected.png in Resources */,
 				BBB59ACA228CF8CB0029D3D0 /* YXGEFPinPaiLastDetailViewController.xib in Resources */,
+				BB98329A229E165A00894FAF /* YXMineMyCollectionViewController.xib in Resources */,
 				BBB59B1B228CF8CB0029D3D0 /* YXColorViewController.xib in Resources */,
 				BBD2C93521E0F67800350DCD /* ImageError@3x.png in Resources */,
 				BB5FD89021FECC0600B5F1A8 /* YXFindQuestionTableViewCell.xib in Resources */,
@@ -5350,7 +5292,6 @@
 				BBD2C91621E0F67800350DCD /* LLImagePickerModel.m in Sources */,
 				29AD6C631ED3E4D600B0879C /* AppDelegate.m in Sources */,
 				BBF45E63222FD478005C52C4 /* UDPManage.m in Sources */,
-				BBB59B6B228E5BB10029D3D0 /* UIButton+MyButton.m in Sources */,
 				290471B81F98D9A80081CCA1 /* UITabBar+CustomBadge.m in Sources */,
 				BBADE4C621F801080011E5FF /* UIColor+HEX.m in Sources */,
 				BBBFD7902222D7D300D377AC /* TOCropView.m in Sources */,
@@ -5397,7 +5338,6 @@
 				BBADE4C921F801080011E5FF /* NSAttributedString+html.m in Sources */,
 				BB6D2A3321EEC63900F5049F /* UIFont+MyFont.m in Sources */,
 				BBBFD78A2222D7D300D377AC /* TOActivityCroppedImageProvider.m in Sources */,
-				BBB59B69228E5BB10029D3D0 /* GIFImageView.m in Sources */,
 				290A98091F4ABCF6006BF882 /* XZPickView.m in Sources */,
 				BBD2C92421E0F67800350DCD /* MWTapDetectingImageView.m in Sources */,
 				BBD2C92821E0F67800350DCD /* MWGridCell.m in Sources */,
@@ -5496,7 +5436,6 @@
 				BBB59AD3228CF8CB0029D3D0 /* YXHomeScoreActionViewController.m in Sources */,
 				BBCC4B8D21E894CD00493F40 /* YXHomeQuestionFaBuViewController.m in Sources */,
 				BBADE4E121F8A6D30011E5FF /* CBSegmentView.m in Sources */,
-				BBB59B6A228E5BB10029D3D0 /* UIImageView+MyImageView.m in Sources */,
 				BB6D2A3B21EEC63900F5049F /* EmojiCell.m in Sources */,
 				BBD2C92621E0F67800350DCD /* MWTapDetectingView.m in Sources */,
 				BBB59B2A228CF8CB0029D3D0 /* YXHeaderView1.m in Sources */,
@@ -5514,7 +5453,6 @@
 				BBB59AF5228CF8CB0029D3D0 /* YXHomeSearchMoreViewController.m in Sources */,
 				BB9413E121F8B602007E800A /* IQNSArray+Sort.m in Sources */,
 				BB44F87E22140AFB0034CAEC /* HXShareScrollView.m in Sources */,
-				BBB59B65228E5BB10029D3D0 /* UIImageView+MyImageView.m in Sources */,
 				BBDA2EF421ECC22B00EDCCFF /* SearchResultsController.m in Sources */,
 				BBB59AC0228CF8CB0029D3D0 /* YXQCDJCViewController.m in Sources */,
 				BBB59B19228CF8CB0029D3D0 /* YXColorViewController.m in Sources */,
@@ -5544,6 +5482,7 @@
 				BBD2C98721E1BC0A00350DCD /* NSBundle+PYSearchExtension.m in Sources */,
 				296F9A541F0516A700909CDB /* UICollectionView+IndexPath.m in Sources */,
 				BB928F6A21FAD02B0090A044 /* YXMineMyCaoGaoViewController.m in Sources */,
+				BB98329E229E190000894FAF /* YXMineMyCollectionTableViewCell.m in Sources */,
 				BBB59AC6228CF8CB0029D3D0 /* YXHomeGaoErFuViewController.m in Sources */,
 				BBB59AC3228CF8CB0029D3D0 /* YXQCDJCHeaderView.m in Sources */,
 				BB7025442212A42C009EBE39 /* YXFindSearchResultViewController.m in Sources */,
@@ -5671,12 +5610,10 @@
 				BB5FD86A21FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m in Sources */,
 				BBD2C95621E0F72800350DCD /* DACircularProgressView.m in Sources */,
 				BBE82CF721E445CA004E4144 /* GTMBase64.m in Sources */,
-				BBB59B68228E5BB10029D3D0 /* ImageContentView.m in Sources */,
 				BBA812B921DDBE47001B5EA1 /* TBTabBar.m in Sources */,
 				BB5FD88F21FECC0600B5F1A8 /* YXFindQuestionTableViewCell.m in Sources */,
 				BBBFD78D2222D7D300D377AC /* TOCroppedImageAttributes.m in Sources */,
 				BBB59AC7228CF8CB0029D3D0 /* YXHomeGEFPinPaiViewController.m in Sources */,
-				BBB59B64228E5BB10029D3D0 /* HDRootViewController.m in Sources */,
 				BB9ECD4D228002EA00A12952 /* UIView+LSExtension.m in Sources */,
 				29FEE7681ECEC27900C81B60 /* MBProgressHUD+XY.m in Sources */,
 				BB6D2A3221EEC63900F5049F /* HCInputBar.m in Sources */,
@@ -5735,7 +5672,6 @@
 				29D3C0091F4D11A200FD3914 /* FFTagsView.m in Sources */,
 				BBB59AF7228CF8CB0029D3D0 /* SDDiscoverTableViewController.m in Sources */,
 				BBA8131021DE06BE001B5EA1 /* YXManager.m in Sources */,
-				BBB59B66228E5BB10029D3D0 /* UIButton+MyButton.m in Sources */,
 				BBD2C80B21E0F41F00350DCD /* YXMineArticleViewController.m in Sources */,
 				BBDA2D1321EB30BF00EDCCFF /* TTTAttributedLabel.m in Sources */,
 				BBBFD78F2222D7D300D377AC /* TOCropScrollView.m in Sources */,

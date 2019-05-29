@@ -424,10 +424,9 @@ SINGLETON_FOR_CLASS(ShareManager);
     NSRange range1 = [text rangeOfString:tag];
     [attributedString addAttribute:NSForegroundColorAttributeName value:YXRGBAColor(10, 96, 254) range:range1];
     label.attributedText = attributedString;
-
-    
-    
 }
+
+
 +(void)setLineSpace_Price:(CGFloat)lineSpace withText:(NSString *)text inLabel:(UILabel *)label tag:(NSString *)tag{
     if (!text || !label) {
         return;
@@ -478,7 +477,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = lineSpacing; // 设置行间距
     paragraphStyle.alignment = NSTextAlignmentLeft; //设置两端对齐显示
-    NSDictionary *dic = @{NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:18.f]};
+    NSDictionary *dic = @{NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:fontSize]};
     
     
     [attributedStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedStr.length)];

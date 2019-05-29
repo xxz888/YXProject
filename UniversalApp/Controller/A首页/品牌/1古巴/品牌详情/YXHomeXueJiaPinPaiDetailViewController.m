@@ -251,18 +251,15 @@
         if (self.whereCome) {
              YXPublishFootViewController * footVC = [[YXPublishFootViewController alloc]init];
             footVC.cigar_id = kGetString(self.dicData[@"data"][indexPath.row][@"id"]);
-//            [self.navigationController pushViewController:footVC animated:YES];
             [self presentViewController:footVC animated:YES completion:nil];
         }else{
-            kWeakSelf(self);
-  
-                
+                kWeakSelf(self);
                 UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
                 YXHomeXueJiaPinPaiLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiLastDetailViewController"];
                 VC.startDic = [NSMutableDictionary dictionaryWithDictionary:self.dicData[@"data"][indexPath.row]];
                 VC.PeiJianOrPinPai = NO;
 
-            //请求六宫格图片
+                //请求六宫格图片
                 NSString * tag = VC.startDic[@"cigar_name"];
                 [YX_MANAGER requestGetDetailListPOST:@{@"type":@(0),@"tag":tag,@"page":@(1)} success:^(id object) {
                 NSMutableArray * imageArray = [NSMutableArray array];

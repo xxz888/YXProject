@@ -10,7 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YXMineMyCollectionViewController : YXHomeXueJiaPinPaiDetailViewController
+@interface YXMineMyCollectionViewController : RootViewController
+@property (weak, nonatomic) IBOutlet UITableView *yxTableView;
+@property (weak, nonatomic) IBOutlet UIButton *btn1;
+@property (weak, nonatomic) IBOutlet UIButton *btn2;
+@property (weak, nonatomic) IBOutlet UIButton *btn3;
+@property (weak, nonatomic) IBOutlet UIButton *btn4;
+- (IBAction)btnAction:(UIButton *)sender;
 
 @end
 

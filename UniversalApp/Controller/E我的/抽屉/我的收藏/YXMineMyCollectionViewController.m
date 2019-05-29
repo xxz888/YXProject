@@ -8,118 +8,174 @@
 
 #import "YXMineMyCollectionViewController.h"
 #import "YXMinePingLunViewController.h"
-
+#import "YXMineMyCollectionTableViewCell.h"
+#import "YXHomeXueJiaPinPaiLastDetailViewController.h"
+#import "YXZhiNanDetailViewController.h"
 @interface YXMineMyCollectionViewController ()<UITableViewDelegate,UITableViewDataSource>{
-    
+    NSString * _sort;
 }
 
 @property(nonatomic,strong)NSMutableArray * dataArray;
 @end
 
 @implementation YXMineMyCollectionViewController
-
-- (void)viewDidLoad {
+-(void)viewDidLoad{
     [super viewDidLoad];
-    self.dataArray = [[NSMutableArray alloc]init];
     self.title = @"我的收藏";
-    [self requestMyXueJia_CollectionListGet];
+    [self setInitTableView];
+    _sort = @"0";
+    
+}
+-(void)requestMyCollectionListGet{
+   kWeakSelf(self);
+    NSString * par = [NSString stringWithFormat:@"%@/%@",_sort,NSIntegerToNSString(self.requestPage)];
+   [YX_MANAGER requestMyXueJia_CollectionListGet:par success:^(id object) {
+       weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
+       [weakself.yxTableView reloadData];
+   }];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setHidden:NO];
+    [self requestMyCollectionListGet];
 }
--(void)requestMyXueJia_CollectionListGet{
-    kWeakSelf(self);
-    [YX_MANAGER requestMyXueJia_CollectionListGet:@"0/1" success:^(id object) {
-        weakself.dicData = [NSMutableDictionary dictionaryWithDictionary:@{@"data":object}];
-        [weakself.tableView reloadData];
-    }];
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.dataArray.count;
 }
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return 0;
-    }
-    return [super tableView:tableView viewForHeaderInSection:section];
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 120;
 }
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [super numberOfSectionsInTableView:tableView];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [super tableView:tableView numberOfRowsInSection:section];
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0;
-}
-#pragma mark ========== 点赞按钮 ==========
--(void)clickLikeBtn:(BOOL)isZan cigar_id:(NSString *)cigar_id likeBtn:(nonnull UIButton *)likeBtn{
-    kWeakSelf(self);
-    if ([userManager loadUserInfo]) {
-        [YX_MANAGER requestCollect_cigarPOST:@{@"cigar_id":cigar_id} success:^(id object) {
-            [likeBtn setBackgroundImage:isZan ? ZAN_IMG:UNZAN_IMG forState:UIControlStateNormal];
-            [weakself requestMyXueJia_CollectionListGet];
-        }];
-    }else{
-        KPostNotification(KNotificationLoginStateChange, @NO)
-    }
-}
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    YXMineMyCollectionTableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"YXMineMyCollectionTableViewCell" forIndexPath:indexPath];
+    [cell setCellData:self.dataArray[indexPath.row]];
     return cell;
 }
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary * dic = self.dataArray[indexPath.row];
+    NSInteger sort = [dic[@"sort"] integerValue];
+    if (sort == 1) {
+        [self requestCigar:indexPath];
+    }else if (sort == 2) {
+        [self requestCigar_brand_details:kGetString(dic[@"target_id"]) indexPath:indexPath];
+    }else if (sort == 3){
+        YXZhiNanDetailViewController * vc = [[YXZhiNanDetailViewController alloc]init];
+        NSDictionary * dic3 =
+        @{
+            @"is_collect":@"1",
+            @"father_id":kGetString(dic[@"id"]),
+            @"id":kGetString(dic[@"target_id"]),
+            @"intro":dic[@"intro"],
+            @"photo":@"",
+            @"is_next":@YES,
+            @"name":dic[@"name"],
+            @"photo_detail":dic[@"photo_detail"]
+        };
+        vc.startDic = [NSDictionary dictionaryWithDictionary:dic3];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+-(void)requestCigar:(NSIndexPath *)indexPath{
+    kWeakSelf(self);
+    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+    YXHomeXueJiaPinPaiLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiLastDetailViewController"];
+    NSDictionary * dic = self.dataArray[indexPath.row];
+    VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic[@"detail"]];
+    VC.PeiJianOrPinPai = NO;
+    //请求六宫格图片
+    NSString * tag = VC.startDic[@"cigar_name"];
+    [YX_MANAGER requestGetDetailListPOST:@{@"type":@(0),@"tag":tag,@"page":@(1)} success:^(id object) {
+        NSMutableArray * imageArray = [NSMutableArray array];
+        for (NSDictionary * dic in object) {
+            [imageArray addObject:dic[@"photo1"]];
+        }
+        [VC.startDic setValue:weakself.title forKey:@"cigar_brand"];
+        VC.imageArray = [NSMutableArray arrayWithArray:imageArray];
+        [weakself.navigationController pushViewController:VC animated:YES];
+        
+    }];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+-(void)requestCigar_brand_details:(NSString *)cigar_brand_id indexPath:(NSIndexPath *)indexPath{
+    kWeakSelf(self);
+    [YX_MANAGER requestCigar_brand_detailsPOST:@{@"cigar_brand_id":@([cigar_brand_id intValue])} success:^(id object) {
+        UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+        YXHomeXueJiaPinPaiDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiDetailViewController"];
+        NSDictionary * dic = weakself.dataArray[indexPath.row];
+        VC.dicData = [NSMutableDictionary dictionaryWithDictionary:object];
+        VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:dic[@"detail"]];
+        VC.whereCome = NO;
+        [weakself.navigationController pushViewController:VC animated:YES];
+    }];
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+-(UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath  API_AVAILABLE(ios(11.0)){
+    kWeakSelf(self);
+    //删除
+    UIContextualAction *deleteRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"删除" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+        NSDictionary * dic = self.dataArray[indexPath.row];
+        [weakself delSort:kGetString(dic[@"sort"]) xxzId:kGetString(dic[@"target_id"])];
+        [weakself.dataArray removeObjectAtIndex:indexPath.row];
+        [weakself.yxTableView reloadData];
+    }];
+    deleteRowAction.backgroundColor = [UIColor redColor];
+    UISwipeActionsConfiguration *config = [UISwipeActionsConfiguration configurationWithActions:@[deleteRowAction]];
+    return config;
 }
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)headerRereshing{
+    [super headerRereshing];
+    [self requestMyCollectionListGet];
 }
-*/
+-(void)footerRereshing{
+    [super footerRereshing];
+    [self requestMyCollectionListGet];
+}
+-(void)setInitTableView{
+    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXMineMyCollectionTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineMyCollectionTableViewCell"];
+    [self addRefreshView:self.yxTableView];
+    self.dataArray = [[NSMutableArray alloc]init];
+    self.yxTableView.tableFooterView = [[UIView alloc]init];
+    ViewRadius(self.btn1, 5);
+    ViewRadius(self.btn2, 5);
+    ViewRadius(self.btn3, 5);
+    ViewRadius(self.btn4, 5);
+}
+- (IBAction)btnAction:(UIButton *)sender {
+    UIColor * selColor = YXRGBAColor(12,36,45);
+    UIColor * nolColor = YXRGBAColor(193,193,193);
+    
+    _sort = NSIntegerToNSString(sender.tag == 1 ? 3 : sender.tag == 3 ? 1 : sender.tag);
+    [self requestMyCollectionListGet];
+    
+    switch (sender.tag) {
+        case 0:{
+            self.btn1.backgroundColor = selColor;
+            self.btn2.backgroundColor = self.btn3.backgroundColor = self.btn4.backgroundColor  = nolColor;
+        }
+            break;
+        case 1:{
+            self.btn2.backgroundColor = selColor;
+            self.btn1.backgroundColor = self.btn3.backgroundColor = self.btn4.backgroundColor  = nolColor;
+        }
+            break;
+        case 2:{
+            self.btn3.backgroundColor = selColor;
+            self.btn1.backgroundColor = self.btn2.backgroundColor = self.btn4.backgroundColor  = nolColor;
+        }
+            break;
+        case 3:{
+            self.btn4.backgroundColor = selColor;
+            self.btn1.backgroundColor = self.btn2.backgroundColor = self.btn3.backgroundColor  = nolColor;
+        }
+            break;
+        default:
+            break;
+    }
+    
+}
 
+#pragma mark ========== 点赞按钮 ==========
+-(void)delSort:(NSString *)sort xxzId:(NSString *)xxzId{
+    NSString * par = [NSString stringWithFormat:@"%@/%@",sort,xxzId];
+    [YXPLUS_MANAGER requestCollect_optionGet:par success:^(id object) {}];
+}
 @end

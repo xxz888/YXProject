@@ -16,7 +16,7 @@
 @interface YXZhiNanDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
     @property (nonatomic,strong) YXZhiNanDetailHeaderView * headerView;
     @property (nonatomic,strong) NSMutableArray * dataArray;
-
+@property (nonatomic,assign) CGFloat contentHeight;
 @end
 
 @implementation YXZhiNanDetailViewController
@@ -25,8 +25,12 @@
     [super viewDidLoad];
     //初始化UI
     [self setVCUI];
-
     [self requestZhiNanGet];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setHidden:YES];
+
 }
 -(void)requestZhiNanGet{
     kWeakSelf(self);
@@ -41,9 +45,9 @@
     NSDictionary * dic = self.dataArray[indexPath.row];
     NSInteger obj = [dic[@"obj"] integerValue];
     if (obj == 1) {
-        return 35;
+        return 40;
     }else if(obj == 2) {
-        return [YXZhiNan2Cell jisuanCellHeight:dic];
+        return  [YXZhiNan2Cell jisuanCellHeight:dic];
     }else if(obj == 3 || obj == 4) {
         return 240;
     }
@@ -90,15 +94,22 @@
     _headerView.backVCBlock = ^{
         [weakself.navigationController popViewControllerAnimated:YES];
     };
+    _headerView.openBlock = ^(UIButton * btn) {
+        if ([btn.titleLabel.text isEqualToString:@"↓ 展开"]) {
+            weakself.contentHeight = [ShareManager inTextZhiNanOutHeight:weakself.startDic[@"intro"] lineSpace:9 fontSize:15];
+        }else{
+            weakself.contentHeight = 100;
+        }
+        [weakself.yxTableView reloadData];
+    };
     return _headerView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    CGFloat headerHeight = [ShareManager inTextZhiNanOutHeight:self.startDic[@"intro"] lineSpace:9 fontSize:16];
-    return 290+headerHeight;
+    return 260+self.contentHeight;;
 }
 //初始化UI
 -(void)setVCUI{
-    [self.navigationController.navigationBar setHidden:YES];
+    _contentHeight = 100;
     self.view.backgroundColor = KWhiteColor;
     self.dataArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan1Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan1Cell"];
@@ -107,4 +118,5 @@
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan4Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan4Cell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan5Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan5Cell"];
 }
+
 @end
