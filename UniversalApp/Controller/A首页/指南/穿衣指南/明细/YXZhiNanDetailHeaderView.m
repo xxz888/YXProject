@@ -10,13 +10,13 @@
 
 @implementation YXZhiNanDetailHeaderView
 
-/*
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
-    // Drawing code
+    ViewRadius(self.collVIew, 10);
 }
-*/
+
 -(void)setHeaderViewData:(NSDictionary *)dic{
     self.dic = [NSDictionary dictionaryWithDictionary:dic];
     CGFloat headerHeight = [ShareManager inTextZhiNanOutHeight:dic[@"intro"] lineSpace:9 fontSize:15];
@@ -30,7 +30,7 @@
     if ([userManager loadUserInfo]) {
         self.is_collect = [dic[@"is_collect"] integerValue] == 1;
         UIImage * likeImage = self.is_collect ? ZAN_IMG : UNZAN_IMG;
-        [self.collBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
+        [self.collBtn setImage:likeImage forState:UIControlStateNormal];
     }
 }
 -(void)setMoreColor{
@@ -53,7 +53,7 @@
     [YXPLUS_MANAGER requestCollect_optionGet:[@"3/" append:tagId] success:^(id object) {
         //赞
         UIImage * likeImage = !weakself.is_collect ? ZAN_IMG : UNZAN_IMG;
-        [weakself.collBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
+        [self.collBtn setImage:likeImage forState:UIControlStateNormal];
         self.is_collect = !self.is_collect;
     }];
 }

@@ -24,6 +24,7 @@ typedef void(^OpenBlock)(UIButton *);
 @property (nonatomic,assign) BOOL is_collect;
 @property (weak, nonatomic) IBOutlet UIButton *openBtn;
 @property (nonatomic,strong) NSDictionary * dic;
+@property (weak, nonatomic) IBOutlet UIView *collVIew;
 
 @end
 
