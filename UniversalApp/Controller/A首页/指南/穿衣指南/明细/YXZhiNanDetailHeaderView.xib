@@ -23,10 +23,10 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oce-Tg-03e">
-                    <rect key="frame" x="20" y="50" width="40" height="40"/>
+                    <rect key="frame" x="15" y="50" width="35" height="35"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="FcP-dL-D0m"/>
-                        <constraint firstAttribute="width" constant="40" id="ghr-7d-i6h"/>
+                        <constraint firstAttribute="height" constant="35" id="FcP-dL-D0m"/>
+                        <constraint firstAttribute="width" constant="35" id="ghr-7d-i6h"/>
                     </constraints>
                     <state key="normal" image="白色返回"/>
                     <connections>
@@ -123,7 +123,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="DG6-bU-j7V" secondAttribute="trailing" id="2pG-UR-UP0"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Oeo-7y-B8k" secondAttribute="trailing" id="5sf-3x-D7x"/>
-                <constraint firstItem="oce-Tg-03e" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="D4k-xb-MKm"/>
+                <constraint firstItem="oce-Tg-03e" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="D4k-xb-MKm"/>
                 <constraint firstItem="iCl-xU-AfK" firstAttribute="top" secondItem="vjI-eB-8pf" secondAttribute="bottom" constant="25" id="DX2-6x-6Zx"/>
                 <constraint firstItem="vjI-eB-8pf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="EMT-dZ-gPP"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Vdv-vh-HGP" secondAttribute="trailing" constant="20" id="Fzp-et-Kxw"/>
