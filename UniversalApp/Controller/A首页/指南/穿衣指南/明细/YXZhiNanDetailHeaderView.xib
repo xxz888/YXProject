@@ -57,7 +57,7 @@
                         <fragment content="此款结型也叫半温莎结，十分优雅及罕见">
                             <attributes>
                                 <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <font key="NSFont" size="15" name="PingFangSC-Light"/>
                                 <real key="NSKern" value="0.0"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="leftToRight" lineSpacing="9" minimumLineHeight="30" tighteningFactorForTruncation="0.0">
