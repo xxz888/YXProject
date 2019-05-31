@@ -274,11 +274,7 @@
     self.titleTagLbl.text = titleText;
     
     kWeakSelf(self);
-    //文本点击回调
-    self.titleTagLbl.tapBlock = ^(NSString *string) {
-        NSLog(@" -- %@ --",string);
-        weakself.clickTagblock(string);
-    };
+
     NSArray * indexArray = [dic[@"tag"] split:@" "];
     NSMutableArray * modelArray = [NSMutableArray array];
     for (NSString * string in indexArray) {
@@ -289,6 +285,11 @@
         model.attributeDic = @{NSForegroundColorAttributeName : [UIColor blueColor]};
         [modelArray addObject:model];
     }
+    //文本点击回调
+    self.titleTagLbl.tapBlock = ^(NSString *string) {
+        NSLog(@" -- %@ --",string);
+        weakself.clickTagblock(string);
+    };
     //label内容赋值
     [self.titleTagLbl setText:titleText attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
                tapStringArray:modelArray];

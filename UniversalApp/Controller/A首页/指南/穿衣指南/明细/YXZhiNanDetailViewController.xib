@@ -22,22 +22,54 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="qfy-bh-xLK">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <rect key="frame" x="0.0" y="-10" width="414" height="906"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Pi9-rC-SdM"/>
                         <outlet property="delegate" destination="-1" id="re7-kW-2M4"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I5g-dO-c0e">
+                    <rect key="frame" x="20" y="54" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="GbW-k0-S0X"/>
+                        <constraint firstAttribute="height" constant="30" id="YBu-Xi-TaN"/>
+                    </constraints>
+                    <inset key="contentEdgeInsets" minX="-10" minY="0.0" maxX="10" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
+                    <state key="normal" image="返回键"/>
+                    <connections>
+                        <action selector="backVC:" destination="-1" eventType="touchUpInside" id="KyK-Rb-JKo"/>
+                    </connections>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uW2-Ff-3b8">
+                    <rect key="frame" x="349" y="44" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="ZbD-Hq-iHr"/>
+                        <constraint firstAttribute="width" constant="50" id="eVR-hN-cdY"/>
+                    </constraints>
+                    <state key="normal" image="分享"/>
+                    <connections>
+                        <action selector="backVC:" destination="-1" eventType="touchUpInside" id="8Po-Oa-bnz"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="qfy-bh-xLK" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Bfn-jo-rw7"/>
-                <constraint firstItem="qfy-bh-xLK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="EOs-jC-00e"/>
+                <constraint firstItem="qfy-bh-xLK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-10" id="EOs-jC-00e"/>
                 <constraint firstAttribute="bottom" secondItem="qfy-bh-xLK" secondAttribute="bottom" id="Lg0-la-S9t"/>
+                <constraint firstItem="I5g-dO-c0e" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="10" id="S18-wK-pAU"/>
+                <constraint firstItem="uW2-Ff-3b8" firstAttribute="centerY" secondItem="I5g-dO-c0e" secondAttribute="centerY" id="VWb-TZ-sAP"/>
+                <constraint firstItem="I5g-dO-c0e" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="20" id="YoH-Wm-jWn"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="qfy-bh-xLK" secondAttribute="trailing" id="gDm-UW-GAa"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="uW2-Ff-3b8" secondAttribute="trailing" constant="15" id="kok-Pb-zcV"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
         </view>
     </objects>
+    <resources>
+        <image name="分享" width="17" height="17"/>
+        <image name="返回键" width="13.5" height="24"/>
+    </resources>
 </document>

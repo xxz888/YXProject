@@ -54,15 +54,16 @@ static NSString * const SegmentHeaderViewCollectionViewCellIdentifier = @"Segmen
     if (self = [super initWithFrame:frame]) {
         _selectedIndex = self.originalIndex;
         _height = HGCategoryViewDefaultHeight;
-        _underlineHeight = 1.8;
+        _underlineHeight = 0;
         _cellSpacing = 0;
         _leftAndRightMargin = _cellSpacing;
         self.titleNormalColor = [UIColor grayColor];
         self.titleSelectedColor = A_COlOR;
-        self.titleNomalFont = [UIFont systemFontOfSize:14];
+        self.titleNomalFont = [UIFont systemFontOfSize:12];
         self.titleSelectedFont = [UIFont systemFontOfSize:15];
         [self setupSubViews];
-        self.underline.backgroundColor = self.titleSelectedColor;
+        self.underline.backgroundColor = KClearColor;
+        self.underline.hidden = YES;
     }
     return self;
 }
@@ -246,10 +247,10 @@ static NSString * const SegmentHeaderViewCollectionViewCellIdentifier = @"Segmen
 }
 
 - (void)setUnderlineHeight:(CGFloat)underlineHeight {
-    _underlineHeight = underlineHeight;
-    [self.underline mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.height - self.underlineHeight - HG_ONE_PIXEL);
-    }];
+//    _underlineHeight = underlineHeight;
+//    [self.underline mas_updateConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(self.height - self.underlineHeight - HG_ONE_PIXEL);
+//    }];
 }
 
 - (void)setCellSpacing:(CGFloat)cellSpacing {
@@ -289,7 +290,7 @@ static NSString * const SegmentHeaderViewCollectionViewCellIdentifier = @"Segmen
 - (UIView *)separator {
     if (!_separator) {
         _separator = [[UIView alloc] init];
-        _separator.backgroundColor = [UIColor lightGrayColor];
+        _separator.backgroundColor = KClearColor;
     }
     return _separator;
 }

@@ -12,15 +12,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="200" id="KGk-i7-Jjw" customClass="YXZhiNan2Cell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="201" id="KGk-i7-Jjw" customClass="YXZhiNan2Cell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="201"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="199.5"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="200.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRG-b2-zAF">
-                        <rect key="frame" x="10" y="0.0" width="300" height="199.5"/>
+                        <rect key="frame" x="15" y="5" width="290" height="199.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="199.5" id="bdi-r9-Geu"/>
                         </constraints>
@@ -581,9 +581,9 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ZRG-b2-zAF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="0zR-EG-8FR"/>
-                    <constraint firstItem="ZRG-b2-zAF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="M7C-qV-W9q"/>
-                    <constraint firstAttribute="trailing" secondItem="ZRG-b2-zAF" secondAttribute="trailing" constant="10" id="ZRP-sY-HTV"/>
+                    <constraint firstItem="ZRG-b2-zAF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="0zR-EG-8FR"/>
+                    <constraint firstItem="ZRG-b2-zAF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="M7C-qV-W9q"/>
+                    <constraint firstAttribute="trailing" secondItem="ZRG-b2-zAF" secondAttribute="trailing" constant="15" id="ZRP-sY-HTV"/>
                     <constraint firstAttribute="bottom" secondItem="ZRG-b2-zAF" secondAttribute="bottom" id="odJ-dX-FQo"/>
                 </constraints>
             </tableViewCellContentView>
@@ -592,7 +592,7 @@
                 <outlet property="contentHeight" destination="bdi-r9-Geu" id="8Gs-ab-vgy"/>
                 <outlet property="contentLbl" destination="ZRG-b2-zAF" id="qLD-ph-gQj"/>
             </connections>
-            <point key="canvasLocation" x="-378" y="80"/>
+            <point key="canvasLocation" x="48" y="76"/>
         </tableViewCell>
     </objects>
 </document>

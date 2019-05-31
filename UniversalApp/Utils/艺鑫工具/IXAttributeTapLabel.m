@@ -141,11 +141,11 @@
                     //如果有图片，则后延识别范围
                     tmp.length += 2;
                 }
-                if (NSLocationInRange(index, tmp)) {
+//                if (NSLocationInRange(index, tmp)) {
                     if (self.tapBlock) {
                         self.tapBlock(model.string);
                     }
-                }
+//                }
             }
 //        }
     }

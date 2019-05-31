@@ -10,7 +10,7 @@
 #import "IXAttributeTapLabel.h"
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^BackVCBlock)(void);
-typedef void(^OpenBlock)(UIButton *);
+typedef void(^OpenBlock)(void);
 @interface YXZhiNanDetailHeaderView : UIView
     @property (weak, nonatomic) IBOutlet UIImageView *titleImgView;
     @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
@@ -25,6 +25,8 @@ typedef void(^OpenBlock)(UIButton *);
 @property (weak, nonatomic) IBOutlet UIButton *openBtn;
 @property (nonatomic,strong) NSDictionary * dic;
 @property (weak, nonatomic) IBOutlet UIView *collVIew;
+@property (nonatomic,assign) BOOL useBool;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleImageViewHeight;
 
 @end
 

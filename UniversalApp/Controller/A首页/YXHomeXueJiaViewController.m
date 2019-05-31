@@ -106,9 +106,9 @@
         NSArray* titles =  @[@"指南",@"品牌",@"Article",@"问答"];
         NSArray* controllers = @[vc3,vc1,vc2,vc4];
         _segmentedPageViewController = [[HGSegmentedPageViewController alloc] init];
-        _segmentedPageViewController.categoryView.titleNomalFont = [UIFont systemFontOfSize:17];
-        _segmentedPageViewController.categoryView.titleSelectedFont = [UIFont systemFontOfSize:21 weight:UIFontWeightBold];
-        
+        _segmentedPageViewController.categoryView.titleNomalFont = [UIFont systemFontOfSize:14];
+        _segmentedPageViewController.categoryView.titleSelectedFont = [UIFont systemFontOfSize:22 weight:UIFontWeightBold];
+        _segmentedPageViewController.categoryView.titleSelectedColor = kRGBA(12, 36, 45, 1.0);
         _segmentedPageViewController.pageViewControllers = controllers.copy;
         _segmentedPageViewController.categoryView.titles = titles;
         _segmentedPageViewController.categoryView.originalIndex = 0;

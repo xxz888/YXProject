@@ -27,7 +27,7 @@
 //添加轮播图
 - (void)setUpSycleScrollView:(NSArray *)photoArray height:(CGFloat)height{
     [_cycleScrollView3 removeFromSuperview];
-    _cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0,KScreenWidth-20, self.lunboView.frame.size.height) shouldInfiniteLoop:NO imageNamesGroup:@[]];
+    _cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0,KScreenWidth-30, self.lunboView.frame.size.height) shouldInfiniteLoop:NO imageNamesGroup:@[]];
     ViewRadius(_cycleScrollView3, 5);
     _cycleScrollView3.delegate = self;
     [self.lunboView addSubview:_cycleScrollView3];
