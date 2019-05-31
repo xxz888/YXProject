@@ -423,6 +423,8 @@ SINGLETON_FOR_CLASS(ShareManager);
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [text length])];
     NSRange range1 = [text rangeOfString:tag];
     [attributedString addAttribute:NSForegroundColorAttributeName value:YXRGBAColor(10, 96, 254) range:range1];
+    
+    
     label.attributedText = attributedString;
 }
 

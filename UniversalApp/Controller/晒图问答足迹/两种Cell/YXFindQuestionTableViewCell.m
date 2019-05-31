@@ -58,7 +58,7 @@
             }
             comment_number = kGetString(dic[@"comment_number"]);
         }
-        plHeight = [ShareManager inTextOutHeight:connectStr lineSpace:9 fontSize:14];
+        plHeight = [ShareManager inTextZhiNanOutHeight:connectStr lineSpace:9 fontSize:13];
     }
 
     
@@ -126,10 +126,8 @@
     self.plLbl.text = connectStr;
     
     //评论高度
-    self.pl1Height.constant = [ShareManager inTextOutHeight:self.plLbl.text lineSpace:9 fontSize:14];
-//    if ([connectStr contains:@"\n"]) {
-        [ShareManager setLineSpace:9 withText:self.plLbl.text inLabel:self.plLbl tag:@""];
-//    }
+    self.pl1Height.constant = [ShareManager inTextZhiNanOutHeight:self.plLbl.text lineSpace:9 fontSize:13];
+
     
     NSString * name1 = @"";
     NSString * name2 = @"";

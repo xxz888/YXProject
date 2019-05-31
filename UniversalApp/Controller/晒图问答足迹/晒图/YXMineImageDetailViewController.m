@@ -306,7 +306,8 @@
             }
             
         }
-        [weakself.yxTableView reloadRowsAtIndexPaths:@[weakself.currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
+        [weakself.yxTableView reloadData];
+//        [weakself.yxTableView reloadRowsAtIndexPaths:@[weakself.currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
     }];
 }
 #pragma mark ========== tableview数据 ==========

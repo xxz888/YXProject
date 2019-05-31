@@ -100,7 +100,7 @@
                 }
             }
         }
-        plHeight = [ShareManager inTextOutHeight:connectStr lineSpace:9 fontSize:14];
+        plHeight = [ShareManager inTextZhiNanOutHeight:connectStr lineSpace:9 fontSize:13];
     }
     
     CGFloat lastHeight =
@@ -241,9 +241,9 @@
     
     self.plLbl.text = connectStr;
     //评论高度
-    self.pl1Height.constant =  [ShareManager inTextOutHeight:self.plLbl.text lineSpace:9 fontSize:14];
+    self.pl1Height.constant =  [ShareManager inTextZhiNanOutHeight:self.plLbl.text lineSpace:9 fontSize:13];
 //    if ([connectStr contains:@"\n"]) {
-        [ShareManager setLineSpace:9 withText:self.plLbl.text inLabel:self.plLbl tag:dic[@"tag"]];
+//        [ShareManager setLineSpace:9 withText:self.plLbl.text inLabel:self.plLbl tag:dic[@"tag"]];
 //    }
 
     

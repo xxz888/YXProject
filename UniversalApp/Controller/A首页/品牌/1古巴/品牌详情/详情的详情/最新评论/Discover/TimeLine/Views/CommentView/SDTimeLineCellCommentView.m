@@ -91,22 +91,7 @@
 
 - (void)configTheme{
     
-    self.lee_theme
-    .LeeAddBackgroundColor(DAY , [UIColor whiteColor])
-    .LeeAddBackgroundColor(NIGHT , [UIColor blackColor]);
-    
-    _bgImageView.lee_theme
-    .LeeAddTintColor(DAY , SDColor(230, 230, 230, 1.0f))
-    .LeeAddTintColor(NIGHT , SDColor(30, 30, 30, 1.0f));
-    
-    _likeLabel.lee_theme
-    .LeeAddTextColor(DAY , [UIColor blackColor])
-    .LeeAddTextColor(NIGHT , [UIColor grayColor]);
-    
-    _likeLableBottomLine.lee_theme
-    .LeeAddBackgroundColor(DAY , SDColor(210, 210, 210, 1.0f))
-    .LeeAddBackgroundColor(NIGHT , SDColor(60, 60, 60, 1.0f));
-    
+
 }
 
 - (void)setCommentItemsArray:(NSArray *)commentItemsArray
@@ -271,7 +256,7 @@
 {
     NSString *text = model.userName;
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:text];
-    UIColor *highLightColor = [UIColor blueColor];
+    UIColor *highLightColor = KBlackColor;
     [attString setAttributes:@{NSForegroundColorAttributeName : highLightColor, NSLinkAttributeName : model.userId} range:[text rangeOfString:model.userName]];
     
     return attString;
