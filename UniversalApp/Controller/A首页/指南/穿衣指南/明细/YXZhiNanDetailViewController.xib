@@ -29,6 +29,20 @@
                         <outlet property="delegate" destination="-1" id="re7-kW-2M4"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XlT-xP-f4r">
+                    <rect key="frame" x="354" y="44" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="Z7R-Ft-yiM"/>
+                        <constraint firstAttribute="height" constant="50" id="nao-wT-lce"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                    <connections>
+                        <action selector="shareAction:" destination="-1" eventType="touchUpInside" id="JHP-LE-mzq"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="更多" translatesAutoresizingMaskIntoConstraints="NO" id="Scq-5g-FMP">
+                    <rect key="frame" x="369" y="59" width="20" height="20"/>
+                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I5g-dO-c0e">
                     <rect key="frame" x="20" y="54" width="30" height="30"/>
                     <constraints>
@@ -42,34 +56,27 @@
                         <action selector="backVC:" destination="-1" eventType="touchUpInside" id="KyK-Rb-JKo"/>
                     </connections>
                 </button>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uW2-Ff-3b8">
-                    <rect key="frame" x="349" y="44" width="50" height="50"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="ZbD-Hq-iHr"/>
-                        <constraint firstAttribute="width" constant="50" id="eVR-hN-cdY"/>
-                    </constraints>
-                    <state key="normal" image="分享"/>
-                    <connections>
-                        <action selector="backVC:" destination="-1" eventType="touchUpInside" id="8Po-Oa-bnz"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="XlT-xP-f4r" secondAttribute="trailing" constant="10" id="4oj-3O-vuD"/>
+                <constraint firstItem="Scq-5g-FMP" firstAttribute="centerY" secondItem="XlT-xP-f4r" secondAttribute="centerY" id="9oE-IJ-OO2"/>
                 <constraint firstItem="qfy-bh-xLK" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Bfn-jo-rw7"/>
                 <constraint firstItem="qfy-bh-xLK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-10" id="EOs-jC-00e"/>
+                <constraint firstItem="Scq-5g-FMP" firstAttribute="height" secondItem="XlT-xP-f4r" secondAttribute="height" multiplier="0.4" id="J9C-LV-Qwg"/>
                 <constraint firstAttribute="bottom" secondItem="qfy-bh-xLK" secondAttribute="bottom" id="Lg0-la-S9t"/>
+                <constraint firstItem="Scq-5g-FMP" firstAttribute="width" secondItem="XlT-xP-f4r" secondAttribute="width" multiplier="0.4" id="N2J-Ce-Hcd"/>
+                <constraint firstItem="Scq-5g-FMP" firstAttribute="centerX" secondItem="XlT-xP-f4r" secondAttribute="centerX" id="QEF-Ga-Ahc"/>
                 <constraint firstItem="I5g-dO-c0e" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="10" id="S18-wK-pAU"/>
-                <constraint firstItem="uW2-Ff-3b8" firstAttribute="centerY" secondItem="I5g-dO-c0e" secondAttribute="centerY" id="VWb-TZ-sAP"/>
                 <constraint firstItem="I5g-dO-c0e" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="20" id="YoH-Wm-jWn"/>
+                <constraint firstItem="XlT-xP-f4r" firstAttribute="centerY" secondItem="I5g-dO-c0e" secondAttribute="centerY" id="axS-Pb-MKX"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="qfy-bh-xLK" secondAttribute="trailing" id="gDm-UW-GAa"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="uW2-Ff-3b8" secondAttribute="trailing" constant="15" id="kok-Pb-zcV"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
         </view>
     </objects>
     <resources>
-        <image name="分享" width="17" height="17"/>
+        <image name="更多" width="64" height="64"/>
         <image name="返回键" width="13.5" height="24"/>
     </resources>
 </document>

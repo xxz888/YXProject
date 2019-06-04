@@ -3799,8 +3799,8 @@
 		BBB59A9C228CF8CB0029D3D0 /* 尺寸工具 */ = {
 			isa = PBXGroup;
 			children = (
-				BBB59A9D228CF8CB0029D3D0 /* YXHomeChiCunViewController.m */,
 				BBB59A9E228CF8CB0029D3D0 /* YXHomeChiCunViewController.h */,
+				BBB59A9D228CF8CB0029D3D0 /* YXHomeChiCunViewController.m */,
 				BBB59A9F228CF8CB0029D3D0 /* YXHomeChiCunViewController.xib */,
 			);
 			path = "尺寸工具";

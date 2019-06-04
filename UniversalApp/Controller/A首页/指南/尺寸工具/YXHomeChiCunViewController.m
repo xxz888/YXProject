@@ -34,6 +34,9 @@
     
     [self huayuan:60];
 
+    
+    
+
 }
 // slider变动时改变label值
 - (void)sliderValueChanged:(id)sender {

@@ -10,6 +10,7 @@
 #import "YXFindSearchResultViewController.h"
 #import "PYSearchViewController.h"
 #import "YXFindSearchViewController.h"
+#import "QiniuLoad.h"
 @interface YXFindViewController ()<PYSearchViewControllerDelegate,UIGestureRecognizerDelegate>{
     NSInteger page ;
     CBSegmentView * sliderSegmentView;
@@ -21,6 +22,9 @@
 @end
 
 @implementation YXFindViewController
+
+
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self forbiddenSideBack];
@@ -57,6 +61,8 @@
     //其他方法
     [self setOtherAction];
 
+    
+
 }
 
 -(void)setOtherAction{
@@ -74,6 +80,7 @@
     [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
     //请求
     [self requestFindTag];
+    
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -148,6 +155,7 @@
     return NO;
 }
 - (void)clickSearchBar{
+
             kWeakSelf(self);
     [YX_MANAGER requestGetFind_all:@"" success:^(id object) {
         NSMutableArray * hotSeaches = [[NSMutableArray alloc]init];
