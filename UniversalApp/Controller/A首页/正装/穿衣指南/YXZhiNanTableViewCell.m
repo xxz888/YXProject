@@ -51,13 +51,8 @@
 -(void)setCellData:(NSDictionary *)dic tagIndex:(NSInteger)index cellArray:(NSArray *)cellArray{
     self.dataArray = [NSMutableArray arrayWithArray:cellArray];
     self.titleLbl.text = [NSString stringWithFormat:@"0%ld/%@",index+1,dic[@"name"]];
-    CGFloat h = 60;
-    
-    if (self.dataArray.count == 3) {
-        h =  h * 2;
-    }
-    self.collHeight.constant = h;
-
+    NSInteger n = [cellArray count];
+    self.collHeight.constant = 45 * (n/2+n%2);
     [self.yxCollectionView reloadData];
 
 //    [self requestZhiNanGet:dic[@"id"]];
@@ -95,7 +90,7 @@
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     
-    return UIEdgeInsetsMake(0, 0, 0, 0);
+    return UIEdgeInsetsMake(0, 0, 0,5);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -104,7 +99,7 @@
     CGFloat cellWidth = CGRectGetWidth(self.yxCollectionView.frame);
     
 
-    return CGSizeMake((cellWidth)/2 , 60);
+    return CGSizeMake((cellWidth-10)/2 , 45);
 }
 
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{

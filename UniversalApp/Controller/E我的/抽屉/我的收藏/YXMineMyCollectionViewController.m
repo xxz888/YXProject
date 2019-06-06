@@ -10,7 +10,7 @@
 #import "YXMinePingLunViewController.h"
 #import "YXMineMyCollectionTableViewCell.h"
 #import "YXHomeXueJiaPinPaiLastDetailViewController.h"
-#import "YXZhiNanDetailViewController.h"
+#import "YXZhiNanViewController.h"
 @interface YXMineMyCollectionViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSString * _sort;
 }
@@ -58,7 +58,7 @@
     }else if (sort == 2) {
         [self requestCigar_brand_details:kGetString(dic[@"target_id"]) indexPath:indexPath];
     }else if (sort == 3){
-        YXZhiNanDetailViewController * vc = [[YXZhiNanDetailViewController alloc]init];
+        YXZhiNanViewController * vc = [[YXZhiNanViewController alloc]init];
         NSDictionary * dic3 =
         @{
             @"is_collect":@"1",

@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1tE-zp-eaX">
-                        <rect key="frame" x="15" y="25" width="290" height="200"/>
+                        <rect key="frame" x="15" y="15" width="290" height="200"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="200" id="Cj7-3J-xLU"/>
@@ -30,7 +30,7 @@
                 <constraints>
                     <constraint firstItem="1tE-zp-eaX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="CKn-Co-slO"/>
                     <constraint firstAttribute="trailing" secondItem="1tE-zp-eaX" secondAttribute="trailing" constant="15" id="JP2-yS-LZt"/>
-                    <constraint firstItem="1tE-zp-eaX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="25" id="pl1-YA-Uk4"/>
+                    <constraint firstItem="1tE-zp-eaX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="pl1-YA-Uk4"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>

@@ -10,7 +10,7 @@
 #import "YXZhiNanTableViewCell.h"
 #import "YXZhiNanDetailViewController.h"
 #import "YXZhiNanDetailHeaderView.h"
-
+#import "QiniuLoad.h"
 @interface YXZhiNanViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) NSMutableArray * dataArray;
 @property (nonatomic,strong) YXZhiNanDetailHeaderView * headerView;
@@ -87,7 +87,7 @@
     return _headerView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return KScreenWidth * 9/16 + self.contentHeight + 15;
+    return KScreenWidth * 9/16 + self.contentHeight + 25;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArray.count;
@@ -95,11 +95,10 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (self.collArray.count > 0) {
-        if ([self.collArray[indexPath.row] count] == 3) {
-            return 161;
-        }
+        NSInteger n = [self.collArray[indexPath.row] count];
+        return 45 * (n/2+n%2) + 60;
     }
-    return 101;
+    return 85;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXZhiNanTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXZhiNanTableViewCell" forIndexPath:indexPath];
@@ -128,6 +127,10 @@
     self.dataArray = [[NSMutableArray alloc]init];
     self.collArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNanTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXZhiNanTableViewCell"];
-    
+//    [self addNavigationItemWithImageNames:@[@"分享"] isLeft:NO target:self action:@selector(moreShare) tags:nil];
+    [self addNavigationItemWithTitles:@[@"分享"] isLeft:NO target:self action:@selector(moreShare) tags:nil];
+}
+-(void)moreShare{
+    [[ShareManager sharedShareManager] saveImage:self.yxTableView];
 }
 @end

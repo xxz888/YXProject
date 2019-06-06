@@ -78,7 +78,7 @@
     YXHomeXueJiaToolsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaToolsTableViewCell" forIndexPath:indexPath];
     
     NSDictionary * dic = self.titleArray[indexPath.row];
-    NSString * str1 = [(NSMutableString *)dic[@"photo_detail"] replaceAll:@" " target:@"%20"];
+    NSString * str1 = [(NSMutableString *)dic[@"photo"] replaceAll:@" " target:@"%20"];
     [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     
     cell.selectionStyle = 0;

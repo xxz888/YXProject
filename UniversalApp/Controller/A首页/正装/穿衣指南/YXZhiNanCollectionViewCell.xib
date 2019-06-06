@@ -22,27 +22,28 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gaH-vk-htj">
                         <rect key="frame" x="0.0" y="0.0" width="120" height="67"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="vQz-aI-8dN">
-                                <rect key="frame" x="6" y="9.5" width="108" height="48"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vQz-aI-8dN">
+                                <rect key="frame" x="0.0" y="5" width="120" height="62"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <attributedString key="attributedText">
                                     <fragment content="-">
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" size="17" name="PingFangSC-Regular"/>
+                                            <font key="NSFont" size="16" name="PingFangSC-Regular"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="vQz-aI-8dN" firstAttribute="height" secondItem="gaH-vk-htj" secondAttribute="height" multiplier="0.72" id="Zf2-XQ-NW1"/>
-                            <constraint firstItem="vQz-aI-8dN" firstAttribute="width" secondItem="gaH-vk-htj" secondAttribute="width" multiplier="0.9" id="cgO-DD-IFZ"/>
-                            <constraint firstItem="vQz-aI-8dN" firstAttribute="centerY" secondItem="gaH-vk-htj" secondAttribute="centerY" id="jVz-NQ-KO9"/>
-                            <constraint firstItem="vQz-aI-8dN" firstAttribute="centerX" secondItem="gaH-vk-htj" secondAttribute="centerX" id="k6e-7S-W89"/>
+                            <constraint firstItem="vQz-aI-8dN" firstAttribute="leading" secondItem="gaH-vk-htj" secondAttribute="leading" id="BUi-Ju-eIR"/>
+                            <constraint firstItem="vQz-aI-8dN" firstAttribute="top" secondItem="gaH-vk-htj" secondAttribute="top" constant="5" id="NXv-LL-DCc"/>
+                            <constraint firstAttribute="bottom" secondItem="vQz-aI-8dN" secondAttribute="bottom" id="UGo-eh-k7A"/>
+                            <constraint firstAttribute="trailing" secondItem="vQz-aI-8dN" secondAttribute="trailing" id="Zex-dJ-zUT"/>
                         </constraints>
                     </view>
                 </subviews>

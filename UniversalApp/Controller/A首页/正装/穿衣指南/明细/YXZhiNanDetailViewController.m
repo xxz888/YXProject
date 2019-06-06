@@ -44,11 +44,11 @@
     NSDictionary * dic = self.dataArray[indexPath.row];
     NSInteger obj = [dic[@"obj"] integerValue];
     if (obj == 1) {
-        return 45;
+        return 75;
     }else if(obj == 2) {
-        return  [YXZhiNan2Cell jisuanCellHeight:dic];
+        return  [YXZhiNan2Cell jisuanCellHeight:dic] + 30;
     }else if(obj == 3 || obj == 4) {
-        return 245;
+        return 230;
     }
     return 0;
 }
@@ -83,7 +83,7 @@
 }
 //初始化UI
 -(void)setVCUI{
-    self.view.backgroundColor = KWhiteColor;
+   [self addNavigationItemWithTitles:@[@"分享"] isLeft:NO target:self action:@selector(moreShare) tags:nil];    self.view.backgroundColor = KWhiteColor;
     self.title = self.startDic[@"name"];
     self.dataArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan1Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan1Cell"];
@@ -92,76 +92,8 @@
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan4Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan4Cell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan5Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan5Cell"];
 }
-- (IBAction)backVC:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+-(void)moreShare{
+    [[ShareManager sharedShareManager] saveImage:self.yxTableView];
 }
 
-
-
-
-
-
-
-- (IBAction)shareAction:(id)sender {
-    [self saveImage];
-}
-
-- (void)saveImage {
-    UIImage* viewImage = nil;
-    UITableView *scrollView = self.yxTableView;
-    UIGraphicsBeginImageContextWithOptions(scrollView.contentSize, scrollView.opaque, 0.0);
-    {
-        CGPoint savedContentOffset = scrollView.contentOffset;
-        CGRect savedFrame = scrollView.frame;
-        
-        scrollView.contentOffset = CGPointZero;
-        scrollView.frame = CGRectMake(0, 0, scrollView.contentSize.width, scrollView.contentSize.height);
-        
-        [scrollView.layer renderInContext: UIGraphicsGetCurrentContext()];
-        viewImage = UIGraphicsGetImageFromCurrentImageContext();
-        
-        scrollView.contentOffset = savedContentOffset;
-        scrollView.frame = savedFrame;
-    }
-    UIGraphicsEndImageContext();
-    kWeakSelf(self);
-    //先上传到七牛云图片  再提交服务器
-    [QiniuLoad uploadImageToQNFilePath:@[viewImage] success:^(NSString *reslut) {
-        [weakself addGuanjiaShareViewStartDic:@{@"img":reslut}];
-    } failure:^(NSString *error) {
-        NSLog(@"%@",error);
-    }];
-}
-
-
-
-
-#pragma mark ========== 分享 ==========
-- (void)addGuanjiaShareViewStartDic:(NSDictionary *)shareDic{
-    
-    QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
-    kWeakSelf(self);
-    moreOperationController.items = @[
-                                      // 第一行
-                                      @[
-                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareFriend") title:@"分享给微信好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-                                              [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_WechatSession obj:shareDic];
-                                          }],
-                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareMoment") title:@"分享到朋友圈" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-                                              [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_WechatTimeLine obj:shareDic];
-                                          }],
-                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_QQ") title:@"分享给QQ好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-                                              [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_QQ obj:shareDic];
-                                          }],
-                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-                                              [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_Qzone obj:shareDic];
-                                          }],
-                                          ],
-                                      ];
-    [moreOperationController showFromBottom];
-}
 @end
