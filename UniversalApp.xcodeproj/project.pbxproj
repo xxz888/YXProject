@@ -2976,7 +2976,7 @@
 			children = (
 				BBB59A11228CF8CA0029D3D0 /* YXHomeXueJiaViewController.h */,
 				BBB59A84228CF8CA0029D3D0 /* YXHomeXueJiaViewController.m */,
-				BBB59A88228CF8CA0029D3D0 /* 指南 */,
+				BBB59A88228CF8CA0029D3D0 /* 正装 */,
 				BBB59A1A228CF8CA0029D3D0 /* 品牌 */,
 				BBB59A77228CF8CA0029D3D0 /* Article */,
 				BBB599FB228CF8CA0029D3D0 /* 问答 */,
@@ -3751,7 +3751,7 @@
 			path = "新闻详情";
 			sourceTree = "<group>";
 		};
-		BBB59A88228CF8CA0029D3D0 /* 指南 */ = {
+		BBB59A88228CF8CA0029D3D0 /* 正装 */ = {
 			isa = PBXGroup;
 			children = (
 				BBB59A9B228CF8CB0029D3D0 /* YXHomeXueJiaToolsViewController.h */,
@@ -3767,7 +3767,7 @@
 				BBB59A90228CF8CB0029D3D0 /* 雪茄颜色 */,
 				BBB59A9C228CF8CB0029D3D0 /* 尺寸工具 */,
 			);
-			path = "指南";
+			path = "正装";
 			sourceTree = "<group>";
 		};
 		BBB59A89228CF8CA0029D3D0 /* 雪茄形状 */ = {
@@ -3883,9 +3883,6 @@
 				BBABDF1C229BB0400046683A /* YXZhiNanDetailViewController.h */,
 				BBABDF1D229BB0400046683A /* YXZhiNanDetailViewController.m */,
 				BBABDF1E229BB0400046683A /* YXZhiNanDetailViewController.xib */,
-				BBABDF21229BB15C0046683A /* YXZhiNanDetailHeaderView.h */,
-				BBABDF22229BB15C0046683A /* YXZhiNanDetailHeaderView.m */,
-				BBABDF24229BB16E0046683A /* YXZhiNanDetailHeaderView.xib */,
 				BBABDF30229BC3190046683A /* 5种cell */,
 			);
 			path = "明细";
@@ -3911,6 +3908,9 @@
 				BBB59B75228E8D200029D3D0 /* YXZhiNanViewController.h */,
 				BBB59B76228E8D200029D3D0 /* YXZhiNanViewController.m */,
 				BBB59B77228E8D200029D3D0 /* YXZhiNanViewController.xib */,
+				BBABDF21229BB15C0046683A /* YXZhiNanDetailHeaderView.h */,
+				BBABDF22229BB15C0046683A /* YXZhiNanDetailHeaderView.m */,
+				BBABDF24229BB16E0046683A /* YXZhiNanDetailHeaderView.xib */,
 				BBB59B7A228E972B0029D3D0 /* YXZhiNanTableViewCell.h */,
 				BBB59B7B228E972B0029D3D0 /* YXZhiNanTableViewCell.m */,
 				BBB59B7C228E972B0029D3D0 /* YXZhiNanTableViewCell.xib */,

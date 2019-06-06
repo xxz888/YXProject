@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+typedef void(^RefreshCellBlock)(NSArray *);
+
 typedef void(^ClickCollectionItemBlock)(NSDictionary *);
 @interface YXZhiNanTableViewCell : UITableViewCell<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionView *yxCollectionView;
@@ -18,8 +20,11 @@ typedef void(^ClickCollectionItemBlock)(NSDictionary *);
 @property (nonatomic,strong) NSDictionary * collViewDic;
 @property (nonatomic,strong) NSString * wpId;
 @property (nonatomic,strong) NSMutableArray * dataArray;
--(void)setCellData:(NSDictionary *)dic;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *collHeight;
+-(void)setCellData:(NSDictionary *)dic tagIndex:(NSInteger)index cellArray:(NSArray *)cellArray;
 @property (nonatomic,copy) ClickCollectionItemBlock clickCollectionItemBlock;
+@property (nonatomic,copy) RefreshCellBlock refreshCellBlock;
 @end
 
 NS_ASSUME_NONNULL_END

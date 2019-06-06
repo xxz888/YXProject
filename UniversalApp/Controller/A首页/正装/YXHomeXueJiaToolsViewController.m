@@ -43,10 +43,10 @@
     [self.yxTableView.mj_footer endRefreshing];
 }
 -(void)requestZhiNan1Get{
+    
     kWeakSelf(self);
-    [YXPLUS_MANAGER requestZhiNan1Get:@"1/0" success:^(id object) {
-        
-        
+    NSString * par = [NSString stringWithFormat:@"1/%@",@"5"];
+    [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
         weakself.titleArray = [weakself commonAction:object dataArray:weakself.titleArray];
         [weakself.yxTableView reloadData];
     }];
@@ -78,7 +78,7 @@
     YXHomeXueJiaToolsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaToolsTableViewCell" forIndexPath:indexPath];
     
     NSDictionary * dic = self.titleArray[indexPath.row];
-    NSString * str1 = [(NSMutableString *)dic[@"photo"] replaceAll:@" " target:@"%20"];
+    NSString * str1 = [(NSMutableString *)dic[@"photo_detail"] replaceAll:@" " target:@"%20"];
     [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     
     cell.selectionStyle = 0;

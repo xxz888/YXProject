@@ -12,8 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.collImageView.layer.masksToBounds = YES;
-    self.collImageView.layer.cornerRadius = self.collImageView.frame.size.width / 2.0;
+//    self.collImageView.layer.masksToBounds = YES;
+//    self.collImageView.layer.cornerRadius = self.collImageView.frame.size.width / 2.0;
     
 }
 

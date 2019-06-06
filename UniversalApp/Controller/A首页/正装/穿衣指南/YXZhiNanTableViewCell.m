@@ -8,8 +8,12 @@
 //17764509913
 #import "YXZhiNanTableViewCell.h"
 #import "YXZhiNanCollectionViewCell.h"
-
+@interface YXZhiNanTableViewCell()
+@end
 @implementation YXZhiNanTableViewCell
++(CGFloat)jisuanHeight{
+    return 0;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -26,7 +30,6 @@
 // Config
 - (void)baseCellConfig{
     
-
     self.dataArray = [[NSMutableArray alloc]init];
     self.yxCollectionView.delegate = self;
     self.yxCollectionView.dataSource = self;
@@ -39,16 +42,25 @@
     kWeakSelf(self);
     NSString * par = [NSString stringWithFormat:@"1/%@",wpId];
     [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
-        [weakself.dataArray removeAllObjects];
-        [weakself.dataArray addObjectsFromArray:object];
+      
         [weakself.yxCollectionView reloadData];
-        weakself.countLbl.text = [NSString stringWithFormat:@"(%ld)",weakself.dataArray.count];
 
+  
     }];
 }
--(void)setCellData:(NSDictionary *)dic{
-    self.titleLbl.text = dic[@"name"];
-    [self requestZhiNanGet:dic[@"id"]];
+-(void)setCellData:(NSDictionary *)dic tagIndex:(NSInteger)index cellArray:(NSArray *)cellArray{
+    self.dataArray = [NSMutableArray arrayWithArray:cellArray];
+    self.titleLbl.text = [NSString stringWithFormat:@"0%ld/%@",index+1,dic[@"name"]];
+    CGFloat h = 60;
+    
+    if (self.dataArray.count == 3) {
+        h =  h * 2;
+    }
+    self.collHeight.constant = h;
+
+    [self.yxCollectionView reloadData];
+
+//    [self requestZhiNanGet:dic[@"id"]];
 }
 #pragma mark - Collection Delegate
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -63,8 +75,6 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     YXZhiNanCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YXZhiNanCollectionViewCell" forIndexPath:indexPath];
     NSDictionary * dic = self.dataArray[indexPath.row];
-    NSString * str1 = [(NSMutableString *)dic[@"photo"] replaceAll:@" " target:@"%20"];
-    [cell.collImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cell.titleLbl.text = dic[@"name"];
     return cell;
 }
@@ -75,7 +85,7 @@
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
     
-    return 5;
+    return 0;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
@@ -91,7 +101,10 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     CGFloat cellHeight = CGRectGetHeight(self.yxCollectionView.frame);
-    return CGSizeMake(cellHeight , cellHeight);
+    CGFloat cellWidth = CGRectGetWidth(self.yxCollectionView.frame);
+    
+
+    return CGSizeMake((cellWidth)/2 , 60);
 }
 
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{

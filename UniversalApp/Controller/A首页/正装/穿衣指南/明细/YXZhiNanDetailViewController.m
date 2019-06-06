@@ -29,8 +29,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setHidden:YES];
-
+    [self.navigationController.navigationBar setHidden:NO];
 }
 -(void)requestZhiNanGet{
     kWeakSelf(self);
@@ -82,30 +81,10 @@
     }
     return nil;
 }
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (!_headerView) {
-        NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXZhiNanDetailHeaderView" owner:self options:nil];
-        _headerView = [nib objectAtIndex:0];
-    }
-    
-    [_headerView setHeaderViewData:self.startDic];
-
-    kWeakSelf(self);
-    _headerView.backVCBlock = ^{
-
-    };
-    _headerView.openBlock = ^(void) {
-  
-    };
-    return _headerView;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return KScreenWidth * 9/16 + self.contentHeight + 15;
-}
 //初始化UI
 -(void)setVCUI{
-    _contentHeight = [ShareManager inTextZhiNanOutHeight:self.startDic[@"intro"] lineSpace:9 fontSize:15];
     self.view.backgroundColor = KWhiteColor;
+    self.title = self.startDic[@"name"];
     self.dataArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan1Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan1Cell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan2Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan2Cell"];

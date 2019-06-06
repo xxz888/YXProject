@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjj-oR-4J5">
-                        <rect key="frame" x="15" y="20" width="15" height="25"/>
+                        <rect key="frame" x="15" y="12.5" width="15" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="WhF-bj-WPY"/>
                         </constraints>
@@ -38,14 +38,14 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="mjj-oR-4J5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="RA5-ey-daO"/>
-                    <constraint firstItem="mjj-oR-4J5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="d4s-Vp-yh2"/>
+                    <constraint firstItem="mjj-oR-4J5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="cB7-m1-UYD"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="titleLbl" destination="mjj-oR-4J5" id="HVE-qt-KFe"/>
             </connections>
-            <point key="canvasLocation" x="-80" y="24"/>
+            <point key="canvasLocation" x="117" y="23"/>
         </tableViewCell>
     </objects>
 </document>

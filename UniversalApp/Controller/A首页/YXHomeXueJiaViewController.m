@@ -101,10 +101,12 @@
         YXHomeXueJiaToolsViewController * vc3 = [[YXHomeXueJiaToolsViewController alloc]init];
         //问答
         YXHomeXueJiaQuestionViewController * vc4 = [[YXHomeXueJiaQuestionViewController alloc]init];
+        //雪茄
+    
         vc4.whereCome = TYPE_XUEJIA_1;
         //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
-        NSArray* titles =  @[@"指南",@"品牌"];
-        NSArray* controllers = @[vc3,vc1];
+        NSArray* titles =  @[@"正装",@"雪茄",@"品牌"];
+        NSArray* controllers = @[vc3,[UIViewController new],vc1];
         _segmentedPageViewController = [[HGSegmentedPageViewController alloc] init];
         _segmentedPageViewController.categoryView.titleNomalFont = [UIFont systemFontOfSize:14];
         _segmentedPageViewController.categoryView.titleSelectedFont = [UIFont systemFontOfSize:22 weight:UIFontWeightBold];
