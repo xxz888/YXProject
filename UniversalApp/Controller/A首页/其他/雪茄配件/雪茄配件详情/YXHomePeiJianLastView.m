@@ -308,7 +308,7 @@
     cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];
     
     
-    cycleScrollView3.currentPageDotColor = A_COlOR;
+    cycleScrollView3.currentPageDotColor =  kRGBA(12, 36, 45, 1.0);
     cycleScrollView3.showPageControl = YES;
     cycleScrollView3.autoScrollTimeInterval = 10000;
     cycleScrollView3.pageDotColor = YXRGBAColor(239, 239, 239);

@@ -12,7 +12,9 @@
 #import "YXZhiNan2Cell.h"
 #import "YXZhiNan3Cell.h"
 #import "YXZhiNan4Cell.h"
+#import "YXZhiNan5Cell.h"
 #import "QiniuLoad.h"
+#import "XHWebImageAutoSize.h"
 @interface YXZhiNanDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
     @property (nonatomic,strong) YXZhiNanDetailHeaderView * headerView;
     @property (nonatomic,strong) NSMutableArray * dataArray;
@@ -44,11 +46,13 @@
     NSDictionary * dic = self.dataArray[indexPath.row];
     NSInteger obj = [dic[@"obj"] integerValue];
     if (obj == 1) {
-        return 75;
+        return 90;
     }else if(obj == 2) {
         return  [YXZhiNan2Cell jisuanCellHeight:dic] + 30;
     }else if(obj == 3 || obj == 4) {
-        return 230;
+        return (KScreenWidth-30)*[dic[@"ratio"] doubleValue] + 30;
+    }else if(obj == 5){
+        return 80;
     }
     return 0;
 }
@@ -58,7 +62,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.row];
     NSInteger obj = [dic[@"obj"] integerValue];
-    if (obj == 1) {
+    if (obj == 1 ) {
         YXZhiNan1Cell * cell1 = [tableView dequeueReusableCellWithIdentifier:@"YXZhiNan1Cell" forIndexPath:indexPath];
         [cell1 setCellData:dic];
         return cell1;
@@ -74,17 +78,18 @@
         YXZhiNan4Cell * cell4 = [tableView dequeueReusableCellWithIdentifier:@"YXZhiNan4Cell" forIndexPath:indexPath];
         [cell4 setCellData:dic];
         return cell4;
-    }else if(obj == 5) {
-        YXZhiNan1Cell * cell1 = [tableView dequeueReusableCellWithIdentifier:@"YXZhiNan1Cell" forIndexPath:indexPath];
-        [cell1 setCellData:dic];
-        return cell1;
+    }else if (obj == 5) {
+        YXZhiNan5Cell * cell5 = [tableView dequeueReusableCellWithIdentifier:@"YXZhiNan5Cell" forIndexPath:indexPath];
+        [cell5 setCellData:dic];
+        return cell5;
     }
     return nil;
 }
 //初始化UI
 -(void)setVCUI{
-   [self addNavigationItemWithTitles:@[@"分享"] isLeft:NO target:self action:@selector(moreShare) tags:nil];    self.view.backgroundColor = KWhiteColor;
-    self.title = self.startDic[@"name"];
+    [self addNavigationItemWithImageNames:@[@"更多"] isLeft:NO target:self action:@selector(moreShare) tags:@[@"999"]];
+    self.view.backgroundColor = KWhiteColor;
+    self.title = self.vcTitle;
     self.dataArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan1Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan1Cell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan2Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan2Cell"];

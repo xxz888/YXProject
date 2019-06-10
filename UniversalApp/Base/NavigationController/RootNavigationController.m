@@ -28,9 +28,9 @@
     //导航栏背景图
     //    [navBar setBackgroundImage:[UIImage imageNamed:@"tabBarBj"] forBarMetrics:UIBarMetricsDefault];
     [navBar setBarTintColor:KWhiteColor];//bar背景色
-    [navBar setTintColor:KBlackColor];
-    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName :KBlackColor, NSFontAttributeName : [UIFont systemFontOfSize:17 weight:UIFontWeightBold]}];
-    [[UINavigationBar appearance] setTintColor:KBlackColor];
+    [navBar setTintColor:kRGBA(17, 17, 17, 1.0)];
+    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName :kRGBA(17, 17, 17, 1.0), NSFontAttributeName : [UIFont fontWithName:@"苹方-简" size:17]}];
+    [[UINavigationBar appearance] setTintColor:kRGBA(34, 34, 34, 1.0)];
 
     //[navBar setBackgroundImage:[UIImage imageWithColor:KWhiteColor] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
    // [navBar setShadowImage:[UIImage new]];//去掉阴影线

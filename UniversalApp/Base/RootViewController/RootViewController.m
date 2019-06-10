@@ -285,7 +285,13 @@
             [btn setContentEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 10)];
             [btn setImageEdgeInsets:UIEdgeInsetsMake(5.5, 0, 5.5, 0)];
         }else{
-            [btn setContentEdgeInsets:UIEdgeInsetsMake(0, 10, 0, -10)];
+            if (tags.count > 0 && [tags[0] integerValue] == 999) {
+                [btn setImageEdgeInsets:UIEdgeInsetsMake(6.5, 30, 6.5, 4)];
+
+            }else{
+                [btn setContentEdgeInsets:UIEdgeInsetsMake(0, 10, 0, -10)];
+
+            }
 
         }
         

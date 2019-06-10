@@ -28,7 +28,7 @@
                             <fragment content="-">
                                 <attributes>
                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <font key="NSFont" size="19" name="PingFangSC-Semibold"/>
+                                    <font key="NSFont" size="20" name="PingFangSC-Semibold"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>

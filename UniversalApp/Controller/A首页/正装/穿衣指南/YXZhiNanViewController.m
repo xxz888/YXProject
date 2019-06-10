@@ -11,6 +11,7 @@
 #import "YXZhiNanDetailViewController.h"
 #import "YXZhiNanDetailHeaderView.h"
 #import "QiniuLoad.h"
+
 @interface YXZhiNanViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) NSMutableArray * dataArray;
 @property (nonatomic,strong) YXZhiNanDetailHeaderView * headerView;
@@ -23,7 +24,7 @@
 @implementation YXZhiNanViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setHidden:NO];
+    [self.navigationController.navigationBar setHidden:YES];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -71,23 +72,27 @@
     
     
 }
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (!_headerView) {
-        NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXZhiNanDetailHeaderView" owner:self options:nil];
-        _headerView = [nib objectAtIndex:0];
-    }
-    [_headerView setHeaderViewData:self.startDic];
+    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXZhiNanDetailHeaderView" owner:self options:nil];
+    self.headerView = [nib objectAtIndex:0];
+    [self.headerView setHeaderViewData:self.startDic];
     kWeakSelf(self);
-    _headerView.backVCBlock = ^{
-        
+    _headerView.openBlock = ^(NSString * string) {
+        if ([string isEqualToString:@"更多"]) {
+            CGFloat h = [ShareManager inTextZhiNanOutHeight:weakself.startDic[@"intro"] lineSpace:9 fontSize:15];
+            CGFloat th = h/4;
+            weakself.contentHeight = h + th;
+        }else{
+            weakself.contentHeight = 56;
+        }
+
+        [weakself.yxTableView reloadData];
     };
-    _headerView.openBlock = ^(void) {
-        
-    };
-    return _headerView;
+    return  self.headerView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return KScreenWidth * 9/16 + self.contentHeight + 25;
+    return 200 + self.contentHeight + 25;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArray.count;
@@ -105,6 +110,7 @@
     if (indexPath.row == 1) {
         cell.yxCollectionView.backgroundColor = KWhiteColor;
     }
+    cell.tag = indexPath.row;
     cell.selectionStyle = 0;
     NSDictionary * dic = self.dataArray[indexPath.row];
     [cell setCellData:dic tagIndex:indexPath.row cellArray:self.collArray[indexPath.row]];
@@ -112,9 +118,10 @@
     
     kWeakSelf(self);
     //block
-    cell.clickCollectionItemBlock = ^(NSDictionary * dic) {
+    cell.clickCollectionItemBlock = ^(NSDictionary * dic,NSInteger tag) {
         YXZhiNanDetailViewController * vc = [[YXZhiNanDetailViewController alloc]init];
         vc.startDic = [NSDictionary dictionaryWithDictionary:dic];
+        vc.vcTitle = self.dataArray[tag][@"name"];
         [weakself.navigationController pushViewController:vc animated:YES];
     };
     
@@ -122,15 +129,22 @@
     return cell;
 }
 -(void)initTableView{
-    _contentHeight = [ShareManager inTextZhiNanOutHeight:self.startDic[@"intro"] lineSpace:9 fontSize:15];
+    _contentHeight = 56;
     [self.navigationController.navigationBar setHidden:NO];
     self.dataArray = [[NSMutableArray alloc]init];
     self.collArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNanTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXZhiNanTableViewCell"];
-//    [self addNavigationItemWithImageNames:@[@"分享"] isLeft:NO target:self action:@selector(moreShare) tags:nil];
-    [self addNavigationItemWithTitles:@[@"分享"] isLeft:NO target:self action:@selector(moreShare) tags:nil];
+//    [self setHeaderView];
+    
 }
--(void)moreShare{
+-(IBAction)moreShare{
     [[ShareManager sharedShareManager] saveImage:self.yxTableView];
+}
+- (IBAction)backAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    YX_MANAGER.moreBool = NO;
 }
 @end

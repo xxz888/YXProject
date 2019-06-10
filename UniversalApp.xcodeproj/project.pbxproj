@@ -177,6 +177,9 @@
 		BB5FD8A221FF49DD00B5F1A8 /* XWPopMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD8A021FF49DD00B5F1A8 /* XWPopMenuController.m */; };
 		BB5FD8A621FF529A00B5F1A8 /* YXMineAllImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD8A421FF529A00B5F1A8 /* YXMineAllImageTableViewCell.m */; };
 		BB5FD8A721FF529A00B5F1A8 /* YXMineAllImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5FD8A521FF529A00B5F1A8 /* YXMineAllImageTableViewCell.xib */; };
+		BB688A1522ADE8BE00964FA3 /* OrgHalfLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB688A1422ADE8BE00964FA3 /* OrgHalfLineLabel.m */; };
+		BB688A1A22AE504F00964FA3 /* YXZhiNan5Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB688A1922AE504F00964FA3 /* YXZhiNan5Cell.m */; };
+		BB688A1C22AE505800964FA3 /* YXZhiNan5Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB688A1B22AE505800964FA3 /* YXZhiNan5Cell.xib */; };
 		BB6D2A3121EEC63900F5049F /* ExpandingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A1721EEC63900F5049F /* ExpandingCell.m */; };
 		BB6D2A3221EEC63900F5049F /* HCInputBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A1821EEC63900F5049F /* HCInputBar.m */; };
 		BB6D2A3321EEC63900F5049F /* UIFont+MyFont.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A1A21EEC63900F5049F /* UIFont+MyFont.m */; };
@@ -914,6 +917,11 @@
 		BB5FD8A321FF529A00B5F1A8 /* YXMineAllImageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineAllImageTableViewCell.h; sourceTree = "<group>"; };
 		BB5FD8A421FF529A00B5F1A8 /* YXMineAllImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineAllImageTableViewCell.m; sourceTree = "<group>"; };
 		BB5FD8A521FF529A00B5F1A8 /* YXMineAllImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineAllImageTableViewCell.xib; sourceTree = "<group>"; };
+		BB688A1322ADE8BE00964FA3 /* OrgHalfLineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrgHalfLineLabel.h; sourceTree = "<group>"; };
+		BB688A1422ADE8BE00964FA3 /* OrgHalfLineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrgHalfLineLabel.m; sourceTree = "<group>"; };
+		BB688A1822AE504F00964FA3 /* YXZhiNan5Cell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXZhiNan5Cell.h; sourceTree = "<group>"; };
+		BB688A1922AE504F00964FA3 /* YXZhiNan5Cell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXZhiNan5Cell.m; sourceTree = "<group>"; };
+		BB688A1B22AE505800964FA3 /* YXZhiNan5Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXZhiNan5Cell.xib; sourceTree = "<group>"; };
 		BB6D2A1521EEC63900F5049F /* ExpandingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandingCell.h; sourceTree = "<group>"; };
 		BB6D2A1621EEC63900F5049F /* HCInputBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCInputBar.h; sourceTree = "<group>"; };
 		BB6D2A1721EEC63900F5049F /* ExpandingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandingCell.m; sourceTree = "<group>"; };
@@ -3086,6 +3094,8 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BB688A1322ADE8BE00964FA3 /* OrgHalfLineLabel.h */,
+				BB688A1422ADE8BE00964FA3 /* OrgHalfLineLabel.m */,
 				BB9ECD47228002E900A12952 /* 自适应tf */,
 				BB0AE5D0225B2E5700CC07EC /* RadioButton.h */,
 				BB0AE5D1225B2E5800CC07EC /* RadioButton.m */,
@@ -3168,6 +3178,9 @@
 				BBABDF40229BC45E0046683A /* YXZhiNan4Cell.h */,
 				BBABDF41229BC45E0046683A /* YXZhiNan4Cell.m */,
 				BBABDF42229BC45E0046683A /* YXZhiNan4Cell.xib */,
+				BB688A1822AE504F00964FA3 /* YXZhiNan5Cell.h */,
+				BB688A1922AE504F00964FA3 /* YXZhiNan5Cell.m */,
+				BB688A1B22AE505800964FA3 /* YXZhiNan5Cell.xib */,
 			);
 			path = "5种cell";
 			sourceTree = "<group>";
@@ -5168,6 +5181,7 @@
 				296F85081FED04EF005612D1 /* close_icon@3x.png in Resources */,
 				BB29120E22156BB500FF484E /* Long Panetela.gif in Resources */,
 				293D45A21ECD6422007C64A9 /* LaunchScreen.storyboard in Resources */,
+				BB688A1C22AE505800964FA3 /* YXZhiNan5Cell.xib in Resources */,
 				293D45A31ECD6422007C64A9 /* Info.plist in Resources */,
 				BBB59AD4228CF8CB0029D3D0 /* YXHomeScoreActionCollectionViewCell.xib in Resources */,
 				BBB59B3C228CF92D0029D3D0 /* YXHomeXueJiaTableViewCell.xib in Resources */,
@@ -5569,6 +5583,7 @@
 				BBBFD7882222D7D300D377AC /* UILabel+JJImagePicker.m in Sources */,
 				BBD7796B2244DD390077E44D /* YXBindPhoneNextViewController.m in Sources */,
 				BBA812F721DDEBBB001B5EA1 /* SegmentTapView.m in Sources */,
+				BB688A1A22AE504F00964FA3 /* YXZhiNan5Cell.m in Sources */,
 				BB928F9721FB5D290090A044 /* BRAddressModel.m in Sources */,
 				BBB59B26228CF8CB0029D3D0 /* BKSingleCollectionViewCell.m in Sources */,
 				BB6D2A3821EEC63900F5049F /* HCEmojiKeyboard.m in Sources */,
@@ -5631,6 +5646,7 @@
 				BBD2C8F621E0F67700350DCD /* TZImageCropManager.m in Sources */,
 				BBB59B0B228CF8CB0029D3D0 /* YXHomeXueJiaWenHuaViewController.m in Sources */,
 				BBABDF3E229BC3E90046683A /* YXZhiNan3Cell.m in Sources */,
+				BB688A1522ADE8BE00964FA3 /* OrgHalfLineLabel.m in Sources */,
 				BBB59B22228CF8CB0029D3D0 /* YXHomeXueJiaPeiJianDetailTuiJianViewController.m in Sources */,
 				BBB59AFD228CF8CB0029D3D0 /* SDTimeLineRefreshFooter.m in Sources */,
 				BBDA2EF321ECC22B00EDCCFF /* YXGaoDeMapViewController.m in Sources */,

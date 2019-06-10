@@ -7,18 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IXAttributeTapLabel.h"
+#import "OrgHalfLineLabel.h"
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^BackVCBlock)(void);
-typedef void(^OpenBlock)(void);
+typedef void(^OpenBlock)(NSString *);
 @interface YXZhiNanDetailHeaderView : UIView
-    @property (weak, nonatomic) IBOutlet UIImageView *titleImgView;
-    @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
-    @property (weak, nonatomic) IBOutlet UIButton *collBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *titleImgView;
+@property (weak, nonatomic) IBOutlet OrgHalfLineLabel *titleLbl;
+@property (weak, nonatomic) IBOutlet UIButton *collBtn;
 - (IBAction)collAction:(UIButton *)sender;
-    @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentHeight;
-    @property (weak, nonatomic) IBOutlet IXAttributeTapLabel *contentLbl;
-    @property (nonatomic,copy) BackVCBlock backVCBlock;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentHeight;
+@property (weak, nonatomic) IBOutlet OrgHalfLineLabel *contentLbl;
+@property (nonatomic,copy) BackVCBlock backVCBlock;
 @property (nonatomic,copy) OpenBlock openBlock;
 -(void)setHeaderViewData:(NSDictionary *)dic;
 @property (nonatomic,assign) BOOL is_collect;
@@ -27,6 +27,8 @@ typedef void(^OpenBlock)(void);
 @property (weak, nonatomic) IBOutlet UIView *collVIew;
 @property (nonatomic,assign) BOOL useBool;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleImageViewHeight;
+@property (nonatomic,assign) BOOL moreBool;
+
 
 @end
 

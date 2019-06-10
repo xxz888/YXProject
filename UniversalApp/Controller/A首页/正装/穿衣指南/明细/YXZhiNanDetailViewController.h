@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface YXZhiNanDetailViewController : RootViewController
     @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
     @property (nonatomic,strong) NSDictionary * startDic;
+@property (nonatomic,strong) NSString * vcTitle;
 
 @end
 

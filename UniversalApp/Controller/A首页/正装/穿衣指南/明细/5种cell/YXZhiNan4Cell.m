@@ -20,21 +20,23 @@
     // Initialization code
 }
 -(void)setCellData:(NSDictionary *)dic{
-    [self setUpSycleScrollView:dic[@"detail_list"] height:200];
+    self.lunboHeight.constant = (KScreenWidth - 30)* [dic[@"ratio"] doubleValue];
+
+    [self setUpSycleScrollView:dic[@"detail_list"] height:(KScreenWidth-30)*[dic[@"ratio"] doubleValue]];
 }
 
 
 //添加轮播图
 - (void)setUpSycleScrollView:(NSArray *)photoArray height:(CGFloat)height{
     [_cycleScrollView3 removeFromSuperview];
-    _cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0,KScreenWidth-30, self.lunboView.frame.size.height) shouldInfiniteLoop:NO imageNamesGroup:@[]];
+    _cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0,KScreenWidth-30, self.lunboHeight.constant) shouldInfiniteLoop:NO imageNamesGroup:@[]];
     ViewRadius(_cycleScrollView3, 5);
     _cycleScrollView3.delegate = self;
     [self.lunboView addSubview:_cycleScrollView3];
     _cycleScrollView3.delegate = self;
     _cycleScrollView3.bannerImageViewContentMode = 0;
     _cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];
-    _cycleScrollView3.currentPageDotColor = A_COlOR;
+    _cycleScrollView3.currentPageDotColor =  kRGBA(12, 36, 45, 1.0);
     _cycleScrollView3.showPageControl = YES;
     _cycleScrollView3.autoScrollTimeInterval = 10000;
     _cycleScrollView3.pageDotColor = YXRGBAColor(239, 239, 239);

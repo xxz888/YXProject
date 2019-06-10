@@ -35,6 +35,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="lunboHeight" destination="Cj7-3J-xLU" id="jwI-xN-PIt"/>
                 <outlet property="lunboView" destination="1tE-zp-eaX" id="lVa-Am-Pqc"/>
             </connections>
             <point key="canvasLocation" x="69.565217391304358" y="179.12946428571428"/>

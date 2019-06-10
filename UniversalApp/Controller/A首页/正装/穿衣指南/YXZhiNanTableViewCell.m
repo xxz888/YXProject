@@ -53,6 +53,7 @@
     self.titleLbl.text = [NSString stringWithFormat:@"0%ld/%@",index+1,dic[@"name"]];
     NSInteger n = [cellArray count];
     self.collHeight.constant = 45 * (n/2+n%2);
+    self.yxCollectionView.tag = self.tag;
     [self.yxCollectionView reloadData];
 
 //    [self requestZhiNanGet:dic[@"id"]];
@@ -74,7 +75,7 @@
     return cell;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    self.clickCollectionItemBlock(self.dataArray[indexPath.row]);
+    self.clickCollectionItemBlock(self.dataArray[indexPath.row],collectionView.tag);
 }
 
 
