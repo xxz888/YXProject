@@ -27,20 +27,56 @@
     [super viewDidLoad];
     //初始化UI
     [self setVCUI];
+    self.currentIndex = self.startIndex;
     [self requestZhiNanGet];
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:NO];
 }
+-(void)headerRereshing{
+    self.currentIndex -= 1;
+    [self refreshYXTableView];
+}
+-(void)footerRereshing{
+    self.currentIndex += 1;
+    [self refreshYXTableView];
+}
+-(void)refreshYXTableView{
+    if ([self panduanIndex]) {
+        [self requestZhiNanGet];
+    }else{
+        [self.yxTableView.mj_header endRefreshing];
+        [self.yxTableView.mj_footer endRefreshing];
+    }
+}
+-(BOOL)panduanIndex{
+    if (self.currentIndex >= 0 && self.currentIndex < self.startArray.count) {
+        return YES;
+    }
+    return NO;
+}
 -(void)requestZhiNanGet{
+    self.title = self.startArray[self.currentIndex][@"vcTitle"];
     kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"0/%@",self.startDic[@"id"]];
+    NSString * par = [NSString stringWithFormat:@"0/%@",self.startArray[self.currentIndex][@"id"]];
     [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
-        [weakself.dataArray removeAllObjects];
-        [weakself.dataArray addObjectsFromArray:object];
-        [weakself.yxTableView reloadData];
+        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
+        
+        [UIView transitionWithView:weakself.yxTableView
+                          duration:.5f
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            [weakself.yxTableView reloadData];
+                            [weakself.yxTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
+                        } completion:^(BOOL finished) {
+
+                        }];
     }];
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [self.dataArray count];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.row];
@@ -56,9 +92,7 @@
     }
     return 0;
 }
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.dataArray.count;
-}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.row];
     NSInteger obj = [dic[@"obj"] integerValue];
@@ -91,6 +125,7 @@
     self.view.backgroundColor = KWhiteColor;
     self.title = self.vcTitle;
     self.dataArray = [[NSMutableArray alloc]init];
+    [self addRefreshView:self.yxTableView];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan1Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan1Cell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan2Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan2Cell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan3Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan3Cell"];
@@ -99,6 +134,21 @@
 }
 -(void)moreShare{
     [[ShareManager sharedShareManager] saveImage:self.yxTableView];
+}
+- (IBAction)bottomAction:(UIButton *)btn{
+    switch (btn.tag) {
+        case 1://收藏
+            
+            break;
+        case 2://评论
+            
+            break;
+        case 3://分享
+            [self moreShare];
+            break;
+        default:
+            break;
+    }
 }
 
 @end

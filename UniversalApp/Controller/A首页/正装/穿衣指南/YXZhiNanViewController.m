@@ -45,10 +45,6 @@
     NSString * par = [NSString stringWithFormat:@"1/%@",self.startDic[@"id"]];
     [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
-        
-        
-        
-        
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             NSLog(@"开始");
             dispatch_semaphore_t sema = dispatch_semaphore_create(0);
@@ -65,12 +61,7 @@
                     dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
                 }
         });
-  
-      
     }];
-    
-    
-    
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -98,7 +89,6 @@
     return self.dataArray.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     if (self.collArray.count > 0) {
         NSInteger n = [self.collArray[indexPath.row] count];
         return 45 * (n/2+n%2) + 60;
@@ -118,14 +108,27 @@
     
     kWeakSelf(self);
     //block
-    cell.clickCollectionItemBlock = ^(NSDictionary * dic,NSInteger tag) {
+    cell.clickCollectionItemBlock = ^(NSString * index) {
         YXZhiNanDetailViewController * vc = [[YXZhiNanDetailViewController alloc]init];
-        vc.startDic = [NSDictionary dictionaryWithDictionary:dic];
-        vc.vcTitle = self.dataArray[tag][@"name"];
+        vc.startArray = [[NSMutableArray alloc]init];
+        for (NSInteger i=0; i<weakself.collArray.count; i++) {
+            for (NSDictionary * dic in weakself.collArray[i]) {
+                NSMutableDictionary * mDic = [[NSMutableDictionary alloc]initWithDictionary:dic];
+                NSString * vcTitle = [NSString stringWithFormat:@"0%ld/%@",i+1,weakself.dataArray[i][@"name"]];
+                [mDic setValue:vcTitle forKey:@"vcTitle"];
+                [vc.startArray addObject:mDic];
+            }
+        }
+     
+        for (NSInteger i = 0; i<vc.startArray.count; i++) {
+            NSDictionary * dic = vc.startArray[i];
+            if ([dic[@"id"] integerValue] == [index integerValue]) {
+                vc.startIndex = i;
+            }
+        }
+        
         [weakself.navigationController pushViewController:vc animated:YES];
     };
-    
-    
     return cell;
 }
 -(void)initTableView{
@@ -134,8 +137,6 @@
     self.dataArray = [[NSMutableArray alloc]init];
     self.collArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNanTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXZhiNanTableViewCell"];
-//    [self setHeaderView];
-    
 }
 -(IBAction)moreShare{
     [[ShareManager sharedShareManager] saveImage:self.yxTableView];

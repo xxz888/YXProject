@@ -219,6 +219,7 @@
         NSString *string = [self.tagArray componentsJoinedByString:@" "];
         [dic setValue:string forKey:@"tag"];//标签
     }
+    [dic setValue:@"1" forKey:@"obj"];
     kWeakSelf(self);
 
         //这里区别寸草稿还是发布
