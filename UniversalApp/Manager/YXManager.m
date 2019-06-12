@@ -152,7 +152,7 @@ successBlock(responseObject);\
 }
 #pragma mark ========== 发布晒图 ==========
 -(void)requestFaBuImagePOST:YX_BLOCK{
-    [HTTP_POST(@"/users/post/0/0/0/") Parameters:dic sucess:^(id responseObject) {
+    [HTTP_POST(@"/users/post/") Parameters:dic sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
@@ -428,8 +428,8 @@ successBlock(responseObject);\
 }
 #pragma mark ========== 获取发现页标签数据 ==========
 -(void)requestGet_users_find:YX_BLOCK{
-    NSString * url = @"/users/find/";
-    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+    NSString * url = @"/users/post/?type=";
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
@@ -964,6 +964,54 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
+
+
+
+
+#pragma mark ========== 公共接口:评论 ==========
+-(void)requestPubFaBuPingLunComment:YX_BLOCK{
+    NSString * url = @"/pub/public_comment/";
+    [HTTP_POST(url) Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+
+#pragma mark ========== 公共接口：删除评论 ==========
+-(void)requestPubSearchAndDelComment:YX_BLOCK{
+    NSString * url = @"/pub/public_comment/?";
+    [HTTP_GET([url append:dic]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
+#pragma mark ========== 公共接口：点赞 ==========
+-(void)requestPubDianZanComment:YX_BLOCK{
+    NSString * url = @"/pub/public_comment_praise/?comment_id=";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ========== 公共接口：获取XX评论子评论列表 ==========
+-(void)requestPubSearchAndDelChildComment:YX_BLOCK{
+    NSString * url = @"/pub/public_comment_child/?child_id=";
+    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
+#pragma mark ========== 发布子评论 ==========
+-(void)requestPubFaBuChildPingLunComment:YX_BLOCK{
+    NSString * url = @"/pub/public_comment_child/";
+    [HTTP_POST(url) Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+
+
+
+
+
+
 
 - (instancetype)init{
     self.advertisingArray = [[NSMutableArray alloc]init];

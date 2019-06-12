@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSMutableArray * startArray;
 @property (nonatomic,assign) NSInteger startIndex;
 @property (nonatomic,assign) NSInteger currentIndex;
+@property (nonatomic,strong) NSDictionary * startDic;
+@property (weak, nonatomic) IBOutlet UIImageView *collImgView;
 
 @end
 

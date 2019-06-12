@@ -17,8 +17,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //初始化window
     [self initWindow];
-    
-    
 
     
     //初始化网络请求配置

@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YXZhiNanDetailViewController">
             <connections>
+                <outlet property="collImgView" destination="pHq-YR-8LX" id="xn8-Fx-wxs"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="yxTableView" destination="qfy-bh-xLK" id="se1-eh-jGz"/>
             </connections>
@@ -49,18 +50,18 @@
                                             </connections>
                                         </button>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="收藏1" translatesAutoresizingMaskIntoConstraints="NO" id="pHq-YR-8LX">
-                                            <rect key="frame" x="46" y="21" width="18" height="18"/>
+                                            <rect key="frame" x="45" y="17" width="20" height="20"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="18" id="ssn-jm-WeW"/>
-                                                <constraint firstAttribute="height" constant="18" id="xZx-oh-uaU"/>
+                                                <constraint firstAttribute="width" constant="20" id="ssn-jm-WeW"/>
+                                                <constraint firstAttribute="height" constant="20" id="xZx-oh-uaU"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ew-o4-Mfm">
-                                            <rect key="frame" x="69" y="21" width="26.5" height="18.5"/>
+                                            <rect key="frame" x="70" y="17" width="28" height="20"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="收藏">
                                                     <attributes>
-                                                        <font key="NSFont" size="13" name="PingFangSC-Light"/>
+                                                        <font key="NSFont" size="14" name="PingFangSC-Light"/>
                                                     </attributes>
                                                 </fragment>
                                             </attributedString>
@@ -72,7 +73,7 @@
                                         <constraint firstAttribute="bottom" secondItem="l51-8k-R7L" secondAttribute="bottom" id="2gK-jN-LRF"/>
                                         <constraint firstItem="pHq-YR-8LX" firstAttribute="centerX" secondItem="l51-8k-R7L" secondAttribute="centerX" multiplier="0.8" id="5Vp-iH-krf"/>
                                         <constraint firstItem="3Ew-o4-Mfm" firstAttribute="leading" secondItem="pHq-YR-8LX" secondAttribute="trailing" constant="5" id="CIW-BP-PMJ"/>
-                                        <constraint firstItem="pHq-YR-8LX" firstAttribute="centerY" secondItem="l51-8k-R7L" secondAttribute="centerY" id="DUj-ei-q3L"/>
+                                        <constraint firstItem="pHq-YR-8LX" firstAttribute="centerY" secondItem="l51-8k-R7L" secondAttribute="centerY" multiplier="0.9" id="DUj-ei-q3L"/>
                                         <constraint firstAttribute="trailing" secondItem="l51-8k-R7L" secondAttribute="trailing" id="MZb-rD-Bgk"/>
                                         <constraint firstItem="l51-8k-R7L" firstAttribute="leading" secondItem="jCs-OC-5Dy" secondAttribute="leading" id="YCf-1L-kN9"/>
                                         <constraint firstItem="3Ew-o4-Mfm" firstAttribute="centerY" secondItem="pHq-YR-8LX" secondAttribute="centerY" id="pac-YG-SsT"/>
@@ -88,21 +89,24 @@
                                             <state key="normal">
                                                 <color key="titleColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             </state>
+                                            <connections>
+                                                <action selector="bottomAction:" destination="-1" eventType="touchUpInside" id="bBn-B1-9kg"/>
+                                            </connections>
                                         </button>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="评论互动" translatesAutoresizingMaskIntoConstraints="NO" id="EY4-S3-4cG">
-                                            <rect key="frame" x="46" y="21" width="18" height="18"/>
+                                            <rect key="frame" x="45" y="17" width="20" height="20"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="18" id="48i-v2-omu"/>
-                                                <constraint firstAttribute="width" constant="18" id="CPk-kQ-fCX"/>
+                                                <constraint firstAttribute="height" constant="20" id="48i-v2-omu"/>
+                                                <constraint firstAttribute="width" constant="20" id="CPk-kQ-fCX"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJp-Mn-zZ3">
-                                            <rect key="frame" x="69" y="21" width="26.5" height="18.5"/>
+                                            <rect key="frame" x="70" y="17" width="28" height="20"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="评论">
                                                     <attributes>
                                                         <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                        <font key="NSFont" size="13" name="PingFangSC-Light"/>
+                                                        <font key="NSFont" size="14" name="PingFangSC-Light"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -115,7 +119,7 @@
                                         <constraint firstItem="jHu-Ht-WTe" firstAttribute="top" secondItem="mIp-yg-k4a" secondAttribute="top" id="96D-L3-xfu"/>
                                         <constraint firstAttribute="trailing" secondItem="jHu-Ht-WTe" secondAttribute="trailing" id="E8E-W7-KTh"/>
                                         <constraint firstItem="jHu-Ht-WTe" firstAttribute="leading" secondItem="mIp-yg-k4a" secondAttribute="leading" id="FEv-xR-A1C"/>
-                                        <constraint firstItem="EY4-S3-4cG" firstAttribute="centerY" secondItem="jHu-Ht-WTe" secondAttribute="centerY" id="L9q-5b-mNk"/>
+                                        <constraint firstItem="EY4-S3-4cG" firstAttribute="centerY" secondItem="jHu-Ht-WTe" secondAttribute="centerY" multiplier="0.9" id="L9q-5b-mNk"/>
                                         <constraint firstItem="EY4-S3-4cG" firstAttribute="centerX" secondItem="jHu-Ht-WTe" secondAttribute="centerX" multiplier="0.8" id="ZWp-fL-fvO"/>
                                         <constraint firstAttribute="bottom" secondItem="jHu-Ht-WTe" secondAttribute="bottom" id="d2q-VS-i9I"/>
                                         <constraint firstItem="cJp-Mn-zZ3" firstAttribute="leading" secondItem="EY4-S3-4cG" secondAttribute="trailing" constant="5" id="da6-D9-riU"/>
@@ -131,21 +135,24 @@
                                             <state key="normal">
                                                 <color key="titleColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             </state>
+                                            <connections>
+                                                <action selector="bottomAction:" destination="-1" eventType="touchUpInside" id="rhv-Nq-HWr"/>
+                                            </connections>
                                         </button>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="分享" translatesAutoresizingMaskIntoConstraints="NO" id="LAa-BZ-7eO">
-                                            <rect key="frame" x="46" y="21" width="18" height="18"/>
+                                            <rect key="frame" x="45" y="17" width="20" height="20"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="18" id="FjH-QE-uyl"/>
-                                                <constraint firstAttribute="height" constant="18" id="l13-WY-UbS"/>
+                                                <constraint firstAttribute="width" constant="20" id="FjH-QE-uyl"/>
+                                                <constraint firstAttribute="height" constant="20" id="l13-WY-UbS"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDG-Ky-bir">
-                                            <rect key="frame" x="69" y="21" width="26.5" height="18.5"/>
+                                            <rect key="frame" x="70" y="17" width="28" height="20"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="分享">
                                                     <attributes>
                                                         <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                        <font key="NSFont" size="13" name="PingFangSC-Light"/>
+                                                        <font key="NSFont" size="14" name="PingFangSC-Light"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -160,7 +167,7 @@
                                         <constraint firstItem="2RL-5g-ave" firstAttribute="top" secondItem="zSc-WI-Cjn" secondAttribute="top" id="GhJ-Vt-3EN"/>
                                         <constraint firstAttribute="bottom" secondItem="2RL-5g-ave" secondAttribute="bottom" id="jCj-EZ-MF4"/>
                                         <constraint firstItem="kDG-Ky-bir" firstAttribute="leading" secondItem="LAa-BZ-7eO" secondAttribute="trailing" constant="5" id="mN1-K3-3nQ"/>
-                                        <constraint firstItem="LAa-BZ-7eO" firstAttribute="centerY" secondItem="2RL-5g-ave" secondAttribute="centerY" id="nSZ-Af-G9g"/>
+                                        <constraint firstItem="LAa-BZ-7eO" firstAttribute="centerY" secondItem="2RL-5g-ave" secondAttribute="centerY" multiplier="0.9" id="nSZ-Af-G9g"/>
                                         <constraint firstItem="LAa-BZ-7eO" firstAttribute="centerX" secondItem="2RL-5g-ave" secondAttribute="centerX" multiplier="0.8" id="uJa-Fw-qf7"/>
                                         <constraint firstItem="kDG-Ky-bir" firstAttribute="centerY" secondItem="LAa-BZ-7eO" secondAttribute="centerY" id="xJf-d6-baR"/>
                                     </constraints>

@@ -14,10 +14,13 @@
 #import "YXZhiNan4Cell.h"
 #import "YXZhiNan5Cell.h"
 #import "QiniuLoad.h"
-#import "XHWebImageAutoSize.h"
+#import "YXZhiNanPingLunViewController.h"
 @interface YXZhiNanDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
-    @property (nonatomic,strong) YXZhiNanDetailHeaderView * headerView;
-    @property (nonatomic,strong) NSMutableArray * dataArray;
+
+@property (nonatomic,strong) YXZhiNanDetailHeaderView * headerView;
+@property (nonatomic,strong) NSMutableArray * dataArray;
+@property (nonatomic,assign) BOOL is_collect;
+
 @property (nonatomic,assign) CGFloat contentHeight;
 @end
 
@@ -131,6 +134,12 @@
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan3Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan3Cell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan4Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan4Cell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan5Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan5Cell"];
+    
+    if ([userManager loadUserInfo]) {
+        BOOL is_collect = [self.startDic[@"is_collect"] integerValue] == 1;
+        UIImage * likeImage = is_collect ? [UIImage imageNamed:@"收藏选择"] : [UIImage imageNamed:@"收藏未选择"] ;
+        [self.collImgView setImage:likeImage];
+    }
 }
 -(void)moreShare{
     [[ShareManager sharedShareManager] saveImage:self.yxTableView];
@@ -138,10 +147,10 @@
 - (IBAction)bottomAction:(UIButton *)btn{
     switch (btn.tag) {
         case 1://收藏
-            
+            [self collectAction];
             break;
         case 2://评论
-            
+            [self pinglunAction];
             break;
         case 3://分享
             [self moreShare];
@@ -150,5 +159,24 @@
             break;
     }
 }
+-(void)pinglunAction{
+    YXZhiNanPingLunViewController * vc = [[YXZhiNanPingLunViewController alloc]init];
+    vc.startDic = [NSDictionary dictionaryWithDictionary:self.startDic];
+    vc.startId = self.startArray[self.currentIndex][@"id"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
+-(void)collectAction{
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
+    kWeakSelf(self);
+    NSString * tagId = kGetString(self.startDic[@"id"]);
+    [YXPLUS_MANAGER requestCollect_optionGet:[@"3/" append:tagId] success:^(id object) {
+        UIImage * likeImage = weakself.is_collect ? [UIImage imageNamed:@"收藏选择"] : [UIImage imageNamed:@"收藏未选择"] ;
+        [weakself.collImgView setImage:likeImage];
+        weakself.is_collect = !weakself.is_collect;
+    }];
+}
 @end

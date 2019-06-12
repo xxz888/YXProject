@@ -26,13 +26,15 @@
 
 @implementation YXHomeXueJiaToolsViewController
 
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self requestZhiNan1Get];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"文化";
     [self tableviewCon];
     [self addRefreshView:self.yxTableView];
-    [self requestZhiNan1Get];
 }
 -(void)headerRereshing{
     [super headerRereshing];
@@ -65,9 +67,6 @@
     [self.view addSubview:self.yxTableView];
 
 }
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.titleArray.count;
 }
@@ -87,30 +86,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     YXZhiNanViewController * vc1 = [[YXZhiNanViewController alloc]init];
     vc1.startDic = [NSDictionary dictionaryWithDictionary:self.titleArray[indexPath.row]];
+    vc1.index = indexPath.row;
     vc1.title = self.titleArray[indexPath.row][@"name"];
     [self.navigationController pushViewController:vc1 animated:YES];
 }
-
-//- (HGSegmentedPageViewController *)segmentedPageViewController {
-//    if (!_segmentedPageViewController) {
-//        UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-//        yifuVC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeYiFuViewController"];
-//
-//        VC1 = [[YXColorViewController alloc]init];
-//        VC2 = [[YXXingZhuangViewController alloc]init];
-//        VC3 = [[YXHomeChiCunViewController alloc]init];
-//
-//
-//        NSArray *titles = @[@"套装搭配",@"雪茄颜色",@"雪茄形状",@"尺寸工具"];
-//        NSArray *controllers = @[yifuVC,VC1,VC2,VC3];
-//
-//        _segmentedPageViewController = [[HGSegmentedPageViewController alloc] init];
-//        _segmentedPageViewController.pageViewControllers = controllers.copy;
-//        _segmentedPageViewController.categoryView.titles = titles;
-//        _segmentedPageViewController.categoryView.originalIndex = 0;
-//    }
-//    return _segmentedPageViewController;
-//}
-
-
 @end

@@ -131,7 +131,7 @@
 #pragma mark ========== 2222222-在请求具体tag下的请求,获取发现页标签数据全部接口 ==========
 -(void)requestFindTheType{
     kWeakSelf(self);
-    NSString * parString =[NSString stringWithFormat:@"%@/%@",self.type,NSIntegerToNSString(self.requestPage)];
+    NSString * parString =[NSString stringWithFormat:@"%@&page=%@",self.type,NSIntegerToNSString(self.requestPage)];
     [YX_MANAGER requestGet_users_find:parString success:^(id object){
         if ([object count] > 0) {
             NSMutableArray *_dataSourceTemp=[NSMutableArray new];

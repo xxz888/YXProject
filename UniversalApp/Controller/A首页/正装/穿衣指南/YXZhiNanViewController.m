@@ -25,11 +25,30 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
+    [self requestZhiNanGet];
+   // [self requestZhiNanFirstGet];
+}
+-(void)requestZhiNanFirstGet{
+    kWeakSelf(self);
+    NSString * par = [NSString stringWithFormat:@"1/%@",@"5"];
+    [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
+        NSMutableArray * collArray = [[NSMutableArray alloc]initWithArray:object];
+        if ([userManager loadUserInfo]) {
+            NSDictionary * dic = collArray[weakself.index];
+            BOOL is_collect = [dic[@"is_collect"] integerValue] == 1;
+            UIImage * likeImage = is_collect ? [UIImage imageNamed:@"收藏2"] : [UIImage imageNamed:@"收藏1"] ;
+            [weakself.headerView.collBtn setImage:likeImage forState:UIControlStateNormal];
+            UIColor * color1 = is_collect ? YXRGBAColor(251, 24, 39) : KWhiteColor;
+            weakself.headerView.collVIew.backgroundColor = color1;
+            UIColor * color2 = is_collect ? KWhiteColor : KDarkGaryColor;
+            [weakself.headerView.collBtn setTitleColor:color2 forState:UIControlStateNormal];
+        }
+    }];
+
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initTableView];
-    [self requestZhiNanGet];
     [self addRefreshView:self.yxTableView];
 }
 -(void)headerRereshing{
@@ -107,7 +126,7 @@
     
     
     kWeakSelf(self);
-    //block
+    //点击进入详情界面
     cell.clickCollectionItemBlock = ^(NSString * index) {
         YXZhiNanDetailViewController * vc = [[YXZhiNanDetailViewController alloc]init];
         vc.startArray = [[NSMutableArray alloc]init];
@@ -119,14 +138,13 @@
                 [vc.startArray addObject:mDic];
             }
         }
-     
         for (NSInteger i = 0; i<vc.startArray.count; i++) {
             NSDictionary * dic = vc.startArray[i];
             if ([dic[@"id"] integerValue] == [index integerValue]) {
                 vc.startIndex = i;
             }
         }
-        
+        vc.startDic = [NSDictionary dictionaryWithDictionary:weakself.startDic];
         [weakself.navigationController pushViewController:vc animated:YES];
     };
     return cell;

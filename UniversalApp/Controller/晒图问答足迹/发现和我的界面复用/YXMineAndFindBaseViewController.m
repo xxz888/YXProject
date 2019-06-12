@@ -46,7 +46,6 @@
     self.yxTableView.estimatedSectionFooterHeight = 0;
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindImageTableViewCell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindQuestionTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindQuestionTableViewCell"];
-//      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 #pragma mark ========== tableview代理方法 ==========
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -56,27 +55,10 @@
     if ([self.dataArray count] > indexPath.row){
         dicTag = [self.dataArray objectAtIndex:indexPath.row];
     }
-    
     if (tag == 1 || tag == 4) {
         return [YXFindImageTableViewCell cellDefaultHeight:dicTag whereCome:tag==1?NO:YES];
-
-        //根据isShowMoreText属性判断cell的高度
-//        if ([dicTag[@"isShowMoreText"] isEqualToString:@"1"]){
-//            return [YXFindImageTableViewCell cellDefaultHeight:dicTag whereCome:tag==1?NO:YES];
-//        }else{
-//            return [YXFindImageTableViewCell cellDefaultHeight:dicTag whereCome:tag==1?NO:YES];
-//        }
-//        return 0;
     }else if (tag == 3){
         return [YXFindQuestionTableViewCell cellMoreHeight:dicTag];
-
-        //根据isShowMoreText属性判断cell的高度
-//        if ([dicTag[@"isShowMoreText"] isEqualToString:@"1"]){
-//            return [YXFindQuestionTableViewCell cellMoreHeight:dicTag];
-//        }else{
-//            return [YXFindQuestionTableViewCell cellMoreHeight:dicTag];
-//        }
-//        return 0;
     }else{
         return 0;
     }
@@ -98,8 +80,7 @@
     }
 }
 #pragma mark 字典转化字符串
--(NSString*)dictionaryToJson:(NSDictionary *)dic
-{
+-(NSString*)dictionaryToJson:(NSDictionary *)dic{
     NSError *parseError = nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
     
@@ -109,16 +90,6 @@
 -(YXFindImageTableViewCell *)customImageData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath whereCome:(BOOL)whereCome{
     YXFindImageTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFindImageTableViewCell" forIndexPath:indexPath];
     cell.tagId = [dic[@"id"] integerValue];
-    /*
-    NSString * str = [(NSMutableString *) (whereCome ? dic[@"pic1"]:dic[@"photo1"]) replaceAll:@" " target:@"%20"];
-    [cell.midImageView sd_setImageWithURL:[NSURL URLWithString:str] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        
-        [XHWebImageAutoSize storeImageSize:image forURL:imageURL completed:^(BOOL result) {
-            if(result)  [self.yxTableView xh_reloadDataForURL:imageURL];
-        }];
-        
-    }];
-    */
     cell.titleImageView.tag = indexPath.row;
     kWeakSelf(self);
     cell.clickImageBlock = ^(NSInteger tag) {
@@ -208,7 +179,6 @@
 
 #pragma mark - UITextFieldDelegate
 -(void)finishTextView:(UITextView *)textField{
- 
     if (textField.text.length) {
         if (textField.tag >= 10000) {
             NSString * inputText = textField.text;

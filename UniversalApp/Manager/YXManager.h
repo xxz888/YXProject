@@ -311,4 +311,17 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestDelFatherPl_ShaiTu:YX_BLOCK;
 #pragma mark ========== 编辑晒图 ==========
 -(void)requestEditFaBuImagePOST:YX_BLOCK;
+
+
+
+#pragma mark ========== 公共接口:评论 ==========
+-(void)requestPubFaBuPingLunComment:YX_BLOCK;
+#pragma mark ========== 公共接口：删除评论 ==========
+-(void)requestPubSearchAndDelComment:YX_BLOCK;
+#pragma mark ========== 公共接口：删除评论 ==========
+-(void)requestPubDianZanComment:YX_BLOCK;
+#pragma mark ========== 公共接口：获取XX评论子评论列表 ==========
+-(void)requestPubSearchAndDelChildComment:YX_BLOCK;
+#pragma mark ========== 发布子评论 ==========
+-(void)requestPubFaBuChildPingLunComment:YX_BLOCK;
 @end

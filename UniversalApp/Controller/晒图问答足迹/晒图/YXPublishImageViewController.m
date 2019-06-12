@@ -106,7 +106,6 @@
         NSString * photo1 = _model.photo1;
         NSString * photo2 = _model.photo2;
         NSString * photo3 = _model.photo3;
-        
         if ([_model.describe length] > 0) {
             self.qmuiTextView.text = [_model.describe UnicodeToUtf8];
             if ([photo1 length] > 5) {
@@ -156,72 +155,37 @@
     [super fabuAction:btn];
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
     [self commonAction:self.photoImageList btn:btn];
-
-
-//    kWeakSelf(self);
-//    if (self.photoImageList.count == 0) {
-//    }else{
-//        //先上传到七牛云图片  再提交服务器
-//        [QiniuLoad uploadImageToQNFilePath:self.photoImageList success:^(NSString *reslut) {
-//            NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
-//            [weakself commonAction:qiniuArray btn:btn];
-//        } failure:^(NSString *error) {
-//            NSLog(@"%@",error);
-//        }];
-//    }
- 
 }
 -(void)commonAction:(NSMutableArray *)imgArray btn:(UIButton *)btn{
     NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
     self.textViewInput = self.qmuiTextView.text;
-    if (!_startDic) {
-        if (imgArray.count == 0) {
-            [dic setValue:@"" forKey:@"photo1"];
-            [dic setValue:@"" forKey:@"photo2"];
-            [dic setValue:@"" forKey:@"photo3"];
-            [QMUITips showInfo:@"请至少上传一张图片" inView:self.view hideAfterDelay:2];
-            return;
-        }
-        if (imgArray.count >= 1){
-            [dic setValue:imgArray[0] forKey:@"photo1"];
-            [dic setValue:@"" forKey:@"photo2"];
-            [dic setValue:@"" forKey:@"photo3"];
-        }
-        if (imgArray.count >= 2){
-            [dic setValue:imgArray[0] forKey:@"photo1"];
-            [dic setValue:imgArray[1] forKey:@"photo2"];
-            [dic setValue:@"" forKey:@"photo3"];
-        }
-        if (imgArray.count >= 3){
-            [dic setValue:imgArray[0] forKey:@"photo1"];
-            [dic setValue:imgArray[1] forKey:@"photo2"];
-            [dic setValue:imgArray[2] forKey:@"photo3"];
-        }
+    if (!_startDic && imgArray.count == 0) {
+        [QMUITips showInfo:@"请至少上传一张图片!" inView:self.view hideAfterDelay:2];
+        return;
     }
-
     if (self.textViewInput.length == 0){
         [QMUITips showError:@"请输入描述!" inView:self.view hideAfterDelay:2];
         return;
     }
-    /*
-    else if (self.textViewInput.length >  100){
-        [QMUITips hideAllTipsInView:self.view];
-        [QMUITips showError:@"描述长度不能超过100字符" inView:self.view hideAfterDelay:2];
-        return;
-    }
-     */
-    [dic setValue:[self.textViewInput utf8ToUnicode] forKey:@"describe"];//描述
-    NSString * publish_site = [self.locationString isEqualToString:@"获取地理位置"] ? @"" : self.locationString;
-    [dic setValue:publish_site forKey:@"publish_site"];//地点
-    if (self.tagArray.count == 0) {
-        [dic setValue:@"" forKey:@"tag"];//标签
-    }else{
-        NSString *string = [self.tagArray componentsJoinedByString:@" "];
-        [dic setValue:string forKey:@"tag"];//标签
-    }
+//post_id 修改传，发布传空
+    [dic setValue:@"" forKey:@"post_id"];
+//title 标题 晒图不传
+    [dic setValue:@"" forKey:@"title"];
+//detail 详情
+    [dic setValue:[self.textViewInput utf8ToUnicode] forKey:@"detail"];
+//拼接photo_list
+    NSString * photo_list = [imgArray componentsJoinedByString:@","];
+    [dic setValue:photo_list forKey:@"photo_list"];
+//obj 1晒图 2文章
     [dic setValue:@"1" forKey:@"obj"];
+//tag 标签
+    self.tagArray.count == 0 ?
+    [dic setValue:@"" forKey:@"tag"] : [dic setValue:[self.tagArray componentsJoinedByString:@" "] forKey:@"tag"];
+//publish_site 地点
+    NSString * publish_site = [self.locationString isEqualToString:@"获取地理位置"] ? @"" : self.locationString;
+    [dic setValue:publish_site forKey:@"publish_site"];
+    
     kWeakSelf(self);
-
         //这里区别寸草稿还是发布
         if (btn.tag == 301) {
             UserInfo *userInfo = curUser;
@@ -263,25 +227,20 @@
 
 }
 -(void)requestFabu:(NSMutableDictionary *)dic{
-    kWeakSelf(self);
     [QMUITips showLoadingInView:[ShareManager getMainView]];
     if (_startDic) {
         [dic setValue:kGetString(_startDic[@"id"]) forKey:@"post_id"];
-
-        [dic setValue:@"0" forKey:@"to_recommend"];
-        //发布按钮
-        [YX_MANAGER requestEditFaBuImagePOST:dic success:^(id object) {
-            [QMUITips showSucceed:object[@"message"] inView:[ShareManager getMainView] hideAfterDelay:1];
-            [weakself closeViewAAA];
-        }];
+        [self lastFabu:dic];
     }else{
-        //发布按钮
-        [YX_MANAGER requestFaBuImagePOST:dic success:^(id object) {
-            [QMUITips showSucceed:object[@"message"] inView:[ShareManager getMainView] hideAfterDelay:1];
-            [weakself closeViewAAA];
-        }];
+        [self lastFabu:dic];
     }
-
+}
+-(void)lastFabu:(NSDictionary *)dic{
+    kWeakSelf(self);
+    [YX_MANAGER requestFaBuImagePOST:dic success:^(id object) {
+        [QMUITips showSucceed:object[@"message"] inView:[ShareManager getMainView] hideAfterDelay:1];
+        [weakself closeViewAAA];
+    }];
 }
 -(void)closeViewAction:(id)sender{
 

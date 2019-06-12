@@ -21,7 +21,7 @@
     if (url.length < 5) {
         imageHeight = 0;
     }
-    NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"tag"]];
+    NSString * titleText = [NSString stringWithFormat:@"%@%@", dic[@"detail"],dic[@"tag"]];
     
     //内容
     CGFloat height_size = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
@@ -61,7 +61,7 @@
     if (url.length < 5) {
         imageHeight = 0;
     }
-    NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"tag"]];
+    NSString * titleText = [NSString stringWithFormat:@"%@%@",dic[@"detail"],dic[@"tag"]];
     
     //内容
     CGFloat height_size = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
@@ -152,25 +152,7 @@
 -(void)setCellValue:(NSDictionary *)dic whereCome:(BOOL)whereCome{
     [self cellValueDic:dic searchBtn:self.searchBtn pl1NameLbl:self.pl1NameLbl pl2NameLbl:self.pl2NameLbl pl1ContentLbl:self.pl1ContentLbl pl2ContentLbl:self.pl2ContentLbl titleImageView:self.titleImageView addPlImageView:self.addPlImageView talkCount:self.talkCount titleLbl:self.titleLbl timeLbl:self.timeLbl mapBtn:self.mapBtn likeBtn:self.likeBtn zanCount:self.zanCount plLbl:self.plLbl];
     
-    NSMutableArray * imgArray =  [NSMutableArray array];
-    if ([dic[@"photo1"] length] > 5) {
-        [imgArray addObject:dic[@"photo1"]];
-    }
-    if ([dic[@"photo2"] length] > 5) {
-        [imgArray addObject:dic[@"photo2"]];
-    }
-    if ([dic[@"photo3"] length] > 5) {
-        [imgArray addObject:dic[@"photo3"]];
-    }
-    if ([dic[@"pic1"] length] > 5) {
-        [imgArray addObject:dic[@"pic1"]];
-    }
-    if ([dic[@"pic2"] length] > 5) {
-        [imgArray addObject:dic[@"pic2"]];
-    }
-    if ([dic[@"pic3"] length] > 5) {
-        [imgArray addObject:dic[@"pic3"]];
-    }
+    NSArray * imgArray = [dic[@"photo_list"] split:@","];
     if (imgArray.count > 0) {
         self.conViewHeight.constant = [self getImvHeight:dic whereCome:whereCome];
         [self setUpSycleScrollView:imgArray height:[self getImvHeight:dic whereCome:whereCome]];
@@ -270,7 +252,7 @@
 
     
     //title
-    NSString * titleText = [[NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"tag"]] UnicodeToUtf8];
+    NSString * titleText = [[NSString stringWithFormat:@"%@%@",dic[@"detail"],dic[@"tag"]] UnicodeToUtf8];
     self.titleTagLbl.text = titleText;
     
     kWeakSelf(self);
