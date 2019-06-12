@@ -29,6 +29,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self requestZhiNan1Get];
+    YX_MANAGER.moreBool = NO;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
