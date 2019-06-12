@@ -20,6 +20,7 @@
 @property (nonatomic,strong) YXZhiNanDetailHeaderView * headerView;
 @property (nonatomic,strong) NSMutableArray * dataArray;
 @property (nonatomic,assign) BOOL is_collect;
+@property (weak, nonatomic) IBOutlet UILabel *plLbl;
 
 @property (nonatomic,assign) CGFloat contentHeight;
 @end
@@ -75,7 +76,11 @@
                             [weakself.yxTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
                         } completion:^(BOOL finished) {
 
-                        }];
+        }];
+        if (weakself.dataArray.count > 0) {
+            [weakself panduanIsColl];
+
+        }
     }];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -134,10 +139,13 @@
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan3Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan3Cell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan4Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan4Cell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan5Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan5Cell"];
-    
+//    [self panduanIsColl];
+}
+-(void)panduanIsColl{
+    self.plLbl.text = kGetString(self.dataArray[0][@"comment_number"]);
     if ([userManager loadUserInfo]) {
-        BOOL is_collect = [self.startDic[@"is_collect"] integerValue] == 1;
-        UIImage * likeImage = is_collect ? [UIImage imageNamed:@"收藏选择"] : [UIImage imageNamed:@"收藏未选择"] ;
+        self.is_collect = [self.dataArray[0][@"is_collect"] integerValue] == 1;
+        UIImage * likeImage = self.is_collect ? [UIImage imageNamed:@"收藏选择"] : [UIImage imageNamed:@"收藏未选择"] ;
         [self.collImgView setImage:likeImage];
     }
 }
@@ -172,9 +180,9 @@
         return;
     }
     kWeakSelf(self);
-    NSString * tagId = kGetString(self.startDic[@"id"]);
+    NSString * tagId = kGetString(self.startArray[self.currentIndex][@"id"]);
     [YXPLUS_MANAGER requestCollect_optionGet:[@"3/" append:tagId] success:^(id object) {
-        UIImage * likeImage = weakself.is_collect ? [UIImage imageNamed:@"收藏选择"] : [UIImage imageNamed:@"收藏未选择"] ;
+        UIImage * likeImage = weakself.is_collect ? [UIImage imageNamed:@"收藏未选择"] : [UIImage imageNamed:@"收藏选择"] ;
         [weakself.collImgView setImage:likeImage];
         weakself.is_collect = !weakself.is_collect;
     }];

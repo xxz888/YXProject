@@ -26,25 +26,6 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
     [self requestZhiNanGet];
-   // [self requestZhiNanFirstGet];
-}
--(void)requestZhiNanFirstGet{
-    kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"1/%@",@"5"];
-    [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
-        NSMutableArray * collArray = [[NSMutableArray alloc]initWithArray:object];
-        if ([userManager loadUserInfo]) {
-            NSDictionary * dic = collArray[weakself.index];
-            BOOL is_collect = [dic[@"is_collect"] integerValue] == 1;
-            UIImage * likeImage = is_collect ? [UIImage imageNamed:@"收藏2"] : [UIImage imageNamed:@"收藏1"] ;
-            [weakself.headerView.collBtn setImage:likeImage forState:UIControlStateNormal];
-            UIColor * color1 = is_collect ? YXRGBAColor(251, 24, 39) : KWhiteColor;
-            weakself.headerView.collVIew.backgroundColor = color1;
-            UIColor * color2 = is_collect ? KWhiteColor : KDarkGaryColor;
-            [weakself.headerView.collBtn setTitleColor:color2 forState:UIControlStateNormal];
-        }
-    }];
-
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,6 +41,7 @@
     [self.yxTableView.mj_footer endRefreshing];
 }
 -(void)requestZhiNanGet{
+    [QMUITips showLoadingInView:self.view];
     kWeakSelf(self);
     NSString * par = [NSString stringWithFormat:@"1/%@",self.startDic[@"id"]];
     [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
@@ -76,6 +58,7 @@
                                 [weakself.yxTableView reloadData];
                             }
                              dispatch_semaphore_signal(sema);
+                            [QMUITips hideAllTipsInView:weakself.view];
                         }];
                     dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
                 }

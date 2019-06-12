@@ -9,11 +9,9 @@
 #import "XWPopMenuController.h"
 #import "PublishMenuButton.h"
 #import "YXPublishImageViewController.h"
-#import "RichTextViewController.h"
+#import "EditorViewController.h"
 #import "YXPublishFootViewController.h"
 #import "YXHomeXueJiaPinPaiViewController.h"
-#import "RichTextViewController.h"
-
 #import "YXFaBuBaseViewController.h"
 
 @interface XWPopMenuController (){
@@ -162,7 +160,7 @@
     
     for (int i = 0; i < self.ary.count; i++) {
         
-        NSArray *arrTitle = @[@"晒图",@"问答"];
+        NSArray *arrTitle = @[@"晒图",@"文章"];
         PublishMenuButton *btn = [PublishMenuButton buttonWithType:UIButtonTypeCustom];
         
         //图标图片和文本
@@ -207,25 +205,12 @@
 
 //点击按钮进行放大动画效果直到消失
 - (void)touchDownBtn:(PublishMenuButton *)btn{
-    
-    
-    NSLog(@"%ld为btn.tag的值，根据不同的按钮需要做什么操作可以写这里",btn.tag);
-    
-    
-    __weak typeof(self) weakSelf = self;
-//    UIStoryboard * stroryBoard3 = [UIStoryboard storyboardWithName:@"YXPublish" bundle:nil];
     if (btn.tag == 1000) {//晒图
         YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
-        [weakSelf presentViewController:imageVC animated:YES completion:nil];
+        [self presentViewController:imageVC animated:YES completion:nil];
     }else{
-        
-        
-        
-        UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"RichText" bundle:nil];
-        RichTextViewController * pinpaiVC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"RichTextViewController"];
+        EditorViewController * pinpaiVC = [[EditorViewController alloc]init];
         [self presentViewController:pinpaiVC animated:YES completion:nil];
-
-        
     }
     
 }

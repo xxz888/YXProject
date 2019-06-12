@@ -102,7 +102,8 @@
     long needsToAddCount = commentItemsArray.count > originalLabelsCount ? (commentItemsArray.count - originalLabelsCount) : 0;
     for (int i = 0; i < needsToAddCount; i++) {
         MLLinkLabel *label = [MLLinkLabel new];
-        UIColor *highLightColor = TimeLineCellHighlightedColor;
+        UIColor *highLightColor = kRGBA(0, 153, 255, 1.0);
+        //改变firstname颜色
         label.linkTextAttributes = @{NSForegroundColorAttributeName : highLightColor};
         label.lee_theme
         .LeeAddTextColor(DAY , [UIColor blackColor])
@@ -237,15 +238,15 @@
 
 #pragma mark - private actions
 
-- (NSMutableAttributedString *)generateAttributedStringWithCommentItemModel:(SDTimeLineCellCommentItemModel *)model
-{
+- (NSMutableAttributedString *)generateAttributedStringWithCommentItemModel:(SDTimeLineCellCommentItemModel *)model{
     NSString *text = model.firstUserName;
     if (model.secondUserName.length) {
-        text = [text stringByAppendingString:[NSString stringWithFormat:@"回复%@", model.secondUserName]];
+        text = [text stringByAppendingString:[NSString stringWithFormat:@" 回复 %@", model.secondUserName]];
     }
-    text = [text stringByAppendingString:[NSString stringWithFormat:@"：%@", model.commentString]];
+    text = [text stringByAppendingString:[NSString stringWithFormat:@":%@", model.commentString]];
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:text];
     [attString setAttributes:@{NSLinkAttributeName : model.firstUserName} range:[text rangeOfString:model.firstUserName]];
+    
     if (model.secondUserName) {
         [attString setAttributes:@{NSLinkAttributeName : model.secondUserName} range:[text rangeOfString:model.secondUserName]];
     }
@@ -256,7 +257,7 @@
 {
     NSString *text = model.userName;
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:text];
-    UIColor *highLightColor = KBlackColor;
+    UIColor *highLightColor = KRedColor;
     [attString setAttributes:@{NSForegroundColorAttributeName : highLightColor, NSLinkAttributeName : model.userId} range:[text rangeOfString:model.userName]];
     
     return attString;

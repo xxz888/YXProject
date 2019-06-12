@@ -324,4 +324,6 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestPubSearchAndDelChildComment:YX_BLOCK;
 #pragma mark ========== 发布子评论 ==========
 -(void)requestPubFaBuChildPingLunComment:YX_BLOCK;
+#pragma mark ========== 公共接口：获取XX评论子评论列表 ==========
+-(void)requestPubSearchChildPingLunListComment:YX_BLOCK;
 @end

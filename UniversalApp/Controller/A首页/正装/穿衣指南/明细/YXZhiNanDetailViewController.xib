@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YXZhiNanDetailViewController">
             <connections>
                 <outlet property="collImgView" destination="pHq-YR-8LX" id="xn8-Fx-wxs"/>
+                <outlet property="plLbl" destination="cJp-Mn-zZ3" id="FHI-OW-kLt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="yxTableView" destination="qfy-bh-xLK" id="se1-eh-jGz"/>
             </connections>
@@ -101,12 +102,12 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJp-Mn-zZ3">
-                                            <rect key="frame" x="70" y="17" width="28" height="20"/>
+                                            <rect key="frame" x="68" y="9.5" width="13" height="18.5"/>
                                             <attributedString key="attributedText">
-                                                <fragment content="评论">
+                                                <fragment content="10">
                                                     <attributes>
                                                         <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                        <font key="NSFont" size="14" name="PingFangSC-Light"/>
+                                                        <font key="NSFont" size="13" name="PingFangSC-Light"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -122,8 +123,8 @@
                                         <constraint firstItem="EY4-S3-4cG" firstAttribute="centerY" secondItem="jHu-Ht-WTe" secondAttribute="centerY" multiplier="0.9" id="L9q-5b-mNk"/>
                                         <constraint firstItem="EY4-S3-4cG" firstAttribute="centerX" secondItem="jHu-Ht-WTe" secondAttribute="centerX" multiplier="0.8" id="ZWp-fL-fvO"/>
                                         <constraint firstAttribute="bottom" secondItem="jHu-Ht-WTe" secondAttribute="bottom" id="d2q-VS-i9I"/>
-                                        <constraint firstItem="cJp-Mn-zZ3" firstAttribute="leading" secondItem="EY4-S3-4cG" secondAttribute="trailing" constant="5" id="da6-D9-riU"/>
-                                        <constraint firstItem="cJp-Mn-zZ3" firstAttribute="centerY" secondItem="EY4-S3-4cG" secondAttribute="centerY" id="wia-ra-SO9"/>
+                                        <constraint firstItem="cJp-Mn-zZ3" firstAttribute="leading" secondItem="EY4-S3-4cG" secondAttribute="trailing" constant="3" id="da6-D9-riU"/>
+                                        <constraint firstItem="cJp-Mn-zZ3" firstAttribute="centerY" secondItem="EY4-S3-4cG" secondAttribute="centerY" multiplier="0.7" id="wia-ra-SO9"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zSc-WI-Cjn">

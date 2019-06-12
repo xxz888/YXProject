@@ -13,5 +13,5 @@ pod "Qiniu", "~> 7.1"
 pod "MLLabel"
 pod "UUButton"
 pod 'ZXSegmentController'
-
+pod 'BlocksKit'
 end

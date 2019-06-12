@@ -20,7 +20,6 @@
 
 #import "YXPublishImageViewController.h"
 
-#import "RichTextViewController.h"
 @interface MainTabBarController ()<UITabBarControllerDelegate,VTingPopItemSelectDelegate> {
     NSMutableArray *images;
     NSMutableArray *titles;

@@ -987,18 +987,24 @@ successBlock(responseObject);\
 #pragma mark ========== 公共接口：点赞 ==========
 -(void)requestPubDianZanComment:YX_BLOCK{
     NSString * url = @"/pub/public_comment_praise/?comment_id=";
-    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+    [HTTP_GET([url append:dic]) sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ========== 公共接口：获取XX评论子评论列表 ==========
+-(void)requestPubSearchChildPingLunListComment:YX_BLOCK{
+    NSString * url = @"/pub/public_comment_child/?";
+    [HTTP_GET([url append:dic]) sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
 #pragma mark ========== 公共接口：获取XX评论子评论列表 ==========
 -(void)requestPubSearchAndDelChildComment:YX_BLOCK{
     NSString * url = @"/pub/public_comment_child/?child_id=";
-    [HTTP_GET([[url append:dic] append:@"/"]) sucess:^(id responseObject) {
+    [HTTP_GET([url append:dic]) sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
-
 #pragma mark ========== 发布子评论 ==========
 -(void)requestPubFaBuChildPingLunComment:YX_BLOCK{
     NSString * url = @"/pub/public_comment_child/";

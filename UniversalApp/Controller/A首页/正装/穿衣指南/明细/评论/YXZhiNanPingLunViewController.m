@@ -22,10 +22,11 @@
 }
 - (void)viewDidLoad{
     [super viewDidLoad];
-    self.title = @"评论";
+
     //初始化所有的控件
     [self initAllControl];
     [self requestNewList];
+    self.title = @"评论";
 }
 -(void)headerRereshing{
     [super headerRereshing];
@@ -67,8 +68,8 @@
 #pragma mark ========== 更多评论 ==========
 -(void)requestMoreCigar_comment_child:(NSString *)farther_id page:(NSString *)page{
     kWeakSelf(self);
-    NSString * string = [NSString stringWithFormat:@"%@/%@",farther_id,page];
-    [YX_MANAGER requestPost_comment_child:string success:^(id object) {
+    NSString * string = [NSString stringWithFormat:@"father_id=%@&page=%@",farther_id,page];
+    [YX_MANAGER requestPubSearchChildPingLunListComment:string success:^(id object) {
         if ([object count] == 0) {
             [QMUITips showInfo:@"没有更多评论了" detailText:@"" inView:weakself.yxTableView hideAfterDelay:1];
             return ;
@@ -81,14 +82,14 @@
             SDTimeLineCellCommentItemModel *commentItemModel = [SDTimeLineCellCommentItemModel new];
             if ([dic[@"aim_id"] integerValue] != 0) {
                 commentItemModel.firstUserId = kGetString(dic[@"user_id"]);
-                commentItemModel.firstUserName = kGetString(dic[@"user_name"]);
-                commentItemModel.secondUserName = kGetString(dic[@"aim_name"]);
+                commentItemModel.firstUserName = kGetString(dic[@"user_info"][@"name"]);
                 commentItemModel.secondUserId = kGetString(dic[@"aim_id"]);
+                commentItemModel.secondUserName = kGetString(dic[@"aim_info"][@"name"]);
                 commentItemModel.commentString = [kGetString(dic[@"comment"]) UnicodeToUtf8];
                 commentItemModel.labelTag = [dic[@"id"] integerValue];
             } else {
                 commentItemModel.firstUserId = kGetString(dic[@"user_id"]);
-                commentItemModel.firstUserName =kGetString(dic[@"user_name"]);
+                commentItemModel.firstUserName =kGetString(dic[@"user_info"][@"name"]);
                 commentItemModel.commentString = [kGetString(dic[@"comment"]) UnicodeToUtf8];
                 commentItemModel.labelTag = [dic[@"id"] integerValue];
             }
@@ -147,10 +148,10 @@
         NSArray * child_listArray =  [NSArray arrayWithArray:formalArray[i][@"child_list"]];
         for (int i = 0; i < [child_listArray count]; i++) {
             SDTimeLineCellCommentItemModel *commentItemModel = [SDTimeLineCellCommentItemModel new];
-            commentItemModel.firstUserName = kGetString(child_listArray[i][@"user_name"]);
+            commentItemModel.firstUserName = kGetString(child_listArray[i][@"user_info"][@"name"]);
             commentItemModel.firstUserId = kGetString(child_listArray[i][@"user_id"]);
             if (child_listArray[i][@"aim_id"] != 0) {
-                commentItemModel.secondUserName = kGetString(child_listArray[i][@"aim_name"]);
+                commentItemModel.secondUserName = kGetString(child_listArray[i][@"aim_info"][@"name"]);
                 commentItemModel.secondUserId = kGetString(child_listArray[i][@"aim_id"]);
             }
             commentItemModel.commentString = [child_listArray[i][@"comment"] UnicodeToUtf8];
@@ -204,7 +205,7 @@
     kWeakSelf(self);
     NSIndexPath *index = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel *model = self.dataArray[index.row];
-    [YX_MANAGER requestPubDianZanComment:@{@"comment_id":@([model.id intValue])} success:^(id object) {
+    [YX_MANAGER requestPubDianZanComment:model.id success:^(id object) {
         weakself.currentEditingIndexthPath = index;
         [weakself requestNewList];
     }];

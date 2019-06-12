@@ -229,10 +229,10 @@ CGFloat maxLimitHeight = 0;
                 UIButton * showMoreCommentBtn = [UIButton buttonWithType:0];
                 showMoreCommentBtn.frame = CGRectMake(0, top, KScreenWidth - 20, 30);
                 [showMoreCommentBtn setTitle:@"显示更多评论 >>" forState:UIControlStateNormal];
-                [showMoreCommentBtn setTitleColor:KDarkGaryColor forState:UIControlStateNormal];
+                [showMoreCommentBtn setTitleColor:kRGBA(21, 21, 21, 1.0) forState:UIControlStateNormal];
                 [showMoreCommentBtn addTarget:self action:@selector(showMoreCommentAction:) forControlEvents:UIControlEventTouchUpInside];
                 showMoreCommentBtn.tag = [label.comment.answerChildId integerValue];
-                showMoreCommentBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+                showMoreCommentBtn.titleLabel.font = [UIFont fontWithName:@"苹方-简" size:14];
                 [_commentView addSubview:showMoreCommentBtn];
                 // 更新
                 top += 30;
