@@ -155,6 +155,8 @@
 		BB21FDB022B099B20059BCAC /* YXWenZhangView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB21FDAB22B099B20059BCAC /* YXWenZhangView.m */; };
 		BB21FDB122B099B20059BCAC /* YXWenZhangView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB21FDAC22B099B20059BCAC /* YXWenZhangView.xib */; };
 		BB21FDB522B09B2E0059BCAC /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = BB21FDB322B09B2D0059BCAC /* Tool.m */; };
+		BB21FDB922B0E68A0059BCAC /* YXFirstFindImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB21FDB722B0E68A0059BCAC /* YXFirstFindImageTableViewCell.m */; };
+		BB21FDBA22B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB21FDB822B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib */; };
 		BB29120822156BB500FF484E /* Cigarillo.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911EC22156BB500FF484E /* Cigarillo.gif */; };
 		BB29120922156BB500FF484E /* Petit Corona.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911ED22156BB500FF484E /* Petit Corona.gif */; };
 		BB29120A22156BB500FF484E /* Petit Pyramid.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911EE22156BB500FF484E /* Petit Pyramid.gif */; };
@@ -927,6 +929,9 @@
 		BB21FDB222B09AC30059BCAC /* MDBridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDBridgingHeader.h; sourceTree = "<group>"; };
 		BB21FDB322B09B2D0059BCAC /* Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tool.m; path = "UniversalApp/Controller/C发布/2文章/文章所用的swift库/Tool.m"; sourceTree = SOURCE_ROOT; };
 		BB21FDB422B09B2D0059BCAC /* Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tool.h; path = "UniversalApp/Controller/C发布/2文章/文章所用的swift库/Tool.h"; sourceTree = SOURCE_ROOT; };
+		BB21FDB622B0E68A0059BCAC /* YXFirstFindImageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFirstFindImageTableViewCell.h; sourceTree = "<group>"; };
+		BB21FDB722B0E68A0059BCAC /* YXFirstFindImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFirstFindImageTableViewCell.m; sourceTree = "<group>"; };
+		BB21FDB822B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFirstFindImageTableViewCell.xib; sourceTree = "<group>"; };
 		BB2911EC22156BB500FF484E /* Cigarillo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Cigarillo.gif; sourceTree = "<group>"; };
 		BB2911ED22156BB500FF484E /* Petit Corona.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Petit Corona.gif"; sourceTree = "<group>"; };
 		BB2911EE22156BB500FF484E /* Petit Pyramid.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Petit Pyramid.gif"; sourceTree = "<group>"; };
@@ -2740,6 +2745,9 @@
 		BB5FD88621FECBB500B5F1A8 /* 两种Cell */ = {
 			isa = PBXGroup;
 			children = (
+				BB21FDB622B0E68A0059BCAC /* YXFirstFindImageTableViewCell.h */,
+				BB21FDB722B0E68A0059BCAC /* YXFirstFindImageTableViewCell.m */,
+				BB21FDB822B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib */,
 				BB5FD88721FECBDB00B5F1A8 /* YXFindImageTableViewCell.h */,
 				BB5FD88821FECBDB00B5F1A8 /* YXFindImageTableViewCell.m */,
 				BB5FD88921FECBDB00B5F1A8 /* YXFindImageTableViewCell.xib */,
@@ -5407,6 +5415,7 @@
 				BB5FD88421FEB8CE00B5F1A8 /* YXMineEssayTableViewCell.xib in Resources */,
 				BBD2C92C21E0F67800350DCD /* UIBarButtonItemGrid.png in Resources */,
 				BB29122022156BB500FF484E /* Robusto Extra.gif in Resources */,
+				BB21FDBA22B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib in Resources */,
 				BBD2C93A21E0F67800350DCD /* UIBarButtonItemArrowRight@3x.png in Resources */,
 				293D46551ECDBB63007C64A9 /* icon_tabbar_onsite_new@2x.png in Resources */,
 				BBADE4DD21F866670011E5FF /* YXMineImageDetailHeaderView.xib in Resources */,
@@ -5934,6 +5943,7 @@
 				BB21FD9822B0991E0059BCAC /* KSMediaPickerScrollView.m in Sources */,
 				BBD2C92721E0F67800350DCD /* MWGridViewController.m in Sources */,
 				BBB59AEA228CF8CB0029D3D0 /* YXHomeXueJiaGuBaViewController.m in Sources */,
+				BB21FDB922B0E68A0059BCAC /* YXFirstFindImageTableViewCell.m in Sources */,
 				BBDA2D2621EB30BF00EDCCFF /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				BBA812AD21DDAB9D001B5EA1 /* YXFindViewController.m in Sources */,
 				BBA812E621DDDE47001B5EA1 /* WJSliderView.m in Sources */,

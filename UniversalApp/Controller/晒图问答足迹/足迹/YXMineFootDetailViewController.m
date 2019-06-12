@@ -59,7 +59,7 @@
     //自己的头图像
     UserInfo *userInfo = curUser;
     NSString * str2 = [(NSMutableString *)userInfo.photo replaceAll:@" " target:@"%20"];
-    [cell.addPlImageView sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+//    [cell.addPlImageView sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     //评论数量
     cell.talkCount.text = talkNum;
     cell.zanCount.text = praisNum;
@@ -101,9 +101,9 @@
     cell.rightCountLbl.hidden = [cell.rightCountLbl.text isEqualToString:@"1/1"] ||
     [cell.rightCountLbl.text isEqualToString:@"1/0"];
 
-    cell.titleTagtextViewHeight.constant = 30;
-    NSString * zuji = [NSString stringWithFormat:@"来自足迹·%@ %@",dic[@"cigar_info"][@"brand_name"],dic[@"cigar_info"][@"cigar_name"]];
-    cell.titleTagtextView.text = zuji;
+//    cell.titleTagtextViewHeight.constant = 30;
+//    NSString * zuji = [NSString stringWithFormat:@"来自足迹·%@ %@",dic[@"cigar_info"][@"brand_name"],dic[@"cigar_info"][@"cigar_name"]];
+//    cell.titleTagtextView.text = zuji;
     //图片高度
     cell.imvHeight.constant = [self getImvHeight:dic whereCome:NO];
     //title

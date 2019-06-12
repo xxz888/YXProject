@@ -28,30 +28,24 @@
 }
 - (void)viewDidLoad{
     [super viewDidLoad];
-    if ([self.startDic[@"photo1"] length] >= 5) {
-        imageHeight   = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:self.startDic[@"photo1"]] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:400];
-    }
     //初始化所有的控件
     [self initAllControl];
-//    [self addRefreshView:self.yxTableView];
     [self requestNewList];
 }
 -(void)headerRereshing{
     [super headerRereshing];
-    self.segmentIndex == 0 ? [self requestNewList] : [self requestHotList];
+    [self requestNewList] ;
 }
 -(void)footerRereshing{
     [super footerRereshing];
-    self.segmentIndex == 0 ? [self requestNewList] : [self requestHotList];
+    [self requestNewList] ;
 }
 -(void)initAllControl{
     [super initAllControl];
     kWeakSelf(self);
-    //点击segment
-    self.lastDetailView.block = ^(NSInteger index) {
-        index == 0 ? [weakself requestNewList] : [weakself requestHotList];
-        weakself.segmentIndex = index;
-    };
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return self.headerViewHeight;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     cell = [[[NSBundle mainBundle]loadNibNamed:@"YXFindImageTableViewCell" owner:self options:nil]lastObject];
@@ -59,12 +53,8 @@
     NSString * talkNum = dic[@"comment_number"] ? kGetString(dic[@"comment_number"]) :kGetString(dic[@"answer_number"]);
     NSString * praisNum = kGetString(dic[@"praise_number"]);
     //cell的头图片
-    NSString * str1 = [(NSMutableString *)(dic[@"user_photo"] ? dic[@"user_photo"] : dic[@"photo"]) replaceAll:@" " target:@"%20"];
+    NSString * str1 = [(NSMutableString *)dic[@"photo"] replaceAll:@" " target:@"%20"];
     [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    //自己的头图像
-    UserInfo *userInfo = curUser;
-    NSString * str2 = [(NSMutableString *)userInfo.photo replaceAll:@" " target:@"%20"];
-    [cell.addPlImageView sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     //评论数量
     cell.talkCount.text = talkNum;
     cell.zanCount.text = praisNum;
@@ -86,31 +76,20 @@
     if ([praisNum isEqualToString:@"0"] || [praisNum isEqualToString:@"(null)"]) {
         cell.zanCount.text = @"";
     }
-    NSMutableArray * imgArray =  [NSMutableArray array];
-    if ([dic[@"photo1"] length] > 5) {
-        [imgArray addObject:dic[@"photo1"]];
-    }
-    if ([dic[@"photo2"] length] > 5) {
-        [imgArray addObject:dic[@"photo2"]];
-    }
-    if ([dic[@"photo3"] length] > 5) {
-        [imgArray addObject:dic[@"photo3"]];
-    }
-    if (imgArray.count > 0) {
-        [cell setUpSycleScrollView:imgArray height:[self getImvHeight:dic whereCome:NO]];
+
+    if ([dic[@"url_list"] count] > 0) {
+        [cell setUpSycleScrollView:dic[@"url_list"] height: KScreenWidth - 10];
         cell.cycleScrollView3.hidden = NO;
     }else{
         cell.cycleScrollView3.hidden = YES;
     }
-    cell.rightCountLbl.text = [NSString stringWithFormat:@"%@/%ld",@"1",imgArray.count];
+    cell.rightCountLbl.text = [NSString stringWithFormat:@"%@/%ld",@"1",[dic[@"url_list"] count]];
     cell.rightCountLbl.hidden = [cell.rightCountLbl.text isEqualToString:@"1/1"] ||
     [cell.rightCountLbl.text isEqualToString:@"1/0"];
-    //足迹的那一栏
-    cell.titleTagtextViewHeight.constant = 0;
     //图片高度
-    cell.imvHeight.constant = [self getImvHeight:dic whereCome:NO];
+    cell.imvHeight.constant = KScreenWidth - 10;
     //title
-    NSString * titleText = [[NSString stringWithFormat:@"%@%@",dic[@"describe"],dic[@"tag"]] UnicodeToUtf8];
+    NSString * titleText = [[NSString stringWithFormat:@"%@%@",dic[@"detail"],dic[@"tag"]] UnicodeToUtf8];
     cell.titleTagLbl.text = titleText;
     //
     cell.plAllHeight.constant = 0;
@@ -214,9 +193,7 @@
     CGFloat height_size = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
     return height_size;
 }
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return  self.headerViewHeight;
-}
+
 #pragma mark ========== 获取晒图评论列表 ==========
 -(void)requestNewList{
     kWeakSelf(self);
@@ -230,19 +207,6 @@
         }
         [weakself refreshTableView];
 
-    }];
-}
--(void)requestHotList{
-    kWeakSelf(self);
-    //请求评价列表 最热评论列表
-    [YX_MANAGER requestPost_comment:[self getParamters:@"2" page:NSIntegerToNSString(self.requestPage)] success:^(id object) {
-        if ([object count] > 0) {
-            weakself.dataArray = [weakself commonAction:[weakself creatModelsWithCount:object] dataArray:weakself.dataArray]; 
-        }else{
-            [weakself.yxTableView.mj_header endRefreshing];
-            [weakself.yxTableView.mj_footer endRefreshing];
-        }
-        [weakself refreshTableView];
     }];
 }
 -(void)refreshTableView{

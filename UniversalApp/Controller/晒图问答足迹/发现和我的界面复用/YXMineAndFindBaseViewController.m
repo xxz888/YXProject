@@ -44,8 +44,13 @@
     self.yxTableView.estimatedRowHeight = 0;
     self.yxTableView.estimatedSectionHeaderHeight = 0;
     self.yxTableView.estimatedSectionFooterHeight = 0;
+    
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindImageTableViewCell"];
+    
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindQuestionTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindQuestionTableViewCell"];
+    
+     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFirstFindImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFirstFindImageTableViewCell"];
+    
 }
 #pragma mark ========== tableview代理方法 ==========
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -56,7 +61,7 @@
         dicTag = [self.dataArray objectAtIndex:indexPath.row];
     }
     if (tag == 1 || tag == 4) {
-        return [YXFindImageTableViewCell cellDefaultHeight:dicTag whereCome:tag==1?NO:YES];
+        return [YXFirstFindImageTableViewCell cellDefaultHeight:dicTag];
     }else if (tag == 3){
         return [YXFindQuestionTableViewCell cellMoreHeight:dicTag];
     }else{
@@ -87,28 +92,12 @@
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 #pragma mark ========== 图片 ==========
--(YXFindImageTableViewCell *)customImageData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath whereCome:(BOOL)whereCome{
-    YXFindImageTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFindImageTableViewCell" forIndexPath:indexPath];
+-(YXFirstFindImageTableViewCell *)customImageData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath whereCome:(BOOL)whereCome{
+    YXFirstFindImageTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFirstFindImageTableViewCell" forIndexPath:indexPath];
     cell.tagId = [dic[@"id"] integerValue];
     cell.titleImageView.tag = indexPath.row;
     kWeakSelf(self);
-    cell.clickImageBlock = ^(NSInteger tag) {
-        if (![userManager loadUserInfo]) {
-            KPostNotification(KNotificationLoginStateChange, @NO);
-            return;
-        }
-        [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
-    };
-    cell.zanblock = ^(YXFindImageTableViewCell * cell) {
-        if (![userManager loadUserInfo]) {
-            KPostNotification(KNotificationLoginStateChange, @NO);
-            return;
-        }
-        NSIndexPath * indexPath1 = [weakself.yxTableView indexPathForCell:cell];
-        
-        whereCome ?  [weakself requestDianZan_ZuJI_Action:indexPath1] : [weakself requestDianZan_Image_Action:indexPath1];
-    };
-    cell.shareblock = ^(YXFindImageTableViewCell * cell) {
+    cell.shareblock = ^(YXFirstFindImageTableViewCell * cell) {
         if (![userManager loadUserInfo]) {
             KPostNotification(KNotificationLoginStateChange, @NO);
             return;
@@ -116,54 +105,33 @@
         UserInfo * userInfo = curUser;
         BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [userInfo.id integerValue];
         shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
-        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:cell.whereCome ? @"3" : @"1" tag:cell.tagId startDic:cell.whereCome ? nil : cell.dataDic];
+        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"2" tag:cell.tagId startDic:cell.dataDic];
     };
-    cell.jumpDetailVCBlock = ^(YXFindImageTableViewCell * cell) {
-        
-        NSIndexPath * indexPathSelect = [weakself.yxTableView indexPathForCell:cell];
-        [weakself tableView:weakself.yxTableView didSelectRowAtIndexPath:indexPathSelect];
-    };
-    //自定义cell的回调，获取要展开/收起的cell。刷新点击的cell
-    cell.showMoreTextBlock = ^(YXFindImageTableViewCell * cell,NSMutableDictionary * dataDic){
-        NSIndexPath *indexRow = [weakself.yxTableView indexPathForCell:cell];
-        NSMutableArray * copyArr = [NSMutableArray arrayWithArray:weakself.dataArray];
-        for (NSInteger i = 0; i < copyArr.count; i++) {
-            if ([copyArr[i][@"id"] integerValue] == [dataDic[@"id"] integerValue]) {
-                [weakself.dataArray replaceObjectAtIndex:i withObject:dataDic];
-            }
-        }
-        
-        [weakself.yxTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexRow, nil] withRowAnimation:UITableViewRowAnimationNone];
-    };
-    cell.addPlActionblock = ^(YXFindImageTableViewCell * cell) {
+    cell.clickImageBlock = ^(NSInteger tag) {
         if (![userManager loadUserInfo]) {
             KPostNotification(KNotificationLoginStateChange, @NO);
             return;
         }
-        NSIndexPath *indexRow = [weakself.yxTableView indexPathForCell:cell];
-        [weakself setupTextField];
-        weakself.inputToolbar.textInput.tag = indexRow.row;
-        [weakself.inputToolbar.textInput becomeFirstResponder];
+        [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
     };
-    cell.clickTagblock = ^(NSString * string) {
-        kWeakSelf(self);
-        _tagSelectBool = YES;
-        [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":@"1",@"type":@"2"} success:^(id object) {
-            if ([object count] > 0) {
-                YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
-                VC.type = @"3";
-                VC.key = object[0][@"tag"];
-                VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
-                [weakself.navigationController pushViewController:VC animated:YES];
-            }else{
-                [QMUITips showInfo:@"无此标签的信息"];
-            }
-            _tagSelectBool = NO;
-        }];
-    };
+//    cell.clickTagblock = ^(NSString * string) {
+//        kWeakSelf(self);
+//        _tagSelectBool = YES;
+//        [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":@"1",@"type":@"2"} success:^(id object) {
+//            if ([object count] > 0) {
+//                YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
+//                VC.type = @"3";
+//                VC.key = object[0][@"tag"];
+//                VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
+//                [weakself.navigationController pushViewController:VC animated:YES];
+//            }else{
+//                [QMUITips showInfo:@"无此标签的信息"];
+//            }
+//            _tagSelectBool = NO;
+//        }];
+//    };
     cell.dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-    cell.whereCome = whereCome;
-    [cell setCellValue:dic whereCome:whereCome];
+    [cell setCellValue:dic];
     return cell;
 }
 
@@ -396,8 +364,6 @@
         CGFloat h = [YXFindImageTableViewCell cellNewDetailNeedHeight:dic whereCome:NO];
         VC.headerViewHeight = h;
         VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-        YXFindImageTableViewCell * cell = [self.yxTableView cellForRowAtIndexPath:indexPath];
-        VC.height = cell.imvHeight.constant;
         [self.navigationController pushViewController:VC animated:YES];
     }else if (tag == 3){//问答
         YXHomeXueJiaQuestionDetailViewController * VC = [[YXHomeXueJiaQuestionDetailViewController alloc]init];

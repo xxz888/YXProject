@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 #import "YXFindImageTableViewCell.h"
 #import "YXFindQuestionTableViewCell.h"
+#import "YXFirstFindImageTableViewCell.h"
 #import "YXMineFootDetailViewController.h"
 #import "Moment.h"
 #import "HXEasyCustomShareView.h"

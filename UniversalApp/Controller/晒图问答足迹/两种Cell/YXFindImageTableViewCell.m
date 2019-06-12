@@ -16,21 +16,14 @@
 @end
 @implementation YXFindImageTableViewCell
 +(CGFloat)cellNewDetailNeedHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
-    NSString * url = whereCome ? dic[@"pic1"]:dic[@"photo1"];
-    CGFloat imageHeight = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:400];
-    if (url.length < 5) {
-        imageHeight = 0;
-    }
+    CGFloat imageHeight =  KScreenWidth-10;
     NSString * titleText = [NSString stringWithFormat:@"%@%@", dic[@"detail"],dic[@"tag"]];
-    
     //内容
     CGFloat height_size = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
-    
     CGFloat lastHeight =
-    (whereCome ? 30 : 0) +
     height_size +
     imageHeight;
-    return lastHeight + 140 ;
+    return lastHeight + 150 ;
 }
 
 
@@ -155,7 +148,7 @@
     NSArray * imgArray = [dic[@"photo_list"] split:@","];
     if (imgArray.count > 0) {
         self.conViewHeight.constant = [self getImvHeight:dic whereCome:whereCome];
-        [self setUpSycleScrollView:imgArray height:[self getImvHeight:dic whereCome:whereCome]];
+        [self setUpSycleScrollView:imgArray height: KScreenWidth-10];
         _cycleScrollView3.hidden = NO;
 
     }else{

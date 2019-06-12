@@ -118,7 +118,7 @@
     [YX_MANAGER requestGet_users_find_tag:@"" success:^(id object) {
         [weakself.typeArray removeAllObjects];
         [array addObject:@"最新"];
-        [weakself.typeArray addObject:@"0"];
+        [weakself.typeArray addObject:@"-1"];
         for (NSDictionary * dic in object) {
             [array addObject:dic[@"type"]];
             [weakself.typeArray addObject:dic[@"id"]];
@@ -133,15 +133,6 @@
     kWeakSelf(self);
     NSString * parString =[NSString stringWithFormat:@"%@&page=%@",self.type,NSIntegerToNSString(self.requestPage)];
     [YX_MANAGER requestGet_users_find:parString success:^(id object){
-        if ([object count] > 0) {
-            NSMutableArray *_dataSourceTemp=[NSMutableArray new];
-            for (NSDictionary *company in object) {
-                NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:company];
-                [dic setObject:@"0" forKey:@"isShowMoreText"];
-                [_dataSourceTemp addObject:dic];
-            }
-            object=_dataSourceTemp;
-        }
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
     }];
