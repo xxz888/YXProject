@@ -25,6 +25,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
+    YX_MANAGER.moreBool = YES;
     [self requestZhiNanGet];
 }
 - (void)viewDidLoad {

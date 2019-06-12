@@ -27,7 +27,6 @@ typedef void(^OpenBlock)(NSString *);
 @property (weak, nonatomic) IBOutlet UIView *collVIew;
 @property (nonatomic,assign) BOOL useBool;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleImageViewHeight;
-@property (nonatomic,assign) BOOL moreBool;
 
 
 @end

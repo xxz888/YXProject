@@ -65,12 +65,8 @@
         [self.collBtn setTitleColor:color2 forState:UIControlStateNormal];
     }
     
- 
-    
     CGFloat h = [ShareManager inTextZhiNanOutHeight:titleText lineSpace:9 fontSize:15];
-    
     if (YX_MANAGER.moreBool) {
-        
         self.contentHeight.constant =  h + h/4 ;//
         self.contentLbl.numberOfLines = 0;
         self.contentLbl.orgTruncationEndAttributedString = [self orgSetAttributedStringStyle:@" 收起"];
@@ -112,7 +108,7 @@
     style.lineSpacing = 9;
     NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:string];
     NSDictionary * attributes = @{
-                                  NSForegroundColorAttributeName : [UIColor redColor],
+                                  NSForegroundColorAttributeName : kRGBA(12, 36, 45, 1.0),
                                   NSFontAttributeName : [UIFont fontWithName:@"苹方-简" size:15],
                                  };
     [attributedString addAttributes:attributes range:NSMakeRange(0, [attributedString length])];

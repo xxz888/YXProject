@@ -46,7 +46,7 @@
     if (url.length < 5) {
         return 0;
     }
-    return    [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:400];
+    return   [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:400];
 }
 +(CGFloat)cellDefaultHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
     NSArray * plArray;
