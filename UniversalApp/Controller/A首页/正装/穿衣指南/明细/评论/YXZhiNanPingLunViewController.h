@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXZhiNanPingLunViewController : YXBaseFaXianDetailViewController
-@property (nonatomic,strong) NSDictionary * startDic;
+@property (nonatomic,strong) NSDictionary * startStartDic;
 @property (nonatomic,strong) NSString * startId;
 
 @end
