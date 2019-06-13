@@ -7,9 +7,11 @@
 //
 
 #import "YXFirstFindImageTableViewCell.h"
-
+#import "UIImage+ImgSize.h"
 @implementation YXFirstFindImageTableViewCell
 +(CGFloat)cellDefaultHeight:(NSDictionary *)dic{
+    
+
     //计算detail高度
     NSString * titleText = [[NSString stringWithFormat:@"%@%@",dic[@"detail"],dic[@"tag"]] UnicodeToUtf8];
     CGFloat detailHeight = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
@@ -18,6 +20,7 @@
     return 120 + detailHeight + midViewHeight;
 }
 -(void)setCellValue:(NSDictionary *)dic{
+    kWeakSelf(self);
     //头像
     NSString * str1 = [(NSMutableString *)dic[@"photo"] replaceAll:@" " target:@"%20"];
     [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
@@ -41,6 +44,10 @@
         model.attributeDic = @{NSForegroundColorAttributeName : [UIColor blueColor]};
         [modelArray addObject:model];
     }
+    //文本点击回调
+    self.detailLbl.tapBlock = ^(NSString *string) {
+        weakself.clickTagblock(string);
+    };
     //label内容赋值
     [self.detailLbl setText:titleText attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
                tapStringArray:modelArray];

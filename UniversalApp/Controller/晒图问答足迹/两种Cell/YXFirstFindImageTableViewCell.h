@@ -41,6 +41,11 @@ typedef void(^Click1ImageBlock)(NSInteger);
 typedef void(^Click1ShareBlock)(YXFirstFindImageTableViewCell *);
 - (IBAction)shareAction:(id)sender;
 @property (nonatomic,copy) Click1ShareBlock shareblock;
+
+
+
+typedef void(^ClickTag1Block)(NSString *);
+@property (nonatomic,copy) ClickTag1Block clickTagblock;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -102,7 +102,7 @@
     long needsToAddCount = commentItemsArray.count > originalLabelsCount ? (commentItemsArray.count - originalLabelsCount) : 0;
     for (int i = 0; i < needsToAddCount; i++) {
         MLLinkLabel *label = [MLLinkLabel new];
-        UIColor *highLightColor = kRGBA(0, 153, 255, 1.0);
+        UIColor *highLightColor = YXRGBAColor(10, 96, 254);
         //改变firstname颜色
         label.linkTextAttributes = @{NSForegroundColorAttributeName : highLightColor};
         label.lee_theme

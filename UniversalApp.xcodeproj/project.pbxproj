@@ -157,6 +157,7 @@
 		BB21FDB522B09B2E0059BCAC /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = BB21FDB322B09B2D0059BCAC /* Tool.m */; };
 		BB21FDB922B0E68A0059BCAC /* YXFirstFindImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB21FDB722B0E68A0059BCAC /* YXFirstFindImageTableViewCell.m */; };
 		BB21FDBA22B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB21FDB822B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib */; };
+		BB21FDBD22B2193A0059BCAC /* ImageScale.m in Sources */ = {isa = PBXBuildFile; fileRef = BB21FDBB22B2193A0059BCAC /* ImageScale.m */; };
 		BB29120822156BB500FF484E /* Cigarillo.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911EC22156BB500FF484E /* Cigarillo.gif */; };
 		BB29120922156BB500FF484E /* Petit Corona.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911ED22156BB500FF484E /* Petit Corona.gif */; };
 		BB29120A22156BB500FF484E /* Petit Pyramid.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911EE22156BB500FF484E /* Petit Pyramid.gif */; };
@@ -932,6 +933,8 @@
 		BB21FDB622B0E68A0059BCAC /* YXFirstFindImageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFirstFindImageTableViewCell.h; sourceTree = "<group>"; };
 		BB21FDB722B0E68A0059BCAC /* YXFirstFindImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFirstFindImageTableViewCell.m; sourceTree = "<group>"; };
 		BB21FDB822B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFirstFindImageTableViewCell.xib; sourceTree = "<group>"; };
+		BB21FDBB22B2193A0059BCAC /* ImageScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScale.m; sourceTree = "<group>"; };
+		BB21FDBC22B2193A0059BCAC /* ImageScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScale.h; sourceTree = "<group>"; };
 		BB2911EC22156BB500FF484E /* Cigarillo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Cigarillo.gif; sourceTree = "<group>"; };
 		BB2911ED22156BB500FF484E /* Petit Corona.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Petit Corona.gif"; sourceTree = "<group>"; };
 		BB2911EE22156BB500FF484E /* Petit Pyramid.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Petit Pyramid.gif"; sourceTree = "<group>"; };
@@ -2149,6 +2152,8 @@
 		296DEA5F1F5D50D100C6FD00 /* SDCycleScrollView */ = {
 			isa = PBXGroup;
 			children = (
+				BB21FDBC22B2193A0059BCAC /* ImageScale.h */,
+				BB21FDBB22B2193A0059BCAC /* ImageScale.m */,
 				296DEA601F5D50D100C6FD00 /* PageControl */,
 				296DEA691F5D50D100C6FD00 /* SDCollectionViewCell.h */,
 				296DEA6A1F5D50D100C6FD00 /* SDCollectionViewCell.m */,
@@ -5656,6 +5661,7 @@
 				293D46051ECDAA02007C64A9 /* RootNavigationController.m in Sources */,
 				BBA812EA21DDDE47001B5EA1 /* MDMultipleSegmentViewCell.m in Sources */,
 				29AD6C5B1ED3E28800B0879C /* PPNetworkCache.m in Sources */,
+				BB21FDBD22B2193A0059BCAC /* ImageScale.m in Sources */,
 				BB21FDB022B099B20059BCAC /* YXWenZhangView.m in Sources */,
 				BBBFD7872222D7D300D377AC /* JJImagePicker.m in Sources */,
 				BBB59B07228CF8CB0029D3D0 /* YXHomeXueJiaPinPaiViewController.m in Sources */,

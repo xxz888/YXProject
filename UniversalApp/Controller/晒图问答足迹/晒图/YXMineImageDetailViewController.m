@@ -14,12 +14,16 @@
 #import "HXEasyCustomShareView.h"
 #import "YXPublishImageViewController.h"
 #import "YXFindSearchTagDetailViewController.h"
-@interface YXMineImageDetailViewController ()<ZInputToolbarDelegate,QMUIMoreOperationControllerDelegate>{
+#import "UIImage+ImgSize.h"
+
+@interface YXMineImageDetailViewController ()<ZInputToolbarDelegate,QMUIMoreOperationControllerDelegate,SDCycleScrollViewDelegate>{
     CGFloat imageHeight;
     NSDictionary * shareDic;
     YXFindImageTableViewCell * cell;
     BOOL zanBool;
+    
 }
+
 @end
 @implementation YXMineImageDetailViewController
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
@@ -42,7 +46,6 @@
 }
 -(void)initAllControl{
     [super initAllControl];
-    kWeakSelf(self);
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return self.headerViewHeight;
@@ -77,8 +80,16 @@
         cell.zanCount.text = @"";
     }
 
+    
+    CGSize size = [UIImage getImageSizeWithURL:dic[@"url_list"][0]];
+    double scale = 0;
+    if (size.width == 0) {
+        scale = 0;
+    }else{
+        scale = size.height/size.width;
+    }
     if ([dic[@"url_list"] count] > 0) {
-        [cell setUpSycleScrollView:dic[@"url_list"] height: KScreenWidth - 10];
+        [cell setUpSycleScrollView:dic[@"url_list"] height: KScreenWidth * scale];
         cell.cycleScrollView3.hidden = NO;
     }else{
         cell.cycleScrollView3.hidden = YES;
@@ -91,6 +102,7 @@
     //title
     NSString * titleText = [[NSString stringWithFormat:@"%@%@",dic[@"detail"],dic[@"tag"]] UnicodeToUtf8];
     cell.titleTagLbl.text = titleText;
+    
     //
     cell.plAllHeight.constant = 0;
     cell.addPlViewHeight.constant = 0;
@@ -216,7 +228,7 @@
 -(void)requestpost_comment_child:(NSDictionary *)dic{
     kWeakSelf(self);
     [YX_MANAGER requestpost_comment_childPOST:dic success:^(id object) {
-        weakself.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
+        [weakself requestNewList];
     }];
 }
 #pragma mark ========== 更多评论 ==========
@@ -377,7 +389,7 @@
     }];
 }
 -(NSString *)getParamters:(NSString *)type page:(NSString *)page{
-    return [NSString stringWithFormat:@"%@/0/%@/%@",type,self.startDic[@"id"],page];
+    return [NSString stringWithFormat:@"%@/0/%@/%@/",type,self.startDic[@"id"],page];
 }
 -(void)delePingLun:(NSInteger)tag{
     kWeakSelf(self);
@@ -615,4 +627,9 @@
         [weakself presentViewController:imageVC animated:YES completion:nil];
     }
 }
+
+
+
+
+
 @end

@@ -114,22 +114,22 @@
         }
         [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
     };
-//    cell.clickTagblock = ^(NSString * string) {
-//        kWeakSelf(self);
-//        _tagSelectBool = YES;
-//        [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":@"1",@"type":@"2"} success:^(id object) {
-//            if ([object count] > 0) {
-//                YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
-//                VC.type = @"3";
-//                VC.key = object[0][@"tag"];
-//                VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
-//                [weakself.navigationController pushViewController:VC animated:YES];
-//            }else{
-//                [QMUITips showInfo:@"无此标签的信息"];
-//            }
-//            _tagSelectBool = NO;
-//        }];
-//    };
+    cell.clickTagblock = ^(NSString * string) {
+        kWeakSelf(self);
+        _tagSelectBool = YES;
+        [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":@"1",@"type":@"2"} success:^(id object) {
+            if ([object count] > 0) {
+                YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
+                VC.type = @"3";
+                VC.key = object[0][@"tag"];
+                VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
+                [weakself.navigationController pushViewController:VC animated:YES];
+            }else{
+                [QMUITips showInfo:@"无此标签的信息"];
+            }
+            _tagSelectBool = NO;
+        }];
+    };
     cell.dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
     [cell setCellValue:dic];
     return cell;

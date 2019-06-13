@@ -13,13 +13,18 @@
 @implementation HttpRequest
 
 + (void)httpRequestPostPi:(NSString *)pi Parameters:(id)parmeters sucess:(SucessBlock)sucess failure:(FailureBlock)failure{
+
     kWeakSelf(self);
     NSString * strURl = [API_ROOT_URL_HTTP_FORMAL stringByAppendingString:pi];
+    NSLog(@"PostUrl-:%@",strURl);
+    NSLog(@"Par-:%@",parmeters);
     [[self commonAction] POST:strURl  parameters:parmeters progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"---------------Post请求成功---------------");
         [QMUITips hideAllTipsInView:[ShareManager getMainView]];
         [weakself setCommonRespone:sucess pi:pi responseObject:responseObject];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"---------------Post请求失败---------------%@",error);
         [QMUITips hideAllTipsInView:[ShareManager getMainView]];
         failure(error);
     }];
@@ -27,15 +32,15 @@
 + (void)httpRequestGetPi:(NSString *)pi sucess:(SucessBlock)sucess failure:(FailureBlock)failure{
     kWeakSelf(self);
     NSString * url = [API_ROOT_URL_HTTP_FORMAL append:pi];
+    NSLog(@"getUrl-:%@",url);
     [[self commonAction] GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
+        NSLog(@"---------------Get请求成功---------------");
         [weakself setCommonRespone:sucess pi:pi responseObject:responseObject];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-//        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-//        NSLog(@"%@",error);
-        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        NSLog(@"---------------Get请求失败---------------%@",error);
         failure(error);
     }];
 }
@@ -114,6 +119,7 @@ var c = a + b
         NSLog(@"身份信息-----%@",[@"JWT " append:userInfo.token]);
         [manager.requestSerializer setValue:[@"JWT " append:userInfo.token] forHTTPHeaderField:@"Authorization"];
     }
+    [manager.requestSerializer setValue:@"Keep-Alive" forHTTPHeaderField:@"Connection"];
     //允许非权威机构颁发的证书
     manager.securityPolicy.allowInvalidCertificates=YES;
     //也不验证域名一致性
@@ -121,6 +127,7 @@ var c = a + b
     //关闭缓存避免干扰测试
     manager.requestSerializer.cachePolicy=NSURLRequestReloadIgnoringLocalCacheData;
     manager.requestSerializer.timeoutInterval = 10;
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/javascript",@"text/plain",nil];
     return manager;
 }
