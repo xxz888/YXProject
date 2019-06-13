@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^RefreshCellBlock)(NSArray *);
 
-typedef void(^ClickCollectionItemBlock)(NSString *);
+typedef void(^ClickCollectionItemBlock)(NSInteger,NSInteger);
 @interface YXZhiNanTableViewCell : UITableViewCell<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionView *yxCollectionView;
 

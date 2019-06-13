@@ -75,7 +75,7 @@
     return cell;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    self.clickCollectionItemBlock(kGetString(self.dataArray[indexPath.row][@"id"]));
+    self.clickCollectionItemBlock(indexPath.row,self.tag);
 }
 
 

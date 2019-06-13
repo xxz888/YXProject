@@ -31,7 +31,6 @@
     [super viewDidLoad];
     //初始化UI
     [self setVCUI];
-    self.currentIndex = self.startIndex;
     [self requestZhiNanGet];
 
 }
@@ -40,54 +39,64 @@
     [self.navigationController.navigationBar setHidden:NO];
 }
 -(void)headerRereshing{
-    self.currentIndex -= 1;
-    [self refreshYXTableView];
+    if (self.bigIndex == 0) {
+        [self endRefresh];
+    }else{
+        self.bigIndex --;
+        [self requestZhiNanGet];
+    }
 }
 -(void)footerRereshing{
-    self.currentIndex += 1;
-    [self refreshYXTableView];
-}
--(void)refreshYXTableView{
-    if ([self panduanIndex]) {
-        [self requestZhiNanGet];
+    if (self.bigIndex == [self.startArray count] - 1) {
+        [self endRefresh];
     }else{
-        [self.yxTableView.mj_header endRefreshing];
-        [self.yxTableView.mj_footer endRefreshing];
+        self.bigIndex ++;
+        [self requestZhiNanGet];
     }
 }
--(BOOL)panduanIndex{
-    if (self.currentIndex >= 0 && self.currentIndex < self.startArray.count) {
-        return YES;
-    }
-    return NO;
+-(void)endRefresh{
+    [self.yxTableView.mj_header endRefreshing];
+    [self.yxTableView.mj_footer endRefreshing];
 }
 -(void)requestZhiNanGet{
-    self.title = self.startArray[self.currentIndex][@"vcTitle"];
     kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"0/%@",self.startArray[self.currentIndex][@"id"]];
-    [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
-        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
-        
-        [UIView transitionWithView:weakself.yxTableView
-                          duration:.5f
-                           options:UIViewAnimationOptionTransitionCrossDissolve
-                        animations:^{
-                            [weakself.yxTableView reloadData];
-                            [weakself.yxTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
-                        } completion:^(BOOL finished) {
-
-        }];
-        if (weakself.dataArray.count > 0) {
-            [weakself panduanIsColl];
-
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSLog(@"开始");
+        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+        NSArray * smallArray = [NSArray arrayWithArray:self.startArray[self.bigIndex]];
+        [weakself.dataArray removeAllObjects];
+        for (NSInteger i = 0; i < [smallArray count]; i++) {
+            NSString * par = [NSString stringWithFormat:@"0/%@",smallArray[i][@"id"]];
+            [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
+                if ([object count] > 0) {
+                    [weakself.dataArray addObject:object];
+                    if (weakself.dataArray.count == smallArray.count) {
+                        [weakself endRefresh];
+                        [UIView transitionWithView:weakself.yxTableView
+                                          duration:.5f
+                                           options:UIViewAnimationOptionTransitionCrossDissolve
+                                        animations:^{
+                                            [weakself.yxTableView reloadData];
+                                            [weakself.yxTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
+                                        } completion:^(BOOL finished) {}];
+                       //[weakself panduanIsColl];
+                    }
+                }
+                dispatch_semaphore_signal(sema);
+                [QMUITips hideAllTipsInView:weakself.view];
+            }];
+            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
         }
-    }];
+    });
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.dataArray.count;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.dataArray count];
+    return [self.dataArray[section] count];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary * dic = self.dataArray[indexPath.row];
+    NSDictionary * dic = self.dataArray[indexPath.section][indexPath.row];
     NSInteger obj = [dic[@"obj"] integerValue];
     if (obj == 1) {
         return 90;
@@ -102,7 +111,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary * dic = self.dataArray[indexPath.row];
+    NSDictionary * dic = self.dataArray[indexPath.section][indexPath.row];
     NSInteger obj = [dic[@"obj"] integerValue];
     if (obj == 1 ) {
         YXZhiNan1Cell * cell1 = [tableView dequeueReusableCellWithIdentifier:@"YXZhiNan1Cell" forIndexPath:indexPath];
@@ -131,7 +140,6 @@
 -(void)setVCUI{
     [self addNavigationItemWithImageNames:@[@"更多"] isLeft:NO target:self action:@selector(moreShare) tags:@[@"999"]];
     self.view.backgroundColor = KWhiteColor;
-    self.title = self.vcTitle;
     self.dataArray = [[NSMutableArray alloc]init];
     [self addRefreshView:self.yxTableView];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan1Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan1Cell"];
@@ -139,12 +147,11 @@
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan3Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan3Cell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan4Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan4Cell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan5Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan5Cell"];
-//    [self panduanIsColl];
 }
 -(void)panduanIsColl{
-    self.plLbl.text = kGetString(self.dataArray[0][@"comment_number"]);
+    self.plLbl.text = kGetString(self.startArray[self.bigIndex][@"comment_number"]);
     if ([userManager loadUserInfo]) {
-        self.is_collect = [self.dataArray[0][@"is_collect"] integerValue] == 1;
+        self.is_collect = [self.startArray[self.bigIndex][@"is_collect"] integerValue] == 1;
         UIImage * likeImage = self.is_collect ? [UIImage imageNamed:@"收藏选择"] : [UIImage imageNamed:@"收藏未选择"] ;
         [self.collImgView setImage:likeImage];
     }
@@ -169,8 +176,8 @@
 }
 -(void)pinglunAction{
     YXZhiNanPingLunViewController * vc = [[YXZhiNanPingLunViewController alloc]init];
-    vc.startDic = [NSDictionary dictionaryWithDictionary:self.startDic];
-    vc.startId = self.startArray[self.currentIndex][@"id"];
+    vc.startDic = [NSDictionary dictionaryWithDictionary:self.dataArray[self.bigIndex]];
+    vc.startId = self.startArray[self.bigIndex][@"id"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -180,7 +187,7 @@
         return;
     }
     kWeakSelf(self);
-    NSString * tagId = kGetString(self.startArray[self.currentIndex][@"id"]);
+    NSString * tagId = @"";//kGetString(self.startArray[self.currentIndex][@"id"]);
     [YXPLUS_MANAGER requestCollect_optionGet:[@"3/" append:tagId] success:^(id object) {
         UIImage * likeImage = weakself.is_collect ? [UIImage imageNamed:@"收藏未选择"] : [UIImage imageNamed:@"收藏选择"] ;
         [weakself.collImgView setImage:likeImage];

@@ -110,24 +110,11 @@
     
     kWeakSelf(self);
     //点击进入详情界面
-    cell.clickCollectionItemBlock = ^(NSString * index) {
+    cell.clickCollectionItemBlock = ^(NSInteger smallIndex,NSInteger bigIndex) {
         YXZhiNanDetailViewController * vc = [[YXZhiNanDetailViewController alloc]init];
-        vc.startArray = [[NSMutableArray alloc]init];
-        for (NSInteger i=0; i<weakself.collArray.count; i++) {
-            for (NSDictionary * dic in weakself.collArray[i]) {
-                NSMutableDictionary * mDic = [[NSMutableDictionary alloc]initWithDictionary:dic];
-                NSString * vcTitle = [NSString stringWithFormat:@"0%ld/%@",i+1,weakself.dataArray[i][@"name"]];
-                [mDic setValue:vcTitle forKey:@"vcTitle"];
-                [vc.startArray addObject:mDic];
-            }
-        }
-        for (NSInteger i = 0; i<vc.startArray.count; i++) {
-            NSDictionary * dic = vc.startArray[i];
-            if ([dic[@"id"] integerValue] == [index integerValue]) {
-                vc.startIndex = i;
-            }
-        }
-        vc.startDic = [NSDictionary dictionaryWithDictionary:weakself.startDic];
+        vc.smallIndex = smallIndex;
+        vc.bigIndex = bigIndex;
+        vc.startArray = [[NSMutableArray alloc]initWithArray:self.collArray];
         [weakself.navigationController pushViewController:vc animated:YES];
     };
     return cell;
