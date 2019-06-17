@@ -37,23 +37,20 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:NO];
-    [self requestStartZhiNanGet];
-    
 }
 -(void)requestStartZhiNanGet{
     kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"1/%@",self.startStartId];
-    [weakself.startStartArray removeAllObjects];
+    NSString * par = [NSString stringWithFormat:@"1/%@",self.startArray[0][@"father_id"]];
     [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
-        weakself.startStartArray = [weakself commonAction:object dataArray:weakself.startStartArray];
+        weakself.startArray = [weakself commonAction:object dataArray:weakself.startArray];
         [weakself panduanIsColl];
     }];
 }
 -(void)panduanIsColl{
-    self.title = [NSString stringWithFormat:@"0%ld/%@",self.bigIndex+1,kGetString(self.startStartArray[self.bigIndex][@"name"])];
-    self.plLbl.text = kGetString(self.startStartArray[self.bigIndex][@"comment_number"]);
+    self.title = [NSString stringWithFormat:@"0%ld/%@",self.bigIndex+1,kGetString(self.startArray[self.bigIndex][@"name"])];
+    self.plLbl.text = kGetString(self.startArray[self.bigIndex][@"comment_number"]);
     if ([userManager loadUserInfo]) {
-        self.is_collect = [self.startStartArray[self.bigIndex][@"is_collect"] integerValue] == 1;
+        self.is_collect = [self.startArray[self.bigIndex][@"is_collect"] integerValue] == 1;
         UIImage * likeImage = self.is_collect ? [UIImage imageNamed:@"收藏选择"] : [UIImage imageNamed:@"收藏未选择"] ;
         [self.collImgView setImage:likeImage];
     }
@@ -68,7 +65,7 @@
     }
 }
 -(void)footerRereshing{
-        self.smallIndex = 0;
+    self.smallIndex = 0;
         if (self.bigIndex == [self.startArray count] - 1) {
             [self endRefresh];
         }else{
@@ -82,31 +79,29 @@
 }
 -(void)requestZhiNanGet{
     [QMUITips showLoadingInView:self.view];
-    [self requestStartZhiNanGet];
-    [self.dataArray removeAllObjects];
     kWeakSelf(self);
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSArray * smallArray = [NSArray arrayWithArray:weakself.startArray[weakself.bigIndex]];
-        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-        for (NSInteger i = 0; i < [smallArray count]; i++) {
-            NSString * par = [NSString stringWithFormat:@"0/%@",smallArray[i][@"id"]];
-            [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
-                    [weakself.dataArray addObject:object];
-                    if (weakself.dataArray.count == smallArray.count) {
-                            [weakself endRefresh];
-                            [weakself panduanIsColl];
-                            [QMUITips hideAllTipsInView:weakself.view];
-                            [weakself.yxTableView reloadData];
-                            if ([weakself.dataArray[weakself.smallIndex] count] != 0) {
-                                NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:0 inSection:weakself.smallIndex];
-                                [weakself.yxTableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
-                            }
-                    }
-                dispatch_semaphore_signal(sema);
-            }];
-            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-        }
-    });
+    NSString * par = [NSString stringWithFormat:@"0/%@",self.startArray[self.bigIndex][@"id"]];
+    [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
+            [weakself.dataArray removeAllObjects];
+            [weakself.dataArray addObjectsFromArray:object];
+            [weakself endRefresh];
+            [weakself panduanIsColl];
+            [QMUITips hideAllTipsInView:weakself.view];
+            [weakself.yxTableView reloadData];
+        
+        
+        // reloadDate会在主队列执行，而dispatch_get_main_queue会等待机会，直到主队列空闲才执行。
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([weakself.dataArray[weakself.smallIndex] count] != 0 && weakself.dataArray.count > weakself.smallIndex) {
+                NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:0 inSection:weakself.smallIndex];
+                [weakself.yxTableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+            }
+         
+        });
+        
+        
+            [weakself requestStartZhiNanGet];
+    }];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -204,8 +199,8 @@
 }
 -(void)pinglunAction{
     YXZhiNanPingLunViewController * vc = [[YXZhiNanPingLunViewController alloc]init];
-    vc.startDic = [NSDictionary dictionaryWithDictionary:self.startStartArray[self.bigIndex]];
-    vc.startId = self.startStartArray[self.bigIndex][@"id"];
+    vc.startDic = [NSDictionary dictionaryWithDictionary:self.startArray[self.bigIndex]];
+    vc.startId = self.startArray[self.bigIndex][@"id"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -215,7 +210,7 @@
         return;
     }
     kWeakSelf(self);
-    NSString * tagId = kGetString(self.startStartArray[self.bigIndex][@"id"]);
+    NSString * tagId = kGetString(self.startArray[self.bigIndex][@"id"]);
     [YXPLUS_MANAGER requestCollect_optionGet:[@"3/" append:tagId] success:^(id object) {
         UIImage * likeImage = weakself.is_collect ? [UIImage imageNamed:@"收藏未选择"] : [UIImage imageNamed:@"收藏选择"] ;
         [weakself.collImgView setImage:likeImage];
