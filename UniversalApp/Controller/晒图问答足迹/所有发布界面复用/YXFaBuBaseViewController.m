@@ -32,20 +32,12 @@
         dispatch_semaphore_t sema = dispatch_semaphore_create(0);
         for (NSInteger i = 0; i < [outputArray count]; i++) {
             KSMediaPickerOutputModel * model = outputArray[i];
-      
             //先上传到七牛云图片  再提交服务器
             [QiniuLoad uploadImageToQNFilePath:@[model.image] success:^(NSString *reslut) {
                 NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
                 if (qiniuArray.count > 0) {
                     [weakself.photoImageList addObject:qiniuArray[0]];
-//                    [QMUITips hideAllTipsInView:cell.imageView];
                 }
-//                if (_selectedPhotos.count == outputArray.count) {
-//                    for (NSString * string in _selectedPhotos) {
-//                        [weakself.photoImageList addObject:string];
-//                    }
-//                    [weakself.yxCollectionView reloadData];
-//                }
                 dispatch_semaphore_signal(sema);
             } failure:^(NSString *error) {}];
             dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);

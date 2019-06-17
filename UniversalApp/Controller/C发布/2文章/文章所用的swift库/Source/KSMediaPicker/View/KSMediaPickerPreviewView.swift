@@ -222,7 +222,7 @@ open class KSMediaPickerPreviewView: UIView {
     
     private let _zoomButton = {() -> UIButton in
         let zoomButton = UIButton(type: .custom)
-        zoomButton.setImage(UIImage(named: "icon_mediaPicker_preview_aspect_fit"), for: .normal)
+        zoomButton.setImage(UIImage(named: "icon_mediaPicker_preview_aspect_fill"), for: .normal)
         zoomButton.setImage(UIImage(named: "icon_mediaPicker_preview_aspect_fill"), for: .selected)
         let bundle = Bundle.main
         zoomButton.setTitle("MEDIA_PICKER_SCALE_ASPECT_FIT".ks_mediaPickerKeyToLocalized(in: bundle), for: .normal)

@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-typedef void(^BackVCBlock)(void);
+typedef void(^ClickTitleImgVBlock)(UIImageView *);
 @interface YXWenZhangView : UIView
 
-- (IBAction)backVC:(id)sender;
-@property (nonatomic,copy) BackVCBlock backVCBlock;
+    @property (weak, nonatomic) IBOutlet UITextView *titleTextView;
+    @property (weak, nonatomic) IBOutlet UIImageView *titleImgV;
+    @property (nonatomic,copy) ClickTitleImgVBlock clickTitleImgBlock;
 @end
 
 NS_ASSUME_NONNULL_END

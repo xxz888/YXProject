@@ -109,7 +109,7 @@
         UserInfo * userInfo = curUser;
         BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [userInfo.id integerValue];
         shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
-        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"2" tag:cell.tagId startDic:cell.dataDic];
+        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:cell.tagId startDic:cell.dataDic];
     };
     cell.clickImageBlock = ^(NSInteger tag) {
         if (![userManager loadUserInfo]) {
@@ -133,6 +133,10 @@
             }
             _tagSelectBool = NO;
         }];
+    };
+    cell.clickDetailblock = ^(NSInteger tag, YXFirstFindImageTableViewCell * cell) {
+        NSIndexPath * indexPathSelect = [weakself.yxTableView indexPathForCell:cell];
+        [weakself tableView:weakself.yxTableView didSelectRowAtIndexPath:indexPathSelect];
     };
     cell.dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
     [cell setCellValue:dic];
@@ -536,60 +540,7 @@
                          
                                       ];
     [moreOperationController showFromBottom];
-    
-//    NSMutableArray * shareAry = [NSMutableArray arrayWithObjects:
-//                                 @{@"image":@"raiders_weichat",
-//                                   @"title":@"微信"},
-//                                 @{@"image":@"shareView_friend",
-//                                   @"title":@"朋友圈"},
-//                                 @{@"image":@"回收",
-//                                   @"title":@"删除"},
-//                                 @{@"image":@"举报",
-//                                   @"title":@"举报"},
-//                                 @{@"image":@"编辑",
-//                                   @"title":@"编辑"},nil];
-//    if (isOwn) {
-//        [shareAry removeObjectAtIndex:3];
-//        if (![isWho isEqualToString:@"1"]) {
-//            [shareAry removeObjectAtIndex:3];
-//        }
-//    }else{
-//        [shareAry removeObjectAtIndex:2];
-//        [shareAry removeObjectAtIndex:3];
-//    }
-//    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 54)];
-//    headerView.backgroundColor = [UIColor clearColor];
-//    
-//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, headerView.frame.size.width, 15)];
-//    label.textAlignment = NSTextAlignmentCenter;
-//    label.textColor = [UIColor blackColor];
-//    label.backgroundColor = [UIColor clearColor];
-//    label.font = [UIFont systemFontOfSize:15];
-//    label.text = @"分享到";
-//    [headerView addSubview:label];
-//    
-//    UILabel *lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, headerView.frame.size.height-0.5, headerView.frame.size.width, 0.5)];
-//    lineLabel.backgroundColor = [UIColor colorWithRed:208/255.0 green:208/255.0 blue:208/255.0 alpha:1.0];
-//    [headerView addSubview:lineLabel];
-//    
-//    UILabel *lineLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, headerView.frame.size.width, 0.5)];
-//    lineLabel1.backgroundColor = [UIColor colorWithRed:208/255.0 green:208/255.0 blue:208/255.0 alpha:1.0];
-//    
-//    HXEasyCustomShareView *shareView = [[HXEasyCustomShareView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
-//    shareView.startDic = [NSDictionary dictionaryWithDictionary:startDic];
-//    shareView.tag = tagId;
-//    shareView.isWho = isWho;
-//    shareView.backView.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
-//    shareView.headerView = headerView;
-//    float height = [shareView getBoderViewHeight:shareAry firstCount:isOwn ? shareAry.count-1 : shareAry.count+1];
-//    shareView.boderView.frame = CGRectMake(0, 0, shareView.frame.size.width, height);
-//    shareView.middleLineLabel.hidden = NO;
-//    [shareView.cancleButton addSubview:lineLabel1];
-//    shareView.cancleButton.frame = CGRectMake(shareView.cancleButton.frame.origin.x, shareView.cancleButton.frame.origin.y, shareView.cancleButton.frame.size.width, 54);
-//    shareView.cancleButton.titleLabel.font = [UIFont systemFontOfSize:16];
-//    [shareView.cancleButton setTitleColor:[UIColor colorWithRed:184/255.0 green:184/255.0 blue:184/255.0 alpha:1.0] forState:UIControlStateNormal];
-//    [shareView setShareAry:shareAry delegate:self];
-//    [[UIApplication sharedApplication].keyWindow addSubview:shareView];
+
 }
 
 #pragma mark 分享按钮

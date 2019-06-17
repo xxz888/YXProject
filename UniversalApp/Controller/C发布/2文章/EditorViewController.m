@@ -16,6 +16,7 @@
 #import "Tool.h"
 #import "YXWenZhangView.h"
 #import "UniversalApp-Swift.h"
+#import "QiniuLoad.h"
 #define kDevice_Is_iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
 
 @interface EditorViewController ()<YYTextViewDelegate,TZImagePickerControllerDelegate,UINavigationControllerDelegate,KSMediaPickerControllerDelegate>
@@ -65,10 +66,10 @@
     if (!_contentTextView) {
         NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXWenZhangView" owner:self options:nil];
         self.headerView = [nib objectAtIndex:0];
-        self.headerView.frame = CGRectMake(0,0,self.view.frame.size.width,250);
-        YYTextView *textView = [[YYTextView alloc] initWithFrame:self.view.bounds];
+        self.headerView.frame = CGRectMake(0,0,self.view.frame.size.width,200);
+        YYTextView *textView = [[YYTextView alloc] initWithFrame:CGRectMake(0, kStatusBarHeight + 60, KScreenWidth, KScreenHeight - 60 - kStatusBarHeight)];
         textView.tag = 1000;
-        textView.textContainerInset = UIEdgeInsetsMake(260, 16, 20,16);
+        textView.textContainerInset = UIEdgeInsetsMake(210, 16, 20,16);
         textView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         textView.scrollIndicatorInsets = textView.contentInset;
         textView.delegate = self;
@@ -86,8 +87,12 @@
         [_contentTextView addSubview:self.headerView];
         
         kWeakSelf(self);
-        _headerView.backVCBlock = ^{
-            [weakself dismissViewControllerAnimated:YES completion:nil];
+        self.headerView.clickTitleImgBlock = ^(UIImageView * iamge) {
+            KSMediaPickerController *ctl = [KSMediaPickerController.alloc initWithMaxVideoItemCount:1 maxPictureItemCount:9];
+            ctl.view.tag = 2;
+            ctl.delegate = weakself;
+            KSNavigationController *nav = [KSNavigationController.alloc initWithRootViewController:ctl];
+            [weakself presentViewController:nav animated:YES completion:nil];
         };
     }
     return _contentTextView;
@@ -128,7 +133,7 @@
     CGSize size = imageView.size;
     CGFloat textViewWidth = kScreenWidth - 32.0;
     size = CGSizeMake(textViewWidth, size.height * textViewWidth / size.width);
-    NSMutableAttributedString *attachText = [NSMutableAttributedString attachmentStringWithContent:imageView contentMode:UIViewContentModeScaleAspectFit attachmentSize:size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+    NSMutableAttributedString *attachText = [NSMutableAttributedString attachmentStringWithContent:imageView contentMode:UIViewContentModeScaleToFill attachmentSize:size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
     [text insertAttributedString:attachText atIndex:self.contentTextView.selectedRange.location];
     [text appendAttributedString:changeString];
     [text appendAttributedString:changeString];
@@ -139,6 +144,50 @@
     self.contentTextView.selectedRange = NSMakeRange(self.contentTextView.text.length, 0);
 }
 
+    
+- (IBAction)backVC:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)fabuAction:(id)sender {
+    [self.imagesArr removeAllObjects];
+    [self.desArr removeAllObjects];
+    [self.imageUrlsArr removeAllObjects];
+    
+    NSAttributedString *content = self.contentTextView.attributedText;
+    NSString *text = [self.contentTextView.text copy];
+    //这一步开始上传
+    kWeakSelf(self);
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+        [content enumerateAttributesInRange:NSMakeRange(0, text.length) options:0 usingBlock:^(NSDictionary<NSString *,id> * _Nonnull attrs, NSRange range, BOOL * _Nonnull stop) {
+            YYTextAttachment *att = attrs[@"YYTextAttachment"];
+            if (att) {
+                if ([att.content isKindOfClass:[YYTextView class]]) {
+                    YYTextView * textView = att.content;
+                    [self.desArr addObject:textView.text];
+                }else{
+                    YYAnimatedImageView *imgView = att.content;
+                    [self.imagesArr addObject:imgView.image];
+
+                    [QiniuLoad uploadImageToQNFilePath:@[imgView.image] success:^(NSString *reslut) {
+                        NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
+                        [weakself.imageUrlsArr addObject:qiniuArray[0]];
+                        dispatch_semaphore_signal(sema);
+                    } failure:^(NSString *error) {}];
+                    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+                }
+            }
+
+        }];
+        self.contentStr = [text stringByReplacingOccurrencesOfString:@"\U0000fffc\U0000fffc" withString:@"<我是图片>"];
+        NSString * resuletString = [Tool makeHtmlString:_imageUrlsArr desArr:_desArr contentStr:_contentStr];
+        NSLog(@"%@",resuletString);
+    });
+
+
+
+}
+    
 
 /**
  发布
@@ -160,6 +209,8 @@
             }else{
                 YYAnimatedImageView *imgView = att.content;
                 [self.imagesArr addObject:imgView.image];
+                
+                
                 [self.imageUrlsArr addObject:@"http://www.baidu.com"];
             }
         }
@@ -235,6 +286,7 @@
     [btn1 bk_addEventHandler:^(id sender) {
         
         KSMediaPickerController *ctl = [KSMediaPickerController.alloc initWithMaxVideoItemCount:1 maxPictureItemCount:9];
+        ctl.view.tag = 1;
         ctl.delegate = weakSelf;
         KSNavigationController *nav = [KSNavigationController.alloc initWithRootViewController:ctl];
         [weakSelf presentViewController:nav animated:YES completion:nil];
@@ -248,7 +300,11 @@
 - (void)mediaPicker:(KSMediaPickerController *)mediaPicker didFinishSelected:(NSArray<KSMediaPickerOutputModel *> *)outputArray {
     [mediaPicker.navigationController dismissViewControllerAnimated:YES completion:nil];
     for (KSMediaPickerOutputModel * model in outputArray) {
-        [self setupImage:model.image];
+        if (mediaPicker.view.tag == 1) {
+            [self setupImage:model.image];
+        }else{
+            self.headerView.titleImgV.image = model.image;
+        }
     }
 }
 - (UIToolbar *)titleFieldBar {

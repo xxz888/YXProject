@@ -109,7 +109,7 @@
     NSArray * imgArray = [dic[@"photo_list"] split:@","];
     if (imgArray.count > 0) {
         self.conViewHeight.constant = [self getImvHeight:dic whereCome:whereCome];
-        [self setUpSycleScrollView:imgArray height: KScreenWidth-10];
+        [self setUpSycleScrollView:imgArray height:KScreenWidth-20];
         _cycleScrollView3.hidden = NO;
 
     }else{

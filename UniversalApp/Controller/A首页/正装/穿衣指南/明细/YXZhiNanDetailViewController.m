@@ -68,7 +68,6 @@
     }
 }
 -(void)footerRereshing{
-    DO_IN_MAIN_QUEUE_AFTER(1.0f, ^{
         self.smallIndex = 0;
         if (self.bigIndex == [self.startArray count] - 1) {
             [self endRefresh];
@@ -76,8 +75,6 @@
             self.bigIndex +=1;
             [self requestZhiNanGet];
         }
-    });
-  
 }
 -(void)endRefresh{
     [self.yxTableView.mj_header endRefreshing];
@@ -86,36 +83,26 @@
 -(void)requestZhiNanGet{
     [QMUITips showLoadingInView:self.view];
     [self requestStartZhiNanGet];
+    [self.dataArray removeAllObjects];
     kWeakSelf(self);
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSLog(@"开始");
         NSArray * smallArray = [NSArray arrayWithArray:weakself.startArray[weakself.bigIndex]];
         dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-        [weakself.dataArray removeAllObjects];
         for (NSInteger i = 0; i < [smallArray count]; i++) {
             NSString * par = [NSString stringWithFormat:@"0/%@",smallArray[i][@"id"]];
             [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
                     [weakself.dataArray addObject:object];
                     if (weakself.dataArray.count == smallArray.count) {
-                        DO_IN_MAIN_QUEUE_AFTER(0.5f, ^{[weakself endRefresh];});
-                 
-                        NSLog(@"%@",weakself.dataArray);
-                        [weakself.yxTableView reloadData];
-                        if ([weakself.dataArray[weakself.smallIndex] count] == 0) {
-                            
-                        }else{
-                            NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:0 inSection:weakself.smallIndex];
-                            [weakself.yxTableView scrollToRowAtIndexPath:scrollIndexPath        atScrollPosition:UITableViewScrollPositionTop animated:YES];
-                        }
-                   
-                        [weakself panduanIsColl];
-                        [QMUITips hideAllTipsInView:weakself.view];
-                        
-                        
-
+                            [weakself endRefresh];
+                            [weakself panduanIsColl];
+                            [QMUITips hideAllTipsInView:weakself.view];
+                            [weakself.yxTableView reloadData];
+                            if ([weakself.dataArray[weakself.smallIndex] count] != 0) {
+                                NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:0 inSection:weakself.smallIndex];
+                                [weakself.yxTableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+                            }
                     }
                 dispatch_semaphore_signal(sema);
-
             }];
             dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
         }

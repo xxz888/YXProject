@@ -10,15 +10,23 @@
 
 @implementation YXWenZhangView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+-(instancetype)initWithCoder:(NSCoder *)aDecoder{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
 
-- (IBAction)backVC:(id)sender {
-    self.backVCBlock();
+    }
+    return self;
+}
+-(void)awakeFromNib{
+    UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction:)];
+    //点击几次后触发事件响应，默认为：1
+    click.numberOfTapsRequired = 1;
+    [self.titleImgV addGestureRecognizer:click];
+}
+
+    
+    
+-(void)clickAction:(id)sender{
+    self.clickTitleImgBlock(self.titleImgV);
 }
 @end

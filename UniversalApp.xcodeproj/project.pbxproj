@@ -357,6 +357,7 @@
 		BBADE4DB21F8665A0011E5FF /* YXMineImageDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBADE4DA21F8665A0011E5FF /* YXMineImageDetailHeaderView.m */; };
 		BBADE4DD21F866670011E5FF /* YXMineImageDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBADE4DC21F866670011E5FF /* YXMineImageDetailHeaderView.xib */; };
 		BBADE4E121F8A6D30011E5FF /* CBSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBADE4DF21F8A6D30011E5FF /* CBSegmentView.m */; };
+		BBB4528622B738A9006451E4 /* EditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB4528522B738A9006451E4 /* EditorViewController.xib */; };
 		BBB59ABE228CF8CB0029D3D0 /* YXHomeTuiJianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB599C4228CF8CA0029D3D0 /* YXHomeTuiJianViewController.m */; };
 		BBB59ABF228CF8CB0029D3D0 /* YXQCDJCViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB599C8228CF8CA0029D3D0 /* YXQCDJCViewController.xib */; };
 		BBB59AC0228CF8CB0029D3D0 /* YXQCDJCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB599C9228CF8CA0029D3D0 /* YXQCDJCViewController.m */; };
@@ -1273,6 +1274,7 @@
 		BBADE4DC21F866670011E5FF /* YXMineImageDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineImageDetailHeaderView.xib; sourceTree = "<group>"; };
 		BBADE4DF21F8A6D30011E5FF /* CBSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBSegmentView.m; sourceTree = "<group>"; };
 		BBADE4E021F8A6D30011E5FF /* CBSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSegmentView.h; sourceTree = "<group>"; };
+		BBB4528522B738A9006451E4 /* EditorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditorViewController.xib; sourceTree = "<group>"; };
 		BBB599C4228CF8CA0029D3D0 /* YXHomeTuiJianViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeTuiJianViewController.m; sourceTree = "<group>"; };
 		BBB599C5228CF8CA0029D3D0 /* YXHomeTuiJianViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHomeTuiJianViewController.h; sourceTree = "<group>"; };
 		BBB599C8228CF8CA0029D3D0 /* YXQCDJCViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YXQCDJCViewController.xib; sourceTree = "<group>"; };
@@ -4516,6 +4518,7 @@
 			children = (
 				BB21FDAE22B099B20059BCAC /* EditorViewController.h */,
 				BB21FDAA22B099B10059BCAC /* EditorViewController.m */,
+				BBB4528522B738A9006451E4 /* EditorViewController.xib */,
 				BB21FDAD22B099B20059BCAC /* YXWenZhangView.h */,
 				BB21FDAB22B099B20059BCAC /* YXWenZhangView.m */,
 				BB21FDAC22B099B20059BCAC /* YXWenZhangView.xib */,
@@ -5424,6 +5427,7 @@
 				BBC16284217AD6EA00008907 /* Login.storyboard in Resources */,
 				BB5FD88421FEB8CE00B5F1A8 /* YXMineEssayTableViewCell.xib in Resources */,
 				BBD2C92C21E0F67800350DCD /* UIBarButtonItemGrid.png in Resources */,
+				BBB4528622B738A9006451E4 /* EditorViewController.xib in Resources */,
 				BB29122022156BB500FF484E /* Robusto Extra.gif in Resources */,
 				BB21FDBA22B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib in Resources */,
 				BBD2C93A21E0F67800350DCD /* UIBarButtonItemArrowRight@3x.png in Resources */,

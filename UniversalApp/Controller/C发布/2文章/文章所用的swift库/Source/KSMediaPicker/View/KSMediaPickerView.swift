@@ -219,8 +219,9 @@ open class KSMediaPickerView: UIView, KSMediaPickerScrollViewDelegate {
         }
         viewW = windowWidth
         viewH = viewW
+        //头高度
         previewView.frame = CGRect(x: viewX, y: viewY, width: viewW, height: 0)
-        
+  
         let previewViewFrameMaxY = previewView.frame.maxY
         viewY = floatZore
         viewH = previewViewFrameMaxY+20.0

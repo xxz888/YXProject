@@ -209,8 +209,8 @@
         YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
         [self presentViewController:imageVC animated:YES completion:nil];
     }else{
-        EditorViewController * pinpaiVC = [[EditorViewController alloc]init];
-        [self presentViewController:pinpaiVC animated:YES completion:nil];
+//        EditorViewController * pinpaiVC = [[EditorViewController alloc]init];
+//        [self presentViewController:pinpaiVC animated:YES completion:nil];
     }
     
 }

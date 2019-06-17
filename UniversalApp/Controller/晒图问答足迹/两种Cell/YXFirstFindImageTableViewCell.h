@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "IXAttributeTapLabel.h"
 NS_ASSUME_NONNULL_BEGIN
-
 @interface YXFirstFindImageTableViewCell : UITableViewCell
 @property (nonatomic,assign) NSInteger tagId;
 @property (weak, nonatomic) IBOutlet UIImageView *titleImageView;
@@ -46,6 +45,26 @@ typedef void(^Click1ShareBlock)(YXFirstFindImageTableViewCell *);
 
 typedef void(^ClickTag1Block)(NSString *);
 @property (nonatomic,copy) ClickTag1Block clickTagblock;
+    
+    
+    
+@property (weak, nonatomic) IBOutlet UILabel *zanCount;
+@property (weak, nonatomic) IBOutlet UILabel *talkCount;
+    
+- (IBAction)zanTalkAction:(id)sender;
+    
+    
+typedef void(^clickInDetail)(NSInteger,YXFirstFindImageTableViewCell *cell);
+@property (nonatomic,copy) clickInDetail clickDetailblock;
+@property (weak, nonatomic) IBOutlet UIButton *zanBtn;
+    @property (weak, nonatomic) IBOutlet UIView *midLunBoView;
+    
+    
+- (void)setUpSycleScrollView:(NSArray *)photoArray height:(CGFloat)height;
+@property(nonatomic)SDCycleScrollView *cycleScrollView3;
+@property (nonatomic)NSInteger tatolCount;
+@property (weak, nonatomic) IBOutlet UILabel *rightCountLbl;
+
 @end
 
 NS_ASSUME_NONNULL_END
