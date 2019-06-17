@@ -228,7 +228,7 @@
                 <outlet property="titleImageView" destination="oUU-ap-vuU" id="CaU-oj-TIX"/>
                 <outlet property="titleLbl" destination="3dD-Kk-h7J" id="1Pk-fd-ZuM"/>
             </connections>
-            <point key="canvasLocation" x="-371.01449275362324" y="22.433035714285712"/>
+            <point key="canvasLocation" x="-645" y="19"/>
         </tableViewCell>
     </objects>
     <resources>

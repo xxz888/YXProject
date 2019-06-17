@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "account_normal.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "AlbumAddBtn@2x.png",
       "scale" : "2x"
     },
     {

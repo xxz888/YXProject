@@ -69,8 +69,8 @@
         model.selectImageName = [obj objectForKey:@"selectImg"];
         model.normalImageName = [obj objectForKey:@"normalImg"];
         // 4.设置单个选中item标题状态下的颜色
-        model.selectColor =YXRGBAColor(176, 151, 99);
-        model.normalColor = YXRGBAColor(200, 200, 200);
+        model.selectColor = kRGBA(12, 36, 45, 1.0);
+        model.normalColor = kRGBA(12, 36, 45, 1.0);
         
         /***********************************/
         if (idx == 9 ) { // 如果是中间的
@@ -100,7 +100,7 @@
             // 来点效果好看
             model.interactionEffectStyle = AxcAE_TabBarInteractionEffectStyleSpring;
             // 点击背景稍微明显点吧
-            model.selectBackgroundColor = AxcAE_TabBarRGBA(32, 33, 33, 1);
+//            model.selectBackgroundColor = AxcAE_TabBarRGBA(32, 33, 33, 1);
             model.normalBackgroundColor = [UIColor clearColor];
         }
         // 备注 如果一步设置的VC的背景颜色，VC就会提前绘制驻留，优化这方面的话最好不要这么写
@@ -130,7 +130,7 @@
     self.axcTabBar.tabBarConfig = tabBarConfs;
     // 7.设置委托
     self.axcTabBar.delegate = self;
-    self.axcTabBar.backgroundColor = YXRGBAColor(32, 33, 33);
+    self.axcTabBar.backgroundColor = YXRGBAColor(249, 249, 249);
     // 8.添加覆盖到上边
     [self.tabBar addSubview:self.axcTabBar];
     [self addLayoutTabBar]; // 10.添加适配

@@ -115,9 +115,6 @@
     header.automaticallyChangeAlpha = YES;
     header.lastUpdatedTimeLabel.hidden = YES;
     yxTableView.mj_header = header;
-    
-    
-    
     //底部刷新
     yxTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
 }
@@ -129,7 +126,6 @@
     header.automaticallyChangeAlpha = YES;
     header.lastUpdatedTimeLabel.hidden = YES;
     yxCollectionView.mj_header = header;
-    
     //底部刷新
     yxCollectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
 }

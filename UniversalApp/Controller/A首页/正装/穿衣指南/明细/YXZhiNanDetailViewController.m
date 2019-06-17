@@ -68,7 +68,7 @@
     }
 }
 -(void)footerRereshing{
-    DO_IN_MAIN_QUEUE_AFTER(0.5f, ^{
+    DO_IN_MAIN_QUEUE_AFTER(1.0f, ^{
         self.smallIndex = 0;
         if (self.bigIndex == [self.startArray count] - 1) {
             [self endRefresh];

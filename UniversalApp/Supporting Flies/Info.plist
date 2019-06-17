@@ -125,5 +125,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    
+    <key>NSCameraUsageDescription</key>
+    <string>KSMediaPicker 需要摄像头才能进行拍照，录影</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>KSMediaPicker 需要麦克风才能录影</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>KSMediaPicker 需要访问相册才能正常使用</string>
 </dict>
 </plist>

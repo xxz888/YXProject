@@ -45,11 +45,17 @@
     kWeakSelf(self);
     NSString * par = [NSString stringWithFormat:@"1/%@",self.startDic[@"id"]];
     [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
+        if ([object count] == 0) {
+            [QMUITips hideAllTipsInView:weakself.view];
+            return;
+        }
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             NSLog(@"开始");
             dispatch_semaphore_t sema = dispatch_semaphore_create(0);
             [weakself.collArray removeAllObjects];
+        
+            
                 for (NSInteger i = 0; i < [object count]; i++) {
                     NSString * par1 = [NSString stringWithFormat:@"1/%@",object[i][@"id"]];
                         [YXPLUS_MANAGER requestZhiNan1Get:par1 success:^(id object) {

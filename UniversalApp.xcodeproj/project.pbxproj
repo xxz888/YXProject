@@ -676,6 +676,7 @@
 		BBF45E5F222FD29A005C52C4 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF45E5A222FD29A005C52C4 /* GCDAsyncUdpSocket.m */; };
 		BBF45E60222FD29A005C52C4 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF45E5B222FD29A005C52C4 /* GCDAsyncSocket.m */; };
 		BBF45E63222FD478005C52C4 /* UDPManage.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF45E62222FD478005C52C4 /* UDPManage.m */; };
+		BBF5076F22B33A6900579F29 /* TZTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF5076D22B33A6900579F29 /* TZTestCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1844,6 +1845,8 @@
 		BBF45E5D222FD29A005C52C4 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		BBF45E61222FD478005C52C4 /* UDPManage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UDPManage.h; sourceTree = "<group>"; };
 		BBF45E62222FD478005C52C4 /* UDPManage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UDPManage.m; sourceTree = "<group>"; };
+		BBF5076D22B33A6900579F29 /* TZTestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZTestCell.m; sourceTree = "<group>"; };
+		BBF5076E22B33A6900579F29 /* TZTestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZTestCell.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2688,6 +2691,8 @@
 				BB3CA494221F948E00C6793D /* YXFaBuBaseViewController.h */,
 				BB3CA495221F948E00C6793D /* YXFaBuBaseViewController.m */,
 				BB3CA497221F95FC00C6793D /* YXFaBuBaseViewController.xib */,
+				BBF5076E22B33A6900579F29 /* TZTestCell.h */,
+				BBF5076D22B33A6900579F29 /* TZTestCell.m */,
 			);
 			path = "所有发布界面复用";
 			sourceTree = "<group>";
@@ -5905,6 +5910,7 @@
 				BB21FDA522B0991E0059BCAC /* KSMediaViewerController.m in Sources */,
 				BB9413DD21F8B602007E800A /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				BB93DC98221A4BEA0094BADC /* RootTableViewController.m in Sources */,
+				BBF5076F22B33A6900579F29 /* TZTestCell.m in Sources */,
 				BB3DFE8A221D568D000C70B5 /* XHWebImageAutoSizeCache.m in Sources */,
 				BB9413E421F8B602007E800A /* IQUIView+Hierarchy.m in Sources */,
 				BB928F9621FB5D290090A044 /* BRBaseView.m in Sources */,

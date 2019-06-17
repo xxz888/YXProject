@@ -51,6 +51,10 @@ typedef void(^dismissBlock) ();
 - (IBAction)fabuAction:(id)sender;
 
 @property (nonatomic,strong) NSMutableArray * photoImageList;
+@property (nonatomic,strong) NSMutableArray * selectedPhotos;
+
+
+
 @property(nonatomic, strong) QMUITextView * qmuiTextView;
 @property (strong, nonatomic) CBGroupAndStreamView * menueView;
 @property (weak, nonatomic) IBOutlet UIView *floatView;

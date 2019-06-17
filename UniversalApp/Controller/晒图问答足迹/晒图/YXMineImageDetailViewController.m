@@ -81,15 +81,15 @@
     }
 
     
-    CGSize size = [UIImage getImageSizeWithURL:dic[@"url_list"][0]];
-    double scale = 0;
-    if (size.width == 0) {
-        scale = 0;
-    }else{
-        scale = size.height/size.width;
-    }
+//    CGSize size = [UIImage getImageSizeWithURL:dic[@"url_list"][0]];
+//    double scale = 0;
+//    if (size.width == 0) {
+//        scale = 0;
+//    }else{
+//        scale = size.height/size.width;
+//    }
     if ([dic[@"url_list"] count] > 0) {
-        [cell setUpSycleScrollView:dic[@"url_list"] height: KScreenWidth * scale];
+        [cell setUpSycleScrollView:dic[@"url_list"] height: (KScreenWidth - 10)];
         cell.cycleScrollView3.hidden = NO;
     }else{
         cell.cycleScrollView3.hidden = YES;

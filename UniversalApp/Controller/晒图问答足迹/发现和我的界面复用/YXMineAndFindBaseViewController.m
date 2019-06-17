@@ -76,10 +76,8 @@
     NSInteger tag = [dic[@"obj"] integerValue];
     if (tag == 1) {
         return [self customImageData:dic indexPath:indexPath whereCome:NO];
-    }else if (tag == 3){
-        return [self customQuestionData:dic indexPath:indexPath];
-    }else if (tag == 4){
-        return [self customImageData:dic indexPath:indexPath whereCome:YES];
+    }else if (tag == 2){
+        return [self customImageData:dic indexPath:indexPath whereCome:NO];
     }else{
         return nil;
     }
@@ -94,6 +92,12 @@
 #pragma mark ========== 图片 ==========
 -(YXFirstFindImageTableViewCell *)customImageData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath whereCome:(BOOL)whereCome{
     YXFirstFindImageTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFirstFindImageTableViewCell" forIndexPath:indexPath];
+//    if(cell == nil)
+//    {
+//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+//
+//    }
+    
     cell.tagId = [dic[@"id"] integerValue];
     cell.titleImageView.tag = indexPath.row;
     kWeakSelf(self);

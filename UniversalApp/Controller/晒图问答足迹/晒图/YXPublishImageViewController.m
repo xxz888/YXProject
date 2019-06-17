@@ -40,7 +40,7 @@
         [self faxianEditCome];
     }
     if (_model) {
-        [self caoGaoCome];
+
     }
 }
 
@@ -52,110 +52,33 @@
         //地点
         self.locationString = [_startDic[@"publish_site"] isEqualToString:@""] ? @"获取地理位置" :  _startDic[@"publish_site"] ;
         [self.locationBtn setTitle:self.locationString forState:UIControlStateNormal];
-        //图片
-        NSString * photo1 = _startDic[@"photo1"];
-        NSString * photo2 = _startDic[@"photo2"];
-        NSString * photo3 = _startDic[@"photo3"];
-
-        self.del1.hidden = self.del2.hidden = self.del3.hidden = YES;
-        self.img1.userInteractionEnabled = self.img2.userInteractionEnabled = self.img3.userInteractionEnabled = NO;
-        if ([_startDic[@"describe"] length] > 0) {
-            self.qmuiTextView.text = [_startDic[@"describe"] UnicodeToUtf8];
-            if ([photo1 length] > 5) {
-                self.img1.hidden = NO;
-                [self.img1 sd_setImageWithURL:[NSURL URLWithString:photo1] placeholderImage:[UIImage imageNamed:@""]];
-            }
-            if ([photo2 length] > 5) {
-                self.img2.hidden = NO;
-                [self.img2 sd_setImageWithURL:[NSURL URLWithString:photo2] placeholderImage:[UIImage imageNamed:@""]];
-            }
-            if ([photo3 length] > 5) {
-                self.img3.hidden = NO;
-                [self.img3 sd_setImageWithURL:[NSURL URLWithString:photo3] placeholderImage:[UIImage imageNamed:@""]];
-            }
-        }
-        UIImage *  zhanweiImage = [UIImage imageNamed:@"AddMedia"];
-        if (photo1_BOOL) {
-            if (photo2_BOOL) {
-                if (photo3_BOOL) {
-                    self.img1.hidden = self.img2.hidden = self.img3.hidden = NO;
-                    [self.img1 sd_setImageWithURL:[NSURL URLWithString:photo1] placeholderImage:[UIImage imageNamed:@""]];
-                    [self.img2 sd_setImageWithURL:[NSURL URLWithString:photo2] placeholderImage:[UIImage imageNamed:@""]];
-                    [self.img3 sd_setImageWithURL:[NSURL URLWithString:photo3] placeholderImage:[UIImage imageNamed:@""]];
-                }else{
-                    self.img1.hidden = self.img2.hidden = NO;
-                    self.img3.hidden = NO;
-                    [self.img1 sd_setImageWithURL:[NSURL URLWithString:photo1] placeholderImage:[UIImage imageNamed:@""]];
-                    [self.img2 sd_setImageWithURL:[NSURL URLWithString:photo2] placeholderImage:[UIImage imageNamed:@""]];
-                    self.img3.image = zhanweiImage;
-                }
-            }else{
-                self.img1.hidden = self.img2.hidden = NO;
-                [self.img1 sd_setImageWithURL:[NSURL URLWithString:photo1] placeholderImage:[UIImage imageNamed:@""]];
-                self.img2.image = zhanweiImage;
-                self.img3.hidden = YES;
-            }
-        }else{
-            self.img1.image = zhanweiImage;
-            self.img2.hidden = YES;
-            self.img3.hidden = YES;
-        }
-}
- //如果是从草稿进来，并且有值
--(void)caoGaoCome{
-        NSString * photo1 = _model.photo1;
-        NSString * photo2 = _model.photo2;
-        NSString * photo3 = _model.photo3;
-        if ([_model.describe length] > 0) {
-            self.qmuiTextView.text = [_model.describe UnicodeToUtf8];
-            if ([photo1 length] > 5) {
-                self.img1.hidden = NO;
-                [self.img1 sd_setImageWithURL:[NSURL URLWithString:photo1] placeholderImage:[UIImage imageNamed:@""]];
-            }
-            if ([photo2 length] > 5) {
-                self.img2.hidden = NO;
-                [self.img2 sd_setImageWithURL:[NSURL URLWithString:photo2] placeholderImage:[UIImage imageNamed:@""]];
-            }
-            if ([photo3 length] > 5) {
-                self.img3.hidden = NO;
-                [self.img3 sd_setImageWithURL:[NSURL URLWithString:photo3] placeholderImage:[UIImage imageNamed:@""]];
-            }
-        }
-        UIImage *  zhanweiImage = [UIImage imageNamed:@"AddMedia"];
-        if (photo1_BOOL) {
-            if (photo2_BOOL) {
-                if (photo3_BOOL) {
-                    self.img1.hidden = self.img2.hidden = self.img3.hidden = self.del1.hidden = self.del2.hidden = self.del3.hidden = NO;
-                    [self.img1 sd_setImageWithURL:[NSURL URLWithString:photo1] placeholderImage:[UIImage imageNamed:@""]];
-                    [self.img2 sd_setImageWithURL:[NSURL URLWithString:photo2] placeholderImage:[UIImage imageNamed:@""]];
-                    [self.img3 sd_setImageWithURL:[NSURL URLWithString:photo3] placeholderImage:[UIImage imageNamed:@""]];
-                }else{
-                    self.img1.hidden = self.img2.hidden = NO;
-                    self.del1.hidden = self.del2.hidden = NO;
-                    self.img3.hidden = NO;
-                    [self.img1 sd_setImageWithURL:[NSURL URLWithString:photo1] placeholderImage:[UIImage imageNamed:@""]];
-                    [self.img2 sd_setImageWithURL:[NSURL URLWithString:photo2] placeholderImage:[UIImage imageNamed:@""]];
-                    self.img3.image = zhanweiImage;
-                }
-            }else{
-                self.del1.hidden = NO;
-                self.img1.hidden = self.img2.hidden = NO;
-                [self.img1 sd_setImageWithURL:[NSURL URLWithString:photo1] placeholderImage:[UIImage imageNamed:@""]];
-                self.img2.image = zhanweiImage;
-                self.img3.hidden = YES;
-            }
-        }else{
-            self.img1.image = zhanweiImage;
-            self.img2.hidden = YES;
-            self.img3.hidden = YES;
-        }
 }
 #pragma mark ========== 发布1 和 存草稿0  ==========
 - (IBAction)fabuAction:(UIButton *)btn {
     [super fabuAction:btn];
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-    [self commonAction:self.photoImageList btn:btn];
+    if ([self.selectedPhotos count] == [self.photoImageList count]) {
+        [self commonAction:self.photoImageList btn:btn];
+    }else{
+        [QMUITips showInfo:@"正在上传图片,请稍等" inView:self.view hideAfterDelay:2];
+    }
 }
+#define kQNinterface @"http://photo.thegdlife.com/"
+-(NSString *)removeStrxtys:(NSString *)origStr{
+    NSString *temp = nil;
+    NSMutableArray *arr_0 = [NSMutableArray new];
+    for(int i =0; i < [origStr length]; i++)
+    {
+        temp = [origStr substringWithRange:NSMakeRange(i, 1)];
+        BOOL isbool = [arr_0 containsObject:temp];
+        if (!isbool) {
+            [arr_0 addObject:temp];
+        }
+    }
+    NSString *result = [arr_0 componentsJoinedByString:@""];
+    return result;
+}
+
 -(void)commonAction:(NSMutableArray *)imgArray btn:(UIButton *)btn{
     NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
     self.textViewInput = self.qmuiTextView.text;
@@ -171,10 +94,13 @@
     [dic setValue:@"" forKey:@"post_id"];
 //title 标题 晒图不传
     [dic setValue:@"" forKey:@"title"];
+//封面
+    [dic setValue:@"" forKey:@"cover"];
 //detail 详情
     [dic setValue:[self.textViewInput utf8ToUnicode] forKey:@"detail"];
 //拼接photo_list
     NSString * photo_list = [imgArray componentsJoinedByString:@","];
+    photo_list = [photo_list replaceAll:kQNinterface target:@""];
     [dic setValue:photo_list forKey:@"photo_list"];
 //obj 1晒图 2文章
     [dic setValue:@"1" forKey:@"obj"];
@@ -193,26 +119,6 @@
             NSString * key = [NSString stringWithFormat:@"%@%@",userId,[ShareManager getNowTimeTimestamp3]];
             JQFMDB *db = [JQFMDB shareDatabase];
             YXShaiTuModel * model = [[YXShaiTuModel alloc]init];
-            if (imgArray.count == 0) {
-                model.photo1 = @"";
-                model.photo2 = @"";
-                model.photo3 = @"";
-            }
-            if (imgArray.count >= 1){
-                model.photo1 = imgArray[0];
-                model.photo2 = @"";
-                model.photo3 = @"";
-            }
-            if (imgArray.count >= 2){
-                model.photo1 = imgArray[0];
-                model.photo2 = imgArray[1];
-                model.photo3 = @"";
-            }
-            if (imgArray.count >= 3){
-                model.photo1 = imgArray[0];
-                model.photo2 = imgArray[1];
-                model.photo3 = imgArray[2];
-            }
             model.describe = self.qmuiTextView.text;
             model.shaituid = key;
             [db jq_inDatabase:^{
@@ -220,7 +126,6 @@
             }];
             [QMUITips showSucceed:@"存草稿成功"];
             [weakself closeViewAAA];
-
         }else{
             [weakself requestFabu:dic];
         }

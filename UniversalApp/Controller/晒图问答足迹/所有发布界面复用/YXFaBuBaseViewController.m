@@ -5,20 +5,53 @@
 //  Created by 小小醉 on 2019/2/22.
 //  Copyright © 2019年 徐阳. All rights reserved.
 //
-
 #import "YXFaBuBaseViewController.h"
 #import "JJImagePicker.h"
-@interface YXFaBuBaseViewController ()<UITextFieldDelegate>{
+#import "TZTestCell.h"
+#import "UniversalApp-Swift.h"
+@interface YXFaBuBaseViewController ()<UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,KSMediaPickerControllerDelegate>{
     UIImageView * _selectImageView;
     UIImage * zhanweiImage;
+    NSMutableArray *_selectedAssets;
 }
-#define img1_BOOL _img1.image && (_img1.image != zhanweiImage)
-#define img2_BOOL _img2.image && _img2.image != zhanweiImage
-#define img3_BOOL _img3.image && _img3.image != zhanweiImage
-
+@property (nonatomic, strong) UICollectionView *yxCollectionView;
+@property (strong, nonatomic) UICollectionViewFlowLayout *layout;
 @end
 
 @implementation YXFaBuBaseViewController
+- (void)mediaPicker:(KSMediaPickerController *)mediaPicker didFinishSelected:(NSArray<KSMediaPickerOutputModel *> *)outputArray {
+    [mediaPicker.navigationController dismissViewControllerAnimated:YES completion:nil];
+    for (KSMediaPickerOutputModel * model in outputArray) {
+        [_selectedPhotos addObject:model.image];
+    }
+    [self.yxCollectionView reloadData];
+    
+    //这一步开始上传
+    kWeakSelf(self);
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+        for (NSInteger i = 0; i < [outputArray count]; i++) {
+            KSMediaPickerOutputModel * model = outputArray[i];
+      
+            //先上传到七牛云图片  再提交服务器
+            [QiniuLoad uploadImageToQNFilePath:@[model.image] success:^(NSString *reslut) {
+                NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
+                if (qiniuArray.count > 0) {
+                    [weakself.photoImageList addObject:qiniuArray[0]];
+//                    [QMUITips hideAllTipsInView:cell.imageView];
+                }
+//                if (_selectedPhotos.count == outputArray.count) {
+//                    for (NSString * string in _selectedPhotos) {
+//                        [weakself.photoImageList addObject:string];
+//                    }
+//                    [weakself.yxCollectionView reloadData];
+//                }
+                dispatch_semaphore_signal(sema);
+            } failure:^(NSString *error) {}];
+            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+        }
+    });
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,49 +65,6 @@
     self.tagArray = [NSMutableArray array];
     self.photoImageList = [[NSMutableArray alloc]init];
     _locationString = self.locationBtn.titleLabel.text;
-    ViewRadius(self.img1, 4);
-    ViewRadius(self.img2, 4);
-    ViewRadius(self.img3, 4);
-    zhanweiImage = [UIImage imageNamed:@"LLImagePicker.bundle/AddMedia" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
-    
-    
-    
-    _img1.image = zhanweiImage;
-    _img2.image = zhanweiImage;
-    _img3.image = zhanweiImage;
-    
-    
-    self.del1.layer.masksToBounds = YES;
-    self.del1.layer.cornerRadius = self.del1.frame.size.width / 2.0;
-    
-    self.del2.layer.masksToBounds = YES;
-    self.del2.layer.cornerRadius = self.del2.frame.size.width / 2.0;
-    
-    self.del3.layer.masksToBounds = YES;
-    self.del3.layer.cornerRadius = self.del2.frame.size.width / 2.0;
-    
-    
-    _img1.hidden =  NO;
-    _img2.hidden = _img3.hidden = _del1.hidden = _del2.hidden = _del3.hidden = YES;
-    
-    UITapGestureRecognizer * PrivateLetterTap1 =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAvatarView1:)];
-    PrivateLetterTap1.numberOfTouchesRequired = 1; //手指数
-    PrivateLetterTap1.numberOfTapsRequired = 1; //tap次数
-    [self.img1 addGestureRecognizer:PrivateLetterTap1];
-    
-    UITapGestureRecognizer * PrivateLetterTap2 =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAvatarView2:)];
-    PrivateLetterTap2.numberOfTouchesRequired = 1; //手指数
-    PrivateLetterTap2.numberOfTapsRequired = 1; //tap次数
-    [self.img2 addGestureRecognizer:PrivateLetterTap2];
-    
-    UITapGestureRecognizer * PrivateLetterTap3 =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAvatarView3:)];
-    PrivateLetterTap3.numberOfTouchesRequired = 1; //手指数
-    PrivateLetterTap3.numberOfTapsRequired = 1; //tap次数
-    [self.img3 addGestureRecognizer:PrivateLetterTap3];
-    
-    
-    
-    
     //1. 初始化轻扫手势对象, 并设置轻扫时触发的方法
     UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
     //2. 轻扫方向( | :表示两个方向都可以)
@@ -82,18 +72,13 @@
     swipe.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft |UISwipeGestureRecognizerDirectionUp |UISwipeGestureRecognizerDirectionDown;
     //3. 添加手势到view对象上
     [self.view addGestureRecognizer:swipe];
+    
+    
+    _selectedPhotos = [NSMutableArray array];
+    [self configCollectionView];
 }
 - (void)swipeAction: (UITapGestureRecognizer *)gesture{
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-}
-- (void)tapAvatarView1: (UITapGestureRecognizer *)gesture{
-    [self addThreeImageView:self.img1];
-}
-- (void)tapAvatarView2: (UITapGestureRecognizer *)gesture{
-    [self addThreeImageView:self.img2];
-}
-- (void)tapAvatarView3: (UITapGestureRecognizer *)gesture{
-    [self addThreeImageView:self.img3];
 }
 -(void)addTextView{
     if (!self.qmuiTextView) {
@@ -108,137 +93,9 @@
     [self.qmuiTextView becomeFirstResponder];
     [self.detailView addSubview:self.qmuiTextView];
 }
--(void)addThreeImageView:(UIImageView *)img{
-    _selectImageView = img;
-    JJImagePicker *picker = [JJImagePicker sharedInstance];
-    //自定义裁剪图片的ViewController
-    picker.customCropViewController = ^TOCropViewController *(UIImage *image) {
-//        if (picker.type == JJImagePickerTypePhoto) {
-//            //使用默认
-//            return nil;
-//        }
-        TOCropViewController  *cropController = [[TOCropViewController alloc] initWithImage:image];
-        //选择框可以按比例来手动调节
-        cropController.aspectRatioLockEnabled = NO;
-        //        cropController.resetAspectRatioEnabled = NO;
-        //设置选择宽比例
-        cropController.aspectRatioPreset = TOCropViewControllerAspectRatioPresetSquare;
-        //显示选择框比例的按钮
-        cropController.aspectRatioPickerButtonHidden = NO;
-        //显示选择按钮
-        cropController.rotateButtonsHidden = NO;
-        //设置选择框可以手动移动
-        cropController.cropView.cropBoxResizeEnabled = YES;
-        return cropController;
-    };
-    picker.albumText = @"";
-    picker.cancelText = @"取消";
-    picker.doneText = @"完成";
-    picker.retakeText = @"重拍";
-    picker.choosePhotoText = @"选择图片";
-    picker.automaticText = @"Automatic";
-    picker.closeText = @"Close";
-    picker.openText = @"打开";
-    kWeakSelf(self);
-    [picker actionSheetWithTakePhotoTitle:@"拍照" albumTitle:@"相册" cancelTitle:@"取消" InViewController:self didFinished:^(JJImagePicker *picker, UIImage *image) {
-        if (img) {
-            _selectImageView.image = image;
-            if (_selectImageView.tag == 11) {
-                _del1.hidden = NO;
-                _img2.hidden = NO;
-            }
-            if (_selectImageView.tag == 12) {
-                _del2.hidden = NO;
-                _img3.hidden = NO;
-            }
-            if (_selectImageView.tag == 13) {
-                _del3.hidden = NO;
-            }
-            
-            [QMUITips showLoadingInView:_selectImageView];
-            //先上传到七牛云图片  再提交服务器
-            [QiniuLoad uploadImageToQNFilePath:@[image] success:^(NSString *reslut) {
-                NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
-                if (qiniuArray.count > 0) {
-                    [weakself.photoImageList addObject:qiniuArray[0]];
-                }
-                [QMUITips hideAllTipsInView:_selectImageView];
 
-            } failure:^(NSString *error) {
-                NSLog(@"%@",error);
-            }];
-        }
-      
-    }];
-};
-- (IBAction)delAction:(UIButton *)btn {
-    switch (btn.tag) {
-        case 201:{
-            if (_img2.image == zhanweiImage) {
-                _img1.image = zhanweiImage;
-                _img2.hidden = YES;
-            }else{
-                
-                if (_img3.image == zhanweiImage) {
-                    _img2.image = zhanweiImage;
-                    _img3.hidden = YES;
-
-                }else{
-                    _img1.image = _img2.image;
-                    _img2.image = _img3.image;
-                    _img3.image = zhanweiImage;
-                }
-            }
-            _del1.hidden = [self inImageViewOutIsHidden:_img1];
-            _del2.hidden = [self inImageViewOutIsHidden:_img2];
-            _del3.hidden = [self inImageViewOutIsHidden:_img3];
-            [self.photoImageList removeObjectAtIndex:0];
-        }
-            break;
-        case 202:{
-            if (_img3.image == zhanweiImage) {
-                _img2.image = zhanweiImage;
-                _img3.hidden = YES;
-            }else{
-                _img2.image = _img3.image;
-                _img3.image = zhanweiImage;             }
-            _del1.hidden = [self inImageViewOutIsHidden:_img1];
-            _del2.hidden = [self inImageViewOutIsHidden:_img2];
-            _del3.hidden = [self inImageViewOutIsHidden:_img3];
-            [self.photoImageList removeObjectAtIndex:1];
-
-        }
-            break;
-        case 203:{
-            _img3.image = zhanweiImage;
-            _del1.hidden = [self inImageViewOutIsHidden:_img1];
-            _del2.hidden = [self inImageViewOutIsHidden:_img2];
-            _del3.hidden = [self inImageViewOutIsHidden:_img3];
-            [self.photoImageList removeObjectAtIndex:2];
-        }
-            break;
-        default:
-            break;
-    }
-}
--(BOOL)inImageViewOutIsHidden:(UIImageView *)img{
-    if (img.image == zhanweiImage || img.hidden) {
-        return YES;
-    }
-    return  NO;
-}
 - (IBAction)fabuAction:(UIButton *)btn{
-//    [_photoImageList removeAllObjects];
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-//    if (_img1.image && _img1.image != zhanweiImage) {
-//        [_photoImageList addObject:_img1.image];
-//    }
-//    if (_img2.image && _img2.image != zhanweiImage) {
-//        [_photoImageList addObject:_img2.image];
-//    }
-//    if (_img3.image && _img3.image != zhanweiImage) {
-//        [_photoImageList addObject:_img3.image];
-//    }
 }
 
 - (IBAction)locationBtnAction:(id)sender{
@@ -368,6 +225,94 @@
     }
     [controller dismissViewControllerAnimated:YES completion:^{
         
+    }];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+- (void)configCollectionView {
+    // 如不需要长按排序效果，将LxGridViewFlowLayout类改成UICollectionViewFlowLayout即可
+    _layout = [[UICollectionViewFlowLayout alloc] init];
+    _layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    _yxCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:_layout];
+    _yxCollectionView.showsVerticalScrollIndicator = _yxCollectionView.showsHorizontalScrollIndicator = NO;
+    _yxCollectionView.backgroundColor = KWhiteColor;
+    _yxCollectionView.contentInset = UIEdgeInsetsMake(4, 4, 4, 4);
+    _yxCollectionView.dataSource = self;
+    _yxCollectionView.delegate = self;
+    _yxCollectionView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    _yxCollectionView.contentSize = CGSizeMake(kScreenWidth-20, 0);
+    [self.threeImageView addSubview:_yxCollectionView];
+    [_yxCollectionView registerClass:[TZTestCell class] forCellWithReuseIdentifier:@"TZTestCell"];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    _layout.itemSize = CGSizeMake(90, 90);
+    _layout.minimumInteritemSpacing = 10;
+    _layout.minimumLineSpacing = 10;
+    [_yxCollectionView setCollectionViewLayout:_layout];
+    _yxCollectionView.frame = CGRectMake(-7, 0, kScreenWidth -20,100);
+}
+#pragma mark UICollectionView
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    if (_selectedPhotos.count >= 9) {
+        return _selectedPhotos.count;
+    }
+    return _selectedPhotos.count + 1;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    TZTestCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TZTestCell" forIndexPath:indexPath];
+    cell.videoImageView.hidden = YES;
+    if (indexPath.item == _selectedPhotos.count) {
+        cell.imageView.image = [UIImage imageNamed:@"AlbumAddBtn.png"];
+        cell.deleteBtn.hidden = YES;
+        cell.gifLable.hidden = YES;
+    } else {
+        
+        cell.imageView.image = _selectedPhotos[indexPath.item];
+        cell.deleteBtn.hidden = NO;
+    }
+    cell.deleteBtn.tag = indexPath.item;
+    [cell.deleteBtn addTarget:self action:@selector(deleteBtnClik:) forControlEvents:UIControlEventTouchUpInside];
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.item == _selectedPhotos.count) {
+        KSMediaPickerController *ctl = [KSMediaPickerController.alloc initWithMaxVideoItemCount:0 maxPictureItemCount:9];
+        ctl.delegate = self;
+        KSNavigationController *nav = [KSNavigationController.alloc initWithRootViewController:ctl];
+        [self presentViewController:nav animated:YES completion:nil];
+    } else { // preview photos or video / 预览照片或者视频
+      
+    }
+}
+#pragma mark - Click Event
+
+- (void)deleteBtnClik:(UIButton *)sender {
+    if ([self collectionView:self.collectionView numberOfItemsInSection:0] <= _selectedPhotos.count) {
+        [_selectedPhotos removeObjectAtIndex:sender.tag];
+        [self.collectionView reloadData];
+        return;
+    }
+    
+    [_selectedPhotos removeObjectAtIndex:sender.tag];
+    [_yxCollectionView performBatchUpdates:^{
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:sender.tag inSection:0];
+        [self->_yxCollectionView deleteItemsAtIndexPaths:@[indexPath]];
+    } completion:^(BOOL finished) {
+        [self->_yxCollectionView reloadData];
     }];
 }
 @end

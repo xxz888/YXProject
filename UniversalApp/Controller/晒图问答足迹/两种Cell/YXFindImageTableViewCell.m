@@ -22,17 +22,17 @@
 +(CGFloat)cellNewDetailNeedHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
     
     
-    CGSize size = [UIImage getImageSizeWithURL:dic[@"url_list"][0]];
-    double scale = 0;
-    if (size.width == 0) {
-        scale = 0;
-    }else{
-        scale = size.height/size.width;
-    }
+//    CGSize size = [UIImage getImageSizeWithURL:dic[@"url_list"][0]];
+//    double scale = 0;
+//    if (size.width == 0) {
+//        scale = 0;
+//    }else{
+//        scale = size.height/size.width;
+//    }
+//    
     
     
-    
-    CGFloat imageHeight =  (KScreenWidth-10) * scale;
+    CGFloat imageHeight =  (KScreenWidth-10);
     NSString * titleText = [NSString stringWithFormat:@"%@%@", dic[@"detail"],dic[@"tag"]];
     //内容
     CGFloat height_size = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
