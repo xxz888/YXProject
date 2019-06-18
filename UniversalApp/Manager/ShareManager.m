@@ -521,6 +521,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     
     return  ceil(size.height);
 }
+    
 + (void)setBorderinView:(UIView *)view{
     view.layer.borderColor = [[UIColor borderColor] CGColor];
     view.layer.borderWidth = 0.8;
@@ -820,10 +821,11 @@ SINGLETON_FOR_CLASS(ShareManager);
      "</script>\n"];
     
     [headHtml appendString : @"<style>table{width:100%;}</style>" ];
-    [headHtml appendString : @"<title>webview</title>" ];
+    [headHtml appendString : @"<body><title>webview</title>" ];
     NSString *bodyHtml;
     bodyHtml = [NSString stringWithString:headHtml];
     bodyHtml = [bodyHtml stringByAppendingString:htmlStr];
+    bodyHtml = [bodyHtml append:@"<body>"];
     return bodyHtml;
     
 }
@@ -884,6 +886,11 @@ SINGLETON_FOR_CLASS(ShareManager);
                                       ];
     [moreOperationController showFromBottom];
 }
-
++(CGFloat)getImageViewSize:(NSString *)imgUrl{
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:imgUrl]];
+    UIImage *showimage = [UIImage imageWithData:data];
+    CGFloat scale = showimage.size.height/showimage.size.width;
+    return KScreenWidth * scale;
+}
 
 @end

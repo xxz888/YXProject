@@ -114,7 +114,7 @@
 }
 -(void)personValue:(id)object{
     NSString * str = [(NSMutableString *)object[@"photo"] replaceAll:@" " target:@"%20"];
-    [self.mineImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    [self.mineImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
     self.navigationItem.title = kGetString(object[@"username"]);
     self.mineTitle.text =kGetString(object[@"username"]);
     self.mineAdress.text = kGetString(object[@"site"]);

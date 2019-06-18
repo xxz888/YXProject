@@ -2757,9 +2757,6 @@
 		BB5FD88621FECBB500B5F1A8 /* 两种Cell */ = {
 			isa = PBXGroup;
 			children = (
-				BB21FDB622B0E68A0059BCAC /* YXFirstFindImageTableViewCell.h */,
-				BB21FDB722B0E68A0059BCAC /* YXFirstFindImageTableViewCell.m */,
-				BB21FDB822B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib */,
 				BB5FD88721FECBDB00B5F1A8 /* YXFindImageTableViewCell.h */,
 				BB5FD88821FECBDB00B5F1A8 /* YXFindImageTableViewCell.m */,
 				BB5FD88921FECBDB00B5F1A8 /* YXFindImageTableViewCell.xib */,
@@ -4396,8 +4393,6 @@
 		BBD1C77122166AB40063002F /* 发现和我的界面复用 */ = {
 			isa = PBXGroup;
 			children = (
-				BBD1C77222166AD40063002F /* YXMineAndFindBaseViewController.h */,
-				BBD1C77322166AD40063002F /* YXMineAndFindBaseViewController.m */,
 				BBD1C775221670CD0063002F /* YXMineAndFindBaseTableViewCell.h */,
 				BBD1C776221670CD0063002F /* YXMineAndFindBaseTableViewCell.m */,
 				BBADE4D921F8665A0011E5FF /* YXMineImageDetailHeaderView.h */,
@@ -4410,6 +4405,11 @@
 		BBD1C7782216A98D0063002F /* 晒图问答足迹 */ = {
 			isa = PBXGroup;
 			children = (
+				BBD1C77222166AD40063002F /* YXMineAndFindBaseViewController.h */,
+				BBD1C77322166AD40063002F /* YXMineAndFindBaseViewController.m */,
+				BB21FDB622B0E68A0059BCAC /* YXFirstFindImageTableViewCell.h */,
+				BB21FDB722B0E68A0059BCAC /* YXFirstFindImageTableViewCell.m */,
+				BB21FDB822B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib */,
 				BBBE07192224E2EE00CDD11E /* 详情界面复用 */,
 				BB3CA493221F947600C6793D /* 所有发布界面复用 */,
 				BBD1C77122166AB40063002F /* 发现和我的界面复用 */,

@@ -342,7 +342,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
 //    _iconView.image = [UIImage imageNamed:model.iconName];
     
     NSString * str = [(NSMutableString *)model.iconName replaceAll:@" " target:@"%20"];
-    [_iconView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
     _iconView.layer.masksToBounds = YES;
     _iconView.layer.cornerRadius = _iconView.frame.size.width / 2.0;
     _nameLable.text = model.name;

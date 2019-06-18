@@ -16,19 +16,27 @@
 @implementation YXFirstFindImageTableViewCell
 +(CGFloat)cellDefaultHeight:(NSDictionary *)dic{
     
-
-    //计算detail高度
-    NSString * titleText = [[NSString stringWithFormat:@"%@%@",dic[@"detail"],dic[@"tag"]] UnicodeToUtf8];
-    CGFloat detailHeight = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
+    NSString * titleText = @"";
     //计算图片高度
-    CGFloat midViewHeight = (KScreenWidth-20);
+    CGFloat midViewHeight = 0;
+    
+    //计算detail高度
+    if([dic[@"obj"] integerValue] == 1){
+        titleText = [[NSString stringWithFormat:@"%@%@",dic[@"detail"],dic[@"tag"]] UnicodeToUtf8];
+        midViewHeight = (KScreenWidth-20);
+    }else{
+        titleText = [[NSString stringWithFormat:@"%@%@",dic[@"title"],dic[@"tag"]] UnicodeToUtf8];
+        midViewHeight = (KScreenWidth-20);
+    }
+    CGFloat detailHeight = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
+   
     return 155 + detailHeight + midViewHeight;
 }
 -(void)setCellValue:(NSDictionary *)dic{
     kWeakSelf(self);
     //头像
     NSString * str1 = [(NSMutableString *)dic[@"photo"] replaceAll:@" " target:@"%20"];
-    [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
     //头名字
     self.titleLbl.text = dic[@"user_name"];
     //头时间
@@ -36,8 +44,12 @@
     //地点button
     [self.mapBtn setTitle:dic[@"publish_site"] forState:UIControlStateNormal];
     //detail
-    NSString * titleText = [[NSString stringWithFormat:@"%@%@",dic[@"detail"],dic[@"tag"]] UnicodeToUtf8];
-    
+    NSString * titleText = @"";
+    if ([dic[@"obj"] integerValue] == 1) {
+        titleText = [[NSString stringWithFormat:@"%@%@",dic[@"detail"],dic[@"tag"]] UnicodeToUtf8];
+    }else{
+        titleText = [[NSString stringWithFormat:@"%@%@",dic[@"title"],dic[@"tag"]] UnicodeToUtf8];
+    }
     //赞和评论
     NSString * talkNum =  kGetString(dic[@"comment_number"]);
     NSString * praisNum = kGetString(dic[@"praise_number"]);
@@ -81,25 +93,33 @@
     
     
     //图片
-    NSArray * urlList = dic[@"url_list"];
-    self.countLbl.text = NSIntegerToNSString(urlList.count);
-    if ([urlList count] >= 4) {
-        self.onlyOneImv.hidden = YES;
-        self.imgV1.hidden = self.imgV2.hidden = self.imgV3.hidden = self.imgV4.hidden = self.stackView.hidden = NO;
-        NSString * string1 = [(NSMutableString *)urlList[0] replaceAll:@" " target:@"%20"];
-        [self.imgV1 sd_setImageWithURL:[NSURL URLWithString:string1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-        NSString * string2 = [(NSMutableString *)urlList[1] replaceAll:@" " target:@"%20"];
-        [self.imgV2 sd_setImageWithURL:[NSURL URLWithString:string2] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-        NSString * string3 = [(NSMutableString *)urlList[2] replaceAll:@" " target:@"%20"];
-        [self.imgV3 sd_setImageWithURL:[NSURL URLWithString:string3] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-        NSString * string4 = [(NSMutableString *)urlList[3] replaceAll:@" " target:@"%20"];
-        [self.imgV4 sd_setImageWithURL:[NSURL URLWithString:string4] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    if ([dic[@"obj"] integerValue] == 1) {
+        NSArray * urlList = dic[@"url_list"];
+        self.countLbl.text = NSIntegerToNSString(urlList.count);
+        if ([urlList count] >= 4) {
+            self.onlyOneImv.hidden = YES;
+            self.imgV1.hidden = self.imgV2.hidden = self.imgV3.hidden = self.imgV4.hidden = self.stackView.hidden = NO;
+            NSString * string1 = [(NSMutableString *)urlList[0] replaceAll:@" " target:@"%20"];
+            [self.imgV1 sd_setImageWithURL:[NSURL URLWithString:string1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+            NSString * string2 = [(NSMutableString *)urlList[1] replaceAll:@" " target:@"%20"];
+            [self.imgV2 sd_setImageWithURL:[NSURL URLWithString:string2] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+            NSString * string3 = [(NSMutableString *)urlList[2] replaceAll:@" " target:@"%20"];
+            [self.imgV3 sd_setImageWithURL:[NSURL URLWithString:string3] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+            NSString * string4 = [(NSMutableString *)urlList[3] replaceAll:@" " target:@"%20"];
+            [self.imgV4 sd_setImageWithURL:[NSURL URLWithString:string4] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        }else{
+            self.onlyOneImv.hidden = NO;
+            self.imgV1.hidden = self.imgV2.hidden = self.imgV3.hidden = self.imgV4.hidden = self.stackView.hidden = YES;
+            NSString * string = [(NSMutableString *)urlList[0] replaceAll:@" " target:@"%20"];
+            [self.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        }
     }else{
         self.onlyOneImv.hidden = NO;
         self.imgV1.hidden = self.imgV2.hidden = self.imgV3.hidden = self.imgV4.hidden = self.stackView.hidden = YES;
-        NSString * string = [(NSMutableString *)urlList[0] replaceAll:@" " target:@"%20"];
+        NSString * string = [(NSMutableString *)dic[@"cover"] replaceAll:@" " target:@"%20"];
         [self.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     }
+    
     
     if ([dic[@"publish_site"] isEqualToString:@""] || !dic[@"publish_site"] ) {
         self.nameCenter.constant = self.titleImageView.frame.origin.y;
@@ -158,7 +178,7 @@
     _cycleScrollView3.delegate = self;
 //    _cycleScrollView3.bannerImageViewContentMode = 1;
     _cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];
-    _cycleScrollView3.currentPageDotColor =  kRGBA(12, 36, 45, 1.0);
+    _cycleScrollView3.currentPageDotColor =  SEGMENT_COLOR;
     _cycleScrollView3.showPageControl = YES;
     _cycleScrollView3.autoScrollTimeInterval = 10000;
     _cycleScrollView3.pageDotColor = YXRGBAColor(239, 239, 239);

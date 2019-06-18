@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YXMineImageDetailViewController : YXBaseFaXianDetailViewController
 @property (nonatomic,assign) CGFloat headerViewHeight;
+@property (strong, nonatomic)  UIWebView *webView;
+
 @end
 
 NS_ASSUME_NONNULL_END

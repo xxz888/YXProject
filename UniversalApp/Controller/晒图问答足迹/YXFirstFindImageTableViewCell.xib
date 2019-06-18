@@ -96,7 +96,11 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GtI-gh-lsU">
                         <rect key="frame" x="10" y="100" width="300" height="300"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b5Y-oz-jeP">
+                            <webView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5pM-xX-sVL">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b5Y-oz-jeP">
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pV5-2b-25x">
@@ -189,11 +193,15 @@
                             <constraint firstAttribute="trailing" secondItem="8Gg-ne-Clp" secondAttribute="trailing" id="4Ll-dr-YKd"/>
                             <constraint firstAttribute="trailing" secondItem="b5Y-oz-jeP" secondAttribute="trailing" id="9cS-eI-Xsk"/>
                             <constraint firstAttribute="trailing" secondItem="pV5-2b-25x" secondAttribute="trailing" id="CJ5-lm-l9Y"/>
+                            <constraint firstItem="5pM-xX-sVL" firstAttribute="top" secondItem="GtI-gh-lsU" secondAttribute="top" id="F2W-Q9-oEY"/>
+                            <constraint firstAttribute="bottom" secondItem="5pM-xX-sVL" secondAttribute="bottom" id="F6k-Ja-WGv"/>
                             <constraint firstItem="b5Y-oz-jeP" firstAttribute="top" secondItem="GtI-gh-lsU" secondAttribute="top" id="Xol-Cg-DJT"/>
                             <constraint firstItem="b5Y-oz-jeP" firstAttribute="leading" secondItem="GtI-gh-lsU" secondAttribute="leading" id="Xw7-eU-oEx"/>
                             <constraint firstItem="8Gg-ne-Clp" firstAttribute="top" secondItem="GtI-gh-lsU" secondAttribute="top" id="cv1-2w-ZeE"/>
                             <constraint firstAttribute="bottom" secondItem="pV5-2b-25x" secondAttribute="bottom" id="e41-uQ-QNJ"/>
                             <constraint firstItem="pV5-2b-25x" firstAttribute="leading" secondItem="GtI-gh-lsU" secondAttribute="leading" id="eXm-lb-Cct"/>
+                            <constraint firstItem="5pM-xX-sVL" firstAttribute="leading" secondItem="GtI-gh-lsU" secondAttribute="leading" id="jbc-iN-Zcn"/>
+                            <constraint firstAttribute="trailing" secondItem="5pM-xX-sVL" secondAttribute="trailing" id="m1h-VA-fAO"/>
                             <constraint firstAttribute="bottom" secondItem="8Gg-ne-Clp" secondAttribute="bottom" id="rbL-tA-gks"/>
                             <constraint firstItem="pV5-2b-25x" firstAttribute="top" secondItem="GtI-gh-lsU" secondAttribute="top" id="sSC-1l-kXC"/>
                             <constraint firstItem="8Gg-ne-Clp" firstAttribute="leading" secondItem="GtI-gh-lsU" secondAttribute="leading" id="srx-WJ-Ndq"/>
@@ -311,6 +319,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="cellWebView" destination="5pM-xX-sVL" id="jb8-i9-evu"/>
                 <outlet property="countLbl" destination="YdI-b5-Jfc" id="IcU-gU-acW"/>
                 <outlet property="detailHeight" destination="5e8-ew-xcr" id="wAQ-oK-nr8"/>
                 <outlet property="detailLbl" destination="8fg-xa-6xb" id="N0r-As-wtW"/>
@@ -321,6 +330,7 @@
                 <outlet property="mapBtn" destination="Tdt-og-BnM" id="qyM-Ik-j6I"/>
                 <outlet property="midLunBoView" destination="8Gg-ne-Clp" id="dne-zw-ePZ"/>
                 <outlet property="midView" destination="GtI-gh-lsU" id="SFZ-C6-V7v"/>
+                <outlet property="midViewHeight" destination="3e1-mU-iRb" id="ptq-Sb-tR4"/>
                 <outlet property="nameCenter" destination="rkN-ek-6XK" id="cg6-dK-5Be"/>
                 <outlet property="onlyOneImv" destination="b5Y-oz-jeP" id="WX4-aA-Ncz"/>
                 <outlet property="rightCountLbl" destination="7pB-7X-hLT" id="LdC-Zo-gFY"/>

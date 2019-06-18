@@ -26,6 +26,7 @@
 @property (nonatomic ,strong)TZImagePickerController *imagePickerVc;
 @property (nonatomic ,assign)CGFloat keyboardHeight;
 @property (nonatomic ,assign)CGFloat navHeight;
+@property (nonatomic ,strong)NSString * cover;       // 封面url
 
 @property (nonatomic ,strong)NSMutableArray * imagesArr;    //存放图片
 @property (nonatomic ,strong)NSMutableArray * imageUrlsArr; // 存放图片url
@@ -60,6 +61,8 @@
     self.navigationItem.rightBarButtonItem = rightItem;
     // 图文正文输入框
     [self.view addSubview:self.contentTextView];
+    ViewBorderRadius(self.fabuButton, 14, 1, YXRGBAColor(176, 151, 99));
+
 }
 #pragma mark - setter
 - (YYTextView *)contentTextView {
@@ -69,7 +72,7 @@
         self.headerView.frame = CGRectMake(0,0,self.view.frame.size.width,200);
         YYTextView *textView = [[YYTextView alloc] initWithFrame:CGRectMake(0, kStatusBarHeight + 60, KScreenWidth, KScreenHeight - 60 - kStatusBarHeight)];
         textView.tag = 1000;
-        textView.textContainerInset = UIEdgeInsetsMake(210, 16, 20,16);
+        textView.textContainerInset = UIEdgeInsetsMake(210, 10, 20,10);
         textView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         textView.scrollIndicatorInsets = textView.contentInset;
         textView.delegate = self;
@@ -88,7 +91,7 @@
         
         kWeakSelf(self);
         self.headerView.clickTitleImgBlock = ^(UIImageView * iamge) {
-            KSMediaPickerController *ctl = [KSMediaPickerController.alloc initWithMaxVideoItemCount:1 maxPictureItemCount:9];
+            KSMediaPickerController *ctl = [KSMediaPickerController.alloc initWithMaxVideoItemCount:1 maxPictureItemCount:1];
             ctl.view.tag = 2;
             ctl.delegate = weakself;
             KSNavigationController *nav = [KSNavigationController.alloc initWithRootViewController:ctl];
@@ -114,30 +117,35 @@
  @param image 图片image
  */
 - (void)setupImage:(UIImage *)image {
-    NSAttributedString * changeString =  [[NSAttributedString alloc] initWithString:@"\n" attributes:nil];
     NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithAttributedString:self.contentTextView.attributedText];
-
-    UIFont *font = [UIFont systemFontOfSize:20];
+    UIFont *font = [UIFont systemFontOfSize:15];
+    
     NSData *imgData = UIImageJPEGRepresentation(image, 0.9);
     YYImage *img = [YYImage imageWithData:imgData];
-    
-    
-    
     img.preloadAllAnimatedImageFrames = YES;
     YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc] initWithImage:image];
     imageView.autoPlayAnimatedImage = NO;
     imageView.clipsToBounds = YES;
-    
-    
     [imageView startAnimating];
     CGSize size = imageView.size;
     CGFloat textViewWidth = kScreenWidth - 32.0;
     size = CGSizeMake(textViewWidth, size.height * textViewWidth / size.width);
-    NSMutableAttributedString *attachText = [NSMutableAttributedString attachmentStringWithContent:imageView contentMode:UIViewContentModeScaleToFill attachmentSize:size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+    NSMutableAttributedString *attachText = [NSMutableAttributedString attachmentStringWithContent:imageView contentMode:UIViewContentModeScaleAspectFit attachmentSize:size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+    YYTextView * desTextView = [YYTextView new];
+    desTextView.delegate = self;
+    desTextView.contentInset = UIEdgeInsetsMake(5, 50, -5, -50);
+    desTextView.text = @"";
+    desTextView.bounds = CGRectMake(0, 0, kScreenWidth - 32, 0);
+    desTextView.font = [UIFont systemFontOfSize:12];
+    desTextView.textAlignment = NSTextAlignmentCenter;
+    desTextView.textColor = [UIColor grayColor];
+    desTextView.scrollEnabled = NO;
+    NSMutableAttributedString *attachText2 = [NSMutableAttributedString attachmentStringWithContent:desTextView contentMode:UIViewContentModeCenter attachmentSize:desTextView.size alignToFont:[UIFont systemFontOfSize:12] alignment:YYTextVerticalAlignmentCenter];
+    [attachText appendAttributedString:attachText2];
+    //绑定图片和描述输入框
+    [attachText setTextBinding:[YYTextBinding bindingWithDeleteConfirm:NO] range:attachText.rangeOfAll];
     [text insertAttributedString:attachText atIndex:self.contentTextView.selectedRange.location];
-    [text appendAttributedString:changeString];
-    [text appendAttributedString:changeString];
-    [text appendAttributedString:changeString];
+    [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n" attributes:nil]];
     text.font = font;
     self.contentTextView.attributedText = text;
     [self.contentTextView becomeFirstResponder];
@@ -152,6 +160,8 @@
     [self.imagesArr removeAllObjects];
     [self.desArr removeAllObjects];
     [self.imageUrlsArr removeAllObjects];
+    
+    [QMUITips showLoadingInView:self.view];
     
     NSAttributedString *content = self.contentTextView.attributedText;
     NSString *text = [self.contentTextView.text copy];
@@ -177,47 +187,52 @@
                     dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
                 }
             }
-
         }];
         self.contentStr = [text stringByReplacingOccurrencesOfString:@"\U0000fffc\U0000fffc" withString:@"<我是图片>"];
         NSString * resuletString = [Tool makeHtmlString:_imageUrlsArr desArr:_desArr contentStr:_contentStr];
         NSLog(@"%@",resuletString);
+        [self lastStepFaBuAction:resuletString];
     });
 
 
 
 }
+-(void)lastStepFaBuAction:(NSString *)detail{
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
     
-
-/**
- 发布
- */
--(void)clickToPublish{
-    [self.imagesArr removeAllObjects];
-    [self.desArr removeAllObjects];
-    [self.imageUrlsArr removeAllObjects];
     
-    NSAttributedString *content = self.contentTextView.attributedText;
-    NSString *text = [self.contentTextView.text copy];
+    //post_id 修改传，发布传空
+    [dic setValue:@"" forKey:@"post_id"];
+    //title 标题 晒图不传
+    [dic setValue:self.headerView.titleTextView.text forKey:@"title"];
+    //封面
+    [dic setValue:self.cover forKey:@"cover"];
+    //detail 详情
+    [dic setValue:detail forKey:@"detail"];
+    //拼接photo_list
+    [dic setValue:@"" forKey:@"photo_list"];
+//    NSString * photo_list = [imgArray componentsJoinedByString:@","];
+//    photo_list = [photo_list replaceAll:kQNinterface target:@""];
+//    [dic setValue:photo_list forKey:@"photo_list"];
+    //obj 1晒图 2文章
+    [dic setValue:@"2" forKey:@"obj"];
+    //tag 标签
+    [dic setValue:@"" forKey:@"tag"];
+//    self.tagArray.count == 0 ?
+//    [dic setValue:@"" forKey:@"tag"] : [dic setValue:[self.tagArray componentsJoinedByString:@" "] forKey:@"tag"];
+    //publish_site 地点
+    [dic setValue:@"" forKey:@"publish_site"];
+//    NSString * publish_site = [self.locationString isEqualToString:@"获取地理位置"] ? @"" : self.locationString;
+//    [dic setValue:publish_site forKey:@"publish_site"];
     
-    [content enumerateAttributesInRange:NSMakeRange(0, text.length) options:0 usingBlock:^(NSDictionary<NSString *,id> * _Nonnull attrs, NSRange range, BOOL * _Nonnull stop) {
-        YYTextAttachment *att = attrs[@"YYTextAttachment"];
-        if (att) {
-            if ([att.content isKindOfClass:[YYTextView class]]) {
-                YYTextView * textView = att.content;
-                [self.desArr addObject:textView.text];
-            }else{
-                YYAnimatedImageView *imgView = att.content;
-                [self.imagesArr addObject:imgView.image];
-                
-                
-                [self.imageUrlsArr addObject:@"http://www.baidu.com"];
-            }
-        }
+    kWeakSelf(self);
+    [YX_MANAGER requestFaBuImagePOST:dic success:^(id object) {
+        [QMUITips hideAllTipsInView:weakself.view];
+        [QMUITips showSucceed:object[@"message"] inView:[ShareManager getMainView] hideAfterDelay:1];
+        [weakself closeViewAAA];
     }];
-    self.contentStr = [text stringByReplacingOccurrencesOfString:@"\U0000fffc\U0000fffc" withString:@"<我是图片>"];
-    [Tool makeHtmlString:_imageUrlsArr desArr:_desArr contentStr:_contentStr];
 }
+
 
 
 #pragma mark - TZImagePickerControllerDelegate
@@ -233,7 +248,6 @@
     for (NSInteger i = 0; i < assets.count; i++) {
         PHAsset *asset = assets[i];
         CGSize size = CGSizeMake(asset.pixelWidth / scale, asset.pixelHeight / scale);
-        
         /** 获取图片*/
         [[PHImageManager defaultManager] requestImageForAsset:asset
                                                    targetSize:size
@@ -245,15 +259,12 @@
                                                 }];
     }
 }
-
-
 #pragma mark YYTextViewDelegate
 - (void)textViewDidChange:(YYTextView *)textView{
     if (textView.text.length > 100 && textView.tag != 1000) {
         textView.text = [textView.text substringToIndex:100];
     }
 }
-
 //防止输入图片描述的输入框被键盘遮挡
 -(void)textViewDidBeginEditing:(YYTextView *)textView{
     if (textView.tag != 1000) {
@@ -299,11 +310,17 @@
 }
 - (void)mediaPicker:(KSMediaPickerController *)mediaPicker didFinishSelected:(NSArray<KSMediaPickerOutputModel *> *)outputArray {
     [mediaPicker.navigationController dismissViewControllerAnimated:YES completion:nil];
+    kWeakSelf(self);
     for (KSMediaPickerOutputModel * model in outputArray) {
         if (mediaPicker.view.tag == 1) {
             [self setupImage:model.image];
         }else{
             self.headerView.titleImgV.image = model.image;
+            
+            [QiniuLoad uploadImageToQNFilePath:@[model.image] success:^(NSString *reslut) {
+                NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
+                weakself.cover = qiniuArray[0];
+            } failure:^(NSString *error) {}];
         }
     }
 }
@@ -340,20 +357,6 @@
     return _imagePickerVc;
 }
 
--(UIButton *)publishBtn
-{
-    if (!_publishBtn) {
-        _publishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _publishBtn.bounds = CGRectMake(0, 0, 40, 44);
-        [_publishBtn setTitle:@"发布" forState:UIControlStateNormal];
-        [_publishBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        _publishBtn.titleLabel.font = [UIFont systemFontOfSize:20];
-        [_publishBtn bk_addEventHandler:^(id sender) {
-            [self clickToPublish];
-        } forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _publishBtn;
-}
 
 -(NSMutableArray *)imageUrlsArr{
     if (!_imageUrlsArr) {
@@ -372,5 +375,14 @@
         _desArr = [NSMutableArray array];
     }
     return _desArr;
+}
+-(void)closeViewAAA{
+    UIViewController *controller = self;
+    while(controller.presentingViewController != nil){
+        controller = controller.presentingViewController;
+    }
+    [controller dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 @end

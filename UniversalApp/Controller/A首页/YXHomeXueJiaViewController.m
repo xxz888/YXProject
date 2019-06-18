@@ -105,12 +105,12 @@
     
         vc4.whereCome = TYPE_XUEJIA_1;
         //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
-        NSArray* titles =  @[@"正装",@"雪茄",@"品牌"];
-        NSArray* controllers = @[vc3,[UIViewController new],vc1];
+        NSArray* titles =  @[@"正装",@"雪茄"];//,@"品牌"];
+        NSArray* controllers = @[vc3,[UIViewController new]];//vc1];
         _segmentedPageViewController = [[HGSegmentedPageViewController alloc] init];
         _segmentedPageViewController.categoryView.titleNomalFont = [UIFont systemFontOfSize:14];
         _segmentedPageViewController.categoryView.titleSelectedFont = [UIFont systemFontOfSize:22 weight:UIFontWeightBold];
-        _segmentedPageViewController.categoryView.titleSelectedColor = kRGBA(12, 36, 45, 1.0);
+        _segmentedPageViewController.categoryView.titleSelectedColor = SEGMENT_COLOR;
         _segmentedPageViewController.pageViewControllers = controllers.copy;
         _segmentedPageViewController.categoryView.titles = titles;
         _segmentedPageViewController.categoryView.originalIndex = 0;
@@ -244,7 +244,7 @@
     static NSString *identify = @"YXHomeXueJiaTableViewCell";
     YXHomeXueJiaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify forIndexPath:indexPath];
     NSString * str = [(NSMutableString *)self.informationArray[indexPath.row][@"photo"] replaceAll:@" " target:@"%20"];
-    [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
     cell.cellLbl.text = self.informationArray[indexPath.row][@"title"];
     cell.cellAutherLbl.text = self.informationArray[indexPath.row][@"author"];
     cell.cellDataLbl.text =  [ShareManager timestampSwitchTime:[self.informationArray[indexPath.row][@"date"] integerValue] andFormatter:@""];

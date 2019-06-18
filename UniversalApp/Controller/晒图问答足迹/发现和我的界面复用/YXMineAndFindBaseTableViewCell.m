@@ -66,11 +66,11 @@
 //    }
     //cell的头图片
     NSString * str1 = [(NSMutableString *)(dic[@"user_photo"] ? dic[@"user_photo"] : dic[@"photo"]) replaceAll:@" " target:@"%20"];
-    [titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    [titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
     //自己的头图像
     UserInfo *userInfo = curUser;
     NSString * str2 = [(NSMutableString *)userInfo.photo replaceAll:@" " target:@"%20"];
-    [addPlImageView sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    [addPlImageView sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
     //评论数量
     talkCount.text = talkNum;
     zanCount.text = praisNum;

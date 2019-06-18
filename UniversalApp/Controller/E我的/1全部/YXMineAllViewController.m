@@ -40,9 +40,16 @@
 }
 #pragma mark ========== 我自己的所有 ==========
 -(void)requestMine_AllList{
+//    kWeakSelf(self);
+//    [YX_MANAGER requestGetSersAllList:NSIntegerToNSString(self.requestPage) success:^(id object) {
+//         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
+//        [weakself.yxTableView reloadData];
+//    }];
+    
     kWeakSelf(self);
-    [YX_MANAGER requestGetSersAllList:NSIntegerToNSString(self.requestPage) success:^(id object) {
-         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
+    NSString * parString =[NSString stringWithFormat:@"0&page=%@",NSIntegerToNSString(self.requestPage)];
+    [YX_MANAGER requestGet_users_find:parString success:^(id object){
+        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
     }];
 }

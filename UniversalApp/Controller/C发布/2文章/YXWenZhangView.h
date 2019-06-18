@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YYTextView.h"
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^ClickTitleImgVBlock)(UIImageView *);
 @interface YXWenZhangView : UIView
 
-    @property (weak, nonatomic) IBOutlet UITextView *titleTextView;
-    @property (weak, nonatomic) IBOutlet UIImageView *titleImgV;
-    @property (nonatomic,copy) ClickTitleImgVBlock clickTitleImgBlock;
+@property (weak, nonatomic) IBOutlet UITextView *titleTextView;
+@property (weak, nonatomic) IBOutlet UIImageView *titleImgV;
+@property (nonatomic,copy) ClickTitleImgVBlock clickTitleImgBlock;
 @end
 
 NS_ASSUME_NONNULL_END

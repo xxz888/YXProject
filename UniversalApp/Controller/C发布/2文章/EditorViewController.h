@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface EditorViewController : UIViewController
-
+    @property (weak, nonatomic) IBOutlet UIButton *fabuButton;
+    
 @end

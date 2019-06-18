@@ -57,7 +57,7 @@
         _HeaderH = frame.size.height;
         _SegmentStyle = CBSegmentStyleSlider;
         _titleColor = KDarkGaryColor;
-        _titleSelectedColor = A_COlOR;
+        _titleSelectedColor = SEGMENT_COLOR;
         _titleFont = 14;
     }
     return self;
@@ -102,7 +102,7 @@
         
         UIView *slider = [[UIView alloc]init];
         slider.frame = CGRectMake(0, _HeaderH-3, 0, 2);
-        slider.backgroundColor = A_COlOR;
+        slider.backgroundColor = SEGMENT_COLOR;
         [self addSubview:slider];
         self.slider = slider;
         
@@ -140,7 +140,7 @@
         
         
         [btn setTitleColor:KGrayColor forState:UIControlStateNormal];
-        [btn setTitleColor:A_COlOR forState:UIControlStateSelected];
+        [btn setTitleColor:SEGMENT_COLOR forState:UIControlStateSelected];
         [btn.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [btn addTarget:self action:@selector(titleButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
         totalWidth = totalWidth+btnW+btnSpace;

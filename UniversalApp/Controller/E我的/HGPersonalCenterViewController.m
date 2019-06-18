@@ -384,7 +384,7 @@ static CGFloat const HeaderImageViewHeight =260;
 
 - (HGSegmentedPageViewController *)segmentedPageViewController {
     if (!_segmentedPageViewController) {
-        NSArray *titles = @[@"全部", @"晒图"];
+        NSArray *titles = @[@"全部"];
         NSMutableArray *controllers = [NSMutableArray array];
         for (int i = 0; i < titles.count; i++) {
             if (i == 0) {
@@ -393,20 +393,7 @@ static CGFloat const HeaderImageViewHeight =260;
                 controller.userId = self.userId;
                 [controllers addObject:controller];
         
-            } else if (i == 1) {
-                YXMineImageViewController * controller = [[YXMineImageViewController alloc] init];
-                controller.delegate = self;
-                controller.userId = self.userId;
-                [controllers addObject:controller];
             }
-            /*
-            else {
-                YXMineFootViewController * controller = [[YXMineFootViewController alloc] init];
-                controller.delegate = self;
-                controller.userId = self.userId;
-                [controllers addObject:controller];
-            }*/
-            
         }
         _segmentedPageViewController = [[HGSegmentedPageViewController alloc] init];
         _segmentedPageViewController.pageViewControllers = controllers.copy;
@@ -455,7 +442,7 @@ static CGFloat const HeaderImageViewHeight =260;
     }
     
     
-    [self.headerView.mineImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    [self.headerView.mineImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
     self.navigationItem.title = kGetString(object[@"username"]);
     self.headerView.mineTitle.text =kGetString(object[@"username"]);
     self.headerView.mineAdress.text = kGetString(object[@"site"]);

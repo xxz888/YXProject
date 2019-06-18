@@ -69,8 +69,8 @@
         model.selectImageName = [obj objectForKey:@"selectImg"];
         model.normalImageName = [obj objectForKey:@"normalImg"];
         // 4.设置单个选中item标题状态下的颜色
-        model.selectColor = kRGBA(12, 36, 45, 1.0);
-        model.normalColor = kRGBA(12, 36, 45, 1.0);
+        model.selectColor = SEGMENT_COLOR;
+        model.normalColor = SEGMENT_COLOR;
         
         /***********************************/
         if (idx == 9 ) { // 如果是中间的

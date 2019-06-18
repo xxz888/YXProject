@@ -65,4 +65,5 @@ SINGLETON_FOR_HEADER(ShareManager)
 +(CGFloat)inTextZhiNanOutHeight:(NSString *)str lineSpace:(CGFloat)lineSpacing fontSize:(CGFloat)fontSize;
 - (void)shareWebPageZhiNanDetailToPlatformType:(UMSocialPlatformType)platformType obj:(id)obj;
 - (void)saveImage:(UITableView *)tableView;
++(CGFloat)getImageViewSize:(NSString *)imgUrl;
 @end

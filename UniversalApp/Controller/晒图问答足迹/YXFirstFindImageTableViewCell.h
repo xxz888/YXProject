@@ -18,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet IXAttributeTapLabel *detailLbl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailHeight;
 @property (weak, nonatomic) IBOutlet UIView *midView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *midViewHeight;
 +(CGFloat)cellDefaultHeight:(NSDictionary *)dic;
 -(void)setCellValue:(NSDictionary *)dic;
 @property (nonatomic,strong) NSMutableDictionary * dataDic;
@@ -64,7 +63,9 @@ typedef void(^clickInDetail)(NSInteger,YXFirstFindImageTableViewCell *cell);
 @property(nonatomic)SDCycleScrollView *cycleScrollView3;
 @property (nonatomic)NSInteger tatolCount;
 @property (weak, nonatomic) IBOutlet UILabel *rightCountLbl;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *midViewHeight;
+    @property (weak, nonatomic) IBOutlet UIWebView *cellWebView;
+    
 @end
 
 NS_ASSUME_NONNULL_END

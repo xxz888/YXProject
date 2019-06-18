@@ -87,7 +87,7 @@
     _cycleScrollView3.delegate = self;
     _cycleScrollView3.bannerImageViewContentMode = 1;
     _cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];
-    _cycleScrollView3.currentPageDotColor =  kRGBA(12, 36, 45, 1.0);
+    _cycleScrollView3.currentPageDotColor =  SEGMENT_COLOR;
     _cycleScrollView3.showPageControl = YES;
     _cycleScrollView3.autoScrollTimeInterval = 10000;
     _cycleScrollView3.pageDotColor = YXRGBAColor(239, 239, 239);

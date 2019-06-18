@@ -30,7 +30,7 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXMineFindTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMineFindTableViewCell" forIndexPath:indexPath];
-    [cell.titleImv sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    [cell.titleImv sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
     return cell;
 }
 - (IBAction)wechat1:(id)sender {

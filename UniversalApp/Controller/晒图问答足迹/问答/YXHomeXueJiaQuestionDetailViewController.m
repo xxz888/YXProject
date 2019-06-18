@@ -66,11 +66,11 @@
     NSString * praisNum = kGetString(dic[@"praise_number"]);
     //cell的头图片
     NSString * str11 = [(NSMutableString *)(dic[@"user_photo"] ? dic[@"user_photo"] : dic[@"photo"]) replaceAll:@" " target:@"%20"];
-    [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:str11] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:str11] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
     //自己的头图像
     UserInfo *userInfo = curUser;
     NSString * str22 = [(NSMutableString *)userInfo.photo replaceAll:@" " target:@"%20"];
-    [cell.addPlImageView sd_setImageWithURL:[NSURL URLWithString:str22] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    [cell.addPlImageView sd_setImageWithURL:[NSURL URLWithString:str22] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
     //评论数量
     cell.talkCount.text = talkNum;
     cell.zanCount.text = praisNum;

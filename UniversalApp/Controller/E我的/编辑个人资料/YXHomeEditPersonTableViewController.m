@@ -44,7 +44,7 @@
     
     if (self.userInfoDic) {
         NSString * str = [(NSMutableString *)self.userInfoDic[@"photo"] replaceAll:@" " target:@"%20"];
-        [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
         self.nameTf.text = kGetString(self.userInfoDic[@"username"]);
         [self.adressBtn setTitle:self.userInfoDic[@"site"] forState:UIControlStateNormal];
         [self.birthBtn setTitle:self.userInfoDic[@"birthday"] forState:UIControlStateNormal];

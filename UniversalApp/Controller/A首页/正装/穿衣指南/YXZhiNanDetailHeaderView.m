@@ -108,7 +108,7 @@
     style.lineSpacing = 9;
     NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:string];
     NSDictionary * attributes = @{
-                                  NSForegroundColorAttributeName : kRGBA(12, 36, 45, 1.0),
+                                  NSForegroundColorAttributeName : SEGMENT_COLOR,
                                   NSFontAttributeName : [UIFont fontWithName:@"苹方-简" size:15],
                                  };
     [attributedString addAttributes:attributes range:NSMakeRange(0, [attributedString length])];

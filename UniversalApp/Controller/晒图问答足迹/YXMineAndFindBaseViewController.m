@@ -55,32 +55,16 @@
 #pragma mark ========== tableview代理方法 ==========
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.row];
-    NSInteger tag = [dic[@"obj"] integerValue];
-    NSDictionary * dicTag = nil;
-    if ([self.dataArray count] > indexPath.row){
-        dicTag = [self.dataArray objectAtIndex:indexPath.row];
-    }
-    if (tag == 1 || tag == 4) {
-        return [YXFirstFindImageTableViewCell cellDefaultHeight:dicTag];
-    }else if (tag == 3){
-        return [YXFindQuestionTableViewCell cellMoreHeight:dicTag];
-    }else{
-        return 0;
-    }
+    return [YXFirstFindImageTableViewCell cellDefaultHeight:dic];
+
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArray.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.row];
-    NSInteger tag = [dic[@"obj"] integerValue];
-    if (tag == 1) {
-        return [self customImageData:dic indexPath:indexPath whereCome:NO];
-    }else if (tag == 2){
-        return [self customImageData:dic indexPath:indexPath whereCome:NO];
-    }else{
-        return nil;
-    }
+    return [self customImageData:dic indexPath:indexPath];
+    
 }
 #pragma mark 字典转化字符串
 -(NSString*)dictionaryToJson:(NSDictionary *)dic{
@@ -90,14 +74,8 @@
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 #pragma mark ========== 图片 ==========
--(YXFirstFindImageTableViewCell *)customImageData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath whereCome:(BOOL)whereCome{
+-(YXFirstFindImageTableViewCell *)customImageData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath{
     YXFirstFindImageTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFirstFindImageTableViewCell" forIndexPath:indexPath];
-//    if(cell == nil)
-//    {
-//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-//
-//    }
-    
     cell.tagId = [dic[@"id"] integerValue];
     cell.titleImageView.tag = indexPath.row;
     kWeakSelf(self);
@@ -366,30 +344,12 @@
     [self.inputToolbar.textInput resignFirstResponder];
     NSDictionary * dic = self.dataArray[indexPath.row];
     NSInteger tag = [dic[@"obj"] integerValue];
-    if (tag == 1) {//晒图
-        YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
-        //因为详情界面复用了外边cell，只是少了评论区和点击评论，所以这个高度要减去评论和点击评论的高度
-        CGFloat h = [YXFindImageTableViewCell cellNewDetailNeedHeight:dic whereCome:NO];
-        VC.headerViewHeight = h;
-        VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-        [self.navigationController pushViewController:VC animated:YES];
-    }else if (tag == 3){//问答
-        YXHomeXueJiaQuestionDetailViewController * VC = [[YXHomeXueJiaQuestionDetailViewController alloc]init];
-        CGFloat h = [YXFindQuestionTableViewCell cellNewDetailNeedHeight:dic];
-        VC.headerViewHeight = h;
-        VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-        [self.navigationController pushViewController:VC animated:YES];
-    }else if (tag == 4){//足迹
-        NSDictionary * dic = self.dataArray[indexPath.row];
-        YXMineFootDetailViewController * VC = [[YXMineFootDetailViewController alloc]init];
-        //因为详情界面复用了外边cell，只是少了评论区和点击评论，所以这个高度要减去评论和点击评论的高度
-        CGFloat h = [YXFindImageTableViewCell cellNewDetailNeedHeight:dic whereCome:YES];
-        VC.headerViewHeight = h;
-        VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-        YXFindImageTableViewCell * cell = [self.yxTableView cellForRowAtIndexPath:indexPath];
-        VC.height = cell.imvHeight.constant;
-        [self.navigationController pushViewController:VC animated:YES];
-    }
+    YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
+    //因为详情界面复用了外边cell，只是少了评论区和点击评论，所以这个高度要减去评论和点击评论的高度
+    CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:dic];
+    VC.headerViewHeight = (KScreenWidth - 20);
+    VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 -(Moment *)setTestInfo:(NSDictionary *)dic{

@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="添加封面" translatesAutoresizingMaskIntoConstraints="NO" id="7G5-iX-wQ3">
+                <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="添加封面" translatesAutoresizingMaskIntoConstraints="NO" id="7G5-iX-wQ3">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="xhQ-k6-bsG"/>
@@ -25,29 +25,20 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bX3-24-jqO">
                     <rect key="frame" x="0.0" y="100" width="414" height="80"/>
                     <subviews>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C8U-O8-99g">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C8U-O8-99g">
                             <rect key="frame" x="5" y="15" width="404" height="50"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="grX-q7-9Ke"/>
                             </constraints>
-                            <attributedString key="attributedText">
-                                <fragment content="请输入标题">
-                                    <attributes>
-                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                        <font key="NSFont" size="19" name="PingFangSC-Semibold"/>
-                                        <font key="NSOriginalFont" size="18" name="PingFangSC-Semibold"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="1" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="V2U-su-n79"/>
                             </connections>
                         </textView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xcx-fW-SP5">
-                            <rect key="frame" x="16" y="80" width="382" height="1"/>
+                            <rect key="frame" x="0.0" y="80" width="414" height="1"/>
                             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="egv-gn-Xcw"/>
@@ -57,8 +48,8 @@
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="C8U-O8-99g" secondAttribute="trailing" constant="5" id="ILq-2o-UpE"/>
-                        <constraint firstItem="Xcx-fW-SP5" firstAttribute="leading" secondItem="bX3-24-jqO" secondAttribute="leading" constant="16" id="cxT-gU-HM1"/>
-                        <constraint firstAttribute="trailing" secondItem="Xcx-fW-SP5" secondAttribute="trailing" constant="16" id="eC5-9b-0PO"/>
+                        <constraint firstItem="Xcx-fW-SP5" firstAttribute="leading" secondItem="bX3-24-jqO" secondAttribute="leading" id="cxT-gU-HM1"/>
+                        <constraint firstAttribute="trailing" secondItem="Xcx-fW-SP5" secondAttribute="trailing" id="eC5-9b-0PO"/>
                         <constraint firstAttribute="height" constant="80" id="iXW-XH-5iA"/>
                         <constraint firstItem="Xcx-fW-SP5" firstAttribute="top" secondItem="C8U-O8-99g" secondAttribute="bottom" constant="15" id="p1A-xp-wdk"/>
                         <constraint firstItem="C8U-O8-99g" firstAttribute="centerY" secondItem="bX3-24-jqO" secondAttribute="centerY" id="v1V-55-Ytk"/>
@@ -81,7 +72,7 @@
                 <outlet property="titleImgV" destination="7G5-iX-wQ3" id="ddQ-Tl-WFG"/>
                 <outlet property="titleTextView" destination="C8U-O8-99g" id="Jjt-CT-ywn"/>
             </connections>
-            <point key="canvasLocation" x="-2626" y="-558"/>
+            <point key="canvasLocation" x="-3726" y="-646"/>
         </view>
     </objects>
     <resources>
