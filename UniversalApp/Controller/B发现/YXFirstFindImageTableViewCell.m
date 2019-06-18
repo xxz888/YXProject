@@ -15,11 +15,9 @@
 
 @implementation YXFirstFindImageTableViewCell
 +(CGFloat)cellDefaultHeight:(NSDictionary *)dic{
-    
     NSString * titleText = @"";
     //计算图片高度
     CGFloat midViewHeight = 0;
-    
     //计算detail高度
     if([dic[@"obj"] integerValue] == 1){
         titleText = [[NSString stringWithFormat:@"%@%@",dic[@"detail"],dic[@"tag"]] UnicodeToUtf8];
@@ -133,6 +131,9 @@
     self.titleImageView.layer.masksToBounds = YES;
     self.titleImageView.layer.cornerRadius = self.titleImageView.frame.size.width / 2.0;
     
+    ViewRadius(self.rightCountLbl, 5);
+
+    
     ViewRadius(self.imgV1, 5);
     ViewRadius(self.imgV2, 5);
     ViewRadius(self.imgV3, 5);
@@ -174,7 +175,7 @@
     [self.midLunBoView insertSubview:_cycleScrollView3 belowSubview:self.rightCountLbl];
     self.rightCountLbl.hidden = height == 0 ;
     _tatolCount = photoArray.count;
-    _cycleScrollView3.frame = CGRectMake(0, 0, kScreenWidth-20, height-10);
+    _cycleScrollView3.frame = CGRectMake(0, 0, kScreenWidth-20, height);
     _cycleScrollView3.delegate = self;
 //    _cycleScrollView3.bannerImageViewContentMode = 1;
     _cycleScrollView3.imageURLStringsGroup = [NSArray arrayWithArray:photoArray];

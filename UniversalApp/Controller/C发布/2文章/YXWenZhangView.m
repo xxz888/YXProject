@@ -42,7 +42,7 @@
 - (void)textViewDidBeginEditing:(UITextView *)textView{
     if([textView.text isEqualToString:@"请输入标题"]){
         textView.text=@"";
-        textView.textColor = [UIColor grayColor];
+        textView.textColor = [UIColor blackColor];
     }
 }
 - (void)contentSizeToFit{

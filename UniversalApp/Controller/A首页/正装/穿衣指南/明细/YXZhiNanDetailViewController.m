@@ -21,7 +21,8 @@
 @property (nonatomic,strong) NSMutableArray * dataArray;
 @property (nonatomic,assign) BOOL is_collect;
 @property (weak, nonatomic) IBOutlet UILabel *plLbl;
-
+    @property (weak, nonatomic) IBOutlet UILabel *collLbl;
+    
 @property (nonatomic,assign) CGFloat contentHeight;
 @end
 
@@ -49,6 +50,8 @@
 -(void)panduanIsColl{
     self.title = [NSString stringWithFormat:@"0%ld/%@",self.bigIndex+1,kGetString(self.startArray[self.bigIndex][@"name"])];
     self.plLbl.text = kGetString(self.startArray[self.bigIndex][@"comment_number"]);
+    self.collLbl.text = kGetString(self.startArray[self.bigIndex][@"collect_number"]);
+
     if ([userManager loadUserInfo]) {
         self.is_collect = [self.startArray[self.bigIndex][@"is_collect"] integerValue] == 1;
         UIImage * likeImage = self.is_collect ? [UIImage imageNamed:@"收藏选择"] : [UIImage imageNamed:@"收藏未选择"] ;
@@ -153,6 +156,7 @@
 }
 //初始化UI
 -(void)setVCUI{
+    self.bottomViewHeight.constant = AxcAE_IsiPhoneX ? 90 : 60;
     [self addNavigationItemWithImageNames:@[@"更多"] isLeft:NO target:self action:@selector(moreShare) tags:@[@"999"]];
     self.view.backgroundColor = KWhiteColor;
     self.dataArray = [[NSMutableArray alloc]init];
@@ -212,9 +216,10 @@
     kWeakSelf(self);
     NSString * tagId = kGetString(self.startArray[self.bigIndex][@"id"]);
     [YXPLUS_MANAGER requestCollect_optionGet:[@"3/" append:tagId] success:^(id object) {
-        UIImage * likeImage = weakself.is_collect ? [UIImage imageNamed:@"收藏未选择"] : [UIImage imageNamed:@"收藏选择"] ;
-        [weakself.collImgView setImage:likeImage];
-        weakself.is_collect = !weakself.is_collect;
+        [weakself requestStartZhiNanGet];
+//        UIImage * likeImage = weakself.is_collect ? [UIImage imageNamed:@"收藏未选择"] : [UIImage imageNamed:@"收藏选择"] ;
+//        [weakself.collImgView setImage:likeImage];
+//        weakself.is_collect = !weakself.is_collect;
     }];
 }
 @end

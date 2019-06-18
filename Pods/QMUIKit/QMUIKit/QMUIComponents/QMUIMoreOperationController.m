@@ -257,7 +257,14 @@ static QMUIMoreOperationController *moreOperationViewControllerAppearance;
     QMUIModalPresentationViewController *modalPresentationViewController = [[QMUIModalPresentationViewController alloc] init];
     modalPresentationViewController.delegate = self;
     modalPresentationViewController.maximumContentViewWidth = self.contentMaximumWidth;
-    modalPresentationViewController.contentViewMargins = UIEdgeInsetsMake(self.contentEdgeMargin, 0, -34, 0);
+    BOOL isphonex = NO;
+    if (@available(iOS 11.0, *)) {
+        isphonex = ([[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0 ? YES : NO);
+
+    } else {
+        // Fallback on earlier versions
+    }
+    modalPresentationViewController.contentViewMargins = UIEdgeInsetsMake(self.contentEdgeMargin, 0,isphonex ? -34:0, 0);
     modalPresentationViewController.contentViewController = self;
     
     __weak __typeof(modalPresentationViewController)weakModalController = modalPresentationViewController;

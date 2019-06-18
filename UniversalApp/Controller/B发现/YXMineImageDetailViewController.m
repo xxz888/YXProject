@@ -52,25 +52,25 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return [self.startDic[@"obj"] integerValue] == 1 ? self.headerViewHeight : self.headerViewHeight + tagHeight + 200;
 }
--(void)setWebVIewData:(NSDictionary *)dic{
-    cell.cellWebView.delegate = self;
-    //获取bundlePath 路径
-    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
-    //获取本地html目录 basePath
-    NSString *basePath = [NSString stringWithFormat:@"%@/%@",bundlePath,@"html"];
-    //获取本地html目录 baseUrl
-    NSURL *baseUrl = [NSURL fileURLWithPath: basePath isDirectory: YES];
-    //显示内容
-    if (dic[@"detail"]) {
-        [cell.cellWebView loadHTMLString:[ShareManager adaptWebViewForHtml:dic[@"detail"]] baseURL: baseUrl];
-    }
-}
-- (void)webViewDidFinishLoad:(UIWebView *)wb{
-    tagHeight = [[wb stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
-    cell.midViewHeight.constant = tagHeight;
-    webViewFinishBOOL = YES;
-    [self.yxTableView reloadData];
-}
+//-(void)setWebVIewData:(NSDictionary *)dic{
+//    cell.cellWebView.delegate = self;
+//    //获取bundlePath 路径
+//    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
+//    //获取本地html目录 basePath
+//    NSString *basePath = [NSString stringWithFormat:@"%@/%@",bundlePath,@"html"];
+//    //获取本地html目录 baseUrl
+//    NSURL *baseUrl = [NSURL fileURLWithPath: basePath isDirectory: YES];
+//    //显示内容
+//    if (dic[@"detail"]) {
+//        [cell.cellWebView loadHTMLString:[ShareManager adaptWebViewForHtml:dic[@"detail"]] baseURL: baseUrl];
+//    }
+//}
+//- (void)webViewDidFinishLoad:(UIWebView *)wb{
+//    tagHeight = [[wb stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
+//    cell.midViewHeight.constant = tagHeight;
+//    webViewFinishBOOL = YES;
+//    [self.yxTableView reloadData];
+//}
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     cell = [[[NSBundle mainBundle]loadNibNamed:@"YXFirstFindImageTableViewCell" owner:self options:nil]lastObject];
     [cell setCellValue:self.startDic];
@@ -79,6 +79,7 @@
         [cell setUpSycleScrollView:self.startDic[@"url_list"] height:KScreenWidth - 20];
         cell.rightCountLbl.text = [NSString stringWithFormat:@"%@/%lu",@"1",(unsigned long)[self.startDic[@"url_list"] count]];
         cell.rightCountLbl.hidden = [cell.rightCountLbl.text isEqualToString:@"1/1"] || [cell.rightCountLbl.text isEqualToString:@"1/0"];
+        zanBool =  [self.startDic[@"is_praise"] integerValue] == 1;
     }else{
 
        
@@ -160,10 +161,8 @@
         zanBool = !zanBool;
         UIImage * likeImage = zanBool ? ZAN_IMG : UNZAN_IMG;
         [cell.zanBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
-        
         NSInteger zhengfuValue = zanBool ? 1 : -1;
         cell.zanCount.text = NSIntegerToNSString([cell.zanCount.text integerValue] + zhengfuValue);
-        
         if ([cell.zanCount.text isEqualToString:@"0"]) {
             cell.zanCount.text= @"";
         }

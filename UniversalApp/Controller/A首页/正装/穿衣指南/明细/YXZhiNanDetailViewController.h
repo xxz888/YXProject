@@ -17,7 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) NSInteger bigIndex;
 
 @property (weak, nonatomic) IBOutlet UIImageView *collImgView;
-
+    @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewHeight;
+    
 @end
 
 NS_ASSUME_NONNULL_END

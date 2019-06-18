@@ -595,8 +595,6 @@
 		BBD2C95521E0F72800350DCD /* DALabeledCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C94F21E0F72800350DCD /* DALabeledCircularProgressView.m */; };
 		BBD2C95621E0F72800350DCD /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C95021E0F72800350DCD /* DACircularProgressView.m */; };
 		BBD2C95721E0F72800350DCD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BBD2C95321E0F72800350DCD /* README.md */; };
-		BBD2C95F21E10A9300350DCD /* YXPublishImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C95E21E10A9300350DCD /* YXPublishImageTableViewCell.m */; };
-		BBD2C96121E10AA100350DCD /* YXPublishImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD2C96021E10AA100350DCD /* YXPublishImageTableViewCell.xib */; };
 		BBD2C96521E10E5500350DCD /* LTTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C96421E10E5500350DCD /* LTTextView.m */; };
 		BBD2C98221E1BC0A00350DCD /* UIColor+PYSearchExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C97521E1BC0900350DCD /* UIColor+PYSearchExtension.m */; };
 		BBD2C98521E1BC0A00350DCD /* PYSearchConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C97921E1BC0900350DCD /* PYSearchConst.m */; };
@@ -1691,9 +1689,6 @@
 		BBD2C95121E0F72800350DCD /* DALabeledCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DALabeledCircularProgressView.h; sourceTree = "<group>"; };
 		BBD2C95221E0F72800350DCD /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
 		BBD2C95321E0F72800350DCD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		BBD2C95D21E10A9300350DCD /* YXPublishImageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXPublishImageTableViewCell.h; sourceTree = "<group>"; };
-		BBD2C95E21E10A9300350DCD /* YXPublishImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXPublishImageTableViewCell.m; sourceTree = "<group>"; };
-		BBD2C96021E10AA100350DCD /* YXPublishImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXPublishImageTableViewCell.xib; sourceTree = "<group>"; };
 		BBD2C96321E10E5500350DCD /* LTTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTTextView.h; sourceTree = "<group>"; };
 		BBD2C96421E10E5500350DCD /* LTTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTTextView.m; sourceTree = "<group>"; };
 		BBD2C97421E1BC0900350DCD /* NSBundle+PYSearchExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+PYSearchExtension.h"; sourceTree = "<group>"; };
@@ -3301,6 +3296,13 @@
 		BBA812A721DDAB7A001B5EA1 /* B发现 */ = {
 			isa = PBXGroup;
 			children = (
+				BBD1C77222166AD40063002F /* YXMineAndFindBaseViewController.h */,
+				BBD1C77322166AD40063002F /* YXMineAndFindBaseViewController.m */,
+				BB21FDB622B0E68A0059BCAC /* YXFirstFindImageTableViewCell.h */,
+				BB21FDB722B0E68A0059BCAC /* YXFirstFindImageTableViewCell.m */,
+				BB21FDB822B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib */,
+				BBADE4D421F8655E0011E5FF /* YXMineImageDetailViewController.h */,
+				BBADE4D521F8655E0011E5FF /* YXMineImageDetailViewController.m */,
 				BBA812AB21DDAB9D001B5EA1 /* YXFindViewController.h */,
 				BBA812AC21DDAB9D001B5EA1 /* YXFindViewController.m */,
 				BB70253522126E67009EBE39 /* YXFindSearchViewController.h */,
@@ -3528,10 +3530,6 @@
 		BBADE4D321F865400011E5FF /* 晒图 */ = {
 			isa = PBXGroup;
 			children = (
-				BBD2C84A21E0F46500350DCD /* YXPublishImageViewController.h */,
-				BBD2C84921E0F46500350DCD /* YXPublishImageViewController.m */,
-				BBADE4D421F8655E0011E5FF /* YXMineImageDetailViewController.h */,
-				BBADE4D521F8655E0011E5FF /* YXMineImageDetailViewController.m */,
 				BBF26E2122408B7D0000AEF5 /* YXShaiTuModel.h */,
 				BBF26E2222408B7D0000AEF5 /* YXShaiTuModel.m */,
 			);
@@ -4405,11 +4403,6 @@
 		BBD1C7782216A98D0063002F /* 晒图问答足迹 */ = {
 			isa = PBXGroup;
 			children = (
-				BBD1C77222166AD40063002F /* YXMineAndFindBaseViewController.h */,
-				BBD1C77322166AD40063002F /* YXMineAndFindBaseViewController.m */,
-				BB21FDB622B0E68A0059BCAC /* YXFirstFindImageTableViewCell.h */,
-				BB21FDB722B0E68A0059BCAC /* YXFirstFindImageTableViewCell.m */,
-				BB21FDB822B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib */,
 				BBBE07192224E2EE00CDD11E /* 详情界面复用 */,
 				BB3CA493221F947600C6793D /* 所有发布界面复用 */,
 				BBD1C77122166AB40063002F /* 发现和我的界面复用 */,
@@ -4530,9 +4523,8 @@
 		BBD2C84821E0F46500350DCD /* 1晒图 */ = {
 			isa = PBXGroup;
 			children = (
-				BBD2C95D21E10A9300350DCD /* YXPublishImageTableViewCell.h */,
-				BBD2C95E21E10A9300350DCD /* YXPublishImageTableViewCell.m */,
-				BBD2C96021E10AA100350DCD /* YXPublishImageTableViewCell.xib */,
+				BBD2C84A21E0F46500350DCD /* YXPublishImageViewController.h */,
+				BBD2C84921E0F46500350DCD /* YXPublishImageViewController.m */,
 			);
 			path = "1晒图";
 			sourceTree = "<group>";
@@ -5514,7 +5506,6 @@
 				BB21FDB122B099B20059BCAC /* YXWenZhangView.xib in Resources */,
 				BBB59ACB228CF8CB0029D3D0 /* YXGEFPinPaiDetailTableViewCell.xib in Resources */,
 				BB8376F02248AE930091A1A8 /* YXMineFindViewController.xib in Resources */,
-				BBD2C96121E10AA100350DCD /* YXPublishImageTableViewCell.xib in Resources */,
 				BB7AF13A2200869E00989896 /* YXMineHeaderView.xib in Resources */,
 				BBD2C94B21E0F67800350DCD /* README.md in Resources */,
 				BBB59B20228CF8CB0029D3D0 /* YXHomePeiJianLastView.xib in Resources */,
@@ -5732,7 +5723,6 @@
 				BBB59AED228CF8CB0029D3D0 /* YXHomeXueJiaDetailTableViewCell.m in Sources */,
 				BB9413DB21F8B602007E800A /* IQTitleBarButtonItem.m in Sources */,
 				BBB59B0E228CF8CB0029D3D0 /* YXHomeXueJiaWenHuaTableViewCell.m in Sources */,
-				BBD2C95F21E10A9300350DCD /* YXPublishImageTableViewCell.m in Sources */,
 				BB928F6521FACDE70090A044 /* YXMineSettingSafeTableViewController.m in Sources */,
 				BBB59B00228CF8CB0029D3D0 /* SDTimeLineRefreshHeader.m in Sources */,
 				BBB59B8B228EB52A0029D3D0 /* YXPlusManager.m in Sources */,

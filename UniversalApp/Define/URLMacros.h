@@ -13,7 +13,7 @@
 
 
 //内部版本号 每次发版递增
-#define KVersionCode 1
+#define KVersionCode 0
 /*
  
  将项目中所有的接口写在这里,方便统一管理,降低耦合
@@ -25,7 +25,7 @@
  */
 
 
-#define ENVIRONMENT_TAG 1
+#define ENVIRONMENT_TAG 0
 
 #define BASE_URL
 #if (ENVIRONMENT_TAG == 0)             //正式

@@ -44,12 +44,7 @@
     self.yxTableView.estimatedRowHeight = 0;
     self.yxTableView.estimatedSectionHeaderHeight = 0;
     self.yxTableView.estimatedSectionFooterHeight = 0;
-    
-    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindImageTableViewCell"];
-    
-    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFindQuestionTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFindQuestionTableViewCell"];
-    
-     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFirstFindImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFirstFindImageTableViewCell"];
+    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFirstFindImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFirstFindImageTableViewCell"];
     
 }
 #pragma mark ========== tableview代理方法 ==========
@@ -80,10 +75,6 @@
     cell.titleImageView.tag = indexPath.row;
     kWeakSelf(self);
     cell.shareblock = ^(YXFirstFindImageTableViewCell * cell) {
-        if (![userManager loadUserInfo]) {
-            KPostNotification(KNotificationLoginStateChange, @NO);
-            return;
-        }
         UserInfo * userInfo = curUser;
         BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [userInfo.id integerValue];
         shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
@@ -114,7 +105,20 @@
     };
     cell.clickDetailblock = ^(NSInteger tag, YXFirstFindImageTableViewCell * cell) {
         NSIndexPath * indexPathSelect = [weakself.yxTableView indexPathForCell:cell];
-        [weakself tableView:weakself.yxTableView didSelectRowAtIndexPath:indexPathSelect];
+        if (tag == 1) {//评论
+            [weakself tableView:weakself.yxTableView didSelectRowAtIndexPath:indexPathSelect];
+        }else if(tag == 2){//点赞
+            if ([cell.dataDic[@"obj"] integerValue] == 2) {
+                [QMUITips showInfo:@"文章详情正在开发"];
+                return;
+            }
+            [weakself requestDianZan_Image_Action:indexPathSelect];
+        }else{//分享
+            UserInfo * userInfo = curUser;
+            BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [userInfo.id integerValue];
+            shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
+            [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:cell.tagId startDic:cell.dataDic];
+        }
     };
     cell.dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
     [cell setCellValue:dic];
@@ -122,74 +126,7 @@
 }
 
 #pragma mark - ZInputToolbarDelegate
--(void)inputToolbar:(ZInputToolbar *)inputToolbar sendContent:(NSString *)sendContent {
-   
-    
-    [self finishTextView:inputToolbar.textInput];
-    // 清空输入框文字
-    [self.inputToolbar sendSuccessEndEditing];
-}
 
-
-#pragma mark - UITextFieldDelegate
--(void)finishTextView:(UITextView *)textField{
-    if (textField.text.length) {
-        if (textField.tag >= 10000) {
-            NSString * inputText = textField.text;
-            NSInteger index = textField.tag -10000 ;
-            YXFindQuestionTableViewCell * cell = [self.yxTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-            UserInfo * userInfo = curUser;
-            NSString * str = @"";
-            if ([cell.plLbl.text concate:@"\n"] && ![cell.plLbl.text isEqualToString:@""]) {
-                str = [NSString stringWithFormat:@"\n%@:%@",userInfo.username,textField.text];
-            }else{
-                str = [NSString stringWithFormat:@"%@:%@",userInfo.username,textField.text];
-            }
-            cell.plLbl.text = [cell.plLbl.text append:str];
-            cell.pl1Height.constant = [ShareManager inTextOutHeight:cell.plLbl.text lineSpace:9 fontSize:14];
-            NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[index]];
-            [dic setValue:floatToNSString(cell.pl1Height.constant) forKey:@"plHeight"];
-            [dic setValue:cell.plLbl.text forKey:@"plContent"];
-            [self.dataArray replaceObjectAtIndex:index withObject:dic];
-            NSIndexPath *indexRow = [self.yxTableView indexPathForCell:cell];
-            [self.yxTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexRow, nil] withRowAnimation:UITableViewRowAnimationNone];
-            [self requestFaBuHuiDa:@{
-                                     @"answer":[inputText utf8ToUnicode],
-                                     @"question_id":@(cell.tagId)
-                                     }];
-        }else{
-            NSString * inputText = textField.text;
-            NSInteger index = textField.tag ;
-            YXFindImageTableViewCell * cell = [self.yxTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-            [self coustom1:cell tf:textField index:index];
-            if (cell.whereCome) {
-                    [self pinglunFatherPic_zuji:@{@"comment":[inputText utf8ToUnicode] ,
-                                                  @"track_id":@(cell.tagId),
-                                                  } tview:textField];
-                }else{
-                    [self pinglunFatherPic_shaitu:@{@"comment":[inputText utf8ToUnicode],
-                                                    @"post_id":@(cell.tagId)}];
-                }
-        }
-    }
-}
--(void)coustom1:(YXFindImageTableViewCell *)cell tf:(UITextView *)textField index:(NSInteger)index{
-    UserInfo * userInfo = curUser;
-    NSString * str = @"";
-    if ([cell.plLbl.text concate:@"\n"] && ![cell.plLbl.text isEqualToString:@""]) {
-        str = [NSString stringWithFormat:@"\n%@:%@",userInfo.username,textField.text];
-    }else{
-        str = [NSString stringWithFormat:@"%@:%@",userInfo.username,textField.text];
-    }
-    cell.plLbl.text = [cell.plLbl.text append:str];
-    cell.pl1Height.constant = [ShareManager inTextOutHeight:cell.plLbl.text lineSpace:9 fontSize:14];
-    NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithDictionary:self.dataArray[index]];
-    [dic setValue:floatToNSString(cell.pl1Height.constant) forKey:@"plHeight"];
-    [dic setValue:cell.plLbl.text forKey:@"plContent"];
-    [self.dataArray replaceObjectAtIndex:index withObject:dic];
-    NSIndexPath *indexRow = [self.yxTableView indexPathForCell:cell];
-    [self.yxTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexRow, nil] withRowAnimation:UITableViewRowAnimationNone];
-}
 #pragma mark ========== 评论晒图 ==========
 -(void)pinglunFatherPic_shaitu:(NSDictionary *)dic{
     [YX_MANAGER requestPost_commentPOST:dic success:^(id object) {
@@ -208,105 +145,26 @@
         
     }];
 }
-#pragma mark ========== 问答 ==========
--(YXFindQuestionTableViewCell *)customQuestionData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath{
-    YXFindQuestionTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFindQuestionTableViewCell" forIndexPath:indexPath];
-    cell.tagId = [dic[@"id"] integerValue];
-    cell.titleImageView.tag = indexPath.row;
-    cell.dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-    kWeakSelf(self);
-    cell.clickImageBlock = ^(NSInteger tag) {
-        if (![userManager loadUserInfo]) {
-            KPostNotification(KNotificationLoginStateChange, @NO);
-            return;
-        }
-        [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
-    };
-    cell.zanblock1 = ^(YXFindQuestionTableViewCell * cell) {
-        if (![userManager loadUserInfo]) {
-            KPostNotification(KNotificationLoginStateChange, @NO);
-            return;
-        }
-        NSIndexPath * indexPath1 = [weakself.yxTableView indexPathForCell:cell];
-        [weakself requestDianZan_WenDa_Action:indexPath1];
-    };
-    cell.jumpDetail1VCBlock = ^(YXFindQuestionTableViewCell * cell) {
-        NSIndexPath * indexPathSelect = [weakself.yxTableView indexPathForCell:cell];
-        [weakself tableView:weakself.yxTableView didSelectRowAtIndexPath:indexPathSelect];
-    };
-    cell.shareQuestionblock = ^(YXFindQuestionTableViewCell * cell) {
-        if (![userManager loadUserInfo]) {
-            KPostNotification(KNotificationLoginStateChange, @NO);
-            return;
-        }
-        UserInfo * userInfo = curUser;
-        BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [userInfo.id integerValue];
-        shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
-        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"2" tag:cell.tagId startDic:cell.dataDic];
-    };
-    //自定义cell的回调，获取要展开/收起的cell。刷新点击的cell
-    cell.showMoreTextBlock = ^(YXFindQuestionTableViewCell * cell,NSMutableDictionary * dataDic){
-        NSIndexPath *indexRow = [weakself.yxTableView indexPathForCell:cell];
-        NSMutableArray * copyArr = [NSMutableArray arrayWithArray:weakself.dataArray];
-        for (NSInteger i = 0; i < copyArr.count; i++) {
-            if ([copyArr[i][@"id"] integerValue] == [dataDic[@"id"] integerValue]) {
-                [weakself.dataArray replaceObjectAtIndex:i withObject:dataDic];
-                
-            }
-        }
-        [weakself.yxTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexRow, nil] withRowAnimation:UITableViewRowAnimationNone];
-    };
-    cell.addPlActionblock = ^(YXFindQuestionTableViewCell * cell) {
-        if (![userManager loadUserInfo]) {
-            KPostNotification(KNotificationLoginStateChange, @NO);
-            return;
-        }
-        NSIndexPath *indexRow = [weakself.yxTableView indexPathForCell:cell];
-        if ([self.parentViewController isKindOfClass:[HGSegmentedPageViewController class]]) {
-            [self tableView:weakself.yxTableView didSelectRowAtIndexPath:indexRow];
-        }else{
-            [weakself setupTextField];
-            weakself.inputToolbar.textInput.tag = indexRow.row + 10000;
-            [weakself.inputToolbar.textInput becomeFirstResponder];
-        }
-
-
-    };
-    cell.clickTagblock = ^(NSString * string) {
-        kWeakSelf(self);
-        _tagSelectBool = YES;
-        [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":@"1",@"type":@"2"} success:^(id object) {
-            if ([object count] > 0) {
-                YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
-                VC.type = @"3";
-                VC.key = object[0][@"tag"];
-                VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
-                [weakself.navigationController pushViewController:VC animated:YES];
-            }else{
-                [QMUITips showInfo:@"无此标签的信息"];
-            }
-            _tagSelectBool = NO;
-        }];
-    };
-    [cell setCellValue:dic];
-    return cell;
-}
 -(void)commonDidVC:(NSIndexPath *)indexPath{
   
 }
 #pragma mark ========== 晒图点赞 ==========
 -(void)requestDianZan_Image_Action:(NSIndexPath *)indexPath{
     kWeakSelf(self);
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
     NSString* post_id = kGetString(self.dataArray[indexPath.row][@"id"]);
     [YX_MANAGER requestPost_praisePOST:@{@"post_id":post_id} success:^(id object) {
         [weakself requestAction];
     }];
 }
 #pragma mark ========== 足迹点赞 ==========
--(void)requestDianZan_ZuJI_Action:(NSIndexPath *)indexPath{
+-(void)requestPost_essay_praisePOST:(NSIndexPath *)indexPath{
     kWeakSelf(self);
     NSString* track_id = kGetString(self.dataArray[indexPath.row][@"id"]);
-    [YX_MANAGER requestDianZanFoot:@{@"track_id":track_id} success:^(id object) {
+    [YX_MANAGER requestPost_essay_praisePOST:@{@"track_id":track_id} success:^(id object) {
         [weakself requestAction];
     }];
 }
@@ -344,10 +202,14 @@
     [self.inputToolbar.textInput resignFirstResponder];
     NSDictionary * dic = self.dataArray[indexPath.row];
     NSInteger tag = [dic[@"obj"] integerValue];
+    if (tag == 2) {
+        [QMUITips showInfo:@"文章相关正在开发"];
+        return;
+    }
     YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
     //因为详情界面复用了外边cell，只是少了评论区和点击评论，所以这个高度要减去评论和点击评论的高度
     CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:dic];
-    VC.headerViewHeight = (KScreenWidth - 20);
+    VC.headerViewHeight = h;
     VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
     [self.navigationController pushViewController:VC animated:YES];
 }
