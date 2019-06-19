@@ -68,6 +68,9 @@ typedef void(^clickInDetail)(NSInteger,YXFirstFindImageTableViewCell *cell);
     @property (weak, nonatomic) IBOutlet NSLayoutConstraint *midViewHeight;
     @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightWidth;
     @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftWidth;
+    @property (weak, nonatomic) IBOutlet NSLayoutConstraint *coverImvHeight;
+    @property (weak, nonatomic) IBOutlet UIImageView *coverImV;
+    @property (weak, nonatomic) IBOutlet NSLayoutConstraint *coverTopHeight;
     
 @end
 

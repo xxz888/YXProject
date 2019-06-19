@@ -156,15 +156,8 @@
     if (_tagSelectBool) {
         return;
     }
-    [self.inputToolbar.textInput resignFirstResponder];
     NSDictionary * dic = self.dataArray[indexPath.row];
-    NSInteger tag = [dic[@"obj"] integerValue];
-//    if (tag == 2) {
-//        [QMUITips showInfo:@"文章相关正在开发"];
-//        return;
-//    }
     YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
-    //因为详情界面复用了外边cell，只是少了评论区和点击评论，所以这个高度要减去评论和点击评论的高度
     CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:dic];
     VC.headerViewHeight = h;
     VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];

@@ -34,7 +34,7 @@
 @property (nonatomic ,strong)NSString * contentStr;       // 带有标签的文章内容
 
 @property (nonatomic, strong) YXWenZhangView * headerView;
-
+@property (nonatomic,assign) BOOL finishUpLoadImageBool;//是否上传完成
 @end
 
 @implementation EditorViewController
@@ -150,26 +150,19 @@
     self.contentTextView.attributedText = text;
     [self.contentTextView becomeFirstResponder];
     self.contentTextView.selectedRange = NSMakeRange(self.contentTextView.text.length, 0);
-}
-
     
-- (IBAction)backVC:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-- (IBAction)fabuAction:(id)sender {
+    
     [self.imagesArr removeAllObjects];
     [self.desArr removeAllObjects];
     [self.imageUrlsArr removeAllObjects];
-    
-    [QMUITips showLoadingInView:self.view];
-    
     NSAttributedString *content = self.contentTextView.attributedText;
-    NSString *text = [self.contentTextView.text copy];
+    NSString * text1 = [self.contentTextView.text copy];
+    _finishUpLoadImageBool = NO;
     //这一步开始上传
     kWeakSelf(self);
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-        [content enumerateAttributesInRange:NSMakeRange(0, text.length) options:0 usingBlock:^(NSDictionary<NSString *,id> * _Nonnull attrs, NSRange range, BOOL * _Nonnull stop) {
+        [content enumerateAttributesInRange:NSMakeRange(0, text1.length) options:0 usingBlock:^(NSDictionary<NSString *,id> * _Nonnull attrs, NSRange range, BOOL * _Nonnull stop) {
             YYTextAttachment *att = attrs[@"YYTextAttachment"];
             if (att) {
                 if ([att.content isKindOfClass:[YYTextView class]]) {
@@ -178,7 +171,7 @@
                 }else{
                     YYAnimatedImageView *imgView = att.content;
                     [self.imagesArr addObject:imgView.image];
-
+                    
                     [QiniuLoad uploadImageToQNFilePath:@[imgView.image] success:^(NSString *reslut) {
                         NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
                         [weakself.imageUrlsArr addObject:qiniuArray[0]];
@@ -188,13 +181,27 @@
                 }
             }
         }];
-        self.contentStr = [text stringByReplacingOccurrencesOfString:@"\U0000fffc\U0000fffc" withString:@"<我是图片>"];
+        weakself.finishUpLoadImageBool = YES;
+        self.contentStr = [text1 stringByReplacingOccurrencesOfString:@"\U0000fffc\U0000fffc" withString:@"<我是图片>"];
+    });
+}
+
+    
+- (IBAction)backVC:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)fabuAction:(id)sender {
+  
+    
+    if (self.finishUpLoadImageBool) {
         NSString * resuletString = [Tool makeHtmlString:_imageUrlsArr desArr:_desArr contentStr:_contentStr];
         NSLog(@"%@",resuletString);
         [self lastStepFaBuAction:resuletString];
-    });
+    }else{
+        [QMUITips showInfo:@"正在上传图片,请稍等" inView:self.view hideAfterDelay:2];
+    }
 
-
+ 
 
 }
 -(void)lastStepFaBuAction:(NSString *)detail{
@@ -227,7 +234,6 @@
     
     kWeakSelf(self);
     [YX_MANAGER requestFaBuImagePOST:dic success:^(id object) {
-        [QMUITips hideAllTipsInView:weakself.view];
         [QMUITips showSucceed:object[@"message"] inView:[ShareManager getMainView] hideAfterDelay:1];
         [weakself closeViewAAA];
     }];

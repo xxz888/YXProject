@@ -20,11 +20,13 @@
 @interface YXMineImageDetailViewController ()<ZInputToolbarDelegate,QMUIMoreOperationControllerDelegate,SDCycleScrollViewDelegate,UIWebViewDelegate>{
     CGFloat imageHeight;
     NSDictionary * shareDic;
-    YXFirstFindImageTableViewCell * cell;
     BOOL zanBool;
-    CGFloat webViewHeight;
+    CGFloat webViewHeight;//webview高度
+    CGFloat coverHeight;//封面高度
     BOOL webViewFinishBOOL;//判断webview是否加载完成
 }
+    @property (nonatomic,strong)  YXFirstFindImageTableViewCell * cell;
+;
 
 @end
 @implementation YXMineImageDetailViewController
@@ -34,8 +36,14 @@
 }
 - (void)viewDidLoad{
     [super viewDidLoad];
-    //初始化所有的控件
+    [QMUITips showLoadingInView:self.view];
     [self initAllControl];
+
+}
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    //初始化所有的控件
+    [self setHeaderView];
     [self requestNewList];
 }
 -(void)headerRereshing{
@@ -48,10 +56,15 @@
 }
 -(void)initAllControl{
     [super initAllControl];
-    [self setHeaderView];
+}
+-(YXFirstFindImageTableViewCell *)cell{
+    if (!_cell) {
+        _cell = [[[NSBundle mainBundle]loadNibNamed:@"YXFirstFindImageTableViewCell" owner:self options:nil]lastObject];
+    }
+    return _cell;
 }
 -(void)setWebVIewData:(NSDictionary *)dic{
-    cell.cellWebView.delegate = self;
+    self.cell.cellWebView.delegate = self;
     //获取bundlePath 路径
     NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
     //获取本地html目录 basePath
@@ -60,51 +73,68 @@
     NSURL *baseUrl = [NSURL fileURLWithPath: basePath isDirectory: YES];
     //显示内容
     if (dic[@"detail"]) {
-        [cell.cellWebView loadHTMLString:[ShareManager adaptWebViewForHtml:dic[@"detail"]] baseURL: baseUrl];
+        [self.cell.cellWebView loadHTMLString:[ShareManager adaptWebViewForHtml:dic[@"detail"]] baseURL: baseUrl];
     }
-    [cell.cellWebView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+    [self.cell.cellWebView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
 }
 - (void)observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context{
     if([keyPath isEqualToString:@"contentSize"]) {
-        webViewHeight= [[cell.cellWebView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"]floatValue];
-        CGRect newFrame= cell.cellWebView.frame;
+        webViewHeight= [[self.cell.cellWebView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"]floatValue];
+        CGRect newFrame= self.cell.cellWebView.frame;
         newFrame.size.height = webViewHeight;
-        cell.cellWebView.frame= newFrame;
-        [cell.cellWebView sizeToFit];
-        CGRect Frame = cell.frame;
-        Frame.size.height= self.headerViewHeight - 180 + webViewHeight;
-        cell.midViewHeight.constant =  webViewHeight;
-        cell.frame= Frame;
-        [self.yxTableView setTableHeaderView:cell];//这句话才是重点
+        self.cell.cellWebView.frame= newFrame;
+        [self.cell.cellWebView sizeToFit];
+        CGRect Frame = self.cell.frame;
+        Frame.size.height= self.headerViewHeight - 180 + webViewHeight + coverHeight;
+        self.cell.midViewHeight.constant =  webViewHeight;
+        self.cell.frame= Frame;
+        [self.yxTableView setTableHeaderView:self.cell];//这句话才是重点
     }
 }
     
 - (void)webViewDidFinishLoad:(UIWebView*)webView{
         CGFloat sizeHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"]floatValue];
-        cell.cellWebView.frame=CGRectMake(0,0,cell.midView.frame.size.width, sizeHeight);
+        self.cell.cellWebView.frame=CGRectMake(0,0,self.cell.midView.frame.size.width, sizeHeight);
+        [QMUITips hideAllTipsInView:self.view];
+
 }
 -(void)setHeaderView{
-    cell = [[[NSBundle mainBundle]loadNibNamed:@"YXFirstFindImageTableViewCell" owner:self options:nil]lastObject];
-    [cell setCellValue:self.startDic];
-    cell.leftWidth.constant = cell.rightWidth.constant = 5;
-    cell.tagId = [self.startDic[@"id"] integerValue];
-    CGRect oldFrame = cell.frame;
+    [self.cell setCellValue:self.startDic];
+ 
+    self.cell.tagId = [self.startDic[@"id"] integerValue];
+    CGRect oldFrame = self.cell.frame;
     CGFloat newHeight =  self.headerViewHeight;
-    cell.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width, newHeight);
+    self.cell.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width, newHeight);
     //晒图
     if ([self.startDic[@"obj"] integerValue] == 1) {
-        [cell setUpSycleScrollView:self.startDic[@"url_list"] height:KScreenWidth - 20];
-        cell.rightCountLbl.text = [NSString stringWithFormat:@"%@/%lu",@"1",(unsigned long)[self.startDic[@"url_list"] count]];
-        cell.rightCountLbl.hidden = [cell.rightCountLbl.text isEqualToString:@"1/1"] || [cell.rightCountLbl.text isEqualToString:@"1/0"];
+        [self.cell setUpSycleScrollView:self.startDic[@"url_list"] height:KScreenWidth - 20];
+        self.cell.rightCountLbl.text = [NSString stringWithFormat:@"%@/%lu",@"1",(unsigned long)[self.startDic[@"url_list"] count]];
+        self.cell.rightCountLbl.hidden = [self.cell.rightCountLbl.text isEqualToString:@"1/1"] || [self.cell.rightCountLbl.text isEqualToString:@"1/0"];
+        [QMUITips hideAllTipsInView:self.view];
     }else{
-        cell.imgV1.hidden = cell.imgV2.hidden = cell.imgV3.hidden = cell.imgV4.hidden = cell.stackView.hidden = cell.onlyOneImv.hidden = YES;
-        cell.cellWebView.hidden = NO;
+        self.cell.imgV1.hidden = self.cell.imgV2.hidden = self.cell.imgV3.hidden = self.cell.imgV4.hidden = self.cell.stackView.hidden = self.cell.onlyOneImv.hidden = YES;
+        self.cell.cellWebView.hidden = NO;
+        
+        //封面图
+        self.cell.coverTopHeight.constant = 10;
+        CGSize size = [UIImage getImageSizeWithURL:self.startDic[@"cover"]];
+        double scale = size.width == 0 ? 0 : size.height/size.width;
+        coverHeight = (kScreenWidth-20)*scale;
+        self.cell.coverImvHeight.constant = coverHeight;
+        NSString * str1 = [(NSMutableString *)self.startDic[@"cover"] replaceAll:@" " target:@"%20"];
+        [self.cell.coverImV sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        ViewRadius(self.cell.coverImV, 5);
+        
         [self setWebVIewData:self.startDic];
+        self.cell.leftWidth.constant  = 5;
+        self.cell.rightWidth.constant = 5;
+        
+
     }
     zanBool =  [self.startDic[@"is_praise"] integerValue] == 1;
-    self.yxTableView.tableHeaderView = cell;
+    self.yxTableView.tableHeaderView = self.cell;
     kWeakSelf(self);
-    cell.shareblock = ^(YXFirstFindImageTableViewCell * cell) {
+    self.cell.shareblock = ^(YXFirstFindImageTableViewCell * cell) {
         if (![userManager loadUserInfo]) {
             KPostNotification(KNotificationLoginStateChange, @NO);
             return;
@@ -114,14 +144,14 @@
         shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
         [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:cell.tagId startDic:cell.dataDic];
     };
-    cell.clickImageBlock = ^(NSInteger tag) {
+    self.cell.clickImageBlock = ^(NSInteger tag) {
         if (![userManager loadUserInfo]) {
             KPostNotification(KNotificationLoginStateChange, @NO);
             return;
         }
         [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
     };
-    cell.clickTagblock = ^(NSString * string) {
+    self.cell.clickTagblock = ^(NSString * string) {
         [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":@"1",@"type":@"2"} success:^(id object) {
             if ([object count] > 0) {
                 YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
@@ -134,7 +164,7 @@
             }
         }];
     };
-    cell.clickDetailblock = ^(NSInteger tag, YXFirstFindImageTableViewCell * cell) {
+    self.cell.clickDetailblock = ^(NSInteger tag, YXFirstFindImageTableViewCell * cell) {
         if (![userManager loadUserInfo]) {
             KPostNotification(KNotificationLoginStateChange, @NO);
             return;
@@ -253,11 +283,11 @@
         //赞
         zanBool = !zanBool;
         UIImage * likeImage = zanBool ? ZAN_IMG : UNZAN_IMG;
-        [cell.zanBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
+        [self.cell.zanBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
         NSInteger zhengfuValue = zanBool ? 1 : -1;
-        cell.zanCount.text = NSIntegerToNSString([cell.zanCount.text integerValue] + zhengfuValue);
-        if ([cell.zanCount.text isEqualToString:@"0"]) {
-            cell.zanCount.text= @"";
+        self.cell.zanCount.text = NSIntegerToNSString([self.cell.zanCount.text integerValue] + zhengfuValue);
+        if ([self.cell.zanCount.text isEqualToString:@"0"]) {
+            self.cell.zanCount.text= @"";
         }
     }];
 }

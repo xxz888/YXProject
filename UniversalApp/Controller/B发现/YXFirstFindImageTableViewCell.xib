@@ -295,6 +295,12 @@
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3TY-EU-v8U">
+                        <rect key="frame" x="10" y="50" width="300" height="0.0"/>
+                        <constraints>
+                            <constraint firstAttribute="height" id="tSo-hD-rhK"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Alw-MU-efx" secondAttribute="trailing" constant="10" id="0RO-c3-a8C"/>
@@ -304,23 +310,29 @@
                     <constraint firstItem="GtI-gh-lsU" firstAttribute="top" secondItem="8fg-xa-6xb" secondAttribute="bottom" constant="10" id="5ae-ZN-zG9"/>
                     <constraint firstAttribute="bottom" secondItem="9LF-KO-Sf9" secondAttribute="bottom" constant="-1" id="6Zq-7R-gyU"/>
                     <constraint firstAttribute="trailing" secondItem="GtI-gh-lsU" secondAttribute="trailing" constant="10" id="6xc-ch-w1Z"/>
+                    <constraint firstItem="3TY-EU-v8U" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="AQZ-XD-WYy"/>
+                    <constraint firstItem="8fg-xa-6xb" firstAttribute="top" secondItem="3TY-EU-v8U" secondAttribute="bottom" constant="10" id="AUT-1L-sg0"/>
                     <constraint firstItem="rGB-5z-HaT" firstAttribute="top" secondItem="Alw-MU-efx" secondAttribute="bottom" constant="10" id="BEF-R8-8z4"/>
                     <constraint firstAttribute="trailing" secondItem="8fg-xa-6xb" secondAttribute="trailing" constant="10" id="LFd-WG-iUx"/>
                     <constraint firstItem="Alw-MU-efx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="M1z-l7-BnW"/>
                     <constraint firstAttribute="trailing" secondItem="9LF-KO-Sf9" secondAttribute="trailing" id="NAn-xh-B0Q"/>
+                    <constraint firstAttribute="trailing" secondItem="3TY-EU-v8U" secondAttribute="trailing" constant="10" id="OiS-Ku-7Ra"/>
                     <constraint firstItem="Alw-MU-efx" firstAttribute="top" secondItem="GtI-gh-lsU" secondAttribute="bottom" constant="10" id="TCT-9E-kYW"/>
                     <constraint firstItem="8fg-xa-6xb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Vl0-0z-Rre"/>
                     <constraint firstItem="zsW-0y-r5X" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Y1G-xV-YcG"/>
+                    <constraint firstItem="3TY-EU-v8U" firstAttribute="top" secondItem="zsW-0y-r5X" secondAttribute="bottom" id="hv0-5R-yy2"/>
                     <constraint firstItem="9LF-KO-Sf9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="k58-De-bU8"/>
                     <constraint firstAttribute="trailing" secondItem="rGB-5z-HaT" secondAttribute="trailing" id="msl-LY-bV1"/>
                     <constraint firstAttribute="trailing" secondItem="zsW-0y-r5X" secondAttribute="trailing" id="x6D-He-zrY"/>
-                    <constraint firstItem="8fg-xa-6xb" firstAttribute="top" secondItem="zsW-0y-r5X" secondAttribute="bottom" constant="10" id="xs0-hL-L6I"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="cellWebView" destination="5pM-xX-sVL" id="jb8-i9-evu"/>
                 <outlet property="countLbl" destination="YdI-b5-Jfc" id="IcU-gU-acW"/>
+                <outlet property="coverImV" destination="3TY-EU-v8U" id="Xmx-IF-52K"/>
+                <outlet property="coverImvHeight" destination="tSo-hD-rhK" id="200-ii-kEa"/>
+                <outlet property="coverTopHeight" destination="hv0-5R-yy2" id="R3y-9M-g0g"/>
                 <outlet property="detailHeight" destination="5e8-ew-xcr" id="wAQ-oK-nr8"/>
                 <outlet property="detailLbl" destination="8fg-xa-6xb" id="N0r-As-wtW"/>
                 <outlet property="imgV1" destination="hQi-L5-kKf" id="vjf-mc-cZ0"/>
@@ -344,7 +356,7 @@
                 <outlet property="zanBtn" destination="jgH-D4-vSm" id="jcX-9T-0ga"/>
                 <outlet property="zanCount" destination="WTh-Sc-D4E" id="pWv-0G-1R8"/>
             </connections>
-            <point key="canvasLocation" x="-649" y="49"/>
+            <point key="canvasLocation" x="-430" y="49"/>
         </tableViewCell>
     </objects>
     <resources>
