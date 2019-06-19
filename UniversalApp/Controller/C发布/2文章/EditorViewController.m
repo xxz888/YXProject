@@ -61,8 +61,8 @@
     self.navigationItem.rightBarButtonItem = rightItem;
     // 图文正文输入框
     [self.view addSubview:self.contentTextView];
-    ViewBorderRadius(self.fabuButton, 14, 1, YXRGBAColor(176, 151, 99));
-
+    ViewRadius(self.fabuButton, 14);
+//    ViewBorderRadius(self.fabuButton, 14, 1, YXRGBAColor(176, 151, 99));
 }
 #pragma mark - setter
 - (YYTextView *)contentTextView {
@@ -78,8 +78,8 @@
         textView.delegate = self;
         textView.placeholderText = @"请输入文章";
         textView.font = [UIFont fontWithName:@"苹方-简" size:15];
-        textView.placeholderFont = [UIFont fontWithName:@"苹方-简" size:15];
-        textView.textColor = [UIColor blackColor];
+        textView.placeholderFont = [UIFont fontWithName:@"Helvetica Neue" size:15];
+        textView.textColor = [UIColor grayColor];
         textView.selectedRange = NSMakeRange(textView.text.length, 0);
         textView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
         textView.allowsPasteImage = YES;

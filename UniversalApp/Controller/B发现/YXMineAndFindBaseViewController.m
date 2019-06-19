@@ -108,10 +108,6 @@
         if (tag == 1) {//评论
             [weakself tableView:weakself.yxTableView didSelectRowAtIndexPath:indexPathSelect];
         }else if(tag == 2){//点赞
-            if ([cell.dataDic[@"obj"] integerValue] == 2) {
-                [QMUITips showInfo:@"文章详情正在开发"];
-                return;
-            }
             [weakself requestDianZan_Image_Action:indexPathSelect];
         }else{//分享
             UserInfo * userInfo = curUser;

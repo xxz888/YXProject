@@ -24,7 +24,7 @@
         midViewHeight = (KScreenWidth-20);
     }else{
         titleText = [[NSString stringWithFormat:@"%@%@",dic[@"title"],dic[@"tag"]] UnicodeToUtf8];
-        midViewHeight = (KScreenWidth-20);
+        midViewHeight = 180;
     }
     CGFloat detailHeight = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
    
@@ -88,11 +88,11 @@
                tapStringArray:modelArray];
       self.detailHeight.constant = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
     [ShareManager setLineSpace:9 withText:self.detailLbl.text inLabel:self.detailLbl tag:dic[@"tag"]];
-    self.midViewHeight.constant = kScreenWidth - 20;;
 
     
     //图片
     if ([dic[@"obj"] integerValue] == 1) {
+        self.midViewHeight.constant = kScreenWidth - 20;;
         NSArray * urlList = dic[@"url_list"];
         self.countLbl.text = NSIntegerToNSString(urlList.count);
         if ([urlList count] >= 4) {
@@ -113,6 +113,7 @@
             [self.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         }
     }else{
+        self.midViewHeight.constant = 180;
         self.onlyOneImv.hidden = NO;
         self.imgV1.hidden = self.imgV2.hidden = self.imgV3.hidden = self.imgV4.hidden = self.stackView.hidden = YES;
         NSString * string = [(NSMutableString *)dic[@"cover"] replaceAll:@" " target:@"%20"];

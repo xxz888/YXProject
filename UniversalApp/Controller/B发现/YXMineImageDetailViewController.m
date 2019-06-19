@@ -72,7 +72,7 @@
         cell.cellWebView.frame= newFrame;
         [cell.cellWebView sizeToFit];
         CGRect Frame = cell.frame;
-        Frame.size.height= self.headerViewHeight - (kScreenWidth - 20) + webViewHeight;
+        Frame.size.height= self.headerViewHeight - 180 + webViewHeight;
         cell.midViewHeight.constant =  webViewHeight;
         cell.frame= Frame;
         [self.yxTableView setTableHeaderView:cell];//这句话才是重点
@@ -96,12 +96,12 @@
         [cell setUpSycleScrollView:self.startDic[@"url_list"] height:KScreenWidth - 20];
         cell.rightCountLbl.text = [NSString stringWithFormat:@"%@/%lu",@"1",(unsigned long)[self.startDic[@"url_list"] count]];
         cell.rightCountLbl.hidden = [cell.rightCountLbl.text isEqualToString:@"1/1"] || [cell.rightCountLbl.text isEqualToString:@"1/0"];
-        zanBool =  [self.startDic[@"is_praise"] integerValue] == 1;
     }else{
         cell.imgV1.hidden = cell.imgV2.hidden = cell.imgV3.hidden = cell.imgV4.hidden = cell.stackView.hidden = cell.onlyOneImv.hidden = YES;
         cell.cellWebView.hidden = NO;
         [self setWebVIewData:self.startDic];
     }
+    zanBool =  [self.startDic[@"is_praise"] integerValue] == 1;
     self.yxTableView.tableHeaderView = cell;
     kWeakSelf(self);
     cell.shareblock = ^(YXFirstFindImageTableViewCell * cell) {
