@@ -15,13 +15,14 @@
     NSMutableArray * imgTagArr = [NSMutableArray array];
     for (int i = 0; i < imageUrlArr.count; i ++) {
         NSString * urlStr = imageUrlArr[i];
-        NSString * imgTag  = [@"<img>\n" stringByAppendingString:[[@"<url>" stringByAppendingString:urlStr] stringByAppendingString:@"</url>\n"]];
-        for (int j = 0; j < desArr.count; j ++) {
-            if (i == j) {
-                NSString * desStr = desArr[j];
-                imgTag = [[imgTag stringByAppendingString:[[@"<des>" stringByAppendingString:desStr] stringByAppendingString:@"</des>\n"]] stringByAppendingString:@"</img>\n"];
-            }
-        }
+        NSString * imgTag  = [NSString stringWithFormat:@"<img src='%@' style='max-width:100%%;border-radius:5px' /><br>",urlStr];
+//        NSString * imgTag  = [@"<img>\n" stringByAppendingString:[[@"<url>" stringByAppendingString:urlStr] stringByAppendingString:@"</url>\n"]];
+//        for (int j = 0; j < desArr.count; j ++) {
+//            if (i == j) {
+//                NSString * desStr = desArr[j];
+//                imgTag = [[imgTag stringByAppendingString:[[@"<des>" stringByAppendingString:desStr] stringByAppendingString:@"</des>\n"]] stringByAppendingString:@"</img>\n"];
+//            }
+//        }
         [imgTagArr addObject:imgTag];
     }
     

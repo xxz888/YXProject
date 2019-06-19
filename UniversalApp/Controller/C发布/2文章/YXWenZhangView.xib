@@ -72,7 +72,7 @@
                 <outlet property="titleImgV" destination="7G5-iX-wQ3" id="ddQ-Tl-WFG"/>
                 <outlet property="titleTextView" destination="C8U-O8-99g" id="Jjt-CT-ywn"/>
             </connections>
-            <point key="canvasLocation" x="-3726" y="-646"/>
+            <point key="canvasLocation" x="-3726.0869565217395" y="-646.20535714285711"/>
         </view>
     </objects>
     <resources>

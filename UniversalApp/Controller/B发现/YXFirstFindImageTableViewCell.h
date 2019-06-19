@@ -63,8 +63,11 @@ typedef void(^clickInDetail)(NSInteger,YXFirstFindImageTableViewCell *cell);
 @property(nonatomic)SDCycleScrollView *cycleScrollView3;
 @property (nonatomic)NSInteger tatolCount;
 @property (weak, nonatomic) IBOutlet UILabel *rightCountLbl;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *midViewHeight;
+
     @property (weak, nonatomic) IBOutlet UIWebView *cellWebView;
+    @property (weak, nonatomic) IBOutlet NSLayoutConstraint *midViewHeight;
+    @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightWidth;
+    @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftWidth;
     
 @end
 

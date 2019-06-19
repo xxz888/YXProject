@@ -88,7 +88,8 @@
                tapStringArray:modelArray];
       self.detailHeight.constant = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
     [ShareManager setLineSpace:9 withText:self.detailLbl.text inLabel:self.detailLbl tag:dic[@"tag"]];
-    
+    self.midViewHeight.constant = kScreenWidth - 20;;
+
     
     //图片
     if ([dic[@"obj"] integerValue] == 1) {

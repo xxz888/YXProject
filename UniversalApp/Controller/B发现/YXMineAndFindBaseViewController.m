@@ -19,17 +19,13 @@
     NSDictionary * shareDic;
 }
 @property (nonatomic, strong) ZInputToolbar *inputToolbar;
-
 @end
-
 @implementation YXMineAndFindBaseViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     _autoPLHeight = 0;
     [self tableviewCon];
     [self addRefreshView:self.yxTableView];
-
 }
 
 #pragma mark ========== 创建tableview ==========
@@ -73,6 +69,10 @@
     YXFirstFindImageTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFirstFindImageTableViewCell" forIndexPath:indexPath];
     cell.tagId = [dic[@"id"] integerValue];
     cell.titleImageView.tag = indexPath.row;
+    cell.dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+    [cell setCellValue:dic];
+    
+    //以下为所有block方法
     kWeakSelf(self);
     cell.shareblock = ^(YXFirstFindImageTableViewCell * cell) {
         UserInfo * userInfo = curUser;
@@ -120,31 +120,10 @@
             [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:cell.tagId startDic:cell.dataDic];
         }
     };
-    cell.dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-    [cell setCellValue:dic];
+
     return cell;
 }
 
-#pragma mark - ZInputToolbarDelegate
-
-#pragma mark ========== 评论晒图 ==========
--(void)pinglunFatherPic_shaitu:(NSDictionary *)dic{
-    [YX_MANAGER requestPost_commentPOST:dic success:^(id object) {
-        
-    }];
-}
-#pragma mark ========== 评论足迹 ==========
--(void)pinglunFatherPic_zuji:(NSDictionary *)dic tview:(UITextView *)textfield{
-    kWeakSelf(self);
-    [YX_MANAGER requestPingLunFoot:dic success:^(id object) {
-    }];
-}
-#pragma mark ========== 发布回答 ==========
--(void)requestFaBuHuiDa:(NSDictionary *)dic{
-    [YX_MANAGER requestFaBuHuiDaPOST:dic success:^(id object) {
-        
-    }];
-}
 -(void)commonDidVC:(NSIndexPath *)indexPath{
   
 }
@@ -160,22 +139,6 @@
         [weakself requestAction];
     }];
 }
-#pragma mark ========== 足迹点赞 ==========
--(void)requestPost_essay_praisePOST:(NSIndexPath *)indexPath{
-    kWeakSelf(self);
-    NSString* track_id = kGetString(self.dataArray[indexPath.row][@"id"]);
-    [YX_MANAGER requestPost_essay_praisePOST:@{@"track_id":track_id} success:^(id object) {
-        [weakself requestAction];
-    }];
-}
-#pragma mark ========== 问答点赞 ==========
--(void)requestDianZan_WenDa_Action:(NSIndexPath *)indexPath{
-    kWeakSelf(self);
-    NSString* track_id = kGetString(self.dataArray[indexPath.row][@"id"]);
-    [YX_MANAGER requestPraise_question:track_id success:^(id object) {
-        [weakself requestAction];
-    }];
-}
 -(void)requestAction{
     
 }
@@ -186,8 +149,6 @@
         self.navigationController.tabBarController.selectedIndex = 4;
         return;
     }
-//     UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
-//     YXMineViewController * mineVC = [stroryBoard5 instantiateViewControllerWithIdentifier:@"YXMineViewController"];
      HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
      mineVC.userId = userId;
      mineVC.whereCome = YES;    //  YES为其他人 NO为自己
@@ -202,10 +163,10 @@
     [self.inputToolbar.textInput resignFirstResponder];
     NSDictionary * dic = self.dataArray[indexPath.row];
     NSInteger tag = [dic[@"obj"] integerValue];
-    if (tag == 2) {
-        [QMUITips showInfo:@"文章相关正在开发"];
-        return;
-    }
+//    if (tag == 2) {
+//        [QMUITips showInfo:@"文章相关正在开发"];
+//        return;
+//    }
     YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
     //因为详情界面复用了外边cell，只是少了评论区和点击评论，所以这个高度要减去评论和点击评论的高度
     CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:dic];
@@ -214,50 +175,8 @@
     [self.navigationController pushViewController:VC animated:YES];
 }
 
--(Moment *)setTestInfo:(NSDictionary *)dic{
-    NSMutableArray *commentList = nil;
-    Moment *moment = [[Moment alloc] init];
-    moment.praiseNameList = nil;
-    moment.userName = dic[@"user_name"];
-    moment.text = dic[@"title"];
-    moment.detailText = dic[@"question"];
-    moment.index = dic[@"index"];
-    moment.time = dic[@"publish_date"] ? [dic[@"publish_date"] longLongValue] : [dic[@"publish_time"] longLongValue];
-    moment.singleWidth = (KScreenWidth-30)/3;
-    moment.singleHeight = 100;
-    moment.location = @"";
-    moment.isPraise = NO;
-    moment.photo =dic[@"user_photo"];
-    moment.startId = dic[@"id"];
-    NSMutableArray * imgArr = [NSMutableArray array];
-    if ([dic[@"pic1"] length] >= 5) {
-        [imgArr addObject:dic[@"pic1"]];
-    }
-    if ([dic[@"pic2"] length] >= 5) {
-        [imgArr addObject:dic[@"pic2"]];
-    }
-    if ([dic[@"pic3"] length] >= 5) {
-        [imgArr addObject:dic[@"pic3"]];
-    }
-    moment.imageListArray = [NSMutableArray arrayWithArray:imgArr];
-    moment.fileCount = imgArr.count;
-    
-    commentList = [[NSMutableArray alloc] init];
-    int num = (int)[dic[@"answer"] count];
-    for (int j = 0; j < num; j ++) {
-        Comment *comment = [[Comment alloc] init];
-        comment.userName = dic[@"answer"][j][@"user_name"];
-        comment.text =  dic[@"answer"][j][@"answer"];
-        comment.time = 1487649503;
-        comment.pk = j;
-        [commentList addObject:comment];
-    }
-    [moment setValue:commentList forKey:@"commentList"];
-    return moment;
-}
 #pragma mark ========== 分享 ==========
 - (void)addGuanjiaShareViewIsOwn:(BOOL)isOwn isWho:(NSString *)isWho tag:(NSInteger)tagId startDic:(NSDictionary *)startDic{
-    
     QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
     kWeakSelf(self);
     // 如果你的 item 是确定的，则可以直接通过 items 属性来显示，如果 item 需要经过一些判断才能确定下来，请看第二个示例
@@ -425,63 +344,8 @@
         [weakself presentViewController:imageVC animated:YES completion:nil];
     }
 }
-
-- (void)setupTextField{
-    [self.inputToolbar removeFromSuperview];
-    self.inputToolbar = [[ZInputToolbar alloc] initWithFrame:CGRectMake(0,self.view.height, self.view.width, 60)];
-    self.inputToolbar.textViewMaxLine = 5;
-    self.inputToolbar.delegate = self;
-    self.inputToolbar.placeholderLabel.text = @"开始评论...";
-    [self.view addSubview:self.inputToolbar];
-}
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
     
-}
-- (void)keyboardNotification:(NSNotification *)notification{
-//    CGPoint offset = CGPointMake(0, 0);
-//    [self.yxTableView setContentOffset:offset animated:YES];
-    
-    NSDictionary *dict = notification.userInfo;
-    CGRect rect = [dict[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
-    CGRect textFieldRect = CGRectMake(0, rect.origin.y - textFieldH, rect.size.width, textFieldH);
-    if (rect.origin.y == [UIScreen mainScreen].bounds.size.height) {
-        textFieldRect = rect;
-    }
-    kWeakSelf(self);
-    [UIView animateWithDuration:0.25 animations:^{
-        weakself.textField.frame = textFieldRect;
-    }];
-    CGFloat h = rect.size.height + textFieldH;
-    if (_totalKeybordHeight != h) {
-        _totalKeybordHeight = h;
-        //[self adjustTableViewToFitKeyboard];
-    }
-}
-
-#pragma mark ========== 以下为所有自适应和不常用的方法 ==========
-- (void)adjustTableViewToFitKeyboard{
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    UITableViewCell *cell = [self.yxTableView cellForRowAtIndexPath:self.currentEditingIndexthPath];
-    CGRect rect = [cell.superview convertRect:cell.frame toView:window];
-    [self adjustTableViewToFitKeyboardWithRect:rect];
-}
-
-- (void)adjustTableViewToFitKeyboardWithRect:(CGRect)rect{
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    CGFloat delta = CGRectGetMaxY(rect) - (window.bounds.size.height - _totalKeybordHeight);
-    
-    CGPoint offset = self.yxTableView.contentOffset;
-    offset.y += delta;
-    if (offset.y < 0) {
-        offset.y = 0;
-    }
-    
-    [self.yxTableView setContentOffset:offset animated:YES];
-}
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [_textField resignFirstResponder];
-    [_textField removeFromSuperview];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

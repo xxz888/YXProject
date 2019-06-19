@@ -72,7 +72,7 @@
         self.headerView.frame = CGRectMake(0,0,self.view.frame.size.width,200);
         YYTextView *textView = [[YYTextView alloc] initWithFrame:CGRectMake(0, kStatusBarHeight + 60, KScreenWidth, KScreenHeight - 60 - kStatusBarHeight)];
         textView.tag = 1000;
-        textView.textContainerInset = UIEdgeInsetsMake(210, 10, 20,10);
+        textView.textContainerInset = UIEdgeInsetsMake(210, 5, 20,5);
         textView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         textView.scrollIndicatorInsets = textView.contentInset;
         textView.delegate = self;
@@ -128,7 +128,7 @@
     imageView.clipsToBounds = YES;
     [imageView startAnimating];
     CGSize size = imageView.size;
-    CGFloat textViewWidth = kScreenWidth - 32.0;
+    CGFloat textViewWidth = kScreenWidth - 10;
     size = CGSizeMake(textViewWidth, size.height * textViewWidth / size.width);
     NSMutableAttributedString *attachText = [NSMutableAttributedString attachmentStringWithContent:imageView contentMode:UIViewContentModeScaleAspectFit attachmentSize:size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
     YYTextView * desTextView = [YYTextView new];

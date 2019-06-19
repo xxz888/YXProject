@@ -22,7 +22,7 @@
     NSDictionary * shareDic;
     YXFirstFindImageTableViewCell * cell;
     BOOL zanBool;
-    CGFloat tagHeight;
+    CGFloat webViewHeight;
     BOOL webViewFinishBOOL;//判断webview是否加载完成
 }
 
@@ -48,23 +48,116 @@
 }
 -(void)initAllControl{
     [super initAllControl];
+    [self setHeaderView];
 }
+-(void)setWebVIewData:(NSDictionary *)dic{
+    cell.cellWebView.delegate = self;
+    //获取bundlePath 路径
+    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
+    //获取本地html目录 basePath
+    NSString *basePath = [NSString stringWithFormat:@"%@/%@",bundlePath,@"html"];
+    //获取本地html目录 baseUrl
+    NSURL *baseUrl = [NSURL fileURLWithPath: basePath isDirectory: YES];
+    //显示内容
+    if (dic[@"detail"]) {
+        [cell.cellWebView loadHTMLString:[ShareManager adaptWebViewForHtml:dic[@"detail"]] baseURL: baseUrl];
+    }
+    [cell.cellWebView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+}
+- (void)observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context{
+    if([keyPath isEqualToString:@"contentSize"]) {
+        webViewHeight= [[cell.cellWebView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"]floatValue];
+        CGRect newFrame= cell.cellWebView.frame;
+        newFrame.size.height = webViewHeight;
+        cell.cellWebView.frame= newFrame;
+        [cell.cellWebView sizeToFit];
+        CGRect Frame = cell.frame;
+        Frame.size.height= self.headerViewHeight - (kScreenWidth - 20) + webViewHeight;
+        cell.midViewHeight.constant =  webViewHeight;
+        cell.frame= Frame;
+        [self.yxTableView setTableHeaderView:cell];//这句话才是重点
+    }
+}
+    
+- (void)webViewDidFinishLoad:(UIWebView*)webView{
+        CGFloat sizeHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"]floatValue];
+        cell.cellWebView.frame=CGRectMake(0,0,cell.midView.frame.size.width, sizeHeight);
+}
+-(void)setHeaderView{
+    cell = [[[NSBundle mainBundle]loadNibNamed:@"YXFirstFindImageTableViewCell" owner:self options:nil]lastObject];
+    [cell setCellValue:self.startDic];
+    cell.leftWidth.constant = cell.rightWidth.constant = 5;
+    cell.tagId = [self.startDic[@"id"] integerValue];
+    CGRect oldFrame = cell.frame;
+    CGFloat newHeight =  self.headerViewHeight;
+    cell.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width, newHeight);
+    //晒图
+    if ([self.startDic[@"obj"] integerValue] == 1) {
+        [cell setUpSycleScrollView:self.startDic[@"url_list"] height:KScreenWidth - 20];
+        cell.rightCountLbl.text = [NSString stringWithFormat:@"%@/%lu",@"1",(unsigned long)[self.startDic[@"url_list"] count]];
+        cell.rightCountLbl.hidden = [cell.rightCountLbl.text isEqualToString:@"1/1"] || [cell.rightCountLbl.text isEqualToString:@"1/0"];
+        zanBool =  [self.startDic[@"is_praise"] integerValue] == 1;
+    }else{
+        cell.imgV1.hidden = cell.imgV2.hidden = cell.imgV3.hidden = cell.imgV4.hidden = cell.stackView.hidden = cell.onlyOneImv.hidden = YES;
+        cell.cellWebView.hidden = NO;
+        [self setWebVIewData:self.startDic];
+    }
+    self.yxTableView.tableHeaderView = cell;
+    kWeakSelf(self);
+    cell.shareblock = ^(YXFirstFindImageTableViewCell * cell) {
+        if (![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
+        UserInfo * userInfo = curUser;
+        BOOL isOwn = [self.startDic[@"user_id"] integerValue] == [userInfo.id integerValue];
+        shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
+        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:cell.tagId startDic:cell.dataDic];
+    };
+    cell.clickImageBlock = ^(NSInteger tag) {
+        if (![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
+        [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
+    };
+    cell.clickTagblock = ^(NSString * string) {
+        [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":@"1",@"type":@"2"} success:^(id object) {
+            if ([object count] > 0) {
+                YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
+                VC.type = @"3";
+                VC.key = object[0][@"tag"];
+                VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
+                [weakself.navigationController pushViewController:VC animated:YES];
+            }else{
+                [QMUITips showInfo:@"无此标签的信息"];
+            }
+        }];
+    };
+    cell.clickDetailblock = ^(NSInteger tag, YXFirstFindImageTableViewCell * cell) {
+        if (![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
+        if (tag == 1) {
+            [weakself setupTextField];
+            [weakself.inputToolbar.textInput becomeFirstResponder];
+        }else if(tag == 2){
+            NSIndexPath * indexPath1 = [weakself.yxTableView indexPathForCell:cell];
+            [weakself requestDianZan_Image_Action:indexPath1];
+        }else{
+            UserInfo * userInfo = curUser;
+            BOOL isOwn = [self.startDic[@"user_id"] integerValue] == [userInfo.id integerValue];
+            shareDic = [NSDictionary dictionaryWithDictionary:self.startDic];
+            [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:[weakself.startDic[@"id"] integerValue]  startDic: weakself.startDic];
+        }
+    };
+}
+    
+/*
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return [self.startDic[@"obj"] integerValue] == 1 ? self.headerViewHeight : self.headerViewHeight + tagHeight + 200;
 }
-//-(void)setWebVIewData:(NSDictionary *)dic{
-//    cell.cellWebView.delegate = self;
-//    //获取bundlePath 路径
-//    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
-//    //获取本地html目录 basePath
-//    NSString *basePath = [NSString stringWithFormat:@"%@/%@",bundlePath,@"html"];
-//    //获取本地html目录 baseUrl
-//    NSURL *baseUrl = [NSURL fileURLWithPath: basePath isDirectory: YES];
-//    //显示内容
-//    if (dic[@"detail"]) {
-//        [cell.cellWebView loadHTMLString:[ShareManager adaptWebViewForHtml:dic[@"detail"]] baseURL: baseUrl];
-//    }
-//}
 //- (void)webViewDidFinishLoad:(UIWebView *)wb{
 //    tagHeight = [[wb stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
 //    cell.midViewHeight.constant = tagHeight;
@@ -136,7 +229,7 @@
     };
     return cell;
 }
-    
+    */
 #pragma mark ========== 头像点击 ==========
 -(void)clickUserImageView:(NSString *)userId{
     UserInfo *userInfo = curUser;
