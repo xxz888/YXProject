@@ -29,10 +29,13 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
+  - FBRetainCycleDetector (0.1.4)
   - HappyDNS (0.3.14)
   - Masonry (1.1.0)
   - MBProgressHUD (1.0.0)
   - MJRefresh (3.1.13)
+  - MLeaksFinder (1.0.0):
+    - FBRetainCycleDetector
   - MLLabel (1.10.5)
   - Qiniu (7.2.5):
     - HappyDNS (~> 0.3)
@@ -308,6 +311,7 @@ DEPENDENCIES:
   - Masonry
   - MBProgressHUD (~> 1.0.0)
   - MJRefresh
+  - MLeaksFinder
   - MLLabel
   - Qiniu (~> 7.1)
   - QMUIKit
@@ -321,10 +325,12 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
     - BlocksKit
+    - FBRetainCycleDetector
     - HappyDNS
     - Masonry
     - MBProgressHUD
     - MJRefresh
+    - MLeaksFinder
     - MLLabel
     - Qiniu
     - QMUIKit
@@ -337,10 +343,12 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   HappyDNS: dc6a164ee81979093123c241c6353bcf0218add6
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJRefresh: 56a28aa628c9895e97a518dabaecf70b18f92f32
+  MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
   MLLabel: d76124055a2205e7f76878e62cd06ba925ba0c97
   Qiniu: 909b408ee489ea54827e9717be90b94bc9dfbc48
   QMUIKit: 36fe0f01873605e15e86113403db547aca16e6c5
@@ -350,6 +358,6 @@ SPEC CHECKSUMS:
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZXSegmentController: d94f138ab0191da1e2e4268e9b961e082a142549
 
-PODFILE CHECKSUM: 4ff88ab5f4637701a7a7da3b802c9b54dd980b6d
+PODFILE CHECKSUM: eefb1cc9f245e33ef8bdbe2bfbecf4d5d81f4d6a
 
 COCOAPODS: 1.7.1

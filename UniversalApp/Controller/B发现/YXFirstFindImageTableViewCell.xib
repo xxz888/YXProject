@@ -100,7 +100,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="306"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b5Y-oz-jeP">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b5Y-oz-jeP">
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="306"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pV5-2b-25x">
@@ -186,6 +186,13 @@
                                     <constraint firstItem="7pB-7X-hLT" firstAttribute="top" secondItem="8Gg-ne-Clp" secondAttribute="top" constant="20" id="qgq-ks-VFT"/>
                                 </constraints>
                             </view>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="WbL-oU-Jax">
+                                <rect key="frame" x="130" y="133" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Pqg-w7-0LC"/>
+                                    <constraint firstAttribute="width" constant="40" id="mAl-Nx-g85"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -194,6 +201,8 @@
                             <constraint firstAttribute="trailing" secondItem="pV5-2b-25x" secondAttribute="trailing" id="CJ5-lm-l9Y"/>
                             <constraint firstItem="5pM-xX-sVL" firstAttribute="top" secondItem="GtI-gh-lsU" secondAttribute="top" id="F2W-Q9-oEY"/>
                             <constraint firstAttribute="bottom" secondItem="5pM-xX-sVL" secondAttribute="bottom" id="F6k-Ja-WGv"/>
+                            <constraint firstItem="WbL-oU-Jax" firstAttribute="centerX" secondItem="b5Y-oz-jeP" secondAttribute="centerX" id="O0i-DZ-Awc"/>
+                            <constraint firstItem="WbL-oU-Jax" firstAttribute="centerY" secondItem="b5Y-oz-jeP" secondAttribute="centerY" id="Vrz-HU-ign"/>
                             <constraint firstItem="b5Y-oz-jeP" firstAttribute="top" secondItem="GtI-gh-lsU" secondAttribute="top" id="Xol-Cg-DJT"/>
                             <constraint firstItem="b5Y-oz-jeP" firstAttribute="leading" secondItem="GtI-gh-lsU" secondAttribute="leading" id="Xw7-eU-oEx"/>
                             <constraint firstItem="8Gg-ne-Clp" firstAttribute="top" secondItem="GtI-gh-lsU" secondAttribute="top" id="cv1-2w-ZeE"/>
@@ -346,6 +355,7 @@
                 <outlet property="midViewHeight" destination="vQr-Fr-pEO" id="VPv-wg-h7Z"/>
                 <outlet property="nameCenter" destination="rkN-ek-6XK" id="cg6-dK-5Be"/>
                 <outlet property="onlyOneImv" destination="b5Y-oz-jeP" id="WX4-aA-Ncz"/>
+                <outlet property="playImV" destination="WbL-oU-Jax" id="Rav-Tg-8oY"/>
                 <outlet property="rightCountLbl" destination="7pB-7X-hLT" id="LdC-Zo-gFY"/>
                 <outlet property="rightWidth" destination="6xc-ch-w1Z" id="DCb-KU-OEV"/>
                 <outlet property="stackView" destination="pV5-2b-25x" id="yb7-Xh-SF8"/>
@@ -361,6 +371,7 @@
     </objects>
     <resources>
         <image name="UnZan" width="64" height="64"/>
+        <image name="play" width="60" height="60"/>
         <image name="分享" width="17" height="17"/>
         <image name="更多" width="64" height="64"/>
         <image name="讨论" width="64" height="64"/>

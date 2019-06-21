@@ -35,8 +35,8 @@ extension KSMediaPickerView {
         override public init(frame: CGRect) {
             let bundle = Bundle.main
             let items = ["MEDIA_PICKER_ALBUM_TAB_TITLE".ks_mediaPickerKeyToLocalized(in: bundle),
-                         "MEDIA_PICKER_CAMERA_TAB_TITLE".ks_mediaPickerKeyToLocalized(in: bundle)]
-//                         "MEDIA_PICKER_VIDEOCORDER_TAB_TITLE".ks_mediaPickerKeyToLocalized(in: bundle)]
+                         "MEDIA_PICKER_CAMERA_TAB_TITLE".ks_mediaPickerKeyToLocalized(in: bundle),
+                         "MEDIA_PICKER_VIDEOCORDER_TAB_TITLE".ks_mediaPickerKeyToLocalized(in: bundle)]
             super.init(frame: frame, items: items)
             font = UIFont.systemFont(ofSize: 17.0)
             _didSet(style: .light)
@@ -219,8 +219,8 @@ open class KSMediaPickerView: UIView, KSMediaPickerScrollViewDelegate {
         }
         viewW = windowWidth
         viewH = viewW
-        //头高度
-        previewView.frame = CGRect(x: viewX, y: viewY, width: viewW, height: 0)
+        //小红书头高度
+        previewView.frame = CGRect(x: viewX, y: viewY, width: viewW, height: viewH)
   
         let previewViewFrameMaxY = previewView.frame.maxY
         viewY = floatZore

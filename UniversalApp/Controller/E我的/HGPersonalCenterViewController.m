@@ -25,7 +25,7 @@
 #import "YXMineMyCaoGaoViewController.h"
 #import "YXMineMyDianZanViewController.h"
 #import "YXMineFindViewController.h"
-
+#import "YXMineMyCollectionViewController.h"
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
 
 static CGFloat const HeaderImageViewHeight =260;
@@ -49,6 +49,7 @@ static CGFloat const HeaderImageViewHeight =260;
 @end
 
 @implementation HGPersonalCenterViewController
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self forbiddenSideBack];
@@ -76,6 +77,9 @@ static CGFloat const HeaderImageViewHeight =260;
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer*)gestureRecognizer {
     return self.isCanBack;
 }
+
+
+
 #pragma mark - Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -93,6 +97,7 @@ static CGFloat const HeaderImageViewHeight =260;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
     [self updateNavigationBarBackgroundColor];
     [self setViewData];
 }
@@ -145,7 +150,7 @@ static CGFloat const HeaderImageViewHeight =260;
 
 #pragma mark - UIScrollViewDelegate
 - (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
-    [self.segmentedPageViewController.currentPageViewController makePageViewControllerScrollToTop];
+//    [self.segmentedPageViewController.currentPageViewController makePageViewControllerScrollToTop];
     return YES;
 }
 -(YXMineHeaderView *)headerView{
@@ -221,7 +226,7 @@ static CGFloat const HeaderImageViewHeight =260;
     CGFloat contentOffsetY = scrollView.contentOffset.y;
     //吸顶临界点(此时的临界点不是视觉感官上导航栏的底部，而是当前屏幕的顶部相对scrollViewContentView的位置)
     CGFloat criticalPointOffsetY = [self.yxTableView rectForSection:0].origin.y -  [UIApplication sharedApplication].statusBarFrame.size.height;
-    criticalPointOffsetY = AxcAE_IsiPhoneX ? -88 : -65;
+    criticalPointOffsetY = AxcAE_IsiPhoneX ? -30 : -65;
     //利用contentOffset处理内外层scrollView的滑动冲突问题
     if (contentOffsetY >= criticalPointOffsetY) {
         /*
@@ -232,13 +237,15 @@ static CGFloat const HeaderImageViewHeight =260;
         //“进入吸顶状态”以及“维持吸顶状态”
         self.cannotScroll = YES;
         scrollView.contentOffset = CGPointMake(0, criticalPointOffsetY);
-        [self.segmentedPageViewController.currentPageViewController makePageViewControllerScroll:YES];
+//        [self.segmentedPageViewController.currentPageViewController makePageViewControllerScroll:YES];
     } else {
         /*
          * 未达到临界点：
          * 1.吸顶状态 -> 不吸顶状态
          * 2.维持吸顶状态(pageViewController.scrollView.contentOffsetY > 0)
          */
+
+        
         if (self.cannotScroll) {
             //“维持吸顶状态”
 //            scrollView.contentOffset = CGPointMake(0, criticalPointOffsetY);
@@ -384,7 +391,7 @@ static CGFloat const HeaderImageViewHeight =260;
 
 - (HGSegmentedPageViewController *)segmentedPageViewController {
     if (!_segmentedPageViewController) {
-        NSArray *titles = @[@"全部"];
+        NSArray *titles = @[@"动态",@"收藏"];
         NSMutableArray *controllers = [NSMutableArray array];
         for (int i = 0; i < titles.count; i++) {
             if (i == 0) {
@@ -392,7 +399,8 @@ static CGFloat const HeaderImageViewHeight =260;
                 controller.delegate = self;
                 controller.userId = self.userId;
                 [controllers addObject:controller];
-        
+            }else{
+                [controllers addObject:[YXMineMyCollectionViewController new]];
             }
         }
         _segmentedPageViewController = [[HGSegmentedPageViewController alloc] init];

@@ -13,10 +13,14 @@
 #import "ZInputToolbar.h"
 #import "UIView+LSExtension.h"
 #import "YXPublishImageViewController.h"
+#import "XLVideoPlayer.h"
+
 @interface YXMineAndFindBaseViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,ZInputToolbarDelegate>{
     CGFloat _autoPLHeight;
     BOOL _tagSelectBool;
     NSDictionary * shareDic;
+    XLVideoPlayer *_player;
+
 }
 @property (nonatomic, strong) ZInputToolbar *inputToolbar;
 @end
@@ -57,6 +61,13 @@
     return [self customImageData:dic indexPath:indexPath];
     
 }
+- (XLVideoPlayer *)player {
+    if (!_player) {
+        _player = [[XLVideoPlayer alloc] init];
+        _player.frame = CGRectMake(0, 64, self.view.frame.size.width, 250);
+    }
+    return _player;
+}
 #pragma mark 字典转化字符串
 -(NSString*)dictionaryToJson:(NSDictionary *)dic{
     NSError *parseError = nil;
@@ -64,21 +75,49 @@
     
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
+- (void)showVideoPlayer:(UITapGestureRecognizer *)tapGesture {
+    [_player destroyPlayer];
+    _player = nil;
+    
+    UIView *view = tapGesture.view;
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:view.tag inSection:0];
+    YXFirstFindImageTableViewCell * cell = [self.yxTableView cellForRowAtIndexPath:indexPath];
+    cell.playImV.hidden = YES;
+    _player = [[XLVideoPlayer alloc] init];
+    NSDictionary * dic = self.dataArray[indexPath.row];
+    _player.videoUrl = dic[@"url_list"][0];
+    [_player playerBindTableView:self.yxTableView currentIndexPath:indexPath];
+    _player.frame = cell.onlyOneImv.bounds;
+    
+    [cell.onlyOneImv addSubview:_player];
+    
+    _player.completedPlayingBlock = ^(XLVideoPlayer *player) {
+        [player destroyPlayer];
+        _player = nil;
+    };
+}
 #pragma mark ========== 图片 ==========
 -(YXFirstFindImageTableViewCell *)customImageData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath{
     YXFirstFindImageTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFirstFindImageTableViewCell" forIndexPath:indexPath];
     cell.tagId = [dic[@"id"] integerValue];
+    cell.tag = indexPath.row;
     cell.titleImageView.tag = indexPath.row;
     cell.dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
     [cell setCellValue:dic];
     
+    //给视频的imageveiew添加手势
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showVideoPlayer:)];
+    cell.onlyOneImv.tag = indexPath.row;
+    [cell.onlyOneImv addGestureRecognizer:tap];
     //以下为所有block方法
     kWeakSelf(self);
-    cell.shareblock = ^(YXFirstFindImageTableViewCell * cell) {
+    cell.shareblock = ^(NSInteger tag) {
+        NSIndexPath * indexPathSelect = [NSIndexPath indexPathForRow:tag  inSection:0];
+        YXFindImageTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
         UserInfo * userInfo = curUser;
         BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [userInfo.id integerValue];
         shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
-        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:cell.tagId startDic:cell.dataDic];
+        [weakself saveImageIsOwn:isOwn isWho:@"1" tag:cell.tagId];
     };
     cell.clickImageBlock = ^(NSInteger tag) {
         if (![userManager loadUserInfo]) {
@@ -103,8 +142,9 @@
             _tagSelectBool = NO;
         }];
     };
-    cell.clickDetailblock = ^(NSInteger tag, YXFirstFindImageTableViewCell * cell) {
-        NSIndexPath * indexPathSelect = [weakself.yxTableView indexPathForCell:cell];
+    cell.clickDetailblock = ^(NSInteger tag, NSInteger tag1) {
+        NSIndexPath * indexPathSelect = [NSIndexPath indexPathForRow:tag1  inSection:0];
+        YXFindImageTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
         if (tag == 1) {//评论
             [weakself tableView:weakself.yxTableView didSelectRowAtIndexPath:indexPathSelect];
         }else if(tag == 2){//点赞
@@ -119,7 +159,14 @@
 
     return cell;
 }
+#pragma mark - UIScrollViewDelegate
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if ([scrollView isEqual:self.yxTableView]) {
+        
+        [_player playerScrollIsSupportSmallWindowPlay:NO];
+    }
+}
 -(void)commonDidVC:(NSIndexPath *)indexPath{
   
 }
@@ -164,6 +211,34 @@
     [self.navigationController pushViewController:VC animated:YES];
 }
 
+
+
+
+
+
+
+- (void)saveImageIsOwn:(BOOL)isOwn isWho:(NSString *)isWho tag:(NSInteger)tagId{
+    UIImage* viewImage = nil;
+    UITableView *scrollView = self.yxTableView;
+    UIGraphicsBeginImageContextWithOptions(scrollView.contentSize, scrollView.opaque, 0.0);{
+        CGPoint savedContentOffset = scrollView.contentOffset;
+        CGRect savedFrame = scrollView.frame;
+        scrollView.contentOffset = CGPointZero;
+        scrollView.frame = CGRectMake(0, 0, scrollView.contentSize.width, scrollView.contentSize.height);
+        [scrollView.layer renderInContext: UIGraphicsGetCurrentContext()];
+        viewImage = UIGraphicsGetImageFromCurrentImageContext();
+        scrollView.contentOffset = savedContentOffset;
+        scrollView.frame = savedFrame;
+    }
+    UIGraphicsEndImageContext();
+    kWeakSelf(self);
+    //先上传到七牛云图片  再提交服务器
+    [QiniuLoad uploadImageToQNFilePath:@[viewImage] success:^(NSString *reslut) {
+        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:isWho tag:tagId startDic:@{@"img":reslut}];
+    } failure:^(NSString *error) {
+        NSLog(@"%@",error);
+    }];
+}
 #pragma mark ========== 分享 ==========
 - (void)addGuanjiaShareViewIsOwn:(BOOL)isOwn isWho:(NSString *)isWho tag:(NSInteger)tagId startDic:(NSDictionary *)startDic{
     QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
@@ -250,19 +325,19 @@
                                       @[
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareFriend") title:@"分享给微信好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               [moreOperationController hideToBottom];
-                                                  [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatSession obj:shareDic];
+                                                  [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_WechatSession obj:shareDic];
                                           }],
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareMoment") title:@"分享到朋友圈" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine obj:shareDic];
+                                              [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_WechatTimeLine obj:shareDic];
                                           }],
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_QQ") title:@"分享给QQ好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               [moreOperationController hideToBottom];
-                                                       [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_QQ obj:shareDic];
+                                                       [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_QQ obj:shareDic];
                                           }],
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               [moreOperationController hideToBottom];
-                                                     [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_Qzone obj:shareDic];
+                                                     [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_Qzone obj:shareDic];
                                           }],
                                           ],
                                       itemsArray1
@@ -279,10 +354,10 @@
     NSLog(@"当前点击:%@",title);
     kWeakSelf(self);
     if ([title isEqualToString:@"微信"]) {
-        [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatSession obj:shareDic];
+        [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_WechatSession obj:shareDic];
     }
     if ([title isEqualToString:@"朋友圈"]) {
-        [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine obj:shareDic];
+        [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_WechatTimeLine obj:shareDic];
     }
     if ([title isEqualToString:@"删除"]) {
         if ([shareView.isWho isEqualToString:@"1"]) {

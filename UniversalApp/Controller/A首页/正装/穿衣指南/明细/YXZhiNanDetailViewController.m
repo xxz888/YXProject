@@ -40,6 +40,9 @@
     [self.navigationController.navigationBar setHidden:NO];
 }
 -(void)requestStartZhiNanGet{
+    if ([self.startArray[0][@"father_id"] integerValue] == 0) {
+        return;
+    }
     kWeakSelf(self);
     NSString * par = [NSString stringWithFormat:@"1/%@",self.startArray[0][@"father_id"]];
     [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
@@ -59,6 +62,10 @@
     }
 }
 -(void)headerRereshing{
+    if ([self.startArray[0][@"father_id"] integerValue] == 0) {
+        [self endRefresh];
+        return;
+    }
     self.smallIndex = 0;
     if (self.bigIndex == 0) {
         [self endRefresh];
@@ -68,6 +75,10 @@
     }
 }
 -(void)footerRereshing{
+    if ([self.startArray[0][@"father_id"] integerValue] == 0) {
+        [self endRefresh];
+        return;
+    }
     self.smallIndex = 0;
         if (self.bigIndex == [self.startArray count] - 1) {
             [self endRefresh];

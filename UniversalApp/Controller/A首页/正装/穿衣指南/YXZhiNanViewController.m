@@ -120,7 +120,7 @@
         YXZhiNanDetailViewController * vc = [[YXZhiNanDetailViewController alloc]init];
         vc.smallIndex = smallIndex;
         vc.bigIndex = bigIndex;
-        vc.startArray = [[NSMutableArray alloc]initWithArray:self.dataArray];
+        vc.startArray = [[NSMutableArray alloc]initWithArray:weakself.dataArray];
         [weakself.navigationController pushViewController:vc animated:YES];
     };
     return cell;

@@ -24,7 +24,6 @@
 @implementation YXFindViewController
 
 
-
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self forbiddenSideBack];
@@ -52,6 +51,9 @@
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer*)gestureRecognizer {
     return self.isCanBack;
 }
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     //搜索栏
@@ -61,7 +63,8 @@
     //其他方法
     [self setOtherAction];
 
-    
+    //请求
+    [self requestFindTag];
 
 }
 
@@ -76,10 +79,10 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = NO;
-    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
-    //请求
-    [self requestFindTag];
+    
+//    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = NO;
+//    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
+ 
     
 }
 - (void)viewWillDisappear:(BOOL)animated{

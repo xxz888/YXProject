@@ -657,19 +657,19 @@
                                       @[
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareFriend") title:@"分享给微信好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatSession obj:shareDic];
+                                              [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_WechatSession obj:shareDic];
                                           }],
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareMoment") title:@"分享到朋友圈" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine obj:shareDic];
+                                              [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_WechatTimeLine obj:shareDic];
                                           }],
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_QQ") title:@"分享给QQ好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_QQ obj:shareDic];
+                                              [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_QQ obj:shareDic];
                                           }],
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_Qzone obj:shareDic];
+                                              [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_Qzone obj:shareDic];
                                           }],
                                           ],
                                       itemsArray1
@@ -684,10 +684,10 @@
     NSLog(@"当前点击:%@",title);
     kWeakSelf(self);
     if ([title isEqualToString:@"微信"]) {
-        [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatSession obj:shareDic];
+        [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_WechatSession obj:shareDic];
     }
     if ([title isEqualToString:@"朋友圈"]) {
-        [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine obj:shareDic];
+        [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_WechatTimeLine obj:shareDic];
     }
     if ([title isEqualToString:@"删除"]) {
             [YX_MANAGER requestDel_WenDa:kGetString(self.startDic[@"id"]) success:^(id object) {

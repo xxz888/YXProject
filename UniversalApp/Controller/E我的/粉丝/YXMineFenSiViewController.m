@@ -30,6 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"粉丝列表";
+    self.navigationController.navigationBar.hidden = NO;
+
     self.dataArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXMineCommon1TableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineCommon1TableViewCell"];
     kWeakSelf(self);

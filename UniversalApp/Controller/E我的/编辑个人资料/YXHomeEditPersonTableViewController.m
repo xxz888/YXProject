@@ -33,7 +33,7 @@
     self.automaticallyAdjustsScrollViewInsets=false;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     imagePicker = [ImagePicker sharedManager];
-
+    self.navigationController.navigationBar.hidden= NO;
     ViewRadius(self.finishBtn, 5);
     self.title = @"编辑个人资料";
     self.tableView.tableFooterView = [[UIView alloc]init];

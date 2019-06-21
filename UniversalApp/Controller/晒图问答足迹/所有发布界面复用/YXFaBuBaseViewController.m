@@ -19,12 +19,17 @@
 @end
 
 @implementation YXFaBuBaseViewController
+
+#pragma mark ==========  图片和视频返回的block ==========
 - (void)mediaPicker:(KSMediaPickerController *)mediaPicker didFinishSelected:(NSArray<KSMediaPickerOutputModel *> *)outputArray {
     [mediaPicker.navigationController dismissViewControllerAnimated:YES completion:nil];
     for (KSMediaPickerOutputModel * model in outputArray) {
-        [_selectedPhotos addObject:model.image];
+        [_selectedPhotos addObject:model];
     }
     [self.yxCollectionView reloadData];
+    
+    
+    
     
     //这一步开始上传
     kWeakSelf(self);
@@ -32,14 +37,25 @@
         dispatch_semaphore_t sema = dispatch_semaphore_create(0);
         for (NSInteger i = 0; i < [outputArray count]; i++) {
             KSMediaPickerOutputModel * model = outputArray[i];
-            //先上传到七牛云图片  再提交服务器
-            [QiniuLoad uploadImageToQNFilePath:@[model.image] success:^(NSString *reslut) {
-                NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
-                if (qiniuArray.count > 0) {
-                    [weakself.photoImageList addObject:qiniuArray[0]];
-                }
-                dispatch_semaphore_signal(sema);
-            } failure:^(NSString *error) {}];
+            
+            
+            
+            if (model.mediaType == PHAssetMediaTypeVideo) {
+                [QiniuLoad uploadVideoToQNFilePath:model.videoAsset.URL success:^(NSString *reslut) {
+                    [weakself.photoImageList addObject:reslut];
+                    dispatch_semaphore_signal(sema);
+                } failure:^(NSString *error) {}];
+            }else{
+                //先上传到七牛云图片  再提交服务器
+                [QiniuLoad uploadImageToQNFilePath:@[model.image] success:^(NSString *reslut) {
+                    NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
+                    if (qiniuArray.count > 0) {
+                        [weakself.photoImageList addObject:qiniuArray[0]];
+                    }
+                    dispatch_semaphore_signal(sema);
+                } failure:^(NSString *error) {}];
+            }
+         
             dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
         }
     });
@@ -271,8 +287,13 @@
         cell.deleteBtn.hidden = YES;
         cell.gifLable.hidden = YES;
     } else {
-        
-        cell.imageView.image = _selectedPhotos[indexPath.item];
+        KSMediaPickerOutputModel * model = _selectedPhotos[indexPath.item];
+        if (model.mediaType == mediaTypeVideo) {
+            cell.imageView.image = model.thumb;
+            cell.videoImageView.hidden = NO;
+        }else{
+            cell.imageView.image = model.thumb;
+        }
         cell.deleteBtn.hidden = NO;
     }
     cell.deleteBtn.tag = indexPath.item;
@@ -282,10 +303,12 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.item == _selectedPhotos.count) {
-        KSMediaPickerController *ctl = [KSMediaPickerController.alloc initWithMaxVideoItemCount:0 maxPictureItemCount:9];
+        /// 两个参数都请不要传0，因为没处理单媒体类型录影和拍照的问题
+        KSMediaPickerController *ctl = [KSMediaPickerController.alloc initWithMaxVideoItemCount:1 maxPictureItemCount:9];
         ctl.delegate = self;
         KSNavigationController *nav = [KSNavigationController.alloc initWithRootViewController:ctl];
         [self presentViewController:nav animated:YES completion:nil];
+        
     } else { // preview photos or video / 预览照片或者视频
       
     }

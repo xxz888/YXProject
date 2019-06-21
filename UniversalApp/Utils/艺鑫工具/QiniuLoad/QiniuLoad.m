@@ -87,7 +87,6 @@ static NSString *QiniuBucketName  = @"thegdlife";
 }
 
 +(void)uploadImageToQNFilePath:(NSArray *)photos success:(QNSuccessBlock)success failure:(QNFailureBlock)failure{
-    NSMutableArray *imageAry =[NSMutableArray new];
     NSMutableArray *imageAdd = [NSMutableArray new];
     //主要是把图片或者文件转成nsdata类型就可以了
     QNConfiguration *config = [QNConfiguration build:^(QNConfigurationBuilder *builder) {
@@ -128,6 +127,39 @@ static NSString *QiniuBucketName  = @"thegdlife";
                     option:uploadOption];
     }];
 }
+
++(void)uploadVideoToQNFilePath:(NSURL *)url success:(QNSuccessBlock)success failure:(QNFailureBlock)failure{
+    
+    NSMutableArray *imageAdd = [NSMutableArray new];
+    NSMutableArray *errors = [NSMutableArray new];
+    QNConfiguration *config = [QNConfiguration build:^(QNConfigurationBuilder *builder) {
+        builder.zone = [QNFixedZone zone0];}];
+    QNUploadManager *upManager = [[QNUploadManager alloc] initWithConfiguration:config];
+    QNUploadOption *uploadOption = [[QNUploadOption alloc] initWithMime:nil
+                                                        progressHandler:^(NSString *key, float percent) {
+                                                            NSLog(@"上传进度 %.2f", percent);}
+                                                                 params:nil
+                                                               checkCrc:NO
+                                                     cancellationSignal:nil];
+    
+    NSData *myVideoData = [NSData dataWithContentsOfURL:url];
+    
+    UserInfo *userInfo = curUser;
+    NSString * userId = userInfo.id;
+    NSString * key = [NSString stringWithFormat:@"%@_Video_%@.mp4",userId,[ShareManager getNowTimeTimestamp3]];
+
+    [upManager putData:myVideoData key:key token:[QiniuLoad makeToken:accessKey secretKey:secretKey] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+        if (info.isOK) {
+            [imageAdd addObject:[NSString stringWithFormat:@"%@%@",kQNinterface,resp[@"key"]]];
+            //                NSLog(@"%@",imageAdd);}else{
+            [errors addObject:[NSString stringWithFormat:@"%@", @1]];}
+        if (imageAdd.count == 1) {
+            if (success) {
+                success([imageAdd componentsJoinedByString:@";"]);}}else{
+                    if (failure) {
+                        failure([errors componentsJoinedByString:@","]);}}}
+                option:uploadOption];}
+
 + (NSString *)qnImageFilePatName{
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];

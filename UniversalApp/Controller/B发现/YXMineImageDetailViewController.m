@@ -19,14 +19,15 @@
 #import "HGPersonalCenterViewController.h"
 @interface YXMineImageDetailViewController ()<ZInputToolbarDelegate,QMUIMoreOperationControllerDelegate,SDCycleScrollViewDelegate,UIWebViewDelegate>{
     CGFloat imageHeight;
-    NSDictionary * shareDic;
+    
     BOOL zanBool;
     CGFloat webViewHeight;//webview高度
     CGFloat coverHeight;//封面高度
     BOOL webViewFinishBOOL;//判断webview是否加载完成
 }
-    @property (nonatomic,strong)  YXFirstFindImageTableViewCell * cell;
-;
+@property (nonatomic,strong)  YXFirstFindImageTableViewCell * cell;
+@property (nonatomic,strong)  NSDictionary * shareDic;
+
 
 @end
 @implementation YXMineImageDetailViewController
@@ -43,6 +44,7 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     //初始化所有的控件
+    self.navigationController.navigationBar.hidden = NO;
     [self setHeaderView];
     [self requestNewList];
 }
@@ -114,7 +116,6 @@
     }else{
         self.cell.imgV1.hidden = self.cell.imgV2.hidden = self.cell.imgV3.hidden = self.cell.imgV4.hidden = self.cell.stackView.hidden = self.cell.onlyOneImv.hidden = YES;
         self.cell.cellWebView.hidden = NO;
-        
         //封面图
         self.cell.coverTopHeight.constant = 10;
         CGSize size = [UIImage getImageSizeWithURL:self.startDic[@"cover"]];
@@ -124,25 +125,24 @@
         NSString * str1 = [(NSMutableString *)self.startDic[@"cover"] replaceAll:@" " target:@"%20"];
         [self.cell.coverImV sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         ViewRadius(self.cell.coverImV, 5);
-        
         [self setWebVIewData:self.startDic];
         self.cell.leftWidth.constant  = 5;
         self.cell.rightWidth.constant = 5;
-        
-
     }
     zanBool =  [self.startDic[@"is_praise"] integerValue] == 1;
     self.yxTableView.tableHeaderView = self.cell;
     kWeakSelf(self);
-    self.cell.shareblock = ^(YXFirstFindImageTableViewCell * cell) {
+    self.cell.shareblock = ^(NSInteger tag1) {
+        NSIndexPath * indexPathSelect = [NSIndexPath indexPathForRow:tag1  inSection:0];
+        YXFindImageTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
         if (![userManager loadUserInfo]) {
             KPostNotification(KNotificationLoginStateChange, @NO);
             return;
         }
         UserInfo * userInfo = curUser;
-        BOOL isOwn = [self.startDic[@"user_id"] integerValue] == [userInfo.id integerValue];
-        shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
-        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:cell.tagId startDic:cell.dataDic];
+        BOOL isOwn = [weakself.startDic[@"user_id"] integerValue] == [userInfo.id integerValue];
+        weakself.shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
+        [weakself saveImageIsOwn:isOwn isWho:@"1" tag:cell.tagId];
     };
     self.cell.clickImageBlock = ^(NSInteger tag) {
         if (![userManager loadUserInfo]) {
@@ -164,7 +164,9 @@
             }
         }];
     };
-    self.cell.clickDetailblock = ^(NSInteger tag, YXFirstFindImageTableViewCell * cell) {
+    self.cell.clickDetailblock = ^(NSInteger tag, NSInteger tag1) {
+        NSIndexPath * indexPathSelect = [NSIndexPath indexPathForRow:tag1  inSection:0];
+        YXFindImageTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
         if (![userManager loadUserInfo]) {
             KPostNotification(KNotificationLoginStateChange, @NO);
             return;
@@ -177,89 +179,13 @@
             [weakself requestDianZan_Image_Action:indexPath1];
         }else{
             UserInfo * userInfo = curUser;
-            BOOL isOwn = [self.startDic[@"user_id"] integerValue] == [userInfo.id integerValue];
-            shareDic = [NSDictionary dictionaryWithDictionary:self.startDic];
+            BOOL isOwn = [weakself.startDic[@"user_id"] integerValue] == [userInfo.id integerValue];
+            weakself.shareDic = [NSDictionary dictionaryWithDictionary:weakself.startDic];
             [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:[weakself.startDic[@"id"] integerValue]  startDic: weakself.startDic];
         }
     };
 }
-    
-/*
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return [self.startDic[@"obj"] integerValue] == 1 ? self.headerViewHeight : self.headerViewHeight + tagHeight + 200;
-}
-//- (void)webViewDidFinishLoad:(UIWebView *)wb{
-//    tagHeight = [[wb stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
-//    cell.midViewHeight.constant = tagHeight;
-//    webViewFinishBOOL = YES;
-//    [self.yxTableView reloadData];
-//}
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    cell = [[[NSBundle mainBundle]loadNibNamed:@"YXFirstFindImageTableViewCell" owner:self options:nil]lastObject];
-    [cell setCellValue:self.startDic];
-    //晒图
-    if ([self.startDic[@"obj"] integerValue] == 1) {
-        [cell setUpSycleScrollView:self.startDic[@"url_list"] height:KScreenWidth - 20];
-        cell.rightCountLbl.text = [NSString stringWithFormat:@"%@/%lu",@"1",(unsigned long)[self.startDic[@"url_list"] count]];
-        cell.rightCountLbl.hidden = [cell.rightCountLbl.text isEqualToString:@"1/1"] || [cell.rightCountLbl.text isEqualToString:@"1/0"];
-        zanBool =  [self.startDic[@"is_praise"] integerValue] == 1;
-    }else{
 
-       
-    }
-   
-    kWeakSelf(self);
-    cell.shareblock = ^(YXFirstFindImageTableViewCell * cell) {
-        if (![userManager loadUserInfo]) {
-            KPostNotification(KNotificationLoginStateChange, @NO);
-            return;
-        }
-        UserInfo * userInfo = curUser;
-        BOOL isOwn = [self.startDic[@"user_id"] integerValue] == [userInfo.id integerValue];
-        shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
-        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:cell.tagId startDic:cell.dataDic];
-    };
-    cell.clickImageBlock = ^(NSInteger tag) {
-        if (![userManager loadUserInfo]) {
-            KPostNotification(KNotificationLoginStateChange, @NO);
-            return;
-        }
-        [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
-    };
-    cell.clickTagblock = ^(NSString * string) {
-        [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":@"1",@"type":@"2"} success:^(id object) {
-            if ([object count] > 0) {
-                YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
-                VC.type = @"3";
-                VC.key = object[0][@"tag"];
-                VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
-                [weakself.navigationController pushViewController:VC animated:YES];
-            }else{
-                [QMUITips showInfo:@"无此标签的信息"];
-            }
-        }];
-    };
-    cell.clickDetailblock = ^(NSInteger tag, YXFirstFindImageTableViewCell * cell) {
-        if (![userManager loadUserInfo]) {
-            KPostNotification(KNotificationLoginStateChange, @NO);
-            return;
-        }
-        if (tag == 1) {
-            [weakself setupTextField];
-            [weakself.inputToolbar.textInput becomeFirstResponder];
-        }else if(tag == 2){
-            NSIndexPath * indexPath1 = [weakself.yxTableView indexPathForCell:cell];
-            [weakself requestDianZan_Image_Action:indexPath1];
-        }else{
-            UserInfo * userInfo = curUser;
-            BOOL isOwn = [self.startDic[@"user_id"] integerValue] == [userInfo.id integerValue];
-            shareDic = [NSDictionary dictionaryWithDictionary:self.startDic];
-            [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:[weakself.startDic[@"id"] integerValue]  startDic: weakself.startDic];
-        }
-    };
-    return cell;
-}
-    */
 #pragma mark ========== 头像点击 ==========
 -(void)clickUserImageView:(NSString *)userId{
     UserInfo *userInfo = curUser;
@@ -267,8 +193,6 @@
         self.navigationController.tabBarController.selectedIndex = 4;
         return;
     }
-    //     UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
-    //     YXMineViewController * mineVC = [stroryBoard5 instantiateViewControllerWithIdentifier:@"YXMineViewController"];
     HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
     mineVC.userId = userId;
     mineVC.whereCome = YES;    //  YES为其他人 NO为自己
@@ -283,11 +207,11 @@
         //赞
         zanBool = !zanBool;
         UIImage * likeImage = zanBool ? ZAN_IMG : UNZAN_IMG;
-        [self.cell.zanBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
+        [weakself.cell.zanBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
         NSInteger zhengfuValue = zanBool ? 1 : -1;
-        self.cell.zanCount.text = NSIntegerToNSString([self.cell.zanCount.text integerValue] + zhengfuValue);
-        if ([self.cell.zanCount.text isEqualToString:@"0"]) {
-            self.cell.zanCount.text= @"";
+        weakself.cell.zanCount.text = NSIntegerToNSString([weakself.cell.zanCount.text integerValue] + zhengfuValue);
+        if ([weakself.cell.zanCount.text isEqualToString:@"0"]) {
+            weakself.cell.zanCount.text= @"";
         }
     }];
 }
@@ -334,7 +258,6 @@
         SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
         NSMutableArray *temp = [NSMutableArray new];
         [temp addObjectsFromArray:model.commentItemsArray];
-        //判断评论数组是否添加过新数据，如果添加过就不添加了
         for (NSDictionary * dic in object) {
             SDTimeLineCellCommentItemModel *commentItemModel = [SDTimeLineCellCommentItemModel new];
             if ([dic[@"aim_id"] integerValue] != 0) {
@@ -344,14 +267,11 @@
                 commentItemModel.secondUserId = kGetString(dic[@"aim_id"]);
                 commentItemModel.commentString = [kGetString(dic[@"comment"]) UnicodeToUtf8];
                 commentItemModel.labelTag = [dic[@"id"] integerValue];
-
-//                self.isReplayingComment = YES;
             } else {
                 commentItemModel.firstUserId = kGetString(dic[@"user_id"]);
                 commentItemModel.firstUserName =kGetString(dic[@"user_name"]);
                 commentItemModel.commentString = [kGetString(dic[@"comment"]) UnicodeToUtf8];
                 commentItemModel.labelTag = [dic[@"id"] integerValue];
-
             }
             BOOL ishave = NO;
             for (SDTimeLineCellCommentItemModel * oldCommentItemModel in model.commentItemsArray) {
@@ -366,15 +286,12 @@
                 }
             }
             if (ishave) {
-                
             }else{
                 [temp addObject:commentItemModel];
                 model.commentItemsArray = [temp copy];
             }
-            
         }
         [weakself.yxTableView reloadData];
-//        [weakself.yxTableView reloadRowsAtIndexPaths:@[weakself.currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
     }];
 }
 #pragma mark ========== tableview数据 ==========
@@ -399,7 +316,7 @@
         if ([formalArray[i][@"child_list"] count] == 0) {
             model.moreCountPL = @"0";
         }else{
-              model.moreCountPL = [NSString stringWithFormat:@"%ld",[formalArray[i][@"child_number"] integerValue] - [formalArray[i][@"child_list"] count]];
+            model.moreCountPL = [NSString stringWithFormat:@"%ld",[formalArray[i][@"child_number"] integerValue] - [formalArray[i][@"child_list"] count]];
         }
       
         [pageDic setValue:@([model.id intValue]) forKey:@"id"];
@@ -449,10 +366,7 @@
 }
 #pragma mark ========== tableview 点击评论按钮 ==========
 - (void)didClickcCommentButtonInCell:(SDTimeLineCell *)cell{
-
-    
     [self setupTextField];
-
     self.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel * model = self.dataArray[self.currentEditingIndexthPath.row];
     self.textField.placeholder = [NSString stringWithFormat:@"  回复：%@",model.name];
@@ -550,9 +464,62 @@
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- (void)saveImageIsOwn:(BOOL)isOwn isWho:(NSString *)isWho tag:(NSInteger)tagId{
+    UIImage* viewImage = nil;
+    UITableView *scrollView = self.yxTableView;
+    UIGraphicsBeginImageContextWithOptions(scrollView.contentSize, scrollView.opaque, 0.0);{
+        CGPoint savedContentOffset = scrollView.contentOffset;
+        CGRect savedFrame = scrollView.frame;
+        scrollView.contentOffset = CGPointZero;
+        scrollView.frame = CGRectMake(0, 0, scrollView.contentSize.width, scrollView.contentSize.height);
+        [scrollView.layer renderInContext: UIGraphicsGetCurrentContext()];
+        viewImage = UIGraphicsGetImageFromCurrentImageContext();
+        scrollView.contentOffset = savedContentOffset;
+        scrollView.frame = savedFrame;
+    }
+    UIGraphicsEndImageContext();
+    kWeakSelf(self);
+    //先上传到七牛云图片  再提交服务器
+    [QiniuLoad uploadImageToQNFilePath:@[viewImage] success:^(NSString *reslut) {
+        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:isWho tag:tagId startDic:@{@"img":reslut}];
+    } failure:^(NSString *error) {
+        NSLog(@"%@",error);
+    }];
+}
+
 #pragma mark ========== 分享 ==========
 - (void)addGuanjiaShareViewIsOwn:(BOOL)isOwn isWho:(NSString *)isWho tag:(NSInteger)tagId startDic:(NSDictionary *)startDic{
-    
     QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
     kWeakSelf(self);
     // 如果你的 item 是确定的，则可以直接通过 items 属性来显示，如果 item 需要经过一些判断才能确定下来，请看第二个示例
@@ -614,110 +581,30 @@
         [itemsArray1 removeObjectAtIndex:0];
         [itemsArray1 removeObjectAtIndex:0];
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     moreOperationController.items = @[
-                                      // 第一行
                                       @[
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareFriend") title:@"分享给微信好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatSession obj:shareDic];
+                                              [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_WechatSession obj:startDic];
                                           }],
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareMoment") title:@"分享到朋友圈" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine obj:shareDic];
+                                              [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_WechatTimeLine obj:startDic];
                                           }],
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_QQ") title:@"分享给QQ好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_QQ obj:shareDic];
+                                              [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_QQ obj:startDic];
                                           }],
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_Qzone obj:shareDic];
+                                              [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_Qzone obj:startDic];
                                           }],
                                           ],
-                                      itemsArray1
-                                      // 第二行
-                                      
+                                          itemsArray1
                                       ];
     [moreOperationController showFromBottom];
     
 }
-
-#pragma mark 分享按钮
-- (void)easyCustomShareViewButtonAction:(HXEasyCustomShareView *)shareView title:(NSString *)title startDic:(NSDictionary *)dic{
-    [shareView tappedCancel];
-    NSLog(@"当前点击:%@",title);
-    kWeakSelf(self);
-    if ([title isEqualToString:@"微信"]) {
-        [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatSession obj:shareDic];
-    }
-    if ([title isEqualToString:@"朋友圈"]) {
-        [[ShareManager sharedShareManager] shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine obj:shareDic];
-    }
-    if ([title isEqualToString:@"删除"]) {
-        if ([shareView.isWho isEqualToString:@"1"]) {
-            [YX_MANAGER requestDel_ShaiTU:NSIntegerToNSString(shareView.tag) success:^(id object) {
-                [QMUITips showSucceed:@"删除成功"];
-            }];
-        }else if ([shareView.isWho isEqualToString:@"2"]){
-            [YX_MANAGER requestDel_WenDa:NSIntegerToNSString(shareView.tag) success:^(id object) {
-                [QMUITips showSucceed:@"删除成功"];
-            }];
-        }else if ([shareView.isWho isEqualToString:@"3"]){
-            [YX_MANAGER requestDel_ZuJi:NSIntegerToNSString(shareView.tag) success:^(id object) {
-                [QMUITips showSucceed:@"删除成功"];
-            }];
-        }
-    }
-    if ([title isEqualToString:@"举报"]) {
-        QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
-        }];
-        QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"不友善内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
-            [QMUITips showSucceed:@"举报成功"];
-            
-        }];
-        QMUIAlertAction *action3 = [QMUIAlertAction actionWithTitle:@"有害内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
-            [QMUITips showSucceed:@"举报成功"];
-            
-        }];
-        QMUIAlertAction *action4 = [QMUIAlertAction actionWithTitle:@"抄袭内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
-            [QMUITips showSucceed:@"举报成功"];
-            
-        }];
-        QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:QMUIAlertControllerStyleActionSheet];
-        [alertController addAction:action1];
-        [alertController addAction:action2];
-        [alertController addAction:action3];
-        [alertController addAction:action4];
-        
-        [alertController showWithAnimated:YES];
-    }
-    if([title isEqualToString:@"编辑"]){
-        YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
-        imageVC.startDic = [[NSMutableDictionary alloc]initWithDictionary:dic];
-        [weakself presentViewController:imageVC animated:YES completion:nil];
-    }
-}
-
-
-
 
 
 @end

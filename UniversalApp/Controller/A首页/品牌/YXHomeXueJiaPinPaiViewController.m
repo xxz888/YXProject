@@ -25,9 +25,44 @@
         YXHomeXueJiaGuBaViewController *  VC4;
 }
 @property (nonatomic, strong) HGSegmentedPageViewController *segmentedPageViewController;
+@property (nonatomic) BOOL isCanBack;
 
 @end
 @implementation YXHomeXueJiaPinPaiViewController
+
+
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self forbiddenSideBack];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self resetSideBack];
+}
+#pragma mark -- 禁用边缘返回
+-(void)forbiddenSideBack{
+    self.isCanBack = NO;
+    //关闭ios右滑返回
+    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate=self;
+    }
+}
+#pragma mark --恢复边缘返回
+- (void)resetSideBack {
+    self.isCanBack=YES;
+    //开启ios右滑返回
+    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+    }
+}
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer*)gestureRecognizer {
+    return self.isCanBack;
+}
+
+
+
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
@@ -78,8 +113,8 @@
         
         VC4 = [stroryBoard instantiateViewControllerWithIdentifier:@"YXHomeXueJiaGuBaViewController"];
         //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
-        NSArray* titles = self.whereCome ? @[@"全部",@"国家地区"] : @[@"全部",@"国家地区",@"我的关注"];
-        NSArray* controllers = @[VC1,VC22,VC3];
+        NSArray* titles = self.whereCome ? @[@"全部",@"国家地区"] : @[@"全部",@"国家地区"];
+        NSArray* controllers = @[VC1,VC22];
         _segmentedPageViewController = [[HGSegmentedPageViewController alloc] init];
         _segmentedPageViewController.pageViewControllers = controllers.copy;
         _segmentedPageViewController.categoryView.titles = titles;

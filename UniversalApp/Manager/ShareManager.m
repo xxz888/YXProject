@@ -18,14 +18,13 @@ SINGLETON_FOR_CLASS(ShareManager);
     [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
         // 根据获取的platformType确定所选平台进行下一步操作]
 
-            [weakself shareWebPageToPlatformType:platformType obj:obj];
+            [weakself shareWebPageZhiNanDetailToPlatformType:platformType obj:obj];
     }];
 }
 - (void)shareWebPageZhiNanDetailToPlatformType:(UMSocialPlatformType)platformType obj:(id)obj{
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     //创建网页内容对象
-    //    NSString* thumbURL =  @"https://mobile.umeng.com/images/pic/home/social/img-1.png";
     UIImage * thumbURL = [UIImage imageNamed:@"appicon"];
     UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"The Good Life，分享美好生活。" descr:@"【The Good Life APP】您的Ultimate生活方式平台。在这里，收录有如马六甲手杖，巴拿马草帽等小众精致产品的著名品牌安利和介绍，致力提供全面准确的国内外报价，每日精选的生活方式文章，以及西装与鞋子的颜色搭配手册、着装规范（Dress Code）、酒杯指南、雪茄环径测量等等一系列强大的实用工具。" thumImage:thumbURL];
  
@@ -54,129 +53,6 @@ SINGLETON_FOR_CLASS(ShareManager);
     }];
 }
 
-- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType obj:(id)obj
-{
-    //创建分享消息对象
-    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
-    //创建网页内容对象
-//    NSString* thumbURL =  @"https://mobile.umeng.com/images/pic/home/social/img-1.png";
-    UIImage * thumbURL = [UIImage imageNamed:@"appicon"];
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"The Good Life，分享美好生活。" descr:@"【The Good Life APP】您的Ultimate生活方式平台。在这里，收录有如马六甲手杖，巴拿马草帽等小众精致产品的著名品牌安利和介绍，致力提供全面准确的国内外报价，每日精选的生活方式文章，以及西装与鞋子的颜色搭配手册、着装规范（Dress Code）、酒杯指南、雪茄环径测量等等一系列强大的实用工具。" thumImage:thumbURL];
-    
-    if (obj) {
-        NSString * resultString = @"";
-        NSString * user_name = [NSString stringWithFormat:@"user_name=%@",kGetString(obj[@"user_name"])];
-        NSString * tag = [NSString stringWithFormat:@"tag=%@",obj[@"tag"]];
-        
-        NSString * photo =@"";
-        NSString * photo1 = @"";
-        NSString * photo2 = @"";
-        NSString * photo3 =@"";
-        NSString * describe =@"";
-        NSString * question = @"";
-        NSString * brand_name = @"";
-        NSString * comment1 = @"";
-        NSString * comment2 = @"";
-        NSString * time = @"";;
-        //足迹
-        if ([obj[@"obj"] integerValue] == 4) {
-            photo = [NSString stringWithFormat:@"photo=%@",kGetString(obj[@"user_photo"])];
-            photo1 = [NSString stringWithFormat:@"photo1=%@",kGetString(obj[@"pic1"])];
-            photo2 = [NSString stringWithFormat:@"photo2=%@",kGetString(obj[@"pic2"])];
-            photo3 = [NSString stringWithFormat:@"photo3=%@",kGetString(obj[@"pic3"])];
-            describe = [NSString stringWithFormat:@"describe=%@",[kGetString(obj[@"content"]) UnicodeToUtf8]];
-            brand_name = [NSString stringWithFormat:@"brand_name=%@",kGetString(obj[@"cigar_info"][@"brand_name"])];
-            if ([obj[@"comment_list"] count] == 0) {
-                comment1 = @"";
-                comment2 = @"";
-            }else if ([obj[@"comment_list"] count] == 1) {
-                comment1 = [NSString stringWithFormat:@"comment1=%@:%@",
-                            kGetString(obj[@"comment_list"][0][@"user_name"]),
-                            [kGetString(obj[@"comment_list"][0][@"comment"]) UnicodeToUtf8]];
-                comment2 = @"";
-            }else if ([obj[@"comment_list"] count] == 2) {
-                comment1 = [NSString stringWithFormat:@"comment1=%@:%@",
-                            kGetString(obj[@"comment_list"][0][@"user_name"]),
-                            [kGetString(obj[@"comment_list"][0][@"comment"]) UnicodeToUtf8]];
-                comment2 = [NSString stringWithFormat:@"comment2=%@:%@",
-                            kGetString(obj[@"comment_list"][1][@"user_name"]),
-                            [kGetString(obj[@"comment_list"][1][@"comment"]) UnicodeToUtf8]];
-            }
-            
-            NSString * timeCopy =  [ShareManager timestampSwitchTime:[obj[@"publish_time"] integerValue] andFormatter:@""];
-            time = [NSString stringWithFormat:@"time=%@",timeCopy];
-        }else if ([obj[@"obj"] integerValue] == 3){
-            photo = [NSString stringWithFormat:@"photo=%@",kGetString(obj[@"user_photo"])];
-            photo1 = [NSString stringWithFormat:@"photo1=%@",kGetString(obj[@"pic1"])];
-            photo2 = [NSString stringWithFormat:@"photo2=%@",kGetString(obj[@"pic2"])];
-            photo3 = [NSString stringWithFormat:@"photo3=%@",kGetString(obj[@"pic3"])];
-            describe = [NSString stringWithFormat:@"describe=%@",[kGetString(obj[@"title"]) UnicodeToUtf8]];
-            brand_name = [NSString stringWithFormat:@"brand_name=%@",kGetString(obj[@"cigar_info"][@"brand_name"])];
-            question = [NSString stringWithFormat:@"question=%@",[kGetString(obj[@"question"]) UnicodeToUtf8]];
-            if ([obj[@"answer"] count] == 0) {
-                comment1 = @"";
-                comment2 = @"";
-            }else if ([obj[@"answer"] count] == 1) {
-                comment1 = [NSString stringWithFormat:@"comment1=%@:%@",
-                            kGetString(obj[@"answer"][0][@"user_name"]),
-                            [kGetString(obj[@"answer"][0][@"answer"]) UnicodeToUtf8]];
-                comment2 = @"";
-            }else if ([obj[@"answer"] count] == 2) {
-                comment1 = [NSString stringWithFormat:@"comment1=%@:%@",
-                            kGetString(obj[@"answer"][0][@"user_name"]),
-                            [kGetString(obj[@"answer"][0][@"answer"]) UnicodeToUtf8]];
-                comment2 = [NSString stringWithFormat:@"comment2=%@:%@",
-                            kGetString(obj[@"answer"][1][@"user_name"]),
-                            [kGetString(obj[@"answer"][1][@"answer"]) UnicodeToUtf8]];
-            }
-            
-            NSString * timeCopy =  [ShareManager timestampSwitchTime:[obj[@"publish_time"] integerValue] andFormatter:@""];
-            time = [NSString stringWithFormat:@"time=%@",timeCopy];
-        }else{
-            photo = [NSString stringWithFormat:@"photo=%@",kGetString(obj[@"photo"])];
-            photo1 = [NSString stringWithFormat:@"photo1=%@",kGetString(obj[@"photo1"])];
-            photo2 = [NSString stringWithFormat:@"photo2=%@",kGetString(obj[@"photo2"])];
-            photo3 = [NSString stringWithFormat:@"photo3=%@",kGetString(obj[@"photo3"])];
-            describe = [NSString stringWithFormat:@"describe=%@",[kGetString(obj[@"describe"]) UnicodeToUtf8]];
-            brand_name = [NSString stringWithFormat:@"brand_name=%@",@""];
-            comment1 = [NSString stringWithFormat:@"comment1=%@:%@",
-                        kGetString(obj[@"user_name"]),
-                        [kGetString(obj[@"max_hot_comment"][@"comment"]) UnicodeToUtf8]];
-            comment2 = [NSString stringWithFormat:@"comment2=%@:%@",
-                        kGetString(obj[@"user_name"]),
-                        [kGetString(obj[@"max_hot_comment"][@"comment"]) UnicodeToUtf8]];
-            NSString * timeCopy =  [ShareManager timestampSwitchTime:[obj[@"time"] integerValue] andFormatter:@""];
-            time = [NSString stringWithFormat:@"time=%@",timeCopy];
-        }
-        resultString = [NSString stringWithFormat:@"%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@",
-                        user_name,photo,photo1,photo2,photo3,describe,comment1,comment2,time,brand_name,tag,question];
-        resultString = [resultString stringByReplacingOccurrencesOfString:@" " withString:@""];
-        
-        //设置网页地址
-        shareObject.webpageUrl = [@"http://www.thegdlife.com/jumpMarket.html?" append:resultString];
-    }else{
-        shareObject.webpageUrl = @"http://www.thegdlife.com/jumpMarket.html";
-
-    }
-    //分享消息对象设置分享内容对象
-    messageObject.shareObject = shareObject;
-    //调用分享接口
-    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:nil completion:^(id data, NSError *error) {
-        if (error) {
-            UMSocialLogInfo(@"************Share fail with error %@*********",error);
-        }else{
-            if ([data isKindOfClass:[UMSocialShareResponse class]]) {
-                UMSocialShareResponse *resp = data;
-                //分享结果消息
-                UMSocialLogInfo(@"response message is %@",resp.message);
-                //第三方原始返回的数据
-                UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
-            }else{
-                UMSocialLogInfo(@"response data is %@",data);
-            }
-        }
-    }];
-}
 -(NSString*)dictionaryToJson:(NSDictionary *)dic
 {
     NSError *parseError = nil;

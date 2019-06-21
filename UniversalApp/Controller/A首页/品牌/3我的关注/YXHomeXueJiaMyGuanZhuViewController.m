@@ -48,11 +48,11 @@
     self.yxTableView.dataSource= self;
     self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXHomeXueJiaPinPaiTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXHomeXueJiaPinPaiTableViewCell"];
+    [self requestGETMyGuanZhuList];
 
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self requestGETMyGuanZhuList];
 }
 -(void)requestCigar_brand:(NSString *)type{
     kWeakSelf(self);

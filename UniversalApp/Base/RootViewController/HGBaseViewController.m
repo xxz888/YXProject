@@ -34,11 +34,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 //        [self.navigationController setNavigationBarHidden:YES];
-    if (self.navigationController.viewControllers.count > 1) {
-        self.cancelButton.hidden = NO;
-    } else {
-        self.cancelButton.hidden = YES;
-    }
+//    if (self.navigationController.viewControllers.count > 1) {
+//        self.cancelButton.hidden = NO;
+//    } else {
+//        self.cancelButton.hidden = YES;
+//    }
 }
 
 #pragma mark - Private Methods

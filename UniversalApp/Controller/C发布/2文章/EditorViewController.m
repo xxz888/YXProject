@@ -157,12 +157,12 @@
     [self.imageUrlsArr removeAllObjects];
     NSAttributedString *content = self.contentTextView.attributedText;
     NSString * text1 = [self.contentTextView.text copy];
-    _finishUpLoadImageBool = NO;
     //这一步开始上传
     kWeakSelf(self);
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         dispatch_semaphore_t sema = dispatch_semaphore_create(0);
         [content enumerateAttributesInRange:NSMakeRange(0, text1.length) options:0 usingBlock:^(NSDictionary<NSString *,id> * _Nonnull attrs, NSRange range, BOOL * _Nonnull stop) {
+            _finishUpLoadImageBool = NO;
             YYTextAttachment *att = attrs[@"YYTextAttachment"];
             if (att) {
                 if ([att.content isKindOfClass:[YYTextView class]]) {
@@ -326,6 +326,7 @@
             [QiniuLoad uploadImageToQNFilePath:@[model.image] success:^(NSString *reslut) {
                 NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
                 weakself.cover = qiniuArray[0];
+                  _finishUpLoadImageBool = YES;
             } failure:^(NSString *error) {}];
         }
     }

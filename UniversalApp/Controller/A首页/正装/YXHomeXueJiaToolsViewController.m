@@ -28,7 +28,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self requestZhiNan1Get];
     YX_MANAGER.moreBool = NO;
 }
 - (void)viewDidLoad {
@@ -36,6 +35,7 @@
     self.title = @"文化";
     [self tableviewCon];
     [self addRefreshView:self.yxTableView];
+    [self requestZhiNan1Get];
 }
 -(void)headerRereshing{
     [super headerRereshing];

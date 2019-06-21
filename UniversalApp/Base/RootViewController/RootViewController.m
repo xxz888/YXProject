@@ -30,9 +30,6 @@
 
 
 
-
-
-
 - (UIStatusBarStyle)preferredStatusBarStyle{
     return _StatusBarStyle;
 }

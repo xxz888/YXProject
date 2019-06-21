@@ -21,7 +21,14 @@
     //计算detail高度
     if([dic[@"obj"] integerValue] == 1){
         titleText = [[NSString stringWithFormat:@"%@%@",dic[@"detail"],dic[@"tag"]] UnicodeToUtf8];
-        midViewHeight = (KScreenWidth-20);
+        midViewHeight = KScreenWidth-20;
+
+        //这里判断晒图是图还是视频
+            if ([kGetString(dic[@"url_list"][0]) containsString:@"mp4"]) {
+            midViewHeight = 180;
+        }
+        
+        
     }else{
         titleText = [[NSString stringWithFormat:@"%@%@",dic[@"title"],dic[@"tag"]] UnicodeToUtf8];
         midViewHeight = 180;
@@ -92,6 +99,9 @@
     
     //图片
     if ([dic[@"obj"] integerValue] == 1) {
+
+        
+        
         self.midViewHeight.constant = kScreenWidth - 20;;
         NSArray * urlList = dic[@"url_list"];
         self.countLbl.text = NSIntegerToNSString(urlList.count);
@@ -106,9 +116,19 @@
             [self.imgV3 sd_setImageWithURL:[NSURL URLWithString:string3] placeholderImage:[UIImage imageNamed:@"img_moren"]];
             NSString * string4 = [(NSMutableString *)urlList[3] replaceAll:@" " target:@"%20"];
             [self.imgV4 sd_setImageWithURL:[NSURL URLWithString:string4] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+            self.playImV.hidden = YES;
+
         }else{
             self.onlyOneImv.hidden = NO;
             self.imgV1.hidden = self.imgV2.hidden = self.imgV3.hidden = self.imgV4.hidden = self.stackView.hidden = YES;
+            //这里判断晒图是图还是视频
+            if ([kGetString(urlList[0]) containsString:@"mp4"]) {
+                self.playImV.hidden = NO;
+                self.midViewHeight.constant = 180;
+            }else{
+                self.playImV.hidden = YES;
+                self.midViewHeight.constant = kScreenWidth - 20;;
+            }
             NSString * string = [(NSMutableString *)urlList[0] replaceAll:@" " target:@"%20"];
             [self.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         }
@@ -159,10 +179,10 @@
     self.clickImageBlock(tag);
 }
 - (IBAction)shareAction:(id)sender {
-    self.shareblock(self);
+    self.shareblock(self.tag);
 }
 - (IBAction)zanTalkAction:(UIButton *)sender {
-    self.clickDetailblock(sender.tag,self);
+    self.clickDetailblock(sender.tag,self.tag);
 }
     
     //添加轮播图

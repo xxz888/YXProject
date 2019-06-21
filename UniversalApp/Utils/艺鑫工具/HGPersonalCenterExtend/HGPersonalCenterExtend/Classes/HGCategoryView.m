@@ -58,9 +58,9 @@ static NSString * const SegmentHeaderViewCollectionViewCellIdentifier = @"Segmen
         _cellSpacing = 0;
         _leftAndRightMargin = _cellSpacing;
         self.titleNormalColor = [UIColor grayColor];
-        self.titleSelectedColor = A_COlOR;
-        self.titleNomalFont = [UIFont systemFontOfSize:12];
-        self.titleSelectedFont = [UIFont systemFontOfSize:15];
+        self.titleSelectedColor = SEGMENT_COLOR;
+        self.titleNomalFont = [UIFont systemFontOfSize:14];
+        self.titleSelectedFont = [UIFont systemFontOfSize:18 weight:UIFontWeightBold];
         [self setupSubViews];
         self.underline.backgroundColor = KClearColor;
         self.underline.hidden = YES;

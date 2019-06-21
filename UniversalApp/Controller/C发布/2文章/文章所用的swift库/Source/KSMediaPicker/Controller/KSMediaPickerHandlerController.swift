@@ -1,6 +1,6 @@
 //
 //  KSMediaPickerHandlerController.swift
-// 
+//
 //
 //  Created by kinsun on 2019/3/21.
 //
@@ -13,7 +13,7 @@ open class KSMediaPickerHandlerController: UIViewController, UICollectionViewDat
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     private let _layout = {() -> UICollectionViewFlowLayout in
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -55,6 +55,7 @@ open class KSMediaPickerHandlerController: UIViewController, UICollectionViewDat
         
         _collectionView.register(classOjb.k_class_picture, forCellWithReuseIdentifier: classOjb.k_iden_picture)
         _collectionView.register(classOjb.k_class_video, forCellWithReuseIdentifier: classOjb.k_iden_video)
+        
         _collectionView.dataSource = self
         _collectionView.delegate = self
         view.addSubview(_collectionView)

@@ -29,7 +29,9 @@
         _deleteBtn.alpha = 0.6;
         [self addSubview:_deleteBtn];
         
-    
+        _videoImageView = [[UIImageView alloc]init];
+        [_videoImageView setImage:[UIImage imageNamed:@"icon_video_play"]];
+        [self addSubview:_videoImageView];
  
     }
     return self;
@@ -41,7 +43,7 @@
     _gifLable.frame = CGRectMake(self.tz_width - 25, self.tz_height - 14, 25, 14);
     _deleteBtn.frame = CGRectMake(self.tz_width - 15, 0, 15, 15);
         ViewRadius(_imageView, 5);
-    CGFloat width = self.tz_width / 3.0;
+    CGFloat width = self.tz_width / 4.0;
     _videoImageView.frame = CGRectMake(width, width, width, width);
 }
 

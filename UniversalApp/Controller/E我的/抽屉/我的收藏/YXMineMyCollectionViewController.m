@@ -11,6 +11,7 @@
 #import "YXMineMyCollectionTableViewCell.h"
 #import "YXHomeXueJiaPinPaiLastDetailViewController.h"
 #import "YXZhiNanViewController.h"
+#import "YXZhiNanDetailViewController.h"
 @interface YXMineMyCollectionViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSString * _sort;
 }
@@ -22,6 +23,7 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     self.title = @"我的收藏";
+    self.navigationController.navigationBar.hidden = YES;
     [self setInitTableView];
     _sort = @"0";
     
@@ -36,7 +38,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setHidden:NO];
+    [self.navigationController.navigationBar setHidden:YES];
     [self requestMyCollectionListGet];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -58,20 +60,45 @@
     }else if (sort == 2) {
         [self requestCigar_brand_details:kGetString(dic[@"target_id"]) indexPath:indexPath];
     }else if (sort == 3){
-        YXZhiNanViewController * vc = [[YXZhiNanViewController alloc]init];
-        NSDictionary * dic3 =
-        @{
-            @"is_collect":@"1",
-            @"father_id":kGetString(dic[@"id"]),
-            @"id":kGetString(dic[@"target_id"]),
-            @"intro":dic[@"intro"],
-            @"photo":@"",
-            @"is_next":@YES,
-            @"name":dic[@"name"],
-            @"photo_detail":dic[@"photo_detail"]
-        };
-        vc.startDic = [NSDictionary dictionaryWithDictionary:dic3];
-        [self.navigationController pushViewController:vc animated:YES];
+        if ([dic[@"detail"] count] > 0) {
+            YXZhiNanDetailViewController * vc = [[YXZhiNanDetailViewController alloc]init];
+            vc.smallIndex = 0;
+            vc.bigIndex = 0;
+            vc.startArray = [[NSMutableArray alloc] init];
+            NSDictionary * dic4 =
+            @{
+                @"id":kGetString(dic[@"target_id"]),
+                @"father_id":@"0",
+                @"intro":dic[@"intro"],
+                @"heat":@"0",
+                @"is_collect":@"1",
+                @"photo_detail":dic[@"photo_detail"],
+                @"collect_number":kGetString(dic[@"collect_number"]),
+                @"weight":@"0",
+                @"comment_number":kGetString(dic[@"comment_number"]),
+                @"is_next":@"",
+                @"name":dic[@"name"],
+                @"photo":@"",
+            };
+            [vc.startArray addObject:dic4];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            YXZhiNanViewController * vc = [[YXZhiNanViewController alloc]init];
+            NSDictionary * dic3 =
+            @{
+              @"is_collect":@"1",
+              @"father_id":kGetString(dic[@"id"]),
+              @"id":kGetString(dic[@"target_id"]),
+              @"intro":dic[@"intro"],
+              @"photo":@"",
+              @"is_next":@YES,
+              @"name":dic[@"name"],
+              @"photo_detail":dic[@"photo_detail"]
+              };
+            vc.startDic = [NSDictionary dictionaryWithDictionary:dic3];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+ 
     }
 }
 

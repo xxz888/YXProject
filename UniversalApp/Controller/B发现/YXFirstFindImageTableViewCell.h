@@ -36,7 +36,7 @@ typedef void(^Click1ImageBlock)(NSInteger);
 @property (nonatomic,copy) Click1ImageBlock clickImageBlock;
 @property (weak, nonatomic) IBOutlet UIImageView *imgV1;
 //分享
-typedef void(^Click1ShareBlock)(YXFirstFindImageTableViewCell *);
+typedef void(^Click1ShareBlock)(NSInteger);
 - (IBAction)shareAction:(id)sender;
 @property (nonatomic,copy) Click1ShareBlock shareblock;
 
@@ -53,8 +53,13 @@ typedef void(^ClickTag1Block)(NSString *);
 - (IBAction)zanTalkAction:(id)sender;
     
     
-typedef void(^clickInDetail)(NSInteger,YXFirstFindImageTableViewCell *cell);
+typedef void(^clickInDetail)(NSInteger,NSInteger);
 @property (nonatomic,copy) clickInDetail clickDetailblock;
+
+
+
+
+
 @property (weak, nonatomic) IBOutlet UIButton *zanBtn;
     @property (weak, nonatomic) IBOutlet UIView *midLunBoView;
     
@@ -71,7 +76,8 @@ typedef void(^clickInDetail)(NSInteger,YXFirstFindImageTableViewCell *cell);
     @property (weak, nonatomic) IBOutlet NSLayoutConstraint *coverImvHeight;
     @property (weak, nonatomic) IBOutlet UIImageView *coverImV;
     @property (weak, nonatomic) IBOutlet NSLayoutConstraint *coverTopHeight;
-    
+@property (weak, nonatomic) IBOutlet UIImageView *playImV;
+
 @end
 
 NS_ASSUME_NONNULL_END

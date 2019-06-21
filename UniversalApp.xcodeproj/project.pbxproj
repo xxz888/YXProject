@@ -478,6 +478,9 @@
 		BBB59B87228EA0250029D3D0 /* YXZhiNanCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB59B85228EA0250029D3D0 /* YXZhiNanCollectionViewCell.m */; };
 		BBB59B88228EA0250029D3D0 /* YXZhiNanCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB59B86228EA0250029D3D0 /* YXZhiNanCollectionViewCell.xib */; };
 		BBB59B8B228EB52A0029D3D0 /* YXPlusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB59B8A228EB5290029D3D0 /* YXPlusManager.m */; };
+		BBBBC0F922BCD2FF00F528E1 /* XLVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBBC0F322BCD2FE00F528E1 /* XLVideoPlayer.m */; };
+		BBBBC0FA22BCD2FF00F528E1 /* XLSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBBC0F622BCD2FE00F528E1 /* XLSlider.m */; };
+		BBBBC0FB22BCD2FF00F528E1 /* ImageResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BBBBC0F722BCD2FE00F528E1 /* ImageResources.bundle */; };
 		BBBCDBAE223F65540056C7DD /* HGPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBCDBA3223F65530056C7DD /* HGPageViewController.m */; };
 		BBBCDBAF223F65540056C7DD /* HGCenterBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBCDBA4223F65530056C7DD /* HGCenterBaseTableView.m */; };
 		BBBCDBB0223F65540056C7DD /* HGSegmentedPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBCDBA6223F65530056C7DD /* HGSegmentedPageViewController.m */; };
@@ -1479,6 +1482,11 @@
 		BBB59B86228EA0250029D3D0 /* YXZhiNanCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXZhiNanCollectionViewCell.xib; sourceTree = "<group>"; };
 		BBB59B89228EB5290029D3D0 /* YXPlusManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXPlusManager.h; sourceTree = "<group>"; };
 		BBB59B8A228EB5290029D3D0 /* YXPlusManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXPlusManager.m; sourceTree = "<group>"; };
+		BBBBC0F322BCD2FE00F528E1 /* XLVideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLVideoPlayer.m; sourceTree = "<group>"; };
+		BBBBC0F522BCD2FE00F528E1 /* XLSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLSlider.h; sourceTree = "<group>"; };
+		BBBBC0F622BCD2FE00F528E1 /* XLSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLSlider.m; sourceTree = "<group>"; };
+		BBBBC0F722BCD2FE00F528E1 /* ImageResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ImageResources.bundle; sourceTree = "<group>"; };
+		BBBBC0F822BCD2FE00F528E1 /* XLVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLVideoPlayer.h; sourceTree = "<group>"; };
 		BBBCDBA3223F65530056C7DD /* HGPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGPageViewController.m; sourceTree = "<group>"; };
 		BBBCDBA4223F65530056C7DD /* HGCenterBaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGCenterBaseTableView.m; sourceTree = "<group>"; };
 		BBBCDBA5223F65530056C7DD /* HGCategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGCategoryView.h; sourceTree = "<group>"; };
@@ -2464,8 +2472,10 @@
 		BB21FD3E22B0991E0059BCAC /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				BB21FD7622B0991E0059BCAC /* KSLayout.h */,
 				BB21FDB422B09B2D0059BCAC /* Tool.h */,
 				BB21FDB322B09B2D0059BCAC /* Tool.m */,
+				BB21FD8322B0991E0059BCAC /* KSExtension.swift */,
 				BB21FD3F22B0991E0059BCAC /* KSSwiftBridgingHeader.h */,
 				BB21FD4022B0991E0059BCAC /* KSMediaPicker.strings */,
 				BB21FD4322B0991E0059BCAC /* KSPageControl */,
@@ -2474,9 +2484,7 @@
 				BB21FD5022B0991E0059BCAC /* KSDisclosureIndicator */,
 				BB21FD5722B0991E0059BCAC /* KSMediaPicker */,
 				BB21FD7322B0991E0059BCAC /* KSSegmentedControl */,
-				BB21FD7622B0991E0059BCAC /* KSLayout.h */,
 				BB21FD7722B0991E0059BCAC /* KSMediaViewer */,
-				BB21FD8322B0991E0059BCAC /* KSExtension.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -3401,6 +3409,7 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BBBBC0F222BCD2FE00F528E1 /* VideoPlayer */,
 				BB688A1322ADE8BE00964FA3 /* OrgHalfLineLabel.h */,
 				BB688A1422ADE8BE00964FA3 /* OrgHalfLineLabel.m */,
 				BB9ECD47228002E900A12952 /* 自适应tf */,
@@ -4244,6 +4253,26 @@
 			children = (
 			);
 			path = "美酒咖啡";
+			sourceTree = "<group>";
+		};
+		BBBBC0F222BCD2FE00F528E1 /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				BBBBC0F322BCD2FE00F528E1 /* XLVideoPlayer.m */,
+				BBBBC0F422BCD2FE00F528E1 /* Slider */,
+				BBBBC0F722BCD2FE00F528E1 /* ImageResources.bundle */,
+				BBBBC0F822BCD2FE00F528E1 /* XLVideoPlayer.h */,
+			);
+			path = VideoPlayer;
+			sourceTree = "<group>";
+		};
+		BBBBC0F422BCD2FE00F528E1 /* Slider */ = {
+			isa = PBXGroup;
+			children = (
+				BBBBC0F522BCD2FE00F528E1 /* XLSlider.h */,
+				BBBBC0F622BCD2FE00F528E1 /* XLSlider.m */,
+			);
+			path = Slider;
 			sourceTree = "<group>";
 		};
 		BBBCDBA0223F65530056C7DD /* HGPersonalCenterExtend */ = {
@@ -5351,6 +5380,7 @@
 				BBD2C94521E0F67800350DCD /* ImageSelectedSmallOn@3x.png in Resources */,
 				BB928F6B21FAD02B0090A044 /* YXMineMyCaoGaoViewController.xib in Resources */,
 				BB29121F22156BB500FF484E /* Short Panetela.gif in Resources */,
+				BBBBC0FB22BCD2FF00F528E1 /* ImageResources.bundle in Resources */,
 				BB5FD87F21FEB87400B5F1A8 /* YXMineImageCollectionViewCell.xib in Resources */,
 				BBB59B1A228CF8CB0029D3D0 /* YXToolsColorTableViewCell.xib in Resources */,
 				BB29121E22156BB500FF484E /* Culebras.gif in Resources */,
@@ -5646,6 +5676,7 @@
 				BB21FDA722B0991E0059BCAC /* KSMediaViewerCell.m in Sources */,
 				BBADE4DB21F8665A0011E5FF /* YXMineImageDetailHeaderView.m in Sources */,
 				BBD2C9A821E2FA0600350DCD /* NSDictionary+TPDecription.m in Sources */,
+				BBBBC0F922BCD2FF00F528E1 /* XLVideoPlayer.m in Sources */,
 				BBD2C8F921E0F67700350DCD /* TZAssetModel.m in Sources */,
 				BB5DC69C2189CA38003F1998 /* SELUpdateAlertConst.m in Sources */,
 				BB21FDA122B0991E0059BCAC /* KSMediaPickerNavigationView.swift in Sources */,
@@ -5925,6 +5956,7 @@
 				BB6D2A3821EEC63900F5049F /* HCEmojiKeyboard.m in Sources */,
 				BBD2C8F821E0F67700350DCD /* TZVideoPlayerController.m in Sources */,
 				BBABDF39229BC3A20046683A /* YXZhiNan2Cell.m in Sources */,
+				BBBBC0FA22BCD2FF00F528E1 /* XLSlider.m in Sources */,
 				BBD2C8FB21E0F67700350DCD /* UIView+Layout.m in Sources */,
 				BBD2C83A21E0F44A00350DCD /* VTingTimeView.m in Sources */,
 				BB3CA496221F948E00C6793D /* YXFaBuBaseViewController.m in Sources */,
@@ -6232,6 +6264,7 @@
 					"$(PROJECT_DIR)/UniversalApp/Utils/艺鑫工具",
 					"$(PROJECT_DIR)/UniversalApp/Utils/艺鑫工具/LocationSend",
 				);
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/UniversalApp/Supporting Flies/PrefixHeader.pch";
 				INFOPLIST_FILE = "UniversalApp/Supporting Flies/Info.plist";
@@ -6247,6 +6280,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = UniversalApp/MDBridgingHeader.h;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/UniversalApp/Define";
@@ -6269,6 +6303,7 @@
 					"$(PROJECT_DIR)/UniversalApp/Utils/艺鑫工具",
 					"$(PROJECT_DIR)/UniversalApp/Utils/艺鑫工具/LocationSend",
 				);
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/UniversalApp/Supporting Flies/PrefixHeader.pch";
 				INFOPLIST_FILE = "UniversalApp/Supporting Flies/Info.plist";
@@ -6284,6 +6319,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = UniversalApp/MDBridgingHeader.h;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/UniversalApp/Define";

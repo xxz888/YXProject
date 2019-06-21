@@ -14,4 +14,5 @@ pod "MLLabel"
 pod "UUButton"
 pod 'ZXSegmentController'
 pod 'BlocksKit'
+pod 'MLeaksFinder'
 end
