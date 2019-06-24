@@ -26,11 +26,11 @@
     CGFloat webViewHeight;//webview高度
     CGFloat coverHeight;//封面高度
     BOOL webViewFinishBOOL;//判断webview是否加载完成
-    XLVideoPlayer *_player;
 
 }
 @property (nonatomic,strong)  YXFirstFindImageTableViewCell * cell;
 @property (nonatomic,strong)  NSDictionary * shareDic;
+@property (nonatomic,strong)  XLVideoPlayer * player;
 
 
 @end
@@ -43,6 +43,7 @@
     [super viewDidLoad];
     [QMUITips showLoadingInView:self.view];
     [self initAllControl];
+    self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
 }
 - (void)viewDidAppear:(BOOL)animated{
@@ -107,10 +108,23 @@
 - (XLVideoPlayer *)player {
     if (!_player) {
         _player = [[XLVideoPlayer alloc] init];
-        _player.frame = CGRectMake(0, 0, kScreenWidth-20, 180);
+        CGFloat scale = [self getVideoWidthWithSourcePath:self.startDic[@"url_list"][0]];
+        _player.frame = CGRectMake(0, 0, kScreenWidth-20, ( KScreenWidth - 20 ) * scale);
         _player.cell = self.cell;
     }
     return _player;
+}
+
+- (double)getVideoWidthWithSourcePath:(NSString *)path{
+    AVURLAsset*asset = [AVURLAsset assetWithURL:[NSURL URLWithString:path]];
+    NSArray *array = asset.tracks;CGSize videoSize=CGSizeZero;
+    for(AVAssetTrack*track in array){
+        if([track.mediaType isEqualToString:AVMediaTypeVideo]){
+           videoSize = track.naturalSize;
+        }
+    }
+    double scale = videoSize.height/videoSize.width;
+    return scale;
 }
 -(void)setHeaderView{
     [self.cell setCellValue:self.startDic];
@@ -134,9 +148,18 @@
         //这里判断晒图是图还是视频
         if ([self.startDic[@"url_list"] count] > 0) {
             if ([kGetString(self.startDic[@"url_list"][0]) containsString:@"mp4"]) {
+                CGFloat scale = [self getVideoWidthWithSourcePath:self.startDic[@"url_list"][0]];
+                self.cell.midViewHeight.constant = ( KScreenWidth - 20 ) * scale;
+
                 self.cell.playImV.hidden = YES;
                 self.player.videoUrl = self.startDic[@"url_list"][0];
                 [self.cell.onlyOneImv addSubview:self.player];
+
+                CGRect Frame = self.cell.frame;
+                Frame.size.height= self.headerViewHeight - 220 + self.cell.midViewHeight.constant;
+
+                self.cell.frame= Frame;
+                
             }else if([self.startDic[@"url_list"] count] >= 4){
                 [self.cell setUpSycleScrollView:self.startDic[@"url_list"] height:KScreenWidth - 20];
                 self.cell.rightCountLbl.text = [NSString stringWithFormat:@"%@/%lu",@"1",(unsigned long)[self.startDic[@"url_list"] count]];
@@ -358,7 +381,7 @@
         if ([formalArray[i][@"child_list"] count] == 0) {
             model.moreCountPL = @"0";
         }else{
-            model.moreCountPL = [NSString stringWithFormat:@"%ld",[formalArray[i][@"child_number"] integerValue] - [formalArray[i][@"child_list"] count]];
+            model.moreCountPL = [NSString stringWithFormat:@"%u",[formalArray[i][@"child_number"] integerValue] - [formalArray[i][@"child_list"] count]];
         }
       
         [pageDic setValue:@([model.id intValue]) forKey:@"id"];

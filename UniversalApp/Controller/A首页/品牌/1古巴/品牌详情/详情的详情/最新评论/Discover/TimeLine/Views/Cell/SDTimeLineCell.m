@@ -58,7 +58,15 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
 
 }
 
-
+#pragma mark - 绘制Cell分割线
+- (void)drawRect:(CGRect)rect {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
+    CGContextFillRect(context, rect);
+    //下分割线
+    CGContextSetStrokeColorWithColor(context,CLineColor.CGColor);
+    CGContextStrokeRect(context, CGRectMake(60, rect.size.height, rect.size.width, 0.5));
+}
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setup];
@@ -68,9 +76,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     return self;
 }
 
-- (void)setup
-{
-    
+- (void)setup{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveOperationButtonClickedNotification:) name:kSDTimeLineCellOperationButtonClickedNotification object:nil];
     
     self.selectionStyle = 0;
@@ -125,6 +131,11 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     
     
     _picContainerView = [SDWeiXinPhotoContainerView new];
+    
+    _bottomLine = [UIView new];
+    _bottomLine.backgroundColor = kLinkTextColor;
+    
+    
     
     kWeakSelf(self);
     _commentView = [SDTimeLineCellCommentView new];
@@ -190,6 +201,10 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     [_nameLable setSingleLineAutoResizeWithMaxWidth:200];
     
     
+    
+ 
+    
+    
     _starView.sd_layout
     .leftSpaceToView(_nameLable, margin)
     .topSpaceToView(contentView, margin)
@@ -202,6 +217,13 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     .topSpaceToView(_nameLable, 5)
     .heightIs(15);
 
+    
+    _bottomLine.sd_layout
+    .leftEqualToView(_nameLable)
+    .bottomSpaceToView(self.contentView, 1)
+    .rightSpaceToView(contentView, 0)
+    .heightIs(10);
+    
     [_timeLabel setSingleLineAutoResizeWithMaxWidth:200];
     
     _contentLabel.sd_layout
@@ -282,6 +304,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     .topSpaceToView(_contentLabel, margin); // 已经在内部实现高度自适应所以不需要再设置高度
     
     
+    
     _showMoreCommentBtn.sd_layout
     .topSpaceToView(_commentView, 10)
     .rightSpaceToView(self.contentView, -10)
@@ -295,6 +318,8 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     .heightIs(36)
     .centerYEqualToView(_operationButton)
     .widthIs(0);
+    
+    
 }
 -(void)tapAction:(id)sender{
     self.imgBlock(self);

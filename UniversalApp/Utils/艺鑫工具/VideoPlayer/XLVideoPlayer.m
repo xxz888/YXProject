@@ -14,7 +14,7 @@
 #define kBarShowDuration 4.0f
 #define kOpacity 0.7f
 #define kBottomBaHeight 40.0f
-#define kPlayBtnSideLength 60.0f
+#define kPlayBtnSideLength 30.0f
 
 @interface XLVideoPlayer ()
 
@@ -288,6 +288,7 @@
 - (UIButton *)playOrPauseBtn {
     if (!_playOrPauseBtn) {
         _playOrPauseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        CGRect oldFrame = _playOrPauseBtn.frame;
         _playOrPauseBtn.layer.opacity = 0.0f;
         _playOrPauseBtn.contentMode = UIViewContentModeCenter;
         [_playOrPauseBtn setBackgroundImage:[UIImage imageNamed:@"ImageResources.bundle/play"] forState:UIControlStateNormal];
@@ -399,11 +400,9 @@
     
     if(self.player.rate == 0){      //pause
         btn.selected = YES;
-        cell.playImV.hidden = NO;
         [self.player play];
     }else if(self.player.rate == 1){    //playing
         [self.player pause];
-        cell.playImV.hidden = YES;
         btn.selected = NO;
     }
 }

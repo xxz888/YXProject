@@ -64,6 +64,7 @@
 @property (nonatomic, copy) void (^didLongClickCommentLabelBlock)(NSString *commentId, CGRect rectInWindow, SDTimeLineCell *cell,NSInteger tag);
 @property (nonatomic, strong) UIButton * zanButton;
 @property (nonatomic, strong) UILabel * zanCountLable;
+@property (nonatomic, strong) UIView * bottomLine;
 
 
 @property (nonatomic, strong) UIImageView *iconView;
