@@ -105,6 +105,7 @@
         self.midViewHeight.constant = kScreenWidth - 20;;
         NSArray * urlList = dic[@"url_list"];
         self.countLbl.text = NSIntegerToNSString(urlList.count);
+        //如果只是图片，并且为4张
         if ([urlList count] >= 4) {
             self.onlyOneImv.hidden = YES;
             self.imgV1.hidden = self.imgV2.hidden = self.imgV3.hidden = self.imgV4.hidden = self.stackView.hidden = NO;
@@ -116,18 +117,22 @@
             [self.imgV3 sd_setImageWithURL:[NSURL URLWithString:string3] placeholderImage:[UIImage imageNamed:@"img_moren"]];
             NSString * string4 = [(NSMutableString *)urlList[3] replaceAll:@" " target:@"%20"];
             [self.imgV4 sd_setImageWithURL:[NSURL URLWithString:string4] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-            self.playImV.hidden = YES;
-
+            
+  
+            
         }else{
-            self.onlyOneImv.hidden = NO;
+
             self.imgV1.hidden = self.imgV2.hidden = self.imgV3.hidden = self.imgV4.hidden = self.stackView.hidden = YES;
             //这里判断晒图是图还是视频
             if ([kGetString(urlList[0]) containsString:@"mp4"]) {
                 self.playImV.hidden = NO;
                 self.midViewHeight.constant = 180;
+                //如果是图片，为1张图片，有可能是晒图，有可能视频
+                self.onlyOneImv.hidden = NO;
             }else{
-                self.playImV.hidden = YES;
                 self.midViewHeight.constant = kScreenWidth - 20;;
+                self.playImV.hidden = YES;
+
             }
             NSString * string = [(NSMutableString *)urlList[0] replaceAll:@" " target:@"%20"];
             [self.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];

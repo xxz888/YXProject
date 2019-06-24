@@ -16,6 +16,7 @@
 }
 @property (nonatomic, strong) UICollectionView *yxCollectionView;
 @property (strong, nonatomic) UICollectionViewFlowLayout *layout;
+
 @end
 
 @implementation YXFaBuBaseViewController
@@ -30,22 +31,30 @@
     
     
     
-    
     //这一步开始上传
     kWeakSelf(self);
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         dispatch_semaphore_t sema = dispatch_semaphore_create(0);
         for (NSInteger i = 0; i < [outputArray count]; i++) {
             KSMediaPickerOutputModel * model = outputArray[i];
-            
-            
-            
-            if (model.mediaType == PHAssetMediaTypeVideo) {
+                if (model.mediaType == PHAssetMediaTypeVideo) {
+                    weakself.fabuType = YES;
                 [QiniuLoad uploadVideoToQNFilePath:model.videoAsset.URL success:^(NSString *reslut) {
                     [weakself.photoImageList addObject:reslut];
                     dispatch_semaphore_signal(sema);
                 } failure:^(NSString *error) {}];
+                    
+                UIImage * cover = [weakself getVideoPreViewImage:model.videoAsset.URL];
+                //先上传到七牛云图片  再提交服务器
+                [QiniuLoad uploadImageToQNFilePath:@[cover] success:^(NSString *reslut) {
+                    NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
+                    if (qiniuArray.count > 0) {
+                        weakself.videoCoverImageString = qiniuArray[0];
+                    }
+                    dispatch_semaphore_signal(sema);
+                } failure:^(NSString *error) {}];
             }else{
+                weakself.fabuType = NO;
                 //先上传到七牛云图片  再提交服务器
                 [QiniuLoad uploadImageToQNFilePath:@[model.image] success:^(NSString *reslut) {
                     NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
@@ -81,7 +90,7 @@
     //3. 添加手势到view对象上
     [self.view addGestureRecognizer:swipe];
     
-    
+    self.videoCoverImageString=@"";
     _selectedPhotos = [NSMutableArray array];
     [self configCollectionView];
 }
@@ -304,6 +313,10 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.item == _selectedPhotos.count) {
         /// 两个参数都请不要传0，因为没处理单媒体类型录影和拍照的问题
+        if (_selectedPhotos.count == 1 && self.fabuType) {
+            [QMUITips showInfo:@"只能上传一个视频!" inView:self.view hideAfterDelay:2];
+            return;
+        }
         KSMediaPickerController *ctl = [KSMediaPickerController.alloc initWithMaxVideoItemCount:1 maxPictureItemCount:9];
         ctl.delegate = self;
         KSNavigationController *nav = [KSNavigationController.alloc initWithRootViewController:ctl];
@@ -329,5 +342,21 @@
     } completion:^(BOOL finished) {
         [self->_yxCollectionView reloadData];
     }];
+}
+
+
+
+// 获取视频第一帧
+- (UIImage*)getVideoPreViewImage:(NSURL *)path{
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:path options:nil];
+    AVAssetImageGenerator *assetGen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    assetGen.appliesPreferredTrackTransform = YES;
+    CMTime time = CMTimeMakeWithSeconds(0.0, 600);
+    NSError *error = nil;
+    CMTime actualTime;
+    CGImageRef image = [assetGen copyCGImageAtTime:time actualTime:&actualTime error:&error];
+    UIImage *videoImage = [[UIImage alloc] initWithCGImage:image];
+    CGImageRelease(image);
+    return videoImage;
 }
 @end

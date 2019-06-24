@@ -17,6 +17,8 @@
 #import "UIImage+ImgSize.h"
 #import "YXFirstFindImageTableViewCell.h"
 #import "HGPersonalCenterViewController.h"
+#import "XLVideoPlayer.h"
+
 @interface YXMineImageDetailViewController ()<ZInputToolbarDelegate,QMUIMoreOperationControllerDelegate,SDCycleScrollViewDelegate,UIWebViewDelegate>{
     CGFloat imageHeight;
     
@@ -24,6 +26,8 @@
     CGFloat webViewHeight;//webview高度
     CGFloat coverHeight;//封面高度
     BOOL webViewFinishBOOL;//判断webview是否加载完成
+    XLVideoPlayer *_player;
+
 }
 @property (nonatomic,strong)  YXFirstFindImageTableViewCell * cell;
 @property (nonatomic,strong)  NSDictionary * shareDic;
@@ -100,6 +104,14 @@
         [QMUITips hideAllTipsInView:self.view];
 
 }
+- (XLVideoPlayer *)player {
+    if (!_player) {
+        _player = [[XLVideoPlayer alloc] init];
+        _player.frame = CGRectMake(0, 0, kScreenWidth-20, 180);
+        _player.cell = self.cell;
+    }
+    return _player;
+}
 -(void)setHeaderView{
     [self.cell setCellValue:self.startDic];
  
@@ -107,12 +119,35 @@
     CGRect oldFrame = self.cell.frame;
     CGFloat newHeight =  self.headerViewHeight;
     self.cell.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width, newHeight);
+    
+    
+    
+    
+
+    
+    
     //晒图
     if ([self.startDic[@"obj"] integerValue] == 1) {
-        [self.cell setUpSycleScrollView:self.startDic[@"url_list"] height:KScreenWidth - 20];
-        self.cell.rightCountLbl.text = [NSString stringWithFormat:@"%@/%lu",@"1",(unsigned long)[self.startDic[@"url_list"] count]];
-        self.cell.rightCountLbl.hidden = [self.cell.rightCountLbl.text isEqualToString:@"1/1"] || [self.cell.rightCountLbl.text isEqualToString:@"1/0"];
+        
         [QMUITips hideAllTipsInView:self.view];
+        
+        //这里判断晒图是图还是视频
+        if ([self.startDic[@"url_list"] count] > 0) {
+            if ([kGetString(self.startDic[@"url_list"][0]) containsString:@"mp4"]) {
+                self.cell.playImV.hidden = YES;
+                self.player.videoUrl = self.startDic[@"url_list"][0];
+                [self.cell.onlyOneImv addSubview:self.player];
+            }else if([self.startDic[@"url_list"] count] >= 4){
+                [self.cell setUpSycleScrollView:self.startDic[@"url_list"] height:KScreenWidth - 20];
+                self.cell.rightCountLbl.text = [NSString stringWithFormat:@"%@/%lu",@"1",(unsigned long)[self.startDic[@"url_list"] count]];
+                self.cell.rightCountLbl.hidden = [self.cell.rightCountLbl.text isEqualToString:@"1/1"] || [self.cell.rightCountLbl.text isEqualToString:@"1/0"];
+            }
+        }else{
+            
+        }
+     
+        
+        
     }else{
         self.cell.imgV1.hidden = self.cell.imgV2.hidden = self.cell.imgV3.hidden = self.cell.imgV4.hidden = self.cell.stackView.hidden = self.cell.onlyOneImv.hidden = YES;
         self.cell.cellWebView.hidden = NO;
@@ -131,6 +166,13 @@
     }
     zanBool =  [self.startDic[@"is_praise"] integerValue] == 1;
     self.yxTableView.tableHeaderView = self.cell;
+    
+    
+    
+    
+    
+
+    
     kWeakSelf(self);
     self.cell.shareblock = ^(NSInteger tag1) {
         NSIndexPath * indexPathSelect = [NSIndexPath indexPathForRow:tag1  inSection:0];
@@ -142,7 +184,7 @@
         UserInfo * userInfo = curUser;
         BOOL isOwn = [weakself.startDic[@"user_id"] integerValue] == [userInfo.id integerValue];
         weakself.shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
-        [weakself saveImageIsOwn:isOwn isWho:@"1" tag:cell.tagId];
+        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:cell.tagId startDic:cell.dataDic];
     };
     self.cell.clickImageBlock = ^(NSInteger tag) {
         if (![userManager loadUserInfo]) {
@@ -495,28 +537,6 @@
 
 
 
-- (void)saveImageIsOwn:(BOOL)isOwn isWho:(NSString *)isWho tag:(NSInteger)tagId{
-    UIImage* viewImage = nil;
-    UITableView *scrollView = self.yxTableView;
-    UIGraphicsBeginImageContextWithOptions(scrollView.contentSize, scrollView.opaque, 0.0);{
-        CGPoint savedContentOffset = scrollView.contentOffset;
-        CGRect savedFrame = scrollView.frame;
-        scrollView.contentOffset = CGPointZero;
-        scrollView.frame = CGRectMake(0, 0, scrollView.contentSize.width, scrollView.contentSize.height);
-        [scrollView.layer renderInContext: UIGraphicsGetCurrentContext()];
-        viewImage = UIGraphicsGetImageFromCurrentImageContext();
-        scrollView.contentOffset = savedContentOffset;
-        scrollView.frame = savedFrame;
-    }
-    UIGraphicsEndImageContext();
-    kWeakSelf(self);
-    //先上传到七牛云图片  再提交服务器
-    [QiniuLoad uploadImageToQNFilePath:@[viewImage] success:^(NSString *reslut) {
-        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:isWho tag:tagId startDic:@{@"img":reslut}];
-    } failure:^(NSString *error) {
-        NSLog(@"%@",error);
-    }];
-}
 
 #pragma mark ========== 分享 ==========
 - (void)addGuanjiaShareViewIsOwn:(BOOL)isOwn isWho:(NSString *)isWho tag:(NSInteger)tagId startDic:(NSDictionary *)startDic{
@@ -546,7 +566,6 @@
         }else if ([isWho isEqualToString:@"3"]){
             [YX_MANAGER requestDel_ZuJi:NSIntegerToNSString(tagId) success:^(id object) {
                 [QMUITips showSucceed:@"删除成功"];
-                
                 [weakself.navigationController popViewControllerAnimated:YES];
             }];
         }
@@ -581,30 +600,79 @@
         [itemsArray1 removeObjectAtIndex:0];
         [itemsArray1 removeObjectAtIndex:0];
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     moreOperationController.items = @[
+                                      // 第一行
                                       @[
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareFriend") title:@"分享给微信好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_WechatSession obj:startDic];
+                                              [weakself saveImage:UMSocialPlatformType_WechatSession];
                                           }],
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareMoment") title:@"分享到朋友圈" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_WechatTimeLine obj:startDic];
+                                              [weakself saveImage:UMSocialPlatformType_WechatTimeLine];
+                                              
                                           }],
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_QQ") title:@"分享给QQ好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-                                              [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_QQ obj:startDic];
+                                              [weakself saveImage:UMSocialPlatformType_QQ];
+                                              
                                           }],
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_Qzone obj:startDic];
+                                              [weakself saveImage:UMSocialPlatformType_Qzone];
+                                              
                                           }],
                                           ],
-                                          itemsArray1
+                                      itemsArray1
+                                      // 第二行
+                                      
                                       ];
     [moreOperationController showFromBottom];
     
 }
-
+- (void)saveImage:(UMSocialPlatformType)umType{
+    UIImage* viewImage = nil;
+    UITableView *scrollView = self.yxTableView;
+    UIGraphicsBeginImageContextWithOptions(scrollView.contentSize, scrollView.opaque, 0.0);{
+        CGPoint savedContentOffset = scrollView.contentOffset;
+        CGRect savedFrame = scrollView.frame;
+        scrollView.contentOffset = CGPointZero;
+        scrollView.frame = CGRectMake(0, 0, scrollView.contentSize.width, scrollView.contentSize.height);
+        [scrollView.layer renderInContext: UIGraphicsGetCurrentContext()];
+        viewImage = UIGraphicsGetImageFromCurrentImageContext();
+        scrollView.contentOffset = savedContentOffset;
+        scrollView.frame = savedFrame;
+    }
+    UIGraphicsEndImageContext();
+    //先上传到七牛云图片  再提交服务器
+    [QiniuLoad uploadImageToQNFilePath:@[viewImage] success:^(NSString *reslut) {
+        [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:umType obj:@{@"img":reslut}];
+    } failure:^(NSString *error) {
+        NSLog(@"%@",error);
+    }];
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [_player destroyPlayer];
+    _player = nil;
+}
 
 @end

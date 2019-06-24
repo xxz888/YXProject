@@ -172,7 +172,5 @@
         [self presentViewController:nav2 animated:NO completion:nil];
     }];
 }
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
-}
+
 @end

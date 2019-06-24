@@ -46,21 +46,31 @@
 
 //如果是从发现界面编辑进来的
 -(void)faxianEditCome{
-        //标签
-        self.tagArray = [NSMutableArray arrayWithArray:[_startDic[@"tag"] split:@" "]];
-        [self addNewTags];
-        //地点
-        self.locationString = [_startDic[@"publish_site"] isEqualToString:@""] ? @"获取地理位置" :  _startDic[@"publish_site"] ;
-        [self.locationBtn setTitle:self.locationString forState:UIControlStateNormal];
+    //标签
+    self.tagArray = [NSMutableArray arrayWithArray:[_startDic[@"tag"] split:@" "]];
+    [self addNewTags];
+    //地点
+    self.locationString = [_startDic[@"publish_site"] isEqualToString:@""] ? @"获取地理位置" :  _startDic[@"publish_site"] ;
+    [self.locationBtn setTitle:self.locationString forState:UIControlStateNormal];
 }
 #pragma mark ========== 发布1 和 存草稿0  ==========
 - (IBAction)fabuAction:(UIButton *)btn {
     [super fabuAction:btn];
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    
+    
     if ([self.selectedPhotos count] == [self.photoImageList count]) {
-        [self commonAction:self.photoImageList btn:btn];
+        if (self.fabuType){//视频
+            if([self.videoCoverImageString isEqualToString:@""]){
+                [QMUITips showInfo:@"正在上传,请稍等" inView:self.view hideAfterDelay:2];
+            }else{
+                [self commonAction:self.photoImageList btn:btn];
+            }
+        }else{//图片
+            [self commonAction:self.photoImageList btn:btn];
+        }
     }else{
-        [QMUITips showInfo:@"正在上传图片,请稍等" inView:self.view hideAfterDelay:2];
+        [QMUITips showInfo:@"正在上传,请稍等" inView:self.view hideAfterDelay:2];
     }
 }
 #define kQNinterface @"http://photo.thegdlife.com/"
@@ -83,11 +93,7 @@
     NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
     self.textViewInput = self.qmuiTextView.text;
     if (!_startDic && imgArray.count == 0) {
-        [QMUITips showInfo:@"请至少上传一张图片!" inView:self.view hideAfterDelay:2];
-        return;
-    }
-    if (self.textViewInput.length == 0){
-        [QMUITips showError:@"请输入描述!" inView:self.view hideAfterDelay:2];
+        [QMUITips showInfo:@"请至少上传一张图片或者一个视频!" inView:self.view hideAfterDelay:2];
         return;
     }
 //post_id 修改传，发布传空
@@ -95,7 +101,7 @@
 //title 标题 晒图不传
     [dic setValue:@"" forKey:@"title"];
 //封面
-    [dic setValue:@"" forKey:@"cover"];
+    [dic setValue:self.videoCoverImageString forKey:@"cover"];
 //detail 详情
     [dic setValue:[self.textViewInput utf8ToUnicode] forKey:@"detail"];
 //拼接photo_list

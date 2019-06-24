@@ -6,6 +6,7 @@
 
 
 #import <UIKit/UIKit.h>
+#import "YXFirstFindImageTableViewCell.h"
 @class XLVideoPlayer;
 
 typedef void (^VideoCompletedPlayingBlock) (XLVideoPlayer *videoPlayer);
@@ -40,5 +41,7 @@ typedef void (^VideoCompletedPlayingBlock) (XLVideoPlayer *videoPlayer);
  *  @param support        是否支持右下角小窗悬停播放
  */
 - (void)playerScrollIsSupportSmallWindowPlay:(BOOL)support;
+
+@property (nonatomic, strong) YXFirstFindImageTableViewCell * cell;
 
 @end

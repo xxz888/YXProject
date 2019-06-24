@@ -19,6 +19,8 @@ typedef void(^dismissBlock) ();
 
 @interface YXFaBuBaseViewController : RootViewController
 @property (nonatomic,assign) BOOL whereComeCaogao;//yes是草稿进来
+@property (nonatomic, strong) NSString * videoCoverImageString;
+@property (nonatomic, assign) BOOL fabuType;//NO晒图图片YES晒图视频
 
 @property (weak, nonatomic) IBOutlet UITextField *titleTf;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleTfHeight;

@@ -376,7 +376,9 @@
         YXFirstFindImageTableViewCell * cell = [self.bindTableView cellForRowAtIndexPath:self.currentIndexPath];
         [cell.onlyOneImv addSubview:self];
     }
-    
+    if (self.cell) {
+             [self.cell.onlyOneImv addSubview:self];
+    }
     [UIView animateWithDuration:0.3 animations:^{
         self.transform = CGAffineTransformMakeRotation(0);
         self.frame = self.playerOriginalFrame;
@@ -391,11 +393,17 @@
 #pragma mark - button action
 
 - (void)playOrPause:(UIButton *)btn {
+    
+    
+    YXFirstFindImageTableViewCell * cell = [self.bindTableView cellForRowAtIndexPath:self.currentIndexPath];
+    
     if(self.player.rate == 0){      //pause
         btn.selected = YES;
+        cell.playImV.hidden = NO;
         [self.player play];
     }else if(self.player.rate == 1){    //playing
         [self.player pause];
+        cell.playImV.hidden = YES;
         btn.selected = NO;
     }
 }
@@ -606,11 +614,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:[UIDevice currentDevice]];
     NSLog(@"video player - dealloc");
     
-    
-    if (self.bindTableView) {
-        YXFirstFindImageTableViewCell * cell = [self.bindTableView cellForRowAtIndexPath:self.currentIndexPath];
-        cell.playImV.hidden = NO;
-    }
+
 }
 
 @end
