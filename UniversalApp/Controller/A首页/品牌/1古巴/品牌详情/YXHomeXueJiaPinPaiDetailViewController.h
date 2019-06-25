@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) BOOL whereCome;//yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewHeight;
 @property (weak, nonatomic) IBOutlet UIButton *openBtn;
+- (IBAction)backVCAction:(id)sender;
+
 
 - (IBAction)openAction:(id)sender;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *zhushiHeight;

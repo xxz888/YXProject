@@ -285,6 +285,10 @@
     }];
 }
 
+- (IBAction)backVCAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (IBAction)openAction:(id)sender {
     if ([self.openBtn.titleLabel.text isEqualToString:@"↓ 展开"]) {
 //        self.textViewHeight.constant =  stringHeight ;
