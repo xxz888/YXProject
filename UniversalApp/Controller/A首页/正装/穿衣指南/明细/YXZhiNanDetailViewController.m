@@ -39,6 +39,10 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:NO];
 }
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setHidden:YES];
+}
 -(void)requestStartZhiNanGet{
     if ([self.startArray[0][@"father_id"] integerValue] == 0) {
         return;

@@ -23,11 +23,11 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     self.title = @"我的收藏";
-    self.navigationController.navigationBar.hidden = YES;
     [self setInitTableView];
     _sort = @"0";
     
 }
+
 -(void)requestMyCollectionListGet{
    kWeakSelf(self);
     NSString * par = [NSString stringWithFormat:@"%@/%@",_sort,NSIntegerToNSString(self.requestPage)];
@@ -40,6 +40,10 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
     [self requestMyCollectionListGet];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setHidden:NO];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArray.count;

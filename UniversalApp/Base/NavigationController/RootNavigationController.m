@@ -38,7 +38,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.isSystemSlidBack = YES;
 }
 
 //push时隐藏tabbar

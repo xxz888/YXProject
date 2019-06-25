@@ -10,11 +10,36 @@
 #import "YXGridView.h"
 #import "YXHomeXueJiaPinPaiTableViewCell.h"
 #import "YXHomeXueJiaPinPaiDetailViewController.h"
-@interface YXHomeXueJiaGuBaViewController()<UITableViewDelegate,UITableViewDataSource>
+@interface YXHomeXueJiaGuBaViewController()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 @property(nonatomic, strong) QMUIGridView *gridView;
+@property (nonatomic) BOOL isCanBack;
 
 @end
 @implementation YXHomeXueJiaGuBaViewController
+
+#pragma mark -- 禁用边缘返回
+-(void)forbiddenSideBack{
+    self.isCanBack = NO;
+    //关闭ios右滑返回
+    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate=self;
+    }
+}
+#pragma mark --恢复边缘返回
+- (void)resetSideBack {
+    self.isCanBack=YES;
+    //开启ios右滑返回
+    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+    }
+}
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer*)gestureRecognizer {
+    return self.isCanBack;
+}
+
+
+
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 }

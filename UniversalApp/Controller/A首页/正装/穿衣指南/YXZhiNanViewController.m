@@ -27,6 +27,10 @@
     [self.navigationController.navigationBar setHidden:YES];
     [self requestZhiNanGet];
 }
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setHidden:NO];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initTableView];
@@ -127,7 +131,6 @@
 }
 -(void)initTableView{
     _contentHeight = 56;
-    [self.navigationController.navigationBar setHidden:NO];
     self.dataArray = [[NSMutableArray alloc]init];
     self.collArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNanTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXZhiNanTableViewCell"];

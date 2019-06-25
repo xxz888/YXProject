@@ -50,6 +50,7 @@
     self.navigationController.navigationBar.hidden = YES;
 
 }
+
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     //初始化所有的控件

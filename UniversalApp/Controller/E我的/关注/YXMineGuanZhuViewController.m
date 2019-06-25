@@ -19,7 +19,8 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    self.navigationController.navigationBar.hidden = NO;
+
     
     
 
@@ -29,12 +30,14 @@
     [self.dataArray addObjectsFromArray:object];
     [self.yxTableView reloadData];
 }
-
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setHidden:YES];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"关注列表";
-    self.navigationController.navigationBar.hidden = NO;
     self.dataArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXMineCommon1TableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineCommon1TableViewCell"];
     /*

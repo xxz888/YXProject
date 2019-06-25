@@ -13,7 +13,7 @@
 #import "GCDAsyncUdpSocket.h"
 #import "UDPManage.h"
 #import "HGSegmentedPageViewController.h"
-
+#import "YXHomeXueJiaGuBaViewController.h"
 @interface YXHomeXueJiaViewController ()<UITableViewDelegate,UITableViewDataSource,ClickGridView,UIGestureRecognizerDelegate>
 @property (nonatomic) BOOL isCanBack;
 @property (nonatomic, strong) HGSegmentedPageViewController *segmentedPageViewController;
@@ -21,34 +21,6 @@
 @end
 
 @implementation YXHomeXueJiaViewController
-
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    [self forbiddenSideBack];
-}
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    [self resetSideBack];
-}
-#pragma mark -- 禁用边缘返回
--(void)forbiddenSideBack{
-    self.isCanBack = NO;
-    //关闭ios右滑返回
-    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        self.navigationController.interactivePopGestureRecognizer.delegate=self;
-    }
-}
-#pragma mark --恢复边缘返回
-- (void)resetSideBack {
-    self.isCanBack=YES;
-    //开启ios右滑返回
-    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
-    }
-}
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer*)gestureRecognizer {
-    return self.isCanBack;
-}
 
 
 
@@ -84,6 +56,11 @@
 
     //[self commonRequest];
 }
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setHidden:NO];
+
+}
 -(void)initSegment{
     [self addChildViewController:self.segmentedPageViewController];
     [self.view addSubview:self.segmentedPageViewController.view];
@@ -97,7 +74,7 @@
     if (!_segmentedPageViewController) {
         UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
         //品牌
-        YXHomeXueJiaPinPaiViewController * vc1 = [stroryBoard instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiViewController"];
+//        YXHomeXueJiaPinPaiViewController * vc1 = [stroryBoard instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiViewController"];
         //文化
         YXHomeXueJiaWenHuaViewController * vc2 = [[YXHomeXueJiaWenHuaViewController alloc]init];
         //工具
@@ -105,7 +82,11 @@
         //问答
         YXHomeXueJiaQuestionViewController * vc4 = [[YXHomeXueJiaQuestionViewController alloc]init];
         //雪茄
-    
+        YXHomeXueJiaGuBaViewController *vc1 = [[YXHomeXueJiaGuBaViewController alloc]init];
+        vc1.whereCome = NO;
+        
+        
+        
         vc4.whereCome = TYPE_XUEJIA_1;
         //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
         NSArray* titles =  @[@"正装",@"雪茄",@"品牌"];

@@ -50,35 +50,6 @@ static CGFloat const HeaderImageViewHeight =260;
 
 @implementation HGPersonalCenterViewController
 
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    [self forbiddenSideBack];
-}
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    [self resetSideBack];
-}
-#pragma mark -- 禁用边缘返回
--(void)forbiddenSideBack{
-    self.isCanBack = NO;
-    //关闭ios右滑返回
-    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        self.navigationController.interactivePopGestureRecognizer.delegate=self;
-    }
-}
-#pragma mark --恢复边缘返回
-- (void)resetSideBack {
-    self.isCanBack=YES;
-    //开启ios右滑返回
-    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
-    }
-}
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer*)gestureRecognizer {
-    return self.isCanBack;
-}
-
-
 
 #pragma mark - Life Cycle
 - (void)viewDidLoad {
@@ -101,7 +72,10 @@ static CGFloat const HeaderImageViewHeight =260;
     [self updateNavigationBarBackgroundColor];
     [self setViewData];
 }
-
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setHidden:NO];
+}
 #pragma mark - Private Methods
 - (void)setupSubViews {
     kWeakSelf(self);
@@ -290,22 +264,8 @@ static CGFloat const HeaderImageViewHeight =260;
     
     
     if(contentOffsetY <= -HeaderImageViewHeight) {
-        
-        if (self.isEnlarge) {
-            CGRect f = self.headerView.frame;
-            
-            //改变HeadImageView的frame
-            //上下放大
-            f.origin.y = contentOffsetY;
-            f.size.height = -contentOffsetY;
-            //左右放大
-            f.origin.x = 0;//(contentOffsetY * SCREEN_WIDTH / HeaderImageViewHeight + SCREEN_WIDTH) / 2;
-            f.size.width = KScreenWidth;//-contentOffsetY * SCREEN_WIDTH / HeaderImageViewHeight;
-            //改变头部视图的frame
-            self.headerView.frame = f;
-        }else{
+    
             scrollView.bounces = NO;
-        }
     }else {
         scrollView.bounces = YES;
     }

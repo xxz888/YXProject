@@ -16,19 +16,59 @@
 #import "YXHomeXueJiaToolsTableViewCell.h"
 #import "YXZhiNanViewController.h"
 
-@interface YXHomeXueJiaToolsViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface YXHomeXueJiaToolsViewController ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 @property (nonatomic,strong) NSMutableArray * titleArray;
 
 @property (strong, nonatomic) UITableView *yxTableView;
 @property (nonatomic,strong) UIView * view1;
+@property (nonatomic) BOOL isCanBack;
 
 @end
 
 @implementation YXHomeXueJiaToolsViewController
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self forbiddenSideBack];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self resetSideBack];
+}
+#pragma mark -- 禁用边缘返回
+-(void)forbiddenSideBack{
+    self.isCanBack = NO;
+    //关闭ios右滑返回
+    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate=self;
+    }
+}
+#pragma mark --恢复边缘返回
+- (void)resetSideBack {
+    self.isCanBack=YES;
+    //开启ios右滑返回
+    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+    }
+}
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer*)gestureRecognizer {
+    return self.isCanBack;
+}
+
+
+
+
+
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     YX_MANAGER.moreBool = NO;
+    [self.navigationController.navigationBar setHidden:YES];
+
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setHidden:NO];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,7 +96,6 @@
 }
 #pragma mark ========== 创建tableview ==========
 -(void)tableviewCon{
-    [self.navigationController.navigationBar setHidden:YES];
     
     self.titleArray = [[NSMutableArray alloc]init];
     self.yxTableView = [[UITableView alloc]init];

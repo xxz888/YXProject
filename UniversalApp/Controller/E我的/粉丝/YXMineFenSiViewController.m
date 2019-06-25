@@ -21,7 +21,12 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
 
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setHidden:YES];
 }
 -(void)commonAction:(id)object{
     self.dataArray = [self commonAction:object dataArray:self.dataArray];
@@ -30,7 +35,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"粉丝列表";
-    self.navigationController.navigationBar.hidden = NO;
 
     self.dataArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXMineCommon1TableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineCommon1TableViewCell"];

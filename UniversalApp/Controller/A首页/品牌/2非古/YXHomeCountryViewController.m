@@ -30,7 +30,10 @@
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:nil];
+    [self.navigationController.navigationBar setHidden:YES];
+
 }
+
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
     YXHomeXueJiaPinPaiSearchViewController * VC = [[YXHomeXueJiaPinPaiSearchViewController alloc]init];
     [self.navigationController pushViewController:VC animated:YES];

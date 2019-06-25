@@ -733,7 +733,7 @@
                                                     </connections>
                                                 </webView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZD-v1-wy3">
-                                                    <rect key="frame" x="15" y="40" width="30" height="30"/>
+                                                    <rect key="frame" x="20" y="31" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="7Qr-Nb-zbP"/>
                                                         <constraint firstAttribute="width" constant="30" id="pl4-6K-ed3"/>
@@ -753,8 +753,9 @@
                                                 <constraint firstItem="pzz-vu-1jH" firstAttribute="centerX" secondItem="Nbb-Vg-PvY" secondAttribute="centerX" id="AzA-ej-Cwt"/>
                                                 <constraint firstItem="tD6-1U-ukQ" firstAttribute="leading" secondItem="98x-WU-Gus" secondAttribute="leading" id="GcQ-iB-VCf"/>
                                                 <constraint firstItem="7pD-IJ-QiE" firstAttribute="centerY" secondItem="eLo-hq-TYk" secondAttribute="centerY" id="HbM-3g-pML"/>
+                                                <constraint firstItem="hZD-v1-wy3" firstAttribute="top" secondItem="98x-WU-Gus" secondAttribute="topMargin" constant="20" id="I4A-wv-kcs"/>
                                                 <constraint firstItem="tD6-1U-ukQ" firstAttribute="top" secondItem="cwP-JO-zdH" secondAttribute="bottom" id="Ihi-ho-LG6"/>
-                                                <constraint firstItem="hZD-v1-wy3" firstAttribute="leading" secondItem="98x-WU-Gus" secondAttribute="leading" constant="15" id="JNx-P4-iS2"/>
+                                                <constraint firstItem="hZD-v1-wy3" firstAttribute="leading" secondItem="98x-WU-Gus" secondAttribute="leading" constant="20" id="JNx-P4-iS2"/>
                                                 <constraint firstItem="pzz-vu-1jH" firstAttribute="top" secondItem="Nbb-Vg-PvY" secondAttribute="bottom" constant="20" id="M4L-Gl-B3H"/>
                                                 <constraint firstAttribute="trailing" secondItem="cwP-JO-zdH" secondAttribute="trailing" id="MfE-eA-fdS"/>
                                                 <constraint firstItem="7pD-IJ-QiE" firstAttribute="centerX" secondItem="pzz-vu-1jH" secondAttribute="centerX" multiplier="1.2" id="PM1-Ul-KUT"/>
@@ -771,7 +772,6 @@
                                                 <constraint firstAttribute="bottom" secondItem="OY7-b8-owG" secondAttribute="bottom" id="pGg-GQ-os2"/>
                                                 <constraint firstItem="lCx-o6-84t" firstAttribute="leading" secondItem="98x-WU-Gus" secondAttribute="leading" constant="10" id="wSK-ux-1r0"/>
                                                 <constraint firstItem="OY7-b8-owG" firstAttribute="leading" secondItem="98x-WU-Gus" secondAttribute="leading" id="y9l-qM-eg7"/>
-                                                <constraint firstItem="hZD-v1-wy3" firstAttribute="top" secondItem="Nbb-Vg-PvY" secondAttribute="top" constant="10" id="yiX-yV-5R6"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

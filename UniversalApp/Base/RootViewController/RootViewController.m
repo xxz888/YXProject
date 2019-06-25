@@ -49,20 +49,20 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.requestPage = 1;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnFindVC:) name:@"returnFind" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnHomeVC:) name:@"returnHome" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnFindVC:) name:@"returnFind" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnHomeVC:) name:@"returnHome" object:nil];
 
 }
-- (void)returnFindVC:(NSNotification *)notification{
-    self.navigationController.tabBarController.selectedIndex = 1;
-}
-- (void)returnHomeVC:(NSNotification *)notification{
-//    self.navigationController.tabBarController.selectedIndex = 0;
-    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-    RootViewController * VC = nil;
-    VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaFootViewController"];
-    [self.navigationController pushViewController:VC animated:YES];
-}
+//- (void)returnFindVC:(NSNotification *)notification{
+//    self.navigationController.tabBarController.selectedIndex = 1;
+//}
+//- (void)returnHomeVC:(NSNotification *)notification{
+////    self.navigationController.tabBarController.selectedIndex = 0;
+//    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+//    RootViewController * VC = nil;
+//    VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaFootViewController"];
+//    [self.navigationController pushViewController:VC animated:YES];
+//}
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

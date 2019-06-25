@@ -33,7 +33,6 @@
     self.automaticallyAdjustsScrollViewInsets=false;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     imagePicker = [ImagePicker sharedManager];
-    self.navigationController.navigationBar.hidden= NO;
     ViewRadius(self.finishBtn, 5);
     self.title = @"编辑个人资料";
     self.tableView.tableFooterView = [[UIView alloc]init];
@@ -54,7 +53,12 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden= NO;
 
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setHidden:YES];
 }
 #pragma mark - Table view data source
 

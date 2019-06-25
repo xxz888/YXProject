@@ -30,7 +30,7 @@
                                 </constraints>
                             </imageView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdD-3y-WV9">
-                                <rect key="frame" x="10" y="15" width="30" height="30"/>
+                                <rect key="frame" x="20" y="15" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="4eg-0G-Pwu"/>
                                     <constraint firstAttribute="height" constant="30" id="v55-vh-UyI"/>
@@ -78,7 +78,7 @@
                             <constraint firstItem="zbf-C6-pso" firstAttribute="height" secondItem="0TA-4C-OU6" secondAttribute="height" multiplier="0.4" id="DFN-Di-TiY"/>
                             <constraint firstAttribute="bottom" secondItem="oUU-ap-vuU" secondAttribute="bottom" id="EMF-b7-rO5"/>
                             <constraint firstAttribute="height" constant="50" id="Ji8-9g-5z4"/>
-                            <constraint firstItem="cdD-3y-WV9" firstAttribute="leading" secondItem="zsW-0y-r5X" secondAttribute="leading" constant="10" id="VLs-xK-UIM"/>
+                            <constraint firstItem="cdD-3y-WV9" firstAttribute="leading" secondItem="zsW-0y-r5X" secondAttribute="leading" constant="20" id="VLs-xK-UIM"/>
                             <constraint firstItem="cdD-3y-WV9" firstAttribute="centerY" secondItem="oUU-ap-vuU" secondAttribute="centerY" id="auZ-r7-pW4"/>
                             <constraint firstItem="0TA-4C-OU6" firstAttribute="leading" secondItem="3dD-Kk-h7J" secondAttribute="trailing" constant="10" id="eFL-cm-aCA"/>
                             <constraint firstItem="oUU-ap-vuU" firstAttribute="leading" secondItem="zsW-0y-r5X" secondAttribute="leading" constant="10" id="gcs-Fc-cGy"/>
