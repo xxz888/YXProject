@@ -63,7 +63,7 @@ static CGFloat const HeaderImageViewHeight =260;
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     [self setupSubViews];
     [self setLayoutCol];
-    self.isEnlarge = YES;
+    self.isEnlarge = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -153,7 +153,6 @@ static CGFloat const HeaderImageViewHeight =260;
     if (!_headerView) {
         NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXMineHeaderView" owner:self options:nil];
         _headerView = [nib objectAtIndex:0];
-        _headerView.frame = CGRectMake(0, -HeaderImageViewHeight, KScreenWidth, HeaderImageViewHeight);
         
         
         if (self.whereCome) {
@@ -166,11 +165,12 @@ static CGFloat const HeaderImageViewHeight =260;
         
         _headerView.mineImageView.layer.masksToBounds = YES;
         _headerView.mineImageView.layer.cornerRadius = _headerView.mineImageView.frame.size.width / 2.0;
-        ViewBorderRadius(_headerView.guanzhuBtn, 5, 1,CFontColor1);
-        ViewBorderRadius(_headerView.editPersonBtn, 5, 1, CFontColor1);
+//        ViewBorderRadius(_headerView.guanzhuBtn, 5, 1,CFontColor1);
+//        ViewBorderRadius(_headerView.editPersonBtn, 5, 1, CFontColor1);
         [self headerViewBlockAction];
         [self setViewData];
     }
+    _headerView.frame = CGRectMake(0, -HeaderImageViewHeight, KScreenWidth, HeaderImageViewHeight);
     return _headerView;
 }
 -(void)headerViewBlockAction{
@@ -265,7 +265,21 @@ static CGFloat const HeaderImageViewHeight =260;
     
     if(contentOffsetY <= -HeaderImageViewHeight) {
     
+        if (self.isEnlarge) {
+            CGRect f = self.headerView.frame;
+            //改变HeadImageView的frame
+            //上下放大
+            f.origin.y = contentOffsetY;
+            f.size.height = -contentOffsetY;
+            //左右放大
+            f.origin.x = (contentOffsetY * SCREEN_WIDTH / HeaderImageViewHeight + SCREEN_WIDTH) / 2;
+            f.size.width = -contentOffsetY * SCREEN_WIDTH / HeaderImageViewHeight;
+            //改变头部视图的frame
+            self.headerView.frame = f;
+        }else{
             scrollView.bounces = NO;
+        }
+        
     }else {
         scrollView.bounces = YES;
     }
