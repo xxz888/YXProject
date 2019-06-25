@@ -43,16 +43,21 @@
     [super viewDidLoad];
     [QMUITips showLoadingInView:self.view];
     [self initAllControl];
-    self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
 
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     //初始化所有的控件
-    self.navigationController.navigationBar.hidden = NO;
     [self setHeaderView];
     [self requestNewList];
+    
 }
+
 -(void)headerRereshing{
     [super headerRereshing];
     [self requestNewList] ;
@@ -63,6 +68,21 @@
 }
 -(void)initAllControl{
     [super initAllControl];
+    
+    
+    //赞和评论
+    NSString * praisNum = kGetString(self.startDic[@"praise_number"]);
+    //评论数量
+    self.bottomZanCount.text = praisNum;
+    
+    if ([praisNum isEqualToString:@"0"] || [praisNum isEqualToString:@"(null)"]) {
+         self.bottomZanCount.text = @"";
+    }
+    
+    //赞
+    BOOL isp =  [self.startDic[@"is_praise"] integerValue] == 1;
+    UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
+    [self.bottomZanBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
 }
 -(YXFirstFindImageTableViewCell *)cell{
     if (!_cell) {
@@ -92,7 +112,7 @@
         self.cell.cellWebView.frame= newFrame;
         [self.cell.cellWebView sizeToFit];
         CGRect Frame = self.cell.frame;
-        Frame.size.height= self.headerViewHeight - 180 + webViewHeight + coverHeight;
+        Frame.size.height= self.headerViewHeight - 180 + webViewHeight + coverHeight - 20;
         self.cell.midViewHeight.constant =  webViewHeight;
         self.cell.frame= Frame;
         [self.yxTableView setTableHeaderView:self.cell];//这句话才是重点
@@ -131,10 +151,12 @@
  
     self.cell.tagId = [self.startDic[@"id"] integerValue];
     CGRect oldFrame = self.cell.frame;
-    CGFloat newHeight =  self.headerViewHeight;
+    CGFloat newHeight =  self.headerViewHeight - 25;
     self.cell.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width, newHeight);
-    
-    
+    self.cell.threeViewHeight.constant = 0;
+    self.cell.iconLeftWidth.constant = 50;
+    self.cell.backBtn.hidden = NO;
+    self.cell.threeBtnView.hidden = YES;
     
     
 
@@ -193,10 +215,12 @@
     
     
     
-    
-
-    
     kWeakSelf(self);
+
+    self.cell.backVCBlock = ^{
+        [weakself.navigationController popViewControllerAnimated:YES];
+    };
+    
     self.cell.shareblock = ^(NSInteger tag1) {
         NSIndexPath * indexPathSelect = [NSIndexPath indexPathForRow:tag1  inSection:0];
         YXFindImageTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
@@ -240,17 +264,29 @@
             [weakself setupTextField];
             [weakself.inputToolbar.textInput becomeFirstResponder];
         }else if(tag == 2){
-            NSIndexPath * indexPath1 = [weakself.yxTableView indexPathForCell:cell];
-            [weakself requestDianZan_Image_Action:indexPath1];
+       
         }else{
-            UserInfo * userInfo = curUser;
-            BOOL isOwn = [weakself.startDic[@"user_id"] integerValue] == [userInfo.id integerValue];
-            weakself.shareDic = [NSDictionary dictionaryWithDictionary:weakself.startDic];
-            [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:[weakself.startDic[@"id"] integerValue]  startDic: weakself.startDic];
+           
         }
     };
 }
-
+- (void)fenxiangAction{
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
+    UserInfo * userInfo = curUser;
+    BOOL isOwn = [self.startDic[@"user_id"] integerValue] == [userInfo.id integerValue];
+    self.shareDic = [NSDictionary dictionaryWithDictionary:self.startDic];
+    [self addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:[self.startDic[@"id"] integerValue]  startDic: self.startDic];
+}
+- (void)dianzanAction{
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
+    [self requestDianZan_Image_Action:nil];
+}
 #pragma mark ========== 头像点击 ==========
 -(void)clickUserImageView:(NSString *)userId{
     UserInfo *userInfo = curUser;
@@ -272,11 +308,11 @@
         //赞
         zanBool = !zanBool;
         UIImage * likeImage = zanBool ? ZAN_IMG : UNZAN_IMG;
-        [weakself.cell.zanBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
+        [weakself.bottomZanBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
         NSInteger zhengfuValue = zanBool ? 1 : -1;
-        weakself.cell.zanCount.text = NSIntegerToNSString([weakself.cell.zanCount.text integerValue] + zhengfuValue);
-        if ([weakself.cell.zanCount.text isEqualToString:@"0"]) {
-            weakself.cell.zanCount.text= @"";
+        weakself.bottomZanCount.text = NSIntegerToNSString([weakself.bottomZanCount.text integerValue] + zhengfuValue);
+        if ([weakself.bottomZanCount.text isEqualToString:@"0"]) {
+            weakself.bottomZanCount.text= @"";
         }
     }];
 }
@@ -381,7 +417,7 @@
         if ([formalArray[i][@"child_list"] count] == 0) {
             model.moreCountPL = @"0";
         }else{
-            model.moreCountPL = [NSString stringWithFormat:@"%u",[formalArray[i][@"child_number"] integerValue] - [formalArray[i][@"child_list"] count]];
+            model.moreCountPL = [NSString stringWithFormat:@"%lu",[formalArray[i][@"child_number"] integerValue] - [formalArray[i][@"child_list"] count]];
         }
       
         [pageDic setValue:@([model.id intValue]) forKey:@"id"];
@@ -693,7 +729,7 @@
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
+    self.navigationController.navigationBar.hidden = NO;
     [_player destroyPlayer];
     _player = nil;
 }

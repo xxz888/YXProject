@@ -19,7 +19,15 @@
 @end
 
 @implementation YXMineMyCaoGaoViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addNavigationItemWithTitles:@[@"清空所有"] isLeft:NO target:self action:@selector(clearCachae) tags:@[@1000]];
@@ -37,10 +45,7 @@
     [self.yxTableView reloadData];
     
 }
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
 
-}
 -(void)clearCachae{
     kWeakSelf(self);
     QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:NULL];

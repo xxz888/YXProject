@@ -193,7 +193,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VWP-2f-qbq">
-                    <rect key="frame" x="216.5" y="30" width="98" height="32"/>
+                    <rect key="frame" x="216.5" y="40" width="98" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="qFA-nS-SsG"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                     <state key="normal" title="查看个人资料">
                         <color key="titleColor" red="0.69019607839999997" green="0.59215686270000001" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -202,20 +205,35 @@
                         <action selector="editPersonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="qfE-LM-ssD"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XPx-Vz-BBQ">
+                    <rect key="frame" x="345.5" y="20" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="Zl1-GW-UUG"/>
+                        <constraint firstAttribute="width" constant="20" id="my9-kK-3MC"/>
+                    </constraints>
+                    <state key="normal" image="mineMore">
+                        <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="setAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="yvw-mS-kKg"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.047058823529411764" green="0.10196078431372549" blue="0.1764705882352941" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="VWP-2f-qbq" firstAttribute="centerX" secondItem="c4W-fu-jMd" secondAttribute="centerX" id="1r1-F0-nsX"/>
-                <constraint firstItem="VWP-2f-qbq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="3Rr-Rl-4Fd"/>
                 <constraint firstItem="zre-9E-FTM" firstAttribute="leading" secondItem="MYU-Fr-ZbL" secondAttribute="leading" id="4eI-xm-l7d"/>
                 <constraint firstItem="MYU-Fr-ZbL" firstAttribute="width" secondItem="sE9-Ps-Bqa" secondAttribute="width" id="LG8-yL-H0a"/>
                 <constraint firstItem="sE9-Ps-Bqa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="QTD-8T-AMa"/>
                 <constraint firstItem="MYU-Fr-ZbL" firstAttribute="top" secondItem="sE9-Ps-Bqa" secondAttribute="bottom" constant="15" id="QeJ-jL-Clm"/>
                 <constraint firstItem="c4W-fu-jMd" firstAttribute="top" secondItem="zre-9E-FTM" secondAttribute="top" id="Rar-tV-VLP"/>
+                <constraint firstItem="XPx-Vz-BBQ" firstAttribute="centerY" secondItem="sE9-Ps-Bqa" secondAttribute="centerY" id="WA5-ru-DRU"/>
                 <constraint firstItem="MYU-Fr-ZbL" firstAttribute="height" secondItem="sE9-Ps-Bqa" secondAttribute="height" id="fSa-Kt-Uj7"/>
+                <constraint firstItem="XPx-Vz-BBQ" firstAttribute="trailing" secondItem="4Gh-SG-mFD" secondAttribute="trailing" id="gQF-6b-U2e"/>
+                <constraint firstItem="VWP-2f-qbq" firstAttribute="centerY" secondItem="MYU-Fr-ZbL" secondAttribute="centerY" id="m4k-QY-ikW"/>
                 <constraint firstItem="MYU-Fr-ZbL" firstAttribute="leading" secondItem="sE9-Ps-Bqa" secondAttribute="leading" id="oOZ-RA-Wuq"/>
                 <constraint firstItem="c4W-fu-jMd" firstAttribute="centerX" secondItem="GBa-bF-gmT" secondAttribute="centerX" id="qAb-1y-6I4"/>
                 <constraint firstItem="zre-9E-FTM" firstAttribute="top" secondItem="MYU-Fr-ZbL" secondAttribute="bottom" constant="30" id="txP-Ow-mU4"/>
+                <constraint firstItem="VWP-2f-qbq" firstAttribute="centerX" secondItem="c4W-fu-jMd" secondAttribute="centerX" id="x5P-lP-vd6"/>
                 <constraint firstItem="sE9-Ps-Bqa" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="yF0-Oq-sbl"/>
                 <constraint firstItem="GBa-bF-gmT" firstAttribute="bottom" secondItem="zre-9E-FTM" secondAttribute="bottom" id="zdk-au-kJR"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="GBa-bF-gmT" secondAttribute="trailing" constant="9.5" id="zlE-HE-P1Z"/>
@@ -235,4 +253,7 @@
             <point key="canvasLocation" x="25" y="-144"/>
         </view>
     </objects>
+    <resources>
+        <image name="mineMore" width="48" height="48"/>
+    </resources>
 </document>

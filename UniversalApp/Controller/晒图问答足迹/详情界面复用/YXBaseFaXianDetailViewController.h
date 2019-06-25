@@ -66,6 +66,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)clickPingLunAction:(id)sender;
 
 
+@property (weak, nonatomic) IBOutlet UIButton *bottomZanBtn;
+@property (weak, nonatomic) IBOutlet UILabel *bottomZanCount;
+
 @end
 
 NS_ASSUME_NONNULL_END

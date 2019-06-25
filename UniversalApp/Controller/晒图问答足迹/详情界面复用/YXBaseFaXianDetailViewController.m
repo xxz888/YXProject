@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    ViewRadius(self.clickPingLunBtn, 10);
     //self.clickbtnHeight.constant = AxcAE_IsiPhoneX ? 70 : 40;
     _imageArr = [[NSMutableArray alloc]init];
     _dataArray = [[NSMutableArray alloc]init];
@@ -32,7 +32,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    SDTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:kTimeLineTableViewCellId];
+  SDTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:kTimeLineTableViewCellId];
+    if (indexPath.row == 0) {
+        cell.bottomLine.hidden = YES;
+    }
+
     cell.model = self.dataArray[indexPath.row];
 
     CGFloat height1 = cell.model.moreCountPL.integerValue <= 0 ? 0 : 20;
@@ -185,13 +189,14 @@
 }
 -(void)initAllControl{
     kWeakSelf(self);
-    self.title = @"详情";
+    self.title = @"";
     self.segmentIndex = 0;
     [self.yxTableView registerClass:[SDTimeLineCell class] forCellReuseIdentifier:kTimeLineTableViewCellId];
     self.yxTableView.estimatedRowHeight = 0;
     self.yxTableView.estimatedSectionHeaderHeight = 0;
     self.yxTableView.estimatedSectionFooterHeight = 0;
     self.yxTableView.tableFooterView = [[UIView alloc]init];
+    self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeTop;
 }
@@ -204,5 +209,18 @@
 }
 -(void)backBtnClicked{
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)fenxiangAction:(id)sender {
+    [self fenxiangAction];
+}
+- (IBAction)dianzanAction:(id)sender {
+    [self dianzanAction];
+
+}
+- (void)fenxiangAction{
+    
+}
+- (void)dianzanAction{
+    
 }
 @end

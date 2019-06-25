@@ -167,13 +167,37 @@
 }
 #pragma mark ========== 点击菜单按钮的方法 ==========
 - (void)handleShowContentView {
-    if (!_modalViewController) {
-        _modalViewController = [[QMUIModalPresentationViewController alloc] init];
-    }
-    _modalViewController.contentViewMargins = UIEdgeInsetsMake(0, _modalViewController.view.frame.size.width/2.5, 0, 0);
-    _modalViewController.contentView = self.yxTableView;
-    [_modalViewController showWithAnimated:YES completion:nil];
-    [self.yxTableView reloadData];
+    
+    
+    QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
+    kWeakSelf(self);
+    // 如果你的 item 是确定的，则可以直接通过 items 属性来显示，如果 item 需要经过一些判断才能确定下来，请看第二个示例
+    NSMutableArray * itemsArray1 = [[NSMutableArray alloc]init];
+    [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_report") title:@"举报" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+        [moreOperationController hideToBottom];
+        QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+        }];
+        QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"不友善内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+            [QMUITips showSucceed:@"举报成功"];
+        }];
+        QMUIAlertAction *action3 = [QMUIAlertAction actionWithTitle:@"有害内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+            [QMUITips showSucceed:@"举报成功"];
+        }];
+        QMUIAlertAction *action4 = [QMUIAlertAction actionWithTitle:@"抄袭内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+            [QMUITips showSucceed:@"举报成功"];
+        }];
+        QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:QMUIAlertControllerStyleActionSheet];
+        [alertController addAction:action1];
+        [alertController addAction:action2];
+        [alertController addAction:action3];
+        [alertController addAction:action4];
+        [alertController showWithAnimated:YES];
+    }]];
+
+    
+    [moreOperationController showFromBottom];
+    
+    
 }
 #pragma mark ========== 编辑个人资料 ==========
 - (IBAction)editPersonAction:(id)sender {

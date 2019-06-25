@@ -489,7 +489,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    SDTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:kTimeLineTableViewCellId];
+  SDTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:kTimeLineTableViewCellId];
+    if (indexPath.row == 0) {
+        cell.bottomLine.hidden = YES;
+    }
     cell.indexPath = indexPath;
     cell.model = self.dataArray[indexPath.row];
 

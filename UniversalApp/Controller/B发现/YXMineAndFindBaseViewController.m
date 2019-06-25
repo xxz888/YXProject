@@ -105,7 +105,7 @@
     cell.titleImageView.tag = indexPath.row;
     cell.dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
     [cell setCellValue:dic];
-    
+    cell.iconLeftWidth.constant = 10;
     
     //这里判断晒图是图还是视频
     if ([kGetString(dic[@"url_list"][0]) containsString:@"mp4"]) {
@@ -117,6 +117,8 @@
         [cell.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         //如果是图片，为1张图片，有可能是晒图，有可能视频
         cell.playImV.hidden = NO;
+    }else{
+        cell.playImV.hidden = YES;
     }
 
     
@@ -173,6 +175,7 @@
 
     return cell;
 }
+
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

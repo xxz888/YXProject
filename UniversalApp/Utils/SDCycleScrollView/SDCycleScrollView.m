@@ -77,7 +77,7 @@ NSString * const ID = @"SDCycleScrollViewCell";
     _infiniteLoop = YES;
     _showPageControl = YES;
     _pageControlDotSize = kCycleScrollViewInitialPageControlDotSize;
-    _pageControlBottomOffset = -15;
+    _pageControlBottomOffset = 0;
     _pageControlRightOffset = 0;
     _pageControlStyle = SDCycleScrollViewPageContolStyleClassic;
     _hidesForSinglePage = YES;
@@ -129,7 +129,7 @@ NSString * const ID = @"SDCycleScrollViewCell";
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     _flowLayout = flowLayout;
     
-    UICollectionView *mainView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flowLayout];
+    UICollectionView *mainView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 20) collectionViewLayout:flowLayout];
     mainView.backgroundColor = [UIColor clearColor];
     mainView.pagingEnabled = YES;
     mainView.showsHorizontalScrollIndicator = NO;
@@ -142,6 +142,7 @@ NSString * const ID = @"SDCycleScrollViewCell";
     mainView.scrollsToTop = NO;
     [self addSubview:mainView];
     _mainView = mainView;
+    ViewRadius(_mainView, 5);
 }
 
 
@@ -480,9 +481,9 @@ NSString * const ID = @"SDCycleScrollViewCell";
     
     [super layoutSubviews];
     
-    _flowLayout.itemSize = self.frame.size;
+    _flowLayout.itemSize = CGSizeMake(self.frame.size.width, self.frame.size.height - 20);
     
-    _mainView.frame = self.bounds;
+    _mainView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 20);
     if (_mainView.contentOffset.x == 0 &&  _totalItemsCount) {
         int targetIndex = 0;
         if (self.infiniteLoop) {
@@ -514,8 +515,8 @@ NSString * const ID = @"SDCycleScrollViewCell";
         [pageControl sizeToFit];
     }
     
-    CGRect pageControlFrame = CGRectMake(x, y, size.width, size.height);
-    pageControlFrame.origin.y -= self.pageControlBottomOffset;
+    CGRect pageControlFrame = CGRectMake(x, y, size.width, 10);
+    pageControlFrame.origin.y = self.frame.size.height - 10;
     pageControlFrame.origin.x -= self.pageControlRightOffset;
     self.pageControl.frame = pageControlFrame;
     self.pageControl.hidden = !_showPageControl;

@@ -15,6 +15,7 @@
 #import "YXFindSearchTagHeaderView.h"
 #import "YXHomeXueJiaQuestionDetailViewController.h"
 #import "YXMineFootDetailViewController.h"
+#import "YXFirstFindImageTableViewCell.h"
 @interface YXFindSearchTagDetailViewController ()<UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UICollectionViewDelegate,BKCustomSwitchBtnDelegate>{
     NSInteger page ;
 }
@@ -150,16 +151,18 @@
     NSDictionary * dic = self.dataArray[indexPath.row];
     YXMineImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YXMineImageCollectionViewCell" forIndexPath:indexPath];
     cell.essayTitleImageView.tag = indexPath.row;
-    NSString * photoString = dic[@"pic1"] ? dic[@"pic1"] : dic[@"photo1"];
-    NSString * str1 = [(NSMutableString *)photoString replaceAll:@" " target:@"%20"];
-    [cell.midImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    cell.titleLbl.text = dic[@"content"] ? [dic[@"content"] UnicodeToUtf8] : [dic[@"describe"] UnicodeToUtf8];
+    
+    if ([self.dataArray[indexPath.row][@"url_list"] count] > 0) {
+        NSString * str1 = [(NSMutableString *)self.dataArray[indexPath.row][@"url_list"][0] replaceAll:@" " target:@"%20"];
+        [cell.midImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    }
+
+    cell.titleLbl.text = [dic[@"detail"] UnicodeToUtf8];
     BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
     UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
     [cell.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
-    NSString * photoString1 = dic[@"user_photo"] ? dic[@"user_photo"] : dic[@"photo"];
 
-    [cell.userImageView sd_setImageWithURL:[NSURL URLWithString:photoString1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    [cell.userImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     NSString * praisNum = kGetString(dic[@"praise_number"]);
     cell.zanLbl.text = praisNum;
     cell.userLbl.text = dic[@"user_name"];
@@ -179,15 +182,8 @@
     NSInteger tag = [dic[@"obj"] integerValue];
     if (tag == 1) {//晒图
         YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
-        VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-        [self.navigationController pushViewController:VC animated:YES];
-    }else if (tag == 3){//问答
-        YXHomeXueJiaQuestionDetailViewController * VC = [[YXHomeXueJiaQuestionDetailViewController alloc]init];
-//        VC.moment = [self setTestInfo:dic];
-        [self.navigationController pushViewController:VC animated:YES];
-    }else if (tag == 4){//足迹
-        NSDictionary * dic = self.dataArray[indexPath.row];
-        YXMineFootDetailViewController * VC = [[YXMineFootDetailViewController alloc]init];
+        CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:dic];
+        VC.headerViewHeight = h;
         VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
         [self.navigationController pushViewController:VC animated:YES];
     }

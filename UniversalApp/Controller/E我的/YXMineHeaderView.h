@@ -25,6 +25,8 @@ typedef void(^guanzhuBlock)();
 
 
 
+typedef void(^SetBlock)();
+@property (nonatomic,copy) SetBlock setblock;
 
 
 typedef void(^fensiBlock)();

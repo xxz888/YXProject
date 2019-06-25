@@ -15,7 +15,15 @@
 @end
 
 @implementation YXMineFindViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"发现好友";

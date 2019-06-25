@@ -342,7 +342,10 @@
     return [resArr copy];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    SDTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:kTimeLineTableViewCellId];
+  SDTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:kTimeLineTableViewCellId];
+    if (indexPath.row == 0) {
+        cell.bottomLine.hidden = YES;
+    }
     cell.indexPath = indexPath;
     cell.nameLable.textColor = KBlackColor;
     cell.contentLabel.textColor = KDarkGaryColor;

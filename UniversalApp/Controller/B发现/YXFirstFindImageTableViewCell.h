@@ -77,7 +77,16 @@ typedef void(^clickInDetail)(NSInteger,NSInteger);
     @property (weak, nonatomic) IBOutlet UIImageView *coverImV;
     @property (weak, nonatomic) IBOutlet NSLayoutConstraint *coverTopHeight;
 @property (weak, nonatomic) IBOutlet UIImageView *playImV;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *threeViewHeight;
+@property (weak, nonatomic) IBOutlet UIView *threeBtnView;
 
+//头像离左边的距离
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *iconLeftWidth;
+@property (weak, nonatomic) IBOutlet UIButton *backBtn;
+
+- (IBAction)backVCAction:(id)sender;
+typedef void(^BackVC)(void);
+@property (nonatomic,copy) BackVC backVCBlock;
 @end
 
 NS_ASSUME_NONNULL_END

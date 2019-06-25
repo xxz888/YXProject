@@ -34,7 +34,7 @@
         titleText = [[NSString stringWithFormat:@"%@%@",dic[@"title"],dic[@"tag"]] UnicodeToUtf8];
         midViewHeight = 180;
     }
-    CGFloat detailHeight = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
+    CGFloat detailHeight = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:15];
    
     return 155 + detailHeight + midViewHeight;
 }
@@ -84,7 +84,7 @@
         IXAttributeModel    * model = [IXAttributeModel new];
         model.range = [titleText rangeOfString:string];
         model.string = string;
-        model.attributeDic = @{NSForegroundColorAttributeName : [UIColor blueColor]};
+        model.attributeDic = @{NSForegroundColorAttributeName : YXRGBAColor(10, 96, 254) };
         [modelArray addObject:model];
     }
     //文本点击回调
@@ -92,10 +92,10 @@
         weakself.clickTagblock(string);
     };
     //label内容赋值
-    [self.detailLbl setText:titleText attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
+    [self.detailLbl setText:titleText attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]}
                tapStringArray:modelArray];
-      self.detailHeight.constant = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
-    [ShareManager setLineSpace:9 withText:self.detailLbl.text inLabel:self.detailLbl tag:dic[@"tag"]];
+      self.detailHeight.constant = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:15];
+//    [ShareManager setLineSpace:9 withText:self.detailLbl.text inLabel:self.detailLbl tag:dic[@"tag"]];
 
     
     //图片
@@ -176,6 +176,8 @@
     //点击几次后触发事件响应，默认为：1
     click.numberOfTapsRequired = 1;
     [self.titleImageView addGestureRecognizer:click];
+    
+    self.detailTextLabel.adjustsFontSizeToFitWidth=YES;
 }
 
 -(void)clickAction:(id)sender{
@@ -190,7 +192,9 @@
 - (IBAction)zanTalkAction:(UIButton *)sender {
     self.clickDetailblock(sender.tag,self.tag);
 }
-    
+- (IBAction)backVCAction:(id)sender {
+    self.backVCBlock();
+}
     //添加轮播图
 - (void)setUpSycleScrollView:(NSArray *)photoArray height:(CGFloat)height{
     self.onlyOneImv.hidden = self.imgV1.hidden = self.imgV2.hidden = self.imgV3.hidden = self.imgV4.hidden = self.stackView.hidden = YES;
@@ -219,7 +223,7 @@
 }
     
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index{
-    self.rightCountLbl.text = [NSString stringWithFormat:@"%ld/%ld",index+1,_tatolCount];
+    self.rightCountLbl.text = [NSString stringWithFormat:@"%d/%ld",index+1,(long)_tatolCount];
     
 }
 @end

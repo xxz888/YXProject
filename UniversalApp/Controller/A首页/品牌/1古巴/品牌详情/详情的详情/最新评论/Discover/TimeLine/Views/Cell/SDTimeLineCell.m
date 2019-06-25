@@ -59,19 +59,11 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
 }
 
 #pragma mark - 绘制Cell分割线
-- (void)drawRect:(CGRect)rect {
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
-    CGContextFillRect(context, rect);
-    //下分割线
-    CGContextSetStrokeColorWithColor(context,CLineColor.CGColor);
-    CGContextStrokeRect(context, CGRectMake(60, rect.size.height, rect.size.width, 0.5));
-}
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setup];
         [self configTheme];
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }
@@ -133,7 +125,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     _picContainerView = [SDWeiXinPhotoContainerView new];
     
     _bottomLine = [UIView new];
-    _bottomLine.backgroundColor = kLinkTextColor;
+    _bottomLine.backgroundColor = [UIColor lightGrayColor];
     
     
     
@@ -177,7 +169,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
 
     
     
-    NSArray *views = @[_iconView, _nameLable,_starView, _contentLabel, _moreButton, _picContainerView, _timeLabel,_zanButton, _operationMenu, _commentView,_showMoreCommentBtn,_zanCountLable];
+    NSArray *views = @[_iconView, _nameLable,_starView, _contentLabel, _moreButton, _picContainerView, _timeLabel,_zanButton, _operationMenu, _commentView,_showMoreCommentBtn,_zanCountLable,_bottomLine];
     
     [self.contentView sd_addSubviews:views];
     
@@ -201,7 +193,11 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     [_nameLable setSingleLineAutoResizeWithMaxWidth:200];
     
     
-    
+    _bottomLine.sd_layout
+    .leftSpaceToView(self.contentView, 60)
+    .rightSpaceToView(self.contentView, 0)
+    .topSpaceToView(self.contentView, 0)
+    .heightIs(0.4);
  
     
     
@@ -218,11 +214,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     .heightIs(15);
 
     
-    _bottomLine.sd_layout
-    .leftEqualToView(_nameLable)
-    .bottomSpaceToView(self.contentView, 1)
-    .rightSpaceToView(contentView, 0)
-    .heightIs(10);
+
     
     [_timeLabel setSingleLineAutoResizeWithMaxWidth:200];
     
@@ -421,7 +413,8 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     }else if ([model.praise isEqualToString:@"0"]){
         [self.zanButton setBackgroundImage:[UIImage imageNamed:@"未赞"] forState:UIControlStateNormal];
     }
-
+    
+ 
 }
 
 - (void)setFrame:(CGRect)frame

@@ -29,6 +29,9 @@
 -(void)setViewUI{
 
 }
+- (IBAction)setAction:(id)sender {
+    self.setblock();
+}
 - (IBAction)guanZhuOtherAction:(id)sender {
     self.guanZhuOtherblock();
 }

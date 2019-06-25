@@ -33,7 +33,7 @@
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvS-6K-4kq">
-                        <rect key="frame" x="150" y="230" width="20" height="20"/>
+                        <rect key="frame" x="148" y="230" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="Ayf-2f-lcd"/>
                             <constraint firstAttribute="width" constant="20" id="Wa0-rk-jRc"/>
@@ -44,9 +44,10 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZg-98-MrT">
-                        <rect key="frame" x="170" y="230" width="10" height="20"/>
+                        <rect key="frame" x="170" y="227" width="10" height="10"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="10" id="BYL-wm-DjN"/>
+                            <constraint firstAttribute="height" constant="10" id="mWQ-vN-JzV"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <nil key="highlightedColor"/>
@@ -76,16 +77,15 @@
                 </subviews>
             </view>
             <constraints>
+                <constraint firstItem="dZg-98-MrT" firstAttribute="top" secondItem="ZvS-6K-4kq" secondAttribute="top" constant="-3" id="BJi-3I-mnK"/>
                 <constraint firstItem="6bg-It-3lX" firstAttribute="top" secondItem="uU5-iU-16V" secondAttribute="bottom" constant="5" id="ChJ-18-h7m"/>
                 <constraint firstItem="6bg-It-3lX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="Dk3-XK-QJk"/>
-                <constraint firstItem="dZg-98-MrT" firstAttribute="leading" secondItem="ZvS-6K-4kq" secondAttribute="trailing" id="FxH-oO-N9j"/>
                 <constraint firstItem="w01-Ld-ftN" firstAttribute="leading" secondItem="l1i-1l-DAh" secondAttribute="trailing" constant="5" id="L9T-vO-Hoh"/>
                 <constraint firstItem="uU5-iU-16V" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="LXn-b6-ZaA"/>
                 <constraint firstItem="dZg-98-MrT" firstAttribute="trailing" secondItem="uU5-iU-16V" secondAttribute="trailing" id="N7H-fE-tUJ"/>
                 <constraint firstItem="l1i-1l-DAh" firstAttribute="leading" secondItem="6bg-It-3lX" secondAttribute="leading" id="PGV-YO-Zh2"/>
                 <constraint firstItem="TWl-Gc-SwD" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="U2F-ZC-ioR"/>
                 <constraint firstItem="uU5-iU-16V" firstAttribute="centerX" secondItem="SEy-5g-ep8" secondAttribute="centerX" id="Zg6-Eb-I9x"/>
-                <constraint firstItem="dZg-98-MrT" firstAttribute="centerY" secondItem="l1i-1l-DAh" secondAttribute="centerY" id="bGN-Fn-bVD"/>
                 <constraint firstAttribute="trailing" secondItem="6bg-It-3lX" secondAttribute="trailing" id="fKL-qc-IDo"/>
                 <constraint firstAttribute="trailing" secondItem="uU5-iU-16V" secondAttribute="trailing" constant="5" id="lGU-Y2-Nlk"/>
                 <constraint firstItem="uU5-iU-16V" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="o73-Oq-ckD"/>
@@ -93,7 +93,7 @@
                 <constraint firstAttribute="trailing" secondItem="TWl-Gc-SwD" secondAttribute="trailing" constant="5" id="sKy-DH-tL3"/>
                 <constraint firstItem="TWl-Gc-SwD" firstAttribute="top" secondItem="l1i-1l-DAh" secondAttribute="bottom" constant="5" id="uTy-9Z-YdJ"/>
                 <constraint firstItem="ZvS-6K-4kq" firstAttribute="centerY" secondItem="l1i-1l-DAh" secondAttribute="centerY" id="uhy-ZU-31I"/>
-                <constraint firstItem="dZg-98-MrT" firstAttribute="height" secondItem="l1i-1l-DAh" secondAttribute="height" id="xwq-CF-QJe"/>
+                <constraint firstItem="dZg-98-MrT" firstAttribute="leading" secondItem="ZvS-6K-4kq" secondAttribute="trailing" constant="2" id="xRp-2y-WBt"/>
                 <constraint firstItem="l1i-1l-DAh" firstAttribute="top" secondItem="6bg-It-3lX" secondAttribute="bottom" constant="5" id="zgw-ig-he9"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
@@ -110,6 +110,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="UnZan" width="64" height="64"/>
+        <image name="UnZan" width="48" height="48"/>
     </resources>
 </document>

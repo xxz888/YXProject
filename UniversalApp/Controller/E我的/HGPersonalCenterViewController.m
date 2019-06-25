@@ -123,18 +123,40 @@ static CGFloat const HeaderImageViewHeight =260;
 //        make.width.mas_lessThanOrEqualTo(200);
 //        make.bottom.mas_equalTo(-40);
 //    }];
-    NSArray * menuArray = @[@"菜单"];
-        [self addNavigationItemWithImageNames:menuArray isLeft:NO target:self action:@selector(handleShowContentView) tags:nil];
+//    NSArray * menuArray = @[@"菜单"];
+//        [self addNavigationItemWithImageNames:menuArray isLeft:NO target:self action:@selector(handleShowContentView) tags:nil];
 }
 #pragma mark ========== 点击菜单按钮的方法 ==========
 - (void)handleShowContentView {
-    if (!_modalViewController) {
-        _modalViewController = [[QMUIModalPresentationViewController alloc] init];
-    }
-    _modalViewController.contentViewMargins = UIEdgeInsetsMake(0, _modalViewController.view.frame.size.width/2, 0, 0);
-    _modalViewController.contentView = self.menuTableView;
-    [_modalViewController showWithAnimated:YES completion:nil];
-    [self.menuTableView reloadData];
+    
+    
+    kWeakSelf(self);
+    QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+    }];
+    QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"设置" style:QMUIAlertActionStyleDefault handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+        UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+        YXMineSettingTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineSettingTableViewController"];
+        [weakself.navigationController pushViewController:VC animated:YES];
+    }];
+    QMUIAlertAction *action3 = [QMUIAlertAction actionWithTitle:@"发现" style:QMUIAlertActionStyleDefault handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+        YXMineFindViewController * VC = [[YXMineFindViewController alloc]init];
+        [weakself.navigationController pushViewController:VC animated:YES];
+    }];
+    QMUIAlertAction *action4 = [QMUIAlertAction actionWithTitle:@"草稿箱" style:QMUIAlertActionStyleDefault handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+        YXMineMyCaoGaoViewController * VC = [[YXMineMyCaoGaoViewController alloc]init];
+        [weakself.navigationController pushViewController:VC animated:YES];
+    }];
+ 
+    QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:QMUIAlertControllerStyleActionSheet];
+    [alertController addAction:action1];
+    [alertController addAction:action2];
+    [alertController addAction:action3];
+    [alertController addAction:action4];
+
+    [alertController showWithAnimated:YES];
+    
+    
+    
 }
 - (void)updateNavigationBarBackgroundColor {
     CGFloat alpha = 0;
@@ -211,6 +233,10 @@ static CGFloat const HeaderImageViewHeight =260;
         YXHomeEditPersonTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXHomeEditPersonTableViewController"];
         VC.userInfoDic = [NSDictionary dictionaryWithDictionary:weakself.userInfoDic];
         [weakself.navigationController pushViewController:VC animated:YES];
+    };
+    
+    _headerView.setblock = ^{
+        [weakself handleShowContentView];
     };
 }
 /**

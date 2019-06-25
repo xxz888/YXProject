@@ -23,10 +23,12 @@
 
 @end
 @implementation YXHomeXueJiaPinPaiDetailViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setHidden:YES];
+}
 -(void)viewDidLoad{
     [super viewDidLoad];
-    [self.navigationController.navigationBar setHidden:NO];
 
     [self setSpace];
 
