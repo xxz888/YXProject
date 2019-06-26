@@ -207,9 +207,7 @@
 - (IBAction)zanTalkAction:(UIButton *)sender {
     self.clickDetailblock(sender.tag,self.tag);
 }
-- (IBAction)backVCAction:(id)sender {
-    self.backVCBlock();
-}
+
     //添加轮播图
 - (void)setUpSycleScrollView:(NSArray *)photoArray height:(CGFloat)height{
     self.onlyOneImv.hidden = self.imgV1.hidden = self.imgV2.hidden = self.imgV3.hidden = self.imgV4.hidden = self.stackView.hidden = YES;

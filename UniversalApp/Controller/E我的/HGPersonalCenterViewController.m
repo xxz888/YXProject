@@ -62,7 +62,6 @@ static CGFloat const HeaderImageViewHeight =260;
     //如果使用自定义的按钮去替换系统默认返回按钮，会出现滑动返回手势失效的情况
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     [self setupSubViews];
-    [self setLayoutCol];
     self.isEnlarge = NO;
 }
 
@@ -108,15 +107,19 @@ static CGFloat const HeaderImageViewHeight =260;
     QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
     }];
     QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"设置" style:QMUIAlertActionStyleDefault handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+        [aAlertController setAlertTextFieldTextColor:kRGBA(32, 104, 255, 1.0)];
+        
         UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
         YXMineSettingTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineSettingTableViewController"];
         [weakself.navigationController pushViewController:VC animated:YES];
     }];
-    QMUIAlertAction *action3 = [QMUIAlertAction actionWithTitle:@"发现" style:QMUIAlertActionStyleDefault handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
-        YXMineFindViewController * VC = [[YXMineFindViewController alloc]init];
-        [weakself.navigationController pushViewController:VC animated:YES];
+    QMUIAlertAction *action3 = [QMUIAlertAction actionWithTitle:@"分享" style:QMUIAlertActionStyleDefault handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+        aAlertController.alertDestructiveButtonAttributes = @{NSForegroundColorAttributeName:kRGBA(48, 96, 211, 1.0)};
+
     }];
     QMUIAlertAction *action4 = [QMUIAlertAction actionWithTitle:@"草稿箱" style:QMUIAlertActionStyleDefault handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+        aAlertController.alertDestructiveButtonAttributes = @{NSForegroundColorAttributeName:kRGBA(48, 96, 211, 1.0)};
+
         YXMineMyCaoGaoViewController * VC = [[YXMineMyCaoGaoViewController alloc]init];
         [weakself.navigationController pushViewController:VC animated:YES];
     }];
@@ -483,47 +486,5 @@ static CGFloat const HeaderImageViewHeight =260;
 
 
 
-#pragma mark ========== 右上角菜单按钮 ==========
--(void)setLayoutCol{
-    CGRect frame = CGRectMake(0,AxcAE_IsiPhoneX ? kTopHeight + 40 : 0, KScreenWidth/1.5, AxcAE_IsiPhoneX ? KScreenHeight - kTopHeight :KScreenHeight);
-    self.menuTableView = [[UITableView alloc]initWithFrame:frame style:1];
-    [self.menuTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Identifier"];
-    titleArray = @[@"",@"更多",@"我的草稿",@"发现好友",@"我的收藏",@"我的点赞",@"我的点评",@"设置"];
-    self.menuTableView.backgroundColor = UIColorWhite;
-    self.menuTableView.layer.cornerRadius = 6;
-    self.menuTableView.delegate = self;
-    self.menuTableView.dataSource = self;
-    self.menuTableView.estimatedRowHeight = 0;
-    self.menuTableView.estimatedSectionFooterHeight = KScreenHeight-titleArray.count * 50;
-    self.menuTableView.estimatedSectionHeaderHeight = 0;
-    self.menuTableView.separatorStyle = 0;
-    self.menuTableView.tag = 9000;
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (tableView.tag == 9000) {
-        if (indexPath.row == 2){
-            YXMineMyCaoGaoViewController * VC = [[YXMineMyCaoGaoViewController alloc]init];
-            [self.navigationController pushViewController:VC animated:YES];
-        }else if(indexPath.row == 3){
-            YXMineFindViewController * VC = [[YXMineFindViewController alloc]init];
-            [self.navigationController pushViewController:VC animated:YES];
-        }else if (indexPath.row == 4) {
-            YXMineMyCollectionViewController * VC = [[YXMineMyCollectionViewController alloc]init];
-            [self.navigationController pushViewController:VC animated:YES];
-        } else if (indexPath.row == 5){
-            YXMineMyDianZanViewController * VC = [[YXMineMyDianZanViewController alloc]init];
-            [self.navigationController pushViewController:VC animated:YES];
-        }else if (indexPath.row == 6){
-            YXMinePingLunViewController * VC = [[YXMinePingLunViewController alloc]init];
-            [self.navigationController pushViewController:VC animated:YES];
-        }else if (indexPath.row == 7){
-            UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
-            YXMineSettingTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineSettingTableViewController"];
-            [self.navigationController pushViewController:VC animated:YES];
-        }
-        [_modalViewController hideWithAnimated:YES completion:nil];
-    }
-
-}
 @end
 

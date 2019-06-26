@@ -35,14 +35,14 @@
     [self headerView];
     //其他方法
     [self setOtherAction];
-
+    //请求
+    [self requestFindTag];
   
 
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    //请求
-    [self requestFindTag];
+ 
 }
 -(void)setOtherAction{
     self.title = @"发现";

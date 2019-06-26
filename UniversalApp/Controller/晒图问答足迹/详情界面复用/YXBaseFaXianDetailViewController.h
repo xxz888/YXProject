@@ -68,6 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UIButton *bottomZanBtn;
 @property (weak, nonatomic) IBOutlet UILabel *bottomZanCount;
+- (IBAction)backVCAction:(id)sender;
 
 @end
 

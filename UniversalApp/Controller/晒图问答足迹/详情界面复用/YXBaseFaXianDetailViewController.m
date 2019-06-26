@@ -223,4 +223,7 @@
 - (void)dianzanAction{
     
 }
+- (IBAction)backVCAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

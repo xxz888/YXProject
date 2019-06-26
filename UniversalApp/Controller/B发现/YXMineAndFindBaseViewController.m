@@ -105,9 +105,9 @@
     cell.titleImageView.tag = indexPath.row;
     cell.dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
     [cell setCellValue:dic];
-    cell.iconLeftWidth.constant = 10;
-    
-    
+    cell.topTopHeight.constant = 10;
+    cell.bottomBottomHeight.constant = 0;
+    cell.bottomPingLunLbl.hidden = YES;
     //以下为所有block方法
     kWeakSelf(self);
     //右上角分享

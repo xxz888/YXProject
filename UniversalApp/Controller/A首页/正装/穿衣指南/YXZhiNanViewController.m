@@ -25,7 +25,6 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
-    [self requestZhiNanGet];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -35,6 +34,8 @@
     [super viewDidLoad];
     [self initTableView];
     [self addRefreshView:self.yxTableView];
+    [self requestZhiNanGet];
+
 }
 -(void)headerRereshing{
     [super headerRereshing];

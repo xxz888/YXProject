@@ -192,7 +192,7 @@
         if (self.whereCome) {
             return 0;
         }else{
-            return  [self.openBtn.titleLabel.text isEqualToString:@"↑ 收起"]  ? 430-120+tagHeight + 22  : 430 ;
+            return  [self.openBtn.titleLabel.text isEqualToString:@"↑ 收起"]  ? 490-120+tagHeight + 22  : 490 ;
         }
         
     }else{

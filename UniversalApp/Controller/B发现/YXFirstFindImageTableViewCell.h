@@ -80,19 +80,14 @@ typedef void(^clickInDetail)(NSInteger,NSInteger);
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *threeViewHeight;
 @property (weak, nonatomic) IBOutlet UIView *threeBtnView;
 
-//头像离左边的距离
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *iconLeftWidth;
-@property (weak, nonatomic) IBOutlet UIButton *backBtn;
-
-- (IBAction)backVCAction:(id)sender;
-typedef void(^BackVC)(void);
-@property (nonatomic,copy) BackVC backVCBlock;
-
 
 typedef void(^PlayBlock)(UITapGestureRecognizer *);
 @property (nonatomic,copy) PlayBlock playBlock;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *stackViewHeight;
 @property (weak, nonatomic) IBOutlet UIStackView *threeBtnStackView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topTopHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomBottomHeight;
+@property (weak, nonatomic) IBOutlet UILabel *bottomPingLunLbl;
 
 @end
 

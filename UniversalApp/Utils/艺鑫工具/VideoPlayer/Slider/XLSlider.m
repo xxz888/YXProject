@@ -175,7 +175,7 @@ static CGFloat panDistance;
 
 - (UIColor *)sliderColor {
     if (!_sliderColor) {
-        return [UIColor colorWithRed:0.49f green:0.83f blue:0.13f alpha:1.00f];
+        return SEGMENT_COLOR;
     }
     return _sliderColor;
 }

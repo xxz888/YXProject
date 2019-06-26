@@ -48,7 +48,6 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -155,18 +154,15 @@
     CGFloat newHeight =  self.headerViewHeight;
     self.cell.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width, newHeight);
 
-    //详情界面需要在复用的cell左上方加一个返回按钮
-    self.cell.iconLeftWidth.constant = 50;
-    self.cell.backBtn.hidden = NO;
+
     //详情界面点赞和分享调整到下边
     self.cell.threeBtnStackView.hidden =  YES;
-    
-
-    
+    self.cell.bottomBottomHeight.constant = 40;
+    self.cell.bottomPingLunLbl.hidden = NO;
     
     //晒图
     if ([self.startDic[@"obj"] integerValue] == 1) {
-        
+        self.cell.topTopHeight.constant = 70;
         [QMUITips hideAllTipsInView:self.view];
         //这里判断晒图是图还是视频
         if ([self.startDic[@"url_list"] count] > 0) {
@@ -174,7 +170,7 @@
                 //视频
                 self.cell.playImV.hidden = YES;
                 CGRect Frame = self.cell.frame;
-                Frame.size.height= self.headerViewHeight - 220 + self.cell.midViewHeight.constant;
+                Frame.size.height= self.headerViewHeight + 100 - 220 + self.cell.midViewHeight.constant;
                 self.cell.frame= Frame;
                 CGFloat scale = [self getVideoWidthWithSourcePath:self.startDic[@"url_list"][0]];
                 self.cell.midViewHeight.constant = ( KScreenWidth - 20 ) * scale;
@@ -183,6 +179,9 @@
                 [self.cell.onlyOneImv addSubview:self.player];
                 
             }else{
+                CGRect Frame = self.cell.frame;
+                Frame.size.height= self.headerViewHeight + 100;
+                self.cell.frame= Frame;
                 //轮播图
                 [self.cell setUpSycleScrollView:self.startDic[@"url_list"] height:KScreenWidth - 20];
                 self.cell.rightCountLbl.text = [NSString stringWithFormat:@"%@/%lu",@"1",(unsigned long)[self.startDic[@"url_list"] count]];
@@ -216,9 +215,6 @@
     
     kWeakSelf(self);
 
-    self.cell.backVCBlock = ^{
-        [weakself.navigationController popViewControllerAnimated:YES];
-    };
     
     self.cell.shareblock = ^(NSInteger tag1) {
         NSIndexPath * indexPathSelect = [NSIndexPath indexPathForRow:tag1  inSection:0];
@@ -237,7 +233,7 @@
             KPostNotification(KNotificationLoginStateChange, @NO);
             return;
         }
-        [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
+        [weakself clickUserImageView:kGetString(weakself.startDic[@"user_id"])];
     };
     self.cell.clickTagblock = ^(NSString * string) {
         [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":@"1",@"type":@"2"} success:^(id object) {
