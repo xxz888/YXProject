@@ -18,10 +18,10 @@
 @interface YXMineAndFindBaseViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,ZInputToolbarDelegate,UIScrollViewDelegate>{
     CGFloat _autoPLHeight;
     BOOL _tagSelectBool;
-    NSDictionary * shareDic;
     XLVideoPlayer *_player;
 
 }
+@property (nonatomic, strong) NSDictionary *shareDic;
 @property (nonatomic, strong) ZInputToolbar *inputToolbar;
 @end
 @implementation YXMineAndFindBaseViewController
@@ -56,11 +56,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArray.count;
 }
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary * dic = self.dataArray[indexPath.row];
-    return [self customImageData:dic indexPath:indexPath];
-    
-}
+
 - (XLVideoPlayer *)player {
     if (!_player) {
         _player = [[XLVideoPlayer alloc] init];
@@ -97,6 +93,10 @@
         _player = nil;
     };
 }
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary * dic = self.dataArray[indexPath.row];
+    return [self customImageData:dic indexPath:indexPath];
+}
 #pragma mark ========== 图片 ==========
 -(YXFirstFindImageTableViewCell *)customImageData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath{
     YXFirstFindImageTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFirstFindImageTableViewCell" forIndexPath:indexPath];
@@ -107,33 +107,20 @@
     [cell setCellValue:dic];
     cell.iconLeftWidth.constant = 10;
     
-    //这里判断晒图是图还是视频
-    if ([kGetString(dic[@"url_list"][0]) containsString:@"mp4"]) {
-        //给视频的imageveiew添加手势，这个方法一定要写晒图所有方法后边的，不能移动顺序
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showVideoPlayer:)];
-        cell.onlyOneImv.tag = indexPath.row;
-        [cell.onlyOneImv addGestureRecognizer:tap];
-        NSString * string = [(NSMutableString *)dic[@"cover"] replaceAll:@" " target:@"%20"];
-        [cell.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-        //如果是图片，为1张图片，有可能是晒图，有可能视频
-        cell.playImV.hidden = NO;
-    }else{
-        cell.playImV.hidden = YES;
-    }
-
-    
     
     //以下为所有block方法
     kWeakSelf(self);
+    //右上角分享
     cell.shareblock = ^(NSInteger tag) {
         NSIndexPath * indexPathSelect = [NSIndexPath indexPathForRow:tag  inSection:0];
         YXFindImageTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
         UserInfo * userInfo = curUser;
         BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [userInfo.id integerValue];
-        shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
+        weakself.shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
         
         [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:cell.tagId startDic:cell.dataDic];
     };
+    //点击用户头像
     cell.clickImageBlock = ^(NSInteger tag) {
         if (![userManager loadUserInfo]) {
             KPostNotification(KNotificationLoginStateChange, @NO);
@@ -141,6 +128,7 @@
         }
         [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
     };
+    //点击tag
     cell.clickTagblock = ^(NSString * string) {
         kWeakSelf(self);
         _tagSelectBool = YES;
@@ -157,6 +145,7 @@
             _tagSelectBool = NO;
         }];
     };
+    //点击点赞和评论
     cell.clickDetailblock = ^(NSInteger tag, NSInteger tag1) {
         NSIndexPath * indexPathSelect = [NSIndexPath indexPathForRow:tag1  inSection:0];
         YXFindImageTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
@@ -167,12 +156,15 @@
         }else{//分享
             UserInfo * userInfo = curUser;
             BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [userInfo.id integerValue];
-            shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
+            weakself.shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
             
             [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:cell.tagId startDic:cell.dataDic];
         }
     };
-
+    //播放视频按钮
+    cell.playBlock = ^(UITapGestureRecognizer * tap) {
+        [weakself showVideoPlayer:tap];
+    };
     return cell;
 }
 
@@ -228,8 +220,8 @@
     if (_tagSelectBool) {
         return;
     }
-    YXFirstFindImageTableViewCell * cell = [self.yxTableView cellForRowAtIndexPath:indexPath];
-    cell.playImV.hidden = NO;
+//    YXFirstFindImageTableViewCell * cell = [self.yxTableView cellForRowAtIndexPath:indexPath];
+//    cell.playImV.hidden = NO;
     
     
     NSDictionary * dic = self.dataArray[indexPath.row];

@@ -251,13 +251,13 @@
     [self.lastSixPhotoView addSubview:self.gridView];
     self.sixViewHeight.constant = height;
     self.gridView.columnCount = 3;
-    self.gridView.rowHeight = height;
+    self.gridView.rowHeight = 100;
     self.gridView.separatorWidth = 5;
     self.gridView.separatorColor = KClearColor;
     self.gridView.separatorDashed = NO;
-    
+
     for (NSInteger i = 0; i < count; i++) {
-        MMImageView *imageView = [[MMImageView alloc]initWithFrame:CGRectMake(0,0 , self.gridView.frame.size.width, self.gridView.frame.size.height)];
+        MMImageView *imageView = [[MMImageView alloc]initWithFrame:CGRectMake(0,0 , self.gridView.frame.size.width, 100)];
         imageView.tag = 1000 + i;
         [imageView setContentMode:UIViewContentModeScaleToFill];
         NSString * str = [(NSMutableString *)imageArray[i] replaceAll:@" " target:@"%20"];

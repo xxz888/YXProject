@@ -53,7 +53,8 @@
 -(void)requestFindTheType{
     kWeakSelf(self);
 
-    [YX_MANAGER requestGetDetailListPOST:@{@"type":@(0),@"tag":self.tag,@"page":NSIntegerToNSString(self.requestPage)} success:^(id object) {
+    
+    [YX_MANAGER requestSearchFind_all:@{@"key":self.tag ,@"page":NSIntegerToNSString(self.requestPage),@"type":@"3",@"key_unicode":[self.tag utf8ToUnicode]} success:^(id object) {
         if ([object count] > 0) {
             NSMutableArray *_dataSourceTemp=[NSMutableArray new];
             for (NSDictionary *company in object) {
@@ -66,8 +67,27 @@
             [weakself.yxTableView reloadData];
             [weakself.yxTableView scrollToRow:weakself.scrollIndex inSection:0 atScrollPosition:UITableViewScrollPositionNone animated:nil];
         }
-
     }];
+    
+    
+   
+    
+    
+//    [YX_MANAGER requestGetDetailListPOST:@{@"type":@(0),@"tag":self.tag,@"page":NSIntegerToNSString(self.requestPage)} success:^(id object) {
+//        if ([object count] > 0) {
+//            NSMutableArray *_dataSourceTemp=[NSMutableArray new];
+//            for (NSDictionary *company in object) {
+//                NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:company];
+//                [dic setObject:@"1" forKey:@"obj"];
+//                [_dataSourceTemp addObject:dic];
+//            }
+//            object=_dataSourceTemp;
+//            weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
+//            [weakself.yxTableView reloadData];
+//            [weakself.yxTableView scrollToRow:weakself.scrollIndex inSection:0 atScrollPosition:UITableViewScrollPositionNone animated:nil];
+//        }
+//
+//    }];
     
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{

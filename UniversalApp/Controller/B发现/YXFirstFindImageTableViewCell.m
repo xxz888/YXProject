@@ -10,6 +10,7 @@
 #import "UIImage+ImgSize.h"
 
 @interface YXFirstFindImageTableViewCell()<SDCycleScrollViewDelegate>
+@property (nonatomic,strong) UITapGestureRecognizer *tap;
 
 @end
 
@@ -36,7 +37,7 @@
     }
     CGFloat detailHeight = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:15];
    
-    return 155 + detailHeight + midViewHeight;
+    return 125 + detailHeight + midViewHeight;
 }
 -(void)setCellValue:(NSDictionary *)dic{
     kWeakSelf(self);
@@ -95,14 +96,10 @@
     [self.detailLbl setText:titleText attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]}
                tapStringArray:modelArray];
       self.detailHeight.constant = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:15];
-//    [ShareManager setLineSpace:9 withText:self.detailLbl.text inLabel:self.detailLbl tag:dic[@"tag"]];
 
     
     //图片
     if ([dic[@"obj"] integerValue] == 1) {
-
-        
-        
         NSArray * urlList = dic[@"url_list"];
         self.countLbl.text = NSIntegerToNSString(urlList.count);
         //如果只是图片，并且为4张
@@ -122,28 +119,44 @@
   
             
         }else{
-
+        //如果只是图片，并且在4张以下
             self.imgV1.hidden = self.imgV2.hidden = self.imgV3.hidden = self.imgV4.hidden = self.stackView.hidden = YES;
+            self.onlyOneImv.hidden = NO;
             //这里判断晒图是图还是视频
             if ([kGetString(urlList[0]) containsString:@"mp4"]) {
-                self.playImV.hidden = NO;
-                self.midViewHeight.constant = 220;
+                
+                //给视频的imageveiew添加手势，这个方法一定要写晒图所有方法后边的，不能移动顺序
+                self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showVideoPlayer:)];
+                self.onlyOneImv.tag = self.tag;
+                [self.onlyOneImv addGestureRecognizer:self.tap];
+                NSString * string = [(NSMutableString *)dic[@"cover"] replaceAll:@" " target:@"%20"];
+                [self.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
                 //如果是图片，为1张图片，有可能是晒图，有可能视频
-                self.onlyOneImv.hidden = NO;
+                self.midViewHeight.constant = 220;
+                
+                //处理view隐藏
+                self.playImV.hidden = NO;
             }else{
-                self.midViewHeight.constant = kScreenWidth - 20;;
+                NSString * string = [(NSMutableString *)urlList[0] replaceAll:@" " target:@"%20"];
+                [self.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+                //如果是图片，为1张图片
+                self.midViewHeight.constant = kScreenWidth - 20;
+                //处理view隐藏
                 self.playImV.hidden = YES;
-
+                
+                [self.onlyOneImv removeGestureRecognizer:self.tap];
             }
-            NSString * string = [(NSMutableString *)urlList[0] replaceAll:@" " target:@"%20"];
-            [self.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+
         }
     }else{
+    //文章
         self.midViewHeight.constant = 180;
         self.onlyOneImv.hidden = NO;
-        self.imgV1.hidden = self.imgV2.hidden = self.imgV3.hidden = self.imgV4.hidden = self.stackView.hidden = YES;
+        self.imgV1.hidden = self.imgV2.hidden = self.imgV3.hidden = self.imgV4.hidden = self.stackView.hidden = self.playImV.hidden =YES;
         NSString * string = [(NSMutableString *)dic[@"cover"] replaceAll:@" " target:@"%20"];
         [self.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        [self.onlyOneImv removeGestureRecognizer:self.tap];
+
     }
     
     
@@ -153,7 +166,9 @@
         self.nameCenter.constant = 0;
     }
 }
-
+- (void)showVideoPlayer:(UITapGestureRecognizer *)tapGesture {
+    self.playBlock(tapGesture);
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.titleImageView.layer.masksToBounds = YES;
@@ -223,7 +238,7 @@
 }
     
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index{
-    self.rightCountLbl.text = [NSString stringWithFormat:@"%d/%ld",index+1,(long)_tatolCount];
+    self.rightCountLbl.text = [NSString stringWithFormat:@"%ld/%ld",index+1,(long)_tatolCount];
     
 }
 @end

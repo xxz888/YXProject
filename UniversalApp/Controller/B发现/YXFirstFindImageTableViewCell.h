@@ -87,6 +87,13 @@ typedef void(^clickInDetail)(NSInteger,NSInteger);
 - (IBAction)backVCAction:(id)sender;
 typedef void(^BackVC)(void);
 @property (nonatomic,copy) BackVC backVCBlock;
+
+
+typedef void(^PlayBlock)(UITapGestureRecognizer *);
+@property (nonatomic,copy) PlayBlock playBlock;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *stackViewHeight;
+@property (weak, nonatomic) IBOutlet UIStackView *threeBtnStackView;
+
 @end
 
 NS_ASSUME_NONNULL_END

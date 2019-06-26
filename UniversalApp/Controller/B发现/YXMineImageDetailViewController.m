@@ -113,7 +113,7 @@
         self.cell.cellWebView.frame= newFrame;
         [self.cell.cellWebView sizeToFit];
         CGRect Frame = self.cell.frame;
-        Frame.size.height= self.headerViewHeight - 180 + webViewHeight + coverHeight - 20;
+        Frame.size.height= self.headerViewHeight - 180 + webViewHeight + coverHeight ;
         self.cell.midViewHeight.constant =  webViewHeight;
         self.cell.frame= Frame;
         [self.yxTableView setTableHeaderView:self.cell];//这句话才是重点
@@ -152,13 +152,14 @@
  
     self.cell.tagId = [self.startDic[@"id"] integerValue];
     CGRect oldFrame = self.cell.frame;
-    CGFloat newHeight =  self.headerViewHeight - 25;
+    CGFloat newHeight =  self.headerViewHeight;
     self.cell.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width, newHeight);
-    self.cell.threeViewHeight.constant = 0;
+
+    //详情界面需要在复用的cell左上方加一个返回按钮
     self.cell.iconLeftWidth.constant = 50;
     self.cell.backBtn.hidden = NO;
-    self.cell.threeBtnView.hidden = YES;
-    
+    //详情界面点赞和分享调整到下边
+    self.cell.threeBtnStackView.hidden =  YES;
     
 
     
@@ -167,35 +168,32 @@
     if ([self.startDic[@"obj"] integerValue] == 1) {
         
         [QMUITips hideAllTipsInView:self.view];
-        
         //这里判断晒图是图还是视频
         if ([self.startDic[@"url_list"] count] > 0) {
             if ([kGetString(self.startDic[@"url_list"][0]) containsString:@"mp4"]) {
+                //视频
+                self.cell.playImV.hidden = YES;
+                CGRect Frame = self.cell.frame;
+                Frame.size.height= self.headerViewHeight - 220 + self.cell.midViewHeight.constant;
+                self.cell.frame= Frame;
                 CGFloat scale = [self getVideoWidthWithSourcePath:self.startDic[@"url_list"][0]];
                 self.cell.midViewHeight.constant = ( KScreenWidth - 20 ) * scale;
 
-                self.cell.playImV.hidden = YES;
                 self.player.videoUrl = self.startDic[@"url_list"][0];
                 [self.cell.onlyOneImv addSubview:self.player];
-
-                CGRect Frame = self.cell.frame;
-                Frame.size.height= self.headerViewHeight - 220 + self.cell.midViewHeight.constant;
-
-                self.cell.frame= Frame;
                 
-            }else if([self.startDic[@"url_list"] count] >= 4){
+            }else{
+                //轮播图
                 [self.cell setUpSycleScrollView:self.startDic[@"url_list"] height:KScreenWidth - 20];
                 self.cell.rightCountLbl.text = [NSString stringWithFormat:@"%@/%lu",@"1",(unsigned long)[self.startDic[@"url_list"] count]];
                 self.cell.rightCountLbl.hidden = [self.cell.rightCountLbl.text isEqualToString:@"1/1"] || [self.cell.rightCountLbl.text isEqualToString:@"1/0"];
             }
-        }else{
-            
         }
      
         
         
     }else{
-        self.cell.imgV1.hidden = self.cell.imgV2.hidden = self.cell.imgV3.hidden = self.cell.imgV4.hidden = self.cell.stackView.hidden = self.cell.onlyOneImv.hidden = YES;
+        self.cell.imgV1.hidden = self.cell.imgV2.hidden = self.cell.imgV3.hidden = self.cell.imgV4.hidden = self.cell.stackView.hidden = self.cell.onlyOneImv.hidden = self.cell.playImV.hidden = YES;
         self.cell.cellWebView.hidden = NO;
         //封面图
         self.cell.coverTopHeight.constant = 10;

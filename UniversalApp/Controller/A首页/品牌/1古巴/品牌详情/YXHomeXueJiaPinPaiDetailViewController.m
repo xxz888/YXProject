@@ -215,18 +215,27 @@
                 YXHomeXueJiaPinPaiLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiLastDetailViewController"];
                 VC.startDic = [NSMutableDictionary dictionaryWithDictionary:self.dicData[@"data"][indexPath.row]];
                 VC.PeiJianOrPinPai = NO;
-
+            
                 //请求六宫格图片
                 NSString * tag = VC.startDic[@"cigar_name"];
-                [YX_MANAGER requestGetDetailListPOST:@{@"type":@(0),@"tag":tag,@"page":@(1)} success:^(id object) {
+            
+                [YX_MANAGER requestSearchFind_all:@{@"key":tag,@"key_unicode":[tag utf8ToUnicode],@"page":@"1",@"type":@"3"} success:^(id object) {
+                
                 NSMutableArray * imageArray = [NSMutableArray array];
                 for (NSDictionary * dic in object) {
-                    [imageArray addObject:dic[@"photo1"]];
+                    for (NSString * string in dic[@"url_list"]) {
+                        [imageArray addObject:string];
+                    }
                 }
-
-                [VC.startDic setValue:self.title forKey:@"cigar_brand"];
+                
+                [VC.startDic setValue:weakself.title forKey:@"cigar_brand"];
                 VC.imageArray = [NSMutableArray arrayWithArray:imageArray];
                 [self.navigationController pushViewController:VC animated:YES];
+            }];
+            
+            
+                [YX_MANAGER requestGetDetailListPOST:@{@"type":@(0),@"tag":tag,@"page":@(1)} success:^(id object) {
+          
                 
             }];
     

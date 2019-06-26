@@ -139,6 +139,8 @@
         [self.lastDetailView againSetDetailView:weakself.startDic];
         [self.lastDetailView setSixPhotoView:self.imageArray];
         self.lastDetailView.searchAllBlock = ^{
+            
+            
             YXHomeSearchMoreViewController * VC = [[YXHomeSearchMoreViewController alloc]init];
             VC.tag = weakself.startDic[@"cigar_name"];
             VC.scrollIndex = 0;
