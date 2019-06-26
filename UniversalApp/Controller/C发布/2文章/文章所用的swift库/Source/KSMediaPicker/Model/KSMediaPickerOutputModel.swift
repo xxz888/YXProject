@@ -16,7 +16,7 @@ open class KSMediaPickerOutputModel: NSObject {
     @objc public let videoAsset: AVURLAsset?
     @objc public let mediaType: PHAssetMediaType
     
-    public init(asset: PHAsset, image: UIImage?, thumb: UIImage?) {
+  @objc public init(asset: PHAsset, image: UIImage?, thumb: UIImage?) {
         sourceAsset = asset
         mediaType = asset.mediaType
         self.thumb = thumb

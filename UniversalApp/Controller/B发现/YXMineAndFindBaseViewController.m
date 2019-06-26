@@ -248,7 +248,18 @@
     [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_add") title:@"编辑" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
         [moreOperationController hideToBottom];
         YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
-        imageVC.startDic = [[NSMutableDictionary alloc]initWithDictionary:startDic];
+        YXShaiTuModel * model = [[YXShaiTuModel alloc]init];
+        model.post_id = kGetString(startDic[@"id"]);
+        model.coustomId = @"";
+        model.detail = startDic[@"detail"];
+        model.publish_site = startDic[@"publish_site"];
+        model.title = startDic[@"title"];
+        model.tag = startDic[@"tag"];
+        model.publish_site = startDic[@"publish_site"];
+        model.photo_list = startDic[@"photo_list"];
+        model.cover = startDic[@"cover"];
+        model.obj = kGetString(startDic[@"obj"]);
+        imageVC.model = model;
         [weakself presentViewController:imageVC animated:YES completion:nil];
     }]],
     [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_remove") title:@"删除" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {

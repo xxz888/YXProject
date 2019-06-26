@@ -22,6 +22,9 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    JQFMDB *db = [JQFMDB shareDatabase];
+    self.caoGaoArray = [db jq_lookupTable:YX_USER_FaBuCaoGao dicOrModel:[YXShaiTuModel class] whereFormat:nil];
+    [self.yxTableView reloadData];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -40,9 +43,7 @@
     self.yxTableView.dataSource = self;
     self.yxTableView.tableFooterView = [[UIView alloc]init];
     
-    JQFMDB *db = [JQFMDB shareDatabase];
-    self.caoGaoArray = [db jq_lookupTable:YX_USER_FaBuCaoGao dicOrModel:[YXShaiTuModel class] whereFormat:nil];
-    [self.yxTableView reloadData];
+
     
 }
 
@@ -71,6 +72,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 100;
 }
+#define kQNinterface @"http://photo.thegdlife.com/"
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identify = @"YXHomeXueJiaTableViewCell";
     YXHomeXueJiaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
@@ -78,11 +80,17 @@
         cell = [[YXHomeXueJiaTableViewCell alloc]initWithStyle:0 reuseIdentifier:identify];
     }
   
-     YXShaiTuModel * model =  self.caoGaoArray[indexPath.row];
-    NSString * str = [(NSMutableString *)model.photo1 replaceAll:@" " target:@"%20"];
+    YXShaiTuModel * model =  self.caoGaoArray[indexPath.row];
+    
+    NSArray * photo_list = [model.photo_list split:@","];
+    NSString * showCoverImg = @"";
+    if (photo_list.count > 0) {
+        showCoverImg = [kQNinterface append:photo_list[0]];
+    }
+    NSString * str = [(NSMutableString *)showCoverImg replaceAll:@" " target:@"%20"];
     [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    cell.cellAutherLbl.text = [model.describe UnicodeToUtf8];
-    cell.cellDataLbl.hidden = YES;
+    cell.cellLbl.text = [model.detail UnicodeToUtf8];
+
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -109,7 +117,7 @@
     //删除
     UIContextualAction *deleteRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"delete" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         JQFMDB *db = [JQFMDB shareDatabase];
-        NSString * sql = [@"WHERE shaituid = " append:kGetString(model.shaituid)];
+        NSString * sql = [@"WHERE coustomId = " append:kGetString(model.coustomId)];
         [db jq_deleteTable:YX_USER_FaBuCaoGao whereFormat:sql];
         completionHandler (YES);
         weakself.caoGaoArray = [db jq_lookupTable:YX_USER_FaBuCaoGao dicOrModel:[YXShaiTuModel class] whereFormat:nil];

@@ -13,6 +13,7 @@
 #import "YXGaoDeMapViewController.h"
 #import "YXPublishMoreTagsViewController.h"
 #import "QiniuLoad.h"
+#import "UniversalApp-Swift.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^dismissBlock) ();

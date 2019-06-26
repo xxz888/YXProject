@@ -8,7 +8,6 @@
 #import "YXFaBuBaseViewController.h"
 #import "JJImagePicker.h"
 #import "TZTestCell.h"
-#import "UniversalApp-Swift.h"
 @interface YXFaBuBaseViewController ()<UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,KSMediaPickerControllerDelegate>{
     UIImageView * _selectImageView;
     UIImage * zhanweiImage;
@@ -301,7 +300,12 @@
             cell.imageView.image = model.thumb;
             cell.videoImageView.hidden = NO;
         }else{
-            cell.imageView.image = model.thumb;
+            if (model.thumb) {
+                cell.imageView.image = model.thumb;
+            }else{
+                NSString * str1 = [(NSMutableString *)self.photoImageList[indexPath.row] replaceAll:@" " target:@"%20"];
+                [cell.imageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"zhanweitu"]];
+            }
         }
         cell.deleteBtn.hidden = NO;
     }

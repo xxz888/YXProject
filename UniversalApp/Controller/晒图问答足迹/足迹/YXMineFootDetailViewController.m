@@ -633,6 +633,7 @@
     }
     if([title isEqualToString:@"编辑"]){
         YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
+        
         imageVC.startDic = [[NSMutableDictionary alloc]initWithDictionary:dic];
         [weakself presentViewController:imageVC animated:YES completion:nil];
     }

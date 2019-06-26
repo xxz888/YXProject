@@ -605,7 +605,8 @@
     [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_add") title:@"编辑" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
         [moreOperationController hideToBottom];
         YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
-        imageVC.startDic = [[NSMutableDictionary alloc]initWithDictionary:startDic];
+        YXShaiTuModel * model = [[YXShaiTuModel alloc]init];
+        [model setValuesForKeysWithDictionary:startDic];
         [weakself presentViewController:imageVC animated:YES completion:nil];
     }]],
     [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_remove") title:@"删除" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
