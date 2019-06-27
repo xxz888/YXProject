@@ -391,7 +391,7 @@
     self.lastMyTalkView.parDic = [[NSMutableDictionary alloc]init];
     kWeakSelf(self);
     self.lastMyTalkView.block = ^{
-        _segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
+        [weakself requestNewList];
     };
     self.lastMyTalkView.selectBlock = ^(NSString * str) {
         

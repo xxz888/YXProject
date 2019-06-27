@@ -218,7 +218,7 @@
             
                 //请求六宫格图片
                 NSString * tag = VC.startDic[@"cigar_name"];
-            
+               [QMUITips showLoadingInView:weakself.view];
                 [YX_MANAGER requestSearchFind_all:@{@"key":tag,@"key_unicode":[tag utf8ToUnicode],@"page":@"1",@"type":@"3"} success:^(id object) {
                 
                 NSMutableArray * imageArray = [NSMutableArray array];
@@ -227,10 +227,10 @@
                         [imageArray addObject:string];
                     }
                 }
-                
+                    [QMUITips hideAllTipsInView:weakself.view];
                 [VC.startDic setValue:weakself.title forKey:@"cigar_brand"];
                 VC.imageArray = [NSMutableArray arrayWithArray:imageArray];
-                [self.navigationController pushViewController:VC animated:YES];
+                [weakself.navigationController pushViewController:VC animated:YES];
             }];
             
             
