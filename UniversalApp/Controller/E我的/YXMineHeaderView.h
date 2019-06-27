@@ -55,6 +55,11 @@ typedef void(^editPersionBlock)();
 typedef void(^guanZhuOtherBlock)();
 - (IBAction)guanZhuOtherAction:(id)sender;
 @property (nonatomic,copy) guanZhuOtherBlock guanZhuOtherblock;
+@property (weak, nonatomic) IBOutlet UIButton *backBtn;
+
+typedef void(^MineBackVCBlock)();
+@property (nonatomic,copy) MineBackVCBlock mineBackVCBlock;
+
 
 @end
 

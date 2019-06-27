@@ -6,147 +6,32 @@
 //  Copyright © 2019年 徐阳. All rights reserved.
 //
 #import "YXFindViewController.h"
-
-#import "YXFindSearchResultViewController.h"
-#import "PYSearchViewController.h"
-#import "YXFindSearchViewController.h"
-#import "QiniuLoad.h"
-@interface YXFindViewController ()<PYSearchViewControllerDelegate,UIGestureRecognizerDelegate>{
-    NSInteger page ;
-    CBSegmentView * sliderSegmentView;
-}
-@property(nonatomic,strong)NSMutableArray * typeArray;
-@property(nonatomic,strong)NSString * type;
-@property (nonatomic) BOOL isCanBack;
-
+@interface YXFindViewController ()
 @end
-
 @implementation YXFindViewController
-
-
-
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //搜索栏
-    [self setNavSearchView];
-    //头视图
-    [self headerView];
-    //其他方法
-    [self setOtherAction];
-    //请求
-    [self requestFindTag];
-  
-
-}
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
- 
-}
--(void)setOtherAction{
-    self.title = @"发现";
-    self.isShowLiftBack = NO;
-    self.typeArray = [[NSMutableArray alloc]init];
-    self.navigationItem.rightBarButtonItem = nil;
-    self.yxTableView.frame = CGRectMake(0, kTopHeight + 40, KScreenWidth, KScreenHeight - kTopHeight-TabBarHeight - 40);
+    self.yxTableView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight - kTopHeight - TabBarHeight - 40);
+    [self requestTableData];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    
-//    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = NO;
-//    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
- 
-    
-}
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:nil];
 }
 -(void)headerRereshing{
     [super headerRereshing];
-    [self requestFindTheType];
+    [self requestTableData];
 }
 -(void)footerRereshing{
     [super footerRereshing];
-    [self requestFindTheType];
-}
-#pragma mark ========== headerview ==========
--(void)headerView{
-    kWeakSelf(self);
-    sliderSegmentView = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, kTopHeight, KScreenWidth, 40)];
-    sliderSegmentView.titleChooseReturn = ^(NSInteger x) {
-        [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-        [weakself.dataArray removeAllObjects];
-        weakself.type = weakself.typeArray[x];
-        weakself.requestPage = 1;
-        [weakself requestFindTheType];
-    };
-    [self.view addSubview:sliderSegmentView];
-}
--(void)requestAction{
-    [self requestFindTheType];
-}
-#pragma mark ========== 1111111-先请求tag列表,获取发现页标签数据 ==========
--(void)requestFindTag{
-    kWeakSelf(self);
-    NSMutableArray * array = [[NSMutableArray alloc]init];
-    [YX_MANAGER requestGet_users_find_tag:@"" success:^(id object) {
-        [weakself.typeArray removeAllObjects];
-        [array addObject:@"最新"];
-        [weakself.typeArray addObject:@"-1"];
-        for (NSDictionary * dic in object) {
-            [array addObject:dic[@"type"]];
-            [weakself.typeArray addObject:dic[@"id"]];
-        }
-        weakself.type = weakself.typeArray[0];
-       [sliderSegmentView setTitleArray:array withStyle:CBSegmentStyleSlider];
-       [weakself requestFindTheType];
-    }];
+    [self requestTableData];
 }
 #pragma mark ========== 2222222-在请求具体tag下的请求,获取发现页标签数据全部接口 ==========
--(void)requestFindTheType{
+-(void)requestTableData{
     kWeakSelf(self);
-    NSString * parString =[NSString stringWithFormat:@"%@&page=%@",self.type,NSIntegerToNSString(self.requestPage)];
+    NSString * parString =[NSString stringWithFormat:@"%@&page=%@",kGetString(self.startDic[@"id"]),NSIntegerToNSString(self.requestPage)];
     [YX_MANAGER requestGet_users_find:parString success:^(id object){
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
     }];
 }
-
-
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
-    [self clickSearchBar];
-//    //[QMUITips showInfo:SHOW_FUTURE_DEV inView:self.view hideAfterDelay:1];
-//    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-    return NO;
-}
-- (void)clickSearchBar{
-
-            kWeakSelf(self);
-    [YX_MANAGER requestGetFind_all:@"" success:^(id object) {
-        NSMutableArray * hotSeaches = [[NSMutableArray alloc]init];
-        for (NSDictionary * dic in object) {
-            [hotSeaches addObject:[dic[@"key"] UnicodeToUtf8]];
-        }
-
-        YXFindSearchViewController *searchViewController = [YXFindSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"搜索", @"搜索") didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
-            YXFindSearchResultViewController * VC = [[YXFindSearchResultViewController alloc] init];
-            VC.searchBlock = ^(NSString * string) {
-                weakself.searchHeaderView.searchBar.text = [string UnicodeToUtf8];
-            };
-            VC.searchText = [searchText UnicodeToUtf8];
-            [searchViewController.navigationController pushViewController:VC animated:YES];
-        }];
-        searchViewController.hotSearchStyle = PYHotSearchStyleNormalTag;
-        searchViewController.searchHistoryStyle = 1;
-        searchViewController.delegate = self;
-        RootNavigationController *nav2 = [[RootNavigationController alloc]initWithRootViewController:searchViewController];
-        [self presentViewController:nav2 animated:NO completion:nil];
-    }];
-}
-
 @end

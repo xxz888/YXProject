@@ -35,7 +35,7 @@
 #pragma mark ========== 创建tableview ==========
 -(void)tableviewCon{
     self.dataArray = [[NSMutableArray alloc]init];
-    self.yxTableView = [[UITableView alloc]init];
+    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
     [self.view addSubview:self.yxTableView];
     self.yxTableView.delegate = self;
     self.yxTableView.dataSource= self;
@@ -105,7 +105,7 @@
     cell.titleImageView.tag = indexPath.row;
     cell.dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
     [cell setCellValue:dic];
-    cell.topTopHeight.constant = 10;
+    cell.topTopHeight.constant = 0;
     cell.bottomBottomHeight.constant = 0;
     cell.bottomPingLunLbl.hidden = YES;
     //以下为所有block方法
@@ -220,10 +220,6 @@
     if (_tagSelectBool) {
         return;
     }
-//    YXFirstFindImageTableViewCell * cell = [self.yxTableView cellForRowAtIndexPath:indexPath];
-//    cell.playImV.hidden = NO;
-    
-    
     NSDictionary * dic = self.dataArray[indexPath.row];
     YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
     CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:dic];
@@ -381,9 +377,7 @@
         NSLog(@"%@",error);
     }];
 }
--(void)textFieldDidBeginEditing:(UITextField *)textField{
-    
-}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 }

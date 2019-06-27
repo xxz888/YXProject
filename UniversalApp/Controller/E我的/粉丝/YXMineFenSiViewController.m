@@ -22,6 +22,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    self.title = @"粉丝列表";
 
 }
 -(void)viewWillDisappear:(BOOL)animated{
@@ -34,7 +35,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"粉丝列表";
 
     self.dataArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXMineCommon1TableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineCommon1TableViewCell"];
@@ -68,19 +68,26 @@
     YXMineCommon1TableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMineCommon1TableViewCell" forIndexPath:indexPath];
     cell.tag = indexPath.row;
     cell.delegate = self;
-    NSString * key1 = user_id_BOOL ? @"aim_name" : @"user_name";
-    NSString * key2 = user_id_BOOL ? @"aim_id" : @"user_id";
-    NSString * key3 = user_id_BOOL ? @"aim_photo" : @"user_photo";
+    NSDictionary * dic = self.dataArray[indexPath.row];
+    NSString * key1 = dic[@"aim_name"] ? @"aim_name" : @"user_name";
+    NSString * key2 = dic[@"aim_id"] ? @"aim_id" : @"user_id";
+    NSString * key3 = dic[@"aim_photo"] ? @"aim_photo" : @"user_photo";
 
-    cell.common1NameLbl.text = self.dataArray[indexPath.row][key1];
-    cell.common1GuanzhuBtn.tag = [self.dataArray[indexPath.row][key2] integerValue];
-    NSString * imgString = self.dataArray[indexPath.row][key3];
-    BOOL is_like = [self.dataArray[indexPath.row][@"is_like"] integerValue] == 1;
+    cell.common1NameLbl.text = dic[key1];
+    cell.common1GuanzhuBtn.tag = [dic[key2] integerValue];
+    NSString * imgString = dic[key3];
+    BOOL is_like = [dic[@"is_like"] integerValue] == 1;
     [ShareManager setGuanZhuStatus:cell.common1GuanzhuBtn status:is_like alertView:NO];
     if (is_like) {
         [cell.common1GuanzhuBtn setTitle:@"互相关注" forState:UIControlStateNormal];
     }else{
         [cell.common1GuanzhuBtn setTitle:@"关注" forState:UIControlStateNormal];
+    }
+    UserInfo * userInfo = curUser;
+    if ([userInfo.username isEqualToString:self.dataArray[indexPath.row][key1]]) {
+        cell.common1GuanzhuBtn.hidden = YES;
+    }else{
+        cell.common1GuanzhuBtn.hidden = NO;
     }
 //    if (is_like) {
 //        [cell.common1GuanzhuBtn setTitle:@"互相关注" forState:UIControlStateNormal];
@@ -119,9 +126,21 @@
     }];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
-    mineVC.userId = kGetString(self.dataArray[indexPath.row][@"user_id"]);
-    mineVC.whereCome = YES;    //  YES为其他人 NO为自己
-    [self.navigationController pushViewController:mineVC animated:YES];
+    
+    UserInfo * userInfo = curUser;
+    NSString * key1 = self.dataArray[indexPath.row][@"aim_name"] ? @"aim_name" : @"user_name";
+    if ([userInfo.username isEqualToString:self.dataArray[indexPath.row][key1]]) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        self.navigationController.tabBarController.selectedIndex = 4;
+        return;
+    }else{
+        HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
+        NSDictionary * dic = self.dataArray[indexPath.row];
+        
+        mineVC.userId = dic[@"user_id"]  ? kGetString(dic[@"user_id"]) : kGetString(dic[@"aim_id"]);
+        mineVC.whereCome = YES;    //  YES为其他人 NO为自己
+        [self.navigationController pushViewController:mineVC animated:YES];
+    }
+
 }
 @end

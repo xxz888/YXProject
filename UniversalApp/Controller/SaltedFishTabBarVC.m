@@ -13,6 +13,7 @@
 #import "XWPopMenuController.h"
 #import "HGPersonalCenterViewController.h"
 #import "YXHomeXueJiaViewController.h"
+#import "YXSecondViewController.h"
 @interface SaltedFishTabBarVC ()<AxcAE_TabBarDelegate>
 
 @end
@@ -33,7 +34,7 @@
 //    YXHomeViewController * homeVC = [[YXHomeViewController alloc]init];
     RootNavigationController *nav1 = [[RootNavigationController alloc]initWithRootViewController:homeVC];
 
-    YXFindViewController * findVC = [[YXFindViewController alloc]init];
+    YXSecondViewController * findVC = [[YXSecondViewController alloc]init];
     RootNavigationController *nav2 = [[RootNavigationController alloc]initWithRootViewController:findVC];
 
     UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMessage" bundle:nil];

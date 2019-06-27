@@ -19,7 +19,7 @@
 @end
 
 /**
- *  通用的空界面控件，支持显示 loading、标题和副标题提示语、占位图片，QMUICommonViewController 内已集成一个 emptyView，无需额外添加。
+ *  通用的空界面控件，支持显示 loading、标题和副标题提示语、，QMUICommonViewController 内已集成一个 emptyView，无需额外添加。
  */
 @interface QMUIEmptyView : UIView
 

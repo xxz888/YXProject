@@ -313,7 +313,8 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestEditFaBuImagePOST:YX_BLOCK;
 
 
-
+#pragma mark ========== 根据用户id获取该用户的关注列表 ==========
+-(void)requestOtherGuanzhuList:YX_BLOCK;
 #pragma mark ========== 公共接口:评论 ==========
 -(void)requestPubFaBuPingLunComment:YX_BLOCK;
 #pragma mark ========== 公共接口：删除评论 ==========

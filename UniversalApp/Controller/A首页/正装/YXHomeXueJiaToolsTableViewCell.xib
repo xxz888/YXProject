@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LYg-O8-5FQ">
                         <rect key="frame" x="15" y="15" width="290" height="180.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="占位图片" translatesAutoresizingMaskIntoConstraints="NO" id="gIg-GD-Api">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gIg-GD-Api">
                                 <rect key="frame" x="0.0" y="0.0" width="290" height="180.5"/>
                             </imageView>
                         </subviews>
@@ -50,7 +50,4 @@
             <point key="canvasLocation" x="-913" y="-396"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="占位图片" width="575" height="300"/>
-    </resources>
 </document>

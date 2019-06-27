@@ -20,6 +20,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    self.title = @"关注列表";
 
     
     
@@ -37,7 +38,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"关注列表";
     self.dataArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXMineCommon1TableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineCommon1TableViewCell"];
     /*
@@ -78,6 +78,14 @@
 
     [cell.common1ImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     [ShareManager setGuanZhuStatus:cell.common1GuanzhuBtn status:NO alertView:NO];
+    
+    
+    UserInfo * userInfo = curUser;
+    if ([userInfo.username isEqualToString:self.dataArray[indexPath.row][@"aim_name"]]) {
+        cell.common1GuanzhuBtn.hidden = YES;
+    }else{
+        cell.common1GuanzhuBtn.hidden = NO;
+    }
     return cell;
 }
 -(void)clickBtnAction:(NSInteger)common_id tag:(NSInteger)tag{
@@ -95,9 +103,21 @@
     }];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
-    mineVC.userId = kGetString(self.dataArray[indexPath.row][@"aim_id"]);
-    mineVC.whereCome = YES;    //  YES为其他人 NO为自己
-    [self.navigationController pushViewController:mineVC animated:YES];
+    
+    
+    
+    UserInfo * userInfo = curUser;
+    NSString * key1 = self.dataArray[indexPath.row][@"aim_name"] ? @"aim_name" : @"user_name";
+    if ([userInfo.username isEqualToString:self.dataArray[indexPath.row][key1]]) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        self.navigationController.tabBarController.selectedIndex = 4;
+        return;
+    }else{
+        HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
+        mineVC.userId = kGetString(self.dataArray[indexPath.row][@"aim_id"]);
+        mineVC.whereCome = YES;    //  YES为其他人 NO为自己
+        [self.navigationController pushViewController:mineVC animated:YES];
+    }
+   
 }
 @end

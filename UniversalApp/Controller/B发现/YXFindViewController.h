@@ -9,4 +9,6 @@
 #import "RootViewController.h"
 #import "YXMineAndFindBaseViewController.h"
 @interface YXFindViewController : YXMineAndFindBaseViewController
+@property (nonatomic,strong) NSDictionary * startDic;
+
 @end

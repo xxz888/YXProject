@@ -28,7 +28,7 @@
 #import "YXMineMyCollectionViewController.h"
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
 
-static CGFloat const HeaderImageViewHeight =260;
+static CGFloat const HeaderImageViewHeight =320;
 
 @interface HGPersonalCenterViewController () <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, HGSegmentedPageViewControllerDelegate, HGPageViewControllerDelegate,HGPageViewControllerDelegate1>{
     QMUIModalPresentationViewController * _modalViewController;
@@ -80,46 +80,28 @@ static CGFloat const HeaderImageViewHeight =260;
     kWeakSelf(self);
     [self.view insertSubview:self.yxTableView belowSubview:self.navigationController.navigationBar];
     [self.yxTableView addSubview:self.headerView];
-//    [self.headerImageView addSubview:self.avatarImageView];
-//    [self.headerImageView addSubview:self.nickNameLabel];
-    
     [self.yxTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(weakself.view);
     }];
-//    [self.avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(self.headerImageView);
-//        make.size.mas_equalTo(CGSizeMake(80, 80));
-//        make.bottom.mas_equalTo(-70);
-//    }];
-//    [self.nickNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(self.headerImageView);
-//        make.width.mas_lessThanOrEqualTo(200);
-//        make.bottom.mas_equalTo(-40);
-//    }];
-//    NSArray * menuArray = @[@"菜单"];
-//        [self addNavigationItemWithImageNames:menuArray isLeft:NO target:self action:@selector(handleShowContentView) tags:nil];
+
 }
 #pragma mark ========== 点击菜单按钮的方法 ==========
 - (void)handleShowContentView {
     
     
     kWeakSelf(self);
-    QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+    QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
     }];
     QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"设置" style:QMUIAlertActionStyleDefault handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
-        [aAlertController setAlertTextFieldTextColor:kRGBA(32, 104, 255, 1.0)];
-        
+
         UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
         YXMineSettingTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineSettingTableViewController"];
         [weakself.navigationController pushViewController:VC animated:YES];
     }];
     QMUIAlertAction *action3 = [QMUIAlertAction actionWithTitle:@"分享" style:QMUIAlertActionStyleDefault handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
-        aAlertController.alertDestructiveButtonAttributes = @{NSForegroundColorAttributeName:kRGBA(48, 96, 211, 1.0)};
 
     }];
     QMUIAlertAction *action4 = [QMUIAlertAction actionWithTitle:@"草稿箱" style:QMUIAlertActionStyleDefault handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
-        aAlertController.alertDestructiveButtonAttributes = @{NSForegroundColorAttributeName:kRGBA(48, 96, 211, 1.0)};
-
         YXMineMyCaoGaoViewController * VC = [[YXMineMyCaoGaoViewController alloc]init];
         [weakself.navigationController pushViewController:VC animated:YES];
     }];
@@ -201,7 +183,19 @@ static CGFloat const HeaderImageViewHeight =260;
     _headerView.guanZhuOtherblock = ^{
         [YX_MANAGER requestLikesActionGET:weakself.userId success:^(id object) {
             BOOL is_like = [weakself.headerView.guanzhuBtn.titleLabel.text isEqualToString:@"关注"] == 1;
-            [ShareManager setGuanZhuStatus:weakself.headerView.guanzhuBtn status:!is_like alertView:YES];
+            if (!is_like) {
+                [weakself.headerView.guanzhuBtn setTitle:@"关注" forState:UIControlStateNormal];
+                 [QMUITips showSucceed:@"操作成功"] ;
+            }else{
+                [weakself.headerView.guanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
+                [QMUITips showSucceed:@"操作成功"] ;
+            }
+
+            
+            [weakself.headerView.guanzhuBtn setTitleColor:A_COlOR forState:0];
+            [weakself.headerView.guanzhuBtn setBackgroundColor:KClearColor];
+            ViewBorderRadius(weakself.headerView.guanzhuBtn, 5, 1,A_COlOR);
+
         }];
     };
     
@@ -214,6 +208,10 @@ static CGFloat const HeaderImageViewHeight =260;
     
     _headerView.setblock = ^{
         [weakself handleShowContentView];
+    };
+    
+    _headerView.mineBackVCBlock = ^{
+        [weakself.navigationController popViewControllerAnimated:YES];
     };
 }
 /**
@@ -399,7 +397,6 @@ static CGFloat const HeaderImageViewHeight =260;
         for (int i = 0; i < titles.count; i++) {
             if (i == 0) {
                 YXMineAllViewController * controller = [[YXMineAllViewController alloc] init];
-                controller.delegate = self;
                 controller.userId = self.userId;
                 [controllers addObject:controller];
             }else{
@@ -407,10 +404,11 @@ static CGFloat const HeaderImageViewHeight =260;
             }
         }
         _segmentedPageViewController = [[HGSegmentedPageViewController alloc] init];
+        _segmentedPageViewController.categoryView.titleNomalFont = [UIFont systemFontOfSize:14];
+        _segmentedPageViewController.categoryView.titleSelectedFont = [UIFont systemFontOfSize:15 weight:UIFontWeightBold];
         _segmentedPageViewController.pageViewControllers = controllers.copy;
         _segmentedPageViewController.categoryView.titles = titles;
         _segmentedPageViewController.categoryView.originalIndex = self.selectedIndex;
-//        _segmentedPageViewController.categoryView.collectionView.backgroundColor = [UIColor yellowColor];
         _segmentedPageViewController.delegate = self;
     }
     return _segmentedPageViewController;
@@ -423,6 +421,7 @@ static CGFloat const HeaderImageViewHeight =260;
     kWeakSelf(self);
     //  YES为其他人 NO为自己
     if (self.whereCome) {
+        self.headerView.backBtn.hidden = NO;
         [YX_MANAGER requestGetUserothers:self.userId success:^(id object) {
             [weakself personValue:object];
         }];
@@ -464,23 +463,24 @@ static CGFloat const HeaderImageViewHeight =260;
     }
 
     NSInteger tag = [object[@"is_like"] integerValue];
-    [ShareManager setGuanZhuStatus:self.headerView.guanzhuBtn status:tag == 0 alertView:NO];
+    
+    if (tag == 0) {
+        [self.headerView.guanzhuBtn setTitle:@"关注" forState:UIControlStateNormal];
+    }else{
+        [self.headerView.guanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
+    }
+    [self.headerView.guanzhuBtn setTitleColor:A_COlOR forState:0];
+    [self.headerView.guanzhuBtn setBackgroundColor:KClearColor];
+    ViewBorderRadius(self.headerView.guanzhuBtn, 5, 1,A_COlOR);
+
+    
+    
+    
     NSString * islike = tag == 1 ? @"互相关注" : tag == 2 ? @"已关注" : @"关注";
     [self.headerView.guanzhuBtn setTitle:islike forState:UIControlStateNormal];
     
     self.userInfoDic = [NSDictionary dictionaryWithDictionary:object];
 }
-
-#pragma mark ========== 点击菜单按钮的方法 ==========
-//- (void)handleShowContentView {
-//    if (!_modalViewController) {
-//        _modalViewController = [[QMUIModalPresentationViewController alloc] init];
-//    }
-//    _modalViewController.contentViewMargins = UIEdgeInsetsMake(0, _modalViewController.view.frame.size.width/2.5, 0, 0);
-//    _modalViewController.contentView = self.yxTableView;
-//    [_modalViewController showWithAnimated:YES completion:nil];
-//    [self.yxTableView reloadData];
-//}
 
 
 

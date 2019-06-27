@@ -464,7 +464,7 @@ successBlock(responseObject);\
 }
 #pragma mark ========== 根据用户id获取该用户的粉丝列表 ==========
 -(void)requestOtherFenSi:YX_BLOCK{
-    NSString * url = @"/users/others/4/";
+    NSString * url = @"/users/others/5/";
     [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) {}];

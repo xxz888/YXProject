@@ -22,7 +22,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface YXMineAndFindBaseViewController : HGBaseViewController
+@interface YXMineAndFindBaseViewController : RootViewController
 @property(nonatomic,strong)NSMutableArray * dataArray;
 @property (strong, nonatomic) UITableView *yxTableView;
 @property (nonatomic,assign) CGFloat lastScrollViewOffsetY;

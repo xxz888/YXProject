@@ -506,6 +506,7 @@
 		BBBFD7922222D7D300D377AC /* TOCropToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBFD7842222D7D300D377AC /* TOCropToolbar.m */; };
 		BBC16284217AD6EA00008907 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC16283217AD6EA00008907 /* Login.storyboard */; };
 		BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */; };
+		BBC3FB0022C4647400BB2564 /* YXSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC3FAFF22C4647400BB2564 /* YXSecondViewController.m */; };
 		BBC6180421F5AD5A00495619 /* YXHomeGolf.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC6180321F5AD5A00495619 /* YXHomeGolf.storyboard */; };
 		BBCC4B1721E8927700493F40 /* UIView+Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4B1121E8927600493F40 /* UIView+Geometry.m */; };
 		BBCC4B1821E8927700493F40 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4B1221E8927600493F40 /* Utility.m */; };
@@ -1552,6 +1553,8 @@
 		BBC16283217AD6EA00008907 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		BBC162D0217B111C00008907 /* QMUIConfigurationTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfigurationTemplate.h; sourceTree = "<group>"; };
 		BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIConfigurationTemplate.m; sourceTree = "<group>"; };
+		BBC3FAFE22C4647400BB2564 /* YXSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXSecondViewController.h; sourceTree = "<group>"; };
+		BBC3FAFF22C4647400BB2564 /* YXSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXSecondViewController.m; sourceTree = "<group>"; };
 		BBC6180321F5AD5A00495619 /* YXHomeGolf.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = YXHomeGolf.storyboard; sourceTree = "<group>"; };
 		BBCC4B1121E8927600493F40 /* UIView+Geometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Geometry.m"; sourceTree = "<group>"; };
 		BBCC4B1221E8927600493F40 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
@@ -3304,6 +3307,8 @@
 		BBA812A721DDAB7A001B5EA1 /* B发现 */ = {
 			isa = PBXGroup;
 			children = (
+				BBC3FAFE22C4647400BB2564 /* YXSecondViewController.h */,
+				BBC3FAFF22C4647400BB2564 /* YXSecondViewController.m */,
 				BBD1C77222166AD40063002F /* YXMineAndFindBaseViewController.h */,
 				BBD1C77322166AD40063002F /* YXMineAndFindBaseViewController.m */,
 				BB21FDB622B0E68A0059BCAC /* YXFirstFindImageTableViewCell.h */,
@@ -5979,6 +5984,7 @@
 				BBD2C84C21E0F46500350DCD /* YXPublishImageViewController.m in Sources */,
 				29AD6C711ED41ED200B0879C /* UserInfo.m in Sources */,
 				BB21FD9822B0991E0059BCAC /* KSMediaPickerScrollView.m in Sources */,
+				BBC3FB0022C4647400BB2564 /* YXSecondViewController.m in Sources */,
 				BBD2C92721E0F67800350DCD /* MWGridViewController.m in Sources */,
 				BBB59AEA228CF8CB0029D3D0 /* YXHomeXueJiaGuBaViewController.m in Sources */,
 				BB21FDB922B0E68A0059BCAC /* YXFirstFindImageTableViewCell.m in Sources */,

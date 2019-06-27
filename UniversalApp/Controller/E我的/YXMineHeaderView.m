@@ -35,4 +35,7 @@
 - (IBAction)guanZhuOtherAction:(id)sender {
     self.guanZhuOtherblock();
 }
+- (IBAction)backVCAction:(id)sender {
+    self.mineBackVCBlock();
+}
 @end
