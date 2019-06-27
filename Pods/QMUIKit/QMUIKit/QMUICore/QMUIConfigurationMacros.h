@@ -32,7 +32,7 @@
 #define UIColorGrayLighten          [QMUICMI grayLightenColor]
 #define UIColorRed                  [QMUICMI redColor]
 #define UIColorGreen                [QMUICMI greenColor]
-#define UIColorBlue                 [QMUICMI blueColor]
+#define UIColorBlue                 [UIColor colorWithRed:10/255.0 green:96/255.0 blue:254/255.0 alpha:1.0]
 #define UIColorYellow               [QMUICMI yellowColor]
 
 // 功能颜色
