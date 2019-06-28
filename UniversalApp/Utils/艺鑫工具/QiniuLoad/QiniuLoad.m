@@ -85,9 +85,25 @@ static NSString *QiniuBucketName  = @"thegdlife";
         
     }];
 }
-
++(NSData *)imageData:(UIImage *)obj{
+    NSData *data=UIImageJPEGRepresentation(obj, 1.0);
+    if (data.length>100*1024) {
+        if (data.length>2*1024*1024) {//2M以及以上
+            data=UIImageJPEGRepresentation(obj, 0.25);
+        }else if (data.length>1024*1024) {//1M-2M
+            data=UIImageJPEGRepresentation(obj, 0.5);
+        }else{
+            data=UIImageJPEGRepresentation(obj, 1);
+        }
+    }
+    return data;
+}
 +(void)uploadImageToQNFilePath:(NSArray *)photos success:(QNSuccessBlock)success failure:(QNFailureBlock)failure{
+    NSString * log = [NSString stringWithFormat:@"【开始】上传七牛云，数组一共【%lu】张图片",(unsigned long)photos.count];
+    NSLog(@"%@",log);
     NSMutableArray *imageAdd = [NSMutableArray new];
+    UserInfo *userInfo = curUser;
+    NSString * myToken = [QiniuLoad makeToken:accessKey secretKey:secretKey];
     //主要是把图片或者文件转成nsdata类型就可以了
     QNConfiguration *config = [QNConfiguration build:^(QNConfigurationBuilder *builder) {
         builder.zone = [QNFixedZone zone0];}];
@@ -97,35 +113,67 @@ static NSString *QiniuBucketName  = @"thegdlife";
                                                                  params:nil
                                                                checkCrc:NO
                                                      cancellationSignal:nil];
-    [photos enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSLog(@"--------------上传七牛云：%ld-------------",idx);
-        NSData *data;
-        if (UIImagePNGRepresentation(obj) == nil){
-            data = UIImageJPEGRepresentation(obj, 1);
-        } else {
-            data = UIImagePNGRepresentation(obj);
-        }
-        UserInfo *userInfo = curUser;
-        NSString * userId = userInfo.id;
-        NSString * key = [NSString stringWithFormat:@"%@_image_%@.jpg",userId,[ShareManager getNowTimeTimestamp3]];
-        [upManager putData:data key:key token:[QiniuLoad makeToken:accessKey secretKey:secretKey] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-            if (info.isOK) {
-                [imageAdd addObject:[NSString stringWithFormat:@"%@%@",kQNinterface,resp[@"key"]]];
-            }else{
-                //[imageAdd addObject:[NSString stringWithFormat:@"%ld",idx]];
-            }
-            if (imageAdd.count == photos.count) {
-                if (success) {
-                    NSLog(@"--------------上传七牛云成功，并返回了数据-------------");
-                    success([imageAdd componentsJoinedByString:@";"]);
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+        for (NSInteger i = 0; i < [photos count]; i++) {
+            NSData *data= [QiniuLoad imageData:photos[i]];
+            NSString * key = [NSString stringWithFormat:@"%@_image_%@%ld.png",userInfo.id,[ShareManager getNowTimeTimestamp3],(long)i];
+            [upManager putData:data key:key token:myToken complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+                if (resp[@"key"]) {
+                    [imageAdd addObject:[NSString stringWithFormat:@"%@%@",kQNinterface,resp[@"key"]]];
                 }else{
-                    [QMUITips showError:@"上传图片失败,请稍后再试"];
-
+                    
                 }
-            }
+                NSString * log = [NSString stringWithFormat:@"【上传中】,已上传【%lu】张图片",(unsigned long)imageAdd.count];
+                NSLog(@"%@-%@",log,resp[@"key"]);
+                if (imageAdd.count == photos.count) {
+                    NSString * log = [NSString stringWithFormat:@"【成功】上传七牛云，数组一共【%lu】张图片",(unsigned long)imageAdd.count];
+                    NSLog(@"%@",log);
+                    success([imageAdd componentsJoinedByString:@";"]);
+                }
+                dispatch_semaphore_signal(sema);
+            } option:uploadOption];
+            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
         }
-                    option:uploadOption];
-    }];
+    });
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//    [photos enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        NSLog(@"--------------上传七牛云：%ld-------------",idx);
+//        [upManager putData:data key:key token:[QiniuLoad makeToken:accessKey secretKey:secretKey] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+//            if (info.isOK) {
+//                [imageAdd addObject:[NSString stringWithFormat:@"%@%@",kQNinterface,resp[@"key"]]];
+//            }else{
+//                //[imageAdd addObject:[NSString stringWithFormat:@"%ld",idx]];
+//            }
+//            if (imageAdd.count == photos.count) {
+//                if (success) {
+//                    NSLog(@"--------------上传七牛云成功，并返回了数据-------------");
+//                    success([imageAdd componentsJoinedByString:@";"]);
+//                }else{
+//                    [QMUITips showError:@"上传图片失败,请稍后再试"];
+//
+//                }
+//            }
+//        }
+//                    option:uploadOption];
+//    }];
 }
 
 +(void)uploadVideoToQNFilePath:(NSURL *)url success:(QNSuccessBlock)success failure:(QNFailureBlock)failure{

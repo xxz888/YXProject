@@ -23,52 +23,54 @@
 #pragma mark ==========  图片和视频返回的block ==========
 - (void)mediaPicker:(KSMediaPickerController *)mediaPicker didFinishSelected:(NSArray<KSMediaPickerOutputModel *> *)outputArray {
     [mediaPicker.navigationController dismissViewControllerAnimated:YES completion:nil];
+    NSMutableArray * upLoadImageArray = [NSMutableArray array];
+    kWeakSelf(self);
+    
     for (KSMediaPickerOutputModel * model in outputArray) {
         [_selectedPhotos addObject:model];
+        if (model.image) {
+            [upLoadImageArray addObject:model.image];
+        }else{
+            
+        }
     }
     [self.yxCollectionView reloadData];
     
     
-    
-    //这一步开始上传
-    kWeakSelf(self);
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-        for (NSInteger i = 0; i < [outputArray count]; i++) {
-            KSMediaPickerOutputModel * model = outputArray[i];
-                if (model.mediaType == PHAssetMediaTypeVideo) {
-                    weakself.fabuType = YES;
-                [QiniuLoad uploadVideoToQNFilePath:model.videoAsset.URL success:^(NSString *reslut) {
-                    [weakself.photoImageList addObject:reslut];
-                    dispatch_semaphore_signal(sema);
-                } failure:^(NSString *error) {}];
-                    
-                UIImage * cover = [weakself getVideoPreViewImage:model.videoAsset.URL];
-                //先上传到七牛云图片  再提交服务器
-                [QiniuLoad uploadImageToQNFilePath:@[cover] success:^(NSString *reslut) {
-                    NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
-                    if (qiniuArray.count > 0) {
-                        weakself.videoCoverImageString = qiniuArray[0];
-                    }
-                    dispatch_semaphore_signal(sema);
-                } failure:^(NSString *error) {}];
-            }else{
-                weakself.fabuType = NO;
-                //先上传到七牛云图片  再提交服务器
-                [QiniuLoad uploadImageToQNFilePath:@[model.image] success:^(NSString *reslut) {
-                    NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
-                    if (qiniuArray.count > 0) {
-                        [weakself.photoImageList addObject:qiniuArray[0]];
-                    }
-                    dispatch_semaphore_signal(sema);
-                } failure:^(NSString *error) {}];
-            }
-         
-            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+    //如果数组为1,两种情况，1、视频 2、一张图片
+    if (outputArray.count == 1) {
+        KSMediaPickerOutputModel * model = outputArray[0];
+        if (model.mediaType == PHAssetMediaTypeVideo) {
+            self.fabuType = YES;
+            UIImage * cover = [self getVideoPreViewImage:model.videoAsset.URL];
+            [QiniuLoad uploadVideoToQNFilePath:model.videoAsset.URL success:^(NSString *reslut) {
+                [weakself.photoImageList addObject:reslut];
+                [weakself uploadImageQiNiuYun:[NSMutableArray arrayWithObject:cover]];
+            } failure:^(NSString *error) {}];
+        }else{
+            self.fabuType = NO;
+            [self uploadImageQiNiuYun:upLoadImageArray];
         }
-    });
+    }else{
+        self.fabuType = NO;
+        [self uploadImageQiNiuYun:upLoadImageArray];
+    }
 }
-
+-(void)uploadImageQiNiuYun:(NSMutableArray *)upLoadImageArray{
+    kWeakSelf(self);
+    CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();
+    [QiniuLoad uploadImageToQNFilePath:upLoadImageArray success:^(NSString *reslut) {
+        NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
+        if (qiniuArray.count > 0) {
+            if (weakself.fabuType) {
+                weakself.videoCoverImageString = qiniuArray[0];
+            }else{
+                [weakself.photoImageList addObjectsFromArray:qiniuArray];
+            }
+        }
+        NSLog(@"------------七牛云上传图片耗时: %f秒", CFAbsoluteTimeGetCurrent() - start);
+    } failure:^(NSString *error) {}];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addTextView];
@@ -235,12 +237,12 @@
     [self closeViewAAA];
 }
 -(void)closeViewAAA{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSecondVC" object:nil];
     UIViewController *controller = self;
     while(controller.presentingViewController != nil){
         controller = controller.presentingViewController;
     }
     [controller dismissViewControllerAnimated:YES completion:^{
-        
     }];
 }
 

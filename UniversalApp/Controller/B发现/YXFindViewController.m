@@ -13,6 +13,17 @@
     [super viewDidLoad];
     self.yxTableView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight - kTopHeight - TabBarHeight - 40);
     [self requestTableData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSecondVC:) name:@"refreshSecondVC" object:nil];
+}
+- (void)dealloc {
+    //单条移除观察者
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"refreshSecondVC" object:nil];
+    //移除所有观察者
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+- (void)refreshSecondVC: (NSNotification *) notification {
+    [self requestTableData];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

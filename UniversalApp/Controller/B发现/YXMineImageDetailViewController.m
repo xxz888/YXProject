@@ -167,13 +167,14 @@
         //这里判断晒图是图还是视频
         if ([self.startDic[@"url_list"] count] > 0) {
             if ([kGetString(self.startDic[@"url_list"][0]) containsString:@"mp4"]) {
+                CGFloat scale = [self getVideoWidthWithSourcePath:self.startDic[@"url_list"][0]];
+                self.cell.midViewHeight.constant = ( KScreenWidth - 20 ) * scale;
                 //视频
                 self.cell.playImV.hidden = YES;
                 CGRect Frame = self.cell.frame;
-                Frame.size.height= self.headerViewHeight + 100 - 220 + self.cell.midViewHeight.constant;
+                Frame.size.height= self.headerViewHeight - 100 + 60 + self.cell.midViewHeight.constant;
                 self.cell.frame= Frame;
-                CGFloat scale = [self getVideoWidthWithSourcePath:self.startDic[@"url_list"][0]];
-                self.cell.midViewHeight.constant = ( KScreenWidth - 20 ) * scale;
+
 
                 self.player.videoUrl = self.startDic[@"url_list"][0];
                 [self.cell.onlyOneImv addSubview:self.player];

@@ -199,7 +199,7 @@
         [weakself requestAction];
     }];
 }
--(void)requestAction{
+-(void)requestTableData{
     
 }
 #pragma mark ========== 头像点击 ==========
@@ -263,19 +263,19 @@
         if ([isWho isEqualToString:@"1"]) {
             [YX_MANAGER requestDel_ShaiTU:NSIntegerToNSString(tagId) success:^(id object) {
                 [QMUITips showSucceed:@"删除成功"];
-                [weakself requestAction];
+                [weakself requestTableData];
             }];
         }else if ([isWho isEqualToString:@"2"]){
             [YX_MANAGER requestDel_WenDa:NSIntegerToNSString(tagId) success:^(id object) {
                 [QMUITips showSucceed:@"删除成功"];
                 
-                [weakself requestAction];
+                [weakself requestTableData];
             }];
         }else if ([isWho isEqualToString:@"3"]){
             [YX_MANAGER requestDel_ZuJi:NSIntegerToNSString(tagId) success:^(id object) {
                 [QMUITips showSucceed:@"删除成功"];
                 
-                [weakself requestAction];
+                [weakself requestTableData];
             }];
         }
     }]],
