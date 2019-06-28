@@ -17,14 +17,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     ViewRadius(self.clickPingLunBtn, 10);
-    //self.clickbtnHeight.constant = AxcAE_IsiPhoneX ? 70 : 40;
     _imageArr = [[NSMutableArray alloc]init];
     _dataArray = [[NSMutableArray alloc]init];
     _pageArray = [[NSMutableArray alloc]init];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
+
 
 #pragma mark ========== tableview代理和所有方法 ==========
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -185,6 +183,8 @@
 
 }
 - (void)dealloc{
+    //移除KVO
+    [self removeObserver:self forKeyPath:@"dataArray"];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 -(void)initAllControl{
@@ -199,6 +199,7 @@
     self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeTop;
+    [self addObserver:self forKeyPath:@"dataArray" options:NSKeyValueObservingOptionNew context:nil];
 }
 - (void)deallocsetContentViewValue{
     [self.textField removeFromSuperview];

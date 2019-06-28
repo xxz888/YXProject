@@ -507,6 +507,10 @@
 		BBC16284217AD6EA00008907 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC16283217AD6EA00008907 /* Login.storyboard */; };
 		BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */; };
 		BBC3FB0022C4647400BB2564 /* YXSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC3FAFF22C4647400BB2564 /* YXSecondViewController.m */; };
+		BBC3FB4922C5C59B00BB2564 /* BJNoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC3FB4322C5C59B00BB2564 /* BJNoDataView.m */; };
+		BBC3FB4A22C5C59B00BB2564 /* no_data@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC3FB4622C5C59B00BB2564 /* no_data@3x.png */; };
+		BBC3FB4B22C5C59B00BB2564 /* no_data.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC3FB4722C5C59B00BB2564 /* no_data.png */; };
+		BBC3FB4C22C5C59B00BB2564 /* no_data@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC3FB4822C5C59B00BB2564 /* no_data@2x.png */; };
 		BBC6180421F5AD5A00495619 /* YXHomeGolf.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC6180321F5AD5A00495619 /* YXHomeGolf.storyboard */; };
 		BBCC4B1721E8927700493F40 /* UIView+Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4B1121E8927600493F40 /* UIView+Geometry.m */; };
 		BBCC4B1821E8927700493F40 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4B1221E8927600493F40 /* Utility.m */; };
@@ -1555,6 +1559,11 @@
 		BBC162D1217B111C00008907 /* QMUIConfigurationTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIConfigurationTemplate.m; sourceTree = "<group>"; };
 		BBC3FAFE22C4647400BB2564 /* YXSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXSecondViewController.h; sourceTree = "<group>"; };
 		BBC3FAFF22C4647400BB2564 /* YXSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXSecondViewController.m; sourceTree = "<group>"; };
+		BBC3FB4322C5C59B00BB2564 /* BJNoDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJNoDataView.m; sourceTree = "<group>"; };
+		BBC3FB4422C5C59B00BB2564 /* BJNoDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJNoDataView.h; sourceTree = "<group>"; };
+		BBC3FB4622C5C59B00BB2564 /* no_data@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_data@3x.png"; sourceTree = "<group>"; };
+		BBC3FB4722C5C59B00BB2564 /* no_data.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_data.png; sourceTree = "<group>"; };
+		BBC3FB4822C5C59B00BB2564 /* no_data@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_data@2x.png"; sourceTree = "<group>"; };
 		BBC6180321F5AD5A00495619 /* YXHomeGolf.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = YXHomeGolf.storyboard; sourceTree = "<group>"; };
 		BBCC4B1121E8927600493F40 /* UIView+Geometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Geometry.m"; sourceTree = "<group>"; };
 		BBCC4B1221E8927600493F40 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
@@ -2038,6 +2047,7 @@
 		293D45AD1ECD6926007C64A9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				BBC3FB4222C5C59B00BB2564 /* BJNoDataView */,
 				BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */,
 				BBA812D721DDDE47001B5EA1 /* homeSliderView */,
 				BBA812DC21DDDE47001B5EA1 /* UNUSED */,
@@ -4402,6 +4412,26 @@
 			path = StoryBoard;
 			sourceTree = "<group>";
 		};
+		BBC3FB4222C5C59B00BB2564 /* BJNoDataView */ = {
+			isa = PBXGroup;
+			children = (
+				BBC3FB4322C5C59B00BB2564 /* BJNoDataView.m */,
+				BBC3FB4422C5C59B00BB2564 /* BJNoDataView.h */,
+				BBC3FB4522C5C59B00BB2564 /* no_data */,
+			);
+			path = BJNoDataView;
+			sourceTree = "<group>";
+		};
+		BBC3FB4522C5C59B00BB2564 /* no_data */ = {
+			isa = PBXGroup;
+			children = (
+				BBC3FB4622C5C59B00BB2564 /* no_data@3x.png */,
+				BBC3FB4722C5C59B00BB2564 /* no_data.png */,
+				BBC3FB4822C5C59B00BB2564 /* no_data@2x.png */,
+			);
+			path = no_data;
+			sourceTree = "<group>";
+		};
 		BBCC4B1021E8927600493F40 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -5426,6 +5456,7 @@
 				BBB59B0C228CF8CB0029D3D0 /* YXHomeXueJiaWenHuaTableViewCell.xib in Resources */,
 				BBD2C93321E0F67800350DCD /* ImageSelectedSmallOff@3x.png in Resources */,
 				BBDA2D2121EB30BF00EDCCFF /* sdRefeshView_arrow@2x.png in Resources */,
+				BBC3FB4A22C5C59B00BB2564 /* no_data@3x.png in Resources */,
 				BBD2C93021E0F67800350DCD /* PlayButtonOverlayLargeTap@2x.png in Resources */,
 				293D45A11ECD6422007C64A9 /* Assets.xcassets in Resources */,
 				BBB59AD0228CF8CB0029D3D0 /* YXHomeGolfScoreTableViewCell.xib in Resources */,
@@ -5466,6 +5497,7 @@
 				BBBCDBB2223F65540056C7DD /* LICENSE in Resources */,
 				2917D20B1EE007C300E76185 /* MBHUD_Error@2x.png in Resources */,
 				293D464C1ECDBB63007C64A9 /* icon_tabbar_mine_selected.png in Resources */,
+				BBC3FB4C22C5C59B00BB2564 /* no_data@2x.png in Resources */,
 				296F85091FED04EF005612D1 /* close_icon@2x.png in Resources */,
 				BBB59B15228CF8CB0029D3D0 /* YXXingZhuangViewController.xib in Resources */,
 				BB29120A22156BB500FF484E /* Petit Pyramid.gif in Resources */,
@@ -5543,6 +5575,7 @@
 				BB8376F02248AE930091A1A8 /* YXMineFindViewController.xib in Resources */,
 				BB7AF13A2200869E00989896 /* YXMineHeaderView.xib in Resources */,
 				BBD2C94B21E0F67800350DCD /* README.md in Resources */,
+				BBC3FB4B22C5C59B00BB2564 /* no_data.png in Resources */,
 				BBB59B20228CF8CB0029D3D0 /* YXHomePeiJianLastView.xib in Resources */,
 				BBD2C95721E0F72800350DCD /* README.md in Resources */,
 				293D46401ECDBB63007C64A9 /* icon_tabbar_discovery.png in Resources */,
@@ -5960,6 +5993,7 @@
 				BBB59B26228CF8CB0029D3D0 /* BKSingleCollectionViewCell.m in Sources */,
 				BB6D2A3821EEC63900F5049F /* HCEmojiKeyboard.m in Sources */,
 				BBD2C8F821E0F67700350DCD /* TZVideoPlayerController.m in Sources */,
+				BBC3FB4922C5C59B00BB2564 /* BJNoDataView.m in Sources */,
 				BBABDF39229BC3A20046683A /* YXZhiNan2Cell.m in Sources */,
 				BBBBC0FA22BCD2FF00F528E1 /* XLSlider.m in Sources */,
 				BBD2C8FB21E0F67700350DCD /* UIView+Layout.m in Sources */,

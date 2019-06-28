@@ -21,6 +21,7 @@
 #import "ZInputToolbar.h"
 #import "UIView+LSExtension.h"
 #import "YXMineImageDetailHeaderView.h"
+#import "BJNoDataView.h"
 
 #import "UITableView+SDAutoTableViewCellHeight.h"
 static CGFloat textFieldH = 40;

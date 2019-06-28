@@ -12,6 +12,8 @@
 #import "YXHomeXueJiaPinPaiLastDetailViewController.h"
 #import "YXZhiNanViewController.h"
 #import "YXZhiNanDetailViewController.h"
+#import "BJNoDataView.h"
+
 @interface YXMineMyCollectionViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSString * _sort;
 }
@@ -25,9 +27,28 @@
     self.title = @"我的收藏";
     [self setInitTableView];
     _sort = @"0";
-    
-}
+    [self addObserver:self forKeyPath:@"dataArray" options:NSKeyValueObservingOptionNew context:nil];
 
+}
+#pragma mark-----KVO回调----
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
+    if (![keyPath isEqualToString:@"dataArray"]) {
+        return;
+    }
+    if ([self.dataArray count]==0) {//无数据
+        [[BJNoDataView shareNoDataView] showCenterWithSuperView:self.yxTableView icon:nil iconClicked:^{
+            //图片点击回调
+            //[self loadData];//刷新数据
+        }];
+        return;
+    }
+    //有数据
+    [[BJNoDataView shareNoDataView] clear];
+}
+-(void)dealloc{
+    //移除KVO
+    [self removeObserver:self forKeyPath:@"dataArray"];
+}
 -(void)requestMyCollectionListGet{
    kWeakSelf(self);
     NSString * par = [NSString stringWithFormat:@"%@/%@",_sort,NSIntegerToNSString(self.requestPage)];
