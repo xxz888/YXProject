@@ -209,6 +209,7 @@
 -(void)requestTableData{
     
 }
+
 #pragma mark ========== 头像点击 ==========
 -(void)clickUserImageView:(NSString *)userId{
      UserInfo *userInfo = curUser;

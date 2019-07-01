@@ -22,20 +22,20 @@
     self.yxTableView.frame = CGRectMake(0, 0, KScreenWidth, height);
     
 }
--(void)requestAction{
+-(void)requestTableData{
     user_id_BOOL ? [self requestOther_AllList] : [self requestMine_AllList];
 }
 -(void)headerRereshing{
     [super headerRereshing];
-    [self requestAction];
+    [self requestTableData];
 }
 -(void)footerRereshing{
     [super footerRereshing];
-    [self requestAction];
+    [self requestTableData];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self requestAction];
+    [self requestTableData];
 }
 #pragma mark ========== 我自己的所有 ==========
 -(void)requestMine_AllList{
@@ -67,7 +67,7 @@
     kWeakSelf(self);
     NSString* post_id = kGetString(self.dataArray[indexPath.row][@"id"]);
     [YX_MANAGER requestPost_praisePOST:@{@"post_id":post_id} success:^(id object) {
-        [weakself requestAction];
+        [weakself requestTableData];
     }];
 }
 #pragma mark ========== 足迹点赞 ==========
@@ -75,7 +75,7 @@
     kWeakSelf(self);
     NSString* track_id = kGetString(self.dataArray[indexPath.row][@"id"]);
     [YX_MANAGER requestDianZanFoot:@{@"track_id":track_id} success:^(id object) {
-        [weakself requestAction];
+        [weakself requestTableData];
     }];
 }
 
