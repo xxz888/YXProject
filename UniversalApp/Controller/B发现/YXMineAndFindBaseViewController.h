@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)requestDianZan_Image_Action:(NSIndexPath *)indexPath;
 -(void)requestAction;
 -(void)requestMine_AllList;
-@property (nonatomic, strong) UIImageView * nodataImg;
+@property (nonatomic, strong) UILabel * nodataImg;
 
 
 

@@ -123,9 +123,13 @@
         [self.yxTableView setTableHeaderView:self.cell];//这句话才是重点
             
         if (!self.nodataImg) {
-            self.nodataImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"no_data"]];
+            self.nodataImg = [[UILabel alloc]init];
         }
-        self.nodataImg.frame = CGRectMake((KScreenWidth-100)/2,self.cell.frame.size.height , 100, 100);
+        self.nodataImg.frame = CGRectMake((KScreenWidth-200)/2,self.cell.frame.size.height - 30, 200, 100);
+        self.nodataImg.text = @"暂时还没有评论";
+        self.nodataImg.font = [UIFont systemFontOfSize:14];
+        self.nodataImg.textColor = [UIColor lightGrayColor];
+        self.nodataImg.textAlignment = NSTextAlignmentCenter;
         [self.nodataImg removeFromSuperview];
         [self.yxTableView addSubview:self.nodataImg];
         self.nodataImg.hidden = self.dataArray.count != 0;
@@ -210,12 +214,18 @@
             }
         }
          self.yxTableView.tableHeaderView = self.cell;
-        
-        self.nodataImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"no_data"]];
-        self.nodataImg.frame = CGRectMake((KScreenWidth-100)/2,self.cell.frame.size.height, 100, 100);
+        if (!self.nodataImg) {
+            self.nodataImg = [[UILabel alloc]init];
+        }
+        self.nodataImg.frame = CGRectMake((KScreenWidth-200)/2,self.cell.frame.size.height , 200, 100);
+        self.nodataImg.text = @"暂时还没有评论";
+        self.nodataImg.font = [UIFont systemFontOfSize:14];
+        self.nodataImg.textColor = [UIColor lightGrayColor];
+        self.nodataImg.textAlignment = NSTextAlignmentCenter;
+        [self.nodataImg removeFromSuperview];
         [self.yxTableView addSubview:self.nodataImg];
         self.nodataImg.hidden = YES;
-        
+
     }else{
         self.cell.imgV1.hidden = self.cell.imgV2.hidden = self.cell.imgV3.hidden = self.cell.imgV4.hidden = self.cell.stackView.hidden = self.cell.onlyOneImv.hidden = self.cell.playImV.hidden = YES;
         CGFloat detailHeight = [ShareManager inTextOutHeight:[self.startDic[@"title"] UnicodeToUtf8] lineSpace:9 fontSize:24];

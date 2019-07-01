@@ -46,8 +46,15 @@
     self.yxTableView.estimatedSectionHeaderHeight = 0;
     self.yxTableView.estimatedSectionFooterHeight = 0;
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFirstFindImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFirstFindImageTableViewCell"];
-    self.nodataImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"no_data"]];
-    self.nodataImg.frame = CGRectMake((KScreenWidth-100)/2,80 , 100, 100);
+    
+    
+    
+    self.nodataImg = [[UILabel alloc]init];
+    self.nodataImg.frame = CGRectMake((KScreenWidth-200)/2,80 , 200, 100);
+    self.nodataImg.text = @"暂时还没有晒图和文章";
+    self.nodataImg.font = [UIFont systemFontOfSize:14];
+    self.nodataImg.textColor = [UIColor lightGrayColor];
+    self.nodataImg.textAlignment = NSTextAlignmentCenter;
     [self.yxTableView addSubview:self.nodataImg];
     self.nodataImg.hidden = YES;
     
