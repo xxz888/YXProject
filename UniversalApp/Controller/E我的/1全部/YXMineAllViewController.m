@@ -50,6 +50,7 @@
     [YX_MANAGER requestGet_users_find:parString success:^(id object){
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
+        weakself.nodataImg.hidden = weakself.dataArray.count != 0;
     }];
 }
 #pragma mark ========== 其他用户的所有 ==========

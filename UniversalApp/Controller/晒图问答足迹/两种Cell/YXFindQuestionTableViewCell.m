@@ -163,15 +163,7 @@
     [self.titleTagLbl2 setText:titleText attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
                tapStringArray:modelArray];
     self.textHeight.constant = [self getLblHeight:dic];
-    if (self.textHeight.constant < 30) {
-        [ShareManager setLineSpace:0 withText:[self.titleTagLbl2.text UnicodeToUtf8] inLabel:self.titleTagLbl2 tag:dic[@"index"]];
 
-    }else{
-        [ShareManager setLineSpace:9 withText:[self.titleTagLbl2.text UnicodeToUtf8] inLabel:self.titleTagLbl2 tag:dic[@"index"]];
-    }
-    
-    self.titleTagLbl1.text = [dic[@"title"] UnicodeToUtf8];
-    [ShareManager setLineSpace:9 withText:[self.titleTagLbl1.text UnicodeToUtf8] inLabel:self.titleTagLbl1 tag:@""];
     self.questionTitleHeight.constant = [ShareManager inTextOutHeight:self.titleTagLbl1.text lineSpace:9 fontSize:14];
     
     NSString * str1 = [(NSMutableString *)dic[@"pic1"] replaceAll:@" " target:@"%20"];

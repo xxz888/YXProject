@@ -33,9 +33,9 @@
         
     }else{
         titleText = [[NSString stringWithFormat:@"%@%@",dic[@"title"],dic[@"tag"]] UnicodeToUtf8];
-        midViewHeight = 180;
+        midViewHeight = 220;
     }
-    CGFloat detailHeight = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:15];
+    CGFloat detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:15];
    
     return 125 + detailHeight + midViewHeight;
 }
@@ -93,11 +93,13 @@
         weakself.clickTagblock(string);
     };
     //label内容赋值
-    [self.detailLbl setText:titleText attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]}
+    [self.detailLbl setText:titleText attributes:@{NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:15],}
                tapStringArray:modelArray];
-      self.detailHeight.constant = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:15];
+    //下边这句话不能删除，改变样式的
+    [ShareManager setLineSpace:9 inLabel:self.detailLbl];
+      self.detailHeight.constant = [ShareManager inTextOutHeight:titleText  lineSpace:9 fontSize:15];
+    [self.detailLbl setOrgVerticalTextAlignment:OrgHLVerticalTextAlignmentMiddle];
 
-    
     //图片
     if ([dic[@"obj"] integerValue] == 1) {
         NSArray * urlList = dic[@"url_list"];
@@ -148,15 +150,18 @@
             }
 
         }
+        self.detailLbl.font =  [UIFont fontWithName:@"苹方-简" size:15];
+
     }else{
     //文章
-        self.midViewHeight.constant = 180;
+        self.midViewHeight.constant = 220;
         self.onlyOneImv.hidden = NO;
         self.imgV1.hidden = self.imgV2.hidden = self.imgV3.hidden = self.imgV4.hidden = self.stackView.hidden = self.playImV.hidden =YES;
         NSString * string = [(NSMutableString *)dic[@"cover"] replaceAll:@" " target:@"%20"];
         [self.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         [self.onlyOneImv removeGestureRecognizer:self.tap];
-
+        
+        self.detailLbl.font =  [UIFont fontWithName:@"Helvetica-Bold" size:17];
     }
     
     
@@ -239,4 +244,7 @@
     self.rightCountLbl.text = [NSString stringWithFormat:@"%ld/%ld",index+1,(long)_tatolCount];
     
 }
+
+
+
 @end

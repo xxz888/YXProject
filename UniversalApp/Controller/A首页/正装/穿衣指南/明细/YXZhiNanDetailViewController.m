@@ -221,6 +221,11 @@
     vc.startDic = [NSDictionary dictionaryWithDictionary:self.startArray[self.bigIndex]];
     vc.startId = self.startArray[self.bigIndex][@"id"];
     [self.navigationController pushViewController:vc animated:YES];
+    
+    kWeakSelf(self);
+    vc.pinglunBlock = ^(NSString * pinglunString) {
+        weakself.plLbl.text = pinglunString;
+    };
 }
 
 -(void)collectAction{

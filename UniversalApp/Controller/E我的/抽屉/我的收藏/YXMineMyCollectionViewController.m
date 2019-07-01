@@ -27,34 +27,15 @@
     self.title = @"我的收藏";
     [self setInitTableView];
     _sort = @"0";
-    [self addObserver:self forKeyPath:@"dataArray" options:NSKeyValueObservingOptionNew context:nil];
+}
 
-}
-#pragma mark-----KVO回调----
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
-    if (![keyPath isEqualToString:@"dataArray"]) {
-        return;
-    }
-    if ([self.dataArray count]==0) {//无数据
-        [[BJNoDataView shareNoDataView] showCenterWithSuperView:self.yxTableView icon:nil iconClicked:^{
-            //图片点击回调
-            //[self loadData];//刷新数据
-        }];
-        return;
-    }
-    //有数据
-    [[BJNoDataView shareNoDataView] clear];
-}
--(void)dealloc{
-    //移除KVO
-    [self removeObserver:self forKeyPath:@"dataArray"];
-}
 -(void)requestMyCollectionListGet{
    kWeakSelf(self);
     NSString * par = [NSString stringWithFormat:@"%@/%@",_sort,NSIntegerToNSString(self.requestPage)];
    [YX_MANAGER requestMyXueJia_CollectionListGet:par success:^(id object) {
        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
        [weakself.yxTableView reloadData];
+       weakself.noDataImg.hidden = weakself.dataArray.count != 0;
    }];
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -190,6 +171,8 @@
     ViewRadius(self.btn2, 5);
     ViewRadius(self.btn3, 5);
     ViewRadius(self.btn4, 5);
+    self.noDataImg.hidden = YES;
+
 }
 - (IBAction)btnAction:(UIButton *)sender {
     UIColor * selColor = YXRGBAColor(12,36,45);

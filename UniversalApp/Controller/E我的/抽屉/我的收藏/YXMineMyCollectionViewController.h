@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *btn3;
 @property (weak, nonatomic) IBOutlet UIButton *btn4;
 - (IBAction)btnAction:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *noDataImg;
 
 @end
 

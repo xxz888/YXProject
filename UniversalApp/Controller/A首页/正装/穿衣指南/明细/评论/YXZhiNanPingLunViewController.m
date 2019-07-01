@@ -20,6 +20,11 @@
     self = [super initWithNibName:NSStringFromClass([self.superclass class]) bundle:nibBundleOrNil];
      return self;
 }
+-(void)backBtnClicked{
+    [super backBtnClicked];
+    NSString * string = [NSString stringWithFormat:@"%ld",[self.dataArray count]];
+    self.pinglunBlock(string);
+}
 - (void)viewDidLoad{
     [super viewDidLoad];
 
@@ -27,6 +32,13 @@
     [self initAllControl];
     [self requestNewList];
     self.title = @"评论";
+
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.shareBtn.hidden = self.backBtn.hidden = self.imgShareBtn.hidden = YES;
 }
 -(void)headerRereshing{
     [super headerRereshing];
@@ -45,12 +57,9 @@
     //请求评价列表 最新评论列表
     NSString * par = [NSString stringWithFormat:@"obj=1&target_id=%@&page=%@",self.startId,NSIntegerToNSString(self.requestPage)];
     [YX_MANAGER requestPubSearchAndDelComment:par success:^(id object) {
-        if ([object count] > 0) {
             weakself.dataArray = [weakself commonAction:[weakself creatModelsWithCount:object] dataArray:weakself.dataArray];
-        }else{
             [weakself.yxTableView.mj_header endRefreshing];
             [weakself.yxTableView.mj_footer endRefreshing];
-        }
         [weakself refreshTableView];
         
     }];

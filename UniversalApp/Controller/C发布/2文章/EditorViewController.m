@@ -69,10 +69,10 @@
     if (!_contentTextView) {
         NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXWenZhangView" owner:self options:nil];
         self.headerView = [nib objectAtIndex:0];
-        self.headerView.frame = CGRectMake(0,0,self.view.frame.size.width,200);
+        self.headerView.frame = CGRectMake(0,0,self.view.frame.size.width,300);
         YYTextView *textView = [[YYTextView alloc] initWithFrame:CGRectMake(0, kStatusBarHeight + 60, KScreenWidth, KScreenHeight - 60 - kStatusBarHeight)];
         textView.tag = 1000;
-        textView.textContainerInset = UIEdgeInsetsMake(210, 5, 20,5);
+        textView.textContainerInset = UIEdgeInsetsMake(310, 5, 20,5);
         textView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         textView.scrollIndicatorInsets = textView.contentInset;
         textView.delegate = self;
@@ -171,7 +171,6 @@
                 }else{
                     YYAnimatedImageView *imgView = att.content;
                     [self.imagesArr addObject:imgView.image];
-                    
                     [QiniuLoad uploadImageToQNFilePath:@[imgView.image] success:^(NSString *reslut) {
                         NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
                         [weakself.imageUrlsArr addObject:qiniuArray[0]];

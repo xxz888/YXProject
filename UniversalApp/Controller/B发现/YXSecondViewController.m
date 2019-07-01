@@ -36,6 +36,7 @@
     [self setNavSearchView];
     [self initConfing];
     [self requestFindTag];
+    
 }
 -(void)initConfing{
     self.dataArray = [[NSMutableArray alloc]init];

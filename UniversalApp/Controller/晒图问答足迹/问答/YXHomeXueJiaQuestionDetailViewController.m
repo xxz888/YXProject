@@ -127,14 +127,14 @@
                 tapStringArray:modelArray];
     cell.textHeight.constant = [self getLblHeight:dic];
     if (cell.textHeight.constant < 30) {
-        [ShareManager setLineSpace:0 withText:[cell.titleTagLbl2.text UnicodeToUtf8] inLabel:cell.titleTagLbl2 tag:dic[@"index"]];
+        [ShareManager setLineSpace:0  inLabel:cell.titleTagLbl2 ];
         
     }else{
-        [ShareManager setLineSpace:9 withText:[cell.titleTagLbl2.text UnicodeToUtf8] inLabel:cell.titleTagLbl2 tag:dic[@"index"]];
+        [ShareManager setLineSpace:0  inLabel:cell.titleTagLbl2 ];
     }
     
     cell.titleTagLbl1.text = [dic[@"title"] UnicodeToUtf8];
-    [ShareManager setLineSpace:9 withText:[cell.titleTagLbl1.text UnicodeToUtf8] inLabel:cell.titleTagLbl1 tag:@""];
+    [ShareManager setLineSpace:0  inLabel:cell.titleTagLbl2 ];
     cell.questionTitleHeight.constant = [ShareManager inTextOutHeight:cell.titleTagLbl1.text lineSpace:9 fontSize:14];
     
     NSString * str1 = [(NSMutableString *)dic[@"pic1"] replaceAll:@" " target:@"%20"];

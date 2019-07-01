@@ -9,11 +9,12 @@
 #import "RootViewController.h"
 #import "YXBaseFaXianDetailViewController.h"
 NS_ASSUME_NONNULL_BEGIN
-
+typedef void(^PinglunBlock)(NSString *);
 @interface YXZhiNanPingLunViewController : YXBaseFaXianDetailViewController
 @property (nonatomic,strong) NSDictionary * startStartDic;
 @property (nonatomic,strong) NSString * startId;
 
+@property (nonatomic,copy) PinglunBlock pinglunBlock;
 @end
 
 NS_ASSUME_NONNULL_END

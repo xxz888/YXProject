@@ -51,7 +51,6 @@ SINGLETON_FOR_HEADER(ShareManager)
 // 根据图片url获取图片尺寸
 +(CGFloat)getImageSizeWithURL:(id)imageURL;
 @property (nonatomic,strong) MMImagePreviewView * previewView;
-+(void)setLineSpace:(CGFloat)lineSpace withText:(NSString *)text inLabel:(UILabel *)label tag:(NSString *)tag;
 +(UIView *)getMainView;
 +(CGFloat)getOldImageSizeWithURL:(id)URL;
 + (void)updateApp;
@@ -66,4 +65,5 @@ SINGLETON_FOR_HEADER(ShareManager)
 - (void)shareWebPageZhiNanDetailToPlatformType:(UMSocialPlatformType)platformType obj:(id)obj;
 - (void)saveImage:(UITableView *)tableView;
 +(CGFloat)getImageViewSize:(NSString *)imgUrl;
++(void)setLineSpace:(CGFloat)lineSpace inLabel:(UILabel *)label;
 @end

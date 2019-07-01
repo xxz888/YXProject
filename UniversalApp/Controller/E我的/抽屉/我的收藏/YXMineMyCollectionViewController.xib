@@ -16,6 +16,7 @@
                 <outlet property="btn2" destination="1ys-I3-5bF" id="KWk-lB-5ov"/>
                 <outlet property="btn3" destination="Fnx-da-PZi" id="Cag-D7-Dxf"/>
                 <outlet property="btn4" destination="5PT-B7-dXc" id="laE-xG-RNU"/>
+                <outlet property="noDataImg" destination="tbm-Ef-EA5" id="As1-Ys-x2K"/>
                 <outlet property="view" destination="iN0-l3-epB" id="GFV-Kb-9m2"/>
                 <outlet property="yxTableView" destination="Kmp-yu-R2e" id="ipH-nX-DCk"/>
             </connections>
@@ -95,6 +96,13 @@
                         <constraint firstAttribute="height" constant="30" id="unU-6n-IGR"/>
                     </constraints>
                 </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_data.png" translatesAutoresizingMaskIntoConstraints="NO" id="tbm-Ef-EA5">
+                    <rect key="frame" x="157" y="164" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="Prh-eN-sHc"/>
+                        <constraint firstAttribute="width" constant="100" id="RuI-Bi-O7P"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -102,7 +110,9 @@
                 <constraint firstItem="tfY-xe-5Df" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="ABE-lh-zgT"/>
                 <constraint firstItem="tfY-xe-5Df" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="GwN-wD-aDs"/>
                 <constraint firstAttribute="bottom" secondItem="Kmp-yu-R2e" secondAttribute="bottom" id="Sgp-u1-kuj"/>
+                <constraint firstItem="tbm-Ef-EA5" firstAttribute="centerX" secondItem="Kmp-yu-R2e" secondAttribute="centerX" id="U4S-V7-Ubi"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="tfY-xe-5Df" secondAttribute="trailing" constant="10" id="Wm1-Da-YH3"/>
+                <constraint firstItem="tbm-Ef-EA5" firstAttribute="top" secondItem="tfY-xe-5Df" secondAttribute="bottom" constant="80" id="fpa-al-CVs"/>
                 <constraint firstItem="Kmp-yu-R2e" firstAttribute="top" secondItem="tfY-xe-5Df" secondAttribute="bottom" constant="10" id="kdK-eE-hnO"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Kmp-yu-R2e" secondAttribute="trailing" id="s13-lL-MIj"/>
             </constraints>
@@ -110,4 +120,7 @@
             <point key="canvasLocation" x="313.04347826086956" y="39.508928571428569"/>
         </view>
     </objects>
+    <resources>
+        <image name="no_data.png" width="90" height="90"/>
+    </resources>
 </document>

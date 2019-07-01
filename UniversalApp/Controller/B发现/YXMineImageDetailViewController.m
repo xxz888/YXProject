@@ -105,18 +105,23 @@
     [self.cell.cellWebView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
 }
 - (void)observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context{
-    if([keyPath isEqualToString:@"contentSize"]) {
+    kWeakSelf(self);
+        if([keyPath isEqualToString:@"contentSize"]) {
         webViewHeight= [[self.cell.cellWebView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"]floatValue];
         CGRect newFrame= self.cell.cellWebView.frame;
         newFrame.size.height = webViewHeight;
         self.cell.cellWebView.frame= newFrame;
         [self.cell.cellWebView sizeToFit];
         CGRect Frame = self.cell.frame;
-        Frame.size.height= self.headerViewHeight - 180 + webViewHeight + coverHeight ;
+
+        CGFloat detailHeight = [ShareManager inTextOutHeight:[self.startDic[@"title"] UnicodeToUtf8] lineSpace:9 fontSize:24];
+
+        CGFloat height = 10 + 10 + 5 + 40 ; //分割线和上下距离和评论
+        Frame.size.height= 125 + detailHeight + webViewHeight + coverHeight + height;
         self.cell.midViewHeight.constant =  webViewHeight;
         self.cell.frame= Frame;
         [self.yxTableView setTableHeaderView:self.cell];//这句话才是重点
-    }
+        }
 }
     
 - (void)webViewDidFinishLoad:(UIWebView*)webView{
@@ -153,6 +158,7 @@
     CGRect oldFrame = self.cell.frame;
     CGFloat newHeight =  self.headerViewHeight;
     self.cell.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width, newHeight);
+    self.cell.fenxiangBtn.hidden = self.cell.fenxiangImv.hidden = YES;
 
 
     //详情界面点赞和分享调整到下边
@@ -162,7 +168,10 @@
     
     //晒图
     if ([self.startDic[@"obj"] integerValue] == 1) {
-        self.cell.topTopHeight.constant = 70;
+
+        self.cell.topTopHeight.constant = 70;//头像的view距离封面图和文章lable的距离，要留出返回键的高度，所以高一点
+        self.cell.wenzhangDetailLbl.hidden = YES;//晒图进来，隐藏文章的deatil的label
+        self.cell.wenzhangDetailHeight.constant = 0;//晒图进来，设置文章的的label为0
         [QMUITips hideAllTipsInView:self.view];
         //这里判断晒图是图还是视频
         if ([self.startDic[@"url_list"] count] > 0) {
@@ -181,7 +190,10 @@
                 
             }else{
                 CGRect Frame = self.cell.frame;
-                Frame.size.height= self.headerViewHeight + 100;
+                NSString * titleText = [[NSString stringWithFormat:@"%@%@",self.startDic[@"detail"],self.startDic[@"tag"]] UnicodeToUtf8];
+                CGFloat detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:15];
+                
+                Frame.size.height = 180 + detailHeight + (KScreenWidth - 20)  + self.cell.topTopHeight.constant;
                 self.cell.frame= Frame;
                 //轮播图
                 [self.cell setUpSycleScrollView:self.startDic[@"url_list"] height:KScreenWidth - 20];
@@ -194,16 +206,23 @@
         
     }else{
         self.cell.imgV1.hidden = self.cell.imgV2.hidden = self.cell.imgV3.hidden = self.cell.imgV4.hidden = self.cell.stackView.hidden = self.cell.onlyOneImv.hidden = self.cell.playImV.hidden = YES;
-        self.cell.cellWebView.hidden = NO;
+        CGFloat detailHeight = [ShareManager inTextOutHeight:[self.startDic[@"title"] UnicodeToUtf8] lineSpace:9 fontSize:24];
+        self.cell.wenzhangDetailHeight.constant = detailHeight;//晒图进来，设置文章的的label为0
+        self.cell.cellWebView.hidden = NO;//文章显示webview
+        self.cell.topTopHeight.constant = 0 ;//头像的view距离封面图的距离，文章因为有封面，所以离封面图10就行
+        self.cell.wenzhangDetailLbl.hidden = NO;//文章进来，显示文章的deatil的label
+        self.cell.detailLbl.hidden = YES;//隐藏原有detail的详情
+        self.cell.detailHeight.constant = 0;//设置原有的detail为0
+        self.cell.wenzhangDetailLbl.text = [self.startDic[@"title"] UnicodeToUtf8];
+     
+
         //封面图
-        self.cell.coverTopHeight.constant = 10;
         CGSize size = [UIImage getImageSizeWithURL:self.startDic[@"cover"]];
         double scale = size.width == 0 ? 0 : size.height/size.width;
-        coverHeight = (kScreenWidth-20)*scale;
+        coverHeight = kScreenWidth * scale;
         self.cell.coverImvHeight.constant = coverHeight;
         NSString * str1 = [(NSMutableString *)self.startDic[@"cover"] replaceAll:@" " target:@"%20"];
         [self.cell.coverImV sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-        ViewRadius(self.cell.coverImV, 5);
         [self setWebVIewData:self.startDic];
         self.cell.leftWidth.constant  = 5;
         self.cell.rightWidth.constant = 5;
@@ -212,22 +231,14 @@
     self.yxTableView.tableHeaderView = self.cell;
     
     
-    
+    self.nodataImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"no_data"]];
+    self.nodataImg.frame = CGRectMake((KScreenWidth-100)/2,self.cell.frame.size.height , 100, 100);
+    [self.yxTableView addSubview:self.nodataImg];
+    self.nodataImg.hidden = YES;
     
     kWeakSelf(self);
-
-    
     self.cell.shareblock = ^(NSInteger tag1) {
-        NSIndexPath * indexPathSelect = [NSIndexPath indexPathForRow:tag1  inSection:0];
-        YXFindImageTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
-        if (![userManager loadUserInfo]) {
-            KPostNotification(KNotificationLoginStateChange, @NO);
-            return;
-        }
-        UserInfo * userInfo = curUser;
-        BOOL isOwn = [weakself.startDic[@"user_id"] integerValue] == [userInfo.id integerValue];
-        weakself.shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
-        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:cell.tagId startDic:cell.dataDic];
+        
     };
     self.cell.clickImageBlock = ^(NSInteger tag) {
         if (![userManager loadUserInfo]) {
@@ -330,11 +341,11 @@
             [weakself.yxTableView.mj_footer endRefreshing];
         }
         [weakself refreshTableView];
-
     }];
 }
 -(void)refreshTableView{
     [self.yxTableView reloadData];
+    self.nodataImg.hidden = self.dataArray.count != 0;
 }
 #pragma mark ========== 评论子评论 ==========
 -(void)requestpost_comment_child:(NSDictionary *)dic{
@@ -593,6 +604,7 @@
 
 
 
+
 #pragma mark ========== 分享 ==========
 - (void)addGuanjiaShareViewIsOwn:(BOOL)isOwn isWho:(NSString *)isWho tag:(NSInteger)tagId startDic:(NSDictionary *)startDic{
     QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
@@ -730,5 +742,14 @@
     [_player destroyPlayer];
     _player = nil;
 }
-
+- (void)shareAction{
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
+    UserInfo * userInfo = curUser;
+    BOOL isOwn = [self.startDic[@"user_id"] integerValue] == [userInfo.id integerValue];
+    self.shareDic = [NSDictionary dictionaryWithDictionary:self.cell.dataDic];
+    [self addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:self.cell.tagId startDic:self.cell.dataDic];
+}
 @end

@@ -152,7 +152,6 @@
                tapStringArray:modelArray];
     self.titleTagLblHeight.constant = [self getTitleTagLblHeight:dic whereCome:whereCome];
 
-    [ShareManager setLineSpace:9 withText:self.titleTagLbl.text inLabel:self.titleTagLbl tag:dic[@"tag"]];
 
     //全部评论
     if ([dic[@"publish_site"] isEqualToString:@""] || !dic[@"publish_site"] ) {

@@ -16,15 +16,11 @@
 
     kWeakSelf(self);
     NSString * strURl = [API_ROOT_URL_HTTP_FORMAL stringByAppendingString:pi];
-    NSLog(@"PostUrl-:%@",strURl);
-    NSLog(@"Par-:%@",parmeters);
     [[self commonAction] POST:strURl  parameters:parmeters progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"---------------Post请求成功---------------");
         [QMUITips hideAllTipsInView:[ShareManager getMainView]];
         [weakself setCommonRespone:sucess pi:pi responseObject:responseObject];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"---------------Post请求失败---------------%@",error);
         [QMUITips hideAllTipsInView:[ShareManager getMainView]];
         failure(error);
     }];
@@ -35,12 +31,10 @@
     NSLog(@"getUrl-:%@",url);
     [[self commonAction] GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"---------------Get请求成功---------------");
         [weakself setCommonRespone:sucess pi:pi responseObject:responseObject];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        NSLog(@"---------------Get请求失败---------------%@",error);
         failure(error);
     }];
 }
@@ -116,7 +110,7 @@ var c = a + b
     manager.responseSerializer =  [AFHTTPResponseSerializer serializer];
     UserInfo *userInfo = curUser;
     if (curUser && userInfo.token && ![userInfo.token isEqualToString:@""]) {
-        NSLog(@"身份信息-----%@",[@"JWT " append:userInfo.token]);
+//        NSLog(@"身份信息-----%@",[@"JWT " append:userInfo.token]);
         [manager.requestSerializer setValue:[@"JWT " append:userInfo.token] forHTTPHeaderField:@"Authorization"];
     }
     [manager.requestSerializer setValue:@"Keep-Alive" forHTTPHeaderField:@"Connection"];

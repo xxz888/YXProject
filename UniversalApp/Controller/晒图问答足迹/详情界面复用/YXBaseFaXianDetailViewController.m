@@ -184,7 +184,6 @@
 }
 - (void)dealloc{
     //移除KVO
-    [self removeObserver:self forKeyPath:@"dataArray"];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 -(void)initAllControl{
@@ -199,7 +198,6 @@
     self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeTop;
-    [self addObserver:self forKeyPath:@"dataArray" options:NSKeyValueObservingOptionNew context:nil];
 }
 - (void)deallocsetContentViewValue{
     [self.textField removeFromSuperview];
@@ -218,6 +216,10 @@
     [self dianzanAction];
 
 }
+- (IBAction)shareAction:(id)sender{
+    [self shareAction];
+
+}
 - (void)fenxiangAction{
     
 }
@@ -226,5 +228,8 @@
 }
 - (IBAction)backVCAction:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (void)shareAction{
+    
 }
 @end

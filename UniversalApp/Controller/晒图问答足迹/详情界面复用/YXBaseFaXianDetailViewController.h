@@ -70,6 +70,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *bottomZanBtn;
 @property (weak, nonatomic) IBOutlet UILabel *bottomZanCount;
 - (IBAction)backVCAction:(id)sender;
+- (IBAction)shareAction:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *backBtn;
+@property (weak, nonatomic) IBOutlet UIButton *shareBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *imgShareBtn;
 
 @end
 

@@ -10,6 +10,8 @@
 #import "IXAttributeTapLabel.h"
 NS_ASSUME_NONNULL_BEGIN
 @interface YXFirstFindImageTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet IXAttributeTapLabel *wenzhangDetailLbl;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *wenzhangDetailHeight;
 @property (nonatomic,assign) NSInteger tagId;
 @property (weak, nonatomic) IBOutlet UIImageView *titleImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
@@ -86,8 +88,11 @@ typedef void(^PlayBlock)(UITapGestureRecognizer *);
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *stackViewHeight;
 @property (weak, nonatomic) IBOutlet UIStackView *threeBtnStackView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topTopHeight;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomBottomHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomBottomHeight;//评论高度
 @property (weak, nonatomic) IBOutlet UILabel *bottomPingLunLbl;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toptop1Height;
+@property (weak, nonatomic) IBOutlet UIButton *fenxiangBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *fenxiangImv;
 
 @end
 

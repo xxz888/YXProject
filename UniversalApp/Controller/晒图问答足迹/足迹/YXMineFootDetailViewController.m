@@ -127,12 +127,7 @@
     [cell.titleTagLbl setText:titleText attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
                tapStringArray:modelArray];
     cell.titleTagLblHeight.constant = [self getTitleTagLblHeight:dic whereCome:NO];
-    
-    if (cell.titleTagLblHeight.constant < 30) {
-        [ShareManager setLineSpace:0 withText:cell.titleTagLbl.text inLabel:cell.titleTagLbl tag:dic[@"tag"]];
-    }else{
-        [ShareManager setLineSpace:9 withText:cell.titleTagLbl.text inLabel:cell.titleTagLbl tag:dic[@"tag"]];
-    }
+
     if ([dic[@"publish_site"] isEqualToString:@""] || !dic[@"publish_site"] ) {
         cell.nameCenter.constant = cell.titleImageView.frame.origin.y;
     }else{

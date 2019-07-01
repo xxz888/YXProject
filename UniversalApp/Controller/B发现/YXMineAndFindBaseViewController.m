@@ -23,6 +23,7 @@
 }
 @property (nonatomic, strong) NSDictionary *shareDic;
 @property (nonatomic, strong) ZInputToolbar *inputToolbar;
+
 @end
 @implementation YXMineAndFindBaseViewController
 - (void)viewDidLoad {
@@ -45,6 +46,10 @@
     self.yxTableView.estimatedSectionHeaderHeight = 0;
     self.yxTableView.estimatedSectionFooterHeight = 0;
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFirstFindImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFirstFindImageTableViewCell"];
+    self.nodataImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"no_data"]];
+    self.nodataImg.frame = CGRectMake((KScreenWidth-100)/2,80 , 100, 100);
+    [self.yxTableView addSubview:self.nodataImg];
+    self.nodataImg.hidden = YES;
     
 }
 #pragma mark ========== tableview代理方法 ==========
@@ -108,6 +113,9 @@
     cell.topTopHeight.constant = 0;
     cell.bottomBottomHeight.constant = 0;
     cell.bottomPingLunLbl.hidden = YES;
+    cell.wenzhangDetailHeight.constant = 0;//文章详情里面用的，外边设置为0
+    cell.wenzhangDetailLbl.hidden = YES;//文章详情里面用的，外边设置为隐藏
+    cell.toptop1Height.constant = 0;
     //以下为所有block方法
     kWeakSelf(self);
     //右上角分享
@@ -117,7 +125,6 @@
         UserInfo * userInfo = curUser;
         BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [userInfo.id integerValue];
         weakself.shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
-        
         [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:cell.tagId startDic:cell.dataDic];
     };
     //点击用户头像
@@ -386,5 +393,9 @@
 }
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+}
+
+- (void)shareAction{
+    
 }
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "OrgHalfLineLabel.h"
 typedef void (^IXAttributeTapLabelTapBlock)(NSString * string);
 
 @interface IXAttributeModel : NSObject
@@ -17,7 +17,7 @@ typedef void (^IXAttributeTapLabelTapBlock)(NSString * string);
 @property (nonatomic, strong) NSDictionary  * attributeDic; //富文本颜色字体等配置
 @end
 
-@interface IXAttributeTapLabel : UILabel
+@interface IXAttributeTapLabel : OrgHalfLineLabel
 
 @property (nonatomic, copy) IXAttributeTapLabelTapBlock tapBlock;   //目标点击回调
 

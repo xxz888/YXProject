@@ -12,10 +12,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YXBaseFaXianDetailViewController">
             <connections>
+                <outlet property="backBtn" destination="9UA-ne-lM3" id="0iO-yZ-Cxt"/>
                 <outlet property="bottomZanBtn" destination="ugK-Zj-0if" id="bRo-qo-VUo"/>
                 <outlet property="bottomZanCount" destination="Sz8-Cl-reL" id="gGe-jV-tXG"/>
                 <outlet property="clickPingLunBtn" destination="fZw-k5-9IL" id="K6o-g7-FTA"/>
                 <outlet property="clickbtnHeight" destination="uNS-MQ-c4I" id="XnH-VE-tEw"/>
+                <outlet property="imgShareBtn" destination="xKq-2y-Ufp" id="dfZ-ay-PsC"/>
+                <outlet property="shareBtn" destination="a45-0S-tVI" id="dXi-Fw-B9s"/>
                 <outlet property="view" destination="iN0-l3-epB" id="SyB-Yq-Xg1"/>
                 <outlet property="yxTableView" destination="dOh-3i-XAI" id="zOM-JP-bUN"/>
             </connections>
@@ -161,18 +164,38 @@
                         <constraint firstItem="fZw-k5-9IL" firstAttribute="width" secondItem="EIu-ZK-u7S" secondAttribute="width" multiplier="0.4" id="xAq-a6-5Fr"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a45-0S-tVI">
+                    <rect key="frame" x="315" y="30" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="MD0-f5-exL"/>
+                        <constraint firstAttribute="width" constant="50" id="ftH-on-U8F"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                    <connections>
+                        <action selector="shareAction:" destination="-1" eventType="touchUpInside" id="KBA-MM-53O"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="更多" translatesAutoresizingMaskIntoConstraints="NO" id="xKq-2y-Ufp">
+                    <rect key="frame" x="330" y="45" width="20" height="20"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="9UA-ne-lM3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="28x-Sm-V1Q"/>
+                <constraint firstItem="xKq-2y-Ufp" firstAttribute="centerX" secondItem="a45-0S-tVI" secondAttribute="centerX" id="333-hY-vo2"/>
                 <constraint firstItem="EIu-ZK-u7S" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="3mS-eY-6CS"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="a45-0S-tVI" secondAttribute="trailing" constant="10" id="DfM-NK-IJn"/>
                 <constraint firstItem="dOh-3i-XAI" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Dyf-fd-ILC"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="EIu-ZK-u7S" secondAttribute="bottom" id="EF7-NQ-Sbg"/>
                 <constraint firstItem="9UA-ne-lM3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="40" id="K8O-zy-emp"/>
                 <constraint firstItem="dOh-3i-XAI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="acl-Ee-fbC"/>
                 <constraint firstItem="dOh-3i-XAI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cdh-Ow-ORj"/>
                 <constraint firstItem="EIu-ZK-u7S" firstAttribute="top" secondItem="dOh-3i-XAI" secondAttribute="bottom" id="dTj-mQ-LXA"/>
+                <constraint firstItem="xKq-2y-Ufp" firstAttribute="width" secondItem="a45-0S-tVI" secondAttribute="width" multiplier="0.4" id="g6L-f8-ETn"/>
                 <constraint firstItem="EIu-ZK-u7S" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="gnc-C6-Mep"/>
+                <constraint firstItem="xKq-2y-Ufp" firstAttribute="centerY" secondItem="a45-0S-tVI" secondAttribute="centerY" id="rWD-rh-9Sq"/>
+                <constraint firstItem="xKq-2y-Ufp" firstAttribute="height" secondItem="a45-0S-tVI" secondAttribute="height" multiplier="0.4" id="sbO-Of-9eh"/>
+                <constraint firstItem="a45-0S-tVI" firstAttribute="centerY" secondItem="9UA-ne-lM3" secondAttribute="centerY" id="yJa-vU-soD"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="-945" y="-81"/>
@@ -181,6 +204,7 @@
     <resources>
         <image name="UnZan" width="48" height="48"/>
         <image name="分享" width="48" height="48"/>
+        <image name="更多" width="64" height="64"/>
         <image name="返回键" width="13.5" height="24"/>
     </resources>
 </document>

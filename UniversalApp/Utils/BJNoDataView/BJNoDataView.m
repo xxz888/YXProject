@@ -61,7 +61,7 @@
     [super setFrame:frame];
     //设置iconView的位置
     CGPoint center = self.center;
-    self.iconView.center= CGPointMake(center.x, 150);
+    self.iconView.center= CGPointMake(center.x, 200);
 }
 #pragma mark----Method----
 -(void)showSuper:(UIView*)aview icon:(NSString*)icon{
