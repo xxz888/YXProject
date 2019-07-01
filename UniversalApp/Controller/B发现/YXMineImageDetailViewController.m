@@ -121,7 +121,15 @@
         self.cell.midViewHeight.constant =  webViewHeight;
         self.cell.frame= Frame;
         [self.yxTableView setTableHeaderView:self.cell];//这句话才是重点
+            
+        if (!self.nodataImg) {
+            self.nodataImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"no_data"]];
         }
+        self.nodataImg.frame = CGRectMake((KScreenWidth-100)/2,self.cell.frame.size.height , 100, 100);
+        [self.nodataImg removeFromSuperview];
+        [self.yxTableView addSubview:self.nodataImg];
+        self.nodataImg.hidden = self.dataArray.count != 0;
+    }
 }
     
 - (void)webViewDidFinishLoad:(UIWebView*)webView{
@@ -201,8 +209,12 @@
                 self.cell.rightCountLbl.hidden = [self.cell.rightCountLbl.text isEqualToString:@"1/1"] || [self.cell.rightCountLbl.text isEqualToString:@"1/0"];
             }
         }
-     
+         self.yxTableView.tableHeaderView = self.cell;
         
+        self.nodataImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"no_data"]];
+        self.nodataImg.frame = CGRectMake((KScreenWidth-100)/2,self.cell.frame.size.height, 100, 100);
+        [self.yxTableView addSubview:self.nodataImg];
+        self.nodataImg.hidden = YES;
         
     }else{
         self.cell.imgV1.hidden = self.cell.imgV2.hidden = self.cell.imgV3.hidden = self.cell.imgV4.hidden = self.cell.stackView.hidden = self.cell.onlyOneImv.hidden = self.cell.playImV.hidden = YES;
@@ -226,15 +238,12 @@
         [self setWebVIewData:self.startDic];
         self.cell.leftWidth.constant  = 5;
         self.cell.rightWidth.constant = 5;
+            self.yxTableView.tableHeaderView = self.cell;
     }
     zanBool =  [self.startDic[@"is_praise"] integerValue] == 1;
-    self.yxTableView.tableHeaderView = self.cell;
+
     
-    
-    self.nodataImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"no_data"]];
-    self.nodataImg.frame = CGRectMake((KScreenWidth-100)/2,self.cell.frame.size.height , 100, 100);
-    [self.yxTableView addSubview:self.nodataImg];
-    self.nodataImg.hidden = YES;
+
     
     kWeakSelf(self);
     self.cell.shareblock = ^(NSInteger tag1) {

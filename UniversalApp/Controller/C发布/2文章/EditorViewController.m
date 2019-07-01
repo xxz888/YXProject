@@ -35,6 +35,8 @@
 
 @property (nonatomic, strong) YXWenZhangView * headerView;
 @property (nonatomic,assign) BOOL finishUpLoadImageBool;//是否上传完成
+
+@property (nonatomic,assign) NSInteger wenzhangImgCount;
 @end
 
 @implementation EditorViewController
@@ -62,6 +64,7 @@
     // 图文正文输入框
     [self.view addSubview:self.contentTextView];
     ViewRadius(self.fabuButton, 14);
+    self.wenzhangImgCount = 0;
 //    ViewBorderRadius(self.fabuButton, 14, 1, YXRGBAColor(176, 151, 99));
 }
 #pragma mark - setter
@@ -79,7 +82,7 @@
         textView.placeholderText = @"请输入文章";
         textView.font = [UIFont fontWithName:@"苹方-简" size:15];
         textView.placeholderFont = [UIFont fontWithName:@"Helvetica Neue" size:15];
-        textView.textColor = [UIColor grayColor];
+        textView.textColor = [UIColor blackColor];
         textView.selectedRange = NSMakeRange(textView.text.length, 0);
         textView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
         textView.allowsPasteImage = YES;
@@ -152,37 +155,7 @@
     self.contentTextView.selectedRange = NSMakeRange(self.contentTextView.text.length, 0);
     
     
-    [self.imagesArr removeAllObjects];
-    [self.desArr removeAllObjects];
-    [self.imageUrlsArr removeAllObjects];
-    NSAttributedString *content = self.contentTextView.attributedText;
-    NSString * text1 = [self.contentTextView.text copy];
-    //这一步开始上传
-    kWeakSelf(self);
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-        [content enumerateAttributesInRange:NSMakeRange(0, text1.length) options:0 usingBlock:^(NSDictionary<NSString *,id> * _Nonnull attrs, NSRange range, BOOL * _Nonnull stop) {
-            _finishUpLoadImageBool = NO;
-            YYTextAttachment *att = attrs[@"YYTextAttachment"];
-            if (att) {
-                if ([att.content isKindOfClass:[YYTextView class]]) {
-                    YYTextView * textView = att.content;
-                    [self.desArr addObject:textView.text];
-                }else{
-                    YYAnimatedImageView *imgView = att.content;
-                    [self.imagesArr addObject:imgView.image];
-                    [QiniuLoad uploadImageToQNFilePath:@[imgView.image] success:^(NSString *reslut) {
-                        NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
-                        [weakself.imageUrlsArr addObject:qiniuArray[0]];
-                        dispatch_semaphore_signal(sema);
-                    } failure:^(NSString *error) {}];
-                    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-                }
-            }
-        }];
-        weakself.finishUpLoadImageBool = YES;
-        self.contentStr = [text1 stringByReplacingOccurrencesOfString:@"\U0000fffc\U0000fffc" withString:@"<我是图片>"];
-    });
+
 }
 
     
@@ -190,20 +163,28 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)fabuAction:(id)sender {
-  
-    
     if (self.finishUpLoadImageBool) {
         NSString * resuletString = [Tool makeHtmlString:_imageUrlsArr desArr:_desArr contentStr:_contentStr];
         NSLog(@"%@",resuletString);
         [self lastStepFaBuAction:resuletString];
     }else{
-        [QMUITips showInfo:@"正在上传图片,请稍等" inView:self.view hideAfterDelay:2];
+        [QMUITips showInfo:@"正在上传文章图片,请稍等" inView:self.view hideAfterDelay:2];
     }
-
- 
-
 }
 -(void)lastStepFaBuAction:(NSString *)detail{
+     if([self.cover isEqualToString:@""]){
+        [QMUITips showInfo:@"请上传封面图片" inView:self.view hideAfterDelay:2];
+        return;
+    }else if ([self.headerView.titleTextView.text isEqualToString:@""]){
+        [QMUITips showInfo:@"请填写标题" inView:self.view hideAfterDelay:2];
+        return;
+    }else if ([detail isEqualToString:@""]){
+        [QMUITips showInfo:@"请填写文章" inView:self.view hideAfterDelay:2];
+        return;
+    }
+    
+    
+    
     NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
     
     
@@ -240,95 +221,60 @@
 
 
 
-#pragma mark - TZImagePickerControllerDelegate
-- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto{
-
-    
-    CGFloat scale = [UIScreen mainScreen].scale;
-    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    options.resizeMode = PHImageRequestOptionsResizeModeExact;
-    options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
-    
-    /** 遍历选择的所有图片*/
-    for (NSInteger i = 0; i < assets.count; i++) {
-        PHAsset *asset = assets[i];
-        CGSize size = CGSizeMake(asset.pixelWidth / scale, asset.pixelHeight / scale);
-        /** 获取图片*/
-        [[PHImageManager defaultManager] requestImageForAsset:asset
-                                                   targetSize:size
-                                                  contentMode:PHImageContentModeDefault
-                                                      options:options
-                                                resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-                                                    /** 刷新*/
-                                                    [self setupImage:result];
-                                                }];
-    }
-}
-#pragma mark YYTextViewDelegate
-- (void)textViewDidChange:(YYTextView *)textView{
-    if (textView.text.length > 100 && textView.tag != 1000) {
-        textView.text = [textView.text substringToIndex:100];
-    }
-}
-//防止输入图片描述的输入框被键盘遮挡
--(void)textViewDidBeginEditing:(YYTextView *)textView{
-    if (textView.tag != 1000) {
-        if ((textView.origin.y + 50) >(kScreenHeight - self.keyboardHeight)) {
-            [self.contentTextView setContentOffset:CGPointMake(0, (textView.origin.y + 50) - (kScreenHeight - self.keyboardHeight)) animated:YES];
-        }
-    }
-}
-
-
-
-- (UIToolbar *)textViewBar {
-    __weak typeof(self) weakSelf = self;
-
-    UIToolbar *bar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
-    // 空白格
-    UIBarButtonItem *space = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    // 关闭箭头
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 0, 19, 11);
-    [btn setImage:[UIImage imageNamed:@"icon_down2"] forState:UIControlStateNormal];
-    [btn bk_addEventHandler:^(id sender) {
-        [self.view endEditing:YES];
-    } forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    // 添加图片
-    UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn1.frame = CGRectMake(0, 0, 20, 18);
-    [btn1 setImage:[UIImage imageNamed:@"icon_addphoto"] forState:UIControlStateNormal];
-    [btn1 bk_addEventHandler:^(id sender) {
-        
-        KSMediaPickerController *ctl = [KSMediaPickerController.alloc initWithMaxVideoItemCount:1 maxPictureItemCount:9];
-        ctl.view.tag = 1;
-        ctl.delegate = weakSelf;
-        KSNavigationController *nav = [KSNavigationController.alloc initWithRootViewController:ctl];
-        [weakSelf presentViewController:nav animated:YES completion:nil];
-//
-//        [self presentViewController:self.imagePickerVc animated:YES completion:nil];
-    } forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithCustomView:btn1];
-    bar.items = @[left, space, right];
-    return bar;
-}
 - (void)mediaPicker:(KSMediaPickerController *)mediaPicker didFinishSelected:(NSArray<KSMediaPickerOutputModel *> *)outputArray {
     [mediaPicker.navigationController dismissViewControllerAnimated:YES completion:nil];
     kWeakSelf(self);
-    for (KSMediaPickerOutputModel * model in outputArray) {
-        if (mediaPicker.view.tag == 1) {
+    //为文章详情的图片
+    if (mediaPicker.view.tag == 1) {
+        self.wenzhangImgCount = outputArray.count;
+        for (KSMediaPickerOutputModel * model in outputArray) {
             [self setupImage:model.image];
-        }else{
-            self.headerView.titleImgV.image = model.image;
-            
-            [QiniuLoad uploadImageToQNFilePath:@[model.image] success:^(NSString *reslut) {
-                NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
-                weakself.cover = qiniuArray[0];
-                  _finishUpLoadImageBool = YES;
-            } failure:^(NSString *error) {}];
         }
+        [self upLoadAllImg];
+    //为封面图片
+    }else{
+        KSMediaPickerOutputModel * model = outputArray[0];
+        self.headerView.titleImgV.image = model.image;
+        [QiniuLoad uploadImageToQNFilePath:@[model.image] success:^(NSString *reslut) {
+            weakself.cover = reslut;
+        } failure:^(NSString *error) {}];
     }
+  
+}
+-(void)upLoadAllImg{
+    
+    [self.imagesArr removeAllObjects];
+    [self.imageUrlsArr removeAllObjects];
+    [self.desArr removeAllObjects];
+    
+    NSAttributedString *content = self.contentTextView.attributedText;
+    NSString * text1 = [self.contentTextView.text copy];
+    //这一步开始上传
+    kWeakSelf(self);
+    [content enumerateAttributesInRange:NSMakeRange(0, text1.length) options:0 usingBlock:^(NSDictionary<NSString *,id> * _Nonnull attrs, NSRange range, BOOL * _Nonnull stop) {
+        _finishUpLoadImageBool = NO;
+        YYTextAttachment *att = attrs[@"YYTextAttachment"];
+        if (att) {
+            if ([att.content isKindOfClass:[YYTextView class]]) {
+                YYTextView * textView = att.content;
+                [weakself.desArr addObject:textView.text];
+            }else{
+                YYAnimatedImageView *imgView = att.content;
+                [weakself.imagesArr addObject:imgView.image];
+                if (weakself.imagesArr.count == weakself.wenzhangImgCount) {
+                    [QiniuLoad uploadImageToQNFilePath:weakself.imagesArr success:^(NSString *reslut) {
+                        NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
+                        [weakself.imageUrlsArr addObjectsFromArray:qiniuArray];
+                        if (weakself.imageUrlsArr.count == weakself.wenzhangImgCount) {
+                            weakself.finishUpLoadImageBool = YES;
+                        }
+                    } failure:^(NSString *error) {}];
+                }
+             
+            }
+        }
+    }];
+    self.contentStr = [text1 stringByReplacingOccurrencesOfString:@"\U0000fffc\U0000fffc" withString:@"<我是图片>"];
 }
 - (UIToolbar *)titleFieldBar {
     UIToolbar *bar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
@@ -390,5 +336,54 @@
     [controller dismissViewControllerAnimated:YES completion:^{
         
     }];
+}
+#pragma mark YYTextViewDelegate
+- (void)textViewDidChange:(YYTextView *)textView{
+    if (textView.text.length > 100 && textView.tag != 1000) {
+        textView.text = [textView.text substringToIndex:100];
+    }
+}
+//防止输入图片描述的输入框被键盘遮挡
+-(void)textViewDidBeginEditing:(YYTextView *)textView{
+    if (textView.tag != 1000) {
+        if ((textView.origin.y + 50) >(kScreenHeight - self.keyboardHeight)) {
+            [self.contentTextView setContentOffset:CGPointMake(0, (textView.origin.y + 50) - (kScreenHeight - self.keyboardHeight)) animated:YES];
+        }
+    }
+}
+
+
+
+- (UIToolbar *)textViewBar {
+    __weak typeof(self) weakSelf = self;
+    
+    UIToolbar *bar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
+    // 空白格
+    UIBarButtonItem *space = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    // 关闭箭头
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, 19, 11);
+    [btn setImage:[UIImage imageNamed:@"icon_down2"] forState:UIControlStateNormal];
+    [btn bk_addEventHandler:^(id sender) {
+        [self.view endEditing:YES];
+    } forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    // 添加图片
+    UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn1.frame = CGRectMake(0, 0, 20, 18);
+    [btn1 setImage:[UIImage imageNamed:@"icon_addphoto"] forState:UIControlStateNormal];
+    [btn1 bk_addEventHandler:^(id sender) {
+        
+        KSMediaPickerController *ctl = [KSMediaPickerController.alloc initWithMaxVideoItemCount:1 maxPictureItemCount:9];
+        ctl.view.tag = 1;
+        ctl.delegate = weakSelf;
+        KSNavigationController *nav = [KSNavigationController.alloc initWithRootViewController:ctl];
+        [weakSelf presentViewController:nav animated:YES completion:nil];
+        //
+        //        [self presentViewController:self.imagePickerVc animated:YES completion:nil];
+    } forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithCustomView:btn1];
+    bar.items = @[left, space, right];
+    return bar;
 }
 @end
