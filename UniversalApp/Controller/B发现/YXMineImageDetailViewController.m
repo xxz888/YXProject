@@ -500,14 +500,14 @@
     SDTimeLineCellModel *model = self.dataArray[index.row];
     [YX_MANAGER requestPost_comment_praisePOST:@{@"comment_id":@([model.id intValue])} success:^(id object) {
         weakself.currentEditingIndexthPath = index;
-        weakself.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
+        [weakself requestNewList];
     }];
 }
 #pragma mark ========== 评论晒图 ==========
 -(void)pinglunFatherPic:(NSDictionary *)dic{
     kWeakSelf(self);
     [YX_MANAGER requestPost_commentPOST:dic success:^(id object) {
-        weakself.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
+         [weakself requestNewList];
     }];
 }
 -(NSString *)getParamters:(NSString *)type page:(NSString *)page{
@@ -517,14 +517,14 @@
     kWeakSelf(self);
     [YX_MANAGER requestDelChildPl_ShaiTu:NSIntegerToNSString(tag) success:^(id object) {
         [QMUITips showSucceed:@"删除成功"];
-        weakself.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
+        [weakself requestNewList];
     }];
 }
 -(void)deleFather_PingLun:(NSString *)tag{
     kWeakSelf(self);
     [YX_MANAGER requestDelFatherPl_ShaiTu:tag success:^(id object) {
         [QMUITips showSucceed:@"删除成功"];
-        weakself.segmentIndex == 0 ? [weakself requestNewList] : [weakself requestHotList];
+        [weakself requestNewList];
     }];
 }
 
