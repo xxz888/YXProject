@@ -320,13 +320,13 @@ SINGLETON_FOR_CLASS(ShareManager);
     [str addAttribute:NSForegroundColorAttributeName value:YXRGBAColor(10, 96, 254) range:range1];
     tfView.attributedText = str;
 }
-+(void)setLineSpace:(CGFloat)lineSpace inLabel:(UILabel *)label{
++(void)setLineSpace:(CGFloat)lineSpace inLabel:(UILabel *)label size:(CGFloat)size{
 
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = lineSpace;  //设置行间距
     paragraphStyle.alignment = label.textAlignment;
     
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:label.text attributes:@{NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:15],NSParagraphStyleAttributeName:paragraphStyle}];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:label.text attributes:@{NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:size],NSParagraphStyleAttributeName:paragraphStyle}];
 
     label.attributedText = attributedString;
 }
@@ -369,9 +369,9 @@ SINGLETON_FOR_CLASS(ShareManager);
     paraStyle.alignment = NSTextAlignmentLeft;
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string attributes:@{NSKernAttributeName:@(9),NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:fontSize]}];
     paraStyle.lineSpacing = lineSpacing;
-    NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:fontSize], NSParagraphStyleAttributeName:paraStyle,NSParagraphStyleAttributeName:attributedString};
-    CGSize size = [string boundingRectWithSize:CGSizeMake(KScreenWidth-20, MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
-    return  ceil(size.height);
+    NSDictionary *dic = @{NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:fontSize], NSParagraphStyleAttributeName:paraStyle,NSParagraphStyleAttributeName:attributedString};
+    CGSize size = [string boundingRectWithSize:CGSizeMake(KScreenWidth-100, MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
+    return  ceil(size.height) < 30 ? 30 : ceil(size.height); ;
 }
 +(CGFloat)inTextZhiNanOutHeight:(NSString *)str lineSpace:(CGFloat)lineSpacing fontSize:(CGFloat)fontSize{
     if (str.length == 0) {

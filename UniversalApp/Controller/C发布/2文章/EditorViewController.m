@@ -65,6 +65,7 @@
     [self.view addSubview:self.contentTextView];
     ViewRadius(self.fabuButton, 14);
     self.wenzhangImgCount = 0;
+    self.cover = @"";
 //    ViewBorderRadius(self.fabuButton, 14, 1, YXRGBAColor(176, 151, 99));
 }
 #pragma mark - setter
@@ -162,32 +163,65 @@
 - (IBAction)backVC:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 - (IBAction)fabuAction:(id)sender {
-    if (self.finishUpLoadImageBool) {
-        NSString * resuletString = [Tool makeHtmlString:_imageUrlsArr desArr:_desArr contentStr:_contentStr];
-        NSLog(@"%@",resuletString);
-        [self lastStepFaBuAction:resuletString];
-    }else{
-        [QMUITips showInfo:@"正在上传文章图片,请稍等" inView:self.view hideAfterDelay:2];
-    }
-}
--(void)lastStepFaBuAction:(NSString *)detail{
-     if([self.cover isEqualToString:@""]){
+    if([self.cover isEqualToString:@""]){
         [QMUITips showInfo:@"请上传封面图片" inView:self.view hideAfterDelay:2];
         return;
     }else if ([self.headerView.titleTextView.text isEqualToString:@""]){
         [QMUITips showInfo:@"请填写标题" inView:self.view hideAfterDelay:2];
         return;
-    }else if ([detail isEqualToString:@""]){
+    }else if(self.contentTextView.text.length == 0 ){
         [QMUITips showInfo:@"请填写文章" inView:self.view hideAfterDelay:2];
         return;
     }
+    [self upLoadAllImg];
+}
+-(void)upLoadAllImg{
+    [QMUITips showLoadingInView:self.view];
     
+    [self.imagesArr removeAllObjects];
+    [self.imageUrlsArr removeAllObjects];
+    [self.desArr removeAllObjects];
     
-    
+    NSAttributedString *content = self.contentTextView.attributedText;
+    NSString * text1 = [self.contentTextView.text copy];
+    //判断是否含有图片
+    if ([text1 containsString:@"\U0000fffc"]) {
+        //这一步开始上传
+        kWeakSelf(self);
+        [content enumerateAttributesInRange:NSMakeRange(0, text1.length) options:0 usingBlock:^(NSDictionary<NSString *,id> * _Nonnull attrs, NSRange range, BOOL * _Nonnull stop) {
+            YYTextAttachment *att = attrs[@"YYTextAttachment"];
+            //att有的话说明，有图片
+            if (att) {
+                if ([att.content isKindOfClass:[YYTextView class]]) {
+                    YYTextView * textView = att.content;
+                    [weakself.desArr addObject:textView.text];
+                }else{
+                    YYAnimatedImageView *imgView = att.content;
+                    [weakself.imagesArr addObject:imgView.image];
+                    if (weakself.imagesArr.count == weakself.wenzhangImgCount) {
+                        [QiniuLoad uploadImageToQNFilePath:weakself.imagesArr success:^(NSString *reslut) {
+                            NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
+                            [weakself.imageUrlsArr addObjectsFromArray:qiniuArray];
+                            if (weakself.imageUrlsArr.count == weakself.wenzhangImgCount) {
+                                //图片上传完成，开始向服务器发送请求
+                                [weakself lastStepFaBuAction:[Tool makeHtmlString:_imageUrlsArr desArr:_desArr contentStr:_contentStr]];
+                            }
+                        } failure:^(NSString *error) {}];
+                    }
+                }
+            }
+        }];
+        self.contentStr = [text1 stringByReplacingOccurrencesOfString:@"\U0000fffc\U0000fffc" withString:@"<我是图片>"];
+    }else{
+        //图片上传完成，开始向服务器发送请求
+        [self lastStepFaBuAction:[Tool makeHtmlString:_imageUrlsArr desArr:_desArr contentStr:text1]];
+    }
+
+}
+-(void)lastStepFaBuAction:(NSString *)detail{
     NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
-    
-    
     //post_id 修改传，发布传空
     [dic setValue:@"" forKey:@"post_id"];
     //title 标题 晒图不传
@@ -214,13 +248,11 @@
     
     kWeakSelf(self);
     [YX_MANAGER requestFaBuImagePOST:dic success:^(id object) {
+        [QMUITips hideAllTipsInView:weakself.view];
         [QMUITips showSucceed:object[@"message"] inView:[ShareManager getMainView] hideAfterDelay:1];
         [weakself closeViewAAA];
     }];
 }
-
-
-
 - (void)mediaPicker:(KSMediaPickerController *)mediaPicker didFinishSelected:(NSArray<KSMediaPickerOutputModel *> *)outputArray {
     [mediaPicker.navigationController dismissViewControllerAnimated:YES completion:nil];
     kWeakSelf(self);
@@ -230,7 +262,6 @@
         for (KSMediaPickerOutputModel * model in outputArray) {
             [self setupImage:model.image];
         }
-        [self upLoadAllImg];
     //为封面图片
     }else{
         KSMediaPickerOutputModel * model = outputArray[0];
@@ -239,42 +270,6 @@
             weakself.cover = reslut;
         } failure:^(NSString *error) {}];
     }
-  
-}
--(void)upLoadAllImg{
-    
-    [self.imagesArr removeAllObjects];
-    [self.imageUrlsArr removeAllObjects];
-    [self.desArr removeAllObjects];
-    
-    NSAttributedString *content = self.contentTextView.attributedText;
-    NSString * text1 = [self.contentTextView.text copy];
-    //这一步开始上传
-    kWeakSelf(self);
-    [content enumerateAttributesInRange:NSMakeRange(0, text1.length) options:0 usingBlock:^(NSDictionary<NSString *,id> * _Nonnull attrs, NSRange range, BOOL * _Nonnull stop) {
-        _finishUpLoadImageBool = NO;
-        YYTextAttachment *att = attrs[@"YYTextAttachment"];
-        if (att) {
-            if ([att.content isKindOfClass:[YYTextView class]]) {
-                YYTextView * textView = att.content;
-                [weakself.desArr addObject:textView.text];
-            }else{
-                YYAnimatedImageView *imgView = att.content;
-                [weakself.imagesArr addObject:imgView.image];
-                if (weakself.imagesArr.count == weakself.wenzhangImgCount) {
-                    [QiniuLoad uploadImageToQNFilePath:weakself.imagesArr success:^(NSString *reslut) {
-                        NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
-                        [weakself.imageUrlsArr addObjectsFromArray:qiniuArray];
-                        if (weakself.imageUrlsArr.count == weakself.wenzhangImgCount) {
-                            weakself.finishUpLoadImageBool = YES;
-                        }
-                    } failure:^(NSString *error) {}];
-                }
-             
-            }
-        }
-    }];
-    self.contentStr = [text1 stringByReplacingOccurrencesOfString:@"\U0000fffc\U0000fffc" withString:@"<我是图片>"];
 }
 - (UIToolbar *)titleFieldBar {
     UIToolbar *bar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
@@ -329,6 +324,8 @@
     return _desArr;
 }
 -(void)closeViewAAA{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSecondVC" object:nil];
+
     UIViewController *controller = self;
     while(controller.presentingViewController != nil){
         controller = controller.presentingViewController;

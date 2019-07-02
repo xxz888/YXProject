@@ -127,14 +127,11 @@
                 tapStringArray:modelArray];
     cell.textHeight.constant = [self getLblHeight:dic];
     if (cell.textHeight.constant < 30) {
-        [ShareManager setLineSpace:0  inLabel:cell.titleTagLbl2 ];
         
     }else{
-        [ShareManager setLineSpace:0  inLabel:cell.titleTagLbl2 ];
     }
     
     cell.titleTagLbl1.text = [dic[@"title"] UnicodeToUtf8];
-    [ShareManager setLineSpace:0  inLabel:cell.titleTagLbl2 ];
     cell.questionTitleHeight.constant = [ShareManager inTextOutHeight:cell.titleTagLbl1.text lineSpace:9 fontSize:14];
     
     NSString * str1 = [(NSMutableString *)dic[@"pic1"] replaceAll:@" " target:@"%20"];

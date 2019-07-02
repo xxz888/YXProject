@@ -248,7 +248,7 @@
         [self setWebVIewData:self.startDic];
         self.cell.leftWidth.constant  = 5;
         self.cell.rightWidth.constant = 5;
-            self.yxTableView.tableHeaderView = self.cell;
+        self.yxTableView.tableHeaderView = self.cell;
     }
     zanBool =  [self.startDic[@"is_praise"] integerValue] == 1;
 

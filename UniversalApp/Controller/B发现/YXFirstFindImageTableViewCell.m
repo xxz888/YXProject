@@ -95,9 +95,9 @@
     //label内容赋值
     [self.detailLbl setText:titleText attributes:@{NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:15],}
                tapStringArray:modelArray];
-    //下边这句话不能删除，改变样式的
-    [ShareManager setLineSpace:9 inLabel:self.detailLbl];
-      self.detailHeight.constant = [ShareManager inTextOutHeight:titleText  lineSpace:9 fontSize:15];
+    self.detailLbl.text = titleText;
+
+    self.detailHeight.constant = [ShareManager inTextOutHeight:titleText  lineSpace:9 fontSize:15];
     [self.detailLbl setOrgVerticalTextAlignment:OrgHLVerticalTextAlignmentMiddle];
 
     //图片
@@ -126,7 +126,6 @@
             self.onlyOneImv.hidden = NO;
             //这里判断晒图是图还是视频
             if ([kGetString(urlList[0]) containsString:@"mp4"]) {
-                
                 //给视频的imageveiew添加手势，这个方法一定要写晒图所有方法后边的，不能移动顺序
                 self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showVideoPlayer:)];
                 self.onlyOneImv.tag = self.tag;
@@ -135,7 +134,6 @@
                 [self.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
                 //如果是图片，为1张图片，有可能是晒图，有可能视频
                 self.midViewHeight.constant = 220;
-                
                 //处理view隐藏
                 self.playImV.hidden = NO;
             }else{
@@ -145,13 +143,12 @@
                 self.midViewHeight.constant = kScreenWidth - 20;
                 //处理view隐藏
                 self.playImV.hidden = YES;
-                
                 [self.onlyOneImv removeGestureRecognizer:self.tap];
             }
-
         }
         self.detailLbl.font =  [UIFont fontWithName:@"苹方-简" size:15];
-
+        //下边这句话不能删除，改变样式的
+        [ShareManager setLineSpace:9 inLabel:self.detailLbl size:15];
     }else{
     //文章
         self.midViewHeight.constant = 220;
@@ -160,8 +157,10 @@
         NSString * string = [(NSMutableString *)dic[@"cover"] replaceAll:@" " target:@"%20"];
         [self.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         [self.onlyOneImv removeGestureRecognizer:self.tap];
-        
+        //下边这句话不能删除，改变样式的
+        [ShareManager setLineSpace:9 inLabel:self.detailLbl size:17];
         self.detailLbl.font =  [UIFont fontWithName:@"Helvetica-Bold" size:17];
+     
     }
     
     

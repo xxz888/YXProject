@@ -392,7 +392,10 @@ static CGFloat const HeaderImageViewHeight =320;
 
 - (HGSegmentedPageViewController *)segmentedPageViewController {
     if (!_segmentedPageViewController) {
-        NSArray *titles = @[@"动态",@"收藏"];
+         NSArray *titles = @[@"动态",@"收藏"];
+        if (self.userId) {
+            titles = @[@"动态"];
+        }
         NSMutableArray *controllers = [NSMutableArray array];
         for (int i = 0; i < titles.count; i++) {
             if (i == 0) {

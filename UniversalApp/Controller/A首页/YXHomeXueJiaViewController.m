@@ -226,7 +226,7 @@
     cell.cellLbl.hidden = cell.cellAutherLbl.hidden = cell.cellDataLbl.hidden = NO;
     
     
-    [ShareManager setLineSpace:9 inLabel:cell.cellLbl];
+    [ShareManager setLineSpace:9 inLabel:cell.cellLbl size:15];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
