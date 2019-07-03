@@ -12,11 +12,13 @@
 #import "YXFindSearchViewController.h"
 #import "YXFindSearchResultViewController.h"
 #import "YXFindViewController.h"
-@interface YXSecondViewController ()<PYSearchViewControllerDelegate>
+@interface YXSecondViewController ()<PYSearchViewControllerDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic, strong) HGSegmentedPageViewController *segmentedPageViewController;
 @property(nonatomic,strong)NSMutableArray * dataArray;
 @property(nonatomic,strong)NSMutableArray * typeArray;
 @property(nonatomic,strong)NSString * type;
+@property (nonatomic) BOOL isCanBack;
+
 @end
 
 @implementation YXSecondViewController
@@ -112,5 +114,34 @@
         [self presentViewController:nav2 animated:NO completion:nil];
     }];
 }
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self forbiddenSideBack];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self resetSideBack];
+}
+#pragma mark -- 禁用边缘返回
+-(void)forbiddenSideBack{
+    self.isCanBack = NO;
+    //关闭ios右滑返回
+    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate=self;
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
 
+    }
+}
+#pragma mark --恢复边缘返回
+- (void)resetSideBack {
+    self.isCanBack=YES;
+    //开启ios右滑返回
+    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }
+}
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer*)gestureRecognizer {
+    return self.isCanBack;
+}
 @end

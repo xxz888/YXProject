@@ -6,9 +6,12 @@
 //  Copyright © 2019年 徐阳. All rights reserved.
 //
 #import "YXFindViewController.h"
+
 @interface YXFindViewController ()
+
 @end
 @implementation YXFindViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.yxTableView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight - kTopHeight - TabBarHeight - 40);

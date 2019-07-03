@@ -388,6 +388,7 @@ static CGFloat const HeaderImageViewHeight =320;
     }
     _yxTableView.tag = 7788;
     return _yxTableView;
+    
 }
 
 - (HGSegmentedPageViewController *)segmentedPageViewController {

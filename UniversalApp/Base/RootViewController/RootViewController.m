@@ -393,6 +393,8 @@
 
 #pragma mark ==========  搜索相关 ==========
 -(void)setNavSearchView{
+    [_searchHeaderView removeFromSuperview];
+    _searchHeaderView = nil;
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXFindSearchHeadView" owner:self options:nil];
     _searchHeaderView = [nib objectAtIndex:0];
     _searchHeaderView.searchBar.delegate = self;

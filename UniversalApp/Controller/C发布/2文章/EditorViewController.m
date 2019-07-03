@@ -73,7 +73,7 @@
     if (!_contentTextView) {
         NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXWenZhangView" owner:self options:nil];
         self.headerView = [nib objectAtIndex:0];
-        self.headerView.frame = CGRectMake(0,0,self.view.frame.size.width,300);
+        self.headerView.frame = CGRectMake(0,0,KScreenWidth,300);
         YYTextView *textView = [[YYTextView alloc] initWithFrame:CGRectMake(0, kStatusBarHeight + 60, KScreenWidth, KScreenHeight - 60 - kStatusBarHeight)];
         textView.tag = 1000;
         textView.textContainerInset = UIEdgeInsetsMake(310, 5, 20,5);

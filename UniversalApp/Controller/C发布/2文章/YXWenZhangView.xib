@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="320"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="添加封面" translatesAutoresizingMaskIntoConstraints="NO" id="7G5-iX-wQ3">
+                <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="添加封面" translatesAutoresizingMaskIntoConstraints="NO" id="7G5-iX-wQ3">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="220"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="220" id="xhQ-k6-bsG"/>
@@ -76,6 +76,6 @@
         </view>
     </objects>
     <resources>
-        <image name="添加封面" width="746" height="202"/>
+        <image name="添加封面" width="1080" height="635"/>
     </resources>
 </document>
