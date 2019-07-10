@@ -315,7 +315,14 @@ SINGLETON_FOR_CLASS(ShareManager);
 }
 
 +(void)inTextViewOutDifColorView:(UILabel *)tfView tag:(NSString *)tag{
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:tfView.text];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = 15.0f;  //设置行间距
+    paragraphStyle.lineBreakMode =NSLineBreakByCharWrapping;
+    paragraphStyle.alignment = tfView.textAlignment;
+    
+    
+    
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:tfView.text attributes:@{NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:15],NSParagraphStyleAttributeName:paragraphStyle}];
     NSRange range1 = [[str string] rangeOfString:tag];
     [str addAttribute:NSForegroundColorAttributeName value:YXRGBAColor(10, 96, 254) range:range1];
     tfView.attributedText = str;
@@ -367,11 +374,11 @@ SINGLETON_FOR_CLASS(ShareManager);
     NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
     paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
     paraStyle.alignment = NSTextAlignmentLeft;
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string attributes:@{NSKernAttributeName:@(9),NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:fontSize]}];
+
     paraStyle.lineSpacing = lineSpacing;
-    NSDictionary *dic = @{NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:fontSize], NSParagraphStyleAttributeName:paraStyle,NSParagraphStyleAttributeName:attributedString};
+    NSDictionary *dic = @{NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:fontSize], NSParagraphStyleAttributeName:paraStyle};
     CGSize size = [string boundingRectWithSize:CGSizeMake(KScreenWidth-100, MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
-    return  ceil(size.height) < 30 ? 30 : ceil(size.height); ;
+    return  ceil(size.height) + 20;
 }
 +(CGFloat)inTextZhiNanOutHeight:(NSString *)str lineSpace:(CGFloat)lineSpacing fontSize:(CGFloat)fontSize{
     if (str.length == 0) {

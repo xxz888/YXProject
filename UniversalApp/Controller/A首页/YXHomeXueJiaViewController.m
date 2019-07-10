@@ -17,6 +17,10 @@
 @interface YXHomeXueJiaViewController ()<UITableViewDelegate,UITableViewDataSource,ClickGridView,UIGestureRecognizerDelegate>
 @property (nonatomic) BOOL isCanBack;
 @property (nonatomic, strong) HGSegmentedPageViewController *segmentedPageViewController;
+@property (nonatomic,strong) NSMutableArray * vcArr;
+@property (nonatomic,strong) NSMutableArray * titlesArr;
+
+
 
 @end
 
@@ -27,8 +31,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initSegment];
-    
+    self.vcArr = [NSMutableArray array];
+    self.titlesArr = [NSMutableArray array];
+
+    [self requestZhiNan1Get];
 
     /*
     self.informationArray = [NSMutableArray array];
@@ -48,6 +54,25 @@
 */
 
 
+}
+-(void)requestZhiNan1Get{
+    kWeakSelf(self);
+    [YXPLUS_MANAGER requestZhiNan1Get:@"1/0" success:^(id object) {
+        //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
+        for (NSDictionary * dic in object) {
+            //正装
+            YXHomeXueJiaToolsViewController * vc = [[YXHomeXueJiaToolsViewController alloc]init];
+            vc.startId = kGetString(dic[@"id"]);
+            [weakself.vcArr addObject:vc];
+            [weakself.titlesArr addObject:dic[@"name"]];
+        }
+        YXHomeXueJiaGuBaViewController *  vc3 = [[YXHomeXueJiaGuBaViewController alloc]init];
+        [weakself.titlesArr addObject:@"品牌"];
+        [weakself.vcArr addObject:vc3];
+        [weakself initSegment];
+        
+    }];
+   
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -70,22 +95,15 @@
         make.edges.equalTo(weakself.view).mas_offset(UIEdgeInsetsMake(40, 0, 0, 0));
     }];
 }
-- (HGSegmentedPageViewController *)segmentedPageViewController {
+- (HGSegmentedPageViewController *)segmentedPageViewController{
     if (!_segmentedPageViewController) {
-        //正装
-        YXHomeXueJiaToolsViewController * vc1 = [[YXHomeXueJiaToolsViewController alloc]init];
-        //雪茄
-        YXHomeXueJiaGuBaViewController *  vc3 = [[YXHomeXueJiaGuBaViewController alloc]init];
-        
-        //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
-        NSArray* titles =  @[@"正装",@"雪茄",@"品牌"];
-        NSArray* controllers = @[vc1,[UIViewController new],vc3];
+   
         _segmentedPageViewController = [[HGSegmentedPageViewController alloc] init];
         _segmentedPageViewController.categoryView.titleNomalFont = [UIFont systemFontOfSize:14];
         _segmentedPageViewController.categoryView.titleSelectedFont = [UIFont systemFontOfSize:22 weight:UIFontWeightBold];
         _segmentedPageViewController.categoryView.titleSelectedColor = SEGMENT_COLOR;
-        _segmentedPageViewController.pageViewControllers = controllers.copy;
-        _segmentedPageViewController.categoryView.titles = titles;
+        _segmentedPageViewController.pageViewControllers = self.vcArr.copy;
+        _segmentedPageViewController.categoryView.titles = self.titlesArr;
         _segmentedPageViewController.categoryView.originalIndex = 0;
     }
     return _segmentedPageViewController;

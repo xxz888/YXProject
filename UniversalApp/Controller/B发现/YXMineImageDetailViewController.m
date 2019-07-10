@@ -178,6 +178,8 @@
     self.cell.bottomBottomHeight.constant = 40;
     self.cell.bottomPingLunLbl.hidden = NO;
     
+    [ShareManager inTextViewOutDifColorView:self.cell.detailLbl tag:self.startDic[@"tag"]];
+
     //晒图
     if ([self.startDic[@"obj"] integerValue] == 1) {
 

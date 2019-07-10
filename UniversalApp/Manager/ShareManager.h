@@ -66,4 +66,5 @@ SINGLETON_FOR_HEADER(ShareManager)
 - (void)saveImage:(UITableView *)tableView;
 +(CGFloat)getImageViewSize:(NSString *)imgUrl;
 +(void)setLineSpace:(CGFloat)lineSpace inLabel:(UILabel *)label size:(CGFloat)size;
++(void)inTextViewOutDifColorView:(UILabel *)tfView tag:(NSString *)tag;
 @end

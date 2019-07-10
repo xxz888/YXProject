@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXHomeXueJiaToolsViewController : RootViewController
+@property (nonatomic,strong) NSString * startId;
 
 @end
 

@@ -88,7 +88,7 @@
 -(void)requestZhiNan1Get{
     
     kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"1/%@",@"5"];
+    NSString * par = [NSString stringWithFormat:@"1/%@",self.startId];
     [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
         weakself.titleArray = [weakself commonAction:object dataArray:weakself.titleArray];
         [weakself.yxTableView reloadData];

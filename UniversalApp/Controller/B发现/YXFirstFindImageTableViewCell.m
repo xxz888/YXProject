@@ -95,8 +95,6 @@
     //label内容赋值
     [self.detailLbl setText:titleText attributes:@{NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:15],}
                tapStringArray:modelArray];
-    self.detailLbl.text = titleText;
-
     self.detailHeight.constant = [ShareManager inTextOutHeight:titleText  lineSpace:9 fontSize:15];
     [self.detailLbl setOrgVerticalTextAlignment:OrgHLVerticalTextAlignmentMiddle];
 
