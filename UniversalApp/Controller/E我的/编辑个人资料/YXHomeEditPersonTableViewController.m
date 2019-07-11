@@ -15,8 +15,9 @@
 #import "ImagePicker.h"
 #import "QiniuLoad.h"
 #import<QiniuSDK.h>
+#import "UniversalApp-Swift.h"
 
-@interface YXHomeEditPersonTableViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate,UITextViewDelegate>{
+@interface YXHomeEditPersonTableViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate,UITextViewDelegate,KSMediaPickerControllerDelegate>{
     
     ImagePicker *imagePicker;
     
@@ -114,6 +115,18 @@
     [_nameTf resignFirstResponder];
     [self.view endEditing:YES];
     kWeakSelf(self);
+    
+    KSMediaPickerController *ctl = [KSMediaPickerController.alloc initWithMaxVideoItemCount:0 maxPictureItemCount:1];
+    ctl.delegate = self;
+    KSNavigationController *nav = [KSNavigationController.alloc initWithRootViewController:ctl];
+    [self presentViewController:nav animated:YES completion:nil];
+    
+    
+    
+    
+    
+    
+    return;
     [imagePicker dwSetPresentDelegateVC:self SheetShowInView:self.view InfoDictionaryKeys:(long)nil];
     [imagePicker dwGetpickerTypeStr:^(NSString *pickerTypeStr) {
     } pickerImagePic:^(UIImage *pickerImagePic) {
@@ -128,6 +141,27 @@
         }];
      
     }];
+}
+
+
+#pragma mark ==========  图片和视频返回的block ==========
+- (void)mediaPicker:(KSMediaPickerController *)mediaPicker didFinishSelected:(NSArray<KSMediaPickerOutputModel *> *)outputArray {
+    [mediaPicker.navigationController dismissViewControllerAnimated:YES completion:nil];
+    KSMediaPickerOutputModel * model =  outputArray[0];
+    [self uploadImageQiNiuYun:@[model.image]];
+}
+-(void)uploadImageQiNiuYun:(NSArray *)upLoadImageArray{
+    kWeakSelf(self);
+    CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();
+    [QMUITips showLoadingInView:self.view];
+    [QiniuLoad uploadImageToQNFilePath:upLoadImageArray success:^(NSString *reslut) {
+        NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
+        weakself.titleImgView.image = upLoadImageArray[0];
+         weakself.photo = qiniuArray[0];
+        [QMUITips hideAllTipsInView:weakself.view];
+
+        NSLog(@"------------七牛云上传图片耗时: %f秒", CFAbsoluteTimeGetCurrent() - start);
+    } failure:^(NSString *error) {}];
 }
 - (IBAction)sexBtnAction:(id)sender {
     [_nameTf resignFirstResponder];

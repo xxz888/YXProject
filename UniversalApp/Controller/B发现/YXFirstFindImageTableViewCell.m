@@ -147,6 +147,8 @@
         self.detailLbl.font =  [UIFont fontWithName:@"苹方-简" size:15];
         //下边这句话不能删除，改变样式的
         [ShareManager setLineSpace:9 inLabel:self.detailLbl size:15];
+        [ShareManager inTextViewOutDifColorView:self.detailLbl tag:dic[@"tag"]];
+
     }else{
     //文章
         self.midViewHeight.constant = 220;

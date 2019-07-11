@@ -43,19 +43,21 @@
     [super viewDidLoad];
     [QMUITips showLoadingInView:self.view];
     [self initAllControl];
-
+    //初始化所有的控件
+    [self setHeaderView];
+    [self requestNewList];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    //初始化所有的控件
-    [self setHeaderView];
-    [self requestNewList];
-    
+
+
+
 }
 
 -(void)headerRereshing{
@@ -101,13 +103,21 @@
     //显示内容
     if (dic[@"detail"]) {
         [self.cell.cellWebView loadHTMLString:[ShareManager adaptWebViewForHtml:dic[@"detail"]] baseURL: baseUrl];
+
+      
     }
     [self.cell.cellWebView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
 }
+
 - (void)observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context{
     kWeakSelf(self);
         if([keyPath isEqualToString:@"contentSize"]) {
+        CGFloat documentHeight = [[self.cell.cellWebView stringByEvaluatingJavaScriptFromString:@"document.getElementById(\"content\").offsetHeight;"] floatValue];
+            
         webViewHeight= [[self.cell.cellWebView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"]floatValue];
+            CGFloat webViewHeight1 = [[self.cell.cellWebView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
+            CGFloat webViewHeight2 = [[self.cell.cellWebView stringByEvaluatingJavaScriptFromString:@"document.body.clientHeight"] floatValue];
+            
         CGRect newFrame= self.cell.cellWebView.frame;
         newFrame.size.height = webViewHeight;
         self.cell.cellWebView.frame= newFrame;
