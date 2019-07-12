@@ -35,7 +35,13 @@
         titleText = [[NSString stringWithFormat:@"%@%@",dic[@"title"],dic[@"tag"]] UnicodeToUtf8];
         midViewHeight = 220;
     }
-    CGFloat detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:15];
+    CGFloat detailHeight = 0;
+    if ([dic[@"title"] isEqualToString:@""] && [dic[@"tag"] isEqualToString:@""]) {
+        detailHeight = 0;
+    }else{
+        detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:15];
+
+    }
    
     return 125 + detailHeight + midViewHeight;
 }
@@ -85,7 +91,8 @@
         IXAttributeModel    * model = [IXAttributeModel new];
         model.range = [titleText rangeOfString:string];
         model.string = string;
-        model.attributeDic = @{NSForegroundColorAttributeName : YXRGBAColor(10, 96, 254) };
+        model.attributeDic = @{NSForegroundColorAttributeName : YXRGBAColor(10, 96, 254),
+                               NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:15]};
         [modelArray addObject:model];
     }
     //文本点击回调
@@ -93,10 +100,10 @@
         weakself.clickTagblock(string);
     };
     //label内容赋值
-    [self.detailLbl setText:titleText attributes:@{NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:15],}
+    [self.detailLbl setText:titleText
+                 attributes:@{NSForegroundColorAttributeName : YXRGBAColor(10, 96, 254),
+                              NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:15],}
                tapStringArray:modelArray];
-    self.detailHeight.constant = [ShareManager inTextOutHeight:titleText  lineSpace:9 fontSize:15];
-    [self.detailLbl setOrgVerticalTextAlignment:OrgHLVerticalTextAlignmentMiddle];
 
     //图片
     if ([dic[@"obj"] integerValue] == 1) {
@@ -148,6 +155,7 @@
         //下边这句话不能删除，改变样式的
         [ShareManager setLineSpace:9 inLabel:self.detailLbl size:15];
         [ShareManager inTextViewOutDifColorView:self.detailLbl tag:dic[@"tag"]];
+        self.detailHeight.constant = [ShareManager inTextOutHeight:self.detailLbl.text  lineSpace:9 fontSize:15];
 
     }else{
     //文章
@@ -159,11 +167,18 @@
         [self.onlyOneImv removeGestureRecognizer:self.tap];
         //下边这句话不能删除，改变样式的
         [ShareManager setLineSpace:9 inLabel:self.detailLbl size:17];
+        [ShareManager inTextViewOutDifColorView:self.detailLbl tag:dic[@"tag"]];
         self.detailLbl.font =  [UIFont fontWithName:@"Helvetica-Bold" size:17];
-     
+        self.detailHeight.constant = [ShareManager inTextOutHeight:self.detailLbl.text  lineSpace:9 fontSize:17];
     }
     
     
+    
+    if ([dic[@"title"] isEqualToString:@""] && [dic[@"tag"] isEqualToString:@""]) {
+        self.detailHeight.constant = 0;
+    }
+    [self.detailLbl setOrgVerticalTextAlignment:OrgHLVerticalTextAlignmentMiddle];
+
     if ([dic[@"publish_site"] isEqualToString:@""] || !dic[@"publish_site"] ) {
         self.nameCenter.constant = self.titleImageView.frame.origin.y;
     }else{
