@@ -22,6 +22,7 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 @property(nonatomic,strong)NSMutableArray * cache1Array;
 @property(nonatomic,strong)NSMutableArray * cache2Array;
 @property (nonatomic,assign) BOOL moreBool;
+@property (nonatomic,assign) BOOL umInfoBool;
 
 @property(nonatomic)BOOL isHaveIcon;
 #pragma mark ========== GET请求模版 ==========

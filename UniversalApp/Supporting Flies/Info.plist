@@ -110,6 +110,10 @@
 	<string>KSMediaPicker 需要麦克风才能录影</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>KSMediaPicker 需要访问相册才能正常使用</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

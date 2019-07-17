@@ -18,6 +18,8 @@
     [self requestTableData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSecondVC:) name:@"refreshSecondVC" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(panduanUMXiaoXi1:) name:UM_User_Info_1 object:nil];
 }
 - (void)dealloc {
     //单条移除观察者

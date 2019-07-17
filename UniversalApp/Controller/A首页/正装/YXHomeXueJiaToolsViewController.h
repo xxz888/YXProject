@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YXHomeXueJiaToolsViewController : RootViewController
 @property (nonatomic,strong) NSString * startId;
-
+-(void)panduanUMXiaoXi:(NSDictionary *)umDic;
 @end
 
 NS_ASSUME_NONNULL_END

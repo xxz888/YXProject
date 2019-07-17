@@ -64,7 +64,7 @@
     [super viewWillAppear:animated];
     YX_MANAGER.moreBool = NO;
     [self.navigationController.navigationBar setHidden:YES];
-
+  
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -76,6 +76,13 @@
     [self tableviewCon];
     [self addRefreshView:self.yxTableView];
     [self requestZhiNan1Get];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(panduanUMXiaoXi:) name:UM_User_Info_0 object:nil];
+
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 -(void)headerRereshing{
     [super headerRereshing];
@@ -86,12 +93,11 @@
     [self.yxTableView.mj_footer endRefreshing];
 }
 -(void)requestZhiNan1Get{
-    
     kWeakSelf(self);
     NSString * par = [NSString stringWithFormat:@"1/%@",self.startId];
     [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
         weakself.titleArray = [weakself commonAction:object dataArray:weakself.titleArray];
-        [weakself.yxTableView reloadData];
+        [weakself.yxTableView reloadData];    //这里来判断是不是友盟通知进来的
     }];
 }
 #pragma mark ========== 创建tableview ==========
@@ -129,5 +135,36 @@
     vc1.index = indexPath.row;
     vc1.title = self.titleArray[indexPath.row][@"name"];
     [self.navigationController pushViewController:vc1 animated:YES];
+}
+-(void)panduanUMXiaoXi:(NSNotification *)notification{
+    
+    
+    NSDictionary * umDic =  [notification object];
+    if (umDic && umDic.count && umDic[@"key1"]) {
+        self.startId = umDic[@"key1"];
+    }
+    kWeakSelf(self);
+    NSString * par = [NSString stringWithFormat:@"1/%@",self.startId];
+    [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
+        weakself.titleArray = [weakself commonAction:object dataArray:weakself.titleArray];
+        
+                
+        NSDictionary * umDic =  [notification object];
+        if (umDic && umDic.count > 0) {
+            YXZhiNanViewController * vc1 = [[YXZhiNanViewController alloc]init];
+            for (NSDictionary * dic in weakself.titleArray) {
+                if ([dic[@"id"] integerValue] == [umDic[@"key2"] integerValue]) {
+                    vc1.startDic = [NSDictionary dictionaryWithDictionary:dic];
+                    vc1.title = dic[@"name"];
+                    vc1.umDic = [NSDictionary dictionaryWithDictionary:umDic];
+                    [weakself.navigationController pushViewController:vc1 animated:YES];
+                }
+            }
+        }
+    }];
+    
+    
+    
+
 }
 @end

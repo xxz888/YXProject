@@ -25,6 +25,9 @@
 #define SHOW_FUTURE_DEV @"功能正在开发中..."
 
 #define YX_USER_FaBuCaoGao @"YX_FaBuCaoGao"
+#define UM_User_Info_0 @"UMUserInfo0"
+#define UM_User_Info_1 @"UMUserInfo1"
+
 /**本地化存储**/
 #define UserDefaultsGET(key) [[NSUserDefaults standardUserDefaults] objectForKey:key] // 取
 #define UserDefaultsSET(object,key) [[NSUserDefaults standardUserDefaults] setObject:object forKey:key]  // 写

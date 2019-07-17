@@ -15,4 +15,7 @@ pod "UUButton"
 pod 'ZXSegmentController'
 pod 'BlocksKit'
 pod 'MLeaksFinder'
+pod 'UMCCommon'
+pod 'UMCPush'
+pod 'UMCSecurityPlugins'
 end

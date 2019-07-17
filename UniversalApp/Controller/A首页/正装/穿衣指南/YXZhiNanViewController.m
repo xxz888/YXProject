@@ -25,6 +25,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
+          YX_MANAGER.umInfoBool = YES;
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -35,7 +36,6 @@
     [self initTableView];
     [self addRefreshView:self.yxTableView];
     [self requestZhiNanGet];
-
 }
 -(void)headerRereshing{
     [super headerRereshing];
@@ -67,6 +67,7 @@
                             [weakself.collArray addObject:object];
                             if (weakself.dataArray.count == weakself.collArray.count) {
                                 [weakself.yxTableView reloadData];
+                                [weakself panduanUMXiaoXi];
                             }
                              dispatch_semaphore_signal(sema);
                             [QMUITips hideAllTipsInView:weakself.view];
@@ -129,6 +130,21 @@
         [weakself.navigationController pushViewController:vc animated:YES];
     };
     return cell;
+}
+-(void)panduanUMXiaoXi{
+    if (self.umDic && self.umDic.count > 0) {
+        kWeakSelf(self);
+        YXZhiNanDetailViewController * vc = [[YXZhiNanDetailViewController alloc]init];
+        for (NSInteger i = 0 ; i<self.dataArray.count; i++) {
+            if ([self.dataArray[i][@"id"] integerValue] == [self.umDic[@"key3"] integerValue]) {
+                vc.smallIndex = 0;
+                vc.bigIndex = i;
+                vc.startArray = [[NSMutableArray alloc]initWithArray:weakself.dataArray];
+                [weakself.navigationController pushViewController:vc animated:YES];
+            }
+        }
+    
+    }
 }
 -(void)initTableView{
     _contentHeight = 56;

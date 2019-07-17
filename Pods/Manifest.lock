@@ -296,6 +296,10 @@ PODS:
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
+  - UMCCommon (1.5.3)
+  - UMCPush (3.2.3):
+    - UMCCommon
+  - UMCSecurityPlugins (1.0.6)
   - UUButton (1.1)
   - YTKNetwork (2.0.4):
     - AFNetworking (~> 3.0)
@@ -316,6 +320,9 @@ DEPENDENCIES:
   - Qiniu (~> 7.1)
   - QMUIKit
   - SDWebImage (~> 3.8)
+  - UMCCommon
+  - UMCPush
+  - UMCSecurityPlugins
   - UUButton
   - YTKNetwork
   - YYKit
@@ -335,6 +342,9 @@ SPEC REPOS:
     - Qiniu
     - QMUIKit
     - SDWebImage
+    - UMCCommon
+    - UMCPush
+    - UMCSecurityPlugins
     - UUButton
     - YTKNetwork
     - YYKit
@@ -353,11 +363,14 @@ SPEC CHECKSUMS:
   Qiniu: 909b408ee489ea54827e9717be90b94bc9dfbc48
   QMUIKit: 36fe0f01873605e15e86113403db547aca16e6c5
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  UMCCommon: 016af43c0f769feb1ae1861d65aaf2b23b89c9c7
+  UMCPush: 628b5c61be5a5036cb31eb9b3a3ab8dce7521691
+  UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
   UUButton: 9a19bbe0c812a6920de21da8acca7a2d0bad52da
   YTKNetwork: df8a7a5597bda1664a4efaa7ef871a818a887fe0
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZXSegmentController: d94f138ab0191da1e2e4268e9b961e082a142549
 
-PODFILE CHECKSUM: eefb1cc9f245e33ef8bdbe2bfbecf4d5d81f4d6a
+PODFILE CHECKSUM: 8bea2b8703f563ad46fbf44cfc8781bd043b59d2
 
 COCOAPODS: 1.7.1

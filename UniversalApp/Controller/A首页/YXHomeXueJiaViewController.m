@@ -17,7 +17,6 @@
 @interface YXHomeXueJiaViewController ()<UITableViewDelegate,UITableViewDataSource,ClickGridView,UIGestureRecognizerDelegate>
 @property (nonatomic) BOOL isCanBack;
 @property (nonatomic, strong) HGSegmentedPageViewController *segmentedPageViewController;
-@property (nonatomic,strong) NSMutableArray * vcArr;
 @property (nonatomic,strong) NSMutableArray * titlesArr;
 
 
@@ -59,13 +58,13 @@
     kWeakSelf(self);
     [YXPLUS_MANAGER requestZhiNan1Get:@"1/0" success:^(id object) {
         //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
-        for (NSDictionary * dic in object) {
+//        for (NSDictionary * dic in object) {
             //正装
             YXHomeXueJiaToolsViewController * vc = [[YXHomeXueJiaToolsViewController alloc]init];
-            vc.startId = kGetString(dic[@"id"]);
+            vc.startId = kGetString(object[0][@"id"]);
             [weakself.vcArr addObject:vc];
-            [weakself.titlesArr addObject:dic[@"name"]];
-        }
+            [weakself.titlesArr addObject:object[0][@"name"]];
+//        }
         YXHomeXueJiaGuBaViewController *  vc3 = [[YXHomeXueJiaGuBaViewController alloc]init];
         [weakself.titlesArr addObject:@"品牌"];
         [weakself.vcArr addObject:vc3];

@@ -13,6 +13,13 @@
 #import <YTKNetwork.h>
 #import "SaltedFishTabBarVC.h"
 #import "UDPManage.h"
+
+
+
+
+@interface AppDelegate()
+
+@end
 @implementation AppDelegate (AppService)
 
 
@@ -291,6 +298,17 @@
     }
     return result;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 #pragma mark ————— 网络状态监听 —————
 - (void)monitorNetworkStatus

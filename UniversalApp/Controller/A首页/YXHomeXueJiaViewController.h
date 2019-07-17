@@ -20,5 +20,7 @@
 @property(nonatomic,strong)YXHomeXueJiaHeaderView * headerView;
 @property(nonatomic,strong)NSMutableArray * informationArray;
 @property(nonatomic,strong)NSMutableArray * scrollImgArray;
+@property (nonatomic,strong) NSMutableArray * vcArr;
+
 
 @end
