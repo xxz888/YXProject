@@ -35,36 +35,17 @@
 
     [self requestZhiNan1Get];
 
-    /*
-    self.informationArray = [NSMutableArray array];
-    self.scrollImgArray = [NSMutableArray array];
-
-    //tableview列表
-    [self createBottomTableView];
-    //tableview请求
-    [self addRefreshView:self.bottomTableView];
-
-    
-    if ([userManager loadUserInfo]) {
-//        [ShareManager upDataPersionIP];
-        [[UDPManage shareUDPManage] getNewMessageNumeber];
-//        [[UDPManage shareUDPManage] createClientUdpSocket];
-    }
-*/
-
 
 }
 -(void)requestZhiNan1Get{
     kWeakSelf(self);
     [YXPLUS_MANAGER requestZhiNan1Get:@"1/0" success:^(id object) {
-        //yes为足迹进来 no为正常进入  足迹进来需隐藏热门商品
-//        for (NSDictionary * dic in object) {
-            //正装
+        for (NSDictionary * dic in object) {
             YXHomeXueJiaToolsViewController * vc = [[YXHomeXueJiaToolsViewController alloc]init];
-            vc.startId = kGetString(object[0][@"id"]);
+            vc.startId = kGetString(dic[@"id"]);
             [weakself.vcArr addObject:vc];
-            [weakself.titlesArr addObject:object[0][@"name"]];
-//        }
+            [weakself.titlesArr addObject:dic[@"name"]];
+        }
         YXHomeXueJiaGuBaViewController *  vc3 = [[YXHomeXueJiaGuBaViewController alloc]init];
         [weakself.titlesArr addObject:@"品牌"];
         [weakself.vcArr addObject:vc3];

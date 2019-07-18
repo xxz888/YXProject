@@ -247,20 +247,7 @@
 }
 
 
--(void)panduanUMXiaoXi1:(NSNotification *)notification{
-    NSDictionary * umDic =  [notification object];
-        if (umDic && umDic.count > 0) {
-            YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
-            for (NSDictionary * dic in self.dataArray) {
-                if ([dic[@"id"] integerValue] == [umDic[@"key1"] integerValue]) {
-                    CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:dic];
-                    VC.headerViewHeight = h;
-                    VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-                    [self.navigationController pushViewController:VC animated:YES];
-                }
-            }
-        }
-}
+
 
 
 

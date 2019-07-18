@@ -138,33 +138,25 @@
 }
 -(void)panduanUMXiaoXi:(NSNotification *)notification{
     
-    
-    NSDictionary * umDic =  [notification object];
-    if (umDic && umDic.count && umDic[@"key1"]) {
-        self.startId = umDic[@"key1"];
-    }
     kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"1/%@",self.startId];
-    [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
-        weakself.titleArray = [weakself commonAction:object dataArray:weakself.titleArray];
-        
-                
-        NSDictionary * umDic =  [notification object];
-        if (umDic && umDic.count > 0) {
-            YXZhiNanViewController * vc1 = [[YXZhiNanViewController alloc]init];
-            for (NSDictionary * dic in weakself.titleArray) {
-                if ([dic[@"id"] integerValue] == [umDic[@"key2"] integerValue]) {
-                    vc1.startDic = [NSDictionary dictionaryWithDictionary:dic];
-                    vc1.title = dic[@"name"];
-                    vc1.umDic = [NSDictionary dictionaryWithDictionary:umDic];
-                    [weakself.navigationController pushViewController:vc1 animated:YES];
+    NSDictionary * umDic =  [notification object];
+    if (umDic && umDic.count && umDic[@"key1"] && [umDic[@"key1"] isEqualToString:self.startId]) {
+        NSString * par = [NSString stringWithFormat:@"1/%@",self.startId];
+        [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
+            weakself.titleArray = [weakself commonAction:object dataArray:weakself.titleArray];
+            NSDictionary * umDic =  [notification object];
+            if (umDic && umDic.count > 0) {
+                YXZhiNanViewController * vc1 = [[YXZhiNanViewController alloc]init];
+                for (NSDictionary * dic in weakself.titleArray) {
+                    if ([dic[@"id"] integerValue] == [umDic[@"key2"] integerValue]) {
+                        vc1.startDic = [NSDictionary dictionaryWithDictionary:dic];
+                        vc1.title = dic[@"name"];
+                        vc1.umDic = [NSDictionary dictionaryWithDictionary:umDic];
+                        [weakself.navigationController pushViewController:vc1 animated:YES];
+                    }
                 }
             }
-        }
-    }];
-    
-    
-    
-
+        }];
+    }
 }
 @end

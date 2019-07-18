@@ -21,6 +21,21 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(panduanUMXiaoXi1:) name:UM_User_Info_1 object:nil];
 }
+-(void)panduanUMXiaoXi1:(NSNotification *)notification{
+    [self panduanxiaoxi:[notification object]];
+}
+-(void)panduanxiaoxi:(NSDictionary *)umDic{
+    if (umDic && umDic.count > 0 && [self.startDic[@"id"] integerValue] == -1) {
+        kWeakSelf(self);
+        YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
+        [YX_MANAGER requestget_post_by_id:kGetString(umDic[@"key1"]) success:^(id object) {
+            CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:object];
+            VC.headerViewHeight = h;
+            VC.startDic = [NSMutableDictionary dictionaryWithDictionary:object];
+            [weakself.navigationController pushViewController:VC animated:YES];
+        }];
+    }
+}
 - (void)dealloc {
     //单条移除观察者
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"refreshSecondVC" object:nil];

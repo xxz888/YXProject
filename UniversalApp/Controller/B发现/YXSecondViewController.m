@@ -7,13 +7,11 @@
 //
 
 #import "YXSecondViewController.h"
-#import "HGSegmentedPageViewController.h"
 #import "PYSearchViewController.h"
 #import "YXFindSearchViewController.h"
 #import "YXFindSearchResultViewController.h"
 #import "YXFindViewController.h"
 @interface YXSecondViewController ()<PYSearchViewControllerDelegate,UIGestureRecognizerDelegate>
-@property (nonatomic, strong) HGSegmentedPageViewController *segmentedPageViewController;
 @property(nonatomic,strong)NSMutableArray * dataArray;
 @property(nonatomic,strong)NSMutableArray * typeArray;
 @property(nonatomic,strong)NSString * type;

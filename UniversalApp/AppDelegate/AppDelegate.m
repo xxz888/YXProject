@@ -10,6 +10,8 @@
 #import  <UMCommon/UMCommon.h>  // 公共组件是所有友盟产品的基础组件，必选
 #import  <UMPush/UMessage.h>  // Push组件
 #import  <UserNotifications/UserNotifications.h>// Push组件必须的系统库
+#import "YXSecondViewController.h"
+#import "YXFindViewController.h"
 #define UMAppKey @"5d2eba7d0cafb28237000acb"
 
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
@@ -55,7 +57,7 @@
     
     
 
-    
+
     // 配置友盟SDK产品并并统一初始化
     [UMConfigure initWithAppkey:UMAppKey channel:@"App Store"];
     // Push组件基本功能配置
