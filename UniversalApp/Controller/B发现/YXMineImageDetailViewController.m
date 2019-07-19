@@ -219,10 +219,7 @@
                 
                 Frame.size.height = 180 + detailHeight + (KScreenWidth - 20)  + self.cell.topTopHeight.constant;
                 self.cell.frame= Frame;
-                //轮播图
-                [self.cell setUpSycleScrollView:self.startDic[@"url_list"] height:KScreenWidth - 20];
-                self.cell.rightCountLbl.text = [NSString stringWithFormat:@"%@/%lu",@"1",(unsigned long)[self.startDic[@"url_list"] count]];
-                self.cell.rightCountLbl.hidden = [self.cell.rightCountLbl.text isEqualToString:@"1/1"] || [self.cell.rightCountLbl.text isEqualToString:@"1/0"];
+               
             }
         }
          self.yxTableView.tableHeaderView = self.cell;
@@ -239,7 +236,7 @@
         self.nodataImg.hidden = YES;
 
     }else{
-        self.cell.imgV1.hidden = self.cell.imgV2.hidden = self.cell.imgV3.hidden = self.cell.imgV4.hidden = self.cell.stackView.hidden = self.cell.onlyOneImv.hidden = self.cell.playImV.hidden = YES;
+        self.cell.onlyOneImv.hidden = self.cell.playImV.hidden = YES;
         CGFloat detailHeight = [ShareManager inTextOutHeight:[self.startDic[@"title"] UnicodeToUtf8] lineSpace:9 fontSize:24];
         self.cell.wenzhangDetailHeight.constant = detailHeight;//晒图进来，设置文章的的label为0
         self.cell.cellWebView.hidden = NO;//文章显示webview

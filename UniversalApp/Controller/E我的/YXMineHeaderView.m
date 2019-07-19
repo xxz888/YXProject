@@ -11,7 +11,14 @@
 @implementation YXMineHeaderView
 
 - (void)drawRect:(CGRect)rect {
-
+    UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction:)];
+    //点击几次后触发事件响应，默认为：1
+    click.numberOfTapsRequired = 1;
+    [self.mineImageView addGestureRecognizer:click];
+}
+-(void)clickAction:(id)sender{
+    self.imageScale= [ImageScale new];
+    [self.imageScale scaleImageView:self.mineImageView];
 }
 - (IBAction)editPersonAction:(id)sender{
     self.editPersionblock();

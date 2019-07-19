@@ -59,10 +59,10 @@
 {
     // 1. 序标
     UILabel *indexLabel = [[UILabel alloc] init];
-    indexLabel.bounds = CGRectMake(0, 0, 80, 30);
+    indexLabel.bounds = CGRectMake(0, 20, 80, 30);
     indexLabel.textAlignment = NSTextAlignmentCenter;
     indexLabel.textColor = [UIColor whiteColor];
-    indexLabel.font = [UIFont boldSystemFontOfSize:20];
+    indexLabel.font = [UIFont boldSystemFontOfSize:18];
     indexLabel.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     indexLabel.layer.cornerRadius = indexLabel.bounds.size.height * 0.5;
     indexLabel.clipsToBounds = YES;
@@ -248,7 +248,7 @@
         [self showFirstImage];
     }
     
-    _indexLabel.center = CGPointMake(self.bounds.size.width * 0.5, 35);
+    _indexLabel.center = CGPointMake(self.bounds.size.width * 0.5, 45);
     _saveButton.frame = CGRectMake(30, self.bounds.size.height - 70, 50, 25);
 }
 

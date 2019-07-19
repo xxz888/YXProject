@@ -171,7 +171,7 @@
                     </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zre-9E-FTM">
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zre-9E-FTM">
                     <rect key="frame" x="20" y="155" width="90" height="90"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="90" id="YQA-Qc-9Bu"/>
