@@ -328,7 +328,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     paragraphStyle.lineSpacing = lineSpace;  //设置行间距
     paragraphStyle.alignment = label.textAlignment;
     
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:label.text attributes:@{NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:size],NSParagraphStyleAttributeName:paragraphStyle}];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:label.text attributes:@{NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:size],NSParagraphStyleAttributeName:paragraphStyle,NSForegroundColorAttributeName:KBlackColor}];
 
     label.attributedText = attributedString;
 }
@@ -372,7 +372,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     CGSize size = [string boundingRectWithSize:CGSizeMake(KScreenWidth-20, MAXFLOAT) options:
                    NSStringDrawingUsesLineFragmentOrigin |
                    NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
-    return  ceil(size.height) ;
+    return  ceil(size.height) + 10;
 }
 +(CGFloat)inTextZhiNanOutHeight:(NSString *)str lineSpace:(CGFloat)lineSpacing fontSize:(CGFloat)fontSize{
     if (str.length == 0) {

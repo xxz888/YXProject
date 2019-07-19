@@ -20,6 +20,8 @@
     NSString * titleText = @"";
     //计算图片高度
     CGFloat midViewHeight = 0;
+    CGFloat detailHeight = 0;
+
     //计算detail高度
     if([dic[@"obj"] integerValue] == 1){
         titleText = [[NSString stringWithFormat:@"%@%@",dic[@"detail"],dic[@"tag"]] UnicodeToUtf8];
@@ -29,19 +31,24 @@
             if ([kGetString(dic[@"url_list"][0]) containsString:@"mp4"]) {
             midViewHeight = 220;
         }
-        
+        if ([dic[@"detail"] isEqualToString:@""] && [dic[@"tag"] isEqualToString:@""]) {
+            detailHeight = 0;
+        }else{
+            detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:15];
+            
+        }
         
     }else{
         titleText = [[NSString stringWithFormat:@"%@%@",dic[@"title"],dic[@"tag"]] UnicodeToUtf8];
         midViewHeight = 220;
+        if ([dic[@"title"] isEqualToString:@""] && [dic[@"tag"] isEqualToString:@""]) {
+            detailHeight = 0;
+        }else{
+            detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:15];
+            
+        }
     }
-    CGFloat detailHeight = 0;
-    if ([dic[@"title"] isEqualToString:@""] && [dic[@"tag"] isEqualToString:@""]) {
-        detailHeight = 0;
-    }else{
-        detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:15];
 
-    }
    
     return 125 + detailHeight + midViewHeight;
 }
@@ -156,7 +163,9 @@
         [ShareManager setLineSpace:9 inLabel:self.detailLbl size:15];
         [ShareManager inTextViewOutDifColorView:self.detailLbl tag:dic[@"tag"]];
         self.detailHeight.constant = [ShareManager inTextOutHeight:self.detailLbl.text  lineSpace:9 fontSize:15];
-
+        if ([dic[@"detail"] isEqualToString:@""] && [dic[@"tag"] isEqualToString:@""]) {
+            self.detailHeight.constant = 0;
+        }
     }else{
     //文章
         self.midViewHeight.constant = 220;
@@ -170,13 +179,15 @@
         [ShareManager inTextViewOutDifColorView:self.detailLbl tag:dic[@"tag"]];
         self.detailLbl.font =  [UIFont fontWithName:@"Helvetica-Bold" size:17];
         self.detailHeight.constant = [ShareManager inTextOutHeight:self.detailLbl.text  lineSpace:9 fontSize:17];
+        
+        if ([dic[@"title"] isEqualToString:@""] && [dic[@"tag"] isEqualToString:@""]) {
+            self.detailHeight.constant = 0;
+        }
     }
     
     
     
-    if ([dic[@"title"] isEqualToString:@""] && [dic[@"tag"] isEqualToString:@""]) {
-        self.detailHeight.constant = 0;
-    }
+   
     [self.detailLbl setOrgVerticalTextAlignment:OrgHLVerticalTextAlignmentMiddle];
 
     if ([dic[@"publish_site"] isEqualToString:@""] || !dic[@"publish_site"] ) {
