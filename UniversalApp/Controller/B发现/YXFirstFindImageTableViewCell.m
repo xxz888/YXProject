@@ -8,8 +8,10 @@
 
 #import "YXFirstFindImageTableViewCell.h"
 #import "UIImage+ImgSize.h"
-
-@interface YXFirstFindImageTableViewCell()<SDCycleScrollViewDelegate>
+#import "SDWeiXinPhotoContainerView.h"
+@interface YXFirstFindImageTableViewCell()<SDCycleScrollViewDelegate>{
+     SDWeiXinPhotoContainerView * _picContainerView;
+}
 @property (nonatomic,strong) UITapGestureRecognizer *tap;
 
 @end

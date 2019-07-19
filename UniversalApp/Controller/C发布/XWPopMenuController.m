@@ -212,7 +212,6 @@
         EditorViewController * pinpaiVC = [[EditorViewController alloc]init];
         [self presentViewController:pinpaiVC animated:YES completion:nil];
     }
-    
 }
 
 

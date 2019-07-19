@@ -178,7 +178,7 @@ static NSString * const SegmentHeaderViewCollectionViewCellIdentifier = @"Segmen
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat itemWidth = [self getWidthWithContent:self.titles[indexPath.row]];
-    return CGSizeMake(KScreenWidth/self.titles.count, self.height - HG_ONE_PIXEL);
+    return CGSizeMake(80, self.height - HG_ONE_PIXEL);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {

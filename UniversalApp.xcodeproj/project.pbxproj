@@ -517,6 +517,8 @@
 		BBC3FB4B22C5C59B00BB2564 /* no_data.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC3FB4722C5C59B00BB2564 /* no_data.png */; };
 		BBC3FB4C22C5C59B00BB2564 /* no_data@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC3FB4822C5C59B00BB2564 /* no_data@2x.png */; };
 		BBC6180421F5AD5A00495619 /* YXHomeGolf.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC6180321F5AD5A00495619 /* YXHomeGolf.storyboard */; };
+		BBC7CD1E22E16BFB00AC9E2D /* YXFindHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC7CD1D22E16BFB00AC9E2D /* YXFindHeaderView.m */; };
+		BBC7CD2022E16C0500AC9E2D /* YXFindHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC7CD1F22E16C0500AC9E2D /* YXFindHeaderView.xib */; };
 		BBCC4B1721E8927700493F40 /* UIView+Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4B1121E8927600493F40 /* UIView+Geometry.m */; };
 		BBCC4B1821E8927700493F40 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4B1221E8927600493F40 /* Utility.m */; };
 		BBCC4B1921E8927700493F40 /* MLLabelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4B1321E8927600493F40 /* MLLabelUtil.m */; };
@@ -1576,6 +1578,9 @@
 		BBC3FB4722C5C59B00BB2564 /* no_data.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_data.png; sourceTree = "<group>"; };
 		BBC3FB4822C5C59B00BB2564 /* no_data@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_data@2x.png"; sourceTree = "<group>"; };
 		BBC6180321F5AD5A00495619 /* YXHomeGolf.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = YXHomeGolf.storyboard; sourceTree = "<group>"; };
+		BBC7CD1C22E16BFB00AC9E2D /* YXFindHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindHeaderView.h; sourceTree = "<group>"; };
+		BBC7CD1D22E16BFB00AC9E2D /* YXFindHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindHeaderView.m; sourceTree = "<group>"; };
+		BBC7CD1F22E16C0500AC9E2D /* YXFindHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFindHeaderView.xib; sourceTree = "<group>"; };
 		BBCC4B1121E8927600493F40 /* UIView+Geometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Geometry.m"; sourceTree = "<group>"; };
 		BBCC4B1221E8927600493F40 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		BBCC4B1321E8927600493F40 /* MLLabelUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLabelUtil.m; sourceTree = "<group>"; };
@@ -3352,6 +3357,7 @@
 				BBA812AC21DDAB9D001B5EA1 /* YXFindViewController.m */,
 				BB70253522126E67009EBE39 /* YXFindSearchViewController.h */,
 				BB70253622126E67009EBE39 /* YXFindSearchViewController.m */,
+				BBC7CD1B22E16BDB00AC9E2D /* 发现头部 */,
 				BB70253E2212A3A7009EBE39 /* 搜索结果 */,
 				BB702538221297E3009EBE39 /* 搜索view */,
 			);
@@ -4454,6 +4460,16 @@
 			path = no_data;
 			sourceTree = "<group>";
 		};
+		BBC7CD1B22E16BDB00AC9E2D /* 发现头部 */ = {
+			isa = PBXGroup;
+			children = (
+				BBC7CD1C22E16BFB00AC9E2D /* YXFindHeaderView.h */,
+				BBC7CD1D22E16BFB00AC9E2D /* YXFindHeaderView.m */,
+				BBC7CD1F22E16C0500AC9E2D /* YXFindHeaderView.xib */,
+			);
+			path = "发现头部";
+			sourceTree = "<group>";
+		};
 		BBCC4B1021E8927600493F40 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -5475,6 +5491,7 @@
 				BBD2C94A21E0F67800350DCD /* LICENSE in Resources */,
 				293D464E1ECDBB63007C64A9 /* icon_tabbar_misc.png in Resources */,
 				BBA8129C21DDAA04001B5EA1 /* YXMessage.storyboard in Resources */,
+				BBC7CD2022E16C0500AC9E2D /* YXFindHeaderView.xib in Resources */,
 				BB928F5D21FABCF10090A044 /* YXMinePingLunTableViewCell.xib in Resources */,
 				BBBCDBB3223F65540056C7DD /* README.md in Resources */,
 				2917D2061EE007C300E76185 /* MBHUD_Success@3x.png in Resources */,
@@ -5719,6 +5736,7 @@
 				BBB59AE7228CF8CB0029D3D0 /* PYSearchViewController.m in Sources */,
 				BBB59AF8228CF8CB0029D3D0 /* SDDiscoverTableViewCell.m in Sources */,
 				BB5DC69B2189CA38003F1998 /* SELUpdateAlert.m in Sources */,
+				BBC7CD1E22E16BFB00AC9E2D /* YXFindHeaderView.m in Sources */,
 				BBB59B3B228CF92D0029D3D0 /* YXHomeXueJiaHeaderView.m in Sources */,
 				BB21FD8F22B0991E0059BCAC /* KSMediaPickerController.swift in Sources */,
 				BB6D2A3A21EEC63900F5049F /* SinglePageEmojiCell.m in Sources */,

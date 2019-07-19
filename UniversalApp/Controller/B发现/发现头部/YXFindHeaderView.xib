@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="YXFindHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A86-0d-fRZ">
+                    <rect key="frame" x="379" y="15" width="25" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="6c2-kO-Kn2"/>
+                        <constraint firstAttribute="height" constant="20" id="g3i-rc-Fic"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="添加图片"/>
+                    <connections>
+                        <action selector="fabuAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="PqM-Sb-GoB"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSH-XA-xLQ">
+                    <rect key="frame" x="319" y="15" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="HBA-OH-P9R"/>
+                        <constraint firstAttribute="width" constant="20" id="hGC-BD-0OT"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="搜索"/>
+                    <connections>
+                        <action selector="searchAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="kT4-f2-FRi"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="A86-0d-fRZ" secondAttribute="trailing" constant="10" id="5Ql-WH-M6S"/>
+                <constraint firstItem="CSH-XA-xLQ" firstAttribute="centerY" secondItem="A86-0d-fRZ" secondAttribute="centerY" id="A2I-m5-khe"/>
+                <constraint firstItem="A86-0d-fRZ" firstAttribute="leading" secondItem="CSH-XA-xLQ" secondAttribute="trailing" constant="40" id="b30-Oo-vjF"/>
+                <constraint firstItem="CSH-XA-xLQ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ylt-Bu-5t3"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-964" y="-304"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="搜索" width="128" height="128"/>
+        <image name="添加图片" width="148" height="128"/>
+    </resources>
+</document>

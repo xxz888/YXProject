@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 #import "HGSegmentedPageViewController.h"
+#import "XWPopMenuController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

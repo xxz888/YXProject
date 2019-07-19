@@ -14,7 +14,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.yxTableView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight - kTopHeight - TabBarHeight - 40);
+    self.yxTableView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight - kStatusBarHeight - TabBarHeight - 40);
     [self requestTableData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSecondVC:) name:@"refreshSecondVC" object:nil];
