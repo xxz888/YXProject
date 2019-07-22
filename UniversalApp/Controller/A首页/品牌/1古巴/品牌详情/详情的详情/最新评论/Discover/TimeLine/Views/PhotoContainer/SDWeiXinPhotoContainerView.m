@@ -51,6 +51,7 @@
 
 - (void)setup
 {
+    self.backgroundColor = KWhiteColor;
     NSMutableArray *temp = [NSMutableArray new];
     
     for (int i = 0; i < 9; i++) {
@@ -100,6 +101,7 @@
         long columnIndex = idx % perRowItemCount;
         long rowIndex = idx / perRowItemCount;
         UIImageView *imageView = [_imageViewsArray objectAtIndex:idx];
+        imageView.contentMode = 1;
         imageView.hidden = NO;
 //        imageView.image = [UIImage imageNamed:obj];
         

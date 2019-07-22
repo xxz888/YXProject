@@ -235,7 +235,7 @@ open class KSMediaPickerPreviewView: UIView {
 
     override public init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .ks_background
+        backgroundColor = .ks_white
         clipsToBounds = true
         addSubview(_scrollview)
         
