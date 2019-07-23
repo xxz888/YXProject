@@ -76,7 +76,7 @@
         /***********************************/
         if (idx == 9 ) { // 如果是中间的
             // 设置凸出 矩形
-            model.bulgeStyle = AxcAE_TabBarConfigBulgeStyleSquare;
+            model.bulgeStyle = AxcAE_TabBarConfigBulgeStyleCircular;
             // 设置凸出高度
             model.bulgeHeight = 30;
             // 设置成图片文字展示
@@ -161,7 +161,7 @@ static NSInteger lastIdx = 0;
     // 点击了中间的
 
         if (index == 2) {
-            [[AppDelegate shareAppDelegate].mainTabBar.axcTabBar setBadge:NSIntegerToNSString(0) index:3];
+            [[AppDelegate shareAppDelegate].mainTabBar.axcTabBar setBadge:NSIntegerToNSString(0) index:2];
         }
         if (index == 3 && ![userManager loadUserInfo]) {
             KPostNotification(KNotificationLoginStateChange, @NO);

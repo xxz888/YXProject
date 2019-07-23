@@ -35,6 +35,7 @@
 
     [self requestZhiNan1Get];
 
+    [[AppDelegate shareAppDelegate].mainTabBar.axcTabBar setBadge:NSIntegerToNSString(1) index:2];
 
 }
 -(void)requestZhiNan1Get{

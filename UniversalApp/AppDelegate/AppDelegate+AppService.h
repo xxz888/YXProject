@@ -22,7 +22,7 @@
 -(void)initWindow;
 
 //初始化 UMeng
--(void)initUMeng;
+-(void)initUMeng:(NSDictionary *)launchOptions;
 
 //初始化用户系统
 -(void)initUserManager;

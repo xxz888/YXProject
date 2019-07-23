@@ -14,10 +14,15 @@
 #import "SaltedFishTabBarVC.h"
 #import "UDPManage.h"
 
+#import  <UserNotifications/UserNotifications.h>// Push组件必须的系统库
+#import "YXSecondViewController.h"
+#import "YXFindViewController.h"
+#import  <UMCommon/UMCommon.h>  // 公共组件是所有友盟产品的基础组件，必选
+#import  <UMPush/UMessage.h>  // Push组件
+#define UMAppKey @"5d2eba7d0cafb28237000acb"
 
 
-
-@interface AppDelegate()
+@interface AppDelegate()<UNUserNotificationCenterDelegate>
 
 @end
 @implementation AppDelegate (AppService)
@@ -53,79 +58,6 @@
         [[UIScrollView appearance] setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
     }
 }
-- (void)closeAllPresentedViewControllers {
-    
-    
-    
-    if (![self.window.rootViewController isKindOfClass:[SaltedFishTabBarVC class]]) {
-        
-        return;
-        
-    }
-    
-    SaltedFishTabBarVC *mainVC = (SaltedFishTabBarVC *)self.window.rootViewController;
-    
-    RootNavigationController *currentNav = mainVC.viewControllers[mainVC.selectedIndex];
-    
-    UIViewController *currentVC = currentNav.topViewController;
-    
-    
-    
-    //第一部分 导航控制器的顶部控制器弹出的模态
-    
-    UIViewController *vcPresentVC = currentVC.presentedViewController;
-    
-    if (vcPresentVC) {
-        
-        while (vcPresentVC.presentedViewController)  {
-            
-            vcPresentVC = vcPresentVC.presentedViewController;
-            
-        }
-        
-        [vcPresentVC dismissViewControllerAnimated:NO completion:nil];
-        
-    }
-    
-    
-    
-    //第二部分 导航控制器弹出的模态
-    
-    UIViewController *navPresentVC = currentNav.presentedViewController;
-    
-    if (navPresentVC) {
-        
-        while (navPresentVC.presentedViewController)  {
-            
-            navPresentVC = navPresentVC.presentedViewController;
-            
-        }
-        
-        [navPresentVC dismissViewControllerAnimated:NO completion:nil];
-        
-    }
-    
-    
-    
-    //第三部分 tab控制器弹出的模态
-    
-    UIViewController *tabPresentVC = mainVC.presentedViewController;
-    
-    if (tabPresentVC) {
-        
-        while (tabPresentVC.presentedViewController)  {
-            
-            tabPresentVC = tabPresentVC.presentedViewController;
-            
-        }
-        
-        [tabPresentVC dismissViewControllerAnimated:NO completion:nil];
-        
-    }
-    
-    
-    
-}
 #pragma mark ————— 初始化网络配置 —————
 -(void)NetWorkConfig{
     YTKNetworkConfig *config = [YTKNetworkConfig sharedConfig];
@@ -160,10 +92,7 @@
 }
 
 #pragma mark ————— 登录状态处理 —————
-- (void)loginStateChange:(NSNotification *)notification
-{
-    
-    
+- (void)loginStateChange:(NSNotification *)notification{
     BOOL loginSuccess = [notification.object boolValue];
         
     if (loginSuccess) {//登陆成功加载主窗口控制器
@@ -239,7 +168,7 @@
 
 
 #pragma mark ————— 友盟 初始化 —————
--(void)initUMeng{
+-(void)initUMeng:(NSDictionary *)launchOptions{
     /* 打开调试日志 */
     [[UMSocialManager defaultManager] openLog:YES];
     
@@ -247,6 +176,84 @@
     [[UMSocialManager defaultManager] setUmSocialAppkey:UMengKey];
     
     [self configUSharePlatforms];
+    
+    [self configUMPush:launchOptions];
+}
+-(void)configUMPush:(NSDictionary *)launchOptions{
+    // 配置友盟SDK产品并并统一初始化
+    [UMConfigure initWithAppkey:UMAppKey channel:@"App Store"];
+    // Push组件基本功能配置
+    [UNUserNotificationCenter currentNotificationCenter].delegate= self;
+    UMessageRegisterEntity* entity = [[UMessageRegisterEntity alloc] init];
+    //type是对推送的几个参数的选择，可以选择一个或者多个。默认是三个全部打开，即：声音，弹窗，角标等
+    entity.types= UMessageAuthorizationOptionBadge|UMessageAuthorizationOptionAlert;
+    [UNUserNotificationCenter currentNotificationCenter].delegate= self;
+    [UMessage registerForRemoteNotificationsWithLaunchOptions:launchOptions Entity:entity completionHandler:^(BOOL granted, NSError* _Nullableerror) {
+        if(granted) {
+            // 用户选择了接收Push消息
+        }else{
+            // 用户拒绝接收Push消息
+        }
+    }];
+}
+-(void)userNotificationCenter:(UNUserNotificationCenter*)center willPresentNotification:(UNNotification*)notification withCompletionHandler:(void(^)(UNNotificationPresentationOptions))completionHandler{
+    
+    NSDictionary* userInfo = notification.request.content.userInfo;
+    
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        
+        //应用处于前台时的远程推送接受
+        
+        //关闭U-Push自带的弹出框
+        [UMessage setAutoAlert:NO];
+        //（前台、后台）的消息处理
+        [UMessage didReceiveRemoteNotification:userInfo];
+    }else{
+        //应用处于前台时的本地推送接受
+    }
+    //当应用处于前台时提示设置，需要哪个可以设置哪一个
+    completionHandler(UNNotificationPresentationOptionSound|UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionAlert);
+}
+//后天点击推送消息，进入app
+-(void)userNotificationCenter:(UNUserNotificationCenter*)center didReceiveNotificationResponse:(UNNotificationResponse*)response withCompletionHandler:(void(^)())completionHandler{
+    kWeakSelf(self);
+    NSDictionary* userInfo = response.notification.request.content.userInfo;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [UMessage didReceiveRemoteNotification:userInfo];
+        if(userInfo.count>0){
+            [weakself jumpWithNotificationInfo:userInfo];
+        }
+    }
+    else{ //应用处于后台时的本地推送接受
+        NSLog(@"后台");
+        
+    }
+}
+- (void)jumpWithNotificationInfo:(NSDictionary *)userInfo{
+    NSInteger tag = [userInfo[@"key0"] integerValue];
+    //首页
+    if(tag == 0){
+        //发现
+        [[NSNotificationCenter defaultCenter] postNotificationName:UM_User_Info_0 object:userInfo];
+    }else if (tag == 1){
+        //发现
+        [[NSNotificationCenter defaultCenter] postNotificationName:UM_User_Info_1 object:userInfo];
+    }
+    self.mainTabBar.selectedIndex = tag;  // 然后，选中第几个模块
+    
+}
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken{
+    
+    [UMessage registerDeviceToken:deviceToken];
+    
+    NSLog(@"didRegisterForRemoteNotificationsWithDeviceToken success");
+    
+    NSLog(@"deviceToken————>>>%@",[[[[deviceToken description] stringByReplacingOccurrencesOfString: @"<"withString: @""]
+                                    
+                                    stringByReplacingOccurrencesOfString: @">"withString: @""]
+                                   
+                                   stringByReplacingOccurrencesOfString: @" "withString: @""]);
+    
 }
 #pragma mark ————— 配置第三方 —————
 -(void)configUSharePlatforms{

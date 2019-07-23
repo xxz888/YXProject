@@ -13,7 +13,7 @@
 #import "UDPManage.h"
 #import "YXBindPhoneViewController.h"
 #import "YXLoginXieYiViewController.h"
-
+#import "SocketRocketUtility.h"
 @interface LoginViewController ()
 //1 播放器
 @property (strong, nonatomic) AVPlayer *player;
@@ -106,6 +106,7 @@
     [userManager login:kUserLoginTypeWeChat completion:^(BOOL success, NSString *des) {
         if (success) {
             [weakself closeViewAAA];
+            [weakself websocketSet];
         }else{
             YXBindPhoneViewController * VC = [[YXBindPhoneViewController alloc]init];
             VC.title = @"绑定手机号";
@@ -119,6 +120,14 @@
         }
     }];
 }
+
+-(void)websocketSet{
+    [[SocketRocketUtility instance] SRWebSocketClose];
+    UserInfo *userInfo = curUser;
+    NSString * par = [NSString stringWithFormat:@"ws://192.168.0.12:8001/push/%@/",userInfo.token];
+    [[SocketRocketUtility instance] SRWebSocketOpenWithURLString:par];
+}
+
 -(void)QQLogin{
     kWeakSelf(self);
     [userManager login:kUserLoginTypeQQ completion:^(BOOL success, NSString *des) {
@@ -138,6 +147,7 @@
     }];
 }
 -(void)closeViewAAA{
+    kWeakSelf(self);
     UIViewController *controller = self;
     while(controller.presentingViewController != nil){
         controller = controller.presentingViewController;
@@ -148,6 +158,8 @@
         if ([userManager loadUserInfo]) {
             [QMUITips showSucceed:@"登录成功"];
             [[AppDelegate shareAppDelegate].mainTabBar setSelectedIndex:0];
+            [weakself closeViewAAA];
+
         }else{
             [QMUITips showSucceed:@"绑定成功,请重新登录"];
             KPostNotification(KNotificationLoginStateChange, @NO);
@@ -210,6 +222,7 @@
                 [weakself dismissViewControllerAnimated:YES completion:nil];
                 [[AppDelegate shareAppDelegate].mainTabBar setSelectedIndex:0];
                 [QMUITips showSucceed:@"登录成功"];
+                [weakself websocketSet];
             }];
    
     }];

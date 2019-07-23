@@ -203,6 +203,7 @@
 		BB3DFE9D221E8566000C70B5 /* YXFindSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB3DFE9B221E8566000C70B5 /* YXFindSearchTableViewCell.xib */; };
 		BB44F87D22140AFB0034CAEC /* HXEasyCustomShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB44F87B22140AFB0034CAEC /* HXEasyCustomShareView.m */; };
 		BB44F87E22140AFB0034CAEC /* HXShareScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB44F87C22140AFB0034CAEC /* HXShareScrollView.m */; };
+		BB46926922E6F5D800A7A77E /* SocketRocketUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BB46926722E6F5D700A7A77E /* SocketRocketUtility.m */; };
 		BB5DC69B2189CA38003F1998 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */; };
 		BB5DC69C2189CA38003F1998 /* SELUpdateAlertConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */; };
 		BB5FD86A21FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD86821FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m */; };
@@ -1010,6 +1011,8 @@
 		BB44F87A22140AFB0034CAEC /* HXEasyCustomShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXEasyCustomShareView.h; sourceTree = "<group>"; };
 		BB44F87B22140AFB0034CAEC /* HXEasyCustomShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXEasyCustomShareView.m; sourceTree = "<group>"; };
 		BB44F87C22140AFB0034CAEC /* HXShareScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXShareScrollView.m; sourceTree = "<group>"; };
+		BB46926722E6F5D700A7A77E /* SocketRocketUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketRocketUtility.m; sourceTree = "<group>"; };
+		BB46926822E6F5D800A7A77E /* SocketRocketUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketRocketUtility.h; sourceTree = "<group>"; };
 		BB5DC6972189CA38003F1998 /* SELUpdateAlertConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlertConst.h; sourceTree = "<group>"; };
 		BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
 		BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlertConst.m; sourceTree = "<group>"; };
@@ -3452,6 +3455,8 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BB46926822E6F5D800A7A77E /* SocketRocketUtility.h */,
+				BB46926722E6F5D700A7A77E /* SocketRocketUtility.m */,
 				BBBBC0F222BCD2FE00F528E1 /* VideoPlayer */,
 				BB688A1322ADE8BE00964FA3 /* OrgHalfLineLabel.h */,
 				BB688A1422ADE8BE00964FA3 /* OrgHalfLineLabel.m */,
@@ -5869,6 +5874,7 @@
 				BB5FD8A221FF49DD00B5F1A8 /* XWPopMenuController.m in Sources */,
 				BB21FDAF22B099B20059BCAC /* EditorViewController.m in Sources */,
 				BBD2C8FE21E0F67700350DCD /* TZProgressView.m in Sources */,
+				BB46926922E6F5D800A7A77E /* SocketRocketUtility.m in Sources */,
 				BBD2C90221E0F67700350DCD /* TZImagePickerController.m in Sources */,
 				BBADE4C521F801080011E5FF /* PictureModel.m in Sources */,
 				BBD1C77422166AD40063002F /* YXMineAndFindBaseViewController.m in Sources */,
