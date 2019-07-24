@@ -141,37 +141,18 @@ static NSInteger lastIdx = 0;
 - (void)axcAE_TabBar:(AxcAE_TabBar *)tabbar selectIndex:(NSInteger)index{
     if (index == 2 || index == 3 || index == 4) {
          [self.axcTabBar setSelectIndex:lastIdx WithAnimation:NO]; // 换回上一个选中状态
-
         if (![userManager loadUserInfo]) {
             KPostNotification(KNotificationLoginStateChange, @NO);
             return;
         }
     }
     
-//    if (index == 2) { // 发布
-//        [self.axcTabBar setSelectIndex:lastIdx WithAnimation:NO]; // 换回上一个选中状态
-//       // self.axcTabBar.selectIndex = 0; // 不去切换TabBar的选中状态
-//        NSLog(@"点击发布按钮->");
-//
-//        XWPopMenuController *vc = [[XWPopMenuController alloc]init];
-//        [self presentViewController:vc animated:NO completion:^{
-//        }];
-//    }else{
-    
-    // 点击了中间的
-
-        if (index == 2) {
-            [[AppDelegate shareAppDelegate].mainTabBar.axcTabBar setBadge:NSIntegerToNSString(0) index:2];
-        }
-        if (index == 3 && ![userManager loadUserInfo]) {
-            KPostNotification(KNotificationLoginStateChange, @NO);
-            return;
-        }
+    if (index == 2) {
+        [[AppDelegate shareAppDelegate].mainTabBar.axcTabBar setBadge:NSIntegerToNSString(0) index:2];
+    }
         // 通知 切换视图控制器
         [self setSelectedIndex:index];
         lastIdx = index;
-
-//    }
 }
 - (void)setSelectedIndex:(NSUInteger)selectedIndex{
     [super setSelectedIndex:selectedIndex];

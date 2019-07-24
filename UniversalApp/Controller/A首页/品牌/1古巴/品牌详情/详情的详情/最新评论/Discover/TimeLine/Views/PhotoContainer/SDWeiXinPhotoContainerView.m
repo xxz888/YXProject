@@ -87,7 +87,8 @@
     CGFloat itemW = [self itemWidthForPicPathArray:_picPathStringsArray];
     CGFloat itemH = 0;
 //    if (_picPathStringsArray.count == 1) {
-//        UIImage *image = [UIImage imageNamed:_picPathStringsArray.firstObject];
+//        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:_picPathStringsArray[0]]];
+//        UIImage *image = [UIImage imageWithData:data];
 //        if (image.size.width) {
 //            itemH = image.size.height / image.size.width * itemW;
 //        }
@@ -101,7 +102,7 @@
         long columnIndex = idx % perRowItemCount;
         long rowIndex = idx / perRowItemCount;
         UIImageView *imageView = [_imageViewsArray objectAtIndex:idx];
-        imageView.contentMode = 1;
+        imageView.contentMode = 2;
         imageView.hidden = NO;
 //        imageView.image = [UIImage imageNamed:obj];
         
@@ -137,15 +138,16 @@
     if (array.count == 1) {
         return 200;
     } else {
-        return ( KScreenWidth - 30 ) / 3;
+        return (KScreenWidth - 30) / 3;
     }
 }
 
 - (NSInteger)perRowItemCountForPicPathArray:(NSArray *)array
 {
+    return 3;
     if (array.count < 3) {
         return array.count;
-    } else if (array.count <= 4) {
+    } else if (array.count < 4) {
         return 2;
     } else {
         return 3;

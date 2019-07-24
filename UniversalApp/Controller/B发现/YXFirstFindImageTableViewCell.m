@@ -66,6 +66,8 @@
             h = oneH * 2;
         }else if (count >6){
             h = oneH * 3;
+        }else{
+            h = oneH;
         }
     }
     return h;

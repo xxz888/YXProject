@@ -53,6 +53,10 @@
     };
     
     self.findHeaderView.fabuBlock = ^{
+        if (![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
         XWPopMenuController *vc = [[XWPopMenuController alloc]init];
         [weakself presentViewController:vc animated:NO completion:nil];
     };

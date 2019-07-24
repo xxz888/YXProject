@@ -33,7 +33,7 @@
 }
 -(void)viewDidLoad{
     [super viewDidLoad];
-
+    
     [self setSpace];
 
     [self initData];

@@ -235,7 +235,8 @@ open class KSMediaPickerPreviewView: UIView {
 
     override public init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .ks_white
+        backgroundColor = .clear
+    
         clipsToBounds = true
         addSubview(_scrollview)
         
@@ -358,13 +359,13 @@ open class KSMediaPickerPreviewView: UIView {
                 
                 let windowWidth = mainSize.width
                 if _isStandard {
-                    _zoomButton.isHidden = true
+                    _zoomButton.isHidden = false
                     _normalScrollViewSize = CGSize(width: windowWidth, height: windowWidth)
                     if pixelWidth == pixelHeight {
                         _changeSizeButton.isHidden = true
                         _minScrollViewSize = _normalScrollViewSize
                     } else {
-                        _changeSizeButton.isHidden = false
+                        _changeSizeButton.isHidden = true
                         let maxWidth = max(pixelHeight, pixelWidth)
                         let minScale = KSMediaPickerPreviewView._minScale
                         let floatWidth = CGFloat(pixelWidth)
@@ -396,7 +397,7 @@ open class KSMediaPickerPreviewView: UIView {
                 } else {
                     _changeSizeButton.isHidden = true
                     _zoomButton.isSelected = false
-                    _zoomButton.isHidden = _changeSizeButton.isSelected
+                    _zoomButton.isHidden = false
                 }
                 _scrollview.set(frame: CGRect(origin: .zero, size: _changeSizeButton.isSelected ? _minScrollViewSize : _normalScrollViewSize), isNeedLayoutSubviews: true)
                 setNeedsLayout()

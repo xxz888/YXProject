@@ -294,6 +294,8 @@ PODS:
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - SocketRocket (0.5.1)
+  - UMCAnalytics (5.5.2):
+    - UMCCommon
   - UMCCommon (1.5.3)
   - UMCPush (3.2.3):
     - UMCCommon
@@ -318,6 +320,7 @@ DEPENDENCIES:
   - QMUIKit
   - SDWebImage (~> 3.8)
   - SocketRocket
+  - UMCAnalytics
   - UMCCommon
   - UMCPush
   - UMCSecurityPlugins
@@ -339,6 +342,7 @@ SPEC REPOS:
     - QMUIKit
     - SDWebImage
     - SocketRocket
+    - UMCAnalytics
     - UMCCommon
     - UMCPush
     - UMCSecurityPlugins
@@ -359,6 +363,7 @@ SPEC CHECKSUMS:
   QMUIKit: 36fe0f01873605e15e86113403db547aca16e6c5
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
+  UMCAnalytics: 6654fd3c8201ff6da5c86a3ae29cd5c8436d3b7b
   UMCCommon: 016af43c0f769feb1ae1861d65aaf2b23b89c9c7
   UMCPush: 628b5c61be5a5036cb31eb9b3a3ab8dce7521691
   UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
@@ -367,6 +372,6 @@ SPEC CHECKSUMS:
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZXSegmentController: d94f138ab0191da1e2e4268e9b961e082a142549
 
-PODFILE CHECKSUM: 9097f1a337010e090d2050f00d5cadb5f40f1cb2
+PODFILE CHECKSUM: b661a3b14d9e515a4d5e0a5470b4be80c405523d
 
 COCOAPODS: 1.7.1

@@ -204,6 +204,9 @@
 		BB44F87D22140AFB0034CAEC /* HXEasyCustomShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB44F87B22140AFB0034CAEC /* HXEasyCustomShareView.m */; };
 		BB44F87E22140AFB0034CAEC /* HXShareScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB44F87C22140AFB0034CAEC /* HXShareScrollView.m */; };
 		BB46926922E6F5D800A7A77E /* SocketRocketUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BB46926722E6F5D700A7A77E /* SocketRocketUtility.m */; };
+		BB46926B22E7034100A7A77E /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BB46926A22E7034100A7A77E /* libsqlite3.0.tbd */; };
+		BB46926E22E7069900A7A77E /* UIViewController+WTVYXJAS.m in Sources */ = {isa = PBXBuildFile; fileRef = BB46926D22E7069900A7A77E /* UIViewController+WTVYXJAS.m */; };
+		BB46927622E7EB1900A7A77E /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB46927522E7EB1900A7A77E /* UMAnalytics.framework */; };
 		BB5DC69B2189CA38003F1998 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */; };
 		BB5DC69C2189CA38003F1998 /* SELUpdateAlertConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */; };
 		BB5FD86A21FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD86821FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m */; };
@@ -1013,6 +1016,11 @@
 		BB44F87C22140AFB0034CAEC /* HXShareScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXShareScrollView.m; sourceTree = "<group>"; };
 		BB46926722E6F5D700A7A77E /* SocketRocketUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketRocketUtility.m; sourceTree = "<group>"; };
 		BB46926822E6F5D800A7A77E /* SocketRocketUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketRocketUtility.h; sourceTree = "<group>"; };
+		BB46926A22E7034100A7A77E /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		BB46926C22E7069900A7A77E /* UIViewController+WTVYXJAS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+WTVYXJAS.h"; sourceTree = "<group>"; };
+		BB46926D22E7069900A7A77E /* UIViewController+WTVYXJAS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+WTVYXJAS.m"; sourceTree = "<group>"; };
+		BB46926F22E70ADA00A7A77E /* UMAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMAnalytics.framework; path = Pods/UMCAnalytics/UMAnalytics.framework; sourceTree = "<group>"; };
+		BB46927522E7EB1900A7A77E /* UMAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMAnalytics.framework; sourceTree = "<group>"; };
 		BB5DC6972189CA38003F1998 /* SELUpdateAlertConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlertConst.h; sourceTree = "<group>"; };
 		BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
 		BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlertConst.m; sourceTree = "<group>"; };
@@ -1890,11 +1898,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBA9BE0322DEF47D008EF4F7 /* UserNotifications.framework in Frameworks */,
-				BBA9BE0122DEF467008EF4F7 /* CoreTelephony.framework in Frameworks */,
-				BBA9BDFF22DEF461008EF4F7 /* libz.tbd in Frameworks */,
-				299610111ED84A7100BCED2A /* libsqlite3.tbd in Frameworks */,
+				BB46927622E7EB1900A7A77E /* UMAnalytics.framework in Frameworks */,
 				BBA9BDFD22DEF44F008EF4F7 /* SystemConfiguration.framework in Frameworks */,
+				BB46926B22E7034100A7A77E /* libsqlite3.0.tbd in Frameworks */,
+				BBA9BDFF22DEF461008EF4F7 /* libz.tbd in Frameworks */,
+				BBA9BE0122DEF467008EF4F7 /* CoreTelephony.framework in Frameworks */,
+				BBA9BE0322DEF47D008EF4F7 /* UserNotifications.framework in Frameworks */,
+				299610111ED84A7100BCED2A /* libsqlite3.tbd in Frameworks */,
 				BBDA2EF121ECC22B00EDCCFF /* QMapKit.framework in Frameworks */,
 				296ED8B41EF3B6A300E33961 /* libPods-UniversalApp.a in Frameworks */,
 				299610251ED84B5100BCED2A /* libSocialQQ.a in Frameworks */,
@@ -2303,6 +2313,7 @@
 		299610141ED84B5100BCED2A /* UMSocial */ = {
 			isa = PBXGroup;
 			children = (
+				BB46927422E7EB1900A7A77E /* analytics */,
 				299610151ED84B5100BCED2A /* SocialLibraries */,
 				2996101C1ED84B5100BCED2A /* UMSocialSDK */,
 				299610201ED84B5100BCED2A /* UMSocialSDKPlugin */,
@@ -2482,6 +2493,8 @@
 		6C3D66AC810B3ABDE56945D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BB46926F22E70ADA00A7A77E /* UMAnalytics.framework */,
+				BB46926A22E7034100A7A77E /* libsqlite3.0.tbd */,
 				BBA9BE0222DEF47D008EF4F7 /* UserNotifications.framework */,
 				BBA9BE0022DEF467008EF4F7 /* CoreTelephony.framework */,
 				BBA9BDFE22DEF460008EF4F7 /* libz.tbd */,
@@ -2773,6 +2786,14 @@
 				BB44F87C22140AFB0034CAEC /* HXShareScrollView.m */,
 			);
 			path = "分享相关";
+			sourceTree = "<group>";
+		};
+		BB46927422E7EB1900A7A77E /* analytics */ = {
+			isa = PBXGroup;
+			children = (
+				BB46927522E7EB1900A7A77E /* UMAnalytics.framework */,
+			);
+			path = analytics;
 			sourceTree = "<group>";
 		};
 		BB5DC6962189CA38003F1998 /* UpdateAlert */ = {
@@ -3523,6 +3544,8 @@
 				BB2A8EB8221BE73300B6756A /* UIImage+ImgSize.m */,
 				BB9ECD4E2285211600A12952 /* UIScrollView+FanHui.h */,
 				BB9ECD4F2285211600A12952 /* UIScrollView+FanHui.m */,
+				BB46926C22E7069900A7A77E /* UIViewController+WTVYXJAS.h */,
+				BB46926D22E7069900A7A77E /* UIViewController+WTVYXJAS.m */,
 			);
 			path = "艺鑫工具";
 			sourceTree = "<group>";
@@ -5810,6 +5833,7 @@
 				BB21FD8E22B0991E0059BCAC /* KSMediaPickerHandlerController.swift in Sources */,
 				BBD2C92321E0F67800350DCD /* UIImage+MWPhotoBrowser.m in Sources */,
 				BBBFD78B2222D7D300D377AC /* UIImage+CropRotate.m in Sources */,
+				BB46926E22E7069900A7A77E /* UIViewController+WTVYXJAS.m in Sources */,
 				BBDA2D2321EB30BF00EDCCFF /* SDRefreshFooterView.m in Sources */,
 				290DE9261ED19B7F00A45FF6 /* AppManager.m in Sources */,
 				BB928F9321FB5D290090A044 /* BRStringPickerView.m in Sources */,
@@ -6357,6 +6381,10 @@
 					"$(PROJECT_DIR)/UniversalApp/Utils/艺鑫工具",
 					"$(PROJECT_DIR)/UniversalApp/Utils/艺鑫工具/LocationSend",
 					"$(PROJECT_DIR)/Pods/UMCCommon",
+					"$(PROJECT_DIR)/Pods/UMCAnalytics/UMAnalytics.framework/Headers/**",
+					"$(PROJECT_DIR)/Pods/UMCAnalytics",
+					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/analytics_ios_6.0.5",
+					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/analytics",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -6369,6 +6397,7 @@
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/SocialLibraries/QQ",
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/SocialLibraries/WeChat",
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/UMSocialSDKPlugin",
+					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/analytics/UMAnalytics.framework/Headers/**",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiuju.thegoodlife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -6398,6 +6427,10 @@
 					"$(PROJECT_DIR)/UniversalApp/Utils/艺鑫工具",
 					"$(PROJECT_DIR)/UniversalApp/Utils/艺鑫工具/LocationSend",
 					"$(PROJECT_DIR)/Pods/UMCCommon",
+					"$(PROJECT_DIR)/Pods/UMCAnalytics/UMAnalytics.framework/Headers/**",
+					"$(PROJECT_DIR)/Pods/UMCAnalytics",
+					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/analytics_ios_6.0.5",
+					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/analytics",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -6410,6 +6443,7 @@
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/SocialLibraries/QQ",
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/SocialLibraries/WeChat",
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/UMSocialSDKPlugin",
+					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/analytics/UMAnalytics.framework/Headers/**",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiuju.thegoodlife;
 				PRODUCT_NAME = "$(TARGET_NAME)";

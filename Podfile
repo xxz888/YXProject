@@ -18,4 +18,5 @@ pod 'UMCCommon'
 pod 'UMCPush'
 pod 'UMCSecurityPlugins'
 pod 'SocketRocket'
+pod 'UMCAnalytics'
 end

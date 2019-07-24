@@ -35,14 +35,13 @@
 
     [self requestZhiNan1Get];
 
-    [[AppDelegate shareAppDelegate].mainTabBar.axcTabBar setBadge:NSIntegerToNSString(1) index:2];
-
 }
 -(void)requestZhiNan1Get{
     kWeakSelf(self);
     [YXPLUS_MANAGER requestZhiNan1Get:@"1/0" success:^(id object) {
         for (NSDictionary * dic in object) {
             YXHomeXueJiaToolsViewController * vc = [[YXHomeXueJiaToolsViewController alloc]init];
+            vc.title = dic[@"name"];
             vc.startId = kGetString(dic[@"id"]);
             [weakself.vcArr addObject:vc];
             [weakself.titlesArr addObject:dic[@"name"]];
@@ -59,6 +58,7 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
     [self.tabBarController.tabBar setHidden:NO];
+
 
     //[self commonRequest];
 }

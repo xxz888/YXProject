@@ -175,9 +175,15 @@
     /* 设置友盟appkey */
     [[UMSocialManager defaultManager] setUmSocialAppkey:UMengKey];
     
+    //友盟分享
     [self configUSharePlatforms];
-    
+    //友盟推送
     [self configUMPush:launchOptions];
+    //友盟统计
+    [self configUMTongJi];
+}
+-(void)configUMTongJi{
+    
 }
 -(void)configUMPush:(NSDictionary *)launchOptions{
     // 配置友盟SDK产品并并统一初始化
@@ -339,11 +345,6 @@
                 DLog(@"网络环境：WiFi");
                 KPostNotification(KNotificationNetWorkStateChange, @YES);
                 break;
-        }
-        if ([userManager loadUserInfo]) {
-            [ShareManager upDataPersionIP];
-            [[UDPManage shareUDPManage] getNewMessageNumeber];
-            [[UDPManage shareUDPManage] createClientUdpSocket];
         }
     }];
     

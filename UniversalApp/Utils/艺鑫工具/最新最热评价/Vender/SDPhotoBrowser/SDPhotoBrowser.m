@@ -284,7 +284,7 @@
     CGRect targetTemp = [_scrollView.subviews[self.currentImageIndex] bounds];
     
     tempView.frame = rect;
-    tempView.contentMode = [_scrollView.subviews[self.currentImageIndex] contentMode];
+    tempView.contentMode = 1;
     _scrollView.hidden = YES;
     
     

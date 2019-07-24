@@ -72,7 +72,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"文化";
     [self tableviewCon];
     [self addRefreshView:self.yxTableView];
     [self requestZhiNan1Get];

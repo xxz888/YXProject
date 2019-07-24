@@ -8,6 +8,7 @@
 
 #import "YXMessageViewController.h"
 #import "YXMessageThreeDetailViewController.h"
+#import <UMAnalytics/MobClick.h>
 
 @interface YXMessageViewController ()<UIGestureRecognizerDelegate>
 @property (nonatomic) BOOL isCanBack;
@@ -27,6 +28,9 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self getNewMessageNumeber];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
 
 }
 -(void)setUI{

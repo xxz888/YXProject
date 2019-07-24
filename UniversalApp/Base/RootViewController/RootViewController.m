@@ -274,7 +274,7 @@
     for (NSString * imageName in imageNames) {
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-        btn.frame = CGRectMake(0, 0, 25, 25);
+        btn.frame = CGRectMake(0, 0, 30, 30);
         [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
         
         if (isLeft) {
