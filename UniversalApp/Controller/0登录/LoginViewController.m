@@ -122,10 +122,9 @@
 }
 
 -(void)websocketSet{
-    return;
     [[SocketRocketUtility instance] SRWebSocketClose];
     UserInfo *userInfo = curUser;
-    NSString * par = [NSString stringWithFormat:@"ws://192.168.0.12:8001/push/%@/",userInfo.token];
+    NSString * par = [NSString stringWithFormat:@"ws://192.168.101.22:80/push/%@/",userInfo.token];
     [[SocketRocketUtility instance] SRWebSocketOpenWithURLString:par];
 }
 

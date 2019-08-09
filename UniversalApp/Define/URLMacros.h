@@ -25,13 +25,13 @@
  */
 
 
-#define ENVIRONMENT_TAG 0
+#define ENVIRONMENT_TAG 1
 
 #define BASE_URL
 #if (ENVIRONMENT_TAG == 0)             //正式
 #define API_URL                  @"thegdlife.com:8001"
 #elif (ENVIRONMENT_TAG == 1)           //测试
-#define API_URL                  @"192.168.0.12:8001"
+#define API_URL                  @"192.168.101.22:80"
 #else
 #endif
 #define BASEWEB_URL              @"http://h5.adianyun.net/"
