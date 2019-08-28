@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (unsafe_unretained, nonatomic) IBOutlet UITextField *nPhoneTf;
 @property (unsafe_unretained, nonatomic) IBOutlet UITextField *nCodeTf;
 @property (unsafe_unretained, nonatomic) IBOutlet UIButton *getMes_codeBtn;
+@property (weak, nonatomic) IBOutlet UIButton * finishBtn;
+
 - (IBAction)finishAction:(id)sender;
 @end
 

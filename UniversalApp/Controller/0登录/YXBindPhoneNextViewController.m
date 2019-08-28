@@ -9,7 +9,7 @@
 #import "YXBindPhoneNextViewController.h"
 #import "UIButton+CountDown.h"
 
-@interface YXBindPhoneNextViewController ()
+@interface YXBindPhoneNextViewController ()<UITextFieldDelegate>
 
 @end
 
@@ -18,15 +18,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"更换手机号";
-    self.nPhoneTf.layer.masksToBounds = YES;
-    self.nPhoneTf.layer.cornerRadius = 3;
-    self.nCodeTf.layer.masksToBounds = YES;
-    self.nCodeTf.layer.cornerRadius = 3;
-    ViewBorderRadius(self.getMes_codeBtn, 5, 1, A_COlOR);
+    self.nCodeTf.delegate = self;
+    [self.nCodeTf addTarget:self action:@selector(changeCodeAction) forControlEvents:UIControlEventAllEvents];
+    self.finishBtn.backgroundColor = [UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0];
+    self.finishBtn.userInteractionEnabled = NO;
     [self.getMes_codeBtn addTarget:self action:@selector(getSms_CodeAction) forControlEvents:UIControlEventTouchUpInside];
     
-    ViewBorderRadius(self.nPhoneTf, 2, 1, C_COLOR);
-    ViewBorderRadius(self.nCodeTf, 2, 1,C_COLOR);
     self.title = @"更换手机号";
 }
 - (void)getSms_CodeAction{
@@ -61,6 +58,15 @@
         [weakself.navigationController popToRootViewControllerAnimated:YES];
         [QMUITips showSucceed:@"修改成功"];
     }];
+}
+-(void)changeCodeAction{
+    if (self.nCodeTf.text.length >= 4) {
+        self.finishBtn.backgroundColor = [UIColor colorWithRed:10/255.0 green:36/255.0 blue:54/255.0 alpha:1.0];
+        self.finishBtn.userInteractionEnabled = YES;
+    }else{
+        self.finishBtn.backgroundColor = [UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0];
+        self.finishBtn.userInteractionEnabled = NO;
+    }
 }
 /*
 #pragma mark - Navigation

@@ -39,7 +39,10 @@ SINGLETON_FOR_CLASS(UserManager);
         platFormType = UMSocialPlatformType_QQ;
     }else if (loginType == kUserLoginTypeWeChat){
         platFormType = UMSocialPlatformType_WechatSession;
-    }else{
+    }else if (loginType == kUserLoginTypeWeiBo){
+        platFormType = UMSocialPlatformType_Sina;
+    }
+    else{
         platFormType = UMSocialPlatformType_UnKnown;
     }
     //第三方登录
@@ -47,10 +50,11 @@ SINGLETON_FOR_CLASS(UserManager);
 //        [MBProgressHUD showActivityMessageInView:@"授权中..."];
         [[UMSocialManager defaultManager] getUserInfoWithPlatform:platFormType currentViewController:nil completion:^(id result, NSError *error) {
             if (error) {
-                [MBProgressHUD hideHUD];
-                if (completion) {
-                    completion(NO,error.localizedDescription);
-                }
+                [QMUITips showError:error.userInfo[@"message"]];
+//                [MBProgressHUD hideHUD];
+//                if (completion) {
+//                    completion(NO,error.localizedDescription);
+//                }
             } else {
                 UMSocialUserInfoResponse *resp = result;
 //                // 授权信息

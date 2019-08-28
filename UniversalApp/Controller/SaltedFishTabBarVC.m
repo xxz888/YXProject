@@ -14,6 +14,7 @@
 #import "HGPersonalCenterViewController.h"
 #import "YXHomeXueJiaViewController.h"
 #import "YXSecondViewController.h"
+#import "YXRegister1ViewController.h"
 @interface SaltedFishTabBarVC ()<AxcAE_TabBarDelegate>
 
 @end
@@ -32,6 +33,12 @@
     UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
     YXHomeXueJiaViewController *    homeVC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaViewController"];
 //    YXHomeViewController * homeVC = [[YXHomeViewController alloc]init];
+    
+    
+//    YXRegister1ViewController * nav1 = [[YXRegister1ViewController alloc]init];
+    
+    
+    
     RootNavigationController *nav1 = [[RootNavigationController alloc]initWithRootViewController:homeVC];
 
     YXSecondViewController * findVC = [[YXSecondViewController alloc]init];

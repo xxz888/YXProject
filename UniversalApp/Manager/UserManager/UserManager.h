@@ -15,6 +15,8 @@ typedef NS_ENUM(NSInteger, UserLoginType){
     kUserLoginTypeWeChat,//微信登录
     kUserLoginTypeQQ,///QQ登录
     kUserLoginTypePwd,///账号登录
+    kUserLoginTypeWeiBo,///微博登录
+
 };
 
 typedef void (^loginBlock)(BOOL success, NSString * des);

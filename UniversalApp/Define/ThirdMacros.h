@@ -22,6 +22,12 @@
 #define kAppKey_Tencent          @"101577039"
 #define kAppKey_Tencent_Secret   @"757aaf2dfe128e6e9eca744b22cf8b66"
 
+
+// 腾讯
+#define kAppKey_WeiBo          @"3192766979"
+#define kAppKey_WeiBo_Secret   @"1211e5c050a6d9f04f9af46731c62998"
+
+
 //网易云信
 #define kIMAppKey @"afc7265de3857bbaa7404b4ea92b191e"
 #define kIMAppSecret @"c34bd403b29a"

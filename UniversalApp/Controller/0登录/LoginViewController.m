@@ -14,7 +14,7 @@
 #import "YXBindPhoneViewController.h"
 #import "YXLoginXieYiViewController.h"
 #import "SocketRocketUtility.h"
-@interface LoginViewController ()
+@interface LoginViewController ()<UITextFieldDelegate>
 //1 播放器
 @property (strong, nonatomic) AVPlayer *player;
 - (IBAction)btn1Action:(id)sender;
@@ -40,11 +40,8 @@
     [super viewDidLoad];
     self.title = @"登录";
     
-    self.phoneTf.layer.masksToBounds = YES;
-    self.phoneTf.layer.cornerRadius = 3;
+
     
-    self.codeTf.layer.masksToBounds = YES;
-    self.codeTf.layer.cornerRadius = 3;
     YYLabel *snowBtn = [[YYLabel alloc] initWithFrame:CGRectMake(0, 200, 150, 60)];
     snowBtn.text = @"微信登录";
     snowBtn.font = SYSTEMFONT(20);
@@ -53,6 +50,11 @@
     snowBtn.textAlignment = NSTextAlignmentCenter;
     snowBtn.textVerticalAlignment = YYTextVerticalAlignmentCenter;
     snowBtn.centerX = KScreenWidth/2;
+    
+    self.codeTf.delegate = self;
+    [self.codeTf addTarget:self action:@selector(changeCodeAction) forControlEvents:UIControlEventAllEvents];
+    self.loginBtn.backgroundColor = [UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0];
+    self.loginBtn.userInteractionEnabled = NO;
     
     kWeakSelf(self);
     snowBtn.textTapAction = ^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
@@ -97,7 +99,7 @@
     
     //[self.view addSubview:skipBtn];
     
-    ViewBorderRadius(self.getMes_codeBtn, 5, 1, A_COlOR);
+//    ViewBorderRadius(self.getMes_codeBtn, 5, 1, A_COlOR);
     [self.getMes_codeBtn addTarget:self action:@selector(getSms_CodeAction) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -109,14 +111,14 @@
             [weakself websocketSet];
         }else{
             YXBindPhoneViewController * VC = [[YXBindPhoneViewController alloc]init];
-            VC.title = @"绑定手机号";
-            RootNavigationController *nav = [[RootNavigationController alloc]initWithRootViewController:VC];
+//            VC.title = @"绑定手机号";
+//            RootNavigationController *nav = [[RootNavigationController alloc]initWithRootViewController:VC];
             VC.bindBlock = ^{
                 [weakself closeViewAAA];
             };
             VC.whereCome = NO;
             VC.unique_id = des;
-            [weakself presentViewController:nav animated:YES completion:nil];
+            [weakself.navigationController pushViewController:VC animated:YES];
         }
     }];
 }
@@ -228,12 +230,7 @@
     }];
 }
 - (IBAction)closeLoginView:(id)sender {
-    [self dismissViewControllerAnimated:NO completion:^{
-    
-    }];
-
-
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)getSms_CodeAction{
     if (self.phoneTf.text.length <= 10) {
@@ -242,15 +239,24 @@
     }
     kWeakSelf(self);
     [YX_MANAGER requestSmscodeGET:[self.phoneTf.text append:@"/1/"] success:^(id object) {
-            [QMUITips showSucceed:@"验证码发送成功" inView:self.view hideAfterDelay:2];
+            [QMUITips showSucceed:@"验证码发送成功" inView:weakself.view hideAfterDelay:2];
             [weakself.getMes_codeBtn startWithTime:180
                                          title:@"点击重新获取"
                                 countDownTitle:@"s"
-                                     mainColor:C_COLOR
-                                    countColor:C_COLOR];
+                                     mainColor:KClearColor
+                                    countColor:KClearColor];
     }];
-    
 }
+-(void)changeCodeAction{
+    if (self.codeTf.text.length >= 4) {
+        self.loginBtn.backgroundColor = [UIColor colorWithRed:10/255.0 green:36/255.0 blue:54/255.0 alpha:1.0];
+        self.loginBtn.userInteractionEnabled = YES;
+    }else{
+        self.loginBtn.backgroundColor = [UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0];
+        self.loginBtn.userInteractionEnabled = NO;
+    }
+}
+
 #pragma mark - 视频播放结束 触发
 - (void)playToEnd
 {
@@ -264,5 +270,8 @@
 - (IBAction)qqLoginAction:(id)sender {
     [self QQLogin];
 
+}
+- (IBAction)weiboLoginAction:(id)sender {
+    [QMUITips showInfo:@"开发中"];
 }
 @end

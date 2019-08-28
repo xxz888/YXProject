@@ -10,14 +10,25 @@
 #import "UIButton+CountDown.h"
 #import "YXBindPhoneNextViewController.h"
 
-@interface YXBindPhoneViewController (){
+@interface YXBindPhoneViewController ()<UITextFieldDelegate>{
     BOOL isSend;
 }
 
 @end
 
 @implementation YXBindPhoneViewController
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+    //视频播放
+    //[self.player play];
+    
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     UserInfo *userInfo = curUser;
@@ -31,22 +42,32 @@
 
     }
 
+    self.codeTf.delegate = self;
+    [self.codeTf addTarget:self action:@selector(changeCodeAction) forControlEvents:UIControlEventAllEvents];
+    self.bingBtn.backgroundColor = [UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0];
+    self.bingBtn.userInteractionEnabled = NO;
+    
+    
     
     self.tipTopLbl.text = [NSString stringWithFormat:@"当前绑定手机号是%@,请在下方输入你希望绑定的手机号",userInfo.mobile];
     
-     self.closeBtn.hidden = YES;
+//    self.closeBtn.hidden = YES;
     self.tipTopLbl.hidden = !self.whereCome;
     [self.bingBtn setTitle:self.whereCome ? @"下一步" :@"绑定" forState:UIControlStateNormal];
-    self.phoneTf.layer.masksToBounds = YES;
-    self.phoneTf.layer.cornerRadius = 3;
-    self.codeTf.layer.masksToBounds = YES;
-    self.codeTf.layer.cornerRadius = 3;
-    ViewBorderRadius(self.getMes_codeBtn, 5, 1, A_COlOR);
+
     [self.getMes_codeBtn addTarget:self action:@selector(getSms_CodeAction) forControlEvents:UIControlEventTouchUpInside];
     isSend = NO;
-    ViewBorderRadius(self.phoneTf, 2, 1, C_COLOR);
-    ViewBorderRadius(self.codeTf, 2, 1,C_COLOR);
+
     
+}
+-(void)changeCodeAction{
+    if (self.codeTf.text.length >= 4) {
+        self.bingBtn.backgroundColor = [UIColor colorWithRed:10/255.0 green:36/255.0 blue:54/255.0 alpha:1.0];
+        self.bingBtn.userInteractionEnabled = YES;
+    }else{
+        self.bingBtn.backgroundColor = [UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0];
+        self.bingBtn.userInteractionEnabled = NO;
+    }
 }
 - (void)getSms_CodeAction{
     
@@ -79,7 +100,7 @@
 */
 
 - (IBAction)closeAction:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)bindAction:(id)sender {
