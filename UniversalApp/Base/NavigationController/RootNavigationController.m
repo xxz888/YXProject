@@ -26,14 +26,14 @@
     //导航栏主题 title文字属性
     UINavigationBar *navBar = [UINavigationBar appearance];
     //导航栏背景图
-    //    [navBar setBackgroundImage:[UIImage imageNamed:@"tabBarBj"] forBarMetrics:UIBarMetricsDefault];
     [navBar setBarTintColor:KWhiteColor];//bar背景色
-    [navBar setTintColor:kRGBA(17, 17, 17, 1.0)];
-    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName :kRGBA(17, 17, 17, 1.0), NSFontAttributeName : [UIFont fontWithName:@"苹方-简" size:17]}];
-    [[UINavigationBar appearance] setTintColor:kRGBA(34, 34, 34, 1.0)];
+    [navBar setTintColor:KWhiteColor];
+//    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName :kRGBA(51, 51, 51, 1.0), NSFontAttributeName : [UIFont fontWithName:@"Arial-BoldMT" size:18.0]}];
 
-    //[navBar setBackgroundImage:[UIImage imageWithColor:KWhiteColor] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-   // [navBar setShadowImage:[UIImage new]];//去掉阴影线
+
+    [navBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [navBar setShadowImage:[UIImage imageWithColor:kRGBA(238, 238, 238, 1)]];
+
 }
 
 - (void)viewDidLoad {

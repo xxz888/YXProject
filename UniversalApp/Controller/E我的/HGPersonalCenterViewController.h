@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HGBaseViewController.h"
-@interface HGPersonalCenterViewController : HGBaseViewController
+@interface HGPersonalCenterViewController : RootViewController
 @property (nonatomic, assign) NSUInteger selectedIndex;
 @property (nonatomic, assign) BOOL isEnlarge;
 

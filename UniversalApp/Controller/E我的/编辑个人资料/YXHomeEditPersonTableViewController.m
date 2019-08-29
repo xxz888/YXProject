@@ -57,8 +57,11 @@
 
 }
 -(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [self.navigationController.navigationBar setHidden:YES];
+    [super viewWillDisappear:animated];    
+    
+    [_nameTf resignFirstResponder];
+    
+    [self upData];
 }
 #pragma mark - Table view data source
 
@@ -87,15 +90,8 @@
                            @"site":site,
                            };
     [YX_MANAGER requestUpdate_userPOST:dic success:^(id object) {
-//        [self.navigationController popViewControllerAnimated:NO];
-//        kWeakSelf(self);
-//        [userManager logout:^(BOOL success, NSString *des) {
-//
-//        }];
-//        [QMUITips showSucceed:@"修改成功,请重新登录"];
-
-        [QMUITips hideAllTipsInView:self.view];
-        [QMUITips showSucceed:@"修改成功"];
+        [QMUITips hideAllTipsInView:weakself.view];
+//        [QMUITips showSucceed:@"修改成功"];
         UserInfo *userInfo = curUser;
         [userInfo setToken:object[@"token"]];
         
@@ -107,7 +103,7 @@
         }
         
         
-        [weakself.navigationController popViewControllerAnimated:YES];
+//        [weakself.navigationController popViewControllerAnimated:YES];
         
    
     }];

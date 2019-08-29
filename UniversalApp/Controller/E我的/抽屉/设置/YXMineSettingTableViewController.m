@@ -21,21 +21,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+
     //解决方案
     self.automaticallyAdjustsScrollViewInsets=false;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     self.title = @"设置";
     self.tableView.tableFooterView = [[UIView alloc]init];
+    
+    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    btn.frame = CGRectMake(20, KScreenHeight-67-kTopHeight-49, KScreenWidth-40, 45);
+    btn.layer.masksToBounds = YES;
+    btn.layer.cornerRadius = 22.5;
+    btn.backgroundColor = kRGBA(10, 36, 54, 1);
+    [btn setTitle:@"退出登录" forState:UIControlStateNormal];
+    [self.tableView addSubview:btn];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.hidden = YES;
-
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 #pragma mark - Table view data source
 

@@ -54,11 +54,11 @@ static CGFloat const HeaderImageViewHeight =320;
 #pragma mark - Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (@available(iOS 11.0, *)) {
-        [[UIScrollView appearance] setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
-    } else {
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
+//    if (@available(iOS 11.0, *)) {
+//        [[UIScrollView appearance] setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
+//    } else {
+//        self.automaticallyAdjustsScrollViewInsets = NO;
+//    }
     //如果使用自定义的按钮去替换系统默认返回按钮，会出现滑动返回手势失效的情况
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     [self setupSubViews];
@@ -67,13 +67,13 @@ static CGFloat const HeaderImageViewHeight =320;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
-    [self updateNavigationBarBackgroundColor];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+//    [self updateNavigationBarBackgroundColor];
     [self setViewData];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self.navigationController.navigationBar setHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 #pragma mark - Private Methods
 - (void)setupSubViews {

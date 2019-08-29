@@ -28,11 +28,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor =KWhiteColor;
+    self.navigationController.navigationBar.translucent=NO;
+
     //是否显示返回按钮
     self.isShowLiftBack = YES;
     //默认导航栏样式：黑字
-    self.StatusBarStyle = 0;
-    [[UINavigationBar appearance] setTintColor:KBlackColor];
+//    self.StatusBarStyle = 0;
+//    [[UINavigationBar appearance] setTintColor:KBlackColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.requestPage = 1;
 }
@@ -85,11 +87,10 @@
         
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setBackgroundImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-        btn.frame = CGRectMake(0, 0, 22, 22);
+        btn.frame = CGRectMake(0, 4, 22, 22);
         [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:btn];
         if (isLeft) {
-//            [btn setImageEdgeInsets:UIEdgeInsetsMake(10, 0, 10, 0)];
         }else{
             if (tags.count > 0 && [tags[0] integerValue] == 999) {
                 [btn setImageEdgeInsets:UIEdgeInsetsMake(6.5, 30, 6.5, 4)];

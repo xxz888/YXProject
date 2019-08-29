@@ -36,7 +36,6 @@
         self.tipTopLbl.text =@"更换手机号";
     }else{
         self.tipTopLbl.text =@"绑定手机号";
-
     }
 
     self.codeTf.delegate = self;
@@ -46,7 +45,6 @@
     
     
 //    self.closeBtn.hidden = YES;
-    self.tipTopLbl.hidden = !self.whereCome;
     [self.bingBtn setTitle:self.whereCome ? @"下一步" :@"绑定" forState:UIControlStateNormal];
 
     [self.getMes_codeBtn addTarget:self action:@selector(getSms_CodeAction) forControlEvents:UIControlEventTouchUpInside];
