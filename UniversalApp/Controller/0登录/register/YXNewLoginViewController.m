@@ -39,99 +39,14 @@
     [self.navigationController pushViewController:VC animated:YES];
 }
 - (IBAction)weiboLoginAction:(id)sender {
-//    [QMUITips showInfo:@"开发中"];
-    [self WeiBoLogin];
+    [userManager LoginVCCommonAction:self type:kUserLoginTypeWeiBo];
 }
 - (IBAction)wxLoginAction:(id)sender {
-    [self WXLogin];
+    [userManager LoginVCCommonAction:self type:kUserLoginTypeWeChat];
 }
 - (IBAction)qqLoginAction:(id)sender {
-    [self QQLogin];
-    
+    [userManager LoginVCCommonAction:self type:kUserLoginTypeQQ];
 }
-
--(void)WeiBoLogin{
-    kWeakSelf(self);
-    [userManager login:kUserLoginTypeWeiBo completion:^(BOOL success, NSString *des) {
-        if (success) {
-            [weakself closeViewAAA];
-        }else{
-            
-            YXBindPhoneViewController * VC = [[YXBindPhoneViewController alloc]init];
-            VC.bindBlock = ^{
-                [weakself.navigationController popViewControllerAnimated:YES];
-            };
-            VC.whereCome = NO;
-            VC.unique_id = des;
-            [weakself.navigationController pushViewController:VC animated:YES];
-        }
-    }];
-}
-
-
--(void)WXLogin{
-    kWeakSelf(self);
-    [userManager login:kUserLoginTypeWeChat completion:^(BOOL success, NSString *des) {
-        if (success) {
-            [weakself closeViewAAA];
-        }else{
-            YXBindPhoneViewController * VC = [[YXBindPhoneViewController alloc]init];
-            VC.title = @"绑定手机号";
-            RootNavigationController *nav = [[RootNavigationController alloc]initWithRootViewController:VC];
-            VC.bindBlock = ^{
-                [weakself closeViewAAA];
-            };
-            VC.whereCome = NO;
-            VC.unique_id = des;
-            [weakself presentViewController:nav animated:YES completion:nil];
-        }
-    }];
-}
--(void)QQLogin{
-    kWeakSelf(self);
-    [userManager login:kUserLoginTypeQQ completion:^(BOOL success, NSString *des) {
-        if (success) {
-            [weakself closeViewAAA];
-        }else{
-            YXBindPhoneViewController * VC = [[YXBindPhoneViewController alloc]init];
-            VC.title = @"绑定手机号";
-            RootNavigationController *nav = [[RootNavigationController alloc]initWithRootViewController:VC];
-            VC.bindBlock = ^{
-                [weakself closeViewAAA];
-            };
-            VC.whereCome = NO;
-            VC.unique_id = des;
-            [weakself presentViewController:nav animated:YES completion:nil];
-        }
-    }];
-}
--(void)closeViewAAA{
-    kWeakSelf(self);
-    UIViewController *controller = self;
-    while(controller.presentingViewController != nil){
-        controller = controller.presentingViewController;
-    }
-    [controller dismissViewControllerAnimated:NO completion:^{
-        
-        
-        if ([userManager loadUserInfo]) {
-            [QMUITips showSucceed:@"登录成功"];
-            [[AppDelegate shareAppDelegate].mainTabBar setSelectedIndex:0];
-            [weakself closeViewAAA];
-            
-        }else{
-            [QMUITips showSucceed:@"绑定成功,请重新登录"];
-            KPostNotification(KNotificationLoginStateChange, @NO);
-        }
-        
-        
-        
-        
-        
-    }];
-}
-
-
 /*
 #pragma mark - Navigation
 

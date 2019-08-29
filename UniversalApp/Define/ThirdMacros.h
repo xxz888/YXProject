@@ -24,8 +24,8 @@
 
 
 // 腾讯
-#define kAppKey_WeiBo          @"3192766979"
-#define kAppKey_WeiBo_Secret   @"1211e5c050a6d9f04f9af46731c62998"
+#define kAppKey_WeiBo          @"733820908"
+#define kAppKey_WeiBo_Secret   @"9183c90fe3098ae1693297a2902357c5"
 
 
 //网易云信

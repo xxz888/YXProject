@@ -234,7 +234,7 @@
     NSInteger VCCount = self.navigationController.viewControllers.count;
     //下面判断的意义是 当VC所在的导航控制器中的VC个数大于1 或者 是present出来的VC时，才展示返回按钮，其他情况不展示
     if (isShowLiftBack && ( VCCount > 1 || self.navigationController.presentingViewController != nil)) {
-        [self addNavigationItemWithImageNames:@[@"返回键"] isLeft:YES target:self action:@selector(backBtnClicked) tags:nil];
+        [self addNavigationItemWithImageNames:@[@"黑色返回"] isLeft:YES target:self action:@selector(backBtnClicked) tags:nil];
         
     } else {
         self.navigationItem.hidesBackButton = YES;
@@ -265,21 +265,17 @@
 - (void)addNavigationItemWithImageNames:(NSArray *)imageNames isLeft:(BOOL)isLeft target:(id)target action:(SEL)action tags:(NSArray *)tags
 {
     NSMutableArray * items = [[NSMutableArray alloc] init];
-    //调整按钮位置
-        UIBarButtonItem* spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-        //将宽度设为负值
-        spaceItem.width= -5;
-        [items addObject:spaceItem];
     NSInteger i = 0;
     for (NSString * imageName in imageNames) {
+        UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-        btn.frame = CGRectMake(0, 0, 30, 30);
+        btn.frame = CGRectMake(0, 0, 22, 22);
         [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-        
+        [view addSubview:btn];
         if (isLeft) {
-            [btn setContentEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 10)];
-            [btn setImageEdgeInsets:UIEdgeInsetsMake(5.5, 0, 5.5, 0)];
+
         }else{
             if (tags.count > 0 && [tags[0] integerValue] == 999) {
                 [btn setImageEdgeInsets:UIEdgeInsetsMake(6.5, 30, 6.5, 4)];
@@ -292,7 +288,7 @@
         }
         
         btn.tag = [tags[i++] integerValue];
-        UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+        UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithCustomView:view];
         [items addObject:item];
         
     }

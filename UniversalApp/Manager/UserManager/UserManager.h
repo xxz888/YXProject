@@ -76,4 +76,5 @@ SINGLETON_FOR_HEADER(UserManager)
  */
 -(BOOL)loadUserInfo;
 
+-(void)LoginVCCommonAction:(UIViewController *)vc type:(UserLoginType )loginType;
 @end

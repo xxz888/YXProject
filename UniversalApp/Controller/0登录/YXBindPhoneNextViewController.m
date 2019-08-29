@@ -14,17 +14,22 @@
 @end
 
 @implementation YXBindPhoneNextViewController
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
 
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"更换手机号";
     self.nCodeTf.delegate = self;
     [self.nCodeTf addTarget:self action:@selector(changeCodeAction) forControlEvents:UIControlEventAllEvents];
     self.finishBtn.backgroundColor = [UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0];
     self.finishBtn.userInteractionEnabled = NO;
     [self.getMes_codeBtn addTarget:self action:@selector(getSms_CodeAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.title = @"更换手机号";
 }
 - (void)getSms_CodeAction{
     if (self.nPhoneTf.text.length <= 10) {
@@ -68,6 +73,10 @@
         self.finishBtn.userInteractionEnabled = NO;
     }
 }
+- (IBAction)closeAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 /*
 #pragma mark - Navigation
 

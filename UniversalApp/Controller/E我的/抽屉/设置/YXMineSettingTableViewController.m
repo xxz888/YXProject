@@ -10,6 +10,8 @@
 #import "YXMineSettingSafeTableViewController.h"
 #import "YXHomeEditPersonTableViewController.h"
 #import "YXMineTongYongTableViewController.h"
+#import "YXMineAboutUsViewController.h"
+#import "YXMineYiJianFanKuiViewController.h"
 
 @interface YXMineSettingTableViewController ()
 
@@ -44,6 +46,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [super tableView:tableView numberOfRowsInSection:section];
 }
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell * cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    if (indexPath.section == 2) {
+        cell.separatorInset = UIEdgeInsetsMake(0, KScreenWidth, 0, 0);
+    }
+    return cell;
+}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
     kWeakSelf(self);
@@ -64,22 +73,21 @@
             }else if (indexPath.row == 2){
                 YXMineTongYongTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineTongYongTableViewController"];
                 [self.navigationController pushViewController:VC animated:YES];
-            }else if (indexPath.row == 3){
-                
-            }else if (indexPath.row == 4){
-                
-            }else if (indexPath.row == 5){
-                
             }
-                
             break;
         case 1:
-            //去appstore评分
             if (indexPath.row == 0) {
-                [ShareManager returnUpdateVersion];
-            //关于我们
-            }else if (indexPath.row == 1){
                 
+                YXMineAboutUsViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineAboutUsViewController"];
+                [self.navigationController pushViewController:VC animated:YES];
+            }else if(indexPath.row == 1){
+                
+                YXMineYiJianFanKuiViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineYiJianFanKuiViewController"];
+                [self.navigationController pushViewController:VC animated:YES];
+            }
+            //鼓励一下
+            if (indexPath.row == 2) {
+               [ShareManager returnUpdateVersion];
             }
             break;
             

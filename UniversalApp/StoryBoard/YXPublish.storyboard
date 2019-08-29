@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,11 +11,11 @@
             <objects>
                 <viewController storyboardIdentifier="YXPublishImageViewController" id="iCA-JC-7lp" customClass="YXPublishImageViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kXa-Ko-gpe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="17G-eK-AqH">
-                                <rect key="frame" x="0.0" y="435" width="375" height="182"/>
+                                <rect key="frame" x="0.0" y="435" width="600" height="115"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhP-tG-mg8">
@@ -28,7 +24,7 @@
                                     <constraint firstAttribute="width" constant="30" id="TD8-eD-2PX"/>
                                     <constraint firstAttribute="height" constant="30" id="eIq-BP-Cas"/>
                                 </constraints>
-                                <state key="normal" image="返回键">
+                                <state key="normal" image="黑色返回">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -36,7 +32,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Wr-5T-Rjo">
-                                <rect key="frame" x="295" y="64" width="60" height="30"/>
+                                <rect key="frame" x="520" y="64" width="60" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Ndl-kh-J5R"/>
                                     <constraint firstAttribute="width" constant="60" id="mvb-KW-LL8"/>
@@ -47,7 +43,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ukg-EW-syb">
-                                <rect key="frame" x="215" y="64" width="60" height="30"/>
+                                <rect key="frame" x="440" y="64" width="60" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="afz-dq-CxV"/>
                                     <constraint firstAttribute="height" constant="30" id="sji-98-Iru"/>
@@ -58,7 +54,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wnS-dv-FCQ">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="550" width="600" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="bwT-Ci-wUD"/>
@@ -72,7 +68,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FGb-ec-nyp">
-                                <rect key="frame" x="0.0" y="105" width="375" height="330"/>
+                                <rect key="frame" x="0.0" y="105" width="600" height="330"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="330" id="H3Q-0F-Pyk"/>
@@ -122,7 +118,7 @@
             <objects>
                 <viewController storyboardIdentifier="YXPublishArticleViewController" id="7N9-2F-NPF" customClass="YXPublishArticleViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3gN-hs-EaG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LDx-UU-1XA">
@@ -140,7 +136,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUU-jp-yK0">
-                                <rect key="frame" x="295" y="40" width="60" height="30"/>
+                                <rect key="frame" x="520" y="40" width="60" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="2M4-ih-hif"/>
                                     <constraint firstAttribute="height" constant="30" id="pB2-nr-Zxs"/>
@@ -148,13 +144,13 @@
                                 <state key="normal" title="下一步"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发布新文章" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inN-L4-pfY">
-                                <rect key="frame" x="139" y="43.5" width="97" height="23"/>
+                                <rect key="frame" x="251.5" y="43.5" width="97" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入标题" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aoo-EN-a1D">
-                                <rect key="frame" x="20" y="90" width="335" height="40"/>
+                                <rect key="frame" x="20" y="90" width="560" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="39h-7G-DH2"/>
                                 </constraints>
@@ -163,7 +159,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLc-cZ-Jdo">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="550" width="600" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="auc-Bf-pDi"/>
                                 </constraints>
@@ -173,7 +169,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CVH-n1-Cj1">
-                                <rect key="frame" x="20" y="145" width="335" height="472"/>
+                                <rect key="frame" x="20" y="145" width="560" height="405"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -214,35 +210,35 @@
             <objects>
                 <viewController storyboardIdentifier="YXPublishFootViewController" id="TkZ-1h-wIG" customClass="YXPublishFootViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="duz-45-ZQk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hik-9c-N6v">
-                                <rect key="frame" x="10" y="100" width="355" height="130"/>
+                                <rect key="frame" x="10" y="100" width="580" height="130"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="Ex9-A1-Sc0"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="STp-XK-Xsh">
-                                <rect key="frame" x="0.0" y="240" width="375" height="110"/>
+                                <rect key="frame" x="0.0" y="240" width="600" height="110"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="hXB-H7-BPm"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9BB-mu-l6p">
-                                <rect key="frame" x="30" y="355" width="335" height="30"/>
+                                <rect key="frame" x="30" y="355" width="560" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8An-4r-ZHm">
-                                        <rect key="frame" x="0.0" y="0.0" width="84" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="参与话题">
                                             <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emc-Qi-cpG">
-                                        <rect key="frame" x="94" y="0.0" width="83.5" height="30"/>
+                                        <rect key="frame" x="150" y="0.0" width="140" height="30"/>
                                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="#新标签#">
@@ -253,7 +249,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SWr-Ud-kaH">
-                                        <rect key="frame" x="187.5" y="0.0" width="147.5" height="30"/>
+                                        <rect key="frame" x="300" y="0.0" width="260" height="30"/>
                                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="查看更多 &gt;">
@@ -272,7 +268,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PF9-uF-Fj2">
-                                <rect key="frame" x="30" y="395" width="345" height="30"/>
+                                <rect key="frame" x="30" y="395" width="570" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="你的位置">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -282,7 +278,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Xo-Nx-HZO">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="550" width="600" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="XGm-NB-e6o"/>
@@ -296,7 +292,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同步到发现" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emo-kP-f57">
-                                <rect key="frame" x="30" y="435" width="345" height="30"/>
+                                <rect key="frame" x="30" y="435" width="570" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -323,13 +319,13 @@
                                 </constraints>
                             </imageView>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ckr-rp-2fq">
-                                <rect key="frame" x="316" y="434.5" width="51" height="31"/>
+                                <rect key="frame" x="541" y="434.5" width="51" height="31"/>
                                 <connections>
                                     <action selector="switchBtnAction:" destination="TkZ-1h-wIG" eventType="valueChanged" id="guK-9s-Lr6"/>
                                 </connections>
                             </switch>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gRE-ha-bi7">
-                                <rect key="frame" x="0.0" y="470" width="375" height="147"/>
+                                <rect key="frame" x="0.0" y="470" width="600" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -368,6 +364,7 @@
                             <constraint firstItem="0Xo-Nx-HZO" firstAttribute="top" secondItem="gRE-ha-bi7" secondAttribute="bottom" id="y7m-xM-LVx"/>
                             <constraint firstAttribute="trailing" secondItem="ckr-rp-2fq" secondAttribute="trailing" constant="10" id="zH1-92-JE9"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="j5Z-2K-JXw"/>
                     </view>
                     <navigationItem key="navigationItem" id="qhg-fw-drr"/>
                     <connections>
@@ -390,7 +387,7 @@
         <image name="井号" width="64" height="64"/>
         <image name="定位" width="64" height="64"/>
         <image name="拍照" width="32" height="32"/>
-        <image name="返回键" width="13" height="24"/>
         <image name="风车" width="64" height="64"/>
+        <image name="黑色返回" width="16" height="16"/>
     </resources>
 </document>

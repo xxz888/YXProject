@@ -193,7 +193,7 @@
     //晒图
     if ([self.startDic[@"obj"] integerValue] == 1) {
 
-        self.cell.topTopHeight.constant = 70;//头像的view距离封面图和文章lable的距离，要留出返回键的高度，所以高一点
+        self.cell.topTopHeight.constant = 70;//头像的view距离封面图和文章lable的距离，要留出黑色返回的高度，所以高一点
         self.cell.wenzhangDetailLbl.hidden = YES;//晒图进来，隐藏文章的deatil的label
         self.cell.wenzhangDetailHeight.constant = 0;//晒图进来，设置文章的的label为0
         [QMUITips hideAllTipsInView:self.view];

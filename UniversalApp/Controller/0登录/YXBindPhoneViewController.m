@@ -25,10 +25,7 @@
     //[self.player play];
     
 }
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     UserInfo *userInfo = curUser;
@@ -36,9 +33,9 @@
     if (self.whereCome) {
         self.phoneTf.text = userInfo.mobile;
         self.phoneTf.userInteractionEnabled = NO;
-        self.title =@"更换手机号";
+        self.tipTopLbl.text =@"更换手机号";
     }else{
-        self.title =@"绑定手机号";
+        self.tipTopLbl.text =@"绑定手机号";
 
     }
 
@@ -47,9 +44,6 @@
     self.bingBtn.backgroundColor = [UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0];
     self.bingBtn.userInteractionEnabled = NO;
     
-    
-    
-    self.tipTopLbl.text = [NSString stringWithFormat:@"当前绑定手机号是%@,请在下方输入你希望绑定的手机号",userInfo.mobile];
     
 //    self.closeBtn.hidden = YES;
     self.tipTopLbl.hidden = !self.whereCome;
@@ -61,7 +55,7 @@
     
 }
 -(void)changeCodeAction{
-    if (self.codeTf.text.length >= 4) {
+    if (self.codeTf.text.length >= 6) {
         self.bingBtn.backgroundColor = [UIColor colorWithRed:10/255.0 green:36/255.0 blue:54/255.0 alpha:1.0];
         self.bingBtn.userInteractionEnabled = YES;
     }else{

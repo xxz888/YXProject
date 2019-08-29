@@ -763,5 +763,4 @@ SINGLETON_FOR_CLASS(ShareManager);
     CGFloat scale = showimage.size.height/showimage.size.width;
     return KScreenWidth * scale;
 }
-
 @end

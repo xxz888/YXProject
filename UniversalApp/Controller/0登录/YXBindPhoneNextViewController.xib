@@ -27,7 +27,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kM9-SY-bOI">
-                            <rect key="frame" x="20" y="35" width="22" height="22"/>
+                            <rect key="frame" x="16" y="50" width="22" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="22" id="5Z8-gW-zuX"/>
                                 <constraint firstAttribute="width" constant="22" id="QyW-7N-YmN"/>
@@ -35,9 +35,12 @@
                             <state key="normal" image="黑色返回">
                                 <color key="titleColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="closeAction:" destination="-1" eventType="touchUpInside" id="33g-5u-zU1"/>
+                            </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iNl-Lj-KOF">
-                            <rect key="frame" x="20" y="175" width="335" height="100"/>
+                            <rect key="frame" x="20" y="190" width="335" height="100"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2dP-4p-bO0">
                                     <rect key="frame" x="0.0" y="0.0" width="335" height="100"/>
@@ -45,7 +48,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="46X-te-vsb">
                                             <rect key="frame" x="0.0" y="0.0" width="335" height="45"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U8t-lf-2Wq">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入新的手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U8t-lf-2Wq">
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="40"/>
                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="16"/>
@@ -131,13 +134,13 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KA0-BS-YOF">
-                            <rect key="frame" x="20" y="320" width="335" height="43"/>
+                            <rect key="frame" x="20" y="335" width="335" height="43"/>
                             <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="43" id="Kch-xk-eL5"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                            <state key="normal" title="完成">
+                            <state key="normal" title="绑定">
                                 <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <userDefinedRuntimeAttributes>
@@ -150,8 +153,8 @@
                                 <action selector="finishAction:" destination="-1" eventType="touchUpInside" id="qa1-tH-A5q"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="绑定手机号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nkg-ee-Jwc">
-                            <rect key="frame" x="20" y="91" width="120" height="34"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更换手机号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nkg-ee-Jwc">
+                            <rect key="frame" x="16" y="106" width="120" height="34"/>
                             <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="24"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -161,12 +164,12 @@
                     <constraints>
                         <constraint firstItem="Nkg-ee-Jwc" firstAttribute="top" secondItem="kM9-SY-bOI" secondAttribute="bottom" constant="34" id="4Qb-9k-vSK"/>
                         <constraint firstAttribute="trailing" secondItem="iNl-Lj-KOF" secondAttribute="trailing" constant="20" id="8yR-vL-zOu"/>
-                        <constraint firstItem="kM9-SY-bOI" firstAttribute="top" secondItem="OpS-Co-U45" secondAttribute="top" constant="35" id="9Ku-Fc-c8j"/>
+                        <constraint firstItem="kM9-SY-bOI" firstAttribute="top" secondItem="OpS-Co-U45" secondAttribute="top" constant="50" id="9Ku-Fc-c8j"/>
                         <constraint firstItem="iNl-Lj-KOF" firstAttribute="leading" secondItem="OpS-Co-U45" secondAttribute="leading" constant="20" id="GYe-TQ-8dh"/>
                         <constraint firstItem="iNl-Lj-KOF" firstAttribute="top" secondItem="Nkg-ee-Jwc" secondAttribute="bottom" constant="50" id="eZg-Oi-Ewa"/>
                         <constraint firstItem="KA0-BS-YOF" firstAttribute="top" secondItem="iNl-Lj-KOF" secondAttribute="bottom" constant="45" id="goY-s3-wjy"/>
                         <constraint firstAttribute="trailing" secondItem="KA0-BS-YOF" secondAttribute="trailing" constant="20" id="hkg-ni-0bF"/>
-                        <constraint firstItem="kM9-SY-bOI" firstAttribute="leading" secondItem="OpS-Co-U45" secondAttribute="leading" constant="20" id="lyR-tX-RdO"/>
+                        <constraint firstItem="kM9-SY-bOI" firstAttribute="leading" secondItem="OpS-Co-U45" secondAttribute="leading" constant="16" id="lyR-tX-RdO"/>
                         <constraint firstItem="Nkg-ee-Jwc" firstAttribute="leading" secondItem="kM9-SY-bOI" secondAttribute="leading" id="lz0-Wh-38d"/>
                         <constraint firstItem="KA0-BS-YOF" firstAttribute="leading" secondItem="OpS-Co-U45" secondAttribute="leading" constant="20" id="uqx-eA-s7w"/>
                     </constraints>

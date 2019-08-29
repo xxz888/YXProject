@@ -44,7 +44,7 @@
                     </constraints>
                     <inset key="contentEdgeInsets" minX="-10" minY="0.0" maxX="10" maxY="0.0"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="5.5" maxX="0.0" maxY="5.5"/>
-                    <state key="normal" image="返回键"/>
+                    <state key="normal" image="黑色返回"/>
                     <connections>
                         <action selector="backVCAction:" destination="-1" eventType="touchUpInside" id="e3Q-LP-Zat"/>
                     </connections>
@@ -205,6 +205,6 @@
         <image name="UnZan" width="48" height="48"/>
         <image name="分享" width="48" height="48"/>
         <image name="更多" width="64" height="64"/>
-        <image name="返回键" width="13.5" height="24"/>
+        <image name="黑色返回" width="44" height="44"/>
     </resources>
 </document>

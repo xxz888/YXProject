@@ -40,139 +40,13 @@
     [super viewDidLoad];
     self.title = @"登录";
     
-
-    
-    YYLabel *snowBtn = [[YYLabel alloc] initWithFrame:CGRectMake(0, 200, 150, 60)];
-    snowBtn.text = @"微信登录";
-    snowBtn.font = SYSTEMFONT(20);
-    snowBtn.textColor = KWhiteColor;
-    snowBtn.backgroundColor = CNavBgColor;
-    snowBtn.textAlignment = NSTextAlignmentCenter;
-    snowBtn.textVerticalAlignment = YYTextVerticalAlignmentCenter;
-    snowBtn.centerX = KScreenWidth/2;
-    
     self.codeTf.delegate = self;
     [self.codeTf addTarget:self action:@selector(changeCodeAction) forControlEvents:UIControlEventAllEvents];
     self.loginBtn.backgroundColor = [UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0];
     self.loginBtn.userInteractionEnabled = NO;
-    
-    kWeakSelf(self);
-    snowBtn.textTapAction = ^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
-        //        [MBProgressHUD showTopTipMessage:NSStringFormat(@"%@马上开始",str) isWindow:YES];
-        
-        [weakself WXLogin];
-    };
-    
-    //[self.view addSubview:snowBtn];
-    
-    YYLabel *snowBtn2 = [[YYLabel alloc] initWithFrame:CGRectMake(0, 300, 150, 60)];
-    snowBtn2.text = @"QQ登录";
-    snowBtn2.font = SYSTEMFONT(20);
-    snowBtn2.textColor = KWhiteColor;
-    snowBtn2.backgroundColor = KRedColor;
-    snowBtn2.textAlignment = NSTextAlignmentCenter;
-    snowBtn2.textVerticalAlignment = YYTextVerticalAlignmentCenter;
-    snowBtn2.centerX = KScreenWidth/2;
-    
-    snowBtn2.textTapAction = ^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
-        //        [MBProgressHUD showTopTipMessage:NSStringFormat(@"%@马上开始",str) isWindow:YES];
-        
-        [weakself QQLogin];
-    };
-    
-    //[self.view addSubview:snowBtn2];
-    
-    YYLabel *skipBtn = [[YYLabel alloc] initWithFrame:CGRectMake(0, 400, 150, 60)];
-    skipBtn.text = @"跳过登录";
-    skipBtn.font = SYSTEMFONT(20);
-    skipBtn.textColor = KBlueColor;
-    skipBtn.backgroundColor = KClearColor;
-    skipBtn.textAlignment = NSTextAlignmentCenter;
-    skipBtn.textVerticalAlignment = YYTextVerticalAlignmentCenter;
-    skipBtn.centerX = KScreenWidth/2;
-    
-    skipBtn.textTapAction = ^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
-        //        [MBProgressHUD showTopTipMessage:NSStringFormat(@"%@马上开始",str) isWindow:YES];
-        
-        [weakself skipAction];
-    };
-    
-    //[self.view addSubview:skipBtn];
-    
-//    ViewBorderRadius(self.getMes_codeBtn, 5, 1, A_COlOR);
     [self.getMes_codeBtn addTarget:self action:@selector(getSms_CodeAction) forControlEvents:UIControlEventTouchUpInside];
 }
 
--(void)WXLogin{
-    kWeakSelf(self);
-    [userManager login:kUserLoginTypeWeChat completion:^(BOOL success, NSString *des) {
-        if (success) {
-            [weakself closeViewAAA];
-            [weakself websocketSet];
-        }else{
-            YXBindPhoneViewController * VC = [[YXBindPhoneViewController alloc]init];
-//            VC.title = @"绑定手机号";
-//            RootNavigationController *nav = [[RootNavigationController alloc]initWithRootViewController:VC];
-            VC.bindBlock = ^{
-                [weakself closeViewAAA];
-            };
-            VC.whereCome = NO;
-            VC.unique_id = des;
-            [weakself.navigationController pushViewController:VC animated:YES];
-        }
-    }];
-}
-
--(void)websocketSet{
-    [[SocketRocketUtility instance] SRWebSocketClose];
-    UserInfo *userInfo = curUser;
-    NSString * par = [NSString stringWithFormat:@"ws://192.168.101.22:80/push/%@/",userInfo.token];
-    [[SocketRocketUtility instance] SRWebSocketOpenWithURLString:par];
-}
-
--(void)QQLogin{
-    kWeakSelf(self);
-    [userManager login:kUserLoginTypeQQ completion:^(BOOL success, NSString *des) {
-        if (success) {
-            [weakself closeViewAAA];
-        }else{
-            YXBindPhoneViewController * VC = [[YXBindPhoneViewController alloc]init];
-            VC.title = @"绑定手机号";
-            RootNavigationController *nav = [[RootNavigationController alloc]initWithRootViewController:VC];
-            VC.bindBlock = ^{
-                [weakself closeViewAAA];
-            };
-            VC.whereCome = NO;
-            VC.unique_id = des;
-            [weakself presentViewController:nav animated:YES completion:nil];
-        }
-    }];
-}
--(void)closeViewAAA{
-    kWeakSelf(self);
-    UIViewController *controller = self;
-    while(controller.presentingViewController != nil){
-        controller = controller.presentingViewController;
-    }
-    [controller dismissViewControllerAnimated:NO completion:^{
-        
-        
-        if ([userManager loadUserInfo]) {
-            [QMUITips showSucceed:@"登录成功"];
-            [[AppDelegate shareAppDelegate].mainTabBar setSelectedIndex:0];
-            [weakself closeViewAAA];
-
-        }else{
-            [QMUITips showSucceed:@"绑定成功,请重新登录"];
-            KPostNotification(KNotificationLoginStateChange, @NO);
-        }
-        
-        
-        
-
-
-    }];
-}
 
 -(void)skipAction{
     KPostNotification(KNotificationLoginStateChange, @YES);
@@ -224,7 +98,6 @@
                 [weakself dismissViewControllerAnimated:YES completion:nil];
                 [[AppDelegate shareAppDelegate].mainTabBar setSelectedIndex:0];
                 [QMUITips showSucceed:@"登录成功"];
-                [weakself websocketSet];
             }];
    
     }];
@@ -248,7 +121,7 @@
     }];
 }
 -(void)changeCodeAction{
-    if (self.codeTf.text.length >= 4) {
+    if (self.codeTf.text.length >= 6) {
         self.loginBtn.backgroundColor = [UIColor colorWithRed:10/255.0 green:36/255.0 blue:54/255.0 alpha:1.0];
         self.loginBtn.userInteractionEnabled = YES;
     }else{
@@ -264,14 +137,13 @@
     [self.player seekToTime:kCMTimeZero];
 }
 
+- (IBAction)weiboLoginAction:(id)sender {
+    [userManager LoginVCCommonAction:self type:kUserLoginTypeWeiBo];
+}
 - (IBAction)wxLoginAction:(id)sender {
-    [self WXLogin];
+    [userManager LoginVCCommonAction:self type:kUserLoginTypeWeChat];
 }
 - (IBAction)qqLoginAction:(id)sender {
-    [self QQLogin];
-
-}
-- (IBAction)weiboLoginAction:(id)sender {
-    [QMUITips showInfo:@"开发中"];
+    [userManager LoginVCCommonAction:self type:kUserLoginTypeQQ];
 }
 @end

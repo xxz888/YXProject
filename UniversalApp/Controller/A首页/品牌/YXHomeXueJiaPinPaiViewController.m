@@ -57,7 +57,7 @@
     if (self.whereCome) {
         self.title = @"请选择品牌";
         self.isShowLiftBack = YES;
-//        [self addNavigationItemWithImageNames:@[@"返回键"] isLeft:YES target:self action:@selector(clickBackAction) tags:nil];
+//        [self addNavigationItemWithImageNames:@[@"黑色返回"] isLeft:YES target:self action:@selector(clickBackAction) tags:nil];
     }else{
         self.title = @"雪茄品牌";
         [self setNavSearchView];

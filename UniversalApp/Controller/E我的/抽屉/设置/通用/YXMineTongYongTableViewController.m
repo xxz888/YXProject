@@ -16,7 +16,10 @@
 @end
 
 @implementation YXMineTongYongTableViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
@@ -27,6 +30,8 @@
     
     self.title = @"通用";
     self.tableView.tableFooterView = [[UIView alloc]init];
+    
+    self.view.backgroundColor = kRGBA(245, 245, 245, 1);
 }
 
 #pragma mark - Table view data source

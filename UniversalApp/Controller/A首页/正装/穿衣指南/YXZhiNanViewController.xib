@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -30,20 +26,20 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SVb-dq-lX0">
-                    <rect key="frame" x="20" y="54" width="30" height="30"/>
+                    <rect key="frame" x="20" y="30" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="30" id="rZn-ZS-6ns"/>
                         <constraint firstAttribute="height" constant="30" id="zJJ-kC-tQf"/>
                     </constraints>
                     <inset key="contentEdgeInsets" minX="-10" minY="0.0" maxX="10" maxY="0.0"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="5.5" maxX="0.0" maxY="5.5"/>
-                    <state key="normal" image="返回键"/>
+                    <state key="normal" image="黑色返回"/>
                     <connections>
                         <action selector="backAction:" destination="-1" eventType="touchUpInside" id="wAz-uU-n0N"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ccg-xx-qa6">
-                    <rect key="frame" x="364" y="54" width="30" height="30"/>
+                    <rect key="frame" x="364" y="30" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="tGN-VG-VXF"/>
                         <constraint firstAttribute="width" constant="30" id="uIx-Tq-7jO"/>
@@ -71,6 +67,6 @@
     </objects>
     <resources>
         <image name="更多" width="64" height="64"/>
-        <image name="返回键" width="13.5" height="24"/>
+        <image name="黑色返回" width="16" height="16"/>
     </resources>
 </document>

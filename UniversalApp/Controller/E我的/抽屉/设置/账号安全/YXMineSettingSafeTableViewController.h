@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITextField *phoneTf;
 @property (weak, nonatomic) IBOutlet UITextField *wxAccTf;
 @property (weak, nonatomic) IBOutlet UITextField *wbTf;
+@property (weak, nonatomic) IBOutlet UITextField *qqTf;
 
 @end
 

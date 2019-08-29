@@ -34,7 +34,6 @@
     self.automaticallyAdjustsScrollViewInsets=false;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     imagePicker = [ImagePicker sharedManager];
-    ViewRadius(self.finishBtn, 5);
     self.title = @"编辑个人资料";
     self.tableView.tableFooterView = [[UIView alloc]init];
     
@@ -69,6 +68,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [super tableView:tableView numberOfRowsInSection:section] ;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell * cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    if (indexPath.section == 1) {
+        cell.separatorInset = UIEdgeInsetsMake(0, KScreenWidth, 0, 0);
+    }
+    return cell;
 }
 -(void)upData{
     kWeakSelf(self);

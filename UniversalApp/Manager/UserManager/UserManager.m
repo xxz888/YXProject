@@ -8,7 +8,7 @@
 
 #import "UserManager.h"
 #import <UMSocialCore/UMSocialCore.h>
-
+#import "YXBindPhoneViewController.h"
 @implementation UserManager
 
 SINGLETON_FOR_CLASS(UserManager);
@@ -24,6 +24,50 @@ SINGLETON_FOR_CLASS(UserManager);
     }
     return self;
 }
+
+-(void)LoginVCCommonAction:(UIViewController *)vcself type:(UserLoginType )loginType{
+    kWeakSelf(self);
+    [userManager login:loginType completion:^(BOOL success, NSString *des) {
+        if (success) {
+            [weakself closeViewAAA:vcself];
+        }else{
+            
+            YXBindPhoneViewController * VC = [[YXBindPhoneViewController alloc]init];
+            VC.bindBlock = ^{
+                [vcself dismissViewControllerAnimated:YES completion:nil];
+            };
+            VC.whereCome = NO;
+            VC.unique_id = des;
+            [vcself.navigationController pushViewController:VC animated:YES];
+        }
+    }];
+}
+-(void)closeViewAAA:(UIViewController *)vcself{
+    kWeakSelf(self);
+    UIViewController *controller = vcself;
+    while(controller.presentingViewController != nil){
+        controller = controller.presentingViewController;
+    }
+    [controller dismissViewControllerAnimated:NO completion:^{
+        
+        
+        if ([userManager loadUserInfo]) {
+            [QMUITips showSucceed:@"登录成功"];
+            [[AppDelegate shareAppDelegate].mainTabBar setSelectedIndex:0];
+            [weakself closeViewAAA:vcself];
+
+        }else{
+            [QMUITips showSucceed:@"绑定成功,请重新登录"];
+            KPostNotification(KNotificationLoginStateChange, @NO);
+        }
+        
+        
+        
+        
+        
+    }];
+}
+
 
 #pragma mark ————— 三方登录 —————
 -(void)login:(UserLoginType )loginType completion:(loginBlock)completion{
@@ -41,8 +85,7 @@ SINGLETON_FOR_CLASS(UserManager);
         platFormType = UMSocialPlatformType_WechatSession;
     }else if (loginType == kUserLoginTypeWeiBo){
         platFormType = UMSocialPlatformType_Sina;
-    }
-    else{
+    }else{
         platFormType = UMSocialPlatformType_UnKnown;
     }
     //第三方登录
