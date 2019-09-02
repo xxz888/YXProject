@@ -226,6 +226,7 @@ static CGFloat const HeaderImageViewHeight =320;
  * 处理联动
  * 因为要实现下拉头部放大的问题，tableView设置了contentInset，所以试图刚加载的时候会调用一遍这个方法，所以要做一些特殊处理，
  */
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 
     //第一部分：处理导航栏
