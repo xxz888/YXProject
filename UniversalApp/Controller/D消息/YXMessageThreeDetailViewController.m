@@ -35,6 +35,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self commonRequest];
+    self.navigationController.navigationBar.hidden = NO;
 
 }
 -(void)commonRequest{

@@ -16,6 +16,7 @@
 #import "QiniuLoad.h"
 #import<QiniuSDK.h>
 #import "UniversalApp-Swift.h"
+#import "YXMineQianMingViewController.h"
 
 @interface YXHomeEditPersonTableViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate,UITextViewDelegate,KSMediaPickerControllerDelegate>{
     
@@ -27,6 +28,9 @@
 @end
 
 @implementation YXHomeEditPersonTableViewController
+- (IBAction)backAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,7 +40,7 @@
     imagePicker = [ImagePicker sharedManager];
     self.title = @"编辑个人资料";
     self.tableView.tableFooterView = [[UIView alloc]init];
-    
+
     
     self.titleImgView.layer.masksToBounds = YES;
     self.titleImgView.layer.cornerRadius = self.titleImgView.frame.size.width / 2.0;
@@ -46,23 +50,26 @@
         [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
         self.nameTf.text = kGetString(self.userInfoDic[@"username"]);
         [self.adressBtn setTitle:self.userInfoDic[@"site"] forState:UIControlStateNormal];
-        [self.birthBtn setTitle:self.userInfoDic[@"birthday"] forState:UIControlStateNormal];
+//        [self.birthBtn setTitle:self.userInfoDic[@"birthday"] forState:UIControlStateNormal];
         [self.sexBtn setTitle:[self.userInfoDic[@"gender"] integerValue] == 0 ? @"女":@"男" forState:UIControlStateNormal];
         self.photo = self.userInfoDic[@"photo"];
     }
 }
--(void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden= NO;
-
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];    
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+//    [self.navigationController setNavigationBarHidden:YES animated:animated];
     
     [_nameTf resignFirstResponder];
     
     [self upData];
 }
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -201,4 +208,11 @@
         NSLog(@"点击了背景或取消按钮");
     }];
 }
+
+- (IBAction)gexingqianmingAction:(id)sender {
+    YXMineQianMingViewController * vc = [[YXMineQianMingViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+
 @end

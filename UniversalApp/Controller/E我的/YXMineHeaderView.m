@@ -15,12 +15,22 @@
     //点击几次后触发事件响应，默认为：1
     click.numberOfTapsRequired = 1;
     [self.mineImageView addGestureRecognizer:click];
+    
+    
+    UITapGestureRecognizer * jifenclick = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jifenclickAction:)];
+    //点击几次后触发事件响应，默认为：1
+    click.numberOfTapsRequired = 1;
+    [self.jifenView addGestureRecognizer:jifenclick];
+    
+    ViewBorderRadius(self.jifenView, 15, 1, kRGBA(176, 151, 99, 1));
+    ViewBorderRadius(self.sexView, 14, 1, KWhiteColor);
 }
 -(void)clickAction:(id)sender{
-    self.imageScale= [ImageScale new];
-    [self.imageScale scaleImageView:self.mineImageView];
+//    self.imageScale= [ImageScale new];
+//    [self.imageScale scaleImageView:self.mineImageView];
+    self.mineClickImageblock();
 }
-- (IBAction)editPersonAction:(id)sender{
+-(void)jifenclickAction:(id)sender{
     self.editPersionblock();
 }
 - (IBAction)guanzhuAction:(id)sender{
@@ -44,5 +54,8 @@
 }
 - (IBAction)backVCAction:(id)sender {
     self.mineBackVCBlock();
+}
+- (IBAction)shezhiAction:(id)sender {
+    self.settingBlock();
 }
 @end

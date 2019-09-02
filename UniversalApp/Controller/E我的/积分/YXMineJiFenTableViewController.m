@@ -7,87 +7,99 @@
 //
 
 #import "YXMineJiFenTableViewController.h"
+#import "YXMineJiFenHistoryViewController.h"
+#import "YXMineQianDaoView.h"
 
 @interface YXMineJiFenTableViewController ()
 
 @end
 
 @implementation YXMineJiFenTableViewController
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
 
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    self.view.backgroundColor = kRGBA(10, 36, 54, 1);
+    ViewRadius(self.accImv, 36);
+    ViewRadius(self.qiandaoBtn, 11);
+    [self.qiandaoBtn setBackgroundColor:kRGBA(10, 36, 54, 1)];
+    ViewRadius(self.qiandaoView, 5);
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    ViewBorderRadius(self.finish1, 11, 1, kRGBA(10, 36, 54, 1));
+    ViewBorderRadius(self.finish2, 11, 1, kRGBA(10, 36, 54, 1));
+    ViewBorderRadius(self.finish3, 11, 1, kRGBA(10, 36, 54, 1));
+    ViewBorderRadius(self.finish4, 11, 1, kRGBA(10, 36, 54, 1));
+    ViewBorderRadius(self.finish5, 11, 1, kRGBA(10, 36, 54, 1));
+    ViewBorderRadius(self.finish6, 11, 1, kRGBA(10, 36, 54, 1));
+    ViewBorderRadius(self.finish7, 11, 1, kRGBA(10, 36, 54, 1));
+    ViewBorderRadius(self.finish8, 11, 1, kRGBA(10, 36, 54, 1));
+    ViewBorderRadius(self.finish9, 11, 1, kRGBA(10, 36, 54, 1));
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return [super numberOfSectionsInTableView:tableView];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return [super tableView:tableView numberOfRowsInSection:section];
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+- (IBAction)backAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (IBAction)qiandaoAction:(id)sender {
+    [self handleShowContentView];
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (IBAction)jifenHistoryAction:(id)sender {
+    UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+    YXMineJiFenHistoryViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineJiFenHistoryViewController"];
+    [self.navigationController pushViewController:VC animated:YES];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+
+
+
+
+
+- (void)handleShowContentView {
+    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXMineQianDaoView" owner:self options:nil];
+    YXMineQianDaoView * contentView = [nib objectAtIndex:0];
+    contentView.frame = CGRectMake(20, 110, KScreenWidth-40, 403);
+    contentView.backgroundColor = KClearColor;
+    QMUIModalPresentationViewController *modalViewController = [[QMUIModalPresentationViewController alloc] init];
+//    modalViewController.contentViewMargins = UIEdgeInsetsMake(0, modalViewController.view.frame.size.width/2, 0, 0);
+    modalViewController.contentView = contentView;
+    [modalViewController showWithAnimated:YES completion:nil];
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    NSLog(@"%f",self.tableView.contentOffset.y);
+    if (self.tableView.contentOffset.y <= 0) {
+        self.tableView.bounces = NO;
+        
+        NSLog(@"禁止下拉");
+    }
+    else
+        if (self.tableView.contentOffset.y >= 0){
+            self.tableView.bounces = YES;
+            NSLog(@"允许上拉");
+            
+        }
 }
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    CGPoint offset = tableV.contentOffset;
+//    if (offset.y <= 0) {
+//        offset.y = 0;
+//    }
+//    tableV.contentOffset = offset;
+//}
 @end

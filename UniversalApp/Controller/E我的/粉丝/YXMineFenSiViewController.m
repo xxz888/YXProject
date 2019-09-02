@@ -21,14 +21,10 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = NO;
     self.title = @"粉丝列表";
+    self.navigationController.navigationBar.hidden = YES;
+}
 
-}
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [self.navigationController.navigationBar setHidden:YES];
-}
 -(void)commonAction:(id)object{
     self.dataArray = [self commonAction:object dataArray:self.dataArray];
     [self.yxTableView reloadData];
@@ -143,4 +139,8 @@
     }
 
 }
+- (IBAction)backAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 @end

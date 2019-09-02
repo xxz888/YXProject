@@ -26,6 +26,8 @@
 #import "YXMineMyDianZanViewController.h"
 #import "YXMineFindViewController.h"
 #import "YXMineMyCollectionViewController.h"
+#import "YXMineJiFenTableViewController.h"
+
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
 
 static CGFloat const HeaderImageViewHeight =320;
@@ -54,26 +56,23 @@ static CGFloat const HeaderImageViewHeight =320;
 #pragma mark - Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    if (@available(iOS 11.0, *)) {
-//        [[UIScrollView appearance] setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
-//    } else {
-//        self.automaticallyAdjustsScrollViewInsets = NO;
-//    }
+    if (@available(iOS 11.0, *)) {
+        [[UIScrollView appearance] setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     //如果使用自定义的按钮去替换系统默认返回按钮，会出现滑动返回手势失效的情况
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     [self setupSubViews];
     self.isEnlarge = NO;
+    [self updateNavigationBarBackgroundColor];
+    [self setViewData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
-//    [self updateNavigationBarBackgroundColor];
-    [self setViewData];
-}
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    self.navigationController.navigationBar.hidden = YES;
+
 }
 #pragma mark - Private Methods
 - (void)setupSubViews {
@@ -92,12 +91,12 @@ static CGFloat const HeaderImageViewHeight =320;
     kWeakSelf(self);
     QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
     }];
-    QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"设置" style:QMUIAlertActionStyleDefault handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
-
-        UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
-        YXMineSettingTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineSettingTableViewController"];
-        [weakself.navigationController pushViewController:VC animated:YES];
-    }];
+//    QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"设置" style:QMUIAlertActionStyleDefault handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+//
+//        UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+//        YXMineSettingTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineSettingTableViewController"];
+//        [weakself.navigationController pushViewController:VC animated:YES];
+//    }];
     QMUIAlertAction *action3 = [QMUIAlertAction actionWithTitle:@"分享" style:QMUIAlertActionStyleDefault handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
 
     }];
@@ -108,7 +107,7 @@ static CGFloat const HeaderImageViewHeight =320;
  
     QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:QMUIAlertControllerStyleActionSheet];
     [alertController addAction:action1];
-    [alertController addAction:action2];
+//    [alertController addAction:action2];
     [alertController addAction:action3];
     [alertController addAction:action4];
 
@@ -150,8 +149,6 @@ static CGFloat const HeaderImageViewHeight =320;
         
         _headerView.mineImageView.layer.masksToBounds = YES;
         _headerView.mineImageView.layer.cornerRadius = _headerView.mineImageView.frame.size.width / 2.0;
-//        ViewBorderRadius(_headerView.guanzhuBtn, 5, 1,CFontColor1);
-//        ViewBorderRadius(_headerView.editPersonBtn, 5, 1, CFontColor1);
         [self headerViewBlockAction];
         [self setViewData];
     }
@@ -163,6 +160,8 @@ static CGFloat const HeaderImageViewHeight =320;
         KPostNotification(KNotificationLoginStateChange, @NO);
         return;
     }
+    UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+
     kWeakSelf(self);
     _headerView.guanzhublock = ^{
  
@@ -200,9 +199,8 @@ static CGFloat const HeaderImageViewHeight =320;
     };
     
     _headerView.editPersionblock = ^{
-        UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
-        YXHomeEditPersonTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXHomeEditPersonTableViewController"];
-        VC.userInfoDic = [NSDictionary dictionaryWithDictionary:weakself.userInfoDic];
+        
+        YXMineJiFenTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineJiFenTableViewController"];
         [weakself.navigationController pushViewController:VC animated:YES];
     };
     
@@ -212,6 +210,16 @@ static CGFloat const HeaderImageViewHeight =320;
     
     _headerView.mineBackVCBlock = ^{
         [weakself.navigationController popViewControllerAnimated:YES];
+    };
+    
+    _headerView.settingBlock = ^{
+        YXMineSettingTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineSettingTableViewController"];
+        [weakself.navigationController pushViewController:VC animated:YES];
+    };
+    _headerView.mineClickImageblock = ^{
+        YXHomeEditPersonTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXHomeEditPersonTableViewController"];
+        VC.userInfoDic = [NSDictionary dictionaryWithDictionary:weakself.userInfoDic];
+        [weakself.navigationController pushViewController:VC animated:YES];
     };
 }
 /**
@@ -246,7 +254,6 @@ static CGFloat const HeaderImageViewHeight =320;
          * 2.维持吸顶状态(pageViewController.scrollView.contentOffsetY > 0)
          */
 
-        
         if (self.cannotScroll) {
             //“维持吸顶状态”
 //            scrollView.contentOffset = CGPointMake(0, criticalPointOffsetY);
@@ -408,8 +415,8 @@ static CGFloat const HeaderImageViewHeight =320;
             }
         }
         _segmentedPageViewController = [[HGSegmentedPageViewController alloc] init];
-        _segmentedPageViewController.categoryView.titleNomalFont = [UIFont systemFontOfSize:14];
-        _segmentedPageViewController.categoryView.titleSelectedFont = [UIFont systemFontOfSize:15 weight:UIFontWeightBold];
+        _segmentedPageViewController.categoryView.titleNomalFont = [UIFont systemFontOfSize:15];
+        _segmentedPageViewController.categoryView.titleSelectedFont = [UIFont systemFontOfSize:16 weight:UIFontWeightBold];
         _segmentedPageViewController.pageViewControllers = controllers.copy;
         _segmentedPageViewController.categoryView.titles = titles;
         _segmentedPageViewController.categoryView.originalIndex = self.selectedIndex;

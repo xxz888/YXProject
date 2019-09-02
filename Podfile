@@ -19,6 +19,6 @@ pod 'UMCPush'
 pod 'UMCSecurityPlugins'
 pod 'SocketRocket'
 pod 'UMCAnalytics'
-
-
+pod 'HGPersonalCenterExtend', '0.1.6'
+pod 'GKNavigationBarViewController', '2.2.5'
 end

@@ -16,9 +16,13 @@
 @end
 
 @implementation YXMineTongYongTableViewController
+- (IBAction)backAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.hidden = YES;
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

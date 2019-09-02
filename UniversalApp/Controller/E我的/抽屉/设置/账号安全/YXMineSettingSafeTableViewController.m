@@ -14,15 +14,6 @@
 @end
 
 @implementation YXMineSettingSafeTableViewController
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-}
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     UserInfo *userInfo = curUser;
@@ -66,6 +57,10 @@
     
     
 }
+- (IBAction)backAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(void)bingAction{
     kWeakSelf(self);
     [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_WechatSession currentViewController:nil completion:^(id result, NSError *error) {

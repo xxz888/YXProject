@@ -18,7 +18,11 @@
 @end
 
 @implementation YXMineSettingTableViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -38,15 +42,14 @@
     btn.layer.cornerRadius = 22.5;
     btn.backgroundColor = kRGBA(10, 36, 54, 1);
     [btn setTitle:@"退出登录" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(exitAppAction) forControlEvents:UIControlEventTouchUpInside];
     [self.tableView addSubview:btn];
 }
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-}
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
+- (void)exitAppAction{
+    [self.navigationController popViewControllerAnimated:NO];
+    kWeakSelf(self);
+    [userManager logout:^(BOOL success, NSString *des) {
+    }];
 }
 #pragma mark - Table view data source
 
@@ -106,11 +109,9 @@
             break;
     }
 }
-- (IBAction)exitAppAction:(id)sender {
-    [self.navigationController popViewControllerAnimated:NO];
-    kWeakSelf(self);
-    [userManager logout:^(BOOL success, NSString *des) {
-    }];
+
+- (IBAction)backAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)jumpVC:(UIViewController *)vc{

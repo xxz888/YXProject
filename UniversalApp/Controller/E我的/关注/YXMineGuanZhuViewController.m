@@ -17,25 +17,15 @@
 
 @implementation YXMineGuanZhuViewController
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-    self.title = @"关注列表";
-
-    
-    
-
-}
 -(void)commonAction:(id)object{
     [self.dataArray removeAllObjects];
     [self.dataArray addObjectsFromArray:object];
     [self.yxTableView reloadData];
 }
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [self.navigationController.navigationBar setHidden:YES];
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.dataArray = [[NSMutableArray alloc]init];
@@ -120,4 +110,8 @@
     }
    
 }
+- (IBAction)backAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 @end

@@ -20,13 +20,16 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.navigationItem.title = @"我的消息";
-    self.view.backgroundColor = YXRGBAColor(239, 239, 239);
+    
+
     
     [self setUI];
     
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
     [self getNewMessageNumeber];
 }
 -(void)viewWillDisappear:(BOOL)animated{
@@ -34,14 +37,14 @@
 
 }
 -(void)setUI{
-    self.zanjb.layer.masksToBounds = YES;
-    self.zanjb.layer.cornerRadius = self.zanjb.frame.size.width / 2.0;
     
-    self.fensijb.layer.masksToBounds = YES;
-    self.fensijb.layer.cornerRadius = self.fensijb.frame.size.width / 2.0;
     
-    self.hdjb.layer.masksToBounds = YES;
-    self.hdjb.layer.cornerRadius = self.hdjb.frame.size.width / 2.0;
+
+    ViewBorderRadius(self.zanjb, 8, 1, KWhiteColor);
+    ViewBorderRadius(self.fensijb, 8, 1, KWhiteColor);
+    ViewBorderRadius(self.hdjb, 8, 1, KWhiteColor);
+    
+    
     
     //view添加点击事件
     UITapGestureRecognizer *tapGesturRecognizer1=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
@@ -55,6 +58,38 @@
     UITapGestureRecognizer *tapGesturRecognizer3 =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
     self.view3.tag = 1003;
     [self.view3 addGestureRecognizer:tapGesturRecognizer3];
+    [self addShadowToView:self.stackView withColor:kRGBA(102, 102, 102, 0.3)];
+    ViewBorderRadius(self.tuisongBtn, 2, 1, kRGBA(10, 36, 51, 1));
+    
+    ViewBorderRadius(self.yiduBtn, 11, 1, kRGBA(238, 238, 238, 1));
+    
+    
+    
+//    UIImage    * btnImage = [UIImage imageNamed:@"messageqingchu.png"];// 11*6
+//    CGFloat    imageWidth = 12;
+//    CGFloat    space = 1;// 图片和文字的间距
+//    CGFloat    titleWidth = [@"一键清除" sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10]}].width;
+//    [self.yiduBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -(imageWidth+space*0.5), 0, (imageWidth+space*0.5))];
+//    [self.yiduBtn setImageEdgeInsets:UIEdgeInsetsMake(0, (titleWidth + space*0.5), 0, -(titleWidth + space*0.5))];
+
+}
+/// 添加四边阴影效果
+- (void)addShadowToView:(UIView *)theView withColor:(UIColor *)theColor {
+    // 阴影颜色
+    theView.layer.shadowColor = theColor.CGColor;
+    // 阴影偏移，默认(0, -3)
+    theView.layer.shadowOffset = CGSizeMake(0,0);
+    // 阴影透明度，默认0
+    theView.layer.shadowOpacity = 1;
+    // 阴影半径，默认3
+    theView.layer.shadowRadius = 3;
+    
+    //    _imageView.layer.shadowOffset = CGSizeMake(5,5);//shadowOffset阴影偏移,x向右偏移4，y向下偏移4，默认(0, -3),这个跟shadowRadius配合使用
+    
+    
+    //   theView.layer.masksToBounds = YES;
+    theView.layer.cornerRadius = 5;
+    
 }
 -(void)tapAction:(id)sender{
     UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;
@@ -99,4 +134,6 @@
 
 
 
+- (IBAction)tuisongAction:(id)sender {
+}
 @end

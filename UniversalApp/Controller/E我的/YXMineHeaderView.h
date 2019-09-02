@@ -44,6 +44,9 @@ typedef void(^editPersionBlock)();
 @property (weak, nonatomic) IBOutlet UIButton *editPersonBtn;
 
 
+typedef void(^settingBlock)();
+@property (nonatomic,copy) settingBlock settingBlock;
+
 
 
 @property (weak, nonatomic) IBOutlet UIButton *guanzhuBtn;
@@ -61,6 +64,15 @@ typedef void(^guanZhuOtherBlock)();
 typedef void(^MineBackVCBlock)();
 @property (nonatomic,copy) MineBackVCBlock mineBackVCBlock;
 @property (nonatomic, strong) ImageScale *imageScale;
+
+typedef void(^mineClickImageBlock)();
+@property (nonatomic,copy) mineClickImageBlock mineClickImageblock;
+
+
+@property (weak, nonatomic) IBOutlet UIView *jifenView;
+@property (weak, nonatomic) IBOutlet UIView *sexView;
+
+
 
 
 @end

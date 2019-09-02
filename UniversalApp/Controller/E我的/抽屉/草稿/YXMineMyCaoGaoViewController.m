@@ -21,15 +21,9 @@
 @implementation YXMineMyCaoGaoViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = NO;
     JQFMDB *db = [JQFMDB shareDatabase];
     self.caoGaoArray = [db jq_lookupTable:YX_USER_FaBuCaoGao dicOrModel:[YXShaiTuModel class] whereFormat:nil];
     [self.yxTableView reloadData];
-}
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.hidden = YES;
-    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

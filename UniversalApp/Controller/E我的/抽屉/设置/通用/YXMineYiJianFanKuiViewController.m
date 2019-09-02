@@ -13,13 +13,17 @@
 @end
 
 @implementation YXMineYiJianFanKuiViewController
+
+- (IBAction)backAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.hidden = YES;
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"意见反馈";
     self.textView = [[QMUITextView alloc] init];
     self.textView.frame = CGRectMake(0, 0, KScreenWidth, self.yijianView.frame.size.height);
     self.textView.delegate = self;

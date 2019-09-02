@@ -11,6 +11,21 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXMineJiFenTableViewController : RootTableViewController
+@property (weak, nonatomic) IBOutlet UIImageView *accImv;
+@property (weak, nonatomic) IBOutlet UIButton *qiandaoBtn;
+- (IBAction)qiandaoAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *qiandaoView;
+
+@property (weak, nonatomic) IBOutlet UIButton *finish1;
+@property (weak, nonatomic) IBOutlet UIButton *finish2;
+@property (weak, nonatomic) IBOutlet UIButton *finish3;
+@property (weak, nonatomic) IBOutlet UIButton *finish4;
+@property (weak, nonatomic) IBOutlet UIButton *finish5;
+@property (weak, nonatomic) IBOutlet UIButton *finish6;
+@property (weak, nonatomic) IBOutlet UIButton *finish7;
+@property (weak, nonatomic) IBOutlet UIButton *finish8;
+@property (weak, nonatomic) IBOutlet UIButton *finish9;
+- (IBAction)jifenHistoryAction:(id)sender;
 
 @end
 
