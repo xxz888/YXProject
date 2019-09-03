@@ -7,7 +7,6 @@
 //
 
 #import "UserManager.h"
-#import <UMSocialCore/UMSocialCore.h>
 #import "YXBindPhoneViewController.h"
 @implementation UserManager
 
@@ -79,48 +78,51 @@ SINGLETON_FOR_CLASS(UserManager);
     //友盟登录类型
     UMSocialPlatformType platFormType;
     kWeakSelf(self);
+    NSString * third_type = @"";
     if (loginType == kUserLoginTypeQQ) {
         platFormType = UMSocialPlatformType_QQ;
+        third_type = @"3";
     }else if (loginType == kUserLoginTypeWeChat){
         platFormType = UMSocialPlatformType_WechatSession;
+        third_type = @"1";
+
     }else if (loginType == kUserLoginTypeWeiBo){
         platFormType = UMSocialPlatformType_Sina;
+        third_type = @"2";
+
     }else{
         platFormType = UMSocialPlatformType_UnKnown;
     }
     //第三方登录
     if (loginType != kUserLoginTypePwd) {
-//        [MBProgressHUD showActivityMessageInView:@"授权中..."];
         [[UMSocialManager defaultManager] getUserInfoWithPlatform:platFormType currentViewController:nil completion:^(id result, NSError *error) {
             if (error) {
                 [QMUITips showError:error.userInfo[@"message"]];
-//                [MBProgressHUD hideHUD];
-//                if (completion) {
-//                    completion(NO,error.localizedDescription);
-//                }
             } else {
                 UMSocialUserInfoResponse *resp = result;
-//                // 授权信息
-//                NSLog(@"QQ uid: %@", resp.uid);
-//                NSLog(@"QQ openid: %@", resp.openid);
-//                NSLog(@"QQ accessToken: %@", resp.accessToken);
-//                NSLog(@"QQ expiration: %@", resp.expiration);
-//                // 用户信息
-//                NSLog(@"QQ name: %@", resp.name);
-//                NSLog(@"QQ iconurl: %@", resp.iconurl);
-//                NSLog(@"QQ gender: %@", resp.unionGender);
-//                // 第三方平台SDK源数据
-//                NSLog(@"QQ originalResponse: %@", resp.originalResponse);
+                NSString * cityName = @"";
+                NSDictionary *params = @{};
                 
-                NSString * cityName = [resp.originalResponse[@"province"] append:resp.originalResponse[@"city"]];
-                //登录参数
-                NSDictionary *params = @{@"third_type":@"3",
-                                         @"unique_id":resp.openid,
-                                         @"username":resp.name,
-                                         @"photo":resp.iconurl,
-                                         @"gender":[resp.unionGender isEqualToString:@"男"] ? @"1":@"0",
-                                         @"site":cityName
-                                         };
+                if (platFormType == UMSocialPlatformType_Sina) {
+                    NSDictionary * dicwb = resp.originalResponse;
+                    cityName = resp.extDic[@"region"];
+                    params = @{@"third_type":third_type,
+                               @"unique_id":kGetString(dicwb[@"id"]),
+                               @"username":dicwb[@"name"],
+                               @"photo":dicwb[@"profile_image_url"],
+                               @"gender":[resp.unionGender isEqualToString:@"男"] ? @"1":@"0",
+                               @"site":cityName
+                               };
+                }else{
+                    cityName = [resp.originalResponse[@"province"] append:resp.originalResponse[@"city"]];
+                    params = @{@"third_type":third_type,
+                               @"unique_id":resp.openid,
+                               @"username":resp.name,
+                               @"photo":resp.iconurl,
+                               @"gender":[resp.unionGender isEqualToString:@"男"] ? @"1":@"0",
+                               @"site":cityName
+                               };
+                }
                 weakself.loginType = loginType;
                 
                 

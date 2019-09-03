@@ -7,13 +7,12 @@
 //
 
 #import "AppDelegate+AppService.h"
-#import <UMSocialCore/UMSocialCore.h>
+#import <UMShare/UMShare.h>
 #import "LoginViewController.h"
 //#import "OpenUDID.h"
 #import <YTKNetwork.h>
 #import "SaltedFishTabBarVC.h"
 #import "UDPManage.h"
-
 #import  <UserNotifications/UserNotifications.h>// Push组件必须的系统库
 #import "YXSecondViewController.h"
 #import "YXFindViewController.h"
@@ -173,8 +172,8 @@
     [[UMSocialManager defaultManager] openLog:YES];
     
     /* 设置友盟appkey */
-    [[UMSocialManager defaultManager] setUmSocialAppkey:UMengKey];
-    
+    [UMConfigure initWithAppkey:UMengKey channel:nil];
+
     //友盟分享
     [self configUSharePlatforms];
     //友盟推送
@@ -266,7 +265,7 @@
     /* 设置微信的appKey和appSecret */
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:kAppKey_Wechat appSecret:kSecret_Wechat redirectURL:nil];
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:kAppKey_Tencent  appSecret:kAppKey_Tencent_Secret redirectURL:nil];
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:kAppKey_WeiBo  appSecret:kAppKey_WeiBo_Secret redirectURL:nil];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:kAppKey_WeiBo  appSecret:kAppKey_WeiBo_Secret redirectURL:@"http://www.sharesdk.cn"];
 }
 
 #pragma mark ————— OpenURL 回调 —————

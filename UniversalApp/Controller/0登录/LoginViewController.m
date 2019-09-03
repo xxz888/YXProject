@@ -7,7 +7,6 @@
 //
 
 #import "LoginViewController.h"
-#import <UMSocialCore/UMSocialCore.h>
 #import <AVFoundation/AVFoundation.h>
 #import "UIButton+CountDown.h"
 #import "UDPManage.h"
