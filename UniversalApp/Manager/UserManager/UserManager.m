@@ -234,20 +234,29 @@ SINGLETON_FOR_CLASS(UserManager);
 #pragma mark ————— 储存用户信息 —————
 -(void)saveUserInfo{
     if (self.curUserInfo) {
-        YYCache *cache = [[YYCache alloc]initWithName:KUserCacheName];
         NSDictionary *dic = [self.curUserInfo modelToJSONObject];
-        [cache setObject:dic forKey:KUserModelCache];
+        UserDefaultsSET(dic, KUserInfo);
+        
+//        YYCache *cache = [[YYCache alloc]initWithName:KUserCacheName];
+//        NSDictionary *dic = [self.curUserInfo modelToJSONObject];
+//        [cache setObject:dic forKey:KUserModelCache];
     }
 }
 #pragma mark ————— 加载缓存的用户信息 —————
 -(BOOL)loadUserInfo{
-    YYCache *cache = [[YYCache alloc]initWithName:KUserCacheName];
-    NSDictionary * userDic = (NSDictionary *)[cache objectForKey:KUserModelCache];
-    if (userDic) {
-        self.curUserInfo = [UserInfo modelWithJSON:userDic];
+    NSDictionary * infoDic = UserDefaultsGET(KUserInfo);
+    if (infoDic) {
+        self.curUserInfo = [UserInfo modelWithJSON:infoDic];
         return YES;
     }
     return NO;
+//    YYCache *cache = [[YYCache alloc]initWithName:KUserCacheName];
+//    NSDictionary * userDic = (NSDictionary *)[cache objectForKey:KUserModelCache];
+//    if (userDic) {
+//        self.curUserInfo = [UserInfo modelWithJSON:userDic];
+//        return YES;
+//    }
+//    return NO;
 }
 #pragma mark ————— 被踢下线 —————
 -(void)onKick{
@@ -268,13 +277,17 @@ SINGLETON_FOR_CLASS(UserManager);
     self.curUserInfo = nil;
     self.isLogined = NO;
     YX_MANAGER.isClear = NO;
-//    //移除缓存
-    YYCache *cache = [[YYCache alloc]initWithName:KUserCacheName];
-    [cache removeAllObjectsWithBlock:^{
-        if (completion) {
-            completion(YES,nil);
-        }
-    }];
+    
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:KUserInfo];
+    
+
+    //移除缓存
+//    YYCache *cache = [[YYCache alloc]initWithName:KUserCacheName];
+//    [cache removeAllObjectsWithBlock:^{
+//        if (completion) {
+//            completion(YES,nil);
+//        }
+//    }];
     KPostNotification(KNotificationLoginStateChange, @NO);
 
 }

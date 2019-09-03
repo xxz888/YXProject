@@ -273,6 +273,7 @@
 		BB86C916231DFA2400A061E2 /* libSocialWeChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB86C906231DFA2400A061E2 /* libSocialWeChat.a */; };
 		BB86C917231DFA2400A061E2 /* libSocialSina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB86C909231DFA2400A061E2 /* libSocialSina.a */; };
 		BB86C918231DFA2400A061E2 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB86C90D231DFA2400A061E2 /* libSocialQQ.a */; };
+		BB86C91B231E671E00A061E2 /* YXMineChouJiangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB86C91A231E671E00A061E2 /* YXMineChouJiangViewController.m */; };
 		BB928F4A21F9BB960090A044 /* YXHomeEditPersonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F4921F9BB960090A044 /* YXHomeEditPersonTableViewController.m */; };
 		BB928F4D21F9CA0A0090A044 /* MCTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F4C21F9CA090090A044 /* MCTabBar.m */; };
 		BB928F5721FABCC30090A044 /* YXMinePingLunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F5521FABCC30090A044 /* YXMinePingLunViewController.m */; };
@@ -1158,6 +1159,8 @@
 		BB86C90A231DFA2400A061E2 /* UMSocialSinaHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialSinaHandler.h; sourceTree = "<group>"; };
 		BB86C90C231DFA2400A061E2 /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
 		BB86C90D231DFA2400A061E2 /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
+		BB86C919231E671E00A061E2 /* YXMineChouJiangViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineChouJiangViewController.h; sourceTree = "<group>"; };
+		BB86C91A231E671E00A061E2 /* YXMineChouJiangViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineChouJiangViewController.m; sourceTree = "<group>"; };
 		BB928F4821F9BB960090A044 /* YXHomeEditPersonTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeEditPersonTableViewController.h; sourceTree = "<group>"; };
 		BB928F4921F9BB960090A044 /* YXHomeEditPersonTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeEditPersonTableViewController.m; sourceTree = "<group>"; };
 		BB928F4B21F9CA090090A044 /* MCTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCTabBar.h; sourceTree = "<group>"; };
@@ -2517,6 +2520,8 @@
 				BB86C8B6231B984A00A061E2 /* YXMineQianDaoView.xib */,
 				BB86C8B8231B987C00A061E2 /* YXMineQianDaoView.h */,
 				BB86C8B9231B987C00A061E2 /* YXMineQianDaoView.m */,
+				BB86C919231E671E00A061E2 /* YXMineChouJiangViewController.h */,
+				BB86C91A231E671E00A061E2 /* YXMineChouJiangViewController.m */,
 			);
 			path = "积分";
 			sourceTree = "<group>";
@@ -6332,6 +6337,7 @@
 				BBD30CE421E5CD89000D3244 /* YXMineFenSiViewController.m in Sources */,
 				BB21FD8922B0991E0059BCAC /* KSVideoPlayerBaseView.m in Sources */,
 				BBDA2EE721EC84C600EDCCFF /* CBGroupAndStreamView.m in Sources */,
+				BB86C91B231E671E00A061E2 /* YXMineChouJiangViewController.m in Sources */,
 				BB6D2A3621EEC63900F5049F /* HCEmojiManager.m in Sources */,
 				BBCC4B1821E8927700493F40 /* Utility.m in Sources */,
 				BBE82CFF21E44A7D004E4144 /* ZLPhotoPickerDatas.m in Sources */,

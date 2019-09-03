@@ -9,6 +9,7 @@
 #import "YXMineJiFenTableViewController.h"
 #import "YXMineJiFenHistoryViewController.h"
 #import "YXMineQianDaoView.h"
+#import "YXMineChouJiangViewController.h"
 
 @interface YXMineJiFenTableViewController ()
 
@@ -54,6 +55,12 @@
 }
 
 - (IBAction)qiandaoAction:(id)sender {
+    
+    [self.qiandaoBtn setTitle:@"已签到" forState:UIControlStateNormal];
+    [self.qiandaoBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
+    [self.qiandaoBtn setBackgroundColor:[UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0]];
+    self.qiandaoBtn.userInteractionEnabled = NO;
+ 
     [self handleShowContentView];
 }
 - (IBAction)jifenHistoryAction:(id)sender {
@@ -94,6 +101,9 @@
             NSLog(@"允许上拉");
             
         }
+}
+- (IBAction)jifenshangchengAction:(id)sender {
+    [self.navigationController pushViewController:[YXMineChouJiangViewController new] animated:YES];
 }
 //- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 //    CGPoint offset = tableV.contentOffset;
