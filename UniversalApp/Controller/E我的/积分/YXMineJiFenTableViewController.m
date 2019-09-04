@@ -25,19 +25,19 @@
     [super viewDidLoad];
 //    self.view.backgroundColor = kRGBA(10, 36, 54, 1);
     ViewRadius(self.accImv, 36);
-    ViewRadius(self.qiandaoBtn, 11);
+    ViewRadius(self.qiandaoBtn, 12);
     [self.qiandaoBtn setBackgroundColor:kRGBA(10, 36, 54, 1)];
     ViewRadius(self.qiandaoView, 5);
     
-    ViewBorderRadius(self.finish1, 11, 1, kRGBA(10, 36, 54, 1));
-    ViewBorderRadius(self.finish2, 11, 1, kRGBA(10, 36, 54, 1));
-    ViewBorderRadius(self.finish3, 11, 1, kRGBA(10, 36, 54, 1));
-    ViewBorderRadius(self.finish4, 11, 1, kRGBA(10, 36, 54, 1));
-    ViewBorderRadius(self.finish5, 11, 1, kRGBA(10, 36, 54, 1));
-    ViewBorderRadius(self.finish6, 11, 1, kRGBA(10, 36, 54, 1));
-    ViewBorderRadius(self.finish7, 11, 1, kRGBA(10, 36, 54, 1));
-    ViewBorderRadius(self.finish8, 11, 1, kRGBA(10, 36, 54, 1));
-    ViewBorderRadius(self.finish9, 11, 1, kRGBA(10, 36, 54, 1));
+    ViewBorderRadius(self.finish1, 2, 1, kRGBA(10, 36, 54, 1));
+    ViewBorderRadius(self.finish2, 2, 1, kRGBA(10, 36, 54, 1));
+    ViewBorderRadius(self.finish3, 2, 1, kRGBA(10, 36, 54, 1));
+    ViewBorderRadius(self.finish4, 2, 1, kRGBA(10, 36, 54, 1));
+    ViewBorderRadius(self.finish5, 2, 1, kRGBA(10, 36, 54, 1));
+    ViewBorderRadius(self.finish6, 2, 1, kRGBA(10, 36, 54, 1));
+    ViewBorderRadius(self.finish7, 2, 1, kRGBA(10, 36, 54, 1));
+    ViewBorderRadius(self.finish8, 2, 1, kRGBA(10, 36, 54, 1));
+    ViewBorderRadius(self.finish9, 2, 1, kRGBA(10, 36, 54, 1));
 }
 
 #pragma mark - Table view data source
