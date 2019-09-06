@@ -18,6 +18,7 @@
 @property (nonatomic) BOOL isCanBack;
 @property (nonatomic, strong) HGSegmentedPageViewController *segmentedPageViewController;
 @property (nonatomic,strong) NSMutableArray * titlesArr;
+@property (nonatomic,strong) NSMutableArray * tmpArr;
 
 
 
@@ -46,9 +47,6 @@
             [weakself.vcArr addObject:vc];
             [weakself.titlesArr addObject:dic[@"name"]];
         }
-        YXHomeXueJiaGuBaViewController *  vc3 = [[YXHomeXueJiaGuBaViewController alloc]init];
-        [weakself.titlesArr addObject:@"品牌"];
-        [weakself.vcArr addObject:vc3];
         [weakself initSegment];
         
     }];
@@ -58,7 +56,6 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
     [self.tabBarController.tabBar setHidden:NO];
-
 
     //[self commonRequest];
 }
@@ -75,14 +72,37 @@
     [self.segmentedPageViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(weakself.view).mas_offset(UIEdgeInsetsMake(40, 0, 0, 0));
     }];
+    
+    //添加搜索框
+    UIView * searchView = [[UIView alloc]initWithFrame:CGRectMake(15, 50, KScreenWidth-30, 30)];
+    searchView.layer.backgroundColor = [UIColor colorWithRed:244/255.0 green:244/255.0 blue:244/255.0 alpha:1.0].CGColor;
+    searchView.layer.cornerRadius = 15;
+    [self.segmentedPageViewController.view addSubview:searchView];
+    
+    
+    UIImageView * fangdajingView = [[UIImageView alloc]initWithFrame:CGRectMake(16, 6, 18, 18)];
+    fangdajingView.image = [UIImage imageNamed:@"放大镜"];
+    [searchView addSubview:fangdajingView];
+    
+    UILabel * fangdajingLabel = [[UILabel alloc]initWithFrame:CGRectMake(45, 0, 100, 30)];
+    
+    
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"搜索蓝皮书"attributes: @{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Regular" size: 14],NSForegroundColorAttributeName: [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0]}];
+    
+    fangdajingLabel.attributedText = string;
+    fangdajingLabel.textColor = [UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1.0];
+    fangdajingLabel.textAlignment = NSTextAlignmentLeft;
+    fangdajingLabel.alpha = 1.0;
+    [searchView addSubview:fangdajingLabel];
+    
 }
 - (HGSegmentedPageViewController *)segmentedPageViewController{
     if (!_segmentedPageViewController) {
-   
         _segmentedPageViewController = [[HGSegmentedPageViewController alloc] init];
-        _segmentedPageViewController.categoryView.titleNomalFont = [UIFont systemFontOfSize:14];
-        _segmentedPageViewController.categoryView.titleSelectedFont = [UIFont systemFontOfSize:22 weight:UIFontWeightBold];
-        _segmentedPageViewController.categoryView.titleSelectedColor = SEGMENT_COLOR;
+        _segmentedPageViewController.categoryView.titleNomalFont = [UIFont fontWithName:@"PingFangSC-Regular" size: 16];
+        _segmentedPageViewController.categoryView.titleSelectedFont =  [UIFont fontWithName:@"PingFangSC-Medium" size: 24];
+        _segmentedPageViewController.categoryView.titleSelectedColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1.0];
+        _segmentedPageViewController.categoryView.titleNormalColor = [UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1.0];
         _segmentedPageViewController.pageViewControllers = self.vcArr.copy;
         _segmentedPageViewController.categoryView.titles = self.titlesArr;
         _segmentedPageViewController.categoryView.originalIndex = 0;

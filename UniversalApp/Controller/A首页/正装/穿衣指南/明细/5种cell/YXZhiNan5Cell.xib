@@ -17,12 +17,15 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Iq1-xw-qwP">
-                    <rect key="frame" x="20" y="15" width="394" height="93"/>
+                    <rect key="frame" x="20" y="20" width="394" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="eDm-Wq-A1U"/>
+                    </constraints>
                     <attributedString key="attributedText">
                         <fragment content="-">
                             <attributes>
                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                <font key="NSFont" size="18" name="PingFangSC-Semibold"/>
+                                <font key="NSFont" size="14" name="PingFangSC-Medium"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -32,10 +35,9 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Iq1-xw-qwP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="7jO-BZ-C8f"/>
+                <constraint firstItem="Iq1-xw-qwP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="7jO-BZ-C8f"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Iq1-xw-qwP" secondAttribute="trailing" id="CYe-QZ-orO"/>
                 <constraint firstItem="Iq1-xw-qwP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="fv6-ld-Xch"/>
-                <constraint firstAttribute="bottom" secondItem="Iq1-xw-qwP" secondAttribute="bottom" constant="15" id="veR-4r-qYy"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

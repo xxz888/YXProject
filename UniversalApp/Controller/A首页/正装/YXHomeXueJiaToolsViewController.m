@@ -104,7 +104,7 @@
     
     self.titleArray = [[NSMutableArray alloc]init];
     self.yxTableView = [[UITableView alloc]init];
-    self.yxTableView.frame = CGRectMake(0,0, KScreenWidth,self.view.frame.size.height-kTopHeight-kTabBarHeight+10);
+    self.yxTableView.frame = CGRectMake(0,45, KScreenWidth,self.view.frame.size.height-kTopHeight-kTabBarHeight+10 - 45);
     self.yxTableView.delegate = self;
     self.yxTableView.dataSource= self;
     self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -116,15 +116,14 @@
     return self.titleArray.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return (KScreenWidth-30)/1.6;
+    return 170;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXHomeXueJiaToolsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaToolsTableViewCell" forIndexPath:indexPath];
-    
     NSDictionary * dic = self.titleArray[indexPath.row];
     NSString * str1 = [(NSMutableString *)dic[@"photo"] replaceAll:@" " target:@"%20"];
     [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    
+    cell.titleLable.text = dic[@"name"];
     cell.selectionStyle = 0;
     return cell;
 }

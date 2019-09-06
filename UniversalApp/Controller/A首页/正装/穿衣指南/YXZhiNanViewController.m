@@ -25,7 +25,6 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
-          YX_MANAGER.umInfoBool = YES;
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -82,7 +81,7 @@
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXZhiNanDetailHeaderView" owner:self options:nil];
     self.headerView = [nib objectAtIndex:0];
     [self.headerView setHeaderViewData:self.startDic];
-    kWeakSelf(self);
+    /*
     _headerView.openBlock = ^(NSString * string) {
         if ([string isEqualToString:@"更多"]) {
             CGFloat h = [ShareManager inTextZhiNanOutHeight:weakself.startDic[@"intro"] lineSpace:9 fontSize:15];
@@ -94,10 +93,11 @@
 
         [weakself.yxTableView reloadData];
     };
+     */
     return  self.headerView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 200 + self.contentHeight + 25;
+    return 240;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArray.count;
@@ -105,7 +105,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.collArray.count > 0) {
         NSInteger n = [self.collArray[indexPath.row] count];
-        return 45 * (n/2+n%2) + 60;
+        return 40 * (n/2+n%2) + 80;
     }
     return 85;
 }

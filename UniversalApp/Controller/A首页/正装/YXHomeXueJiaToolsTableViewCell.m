@@ -35,7 +35,7 @@
     
     
     
-    [self addShadowToView:self.outsideView withColor:KBlackColor];
+//    [self addShadowToView:self.outsideView withColor:KBlackColor];
     
     
     self.titleImageView.layer.masksToBounds = YES;

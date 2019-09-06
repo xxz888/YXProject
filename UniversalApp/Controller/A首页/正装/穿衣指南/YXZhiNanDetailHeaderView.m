@@ -14,12 +14,15 @@
 - (void)drawRect:(CGRect)rect {
     ViewRadius(self.collVIew, 13);
     
+    
+    /*
     // 创建一个轻拍手势 同时绑定了一个事件
     UITapGestureRecognizer *aTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGRAction:)];
     // 设置轻拍次数
     aTapGR.numberOfTapsRequired = 1;
     // 添加手势
     [self.contentLbl addGestureRecognizer:aTapGR];
+     */
 }
 
 
@@ -65,6 +68,7 @@
         [self.collBtn setTitleColor:color2 forState:UIControlStateNormal];
     }
     
+    /*
     CGFloat h = [ShareManager inTextZhiNanOutHeight:titleText lineSpace:9 fontSize:15];
     if (YX_MANAGER.moreBool) {
         self.contentHeight.constant =  h + h/4 ;//
@@ -77,7 +81,7 @@
     }
     [self.contentLbl setOrgVerticalTextAlignment:OrgHLVerticalTextAlignmentMiddle];
     self.contentLbl.orgLastLineRightIndent = 10.f;
-
+     */
 }
 
     

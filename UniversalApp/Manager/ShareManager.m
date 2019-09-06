@@ -763,4 +763,56 @@ SINGLETON_FOR_CLASS(ShareManager);
     CGFloat scale = showimage.size.height/showimage.size.width;
     return KScreenWidth * scale;
 }
+
+
++ (NSMutableArray *)getSettleListWithBDArray2{
+    
+    
+    NSArray *responsData = @[@"1",@"2",@"3"];
+    
+    NSMutableArray *resultArr = [NSMutableArray array];
+    
+    NSMutableArray *tmpArr = [NSMutableArray array];
+    
+    [self combine:0 :2 :responsData :resultArr :tmpArr];
+    
+    return resultArr;
+}
+
+
+
++ (void)combine:(int)index :(NSInteger)k :(NSArray *)arr :(NSMutableArray *)resultArr :(NSMutableArray *)tmpArr{
+    
+    
+    
+    if(k == 1){
+        for (int i = index; i < arr.count; i++) {
+            
+            
+            [tmpArr addObject:arr[i]];
+            
+            [resultArr addObject:tmpArr];
+            
+            [tmpArr removeObject:arr[i]];
+        }
+    }else if(k > 1){
+        
+        
+        for (int i = index; i <= arr.count - k; i++) {
+            
+            [tmpArr addObject:arr[i]]; //tmpArr都是临时性存储一下
+            
+            [self combine:i + 1 :k - 1 :arr :resultArr :tmpArr]; //索引右移，内部循环，自然排除已经选择的元素
+            
+            [tmpArr removeObject:arr[i]];  //tmpArr因为是临时存储的，上一个组合找出后就该释放空间，存储下一个元素继续拼接组合了
+        }
+        
+        
+    }else {
+        return;
+    }
+    
+    
+    
+}
 @end

@@ -21,6 +21,7 @@
 @implementation YXMineMyCaoGaoViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
     JQFMDB *db = [JQFMDB shareDatabase];
     self.caoGaoArray = [db jq_lookupTable:YX_USER_FaBuCaoGao dicOrModel:[YXShaiTuModel class] whereFormat:nil];
     [self.yxTableView reloadData];
@@ -39,6 +40,9 @@
     
 
     
+}
+- (IBAction)backAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)clearCachae{

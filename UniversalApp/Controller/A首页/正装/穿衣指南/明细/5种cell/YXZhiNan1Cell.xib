@@ -12,20 +12,20 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="85" id="KGk-i7-Jjw" customClass="YXZhiNan1Cell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="53" id="KGk-i7-Jjw" customClass="YXZhiNan1Cell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="53"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="84.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="52.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mjj-oR-4J5">
-                        <rect key="frame" x="15" y="30" width="305" height="30"/>
+                        <rect key="frame" x="27" y="20" width="293" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="WhF-bj-WPY"/>
+                            <constraint firstAttribute="height" constant="25" id="WhF-bj-WPY"/>
                         </constraints>
                         <attributedString key="attributedText">
-                            <fragment content="-">
+                            <fragment content="胜多负少的">
                                 <attributes>
                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <font key="NSFont" size="23" name="PingFangSC-Semibold"/>
@@ -35,18 +35,28 @@
                         </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qjd-Dy-MyB">
+                        <rect key="frame" x="16" y="25" width="3" height="15"/>
+                        <color key="backgroundColor" red="0.039215686274509803" green="0.14117647058823529" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="3" id="UC8-kk-dRO"/>
+                            <constraint firstAttribute="height" constant="15" id="nWU-M9-3If"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="mjj-oR-4J5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="59V-rk-TGG"/>
+                    <constraint firstItem="mjj-oR-4J5" firstAttribute="leading" secondItem="qjd-Dy-MyB" secondAttribute="trailing" constant="8" id="EKx-ws-YQD"/>
                     <constraint firstAttribute="trailing" secondItem="mjj-oR-4J5" secondAttribute="trailing" id="HFm-ql-o53"/>
-                    <constraint firstItem="mjj-oR-4J5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="RA5-ey-daO"/>
+                    <constraint firstItem="qjd-Dy-MyB" firstAttribute="centerY" secondItem="mjj-oR-4J5" secondAttribute="centerY" id="aZP-Vg-gth"/>
+                    <constraint firstItem="qjd-Dy-MyB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="cV1-hf-uVO"/>
+                    <constraint firstItem="mjj-oR-4J5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="up5-pO-IqK"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="titleLbl" destination="mjj-oR-4J5" id="HVE-qt-KFe"/>
             </connections>
-            <point key="canvasLocation" x="133" y="35"/>
+            <point key="canvasLocation" x="131.8840579710145" y="23.102678571428569"/>
         </tableViewCell>
     </objects>
 </document>

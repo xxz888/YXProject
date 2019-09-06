@@ -132,13 +132,13 @@
     NSDictionary * dic = self.dataArray[indexPath.section][indexPath.row];
     NSInteger obj = [dic[@"obj"] integerValue];
     if (obj == 1) {
-        return 90;
+        return 53;
     }else if(obj == 2) {
-        return  [YXZhiNan2Cell jisuanCellHeight:dic] + 30;
+        return  [YXZhiNan2Cell jisuanCellHeight:dic] + 20;
     }else if(obj == 3 || obj == 4) {
-        return (KScreenWidth-30)*[dic[@"ratio"] doubleValue] + 30;
+        return (KScreenWidth-30)*[dic[@"ratio"] doubleValue] + 20;
     }else if(obj == 5){
-        return 60;
+        return 40;
     }
     return 0;
 }

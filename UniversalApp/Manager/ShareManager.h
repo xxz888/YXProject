@@ -40,6 +40,7 @@ SINGLETON_FOR_HEADER(ShareManager)
 //关注按钮初始化状态
 +(void)setGuanZhuStatus:(UIButton *)btn status:(BOOL)statusBool alertView:(BOOL)isAlertView;
 +(XHStarRateView *)fiveStarView:(CGFloat)score view:(UIView *)view;
++ (NSMutableArray *)getSettleListWithBDArray;
 //添加轮播图
 +(SDCycleScrollView *)setUpSycleScrollView:(NSMutableArray *)imageArray;
 //html

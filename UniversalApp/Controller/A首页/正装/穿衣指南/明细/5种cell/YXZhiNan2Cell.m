@@ -11,11 +11,13 @@
 @implementation YXZhiNan2Cell
 +(CGFloat)jisuanCellHeight:(NSDictionary *)dic{
     //内容
-    CGFloat height_size = [ShareManager inTextZhiNanOutHeight:dic[@"detail"] lineSpace:9 fontSize:18];
-    return height_size+5;
+    CGFloat height_size = [ShareManager inTextZhiNanOutHeight:dic[@"detail"] lineSpace:9 fontSize:14];
+    return height_size;
 }
 -(void)setCellData:(NSDictionary *)dic{
     self.contentLbl.text = dic[@"detail"];
+    CGFloat height_size = [ShareManager inTextZhiNanOutHeight:dic[@"detail"] lineSpace:9 fontSize:14];
+    self.contentHeight.constant = height_size;
 }
 
 @end

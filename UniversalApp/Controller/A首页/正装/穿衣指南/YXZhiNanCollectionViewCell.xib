@@ -13,35 +13,41 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="YXZhiNanCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="120" height="67"/>
+            <rect key="frame" x="0.0" y="0.0" width="120" height="76"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="120" height="67"/>
+                <rect key="frame" x="0.0" y="0.0" width="120" height="76"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gaH-vk-htj">
-                        <rect key="frame" x="0.0" y="0.0" width="120" height="67"/>
+                        <rect key="frame" x="0.0" y="0.0" width="120" height="76"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vQz-aI-8dN">
-                                <rect key="frame" x="0.0" y="5" width="120" height="62"/>
+                                <rect key="frame" x="0.0" y="8" width="120" height="68"/>
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <attributedString key="attributedText">
                                     <fragment content="-">
                                         <attributes>
-                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" size="16" name="PingFangSC-Regular"/>
+                                            <color key="NSColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="PingFangSC-Regular"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="vQz-aI-8dN" firstAttribute="leading" secondItem="gaH-vk-htj" secondAttribute="leading" id="BUi-Ju-eIR"/>
-                            <constraint firstItem="vQz-aI-8dN" firstAttribute="top" secondItem="gaH-vk-htj" secondAttribute="top" constant="5" id="NXv-LL-DCc"/>
+                            <constraint firstItem="vQz-aI-8dN" firstAttribute="top" secondItem="gaH-vk-htj" secondAttribute="top" constant="8" id="NXv-LL-DCc"/>
                             <constraint firstAttribute="bottom" secondItem="vQz-aI-8dN" secondAttribute="bottom" id="UGo-eh-k7A"/>
                             <constraint firstAttribute="trailing" secondItem="vQz-aI-8dN" secondAttribute="trailing" id="Zex-dJ-zUT"/>
                         </constraints>
@@ -56,12 +62,12 @@
                 <constraint firstItem="gaH-vk-htj" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="vEm-a0-il3"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
-            <size key="customSize" width="157" height="95"/>
+            <size key="customSize" width="157" height="139"/>
             <connections>
                 <outlet property="baseView" destination="gaH-vk-htj" id="fid-5Z-mLk"/>
                 <outlet property="titleLbl" destination="vQz-aI-8dN" id="o5g-7I-bvi"/>
             </connections>
-            <point key="canvasLocation" x="-1007" y="43"/>
+            <point key="canvasLocation" x="-1007.2463768115942" y="57.589285714285708"/>
         </collectionViewCell>
     </objects>
 </document>

@@ -91,16 +91,13 @@
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     
-    return UIEdgeInsetsMake(0, 0, 0,5);
+    return UIEdgeInsetsMake(0, 0, 0,0);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    CGFloat cellHeight = CGRectGetHeight(self.yxCollectionView.frame);
-    CGFloat cellWidth = CGRectGetWidth(self.yxCollectionView.frame);
-    
 
-    return CGSizeMake((cellWidth-10)/2 , 45);
+    CGFloat cellWidth = CGRectGetWidth(self.yxCollectionView.frame);
+    return CGSizeMake((cellWidth-11)/2 , 40);
 }
 
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
