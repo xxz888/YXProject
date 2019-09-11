@@ -75,6 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *backBtn;
 @property (weak, nonatomic) IBOutlet UIButton *shareBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *imgShareBtn;
+@property (weak, nonatomic) IBOutlet UIView *coustomNavView;
 
 @end
 

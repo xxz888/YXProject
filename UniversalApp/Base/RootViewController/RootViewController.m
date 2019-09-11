@@ -276,13 +276,13 @@
         [view addSubview:btn];
         if (isLeft) {
         }else{
-            if (tags.count > 0 && [tags[0] integerValue] == 999) {
-                [btn setImageEdgeInsets:UIEdgeInsetsMake(6.5, 30, 6.5, 4)];
-
-            }else{
+//            if (tags.count > 0 && [tags[0] integerValue] == 999) {
+//                [btn setImageEdgeInsets:UIEdgeInsetsMake(6.5, 30, 6.5, 4)];
+//
+//            }else{
                 [btn setContentEdgeInsets:UIEdgeInsetsMake(0, 10, 0, -10)];
 
-            }
+//            }
 
         }
         

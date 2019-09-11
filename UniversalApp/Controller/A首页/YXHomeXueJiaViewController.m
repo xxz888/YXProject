@@ -18,7 +18,6 @@
 @property (nonatomic) BOOL isCanBack;
 @property (nonatomic, strong) HGSegmentedPageViewController *segmentedPageViewController;
 @property (nonatomic,strong) NSMutableArray * titlesArr;
-@property (nonatomic,strong) NSMutableArray * tmpArr;
 
 
 
@@ -56,8 +55,6 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
     [self.tabBarController.tabBar setHidden:NO];
-
-    //[self commonRequest];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];

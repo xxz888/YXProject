@@ -77,13 +77,13 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     _iconView.userInteractionEnabled = YES;
     _nameLable = [UILabel new];
     _nameLable.font = [UIFont systemFontOfSize:14];
-    _nameLable.textColor = KDarkGaryColor;
     
     _starView = [[UIView alloc]init];
     _starView.userInteractionEnabled = NO;
     _contentLabel = [UILabel new];
-    _contentLabel.font = [UIFont systemFontOfSize:13];
+    _contentLabel.font = [UIFont fontWithName:@"苹方-简" size:14];
     _contentLabel.numberOfLines = 0;
+
     if (maxContentLabelHeight == 0) {
         maxContentLabelHeight = _contentLabel.font.lineHeight * 3;
     }
@@ -332,17 +332,10 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
      */
 }
 - (void)configTheme{
-    self.lee_theme
-    .LeeAddBackgroundColor(DAY , [UIColor whiteColor])
-    .LeeAddBackgroundColor(NIGHT , [UIColor blackColor]);
-    
-    _contentLabel.lee_theme
-    .LeeAddTextColor(DAY , [UIColor blackColor])
-    .LeeAddTextColor(NIGHT , [UIColor blackColor]);
 
-    _timeLabel.lee_theme
-    .LeeAddTextColor(DAY , [UIColor blackColor])
-    .LeeAddTextColor(NIGHT , [UIColor blackColor]);
+    
+    
+    _contentLabel.textColor = kRGBA(68, 68, 68, 1.0);
 }
 
 - (void)dealloc
@@ -365,10 +358,9 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     _nameLable.text = model.name;
     _contentLabel.text = model.msgContent;
 //    [ShareManager setLineSpace:5 withText:_contentLabel.text inLabel:_contentLabel tag:@""];
-    _contentLabel.textColor = KBlackColor;
     _picContainerView.picPathStringsArray = model.picNamesArray;
 
-
+/*
     if (model.shouldShowMoreButton) { // 如果文字高度超过60
         _moreButton.sd_layout.heightIs(20);
         _moreButton.hidden = NO;
@@ -383,7 +375,9 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
         _moreButton.sd_layout.heightIs(0);
         _moreButton.hidden = YES;
     }
-    
+    */
+    _moreButton.sd_layout.heightIs(0);
+    _moreButton.hidden = YES;
     CGFloat picContainerTopMargin = 0;
     if (model.picNamesArray.count) {
         picContainerTopMargin = 10;

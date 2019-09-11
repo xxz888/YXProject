@@ -102,13 +102,7 @@
     long needsToAddCount = commentItemsArray.count > originalLabelsCount ? (commentItemsArray.count - originalLabelsCount) : 0;
     for (int i = 0; i < needsToAddCount; i++) {
         MLLinkLabel *label = [MLLinkLabel new];
-        UIColor *highLightColor = YXRGBAColor(10, 96, 254);
-        //改变firstname颜色
-        label.linkTextAttributes = @{NSForegroundColorAttributeName : highLightColor};
-        label.lee_theme
-        .LeeAddTextColor(DAY , [UIColor blackColor])
-        .LeeAddTextColor(NIGHT , [UIColor blackColor]);
-        label.font = [UIFont systemFontOfSize:14];
+        label.font = [UIFont fontWithName:@"苹方-简" size:14];
         label.delegate = self;
         [self addSubview:label];
         [self.commentLabelsArray addObject:label];
@@ -245,6 +239,8 @@
     }
     text = [text stringByAppendingString:[NSString stringWithFormat:@":%@", model.commentString]];
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:text];
+    
+    [attString setAttributes:@{NSForegroundColorAttributeName : kRGBA(68, 68, 68, 1.0)} range:NSMakeRange(0, text.length-1)];
     [attString setAttributes:@{NSLinkAttributeName : model.firstUserName} range:[text rangeOfString:model.firstUserName]];
     
     if (model.secondUserName) {

@@ -1641,10 +1641,10 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1Y-MG-EVm">
-                                                            <rect key="frame" x="16" y="40" width="30" height="30"/>
+                                                            <rect key="frame" x="16" y="40" width="22" height="22"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="30" id="4hn-kx-54e"/>
-                                                                <constraint firstAttribute="height" constant="30" id="pQB-Ga-9kl"/>
+                                                                <constraint firstAttribute="width" constant="22" id="4hn-kx-54e"/>
+                                                                <constraint firstAttribute="height" constant="22" id="pQB-Ga-9kl"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <state key="normal" image="白色返回"/>
@@ -1653,13 +1653,13 @@
                                                             </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的积分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wrs-94-Khy">
-                                                            <rect key="frame" x="151.33333333333334" y="42.333333333333336" width="72.333333333333343" height="25.333333333333336"/>
+                                                            <rect key="frame" x="151.33333333333334" y="38.333333333333336" width="72.333333333333343" height="25.333333333333336"/>
                                                             <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="18"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcH-8N-Y6N">
-                                                            <rect key="frame" x="312" y="40.666666666666664" width="48" height="28.999999999999993"/>
+                                                            <rect key="frame" x="312" y="36.666666666666664" width="48" height="28.999999999999993"/>
                                                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                                                             <state key="normal" title="积分历史">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1669,14 +1669,14 @@
                                                             </connections>
                                                         </button>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhanweitouxiang" translatesAutoresizingMaskIntoConstraints="NO" id="qUI-Jb-wYO">
-                                                            <rect key="frame" x="16" y="93.666666666666686" width="72" height="72"/>
+                                                            <rect key="frame" x="16" y="89.666666666666671" width="72" height="72.000000000000014"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="72" id="GAp-nZ-ORj"/>
                                                                 <constraint firstAttribute="height" constant="72" id="LfS-wp-jlR"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="蓝皮书" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fui-KU-5oC">
-                                                            <rect key="frame" x="102" y="107.66666666666667" width="48" height="22.000000000000014"/>
+                                                            <rect key="frame" x="102" y="103.66666666666667" width="48" height="22"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="22" id="gFV-ph-YLP"/>
                                                             </constraints>
@@ -1685,7 +1685,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K9a-lS-GQ3">
-                                                            <rect key="frame" x="102" y="136.66666666666666" width="150" height="20"/>
+                                                            <rect key="frame" x="102" y="132.66666666666666" width="150" height="20"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minejifen1" translatesAutoresizingMaskIntoConstraints="NO" id="qvx-e4-fGq">
                                                                     <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -1714,7 +1714,7 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YdR-pa-Xih">
-                                                            <rect key="frame" x="303" y="119.66666666666669" width="57" height="20"/>
+                                                            <rect key="frame" x="303" y="115.66666666666667" width="57" height="20.000000000000014"/>
                                                             <subviews>
                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分商城" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yvf-7F-8du">
                                                                     <rect key="frame" x="0.0" y="0.0" width="52.333333333333336" height="20"/>
@@ -1776,7 +1776,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BP4-Vv-1OH">
-                                                    <rect key="frame" x="16" y="193.66666666666663" width="343" height="150"/>
+                                                    <rect key="frame" x="16" y="189.66666666666663" width="343" height="150"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已连续签到" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBU-PX-hHW">
                                                             <rect key="frame" x="12.000000000000004" y="17" width="61.333333333333343" height="17"/>
@@ -2622,7 +2622,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hiC-JZ-gAd">
-                                                    <rect key="frame" x="0.0" y="358.66666666666669" width="375" height="52"/>
+                                                    <rect key="frame" x="0.0" y="354.66666666666669" width="375" height="52"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="连续签到提醒" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9k-nk-KJj">
                                                             <rect key="frame" x="16" y="7" width="96" height="20"/>
@@ -4239,7 +4239,7 @@
         <image name="minejifen1" width="34" height="36"/>
         <image name="rightacc" width="44" height="44"/>
         <image name="zhanweitouxiang" width="1080" height="1080"/>
-        <image name="白色返回" width="23" height="40"/>
+        <image name="白色返回" width="44" height="44"/>
         <image name="黑色返回" width="44" height="44"/>
     </resources>
 </document>

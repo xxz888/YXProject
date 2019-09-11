@@ -344,8 +344,6 @@
         cell.bottomLine.hidden = YES;
     }
     cell.indexPath = indexPath;
-    cell.nameLable.textColor = KBlackColor;
-    cell.contentLabel.textColor = KDarkGaryColor;
     cell.commentView.likeStringLabel.hidden = YES;
     cell.commentView.likeLabel.hidden = YES;
     __weak typeof(self) weakSelf = self;

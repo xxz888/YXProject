@@ -37,6 +37,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    self.coustomNavView.hidden = YES;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.shareBtn.hidden = self.backBtn.hidden = self.imgShareBtn.hidden = YES;
 }
@@ -207,7 +208,7 @@
     self.isReplayingComment = YES;
     self.commentToUser = model.name;
     self.commentToUserID = model.userID;
-    [self adjustTableViewToFitKeyboard];
+//    [self adjustTableViewToFitKeyboard];
 }
 #pragma mark ========== tableview 点赞按钮 ==========
 - (void)didClickLikeButtonInCell:(SDTimeLineCell *)cell{

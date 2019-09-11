@@ -42,7 +42,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     [QMUITips showLoadingInView:self.view];
-    [self initAllControl];
+   [self initAllControl];
     //初始化所有的控件
     [self setHeaderView];
     [self requestNewList];
@@ -190,6 +190,23 @@
     
     [ShareManager inTextViewOutDifColorView:self.cell.detailLbl tag:self.startDic[@"tag"]];
 
+    
+    
+    
+    
+    if (self.dataArray.count != 0) {
+        if (!self.nodataImg) {
+            self.nodataImg = [[UILabel alloc]init];
+        }
+        self.nodataImg.frame = CGRectMake((KScreenWidth-200)/2,self.cell.frame.size.height , 200, 100);
+        self.nodataImg.text = @"暂时还没有评论";
+        self.nodataImg.font = [UIFont systemFontOfSize:14];
+        self.nodataImg.textColor = [UIColor lightGrayColor];
+        self.nodataImg.textAlignment = NSTextAlignmentCenter;
+        [self.nodataImg removeFromSuperview];
+        [self.yxTableView addSubview:self.nodataImg];
+    }
+    
     //晒图
     if ([self.startDic[@"obj"] integerValue] == 1) {
 
@@ -217,24 +234,17 @@
                 NSString * titleText = [[NSString stringWithFormat:@"%@%@",self.startDic[@"detail"],self.startDic[@"tag"]] UnicodeToUtf8];
                 CGFloat detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:15];
                 
-                Frame.size.height = 180 + detailHeight + (KScreenWidth - 20)  + self.cell.topTopHeight.constant;
+//                Frame.size.height = 180 + detailHeight + (KScreenWidth - 20)  + self.cell.topTopHeight.constant;
+                
+                
+                Frame.size.height = 170 + detailHeight + 200 + kTopHeight;
                 self.cell.frame= Frame;
                
             }
         }
          self.yxTableView.tableHeaderView = self.cell;
-        if (!self.nodataImg) {
-            self.nodataImg = [[UILabel alloc]init];
-        }
-        self.nodataImg.frame = CGRectMake((KScreenWidth-200)/2,self.cell.frame.size.height , 200, 100);
-        self.nodataImg.text = @"暂时还没有评论";
-        self.nodataImg.font = [UIFont systemFontOfSize:14];
-        self.nodataImg.textColor = [UIColor lightGrayColor];
-        self.nodataImg.textAlignment = NSTextAlignmentCenter;
-        [self.nodataImg removeFromSuperview];
-        [self.yxTableView addSubview:self.nodataImg];
-        self.nodataImg.hidden = YES;
 
+    //文章
     }else{
         self.cell.onlyOneImv.hidden = self.cell.playImV.hidden = YES;
         CGFloat detailHeight = [ShareManager inTextOutHeight:[self.startDic[@"title"] UnicodeToUtf8] lineSpace:9 fontSize:24];
@@ -304,6 +314,22 @@
            
         }
     };
+}
+-(CGFloat)inArrayCountOutHeight:(NSInteger)count{
+    CGFloat h = 0;
+    if (count == 1) {
+        h = 200;
+    }else{
+        CGFloat oneH =  (KScreenWidth - 30 )/ 3 ;
+        if (count > 3 && count <= 6) {
+            h = oneH * 2;
+        }else if (count >6){
+            h = oneH * 3;
+        }else{
+            h = oneH;
+        }
+    }
+    return h;
 }
 - (void)fenxiangAction{
     if (![userManager loadUserInfo]) {

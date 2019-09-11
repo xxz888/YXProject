@@ -374,6 +374,8 @@
 
 }
 - (void)saveImage:(UMSocialPlatformType)umType{
+//    [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_WechatSession obj:nil];
+//    return;
     UIImage* viewImage = nil;
     UITableView *scrollView = self.yxTableView;
     UIGraphicsBeginImageContextWithOptions(scrollView.contentSize, scrollView.opaque, 0.0);{
