@@ -110,7 +110,7 @@ var c = a + b
     manager.responseSerializer =  [AFHTTPResponseSerializer serializer];
     UserInfo *userInfo = curUser;
     if (curUser && userInfo.token && ![userInfo.token isEqualToString:@""]) {
-//        NSLog(@"身份信息-----%@",[@"JWT " append:userInfo.token]);
+        NSLog(@"身份信息-----%@", [@"JWT " append:userInfo.token]);
         [manager.requestSerializer setValue:[@"JWT " append:userInfo.token] forHTTPHeaderField:@"Authorization"];
     }
     [manager.requestSerializer setValue:@"Keep-Alive" forHTTPHeaderField:@"Connection"];

@@ -26,8 +26,12 @@
     self.titlesArr = [NSMutableArray array];
     
     YXMineJIFenLishiChildViewController * vc = [[YXMineJIFenLishiChildViewController alloc]init];
+    vc.type = @"1";
     YXMineJIFenLishiChildViewController * vc1 = [[YXMineJIFenLishiChildViewController alloc]init];
+    vc1.type = @"2";
     YXMineJIFenLishiChildViewController * vc2 = [[YXMineJIFenLishiChildViewController alloc]init];
+    vc2.type = @"3";
+
     [self.vcArr addObject:vc];
     [self.vcArr addObject:vc1];
     [self.vcArr addObject:vc2];
@@ -37,7 +41,8 @@
     [self.titlesArr addObject:@"支出"];
 
     [self initSegment];
-
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{

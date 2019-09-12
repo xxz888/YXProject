@@ -33,6 +33,7 @@ SINGLETON_FOR_HEADER(ShareManager)
 //获取当前时间戳  （以毫秒为单位）
 - (void)shareWebPageZhiNanDetailToPlatformType:(UMSocialPlatformType)platformType obj:(id)obj;
 +(NSString *)getNowTimeTimestamp3;
++(NSString*)getCurrentDay;
 #pragma mark - 将某个时间戳转化成 时间
 +(NSString *)getNowTimeMiaoShu;
 +(NSString *)timestampSwitchTime:(NSInteger)timestamp andFormatter:(NSString *)format;

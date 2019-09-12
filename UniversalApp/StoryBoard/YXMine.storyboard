@@ -2459,10 +2459,9 @@
                                                                             <rect key="frame" x="88.333333333333329" y="0.0" width="43.999999999999986" height="18"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="明天" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vbd-34-CYg">
-                                                                                    <rect key="frame" x="8.0000000000000142" y="-5" width="28" height="28"/>
+                                                                                    <rect key="frame" x="12.000000000000014" y="-5" width="20" height="28"/>
                                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="width" constant="28" id="Wmy-Wp-VpF"/>
                                                                                         <constraint firstAttribute="height" constant="28" id="Yd3-hA-Oj9"/>
                                                                                     </constraints>
                                                                                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="10"/>
@@ -2486,10 +2485,9 @@
                                                                             <rect key="frame" x="132.33333333333334" y="0.0" width="44.333333333333343" height="18"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="明天" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wq5-5S-gLF">
-                                                                                    <rect key="frame" x="8.3333333333333144" y="-5" width="28" height="28"/>
+                                                                                    <rect key="frame" x="12.333333333333314" y="-5" width="20" height="28"/>
                                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="width" constant="28" id="63U-Du-6Ji"/>
                                                                                         <constraint firstAttribute="height" constant="28" id="BLg-h2-hHU"/>
                                                                                     </constraints>
                                                                                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="10"/>
@@ -2513,11 +2511,10 @@
                                                                             <rect key="frame" x="176.66666666666666" y="0.0" width="44" height="18"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="明天" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZg-Vb-rIC">
-                                                                                    <rect key="frame" x="8" y="-5" width="28" height="28"/>
+                                                                                    <rect key="frame" x="12" y="-5" width="20" height="28"/>
                                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="28" id="lht-aX-CoI"/>
-                                                                                        <constraint firstAttribute="width" constant="28" id="xI8-6V-oU1"/>
                                                                                     </constraints>
                                                                                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="10"/>
                                                                                     <color key="textColor" red="0.73333333329999995" green="0.73333333329999995" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -2540,10 +2537,9 @@
                                                                             <rect key="frame" x="220.66666666666666" y="0.0" width="44.333333333333343" height="18"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="明天" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Je9-yu-ehq">
-                                                                                    <rect key="frame" x="8.0000000000000284" y="-5" width="28" height="28"/>
+                                                                                    <rect key="frame" x="12.000000000000028" y="-5" width="20" height="28"/>
                                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="width" constant="28" id="B0P-U4-aF2"/>
                                                                                         <constraint firstAttribute="height" constant="28" id="Xh6-pS-qIJ"/>
                                                                                     </constraints>
                                                                                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="10"/>
@@ -2567,10 +2563,9 @@
                                                                             <rect key="frame" x="265" y="0.0" width="44" height="18"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="明天" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jrO-3x-Lkl">
-                                                                                    <rect key="frame" x="8" y="-5" width="28" height="28"/>
+                                                                                    <rect key="frame" x="12" y="-5" width="20" height="28"/>
                                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="width" constant="28" id="5h5-a9-lxb"/>
                                                                                         <constraint firstAttribute="height" constant="28" id="eTC-TJ-CEb"/>
                                                                                     </constraints>
                                                                                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="10"/>
@@ -3443,6 +3438,11 @@
                     </tableView>
                     <connections>
                         <outlet property="accImv" destination="qUI-Jb-wYO" id="jJM-Hb-KZD"/>
+                        <outlet property="day3" destination="Vbd-34-CYg" id="VZN-fZ-wWi"/>
+                        <outlet property="day4" destination="wq5-5S-gLF" id="6oE-uz-RUN"/>
+                        <outlet property="day5" destination="QZg-Vb-rIC" id="q3o-sz-Xgu"/>
+                        <outlet property="day6" destination="Je9-yu-ehq" id="EEP-2Y-VBc"/>
+                        <outlet property="day7" destination="jrO-3x-Lkl" id="6YI-06-ybS"/>
                         <outlet property="finish1" destination="K9x-fd-pNy" id="YLv-Qh-HmK"/>
                         <outlet property="finish2" destination="gUe-Ey-xJK" id="RBM-N5-1u2"/>
                         <outlet property="finish3" destination="Aya-1K-sKg" id="U7O-Pj-qCR"/>
@@ -3452,6 +3452,7 @@
                         <outlet property="finish7" destination="TGJ-TB-dst" id="HC4-os-qa7"/>
                         <outlet property="finish8" destination="B3E-Zb-Na9" id="Mco-S8-R25"/>
                         <outlet property="finish9" destination="yDo-si-HDL" id="NuY-YH-TYm"/>
+                        <outlet property="jifenNumLbl" destination="UqH-VS-64A" id="Afk-Ij-so7"/>
                         <outlet property="qiandaoBtn" destination="nQC-N0-su2" id="qzw-4t-21H"/>
                         <outlet property="qiandaoView" destination="BP4-Vv-1OH" id="T5D-9n-prD"/>
                     </connections>
@@ -3602,6 +3603,7 @@
                     </view>
                     <connections>
                         <outlet property="bottomView" destination="Jh4-8Y-sCO" id="93m-4k-Xtz"/>
+                        <outlet property="jifenLbl" destination="ojQ-DU-qHd" id="ttc-ZM-e4a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ned-6Y-uqy" userLabel="First Responder" sceneMemberID="firstResponder"/>

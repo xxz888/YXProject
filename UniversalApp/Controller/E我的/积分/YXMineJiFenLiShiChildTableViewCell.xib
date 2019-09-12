@@ -31,12 +31,6 @@
                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="11"/>
                         <color key="textColor" red="0.73333333329999995" green="0.73333333329999995" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="14"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9dS-wY-KIK">
                         <rect key="frame" x="283" y="17.5" width="22" height="25.5"/>
@@ -56,6 +50,11 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="numLbl" destination="9dS-wY-KIK" id="dZy-q4-Es6"/>
+                <outlet property="qiandaoLbl" destination="Ho0-X3-YP5" id="o8J-yq-3o1"/>
+                <outlet property="timeLbl" destination="6Lv-ls-Md9" id="74n-31-90a"/>
+            </connections>
             <point key="canvasLocation" x="137.68115942028987" y="146.31696428571428"/>
         </tableViewCell>
     </objects>

@@ -11,6 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXMineJiFenLiShiChildTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *qiandaoLbl;
+@property (weak, nonatomic) IBOutlet UILabel *timeLbl;
+@property (weak, nonatomic) IBOutlet UILabel *numLbl;
 
 @end
 

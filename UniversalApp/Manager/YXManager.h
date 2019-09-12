@@ -328,4 +328,13 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestPubFaBuChildPingLunComment:YX_BLOCK;
 #pragma mark ========== 公共接口：获取XX评论子评论列表 ==========
 -(void)requestPubSearchChildPingLunListComment:YX_BLOCK;
+
+
+#pragma mark ========== 签到 ==========
+-(void)requestUsersSign_in_Action:YX_BLOCK;
+#pragma mark ========== 签到记录 ==========
+-(void)requestUsersSign_in_List:YX_BLOCK;
+#pragma mark ========== 获取积分历史记录 ==========
+-(void)requestUsersIntegral_history_list:YX_BLOCK;
+-(void)requestGetFind_My_user_Info:YX_BLOCK;
 @end

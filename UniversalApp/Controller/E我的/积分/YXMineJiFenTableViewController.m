@@ -12,7 +12,7 @@
 #import "YXMineChouJiangViewController.h"
 
 @interface YXMineJiFenTableViewController ()
-
+@property(nonatomic,strong)NSMutableArray * sign_Array;
 @end
 
 @implementation YXMineJiFenTableViewController
@@ -23,7 +23,72 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.view.backgroundColor = kRGBA(10, 36, 54, 1);
+    [self setVCUI];
+    
+    [self requestData];
+}
+-(void)requestData{
+    
+    UserInfo *  userInfo = curUser;
+    
+    kWeakSelf(self);
+
+    
+    [YX_MANAGER requestGetFind_My_user_Info:@"" success:^(id object) {
+        weakself.jifenNumLbl.text= [@"积分:" append:kGetNSInteger([object[@"integral"] integerValue])];
+
+    }];
+    
+    
+    
+    [YX_MANAGER requestUsersSign_in_List:@{} success:^(id object) {
+        [weakself.sign_Array removeAllObjects];
+        [weakself.sign_Array addObjectsFromArray:object];
+        
+        
+        
+        //判断今天是否已经签到
+        NSString * currDayTime = [ShareManager getCurrentDay];
+        
+        for (NSDictionary * dic in weakself.sign_Array) {
+            if([dic[@"sign_in_date"] isEqualToString:currDayTime]){
+                [weakself.qiandaoBtn setTitle:@"已签到" forState:UIControlStateNormal];
+                [weakself.qiandaoBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
+                [weakself.qiandaoBtn setBackgroundColor:[UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0]];
+                weakself.qiandaoBtn.userInteractionEnabled = NO;
+            }
+        }
+        
+        [weakself get7Days];
+        
+    }];
+}
+-(void)get7Days{
+    
+    NSMutableArray * dayArray = [[NSMutableArray alloc]init];
+    
+    for (NSInteger i = 3; i < 8; i++) {
+        NSDate *currentDate = [NSDate date];
+        NSDate *appointDate;    // 指定日期声明
+        NSTimeInterval oneDay = 24 * 60 * 60;  // 一天一共有多少秒
+        appointDate = [currentDate initWithTimeIntervalSinceNow: -(oneDay * i)];
+        appointDate = [currentDate initWithTimeIntervalSinceNow: (oneDay * i)];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MM-dd"];
+        NSString *strDate = [dateFormatter stringFromDate:appointDate];
+        
+        [dayArray addObject:strDate];
+    }
+    self.day3.text = dayArray[0];
+    self.day4.text = dayArray[1];
+    self.day5.text = dayArray[2];
+    self.day6.text = dayArray[3];
+    self.day7.text = dayArray[4];
+
+    
+}
+-(void)setVCUI{
     ViewRadius(self.accImv, 36);
     ViewRadius(self.qiandaoBtn, 12);
     [self.qiandaoBtn setBackgroundColor:kRGBA(10, 36, 54, 1)];
@@ -38,8 +103,9 @@
     ViewBorderRadius(self.finish7, 2, 1, kRGBA(10, 36, 54, 1));
     ViewBorderRadius(self.finish8, 2, 1, kRGBA(10, 36, 54, 1));
     ViewBorderRadius(self.finish9, 2, 1, kRGBA(10, 36, 54, 1));
+    
+    self.sign_Array = [[NSMutableArray alloc]init];
 }
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -56,10 +122,15 @@
 
 - (IBAction)qiandaoAction:(id)sender {
     
-    [self.qiandaoBtn setTitle:@"已签到" forState:UIControlStateNormal];
-    [self.qiandaoBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
-    [self.qiandaoBtn setBackgroundColor:[UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0]];
-    self.qiandaoBtn.userInteractionEnabled = NO;
+    
+    [YX_MANAGER requestUsersSign_in_Action:@"" success:^(id object) {
+        [self.qiandaoBtn setTitle:@"已签到" forState:UIControlStateNormal];
+        [self.qiandaoBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
+        [self.qiandaoBtn setBackgroundColor:[UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0]];
+        self.qiandaoBtn.userInteractionEnabled = NO;
+    }];
+    
+
  
     [self handleShowContentView];
 }

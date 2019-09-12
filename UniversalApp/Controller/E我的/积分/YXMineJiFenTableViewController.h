@@ -26,6 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *finish8;
 @property (weak, nonatomic) IBOutlet UIButton *finish9;
 - (IBAction)jifenHistoryAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *day3;
+@property (weak, nonatomic) IBOutlet UILabel *day4;
+@property (weak, nonatomic) IBOutlet UILabel *day5;
+@property (weak, nonatomic) IBOutlet UILabel *day6;
+@property (weak, nonatomic) IBOutlet UILabel *day7;
+@property (weak, nonatomic) IBOutlet UILabel *jifenNumLbl;
 
 @end
 
