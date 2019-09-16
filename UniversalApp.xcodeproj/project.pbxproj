@@ -98,6 +98,11 @@
 		29FEE77B1ECED1E200C81B60 /* MBHUD_Warn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 29FEE7731ECED1E200C81B60 /* MBHUD_Warn@2x.png */; };
 		29FEE77C1ECED1E200C81B60 /* MBHUD_Warn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 29FEE7741ECED1E200C81B60 /* MBHUD_Warn@3x.png */; };
 		5BC8C50C0BEF57AA0780D5DC /* libPods-UniversalApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E884624664B432D4FE5044F /* libPods-UniversalApp.a */; };
+		BB01333E232F59AF00573AC0 /* YXMineJiFenGuiZeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB01333D232F59AF00573AC0 /* YXMineJiFenGuiZeTableViewController.m */; };
+		BB013343232F688F00573AC0 /* YXMineShouHuoAdressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB013341232F688F00573AC0 /* YXMineShouHuoAdressViewController.m */; };
+		BB013344232F688F00573AC0 /* YXMineShouHuoAdressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB013342232F688F00573AC0 /* YXMineShouHuoAdressViewController.xib */; };
+		BB013348232F69B500573AC0 /* YXMineShouHuoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB013346232F69B500573AC0 /* YXMineShouHuoTableViewCell.m */; };
+		BB013349232F69B500573AC0 /* YXMineShouHuoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB013347232F69B500573AC0 /* YXMineShouHuoTableViewCell.xib */; };
 		BB0AE5C72253384000CC07EC /* YXFindSearchTagHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0AE5C62253384000CC07EC /* YXFindSearchTagHeaderView.m */; };
 		BB0AE5C92253384900CC07EC /* YXFindSearchTagHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB0AE5C82253384900CC07EC /* YXFindSearchTagHeaderView.xib */; };
 		BB0AE5CC22533CDA00CC07EC /* YXFindSearchTagDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0AE5CB22533CDA00CC07EC /* YXFindSearchTagDetailViewController.m */; };
@@ -881,6 +886,14 @@
 		29FEE7741ECED1E200C81B60 /* MBHUD_Warn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MBHUD_Warn@3x.png"; sourceTree = "<group>"; };
 		9E884624664B432D4FE5044F /* libPods-UniversalApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UniversalApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A51AB222BA7ACF202B5B1330 /* Pods-UniversalApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalApp/Pods-UniversalApp.debug.xcconfig"; sourceTree = "<group>"; };
+		BB01333C232F59AF00573AC0 /* YXMineJiFenGuiZeTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineJiFenGuiZeTableViewController.h; sourceTree = "<group>"; };
+		BB01333D232F59AF00573AC0 /* YXMineJiFenGuiZeTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineJiFenGuiZeTableViewController.m; sourceTree = "<group>"; };
+		BB013340232F688F00573AC0 /* YXMineShouHuoAdressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineShouHuoAdressViewController.h; sourceTree = "<group>"; };
+		BB013341232F688F00573AC0 /* YXMineShouHuoAdressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineShouHuoAdressViewController.m; sourceTree = "<group>"; };
+		BB013342232F688F00573AC0 /* YXMineShouHuoAdressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineShouHuoAdressViewController.xib; sourceTree = "<group>"; };
+		BB013345232F69B500573AC0 /* YXMineShouHuoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineShouHuoTableViewCell.h; sourceTree = "<group>"; };
+		BB013346232F69B500573AC0 /* YXMineShouHuoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineShouHuoTableViewCell.m; sourceTree = "<group>"; };
+		BB013347232F69B500573AC0 /* YXMineShouHuoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineShouHuoTableViewCell.xib; sourceTree = "<group>"; };
 		BB0AE5C52253384000CC07EC /* YXFindSearchTagHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchTagHeaderView.h; sourceTree = "<group>"; };
 		BB0AE5C62253384000CC07EC /* YXFindSearchTagHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchTagHeaderView.m; sourceTree = "<group>"; };
 		BB0AE5C82253384900CC07EC /* YXFindSearchTagHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFindSearchTagHeaderView.xib; sourceTree = "<group>"; };
@@ -2505,9 +2518,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BB01333B232F592F00573AC0 /* 积分规则 */ = {
+			isa = PBXGroup;
+			children = (
+				BB01333C232F59AF00573AC0 /* YXMineJiFenGuiZeTableViewController.h */,
+				BB01333D232F59AF00573AC0 /* YXMineJiFenGuiZeTableViewController.m */,
+			);
+			path = "积分规则";
+			sourceTree = "<group>";
+		};
+		BB01333F232F685C00573AC0 /* 收货地址 */ = {
+			isa = PBXGroup;
+			children = (
+				BB013340232F688F00573AC0 /* YXMineShouHuoAdressViewController.h */,
+				BB013341232F688F00573AC0 /* YXMineShouHuoAdressViewController.m */,
+				BB013342232F688F00573AC0 /* YXMineShouHuoAdressViewController.xib */,
+				BB013345232F69B500573AC0 /* YXMineShouHuoTableViewCell.h */,
+				BB013346232F69B500573AC0 /* YXMineShouHuoTableViewCell.m */,
+				BB013347232F69B500573AC0 /* YXMineShouHuoTableViewCell.xib */,
+			);
+			path = "收货地址";
+			sourceTree = "<group>";
+		};
 		BB12EE322318FEEC008CF3C6 /* 积分 */ = {
 			isa = PBXGroup;
 			children = (
+				BB01333B232F592F00573AC0 /* 积分规则 */,
 				BB12EE332318FF0B008CF3C6 /* YXMineJiFenTableViewController.h */,
 				BB12EE342318FF0B008CF3C6 /* YXMineJiFenTableViewController.m */,
 				BB86C8AA231B706800A061E2 /* YXMineJiFenHistoryViewController.h */,
@@ -3157,6 +3193,7 @@
 			children = (
 				BB928F5F21FACAE20090A044 /* YXMineSettingTableViewController.h */,
 				BB928F6021FACAE20090A044 /* YXMineSettingTableViewController.m */,
+				BB01333F232F685C00573AC0 /* 收货地址 */,
 				BB928F9A21FBFFA00090A044 /* 通用 */,
 				BB928F6221FACDD30090A044 /* 账号安全 */,
 			);
@@ -5624,6 +5661,7 @@
 				BBB59AC2228CF8CB0029D3D0 /* YXQCDJCTableViewCell.xib in Resources */,
 				BB29121922156BB500FF484E /* Slim Panetela.gif in Resources */,
 				BB29121522156BB500FF484E /* Small Panetela.gif in Resources */,
+				BB013344232F688F00573AC0 /* YXMineShouHuoAdressViewController.xib in Resources */,
 				BB8376F52248B5730091A1A8 /* YXMineFindTableViewCell.xib in Resources */,
 				BBA8129E21DDAA15001B5EA1 /* YXMine.storyboard in Resources */,
 				BB6D2A3C21EEC63900F5049F /* Resources.bundle in Resources */,
@@ -5817,6 +5855,7 @@
 				BB29122222156BB500FF484E /* Double Perfecto.gif in Resources */,
 				BBD2C93F21E0F67800350DCD /* VideoOverlay.png in Resources */,
 				293D46481ECDBB63007C64A9 /* icon_tabbar_merchant_selected.png in Resources */,
+				BB013349232F69B500573AC0 /* YXMineShouHuoTableViewCell.xib in Resources */,
 				BBB59ACA228CF8CB0029D3D0 /* YXGEFPinPaiLastDetailViewController.xib in Resources */,
 				BB98329A229E165A00894FAF /* YXMineMyCollectionViewController.xib in Resources */,
 				BBB59B1B228CF8CB0029D3D0 /* YXColorViewController.xib in Resources */,
@@ -6332,12 +6371,14 @@
 				BBD2C91921E0F67800350DCD /* LLActionSheetView.m in Sources */,
 				BBD2C91521E0F67800350DCD /* LLImagePickerManager.m in Sources */,
 				BBDA2D0521EB30BF00EDCCFF /* SDWebViewController.m in Sources */,
+				BB013343232F688F00573AC0 /* YXMineShouHuoAdressViewController.m in Sources */,
 				BBE82BD821E340AD004E4144 /* CatZanButton.m in Sources */,
 				BB928F5C21FABCF10090A044 /* YXMinePingLunTableViewCell.m in Sources */,
 				BBD30CE421E5CD89000D3244 /* YXMineFenSiViewController.m in Sources */,
 				BB21FD8922B0991E0059BCAC /* KSVideoPlayerBaseView.m in Sources */,
 				BBDA2EE721EC84C600EDCCFF /* CBGroupAndStreamView.m in Sources */,
 				BB86C91B231E671E00A061E2 /* YXMineChouJiangViewController.m in Sources */,
+				BB013348232F69B500573AC0 /* YXMineShouHuoTableViewCell.m in Sources */,
 				BB6D2A3621EEC63900F5049F /* HCEmojiManager.m in Sources */,
 				BBCC4B1821E8927700493F40 /* Utility.m in Sources */,
 				BBE82CFF21E44A7D004E4144 /* ZLPhotoPickerDatas.m in Sources */,
@@ -6355,6 +6396,7 @@
 				BB21FDB522B09B2E0059BCAC /* Tool.m in Sources */,
 				BB21FD8C22B0991E0059BCAC /* KSIndicatorLabelControl.m in Sources */,
 				BBADE4D221F8064A0011E5FF /* ImagePicker.m in Sources */,
+				BB01333E232F59AF00573AC0 /* YXMineJiFenGuiZeTableViewController.m in Sources */,
 				BBABDF23229BB15C0046683A /* YXZhiNanDetailHeaderView.m in Sources */,
 				BB0AE5CC22533CDA00CC07EC /* YXFindSearchTagDetailViewController.m in Sources */,
 			);

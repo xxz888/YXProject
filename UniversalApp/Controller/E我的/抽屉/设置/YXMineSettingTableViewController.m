@@ -12,6 +12,7 @@
 #import "YXMineTongYongTableViewController.h"
 #import "YXMineAboutUsViewController.h"
 #import "YXMineYiJianFanKuiViewController.h"
+#import "YXMineShouHuoAdressViewController.h"
 
 @interface YXMineSettingTableViewController ()
 
@@ -73,7 +74,7 @@
     switch (indexPath.section) {
         case 0:
             //账号与安全
-            if (indexPath.row == 0) {
+            if (indexPath.row == 1) {
                 UserInfo * userInfo= curUser;
                 [YX_MANAGER requestGetUserothers:userInfo.id success:^(id object) {
                     YXHomeEditPersonTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXHomeEditPersonTableViewController"];
@@ -81,12 +82,14 @@
                     [weakself.navigationController pushViewController:VC animated:YES];
                 }];
             //个人资料
-            }else if (indexPath.row == 1) {
+            }else if (indexPath.row == 2) {
                 YXMineSettingSafeTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineSettingSafeTableViewController"];
                 [self.navigationController pushViewController:VC animated:YES];
-            }else if (indexPath.row == 2){
+            }else if (indexPath.row == 4){
                 YXMineTongYongTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineTongYongTableViewController"];
                 [self.navigationController pushViewController:VC animated:YES];
+            }else if (indexPath.row == 5){
+                [self.navigationController pushViewController:[[YXMineShouHuoAdressViewController alloc] init] animated:YES];
             }
             break;
         case 1:

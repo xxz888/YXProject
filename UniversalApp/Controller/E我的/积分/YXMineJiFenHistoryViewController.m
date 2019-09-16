@@ -9,7 +9,7 @@
 #import "YXMineJiFenHistoryViewController.h"
 #import <ZXSegmentController/ZXSegmentController.h>
 #import "YXMineJIFenLishiChildViewController.h"
-
+#import "YXMineJiFenGuiZeTableViewController.h"
 @interface YXMineJiFenHistoryViewController ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 @property (nonatomic, strong) HGSegmentedPageViewController *segmentedPageViewController;
 @property (nonatomic,strong) NSMutableArray * titlesArr;
@@ -78,6 +78,12 @@
 }
 - (IBAction)backAction:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)jifenGuiZeAction:(id)sender {
+    UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+    YXMineJiFenGuiZeTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineJiFenGuiZeTableViewController"];
+    [self.navigationController pushViewController:VC animated:YES];
+    
 }
 
 @end

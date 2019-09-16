@@ -25,7 +25,7 @@
  */
 
 
-#define ENVIRONMENT_TAG 1
+#define ENVIRONMENT_TAG 0
 
 #define BASE_URL
 #if (ENVIRONMENT_TAG == 0)             //正式
