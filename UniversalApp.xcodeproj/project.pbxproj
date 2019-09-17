@@ -103,6 +103,8 @@
 		BB013344232F688F00573AC0 /* YXMineShouHuoAdressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB013342232F688F00573AC0 /* YXMineShouHuoAdressViewController.xib */; };
 		BB013348232F69B500573AC0 /* YXMineShouHuoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB013346232F69B500573AC0 /* YXMineShouHuoTableViewCell.m */; };
 		BB013349232F69B500573AC0 /* YXMineShouHuoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB013347232F69B500573AC0 /* YXMineShouHuoTableViewCell.xib */; };
+		BB01334D232F869900573AC0 /* YXMineAddAdressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB01334B232F869900573AC0 /* YXMineAddAdressViewController.m */; };
+		BB01334E232F869900573AC0 /* YXMineAddAdressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB01334C232F869900573AC0 /* YXMineAddAdressViewController.xib */; };
 		BB0AE5C72253384000CC07EC /* YXFindSearchTagHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0AE5C62253384000CC07EC /* YXFindSearchTagHeaderView.m */; };
 		BB0AE5C92253384900CC07EC /* YXFindSearchTagHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB0AE5C82253384900CC07EC /* YXFindSearchTagHeaderView.xib */; };
 		BB0AE5CC22533CDA00CC07EC /* YXFindSearchTagDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0AE5CB22533CDA00CC07EC /* YXFindSearchTagDetailViewController.m */; };
@@ -894,6 +896,9 @@
 		BB013345232F69B500573AC0 /* YXMineShouHuoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineShouHuoTableViewCell.h; sourceTree = "<group>"; };
 		BB013346232F69B500573AC0 /* YXMineShouHuoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineShouHuoTableViewCell.m; sourceTree = "<group>"; };
 		BB013347232F69B500573AC0 /* YXMineShouHuoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineShouHuoTableViewCell.xib; sourceTree = "<group>"; };
+		BB01334A232F869900573AC0 /* YXMineAddAdressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineAddAdressViewController.h; sourceTree = "<group>"; };
+		BB01334B232F869900573AC0 /* YXMineAddAdressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineAddAdressViewController.m; sourceTree = "<group>"; };
+		BB01334C232F869900573AC0 /* YXMineAddAdressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineAddAdressViewController.xib; sourceTree = "<group>"; };
 		BB0AE5C52253384000CC07EC /* YXFindSearchTagHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchTagHeaderView.h; sourceTree = "<group>"; };
 		BB0AE5C62253384000CC07EC /* YXFindSearchTagHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchTagHeaderView.m; sourceTree = "<group>"; };
 		BB0AE5C82253384900CC07EC /* YXFindSearchTagHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFindSearchTagHeaderView.xib; sourceTree = "<group>"; };
@@ -2536,6 +2541,9 @@
 				BB013345232F69B500573AC0 /* YXMineShouHuoTableViewCell.h */,
 				BB013346232F69B500573AC0 /* YXMineShouHuoTableViewCell.m */,
 				BB013347232F69B500573AC0 /* YXMineShouHuoTableViewCell.xib */,
+				BB01334A232F869900573AC0 /* YXMineAddAdressViewController.h */,
+				BB01334B232F869900573AC0 /* YXMineAddAdressViewController.m */,
+				BB01334C232F869900573AC0 /* YXMineAddAdressViewController.xib */,
 			);
 			path = "收货地址";
 			sourceTree = "<group>";
@@ -2543,6 +2551,7 @@
 		BB12EE322318FEEC008CF3C6 /* 积分 */ = {
 			isa = PBXGroup;
 			children = (
+				BBFBA2DE23306C2D00EE158A /* 积分商城 */,
 				BB01333B232F592F00573AC0 /* 积分规则 */,
 				BB12EE332318FF0B008CF3C6 /* YXMineJiFenTableViewController.h */,
 				BB12EE342318FF0B008CF3C6 /* YXMineJiFenTableViewController.m */,
@@ -5509,6 +5518,13 @@
 			path = GCD;
 			sourceTree = "<group>";
 		};
+		BBFBA2DE23306C2D00EE158A /* 积分商城 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "积分商城";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -5743,6 +5759,7 @@
 				BBB59ADE228CF8CB0029D3D0 /* YXHomeQuestionDetailHeaderView.xib in Resources */,
 				BBB59ACE228CF8CB0029D3D0 /* YXGEPPinPaiDetailHeaderView.xib in Resources */,
 				2917D2081EE007C300E76185 /* MBHUD_Info@3x.png in Resources */,
+				BB01334E232F869900573AC0 /* YXMineAddAdressViewController.xib in Resources */,
 				BBD2C92F21E0F67800350DCD /* ImageSelectedOff.png in Resources */,
 				BBD2C94421E0F67800350DCD /* UIBarButtonItemArrowRight@2x.png in Resources */,
 				BB9832752201700C0048D103 /* blueArrow.png in Resources */,
@@ -6078,6 +6095,7 @@
 				BB4AA7D82317B2EC00C22224 /* YXMineYiJianFanKuiViewController.m in Sources */,
 				BBB59ACF228CF8CB0029D3D0 /* YXGEPPinPaiDetailHeaderView.m in Sources */,
 				BB21FD8622B0991E0059BCAC /* KSBorderButton.swift in Sources */,
+				BB01334D232F869900573AC0 /* YXMineAddAdressViewController.m in Sources */,
 				BBD2C83821E0F44A00350DCD /* VTingSeaPopView.m in Sources */,
 				290471B91F98D9AB0081CCA1 /* XYTabBar.m in Sources */,
 				BBD2C91E21E0F67800350DCD /* NSString+LLExtension.m in Sources */,

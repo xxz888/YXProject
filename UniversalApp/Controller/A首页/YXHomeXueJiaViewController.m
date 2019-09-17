@@ -30,13 +30,13 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
     [self.tabBarController.tabBar setHidden:NO];
-    UserInfo *userInfo = curUser;
-    [[SocketRocketUtility instance] SRWebSocketClose];
-    NSString * token = userInfo.token;
-    NSString * url = [NSString stringWithFormat:@"ws://192.168.101.22:8001/push/%@/",token];
-    [[SocketRocketUtility instance] SRWebSocketOpenWithURLString:url];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketDidCloseNote object:nil];
+//    UserInfo *userInfo = curUser;
+//    [[SocketRocketUtility instance] SRWebSocketClose];
+//    NSString * token = userInfo.token;
+//    NSString * url = [NSString stringWithFormat:@"ws://192.168.101.22:8001/push/%@/",token];
+//    [[SocketRocketUtility instance] SRWebSocketOpenWithURLString:url];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketDidCloseNote object:nil];
 
 }
 - (void)SRWebSocketDidOpen {

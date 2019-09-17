@@ -8,6 +8,7 @@
 
 #import "YXMineShouHuoAdressViewController.h"
 #import "YXMineShouHuoTableViewCell.h"
+#import "YXMineAddAdressViewController.h"
 
 @interface YXMineShouHuoAdressViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
@@ -34,6 +35,10 @@
 }
 - (IBAction)backVc:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)addAdressAction:(id)sender {
+    YXMineAddAdressViewController * vc = [[YXMineAddAdressViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

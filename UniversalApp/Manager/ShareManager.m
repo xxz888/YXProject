@@ -59,7 +59,7 @@ SINGLETON_FOR_CLASS(ShareManager);
         NSString * resultString = [NSString stringWithFormat:@"%@",obj[@"img"]];
         resultString = [resultString stringByReplacingOccurrencesOfString:@" " withString:@""];
         //设置网页地址
-        shareObject.webpageUrl = [@"http://www.thegdlife.com/HomeZhiNanDetail.html?img=" append:resultString];
+        shareObject.webpageUrl = [@"http://www.lpszn.com/HomeZhiNanDetail.html?img=" append:resultString];
 
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;

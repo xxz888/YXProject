@@ -44,7 +44,7 @@
 #define UPDATE_APP_URL @"http://itunes.apple.com/lookup?id="
 #define UPDATE_App_ID @"1454467501"
 
-#define IMG_URI @"http://photo.thegdlife.com/"
+#define IMG_URI @"http://photo.lpszn.com/"
 #import <QMapKit/QMapKit.h>
 #import <QMapSearchKit/QMapSearchKit.h>
 #define TencentKey @"KMTBZ-AJN3K-MWSJW-A5FV6-ZVDCQ-JIF33"

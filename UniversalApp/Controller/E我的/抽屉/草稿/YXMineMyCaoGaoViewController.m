@@ -70,7 +70,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 100;
 }
-#define kQNinterface @"http://photo.thegdlife.com/"
+#define kQNinterface @"http://photo.lpszn.com/"
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identify = @"YXHomeXueJiaTableViewCell";
     YXHomeXueJiaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];

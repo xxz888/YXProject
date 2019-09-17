@@ -1216,7 +1216,7 @@
                                                     <attributedString key="attributedText">
                                                         <fragment content="收货地址">
                                                             <attributes>
-                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <font key="NSFont" size="16" name="PingFangSC-Regular"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="20" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
@@ -1412,7 +1412,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vsf-pR-aWN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1958" y="3027"/>
+            <point key="canvasLocation" x="-1639" y="3029"/>
         </scene>
         <!--Mine Setting Safe Table View Controller-->
         <scene sceneID="ecK-2d-0g3">
@@ -1684,7 +1684,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YLE-ew-hhj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1065" y="-618"/>
+            <point key="canvasLocation" x="-1639" y="-653"/>
         </scene>
         <!--Mine Ji Fen Table View Controller-->
         <scene sceneID="Mdm-RV-W1a">
