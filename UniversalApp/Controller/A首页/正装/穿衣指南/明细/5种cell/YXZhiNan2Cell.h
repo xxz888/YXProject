@@ -7,15 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IXAttributeTapLabel.h"
+typedef void(^tapLinkString)(NSString *);
 
 NS_ASSUME_NONNULL_BEGIN
-
 @interface YXZhiNan2Cell : UITableViewCell
-    @property (weak, nonatomic) IBOutlet UILabel *contentLbl;
+    @property (weak, nonatomic) IBOutlet IXAttributeTapLabel *contentLbl;
     @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentHeight;
     //180
-    -(void)setCellData:(NSDictionary *)dic;
+-(void)setCellData:(NSDictionary *)dic linkData:(NSArray *)linkArray;
 +(CGFloat)jisuanCellHeight:(NSDictionary *)dic;
+@property (nonatomic,copy) tapLinkString linkBlock;
 @end
 
 NS_ASSUME_NONNULL_END

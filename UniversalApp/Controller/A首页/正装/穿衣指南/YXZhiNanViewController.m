@@ -127,6 +127,8 @@
         vc.smallIndex = smallIndex;
         vc.bigIndex = bigIndex;
         vc.startArray = [[NSMutableArray alloc]initWithArray:weakself.dataArray];
+        
+        
         [weakself.navigationController pushViewController:vc animated:YES];
     };
     return cell;

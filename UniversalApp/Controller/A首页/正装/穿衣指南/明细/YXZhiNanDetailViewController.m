@@ -19,6 +19,9 @@
 
 @property (nonatomic,strong) YXZhiNanDetailHeaderView * headerView;
 @property (nonatomic,strong) NSMutableArray * dataArray;
+@property (nonatomic,strong) NSMutableArray * linkArray;
+@property (nonatomic,strong) NSMutableArray * allOptionArray;
+
 @property (nonatomic,assign) BOOL is_collect;
 @property (weak, nonatomic) IBOutlet UILabel *plLbl;
     @property (weak, nonatomic) IBOutlet UILabel *collLbl;
@@ -52,6 +55,10 @@
     [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
         weakself.startArray = [weakself commonAction:object dataArray:weakself.startArray];
         [weakself panduanIsColl];
+        [YXPLUS_MANAGER requestAll_optionGet:@"" success:^(id object) {
+            [weakself.allOptionArray removeAllObjects];
+            [weakself.allOptionArray addObjectsFromArray:object];
+        }];
     }];
 }
 -(void)panduanIsColl{
@@ -102,10 +109,31 @@
     [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
             [weakself.dataArray removeAllObjects];
             [weakself.dataArray addObjectsFromArray:object];
+        
+        
+        for (NSInteger i = 0 ; i< weakself.dataArray.count; i++) {
+            NSArray * smallArray = weakself.dataArray[i];
+            for (NSInteger k = 0; k < smallArray.count; k++) {
+                NSDictionary * dic = smallArray[k];
+                NSInteger obj = [dic[@"obj"] integerValue];
+                if (obj == 6) {
+                    [weakself.linkArray removeAllObjects];
+                    
+                    [weakself.linkArray addObjectsFromArray:[dic[@"detail"] split:@";"]];
+                }
+            }
+        }
+        
+   
+        
+        
             [weakself endRefresh];
             [weakself panduanIsColl];
             [QMUITips hideAllTipsInView:weakself.view];
+        
+        
             [weakself.yxTableView reloadData];
+        
         
         
         // reloadDate会在主队列执行，而dispatch_get_main_queue会等待机会，直到主队列空闲才执行。
@@ -146,13 +174,49 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.section][indexPath.row];
     NSInteger obj = [dic[@"obj"] integerValue];
+    
+    
+    
     if (obj == 1 ) {
         YXZhiNan1Cell * cell1 = [tableView dequeueReusableCellWithIdentifier:@"YXZhiNan1Cell" forIndexPath:indexPath];
         [cell1 setCellData:dic];
         return cell1;
     }else if(obj == 2) {
         YXZhiNan2Cell * cell2 = [tableView dequeueReusableCellWithIdentifier:@"YXZhiNan2Cell" forIndexPath:indexPath];
-        [cell2 setCellData:dic];
+        [cell2 setCellData:dic linkData:self.linkArray];
+        
+        
+        kWeakSelf(self);
+        cell2.linkBlock = ^(NSString * indexString) {
+            
+            YXZhiNanDetailViewController * vc = [[YXZhiNanDetailViewController alloc]init];
+            vc.smallIndex = 0;
+            
+            NSInteger index1 = [[indexString split:@"-"][0] integerValue];
+            NSInteger index2 = [[indexString split:@"-"][1] integerValue];
+            NSInteger index3 = [[indexString split:@"-"][2] integerValue];
+            
+            
+            for (NSDictionary * dic1 in weakself.allOptionArray) {
+                if ([dic1[@"id"] integerValue] == index1) {
+                    for (NSDictionary * dic2 in dic1[@"child_list"]) {
+                        if ([dic2[@"id"] integerValue] == index2) {
+                            vc.startArray = [[NSMutableArray alloc]initWithArray:dic2[@"child_list"]];
+                            
+                            for (NSInteger i = 0; i < [dic2[@"child_list"] count]; i++) {
+                                if ([dic2[@"child_list"][i][@"id"] integerValue] == index3) {
+                                    vc.bigIndex = i;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            vc.smallIndex = 0;
+            [weakself.navigationController pushViewController:vc animated:YES];
+        };
+        
+        
         return cell2;
     }else if(obj == 3) {
         YXZhiNan3Cell * cell3 = [tableView dequeueReusableCellWithIdentifier:@"YXZhiNan3Cell" forIndexPath:indexPath];
@@ -166,6 +230,10 @@
         YXZhiNan5Cell * cell5 = [tableView dequeueReusableCellWithIdentifier:@"YXZhiNan5Cell" forIndexPath:indexPath];
         [cell5 setCellData:dic];
         return cell5;
+    }else if (obj == 6){
+        YXZhiNan1Cell * cell1 = [tableView dequeueReusableCellWithIdentifier:@"YXZhiNan1Cell" forIndexPath:indexPath];
+        cell1.hidden = YES;
+        return cell1;
     }
     return nil;
 }
@@ -175,6 +243,10 @@
     [self addNavigationItemWithImageNames:@[@"更多"] isLeft:NO target:self action:@selector(moreShare) tags:@[@"999"]];
     self.view.backgroundColor = KWhiteColor;
     self.dataArray = [[NSMutableArray alloc]init];
+    self.linkArray = [[NSMutableArray alloc]init];
+
+    self.allOptionArray = [[NSMutableArray alloc]init];
+
     [self addRefreshView:self.yxTableView];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan1Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan1Cell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan2Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan2Cell"];

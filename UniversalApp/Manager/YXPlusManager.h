@@ -16,5 +16,6 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 + (instancetype)sharedInstance;
 -(void)requestZhiNan1Get:YX_BLOCK;
 -(void)requestCollect_optionGet:YX_BLOCK;
+-(void)requestAll_optionGet:YX_BLOCK;
 @end
 
