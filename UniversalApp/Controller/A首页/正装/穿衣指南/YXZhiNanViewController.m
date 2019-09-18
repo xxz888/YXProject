@@ -105,7 +105,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.collArray.count > 0) {
         NSInteger n = [self.collArray[indexPath.row] count];
-        return 40 * (n/2+n%2) + 80;
+        return 44 * (n/2+n%2) + 80;
     }
     return 85;
 }

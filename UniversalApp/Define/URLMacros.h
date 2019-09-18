@@ -29,7 +29,7 @@
 
 #define BASE_URL
 #if (ENVIRONMENT_TAG == 0)             //正式
-#define API_URL                  @"thegdlife.com:8001"
+#define API_URL                  @"lpszn.com/api"
 #elif (ENVIRONMENT_TAG == 1)           //测试
 #define API_URL                  @"192.168.101.22:8001"
 #else

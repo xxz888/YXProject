@@ -97,7 +97,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
 
     CGFloat cellWidth = CGRectGetWidth(self.yxCollectionView.frame);
-    return CGSizeMake((cellWidth-11)/2 , 40);
+    return CGSizeMake((cellWidth-11)/2 , 44);
 }
 
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{

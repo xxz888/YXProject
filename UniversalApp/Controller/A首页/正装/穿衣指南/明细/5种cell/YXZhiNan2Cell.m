@@ -11,12 +11,12 @@
 @implementation YXZhiNan2Cell
 +(CGFloat)jisuanCellHeight:(NSDictionary *)dic{
     //内容
-    CGFloat height_size = [ShareManager inTextZhiNanOutHeight:dic[@"detail"] lineSpace:9 fontSize:16];
+    CGFloat height_size = [ShareManager inTextZhiNanOutHeight:dic[@"detail"] lineSpace:9 fontSize:17];
     return height_size;
 }
 -(void)setCellData:(NSDictionary *)dic linkData:(NSArray *)linkArray{
     kWeakSelf(self);
-    CGFloat height_size = [ShareManager inTextZhiNanOutHeight:dic[@"detail"] lineSpace:9 fontSize:16];
+    CGFloat height_size = [ShareManager inTextZhiNanOutHeight:dic[@"detail"] lineSpace:9 fontSize:17];
     self.contentHeight.constant = height_size;
     
     
@@ -31,7 +31,7 @@
         model.range = [dic[@"detail"] rangeOfString:string];
         model.string = string;
         model.attributeDic = @{NSForegroundColorAttributeName : YXRGBAColor(10, 96, 254),
-                               NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:14]};
+                               NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:16]};
         [modelArray addObject:model];
     }
     //文本点击回调
@@ -54,7 +54,7 @@
     //label内容赋值
     [self.contentLbl setText:dic[@"detail"]
                  attributes:@{NSForegroundColorAttributeName : YXRGBAColor(68, 68, 68),
-                              NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:14],
+                              NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:16],
                               NSParagraphStyleAttributeName:paragraphStyle
                               }
              tapStringArray:modelArray];
