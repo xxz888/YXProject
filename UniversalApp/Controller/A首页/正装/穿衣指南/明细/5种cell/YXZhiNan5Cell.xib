@@ -16,8 +16,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="123"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Iq1-xw-qwP">
-                    <rect key="frame" x="20" y="20" width="394" height="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="Iq1-xw-qwP">
+                    <rect key="frame" x="15" y="20" width="399" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="eDm-Wq-A1U"/>
                     </constraints>
@@ -37,7 +37,7 @@
             <constraints>
                 <constraint firstItem="Iq1-xw-qwP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="7jO-BZ-C8f"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Iq1-xw-qwP" secondAttribute="trailing" id="CYe-QZ-orO"/>
-                <constraint firstItem="Iq1-xw-qwP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="fv6-ld-Xch"/>
+                <constraint firstItem="Iq1-xw-qwP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="fv6-ld-Xch"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
