@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="88.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRG-b2-zAF" customClass="IXAttributeTapLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRG-b2-zAF" customClass="IXAttributeTapLabel">
                         <rect key="frame" x="15" y="20" width="290" height="59"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="59" id="9eq-5w-Gnl"/>
@@ -28,10 +28,10 @@
                             <fragment content="任正非，祖籍浙江省">
                                 <attributes>
                                     <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="NSColor" red="0.27843137254901962" green="0.27843137254901962" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <font key="NSFont" size="14" name="PingFangSC-Light"/>
                                     <real key="NSKern" value="0.0"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="charWrapping" baseWritingDirection="leftToRight" lineSpacing="9" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="charWrapping" baseWritingDirection="leftToRight" lineSpacing="9" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
                                         <tabStops/>
                                     </paragraphStyle>
                                     <color key="NSStrokeColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -41,11 +41,11 @@
                             <fragment content="浦江县">
                                 <attributes>
                                     <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="NSColor" red="0.27843137254901962" green="0.27843137254901962" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <font key="NSFont" size="14" name="PingFangSC-Light"/>
                                     <real key="NSKern" value="0.0"/>
                                     <url key="NSLink" string="https://baike.baidu.com/item/%E6%B5%A6%E6%B1%9F%E5%8E%BF/8510791"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="charWrapping" baseWritingDirection="leftToRight" lineSpacing="9" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="charWrapping" baseWritingDirection="leftToRight" lineSpacing="9" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
                                         <tabStops/>
                                     </paragraphStyle>
                                     <color key="NSStrokeColor" red="0.074509803921568626" green="0.43137254901960786" blue="0.76078431372549016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -57,10 +57,10 @@
 </string>
                                 <attributes>
                                     <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="NSColor" red="0.27843137254901962" green="0.27843137254901962" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <font key="NSFont" size="14" name="PingFangSC-Light"/>
                                     <real key="NSKern" value="0.0"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="charWrapping" baseWritingDirection="leftToRight" lineSpacing="9" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="charWrapping" baseWritingDirection="leftToRight" lineSpacing="9" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
                                         <tabStops/>
                                     </paragraphStyle>
                                     <color key="NSStrokeColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -82,7 +82,7 @@
                 <outlet property="contentHeight" destination="9eq-5w-Gnl" id="Z6X-n8-sa6"/>
                 <outlet property="contentLbl" destination="ZRG-b2-zAF" id="qLD-ph-gQj"/>
             </connections>
-            <point key="canvasLocation" x="-881.15942028985512" y="-9.0401785714285712"/>
+            <point key="canvasLocation" x="-1254" y="-10"/>
         </tableViewCell>
     </objects>
 </document>

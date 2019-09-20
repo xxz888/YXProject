@@ -16,39 +16,39 @@ SINGLETON_FOR_CLASS(ShareManager);
     kWeakSelf(self);
     //显示分享面板
     [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
-        // 根据获取的platformType确定所选平台进行下一步操作]
-
             [weakself shareWebPageZhiNanDetailToPlatformType:platformType obj:obj];
     }];
 }
-//- (void)shareWebPageZhiNanDetailToPlatformType:(UMSocialPlatformType)platformType obj:(id)obj{
-//    //创建分享消息对象
-//    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
-//    //创建网页内容对象
-//    UIImage * thumbURL = [UIImage imageNamed:@"zz.png"];
-//    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"小壮仔投票活动开始啦" descr:@"今年中秋不收礼，收礼只收人民币。\n\n请大家为我投票啦啦啦。" thumImage:thumbURL];
-//    //设置网页地址
-//    shareObject.webpageUrl = @"http://xxzxxmzz.applinzi.com/";
-//
-//    //分享消息对象设置分享内容对象
-//    messageObject.shareObject = shareObject;
-//    //调用分享接口
-//    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:nil completion:^(id data, NSError *error) {
-//        if (error) {
-//            UMSocialLogInfo(@"************Share fail with error %@*********",error);
-//        }else{
-//            if ([data isKindOfClass:[UMSocialShareResponse class]]) {
-//                UMSocialShareResponse *resp = data;
-//                //分享结果消息
-//                UMSocialLogInfo(@"response message is %@",resp.message);
-//                //第三方原始返回的数据
-//                UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
-//            }else{
-//                UMSocialLogInfo(@"response data is %@",data);
-//            }
-//        }
-//    }];
-//}
+- (void)shareYaoQingHaoYouToPlatformType:(UMSocialPlatformType)platformType{
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    //创建网页内容对象
+    UIImage * thumbURL = [UIImage imageNamed:@"appicon"];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"The Good Life，分享美好生活。" descr:@"【The Good Life APP】您的Ultimate生活方式平台。在这里，收录有如马六甲手杖，巴拿马草帽等小众精致产品的著名品牌安利和介绍，致力提供全面准确的国内外报价，每日精选的生活方式文章，以及西装与鞋子的颜色搭配手册、着装规范（Dress Code）、酒杯指南、雪茄环径测量等等一系列强大的实用工具。" thumImage:thumbURL];
+
+    
+    //设置网页地址
+    shareObject.webpageUrl = @"http://192.168.101.21:63340/%E7%9F%A9%E5%BD%A2%E6%8A%BD%E5%A5%96%E6%B4%BB%E5%8A%A8html/yaoqingZhuCe.html?";
+    
+    //分享消息对象设置分享内容对象
+    messageObject.shareObject = shareObject;
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:nil completion:^(id data, NSError *error) {
+        if (error) {
+            UMSocialLogInfo(@"************Share fail with error %@*********",error);
+        }else{
+            if ([data isKindOfClass:[UMSocialShareResponse class]]) {
+                UMSocialShareResponse *resp = data;
+                //分享结果消息
+                UMSocialLogInfo(@"response message is %@",resp.message);
+                //第三方原始返回的数据
+                UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
+            }else{
+                UMSocialLogInfo(@"response data is %@",data);
+            }
+        }
+    }];
+}
 - (void)shareWebPageZhiNanDetailToPlatformType:(UMSocialPlatformType)platformType obj:(id)obj{
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
@@ -433,15 +433,15 @@ SINGLETON_FOR_CLASS(ShareManager);
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:str];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = lineSpacing; // 设置行间距
-    paragraphStyle.alignment = NSTextAlignmentLeft; //设置两端对齐显示
-    NSDictionary *dic = @{NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:fontSize]};
+    paragraphStyle.alignment = NSTextAlignmentJustified; //设置两端对齐显示
+    NSDictionary *dic = @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Light" size:fontSize]};
     
     
     [attributedStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedStr.length)];
     CGSize size = [str boundingRectWithSize:CGSizeMake(KScreenWidth-30, MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
     
     
-    return  ceil(size.height);
+    return  size.height;
 }
     
 + (void)setBorderinView:(UIView *)view{
@@ -866,4 +866,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     
     
 }
+
+
+
 @end

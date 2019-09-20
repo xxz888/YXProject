@@ -9,14 +9,15 @@
 #import "YXZhiNan2Cell.h"
 #import "IXAttributeTapLabel.h"
 @implementation YXZhiNan2Cell
+
 +(CGFloat)jisuanCellHeight:(NSDictionary *)dic{
     //内容
-    CGFloat height_size = [ShareManager inTextZhiNanOutHeight:dic[@"detail"] lineSpace:9 fontSize:17];
+    CGFloat height_size = [ShareManager inTextZhiNanOutHeight:dic[@"detail"] lineSpace:0 fontSize:16];
     return height_size;
 }
 -(void)setCellData:(NSDictionary *)dic linkData:(NSArray *)linkArray{
     kWeakSelf(self);
-    CGFloat height_size = [ShareManager inTextZhiNanOutHeight:dic[@"detail"] lineSpace:9 fontSize:17];
+    CGFloat height_size = [ShareManager inTextZhiNanOutHeight:dic[@"detail"] lineSpace:0 fontSize:16];
     self.contentHeight.constant = height_size;
     
     
@@ -31,7 +32,7 @@
         model.range = [dic[@"detail"] rangeOfString:string];
         model.string = string;
         model.attributeDic = @{NSForegroundColorAttributeName : YXRGBAColor(10, 96, 254),
-                               NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:16]};
+                               NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Light" size:16]};
         [modelArray addObject:model];
     }
     //文本点击回调
@@ -48,16 +49,19 @@
     
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:dic[@"detail"]];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.lineSpacing = 2; // 设置行间距
+    paragraphStyle.lineSpacing = 0; // 设置行间距
     [attributedStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedStr.length)];
     
     //label内容赋值
     [self.contentLbl setText:dic[@"detail"]
-                 attributes:@{NSForegroundColorAttributeName : YXRGBAColor(68, 68, 68),
-                              NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:16],
+                 attributes:@{NSForegroundColorAttributeName : YXRGBAColor(51, 51, 51),
+                              NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Light" size:16],
                               NSParagraphStyleAttributeName:paragraphStyle
                               }
              tapStringArray:modelArray];
+    
+    self.contentLbl.textAlignment = NSTextAlignmentJustified;
+//    [self conversionCharacterInterval:20 current:dic[@"detail"] withLabel:self.contentLbl];
     
 }
 

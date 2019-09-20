@@ -10,6 +10,8 @@
 #import "YXMineJiFenHistoryViewController.h"
 #import "YXMineQianDaoView.h"
 #import "YXMineChouJiangViewController.h"
+#import "YXHomeEditPersonTableViewController.h"
+#import "YXMineYaoQingWebViewController.h"
 
 @interface YXMineJiFenTableViewController ()
 @property(nonatomic,strong)NSMutableArray * sign_Array;
@@ -29,11 +31,7 @@
 }
 -(void)requestData{
     
-    UserInfo *  userInfo = curUser;
-    
     kWeakSelf(self);
-
-    
     [YX_MANAGER requestGetFind_My_user_Info:@"" success:^(id object) {
         weakself.jifenNumLbl.text= [@"积分:" append:kGetNSInteger([object[@"integral"] integerValue])];
 
@@ -44,24 +42,26 @@
     [YX_MANAGER requestUsersSign_in_List:@{} success:^(id object) {
         [weakself.sign_Array removeAllObjects];
         [weakself.sign_Array addObjectsFromArray:object];
-        
-        
-        
         //判断今天是否已经签到
         NSString * currDayTime = [ShareManager getCurrentDay];
-        
         for (NSDictionary * dic in weakself.sign_Array) {
             if([dic[@"sign_in_date"] isEqualToString:currDayTime]){
                 [weakself.qiandaoBtn setTitle:@"已签到" forState:UIControlStateNormal];
                 [weakself.qiandaoBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
                 [weakself.qiandaoBtn setBackgroundColor:[UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0]];
                 weakself.qiandaoBtn.userInteractionEnabled = NO;
+                
+                [weakself.finish3 setTitle:@"已完成" forState:UIControlStateNormal];
+                [weakself.finish3 setTitleColor:KWhiteColor forState:UIControlStateNormal];
+                [weakself.finish3 setBackgroundColor:[UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0]];
+                weakself.finish3.userInteractionEnabled = NO;
             }
         }
-        
         [weakself get7Days];
-        
     }];
+    
+    [self get7Days];
+
 }
 -(void)get7Days{
     
@@ -122,17 +122,26 @@
 
 - (IBAction)qiandaoAction:(id)sender {
     
-    
+    kWeakSelf(self);
     [YX_MANAGER requestUsersSign_in_Action:@"" success:^(id object) {
-        [self.qiandaoBtn setTitle:@"已签到" forState:UIControlStateNormal];
-        [self.qiandaoBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
-        [self.qiandaoBtn setBackgroundColor:[UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0]];
-        self.qiandaoBtn.userInteractionEnabled = NO;
+        [weakself.qiandaoBtn setTitle:@"已签到" forState:UIControlStateNormal];
+        [weakself.qiandaoBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
+        [weakself.qiandaoBtn setBackgroundColor:[UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0]];
+        weakself.qiandaoBtn.userInteractionEnabled = NO;
+        
+        [weakself.finish3 setTitle:@"已完成" forState:UIControlStateNormal];
+        [weakself.finish3 setTitleColor:KWhiteColor forState:UIControlStateNormal];
+        [weakself.finish3 setBackgroundColor:[UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0]];
+        weakself.finish3.userInteractionEnabled = NO;
+        
+        [weakself handleShowContentView];
+        
+        
     }];
     
 
  
-    [self handleShowContentView];
+
 }
 - (IBAction)jifenHistoryAction:(id)sender {
     UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
@@ -176,6 +185,47 @@
 - (IBAction)jifenshangchengAction:(id)sender {
     [self.navigationController pushViewController:[YXMineChouJiangViewController new] animated:YES];
 }
+
+- (IBAction)finishAllAction:(UIButton *)btn{
+    UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+    switch (btn.tag) {
+        case 101://首次完善个人主页
+        {
+            
+            UserInfo *  userInfo = curUser;
+            kWeakSelf(self);
+            [YX_MANAGER requestGetFind_user_id:userInfo.id success:^(id object) {
+                YXHomeEditPersonTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXHomeEditPersonTableViewController"];
+                VC.userInfoDic = [NSDictionary dictionaryWithDictionary:object];
+                [weakself.navigationController pushViewController:VC animated:YES];            }];
+        
+        }
+            break;
+        case 102://邀请好友注册
+        {
+            YXMineYaoQingWebViewController * vc = [[YXMineYaoQingWebViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 103://每日签到
+            
+            break;
+        case 104://每日新增粉丝
+        case 105://每日新增关注
+        case 106://每条内容被喜欢10次
+        case 107://图片加精
+        case 108://视频加精
+        case 109://文章加精
+            self.navigationController.tabBarController.selectedIndex = 1;
+            break;
+        default:
+            break;
+    }
+    
+}
+
+
+
 //- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 //    CGPoint offset = tableV.contentOffset;
 //    if (offset.y <= 0) {

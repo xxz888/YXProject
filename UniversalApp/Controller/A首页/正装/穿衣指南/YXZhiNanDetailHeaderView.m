@@ -62,10 +62,13 @@
         self.is_collect = [dic[@"is_collect"] integerValue] == 1;
         UIImage * likeImage = self.is_collect ? [UIImage imageNamed:@"收藏2"] : [UIImage imageNamed:@"收藏1"] ;
         [self.collBtn setImage:likeImage forState:UIControlStateNormal];
-        UIColor * color1 = self.is_collect ? YXRGBAColor(251, 24, 39) : KWhiteColor;
+        UIColor * color1 = self.is_collect ? YXRGBAColor(10, 36, 54) : KWhiteColor;
         self.collVIew.backgroundColor = color1;
         UIColor * color2 = self.is_collect ? KWhiteColor : KDarkGaryColor;
         [self.collBtn setTitleColor:color2 forState:UIControlStateNormal];
+        
+        [self.collBtn setTitle:self.is_collect ? @"已收藏":@"收藏" forState:UIControlStateNormal];
+
     }
     
     /*
@@ -94,11 +97,12 @@
     NSString * tagId = NSIntegerToNSString(sender.tag);
     [YXPLUS_MANAGER requestCollect_optionGet:[@"3/" append:tagId] success:^(id object) {
         UIImage * likeImage = weakself.is_collect ? [UIImage imageNamed:@"收藏1"] : [UIImage imageNamed:@"收藏2"] ;
-        UIColor * color1 =    weakself.is_collect ? KWhiteColor : YXRGBAColor(251, 24, 39);
+        UIColor * color1 =    weakself.is_collect ? KWhiteColor : YXRGBAColor(10, 36, 54);
         UIColor * color2 =    weakself.is_collect ? KDarkGaryColor           : KWhiteColor;
         self.collVIew.backgroundColor = color1;
         [self.collBtn setTitleColor:color2 forState:UIControlStateNormal];
         [self.collBtn setImage:likeImage forState:UIControlStateNormal];
+        [self.collBtn setTitle:weakself.is_collect ? @"收藏":@"已收藏" forState:UIControlStateNormal];
         self.is_collect = !self.is_collect;
     }];
 }

@@ -69,4 +69,6 @@ SINGLETON_FOR_HEADER(ShareManager)
 +(CGFloat)getImageViewSize:(NSString *)imgUrl;
 +(void)setLineSpace:(CGFloat)lineSpace inLabel:(UILabel *)label size:(CGFloat)size;
 +(void)inTextViewOutDifColorView:(UILabel *)tfView tag:(NSString *)tag;
+- (void)shareYaoQingHaoYouToPlatformType:(UMSocialPlatformType)platformType;
++(CGFloat)inTextZhiNanOutHeight:(NSString *)str lineSpace:(CGFloat)lineSpacing fontSize:(CGFloat)fontSize width:(CGFloat)width;
 @end

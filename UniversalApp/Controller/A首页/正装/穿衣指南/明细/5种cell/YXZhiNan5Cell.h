@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 //180
 -(void)setCellData:(NSDictionary *)dic;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentHeight5;
++(CGFloat)jisuanCellHeight5:(NSDictionary *)dic;
+
 @end
 
 NS_ASSUME_NONNULL_END

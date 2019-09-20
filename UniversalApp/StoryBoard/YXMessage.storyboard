@@ -240,6 +240,9 @@
                                                         <constraint firstAttribute="width" constant="10" id="Ikd-CY-Fpy"/>
                                                     </constraints>
                                                     <state key="normal" backgroundImage="关闭"/>
+                                                    <connections>
+                                                        <action selector="closeTuiSong:" destination="TvB-be-c5G" eventType="touchUpInside" id="fu9-BJ-0Xf"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqP-p3-qEf">
                                                     <rect key="frame" x="249" y="16" width="60" height="18"/>

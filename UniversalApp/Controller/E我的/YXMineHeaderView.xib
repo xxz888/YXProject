@@ -296,7 +296,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.043137254901960784" green="0.14117647058823529" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.043137254901960784" green="0.10588235294117647" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="mta-u5-PyU" secondAttribute="trailing" constant="-15" id="1M9-kn-KgA"/>
                 <constraint firstItem="sE9-Ps-Bqa" firstAttribute="top" secondItem="93P-T7-RWY" secondAttribute="bottom" constant="20" id="4h5-PQ-LtI"/>
@@ -342,6 +342,6 @@
         <image name="minemore" width="44" height="44"/>
         <image name="minenan" width="28" height="28"/>
         <image name="mineshezhi" width="44" height="44"/>
-        <image name="白色返回" width="48" height="48"/>
+        <image name="白色返回" width="44" height="44"/>
     </resources>
 </document>

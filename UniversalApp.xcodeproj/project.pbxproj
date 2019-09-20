@@ -157,6 +157,7 @@
 		BB21FDB922B0E68A0059BCAC /* YXFirstFindImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB21FDB722B0E68A0059BCAC /* YXFirstFindImageTableViewCell.m */; };
 		BB21FDBA22B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB21FDB822B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib */; };
 		BB21FDBD22B2193A0059BCAC /* ImageScale.m in Sources */ = {isa = PBXBuildFile; fileRef = BB21FDBB22B2193A0059BCAC /* ImageScale.m */; };
+		BB227B1923346AA0004A04EC /* PingFang.ttc in Resources */ = {isa = PBXBuildFile; fileRef = BB227B1823346AA0004A04EC /* PingFang.ttc */; };
 		BB25D48723162F3600971B94 /* YXNewLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB25D48623162F3600971B94 /* YXNewLoginViewController.m */; };
 		BB29120822156BB500FF484E /* Cigarillo.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911EC22156BB500FF484E /* Cigarillo.gif */; };
 		BB29120922156BB500FF484E /* Petit Corona.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911ED22156BB500FF484E /* Petit Corona.gif */; };
@@ -332,6 +333,7 @@
 		BB98329A229E165A00894FAF /* YXMineMyCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB983299229E165A00894FAF /* YXMineMyCollectionViewController.xib */; };
 		BB98329E229E190000894FAF /* YXMineMyCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB98329C229E190000894FAF /* YXMineMyCollectionTableViewCell.m */; };
 		BB98329F229E190000894FAF /* YXMineMyCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB98329D229E190000894FAF /* YXMineMyCollectionTableViewCell.xib */; };
+		BB9C6982233372E2003EF6AA /* YXMineYaoQingWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9C6981233372E2003EF6AA /* YXMineYaoQingWebViewController.m */; };
 		BB9ECD4C228002EA00A12952 /* ZInputToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9ECD48228002E900A12952 /* ZInputToolbar.m */; };
 		BB9ECD4D228002EA00A12952 /* UIView+LSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9ECD49228002E900A12952 /* UIView+LSExtension.m */; };
 		BB9ECD502285211600A12952 /* UIScrollView+FanHui.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9ECD4F2285211600A12952 /* UIScrollView+FanHui.m */; };
@@ -980,6 +982,7 @@
 		BB21FDB822B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFirstFindImageTableViewCell.xib; sourceTree = "<group>"; };
 		BB21FDBB22B2193A0059BCAC /* ImageScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScale.m; sourceTree = "<group>"; };
 		BB21FDBC22B2193A0059BCAC /* ImageScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScale.h; sourceTree = "<group>"; };
+		BB227B1823346AA0004A04EC /* PingFang.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = PingFang.ttc; sourceTree = "<group>"; };
 		BB25D48523162F3600971B94 /* YXNewLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YXNewLoginViewController.h; path = register/YXNewLoginViewController.h; sourceTree = "<group>"; };
 		BB25D48623162F3600971B94 /* YXNewLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = YXNewLoginViewController.m; path = register/YXNewLoginViewController.m; sourceTree = "<group>"; };
 		BB2911EC22156BB500FF484E /* Cigarillo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Cigarillo.gif; sourceTree = "<group>"; };
@@ -1272,6 +1275,8 @@
 		BB98329B229E190000894FAF /* YXMineMyCollectionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineMyCollectionTableViewCell.h; sourceTree = "<group>"; };
 		BB98329C229E190000894FAF /* YXMineMyCollectionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineMyCollectionTableViewCell.m; sourceTree = "<group>"; };
 		BB98329D229E190000894FAF /* YXMineMyCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineMyCollectionTableViewCell.xib; sourceTree = "<group>"; };
+		BB9C6980233372E2003EF6AA /* YXMineYaoQingWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMineYaoQingWebViewController.h; sourceTree = "<group>"; };
+		BB9C6981233372E2003EF6AA /* YXMineYaoQingWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMineYaoQingWebViewController.m; sourceTree = "<group>"; };
 		BB9ECD48228002E900A12952 /* ZInputToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZInputToolbar.m; sourceTree = "<group>"; };
 		BB9ECD49228002E900A12952 /* UIView+LSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LSExtension.m"; sourceTree = "<group>"; };
 		BB9ECD4A228002E900A12952 /* UIView+LSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LSExtension.h"; sourceTree = "<group>"; };
@@ -2551,6 +2556,7 @@
 		BB12EE322318FEEC008CF3C6 /* 积分 */ = {
 			isa = PBXGroup;
 			children = (
+				BB9C697F233372A4003EF6AA /* 邀请好友 */,
 				BBFBA2DE23306C2D00EE158A /* 积分商城 */,
 				BB01333B232F592F00573AC0 /* 积分规则 */,
 				BB12EE332318FF0B008CF3C6 /* YXMineJiFenTableViewController.h */,
@@ -3475,6 +3481,15 @@
 			path = XLDouYinLoading;
 			sourceTree = "<group>";
 		};
+		BB9C697F233372A4003EF6AA /* 邀请好友 */ = {
+			isa = PBXGroup;
+			children = (
+				BB9C6980233372E2003EF6AA /* YXMineYaoQingWebViewController.h */,
+				BB9C6981233372E2003EF6AA /* YXMineYaoQingWebViewController.m */,
+			);
+			path = "邀请好友";
+			sourceTree = "<group>";
+		};
 		BB9ECD47228002E900A12952 /* 自适应tf */ = {
 			isa = PBXGroup;
 			children = (
@@ -3662,6 +3677,7 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BB227B1823346AA0004A04EC /* PingFang.ttc */,
 				BB46926822E6F5D800A7A77E /* SocketRocketUtility.h */,
 				BB46926722E6F5D700A7A77E /* SocketRocketUtility.m */,
 				BBBBC0F222BCD2FE00F528E1 /* VideoPlayer */,
@@ -5878,6 +5894,7 @@
 				BBB59B1B228CF8CB0029D3D0 /* YXColorViewController.xib in Resources */,
 				BBD2C93521E0F67800350DCD /* ImageError@3x.png in Resources */,
 				BB5FD89021FECC0600B5F1A8 /* YXFindQuestionTableViewCell.xib in Resources */,
+				BB227B1923346AA0004A04EC /* PingFang.ttc in Resources */,
 				BBD2C94221E0F67800350DCD /* ImageSelectedOff@3x.png in Resources */,
 				BB928F5821FABCC30090A044 /* YXMinePingLunViewController.xib in Resources */,
 				2917D20A1EE007C300E76185 /* MBHUD_Error@3x.png in Resources */,
@@ -6078,6 +6095,7 @@
 				BBB59AED228CF8CB0029D3D0 /* YXHomeXueJiaDetailTableViewCell.m in Sources */,
 				BB9413DB21F8B602007E800A /* IQTitleBarButtonItem.m in Sources */,
 				BBB59B0E228CF8CB0029D3D0 /* YXHomeXueJiaWenHuaTableViewCell.m in Sources */,
+				BB9C6982233372E2003EF6AA /* YXMineYaoQingWebViewController.m in Sources */,
 				BB928F6521FACDE70090A044 /* YXMineSettingSafeTableViewController.m in Sources */,
 				BBB59B00228CF8CB0029D3D0 /* SDTimeLineRefreshHeader.m in Sources */,
 				BBB59B8B228EB52A0029D3D0 /* YXPlusManager.m in Sources */,

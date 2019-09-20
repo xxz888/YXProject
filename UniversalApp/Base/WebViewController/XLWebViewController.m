@@ -94,12 +94,12 @@
 
 -(void)backButtonClicked
 {
-    if ([self.webView canGoBack]) {
-        [self.webView goBack];
-    }
-    else {
+//    if ([self.webView canGoBack]) {
+//        [self.webView goBack];
+//    }
+//    else {
         [super backBtnClicked];
-    }
+//    }
 }
 
 #pragma mark --进度条
@@ -132,7 +132,6 @@
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     self.title = webView.title;
     [self updateProgress:webView.estimatedProgress];
-    
     [self updateNavigationItems];
 }
 
@@ -174,11 +173,11 @@
 
 -(void)backBtnClicked{
     [self.webView stopLoading];
-    if ([self.webView canGoBack]) {
-        [self.webView goBack];
-    }else{
+//    if ([self.webView canGoBack]) {
+//        [self.webView goBack];
+//    }else{
         [super backBtnClicked];
-    }
+//    }
 }
 
 - (void)didReceiveMemoryWarning {

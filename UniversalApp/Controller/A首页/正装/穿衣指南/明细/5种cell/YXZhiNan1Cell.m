@@ -14,8 +14,15 @@
     [super awakeFromNib];
     // Initialization code
 }
++(CGFloat)jisuanCellHeight:(NSDictionary *)dic{
+    //内容
+    CGFloat height_size = [ShareManager inTextZhiNanOutHeight:dic[@"detail"] lineSpace:9 fontSize:20];
+    return height_size;
+}
 -(void)setCellData:(NSDictionary *)dic{
     self.titleLbl.text = dic[@"detail"];
+    
+    self.titleHeight.constant = [ShareManager inTextZhiNanOutHeight:dic[@"detail"] lineSpace:9 fontSize:20];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

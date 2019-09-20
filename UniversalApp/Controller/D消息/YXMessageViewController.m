@@ -12,6 +12,8 @@
 
 @interface YXMessageViewController ()<UIGestureRecognizerDelegate>
 @property (nonatomic) BOOL isCanBack;
+@property (nonatomic) BOOL isEnable;
+
 @end
 
 @implementation YXMessageViewController
@@ -31,10 +33,18 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
     [self getNewMessageNumeber];
+    self.isEnable = [self isUserNotificationEnable];
+    [self.tableView reloadData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tuisongxiaoxi:) name:@"tuisongxiaoxi" object:nil];
+
+}
+-(void)tuisongxiaoxi:(NSNotification *)notice{
+    [self.tableView reloadData];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 -(void)setUI{
     
@@ -135,5 +145,52 @@
 
 
 - (IBAction)tuisongAction:(id)sender {
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    [self goToAppSystemSetting];
+}
+
+- (IBAction)closeTuiSong:(id)sender {
+    _isEnable = YES;
+    [self.tableView reloadData];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section==2&&indexPath.row==1) {
+        if (_isEnable) {
+            return 0;
+        }else{
+            if ([self isUserNotificationEnable]) {
+                return 0;
+            }else{
+                return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+            }
+        }
+        return 0;
+    }else{
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+}
+- (BOOL)isUserNotificationEnable { // 判断用户是否允许接收通知
+    _isEnable = NO;
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0f) { // iOS版本 >=8.0 处理逻辑
+        UIUserNotificationSettings *setting = [[UIApplication sharedApplication] currentUserNotificationSettings];
+        _isEnable = (UIUserNotificationTypeNone == setting.types) ? NO : YES;
+    } else { // iOS版本 <8.0 处理逻辑
+        UIRemoteNotificationType type = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+        _isEnable = (UIRemoteNotificationTypeNone == type) ? NO : YES;
+    }
+    return _isEnable;
+}
+// 如果用户关闭了接收通知功能，该方法可以跳转到APP设置页面进行修改  iOS版本 >=8.0 处理逻辑
+- (void)goToAppSystemSetting {
+    UIApplication *application = [UIApplication sharedApplication];
+    NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    if ([application canOpenURL:url]) {
+        if ([application respondsToSelector:@selector(openURL:options:completionHandler:)]) {
+            [application openURL:url options:@{} completionHandler:nil];
+        } else {
+            [application openURL:url];
+        }
+    }
 }
 @end
