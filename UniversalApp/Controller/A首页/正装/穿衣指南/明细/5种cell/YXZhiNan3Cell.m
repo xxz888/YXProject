@@ -36,7 +36,7 @@
 }
 -(void)setCellData:(NSDictionary *)dic{
     
-    self.photoHeight.constant = (KScreenWidth - 30)* [dic[@"ratio"] doubleValue];
+    self.photoHeight.constant = [dic[@"ratio"] doubleValue] == 0 ? 180: (KScreenWidth - 30)* [dic[@"ratio"] doubleValue];
     NSString * str = [(NSMutableString *)dic[@"detail"] replaceAll:@" " target:@"%20"];
     [self.photoImgView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     

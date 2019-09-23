@@ -23,6 +23,8 @@
 -(void)setCellData:(NSDictionary *)dic{
     self.titleLbl.text = dic[@"detail"];
     self.contentHeight5.constant = [ShareManager inTextZhiNanOutHeight:dic[@"detail"] lineSpace:0 fontSize:16];
+    self.titleLbl.textAlignment = NSTextAlignmentJustified;
+
     
 }
 @end

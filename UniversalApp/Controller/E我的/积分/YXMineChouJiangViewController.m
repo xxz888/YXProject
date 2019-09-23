@@ -17,9 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.webView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight);
-    self.url = @"http://192.168.101.21:63340/lottery20190814/index.html";
-    
-    
+    UserInfo *userInfo = curUser;
+
+    self.url = [@"http://192.168.101.21:63340/%E7%9F%A9%E5%BD%A2%E6%8A%BD%E5%A5%96%E6%B4%BB%E5%8A%A8html/index.html?" append:userInfo.token];
+
+
 #pragma mark--button create
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(16, 40, 20, 20);
@@ -27,6 +29,8 @@
     [btn addTarget:self action:@selector(clicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
 }
+
+
 -(void)clicked:(UIButton *)btn{
     [self.navigationController popViewControllerAnimated:YES];
 }

@@ -164,7 +164,7 @@
     }else if(obj == 2) {
         return  [YXZhiNan2Cell jisuanCellHeight:dic] + 20;
     }else if(obj == 3 || obj == 4) {
-        return (KScreenWidth-30)*[dic[@"ratio"] doubleValue] + 20;
+        return [dic[@"ratio"] doubleValue] == 0  ?  200 :  (KScreenWidth-30)*[dic[@"ratio"] doubleValue] + 20;
     }else if(obj == 5){
         return  [YXZhiNan5Cell jisuanCellHeight5:dic] + 20;
     }

@@ -52,6 +52,7 @@
 
 -(void)setHeaderViewData:(NSDictionary *)dic{
     self.dic = [NSDictionary dictionaryWithDictionary:dic];
+    self.titleLbl.text = dic[@"name"];
     NSString * titleText =  [NSString stringWithFormat:@"%@",dic[@"intro"]];
         //设置需要点击的字符串，并配置此字符串的样式及位置
     self.contentLbl.text = titleText;
