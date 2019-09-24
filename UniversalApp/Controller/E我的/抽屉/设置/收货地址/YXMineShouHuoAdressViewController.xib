@@ -55,6 +55,7 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nof-sc-ly0">
                     <rect key="frame" x="0.0" y="80" width="414" height="728"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="sectionIndexBackgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="0fr-La-akD"/>
                         <outlet property="delegate" destination="-1" id="yH5-fl-RCv"/>
@@ -81,7 +82,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Gby-4y-BdB" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="9XC-wy-8Zs"/>
                 <constraint firstItem="AoO-1y-4GJ" firstAttribute="top" secondItem="nof-sc-ly0" secondAttribute="bottom" constant="20" id="Fe6-60-fhR"/>

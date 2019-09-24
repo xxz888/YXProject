@@ -17,5 +17,14 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestZhiNan1Get:YX_BLOCK;
 -(void)requestCollect_optionGet:YX_BLOCK;
 -(void)requestAll_optionGet:YX_BLOCK;
+
+#pragma mark ==========增加收货地址==========
+-(void)requestAddressAddPOST:YX_BLOCK;
+#pragma mark ==========更改收货地址==========
+-(void)requestAddressChangePOST:YX_BLOCK;
+#pragma mark ==========删除收货地址==========
+-(void)requestAddressDelPOST:YX_BLOCK;
+#pragma mark ==========查询收货地址==========
+-(void)requestAddressListGet:YX_BLOCK;
 @end
 

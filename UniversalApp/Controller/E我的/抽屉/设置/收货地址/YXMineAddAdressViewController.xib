@@ -12,6 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YXMineAddAdressViewController">
             <connections>
+                <outlet property="adName" destination="SHz-lN-N7L" id="Idn-a9-9Yr"/>
+                <outlet property="adPhone" destination="2lr-Ts-AKI" id="ppY-EX-daK"/>
+                <outlet property="delBtn" destination="Z4e-hq-dov" id="ij2-3j-Fgm"/>
                 <outlet property="detailAdressView" destination="m0P-hl-n1Q" id="MZe-nb-zLH"/>
                 <outlet property="selectAdressBtn" destination="YRZ-Zc-e3Z" id="9tG-17-hbz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -43,9 +46,23 @@
                                 <action selector="backvc:" destination="-1" eventType="touchUpInside" id="mDJ-zE-SuJ"/>
                             </connections>
                         </button>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z4e-hq-dov">
+                            <rect key="frame" x="338" y="31" width="60" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="N1t-KU-ZDa"/>
+                                <constraint firstAttribute="width" constant="60" id="cW5-GD-QmS"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="删除"/>
+                            <connections>
+                                <action selector="delAction:" destination="-1" eventType="touchUpInside" id="Zvs-uY-CHW"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="Z4e-hq-dov" firstAttribute="centerY" secondItem="WdJ-Lu-uWw" secondAttribute="centerY" id="BJV-KO-u6s"/>
+                        <constraint firstAttribute="trailing" secondItem="Z4e-hq-dov" secondAttribute="trailing" constant="16" id="Cec-md-LXJ"/>
                         <constraint firstItem="WdJ-Lu-uWw" firstAttribute="centerX" secondItem="2u6-cF-xeA" secondAttribute="centerX" id="DwA-Ed-KkD"/>
                         <constraint firstAttribute="height" constant="80" id="MER-Je-buL"/>
                         <constraint firstItem="WdJ-Lu-uWw" firstAttribute="centerY" secondItem="bTh-Rc-Dc8" secondAttribute="centerY" id="WiE-DC-ati"/>
@@ -69,6 +86,9 @@
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="saveAction:" destination="-1" eventType="touchUpInside" id="J04-m0-lzi"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="67Q-MC-kGW">
                     <rect key="frame" x="0.0" y="80" width="414" height="60"/>

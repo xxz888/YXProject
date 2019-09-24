@@ -67,4 +67,31 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
+
+#pragma mark ==========增加收货地址==========
+-(void)requestAddressAddPOST:YX_BLOCK{
+    [HTTP_POST(@"/users/address") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+
+#pragma mark ==========更改收货地址==========
+-(void)requestAddressChangePOST:YX_BLOCK{
+    [HTTP_POST(@"/users/address") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+#pragma mark ==========删除收货地址==========
+-(void)requestAddressDelPOST:YX_BLOCK{
+    [HTTP_POST(@"/users/address") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+#pragma mark ==========查询收货地址==========
+-(void)requestAddressListGet:YX_BLOCK{
+    [HTTP_GET(@"/users/address")  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
 @end

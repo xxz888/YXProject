@@ -13,14 +13,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="YXFindHeaderView">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="63"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A86-0d-fRZ">
-                    <rect key="frame" x="369" y="12" width="25" height="24"/>
+                    <rect key="frame" x="374" y="26" width="24" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="25" id="6c2-kO-Kn2"/>
-                        <constraint firstAttribute="height" constant="24" id="g3i-rc-Fic"/>
+                        <constraint firstAttribute="width" constant="24" id="Q4I-cN-li2"/>
+                        <constraint firstAttribute="height" constant="21" id="mQQ-Qf-MIe"/>
                     </constraints>
                     <state key="normal" backgroundImage="添加图片"/>
                     <connections>
@@ -28,10 +28,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSH-XA-xLQ">
-                    <rect key="frame" x="327" y="13" width="24" height="24"/>
+                    <rect key="frame" x="329" y="27.5" width="22" height="22"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="24" id="HBA-OH-P9R"/>
-                        <constraint firstAttribute="width" constant="24" id="hGC-BD-0OT"/>
+                        <constraint firstAttribute="width" constant="22" id="4jS-vy-K37"/>
+                        <constraint firstAttribute="height" constant="22" id="Ki2-YZ-2gC"/>
                     </constraints>
                     <state key="normal" backgroundImage="搜索"/>
                     <connections>
@@ -41,14 +41,14 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="A86-0d-fRZ" secondAttribute="trailing" constant="20" id="5Ql-WH-M6S"/>
-                <constraint firstItem="CSH-XA-xLQ" firstAttribute="centerY" secondItem="A86-0d-fRZ" secondAttribute="centerY" constant="1" id="A2I-m5-khe"/>
-                <constraint firstItem="A86-0d-fRZ" firstAttribute="leading" secondItem="CSH-XA-xLQ" secondAttribute="trailing" constant="18" id="b30-Oo-vjF"/>
-                <constraint firstItem="CSH-XA-xLQ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ylt-Bu-5t3"/>
+                <constraint firstItem="CSH-XA-xLQ" firstAttribute="centerY" secondItem="A86-0d-fRZ" secondAttribute="centerY" constant="2" id="5sr-bX-spf"/>
+                <constraint firstItem="A86-0d-fRZ" firstAttribute="leading" secondItem="CSH-XA-xLQ" secondAttribute="trailing" constant="23" id="M5z-Jr-Pp9"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="A86-0d-fRZ" secondAttribute="trailing" constant="16" id="P2g-5s-YRJ"/>
+                <constraint firstItem="A86-0d-fRZ" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="zp8-4Q-pxM"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="-1148" y="-306"/>
+            <point key="canvasLocation" x="-1149.2753623188407" y="-301.67410714285711"/>
         </view>
     </objects>
     <resources>

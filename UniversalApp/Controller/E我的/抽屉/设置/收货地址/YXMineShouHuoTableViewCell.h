@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+typedef void(^btnClick)(NSInteger);
+typedef void(^morenbtnClick)(NSInteger);
 
 @interface YXMineShouHuoTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLbl;
@@ -17,6 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *morenBtn;
 - (IBAction)morenAction:(id)sender;
 - (IBAction)editAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *editBtn;
+@property (nonatomic,copy) btnClick btnblock;
+@property (nonatomic,copy) morenbtnClick morenbtnblock;
+@property (nonatomic,strong) NSDictionary * dic;
+
 
 @end
 

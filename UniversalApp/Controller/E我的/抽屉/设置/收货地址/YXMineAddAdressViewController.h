@@ -14,6 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *selectAdressBtn;
 - (IBAction)selectAdressAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *detailAdressView;
+@property (weak, nonatomic) IBOutlet UITextField *adName;
+@property (weak, nonatomic) IBOutlet UITextField *adPhone;
+@property (nonatomic,strong) NSDictionary * addressDic;
+@property (weak, nonatomic) IBOutlet UIButton *delBtn;
 
 @end
 
