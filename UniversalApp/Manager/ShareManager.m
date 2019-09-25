@@ -19,52 +19,11 @@ SINGLETON_FOR_CLASS(ShareManager);
             [weakself shareAllToPlatformType:platformType obj:obj];
     }];
 }
-- (void)shareYaoQingHaoYouToPlatformType:(UMSocialPlatformType)platformType{
-    //创建分享消息对象
-    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
-    //创建网页内容对象
-    UIImage * thumbURL = [UIImage imageNamed:@"appicon"];
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"The Good Life，分享美好生活。" descr:@"【The Good Life APP】您的Ultimate生活方式平台。在这里，收录有如马六甲手杖，巴拿马草帽等小众精致产品的著名品牌安利和介绍，致力提供全面准确的国内外报价，每日精选的生活方式文章，以及西装与鞋子的颜色搭配手册、着装规范（Dress Code）、酒杯指南、雪茄环径测量等等一系列强大的实用工具。" thumImage:thumbURL];
-
-    
-    //设置网页地址
-    shareObject.webpageUrl = @"http://192.168.101.21:63340/%E7%9F%A9%E5%BD%A2%E6%8A%BD%E5%A5%96%E6%B4%BB%E5%8A%A8html/yaoqingZhuCe.html?";
-    
-    //分享消息对象设置分享内容对象
-    messageObject.shareObject = shareObject;
-    //调用分享接口
-    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:nil completion:^(id data, NSError *error) {
-        if (error) {
-            UMSocialLogInfo(@"************Share fail with error %@*********",error);
-        }else{
-            if ([data isKindOfClass:[UMSocialShareResponse class]]) {
-                UMSocialShareResponse *resp = data;
-                //分享结果消息
-                UMSocialLogInfo(@"response message is %@",resp.message);
-                //第三方原始返回的数据
-                UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
-            }else{
-                UMSocialLogInfo(@"response data is %@",data);
-            }
-        }
-    }];
-}
 - (void)shareAllToPlatformType:(UMSocialPlatformType)platformType obj:(id)obj{
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     //创建网页内容对象
     UIImage * thumbURL = [UIImage imageNamed:@"appicon"];
-    
-    /*
-    1、    分享用户页（个人与其他用户）：标题：“用户名字“的主页@蓝皮书app
-    文案：“用户名字“的蓝皮书主页，快来关注吧！
-    2、    用户发布的内容转发：标题“用户名字”发布的内容@蓝皮书app
-    文案：这篇内容真的很赞，快点开看！
-    3、    指南一级界面分享（以雪茄为例）：雪茄指南
-    4、    指南具体界面分享（以古巴雪茄——历史为例）：古巴雪茄：历史指南
-    5、    邀请好友：标题：蓝皮书，一站式品味生活指南@蓝皮书app
-            文案：Ta开启了蓝皮书之旅，快来加入吧
-    */
     
     
     UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:obj[@"title"] descr:obj[@"desc"] thumImage:thumbURL];
@@ -84,7 +43,6 @@ SINGLETON_FOR_CLASS(ShareManager);
             case 1:{
                     webpageUrl = [NSString stringWithFormat:@"%@second/%@",url1,obj[@"index"]];
                     shareObject.thumbImage = obj[@"thumbImage"];
-
                     break;
                 }
             case 2:{
@@ -98,11 +56,12 @@ SINGLETON_FOR_CLASS(ShareManager);
                      resultString = [resultString stringByReplacingOccurrencesOfString:@" " withString:@""];
                      webpageUrl = [NSString stringWithFormat:@"%@/HomeZhiNanDetail.html?img=%@",httpurl,resultString];
                      shareObject.thumbImage = obj[@"img"];
-
                      break;
                  }
             case 4:{
                      
+                     webpageUrl = [NSString stringWithFormat:@"%@yaoqingZhuCe.html",[API_URL split:@"api"][0]];
+                     shareObject.thumbImage = obj[@"thumbImage"];
                      break;
                  }
             case 5:{
