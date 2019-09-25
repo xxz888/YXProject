@@ -90,30 +90,16 @@
         }
         
     }else {//登陆失败加载登陆页面控制器
-        
-        
         UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
         YXNewLoginViewController * VC = [stroryBoard instantiateViewControllerWithIdentifier:@"YXNewLoginViewController"];
-                                             
-                                             
-//        self.mainTabBar = nil;
         RootNavigationController *loginNavi =[[RootNavigationController alloc] initWithRootViewController:VC];
-        
-        CATransition *anima = [CATransition animation];
-        anima.type = @"fade";//设置动画的类型
-        anima.subtype = kCATransitionFromRight; //设置动画的方向
-        anima.duration = 0.3f;
-        
-//        self.window.rootViewController = loginNavi;
+
         [self.window.rootViewController presentViewController:loginNavi animated:YES completion:^{
             VC.navigationController.tabBarController.hidesBottomBarWhenPushed=NO;
             VC.navigationController.tabBarController.selectedIndex=0;
         }];
-        [kAppWindow.layer addAnimation:anima forKey:@"revealAnimation"];
         
     }
-    //展示FPS
-    //[AppManager showFPS];
 }
 
 

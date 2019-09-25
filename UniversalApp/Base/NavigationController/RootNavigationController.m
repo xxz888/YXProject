@@ -39,6 +39,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.isSystemSlidBack = YES;
+    self.modalPresentationStyle = UIModalPresentationFullScreen;
+
 }
 
 //push时隐藏tabbar
