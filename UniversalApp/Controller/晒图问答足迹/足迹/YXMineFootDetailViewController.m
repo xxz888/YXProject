@@ -592,10 +592,10 @@
     NSLog(@"当前点击:%@",title);
     kWeakSelf(self);
     if ([title isEqualToString:@"微信"]) {
-        [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_WechatSession obj:shareDic];
+        [[ShareManager sharedShareManager] shareAllToPlatformType:UMSocialPlatformType_WechatSession obj:shareDic];
     }
     if ([title isEqualToString:@"朋友圈"]) {
-        [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_WechatTimeLine obj:shareDic];
+        [[ShareManager sharedShareManager] shareAllToPlatformType:UMSocialPlatformType_WechatTimeLine obj:shareDic];
     }
     if ([title isEqualToString:@"删除"]) {
             [YX_MANAGER requestDel_ZuJi:NSIntegerToNSString(shareView.tag) success:^(id object) {

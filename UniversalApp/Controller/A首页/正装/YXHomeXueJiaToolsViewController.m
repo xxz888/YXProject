@@ -96,6 +96,8 @@
     NSString * par = [NSString stringWithFormat:@"1/%@",self.startId];
     [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
         weakself.titleArray = [weakself commonAction:object dataArray:weakself.titleArray];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES]];
+        [weakself.titleArray sortUsingDescriptors:sortDescriptors];
         [weakself.yxTableView reloadData];    //这里来判断是不是友盟通知进来的
     }];
 }

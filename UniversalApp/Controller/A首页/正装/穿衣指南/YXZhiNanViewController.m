@@ -53,18 +53,24 @@
             [QMUITips hideAllTipsInView:weakself.view];
             return;
         }
+    
+        
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES]];
+        [weakself.dataArray sortUsingDescriptors:sortDescriptors];
+        
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            NSLog(@"开始");
             dispatch_semaphore_t sema = dispatch_semaphore_create(0);
             [weakself.collArray removeAllObjects];
         
             
-                for (NSInteger i = 0; i < [object count]; i++) {
-                    NSString * par1 = [NSString stringWithFormat:@"1/%@",object[i][@"id"]];
+                for (NSInteger i = 0; i < [weakself.dataArray count]; i++) {
+                    NSString * par1 = [NSString stringWithFormat:@"1/%@",weakself.dataArray[i][@"id"]];
                         [YXPLUS_MANAGER requestZhiNan1Get:par1 success:^(id object) {
                             [weakself.collArray addObject:object];
+                         
                             if (weakself.dataArray.count == weakself.collArray.count) {
+    
                                 [weakself.yxTableView reloadData];
                                 [weakself panduanUMXiaoXi];
                             }
@@ -126,6 +132,7 @@
         YXZhiNanDetailViewController * vc = [[YXZhiNanDetailViewController alloc]init];
         vc.smallIndex = smallIndex;
         vc.bigIndex = bigIndex;
+        vc.startIndex = weakself.index;
         vc.startArray = [[NSMutableArray alloc]initWithArray:weakself.dataArray];
         
         
@@ -155,7 +162,11 @@
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNanTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXZhiNanTableViewCell"];
 }
 -(IBAction)moreShare{
-    [[ShareManager sharedShareManager] saveImage:self.yxTableView];
+    NSString * title = self.startDic[@"name"];
+    NSString * desc = self.startDic[@"intro"];
+    NSString * cid = self.startDic[@"id"];
+    [[ShareManager sharedShareManager] pushShareViewAndDic:@{
+        @"type":@"1",@"img":@"",@"desc":desc,@"title":title,@"id":cid,@"thumbImage":self.startDic[@"photo"],@"index":kGetNSInteger(self.index)}];
 }
 - (IBAction)backAction:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];

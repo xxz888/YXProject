@@ -23,7 +23,7 @@
 #define kQNinterface @"http://photo.lpszn.com/"
 static NSString *accessKey = @"rpLW8CzqDzdgK27Mdp6fdrFjjdJRR-jBmfC1m8P0";
 static NSString *secretKey = @"m6t4wu-bTuHJBmw4h-H99JiogkmfKNfj2N0nvG-K";
-static NSString *QiniuBucketName  = @"lpszn";
+static NSString *QiniuBucketName  = @"thegdlife";
 
 @interface QiniuLoad ()
 

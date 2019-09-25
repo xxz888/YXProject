@@ -54,6 +54,8 @@
     NSString * par = [NSString stringWithFormat:@"1/%@",self.startArray[0][@"father_id"]];
     [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
         weakself.startArray = [weakself commonAction:object dataArray:weakself.startArray];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES]];
+          [weakself.startArray sortUsingDescriptors:sortDescriptors];
         [weakself panduanIsColl];
         [YXPLUS_MANAGER requestAll_optionGet:@"" success:^(id object) {
             [weakself.allOptionArray removeAllObjects];
@@ -188,21 +190,16 @@
         
         kWeakSelf(self);
         cell2.linkBlock = ^(NSString * indexString) {
-            
             YXZhiNanDetailViewController * vc = [[YXZhiNanDetailViewController alloc]init];
             vc.smallIndex = 0;
-            
             NSInteger index1 = [[indexString split:@"-"][0] integerValue];
             NSInteger index2 = [[indexString split:@"-"][1] integerValue];
             NSInteger index3 = [[indexString split:@"-"][2] integerValue];
-            
-            
             for (NSDictionary * dic1 in weakself.allOptionArray) {
                 if ([dic1[@"id"] integerValue] == index1) {
                     for (NSDictionary * dic2 in dic1[@"child_list"]) {
                         if ([dic2[@"id"] integerValue] == index2) {
                             vc.startArray = [[NSMutableArray alloc]initWithArray:dic2[@"child_list"]];
-                            
                             for (NSInteger i = 0; i < [dic2[@"child_list"] count]; i++) {
                                 if ([dic2[@"child_list"][i][@"id"] integerValue] == index3) {
                                     vc.bigIndex = i;
@@ -271,7 +268,12 @@
 }
 
 -(void)moreShare{
-    [[ShareManager sharedShareManager] saveImage:self.yxTableView];
+    NSDictionary * dic = self.startArray[self.bigIndex];
+    NSString * title = dic[@"name"];
+    NSString * desc = dic[@"intro"];
+    NSString * cid = dic[@"id"];
+    [[ShareManager sharedShareManager] pushShareViewAndDic:@{
+        @"type":@"2",@"img":@"",@"desc":desc,@"title":title,@"id":cid,@"thumbImage":dic[@"photo"],@"index":kGetNSInteger(self.startIndex),@"index1":kGetNSInteger([dic[@"id"] integerValue])}];
 }
 - (IBAction)bottomAction:(UIButton *)btn{
     switch (btn.tag) {

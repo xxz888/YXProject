@@ -73,22 +73,16 @@
     BOOL loginSuccess = [notification.object boolValue];
         
     if (loginSuccess) {//登陆成功加载主窗口控制器
-        
         //为避免自动登录成功刷新tabbar
         if (!self.mainTabBar || ![self.window.rootViewController isKindOfClass:[MainTabBarController class]]) {
             self.mainTabBar = [SaltedFishTabBarVC new];
-
             CATransition *anima = [CATransition animation];
             anima.type = @"cube";//设置动画的类型
             anima.subtype = kCATransitionFromRight; //设置动画的方向
             anima.duration = 0.3f;
-            
             self.window.rootViewController = self.mainTabBar;
-            
             [kAppWindow.layer addAnimation:anima forKey:@"revealAnimation"];
-            
         }
-        
     }else {//登陆失败加载登陆页面控制器
         UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
         YXNewLoginViewController * VC = [stroryBoard instantiateViewControllerWithIdentifier:@"YXNewLoginViewController"];
@@ -166,13 +160,8 @@
     }];
 }
 -(void)userNotificationCenter:(UNUserNotificationCenter*)center willPresentNotification:(UNNotification*)notification withCompletionHandler:(void(^)(UNNotificationPresentationOptions))completionHandler{
-    
     NSDictionary* userInfo = notification.request.content.userInfo;
-    
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
-        
-        //应用处于前台时的远程推送接受
-        
         //关闭U-Push自带的弹出框
         [UMessage setAutoAlert:NO];
         //（前台、后台）的消息处理

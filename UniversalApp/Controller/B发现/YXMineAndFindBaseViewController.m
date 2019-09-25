@@ -254,6 +254,10 @@
 
 #pragma mark ========== 分享 ==========
 - (void)addGuanjiaShareViewIsOwn:(BOOL)isOwn isWho:(NSString *)isWho tag:(NSInteger)tagId startDic:(NSDictionary *)startDic{
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
     QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
     kWeakSelf(self);
     // 如果你的 item 是确定的，则可以直接通过 items 属性来显示，如果 item 需要经过一些判断才能确定下来，请看第二个示例
@@ -374,8 +378,6 @@
 
 }
 - (void)saveImage:(UMSocialPlatformType)umType{
-//    [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_WechatSession obj:nil];
-//    return;
     UIImage* viewImage = nil;
     UITableView *scrollView = self.yxTableView;
     UIGraphicsBeginImageContextWithOptions(scrollView.contentSize, scrollView.opaque, 0.0);{
@@ -391,7 +393,10 @@
     UIGraphicsEndImageContext();
     //先上传到七牛云图片  再提交服务器
     [QiniuLoad uploadImageToQNFilePath:@[viewImage] success:^(NSString *reslut) {
-        [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:umType obj:@{@"img":reslut}];
+           UserInfo * info = curUser;
+           NSString * title = [NSString stringWithFormat:@"%@发布的内容@蓝皮书app",info.username];
+           NSString * desc = @"这篇内容真的很赞，快点开看!";
+          [[ShareManager sharedShareManager] shareAllToPlatformType:umType obj:@{@"img":reslut,@"desc":desc,@"title":title,@"type":@"3"}];
     } failure:^(NSString *error) {
         NSLog(@"%@",error);
     }];

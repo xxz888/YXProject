@@ -31,7 +31,7 @@ SINGLETON_FOR_HEADER(ShareManager)
  */
 -(void)showShareView:(NSString *)obj;
 //获取当前时间戳  （以毫秒为单位）
-- (void)shareWebPageZhiNanDetailToPlatformType:(UMSocialPlatformType)platformType obj:(id)obj;
+- (void)shareAllToPlatformType:(UMSocialPlatformType)platformType obj:(id)obj;
 +(NSString *)getNowTimeTimestamp3;
 +(NSString*)getCurrentDay;
 #pragma mark - 将某个时间戳转化成 时间
@@ -64,11 +64,13 @@ SINGLETON_FOR_HEADER(ShareManager)
 +(void)setLineSpace_Price:(CGFloat)lineSpace withText:(NSString *)text inLabel:(UILabel *)label tag:(NSString *)tag;
 +(void)setLineSpace_Price_RedColor:(CGFloat)lineSpace withText:(NSString *)text inLabel:(UILabel *)label tag:(NSString *)tag;
 +(CGFloat)inTextZhiNanOutHeight:(NSString *)str lineSpace:(CGFloat)lineSpacing fontSize:(CGFloat)fontSize;
-- (void)shareWebPageZhiNanDetailToPlatformType:(UMSocialPlatformType)platformType obj:(id)obj;
+- (void)shareAllToPlatformType:(UMSocialPlatformType)platformType obj:(id)obj;
 - (void)saveImage:(UITableView *)tableView;
 +(CGFloat)getImageViewSize:(NSString *)imgUrl;
 +(void)setLineSpace:(CGFloat)lineSpace inLabel:(UILabel *)label size:(CGFloat)size;
 +(void)inTextViewOutDifColorView:(UILabel *)tfView tag:(NSString *)tag;
 - (void)shareYaoQingHaoYouToPlatformType:(UMSocialPlatformType)platformType;
 +(CGFloat)inTextZhiNanOutHeight:(NSString *)str lineSpace:(CGFloat)lineSpacing fontSize:(CGFloat)fontSize width:(CGFloat)width;
+- (void)pushShareViewAndDic:(NSDictionary *)shareDic;
+- (void)shareAllToPlatformType:(UMSocialPlatformType)platformType obj:(id)obj;
 @end

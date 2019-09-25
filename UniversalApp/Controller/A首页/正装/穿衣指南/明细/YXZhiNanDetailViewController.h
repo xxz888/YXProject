@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSMutableArray * startArray;
 @property (nonatomic,assign) NSInteger smallIndex;
 @property (nonatomic,assign) NSInteger bigIndex;
+@property (nonatomic,assign) NSInteger startIndex;
 
 @property (weak, nonatomic) IBOutlet UIImageView *collImgView;
     @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewHeight;

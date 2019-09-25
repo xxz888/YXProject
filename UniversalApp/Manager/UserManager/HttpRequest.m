@@ -28,7 +28,7 @@
 + (void)httpRequestGetPi:(NSString *)pi sucess:(SucessBlock)sucess failure:(FailureBlock)failure{
     kWeakSelf(self);
     NSString * url = [API_ROOT_URL_HTTP_FORMAL append:pi];
-    NSLog(@"getUrl-:%@",url);
+//    NSLog(@"getUrl-:%@",url);
     [[self commonAction] GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [weakself setCommonRespone:sucess pi:pi responseObject:responseObject];

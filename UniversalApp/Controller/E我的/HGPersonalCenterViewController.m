@@ -87,10 +87,10 @@ static CGFloat const HeaderImageViewHeight =320;
 }
 #pragma mark ========== 点击菜单按钮的方法 ==========
 - (void)handleShowContentView {
-    YXMineChouJiangViewController * vc = [[YXMineChouJiangViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-    
-    return;
+//    YXMineChouJiangViewController * vc = [[YXMineChouJiangViewController alloc]init];
+//    [self.navigationController pushViewController:vc animated:YES];
+//
+//    return;
     kWeakSelf(self);
     QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
     }];

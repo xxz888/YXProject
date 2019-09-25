@@ -785,7 +785,7 @@
     UIGraphicsEndImageContext();
     //先上传到七牛云图片  再提交服务器
     [QiniuLoad uploadImageToQNFilePath:@[viewImage] success:^(NSString *reslut) {
-        [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:umType obj:@{@"img":reslut}];
+        [[ShareManager sharedShareManager] shareAllToPlatformType:umType obj:@{@"img":reslut}];
     } failure:^(NSString *error) {
         NSLog(@"%@",error);
     }];

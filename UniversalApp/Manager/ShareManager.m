@@ -16,7 +16,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     kWeakSelf(self);
     //显示分享面板
     [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
-            [weakself shareWebPageZhiNanDetailToPlatformType:platformType obj:obj];
+            [weakself shareAllToPlatformType:platformType obj:obj];
     }];
 }
 - (void)shareYaoQingHaoYouToPlatformType:(UMSocialPlatformType)platformType{
@@ -49,17 +49,74 @@ SINGLETON_FOR_CLASS(ShareManager);
         }
     }];
 }
-- (void)shareWebPageZhiNanDetailToPlatformType:(UMSocialPlatformType)platformType obj:(id)obj{
+- (void)shareAllToPlatformType:(UMSocialPlatformType)platformType obj:(id)obj{
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     //创建网页内容对象
     UIImage * thumbURL = [UIImage imageNamed:@"appicon"];
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"The Good Life，分享美好生活。" descr:@"【The Good Life APP】您的Ultimate生活方式平台。在这里，收录有如马六甲手杖，巴拿马草帽等小众精致产品的著名品牌安利和介绍，致力提供全面准确的国内外报价，每日精选的生活方式文章，以及西装与鞋子的颜色搭配手册、着装规范（Dress Code）、酒杯指南、雪茄环径测量等等一系列强大的实用工具。" thumImage:thumbURL];
+    
+    /*
+    1、    分享用户页（个人与其他用户）：标题：“用户名字“的主页@蓝皮书app
+    文案：“用户名字“的蓝皮书主页，快来关注吧！
+    2、    用户发布的内容转发：标题“用户名字”发布的内容@蓝皮书app
+    文案：这篇内容真的很赞，快点开看！
+    3、    指南一级界面分享（以雪茄为例）：雪茄指南
+    4、    指南具体界面分享（以古巴雪茄——历史为例）：古巴雪茄：历史指南
+    5、    邀请好友：标题：蓝皮书，一站式品味生活指南@蓝皮书app
+            文案：Ta开启了蓝皮书之旅，快来加入吧
+    */
+    
+    
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:obj[@"title"] descr:obj[@"desc"] thumImage:thumbURL];
+    [UMSocialGlobal shareInstance].isUsingHttpsWhenShareContent = NO;
+    
+    /*
+    这两分为两种情况，一种是直接分享图片出去，一种是分享实际自己的内容出去，接受方式不一样，所以在这里分别处理
+    */
+    
+    NSString * webpageUrl = @"";
+    //如果图片为空，说明是分享的自己的内容
+    NSInteger type = [obj[@"type"] integerValue];
+    NSString * httpurl = [API_URL split:@"/api"][0];
+    NSString * url1 = [NSString stringWithFormat:@"%@/phone/#/",httpurl];
+    
+    switch (type) {
+            case 1:{
+                    webpageUrl = [NSString stringWithFormat:@"%@second/%@",url1,obj[@"index"]];
+                    shareObject.thumbImage = obj[@"thumbImage"];
 
-        NSString * resultString = [NSString stringWithFormat:@"%@",obj[@"img"]];
-        resultString = [resultString stringByReplacingOccurrencesOfString:@" " withString:@""];
-        //设置网页地址
-        shareObject.webpageUrl = [@"http://www.lpszn.com/HomeZhiNanDetail.html?img=" append:resultString];
+                    break;
+                }
+            case 2:{
+                    webpageUrl = [NSString stringWithFormat:@"%@third/%@/%@",url1,obj[@"index1"],obj[@"index"]];
+                    shareObject.thumbImage = obj[@"thumbImage"];
+
+                    break;
+                }
+            case 3:{
+                     NSString * resultString = [NSString stringWithFormat:@"%@",obj[@"img"]];
+                     resultString = [resultString stringByReplacingOccurrencesOfString:@" " withString:@""];
+                     webpageUrl = [NSString stringWithFormat:@"%@/HomeZhiNanDetail.html?img=%@",httpurl,resultString];
+                     shareObject.thumbImage = obj[@"img"];
+
+                     break;
+                 }
+            case 4:{
+                     
+                     break;
+                 }
+            case 5:{
+                     
+                     break;
+                 }
+        default:
+            break;
+    }
+    
+
+    
+    shareObject.webpageUrl = webpageUrl;
+
 
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;
@@ -752,6 +809,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     
 }
 
+//这一步是分享图片
 - (void)saveImage:(UITableView *)tableView{
     UIImage* viewImage = nil;
     UITableView *scrollView = tableView;
@@ -773,36 +831,37 @@ SINGLETON_FOR_CLASS(ShareManager);
     kWeakSelf(self);
     //先上传到七牛云图片  再提交服务器
     [QiniuLoad uploadImageToQNFilePath:@[viewImage] success:^(NSString *reslut) {
-        [weakself addGuanjiaShareViewStartDic:@{@"img":reslut}];
-    } failure:^(NSString *error) {
-        NSLog(@"%@",error);
-    }];
+        UserInfo * info = curUser;
+        NSString * title = [NSString stringWithFormat:@"%@发布的内容@蓝皮书app",info.username];
+        NSString * desc = @"这篇内容真的很赞，快点开看!";
+        [weakself pushShareViewAndDic:@{@"img":reslut,@"desc":desc,@"title":title,@"type":@"3"}];
+    } failure:^(NSString *error) {}];
 }
 
 
 
 
 #pragma mark ========== 分享 ==========
-- (void)addGuanjiaShareViewStartDic:(NSDictionary *)shareDic{
+- (void)pushShareViewAndDic:(NSDictionary *)shareDic{
     QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
     moreOperationController.items = @[
                                       // 第一行
                                       @[
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareFriend") title:@"分享给微信好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_WechatSession obj:shareDic];
+                                              [[ShareManager sharedShareManager] shareAllToPlatformType:UMSocialPlatformType_WechatSession obj:shareDic];
                                           }],
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareMoment") title:@"分享到朋友圈" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_WechatTimeLine obj:shareDic];
+                                              [[ShareManager sharedShareManager] shareAllToPlatformType:UMSocialPlatformType_WechatTimeLine obj:shareDic];
                                           }],
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_QQ") title:@"分享给QQ好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_QQ obj:shareDic];
+                                              [[ShareManager sharedShareManager] shareAllToPlatformType:UMSocialPlatformType_QQ obj:shareDic];
                                           }],
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareWebPageZhiNanDetailToPlatformType:UMSocialPlatformType_Qzone obj:shareDic];
+                                              [[ShareManager sharedShareManager] shareAllToPlatformType:UMSocialPlatformType_Qzone obj:shareDic];
                                           }],
                                           ],
                                       ];

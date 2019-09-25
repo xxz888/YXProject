@@ -21,6 +21,9 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 @property(nonatomic,strong)NSMutableDictionary * cache1Dic;
 @property(nonatomic,strong)NSMutableArray * cache1Array;
 @property(nonatomic,strong)NSMutableArray * cache2Array;
+
+@property(nonatomic,strong)NSArray * shareContentArray;
+
 @property (nonatomic,assign) BOOL moreBool;
 @property (nonatomic,assign) BOOL umInfoBool;
 
