@@ -1,9 +1,16 @@
+/*****
+ * Tencent is pleased to support the open source community by making QMUI_iOS available.
+ * Copyright (C) 2016-2018 THL A29 Limited, a Tencent company. All rights reserved.
+ * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+ * http://opensource.org/licenses/MIT
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ *****/
+
 //
 //  QMUIConfiguration.m
 //  qmui
 //
 //  Created by QMUI Team on 15/3/29.
-//  Copyright (c) 2015年 QMUI Team. All rights reserved.
 //
 
 #import "QMUIConfiguration.h"
@@ -61,6 +68,7 @@ static BOOL QMUI_hasAppliedInitialTemplate;
                     if ([template shouldApplyTemplateAutomatically]) {
                         QMUI_hasAppliedInitialTemplate = YES;
                         [template applyConfigurationTemplate];
+                        _active = YES;// 标志配置表已生效
                         // 只应用第一个 shouldApplyTemplateAutomatically 的主题
                         // Only apply the first template returned
                         break;
@@ -256,7 +264,6 @@ static BOOL QMUI_hasAppliedInitialTemplate;
     
     #pragma mark - UIWindowLevel
     self.windowLevelQMUIAlertView = UIWindowLevelAlert - 4.0;
-    self.windowLevelQMUIImagePreviewView = UIWindowLevelStatusBar + 1;
     
     #pragma mark - QMUILog
     self.shouldPrintDefaultLog = YES;
@@ -265,6 +272,7 @@ static BOOL QMUI_hasAppliedInitialTemplate;
     
     #pragma mark - Others
     
+    self.automaticCustomNavigationBarTransitionStyle = NO;
     self.supportedOrientationMask = UIInterfaceOrientationMaskAll;
     self.automaticallyRotateDeviceOrientation = NO;
     self.statusbarStyleLightInitially = NO;
@@ -273,6 +281,7 @@ static BOOL QMUI_hasAppliedInitialTemplate;
     self.preventConcurrentNavigationControllerTransitions = YES;
     self.navigationBarHiddenInitially = NO;
     self.shouldFixTabBarTransitionBugInIPhoneX = NO;
+    self.shouldAssertResizableImageCapInsetsError = NO;
     self.sendAnalyticsToQMUITeam = YES;
 }
 
@@ -332,12 +341,15 @@ static BOOL QMUI_hasAppliedInitialTemplate;
 
 - (void)updateNavigationBarTitleAttributesIfNeeded {
     if (self.navBarTitleFont || self.navBarTitleColor) {
-        NSMutableDictionary<NSString *, id> *titleTextAttributes = [[NSMutableDictionary alloc] init];
+        NSMutableDictionary<NSAttributedStringKey, id> *titleTextAttributes = [UINavigationBar appearance].titleTextAttributes.mutableCopy;
+        if (!titleTextAttributes) {
+            titleTextAttributes = [[NSMutableDictionary alloc] init];
+        }
         if (self.navBarTitleFont) {
-            [titleTextAttributes setValue:self.navBarTitleFont forKey:NSFontAttributeName];
+            titleTextAttributes[NSFontAttributeName] = self.navBarTitleFont;
         }
         if (self.navBarTitleColor) {
-            [titleTextAttributes setValue:self.navBarTitleColor forKey:NSForegroundColorAttributeName];
+            titleTextAttributes[NSForegroundColorAttributeName] = self.navBarTitleColor;
         }
         [UINavigationBar appearance].titleTextAttributes = titleTextAttributes;
         [QMUIHelper visibleViewController].navigationController.navigationBar.titleTextAttributes = titleTextAttributes;

@@ -14,7 +14,6 @@
 #import "HGPersonalCenterViewController.h"
 #import "YXHomeXueJiaViewController.h"
 #import "YXSecondViewController.h"
-#import "YXRegister1ViewController.h"
 @interface SaltedFishTabBarVC ()<AxcAE_TabBarDelegate>
 
 @end
@@ -32,15 +31,8 @@
     
     UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
     YXHomeXueJiaViewController *    homeVC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaViewController"];
-//    YXHomeViewController * homeVC = [[YXHomeViewController alloc]init];
-    
-    
-//    YXRegister1ViewController * nav1 = [[YXRegister1ViewController alloc]init];
-    
-    
-    
-    RootNavigationController *nav1 = [[RootNavigationController alloc]initWithRootViewController:homeVC];
 
+    RootNavigationController *nav1 = [[RootNavigationController alloc]initWithRootViewController:homeVC];
     YXSecondViewController * findVC = [[YXSecondViewController alloc]init];
     RootNavigationController *nav2 = [[RootNavigationController alloc]initWithRootViewController:findVC];
 
@@ -48,11 +40,6 @@
     YXMessageViewController * messageVC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMessageViewController"];
     RootNavigationController *nav3 = [[RootNavigationController alloc]initWithRootViewController:messageVC];
 
-//    UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
-//    YXMineViewController * mineVC = [stroryBoard5 instantiateViewControllerWithIdentifier:@"YXMineViewController"];
-//    RootNavigationController *nav4 = [[RootNavigationController alloc]initWithRootViewController:mineVC];
-
-    
     HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
     RootNavigationController *nav4 = [[RootNavigationController alloc]initWithRootViewController:mineVC];
     mineVC.isEnlarge = YES;
@@ -61,10 +48,9 @@
     NSArray <NSDictionary *>*VCArray =
     @[@{@"vc":nav1,@"normalImg":@"home_normal",@"selectImg":@"home_highlight",@"itemTitle":@"首页"},
       @{@"vc":nav2,@"normalImg":@"mycity_normal",@"selectImg":@"mycity_highlight",@"itemTitle":@"发现"},
-//      @{@"vc":[UIViewController new],@"normalImg":@"tabar_plus_normal",@"selectImg":@"tabar_plus_highlight",@"itemTitle":@"发布"},
       @{@"vc":nav3,@"normalImg":@"message_normal",@"selectImg":@"message_highlight",@"itemTitle":@"消息"},
       @{@"vc":nav4,@"normalImg":@"account_normal",@"selectImg":@"account_highlight",@"itemTitle":@"我的"}];
-    // 1.遍历这个集合
+
     // 1.1 设置一个保存构造器的数组
     NSMutableArray *tabBarConfs = @[].mutableCopy;
     // 1.2 设置一个保存VC的数组
@@ -134,7 +120,7 @@
     // 6.1 使用重载构造函数方式：
     //    self.axcTabBar = [[AxcAE_TabBar alloc] initWithTabBarConfig:tabBarConfs];
     // 6.2 使用Set方式：
-    self.axcTabBar = [AxcAE_TabBar new] ;
+    self.axcTabBar = [[AxcAE_TabBar alloc]init];
     self.axcTabBar.tabBarConfig = tabBarConfs;
     // 7.设置委托
     self.axcTabBar.delegate = self;

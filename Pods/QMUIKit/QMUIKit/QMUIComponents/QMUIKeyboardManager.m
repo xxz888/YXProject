@@ -1,9 +1,16 @@
+/*****
+ * Tencent is pleased to support the open source community by making QMUI_iOS available.
+ * Copyright (C) 2016-2018 THL A29 Limited, a Tencent company. All rights reserved.
+ * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+ * http://opensource.org/licenses/MIT
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ *****/
+
 //
 //  QMUIKeyboardManager.m
 //  qmui
 //
-//  Created by zhoonchen on 2017/3/23.
-//  Copyright © 2017年 QMUI Team. All rights reserved.
+//  Created by QMUI Team on 2017/3/23.
 //
 
 #import "QMUIKeyboardManager.h"
@@ -170,7 +177,7 @@ static QMUIKeyboardManager *kKeyboardManagerInstance;
         return [self height];
     }
     CGRect keyboardRect = [QMUIKeyboardManager convertKeyboardRect:_endFrame toView:view];
-    CGRect visibleRect = CGRectIntersection(view.bounds, keyboardRect);
+    CGRect visibleRect = CGRectIntersection(CGRectFlatted(view.bounds), CGRectFlatted(keyboardRect));
     if (!CGRectIsValidated(visibleRect)) {
         return 0;
     }
@@ -312,8 +319,16 @@ static QMUIKeyboardManager *kKeyboardManagerInstance;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidChangeFrameNotification:) name:UIKeyboardDidChangeFrameNotification object:nil];
 }
 
-- (BOOL)isAppActive {
-    return [[UIApplication sharedApplication] applicationState] == UIApplicationStateActive;
+- (BOOL)isAppActive:(NSNotification *)notification {
+    if ([[UIApplication sharedApplication] applicationState] != UIApplicationStateActive) {
+        return NO;
+    }
+    if (@available(iOS 9, *)) {
+        if (![[notification.userInfo valueForKey:UIKeyboardIsLocalUserInfoKey] boolValue]) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 - (void)keyboardWillShowNotification:(NSNotification *)notification {
@@ -322,7 +337,7 @@ static QMUIKeyboardManager *kKeyboardManagerInstance;
         QMUILog(NSStringFromClass(self.class), @"keyboardWillShowNotification - %@", self);
     }
     
-    if (![self isAppActive]) {
+    if (![self isAppActive:notification]) {
         QMUILog(NSStringFromClass(self.class), @"app is not active");
         return;
     }
@@ -346,7 +361,7 @@ static QMUIKeyboardManager *kKeyboardManagerInstance;
         QMUILog(NSStringFromClass(self.class), @"keyboardDidShowNotification - %@", self);
     }
     
-    if (![self isAppActive]) {
+    if (![self isAppActive:notification]) {
         QMUILog(NSStringFromClass(self.class), @"app is not active");
         return;
     }
@@ -371,7 +386,7 @@ static QMUIKeyboardManager *kKeyboardManagerInstance;
         QMUILog(NSStringFromClass(self.class), @"keyboardWillHideNotification - %@", self);
     }
     
-    if (![self isAppActive]) {
+    if (![self isAppActive:notification]) {
         QMUILog(NSStringFromClass(self.class), @"app is not active");
         return;
     }
@@ -395,7 +410,7 @@ static QMUIKeyboardManager *kKeyboardManagerInstance;
         QMUILog(NSStringFromClass(self.class), @"keyboardDidHideNotification - %@", self);
     }
     
-    if (![self isAppActive]) {
+    if (![self isAppActive:notification]) {
         QMUILog(NSStringFromClass(self.class), @"app is not active");
         return;
     }
@@ -421,7 +436,7 @@ static QMUIKeyboardManager *kKeyboardManagerInstance;
         QMUILog(NSStringFromClass(self.class), @"keyboardWillChangeFrameNotification - %@", self);
     }
     
-    if (![self isAppActive]) {
+    if (![self isAppActive:notification]) {
         QMUILog(NSStringFromClass(self.class), @"app is not active");
         return;
     }
@@ -448,7 +463,7 @@ static QMUIKeyboardManager *kKeyboardManagerInstance;
         QMUILog(NSStringFromClass(self.class), @"keyboardDidChangeFrameNotification - %@", self);
     }
     
-    if (![self isAppActive]) {
+    if (![self isAppActive:notification]) {
         QMUILog(NSStringFromClass(self.class), @"app is not active");
         return;
     }
@@ -524,6 +539,7 @@ static QMUIKeyboardManager *kKeyboardManagerInstance;
 
 + (void)handleKeyboardNotificationWithUserInfo:(QMUIKeyboardUserInfo *)keyboardUserInfo showBlock:(void (^)(QMUIKeyboardUserInfo *keyboardUserInfo))showBlock hideBlock:(void (^)(QMUIKeyboardUserInfo *keyboardUserInfo))hideBlock {
     // 专门处理 iPad Pro 在键盘完全不显示的情况（不会调用willShow，所以通过是否focus来判断）
+    // iPhoneX Max 这里键盘高度不是0，而是一个很小的值
     if ([QMUIKeyboardManager visibleKeyboardHeight] <= 0 && !keyboardUserInfo.isTargetResponderFocused) {
         if (hideBlock) {
             hideBlock(keyboardUserInfo);
@@ -613,7 +629,7 @@ static QMUIKeyboardManager *kKeyboardManagerInstance;
 
 + (CGFloat)distanceFromMinYToBottomInView:(UIView *)view keyboardRect:(CGRect)rect {
     rect = [self convertKeyboardRect:rect toView:view];
-    CGFloat distance = CGRectGetHeight(view.bounds) - CGRectGetMinY(rect);
+    CGFloat distance = CGRectGetHeight(CGRectFlatted(view.bounds)) - CGRectGetMinY(rect);
     return distance;
 }
 
@@ -666,7 +682,7 @@ static QMUIKeyboardManager *kKeyboardManagerInstance;
     if (!keyboardView || !keyboardWindow) {
         return NO;
     }
-    CGRect rect = CGRectIntersection(keyboardWindow.bounds, keyboardView.frame);
+    CGRect rect = CGRectIntersection(CGRectFlatted(keyboardWindow.bounds), CGRectFlatted(keyboardView.frame));
     if (CGRectIsValidated(rect) && !CGRectIsEmpty(rect)) {
         return YES;
     }
@@ -680,9 +696,9 @@ static QMUIKeyboardManager *kKeyboardManagerInstance;
     }
     UIWindow *keyboardWindow = keyboardView.window;
     if (keyboardWindow) {
-        return [keyboardWindow convertRect:keyboardView.frame toWindow:nil];
+        return [keyboardWindow convertRect:CGRectFlatted(keyboardView.frame) toWindow:nil];
     } else {
-        return keyboardView.frame;
+        return CGRectFlatted(keyboardView.frame);
     }
 }
 
@@ -692,7 +708,7 @@ static QMUIKeyboardManager *kKeyboardManagerInstance;
     if (!keyboardView || !keyboardWindow) {
         return 0;
     } else {
-        CGRect visibleRect = CGRectIntersection(keyboardWindow.bounds, keyboardView.frame);
+        CGRect visibleRect = CGRectIntersection(CGRectFlatted(keyboardWindow.bounds), CGRectFlatted(keyboardView.frame));
         if (CGRectIsValidated(visibleRect)) {
             return CGRectGetHeight(visibleRect);
         }

@@ -1,9 +1,16 @@
+/*****
+ * Tencent is pleased to support the open source community by making QMUI_iOS available.
+ * Copyright (C) 2016-2018 THL A29 Limited, a Tencent company. All rights reserved.
+ * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+ * http://opensource.org/licenses/MIT
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ *****/
+
 //
 //  QMUIToastView.h
 //  qmui
 //
-//  Created by zhoonchen on 2016/12/11.
-//  Copyright © 2016年 QMUI Team. All rights reserved.
+//  Created by QMUI Team on 2016/12/11.
 //
 
 #import <UIKit/UIKit.h>
@@ -136,29 +143,29 @@ typedef NS_ENUM(NSInteger, QMUIToastViewPosition) {
 @interface QMUIToastView (ToastTool)
 
 /**
- * 工具方法。隐藏`view`里面的所有ToastView。
+ * 工具方法。隐藏`view`里面的所有 ToastView
  *
- * @param view 即将隐藏的ToastView的superView。
+ * @param view 即将隐藏的 ToastView 的 superView，如果 view = nil 则移除所有内存中的 ToastView
  * @param animated 是否需要通过动画隐藏。
  *
- * @return 如果成功隐藏一个ToastView则返回YES，失败则NO。
+ * @return 如果成功隐藏一个 ToastView 则返回 YES，失败则 NO
  */
 + (BOOL)hideAllToastInView:(UIView *)view animated:(BOOL)animated;
 
 /**
- * 工具方法。返回`view`里面最顶级的ToastView，如果没有则返回nil。
+ * 工具方法。返回`view`里面最顶部的 ToastView
  *
- * @param view ToastView的superView。
- * @return 返回一个QMUIToastView的实例。
+ * @param view ToastView 的 superView
+ * @return 返回一个 QMUIToastView 的实例
  */
-+ (nullable instancetype)toastInView:(UIView *)view;
++ (nullable __kindof UIView *)toastInView:(UIView *)view;
 
 /**
- * 工具方法。返回`view`里面所有的ToastView，如果没有则返回nil。
+ * 工具方法。返回`view`里面所有的 ToastView
  *
- * @param view ToastView的superView。
- * @return 包含所有QMUIToastView的数组。
+ * @param view ToastView 的 superView
+ * @return 包含所有 view 里面的所有 QMUIToastView，如果 view = nil 则返回所有内存中的 ToastView
  */
-+ (NSArray <QMUIToastView *> *)allToastInView:(UIView *)view;
++ (nullable NSArray <QMUIToastView *> *)allToastInView:(UIView *)view;
 
 @end

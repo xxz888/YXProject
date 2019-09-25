@@ -10,7 +10,6 @@
 #import <UMShare/UMShare.h>
 #import "LoginViewController.h"
 //#import "OpenUDID.h"
-#import <YTKNetwork.h>
 #import "SaltedFishTabBarVC.h"
 #import "UDPManage.h"
 #import  <UserNotifications/UserNotifications.h>// Push组件必须的系统库
@@ -52,41 +51,20 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [[UIButton appearance] setExclusiveTouch:YES];
 //    [[UIButton appearance] setShowsTouchWhenHighlighted:YES];
-    [UIActivityIndicatorView appearanceWhenContainedIn:[MBProgressHUD class], nil].color = KWhiteColor;
+//    [UIActivityIndicatorView appearanceWhenContainedIn:[MBProgressHUD class], nil].color = KWhiteColor;
     if (@available(iOS 11.0, *)){
         [[UIScrollView appearance] setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
     }
 }
-#pragma mark ————— 初始化网络配置 —————
--(void)NetWorkConfig{
-    YTKNetworkConfig *config = [YTKNetworkConfig sharedConfig];
-    config.baseUrl = API_ROOT_URL_HTTP_FORMAL;
-}
-
 #pragma mark ————— 初始化用户系统 —————
 -(void)initUserManager{
     if([userManager loadUserInfo]){
-        
         //如果有本地数据，先展示TabBar 随后异步自动登录
         self.mainTabBar = [SaltedFishTabBarVC new];
         self.window.rootViewController = self.mainTabBar;
-//        KPostNotification(KNotificationLoginStateChange, @YES)
-        return;
-        //自动登录
-        [userManager autoLoginToServer:^(BOOL success, NSString *des) {
-            if (success) {
-                DLog(@"自动登录成功");
-                //                    [MBProgressHUD showSuccessMessage:@"自动登录成功"];
-                KPostNotification(KNotificationAutoLoginSuccess, nil);
-            }else{
-                [MBProgressHUD showErrorMessage:NSStringFormat(@"自动登录失败：%@",des)];
-            }
-        }];
-        
     }else{
         //没有登录过，展示登录页面
         KPostNotification(KNotificationLoginStateChange, @YES)
-//        [MBProgressHUD showErrorMessage:@"需要登录"];
     }
 }
 

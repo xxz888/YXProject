@@ -1,9 +1,16 @@
+/*****
+ * Tencent is pleased to support the open source community by making QMUI_iOS available.
+ * Copyright (C) 2016-2018 THL A29 Limited, a Tencent company. All rights reserved.
+ * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+ * http://opensource.org/licenses/MIT
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ *****/
+
 //
 //  QMUIAlertController.m
 //  qmui
 //
 //  Created by QMUI Team on 15/7/20.
-//  Copyright (c) 2015年 QMUI Team. All rights reserved.
 //
 
 #import "QMUIAlertController.h"
@@ -15,6 +22,7 @@
 #import "NSParagraphStyle+QMUI.h"
 #import "UIImage+QMUI.h"
 #import "CALayer+QMUI.h"
+#import "QMUIKeyboardManager.h"
 
 static NSUInteger alertControllerCount = 0;
 
@@ -271,6 +279,7 @@ static QMUIAlertController *alertControllerAppearance;
     }
     
     self.shouldManageTextFieldsReturnEventAutomatically = YES;
+    self.dismissKeyboardAutomatically = YES;
 }
 
 - (void)setAlertButtonAttributes:(NSDictionary<NSString *,id> *)alertButtonAttributes {
@@ -554,8 +563,8 @@ static QMUIAlertController *alertControllerAppearance;
     return self;
 }
 
-- (void)setPreferredStyle:(QMUIAlertControllerStyle)preferredStyle {
-    _preferredStyle = IS_IPAD ? QMUIAlertControllerStyleAlert : preferredStyle;
+- (QMUIAlertControllerStyle)preferredStyle {
+    return PreferredValueForDeviceIncludingiPad(1, 0, 0, 0, 0) > 0 ? QMUIAlertControllerStyleAlert : _preferredStyle;
 }
 
 - (void)viewDidLoad {
@@ -843,7 +852,7 @@ static QMUIAlertController *alertControllerAppearance;
                 }
             }];
         } else if (self.preferredStyle == QMUIAlertControllerStyleActionSheet) {
-            weakSelf.containerView.layer.transform = CATransform3DMakeTranslation(0, CGRectGetHeight(weakSelf.containerView.bounds), 0);
+            weakSelf.containerView.layer.transform = CATransform3DMakeTranslation(0, CGRectGetHeight(weakSelf.view.bounds) - CGRectGetMinY(weakSelf.containerView.frame), 0);
             [UIView animateWithDuration:0.25f delay:0 options:QMUIViewAnimationOptionsCurveOut animations:^{
                 weakSelf.maskView.alpha = 1;
                 weakSelf.containerView.layer.transform = CATransform3DIdentity;
@@ -869,7 +878,7 @@ static QMUIAlertController *alertControllerAppearance;
         } else if (self.preferredStyle == QMUIAlertControllerStyleActionSheet) {
             [UIView animateWithDuration:0.25f delay:0 options:QMUIViewAnimationOptionsCurveOut animations:^{
                 weakSelf.maskView.alpha = 0;
-                weakSelf.containerView.layer.transform = CATransform3DMakeTranslation(0, CGRectGetHeight(weakSelf.containerView.bounds), 0);
+                weakSelf.containerView.layer.transform = CATransform3DMakeTranslation(0, CGRectGetHeight(weakSelf.view.bounds) - CGRectGetMinY(weakSelf.containerView.frame), 0);
             } completion:^(BOOL finished) {
                 if (completion) {
                     completion(finished);
@@ -887,6 +896,10 @@ static QMUIAlertController *alertControllerAppearance;
     
     if (self.alertTextFields.count > 0) {
         [self.alertTextFields.firstObject becomeFirstResponder];
+    } else {
+        if (self.dismissKeyboardAutomatically && [QMUIKeyboardManager isKeyboardVisible]) {
+            [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+        }
     }
     if (_needsUpdateAction) {
         [self updateAction];
@@ -955,7 +968,7 @@ static QMUIAlertController *alertControllerAppearance;
         if (self.preferredStyle == QMUIAlertControllerStyleAlert) {
             weakSelf.containerView.alpha = 0;
         } else {
-            weakSelf.containerView.layer.transform = CATransform3DMakeTranslation(0, CGRectGetHeight(weakSelf.containerView.bounds), 0);
+            weakSelf.containerView.layer.transform = CATransform3DMakeTranslation(0, CGRectGetHeight(weakSelf.view.bounds) - CGRectGetMinY(weakSelf.containerView.frame), 0);
         }
         if ([weakSelf.delegate respondsToSelector:@selector(didHideAlertController:)]) {
             [weakSelf.delegate didHideAlertController:weakSelf];
@@ -1162,7 +1175,6 @@ static QMUIAlertController *alertControllerAppearance;
     [self hideWithAnimated:YES completion:^{
         if (alertAction.handler) {
             alertAction.handler(self, alertAction);
-            alertAction.handler = nil;
         }
     }];
 }

@@ -37,7 +37,7 @@
 
 - (void)as_viewWillAppear:(BOOL)animated{
     if (self.title.length) {
-        NSLog(@"开始路径%@->%@ -> %s",NSStringFromClass(self.class),self.title,__func__);
+//        NSLog(@"开始路径%@->%@ -> %s",NSStringFromClass(self.class),self.title,__func__);
         [MobClick beginLogPageView:self.title];
     }
     [self as_viewWillAppear:animated];
@@ -45,7 +45,7 @@
 
 - (void)as_viewWillDisappear:(BOOL)animated{
     if (self.title.length) {
-        NSLog(@"结束路径%@->%@ -> %s",NSStringFromClass(self.class),self.title,__func__);
+//        NSLog(@"结束路径%@->%@ -> %s",NSStringFromClass(self.class),self.title,__func__);
         [MobClick endLogPageView:self.title];
     }
     [self as_viewWillDisappear:animated];

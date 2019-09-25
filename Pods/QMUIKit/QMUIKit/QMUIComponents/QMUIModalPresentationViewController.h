@@ -1,9 +1,16 @@
+/*****
+ * Tencent is pleased to support the open source community by making QMUI_iOS available.
+ * Copyright (C) 2016-2018 THL A29 Limited, a Tencent company. All rights reserved.
+ * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+ * http://opensource.org/licenses/MIT
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ *****/
+
 //
 //  QMUIModalPresentationViewController.h
 //  qmui
 //
-//  Created by MoLice on 16/7/6.
-//  Copyright © 2016年 QMUI Team. All rights reserved.
+//  Created by QMUI Team on 16/7/6.
 //
 
 #import <UIKit/UIKit.h>
@@ -22,7 +29,7 @@ typedef NS_ENUM(NSUInteger, QMUIModalPresentationAnimationStyle) {
 @optional
 
 /**
- *  当浮层以 UIViewController 的形式展示（而非 UIView），并且使用 modalController 提供的默认布局时，则可通过这个方法告诉 modalController 当前浮层期望的大小
+ *  当浮层以 UIViewController 的形式展示（而非 UIView），并且使用 modalController 提供的默认布局时，则可通过这个方法告诉 modalController 当前浮层期望的大小。如果 modalController 实现了自己的 layoutBlock，则可不实现这个方法，实现了也不一定按照这个方法的返回值来布局，完全取决于 layoutBlock。
  *  @param  controller  当前的modalController
  *  @param  keyboardHeight 当前的键盘高度，如果键盘降下，则为0
  *  @param  limitSize   浮层最大的宽高，由当前 modalController 的大小及 `contentViewMargins`、`maximumContentViewWidth` 和键盘高度决定
@@ -99,10 +106,7 @@ typedef NS_ENUM(NSUInteger, QMUIModalPresentationAnimationStyle) {
  *  @see QMUIDialogViewController
  *  @see QMUIMoreOperationController
  */
-@interface QMUIModalPresentationViewController : UIViewController {
-    UITapGestureRecognizer      *_dimmingViewTapGestureRecognizer;
-    CGFloat                     _keyboardHeight;
-}
+@interface QMUIModalPresentationViewController : UIViewController
 
 @property(nonatomic, weak) IBOutlet id<QMUIModalPresentationViewControllerDelegate> delegate;
 
@@ -174,6 +178,10 @@ typedef NS_ENUM(NSUInteger, QMUIModalPresentationAnimationStyle) {
 
 /// 是否以 addSubview 的方式显示，建议在显示之后才使用，否则可能不准确。
 @property(nonatomic, assign, readonly, getter=isShownInSubviewMode) BOOL shownInSubviewMode;
+
+/// 只响应 modal.view 上的 view 所产生的键盘事件，当为 NO 时，只要有键盘事件产生，浮层都会重新计算布局。
+/// 默认为 YES，也即只响应浮层上的 view 引起的键盘位置变化。
+@property(nonatomic, assign) BOOL onlyRespondsToKeyboardEventFromDescendantViews;
 
 /**
  *  管理自定义的浮层布局，将会在浮层显示前、控件的容器大小发生变化时（例如横竖屏、来电状态栏）被调用

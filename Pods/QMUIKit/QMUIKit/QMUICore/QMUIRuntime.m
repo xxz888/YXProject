@@ -1,9 +1,16 @@
+/*****
+ * Tencent is pleased to support the open source community by making QMUI_iOS available.
+ * Copyright (C) 2016-2018 THL A29 Limited, a Tencent company. All rights reserved.
+ * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+ * http://opensource.org/licenses/MIT
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ *****/
+
 //
 //  QMUIRuntime.m
 //  QMUIKit
 //
-//  Created by MoLice on 2018/9/5.
-//  Copyright © 2018年 QMUI Team. All rights reserved.
+//  Created by QMUI Team on 2018/9/5.
 //
 
 #import "QMUIRuntime.h"
@@ -18,34 +25,63 @@
     // getter
     char *getterChar = property_copyAttributeValue(property, "G");
     descriptor.getter = NSSelectorFromString(getterChar != NULL ? [NSString stringWithUTF8String:getterChar] : propertyName);
+    if (getterChar != NULL) {
+        free(getterChar);
+    }
     
     // setter
     char *setterChar = property_copyAttributeValue(property, "S");
     NSString *setterString = setterChar != NULL ? [NSString stringWithUTF8String:setterChar] : [QMUIPropertyDescriptor defaultSetterStringWithPropertyName:propertyName];
     descriptor.setter = NSSelectorFromString(setterString);
+    if (setterChar != NULL) {
+        free(setterChar);
+    }
     
     // atomic/nonatomic
-    BOOL isAtomic = property_copyAttributeValue(property, "N") == NULL;
+    char *attrValue_N = property_copyAttributeValue(property, "N");
+    BOOL isAtomic = (attrValue_N == NULL);
     descriptor.isAtomic = isAtomic;
     descriptor.isNonatomic = !isAtomic;
+    if (attrValue_N != NULL) {
+        free(attrValue_N);
+    }
     
     // assign/weak/strong/copy
-    BOOL isCopy = property_copyAttributeValue(property, "C") != NULL;
-    BOOL isStrong = property_copyAttributeValue(property, "&") != NULL;
-    BOOL isWeak = property_copyAttributeValue(property, "W") != NULL;
+    char *attrValue_isCopy = property_copyAttributeValue(property, "C");
+    char *attrValue_isStrong = property_copyAttributeValue(property, "&");
+    char *attrValue_isWeak = property_copyAttributeValue(property, "W");
+    BOOL isCopy = attrValue_isCopy != NULL;
+    BOOL isStrong = attrValue_isStrong != NULL;
+    BOOL isWeak = attrValue_isWeak != NULL;
+    if (attrValue_isCopy != NULL) {
+        free(attrValue_isCopy);
+    }
+    if (attrValue_isStrong != NULL) {
+        free(attrValue_isStrong);
+    }
+    if (attrValue_isWeak != NULL) {
+        free(attrValue_isWeak);
+    }
     descriptor.isCopy = isCopy;
     descriptor.isStrong = isStrong;
     descriptor.isWeak = isWeak;
     descriptor.isAssign = !isCopy && !isStrong && !isWeak;
     
     // readonly/readwrite
-    BOOL isReadonly = property_copyAttributeValue(property, "R") != NULL;
+    char *attrValue_isReadonly = property_copyAttributeValue(property, "R");
+    BOOL isReadonly = (attrValue_isReadonly != NULL);
+    if (attrValue_isReadonly != NULL) {
+        free(attrValue_isReadonly);
+    }
     descriptor.isReadonly = isReadonly;
     descriptor.isReadwrite = !isReadonly;
     
     // type
     char *type = property_copyAttributeValue(property, "T");
     descriptor.type = [QMUIPropertyDescriptor typeWithEncodeString:[NSString stringWithUTF8String:type]];
+    if (type != NULL) {
+        free(type);
+    }
     
     return descriptor;
 }

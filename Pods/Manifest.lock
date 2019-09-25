@@ -36,273 +36,59 @@ PODS:
   - MLLabel (1.10.5)
   - Qiniu (7.2.5):
     - HappyDNS (~> 0.3)
-  - QMUIKit (2.8.1):
-    - QMUIKit/QMUIComponents (= 2.8.1)
-    - QMUIKit/QMUICore (= 2.8.1)
-    - QMUIKit/QMUILog (= 2.8.1)
-    - QMUIKit/QMUIMainFrame (= 2.8.1)
-    - QMUIKit/QMUIResources (= 2.8.1)
-    - QMUIKit/QMUIWeakObjectContainer (= 2.8.1)
-  - QMUIKit/QMUIComponents (2.8.1):
-    - QMUIKit/QMUIComponents/NavigationBarTransition (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIAlertController (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIAssetLibrary (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIBadge (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIButton (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUICAAnimationExtension (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUICellHeightCache (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUICellHeightKeyCache (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUICellSizeKeyCache (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUICollectionViewPagingLayout (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIDialogViewController (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIEmotionInputManager (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIEmotionView (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIEmptyView (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIFillButton (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIFloatLayoutView (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIGhostButton (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIGridView (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIImagePickerLibrary (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIImagePreviewView (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIImagePreviewViewController (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIKeyboardManager (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUILabel (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUILinkButton (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUILogManagerViewController (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUILogWithConfigurationSupported (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIMarqueeLabel (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIModalPresentationViewController (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIMoreOperationController (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIMultipleDelegates (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUINavigationButton (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUINavigationTitleView (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIOrderedDictionary (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIPieProgressView (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIPopupContainerView (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIPopupMenuView (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUISearchBar (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUISearchController (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUISegmentedControl (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUISlider (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIStaticTableView (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUITableView (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUITableViewCell (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUITableViewHeaderFooterView (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUITableViewProtocols (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUITestView (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUITextField (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUITextView (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUITips (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIToastView (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIToolbarButton (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIVisualEffectView (= 2.8.1)
-    - QMUIKit/QMUIComponents/QMUIZoomImageView (= 2.8.1)
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/NavigationBarTransition (2.8.1):
-    - QMUIKit/QMUIComponents/QMUINavigationTitleView
-    - QMUIKit/QMUICore
-    - QMUIKit/QMUIMainFrame
-  - QMUIKit/QMUIComponents/QMUIAlertController (2.8.1):
+  - QMUIKit/QMUIComponents/QMUIAlertController (2.9.3):
     - QMUIKit/QMUIComponents/QMUIButton
     - QMUIKit/QMUIComponents/QMUIModalPresentationViewController
     - QMUIKit/QMUIComponents/QMUITextField
     - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIAssetLibrary (2.8.1):
+  - QMUIKit/QMUIComponents/QMUIButton (2.9.3):
     - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIBadge (2.8.1):
-    - QMUIKit/QMUIComponents/QMUILabel
+  - QMUIKit/QMUIComponents/QMUIGridView (2.9.3):
     - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIButton (2.8.1):
+  - QMUIKit/QMUIComponents/QMUIKeyboardManager (2.9.3):
     - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUICAAnimationExtension (2.8.1):
-    - QMUIKit/QMUIComponents/QMUIMultipleDelegates
+  - QMUIKit/QMUIComponents/QMUILabel (2.9.3):
     - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUICellHeightCache (2.8.1):
-    - QMUIKit/QMUIComponents/QMUITableViewProtocols
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUICellHeightKeyCache (2.8.1):
-    - QMUIKit/QMUIComponents/QMUITableViewProtocols
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUICellSizeKeyCache (2.8.1):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUICollectionViewPagingLayout (2.8.1):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIDialogViewController (2.8.1):
-    - QMUIKit/QMUIComponents/QMUIButton
-    - QMUIKit/QMUIComponents/QMUILabel
-    - QMUIKit/QMUIComponents/QMUIModalPresentationViewController
-    - QMUIKit/QMUIComponents/QMUINavigationTitleView
-    - QMUIKit/QMUIComponents/QMUITableView
-    - QMUIKit/QMUIComponents/QMUITableViewCell
-    - QMUIKit/QMUIComponents/QMUITextField
-    - QMUIKit/QMUICore
-    - QMUIKit/QMUIMainFrame
-  - QMUIKit/QMUIComponents/QMUIEmotionInputManager (2.8.1):
-    - QMUIKit/QMUIComponents/QMUIEmotionView
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIEmotionView (2.8.1):
-    - QMUIKit/QMUIComponents/QMUIButton
-    - QMUIKit/QMUICore
-    - QMUIKit/QMUIResources
-  - QMUIKit/QMUIComponents/QMUIEmptyView (2.8.1):
-    - QMUIKit/QMUIComponents/QMUIButton
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIFillButton (2.8.1):
-    - QMUIKit/QMUIComponents/QMUIButton
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIFloatLayoutView (2.8.1):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIGhostButton (2.8.1):
-    - QMUIKit/QMUIComponents/QMUIButton
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIGridView (2.8.1):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIImagePickerLibrary (2.8.1):
-    - QMUIKit/QMUIComponents/QMUIAlertController
-    - QMUIKit/QMUIComponents/QMUIAssetLibrary
-    - QMUIKit/QMUIComponents/QMUIButton
-    - QMUIKit/QMUIComponents/QMUIEmptyView
-    - QMUIKit/QMUIComponents/QMUIImagePreviewViewController
-    - QMUIKit/QMUIComponents/QMUINavigationButton
-    - QMUIKit/QMUIComponents/QMUITableViewCell
-    - QMUIKit/QMUIComponents/QMUIZoomImageView
-    - QMUIKit/QMUICore
-    - QMUIKit/QMUIMainFrame
-    - QMUIKit/QMUIResources
-  - QMUIKit/QMUIComponents/QMUIImagePreviewView (2.8.1):
-    - QMUIKit/QMUIComponents/QMUIButton
-    - QMUIKit/QMUIComponents/QMUICollectionViewPagingLayout
-    - QMUIKit/QMUIComponents/QMUIEmptyView
-    - QMUIKit/QMUIComponents/QMUIPieProgressView
-    - QMUIKit/QMUIComponents/QMUIZoomImageView
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIImagePreviewViewController (2.8.1):
-    - QMUIKit/QMUIComponents/QMUIImagePreviewView
-    - QMUIKit/QMUICore
-    - QMUIKit/QMUIMainFrame
-  - QMUIKit/QMUIComponents/QMUIKeyboardManager (2.8.1):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUILabel (2.8.1):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUILinkButton (2.8.1):
-    - QMUIKit/QMUIComponents/QMUIButton
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUILogManagerViewController (2.8.1):
-    - QMUIKit/QMUIComponents/QMUIPopupMenuView
-    - QMUIKit/QMUIComponents/QMUISearchController
-    - QMUIKit/QMUIComponents/QMUIStaticTableView
-    - QMUIKit/QMUIComponents/QMUITableView
-    - QMUIKit/QMUICore
-    - QMUIKit/QMUIMainFrame
-  - QMUIKit/QMUIComponents/QMUILogWithConfigurationSupported (2.8.1):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIMarqueeLabel (2.8.1):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIModalPresentationViewController (2.8.1):
+  - QMUIKit/QMUIComponents/QMUIModalPresentationViewController (2.9.3):
     - QMUIKit/QMUIComponents/QMUIKeyboardManager
     - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIMoreOperationController (2.8.1):
+  - QMUIKit/QMUIComponents/QMUIMoreOperationController (2.9.3):
     - QMUIKit/QMUIComponents/QMUIButton
     - QMUIKit/QMUIComponents/QMUIModalPresentationViewController
     - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIMultipleDelegates (2.8.1):
+  - QMUIKit/QMUIComponents/QMUIMultipleDelegates (2.9.3):
     - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUINavigationButton (2.8.1):
-    - QMUIKit/QMUICore
-    - QMUIKit/QMUIMainFrame
-  - QMUIKit/QMUIComponents/QMUINavigationTitleView (2.8.1):
-    - QMUIKit/QMUIComponents/QMUIButton
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIOrderedDictionary (2.8.1):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIPieProgressView (2.8.1):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIPopupContainerView (2.8.1):
-    - QMUIKit/QMUICore
-    - QMUIKit/QMUIMainFrame
-  - QMUIKit/QMUIComponents/QMUIPopupMenuView (2.8.1):
-    - QMUIKit/QMUIComponents/QMUIButton
-    - QMUIKit/QMUIComponents/QMUIPopupContainerView
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUISearchBar (2.8.1):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUISearchController (2.8.1):
-    - QMUIKit/QMUIComponents/QMUIEmptyView
-    - QMUIKit/QMUIComponents/QMUISearchBar
-    - QMUIKit/QMUICore
-    - QMUIKit/QMUIMainFrame
-  - QMUIKit/QMUIComponents/QMUISegmentedControl (2.8.1):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUISlider (2.8.1):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIStaticTableView (2.8.1):
-    - QMUIKit/QMUIComponents/QMUITableViewCell
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUITableView (2.8.1):
-    - QMUIKit/QMUIComponents/QMUITableViewProtocols
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUITableViewCell (2.8.1):
-    - QMUIKit/QMUIComponents/QMUIButton
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUITableViewHeaderFooterView (2.8.1):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUITableViewProtocols (2.8.1):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUITestView (2.8.1):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUITextField (2.8.1):
+  - QMUIKit/QMUIComponents/QMUITextField (2.9.3):
     - QMUIKit/QMUIComponents/QMUIMultipleDelegates
     - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUITextView (2.8.1):
+  - QMUIKit/QMUIComponents/QMUITextView (2.9.3):
     - QMUIKit/QMUIComponents/QMUILabel
     - QMUIKit/QMUIComponents/QMUIMultipleDelegates
     - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUITips (2.8.1):
+  - QMUIKit/QMUIComponents/QMUITips (2.9.3):
     - QMUIKit/QMUIComponents/QMUIToastView
     - QMUIKit/QMUICore
     - QMUIKit/QMUIResources
-  - QMUIKit/QMUIComponents/QMUIToastView (2.8.1):
+  - QMUIKit/QMUIComponents/QMUIToastView (2.9.3):
     - QMUIKit/QMUIComponents/QMUIKeyboardManager
     - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIToolbarButton (2.8.1):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIVisualEffectView (2.8.1):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIZoomImageView (2.8.1):
-    - QMUIKit/QMUIComponents/QMUIAssetLibrary
-    - QMUIKit/QMUIComponents/QMUIButton
-    - QMUIKit/QMUIComponents/QMUIEmptyView
-    - QMUIKit/QMUIComponents/QMUIPieProgressView
-    - QMUIKit/QMUIComponents/QMUISlider
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUICore (2.8.1):
+  - QMUIKit/QMUICore (2.9.3):
     - QMUIKit/QMUILog
     - QMUIKit/QMUIWeakObjectContainer
-  - QMUIKit/QMUILog (2.8.1)
-  - QMUIKit/QMUIMainFrame (2.8.1):
-    - QMUIKit/QMUIComponents/QMUIEmptyView
-    - QMUIKit/QMUIComponents/QMUIKeyboardManager
-    - QMUIKit/QMUIComponents/QMUIMultipleDelegates
-    - QMUIKit/QMUIComponents/QMUINavigationTitleView
-    - QMUIKit/QMUIComponents/QMUITableView
-    - QMUIKit/QMUIComponents/QMUITableViewHeaderFooterView
-    - QMUIKit/QMUICore
-    - QMUIKit/QMUILog
-  - QMUIKit/QMUIResources (2.8.1)
-  - QMUIKit/QMUIWeakObjectContainer (2.8.1)
+  - QMUIKit/QMUILog (2.9.3)
+  - QMUIKit/QMUIResources (2.9.3)
+  - QMUIKit/QMUIWeakObjectContainer (2.9.3)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - SocketRocket (0.5.1)
   - UMCAnalytics (5.5.2):
     - UMCCommon
-  - UMCCommon (1.5.3)
+  - UMCCommon (2.1.1)
   - UMCPush (3.2.3):
     - UMCCommon
   - UMCSecurityPlugins (1.0.6)
   - UUButton (1.1)
-  - YTKNetwork (2.0.4):
-    - AFNetworking (~> 3.0)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
@@ -317,7 +103,14 @@ DEPENDENCIES:
   - MJRefresh
   - MLLabel
   - Qiniu (~> 7.1)
-  - QMUIKit
+  - QMUIKit/QMUIComponents/QMUIAlertController
+  - QMUIKit/QMUIComponents/QMUIGridView
+  - QMUIKit/QMUIComponents/QMUIModalPresentationViewController
+  - QMUIKit/QMUIComponents/QMUIMoreOperationController
+  - QMUIKit/QMUIComponents/QMUITextField
+  - QMUIKit/QMUIComponents/QMUITextView
+  - QMUIKit/QMUIComponents/QMUITips
+  - QMUIKit/QMUIComponents/QMUIToastView
   - SDWebImage (~> 3.8)
   - SocketRocket
   - UMCAnalytics
@@ -325,7 +118,6 @@ DEPENDENCIES:
   - UMCPush
   - UMCSecurityPlugins
   - UUButton
-  - YTKNetwork
   - YYKit
   - ZXSegmentController
 
@@ -347,7 +139,6 @@ SPEC REPOS:
     - UMCPush
     - UMCSecurityPlugins
     - UUButton
-    - YTKNetwork
     - YYKit
     - ZXSegmentController
 
@@ -360,18 +151,17 @@ SPEC CHECKSUMS:
   MJRefresh: 56a28aa628c9895e97a518dabaecf70b18f92f32
   MLLabel: d76124055a2205e7f76878e62cd06ba925ba0c97
   Qiniu: 909b408ee489ea54827e9717be90b94bc9dfbc48
-  QMUIKit: 36fe0f01873605e15e86113403db547aca16e6c5
+  QMUIKit: 5b8f0a3ab60e42af1310bd40a6fe1b54d612d15c
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
   UMCAnalytics: 6654fd3c8201ff6da5c86a3ae29cd5c8436d3b7b
-  UMCCommon: 016af43c0f769feb1ae1861d65aaf2b23b89c9c7
+  UMCCommon: 971f324a5a99c9d662ae040a815e7e3d7ef8b2a8
   UMCPush: 628b5c61be5a5036cb31eb9b3a3ab8dce7521691
   UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
   UUButton: 9a19bbe0c812a6920de21da8acca7a2d0bad52da
-  YTKNetwork: df8a7a5597bda1664a4efaa7ef871a818a887fe0
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZXSegmentController: d94f138ab0191da1e2e4268e9b961e082a142549
 
-PODFILE CHECKSUM: 8ed0001fc336b0ddb38e8999d1b8c2f5bbe9b8ef
+PODFILE CHECKSUM: 04a15b94de5ae3cbd810f54682a855b85fd69aad
 
 COCOAPODS: 1.7.1
