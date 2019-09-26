@@ -28,7 +28,7 @@
 #import "YXMineMyCollectionViewController.h"
 #import "YXMineJiFenTableViewController.h"
 #import "YXMineChouJiangViewController.h"
-
+#import "QiniuLoad.h"
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
 
 static CGFloat const HeaderImageViewHeight =320;
@@ -101,7 +101,7 @@ static CGFloat const HeaderImageViewHeight =320;
 //        [weakself.navigationController pushViewController:VC animated:YES];
 //    }];
     QMUIAlertAction *action3 = [QMUIAlertAction actionWithTitle:@"分享" style:QMUIAlertActionStyleDefault handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
-
+        [weakself addGuanjiaShareView];
     }];
     QMUIAlertAction *action4 = [QMUIAlertAction actionWithTitle:@"草稿箱" style:QMUIAlertActionStyleDefault handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
         YXMineMyCaoGaoViewController * VC = [[YXMineMyCaoGaoViewController alloc]init];
@@ -499,7 +499,101 @@ static CGFloat const HeaderImageViewHeight =320;
 
 
 
+#pragma mark ========== 分享 ==========
+- (void)addGuanjiaShareView{
+    QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
+    kWeakSelf(self);
+    moreOperationController.items = @[
+                                      // 第一行
+                                      @[
+                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareFriend") title:@"分享给微信好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                                              [moreOperationController hideToBottom];
+                                              [weakself saveImage:UMSocialPlatformType_WechatSession];
+                                          }],
+                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareMoment") title:@"分享到朋友圈" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                                              [moreOperationController hideToBottom];
+                                              [weakself saveImage:UMSocialPlatformType_WechatTimeLine];
 
+                                          }],
+                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_QQ") title:@"分享给QQ好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                                              [weakself saveImage:UMSocialPlatformType_QQ];
+
+                                          }],
+                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                                              [moreOperationController hideToBottom];
+                                              [weakself saveImage:UMSocialPlatformType_Qzone];
+
+                                          }],
+                                          ],
+                                      ];
+    [moreOperationController showFromBottom];
+
+}
+/**
+ *  截取当前屏幕
+ *
+ *  @return NSData *
+ */
+- (NSData *)dataWithScreenshotInPNGFormat{
+    CGSize imageSize = CGSizeZero;
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (UIInterfaceOrientationIsPortrait(orientation))
+        imageSize = [UIScreen mainScreen].bounds.size;
+    else
+        imageSize = CGSizeMake([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
+    
+    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    for (UIWindow *window in [[UIApplication sharedApplication] windows])
+    {
+        CGContextSaveGState(context);
+        CGContextTranslateCTM(context, window.center.x, window.center.y);
+        CGContextConcatCTM(context, window.transform);
+        CGContextTranslateCTM(context, -window.bounds.size.width * window.layer.anchorPoint.x, -window.bounds.size.height * window.layer.anchorPoint.y);
+        if (orientation == UIInterfaceOrientationLandscapeLeft)
+        {
+            CGContextRotateCTM(context, M_PI_2);
+            CGContextTranslateCTM(context, 0, -imageSize.width);
+        }
+        else if (orientation == UIInterfaceOrientationLandscapeRight)
+        {
+            CGContextRotateCTM(context, -M_PI_2);
+            CGContextTranslateCTM(context, -imageSize.height, 0);
+        } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+            CGContextRotateCTM(context, M_PI);
+            CGContextTranslateCTM(context, -imageSize.width, -imageSize.height);
+        }
+        if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)])
+        {
+            [window drawViewHierarchyInRect:window.bounds afterScreenUpdates:YES];
+        }
+        else
+        {
+            [window.layer renderInContext:context];
+        }
+        CGContextRestoreGState(context);
+    }
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return UIImagePNGRepresentation(image);
+}
+
+
+- (void)saveImage:(UMSocialPlatformType)umType{
+    NSData *imageData = [self dataWithScreenshotInPNGFormat];
+    UIImage* viewImage = [UIImage imageWithData:imageData];
+    //先上传到七牛云图片  再提交服务器
+    [QiniuLoad uploadImageToQNFilePath:@[viewImage] success:^(NSString *reslut) {
+           UserInfo * info = curUser;
+           NSString * title = [NSString stringWithFormat:@"%@的主页@蓝皮书app",info.username];
+           NSString * desc = [NSString stringWithFormat:@"%@的蓝皮书主页，快来关注吧！",info.username];
+          [[ShareManager sharedShareManager] shareAllToPlatformType:umType obj:@{@"img":reslut,@"desc":desc,@"title":title,@"type":@"3"}];
+    } failure:^(NSString *error) {
+        NSLog(@"%@",error);
+    }];
+}
 
 @end
 

@@ -54,7 +54,7 @@
 }
 #pragma mark ========== 分享 ==========
 - (void)yaoQingHaoYouAction{
-    NSString * title = @"蓝皮书,一站式品味生活指南@蓝皮书app";
+    NSString * title = @"蓝皮书,品位生活指南@蓝皮书app";
       NSString * desc = @"Ta开启了蓝皮书之旅,快来加入吧";
       [[ShareManager sharedShareManager] pushShareViewAndDic:@{
           @"type":@"4",@"desc":desc,@"title":title,@"thumbImage":@"http://photo.lpszn.com/appiconWechatIMG1store_1024pt.png"}];

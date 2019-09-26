@@ -48,24 +48,19 @@ SINGLETON_FOR_CLASS(ShareManager);
             case 2:{
                     webpageUrl = [NSString stringWithFormat:@"%@third/%@/%@",url1,obj[@"index1"],obj[@"index"]];
                     shareObject.thumbImage = obj[@"thumbImage"];
-
                     break;
                 }
             case 3:{
                      NSString * resultString = [NSString stringWithFormat:@"%@",obj[@"img"]];
                      resultString = [resultString stringByReplacingOccurrencesOfString:@" " withString:@""];
-                     webpageUrl = [NSString stringWithFormat:@"%@/HomeZhiNanDetail.html?img=%@",httpurl,resultString];
+                     webpageUrl = [NSString stringWithFormat:@"http://www.%@/HomeZhiNanDetail.html?img=%@",httpurl,resultString];
                      shareObject.thumbImage = obj[@"img"];
-                     break;
                  }
+            break;
             case 4:{
                      
                      webpageUrl = [NSString stringWithFormat:@"%@yaoqingZhuCe.html",[API_URL split:@"api"][0]];
                      shareObject.thumbImage = obj[@"thumbImage"];
-                     break;
-                 }
-            case 5:{
-                     
                      break;
                  }
         default:
