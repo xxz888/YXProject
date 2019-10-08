@@ -259,7 +259,7 @@
     kWeakSelf(self);
     //为文章详情的图片
     if (mediaPicker.view.tag == 1) {
-        self.wenzhangImgCount = outputArray.count;
+        self.wenzhangImgCount += 1;
         for (KSMediaPickerOutputModel * model in outputArray) {
             [self setupImage:model.image];
         }
