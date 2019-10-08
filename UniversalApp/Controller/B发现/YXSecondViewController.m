@@ -12,6 +12,7 @@
 #import "YXFindSearchResultViewController.h"
 #import "YXFindViewController.h"
 #import "YXFindHeaderView.h"
+#import "YXFaBuNewVCViewController.h"
 
 @interface YXSecondViewController ()<PYSearchViewControllerDelegate,UIGestureRecognizerDelegate>
 @property(nonatomic,strong)NSMutableArray * dataArray;
@@ -41,6 +42,14 @@
 
     [self initConfing];
     [self requestFindTag];
+    [self rightBottomBtn];
+}
+-(void)rightBottomBtn{
+    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setImage:[UIImage imageNamed:@"findjiahao"] forState:0];
+    btn.frame = CGRectMake(KScreenWidth-16-54, KScreenHeight-kTabBarHeight-54-10+6, 54, 54);
+    [self.view addSubview:btn];
+    [btn addTarget:self action:@selector(handleShowContentViewController) forControlEvents:UIControlEventTouchUpInside];
 }
 -(void)setNavSearchView{
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXFindHeaderView" owner:self options:nil];
@@ -57,8 +66,25 @@
             KPostNotification(KNotificationLoginStateChange, @NO);
             return;
         }
-        XWPopMenuController *vc = [[XWPopMenuController alloc]init];
-        [weakself presentViewController:vc animated:NO completion:nil];
+        
+        [weakself handleShowContentViewController];
+//        XWPopMenuController *vc = [[XWPopMenuController alloc]init];
+//        [weakself presentViewController:vc animated:NO completion:nil];
+    };
+}
+- (void)handleShowContentViewController {
+    if (![userManager loadUserInfo]) {
+           KPostNotification(KNotificationLoginStateChange, @NO);
+           return;
+       }
+    YXFaBuNewVCViewController * contentViewController = [[YXFaBuNewVCViewController alloc] init];
+    QMUIModalPresentationViewController *modalViewController = [[QMUIModalPresentationViewController alloc] init];
+    modalViewController.contentViewMargins = UIEdgeInsetsMake(KScreenHeight-175-kTabBarHeight-10, KScreenWidth-146, kTabBarHeight+10, 0);
+    modalViewController.contentViewController = contentViewController;
+    [modalViewController showWithAnimated:YES completion:nil];
+    
+    contentViewController.block = ^{
+        [modalViewController hideWithAnimated:YES completion:nil];
     };
 }
 -(void)clickSelectBtn:(UIButton *)btn{

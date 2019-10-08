@@ -16,6 +16,7 @@
 @property (nonatomic, strong) UICollectionView *yxCollectionView;
 @property (strong, nonatomic) UICollectionViewFlowLayout *layout;
 
+@property (strong, nonatomic,readonly) QMUIModalPresentationViewController * modalNewViewController;
 @end
 
 @implementation YXFaBuBaseViewController
@@ -77,9 +78,6 @@
     [self setOtherUI];
 }
 -(void)setOtherUI{
-    UIColor * color1 = [UIColor darkGrayColor];
-    ViewBorderRadius(self.cunCaoGaoBtn, 14, 1, YXRGBAColor(176, 151, 99));
-    ViewBorderRadius(self.faBuBtn, 14, 1, color1);
     self.tagArray = [NSMutableArray array];
     self.photoImageList = [[NSMutableArray alloc]init];
     _locationString = self.locationBtn.titleLabel.text;
@@ -94,6 +92,8 @@
     self.videoCoverImageString=@"";
     _selectedPhotos = [NSMutableArray array];
     [self configCollectionView];
+    
+    self.topHeight.constant = kStatusBarHeight;
 }
 - (void)swipeAction: (UITapGestureRecognizer *)gesture{
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
@@ -103,7 +103,7 @@
         self.qmuiTextView = [[QMUITextView alloc] init];
     }
     self.qmuiTextView.frame = CGRectMake(0,0, KScreenWidth-20, self.detailView.qmui_height);
-    self.qmuiTextView.backgroundColor = YXRGBAColor(239, 239, 239);
+    self.qmuiTextView.backgroundColor = KClearColor;
     self.qmuiTextView.font = UIFontMake(15);
     self.qmuiTextView.placeholder = @"写点什么...";
     self.qmuiTextView.layer.cornerRadius = 8;
@@ -162,7 +162,7 @@
     }else{
         [self addNewTags];
     }
-    [btn.superview.superview removeFromSuperview];
+    [_modalNewViewController hideWithAnimated:YES completion:nil];
 }
 
 -(void)addNewTags{
@@ -170,6 +170,7 @@
     NSArray * titleArr = @[@""];
     NSArray *contentArr = @[_tagArray];
     CBGroupAndStreamView * silde = [[CBGroupAndStreamView alloc] initWithFrame:CGRectMake(0, 0,self.floatView.qmui_width, self.floatView.qmui_height)];
+    silde.backgroundColor = KClearColor;
     silde.isSingle = YES;
     silde.radius = 5;
     silde.font = [UIFont systemFontOfSize:12];
@@ -186,9 +187,6 @@
         [weakself.tagArray addObjectsFromArray:array];
         [weakself.menueView setContentView:@[weakself.tagArray] titleArr:@[]];
         [weakself addNewTags];
-
-
-        
     };
 }
 -(void)pushNewHuaTi{
@@ -209,7 +207,7 @@
     [_xinhuatiTf becomeFirstResponder];
     
     UIButton *btn = [UIButton buttonWithType:0];
-    ViewBorderRadius(btn, 4, 1, [UIColor darkGrayColor]);
+    ViewBorderRadius(btn, 4, 1, KWhiteColor);
     [btn setTitleColor:[UIColor darkGrayColor] forState:0];
     [btn setTitle:@"添加" forState:0];
     NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle qmui_paragraphStyleWithLineHeight:20];
@@ -220,10 +218,12 @@
     btn.centerX = _xinhuatiTf.centerX;
     contentView.frame = CGRectSetHeight(contentView.frame, CGRectGetMaxY(btn.frame) + contentViewPadding.bottom);
     [btn addTarget:self action:@selector(xinhuatiButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    QMUIModalPresentationViewController *modalViewController = [[QMUIModalPresentationViewController alloc] init];
-    modalViewController.animationStyle = QMUIModalPresentationAnimationStyleSlide;
-    modalViewController.contentView = contentView;
-    [modalViewController showWithAnimated:YES completion:nil];
+    
+    
+     _modalNewViewController = [[QMUIModalPresentationViewController alloc] init];
+    _modalNewViewController.animationStyle = QMUIModalPresentationAnimationStyleSlide;
+    _modalNewViewController.contentView = contentView;
+    [_modalNewViewController showWithAnimated:YES completion:nil];
 }
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     if ([string isEqualToString:@" "]) {
@@ -237,13 +237,12 @@
     [self closeViewAAA];
 }
 -(void)closeViewAAA{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSecondVC" object:nil];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSecondVC" object:nil];
     UIViewController *controller = self;
     while(controller.presentingViewController != nil){
         controller = controller.presentingViewController;
     }
-    [controller dismissViewControllerAnimated:YES completion:^{
-    }];
+    [controller dismissViewControllerAnimated:YES completion:^{}];
 }
 
 
@@ -326,6 +325,7 @@
         KSMediaPickerController *ctl = [KSMediaPickerController.alloc initWithMaxVideoItemCount:1 maxPictureItemCount:9];
         ctl.delegate = self;
         KSNavigationController *nav = [KSNavigationController.alloc initWithRootViewController:ctl];
+        nav.modalPresentationStyle = UIModalPresentationFullScreen;
         [self presentViewController:nav animated:YES completion:nil];
         
     } else { // preview photos or video / 预览照片或者视频

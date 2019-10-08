@@ -32,7 +32,7 @@ open class KSMediaPickerHandlerController: UIViewController, UICollectionViewDat
     public required init(itemModelArray: [KSMediaPickerItemModel]) {
         self.itemModelArray = itemModelArray
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: _layout)
-        collectionView.backgroundColor = .clear
+        collectionView.backgroundColor = .white
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
         if #available(iOS 11.0, *) {
@@ -49,7 +49,7 @@ open class KSMediaPickerHandlerController: UIViewController, UICollectionViewDat
     
     override open func loadView() {
         let view = UIView()
-        view.backgroundColor = .clear
+        view.backgroundColor = .white
         
         let classOjb = KSMediaPickerHandlerController.self
         
@@ -265,7 +265,7 @@ extension KSMediaPickerHandlerController {
         
         override public init(frame: CGRect) {
             super.init(frame: frame)
-            backgroundColor = .clear
+            backgroundColor = .white
             addSubview(nextButton)
             addSubview(closeButton)
             addSubview(_titleLabel)

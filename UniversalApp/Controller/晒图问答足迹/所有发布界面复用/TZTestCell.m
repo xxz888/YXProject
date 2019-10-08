@@ -18,14 +18,16 @@
         self.backgroundColor = [UIColor whiteColor];
         _imageView = [[UIImageView alloc] init];
         _imageView.backgroundColor = [UIColor colorWithWhite:1.000 alpha:0.500];
+        _imageView.contentMode = UIViewContentModeScaleAspectFill;
+        _imageView.clipsToBounds = YES;
         [self addSubview:_imageView];
         self.clipsToBounds = YES;
         
         
         _deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _deleteBtn.backgroundColor = kRGBA(153, 153, 153, 0.8);
         [_deleteBtn setImage:[UIImage imageNamed:@"deleteButton"] forState:UIControlStateNormal];
-        _deleteBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
-        _deleteBtn.alpha = 0.6;
+        _deleteBtn.frame = CGRectMake(100-16, 0, 16, 16);
         [self addSubview:_deleteBtn];
         
         _videoImageView = [[UIImageView alloc]init];
@@ -38,10 +40,11 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    _imageView.frame = CGRectMake(7.5,7.5, 75, 75);
+    _imageView.frame = CGRectMake(0,0, self.tz_width, self.tz_height);
     _gifLable.frame = CGRectMake(self.tz_width - 25, self.tz_height - 14, 25, 14);
     _deleteBtn.frame = CGRectMake(self.tz_width - 15, 0, 15, 15);
-        ViewRadius(_imageView, 5);
+    _deleteBtn.imageEdgeInsets = UIEdgeInsetsMake(4,4,4,4);
+    ViewRadius(_imageView, 5);
     CGFloat width = self.tz_width / 4.0;
     _videoImageView.frame = CGRectMake(width, width, width, width);
 }

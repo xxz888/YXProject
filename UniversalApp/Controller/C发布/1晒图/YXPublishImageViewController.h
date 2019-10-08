@@ -10,9 +10,10 @@
 #import "YXFaBuBaseViewController.h"
 #import "YXShaiTuModel.h"
 
-
+typedef void(^closeNewVcBlock)(void);
 @interface YXPublishImageViewController : YXFaBuBaseViewController
 @property(nonatomic,strong)YXShaiTuModel * model;
 @property(nonatomic,strong)NSMutableDictionary * startDic;
+@property(nonatomic,copy)closeNewVcBlock  closeNewVcblock;
 
 @end

@@ -153,7 +153,7 @@
 
             but.frame = CGRectMake(butorignX, but_totalHeight, butWidth, butHeight);
             current_rect = but.frame;
-            but.backgroundColor = _norColor;
+            but.backgroundColor = KWhiteColor;
             but.tag = groupId * 100 + i + 1;
             //按钮样式
             [but addTarget:self action:@selector(butClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -363,7 +363,7 @@
 - (UIScrollView *)scroller{
     if (!_scroller) {
         _scroller =  [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
-        _scroller.backgroundColor = [UIColor whiteColor];
+        _scroller.backgroundColor = kRGBA(239, 239, 239, 1);
         _scroller.showsVerticalScrollIndicator = NO;
         _scroller.showsHorizontalScrollIndicator = NO;
     }

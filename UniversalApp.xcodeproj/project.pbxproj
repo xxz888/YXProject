@@ -208,6 +208,8 @@
 		BB46926E22E7069900A7A77E /* UIViewController+WTVYXJAS.m in Sources */ = {isa = PBXBuildFile; fileRef = BB46926D22E7069900A7A77E /* UIViewController+WTVYXJAS.m */; };
 		BB4AA7D42317AC3700C22224 /* YXMineAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4AA7D32317AC3700C22224 /* YXMineAboutUsViewController.m */; };
 		BB4AA7D82317B2EC00C22224 /* YXMineYiJianFanKuiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4AA7D72317B2EC00C22224 /* YXMineYiJianFanKuiViewController.m */; };
+		BB524794234A2F3B00FB22B3 /* YXFaBuNewVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB524792234A2F3B00FB22B3 /* YXFaBuNewVCViewController.m */; };
+		BB524795234A2F3B00FB22B3 /* YXFaBuNewVCViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB524793234A2F3B00FB22B3 /* YXFaBuNewVCViewController.xib */; };
 		BB5DC69B2189CA38003F1998 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */; };
 		BB5DC69C2189CA38003F1998 /* SELUpdateAlertConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */; };
 		BB5FD86A21FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD86821FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m */; };
@@ -1027,6 +1029,9 @@
 		BB4AA7D32317AC3700C22224 /* YXMineAboutUsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineAboutUsViewController.m; sourceTree = "<group>"; };
 		BB4AA7D62317B2EC00C22224 /* YXMineYiJianFanKuiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineYiJianFanKuiViewController.h; sourceTree = "<group>"; };
 		BB4AA7D72317B2EC00C22224 /* YXMineYiJianFanKuiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineYiJianFanKuiViewController.m; sourceTree = "<group>"; };
+		BB524791234A2F3B00FB22B3 /* YXFaBuNewVCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFaBuNewVCViewController.h; sourceTree = "<group>"; };
+		BB524792234A2F3B00FB22B3 /* YXFaBuNewVCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFaBuNewVCViewController.m; sourceTree = "<group>"; };
+		BB524793234A2F3B00FB22B3 /* YXFaBuNewVCViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFaBuNewVCViewController.xib; sourceTree = "<group>"; };
 		BB5DC6972189CA38003F1998 /* SELUpdateAlertConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlertConst.h; sourceTree = "<group>"; };
 		BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
 		BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlertConst.m; sourceTree = "<group>"; };
@@ -2774,6 +2779,16 @@
 			path = "分享相关";
 			sourceTree = "<group>";
 		};
+		BB524790234A2F0800FB22B3 /* 发布弹框vc */ = {
+			isa = PBXGroup;
+			children = (
+				BB524791234A2F3B00FB22B3 /* YXFaBuNewVCViewController.h */,
+				BB524792234A2F3B00FB22B3 /* YXFaBuNewVCViewController.m */,
+				BB524793234A2F3B00FB22B3 /* YXFaBuNewVCViewController.xib */,
+			);
+			path = "发布弹框vc";
+			sourceTree = "<group>";
+		};
 		BB5DC6962189CA38003F1998 /* UpdateAlert */ = {
 			isa = PBXGroup;
 			children = (
@@ -3499,6 +3514,7 @@
 				BBA812AC21DDAB9D001B5EA1 /* YXFindViewController.m */,
 				BB70253522126E67009EBE39 /* YXFindSearchViewController.h */,
 				BB70253622126E67009EBE39 /* YXFindSearchViewController.m */,
+				BB524790234A2F0800FB22B3 /* 发布弹框vc */,
 				BBC7CD1B22E16BDB00AC9E2D /* 发现头部 */,
 				BB70253E2212A3A7009EBE39 /* 搜索结果 */,
 				BB702538221297E3009EBE39 /* 搜索view */,
@@ -5554,6 +5570,7 @@
 				BBD2C94A21E0F67800350DCD /* LICENSE in Resources */,
 				293D464E1ECDBB63007C64A9 /* icon_tabbar_misc.png in Resources */,
 				BBA8129C21DDAA04001B5EA1 /* YXMessage.storyboard in Resources */,
+				BB524795234A2F3B00FB22B3 /* YXFaBuNewVCViewController.xib in Resources */,
 				BBC7CD2022E16C0500AC9E2D /* YXFindHeaderView.xib in Resources */,
 				BB928F5D21FABCF10090A044 /* YXMinePingLunTableViewCell.xib in Resources */,
 				BBBCDBB3223F65540056C7DD /* README.md in Resources */,
@@ -5802,6 +5819,7 @@
 				BB6D2A3A21EEC63900F5049F /* SinglePageEmojiCell.m in Sources */,
 				BBDA2D2221EB30BF00EDCCFF /* UIView+SDExtension.m in Sources */,
 				BB3DFE8E221D568D000C70B5 /* XHWebImageAutoSize.m in Sources */,
+				BB524794234A2F3B00FB22B3 /* YXFaBuNewVCViewController.m in Sources */,
 				BBDA2D0321EB30BF00EDCCFF /* SDContactsTableViewCell.m in Sources */,
 				BB9ECD502285211600A12952 /* UIScrollView+FanHui.m in Sources */,
 				BBC162D2217B111C00008907 /* QMUIConfigurationTemplate.m in Sources */,

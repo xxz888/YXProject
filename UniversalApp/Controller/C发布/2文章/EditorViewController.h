@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef void(^closeNewVcBlock)(void);
 @interface EditorViewController : UIViewController
     @property (weak, nonatomic) IBOutlet UIButton *fabuButton;
-    
+    @property(nonatomic,copy)closeNewVcBlock  closeNewVcblock;
+
 @end

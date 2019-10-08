@@ -11,11 +11,11 @@
 @implementation YXFindSearchHeadView
 - (void)drawRect:(CGRect)rect {
     //拿到searchBar的输入框
-    UITextField *searchTextField = [self.searchBar valueForKey:@"_searchField"];
-    //字体大小
-    searchTextField.font = [UIFont systemFontOfSize:13];
-    
-    [self addShadowToView:self withColor:KDarkGaryColor];
+//    UITextField *searchTextField = [self.searchBar valueForKey:@"_searchField"];
+//    //字体大小
+//    searchTextField.font = [UIFont systemFontOfSize:13];
+//
+//    [self addShadowToView:self withColor:KDarkGaryColor];
 }
 
 

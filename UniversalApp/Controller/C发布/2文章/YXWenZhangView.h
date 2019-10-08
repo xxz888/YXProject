@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^ClickTitleImgVBlock)(UIImageView *);
 @interface YXWenZhangView : UIView
 
+@property (weak, nonatomic) IBOutlet UIView *midView;
 @property (weak, nonatomic) IBOutlet UITextView *titleTextView;
 @property (weak, nonatomic) IBOutlet UIImageView *titleImgV;
 @property (nonatomic,copy) ClickTitleImgVBlock clickTitleImgBlock;

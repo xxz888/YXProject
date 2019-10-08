@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,19 +14,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="63"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A86-0d-fRZ">
-                    <rect key="frame" x="374" y="26" width="24" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="24" id="Q4I-cN-li2"/>
-                        <constraint firstAttribute="height" constant="21" id="mQQ-Qf-MIe"/>
-                    </constraints>
-                    <state key="normal" backgroundImage="添加图片"/>
-                    <connections>
-                        <action selector="fabuAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="PqM-Sb-GoB"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSH-XA-xLQ">
-                    <rect key="frame" x="329" y="27.5" width="22" height="22"/>
+                    <rect key="frame" x="376" y="42.5" width="22" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="22" id="4jS-vy-K37"/>
                         <constraint firstAttribute="height" constant="22" id="Ki2-YZ-2gC"/>
@@ -41,10 +28,8 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="CSH-XA-xLQ" firstAttribute="centerY" secondItem="A86-0d-fRZ" secondAttribute="centerY" constant="2" id="5sr-bX-spf"/>
-                <constraint firstItem="A86-0d-fRZ" firstAttribute="leading" secondItem="CSH-XA-xLQ" secondAttribute="trailing" constant="23" id="M5z-Jr-Pp9"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="A86-0d-fRZ" secondAttribute="trailing" constant="16" id="P2g-5s-YRJ"/>
-                <constraint firstItem="A86-0d-fRZ" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="zp8-4Q-pxM"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="CSH-XA-xLQ" secondAttribute="trailing" constant="16" id="ACp-6T-FQR"/>
+                <constraint firstItem="CSH-XA-xLQ" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="ONs-S2-T2m"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -53,6 +38,5 @@
     </objects>
     <resources>
         <image name="搜索" width="44" height="44"/>
-        <image name="添加图片" width="48" height="42"/>
     </resources>
 </document>

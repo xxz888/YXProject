@@ -15,13 +15,16 @@
 -(instancetype)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
+        self.midView.hidden = NO;
+        self.titleImgV.contentMode = UIViewContentModeScaleToFill;
+        self.titleImgV.hidden = YES;
     }
     return self;
 }
 -(void)awakeFromNib{
     [super awakeFromNib];
-    [self.titleTextView setFont:[UIFont fontWithName:@"Helvetica Neue" size:18]];
-    self.titleTextView.textColor = [UIColor grayColor];
+//    [self.titleTextView setFont:[UIFont fontWithName:@"PingFangSC" size:18]];
+//    self.titleTextView.textColor = [UIColor grayColor];
 
     UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction:)];
     //点击几次后触发事件响应，默认为：1

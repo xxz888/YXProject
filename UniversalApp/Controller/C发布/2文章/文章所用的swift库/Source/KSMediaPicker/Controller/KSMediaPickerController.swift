@@ -108,7 +108,7 @@ open class KSMediaPickerController: UIViewController, UICollectionViewDelegate, 
         collectionView.register(classObj.k_video_item_class, forCellWithReuseIdentifier: classObj.k_video_item_iden)
         collectionView.delegate = self
         collectionView.dataSource = self
-        
+    
         let tableView = view.albumTableView
         tableView.delegate = self
         tableView.dataSource = self

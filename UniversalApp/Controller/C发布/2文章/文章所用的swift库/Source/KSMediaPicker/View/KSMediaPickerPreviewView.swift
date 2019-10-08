@@ -109,19 +109,24 @@ extension KSMediaPickerPreviewView {
                 let imageWidth = _imageSize.width
                 let imageHeight = _imageSize.height
                 
-                if _imageDirection == .transversal {
-                    viewH = windowHeight
-                    viewW = imageWidth/imageHeight*viewH
-                    viewY = floatZore
-                    viewX = (windowWidth-viewW)*0.5
-                } else {
-                    viewW = windowWidth
-                    viewH = imageHeight/imageWidth*viewW
-                    viewX = floatZore
-                    viewY = (windowHeight-viewH)*0.5
-                }
-                imageView.frame = CGRect(origin: .zero, size: CGSize(width: viewW, height: viewH))
-                offset = CGPoint(x: -viewX, y: -viewY)
+//                if _imageDirection == .transversal {
+//                    viewH = windowHeight
+//                    viewW = imageWidth/imageHeight*viewH
+//                    viewY = floatZore
+//                    viewX = (windowWidth-viewW)*0.5
+//                } else {
+//                    viewW = windowWidth
+//                    viewH = imageHeight/imageWidth*viewW
+//                    viewX = floatZore
+//                    viewY = (windowHeight-viewH)*0.5
+//                }
+                           viewW = windowWidth
+                           viewH = imageHeight/imageWidth*viewW
+                           viewX = floatZore
+                           viewY = (windowHeight-viewH)*0.5
+                
+                imageView.frame = CGRect(origin: CGPoint(x: 0, y:  (windowHeight - viewH)/2), size: CGSize(width: viewW, height: viewH))
+                offset = .zero
             } else {
                 offset = .zero
             }
@@ -240,10 +245,10 @@ open class KSMediaPickerPreviewView: UIView {
         clipsToBounds = true
         addSubview(_scrollview)
         
-        _zoomButton.addTarget(self, action: #selector(_didClick(zoomButton:)), for: .touchUpInside)
-        addSubview(_zoomButton)
-        _changeSizeButton.addTarget(self, action: #selector(_didClick(changeSizeButton:)), for: .touchUpInside)
-        addSubview(_changeSizeButton)
+//        _zoomButton.addTarget(self, action: #selector(_didClick(zoomButton:)), for: .touchUpInside)
+//        addSubview(_zoomButton)
+//        _changeSizeButton.addTarget(self, action: #selector(_didClick(changeSizeButton:)), for: .touchUpInside)
+//        addSubview(_changeSizeButton)
         
         addSubview(_videoView)
     }

@@ -99,6 +99,7 @@
             ctl.view.tag = 2;
             ctl.delegate = weakself;
             KSNavigationController *nav = [KSNavigationController.alloc initWithRootViewController:ctl];
+            nav.modalPresentationStyle = UIModalPresentationFullScreen;
             [weakself presentViewController:nav animated:YES completion:nil];
         };
     }
@@ -265,7 +266,10 @@
     //为封面图片
     }else{
         KSMediaPickerOutputModel * model = outputArray[0];
+        self.headerView.titleImgV.hidden = NO;
+        self.headerView.midView.hidden = YES;
         self.headerView.titleImgV.image = model.image;
+        self.headerView.titleImgV.contentMode = UIViewContentModeScaleToFill;
         [QiniuLoad uploadImageToQNFilePath:@[model.image] success:^(NSString *reslut) {
             weakself.cover = reslut;
         } failure:^(NSString *error) {}];
@@ -323,17 +327,6 @@
     }
     return _desArr;
 }
--(void)closeViewAAA{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSecondVC" object:nil];
-
-    UIViewController *controller = self;
-    while(controller.presentingViewController != nil){
-        controller = controller.presentingViewController;
-    }
-    [controller dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-}
 #pragma mark YYTextViewDelegate
 - (void)textViewDidChange:(YYTextView *)textView{
     if (textView.text.length > 100 && textView.tag != 1000) {
@@ -375,12 +368,14 @@
         ctl.view.tag = 1;
         ctl.delegate = weakSelf;
         KSNavigationController *nav = [KSNavigationController.alloc initWithRootViewController:ctl];
+        nav.modalPresentationStyle = UIModalPresentationFullScreen;
         [weakSelf presentViewController:nav animated:YES completion:nil];
-        //
-        //        [self presentViewController:self.imagePickerVc animated:YES completion:nil];
     } forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithCustomView:btn1];
     bar.items = @[left, space, right];
     return bar;
+}
+-(void)closeViewAAA{
+    self.closeNewVcblock();
 }
 @end

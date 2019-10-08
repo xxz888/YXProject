@@ -190,7 +190,13 @@
             [self closeViewAAA];
         }
     }
-    
-   
+}
+-(void)closeViewAAA{
+//    UIViewController *controller = self;
+//    while(controller.presentingViewController != nil){
+//        controller = controller.presentingViewController;
+//    }
+//    [controller dismissViewControllerAnimated:YES completion:^{}];
+    self.closeNewVcblock();
 }
 @end
