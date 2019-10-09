@@ -11,6 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXJiFenShop1CollectionViewCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *collImv;
+@property (weak, nonatomic) IBOutlet UILabel *collTitle;
+@property (weak, nonatomic) IBOutlet UILabel *collJifen;
 
 @end
 

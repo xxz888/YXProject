@@ -26,5 +26,11 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestAddressDelPOST:YX_BLOCK;
 #pragma mark ==========查询收货地址==========
 -(void)requestAddressListGet:YX_BLOCK;
+#pragma mark ==========获取首页分类及商品列表==========
+-(void)requestIntegral_classify:YX_BLOCK;
+#pragma mark ==========积分商城首页推荐==========
+-(void)requestIntegral_Commodity_recommendGet:YX_BLOCK;
+#pragma mark ==========id找商品==========
+-(void)requestInIdOutIntegral_commodity:YX_BLOCK;
 @end
 

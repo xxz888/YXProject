@@ -9,9 +9,14 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
-@interface YXJiFenShop1TableViewCell : UITableViewCell
+typedef void(^ClickCollectionItemBlock)(NSDictionary *);
+@interface YXJiFenShop1TableViewCell : UITableViewCell<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionView *yxCollectionView;
+-(void)setCellData:(NSDictionary *)dic;
+@property (nonatomic,strong) NSMutableArray * dataArray;
+@property (weak, nonatomic) IBOutlet UILabel *cell1Title;
+@property (weak, nonatomic) IBOutlet UILabel *cell1Tag;
+@property (nonatomic,copy) ClickCollectionItemBlock clickCollectionItemBlock;
 
 @end
 

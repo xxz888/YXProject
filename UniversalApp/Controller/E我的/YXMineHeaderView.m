@@ -31,7 +31,7 @@
     self.mineClickImageblock();
 }
 -(void)jifenclickAction:(id)sender{
-    self.editPersionblock();
+    self.jifenShopblock();
 }
 - (IBAction)guanzhuAction:(id)sender{
     self.guanzhublock();
@@ -41,7 +41,7 @@
     
 }
 - (IBAction)tieshuAction:(id)sender{
-    self.tieshublock();
+    self.editPersionblock();
 }
 -(void)setViewUI{
 

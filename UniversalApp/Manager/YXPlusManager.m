@@ -93,5 +93,22 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
-
+#pragma mark ==========积分商城首页推荐==========
+-(void)requestIntegral_Commodity_recommendGet:YX_BLOCK{
+    [HTTP_GET(@"/shop/integral_commodity_recommend")  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ==========获取首页分类及商品列表==========
+-(void)requestIntegral_classify:YX_BLOCK{
+    [HTTP_GET(@"/shop/integral_classify")  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ==========id找商品==========
+-(void)requestInIdOutIntegral_commodity:YX_BLOCK{
+    [HTTP_GET([@"/shop/integral_commodity/?commodity_id=" append:dic])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 @end

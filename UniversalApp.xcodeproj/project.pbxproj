@@ -379,6 +379,22 @@
 		BBABDF3F229BC3E90046683A /* YXZhiNan3Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBABDF3D229BC3E90046683A /* YXZhiNan3Cell.xib */; };
 		BBABDF43229BC45E0046683A /* YXZhiNan4Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBABDF41229BC45E0046683A /* YXZhiNan4Cell.m */; };
 		BBABDF44229BC45E0046683A /* YXZhiNan4Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBABDF42229BC45E0046683A /* YXZhiNan4Cell.xib */; };
+		BBACB4B1234D718C0092367B /* YXJiFenShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBACB4AF234D718C0092367B /* YXJiFenShopViewController.m */; };
+		BBACB4B2234D718C0092367B /* YXJiFenShopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBACB4B0234D718C0092367B /* YXJiFenShopViewController.xib */; };
+		BBACB4B6234D84340092367B /* YXJiFenShop1TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBACB4B4234D84340092367B /* YXJiFenShop1TableViewCell.m */; };
+		BBACB4B7234D84340092367B /* YXJiFenShop1TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBACB4B5234D84340092367B /* YXJiFenShop1TableViewCell.xib */; };
+		BBACB4BD234D87690092367B /* YXJiFenShop1CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBACB4BB234D87690092367B /* YXJiFenShop1CollectionViewCell.m */; };
+		BBACB4BE234D87690092367B /* YXJiFenShop1CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBACB4BC234D87690092367B /* YXJiFenShop1CollectionViewCell.xib */; };
+		BBACB4C2234DB4050092367B /* YXJiFenShop2TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBACB4C0234DB4050092367B /* YXJiFenShop2TableViewCell.m */; };
+		BBACB4C3234DB4050092367B /* YXJiFenShop2TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBACB4C1234DB4050092367B /* YXJiFenShop2TableViewCell.xib */; };
+		BBACB4CC234DC2E10092367B /* YXJiFenShop2CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBACB4C9234DC2E00092367B /* YXJiFenShop2CollectionViewCell.xib */; };
+		BBACB4CD234DC2E10092367B /* YXJiFenShop2CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBACB4CB234DC2E10092367B /* YXJiFenShop2CollectionViewCell.m */; };
+		BBACB4D2234DCCD30092367B /* YXJiFenShopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBACB4D0234DCCD30092367B /* YXJiFenShopDetailViewController.m */; };
+		BBACB4D3234DCCD40092367B /* YXJiFenShopDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBACB4D1234DCCD30092367B /* YXJiFenShopDetailViewController.xib */; };
+		BBACB4D6234DD1A20092367B /* YXJiFenShopDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBACB4D5234DD1A20092367B /* YXJiFenShopDetailHeaderView.m */; };
+		BBACB4D8234DD1AD0092367B /* YXJiFenShopDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBACB4D7234DD1AD0092367B /* YXJiFenShopDetailHeaderView.xib */; };
+		BBACB4DD234DDC020092367B /* YXJiFenDetailAllImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBACB4DB234DDC020092367B /* YXJiFenDetailAllImageTableViewCell.m */; };
+		BBACB4DE234DDC020092367B /* YXJiFenDetailAllImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBACB4DC234DDC020092367B /* YXJiFenDetailAllImageTableViewCell.xib */; };
 		BBADE49521F6CB110011E5FF /* QDCollectionViewDemoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBADE44A21F6CB110011E5FF /* QDCollectionViewDemoCell.m */; };
 		BBADE4C521F801080011E5FF /* PictureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BBADE4BB21F801070011E5FF /* PictureModel.m */; };
 		BBADE4C621F801080011E5FF /* UIColor+HEX.m in Sources */ = {isa = PBXBuildFile; fileRef = BBADE4BF21F801070011E5FF /* UIColor+HEX.m */; };
@@ -1326,6 +1342,30 @@
 		BBABDF40229BC45E0046683A /* YXZhiNan4Cell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXZhiNan4Cell.h; sourceTree = "<group>"; };
 		BBABDF41229BC45E0046683A /* YXZhiNan4Cell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXZhiNan4Cell.m; sourceTree = "<group>"; };
 		BBABDF42229BC45E0046683A /* YXZhiNan4Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXZhiNan4Cell.xib; sourceTree = "<group>"; };
+		BBACB4AE234D718C0092367B /* YXJiFenShopViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXJiFenShopViewController.h; sourceTree = "<group>"; };
+		BBACB4AF234D718C0092367B /* YXJiFenShopViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXJiFenShopViewController.m; sourceTree = "<group>"; };
+		BBACB4B0234D718C0092367B /* YXJiFenShopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXJiFenShopViewController.xib; sourceTree = "<group>"; };
+		BBACB4B3234D84340092367B /* YXJiFenShop1TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXJiFenShop1TableViewCell.h; sourceTree = "<group>"; };
+		BBACB4B4234D84340092367B /* YXJiFenShop1TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXJiFenShop1TableViewCell.m; sourceTree = "<group>"; };
+		BBACB4B5234D84340092367B /* YXJiFenShop1TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXJiFenShop1TableViewCell.xib; sourceTree = "<group>"; };
+		BBACB4BA234D87690092367B /* YXJiFenShop1CollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXJiFenShop1CollectionViewCell.h; sourceTree = "<group>"; };
+		BBACB4BB234D87690092367B /* YXJiFenShop1CollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXJiFenShop1CollectionViewCell.m; sourceTree = "<group>"; };
+		BBACB4BC234D87690092367B /* YXJiFenShop1CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXJiFenShop1CollectionViewCell.xib; sourceTree = "<group>"; };
+		BBACB4BF234DB4050092367B /* YXJiFenShop2TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXJiFenShop2TableViewCell.h; sourceTree = "<group>"; };
+		BBACB4C0234DB4050092367B /* YXJiFenShop2TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXJiFenShop2TableViewCell.m; sourceTree = "<group>"; };
+		BBACB4C1234DB4050092367B /* YXJiFenShop2TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXJiFenShop2TableViewCell.xib; sourceTree = "<group>"; };
+		BBACB4C9234DC2E00092367B /* YXJiFenShop2CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YXJiFenShop2CollectionViewCell.xib; sourceTree = "<group>"; };
+		BBACB4CA234DC2E00092367B /* YXJiFenShop2CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXJiFenShop2CollectionViewCell.h; sourceTree = "<group>"; };
+		BBACB4CB234DC2E10092367B /* YXJiFenShop2CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXJiFenShop2CollectionViewCell.m; sourceTree = "<group>"; };
+		BBACB4CF234DCCD30092367B /* YXJiFenShopDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXJiFenShopDetailViewController.h; sourceTree = "<group>"; };
+		BBACB4D0234DCCD30092367B /* YXJiFenShopDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXJiFenShopDetailViewController.m; sourceTree = "<group>"; };
+		BBACB4D1234DCCD30092367B /* YXJiFenShopDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXJiFenShopDetailViewController.xib; sourceTree = "<group>"; };
+		BBACB4D4234DD1A20092367B /* YXJiFenShopDetailHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXJiFenShopDetailHeaderView.h; sourceTree = "<group>"; };
+		BBACB4D5234DD1A20092367B /* YXJiFenShopDetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXJiFenShopDetailHeaderView.m; sourceTree = "<group>"; };
+		BBACB4D7234DD1AD0092367B /* YXJiFenShopDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXJiFenShopDetailHeaderView.xib; sourceTree = "<group>"; };
+		BBACB4DA234DDC020092367B /* YXJiFenDetailAllImageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXJiFenDetailAllImageTableViewCell.h; sourceTree = "<group>"; };
+		BBACB4DB234DDC020092367B /* YXJiFenDetailAllImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXJiFenDetailAllImageTableViewCell.m; sourceTree = "<group>"; };
+		BBACB4DC234DDC020092367B /* YXJiFenDetailAllImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXJiFenDetailAllImageTableViewCell.xib; sourceTree = "<group>"; };
 		BBADE44A21F6CB110011E5FF /* QDCollectionViewDemoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QDCollectionViewDemoCell.m; sourceTree = "<group>"; };
 		BBADE46F21F6CB110011E5FF /* QDCollectionViewDemoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QDCollectionViewDemoCell.h; sourceTree = "<group>"; };
 		BBADE4BB21F801070011E5FF /* PictureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureModel.m; sourceTree = "<group>"; };
@@ -3469,6 +3509,7 @@
 				BB7AF1362200869400989896 /* YXMineHeaderView.h */,
 				BB7AF1372200869400989896 /* YXMineHeaderView.m */,
 				BB7AF1392200869E00989896 /* YXMineHeaderView.xib */,
+				BBACB4AD234D71620092367B /* 积分商城 */,
 				BB12EE322318FEEC008CF3C6 /* 积分 */,
 				BB94141C21F9B850007E800A /* 编辑个人资料 */,
 				BB94141121F9AC3F007E800A /* 抽屉 */,
@@ -3707,6 +3748,70 @@
 				BB688A1B22AE505800964FA3 /* YXZhiNan5Cell.xib */,
 			);
 			path = "5种cell";
+			sourceTree = "<group>";
+		};
+		BBACB4AD234D71620092367B /* 积分商城 */ = {
+			isa = PBXGroup;
+			children = (
+				BBACB4AE234D718C0092367B /* YXJiFenShopViewController.h */,
+				BBACB4AF234D718C0092367B /* YXJiFenShopViewController.m */,
+				BBACB4B0234D718C0092367B /* YXJiFenShopViewController.xib */,
+				BBACB4CE234DCC810092367B /* 详情 */,
+				BBACB4B8234D87440092367B /* 第一种cell */,
+				BBACB4B9234D87450092367B /* 第二种cell */,
+			);
+			path = "积分商城";
+			sourceTree = "<group>";
+		};
+		BBACB4B8234D87440092367B /* 第一种cell */ = {
+			isa = PBXGroup;
+			children = (
+				BBACB4B3234D84340092367B /* YXJiFenShop1TableViewCell.h */,
+				BBACB4B4234D84340092367B /* YXJiFenShop1TableViewCell.m */,
+				BBACB4B5234D84340092367B /* YXJiFenShop1TableViewCell.xib */,
+				BBACB4BA234D87690092367B /* YXJiFenShop1CollectionViewCell.h */,
+				BBACB4BB234D87690092367B /* YXJiFenShop1CollectionViewCell.m */,
+				BBACB4BC234D87690092367B /* YXJiFenShop1CollectionViewCell.xib */,
+			);
+			path = "第一种cell";
+			sourceTree = "<group>";
+		};
+		BBACB4B9234D87450092367B /* 第二种cell */ = {
+			isa = PBXGroup;
+			children = (
+				BBACB4BF234DB4050092367B /* YXJiFenShop2TableViewCell.h */,
+				BBACB4C0234DB4050092367B /* YXJiFenShop2TableViewCell.m */,
+				BBACB4C1234DB4050092367B /* YXJiFenShop2TableViewCell.xib */,
+				BBACB4CA234DC2E00092367B /* YXJiFenShop2CollectionViewCell.h */,
+				BBACB4CB234DC2E10092367B /* YXJiFenShop2CollectionViewCell.m */,
+				BBACB4C9234DC2E00092367B /* YXJiFenShop2CollectionViewCell.xib */,
+			);
+			path = "第二种cell";
+			sourceTree = "<group>";
+		};
+		BBACB4CE234DCC810092367B /* 详情 */ = {
+			isa = PBXGroup;
+			children = (
+				BBACB4CF234DCCD30092367B /* YXJiFenShopDetailViewController.h */,
+				BBACB4D0234DCCD30092367B /* YXJiFenShopDetailViewController.m */,
+				BBACB4D1234DCCD30092367B /* YXJiFenShopDetailViewController.xib */,
+				BBACB4D4234DD1A20092367B /* YXJiFenShopDetailHeaderView.h */,
+				BBACB4D5234DD1A20092367B /* YXJiFenShopDetailHeaderView.m */,
+				BBACB4D7234DD1AD0092367B /* YXJiFenShopDetailHeaderView.xib */,
+				BBACB4D9234DDBD10092367B /* 纯图片cell */,
+			);
+			name = "详情";
+			path = "UniversalApp/Controller/E我的/积分商城/详情";
+			sourceTree = SOURCE_ROOT;
+		};
+		BBACB4D9234DDBD10092367B /* 纯图片cell */ = {
+			isa = PBXGroup;
+			children = (
+				BBACB4DA234DDC020092367B /* YXJiFenDetailAllImageTableViewCell.h */,
+				BBACB4DB234DDC020092367B /* YXJiFenDetailAllImageTableViewCell.m */,
+				BBACB4DC234DDC020092367B /* YXJiFenDetailAllImageTableViewCell.xib */,
+			);
+			path = "纯图片cell";
 			sourceTree = "<group>";
 		};
 		BBADE43821F6CB110011E5FF /* UIKit */ = {
@@ -5591,6 +5696,7 @@
 				BB29122322156BB500FF484E /* Panetela.gif in Resources */,
 				BBBE071E2224E36100CDD11E /* YXBaseFaXianDetailViewController.xib in Resources */,
 				BB9413DF21F8B602007E800A /* IQKeyboardManager.bundle in Resources */,
+				BBACB4C3234DB4050092367B /* YXJiFenShop2TableViewCell.xib in Resources */,
 				BBD2C94021E0F67800350DCD /* ImageSelectedSmallOff.png in Resources */,
 				BBB59B08228CF8CB0029D3D0 /* YXHomeXueJiaPinPaiSearchViewController.xib in Resources */,
 				BB86C8BF231CC48C00A061E2 /* YXMineQianMingViewController.xib in Resources */,
@@ -5608,6 +5714,7 @@
 				BB9832752201700C0048D103 /* blueArrow.png in Resources */,
 				294A680D1ED58F0700AC382A /* LCTabBarBadge@2x.png in Resources */,
 				BBC16284217AD6EA00008907 /* Login.storyboard in Resources */,
+				BBACB4CC234DC2E10092367B /* YXJiFenShop2CollectionViewCell.xib in Resources */,
 				BB5FD88421FEB8CE00B5F1A8 /* YXMineEssayTableViewCell.xib in Resources */,
 				BBD2C92C21E0F67800350DCD /* UIBarButtonItemGrid.png in Resources */,
 				BBB4528622B738A9006451E4 /* EditorViewController.xib in Resources */,
@@ -5624,6 +5731,7 @@
 				BBC3FB4C22C5C59B00BB2564 /* no_data@2x.png in Resources */,
 				296F85091FED04EF005612D1 /* close_icon@2x.png in Resources */,
 				BBB59B15228CF8CB0029D3D0 /* YXXingZhuangViewController.xib in Resources */,
+				BBACB4B7234D84340092367B /* YXJiFenShop1TableViewCell.xib in Resources */,
 				BB29120A22156BB500FF484E /* Petit Pyramid.gif in Resources */,
 				BBB59B79228E8D200029D3D0 /* YXZhiNanViewController.xib in Resources */,
 				BBABDF44229BC45E0046683A /* YXZhiNan4Cell.xib in Resources */,
@@ -5651,6 +5759,7 @@
 				BBD2C94821E0F67800350DCD /* ImageSelectedOn@2x.png in Resources */,
 				293D46501ECDBB63007C64A9 /* icon_tabbar_misc_selected.png in Resources */,
 				BB3CA498221F95FC00C6793D /* YXFaBuBaseViewController.xib in Resources */,
+				BBACB4D8234DD1AD0092367B /* YXJiFenShopDetailHeaderView.xib in Resources */,
 				BBD2C92921E0F67800350DCD /* UIBarButtonItemArrowLeft.png in Resources */,
 				BBB59AF3228CF8CB0029D3D0 /* YXHomeLastDetailView.xib in Resources */,
 				BBD2C8F521E0F67700350DCD /* LICENSE in Resources */,
@@ -5665,6 +5774,7 @@
 				BBD2C92B21E0F67800350DCD /* ImageSelectedSmallOn.png in Resources */,
 				BB29121C22156BB500FF484E /* Double Pyramid.gif in Resources */,
 				BBD2C94621E0F67800350DCD /* PlayButtonOverlayLarge.png in Resources */,
+				BBACB4D3234DCCD40092367B /* YXJiFenShopDetailViewController.xib in Resources */,
 				BB29121122156BB500FF484E /* Giant Robusto.gif in Resources */,
 				BBD2C93721E0F67800350DCD /* UIBarButtonItemArrowRight.png in Resources */,
 				293D46451ECDBB63007C64A9 /* icon_tabbar_homepage_selected@2x.png in Resources */,
@@ -5679,6 +5789,7 @@
 				293D45A21ECD6422007C64A9 /* LaunchScreen.storyboard in Resources */,
 				BB688A1C22AE505800964FA3 /* YXZhiNan5Cell.xib in Resources */,
 				293D45A31ECD6422007C64A9 /* Info.plist in Resources */,
+				BBACB4B2234D718C0092367B /* YXJiFenShopViewController.xib in Resources */,
 				BBB59B3C228CF92D0029D3D0 /* YXHomeXueJiaTableViewCell.xib in Resources */,
 				BBABDF35229BC33C0046683A /* YXZhiNan1Cell.xib in Resources */,
 				293D464F1ECDBB63007C64A9 /* icon_tabbar_misc@2x.png in Resources */,
@@ -5708,8 +5819,10 @@
 				BBF45E5E222FD29A005C52C4 /* Documentation.html in Resources */,
 				293D46491ECDBB63007C64A9 /* icon_tabbar_merchant_selected@2x.png in Resources */,
 				BB29122222156BB500FF484E /* Double Perfecto.gif in Resources */,
+				BBACB4BE234D87690092367B /* YXJiFenShop1CollectionViewCell.xib in Resources */,
 				BBD2C93F21E0F67800350DCD /* VideoOverlay.png in Resources */,
 				293D46481ECDBB63007C64A9 /* icon_tabbar_merchant_selected.png in Resources */,
+				BBACB4DE234DDC020092367B /* YXJiFenDetailAllImageTableViewCell.xib in Resources */,
 				BB013349232F69B500573AC0 /* YXMineShouHuoTableViewCell.xib in Resources */,
 				BB98329A229E165A00894FAF /* YXMineMyCollectionViewController.xib in Resources */,
 				BBB59B1B228CF8CB0029D3D0 /* YXColorViewController.xib in Resources */,
@@ -5798,6 +5911,7 @@
 				29629EF01F78E669002CFCBD /* XLWebViewController.m in Sources */,
 				296DEA6F1F5D50D100C6FD00 /* TAAbstractDotView.m in Sources */,
 				290DE9231ED19B6B00A45FF6 /* AESCipher.m in Sources */,
+				BBACB4D2234DCCD30092367B /* YXJiFenShopDetailViewController.m in Sources */,
 				BB21FD9A22B0991E0059BCAC /* KSMediaPickerSelectIndicator.swift in Sources */,
 				BB21FD9422B0991E0059BCAC /* KSMediaPickerCollectionView.m in Sources */,
 				BBADE49521F6CB110011E5FF /* QDCollectionViewDemoCell.m in Sources */,
@@ -5944,6 +6058,7 @@
 				BBB59B39228CF92D0029D3D0 /* YXGridView.m in Sources */,
 				BB86C8AC231B706800A061E2 /* YXMineJiFenHistoryViewController.m in Sources */,
 				BB8376EF2248AE930091A1A8 /* YXMineFindViewController.m in Sources */,
+				BBACB4DD234DDC020092367B /* YXJiFenDetailAllImageTableViewCell.m in Sources */,
 				BB7AF13422004FE600989896 /* YXMineFootDetailViewController.m in Sources */,
 				BBE82D0121E44A7D004E4144 /* ZLPhotoAssets.m in Sources */,
 				BB5FD8A221FF49DD00B5F1A8 /* XWPopMenuController.m in Sources */,
@@ -5982,6 +6097,7 @@
 				BBDA2D0B21EB30BF00EDCCFF /* LEETheme.m in Sources */,
 				BB6D2A3521EEC63900F5049F /* UIColor+MyColor.m in Sources */,
 				BBD2C91B21E0F67800350DCD /* UIImageView+LLExtension.m in Sources */,
+				BBACB4B1234D718C0092367B /* YXJiFenShopViewController.m in Sources */,
 				BB7AF12C2200035700989896 /* YXPublishFootViewController.m in Sources */,
 				BB21FD9322B0991E0059BCAC /* KSMediaPickerAlbumModel.swift in Sources */,
 				BB70253722126E67009EBE39 /* YXFindSearchViewController.m in Sources */,
@@ -6003,6 +6119,7 @@
 				BB21FD8822B0991E0059BCAC /* KSVideoPlayerLiteView.m in Sources */,
 				BBBE071C2224E32D00CDD11E /* YXBaseFaXianDetailViewController.m in Sources */,
 				BBB59B29228CF8CB0029D3D0 /* YXHomePeiJianLastView.m in Sources */,
+				BBACB4C2234DB4050092367B /* YXJiFenShop2TableViewCell.m in Sources */,
 				BBDA2D1221EB30BF00EDCCFF /* MLEmojiLabel.m in Sources */,
 				BB5FD89F21FF488E00B5F1A8 /* UIImage+XW.m in Sources */,
 				BB21FD9E22B0991E0059BCAC /* KSMediaViewerPictureCell.swift in Sources */,
@@ -6025,6 +6142,7 @@
 				BB7025442212A42C009EBE39 /* YXFindSearchResultViewController.m in Sources */,
 				BBB59B09228CF8CB0029D3D0 /* YXHomeXueJiaPinPaiSearchViewController.m in Sources */,
 				BBCC4B1721E8927700493F40 /* UIView+Geometry.m in Sources */,
+				BBACB4D6234DD1A20092367B /* YXJiFenShopDetailHeaderView.m in Sources */,
 				BBB59B23228CF8CB0029D3D0 /* BKCustomSwitchBtn.m in Sources */,
 				BBB59B01228CF8CB0029D3D0 /* SDWeiXinPhotoContainerView.m in Sources */,
 				BB9832742201700C0048D103 /* FCXRefreshBaseView.m in Sources */,
@@ -6066,6 +6184,7 @@
 				BBB59B05228CF8CB0029D3D0 /* YXHomeCountryViewController.m in Sources */,
 				BBF26E1C22408B0E0000AEF5 /* FMDatabaseQueue.m in Sources */,
 				BB21FD9622B0991E0059BCAC /* KSMediaPickerCameraView.swift in Sources */,
+				BBACB4B6234D84340092367B /* YXJiFenShop1TableViewCell.m in Sources */,
 				BB9413D921F8B602007E800A /* IQTextView.m in Sources */,
 				BBD779722248A37E0077E44D /* YXLoginXieYiViewController.m in Sources */,
 				BBD2C98821E1BC0A00350DCD /* UIView+PYSearchExtension.m in Sources */,
@@ -6089,6 +6208,7 @@
 				29AD6C4D1ED3D51200B0879C /* OpenUDID.m in Sources */,
 				BBA812B321DDABC1001B5EA1 /* YXMessageViewController.m in Sources */,
 				BB9832722201700C0048D103 /* UIScrollView+FCXRefresh.m in Sources */,
+				BBACB4CD234DC2E10092367B /* YXJiFenShop2CollectionViewCell.m in Sources */,
 				BBF45E60222FD29A005C52C4 /* GCDAsyncSocket.m in Sources */,
 				BBD2C90321E0F67700350DCD /* TZGifPhotoPreviewController.m in Sources */,
 				BBB59ADC228CF8CB0029D3D0 /* YXHomeQuestionDetailHeaderView.m in Sources */,
@@ -6096,6 +6216,7 @@
 				BB21FDA522B0991E0059BCAC /* KSMediaViewerController.m in Sources */,
 				BB9413DD21F8B602007E800A /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				BB93DC98221A4BEA0094BADC /* RootTableViewController.m in Sources */,
+				BBACB4BD234D87690092367B /* YXJiFenShop1CollectionViewCell.m in Sources */,
 				BBF5076F22B33A6900579F29 /* TZTestCell.m in Sources */,
 				BB3DFE8A221D568D000C70B5 /* XHWebImageAutoSizeCache.m in Sources */,
 				BB9413E421F8B602007E800A /* IQUIView+Hierarchy.m in Sources */,

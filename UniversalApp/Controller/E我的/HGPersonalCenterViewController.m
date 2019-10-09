@@ -29,6 +29,8 @@
 #import "YXMineJiFenTableViewController.h"
 #import "YXMineChouJiangViewController.h"
 #import "QiniuLoad.h"
+#import "YXJiFenShopViewController.h"
+
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
 
 static CGFloat const HeaderImageViewHeight =320;
@@ -163,6 +165,7 @@ static CGFloat const HeaderImageViewHeight =320;
         KPostNotification(KNotificationLoginStateChange, @NO);
         return;
     }
+    
     UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
 
     kWeakSelf(self);
@@ -223,6 +226,13 @@ static CGFloat const HeaderImageViewHeight =320;
         YXHomeEditPersonTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXHomeEditPersonTableViewController"];
         VC.userInfoDic = [NSDictionary dictionaryWithDictionary:weakself.userInfoDic];
         [weakself.navigationController pushViewController:VC animated:YES];
+    };
+    _headerView.jifenShopblock = ^{
+        YXJiFenShopViewController * vc = [[YXJiFenShopViewController alloc]init];
+        [YXPLUS_MANAGER requestIntegral_Commodity_recommendGet:@"" success:^(id object) {
+            vc.lunboArray = [[NSMutableArray alloc]initWithArray:object[@"data"]];
+            [weakself.navigationController pushViewController:vc animated:YES];
+        }];
     };
 }
 /**

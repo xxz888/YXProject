@@ -68,6 +68,9 @@ typedef void(^MineBackVCBlock)();
 typedef void(^mineClickImageBlock)();
 @property (nonatomic,copy) mineClickImageBlock mineClickImageblock;
 
+typedef void(^jifenShopBlock)();
+@property (nonatomic,copy) jifenShopBlock jifenShopblock;
+
 
 @property (weak, nonatomic) IBOutlet UIView *jifenView;
 @property (weak, nonatomic) IBOutlet UIView *sexView;

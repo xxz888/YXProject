@@ -7,8 +7,14 @@
 //
 
 #import "YXJiFenShopDetailViewController.h"
+#import "YXJiFenShop1TableViewCell.h"
+#import "YXJiFenShopDetailHeaderView.h"
+#import "YXJiFenDetailAllImageTableViewCell.h"
 
-@interface YXJiFenShopDetailViewController ()
+@interface YXJiFenShopDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic,strong) NSMutableArray * dataArray;
+@property (nonatomic,strong) YXJiFenShopDetailHeaderView * headerView;
+@property (nonatomic,assign) CGFloat oldOffset;
 
 @end
 
@@ -16,17 +22,61 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    self.navTitle.text = self.startDic[@"name"];
+    self.navJifen.text = kGetString(self.startDic[@"integral"]);
+    
+    
+    self.dataArray = [[NSMutableArray alloc]init];
+    self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXJiFenShop1TableViewCell" bundle:nil] forCellReuseIdentifier:@"YXJiFenShop1TableViewCell"];
+    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXJiFenDetailAllImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXJiFenDetailAllImageTableViewCell"];
+    [self.yxTableView reloadData];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+       NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXJiFenShopDetailHeaderView" owner:self options:nil];
+        self.headerView = [nib objectAtIndex:0];
+        UIView * view = [[UIView alloc]init];
+        view.frame = CGRectMake(0, 0, KScreenWidth, 530);
+        [self.headerView setHeaderView:self.startDic];
+        [view addSubview:self.headerView];
+        return view;
 }
-*/
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 550;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [self.startDic[@"detail_list"] count];
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 600;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    YXJiFenDetailAllImageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXJiFenDetailAllImageTableViewCell" forIndexPath:indexPath];
+    NSDictionary * dic = self.startDic[@"detail_list"][indexPath.row];
+    [cell.signImage sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:dic[@"photo"]]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    return cell;
+}
+- (IBAction)backVcAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+ _oldOffset  = scrollView.contentOffset.y;
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+if (scrollView.contentOffset.y >_oldOffset) {
+//  向下
+    self.navView.backgroundColor = KWhiteColor;
+    self.wenziView.hidden = NO;
+}else{
+ //  向上
+ self.navView.backgroundColor = KClearColor;
+self.wenziView.hidden = YES;
+}
+
+}
 
 @end
