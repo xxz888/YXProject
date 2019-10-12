@@ -111,4 +111,26 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
+
+
+#pragma mark ==========新增订单==========
+-(void)requestAddShopIntegral_orderPOST:YX_BLOCK{
+    [HTTP_POST(@"/shop/integral_oder/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+
+
+#pragma mark ==========获取帮忙好友列表==========
+-(void)requestOption_lock_history:YX_BLOCK{
+    [HTTP_GET(@"/pub/option_lock_history/")  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+#pragma mark ==========邀请好友记录==========
+-(void)requestyaoqinghaoyojilu:YX_BLOCK{
+    [HTTP_GET(@"/users/invite/")  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 @end

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TvB-be-c5G">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TvB-be-c5G">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,29 +18,27 @@
                         <sections>
                             <tableViewSection id="DCO-KD-Wva">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="120" id="41j-lh-2PN">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="89" id="41j-lh-2PN">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="89"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="41j-lh-2PN" id="ZzS-4E-VG2">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIJ-Mv-ntm">
-                                                    <rect key="frame" x="20" y="60" width="48" height="34"/>
-                                                    <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="24"/>
+                                                    <rect key="frame" x="16" y="50" width="44" height="31"/>
+                                                    <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ZH-zO-ZwB">
-                                                    <rect key="frame" x="298" y="66" width="61" height="22"/>
+                                                    <rect key="frame" x="300" y="54.5" width="59" height="22"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="61" id="2yb-z5-z4n"/>
+                                                        <constraint firstAttribute="width" constant="59" id="2yb-z5-z4n"/>
                                                         <constraint firstAttribute="height" constant="22" id="yeU-TV-sP6"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <inset key="titleEdgeInsets" minX="-47" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    <inset key="imageEdgeInsets" minX="45" minY="-6" maxX="-1" maxY="4"/>
-                                                    <state key="normal" title="一键已读" image="messageqingchu">
+                                                    <state key="normal" title="一键已读">
                                                         <color key="titleColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                 </button>
@@ -50,8 +46,8 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="1ZH-zO-ZwB" secondAttribute="trailing" constant="16" id="BMy-9s-hA2"/>
                                                 <constraint firstItem="1ZH-zO-ZwB" firstAttribute="centerY" secondItem="NIJ-Mv-ntm" secondAttribute="centerY" id="SNv-Fa-FVr"/>
-                                                <constraint firstItem="NIJ-Mv-ntm" firstAttribute="top" secondItem="ZzS-4E-VG2" secondAttribute="top" constant="60" id="fH2-tx-dia"/>
-                                                <constraint firstItem="NIJ-Mv-ntm" firstAttribute="leading" secondItem="ZzS-4E-VG2" secondAttribute="leading" constant="20" id="hvb-vW-Bqw"/>
+                                                <constraint firstItem="NIJ-Mv-ntm" firstAttribute="top" secondItem="ZzS-4E-VG2" secondAttribute="top" constant="50" id="fH2-tx-dia"/>
+                                                <constraint firstItem="NIJ-Mv-ntm" firstAttribute="leading" secondItem="ZzS-4E-VG2" secondAttribute="leading" constant="16" id="hvb-vW-Bqw"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -60,7 +56,7 @@
                             <tableViewSection id="04Y-dp-5Vg">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="121" id="Nq9-ia-HKq">
-                                        <rect key="frame" x="0.0" y="120" width="375" height="121"/>
+                                        <rect key="frame" x="0.0" y="173" width="375" height="121"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nq9-ia-HKq" id="3gH-Cv-Xqw">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="121"/>
@@ -212,7 +208,7 @@
                             <tableViewSection id="mmv-ye-d8v">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="10" id="m5M-bE-QEE">
-                                        <rect key="frame" x="0.0" y="241" width="375" height="10"/>
+                                        <rect key="frame" x="0.0" y="350" width="375" height="10"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m5M-bE-QEE" id="9bR-nF-2pF">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="10"/>
@@ -221,7 +217,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="50" id="lwt-Du-nQj">
-                                        <rect key="frame" x="0.0" y="251" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="360" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lwt-Du-nQj" id="j3j-cI-WFv">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -274,7 +270,7 @@
                             <tableViewSection id="CvK-N2-fOt">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="338" id="70f-Ah-yfc">
-                                        <rect key="frame" x="0.0" y="301" width="375" height="338"/>
+                                        <rect key="frame" x="0.0" y="466" width="375" height="338"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="70f-Ah-yfc" id="v5g-mW-pRO">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="338"/>
@@ -309,20 +305,20 @@
                         <outlet property="view1" destination="8yv-GT-wj0" id="xdN-DW-WZk"/>
                         <outlet property="view2" destination="FWl-VV-O3o" id="jpK-jT-HcI"/>
                         <outlet property="view3" destination="fU9-O0-sVF" id="q4P-9e-Bpr"/>
+                        <outlet property="xiaoxiHeight" destination="fH2-tx-dia" id="bnq-Rf-Q0s"/>
                         <outlet property="yiduBtn" destination="1ZH-zO-ZwB" id="FR8-lV-IdI"/>
                         <outlet property="zanjb" destination="79a-4K-OWi" id="tmn-Kt-zdJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BIV-jH-YdD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1806" y="224"/>
+            <point key="canvasLocation" x="-2420" y="138.98050974512745"/>
         </scene>
     </scenes>
     <resources>
         <image name="messageZan" width="96" height="96"/>
         <image name="messagefensi" width="96" height="96"/>
         <image name="messagepinglun" width="96" height="96"/>
-        <image name="messageqingchu" width="34" height="36"/>
         <image name="关闭" width="64" height="64"/>
     </resources>
 </document>

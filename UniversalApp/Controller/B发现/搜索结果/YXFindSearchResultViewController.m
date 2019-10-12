@@ -47,7 +47,7 @@
     [self.segmentedPageViewController didMoveToParentViewController:self];
     kWeakSelf(self);
     [self.segmentedPageViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(weakself.view).mas_offset(UIEdgeInsetsMake(kTopHeight, 0, 0, 0));
+        make.edges.equalTo(weakself.view).mas_offset(UIEdgeInsetsMake(kStatusBarHeight, 0, 0, 0));
     }];
 }
 

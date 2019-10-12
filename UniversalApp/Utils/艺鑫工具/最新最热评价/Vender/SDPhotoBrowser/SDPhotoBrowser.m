@@ -37,7 +37,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = SDPhotoBrowserBackgrounColor;
+        self.backgroundColor = KBlackColor;
     }
     return self;
 }

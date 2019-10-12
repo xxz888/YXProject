@@ -20,5 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *tuisongBtn;
 - (IBAction)tuisongAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *yiduBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *xiaoxiHeight;
 
 @end

@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+typedef void(^lijigoumaiBlock)(void);
 @interface YXJiFenLiJiGouMaiFootView : UIView
+@property (weak, nonatomic) IBOutlet UILabel *jifen;
+- (IBAction)querenzhifuAction:(id)sender;
+@property (nonatomic,copy) lijigoumaiBlock  lijigoumaiblock;
+
+@property (weak, nonatomic) IBOutlet UIButton *querenzhifu;
 
 @end
 

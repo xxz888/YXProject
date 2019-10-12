@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -43,13 +41,22 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="锁" translatesAutoresizingMaskIntoConstraints="NO" id="jxA-uq-0WT">
+                                <rect key="frame" x="0.0" y="34.5" width="15" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="15" id="W7B-bB-Z2q"/>
+                                    <constraint firstAttribute="height" constant="15" id="zLg-HD-oPE"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="vQz-aI-8dN" firstAttribute="leading" secondItem="gaH-vk-htj" secondAttribute="leading" id="BUi-Ju-eIR"/>
                             <constraint firstItem="vQz-aI-8dN" firstAttribute="top" secondItem="gaH-vk-htj" secondAttribute="top" constant="8" id="NXv-LL-DCc"/>
                             <constraint firstAttribute="bottom" secondItem="vQz-aI-8dN" secondAttribute="bottom" id="UGo-eh-k7A"/>
+                            <constraint firstItem="jxA-uq-0WT" firstAttribute="leading" secondItem="gaH-vk-htj" secondAttribute="leading" id="ZSk-x5-OTI"/>
                             <constraint firstAttribute="trailing" secondItem="vQz-aI-8dN" secondAttribute="trailing" id="Zex-dJ-zUT"/>
+                            <constraint firstItem="jxA-uq-0WT" firstAttribute="centerY" secondItem="vQz-aI-8dN" secondAttribute="centerY" id="fGS-vz-Ovd"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -65,9 +72,13 @@
             <size key="customSize" width="157" height="139"/>
             <connections>
                 <outlet property="baseView" destination="gaH-vk-htj" id="fid-5Z-mLk"/>
+                <outlet property="lockImv" destination="jxA-uq-0WT" id="0T5-R8-Bfh"/>
                 <outlet property="titleLbl" destination="vQz-aI-8dN" id="o5g-7I-bvi"/>
             </connections>
             <point key="canvasLocation" x="-1007.2463768115942" y="57.589285714285708"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="锁" width="128" height="128"/>
+    </resources>
 </document>

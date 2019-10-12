@@ -11,6 +11,7 @@
 #import "YXZhiNanDetailViewController.h"
 #import "YXZhiNanDetailHeaderView.h"
 #import "QiniuLoad.h"
+#import "YXZhiNanYaoQingJieSuoTableViewController.h"
 
 @interface YXZhiNanViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) NSMutableArray * dataArray;
@@ -56,7 +57,7 @@
     
         
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
-        NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES]];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"weight" ascending:YES]];
         [weakself.dataArray sortUsingDescriptors:sortDescriptors];
         
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -135,11 +136,21 @@
         vc.startIndex = weakself.index;
         vc.startArray = [[NSMutableArray alloc]initWithArray:weakself.dataArray];
         
-        
-        [weakself.navigationController pushViewController:vc animated:YES];
+        //这里判断是否锁了
+        NSInteger lock = [weakself.collArray[bigIndex][smallIndex][@"is_lock"] integerValue];
+        if (lock == 1) {
+            UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+              YXZhiNanYaoQingJieSuoTableViewController *    homeVC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXZhiNanYaoQingJieSuoTableViewController"];
+            
+            [self.navigationController pushViewController:homeVC animated:YES];
+//            [QMUITips showInfo:@"请邀请好友解锁"];
+        }else{
+            [weakself.navigationController pushViewController:vc animated:YES];
+        }
     };
     return cell;
 }
+
 -(void)panduanUMXiaoXi{
     if (self.umDic && self.umDic.count > 0) {
         kWeakSelf(self);

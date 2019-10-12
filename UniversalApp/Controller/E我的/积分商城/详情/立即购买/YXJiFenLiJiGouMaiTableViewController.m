@@ -7,8 +7,13 @@
 //
 
 #import "YXJiFenLiJiGouMaiTableViewController.h"
+#import "YXJiFenLiJiGouMaiFootView.h"
 
 @interface YXJiFenLiJiGouMaiTableViewController ()
+@property (nonatomic,strong) YXJiFenLiJiGouMaiFootView * footerView;
+@property (nonatomic,strong) NSMutableArray * addressArray;
+
+@property (nonatomic,strong) NSString * address_id;
 
 @end
 
@@ -16,94 +21,98 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = kRGBA(245, 245, 245, 1);
+    self.tableView.bounces = NO;
+    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXJiFenLiJiGouMaiFootView" owner:self options:nil];
+    self.footerView = [nib objectAtIndex:0];
+    self.footerView.frame = CGRectMake(0, KScreenHeight-70, KScreenWidth, 70);
+    [self.view addSubview:self.footerView];
+    self.addressArray = [[NSMutableArray alloc]init];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    kWeakSelf(self);
+    self.footerView.lijigoumaiblock = ^{
+        if (!weakself.footerView.querenzhifu.isEnabled) {
+            [QMUITips showError:@"积分不足"];
+            return;
+        }
+        UserInfo * info = curUser;
+        
+        NSDictionary * dic = @{@"type":@"1",
+                               @"user_id":kGetString(info.id),
+                               @"address_id":weakself.address_id,
+                               @"commodity_id":kGetString(weakself.startDic[@"id"]),
+        };
+        
+        [YXPLUS_MANAGER requestAddShopIntegral_orderPOST:dic success:^(id object) {
+            [QMUITips showSucceed:object[@"message"]];
+        }];
+    };
+    
+    [self getdata];
+    
+    [self getAddressList];
+    
+    [self getjifen];
 }
+-(void)getjifen{
+    kWeakSelf(self);
+    [YX_MANAGER requestGetFind_My_user_Info:@"" success:^(id object) {
+        NSInteger jifen = [object[@"wallet"][@"integral"] integerValue];
+        weakself.keyongjifen.text= [@"可用积分" append:kGetNSInteger(jifen)];
+        
+        if (jifen < [weakself.startDic[@"integral"] integerValue]) {
+            weakself.jifenbugoulbl.hidden = NO;
+            weakself.footerView.querenzhifu.enabled = NO;
+            [weakself.footerView.querenzhifu setBackgroundColor:kRGBA(239, 239, 239, 1)];
+        }else{
+            weakself.jifenbugoulbl.hidden = YES;
+            weakself.footerView.querenzhifu.enabled = YES;
+            [weakself.footerView.querenzhifu setBackgroundColor:kRGBA(10, 36, 54, 1)];
 
+        }
+    }];
+}
+-(void)getAddressList{
+    kWeakSelf(self);
+    [YXPLUS_MANAGER requestAddressListGet:@"" success:^(id object) {
+        if ([object[@"address_list"] count] == 0) {
+          
+        }else{
+            for (NSDictionary * dic in object[@"address_list"]) {
+                if ([dic[@"default"] integerValue] == 1) {
+                    weakself.shouhuoren.text = dic[@"name"];
+                    weakself.shouhuoPhone.text = dic[@"phone"];
+                    weakself.shouhuoAddress.text = dic[@"site"];
+                    weakself.address_id = kGetString(dic[@"id"]);
+                }
+            }
+        }
+    }];
+}
+//商品信息和收货地址
+-(void)getdata{
+    [self.shangpinimg sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:self.startDic[@"photo_list"][0][@"photo"]]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    self.shangpinname.text = self.startDic[@"name"];
+    self.shangpinjifen.text = kGetString(self.startDic[@"integral"]);
+    self.shangpinAlljifen.text = kGetString(self.startDic[@"integral"]);
+    self.footerView.jifen.text = kGetString(self.startDic[@"integral"]);
+
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return [super numberOfSectionsInTableView:tableView];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return [super tableView:tableView numberOfRowsInSection:section];
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+
+- (IBAction)backVcAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (IBAction)querenzhifuAction:(id)sender {
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Table view delegate
-
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
-    
-    // Pass the selected object to the new view controller.
-    
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

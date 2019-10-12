@@ -52,8 +52,8 @@ SINGLETON_FOR_CLASS(UserManager);
         
         if ([userManager loadUserInfo]) {
             [QMUITips showSucceed:@"登录成功"];
-            [[AppDelegate shareAppDelegate].mainTabBar setSelectedIndex:0];
-            [weakself closeViewAAA:vcself];
+//            [[AppDelegate shareAppDelegate].mainTabBar setSelectedIndex:0];
+//            [weakself closeViewAAA:vcself];
 
         }else{
             [QMUITips showSucceed:@"绑定成功,请重新登录"];

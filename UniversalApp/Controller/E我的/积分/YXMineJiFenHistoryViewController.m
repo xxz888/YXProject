@@ -42,9 +42,16 @@
 
     [self initSegment];
     
-    
+    [self requestData];
 }
+-(void)requestData{
 
+kWeakSelf(self);
+[YX_MANAGER requestGetFind_My_user_Info:@"" success:^(id object) {
+    weakself.jifenLbl.text= [@"积分:" append:kGetNSInteger([object[@"wallet"][@"integral"] integerValue])];
+
+    }];
+}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];

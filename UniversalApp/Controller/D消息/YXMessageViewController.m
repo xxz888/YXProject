@@ -48,7 +48,6 @@
 }
 -(void)setUI{
     
-    
 
     ViewBorderRadius(self.zanjb, 8, 1, KWhiteColor);
     ViewBorderRadius(self.fensijb, 8, 1, KWhiteColor);

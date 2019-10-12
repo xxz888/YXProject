@@ -11,6 +11,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXZhiNanYaoQingJieSuoTableViewController : UITableViewController
+@property (weak, nonatomic) IBOutlet UIImageView *img1;
+@property (weak, nonatomic) IBOutlet UIImageView *img2;
+@property (weak, nonatomic) IBOutlet UIImageView *im3;
+@property (weak, nonatomic) IBOutlet UILabel *yaoqing1;
+@property (weak, nonatomic) IBOutlet UILabel *yaoqing2;
+@property (weak, nonatomic) IBOutlet UILabel *yaoqing3;
+@property (weak, nonatomic) IBOutlet UILabel *shengyulbl;
 
 @end
 

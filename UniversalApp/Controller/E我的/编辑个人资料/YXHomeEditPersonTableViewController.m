@@ -45,15 +45,20 @@
     self.titleImgView.layer.masksToBounds = YES;
     self.titleImgView.layer.cornerRadius = self.titleImgView.frame.size.width / 2.0;
     
-    if (self.userInfoDic) {
-        NSString * str = [(NSMutableString *)self.userInfoDic[@"photo"] replaceAll:@" " target:@"%20"];
-        [self.titleImgView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
-        self.nameTf.text = kGetString(self.userInfoDic[@"username"]);
-        [self.adressBtn setTitle:self.userInfoDic[@"site"] forState:UIControlStateNormal];
-//        [self.birthBtn setTitle:self.userInfoDic[@"birthday"] forState:UIControlStateNormal];
-        [self.sexBtn setTitle:[self.userInfoDic[@"gender"] integerValue] == 0 ? @"女":@"男" forState:UIControlStateNormal];
-        self.photo = self.userInfoDic[@"photo"];
-    }
+    
+    kWeakSelf(self);
+         [YX_MANAGER requestGetFind_My_user_Info:@"" success:^(id object) {
+                  NSString * str = [(NSMutableString *)object[@"photo"] replaceAll:@" " target:@"%20"];
+                  [weakself.titleImgView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:str]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
+                  weakself.nameTf.text = kGetString(object[@"username"]);
+                  [weakself.adressBtn setTitle:object[@"site"] forState:UIControlStateNormal];
+                  [weakself.birthBtn setTitle:object[@"birthday"] forState:UIControlStateNormal];
+                  [weakself.sexBtn setTitle:[object[@"gender"] integerValue] == 0 ? @"女":@"男" forState:UIControlStateNormal];
+                  [weakself.qianMingBtn setTitle:object[@"character"] forState:UIControlStateNormal];
+                  weakself.photo = str;
+         
+         }];
+
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -93,8 +98,9 @@
     NSDictionary * dic = @{@"username":self.nameTf.text,
                            @"gender":[self.sexBtn.titleLabel.text isEqualToString:@"男"] ? @"1" :@"0",
                            @"photo":self.photo,
-                           @"birthday":@"",//self.birthBtn.titleLabel.text,
+                           @"birthday":self.birthBtn.titleLabel.text,
                            @"site":site,
+                           @"character":self.qianMingBtn.titleLabel.text
                            };
     [YX_MANAGER requestUpdate_userPOST:dic success:^(id object) {
         [QMUITips hideAllTipsInView:weakself.view];
@@ -128,6 +134,7 @@
     KSMediaPickerController *ctl = [KSMediaPickerController.alloc initWithMaxVideoItemCount:0 maxPictureItemCount:1];
     ctl.delegate = self;
     KSNavigationController *nav = [KSNavigationController.alloc initWithRootViewController:ctl];
+    nav.modalPresentationStyle = 0;
     [self presentViewController:nav animated:YES completion:nil];
     
     
@@ -176,7 +183,7 @@
     [_nameTf resignFirstResponder];
 
     kWeakSelf(self);
-    [BRStringPickerView showStringPickerWithTitle:@"性别" dataSource:@[@"男", @"女", @"其他"] defaultSelValue:@"" resultBlock:^(id selectValue) {
+    [BRStringPickerView showStringPickerWithTitle:@"性别" dataSource:@[@"男", @"女"] defaultSelValue:@"" resultBlock:^(id selectValue) {
         [weakself.sexBtn setTitle:selectValue forState:UIControlStateNormal];
     }];
 }
@@ -210,7 +217,11 @@
 }
 
 - (IBAction)gexingqianmingAction:(id)sender {
+    kWeakSelf(self);
     YXMineQianMingViewController * vc = [[YXMineQianMingViewController alloc]init];
+    vc.qianmingblock = ^(NSString * qianming) {
+        [weakself.qianMingBtn setTitle:qianming forState:UIControlStateNormal];
+    };
     [self.navigationController pushViewController:vc animated:YES];
 }
 

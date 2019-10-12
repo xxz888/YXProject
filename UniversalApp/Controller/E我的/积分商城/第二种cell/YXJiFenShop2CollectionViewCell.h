@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *collImv;
 @property (weak, nonatomic) IBOutlet UILabel *collTitle;
 @property (weak, nonatomic) IBOutlet UILabel *collJifen;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -9,11 +9,12 @@
 #import "RootViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
+typedef void(^qianmingBlock)(NSString *);
 
 @interface YXMineQianMingViewController : RootViewController
 @property (weak, nonatomic) IBOutlet UIView *qianmingView;
 @property (weak, nonatomic) IBOutlet UILabel *textCount;
-
+@property(nonatomic, copy) qianmingBlock qianmingblock;//用户信息
 @end
 
 NS_ASSUME_NONNULL_END

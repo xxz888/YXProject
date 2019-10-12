@@ -95,12 +95,12 @@
                 commentItemModel.firstUserName = kGetString(dic[@"user_info"][@"name"]);
                 commentItemModel.secondUserId = kGetString(dic[@"aim_id"]);
                 commentItemModel.secondUserName = kGetString(dic[@"aim_info"][@"name"]);
-                commentItemModel.commentString = [kGetString(dic[@"comment"]) UnicodeToUtf8];
+                commentItemModel.commentString = kGetString(dic[@"comment"]) ;
                 commentItemModel.labelTag = [dic[@"id"] integerValue];
             } else {
                 commentItemModel.firstUserId = kGetString(dic[@"user_id"]);
                 commentItemModel.firstUserName =kGetString(dic[@"user_info"][@"name"]);
-                commentItemModel.commentString = [kGetString(dic[@"comment"]) UnicodeToUtf8];
+                commentItemModel.commentString = kGetString(dic[@"comment"]) ;
                 commentItemModel.labelTag = [dic[@"id"] integerValue];
             }
             BOOL ishave = NO;
@@ -136,7 +136,7 @@
         model.name = formalArray[i][@"user_name"];
         model.userID = formalArray[i][@"user_id"];
         
-        model.msgContent = [formalArray[i][@"comment"] UnicodeToUtf8] ;
+        model.msgContent = formalArray[i][@"comment"] ;
         model.commontTime = [formalArray[i][@"publish_time"] integerValue];
         model.praise = kGetString(formalArray[i][@"is_praise"]);
         model.praise_num = kGetString(formalArray[i][@"praise_number"]);
@@ -164,7 +164,7 @@
                 commentItemModel.secondUserName = kGetString(child_listArray[i][@"aim_info"][@"name"]);
                 commentItemModel.secondUserId = kGetString(child_listArray[i][@"aim_id"]);
             }
-            commentItemModel.commentString = [child_listArray[i][@"comment"] UnicodeToUtf8];
+            commentItemModel.commentString = child_listArray[i][@"comment"] ;
             commentItemModel.labelTag = [child_listArray[i][@"id"] integerValue];
             [tempComments addObject:commentItemModel];
         }
@@ -267,13 +267,13 @@
 -(void)finishTextView:(UITextView *)textField{
     if (self.isReplayingComment) {
         SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
-        [self requestpost_comment_child:@{@"comment":[textField.text utf8ToUnicode],
+        [self requestpost_comment_child:@{@"comment":textField.text,
                                           @"father_id":@([model.id intValue]),
                                           @"aim_id":self.commentToUserID,
                                           }];
         self.isReplayingComment = NO;
     }else{
-        [self pinglunFatherPic:@{@"comment":[textField.text utf8ToUnicode],
+        [self pinglunFatherPic:@{@"comment":textField.text,
                                  @"target_id":self.startId,
                                  @"obj":@"1"
                                  }];

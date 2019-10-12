@@ -8,8 +8,9 @@
 
 #import "YXJiFenLiJiGouMaiFootView.h"
 
-@implementation YXJiFenLiJiGouMaiFootView
 
+
+@implementation YXJiFenLiJiGouMaiFootView
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -18,4 +19,7 @@
 }
 */
 
+- (IBAction)querenzhifuAction:(id)sender {
+    self.lijigoumaiblock();
+}
 @end

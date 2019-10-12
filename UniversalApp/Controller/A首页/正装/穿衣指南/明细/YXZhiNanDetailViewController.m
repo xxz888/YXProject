@@ -54,7 +54,7 @@
     NSString * par = [NSString stringWithFormat:@"1/%@",self.startArray[0][@"father_id"]];
     [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
         weakself.startArray = [weakself commonAction:object dataArray:weakself.startArray];
-        NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES]];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"weight" ascending:YES]];
           [weakself.startArray sortUsingDescriptors:sortDescriptors];
         [weakself panduanIsColl];
         [YXPLUS_MANAGER requestAll_optionGet:@"" success:^(id object) {
@@ -140,10 +140,13 @@
         
         // reloadDate会在主队列执行，而dispatch_get_main_queue会等待机会，直到主队列空闲才执行。
         dispatch_async(dispatch_get_main_queue(), ^{
-            if ([weakself.dataArray[weakself.smallIndex] count] != 0 && weakself.dataArray.count > weakself.smallIndex) {
-                NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:0 inSection:weakself.smallIndex];
-                [weakself.yxTableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+            if (weakself.dataArray.count > weakself.smallIndex) {
+                    if ([weakself.dataArray[weakself.smallIndex] count] != 0 && weakself.dataArray.count > weakself.smallIndex) {
+                            NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:0 inSection:weakself.smallIndex];
+                            [weakself.yxTableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+                        }
             }
+        
          
         });
         

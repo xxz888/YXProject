@@ -10,6 +10,7 @@
 #import "YXJiFenShop1TableViewCell.h"
 #import "YXJiFenShopDetailHeaderView.h"
 #import "YXJiFenDetailAllImageTableViewCell.h"
+#import "YXJiFenLiJiGouMaiTableViewController.h"
 
 @interface YXJiFenShopDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) NSMutableArray * dataArray;
@@ -63,20 +64,25 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
- _oldOffset  = scrollView.contentOffset.y;
+    _oldOffset= scrollView.contentOffset.y;
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-if (scrollView.contentOffset.y >_oldOffset) {
-//  向下
-    self.navView.backgroundColor = KWhiteColor;
-    self.wenziView.hidden = NO;
-}else{
- //  向上
- self.navView.backgroundColor = KClearColor;
-self.wenziView.hidden = YES;
+    if (scrollView.contentOffset.y >_oldOffset) {
+    // 向下
+        self.navView.backgroundColor = KWhiteColor;
+        self.wenziView.hidden = NO;
+    }else{
+        self.navView.backgroundColor = KClearColor;
+        self.wenziView.hidden = YES;
 }
 
+}
+- (IBAction)lijigoumaiAction:(id)sender {
+            UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+            YXJiFenLiJiGouMaiTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXJiFenLiJiGouMaiTableViewController"];
+    VC.startDic = [NSMutableDictionary dictionaryWithDictionary:self.startDic];
+            [self.navigationController pushViewController:VC animated:YES];
 }
 
 @end

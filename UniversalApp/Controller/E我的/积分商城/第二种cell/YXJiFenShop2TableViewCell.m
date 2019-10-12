@@ -11,16 +11,22 @@
 
 @implementation YXJiFenShop2TableViewCell
 
--(instancetype)initWithCoder:(NSCoder *)aDecoder{
-    
-    if (self = [super initWithCoder:aDecoder]) {
-
-    }
-    return  self;
+-(instancetype)initWithCoder:(NSCoder *)coder{
+    if (self = [super initWithCoder:coder]) {
+        
+      }
+      return  self;
 }
-
+-(void)clickAction:(id)sender{
+    self.clickHeaderImgblock(NSIntegerToNSString(self.jifenImv.tag));
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
+    //添加点击手势
+              UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction:)];
+              click.numberOfTapsRequired = 1;
+    self.jifenImv.userInteractionEnabled = YES;
+              [self.jifenImv addGestureRecognizer:click];
     self.yxCollectionView.alwaysBounceHorizontal = YES;
     self.yxCollectionView.showsHorizontalScrollIndicator = NO;
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
@@ -34,16 +40,8 @@
     
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
-
-
-
 -(void)setCellData:(NSDictionary *)dic{
+    self.jifenImv.tag = [dic[@"commodify_id"] integerValue];
     [self.jifenImv sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:dic[@"photo"]]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     
     [self.dataArray removeAllObjects];

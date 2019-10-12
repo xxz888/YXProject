@@ -24,6 +24,8 @@
     
     ViewBorderRadius(self.jifenView, 15, 1, kRGBA(176, 151, 99, 1));
     ViewBorderRadius(self.sexView, 14, 1, KWhiteColor);
+    ViewBorderRadius(self.nvsexview, 14, 1, KWhiteColor);
+
 }
 -(void)clickAction:(id)sender{
 //    self.imageScale= [ImageScale new];

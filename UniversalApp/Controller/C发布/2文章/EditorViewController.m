@@ -162,7 +162,7 @@
 
     
 - (IBAction)backVC:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self closeViewAAA];
 }
 
 - (IBAction)fabuAction:(id)sender {

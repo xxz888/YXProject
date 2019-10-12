@@ -33,8 +33,7 @@
     
     kWeakSelf(self);
     [YX_MANAGER requestGetFind_My_user_Info:@"" success:^(id object) {
-        weakself.jifenNumLbl.text= [@"积分:" append:kGetNSInteger([object[@"integral"] integerValue])];
-
+        weakself.jifenNumLbl.text= [@"积分:" append:kGetNSInteger([object[@"wallet"][@"integral"] integerValue])];
     }];
     
     
@@ -50,7 +49,6 @@
                 [weakself.qiandaoBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
                 [weakself.qiandaoBtn setBackgroundColor:[UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0]];
                 weakself.qiandaoBtn.userInteractionEnabled = NO;
-                
                 [weakself.finish3 setTitle:@"已完成" forState:UIControlStateNormal];
                 [weakself.finish3 setTitleColor:KWhiteColor forState:UIControlStateNormal];
                 [weakself.finish3 setBackgroundColor:[UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0]];

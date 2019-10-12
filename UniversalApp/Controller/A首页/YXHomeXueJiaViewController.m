@@ -86,7 +86,7 @@
     [self.segmentedPageViewController didMoveToParentViewController:self];
     kWeakSelf(self);
     [self.segmentedPageViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(weakself.view).mas_offset(UIEdgeInsetsMake(40, 0, 0, 0));
+        make.edges.equalTo(weakself.view).mas_offset(UIEdgeInsetsMake(kStatusBarHeight, 0, 0, 0));
     }];
     
     //添加搜索框
@@ -115,10 +115,9 @@
 - (HGSegmentedPageViewController *)segmentedPageViewController{
     if (!_segmentedPageViewController) {
         _segmentedPageViewController = [[HGSegmentedPageViewController alloc] init];
-        _segmentedPageViewController.categoryView.titleNomalFont = [UIFont fontWithName:@"PingFangSC-Regular" size: 16];
-        _segmentedPageViewController.categoryView.titleSelectedFont =  [UIFont fontWithName:@"PingFangSC-Medium" size: 24];
-        _segmentedPageViewController.categoryView.titleSelectedColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1.0];
-        _segmentedPageViewController.categoryView.titleNormalColor = [UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1.0];
+        _segmentedPageViewController.categoryView.titleNomalFont = [UIFont fontWithName:@"PingFangSC-Regular" size: 14];
+        _segmentedPageViewController.categoryView.titleSelectedFont =  [UIFont fontWithName:@"PingFangSC-Medium" size: 22];
+        _segmentedPageViewController.categoryView.titleSelectedColor = SEGMENT_COLOR;
         _segmentedPageViewController.pageViewControllers = self.vcArr.copy;
         _segmentedPageViewController.categoryView.titles = self.titlesArr;
         _segmentedPageViewController.categoryView.originalIndex = 0;

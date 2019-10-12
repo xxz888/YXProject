@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -221,7 +221,7 @@
                     </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mje-ec-qVH">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mje-ec-qVH">
                     <rect key="frame" x="87" y="269.66666666666669" width="28" height="28"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minenan" translatesAutoresizingMaskIntoConstraints="NO" id="ucl-fy-NHn">
@@ -238,6 +238,25 @@
                         <constraint firstItem="ucl-fy-NHn" firstAttribute="centerY" secondItem="mje-ec-qVH" secondAttribute="centerY" id="RWe-9b-Xc9"/>
                         <constraint firstItem="ucl-fy-NHn" firstAttribute="centerX" secondItem="mje-ec-qVH" secondAttribute="centerX" id="UcX-Wm-pDI"/>
                         <constraint firstAttribute="width" constant="28" id="zoH-dX-X4d"/>
+                    </constraints>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kT4-50-kry">
+                    <rect key="frame" x="87" y="269.66666666666669" width="28" height="28"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nv" translatesAutoresizingMaskIntoConstraints="NO" id="dTF-gJ-pdZ">
+                            <rect key="frame" x="6.6666666666666714" y="6.3333333333333144" width="15" height="15"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="15" id="UjT-fg-cTw"/>
+                                <constraint firstAttribute="height" constant="15" id="qBz-hP-oIX"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="0.54509803921568623" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="dTF-gJ-pdZ" firstAttribute="centerY" secondItem="kT4-50-kry" secondAttribute="centerY" id="4XH-t3-mWP"/>
+                        <constraint firstAttribute="width" constant="28" id="5X8-80-Qew"/>
+                        <constraint firstItem="dTF-gJ-pdZ" firstAttribute="centerX" secondItem="kT4-50-kry" secondAttribute="centerX" id="L6X-YA-RTk"/>
+                        <constraint firstAttribute="height" constant="28" id="g1i-0G-bBa"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MYU-Fr-ZbL">
@@ -320,6 +339,8 @@
                 <constraint firstItem="dwH-WC-DFe" firstAttribute="centerY" secondItem="XPx-Vz-BBQ" secondAttribute="centerY" id="mUW-HU-d8B"/>
                 <constraint firstItem="mje-ec-qVH" firstAttribute="bottom" secondItem="zre-9E-FTM" secondAttribute="bottom" id="mcn-uD-uNs"/>
                 <constraint firstItem="XPx-Vz-BBQ" firstAttribute="leading" secondItem="dwH-WC-DFe" secondAttribute="trailing" constant="18" id="rh2-Fk-5Se"/>
+                <constraint firstItem="kT4-50-kry" firstAttribute="centerX" secondItem="mje-ec-qVH" secondAttribute="centerX" id="u9v-ma-ulf"/>
+                <constraint firstItem="kT4-50-kry" firstAttribute="centerY" secondItem="mje-ec-qVH" secondAttribute="centerY" id="x2q-nc-Bbp"/>
                 <constraint firstItem="MYU-Fr-ZbL" firstAttribute="leading" secondItem="zre-9E-FTM" secondAttribute="trailing" constant="-2" id="xwT-0s-WuZ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="GBa-bF-gmT" secondAttribute="trailing" id="zlE-HE-P1Z"/>
             </constraints>
@@ -334,10 +355,12 @@
                 <outlet property="mineAdress" destination="MYU-Fr-ZbL" id="U6b-yN-TYE"/>
                 <outlet property="mineImageView" destination="zre-9E-FTM" id="LWn-GE-eUb"/>
                 <outlet property="mineTitle" destination="sE9-Ps-Bqa" id="Agm-YL-gRl"/>
+                <outlet property="nvsexview" destination="kT4-50-kry" id="Gyq-as-DcQ"/>
+                <outlet property="qianmingLbl" destination="VAV-ln-cp0" id="apb-1E-Xd5"/>
                 <outlet property="sexView" destination="mje-ec-qVH" id="HOz-da-bWv"/>
                 <outlet property="tieshuCountLbl" destination="ukU-fa-8my" id="4S9-gs-cck"/>
             </connections>
-            <point key="canvasLocation" x="-1250" y="-83"/>
+            <point key="canvasLocation" x="-1433" y="-86"/>
         </view>
     </objects>
     <resources>
@@ -345,6 +368,7 @@
         <image name="minemore" width="44" height="44"/>
         <image name="minenan" width="28" height="28"/>
         <image name="mineshezhi" width="44" height="44"/>
+        <image name="nv" width="42" height="42"/>
         <image name="白色返回" width="44" height="44"/>
     </resources>
 </document>

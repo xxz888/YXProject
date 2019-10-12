@@ -25,6 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *adressBtn;
 @property (weak, nonatomic) IBOutlet UIButton *birthBtn;
 @property(nonatomic, strong) NSDictionary *userInfoDic;//用户信息
+@property (weak, nonatomic) IBOutlet UIButton *qianMingBtn;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

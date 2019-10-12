@@ -66,7 +66,7 @@
     NSString * imgString = self.dataArray[indexPath.row][@"aim_photo"];
     NSString * str1 = [(NSMutableString *)imgString replaceAll:@" " target:@"%20"];
 
-    [cell.common1ImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    [cell.common1ImageView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:str1]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     [ShareManager setGuanZhuStatus:cell.common1GuanzhuBtn status:NO alertView:NO];
     
     

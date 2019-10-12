@@ -69,12 +69,13 @@ static CGFloat const HeaderImageViewHeight =320;
     [self setupSubViews];
     self.isEnlarge = NO;
     [self updateNavigationBarBackgroundColor];
-    [self setViewData];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+        [self setViewData];
 
 }
 #pragma mark - Private Methods
@@ -454,7 +455,12 @@ static CGFloat const HeaderImageViewHeight =320;
     }else{
         self.userInfo = curUser;
         
-
+        //积分
+             [YX_MANAGER requestGetFind_My_user_Info:@"" success:^(id object) {
+                 weakself.headerView.tieshuCountLbl.text= kGetNSInteger([object[@"wallet"][@"integral"] integerValue]);
+             }];
+             
+             
         
         [YX_MANAGER requestGetFind_user_id:user_id_BOOL ? self.userId : self.userInfo.id success:^(id object) {
             [weakself personValue:object];
@@ -462,7 +468,6 @@ static CGFloat const HeaderImageViewHeight =320;
         [YX_MANAGER requestLikesGET:@"4/0/1/" success:^(id object) {
             weakself.headerView.guanzhuCountLbl.text = kGetString(object[@"like_number"]);
             weakself.headerView.fensiCountLbl.text = kGetString(object[@"fans_number"]);
-            weakself.headerView.tieshuCountLbl.text = kGetString(object[@"pubulish_number"]);
         }];
     }
 }
@@ -475,16 +480,16 @@ static CGFloat const HeaderImageViewHeight =320;
         [dic setValue:str forKey:@"photo"];
         [cache setObject:dic forKey:KUserModelCache];
     }
-    
-    
-    [self.headerView.mineImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
+    self.headerView.qianmingLbl.text = object[@"character"];
+    self.headerView.sexView.hidden = [object[@"gender"] integerValue] == 0;
+    self.headerView.nvsexview.hidden = [object[@"gender"] integerValue] != 0 ;
+    [self.headerView.mineImageView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:str]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
     self.navigationItem.title = kGetString(object[@"username"]);
     self.headerView.mineTitle.text =kGetString(object[@"username"]);
     self.headerView.mineAdress.text = kGetString(object[@"site"]);
     if (self.whereCome) {
             self.headerView.guanzhuCountLbl.text = kGetString(object[@"likes_number"]);
             self.headerView.fensiCountLbl.text = kGetString(object[@"fans_number"]);
-            self.headerView.tieshuCountLbl.text = kGetString(object[@"publish_number"]);
     }
 
     NSInteger tag = [object[@"is_like"] integerValue];

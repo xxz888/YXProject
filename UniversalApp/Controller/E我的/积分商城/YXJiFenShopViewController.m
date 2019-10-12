@@ -65,7 +65,7 @@
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     kWeakSelf(self);
     [YXPLUS_MANAGER requestInIdOutIntegral_commodity:kGetString(self.lunboArray[index][@"photo_list"][0][@"commodity_id"]) success:^(id object) {
-        [weakself pushDetail:object];
+        [weakself pushDetail:object[@"data"]];
     }];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -83,7 +83,7 @@
     }
    
 }
--(void)pushDetail:(NSMutableDictionary *)dic{
+-(void)pushDetail:(NSDictionary *)dic{
                 YXJiFenShopDetailViewController * vc = [[YXJiFenShopDetailViewController alloc]init];
                vc.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
                [self.navigationController pushViewController:vc animated:YES];
@@ -104,14 +104,20 @@
         
         return cell;
     }else{
-           YXJiFenShop2TableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXJiFenShop2TableViewCell" forIndexPath:indexPath];
+        kWeakSelf(self);
+        YXJiFenShop2TableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXJiFenShop2TableViewCell" forIndexPath:indexPath];
+        
          cell.selectionStyle = 0;
-        cell.yxCollectionView.tag = indexPath.row;
+         cell.yxCollectionView.tag = indexPath.row;
          [cell setCellData:self.dataArray[indexPath.row]];
+    
+         cell.clickHeaderImgblock = ^(NSString * str) {
+            [YXPLUS_MANAGER requestInIdOutIntegral_commodity:str success:^(id object) {
+                [weakself pushDetail:object[@"data"]];
+            }];
+         };
         
-        
-         kWeakSelf(self);
-          cell.clickCollectionItemBlock = ^(NSDictionary * dic) {
+         cell.clickCollectionItemBlock = ^(NSDictionary * dic) {
             [weakself pushDetail:dic];
 
           };

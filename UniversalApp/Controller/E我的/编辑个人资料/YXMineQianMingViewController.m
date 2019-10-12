@@ -20,7 +20,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"个性签名";
     self.view.backgroundColor = kRGBA(245, 245, 245, 1);
     self.textView = [[QMUITextView alloc] init];
     self.textView.frame = CGRectMake(0, 0, KScreenWidth, self.qianmingView.frame.size.height);
@@ -39,14 +38,15 @@
     self.textView.maximumHeight = 200;
     [self.qianmingView addSubview:self.textView];
     
-    
-    [self addNavigationItemWithTitles:@[@"保存"] isLeft:NO target:self action:@selector(saveAction) tags:nil];
+
 }
 - (IBAction)backAction:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
--(void)saveAction{
-    
+
+- (IBAction)saveAction:(id)sender {
+    self.qianmingblock(self.textView.text);
+    [self.navigationController popViewControllerAnimated:YES];
 }
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     self.textCount.text = [NSString stringWithFormat:@"%ld",self.textView.text.length+1];

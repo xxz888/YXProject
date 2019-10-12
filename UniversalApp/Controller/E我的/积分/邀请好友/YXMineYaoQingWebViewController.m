@@ -19,11 +19,20 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
      self.navigationController.navigationBar.hidden = YES;
-
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.weburl =  [NSString stringWithFormat:@"http://www.%@yaoqing.html",[API_URL split:@"api"][0]];
+    
+    
+//    [YXPLUS_MANAGER requestyaoqinghaoyojilu:@"" success:^(id object) {
+//
+//    }];
+
+    UserInfo * userInfo = curUser;
+        self.weburl =  [NSString stringWithFormat:@"http://192.168.101.21:63340/%@html/yaoqing.html?%@",@"%E7%9F%A9%E5%BD%A2%E6%8A%BD%E5%A5%96%E6%B4%BB%E5%8A%A8",userInfo.token];
+
+//    self.weburl =  [NSString stringWithFormat:@"http://www.%@yaoqing.html?%@",[API_URL split:@"api"][0],userInfo.token];
     self.url = self.weburl;
     self.webView.navigationDelegate = self;
 }

@@ -32,5 +32,12 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestIntegral_Commodity_recommendGet:YX_BLOCK;
 #pragma mark ==========id找商品==========
 -(void)requestInIdOutIntegral_commodity:YX_BLOCK;
+#pragma mark ==========新增订单==========
+-(void)requestAddShopIntegral_orderPOST:YX_BLOCK;
+
+#pragma mark ==========获取帮忙好友列表==========
+-(void)requestOption_lock_history:YX_BLOCK;
+#pragma mark ==========邀请好友记录==========
+-(void)requestyaoqinghaoyojilu:YX_BLOCK;
 @end
 

@@ -83,7 +83,7 @@
 #pragma mark ========== 创建tableview ==========
 -(void)tableviewCon{
     self.dataArray = [[NSMutableArray alloc]init];
-    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, kTopHeight, KScreenWidth, KScreenHeight - kTopHeight)  style:0];
+    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-kTopHeight)  style:0];
     
     [self.view addSubview:self.yxTableView];
     self.yxTableView.delegate = self;
@@ -101,7 +101,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXMessageThreeDetailViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMessageThreeDetailViewCell" forIndexPath:indexPath];
     NSDictionary * dic = self.dataArray[indexPath.row];
-    [cell.titleImg sd_setImageWithURL:[NSURL URLWithString:dic[@"user_photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    [cell.titleImg sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:dic[@"user_photo"]]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cell.lbl1.text = dic[@"user_name"];
     cell.lbl3.text =  [ShareManager timestampSwitchTime:[dic[@"fans_time"] integerValue] andFormatter:@""];
     cell.userId = dic[@"user_id"];
