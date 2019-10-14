@@ -59,8 +59,8 @@ SINGLETON_FOR_CLASS(ShareManager);
             break;
             case 4:{
                      UserInfo * userinfo = curUser;
-//                     webpageUrl = [NSString stringWithFormat:@"%@yaoqingZhuCe.html?%@",[API_URL split:@"api"][0],kGetString(userinfo.id)];
-                webpageUrl = [NSString stringWithFormat:@"http://192.168.101.21:63340/矩形抽奖活动html/yaoqingZhuCe.html?%@",kGetString(userinfo.id)];
+                     webpageUrl = [NSString stringWithFormat:@"%@yaoqingZhuCe.html?%@",[API_URL split:@"api"][0],kGetString(userinfo.id)];
+//                webpageUrl = [NSString stringWithFormat:@"http://192.168.101.21:63340/矩形抽奖活动html/yaoqingZhuCe.html?%@",kGetString(userinfo.id)];
 
                      shareObject.thumbImage = obj[@"thumbImage"];
                      break;
