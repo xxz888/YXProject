@@ -67,7 +67,6 @@
 - (IBAction)fabuAction:(UIButton *)btn {
     [super fabuAction:btn];
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-    
     if ([self.selectedPhotos count] == [self.photoImageList count]) {
         if (self.fabuType){//视频
             if([self.videoCoverImageString isEqualToString:@""]){
@@ -160,7 +159,7 @@
 -(void)closeViewAction:(id)sender{
 
     if (_startDic) {
-        [self closeViewAAA];
+        [self closeViewBBB];
 
     }else{
         if (self.photoImageList.count > 0 || self.qmuiTextView.text.length > 0 ) {
@@ -168,7 +167,7 @@
             UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
             }];
             UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"不保存" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                [weakself closeViewAAA];
+                [weakself closeViewBBB];
             }];
             UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"保存" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 [weakself fabuAction:self.cunCaoGaoBtn];
@@ -187,16 +186,26 @@
             }
             [self presentViewController:alertController animated:YES completion:NULL];
         }else{
-            [self closeViewAAA];
+            [self closeViewBBB];
         }
     }
 }
 -(void)closeViewAAA{
-//    UIViewController *controller = self;
-//    while(controller.presentingViewController != nil){
-//        controller = controller.presentingViewController;
-//    }
-//    [controller dismissViewControllerAnimated:YES completion:^{}];
-    self.closeNewVcblock();
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSecondVC" object:nil];
+
+    if (self.closeNewVcblock) {
+        self.closeNewVcblock();
+        
+    }else{
+        [self closeViewBBB];
+    }
+
+}
+-(void)closeViewBBB{
+    UIViewController *controller = self;
+    while(controller.presentingViewController != nil){
+        controller = controller.presentingViewController;
+    }
+    [controller dismissViewControllerAnimated:YES completion:^{}];
 }
 @end

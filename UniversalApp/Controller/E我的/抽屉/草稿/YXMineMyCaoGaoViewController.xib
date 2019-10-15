@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,6 +40,13 @@
                                 <action selector="backAction:" destination="-1" eventType="touchUpInside" id="7Nw-6g-2kL"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4o-Hy-uy2">
+                            <rect key="frame" x="297" y="41" width="62" height="30"/>
+                            <state key="normal" title="清空所有"/>
+                            <connections>
+                                <action selector="clearAll:" destination="-1" eventType="touchUpInside" id="4qf-wy-dxG"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -49,6 +54,8 @@
                         <constraint firstItem="GxN-AV-Iou" firstAttribute="centerX" secondItem="Iuz-ii-DVb" secondAttribute="centerX" id="MUq-mt-m12"/>
                         <constraint firstItem="umd-zw-5LQ" firstAttribute="top" secondItem="Iuz-ii-DVb" secondAttribute="top" constant="45" id="Rmf-GG-6Ra"/>
                         <constraint firstItem="umd-zw-5LQ" firstAttribute="leading" secondItem="Iuz-ii-DVb" secondAttribute="leading" constant="16" id="Th9-xj-hhH"/>
+                        <constraint firstAttribute="trailing" secondItem="z4o-Hy-uy2" secondAttribute="trailing" constant="16" id="Wpn-XY-vTN"/>
+                        <constraint firstItem="z4o-Hy-uy2" firstAttribute="centerY" secondItem="GxN-AV-Iou" secondAttribute="centerY" id="wQ2-qg-OY4"/>
                         <constraint firstItem="GxN-AV-Iou" firstAttribute="centerY" secondItem="umd-zw-5LQ" secondAttribute="centerY" id="xhc-G3-eOs"/>
                     </constraints>
                 </view>
@@ -68,7 +75,7 @@
                 <constraint firstItem="Pf2-mi-ivX" firstAttribute="top" secondItem="Iuz-ii-DVb" secondAttribute="bottom" id="yeW-nn-g7k"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="130.40000000000001" y="152.47376311844079"/>
+            <point key="canvasLocation" x="-522" y="112"/>
         </view>
     </objects>
     <resources>

@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *guanzhuCountLbl;
 @property (weak, nonatomic) IBOutlet UILabel *fensiCountLbl;
 @property (weak, nonatomic) IBOutlet UILabel *tieshuCountLbl;
+@property (weak, nonatomic) IBOutlet UIButton *tieshubtn;
 
 
 typedef void(^guanzhuBlock)();

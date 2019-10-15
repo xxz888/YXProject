@@ -15,7 +15,7 @@
     NSMutableArray * imgTagArr = [NSMutableArray array];
     for (int i = 0; i < imageUrlArr.count; i ++) {
         NSString * urlStr = imageUrlArr[i];
-        NSString * imgTag  = [NSString stringWithFormat:@"<img src='%@' style='max-width:100%%;border-radius:5px' /><br>",urlStr];
+        NSString * imgTag  = [NSString stringWithFormat:@"<img src='%@' style='max-width:100%%;border-radius:5px' />",urlStr];
 //        NSString * imgTag  = [@"<img>\n" stringByAppendingString:[[@"<url>" stringByAppendingString:urlStr] stringByAppendingString:@"</url>\n"]];
 //        for (int j = 0; j < desArr.count; j ++) {
 //            if (i == j) {
@@ -29,7 +29,7 @@
     //组装文字标签 和图片标签
     NSArray * textArr = [contentStr componentsSeparatedByString:@"<我是图片>"];
     for (int i= 0; i < textArr.count; i ++) {
-        NSString * pTag = [[@"<p>" stringByAppendingString:textArr[i]]stringByAppendingString:@"</p>\n"];
+        NSString * pTag = [[@"<p>" stringByAppendingString:textArr[i]]stringByAppendingString:@"</p>"];
         htmlStr = [NSString stringWithFormat:@"%@%@",htmlStr,pTag];
         for (int j = 0; j < imgTagArr.count; j ++) {
             if (i == j) {

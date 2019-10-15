@@ -106,8 +106,15 @@
     cell.lbl3.text =  [ShareManager timestampSwitchTime:[dic[@"fans_time"] integerValue] andFormatter:@""];
     cell.userId = dic[@"user_id"];
     
-    
-    [cell.rightImv sd_setImageWithURL:[NSURL URLWithString:dic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSArray * photoArray = [dic[@"photo"] split:@","];
+    NSString * photo = @"";
+    if ([photoArray count] > 0) {
+        photo = [IMG_URI append:photoArray[0]];
+    }
+    if ([dic[@"photo"] contains:@"http://photo.thegdlife.com/"]) {
+        photo = [IMG_URI append: [dic[@"photo"] split:@"http://photo.thegdlife.com/"][1]];
+    }
+    [cell.rightImv sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"img_moren"]];
 
     kWeakSelf(self);
     cell.imgBlock = ^(YXMessageThreeDetailViewCell * cell) {
@@ -164,7 +171,7 @@
 -(void)clickUserImageView:(NSString *)userId{
     UserInfo *userInfo = curUser;
     if ([userInfo.id isEqualToString:userId]) {
-        self.navigationController.tabBarController.selectedIndex = 4;
+        self.navigationController.tabBarController.selectedIndex = 3;
         return;
     }
 //    UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];

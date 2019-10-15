@@ -202,7 +202,10 @@
                     YYAnimatedImageView *imgView = att.content;
                     [weakself.imagesArr addObject:imgView.image];
                     if (weakself.imagesArr.count == weakself.wenzhangImgCount) {
+                        [QMUITips showLoadingInView:self.view];
                         [QiniuLoad uploadImageToQNFilePath:weakself.imagesArr success:^(NSString *reslut) {
+                            [QMUITips hideAllTips];
+
                             NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
                             [weakself.imageUrlsArr addObjectsFromArray:qiniuArray];
                             if (weakself.imageUrlsArr.count == weakself.wenzhangImgCount) {
@@ -270,7 +273,11 @@
         self.headerView.midView.hidden = YES;
         self.headerView.titleImgV.image = model.image;
         self.headerView.titleImgV.contentMode = UIViewContentModeScaleToFill;
+        [QMUITips showLoadingInView:self.view];
+
         [QiniuLoad uploadImageToQNFilePath:@[model.image] success:^(NSString *reslut) {
+            [QMUITips hideAllTips];
+
             weakself.cover = reslut;
         } failure:^(NSString *error) {}];
     }

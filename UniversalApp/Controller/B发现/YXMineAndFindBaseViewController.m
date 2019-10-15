@@ -277,23 +277,29 @@
         model.cover = startDic[@"cover"];
         model.obj = kGetString(startDic[@"obj"]);
         imageVC.model = model;
+        imageVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [weakself presentViewController:imageVC animated:YES completion:nil];
     }]],
     [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_remove") title:@"删除" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
         [moreOperationController hideToBottom];
         if ([isWho isEqualToString:@"1"]) {
+            [QMUITips showLoadingInView:weakself.view];
             [YX_MANAGER requestDel_ShaiTU:NSIntegerToNSString(tagId) success:^(id object) {
+                [QMUITips hideAllTips];
                 [QMUITips showSucceed:@"删除成功"];
                 [weakself requestTableData];
             }];
         }else if ([isWho isEqualToString:@"2"]){
             [YX_MANAGER requestDel_WenDa:NSIntegerToNSString(tagId) success:^(id object) {
+                [QMUITips hideAllTips];
+
                 [QMUITips showSucceed:@"删除成功"];
                 
                 [weakself requestTableData];
             }];
         }else if ([isWho isEqualToString:@"3"]){
             [YX_MANAGER requestDel_ZuJi:NSIntegerToNSString(tagId) success:^(id object) {
+                [QMUITips hideAllTips];
                 [QMUITips showSucceed:@"删除成功"];
                 
                 [weakself requestTableData];
@@ -392,7 +398,10 @@
     }
     UIGraphicsEndImageContext();
     //先上传到七牛云图片  再提交服务器
+    [QMUITips showLoadingInView:self.view];
     [QiniuLoad uploadImageToQNFilePath:@[viewImage] success:^(NSString *reslut) {
+        [QMUITips hideAllTips];
+
            UserInfo * info = curUser;
            NSString * title = [NSString stringWithFormat:@"%@发布的内容@蓝皮书app",info.username];
            NSString * desc = @"这篇内容真的很赞，快点开看!";

@@ -90,19 +90,9 @@ static CGFloat const HeaderImageViewHeight =320;
 }
 #pragma mark ========== 点击菜单按钮的方法 ==========
 - (void)handleShowContentView {
-//    YXMineChouJiangViewController * vc = [[YXMineChouJiangViewController alloc]init];
-//    [self.navigationController pushViewController:vc animated:YES];
-//
-//    return;
     kWeakSelf(self);
     QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
     }];
-//    QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"设置" style:QMUIAlertActionStyleDefault handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
-//
-//        UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
-//        YXMineSettingTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineSettingTableViewController"];
-//        [weakself.navigationController pushViewController:VC animated:YES];
-//    }];
     QMUIAlertAction *action3 = [QMUIAlertAction actionWithTitle:@"分享" style:QMUIAlertActionStyleDefault handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
         [weakself addGuanjiaShareView];
     }];
@@ -110,10 +100,9 @@ static CGFloat const HeaderImageViewHeight =320;
         YXMineMyCaoGaoViewController * VC = [[YXMineMyCaoGaoViewController alloc]init];
         [weakself.navigationController pushViewController:VC animated:YES];
     }];
- 
+
     QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:QMUIAlertControllerStyleActionSheet];
     [alertController addAction:action1];
-//    [alertController addAction:action2];
     [alertController addAction:action3];
     [alertController addAction:action4];
 
@@ -447,12 +436,18 @@ static CGFloat const HeaderImageViewHeight =320;
     kWeakSelf(self);
     //  YES为其他人 NO为自己
     if (self.whereCome) {
-        self.headerView.backBtn.hidden = NO;
+        self.headerView.backBtn.hidden = self.headerView.guanzhuBtn.hidden = NO;
+        self.headerView.jifenView.hidden = YES;
+        self.headerView.tieshubtn.userInteractionEnabled = NO;
         [YX_MANAGER requestGetUserothers:self.userId success:^(id object) {
             [weakself personValue:object];
         }];
         
     }else{
+        self.headerView.backBtn.hidden = self.headerView.guanzhuBtn.hidden =  YES;
+        self.headerView.jifenView.hidden = NO;
+        self.headerView.tieshubtn.userInteractionEnabled = YES;
+
         self.userInfo = curUser;
         
         //积分
@@ -600,7 +595,9 @@ static CGFloat const HeaderImageViewHeight =320;
     NSData *imageData = [self dataWithScreenshotInPNGFormat];
     UIImage* viewImage = [UIImage imageWithData:imageData];
     //先上传到七牛云图片  再提交服务器
+      [QMUITips showLoadingInView:self.view];
     [QiniuLoad uploadImageToQNFilePath:@[viewImage] success:^(NSString *reslut) {
+                [QMUITips hideAllTips];
            UserInfo * info = curUser;
            NSString * title = [NSString stringWithFormat:@"%@的主页@蓝皮书app",info.username];
            NSString * desc = [NSString stringWithFormat:@"%@的蓝皮书主页，快来关注吧！",info.username];

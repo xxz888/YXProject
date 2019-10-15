@@ -101,6 +101,13 @@ static NSString *QiniuBucketName  = @"thegdlife";
 +(void)uploadImageToQNFilePath:(NSArray *)photos success:(QNSuccessBlock)success failure:(QNFailureBlock)failure{
     NSString * log = [NSString stringWithFormat:@"【开始】上传七牛云，数组一共【%lu】张图片",(unsigned long)photos.count];
     NSLog(@"%@",log);
+    UIView * view;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11) {
+        view = [[UIApplication sharedApplication].windows firstObject];
+    } else {
+        view = [[UIApplication sharedApplication].windows lastObject];
+    }
+
     NSMutableArray *imageAdd = [NSMutableArray new];
     UserInfo *userInfo = curUser;
     NSString * myToken = [QiniuLoad makeToken:accessKey secretKey:secretKey];
@@ -113,7 +120,6 @@ static NSString *QiniuBucketName  = @"thegdlife";
                                                                  params:nil
                                                                checkCrc:NO
                                                      cancellationSignal:nil];
-    
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         dispatch_semaphore_t sema = dispatch_semaphore_create(0);
         for (NSInteger i = 0; i < [photos count]; i++) {

@@ -8,6 +8,7 @@
 
 #import "YXJiFenLiJiGouMaiTableViewController.h"
 #import "YXJiFenLiJiGouMaiFootView.h"
+#import "YXMineShouHuoAdressViewController.h"
 
 @interface YXJiFenLiJiGouMaiTableViewController ()
 @property (nonatomic,strong) YXJiFenLiJiGouMaiFootView * footerView;
@@ -109,7 +110,20 @@
     return [super tableView:tableView numberOfRowsInSection:section];
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 1) {
+        YXMineShouHuoAdressViewController * vc = [[YXMineShouHuoAdressViewController alloc]init];
+        vc.backVCHaveParblock = ^(NSDictionary * dic) {
+                            self.shouhuoren.text = dic[@"name"];
+                               self.shouhuoPhone.text = dic[@"phone"];
+                               self.shouhuoAddress.text = dic[@"site"];
+                               self.address_id = kGetString(dic[@"id"]);
+        };
+        vc.whereCome = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 
+}
 - (IBAction)backVcAction:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }

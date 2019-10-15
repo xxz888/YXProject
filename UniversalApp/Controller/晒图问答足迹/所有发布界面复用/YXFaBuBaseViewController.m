@@ -60,7 +60,9 @@
 -(void)uploadImageQiNiuYun:(NSMutableArray *)upLoadImageArray{
     kWeakSelf(self);
     CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();
+    [QMUITips showLoadingInView:self.view];
     [QiniuLoad uploadImageToQNFilePath:upLoadImageArray success:^(NSString *reslut) {
+        [QMUITips hideAllTips];
         NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
         if (qiniuArray.count > 0) {
             if (weakself.fabuType) {

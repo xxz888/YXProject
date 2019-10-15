@@ -44,6 +44,9 @@
 - (IBAction)backAction:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+- (IBAction)clearAll:(id)sender {
+    [self clearCachae];
+}
 
 -(void)clearCachae{
     kWeakSelf(self);
@@ -70,7 +73,6 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 100;
 }
-#define kQNinterface @"http://photo.lpszn.com/"
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identify = @"YXHomeXueJiaTableViewCell";
     YXHomeXueJiaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
@@ -83,7 +85,7 @@
     NSArray * photo_list = [model.photo_list split:@","];
     NSString * showCoverImg = @"";
     if (photo_list.count > 0) {
-        showCoverImg = [kQNinterface append:photo_list[0]];
+        showCoverImg = [IMG_URI append:photo_list[0]];
     }
     NSString * str = [(NSMutableString *)showCoverImg replaceAll:@" " target:@"%20"];
     [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
@@ -94,6 +96,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
     imageVC.model = self.caoGaoArray[indexPath.row];
+    imageVC.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:imageVC animated:YES completion:nil];
 }
 /*
