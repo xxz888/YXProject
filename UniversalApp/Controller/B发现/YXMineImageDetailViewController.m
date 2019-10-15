@@ -216,28 +216,24 @@
         [QMUITips hideAllTipsInView:self.view];
         //这里判断晒图是图还是视频
         if ([self.startDic[@"url_list"] count] > 0) {
+            //视频
             if ([kGetString(self.startDic[@"url_list"][0]) containsString:@"mp4"]) {
                 CGFloat scale = [self getVideoWidthWithSourcePath:self.startDic[@"url_list"][0]];
                 self.cell.midViewHeight.constant = ( KScreenWidth - 20 ) * scale;
-                //视频
                 self.cell.playImV.hidden = YES;
                 CGRect Frame = self.cell.frame;
                 Frame.size.height= self.headerViewHeight - 100 + 60 + self.cell.midViewHeight.constant;
                 self.cell.frame= Frame;
-
-
                 self.player.videoUrl = self.startDic[@"url_list"][0];
                 [self.cell.onlyOneImv addSubview:self.player];
-                
+            //晒图
             }else{
                 CGRect Frame = self.cell.frame;
                 NSString * titleText = [[NSString stringWithFormat:@"%@%@",self.startDic[@"detail"],self.startDic[@"tag"]] UnicodeToUtf8];
                 CGFloat detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:15];
-                
-//                Frame.size.height = 180 + detailHeight + (KScreenWidth - 20)  + self.cell.topTopHeight.constant;
-                
-                
-                Frame.size.height = 170 + detailHeight + 200 + kTopHeight;
+                CGFloat midViewHeight = [YXFirstFindImageTableViewCell inArrayCountOutHeight:[self.startDic[@"url_list"] count]];
+//                Frame.size.height = 170 + detailHeight + 200 + kTopHeight;
+                Frame.size.height = 170 + detailHeight + midViewHeight + kTopHeight;
                 self.cell.frame= Frame;
                
             }
@@ -315,22 +311,7 @@
         }
     };
 }
--(CGFloat)inArrayCountOutHeight:(NSInteger)count{
-    CGFloat h = 0;
-    if (count == 1) {
-        h = 200;
-    }else{
-        CGFloat oneH =  (KScreenWidth - 30 )/ 3 ;
-        if (count > 3 && count <= 6) {
-            h = oneH * 2;
-        }else if (count >6){
-            h = oneH * 3;
-        }else{
-            h = oneH;
-        }
-    }
-    return h;
-}
+
 - (void)fenxiangAction{
     if (![userManager loadUserInfo]) {
         KPostNotification(KNotificationLoginStateChange, @NO);

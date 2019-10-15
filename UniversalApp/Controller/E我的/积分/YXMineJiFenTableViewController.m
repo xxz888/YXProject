@@ -34,6 +34,9 @@
     kWeakSelf(self);
     [YX_MANAGER requestGetFind_My_user_Info:@"" success:^(id object) {
         weakself.jifenNumLbl.text= [@"积分:" append:kGetNSInteger([object[@"wallet"][@"integral"] integerValue])];
+           [weakself.accImv sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:object[@"photo"]]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
+        weakself.accImv.layer.masksToBounds = YES;
+        weakself.accImv.layer.cornerRadius = self.accImv.frame.size.width / 2.0;
     }];
     
     
@@ -87,7 +90,8 @@
     
 }
 -(void)setVCUI{
-    ViewRadius(self.accImv, 36);
+    self.accImv.layer.masksToBounds = YES;
+    self.accImv.layer.cornerRadius = self.accImv.frame.size.width / 2.0;
     ViewRadius(self.qiandaoBtn, 12);
     [self.qiandaoBtn setBackgroundColor:kRGBA(10, 36, 54, 1)];
     ViewRadius(self.qiandaoView, 5);

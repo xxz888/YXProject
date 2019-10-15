@@ -333,7 +333,7 @@
     return NSLocalizedString(self, @"");
 }
 - (NSString *)utf8ToUnicode{
-    
+/*
     NSUInteger length = [self length];
     NSMutableString *str = [NSMutableString stringWithCapacity:0];
     for (int i = 0;i < length; i++){
@@ -359,18 +359,22 @@
 //        }
         [str appendFormat:@"%@", s];
     }
-    return str;}
+    return str;
+    */
+    return self;
+}
 
 -(NSString *)UnicodeToUtf8{
-    NSString *tempStr1=[self stringByReplacingOccurrencesOfString:@"\\u"withString:@"\\U"];
-    NSString *tempStr2=[tempStr1 stringByReplacingOccurrencesOfString:@"\""withString:@"\\\""];
-    NSString *tempStr3=[[@"\"" stringByAppendingString:tempStr2]stringByAppendingString:@"\""];
-    NSData *tempData=[tempStr3 dataUsingEncoding:NSUTF8StringEncoding];
-    NSString* returnStr =[NSPropertyListSerialization propertyListFromData:tempData
-                                                          mutabilityOption:NSPropertyListImmutable
-                                                                    format:NULL
-                                                          errorDescription:NULL];
-    
-    return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n"withString:@"\n"];
+//    NSString *tempStr1=[self stringByReplacingOccurrencesOfString:@"\\u"withString:@"\\U"];
+//    NSString *tempStr2=[tempStr1 stringByReplacingOccurrencesOfString:@"\""withString:@"\\\""];
+//    NSString *tempStr3=[[@"\"" stringByAppendingString:tempStr2]stringByAppendingString:@"\""];
+//    NSData *tempData=[tempStr3 dataUsingEncoding:NSUTF8StringEncoding];
+//    NSString* returnStr =[NSPropertyListSerialization propertyListFromData:tempData
+//                                                          mutabilityOption:NSPropertyListImmutable
+//                                                                    format:NULL
+//                                                          errorDescription:NULL];
+//
+//    return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n"withString:@"\n"];
+    return self;
 }
 @end

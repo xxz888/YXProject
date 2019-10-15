@@ -68,8 +68,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-//    [self.navigationController setNavigationBarHidden:YES animated:animated];
-    
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
     [_nameTf resignFirstResponder];
     
     [self upData];
@@ -95,9 +94,10 @@
     kWeakSelf(self);
 //    [QMUITips showLoadingInView:self.view];
     NSString * site = self.adressBtn.titleLabel.text ? self.adressBtn.titleLabel.text : @"";
+    NSString * photo = [self.photo contains:IMG_URI] ? [self.photo split:IMG_URI][1] : self.photo;
     NSDictionary * dic = @{@"username":self.nameTf.text,
                            @"gender":[self.sexBtn.titleLabel.text isEqualToString:@"男"] ? @"1" :@"0",
-                           @"photo":self.photo,
+                           @"photo":photo,
                            @"birthday":self.birthBtn.titleLabel.text,
                            @"site":site,
                            @"character":self.qianMingBtn.titleLabel.text
@@ -175,8 +175,6 @@
         weakself.titleImgView.image = upLoadImageArray[0];
          weakself.photo = qiniuArray[0];
         [QMUITips hideAllTipsInView:weakself.view];
-
-        NSLog(@"------------七牛云上传图片耗时: %f秒", CFAbsoluteTimeGetCurrent() - start);
     } failure:^(NSString *error) {}];
 }
 - (IBAction)sexBtnAction:(id)sender {

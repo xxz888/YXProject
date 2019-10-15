@@ -13,8 +13,15 @@
 @end
 
 @implementation YXMineJiFenGuiZeTableViewController
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setHidden:NO];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setHidden:YES];
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

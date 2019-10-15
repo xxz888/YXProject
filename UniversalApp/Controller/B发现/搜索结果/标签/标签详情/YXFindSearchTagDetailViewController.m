@@ -27,7 +27,10 @@
 @end
 
 @implementation YXFindSearchTagDetailViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
 
 -(void)viewDidLoad{
     [super viewDidLoad];
@@ -59,7 +62,8 @@
     _headerView.lbl1.text = kGetString(self.startDic[@"tag"]);
     _headerView.lbl2.text = [kGetString(self.startDic[@"count_tag"]) append:@"篇帖子"];
     
-    [_headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:self.startDic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * photo = [self.startDic[@"photo"] contains:@"http://photo.thegdlife.com/"] ? [self.startDic[@"photo"] replaceAll:@"http://photo.thegdlife.com/" target:IMG_URI] : self.startDic[@"photo"] ;
+    [_headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     kWeakSelf(self);
     _headerView.block = ^(NSInteger segmentIndex) {
         weakself.type = segmentIndex == 0 ? @"3" : @"4";
@@ -68,12 +72,6 @@
     return _headerView;
 }
 
-//-(void)requestHotAndNew:(NSString *)type{
-
-//}
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-}
 -(void)headerRereshing{
     [super headerRereshing];
     [self requestAction];
@@ -90,7 +88,7 @@
 
     CGFloat heightKK = AxcAE_IsiPhoneX ? 212 : 155;
     CGFloat height =  (AxcAE_IsiPhoneX ? - 64 : -54) ;
-    CGRect frame = CGRectMake(0, kTopHeight, KScreenWidth,KScreenHeight-kTopHeight);
+    CGRect frame = CGRectMake(0, 0, KScreenWidth,KScreenHeight-kTopHeight);
     self.yxCollectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:layout];
     self.yxCollectionView.backgroundColor = KWhiteColor;
     self.showType = signleLineShowDoubleGoods;
@@ -162,7 +160,9 @@
     UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
     [cell.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
 
-    [cell.userImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"photo"]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    
+    
+    [cell.userImageView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:dic[@"photo"]]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     NSString * praisNum = kGetString(dic[@"praise_number"]);
     cell.zanLbl.text = praisNum;
     cell.userLbl.text = dic[@"user_name"];

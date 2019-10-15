@@ -28,16 +28,16 @@
     if([dic[@"obj"] integerValue] == 1){
         titleText = [[NSString stringWithFormat:@"%@%@",dic[@"detail"],dic[@"tag"]] UnicodeToUtf8];
         midViewHeight = KScreenWidth-20;
-
+        if ([dic[@"detail"] isEqualToString:@""] && [dic[@"tag"] isEqualToString:@""]) {
+                     detailHeight = 0;
+                 }else{
+                     detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:15];
+                 }
         //这里判断晒图是图还是视频
         if ([kGetString(dic[@"url_list"][0]) containsString:@"mp4"]) {
             midViewHeight = 220;
         }else{
-            if ([dic[@"detail"] isEqualToString:@""] && [dic[@"tag"] isEqualToString:@""]) {
-                detailHeight = 0;
-            }else{
-                detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:15];
-            }
+         
             midViewHeight = [YXFirstFindImageTableViewCell inArrayCountOutHeight:urlList.count];
         }
      
@@ -64,8 +64,8 @@
         CGFloat oneH =  (KScreenWidth - 30 )/ 3 ;
         if (count > 3 && count <= 6) {
             h = oneH * 2;
-        }else if (count >6){
-            h = oneH * 3;
+        }else if (count > 6){
+            h = oneH * 3 + 10;
         }else{
             h = oneH;
         }
