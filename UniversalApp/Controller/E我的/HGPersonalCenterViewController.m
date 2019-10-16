@@ -76,6 +76,7 @@ static CGFloat const HeaderImageViewHeight =320;
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
         [self setViewData];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
 
 }
 #pragma mark - Private Methods
@@ -135,10 +136,10 @@ static CGFloat const HeaderImageViewHeight =320;
         
         
         if (self.whereCome) {
-            _headerView.guanzhuBtn.hidden = NO;
+            _headerView.guanzhuBtn.hidden = _headerView.fasixinBtn.hidden = NO;
             _headerView.editPersonBtn.hidden = YES;
         }else{
-            _headerView.guanzhuBtn.hidden = YES;
+            _headerView.guanzhuBtn.hidden = _headerView.fasixinBtn.hidden = YES;
             _headerView.editPersonBtn.hidden = NO;
         }
         
@@ -224,6 +225,10 @@ static CGFloat const HeaderImageViewHeight =320;
             [weakself.navigationController pushViewController:vc animated:YES];
         }];
     };
+    //发私信
+    _headerView.fasixinblock = ^{
+        
+    };
 }
 /**
  * 处理联动
@@ -231,7 +236,7 @@ static CGFloat const HeaderImageViewHeight =320;
  */
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-
+    return;
     //第一部分：处理导航栏
     [self updateNavigationBarBackgroundColor];
     

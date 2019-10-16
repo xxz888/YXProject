@@ -25,7 +25,9 @@
     ViewBorderRadius(self.jifenView, 15, 1, kRGBA(176, 151, 99, 1));
     ViewBorderRadius(self.sexView, 14, 1, KWhiteColor);
     ViewBorderRadius(self.nvsexview, 14, 1, KWhiteColor);
-
+    [self.fasixinBtn setTitleColor:A_COlOR forState:0];
+    [self.fasixinBtn setBackgroundColor:KClearColor];
+    ViewBorderRadius(self.fasixinBtn, 5, 1,A_COlOR);
 }
 -(void)clickAction:(id)sender{
 //    self.imageScale= [ImageScale new];
@@ -59,5 +61,8 @@
 }
 - (IBAction)shezhiAction:(id)sender {
     self.settingBlock();
+}
+- (IBAction)fasixinAction:(id)sender {
+    self.fasixinblock();
 }
 @end

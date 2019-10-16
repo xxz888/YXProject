@@ -19,7 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *fensiCountLbl;
 @property (weak, nonatomic) IBOutlet UILabel *tieshuCountLbl;
 @property (weak, nonatomic) IBOutlet UIButton *tieshubtn;
+@property (weak, nonatomic) IBOutlet UIButton *fasixinBtn;
 
+typedef void(^fasixinBlock)();
+- (IBAction)fasixinAction:(id)sender;
+@property (nonatomic,copy) fasixinBlock fasixinblock;
 
 typedef void(^guanzhuBlock)();
 - (IBAction)guanzhuAction:(id)sender;

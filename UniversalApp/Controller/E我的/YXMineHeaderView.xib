@@ -194,11 +194,11 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAV-ln-cp0">
-                    <rect key="frame" x="16" y="151" width="204" height="17"/>
+                    <rect key="frame" x="16" y="151" width="7.3333333333333321" height="17"/>
                     <attributedString key="attributedText">
-                        <fragment content="简单介绍一下自己，让更多人了解你！">
+                        <fragment content="-">
                             <attributes>
-                                <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <font key="NSFont" size="12" name="PingFangSC-Regular"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="17" tighteningFactorForTruncation="0.0"/>
                             </attributes>
@@ -282,6 +282,21 @@
                         <action selector="guanZhuOtherAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Qv2-P9-Jfs"/>
                     </connections>
                 </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cal-EZ-O4u">
+                    <rect key="frame" x="176" y="138" width="80" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="OxC-wc-a8i"/>
+                        <constraint firstAttribute="width" constant="80" id="b2X-y4-hcm"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="发私信">
+                        <color key="titleColor" red="0.31372549020000001" green="0.3294117647" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="fasixinAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Fg0-Qs-kRX"/>
+                    </connections>
+                </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mta-u5-PyU">
                     <rect key="frame" x="290" y="138" width="100" height="30"/>
                     <subviews>
@@ -327,6 +342,8 @@
                 <constraint firstItem="GBa-bF-gmT" firstAttribute="top" secondItem="zre-9E-FTM" secondAttribute="top" constant="35" id="OjC-gu-pzE"/>
                 <constraint firstItem="sE9-Ps-Bqa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="QTD-8T-AMa"/>
                 <constraint firstItem="mje-ec-qVH" firstAttribute="trailing" secondItem="zre-9E-FTM" secondAttribute="trailing" constant="-11" id="Qxn-yb-0iR"/>
+                <constraint firstItem="c4W-fu-jMd" firstAttribute="leading" secondItem="cal-EZ-O4u" secondAttribute="trailing" constant="10" id="RnT-Zz-eb1"/>
+                <constraint firstItem="cal-EZ-O4u" firstAttribute="centerY" secondItem="c4W-fu-jMd" secondAttribute="centerY" id="YQJ-js-YPd"/>
                 <constraint firstItem="XPx-Vz-BBQ" firstAttribute="centerY" secondItem="93P-T7-RWY" secondAttribute="centerY" id="Z1T-fW-apl"/>
                 <constraint firstItem="c4W-fu-jMd" firstAttribute="centerY" secondItem="mta-u5-PyU" secondAttribute="centerY" id="ZDk-Ua-qGa"/>
                 <constraint firstItem="93P-T7-RWY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="bnZ-Dj-VOO"/>
@@ -347,6 +364,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="backBtn" destination="93P-T7-RWY" id="SQ4-Of-6AM"/>
+                <outlet property="fasixinBtn" destination="cal-EZ-O4u" id="JsG-zK-2SZ"/>
                 <outlet property="fensiCountLbl" destination="Nye-zg-KaF" id="C6v-9j-AQS"/>
                 <outlet property="guanzhuBtn" destination="c4W-fu-jMd" id="Gm2-V7-CSk"/>
                 <outlet property="guanzhuCountLbl" destination="4qM-cA-gqK" id="HP9-xG-ocQ"/>
@@ -360,7 +378,7 @@
                 <outlet property="tieshuCountLbl" destination="ukU-fa-8my" id="4S9-gs-cck"/>
                 <outlet property="tieshubtn" destination="4Gh-SG-mFD" id="Grc-4Z-5b2"/>
             </connections>
-            <point key="canvasLocation" x="-1433" y="-86"/>
+            <point key="canvasLocation" x="-1822" y="-98"/>
         </view>
     </objects>
     <resources>
