@@ -104,6 +104,15 @@
 		BB013349232F69B500573AC0 /* YXMineShouHuoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB013347232F69B500573AC0 /* YXMineShouHuoTableViewCell.xib */; };
 		BB01334D232F869900573AC0 /* YXMineAddAdressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB01334B232F869900573AC0 /* YXMineAddAdressViewController.m */; };
 		BB01334E232F869900573AC0 /* YXMineAddAdressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB01334C232F869900573AC0 /* YXMineAddAdressViewController.xib */; };
+		BB07FB0A2356EA4400F34D2D /* UIImage+HQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BB07FAFB2356EA4400F34D2D /* UIImage+HQExtension.m */; };
+		BB07FB0B2356EA4400F34D2D /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB07FAFE2356EA4400F34D2D /* MessageModel.m */; };
+		BB07FB0C2356EA4400F34D2D /* NSString+HQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BB07FB002356EA4400F34D2D /* NSString+HQExtension.m */; };
+		BB07FB0E2356EA4400F34D2D /* MessageFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB07FB022356EA4400F34D2D /* MessageFrameModel.m */; };
+		BB07FB0F2356EA4400F34D2D /* messages.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB07FB032356EA4400F34D2D /* messages.plist */; };
+		BB07FB112356EA4400F34D2D /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB07FB062356EA4400F34D2D /* MessageCell.m */; };
+		BB07FB122356EA4400F34D2D /* autoResent.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB07FB072356EA4400F34D2D /* autoResent.plist */; };
+		BB07FB132356EA4400F34D2D /* SimpleChatMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB07FB092356EA4400F34D2D /* SimpleChatMainViewController.m */; };
+		BB07FB152357001900F34D2D /* SimpleChatMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB07FB142357001900F34D2D /* SimpleChatMainViewController.xib */; };
 		BB0AE5C72253384000CC07EC /* YXFindSearchTagHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0AE5C62253384000CC07EC /* YXFindSearchTagHeaderView.m */; };
 		BB0AE5C92253384900CC07EC /* YXFindSearchTagHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB0AE5C82253384900CC07EC /* YXFindSearchTagHeaderView.xib */; };
 		BB0AE5CC22533CDA00CC07EC /* YXFindSearchTagDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0AE5CB22533CDA00CC07EC /* YXFindSearchTagDetailViewController.m */; };
@@ -893,6 +902,21 @@
 		BB01334A232F869900573AC0 /* YXMineAddAdressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineAddAdressViewController.h; sourceTree = "<group>"; };
 		BB01334B232F869900573AC0 /* YXMineAddAdressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineAddAdressViewController.m; sourceTree = "<group>"; };
 		BB01334C232F869900573AC0 /* YXMineAddAdressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineAddAdressViewController.xib; sourceTree = "<group>"; };
+		BB07FAF72356EA4300F34D2D /* SimpleChatMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleChatMainViewController.h; sourceTree = "<group>"; };
+		BB07FAF92356EA4400F34D2D /* NSString+HQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HQExtension.h"; sourceTree = "<group>"; };
+		BB07FAFB2356EA4400F34D2D /* UIImage+HQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+HQExtension.m"; sourceTree = "<group>"; };
+		BB07FAFC2356EA4400F34D2D /* MessageFrameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageFrameModel.h; sourceTree = "<group>"; };
+		BB07FAFE2356EA4400F34D2D /* MessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
+		BB07FAFF2356EA4400F34D2D /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		BB07FB002356EA4400F34D2D /* NSString+HQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HQExtension.m"; sourceTree = "<group>"; };
+		BB07FB022356EA4400F34D2D /* MessageFrameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageFrameModel.m; sourceTree = "<group>"; };
+		BB07FB032356EA4400F34D2D /* messages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = messages.plist; sourceTree = "<group>"; };
+		BB07FB042356EA4400F34D2D /* UIImage+HQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+HQExtension.h"; sourceTree = "<group>"; };
+		BB07FB062356EA4400F34D2D /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		BB07FB072356EA4400F34D2D /* autoResent.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = autoResent.plist; sourceTree = "<group>"; };
+		BB07FB082356EA4400F34D2D /* MessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
+		BB07FB092356EA4400F34D2D /* SimpleChatMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleChatMainViewController.m; sourceTree = "<group>"; };
+		BB07FB142357001900F34D2D /* SimpleChatMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleChatMainViewController.xib; sourceTree = "<group>"; };
 		BB0AE5C52253384000CC07EC /* YXFindSearchTagHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchTagHeaderView.h; sourceTree = "<group>"; };
 		BB0AE5C62253384000CC07EC /* YXFindSearchTagHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchTagHeaderView.m; sourceTree = "<group>"; };
 		BB0AE5C82253384900CC07EC /* YXFindSearchTagHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFindSearchTagHeaderView.xib; sourceTree = "<group>"; };
@@ -2524,6 +2548,36 @@
 			path = "收货地址";
 			sourceTree = "<group>";
 		};
+		BB07FAF62356E8D000F34D2D /* 聊天功能 */ = {
+			isa = PBXGroup;
+			children = (
+				BB07FAF82356EA4400F34D2D /* 聊天所用库 */,
+				BB07FAF72356EA4300F34D2D /* SimpleChatMainViewController.h */,
+				BB07FB092356EA4400F34D2D /* SimpleChatMainViewController.m */,
+				BB07FB142357001900F34D2D /* SimpleChatMainViewController.xib */,
+			);
+			path = "聊天功能";
+			sourceTree = "<group>";
+		};
+		BB07FAF82356EA4400F34D2D /* 聊天所用库 */ = {
+			isa = PBXGroup;
+			children = (
+				BB07FAFF2356EA4400F34D2D /* MessageCell.h */,
+				BB07FB062356EA4400F34D2D /* MessageCell.m */,
+				BB07FB082356EA4400F34D2D /* MessageModel.h */,
+				BB07FAFE2356EA4400F34D2D /* MessageModel.m */,
+				BB07FAFC2356EA4400F34D2D /* MessageFrameModel.h */,
+				BB07FB022356EA4400F34D2D /* MessageFrameModel.m */,
+				BB07FAF92356EA4400F34D2D /* NSString+HQExtension.h */,
+				BB07FB002356EA4400F34D2D /* NSString+HQExtension.m */,
+				BB07FB042356EA4400F34D2D /* UIImage+HQExtension.h */,
+				BB07FAFB2356EA4400F34D2D /* UIImage+HQExtension.m */,
+				BB07FB032356EA4400F34D2D /* messages.plist */,
+				BB07FB072356EA4400F34D2D /* autoResent.plist */,
+			);
+			path = "聊天所用库";
+			sourceTree = "<group>";
+		};
 		BB12EE322318FEEC008CF3C6 /* 积分 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3531,6 +3585,7 @@
 		BBA812A321DDAB7A001B5EA1 /* E我的 */ = {
 			isa = PBXGroup;
 			children = (
+				BB07FAF62356E8D000F34D2D /* 聊天功能 */,
 				BBBCDBB7223F65C50056C7DD /* HGPersonalCenterViewController.h */,
 				BBBCDBB8223F65C50056C7DD /* HGPersonalCenterViewController.m */,
 				BBA812B421DDABD3001B5EA1 /* YXMineViewController.h */,
@@ -5688,6 +5743,7 @@
 				BBD2C94121E0F67800350DCD /* UIBarButtonItemArrowLeft@3x.png in Resources */,
 				2917D2071EE007C300E76185 /* MBHUD_Success@2x.png in Resources */,
 				BB29121222156BB500FF484E /* Double Robusto.gif in Resources */,
+				BB07FB122356EA4400F34D2D /* autoResent.plist in Resources */,
 				BBB59B3A228CF92D0029D3D0 /* YXGridView.xib in Resources */,
 				BBD2C93821E0F67800350DCD /* VideoOverlay@3x.png in Resources */,
 				BB29120B22156BB500FF484E /* Grand Corona.gif in Resources */,
@@ -5749,6 +5805,7 @@
 				BBB59B1F228CF8CB0029D3D0 /* YXHomeChiCunViewController.xib in Resources */,
 				BBBCDBB2223F65540056C7DD /* LICENSE in Resources */,
 				2917D20B1EE007C300E76185 /* MBHUD_Error@2x.png in Resources */,
+				BB07FB0F2356EA4400F34D2D /* messages.plist in Resources */,
 				293D464C1ECDBB63007C64A9 /* icon_tabbar_mine_selected.png in Resources */,
 				BBC3FB4C22C5C59B00BB2564 /* no_data@2x.png in Resources */,
 				296F85091FED04EF005612D1 /* close_icon@2x.png in Resources */,
@@ -5757,6 +5814,7 @@
 				BB29120A22156BB500FF484E /* Petit Pyramid.gif in Resources */,
 				BBB59B79228E8D200029D3D0 /* YXZhiNanViewController.xib in Resources */,
 				BBABDF44229BC45E0046683A /* YXZhiNan4Cell.xib in Resources */,
+				BB07FB152357001900F34D2D /* SimpleChatMainViewController.xib in Resources */,
 				BBC6180421F5AD5A00495619 /* YXHomeGolf.storyboard in Resources */,
 				BBB59B47228D02B70029D3D0 /* YXHomeXueJiaToolsTableViewCell.xib in Resources */,
 				BB29121D22156BB500FF484E /* Giant Perfecto.gif in Resources */,
@@ -5930,6 +5988,7 @@
 				BBB59ABE228CF8CB0029D3D0 /* YXHomeTuiJianViewController.m in Sources */,
 				BB5FD88521FEB8CE00B5F1A8 /* YXMineEssayTableViewCell.m in Sources */,
 				2917D2111EE0268A00E76185 /* UIViewController+AlertViewAndActionSheet.m in Sources */,
+				BB07FB0B2356EA4400F34D2D /* MessageModel.m in Sources */,
 				29629EF01F78E669002CFCBD /* XLWebViewController.m in Sources */,
 				296DEA6F1F5D50D100C6FD00 /* TAAbstractDotView.m in Sources */,
 				290DE9231ED19B6B00A45FF6 /* AESCipher.m in Sources */,
@@ -6053,6 +6112,8 @@
 				BB9413DB21F8B602007E800A /* IQTitleBarButtonItem.m in Sources */,
 				BBB59B0E228CF8CB0029D3D0 /* YXHomeXueJiaWenHuaTableViewCell.m in Sources */,
 				BB9C6982233372E2003EF6AA /* YXMineYaoQingWebViewController.m in Sources */,
+				BB07FB0A2356EA4400F34D2D /* UIImage+HQExtension.m in Sources */,
+				BB07FB0E2356EA4400F34D2D /* MessageFrameModel.m in Sources */,
 				BB928F6521FACDE70090A044 /* YXMineSettingSafeTableViewController.m in Sources */,
 				BBB59B00228CF8CB0029D3D0 /* SDTimeLineRefreshHeader.m in Sources */,
 				BBB59B8B228EB52A0029D3D0 /* YXPlusManager.m in Sources */,
@@ -6113,6 +6174,7 @@
 				BBB59B2A228CF8CB0029D3D0 /* YXHeaderView1.m in Sources */,
 				BBD2C91A21E0F67800350DCD /* UIImage+LLGif.m in Sources */,
 				BBA812C621DDBF6A001B5EA1 /* UIView+TBFrame.m in Sources */,
+				BB07FB0C2356EA4400F34D2D /* NSString+HQExtension.m in Sources */,
 				BBB59B17228CF8CB0029D3D0 /* YXXingZhuangTableViewCell.m in Sources */,
 				BBD95695233B0801003B52A7 /* NSObject+Extend.m in Sources */,
 				2924783E1ED6857300BB097A /* AppDelegate+PushService.m in Sources */,
@@ -6232,6 +6294,7 @@
 				BBA812B321DDABC1001B5EA1 /* YXMessageViewController.m in Sources */,
 				BB9832722201700C0048D103 /* UIScrollView+FCXRefresh.m in Sources */,
 				BBACB4CD234DC2E10092367B /* YXJiFenShop2CollectionViewCell.m in Sources */,
+				BB07FB132356EA4400F34D2D /* SimpleChatMainViewController.m in Sources */,
 				BBF45E60222FD29A005C52C4 /* GCDAsyncSocket.m in Sources */,
 				BBD2C90321E0F67700350DCD /* TZGifPhotoPreviewController.m in Sources */,
 				BBB59ADC228CF8CB0029D3D0 /* YXHomeQuestionDetailHeaderView.m in Sources */,
@@ -6273,6 +6336,7 @@
 				BBD2C8FA21E0F67700350DCD /* NSBundle+TZImagePicker.m in Sources */,
 				BBABDF34229BC33C0046683A /* YXZhiNan1Cell.m in Sources */,
 				BBB59B21228CF8CB0029D3D0 /* YXHomeXueJiaPeiJianLastDetailViewController.m in Sources */,
+				BB07FB112356EA4400F34D2D /* MessageCell.m in Sources */,
 				BBD2C95521E0F72800350DCD /* DALabeledCircularProgressView.m in Sources */,
 				BBB59B38228CF92D0029D3D0 /* YXHomeXueJiaTableViewCell.m in Sources */,
 				BB21FD9122B0991E0059BCAC /* KSMediaPickerOutputModel.swift in Sources */,

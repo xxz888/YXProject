@@ -13,7 +13,7 @@
 
 
 //内部版本号 每次发版递增
-#define KVersionCode 0
+#define KVersionCode 1
 /*
  
  将项目中所有的接口写在这里,方便统一管理,降低耦合

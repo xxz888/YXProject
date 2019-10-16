@@ -876,7 +876,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iqW-6u-MNW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2168.8000000000002" y="70.935960591133011"/>
+            <point key="canvasLocation" x="2359" y="78"/>
         </scene>
         <!--Mine View Controller-->
         <scene sceneID="LKn-cE-VIM">
@@ -3931,7 +3931,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jifenright" translatesAutoresizingMaskIntoConstraints="NO" id="E2m-bG-hFy">
-                                                <rect key="frame" x="55.333333333333314" y="5" width="20" height="10"/>
+                                                <rect key="frame" x="55.333333333333314" y="5" width="10" height="10"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="10" id="WtU-gO-hM2"/>
                                                 </constraints>
@@ -4841,7 +4841,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ksI-WB-fnM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1496.8" y="123.39901477832512"/>
+            <point key="canvasLocation" x="1657" y="78"/>
         </scene>
         <!--Mine All View Controller-->
         <scene sceneID="Onf-p9-fzV">

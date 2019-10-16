@@ -22,6 +22,7 @@
 #define CNavBgColor  [UIColor colorWithHexString:@"00AE68"]
 //#define CNavBgColor  [Ulor colorWithHexString:@"ffffff"]
 #define CNavBgFontColor  [UIColor colorWithHexString:@"ffffff"]
+#define Font(a) [UIFont fontWithName:@"PingFangSC-Regular" size:a]
 
 //默认页面背景色
 #define CViewBgColor [UIColor colorWithHexString:@"f2f2f2"]

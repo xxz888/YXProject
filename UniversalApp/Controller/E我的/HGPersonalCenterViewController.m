@@ -30,6 +30,7 @@
 #import "YXMineChouJiangViewController.h"
 #import "QiniuLoad.h"
 #import "YXJiFenShopViewController.h"
+#import "SimpleChatMainViewController.h"
 
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
 
@@ -227,7 +228,9 @@ static CGFloat const HeaderImageViewHeight =320;
     };
     //发私信
     _headerView.fasixinblock = ^{
-        
+        SimpleChatMainViewController * vc = [[SimpleChatMainViewController alloc]init];
+        vc.userInfoDic = [NSDictionary dictionaryWithDictionary:weakself.userInfoDic];
+        [weakself.navigationController pushViewController:vc animated:YES];
     };
 }
 /**

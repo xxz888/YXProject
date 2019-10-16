@@ -90,7 +90,22 @@
 [View.layer setMasksToBounds:YES]
 
 //property 属性快速声明 别用宏定义了，使用代码块+快捷键实现吧
+#define HQInitH(name) \
+- (instancetype) initWithDict:(NSDictionary *) dict;\
++ (instancetype) name##WithDict:(NSDictionary *) dict;
 
+#define HQNameH(name)\
+-(instancetype)initWithDict:(NSDictionary *)dict\
+{\
+    if (self = [super init]) {\
+        [self setValuesForKeysWithDictionary:dict];\
+    }\
+    return self;\
+}\
++(instancetype)name##WithDict:(NSDictionary *)dict\
+{\
+    return [[self alloc] initWithDict:dict];\
+}
 // 当前系统版本
 #define CurrentSystemVersion [[UIDevice currentDevice].systemVersion doubleValue]
 //当前语言
