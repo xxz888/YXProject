@@ -9,7 +9,7 @@
 #import "YXFindSearchResultUsersViewController.h"
 #import "YXFindSearchTableViewCell.h"
 #import "YXFindSearchResultTagViewController.h"
-
+#import "HGPersonalCenterViewController.h"
 @interface YXFindSearchResultUsersViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView * yxTableView;
 @property (nonatomic,strong)NSMutableArray * dataArray;
@@ -82,7 +82,7 @@
     cell.cellImageView.layer.masksToBounds = YES;
     cell.cellImageView.layer.cornerRadius = cell.cellImageView.frame.size.width / 2.0;
     NSString * str = [(NSMutableString *)self.dataArray[indexPath.row][@"photo"] replaceAll:@" " target:@"%20"];
-    [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:str]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cell.cellLbl.text = self.dataArray[indexPath.row][@"username"];
     cell.cellAutherLbl.text = self.dataArray[indexPath.row][@"site"];
     
@@ -90,7 +90,16 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    NSString * userId = kGetString(self.dataArray[indexPath.row][@"id"]);
+    UserInfo *userInfo = curUser;
+     if ([userInfo.id isEqualToString:userId]) {
+         self.navigationController.tabBarController.selectedIndex = 3;
+         return;
+     }
+      HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
+      mineVC.userId = userId;
+      mineVC.whereCome = YES;    //  YES为其他人 NO为自己
+      [self.navigationController pushViewController:mineVC animated:YES];
 }
 
 

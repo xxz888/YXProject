@@ -188,7 +188,8 @@ static CGFloat textFieldH = 40;
     for (int i = 0; i < formalArray.count; i++) {
         SDTimeLineCellModel *model = [SDTimeLineCellModel new];
         NSMutableDictionary * pageDic = [[NSMutableDictionary alloc]init];
-        model.iconName = formalArray[i][@"user_photo"];
+        model.iconName = [IMG_URI append:formalArray[i][@"user_photo"]];
+
         model.name = formalArray[i][@"user_name"];
         model.msgContent = formalArray[i][@"comment"];
         model.commontTime = [formalArray[i][@"update_time"] integerValue];
@@ -243,7 +244,7 @@ static CGFloat textFieldH = 40;
         UserInfo *userInfo = curUser;
         NSString * cellUserId = kGetString(cell.model.userID);
         if ([userInfo.id isEqualToString:cellUserId]) {
-            weakSelf.navigationController.tabBarController.selectedIndex = 4;
+            weakSelf.navigationController.tabBarController.selectedIndex = 3;
             return;
         }
         HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];

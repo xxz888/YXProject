@@ -48,7 +48,7 @@
         UserInfo *userInfo = curUser;
         NSString * cellUserId = kGetString(cell.model.userID);
         if ([userInfo.id isEqualToString:cellUserId]) {
-            weakSelf.navigationController.tabBarController.selectedIndex = 4;
+            weakSelf.navigationController.tabBarController.selectedIndex = 3;
             return;
         }
         HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];

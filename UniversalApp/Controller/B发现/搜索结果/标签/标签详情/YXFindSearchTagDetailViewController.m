@@ -30,6 +30,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
 
 -(void)viewDidLoad{
@@ -62,7 +64,7 @@
     _headerView.lbl1.text = kGetString(self.startDic[@"tag"]);
     _headerView.lbl2.text = [kGetString(self.startDic[@"count_tag"]) append:@"篇帖子"];
     
-    NSString * photo = [self.startDic[@"photo"] contains:@"http://photo.thegdlife.com/"] ? [self.startDic[@"photo"] replaceAll:@"http://photo.thegdlife.com/" target:IMG_URI] : self.startDic[@"photo"] ;
+    NSString * photo = [self.startDic[@"photo"] contains:IMG_OLD_URI] ? [self.startDic[@"photo"] replaceAll:IMG_OLD_URI target:IMG_URI] : self.startDic[@"photo"] ;
     [_headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     kWeakSelf(self);
     _headerView.block = ^(NSInteger segmentIndex) {

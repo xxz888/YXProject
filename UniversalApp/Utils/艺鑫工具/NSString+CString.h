@@ -112,4 +112,5 @@
 - (NSString *)localizedString;
 - (NSString *)utf8ToUnicode;
 -(NSString *)UnicodeToUtf8;
+-(NSString *)UnicodeToUtf81;
 @end

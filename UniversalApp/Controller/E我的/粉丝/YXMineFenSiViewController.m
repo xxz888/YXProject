@@ -127,7 +127,7 @@
     NSString * key1 = self.dataArray[indexPath.row][@"aim_name"] ? @"aim_name" : @"user_name";
     if ([userInfo.username isEqualToString:self.dataArray[indexPath.row][key1]]) {
         [self.navigationController popToRootViewControllerAnimated:YES];
-        self.navigationController.tabBarController.selectedIndex = 4;
+        self.navigationController.tabBarController.selectedIndex = 3;
         return;
     }else{
         HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];

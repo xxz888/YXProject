@@ -132,7 +132,7 @@
     for (int i = 0; i < formalArray.count; i++) {
         SDTimeLineCellModel *model = [SDTimeLineCellModel new];
         NSMutableDictionary * pageDic = [[NSMutableDictionary alloc]init];
-        model.iconName = formalArray[i][@"photo"];
+        model.iconName = [IMG_URI append:formalArray[i][@"photo"]];
         model.name = formalArray[i][@"user_name"];
         model.userID = formalArray[i][@"user_id"];
         

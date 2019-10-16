@@ -27,8 +27,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-//    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -49,7 +49,7 @@
     [self.segmentedPageViewController didMoveToParentViewController:self];
     kWeakSelf(self);
     [self.segmentedPageViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(weakself.view).mas_offset(UIEdgeInsetsMake(kStatusBarHeight, 0, 0, 0));
+        make.edges.equalTo(weakself.view).mas_offset(UIEdgeInsetsMake(10, 0, 0, 0));
     }];
 }
 

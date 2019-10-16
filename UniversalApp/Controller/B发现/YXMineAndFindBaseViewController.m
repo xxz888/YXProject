@@ -223,7 +223,7 @@
 -(void)clickUserImageView:(NSString *)userId{
      UserInfo *userInfo = curUser;
     if ([userInfo.id isEqualToString:userId]) {
-        self.navigationController.tabBarController.selectedIndex = 4;
+        self.navigationController.tabBarController.selectedIndex = 3;
         return;
     }
      HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];

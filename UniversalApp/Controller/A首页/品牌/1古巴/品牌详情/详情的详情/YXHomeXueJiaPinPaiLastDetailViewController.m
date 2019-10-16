@@ -417,7 +417,7 @@
     for (int i = 0; i < formalArray.count; i++) {
         SDTimeLineCellModel *model = [SDTimeLineCellModel new];
         NSMutableDictionary * pageDic = [[NSMutableDictionary alloc]init];
-        model.iconName = formalArray[i][@"user_photo"];
+        model.iconName = [IMG_URI append:formalArray[i][@"user_photo"]];
         model.name = formalArray[i][@"user_name"];
         model.userID = formalArray[i][@"user_id"];
 
@@ -506,7 +506,7 @@
         UserInfo *userInfo = curUser;
         NSString * cellUserId = kGetString(cell.model.userID);
         if ([userInfo.id isEqualToString:cellUserId]) {
-            self.navigationController.tabBarController.selectedIndex = 4;
+            self.navigationController.tabBarController.selectedIndex = 3;
             return;
         }
         HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
@@ -518,7 +518,7 @@
         UserInfo *userInfo = curUser;
         NSString * cellUserId = kGetString(cell.model.userID);
         if ([userInfo.id isEqualToString:cellUserId]) {
-            weakSelf.navigationController.tabBarController.selectedIndex = 4;
+            weakSelf.navigationController.tabBarController.selectedIndex = 3;
             return;
         }
         HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];

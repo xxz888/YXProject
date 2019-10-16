@@ -45,6 +45,8 @@
 #define UPDATE_App_ID @"1454467501"
 
 #define IMG_URI @"http://photo.lpszn.com/"
+
+#define IMG_OLD_URI @"http://photo.thegdlife.com/"
 #import <QMapKit/QMapKit.h>
 #import <QMapSearchKit/QMapSearchKit.h>
 #define TencentKey @"KMTBZ-AJN3K-MWSJW-A5FV6-ZVDCQ-JIF33"

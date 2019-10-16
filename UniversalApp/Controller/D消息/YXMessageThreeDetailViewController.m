@@ -111,8 +111,8 @@
     if ([photoArray count] > 0) {
         photo = [IMG_URI append:photoArray[0]];
     }
-    if ([dic[@"photo"] contains:@"http://photo.thegdlife.com/"]) {
-        photo = [IMG_URI append: [dic[@"photo"] split:@"http://photo.thegdlife.com/"][1]];
+    if ([dic[@"photo"] contains:IMG_OLD_URI]) {
+        photo = [IMG_URI append: [dic[@"photo"] split:IMG_OLD_URI][1]];
     }
     [cell.rightImv sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"img_moren"]];
 

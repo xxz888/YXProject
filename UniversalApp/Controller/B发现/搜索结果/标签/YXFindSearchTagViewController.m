@@ -81,8 +81,12 @@
     YXFindSearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify forIndexPath:indexPath];
         cell.cellImageView.layer.masksToBounds = YES;
         cell.cellImageView.layer.cornerRadius = cell.cellImageView.frame.size.width / 2.0;
+    
+    
+
     NSString * str = [(NSMutableString *)self.dataArray[indexPath.row][@"photo"] replaceAll:@" " target:@"%20"];
-    [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    NSString * photo = [str contains:IMG_OLD_URI] ? [str replaceAll:IMG_OLD_URI target:IMG_URI] : str;
+    [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cell.cellLbl.text =  self.dataArray[indexPath.row][@"tag"] ;
     cell.cellAutherLbl.text = kGetString(self.dataArray[indexPath.row][@"count_tag"]);
     

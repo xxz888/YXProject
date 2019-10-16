@@ -251,7 +251,6 @@
 		BB6D2A3C21EEC63900F5049F /* Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BB6D2A3021EEC63900F5049F /* Resources.bundle */; };
 		BB6D2A3F21EF206A00F5049F /* KeyBoardTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A3E21EF206A00F5049F /* KeyBoardTableView.m */; };
 		BB6D2A4221EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A4121EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.m */; };
-		BB70253722126E67009EBE39 /* YXFindSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB70253622126E67009EBE39 /* YXFindSearchViewController.m */; };
 		BB70253B2212980A009EBE39 /* YXFindSearchHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB70253A2212980A009EBE39 /* YXFindSearchHeadView.m */; };
 		BB70253D22129812009EBE39 /* YXFindSearchHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB70253C22129812009EBE39 /* YXFindSearchHeadView.xib */; };
 		BB7025442212A42C009EBE39 /* YXFindSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7025432212A42C009EBE39 /* YXFindSearchResultViewController.m */; };
@@ -1128,8 +1127,6 @@
 		BB6D2A3E21EF206A00F5049F /* KeyBoardTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyBoardTableView.m; sourceTree = "<group>"; };
 		BB6D2A4021EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaQuestionDetailViewController.h; sourceTree = "<group>"; };
 		BB6D2A4121EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaQuestionDetailViewController.m; sourceTree = "<group>"; };
-		BB70253522126E67009EBE39 /* YXFindSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchViewController.h; sourceTree = "<group>"; };
-		BB70253622126E67009EBE39 /* YXFindSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchViewController.m; sourceTree = "<group>"; };
 		BB7025392212980A009EBE39 /* YXFindSearchHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchHeadView.h; sourceTree = "<group>"; };
 		BB70253A2212980A009EBE39 /* YXFindSearchHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchHeadView.m; sourceTree = "<group>"; };
 		BB70253C22129812009EBE39 /* YXFindSearchHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFindSearchHeadView.xib; sourceTree = "<group>"; };
@@ -3584,8 +3581,7 @@
 				BBADE4D521F8655E0011E5FF /* YXMineImageDetailViewController.m */,
 				BBA812AB21DDAB9D001B5EA1 /* YXFindViewController.h */,
 				BBA812AC21DDAB9D001B5EA1 /* YXFindViewController.m */,
-				BB70253522126E67009EBE39 /* YXFindSearchViewController.h */,
-				BB70253622126E67009EBE39 /* YXFindSearchViewController.m */,
+				BBB59A1B228CF8CA0029D3D0 /* 搜索 */,
 				BB524790234A2F0800FB22B3 /* 发布弹框vc */,
 				BBC7CD1B22E16BDB00AC9E2D /* 发现头部 */,
 				BB70253E2212A3A7009EBE39 /* 搜索结果 */,
@@ -4020,7 +4016,6 @@
 			children = (
 				BBB59A22228CF8CA0029D3D0 /* YXHomeXueJiaPinPaiViewController.h */,
 				BBB59A6E228CF8CA0029D3D0 /* YXHomeXueJiaPinPaiViewController.m */,
-				BBB59A1B228CF8CA0029D3D0 /* 搜索 */,
 				BBB59A23228CF8CA0029D3D0 /* 1古巴 */,
 				BBB59A69228CF8CA0029D3D0 /* 2非古 */,
 				BBB59A6F228CF8CA0029D3D0 /* 雪茄品牌搜索 */,
@@ -4033,12 +4028,12 @@
 		BBB59A1B228CF8CA0029D3D0 /* 搜索 */ = {
 			isa = PBXGroup;
 			children = (
-				BBB59A1C228CF8CA0029D3D0 /* PYSearchViewController.m */,
-				BBB59A1D228CF8CA0029D3D0 /* PYSearchSuggestionViewController.m */,
-				BBB59A1E228CF8CA0029D3D0 /* PYTempViewController.m */,
-				BBB59A1F228CF8CA0029D3D0 /* PYSearchSuggestionViewController.h */,
 				BBB59A20228CF8CA0029D3D0 /* PYSearchViewController.h */,
+				BBB59A1C228CF8CA0029D3D0 /* PYSearchViewController.m */,
+				BBB59A1F228CF8CA0029D3D0 /* PYSearchSuggestionViewController.h */,
+				BBB59A1D228CF8CA0029D3D0 /* PYSearchSuggestionViewController.m */,
 				BBB59A21228CF8CA0029D3D0 /* PYTempViewController.h */,
+				BBB59A1E228CF8CA0029D3D0 /* PYTempViewController.m */,
 			);
 			path = "搜索";
 			sourceTree = "<group>";
@@ -6128,7 +6123,6 @@
 				BBACB4B1234D718C0092367B /* YXJiFenShopViewController.m in Sources */,
 				BB7AF12C2200035700989896 /* YXPublishFootViewController.m in Sources */,
 				BB21FD9322B0991E0059BCAC /* KSMediaPickerAlbumModel.swift in Sources */,
-				BB70253722126E67009EBE39 /* YXFindSearchViewController.m in Sources */,
 				BBA8147021DE0D38001B5EA1 /* NSString+CString.m in Sources */,
 				BBB59AF5228CF8CB0029D3D0 /* YXHomeSearchMoreViewController.m in Sources */,
 				BB9413E121F8B602007E800A /* IQNSArray+Sort.m in Sources */,

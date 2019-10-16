@@ -8,11 +8,11 @@
 
 #import "YXSecondViewController.h"
 #import "PYSearchViewController.h"
-#import "YXFindSearchViewController.h"
 #import "YXFindSearchResultViewController.h"
 #import "YXFindViewController.h"
 #import "YXFindHeaderView.h"
 #import "YXFaBuNewVCViewController.h"
+#import "PYSearchViewController.h"
 
 @interface YXSecondViewController ()<PYSearchViewControllerDelegate,UIGestureRecognizerDelegate>
 @property(nonatomic,strong)NSMutableArray * dataArray;
@@ -161,14 +161,14 @@
     [YX_MANAGER requestGetFind_all:@"" success:^(id object) {
         NSMutableArray * hotSeaches = [[NSMutableArray alloc]init];
         for (NSDictionary * dic in object) {
-            [hotSeaches addObject:[dic[@"key"] UnicodeToUtf8]];
+            [hotSeaches addObject:[dic[@"key"] UnicodeToUtf81]];
         }
-        YXFindSearchViewController *searchViewController = [YXFindSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"搜索", @"搜索") didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+        PYSearchViewController * searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"搜索", @"搜索") didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
             YXFindSearchResultViewController * VC = [[YXFindSearchResultViewController alloc] init];
             VC.searchBlock = ^(NSString * string) {
                 weakself.searchHeaderView.searchBar.text = [string UnicodeToUtf8];
             };
-            VC.searchText = [searchText UnicodeToUtf8];
+            VC.searchText = [searchText UnicodeToUtf81];
             [searchViewController.navigationController pushViewController:VC animated:YES];
         }];
         searchViewController.hotSearchStyle = PYHotSearchStyleNormalTag;
