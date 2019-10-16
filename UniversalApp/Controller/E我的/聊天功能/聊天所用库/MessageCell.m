@@ -93,14 +93,20 @@
     
     
     UserInfo * userInfo = curUser;
-    
+    NSString * otherPhoto = @"";
+    if (self.otherDic) {
+        otherPhoto = self.otherDic[@"photo"];
+    }else{
+        otherPhoto = userInfo.photo;
+
+    }
     if (MessageModelTypeMe == message.type) {
         [self.iconView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:userInfo.photo]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
         [self.contentBtn setBackgroundImage:[UIImage resizableImageWith:@"chat_send_nor"] forState:UIControlStateNormal];
         [self.contentBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
     }else{
         [self.contentBtn setBackgroundImage:[UIImage resizableImageWith:@"chat_recive_nor"]  forState:UIControlStateNormal];
-        [self.iconView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:self.otherDic[@"photo"]]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
+        [self.iconView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:otherPhoto]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
         [self.contentBtn setTitleColor:KBlackColor forState:UIControlStateNormal];
 
     }

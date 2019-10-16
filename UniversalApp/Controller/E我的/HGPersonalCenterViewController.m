@@ -239,7 +239,7 @@ static CGFloat const HeaderImageViewHeight =320;
  */
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    return;
+//    return;
     //第一部分：处理导航栏
     [self updateNavigationBarBackgroundColor];
     

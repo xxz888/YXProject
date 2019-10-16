@@ -9,10 +9,12 @@
 #import "YXMessageViewController.h"
 #import "YXMessageThreeDetailViewController.h"
 #import <UMAnalytics/MobClick.h>
-
+#import "YXMessageLiaoTianTableViewCell.h"
+#import "SimpleChatMainViewController.h"
 @interface YXMessageViewController ()<UIGestureRecognizerDelegate>
 @property (nonatomic) BOOL isCanBack;
 @property (nonatomic) BOOL isEnable;
+@property (weak, nonatomic) IBOutlet UITableViewCell *runCell;
 
 @end
 
@@ -48,12 +50,9 @@
 }
 -(void)setUI{
     
-
     ViewBorderRadius(self.zanjb, 8, 1, KWhiteColor);
     ViewBorderRadius(self.fensijb, 8, 1, KWhiteColor);
     ViewBorderRadius(self.hdjb, 8, 1, KWhiteColor);
-    
-    
     
     //view添加点击事件
     UITapGestureRecognizer *tapGesturRecognizer1=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
@@ -69,19 +68,80 @@
     [self.view3 addGestureRecognizer:tapGesturRecognizer3];
     [self addShadowToView:self.stackView withColor:kRGBA(102, 102, 102, 0.3)];
     ViewBorderRadius(self.tuisongBtn, 2, 1, kRGBA(10, 36, 51, 1));
-    
     ViewBorderRadius(self.yiduBtn, 11, 1, kRGBA(238, 238, 238, 1));
     
-    
-    
-//    UIImage    * btnImage = [UIImage imageNamed:@"messageqingchu.png"];// 11*6
-//    CGFloat    imageWidth = 12;
-//    CGFloat    space = 1;// 图片和文字的间距
-//    CGFloat    titleWidth = [@"一键清除" sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10]}].width;
-//    [self.yiduBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -(imageWidth+space*0.5), 0, (imageWidth+space*0.5))];
-//    [self.yiduBtn setImageEdgeInsets:UIEdgeInsetsMake(0, (titleWidth + space*0.5), 0, -(titleWidth + space*0.5))];
-
+    [self.tableView registerNib:[UINib nibWithNibName:@"YXMessageLiaoTianTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMessageLiaoTianTableViewCell"];
 }
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (section == 3) {
+        return 10;
+    }else{
+        return [super tableView:tableView numberOfRowsInSection:section];
+    }
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section==2&&indexPath.row==1) {
+        if (_isEnable) {
+            return 0;
+        }else{
+            if ([self isUserNotificationEnable]) {
+                return 0;
+            }else{
+                return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+            }
+        }
+        return 0;
+    }else  if (indexPath.section == 3) {
+        return 80;
+    }
+    else{
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+}
+//cell的缩进级别，动态静态cell必须重写，否则会造成崩溃
+- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(3 == indexPath.section){//爱好 （动态cell）
+        return [super tableView:tableView indentationLevelForRowAtIndexPath: [NSIndexPath indexPathForRow:0 inSection:3]];
+    }
+    return [super tableView:tableView indentationLevelForRowAtIndexPath:indexPath];
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 3) {
+        YXMessageLiaoTianTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMessageLiaoTianTableViewCell" forIndexPath:indexPath];
+        UserInfo * info = curUser;
+        [cell.ltImv sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:info.photo]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
+        return cell;
+    }
+    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    SimpleChatMainViewController * vc = [[SimpleChatMainViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"聊天置顶" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        // 收回侧滑
+        [tableView setEditing:NO animated:YES];
+    }];
+
+
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+    // 删除cell: 必须要先删除数据源，才能删除cell
+//    [self.dataArray removeObjectAtIndex:indexPath.row];
+//    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}];
+
+return @[deleteAction, editAction];
+}
+
+
+
+
 /// 添加四边阴影效果
 - (void)addShadowToView:(UIView *)theView withColor:(UIColor *)theColor {
     // 阴影颜色
@@ -92,11 +152,6 @@
     theView.layer.shadowOpacity = 1;
     // 阴影半径，默认3
     theView.layer.shadowRadius = 3;
-    
-    //    _imageView.layer.shadowOffset = CGSizeMake(5,5);//shadowOffset阴影偏移,x向右偏移4，y向下偏移4，默认(0, -3),这个跟shadowRadius配合使用
-    
-    
-    //   theView.layer.masksToBounds = YES;
     theView.layer.cornerRadius = 5;
     
 }
@@ -153,22 +208,6 @@
     [self.tableView reloadData];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section==2&&indexPath.row==1) {
-        if (_isEnable) {
-            return 0;
-        }else{
-            if ([self isUserNotificationEnable]) {
-                return 0;
-            }else{
-                return [super tableView:tableView heightForRowAtIndexPath:indexPath];
-            }
-        }
-        return 0;
-    }else{
-        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
-    }
-}
 - (BOOL)isUserNotificationEnable { // 判断用户是否允许接收通知
     _isEnable = NO;
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0f) { // iOS版本 >=8.0 处理逻辑

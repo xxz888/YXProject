@@ -113,6 +113,11 @@
 		BB07FB122356EA4400F34D2D /* autoResent.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB07FB072356EA4400F34D2D /* autoResent.plist */; };
 		BB07FB132356EA4400F34D2D /* SimpleChatMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB07FB092356EA4400F34D2D /* SimpleChatMainViewController.m */; };
 		BB07FB152357001900F34D2D /* SimpleChatMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB07FB142357001900F34D2D /* SimpleChatMainViewController.xib */; };
+		BB07FB1D2357099100F34D2D /* YXMessageThreeDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB07FB192357099000F34D2D /* YXMessageThreeDetailViewCell.xib */; };
+		BB07FB1E2357099100F34D2D /* YXMessageThreeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB07FB1A2357099000F34D2D /* YXMessageThreeDetailViewController.m */; };
+		BB07FB1F2357099100F34D2D /* YXMessageThreeDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB07FB1B2357099000F34D2D /* YXMessageThreeDetailViewCell.m */; };
+		BB07FB2323570AC300F34D2D /* YXMessageLiaoTianTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB07FB2123570AC300F34D2D /* YXMessageLiaoTianTableViewCell.m */; };
+		BB07FB2423570AC300F34D2D /* YXMessageLiaoTianTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB07FB2223570AC300F34D2D /* YXMessageLiaoTianTableViewCell.xib */; };
 		BB0AE5C72253384000CC07EC /* YXFindSearchTagHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0AE5C62253384000CC07EC /* YXFindSearchTagHeaderView.m */; };
 		BB0AE5C92253384900CC07EC /* YXFindSearchTagHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB0AE5C82253384900CC07EC /* YXFindSearchTagHeaderView.xib */; };
 		BB0AE5CC22533CDA00CC07EC /* YXFindSearchTagDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0AE5CB22533CDA00CC07EC /* YXFindSearchTagDetailViewController.m */; };
@@ -715,9 +720,6 @@
 		BBF26E25224091CE0000AEF5 /* JQFMDB.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E24224091CD0000AEF5 /* JQFMDB.xcdatamodel */; };
 		BBF26E3622448D2E0000AEF5 /* YXBindPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E3422448D2E0000AEF5 /* YXBindPhoneViewController.m */; };
 		BBF26E3722448D2E0000AEF5 /* YXBindPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBF26E3522448D2E0000AEF5 /* YXBindPhoneViewController.xib */; };
-		BBF45E52222FC649005C52C4 /* YXMessageThreeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF45E51222FC648005C52C4 /* YXMessageThreeDetailViewController.m */; };
-		BBF45E56222FC680005C52C4 /* YXMessageThreeDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF45E54222FC680005C52C4 /* YXMessageThreeDetailViewCell.m */; };
-		BBF45E57222FC680005C52C4 /* YXMessageThreeDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBF45E55222FC680005C52C4 /* YXMessageThreeDetailViewCell.xib */; };
 		BBF45E5E222FD29A005C52C4 /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = BBF45E59222FD29A005C52C4 /* Documentation.html */; };
 		BBF45E5F222FD29A005C52C4 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF45E5A222FD29A005C52C4 /* GCDAsyncUdpSocket.m */; };
 		BBF45E60222FD29A005C52C4 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF45E5B222FD29A005C52C4 /* GCDAsyncSocket.m */; };
@@ -917,6 +919,14 @@
 		BB07FB082356EA4400F34D2D /* MessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
 		BB07FB092356EA4400F34D2D /* SimpleChatMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleChatMainViewController.m; sourceTree = "<group>"; };
 		BB07FB142357001900F34D2D /* SimpleChatMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleChatMainViewController.xib; sourceTree = "<group>"; };
+		BB07FB172357099000F34D2D /* YXMessageThreeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMessageThreeDetailViewController.h; sourceTree = "<group>"; };
+		BB07FB182357099000F34D2D /* YXMessageThreeDetailViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMessageThreeDetailViewCell.h; sourceTree = "<group>"; };
+		BB07FB192357099000F34D2D /* YXMessageThreeDetailViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YXMessageThreeDetailViewCell.xib; sourceTree = "<group>"; };
+		BB07FB1A2357099000F34D2D /* YXMessageThreeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMessageThreeDetailViewController.m; sourceTree = "<group>"; };
+		BB07FB1B2357099000F34D2D /* YXMessageThreeDetailViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMessageThreeDetailViewCell.m; sourceTree = "<group>"; };
+		BB07FB2023570AC300F34D2D /* YXMessageLiaoTianTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMessageLiaoTianTableViewCell.h; sourceTree = "<group>"; };
+		BB07FB2123570AC300F34D2D /* YXMessageLiaoTianTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMessageLiaoTianTableViewCell.m; sourceTree = "<group>"; };
+		BB07FB2223570AC300F34D2D /* YXMessageLiaoTianTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMessageLiaoTianTableViewCell.xib; sourceTree = "<group>"; };
 		BB0AE5C52253384000CC07EC /* YXFindSearchTagHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchTagHeaderView.h; sourceTree = "<group>"; };
 		BB0AE5C62253384000CC07EC /* YXFindSearchTagHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchTagHeaderView.m; sourceTree = "<group>"; };
 		BB0AE5C82253384900CC07EC /* YXFindSearchTagHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFindSearchTagHeaderView.xib; sourceTree = "<group>"; };
@@ -1954,11 +1964,6 @@
 		BBF26E3322448D2E0000AEF5 /* YXBindPhoneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXBindPhoneViewController.h; sourceTree = "<group>"; };
 		BBF26E3422448D2E0000AEF5 /* YXBindPhoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXBindPhoneViewController.m; sourceTree = "<group>"; };
 		BBF26E3522448D2E0000AEF5 /* YXBindPhoneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXBindPhoneViewController.xib; sourceTree = "<group>"; };
-		BBF45E50222FC648005C52C4 /* YXMessageThreeDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMessageThreeDetailViewController.h; sourceTree = "<group>"; };
-		BBF45E51222FC648005C52C4 /* YXMessageThreeDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMessageThreeDetailViewController.m; sourceTree = "<group>"; };
-		BBF45E53222FC680005C52C4 /* YXMessageThreeDetailViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMessageThreeDetailViewCell.h; sourceTree = "<group>"; };
-		BBF45E54222FC680005C52C4 /* YXMessageThreeDetailViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMessageThreeDetailViewCell.m; sourceTree = "<group>"; };
-		BBF45E55222FC680005C52C4 /* YXMessageThreeDetailViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMessageThreeDetailViewCell.xib; sourceTree = "<group>"; };
 		BBF45E59222FD29A005C52C4 /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Documentation.html; sourceTree = "<group>"; };
 		BBF45E5A222FD29A005C52C4 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
 		BBF45E5B222FD29A005C52C4 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
@@ -2576,6 +2581,28 @@
 				BB07FB072356EA4400F34D2D /* autoResent.plist */,
 			);
 			path = "聊天所用库";
+			sourceTree = "<group>";
+		};
+		BB07FB162357099000F34D2D /* 粉丝关注详情 */ = {
+			isa = PBXGroup;
+			children = (
+				BB07FB172357099000F34D2D /* YXMessageThreeDetailViewController.h */,
+				BB07FB182357099000F34D2D /* YXMessageThreeDetailViewCell.h */,
+				BB07FB192357099000F34D2D /* YXMessageThreeDetailViewCell.xib */,
+				BB07FB1A2357099000F34D2D /* YXMessageThreeDetailViewController.m */,
+				BB07FB1B2357099000F34D2D /* YXMessageThreeDetailViewCell.m */,
+			);
+			path = "粉丝关注详情";
+			sourceTree = "<group>";
+		};
+		BB07FB1C2357099000F34D2D /* 聊天界面嵌套 */ = {
+			isa = PBXGroup;
+			children = (
+				BB07FB2023570AC300F34D2D /* YXMessageLiaoTianTableViewCell.h */,
+				BB07FB2123570AC300F34D2D /* YXMessageLiaoTianTableViewCell.m */,
+				BB07FB2223570AC300F34D2D /* YXMessageLiaoTianTableViewCell.xib */,
+			);
+			path = "聊天界面嵌套";
 			sourceTree = "<group>";
 		};
 		BB12EE322318FEEC008CF3C6 /* 积分 */ = {
@@ -3663,11 +3690,8 @@
 			children = (
 				BBA812B121DDABC1001B5EA1 /* YXMessageViewController.h */,
 				BBA812B221DDABC1001B5EA1 /* YXMessageViewController.m */,
-				BBF45E50222FC648005C52C4 /* YXMessageThreeDetailViewController.h */,
-				BBF45E51222FC648005C52C4 /* YXMessageThreeDetailViewController.m */,
-				BBF45E53222FC680005C52C4 /* YXMessageThreeDetailViewCell.h */,
-				BBF45E54222FC680005C52C4 /* YXMessageThreeDetailViewCell.m */,
-				BBF45E55222FC680005C52C4 /* YXMessageThreeDetailViewCell.xib */,
+				BB07FB162357099000F34D2D /* 粉丝关注详情 */,
+				BB07FB1C2357099000F34D2D /* 聊天界面嵌套 */,
 			);
 			path = "D消息";
 			sourceTree = "<group>";
@@ -5756,11 +5780,13 @@
 				BBC7CD2022E16C0500AC9E2D /* YXFindHeaderView.xib in Resources */,
 				BB928F5D21FABCF10090A044 /* YXMinePingLunTableViewCell.xib in Resources */,
 				BBBCDBB3223F65540056C7DD /* README.md in Resources */,
+				BB07FB1D2357099100F34D2D /* YXMessageThreeDetailViewCell.xib in Resources */,
 				2917D2061EE007C300E76185 /* MBHUD_Success@3x.png in Resources */,
 				BBD2C93C21E0F67800350DCD /* PlayButtonOverlayLarge@2x.png in Resources */,
 				BBD2C93121E0F67800350DCD /* ImageError@2x.png in Resources */,
 				BBD2C92D21E0F67800350DCD /* UIBarButtonItemGrid@2x.png in Resources */,
 				BBB59B0C228CF8CB0029D3D0 /* YXHomeXueJiaWenHuaTableViewCell.xib in Resources */,
+				BB07FB2423570AC300F34D2D /* YXMessageLiaoTianTableViewCell.xib in Resources */,
 				BBD2C93321E0F67800350DCD /* ImageSelectedSmallOff@3x.png in Resources */,
 				BBDA2D2121EB30BF00EDCCFF /* sdRefeshView_arrow@2x.png in Resources */,
 				BBC3FB4A22C5C59B00BB2564 /* no_data@3x.png in Resources */,
@@ -5820,7 +5846,6 @@
 				BB29121D22156BB500FF484E /* Giant Perfecto.gif in Resources */,
 				BB3DFE9D221E8566000C70B5 /* YXFindSearchTableViewCell.xib in Resources */,
 				BB21FD8422B0991E0059BCAC /* KSMediaPicker.strings in Resources */,
-				BBF45E57222FC680005C52C4 /* YXMessageThreeDetailViewCell.xib in Resources */,
 				BBDA2D0F21EB30BF00EDCCFF /* MLEmoji_Expression.plist in Resources */,
 				BB29120922156BB500FF484E /* Petit Corona.gif in Resources */,
 				BB29120F22156BB500FF484E /* Pyramid.gif in Resources */,
@@ -6037,6 +6062,7 @@
 				BBD2C8F921E0F67700350DCD /* TZAssetModel.m in Sources */,
 				BB5DC69C2189CA38003F1998 /* SELUpdateAlertConst.m in Sources */,
 				BB21FDA122B0991E0059BCAC /* KSMediaPickerNavigationView.swift in Sources */,
+				BB07FB2323570AC300F34D2D /* YXMessageLiaoTianTableViewCell.m in Sources */,
 				29AD6C621ED3E4D600B0879C /* AppDelegate+AppService.m in Sources */,
 				BBD2C90121E0F67700350DCD /* TZPhotoPreviewCell.m in Sources */,
 				BBB59AE1228CF8CB0029D3D0 /* MMOperateMenuView.m in Sources */,
@@ -6102,8 +6128,8 @@
 				BBBFD7912222D7D300D377AC /* TOCropOverlayView.m in Sources */,
 				BB8376F42248B5730091A1A8 /* YXMineFindTableViewCell.m in Sources */,
 				29629EF11F78E669002CFCBD /* XLJSHandler.m in Sources */,
-				BBF45E52222FC649005C52C4 /* YXMessageThreeDetailViewController.m in Sources */,
 				29AD6C6B1ED41E2100B0879C /* UserManager.m in Sources */,
+				BB07FB1F2357099100F34D2D /* YXMessageThreeDetailViewCell.m in Sources */,
 				29AD6C671ED41BA100B0879C /* AdPageView.m in Sources */,
 				BBB59AE3228CF8CB0029D3D0 /* YXHomeXueJiaFootTableViewCell.m in Sources */,
 				BBB59B87228EA0250029D3D0 /* YXZhiNanCollectionViewCell.m in Sources */,
@@ -6233,7 +6259,6 @@
 				BB9832742201700C0048D103 /* FCXRefreshBaseView.m in Sources */,
 				BBB59B27228CF8CB0029D3D0 /* BKStrikeLabel.m in Sources */,
 				BB6D2A3721EEC63900F5049F /* EmojiToolBar.m in Sources */,
-				BBF45E56222FC680005C52C4 /* YXMessageThreeDetailViewCell.m in Sources */,
 				BBD2C80E21E0F41F00350DCD /* YXMineImageViewController.m in Sources */,
 				BBD2C80D21E0F41F00350DCD /* YXMineFootViewController.m in Sources */,
 				BBB59AE5228CF8CB0029D3D0 /* YXHomeXueJiaFootViewController.m in Sources */,
@@ -6298,6 +6323,7 @@
 				BBF45E60222FD29A005C52C4 /* GCDAsyncSocket.m in Sources */,
 				BBD2C90321E0F67700350DCD /* TZGifPhotoPreviewController.m in Sources */,
 				BBB59ADC228CF8CB0029D3D0 /* YXHomeQuestionDetailHeaderView.m in Sources */,
+				BB07FB1E2357099100F34D2D /* YXMessageThreeDetailViewController.m in Sources */,
 				296DEA721F5D50D100C6FD00 /* TAPageControl.m in Sources */,
 				BB21FDA522B0991E0059BCAC /* KSMediaViewerController.m in Sources */,
 				BB9413DD21F8B602007E800A /* IQUIView+IQKeyboardToolbar.m in Sources */,

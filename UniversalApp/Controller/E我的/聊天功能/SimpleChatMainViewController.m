@@ -213,7 +213,10 @@
 {
     MessageCell *cell = [MessageCell cellWithTableView:tableView];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.otherDic = [NSDictionary dictionaryWithDictionary:self.userInfoDic];
+    if (self.userInfoDic) {
+        cell.otherDic = [NSDictionary dictionaryWithDictionary:self.userInfoDic];
+
+    }
     cell.messageFrame = self.messages[indexPath.row];
     return cell;
 }
