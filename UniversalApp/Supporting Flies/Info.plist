@@ -7,7 +7,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>蓝皮书</string>
 	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
+	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundleIcons</key>
 	<dict/>
 	<key>CFBundleIcons~ipad</key>
@@ -33,7 +33,7 @@
 			<string>weixin</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wx71c480cd96774ef7</string>
+				<string>wxbb7dbf5d5070b3d0</string>
 			</array>
 		</dict>
 		<dict>

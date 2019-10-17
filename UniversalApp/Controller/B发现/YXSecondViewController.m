@@ -171,11 +171,13 @@
             VC.searchText = [searchText UnicodeToUtf81];
             [searchViewController.navigationController pushViewController:VC animated:YES];
         }];
+        searchViewController.searchResultShowMode = 1;
         searchViewController.hotSearchStyle = PYHotSearchStyleNormalTag;
         searchViewController.searchHistoryStyle = 1;
         searchViewController.delegate = self;
-        RootNavigationController *nav2 = [[RootNavigationController alloc]initWithRootViewController:searchViewController];
-        [self presentViewController:nav2 animated:NO completion:nil];
+//        RootNavigationController *nav2 = [[RootNavigationController alloc]initWithRootViewController:searchViewController];
+//        [self presentViewController:nav2 animated:NO completion:nil];
+        [self.navigationController pushViewController:searchViewController animated:YES];
     }];
 }
 -(void)viewDidAppear:(BOOL)animated{

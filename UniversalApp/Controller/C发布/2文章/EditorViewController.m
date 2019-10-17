@@ -208,10 +208,10 @@
 
                             NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
                             [weakself.imageUrlsArr addObjectsFromArray:qiniuArray];
-                            if (weakself.imageUrlsArr.count == weakself.wenzhangImgCount) {
+
                                 //图片上传完成，开始向服务器发送请求
                                 [weakself lastStepFaBuAction:[Tool makeHtmlString:_imageUrlsArr desArr:_desArr contentStr:_contentStr]];
-                            }
+                    
                         } failure:^(NSString *error) {}];
                     }
                 }

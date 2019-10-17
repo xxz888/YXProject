@@ -30,26 +30,11 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
     [self.tabBarController.tabBar setHidden:NO];
-//    UserInfo *userInfo = curUser;
-//    [[SocketRocketUtility instance] SRWebSocketClose];
-//    NSString * token = userInfo.token;
-//    NSString * url = [NSString stringWithFormat:@"ws://192.168.101.22:8001/push/%@/",token];
-//    [[SocketRocketUtility instance] SRWebSocketOpenWithURLString:url];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketDidCloseNote object:nil];
 
-}
-- (void)SRWebSocketDidOpen {
-    NSLog(@"开启成功");
-    //在成功后需要做的操作。。。
     
+    [[SocketRocketUtility instance] SRWebSocketStart];
 }
 
-- (void)SRWebSocketDidReceiveMsg:(NSNotification *)note {
-    //收到服务端发送过来的消息
-    NSString * message = note.object;
-    NSLog(@"%@",message);
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

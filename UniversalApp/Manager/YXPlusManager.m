@@ -133,4 +133,16 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
+#pragma mark ==========发送用户私信==========
+-(void)requestChatting_ListoryPOST:YX_BLOCK{
+    [HTTP_POST(@"/pub/chatting_history/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+#pragma mark ==========获取用户未读消息==========
+-(void)requestChatting_ListoryGet:YX_BLOCK{
+    [HTTP_GET(@"/pub/chatting_history/")  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 @end

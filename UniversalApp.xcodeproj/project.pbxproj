@@ -345,7 +345,6 @@
 		BB9832732201700C0048D103 /* FCXRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB98326B2201700C0048D103 /* FCXRefreshHeaderView.m */; };
 		BB9832742201700C0048D103 /* FCXRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB98326D2201700C0048D103 /* FCXRefreshBaseView.m */; };
 		BB9832752201700C0048D103 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = BB98326F2201700C0048D103 /* blueArrow.png */; };
-		BB98327F2202C9350048D103 /* html in Resources */ = {isa = PBXBuildFile; fileRef = BB98327E2202C9340048D103 /* html */; };
 		BB9832852202CD9A0048D103 /* XLDouYinLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9832832202CD9A0048D103 /* XLDouYinLoading.m */; };
 		BB9832872202D77C0048D103 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB9832862202D77C0048D103 /* Images.xcassets */; };
 		BB98329A229E165A00894FAF /* YXMineMyCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB983299229E165A00894FAF /* YXMineMyCollectionViewController.xib */; };
@@ -1301,7 +1300,6 @@
 		BB98326D2201700C0048D103 /* FCXRefreshBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCXRefreshBaseView.m; sourceTree = "<group>"; };
 		BB98326E2201700C0048D103 /* UIScrollView+FCXRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+FCXRefresh.h"; sourceTree = "<group>"; };
 		BB98326F2201700C0048D103 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
-		BB98327E2202C9340048D103 /* html */ = {isa = PBXFileReference; lastKnownFileType = folder; path = html; sourceTree = "<group>"; };
 		BB9832832202CD9A0048D103 /* XLDouYinLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLDouYinLoading.m; sourceTree = "<group>"; };
 		BB9832842202CD9A0048D103 /* XLDouYinLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLDouYinLoading.h; sourceTree = "<group>"; };
 		BB9832862202D77C0048D103 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -2335,7 +2333,6 @@
 			children = (
 				BBA9BE0422DEF495008EF4F7 /* UniversalApp.entitlements */,
 				BB21FDB222B09AC30059BCAC /* MDBridgingHeader.h */,
-				BB98327E2202C9340048D103 /* html */,
 				BBA8129F21DDAB00001B5EA1 /* Controller */,
 				BBC16282217AD6DE00008907 /* StoryBoard */,
 				29AD6C5D1ED3E4D600B0879C /* AppDelegate */,
@@ -2798,8 +2795,8 @@
 		BB21FD7822B0991E0059BCAC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				BB21FD7922B0991E0059BCAC /* KSMediaViewerController.m */,
 				BB21FD7A22B0991E0059BCAC /* KSMediaViewerController.h */,
+				BB21FD7922B0991E0059BCAC /* KSMediaViewerController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5885,7 +5882,6 @@
 				293D46451ECDBB63007C64A9 /* icon_tabbar_homepage_selected@2x.png in Resources */,
 				293D464D1ECDBB63007C64A9 /* icon_tabbar_mine_selected@2x.png in Resources */,
 				293D46531ECDBB63007C64A9 /* icon_tabbar_nearby_selected.png in Resources */,
-				BB98327F2202C9350048D103 /* html in Resources */,
 				293D46561ECDBB63007C64A9 /* icon_tabbar_onsite_selected@2x.png in Resources */,
 				BB0AE5C92253384900CC07EC /* YXFindSearchTagHeaderView.xib in Resources */,
 				BBDA2D1121EB30BF00EDCCFF /* MLEmoji_ExpressionImage.plist in Resources */,

@@ -1,6 +1,6 @@
 //
 //  KSMediaPickerController.swift
-//
+// 
 //
 //  Created by kinsun on 2019/3/1.
 //
@@ -66,26 +66,26 @@ open class KSMediaPickerController: UIViewController, UICollectionViewDelegate, 
         super.init(nibName: nil, bundle: nil)
     }
     
-    //    @objc public convenience init(mediaType: KSMediaPickerController.mediaType, maxItemCount: UInt) {
-    //        switch mediaType {
-    //        case .all:
-    //            self.init(maxItemCount: maxItemCount)
-    //            break
-    //        case .picture:
-    //            self.init(maxVideoItemCount: 0, maxPictureItemCount: maxItemCount)
-    //            break
-    //        case .video:
-    //            self.init(maxVideoItemCount: maxItemCount, maxPictureItemCount: 0)
-    //            break
-    //        }
-    //    }
-    //
-    //    @objc public convenience init(mediaType: KSMediaPickerController.mediaType) {
-    //        let maxItemCount: UInt = mediaType == .video ? 1 : 9
-    //        self.init(mediaType: mediaType, maxItemCount: maxItemCount)
-    //    }
+//    @objc public convenience init(mediaType: KSMediaPickerController.mediaType, maxItemCount: UInt) {
+//        switch mediaType {
+//        case .all:
+//            self.init(maxItemCount: maxItemCount)
+//            break
+//        case .picture:
+//            self.init(maxVideoItemCount: 0, maxPictureItemCount: maxItemCount)
+//            break
+//        case .video:
+//            self.init(maxVideoItemCount: maxItemCount, maxPictureItemCount: 0)
+//            break
+//        }
+//    }
+//
+//    @objc public convenience init(mediaType: KSMediaPickerController.mediaType) {
+//        let maxItemCount: UInt = mediaType == .video ? 1 : 9
+//        self.init(mediaType: mediaType, maxItemCount: maxItemCount)
+//    }
     
-    required public init?(coder aDecoder: NSCoder) {
+    @nonobjc required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -108,7 +108,7 @@ open class KSMediaPickerController: UIViewController, UICollectionViewDelegate, 
         collectionView.register(classObj.k_video_item_class, forCellWithReuseIdentifier: classObj.k_video_item_iden)
         collectionView.delegate = self
         collectionView.dataSource = self
-    
+        
         let tableView = view.albumTableView
         tableView.delegate = self
         tableView.dataSource = self
@@ -156,7 +156,7 @@ open class KSMediaPickerController: UIViewController, UICollectionViewDelegate, 
                     }, cancelHandler: cancelHandler)
                 }, cancelHandler: cancelHandler)
             }
-            }, cancelHandler: cancelHandler)
+        }, cancelHandler: cancelHandler)
     }
     
     private var _albumList: [KSMediaPickerAlbumModel]?
@@ -224,14 +224,6 @@ open class KSMediaPickerController: UIViewController, UICollectionViewDelegate, 
             return _remove(itemModel: itemModel)
         } else {
             return _add(itemModel: itemModel)
-        }
-    }
-    
-    private func _previewViewDidChanedSize(isClips: Bool) {
-        for item in _selectedAssetArray {
-            let k_item = item as! KSMediaPickerItemModel
-            k_item.contentOffset = nil
-            k_item.zoomScale = nil
         }
     }
     

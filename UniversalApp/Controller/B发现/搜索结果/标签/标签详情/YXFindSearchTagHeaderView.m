@@ -17,6 +17,12 @@
     // Drawing code
 }
 */
+- (IBAction)backVcAction:(id)sender {
+    self.backvcblock();
+}
+- (IBAction)fenxiangAction:(id)sender {
+    self.fenxiangblock();
+}
 
 - (IBAction)segmentAction:(id)sender {
     self.block(self.segment.selectedSegmentIndex);

@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <SocketRocket.h>
 
-extern NSString * const kNeedPayOrderNote;
-extern NSString * const kWebSocketDidOpenNote;
-extern NSString * const kWebSocketDidCloseNote;
-extern NSString * const kWebSocketdidReceiveMessageNote;
+//extern NSString * const kNeedPayOrderNote;
+//extern NSString * const kWebSocketDidOpenNote;
+//extern NSString * const kWebSocketDidCloseNote;
+//extern NSString * const kWebSocketdidReceiveMessageNote;
 
 @interface SocketRocketUtility : NSObject
 
@@ -22,6 +22,7 @@ extern NSString * const kWebSocketdidReceiveMessageNote;
 /** 开始连接 */
 - (void)SRWebSocketOpenWithURLString:(NSString *)urlString;
 
+-(void)SRWebSocketStart;
 /** 关闭连接 */
 - (void)SRWebSocketClose;
 

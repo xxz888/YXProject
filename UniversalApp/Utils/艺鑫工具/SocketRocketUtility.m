@@ -15,10 +15,7 @@ block();\
 dispatch_async(dispatch_get_main_queue(), block);\
 }
 
-NSString * const kNeedPayOrderNote               = @"kNeedPayOrderNote";
-NSString * const kWebSocketDidOpenNote           = @"kWebSocketDidOpenNote";
-NSString * const kWebSocketDidCloseNote          = @"kWebSocketDidCloseNote";
-NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessageNote";
+
 
 @interface SocketRocketUtility()<SRWebSocketDelegate>
 {
@@ -43,7 +40,13 @@ NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessage
     });
     return Instance;
 }
-
+-(void)SRWebSocketStart{
+     if ([userManager loadUserInfo]){
+          [[SocketRocketUtility instance] SRWebSocketClose];
+          NSString * url = @"ws://192.168.101.22:8001/push/";
+          [[SocketRocketUtility instance] SRWebSocketOpenWithURLString:url];
+      }
+}
 #pragma mark - **************** public methods
 -(void)SRWebSocketOpenWithURLString:(NSString *)urlString {
     
@@ -64,10 +67,13 @@ NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessage
     NSLog(@"请求的websocket地址：%@",self.socket.url.absoluteString);
 
     //SRWebSocketDelegate 协议
-    self.socket.delegate = self;   
+    self.socket.delegate = self;
     
     //开始连接
     [self.socket open];
+    
+//    [self destoryHeartBeat];
+//    [self sentheart];
 }
 
 - (void)SRWebSocketClose {
@@ -124,10 +130,10 @@ NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessage
         //您的网络状况不是很好，请检查网络后重试
         return;
     }
-    WeakSelf(self);
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(reConnectTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        weakSelf.socket = nil;
-        [weakSelf SRWebSocketOpenWithURLString:self.urlString];
+        self.socket = nil;
+        [self SRWebSocketOpenWithURLString:self.urlString];
         NSLog(@"重连");
     });
     
@@ -159,7 +165,7 @@ NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessage
     dispatch_main_async_safe(^{
         [self destoryHeartBeat];
         //心跳设置为3分钟，NAT超时一般为5分钟
-        heartBeat = [NSTimer timerWithTimeInterval:180 target:self selector:@selector(sentheart) userInfo:nil repeats:YES];
+        heartBeat = [NSTimer timerWithTimeInterval:3 target:self selector:@selector(sentheart) userInfo:nil repeats:YES];
         //和服务端约定好发送什么作为心跳标识，尽可能的减小心跳包大小
         [[NSRunLoop currentRunLoop] addTimer:heartBeat forMode:NSRunLoopCommonModes];
     })
@@ -167,9 +173,31 @@ NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessage
 
 - (void)sentheart {
     //发送心跳 和后台可以约定发送什么内容  一般可以调用ping  我这里根据后台的要求 发送了data给他
-    [self sendData:@"iosheart"];
+    NSLog(@"%ld",(long)self.socket.readyState);
+    NSInteger state = self.socket.readyState;
+//       SR_CONNECTING   = 0,
+//       SR_OPEN         = 1,
+//       SR_CLOSING      = 2,
+//       SR_CLOSED       = 3,
+//    NSDictionary * dic = @{@"type":@"2",@"message":@"heart"};
+//    if (state == 2 || state == 3) {
+//
+//    }else{
+//
+//    }
+    UserInfo * info = curUser;
+    NSDictionary * dic = @{@"type":@"1",@"message":info.token};
+    NSString * string = [self dictionaryToJson:dic];
+    [self sendData:string];
 }
-
+#pragma mark 字典转化字符串
+-(NSString*)dictionaryToJson:(NSDictionary *)dic
+{
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
 //pingPong
 - (void)ping {
     if (self.socket.readyState == SR_OPEN) {
@@ -182,10 +210,11 @@ NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessage
     //每次正常连接的时候清零重连时间
     reConnectTime = 0;
     //开启心跳
-   // [self initHeartBeat];
+    [self initHeartBeat];
     if (webSocket == self.socket) {
         NSLog(@"************************** socket 连接成功************************** ");
         [[NSNotificationCenter defaultCenter] postNotificationName:kWebSocketDidOpenNote object:nil];
+        [self sentheart];
     }
 }
 
@@ -222,22 +251,24 @@ NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessage
     
     if (webSocket == self.socket) {
         NSLog(@"************************** socket收到数据了************************** ");
-        NSLog(@"message:%@",message);
-        if ([message[@"type"] isEqualToString:@"new_message"]) {
-            [self getNewMessageNumeber];
-        }
-//        [[NSNotificationCenter defaultCenter] postNotificationName:kWebSocketdidReceiveMessageNote object:message];
+        NSLog(@"message:%@",[self UnicodeToUtf8:message]);
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kWebSocketdidReceiveMessageNote object:message];
     }
 }
--(void)getNewMessageNumeber{
-    kWeakSelf(self);
-    [YX_MANAGER requestGETNewMessageNumber:@"" success:^(id object) {
-        NSInteger count = [object[@"praise_number"] integerValue] + [object[@"fans_number"] integerValue] + [object[@"comment_number"] integerValue];
-        [[AppDelegate shareAppDelegate].mainTabBar.axcTabBar setBadge:NSIntegerToNSString(count) index:2];
-    }];
+-(NSString *)UnicodeToUtf8:(NSString *)str{
+    NSString *tempStr1=[str stringByReplacingOccurrencesOfString:@"\\u" withString:@"\\U"];
+    NSString *tempStr2=[tempStr1 stringByReplacingOccurrencesOfString:@"\""withString:@"\\\""];
+    NSString *tempStr3=[[@"\"" stringByAppendingString:tempStr2]stringByAppendingString:@"\""];
+    NSData *tempData=[tempStr3 dataUsingEncoding:NSUTF8StringEncoding];
+    NSString* returnStr =[NSPropertyListSerialization propertyListFromData:tempData
+                                                          mutabilityOption:NSPropertyListImmutable
+                                                                    format:NULL
+                                                          errorDescription:NULL];
+
+    return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n"withString:@"\n"];
+    return self;
 }
-
-
 #pragma mark - **************** setter getter
 - (SRReadyState)socketReadyState {
     return self.socket.readyState;

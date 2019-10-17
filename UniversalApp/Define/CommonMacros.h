@@ -34,6 +34,11 @@
 //用户信息储存，之后改的
 #define KUserInfo @"KUserInfo"
 
+#define kNeedPayOrderNote               @"kNeedPayOrderNote"
+#define kWebSocketDidOpenNote           @"kWebSocketDidOpenNote"
+#define kWebSocketDidCloseNote           @"kWebSocketDidCloseNote"
+#define kWebSocketdidReceiveMessageNote  @"kWebSocketdidReceiveMessageNote"
+
 
 #pragma mark - ——————— 网络状态相关 ————————
 

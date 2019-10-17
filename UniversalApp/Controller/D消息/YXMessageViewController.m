@@ -40,6 +40,9 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tuisongxiaoxi:) name:@"tuisongxiaoxi" object:nil];
 
+    [YXPLUS_MANAGER requestChatting_ListoryGet:@"" success:^(id object) {
+        NSLog(@"%@",object);
+    }];
 }
 -(void)tuisongxiaoxi:(NSNotification *)notice{
     [self.tableView reloadData];

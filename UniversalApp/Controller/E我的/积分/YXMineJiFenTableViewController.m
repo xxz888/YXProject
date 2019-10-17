@@ -169,21 +169,21 @@
 
 
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    NSLog(@"%f",self.tableView.contentOffset.y);
-    if (self.tableView.contentOffset.y <= 0) {
-        self.tableView.bounces = NO;
-        
-        NSLog(@"禁止下拉");
-    }
-    else
-        if (self.tableView.contentOffset.y >= 0){
-            self.tableView.bounces = YES;
-            NSLog(@"允许上拉");
-            
-        }
-}
+//-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    NSLog(@"%f",self.tableView.contentOffset.y);
+//    if (self.tableView.contentOffset.y <= 0) {
+//        self.tableView.bounces = NO;
+//        
+//        NSLog(@"禁止下拉");
+//    }
+//    else
+//        if (self.tableView.contentOffset.y >= 0){
+//            self.tableView.bounces = YES;
+//            NSLog(@"允许上拉");
+//            
+//        }
+//}
 - (IBAction)jifenshangchengAction:(id)sender {
     [self.navigationController pushViewController:[YXMineChouJiangViewController new] animated:YES];
 }

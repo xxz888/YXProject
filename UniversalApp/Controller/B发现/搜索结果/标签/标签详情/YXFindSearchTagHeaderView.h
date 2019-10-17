@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+typedef void(^backvcBlock)(void);
+typedef void(^fenxiangBlock)(void);
 @interface YXFindSearchTagHeaderView : UIView
 @property (weak, nonatomic) IBOutlet UIImageView *titleImageView;
 @property (weak, nonatomic) IBOutlet UILabel *lbl1;
@@ -17,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segment;
 typedef void(^clickSegment)(NSInteger);
 @property (nonatomic,copy) clickSegment block;
+@property (nonatomic,copy) backvcBlock backvcblock;
+@property (nonatomic,copy) fenxiangBlock fenxiangblock;
 
 @end
 

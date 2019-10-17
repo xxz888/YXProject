@@ -16,33 +16,77 @@
 #import "YXHomeXueJiaQuestionDetailViewController.h"
 #import "YXMineFootDetailViewController.h"
 #import "YXFirstFindImageTableViewCell.h"
+#import "QiniuLoad.h"
 @interface YXFindSearchTagDetailViewController ()<UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UICollectionViewDelegate,BKCustomSwitchBtnDelegate>{
     NSInteger page ;
 }
-@property(nonatomic,strong)NSMutableArray * dataArray;
 @property (strong,nonatomic)  UICollectionView * yxCollectionView;
 @property (nonatomic, strong) BKCustomSwitchBtn *changeShowTypeBtn;//转换cell布局的Btn
-@property (nonatomic, strong) YXFindSearchTagHeaderView * headerView;
+//@property (nonatomic, strong) YXFindSearchTagHeaderView * headerView;
 
 @end
 
 @implementation YXFindSearchTagDetailViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.hidden = YES;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    [self requestTableData];
+    
 }
-
--(void)viewDidLoad{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = KWhiteColor;
-    self.dataArray = [[NSMutableArray alloc]init];
-    self.title = self.key;
-    [self collectionViewCon];
-    [self addCollectionViewRefreshView:self.yxCollectionView];
-    [self requestAction];
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 280;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+        NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXFindSearchTagHeaderView" owner:self options:nil];
+        YXFindSearchTagHeaderView * headerView = [nib objectAtIndex:0];
+        headerView.frame = CGRectMake(0, 0, KScreenWidth, 280);
+    headerView.lbl1.text = kGetString(self.startDic[@"tag"]);
+    headerView.lbl2.text = [kGetString(self.startDic[@"count_tag"]) append:@"篇帖子"];
+    
+    NSString * photo = [self.startDic[@"photo"] contains:IMG_OLD_URI] ? [self.startDic[@"photo"] replaceAll:IMG_OLD_URI target:IMG_URI] : self.startDic[@"photo"] ;
+    [headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    kWeakSelf(self);
+    headerView.backvcblock = ^{
+        [weakself.navigationController popViewControllerAnimated:YES];
+    };
+    headerView.fenxiangblock = ^{
+        [weakself addGuanjiaShareView];
+    };
+    return headerView;
+
+}
+-(void)requestTableData{
+     [self requestMine_AllList];
+}
+-(void)headerRereshing{
+    [super headerRereshing];
+    [self requestTableData];
+}
+-(void)footerRereshing{
+    [super footerRereshing];
+    [self requestTableData];
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+CGFloat sectionHeaderHeight = 280;
+if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+} else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+}
+}
+//-(void)viewDidLoad{
+//    [super viewDidLoad];
+//    self.view.backgroundColor = KWhiteColor;
+//    self.dataArray = [[NSMutableArray alloc]init];
+//    self.title = self.key;
+//
+//    [self requestAction];
+//}
 -(void)requestAction{
     kWeakSelf(self);
     [YX_MANAGER requestSearchFind_all:@{@"key":self.key,@"page":NSIntegerToNSString(self.requestPage),@"type":self.type,@"key_unicode":[self.key utf8ToUnicode]} success:^(id object) {
@@ -53,242 +97,120 @@
 
     }];
 }
--(YXFindSearchTagHeaderView *)headerView{
-    if (!_headerView) {
-        NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXFindSearchTagHeaderView" owner:self options:nil];
-        _headerView = [nib objectAtIndex:0];
-        _headerView.frame = CGRectMake(0, 0, KScreenWidth, 150);
-        _headerView.titleImageView.layer.masksToBounds = YES;
-        _headerView.titleImageView.layer.cornerRadius = _headerView.titleImageView.frame.size.width / 2.0;
-    }
-    _headerView.lbl1.text = kGetString(self.startDic[@"tag"]);
-    _headerView.lbl2.text = [kGetString(self.startDic[@"count_tag"]) append:@"篇帖子"];
+
+
+
+#pragma mark ========== 我自己的所有 ==========
+-(void)requestMine_AllList{
     
-    NSString * photo = [self.startDic[@"photo"] contains:IMG_OLD_URI] ? [self.startDic[@"photo"] replaceAll:IMG_OLD_URI target:IMG_URI] : self.startDic[@"photo"] ;
-    [_headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     kWeakSelf(self);
-    _headerView.block = ^(NSInteger segmentIndex) {
-        weakself.type = segmentIndex == 0 ? @"3" : @"4";
-        [weakself requestAction];
-    };
-    return _headerView;
-}
-
--(void)headerRereshing{
-    [super headerRereshing];
-    [self requestAction];
-}
--(void)footerRereshing{
-    [super footerRereshing];
-    [self requestAction];
-}
-
--(void)collectionViewCon{
-    
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.headerReferenceSize =CGSizeMake(KScreenWidth,150);//头视图大小
-
-    CGFloat heightKK = AxcAE_IsiPhoneX ? 212 : 155;
-    CGFloat height =  (AxcAE_IsiPhoneX ? - 64 : -54) ;
-    CGRect frame = CGRectMake(0, 0, KScreenWidth,KScreenHeight-kTopHeight);
-    self.yxCollectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:layout];
-    self.yxCollectionView.backgroundColor = KWhiteColor;
-    self.showType = signleLineShowDoubleGoods;
-    [self.view addSubview:self.yxCollectionView];
-    //更换展示商品列表的按钮
-    _changeShowTypeBtn = [[BKCustomSwitchBtn alloc]initWithFrame:CGRectZero];
-    _changeShowTypeBtn.hidden = YES;
-    _changeShowTypeBtn.selected = YES;
-    _changeShowTypeBtn.myDelegate = self;
-    [_changeShowTypeBtn setDragEnable:YES];
-    [_changeShowTypeBtn setAdsorbEnable:YES];
-    _changeShowTypeBtn.frame = CGRectMake(KScreenWidth-30, 20, 30, 30);
-    [_changeShowTypeBtn addTarget:self action:@selector(changeShowTypeHome:) forControlEvents:UIControlEventTouchUpInside];
-    [_changeShowTypeBtn setBackgroundImage:[UIImage imageNamed:@"商品列表样式1"] forState:UIControlStateNormal];
-    [_changeShowTypeBtn setBackgroundImage:[UIImage imageNamed:@"商品列表样式2"] forState:UIControlStateSelected];
-    [self.view addSubview:_changeShowTypeBtn];
-    
-    
-    self.yxCollectionView.dataSource = self;
-    self.yxCollectionView.delegate = self;
-    self.yxCollectionView.alwaysBounceVertical = YES;
-    self.yxCollectionView.showsVerticalScrollIndicator = NO;
-    self.yxCollectionView.showsHorizontalScrollIndicator = NO;
-    [self.yxCollectionView registerNib:[UINib nibWithNibName:@"YXMineImageCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"YXMineImageCollectionViewCell"];
-    [self.yxCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
-}
-
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    UICollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header" forIndexPath:indexPath];
-    [header addSubview:[self headerView]];
-    return header;
-}
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    return CGSizeMake(KScreenWidth, 150);
-}
-
-#pragma mark ========== 界面刷新 ==========x
--(void)mineShaiTuRefreshAction:(id)object{
-    self.dataArray = [self commonCollectionAction:object dataArray:self.dataArray];
-    [self.yxCollectionView reloadData];
+    NSString * parString =[NSString stringWithFormat:@"0&page=%@",NSIntegerToNSString(self.requestPage)];
+    [YX_MANAGER requestGet_users_find:parString success:^(id object){
+        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
+        [weakself.yxTableView reloadData];
+        weakself.nodataImg.hidden = weakself.dataArray.count != 0;
+    }];
 }
 #pragma mark ========== 晒图点赞 ==========
--(void)requestDianZanAction:(NSIndexPath *)indexPath{
+-(void)requestDianZan_Image_Action:(NSIndexPath *)indexPath{
     kWeakSelf(self);
     NSString* post_id = kGetString(self.dataArray[indexPath.row][@"id"]);
     [YX_MANAGER requestPost_praisePOST:@{@"post_id":post_id} success:^(id object) {
-        [self requestAction];
+        [weakself requestTableData];
     }];
 }
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 1;
-}
 
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.dataArray.count;
-}
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary * dic = self.dataArray[indexPath.row];
-    YXMineImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YXMineImageCollectionViewCell" forIndexPath:indexPath];
-    cell.essayTitleImageView.tag = indexPath.row;
-    
-    if ([self.dataArray[indexPath.row][@"url_list"] count] > 0) {
-        NSString * str1 = [(NSMutableString *)self.dataArray[indexPath.row][@"url_list"][0] replaceAll:@" " target:@"%20"];
-        [cell.midImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    }
-
-    cell.titleLbl.text = [dic[@"detail"] UnicodeToUtf8];
-    BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
-    UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
-    [cell.likeBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
-
-    
-    
-    [cell.userImageView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:dic[@"photo"]]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    NSString * praisNum = kGetString(dic[@"praise_number"]);
-    cell.zanLbl.text = praisNum;
-    cell.userLbl.text = dic[@"user_name"];
+#pragma mark ========== 分享 ==========
+- (void)addGuanjiaShareView{
+    QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
     kWeakSelf(self);
-    cell.block = ^(YXMineImageCollectionViewCell * cell) {
-        NSIndexPath * indexPath = [weakself.yxCollectionView indexPathForCell:cell];
-        [weakself requestDianZanAction:indexPath];
-    };
-    return cell;
-}
+    moreOperationController.items = @[
+                                      // 第一行
+                                      @[
+                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareFriend") title:@"分享给微信好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                                              [moreOperationController hideToBottom];
+                                              [weakself saveImage:UMSocialPlatformType_WechatSession];
+                                          }],
+                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareMoment") title:@"分享到朋友圈" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                                              [moreOperationController hideToBottom];
+                                              [weakself saveImage:UMSocialPlatformType_WechatTimeLine];
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
-    
-    NSDictionary * dic = self.dataArray[indexPath.row];
-    NSInteger tag = [dic[@"obj"] integerValue];
-    if (tag == 1) {//晒图
-        YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
-        CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:dic];
-        VC.headerViewHeight = h;
-        VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-        [self.navigationController pushViewController:VC animated:YES];
+                                          }],
+                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_QQ") title:@"分享给QQ好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                                              [weakself saveImage:UMSocialPlatformType_QQ];
+
+                                          }],
+                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                                              [moreOperationController hideToBottom];
+                                              [weakself saveImage:UMSocialPlatformType_Qzone];
+
+                                          }],
+                                          ],
+                                      ];
+    [moreOperationController showFromBottom];
+
+}
+/**
+ *  截取当前屏幕
+ *
+ *  @return NSData *
+ */
+- (NSData *)dataWithScreenshotInPNGFormat{
+    CGSize imageSize = CGSizeZero;
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (UIInterfaceOrientationIsPortrait(orientation))
+        imageSize = [UIScreen mainScreen].bounds.size;
+    else
+        imageSize = CGSizeMake([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
+    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    for (UIWindow *window in [[UIApplication sharedApplication] windows])
+    {
+        CGContextSaveGState(context);
+        CGContextTranslateCTM(context, window.center.x, window.center.y);
+        CGContextConcatCTM(context, window.transform);
+        CGContextTranslateCTM(context, -window.bounds.size.width * window.layer.anchorPoint.x, -window.bounds.size.height * window.layer.anchorPoint.y);
+        if (orientation == UIInterfaceOrientationLandscapeLeft)
+        {
+            CGContextRotateCTM(context, M_PI_2);
+            CGContextTranslateCTM(context, 0, -imageSize.width);
+        }
+        else if (orientation == UIInterfaceOrientationLandscapeRight)
+        {
+            CGContextRotateCTM(context, -M_PI_2);
+            CGContextTranslateCTM(context, -imageSize.height, 0);
+        } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+            CGContextRotateCTM(context, M_PI);
+            CGContextTranslateCTM(context, -imageSize.width, -imageSize.height);
+        }
+        if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)])
+        {
+            [window drawViewHierarchyInRect:window.bounds afterScreenUpdates:YES];
+        }
+        else
+        {
+            [window.layer renderInContext:context];
+        }
+        CGContextRestoreGState(context);
     }
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return UIImagePNGRepresentation(image);
 }
-
-
-
--(Moment *)setTestInfo:(NSDictionary *)dic{
-    NSMutableArray *commentList = nil;
-    Moment *moment = [[Moment alloc] init];
-    moment.praiseNameList = nil;
-    moment.userName = dic[@"user_name"];
-    moment.text = dic[@"title"];
-    moment.detailText = dic[@"question"];
-    moment.time = dic[@"publish_date"] ? [dic[@"publish_date"] longLongValue] : [dic[@"publish_time"] longLongValue];
-    moment.singleWidth = (KScreenWidth-30)/3;
-    moment.singleHeight = 100;
-    moment.location = @"";
-    moment.isPraise = NO;
-    moment.photo =dic[@"user_photo"];
-    moment.startId = dic[@"id"];
-    NSMutableArray * imgArr = [NSMutableArray array];
-    if ([dic[@"pic1"] length] >= 5) {
-        [imgArr addObject:dic[@"pic1"]];
-    }
-    if ([dic[@"pic2"] length] >= 5) {
-        [imgArr addObject:dic[@"pic2"]];
-    }
-    if ([dic[@"pic3"] length] >= 5) {
-        [imgArr addObject:dic[@"pic3"]];
-    }
-    moment.imageListArray = [NSMutableArray arrayWithArray:imgArr];
-    moment.fileCount = imgArr.count;
-    
-    commentList = [[NSMutableArray alloc] init];
-    int num = (int)[dic[@"answer"] count];
-    for (int j = 0; j < num; j ++) {
-        Comment *comment = [[Comment alloc] init];
-        comment.userName = dic[@"answer"][j][@"user_name"];
-        comment.text =  dic[@"answer"][j][@"answer"];
-        comment.time = 1487649503;
-        comment.pk = j;
-        [commentList addObject:comment];
-    }
-    [moment setValue:commentList forKey:@"commentList"];
-    return moment;
-}
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    CGFloat height = 280;
-    if (self.showType == singleLineShowOneGoods) {
-        return CGSizeMake(KScreenWidth, height + 100);
-    } else {
-        return CGSizeMake((KScreenWidth-10)/2.0-0.5, height);
-    }
-
-    
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    
-    return 0.001f;
-    
-}
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    
-    return 0.001f;
-}
-#pragma mark - set方法
--(void)setDataArray:(NSArray *)dataArray{
-    _dataArray = dataArray;
-    [self.yxCollectionView reloadData];
-}
-
--(void)setShowType:(GoodsListShowType)showType{
-    _showType = showType;
-    [self.yxCollectionView reloadData];
-}
-
-#pragma mark - 更改展示样式
--(void)changeShowTypeHome:(UIButton *)btn{
-    
-    if (btn.isSelected) {
-        btn.selected = NO;
-        // self.goodsShowType = singleLineShowOneGoods;
-        self.showType =singleLineShowOneGoods;
-        
-    } else {
-        btn.selected = YES;
-        // self.goodsShowType = signleLineShowDoubleGoods;
-        self.showType =signleLineShowDoubleGoods;
-    }
-}
-#pragma mark - 禁止切换btn位置在搜索条件栏上
--(void)btnCurrentLocationOrignalY:(CGFloat)orignalY begainPoint:(CGPoint)point{
-    //
-    //    if (self.backScrollView.frame.origin.y > orignalY) {
-    //        [UIView animateWithDuration:0.2 animations:^{
-    //            self.changeShowTypeBtn.frame = CGRectMake(ScreenWidth-40, self.backScrollView.frame.origin.y + 5, 30, 30);
-    //        }];
-    //    }
-}
--(void)backBtnClicked{
-    [self.navigationController popViewControllerAnimated:YES];
+- (void)saveImage:(UMSocialPlatformType)umType{
+    NSData *imageData = [self dataWithScreenshotInPNGFormat];
+    UIImage* viewImage = [UIImage imageWithData:imageData];
+    //先上传到七牛云图片  再提交服务器
+      [QMUITips showLoadingInView:self.view];
+    kWeakSelf(self)
+    [QiniuLoad uploadImageToQNFilePath:@[viewImage] success:^(NSString *reslut) {
+          [QMUITips hideAllTips];
+           UserInfo * info = curUser;
+           NSString * title = [NSString stringWithFormat:@"%@@蓝皮书app",info.username];
+           NSString * desc = [NSString stringWithFormat:@"分享了%@，快来关注吧！",weakself.startDic[@"tag"]];
+          [[ShareManager sharedShareManager] shareAllToPlatformType:umType obj:@{@"img":reslut,@"desc":desc,@"title":title,@"type":@"3"}];
+    } failure:^(NSString *error) {
+        NSLog(@"%@",error);
+    }];
 }
 @end

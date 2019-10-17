@@ -53,7 +53,7 @@ CGSizeFlatSpecificScale(CGSize size, float scale) {
         if (ShouldAssertResizableImageCapInsetsError) {
             NSAssert(NO, text);
         } else {
-            QMUILogWarn(@"UIImage (QMUI)", @"%@", text);
+//            QMUILogWarn(@"UIImage (QMUI)", @"%@", text);
         }
     }
     return [self qmuiimage_resizableImageWithCapInsets:capInsets resizingMode:resizingMode];

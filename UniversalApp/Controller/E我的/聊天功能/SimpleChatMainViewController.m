@@ -55,8 +55,22 @@
         self.iPhoneX = 0;
     }
     [self createTableView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketDidCloseNote object:nil];
+
+}
+- (void)SRWebSocketDidOpen {
+    NSLog(@"开启成功");
+    //在成功后需要做的操作。。。
+    
 }
 
+- (void)SRWebSocketDidReceiveMsg:(NSNotification *)note {
+    //收到服务端发送过来的消息
+    NSString * message = note.object;
+    NSLog(@"%@",message);
+}
 -(NSMutableArray *)messages
 {
     if (_messages == nil) {
@@ -129,13 +143,19 @@
     self.inputTextField.delegate = self;
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    NSDictionary * dic = @{@"aim_id":kGetString(self.userInfoDic[@"id"]),@"type":@"1",@"content":textField.text};
+     [YXPLUS_MANAGER requestChatting_ListoryPOST:dic success:^(id object) {
+         
+     }];
     [self addMessage:textField.text type:MessageModelTypeMe];
     [self addMessage:[self autoReplayWith:textField.text] type:MessageModelTypeOther];
     NSIndexPath * path = [NSIndexPath indexPathForRow:self.messages.count - 1 inSection:0];
     [self.mainTableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     self.inputTextField.text = @"";
+    
+ 
+    
     return YES;
 }
 

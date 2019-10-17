@@ -1,7 +1,7 @@
 //
 //  GitHub: https://github.com/iphone5solo/PYSearch
 //  Created by CoderKo1o.
-//  Copyright © 2016 iphone5solo. All rights reserved.
+//  Copyright © 2015 iphone5solo. All rights reserved.
 //
 
 #import "PYSearchViewController.h"
@@ -139,6 +139,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.isShowLiftBack = YES;
+    self.navigationController.navigationBar.hidden = NO;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     if (self.cancelButtonWidth == 0) { // Just adapt iOS 11.2
@@ -170,13 +172,13 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:nil];
-    [self.searchHeaderView.searchBar resignFirstResponder];
-    
-    if (_searchViewControllerShowMode == PYSearchViewControllerShowModePush) {
-        self.navigationController.interactivePopGestureRecognizer.delegate = _previousInteractivePopGestureRecognizerDelegate;
-    }
+//    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setShadowImage:nil];
+//    [self.searchHeaderView.searchBar resignFirstResponder];
+//
+//    if (_searchViewControllerShowMode == PYSearchViewControllerShowModePush) {
+//        self.navigationController.interactivePopGestureRecognizer.delegate = _previousInteractivePopGestureRecognizerDelegate;
+//    }
 }
 
 - (void)dealloc
@@ -289,8 +291,9 @@
 - (UILabel *)searchHistoryHeader
 {
     if (!_searchHistoryHeader) {
-        UILabel *titleLabel = [self setupTitleLabel:@"历史记录"];
-        titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
+        UILabel *titleLabel = [self setupTitleLabel:@"历史搜索"];
+        
+        titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15];
         [self.searchHistoryView addSubview:titleLabel];
         _searchHistoryHeader = titleLabel;
     }
@@ -319,19 +322,6 @@
     return _searchHistories;
 }
 
-- (NSMutableArray *)colorPol
-{
-    if (!_colorPol) {
-        NSArray *colorStrPol = @[@"009999", @"0099cc", @"0099ff", @"00cc99", @"00cccc", @"336699", @"3366cc", @"3366ff", @"339966", @"666666", @"666699", @"6666cc", @"6666ff", @"996666", @"996699", @"999900", @"999933", @"99cc00", @"99cc33", @"660066", @"669933", @"990066", @"cc9900", @"cc6600" , @"cc3300", @"cc3366", @"cc6666", @"cc6699", @"cc0066", @"cc0033", @"ffcc00", @"ffcc33", @"ff9900", @"ff9933", @"ff6600", @"ff6633", @"ff6666", @"ff6699", @"ff3366", @"ff3333"];
-        NSMutableArray *colorPolM = [NSMutableArray array];
-        for (NSString *colorStr in colorStrPol) {
-            UIColor *color = [UIColor py_colorWithHexString:colorStr];
-            [colorPolM addObject:color];
-        }
-        _colorPol = colorPolM;
-    }
-    return _colorPol;
-}
 
 - (void)setup
 {
@@ -354,7 +344,6 @@
     self.showKeyboardWhenReturnSearchResult = YES;
     self.removeSpaceOnSearchString = YES;
     
-    [self setNavSearchView];
     self.searchHeaderView.searchBarHeight.constant = 50;
     [self.searchHeaderView.cancleBtn addTarget:self action:@selector(cancelDidClick) forControlEvents:UIControlEventTouchUpInside];
     UIView *headerView = [[UIView alloc] init];
@@ -370,7 +359,7 @@
     UILabel *titleLabel = [self setupTitleLabel:@"热门"];
     self.hotSearchHeader = titleLabel;
     titleLabel.textColor = KBlackColor;
-    titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
+    titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15];
     [hotSearchView addSubview:titleLabel];
     UIView *hotSearchTagsContentView = [[UIView alloc] init];
     hotSearchTagsContentView.py_width = KScreenWidth;
@@ -406,167 +395,21 @@
     self.baseSearchTableView.tableFooterView = footerView;
     
     self.hotSearches = nil;
+    [self setNavSearchView];
+
 }
 
 - (UILabel *)setupTitleLabel:(NSString *)title
 {
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.text = title;
-    titleLabel.font = [UIFont systemFontOfSize:13];
+    titleLabel.font = [UIFont systemFontOfSize:15];
     titleLabel.tag = 1;
     titleLabel.textColor = PYTextColor;
     [titleLabel sizeToFit];
     titleLabel.py_x = 0;
     titleLabel.py_y = 0;
     return titleLabel;
-}
-
-- (void)setupHotSearchRectangleTags
-{
-    UIView *contentView = self.hotSearchTagsContentView;
-    contentView.py_width = PYSEARCH_REALY_SCREEN_WIDTH;
-    contentView.py_x = -PYSEARCH_MARGIN * 1.5;
-    contentView.py_y += 2;
-    contentView.backgroundColor = [UIColor whiteColor];
-    self.baseSearchTableView.backgroundColor = [UIColor py_colorWithHexString:@"#efefef"];
-    // remove all subviews in hotSearchTagsContentView
-    [self.hotSearchTagsContentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    
-    CGFloat rectangleTagH = 40;
-    NSMutableArray *rectangleTagLabelsM = [NSMutableArray array];
-    for (int i = 0; i < self.hotSearches.count; i++) {
-        UILabel *rectangleTagLabel = [[UILabel alloc] init];
-        rectangleTagLabel.userInteractionEnabled = YES;
-        rectangleTagLabel.font = [UIFont systemFontOfSize:14];
-        rectangleTagLabel.textColor = PYTextColor;
-        rectangleTagLabel.backgroundColor = [UIColor clearColor];
-        rectangleTagLabel.text = self.hotSearches[i];
-        rectangleTagLabel.py_width = contentView.py_width / PYRectangleTagMaxCol;
-        rectangleTagLabel.py_height = rectangleTagH;
-        rectangleTagLabel.textAlignment = NSTextAlignmentCenter;
-        [rectangleTagLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tagDidCLick:)]];
-        rectangleTagLabel.py_x = rectangleTagLabel.py_width * (i % PYRectangleTagMaxCol);
-        rectangleTagLabel.py_y = rectangleTagLabel.py_height * (i / PYRectangleTagMaxCol);
-        [contentView addSubview:rectangleTagLabel];
-        [rectangleTagLabelsM addObject:rectangleTagLabel];
-    }
-    self.hotSearchTags = [rectangleTagLabelsM copy];
-    contentView.py_height = CGRectGetMaxY(contentView.subviews.lastObject.frame);
-    
-    self.hotSearchView.py_height = CGRectGetMaxY(contentView.frame) + PYSEARCH_MARGIN * 2;
-    self.baseSearchTableView.tableHeaderView.py_height = self.headerView.py_height = MAX(CGRectGetMaxY(self.hotSearchView.frame), CGRectGetMaxY(self.searchHistoryView.frame));
-    
-    for (int i = 0; i < PYRectangleTagMaxCol - 1; i++) {
-        UIImageView *verticalLine = [[UIImageView alloc] initWithImage:[NSBundle py_imageNamed:@"cell-content-line-vertical"]];
-        verticalLine.py_height = contentView.py_height;
-        verticalLine.alpha = 0.7;
-        verticalLine.py_x = contentView.py_width / PYRectangleTagMaxCol * (i + 1);
-        verticalLine.py_width = 0.5;
-        [contentView addSubview:verticalLine];
-    }
-    
-    for (int i = 0; i < ceil(((double)self.hotSearches.count / PYRectangleTagMaxCol)) - 1; i++) {
-        UIImageView *verticalLine = [[UIImageView alloc] initWithImage:[NSBundle py_imageNamed:@"cell-content-line"]];
-        verticalLine.py_height = 0.5;
-        verticalLine.alpha = 0.7;
-        verticalLine.py_y = rectangleTagH * (i + 1);
-        verticalLine.py_width = contentView.py_width;
-        [contentView addSubview:verticalLine];
-    }
-    [self layoutForDemand];
-    // Note：When the operating system for the iOS 9.x series tableHeaderView height settings are invalid, you need to reset the tableHeaderView
-    [self.baseSearchTableView setTableHeaderView:self.baseSearchTableView.tableHeaderView];
-}
-
-- (void)setupHotSearchRankTags
-{
-    UIView *contentView = self.hotSearchTagsContentView;
-    [self.hotSearchTagsContentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    
-    NSMutableArray *rankTextLabelsM = [NSMutableArray array];
-    NSMutableArray *rankTagM = [NSMutableArray array];
-    NSMutableArray *rankViewM = [NSMutableArray array];
-    for (int i = 0; i < self.hotSearches.count; i++) {
-        UIView *rankView = [[UIView alloc] init];
-        rankView.py_height = 40;
-        rankView.py_width = (self.baseSearchTableView.py_width - PYSEARCH_MARGIN * 3) * 0.5;
-        rankView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        [contentView addSubview:rankView];
-        // rank tag
-        UILabel *rankTag = [[UILabel alloc] init];
-        rankTag.textAlignment = NSTextAlignmentCenter;
-        rankTag.font = [UIFont systemFontOfSize:10];
-        rankTag.layer.cornerRadius = 3;
-        rankTag.clipsToBounds = YES;
-        rankTag.text = [NSString stringWithFormat:@"%d", i + 1];
-        [rankTag sizeToFit];
-        rankTag.py_width = rankTag.py_height += PYSEARCH_MARGIN * 0.5;
-        rankTag.py_y = (rankView.py_height - rankTag.py_height) * 0.5;
-        [rankView addSubview:rankTag];
-        [rankTagM addObject:rankTag];
-        // rank text
-        UILabel *rankTextLabel = [[UILabel alloc] init];
-        rankTextLabel.text = self.hotSearches[i];
-        rankTextLabel.userInteractionEnabled = YES;
-        [rankTextLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tagDidCLick:)]];
-        rankTextLabel.textAlignment = NSTextAlignmentLeft;
-        rankTextLabel.backgroundColor = [UIColor clearColor];
-        rankTextLabel.textColor = PYTextColor;
-        rankTextLabel.font = [UIFont systemFontOfSize:14];
-        rankTextLabel.py_x = CGRectGetMaxX(rankTag.frame) + PYSEARCH_MARGIN;
-        rankTextLabel.py_width = (self.baseSearchTableView.py_width - PYSEARCH_MARGIN * 3) * 0.5 - rankTextLabel.py_x;
-        rankTextLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        rankTextLabel.py_height = rankView.py_height;
-        [rankTextLabelsM addObject:rankTextLabel];
-        [rankView addSubview:rankTextLabel];
-        
-        UIImageView *line = [[UIImageView alloc] initWithImage:[NSBundle py_imageNamed:@"cell-content-line"]];
-        line.py_height = 0.5;
-        line.alpha = 0.7;
-        line.py_x = -PYScreenW * 0.5;
-        line.py_y = rankView.py_height - 1;
-        line.py_width = self.baseSearchTableView.py_width;
-        line.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        [rankView addSubview:line];
-        [rankViewM addObject:rankView];
-        
-        // set tag's background color and text color
-        switch (i) {
-            case 0: // NO.1
-                rankTag.backgroundColor = [UIColor py_colorWithHexString:self.rankTagBackgroundColorHexStrings[0]];
-                rankTag.textColor = [UIColor whiteColor];
-                break;
-            case 1: // NO.2
-                rankTag.backgroundColor = [UIColor py_colorWithHexString:self.rankTagBackgroundColorHexStrings[1]];
-                rankTag.textColor = [UIColor whiteColor];
-                break;
-            case 2: // NO.3
-                rankTag.backgroundColor = [UIColor py_colorWithHexString:self.rankTagBackgroundColorHexStrings[2]];
-                rankTag.textColor = [UIColor whiteColor];
-                break;
-            default: // Other
-                rankTag.backgroundColor = [UIColor py_colorWithHexString:self.rankTagBackgroundColorHexStrings[3]];
-                rankTag.textColor = PYTextColor;
-                break;
-        }
-    }
-    self.rankTextLabels = rankTextLabelsM;
-    self.rankTags = rankTagM;
-    self.rankViews = rankViewM;
-    
-    for (int i = 0; i < self.rankViews.count; i++) { // default is two column
-        UIView *rankView = self.rankViews[i];
-        rankView.py_x = (PYSEARCH_MARGIN + rankView.py_width) * (i % 2);
-        rankView.py_y = rankView.py_height * (i / 2);
-    }
-    
-    contentView.py_height = CGRectGetMaxY(self.rankViews.lastObject.frame);
-    self.hotSearchView.py_height = CGRectGetMaxY(contentView.frame) + PYSEARCH_MARGIN * 2;
-    self.baseSearchTableView.tableHeaderView.py_height = self.headerView.py_height = MAX(CGRectGetMaxY(self.hotSearchView.frame), CGRectGetMaxY(self.searchHistoryView.frame));
-    [self layoutForDemand];
-    
-    // Note：When the operating system for the iOS 9.x series tableHeaderView height settings are invalid, you need to reset the tableHeaderView
-    [self.baseSearchTableView setTableHeaderView:self.baseSearchTableView.tableHeaderView];
 }
 
 - (void)setupHotSearchNormalTags
@@ -718,14 +561,14 @@
 
 - (void)setCancelBarButtonItem:(UIBarButtonItem *)cancelBarButtonItem
 {
-    _cancelBarButtonItem = cancelBarButtonItem;
-    self.navigationItem.rightBarButtonItem = cancelBarButtonItem;
+//    _cancelBarButtonItem = cancelBarButtonItem;
+//    self.navigationItem.rightBarButtonItem = cancelBarButtonItem;
 }
 
 - (void)setCancelButton:(UIButton *)cancelButton
 {
-    _cancelButton = cancelButton;
-    self.navigationItem.rightBarButtonItem.customView = cancelButton;
+//    _cancelButton = cancelButton;
+//    self.navigationItem.rightBarButtonItem.customView = cancelButton;
 }
 
 - (void)setSearchHistoriesCachePath:(NSString *)searchHistoriesCachePath
@@ -805,9 +648,9 @@
         || PYHotSearchStyleARCBorderTag == self.hotSearchStyle) {
         [self setupHotSearchNormalTags];
     } else if (PYHotSearchStyleRankTag == self.hotSearchStyle) {
-        [self setupHotSearchRankTags];
+
     } else if (PYHotSearchStyleRectangleTag == self.hotSearchStyle) {
-        [self setupHotSearchRectangleTags];
+
     }
     [self setSearchHistoryStyle:self.searchHistoryStyle];
 }
@@ -987,11 +830,11 @@
 {
     UILabel *label = [[UILabel alloc] init];
     label.userInteractionEnabled = YES;
-    label.font = [UIFont systemFontOfSize:12];
+    label.font = [UIFont systemFontOfSize:14];
     label.text = title;
-    label.textColor = KBlackColor;
-    label.backgroundColor = [UIColor py_colorWithHexString:@"#fafafa"];
-    label.layer.cornerRadius = 3;
+    label.textColor = [UIColor py_colorWithHexString:@"#444444"];
+    label.backgroundColor = [UIColor py_colorWithHexString:@"#F5F5F5"];
+    label.layer.cornerRadius = 4;
     label.clipsToBounds = YES;
     label.textAlignment = NSTextAlignmentCenter;
     [label sizeToFit];
@@ -1031,7 +874,7 @@
 {
     switch (self.searchResultShowMode) {
         case PYSearchResultShowModePush:
-            self.searchResultController.view.hidden = NO;
+            self.searchResultController.view.hidden = YES;
             [self.navigationController pushViewController:self.searchResultController animated:YES];
             break;
         case PYSearchResultShowModeEmbed:
@@ -1161,7 +1004,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.textLabel.textColor = PYTextColor;
-        cell.textLabel.font = [UIFont systemFontOfSize:14];
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
         cell.backgroundColor = [UIColor clearColor];
         
         UIButton *closetButton = [[UIButton alloc] init];

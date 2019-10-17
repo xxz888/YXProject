@@ -43,6 +43,8 @@
 
 //如果是从发现界面编辑进来的
 -(void)faxianEditCome{
+    
+    
     //标签
     self.tagArray = [NSMutableArray arrayWithArray:[self.model.tag split:@" "]];
     [self addNewTags];

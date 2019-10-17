@@ -8,7 +8,6 @@
 
 #import "YXFindSearchResultUsersViewController.h"
 #import "YXFindSearchTableViewCell.h"
-#import "YXFindSearchResultTagViewController.h"
 #import "HGPersonalCenterViewController.h"
 @interface YXFindSearchResultUsersViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView * yxTableView;

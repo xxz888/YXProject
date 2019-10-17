@@ -101,8 +101,9 @@
 
     }
     if (MessageModelTypeMe == message.type) {
+             [self.contentBtn setBackgroundImage:[UIImage resizableImageWith:@"chat_send_nor"] forState:UIControlStateNormal];
         [self.iconView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:userInfo.photo]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
-        [self.contentBtn setBackgroundImage:[UIImage resizableImageWith:@"chat_send_nor"] forState:UIControlStateNormal];
+   
         [self.contentBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
     }else{
         [self.contentBtn setBackgroundImage:[UIImage resizableImageWith:@"chat_recive_nor"]  forState:UIControlStateNormal];

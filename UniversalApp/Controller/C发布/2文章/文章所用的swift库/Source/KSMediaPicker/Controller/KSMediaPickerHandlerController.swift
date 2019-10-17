@@ -1,6 +1,6 @@
 //
 //  KSMediaPickerHandlerController.swift
-//
+// 
 //
 //  Created by kinsun on 2019/3/21.
 //
@@ -13,7 +13,7 @@ open class KSMediaPickerHandlerController: UIViewController, UICollectionViewDat
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private let _layout = {() -> UICollectionViewFlowLayout in
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -32,7 +32,7 @@ open class KSMediaPickerHandlerController: UIViewController, UICollectionViewDat
     public required init(itemModelArray: [KSMediaPickerItemModel]) {
         self.itemModelArray = itemModelArray
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: _layout)
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .clear
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
         if #available(iOS 11.0, *) {
@@ -49,13 +49,12 @@ open class KSMediaPickerHandlerController: UIViewController, UICollectionViewDat
     
     override open func loadView() {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .ks_background
         
         let classOjb = KSMediaPickerHandlerController.self
         
         _collectionView.register(classOjb.k_class_picture, forCellWithReuseIdentifier: classOjb.k_iden_picture)
         _collectionView.register(classOjb.k_class_video, forCellWithReuseIdentifier: classOjb.k_iden_video)
-        
         _collectionView.dataSource = self
         _collectionView.delegate = self
         view.addSubview(_collectionView)
@@ -175,8 +174,8 @@ open class KSMediaPickerHandlerController: UIViewController, UICollectionViewDat
             let scaleWidth = imageSize.width/imageFrameSize.width
             let scaleHeight = imageSize.height/imageFrameSize.height
             let rect = CGRect(x: -(imageFrame.origin.x)*scaleWidth, y: -(imageFrame.origin.y)*scaleHeight, width: windowWidth*scaleWidth, height: windowSize.height*scaleHeight)
-            let outputImageSize = imageSize;
-            k_image = image.cut(from: rect)?.aspectFit(from: outputImageSize, backgroundColor: .clear)
+            let outputImageSize = CGSize(width: 720.0, height: windowSize.height*720.0/windowSize.width)
+            k_image = image.cut(from: rect)?.aspectFit(from: outputImageSize, backgroundColor: .lightGray)
         }
         return k_image
     }
@@ -265,7 +264,7 @@ extension KSMediaPickerHandlerController {
         
         override public init(frame: CGRect) {
             super.init(frame: frame)
-            backgroundColor = .white
+            backgroundColor = .ks_white
             addSubview(nextButton)
             addSubview(closeButton)
             addSubview(_titleLabel)

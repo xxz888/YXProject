@@ -28,6 +28,8 @@ typedef void(^OpenBlock)(NSString *);
 @property (nonatomic,assign) BOOL useBool;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleImageViewHeight;
 
+@property (weak, nonatomic) IBOutlet UIImageView *shoucangImage;
+@property (weak, nonatomic) IBOutlet UILabel *shoucangLabel;
 
 @end
 

@@ -12,7 +12,6 @@
 #import "UDPManage.h"
 #import "YXBindPhoneViewController.h"
 #import "YXLoginXieYiViewController.h"
-#import "SocketRocketUtility.h"
 @interface LoginViewController ()<UITextFieldDelegate>
 //1 播放器
 @property (strong, nonatomic) AVPlayer *player;

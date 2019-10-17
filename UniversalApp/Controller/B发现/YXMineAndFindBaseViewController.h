@@ -38,7 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)requestMine_AllList;
 @property (nonatomic, strong) UILabel * nodataImg;
 
-
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 
 @end
 

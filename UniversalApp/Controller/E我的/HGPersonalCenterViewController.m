@@ -559,7 +559,6 @@ static CGFloat const HeaderImageViewHeight =320;
         imageSize = [UIScreen mainScreen].bounds.size;
     else
         imageSize = CGSizeMake([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
-    
     UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
     for (UIWindow *window in [[UIApplication sharedApplication] windows])
@@ -591,14 +590,10 @@ static CGFloat const HeaderImageViewHeight =320;
         }
         CGContextRestoreGState(context);
     }
-    
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
     return UIImagePNGRepresentation(image);
 }
-
-
 - (void)saveImage:(UMSocialPlatformType)umType{
     NSData *imageData = [self dataWithScreenshotInPNGFormat];
     UIImage* viewImage = [UIImage imageWithData:imageData];
