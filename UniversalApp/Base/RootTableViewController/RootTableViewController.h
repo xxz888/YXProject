@@ -29,7 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isHidenNaviBar;
 
 @property (nonatomic,assign) NSInteger requestPage;
-
+- (void)addRefreshView:(UITableView *)yxTableView;
+-(void)headerRereshing;
+-(void)footerRereshing;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -235,9 +235,9 @@ static JQFMDB *jqdb = nil;
     for (int i = 0; i < outCount; i++) {
         
         NSString *name = [NSString stringWithCString:property_getName(properties[i]) encoding:NSUTF8StringEncoding];
-        if (![clomnArr containsObject:name]) {
-            continue;
-        }
+//        if (![clomnArr containsObject:name]) {
+//            continue;
+//        }
         
         id value = [model valueForKey:name];
         if (value) {

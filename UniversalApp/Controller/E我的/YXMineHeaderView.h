@@ -14,12 +14,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *mineImageView;
 @property (weak, nonatomic) IBOutlet UILabel *mineTitle;
 @property (weak, nonatomic) IBOutlet UILabel *mineAdress;
+@property (weak, nonatomic) IBOutlet UIStackView *myStackView;
+@property (weak, nonatomic) IBOutlet UIStackView *otherStackView;
+@property (weak, nonatomic) IBOutlet UIView *fasixinView;
 
 @property (weak, nonatomic) IBOutlet UILabel *guanzhuCountLbl;
 @property (weak, nonatomic) IBOutlet UILabel *fensiCountLbl;
 @property (weak, nonatomic) IBOutlet UILabel *tieshuCountLbl;
 @property (weak, nonatomic) IBOutlet UIButton *tieshubtn;
 @property (weak, nonatomic) IBOutlet UIButton *fasixinBtn;
+@property (weak, nonatomic) IBOutlet UILabel *otherguanzhucountlbl;
+@property (weak, nonatomic) IBOutlet UILabel *otherfensicountlbl;
 
 typedef void(^fasixinBlock)();
 - (IBAction)fasixinAction:(id)sender;

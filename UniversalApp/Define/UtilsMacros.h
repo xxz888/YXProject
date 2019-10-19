@@ -25,6 +25,8 @@
 #define SHOW_FUTURE_DEV @"功能正在开发中..."
 
 #define YX_USER_FaBuCaoGao @"YX_FaBuCaoGao"
+#define YX_USER_LiaoTian @"YX_LiaoTianMessage"
+
 #define UM_User_Info_0 @"UMUserInfo0"
 #define UM_User_Info_1 @"UMUserInfo1"
 

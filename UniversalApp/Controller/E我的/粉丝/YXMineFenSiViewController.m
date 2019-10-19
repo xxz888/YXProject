@@ -73,11 +73,11 @@
     cell.common1GuanzhuBtn.tag = [dic[key2] integerValue];
     NSString * imgString = dic[key3];
     BOOL is_like = [dic[@"is_like"] integerValue] == 1;
-    [ShareManager setGuanZhuStatus:cell.common1GuanzhuBtn status:is_like alertView:NO];
+    [ShareManager setGuanZhuStatus:cell.common1GuanzhuBtn status:!is_like alertView:NO];
     if (is_like) {
         [cell.common1GuanzhuBtn setTitle:@"互相关注" forState:UIControlStateNormal];
     }else{
-        [cell.common1GuanzhuBtn setTitle:@"关注" forState:UIControlStateNormal];
+        [cell.common1GuanzhuBtn setTitle:@"+关注" forState:UIControlStateNormal];
     }
     UserInfo * userInfo = curUser;
     if ([userInfo.username isEqualToString:self.dataArray[indexPath.row][key1]]) {
@@ -110,13 +110,13 @@
     kWeakSelf(self);
     NSString * common_id_string = NSIntegerToNSString(common_id);
     [YX_MANAGER requestLikesActionGET:common_id_string success:^(id object) {
-        BOOL is_like = [cell.common1GuanzhuBtn.titleLabel.text isEqualToString:@"关注"] == 1;
+        BOOL is_like = [cell.common1GuanzhuBtn.titleLabel.text isEqualToString:@"+关注"] == 1;
         [ShareManager setGuanZhuStatus:cell.common1GuanzhuBtn status:!is_like alertView:YES];
 
         if (is_like) {
              [cell.common1GuanzhuBtn setTitle:@"互相关注" forState:UIControlStateNormal];
         }else{
-             [cell.common1GuanzhuBtn setTitle:@"关注" forState:UIControlStateNormal];
+             [cell.common1GuanzhuBtn setTitle:@"+关注" forState:UIControlStateNormal];
         }
 
     }];

@@ -108,9 +108,7 @@
 		BB07FB0B2356EA4400F34D2D /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB07FAFE2356EA4400F34D2D /* MessageModel.m */; };
 		BB07FB0C2356EA4400F34D2D /* NSString+HQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BB07FB002356EA4400F34D2D /* NSString+HQExtension.m */; };
 		BB07FB0E2356EA4400F34D2D /* MessageFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB07FB022356EA4400F34D2D /* MessageFrameModel.m */; };
-		BB07FB0F2356EA4400F34D2D /* messages.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB07FB032356EA4400F34D2D /* messages.plist */; };
 		BB07FB112356EA4400F34D2D /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB07FB062356EA4400F34D2D /* MessageCell.m */; };
-		BB07FB122356EA4400F34D2D /* autoResent.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB07FB072356EA4400F34D2D /* autoResent.plist */; };
 		BB07FB132356EA4400F34D2D /* SimpleChatMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB07FB092356EA4400F34D2D /* SimpleChatMainViewController.m */; };
 		BB07FB152357001900F34D2D /* SimpleChatMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB07FB142357001900F34D2D /* SimpleChatMainViewController.xib */; };
 		BB07FB1D2357099100F34D2D /* YXMessageThreeDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB07FB192357099000F34D2D /* YXMessageThreeDetailViewCell.xib */; };
@@ -356,6 +354,7 @@
 		BB9ECD502285211600A12952 /* UIScrollView+FanHui.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9ECD4F2285211600A12952 /* UIScrollView+FanHui.m */; };
 		BB9EFE7021F5CCBA00180813 /* YXPublishMoreTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFE6E21F5CCBA00180813 /* YXPublishMoreTagsViewController.m */; };
 		BB9EFE7121F5CCBA00180813 /* YXPublishMoreTagsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB9EFE6F21F5CCBA00180813 /* YXPublishMoreTagsViewController.xib */; };
+		BBA1EE77235957610047CBDA /* YZLiaoTianModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA1EE76235957610047CBDA /* YZLiaoTianModel.m */; };
 		BBA8129621DDA9A5001B5EA1 /* YXHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA8129521DDA9A5001B5EA1 /* YXHome.storyboard */; };
 		BBA8129821DDA9B6001B5EA1 /* YXFind.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA8129721DDA9B6001B5EA1 /* YXFind.storyboard */; };
 		BBA8129A21DDA9F1001B5EA1 /* YXPublish.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA8129921DDA9F1001B5EA1 /* YXPublish.storyboard */; };
@@ -911,10 +910,8 @@
 		BB07FAFF2356EA4400F34D2D /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		BB07FB002356EA4400F34D2D /* NSString+HQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HQExtension.m"; sourceTree = "<group>"; };
 		BB07FB022356EA4400F34D2D /* MessageFrameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageFrameModel.m; sourceTree = "<group>"; };
-		BB07FB032356EA4400F34D2D /* messages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = messages.plist; sourceTree = "<group>"; };
 		BB07FB042356EA4400F34D2D /* UIImage+HQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+HQExtension.h"; sourceTree = "<group>"; };
 		BB07FB062356EA4400F34D2D /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
-		BB07FB072356EA4400F34D2D /* autoResent.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = autoResent.plist; sourceTree = "<group>"; };
 		BB07FB082356EA4400F34D2D /* MessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
 		BB07FB092356EA4400F34D2D /* SimpleChatMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleChatMainViewController.m; sourceTree = "<group>"; };
 		BB07FB142357001900F34D2D /* SimpleChatMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleChatMainViewController.xib; sourceTree = "<group>"; };
@@ -1318,6 +1315,8 @@
 		BB9EFE6D21F5CCBA00180813 /* YXPublishMoreTagsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXPublishMoreTagsViewController.h; sourceTree = "<group>"; };
 		BB9EFE6E21F5CCBA00180813 /* YXPublishMoreTagsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXPublishMoreTagsViewController.m; sourceTree = "<group>"; };
 		BB9EFE6F21F5CCBA00180813 /* YXPublishMoreTagsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXPublishMoreTagsViewController.xib; sourceTree = "<group>"; };
+		BBA1EE75235957610047CBDA /* YZLiaoTianModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZLiaoTianModel.h; sourceTree = "<group>"; };
+		BBA1EE76235957610047CBDA /* YZLiaoTianModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZLiaoTianModel.m; sourceTree = "<group>"; };
 		BBA8129521DDA9A5001B5EA1 /* YXHome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = YXHome.storyboard; sourceTree = "<group>"; };
 		BBA8129721DDA9B6001B5EA1 /* YXFind.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = YXFind.storyboard; sourceTree = "<group>"; };
 		BBA8129921DDA9F1001B5EA1 /* YXPublish.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = YXPublish.storyboard; sourceTree = "<group>"; };
@@ -2553,10 +2552,12 @@
 		BB07FAF62356E8D000F34D2D /* 聊天功能 */ = {
 			isa = PBXGroup;
 			children = (
-				BB07FAF82356EA4400F34D2D /* 聊天所用库 */,
 				BB07FAF72356EA4300F34D2D /* SimpleChatMainViewController.h */,
 				BB07FB092356EA4400F34D2D /* SimpleChatMainViewController.m */,
 				BB07FB142357001900F34D2D /* SimpleChatMainViewController.xib */,
+				BB07FAF82356EA4400F34D2D /* 聊天所用库 */,
+				BBA1EE75235957610047CBDA /* YZLiaoTianModel.h */,
+				BBA1EE76235957610047CBDA /* YZLiaoTianModel.m */,
 			);
 			path = "聊天功能";
 			sourceTree = "<group>";
@@ -2574,8 +2575,6 @@
 				BB07FB002356EA4400F34D2D /* NSString+HQExtension.m */,
 				BB07FB042356EA4400F34D2D /* UIImage+HQExtension.h */,
 				BB07FAFB2356EA4400F34D2D /* UIImage+HQExtension.m */,
-				BB07FB032356EA4400F34D2D /* messages.plist */,
-				BB07FB072356EA4400F34D2D /* autoResent.plist */,
 			);
 			path = "聊天所用库";
 			sourceTree = "<group>";
@@ -3595,6 +3594,8 @@
 			children = (
 				BB5FD86921FE9B2F00B5F1A8 /* SaltedFishTabBarVC.h */,
 				BB5FD86821FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m */,
+				BB46926822E6F5D800A7A77E /* SocketRocketUtility.h */,
+				BB46926722E6F5D700A7A77E /* SocketRocketUtility.m */,
 				BBD1C7782216A98D0063002F /* 晒图问答足迹 */,
 				BBF26E2C224489C80000AEF5 /* 0登录 */,
 				BBA812A421DDAB7A001B5EA1 /* A首页 */,
@@ -3755,8 +3756,6 @@
 			isa = PBXGroup;
 			children = (
 				BB227B1823346AA0004A04EC /* PingFang.ttc */,
-				BB46926822E6F5D800A7A77E /* SocketRocketUtility.h */,
-				BB46926722E6F5D700A7A77E /* SocketRocketUtility.m */,
 				BBBBC0F222BCD2FE00F528E1 /* VideoPlayer */,
 				BB688A1322ADE8BE00964FA3 /* OrgHalfLineLabel.h */,
 				BB688A1422ADE8BE00964FA3 /* OrgHalfLineLabel.m */,
@@ -5764,7 +5763,6 @@
 				BBD2C94121E0F67800350DCD /* UIBarButtonItemArrowLeft@3x.png in Resources */,
 				2917D2071EE007C300E76185 /* MBHUD_Success@2x.png in Resources */,
 				BB29121222156BB500FF484E /* Double Robusto.gif in Resources */,
-				BB07FB122356EA4400F34D2D /* autoResent.plist in Resources */,
 				BBB59B3A228CF92D0029D3D0 /* YXGridView.xib in Resources */,
 				BBD2C93821E0F67800350DCD /* VideoOverlay@3x.png in Resources */,
 				BB29120B22156BB500FF484E /* Grand Corona.gif in Resources */,
@@ -5828,7 +5826,6 @@
 				BBB59B1F228CF8CB0029D3D0 /* YXHomeChiCunViewController.xib in Resources */,
 				BBBCDBB2223F65540056C7DD /* LICENSE in Resources */,
 				2917D20B1EE007C300E76185 /* MBHUD_Error@2x.png in Resources */,
-				BB07FB0F2356EA4400F34D2D /* messages.plist in Resources */,
 				293D464C1ECDBB63007C64A9 /* icon_tabbar_mine_selected.png in Resources */,
 				BBC3FB4C22C5C59B00BB2564 /* no_data@2x.png in Resources */,
 				296F85091FED04EF005612D1 /* close_icon@2x.png in Resources */,
@@ -6454,6 +6451,7 @@
 				BB013348232F69B500573AC0 /* YXMineShouHuoTableViewCell.m in Sources */,
 				BB6D2A3621EEC63900F5049F /* HCEmojiManager.m in Sources */,
 				BBCC4B1821E8927700493F40 /* Utility.m in Sources */,
+				BBA1EE77235957610047CBDA /* YZLiaoTianModel.m in Sources */,
 				BBE82CFF21E44A7D004E4144 /* ZLPhotoPickerDatas.m in Sources */,
 				BBA812C521DDBF6A001B5EA1 /* UITabBar+TBBadge.m in Sources */,
 				BBB59AE2228CF8CB0029D3D0 /* YXHomeXueJiaQuestionViewController.m in Sources */,

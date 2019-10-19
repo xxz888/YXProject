@@ -165,26 +165,15 @@ dispatch_async(dispatch_get_main_queue(), block);\
     dispatch_main_async_safe(^{
         [self destoryHeartBeat];
         //心跳设置为3分钟，NAT超时一般为5分钟
-        heartBeat = [NSTimer timerWithTimeInterval:3 target:self selector:@selector(sentheart) userInfo:nil repeats:YES];
+        heartBeat = [NSTimer timerWithTimeInterval:180 target:self selector:@selector(sentheart) userInfo:nil repeats:YES];
         //和服务端约定好发送什么作为心跳标识，尽可能的减小心跳包大小
         [[NSRunLoop currentRunLoop] addTimer:heartBeat forMode:NSRunLoopCommonModes];
     })
 }
 
 - (void)sentheart {
-    //发送心跳 和后台可以约定发送什么内容  一般可以调用ping  我这里根据后台的要求 发送了data给他
-    NSLog(@"%ld",(long)self.socket.readyState);
+
     NSInteger state = self.socket.readyState;
-//       SR_CONNECTING   = 0,
-//       SR_OPEN         = 1,
-//       SR_CLOSING      = 2,
-//       SR_CLOSED       = 3,
-//    NSDictionary * dic = @{@"type":@"2",@"message":@"heart"};
-//    if (state == 2 || state == 3) {
-//
-//    }else{
-//
-//    }
     UserInfo * info = curUser;
     NSDictionary * dic = @{@"type":@"1",@"message":info.token};
     NSString * string = [self dictionaryToJson:dic];
@@ -252,7 +241,10 @@ dispatch_async(dispatch_get_main_queue(), block);\
     if (webSocket == self.socket) {
         NSLog(@"************************** socket收到数据了************************** ");
         NSLog(@"message:%@",[self UnicodeToUtf8:message]);
-        
+        NSDictionary * messageDic = [ShareManager stringToDic:message];
+        if (messageDic[@"message"][@"data"]) {
+           [YX_MANAGER.socketMessageArray addObject:messageDic];
+        }
         [[NSNotificationCenter defaultCenter] postNotificationName:kWebSocketdidReceiveMessageNote object:message];
     }
 }

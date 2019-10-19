@@ -15,10 +15,20 @@ typedef enum
 } MessageModelType;
 
 @interface MessageModel : NSObject
+
+@property (nonatomic, strong)NSString  * aim_id;
+@property (nonatomic, strong)NSString  * own_id;
+@property (nonatomic, strong)NSString  * aim_info;
+@property (nonatomic, strong)NSString  * own_info;
+
+/**
+ id
+ */
+@property (nonatomic, strong)NSString  * xxzid;
 /**
  other
  */
-@property (nonatomic, strong)NSDictionary  * otherDic;
+@property (nonatomic, strong)NSString  * photo;
 /**
  正文
  */

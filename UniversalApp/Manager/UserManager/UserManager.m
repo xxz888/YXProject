@@ -8,6 +8,7 @@
 
 #import "UserManager.h"
 #import "YXBindPhoneViewController.h"
+#import "SocketRocketUtility.h"
 @implementation UserManager
 
 SINGLETON_FOR_CLASS(UserManager);
@@ -280,6 +281,7 @@ SINGLETON_FOR_CLASS(UserManager);
     
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:KUserInfo];
     
+    [[SocketRocketUtility instance] SRWebSocketClose];
 
     //移除缓存
 //    YYCache *cache = [[YYCache alloc]initWithName:KUserCacheName];

@@ -257,6 +257,49 @@ SINGLETON_FOR_CLASS(ShareManager);
     return confromTimespStr;
     
 }
++ (NSString *)getOtherTimeStrWithString:(NSString *)formatTime{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss.SSS"]; //(@"YYYY-MM-dd hh:mm:ss") ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    //设置时区选择北京时间
+    NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
+    [formatter setTimeZone:timeZone];
+    NSDate* date = [formatter dateFromString:formatTime]; //------------将字符串按formatter转成nsdate
+    //时间转时间戳的方法:
+    NSInteger timeSp = [[NSNumber numberWithDouble:[date timeIntervalSince1970]] integerValue] * 1000;
+    return [NSString stringWithFormat:@"%ld",(long)timeSp];
+}
++(NSString *)haomiaoZhuanRIqi:(NSString *)haomiao{
+     NSTimeInterval interval    =[haomiao doubleValue] / 1000.0;
+       
+       NSDate *date              = [NSDate dateWithTimeIntervalSince1970:interval];
+       
+       NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+       
+       [formatter setDateFormat:@"HH:mm"];
+       
+       [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"Asia/Beijing"]];
+       
+       NSString *dateString      = [formatter stringFromDate: date];
+              
+       return dateString;
+}
++(NSString *)haomiaoNianYueRi:(NSString *)haomiao{
+     NSTimeInterval interval    =[haomiao doubleValue] / 1000.0;
+       
+       NSDate *date              = [NSDate dateWithTimeIntervalSince1970:interval];
+       
+       NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+       
+       [formatter setDateFormat:@"MM-dd HH:mm"];
+       
+       [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"Asia/Beijing"]];
+       
+       NSString *dateString      = [formatter stringFromDate: date];
+              
+       return dateString;
+}
 +(NSString *)getNowTimeMiaoShu{
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
@@ -316,16 +359,18 @@ SINGLETON_FOR_CLASS(ShareManager);
 }
 +(void)setGuanZhuStatus:(UIButton *)btn status:(BOOL)statusBool alertView:(BOOL)isAlertView{
      if (statusBool) {
-        [btn setTitle:@"关注" forState:UIControlStateNormal];
+         [btn setTitle:@"+关注" forState:UIControlStateNormal];
+         [btn setTitleColor:KWhiteColor forState:0];
+         [btn setBackgroundColor:SEGMENT_COLOR];
+         ViewBorderRadius(btn, 5, 1, KClearColor);
          isAlertView ? [QMUITips showSucceed:@"操作成功"] : nil;
     }else{
         [btn setTitle:@"已关注" forState:UIControlStateNormal];
+        [btn setTitleColor:kRGBA(153, 153, 153, 1) forState:0];
+        [btn setBackgroundColor:kRGBA(245, 245, 245, 1)];
+        ViewBorderRadius(btn, 5, 1, KClearColor);
         isAlertView ?  [QMUITips showSucceed:@"操作成功"] : nil;
-
     }
-    [btn setTitleColor:A_COlOR forState:0];
-    [btn setBackgroundColor:KWhiteColor];
-    ViewBorderRadius(btn, 5, 1, A_COlOR);
 }
 
 
@@ -338,7 +383,28 @@ SINGLETON_FOR_CLASS(ShareManager);
     [view addSubview:starRateView];
     return starRateView;
 }
-
+#pragma mark 字典转化字符串
++(NSString*)dicToString:(NSDictionary *)dic
+{
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
++ (NSDictionary *)stringToDic:(NSString *)jsonString
+{
+    if (jsonString == nil) {
+        return nil;
+    }
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
+    if(err) {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
+}
 //添加轮播图
 +(SDCycleScrollView *)setUpSycleScrollView:(NSMutableArray *)imageArray{
     

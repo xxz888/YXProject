@@ -101,8 +101,11 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.backVCHaveParblock(self.dataArray[indexPath.row]);
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.backVCHaveParblock) {
+         self.backVCHaveParblock(self.dataArray[indexPath.row]);
+        [self.navigationController popViewControllerAnimated:YES];
+
+    }
 }
 - (IBAction)backVc:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];

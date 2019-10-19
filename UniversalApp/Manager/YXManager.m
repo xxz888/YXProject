@@ -1054,6 +1054,9 @@ successBlock(responseObject);\
     self.cache1Dic = [[NSMutableDictionary alloc]init];
     self.cache1Array = [[NSMutableArray alloc]init];
     self.cache2Array = [[NSMutableArray alloc]init];
+    self.socketMessageArray = [[NSMutableArray alloc]init];
+
+
     self.isClear = NO;
     self.moreBool = NO;
     return  self;

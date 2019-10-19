@@ -41,7 +41,7 @@
 #define B_COlOR YXRGBAColor(51, 51, 51)
 #define A_COlOR YXRGBAColor(176, 151, 99)
 #define C_COLOR YXRGBAColor(242, 242, 242)
-#define SEGMENT_COLOR YXRGBAColor(12, 36, 45)
+#define SEGMENT_COLOR YXRGBAColor(10, 36, 54)
 #define KDarkGaryColor [UIColor darkGrayColor]
 #pragma mark -  字体区
 

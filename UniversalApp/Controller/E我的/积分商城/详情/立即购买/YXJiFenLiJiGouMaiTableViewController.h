@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YXJiFenLiJiGouMaiTableViewController : RootTableViewController
 - (IBAction)backVcAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *addAdressLbl;
+@property (weak, nonatomic) IBOutlet UILabel *shouhuorenTagLbl;
 
 @property (weak, nonatomic) IBOutlet UILabel *shouhuoren;
 @property (weak, nonatomic) IBOutlet UILabel *shouhuoPhone;

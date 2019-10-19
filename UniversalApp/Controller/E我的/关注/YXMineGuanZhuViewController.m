@@ -88,7 +88,7 @@
     kWeakSelf(self);
     NSString * common_id_string = NSIntegerToNSString(common_id);
     [YX_MANAGER requestLikesActionGET:common_id_string success:^(id object) {
-        BOOL is_like = [cell.common1GuanzhuBtn.titleLabel.text isEqualToString:@"关注"] == 1;
+        BOOL is_like = [cell.common1GuanzhuBtn.titleLabel.text isEqualToString:@"+关注"] == 1;
         [ShareManager setGuanZhuStatus:cell.common1GuanzhuBtn status:!is_like alertView:YES];
     }];
 }

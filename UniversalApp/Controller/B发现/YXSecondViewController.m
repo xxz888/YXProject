@@ -50,7 +50,7 @@
 -(void)rightBottomBtn{
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setImage:[UIImage imageNamed:@"findjiahao"] forState:0];
-    btn.frame = CGRectMake(KScreenWidth-16-54, KScreenHeight-kTabBarHeight-54-10+6, 54, 54);
+    btn.frame = CGRectMake(KScreenWidth-16-54+1, KScreenHeight-kTabBarHeight-54-10+6-22, 48, 48);
     [self.view addSubview:btn];
     [btn addTarget:self action:@selector(handleShowContentViewController) forControlEvents:UIControlEventTouchUpInside];
 }

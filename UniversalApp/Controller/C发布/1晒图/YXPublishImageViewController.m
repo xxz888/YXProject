@@ -12,7 +12,7 @@
 #define photo2_BOOL photo2 && photo2.length > 5
 #define photo3_BOOL photo3 && photo3.length > 5
 #import "JQFMDB.h"
-
+#import "YXShaiTuModel.h"
 @interface YXPublishImageViewController ()
 
 

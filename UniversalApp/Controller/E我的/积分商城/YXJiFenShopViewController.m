@@ -11,7 +11,7 @@
 #import "YXJiFenShop1TableViewCell.h"
 #import "YXJiFenShop2TableViewCell.h"
 #import "YXJiFenShopDetailViewController.h"
-
+#import "YXMineJiFenTableViewController.h"
 @interface YXJiFenShopViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
 @property(nonatomic)SDCycleScrollView *cycleScrollView3;
 @property (nonatomic,strong) NSMutableArray * dataArray;
@@ -128,6 +128,11 @@
 
 
 
+- (IBAction)wodejifenAction:(id)sender {
+    UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
+    YXMineJiFenTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineJiFenTableViewController"];
+       [self.navigationController pushViewController:VC animated:YES];
+}
 
 
 

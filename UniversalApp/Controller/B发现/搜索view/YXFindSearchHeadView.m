@@ -16,6 +16,10 @@
 //    searchTextField.font = [UIFont systemFontOfSize:13];
 //
 //    [self addShadowToView:self withColor:KDarkGaryColor];
+    self.searchBar.tintColor = SEGMENT_COLOR;
+
+
+
 }
 
 
@@ -29,7 +33,7 @@
     // 阴影透明度，默认0
     theView.layer.shadowOpacity = 0.2;
     // 阴影半径，默认3
-    theView.layer.shadowRadius = 5;
+    theView.layer.shadowRadius = 15;
 }
 /**
  通过覆盖intrinsicContentSize函数修改自定义View的Intrinsic的大小

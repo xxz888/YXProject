@@ -21,6 +21,7 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 @property(nonatomic,strong)NSMutableDictionary * cache1Dic;
 @property(nonatomic,strong)NSMutableArray * cache1Array;
 @property(nonatomic,strong)NSMutableArray * cache2Array;
+@property(nonatomic,strong)NSMutableArray * socketMessageArray;
 
 @property(nonatomic,strong)NSArray * shareContentArray;
 

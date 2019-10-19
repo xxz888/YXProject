@@ -73,4 +73,9 @@ SINGLETON_FOR_HEADER(ShareManager)
 +(CGFloat)inTextZhiNanOutHeight:(NSString *)str lineSpace:(CGFloat)lineSpacing fontSize:(CGFloat)fontSize width:(CGFloat)width;
 - (void)pushShareViewAndDic:(NSDictionary *)shareDic;
 - (void)shareAllToPlatformType:(UMSocialPlatformType)platformType obj:(id)obj;
++ (NSDictionary *)stringToDic:(NSString *)jsonString;
++(NSString*)dicToString:(NSDictionary *)dic;
++(NSString *)haomiaoZhuanRIqi:(NSString *)haomiao;
++ (NSString *)getOtherTimeStrWithString:(NSString *)formatTime;
++(NSString *)haomiaoNianYueRi:(NSString *)haomiao;
 @end

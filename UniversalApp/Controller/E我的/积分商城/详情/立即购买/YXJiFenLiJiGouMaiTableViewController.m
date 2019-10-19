@@ -30,6 +30,10 @@
     [self.view addSubview:self.footerView];
     self.addressArray = [[NSMutableArray alloc]init];
     
+
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     
     kWeakSelf(self);
     self.footerView.lijigoumaiblock = ^{
@@ -78,7 +82,8 @@
     kWeakSelf(self);
     [YXPLUS_MANAGER requestAddressListGet:@"" success:^(id object) {
         if ([object[@"address_list"] count] == 0) {
-          
+            weakself.addAdressLbl.hidden = NO;
+            weakself.shouhuorenTagLbl.hidden = weakself.shouhuoren.hidden = weakself.shouhuoPhone.hidden = weakself.shouhuoAddress.hidden = YES;
         }else{
             for (NSDictionary * dic in object[@"address_list"]) {
                 if ([dic[@"default"] integerValue] == 1) {
@@ -86,6 +91,8 @@
                     weakself.shouhuoPhone.text = dic[@"phone"];
                     weakself.shouhuoAddress.text = dic[@"site"];
                     weakself.address_id = kGetString(dic[@"id"]);
+                    weakself.addAdressLbl.hidden = YES;
+                    weakself.shouhuorenTagLbl.hidden = weakself.shouhuoren.hidden = weakself.shouhuoPhone.hidden = weakself.shouhuoAddress.hidden = NO;
                 }
             }
         }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="dIm-f3-03R">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="W5Q-Dh-5ne"/>
@@ -28,10 +28,10 @@
                     </connections>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AnI-SK-dLf">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdV-je-xfJ">
-                            <rect key="frame" x="16" y="45" width="22" height="22"/>
+                            <rect key="frame" x="16" y="11" width="22" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="22" id="bR7-Ma-cg8"/>
                                 <constraint firstAttribute="height" constant="22" id="gLq-Ye-wh1"/>
@@ -42,20 +42,40 @@
                                 <action selector="backVcAction:" destination="-1" eventType="touchUpInside" id="E5B-B8-wab"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分商城" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ums-Gy-4oP">
+                            <rect key="frame" x="171" y="9" width="72.5" height="26"/>
+                            <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="18"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IRh-iK-3d3">
+                            <rect key="frame" x="342" y="6" width="56" height="32"/>
+                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                            <state key="normal" title="我的积分">
+                                <color key="titleColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="wodejifenAction:" destination="-1" eventType="touchUpInside" id="IOS-Qv-ez3"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="Ums-Gy-4oP" firstAttribute="centerX" secondItem="AnI-SK-dLf" secondAttribute="centerX" id="PZu-ka-h5N"/>
                         <constraint firstItem="mdV-je-xfJ" firstAttribute="leading" secondItem="AnI-SK-dLf" secondAttribute="leading" constant="16" id="RIT-GZ-lZ9"/>
-                        <constraint firstItem="mdV-je-xfJ" firstAttribute="top" secondItem="AnI-SK-dLf" secondAttribute="top" constant="45" id="seP-mp-mRa"/>
-                        <constraint firstAttribute="height" constant="80" id="ujh-Wi-cQE"/>
+                        <constraint firstItem="Ums-Gy-4oP" firstAttribute="centerY" secondItem="mdV-je-xfJ" secondAttribute="centerY" id="f1Y-ZP-74d"/>
+                        <constraint firstItem="IRh-iK-3d3" firstAttribute="centerY" secondItem="Ums-Gy-4oP" secondAttribute="centerY" id="heE-Df-Se2"/>
+                        <constraint firstAttribute="bottom" secondItem="mdV-je-xfJ" secondAttribute="bottom" constant="11" id="pQe-Qy-RIN"/>
+                        <constraint firstAttribute="trailing" secondItem="IRh-iK-3d3" secondAttribute="trailing" constant="16" id="rmi-dG-GmC"/>
+                        <constraint firstAttribute="height" constant="44" id="ujh-Wi-cQE"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="AnI-SK-dLf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Fr8-jG-1Hk"/>
+                <constraint firstItem="dIm-f3-03R" firstAttribute="top" secondItem="AnI-SK-dLf" secondAttribute="bottom" id="FV5-Bd-hMp"/>
+                <constraint firstItem="AnI-SK-dLf" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="Fr8-jG-1Hk"/>
                 <constraint firstAttribute="bottom" secondItem="dIm-f3-03R" secondAttribute="bottom" id="Imj-UO-JJ3"/>
-                <constraint firstItem="dIm-f3-03R" firstAttribute="top" secondItem="AnI-SK-dLf" secondAttribute="top" id="J2C-oO-ZoP"/>
                 <constraint firstItem="AnI-SK-dLf" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="JH0-Z6-Iug"/>
                 <constraint firstItem="dIm-f3-03R" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="e0C-M5-vY1"/>
                 <constraint firstItem="AnI-SK-dLf" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="oum-VN-oyY"/>
@@ -63,7 +83,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="-84" y="117"/>
+            <point key="canvasLocation" x="-730" y="115"/>
         </view>
     </objects>
     <resources>

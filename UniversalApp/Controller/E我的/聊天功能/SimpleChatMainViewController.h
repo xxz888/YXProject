@@ -10,4 +10,6 @@
 
 @interface SimpleChatMainViewController : UIViewController
 @property(nonatomic, strong) NSDictionary *userInfoDic;//用户信息
+@property(nonatomic, strong) NSDictionary * requestObject;//用户信息
+
 @end

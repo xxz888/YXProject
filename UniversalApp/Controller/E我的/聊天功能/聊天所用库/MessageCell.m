@@ -88,7 +88,11 @@
     //1,设置时间
     self.timeLabel.frame = messageFrame.timeF;
     self.timeLabel.textAlignment = NSTextAlignmentCenter;
-    self.timeLabel.text = message.time;
+    
+
+    self.timeLabel.text = [ShareManager haomiaoZhuanRIqi:[ShareManager getOtherTimeStrWithString:messageFrame.message.time]];
+
+
     //2,设置头像
     
     
@@ -100,14 +104,16 @@
         otherPhoto = userInfo.photo;
 
     }
+    //是自己
     if (MessageModelTypeMe == message.type) {
              [self.contentBtn setBackgroundImage:[UIImage resizableImageWith:@"chat_send_nor"] forState:UIControlStateNormal];
         [self.iconView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:userInfo.photo]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
    
         [self.contentBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
+    //别人
     }else{
         [self.contentBtn setBackgroundImage:[UIImage resizableImageWith:@"chat_recive_nor"]  forState:UIControlStateNormal];
-        [self.iconView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:otherPhoto]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
+        [self.iconView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:messageFrame.message.photo]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
         [self.contentBtn setTitleColor:KBlackColor forState:UIControlStateNormal];
 
     }

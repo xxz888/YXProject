@@ -137,10 +137,10 @@ static CGFloat const HeaderImageViewHeight =320;
         
         
         if (self.whereCome) {
-            _headerView.guanzhuBtn.hidden = _headerView.fasixinBtn.hidden = NO;
+            _headerView.guanzhuBtn.hidden = _headerView.fasixinBtn.hidden = _headerView.fasixinView.hidden = NO;
             _headerView.editPersonBtn.hidden = YES;
         }else{
-            _headerView.guanzhuBtn.hidden = _headerView.fasixinBtn.hidden = YES;
+            _headerView.guanzhuBtn.hidden = _headerView.fasixinBtn.hidden =  _headerView.fasixinView.hidden = YES;
             _headerView.editPersonBtn.hidden = NO;
         }
         
@@ -179,19 +179,17 @@ static CGFloat const HeaderImageViewHeight =320;
     
     _headerView.guanZhuOtherblock = ^{
         [YX_MANAGER requestLikesActionGET:weakself.userId success:^(id object) {
-            BOOL is_like = [weakself.headerView.guanzhuBtn.titleLabel.text isEqualToString:@"关注"] == 1;
+            BOOL is_like = [weakself.headerView.guanzhuBtn.titleLabel.text isEqualToString:@"＋关注"] == 1;
             if (!is_like) {
-                [weakself.headerView.guanzhuBtn setTitle:@"关注" forState:UIControlStateNormal];
-                 [QMUITips showSucceed:@"操作成功"] ;
+                [weakself.headerView.guanzhuBtn setTitle:@"＋关注" forState:UIControlStateNormal];
+                [weakself.headerView.guanzhuBtn setTitleColor:KWhiteColor forState:0];
+                [weakself.headerView.guanzhuBtn setBackgroundColor:kRGBA(176, 151, 99, 1)];
             }else{
                 [weakself.headerView.guanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
-                [QMUITips showSucceed:@"操作成功"] ;
+                [weakself.headerView.guanzhuBtn setTitleColor:KWhiteColor forState:0];
+                [weakself.headerView.guanzhuBtn setBackgroundColor:kRGBA(64, 75, 84, 1)];
             }
-
-            
-            [weakself.headerView.guanzhuBtn setTitleColor:A_COlOR forState:0];
-            [weakself.headerView.guanzhuBtn setBackgroundColor:KClearColor];
-            ViewBorderRadius(weakself.headerView.guanzhuBtn, 5, 1,A_COlOR);
+            ViewBorderRadius(weakself.headerView.guanzhuBtn, 5, 1,KClearColor);
 
         }];
     };
@@ -228,9 +226,13 @@ static CGFloat const HeaderImageViewHeight =320;
     };
     //发私信
     _headerView.fasixinblock = ^{
-        SimpleChatMainViewController * vc = [[SimpleChatMainViewController alloc]init];
-        vc.userInfoDic = [NSDictionary dictionaryWithDictionary:weakself.userInfoDic];
-        [weakself.navigationController pushViewController:vc animated:YES];
+           [YXPLUS_MANAGER requestChatting_ListoryGet:@"" success:^(id object) {
+                  SimpleChatMainViewController * vc = [[SimpleChatMainViewController alloc]init];
+                  vc.userInfoDic = [NSDictionary dictionaryWithDictionary:weakself.userInfoDic];
+                   vc.requestObject =[NSDictionary dictionaryWithDictionary:object];
+                  [weakself.navigationController pushViewController:vc animated:YES];
+           }];
+   
     };
 }
 /**
@@ -444,16 +446,16 @@ static CGFloat const HeaderImageViewHeight =320;
     kWeakSelf(self);
     //  YES为其他人 NO为自己
     if (self.whereCome) {
-        self.headerView.backBtn.hidden = self.headerView.guanzhuBtn.hidden = NO;
-        self.headerView.jifenView.hidden = YES;
+        self.headerView.backBtn.hidden = self.headerView.guanzhuBtn.hidden = self.headerView.otherStackView.hidden = NO;
+        self.headerView.jifenView.hidden =  self.headerView.myStackView.hidden =  YES;
         self.headerView.tieshubtn.userInteractionEnabled = NO;
         [YX_MANAGER requestGetUserothers:self.userId success:^(id object) {
             [weakself personValue:object];
         }];
         
     }else{
-        self.headerView.backBtn.hidden = self.headerView.guanzhuBtn.hidden =  YES;
-        self.headerView.jifenView.hidden = NO;
+        self.headerView.backBtn.hidden = self.headerView.guanzhuBtn.hidden = self.headerView.otherStackView.hidden = YES;
+        self.headerView.jifenView.hidden =  self.headerView.myStackView.hidden = NO;
         self.headerView.tieshubtn.userInteractionEnabled = YES;
 
         self.userInfo = curUser;
@@ -471,6 +473,7 @@ static CGFloat const HeaderImageViewHeight =320;
         [YX_MANAGER requestLikesGET:@"4/0/1/" success:^(id object) {
             weakself.headerView.guanzhuCountLbl.text = kGetString(object[@"like_number"]);
             weakself.headerView.fensiCountLbl.text = kGetString(object[@"fans_number"]);
+            
         }];
     }
 }
@@ -491,26 +494,28 @@ static CGFloat const HeaderImageViewHeight =320;
     self.headerView.mineTitle.text =kGetString(object[@"username"]);
     self.headerView.mineAdress.text = kGetString(object[@"site"]);
     if (self.whereCome) {
-            self.headerView.guanzhuCountLbl.text = kGetString(object[@"likes_number"]);
-            self.headerView.fensiCountLbl.text = kGetString(object[@"fans_number"]);
+            self.headerView.otherguanzhucountlbl.text = kGetString(object[@"likes_number"]);
+            self.headerView.otherfensicountlbl.text = kGetString(object[@"fans_number"]);
     }
 
     NSInteger tag = [object[@"is_like"] integerValue];
-    
-    if (tag == 0) {
-        [self.headerView.guanzhuBtn setTitle:@"关注" forState:UIControlStateNormal];
-    }else{
+    if(tag == 2){
         [self.headerView.guanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
+        [self.headerView.guanzhuBtn setTitleColor:KWhiteColor forState:0];
+        [self.headerView.guanzhuBtn setBackgroundColor:kRGBA(64, 75, 84, 1)];
+    }else if(tag == 1){
+        [self.headerView.guanzhuBtn setTitle:@"互相关注" forState:UIControlStateNormal];
+        [self.headerView.guanzhuBtn setTitleColor:KWhiteColor forState:0];
+        [self.headerView.guanzhuBtn setBackgroundColor:kRGBA(64, 75, 84, 1)];
+    }else{
+               [self.headerView.guanzhuBtn setTitle:@"＋关注" forState:UIControlStateNormal];
+               [self.headerView.guanzhuBtn setTitleColor:KWhiteColor forState:0];
+               [self.headerView.guanzhuBtn setBackgroundColor:kRGBA(176, 151, 99, 1)];
     }
-    [self.headerView.guanzhuBtn setTitleColor:A_COlOR forState:0];
-    [self.headerView.guanzhuBtn setBackgroundColor:KClearColor];
-    ViewBorderRadius(self.headerView.guanzhuBtn, 5, 1,A_COlOR);
-
     
-    
-    
-    NSString * islike = tag == 1 ? @"互相关注" : tag == 2 ? @"已关注" : @"关注";
-    [self.headerView.guanzhuBtn setTitle:islike forState:UIControlStateNormal];
+    ViewBorderRadius(self.headerView.guanzhuBtn, 5, 1,KClearColor);
+//    NSString * islike = tag == 1 ? @"互相关注" : tag == 2 ? @"已关注" : @"+关注";
+//    [self.headerView.guanzhuBtn setTitle:islike forState:UIControlStateNormal];
     
     self.userInfoDic = [NSDictionary dictionaryWithDictionary:object];
 }

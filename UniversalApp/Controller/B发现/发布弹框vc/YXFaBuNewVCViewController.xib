@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oap-xz-smg">
-                    <rect key="frame" x="268" y="687" width="146" height="175"/>
+                    <rect key="frame" x="265" y="661" width="146" height="175"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l4d-VP-8JZ">
                             <rect key="frame" x="2" y="2" width="128" height="48"/>
@@ -120,12 +120,12 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rcP-pu-qhY">
-                            <rect key="frame" x="76" y="126" width="54" height="54"/>
+                            <rect key="frame" x="75" y="126" width="56" height="56"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="54" id="TbY-YO-2kj"/>
-                                <constraint firstAttribute="width" constant="54" id="dno-sF-7zh"/>
+                                <constraint firstAttribute="height" constant="56" id="TbY-YO-2kj"/>
+                                <constraint firstAttribute="width" constant="56" id="dno-sF-7zh"/>
                             </constraints>
-                            <state key="normal" image="fabunewclose"/>
+                            <state key="normal" backgroundImage="fabunewclose"/>
                             <connections>
                                 <action selector="closeAction:" destination="-1" eventType="touchUpInside" id="IdU-ZV-LSt"/>
                             </connections>
@@ -135,7 +135,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="146" id="0aJ-bd-zjj"/>
                         <constraint firstItem="L34-p4-T8g" firstAttribute="top" secondItem="l4d-VP-8JZ" secondAttribute="bottom" constant="14" id="Cn0-PJ-yIj"/>
-                        <constraint firstAttribute="trailing" secondItem="rcP-pu-qhY" secondAttribute="trailing" constant="16" id="OMA-W7-NTp"/>
+                        <constraint firstAttribute="trailing" secondItem="rcP-pu-qhY" secondAttribute="trailing" constant="15" id="OMA-W7-NTp"/>
                         <constraint firstItem="l4d-VP-8JZ" firstAttribute="top" secondItem="oap-xz-smg" secondAttribute="top" constant="2" id="UCf-Cd-g9p"/>
                         <constraint firstItem="rcP-pu-qhY" firstAttribute="top" secondItem="L34-p4-T8g" secondAttribute="bottom" constant="14" id="fZZ-DF-IsT"/>
                         <constraint firstItem="L34-p4-T8g" firstAttribute="centerX" secondItem="l4d-VP-8JZ" secondAttribute="centerX" id="vhk-eh-twU"/>
@@ -146,8 +146,8 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="oap-xz-smg" secondAttribute="trailing" id="0ly-bY-IDj"/>
-                <constraint firstItem="oap-xz-smg" firstAttribute="bottom" secondItem="Q5M-cg-NOt" secondAttribute="bottom" id="LPy-3G-Thf"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="oap-xz-smg" secondAttribute="trailing" constant="3" id="0ly-bY-IDj"/>
+                <constraint firstItem="oap-xz-smg" firstAttribute="bottom" secondItem="Q5M-cg-NOt" secondAttribute="bottom" constant="-26" id="LPy-3G-Thf"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="-438" y="128"/>

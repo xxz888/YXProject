@@ -72,7 +72,11 @@
     YXZhiNanCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YXZhiNanCollectionViewCell" forIndexPath:indexPath];
     NSDictionary * dic = self.dataArray[indexPath.row];
     cell.titleLbl.text = dic[@"name"];
-    cell.lockImv.hidden = [dic[@"is_lock"] integerValue] != 1 ;
+    cell.lockImv.hidden = YES;
+    
+    cell.titleLbl.backgroundColor = [dic[@"is_lock"] integerValue] == 1 ? kRGBA(204, 204, 204, 1) : kRGBA(248, 248, 248, 1);
+    cell.titleLbl.textColor = [dic[@"is_lock"] integerValue] == 1 ? KWhiteColor : kRGBA(68, 68, 68, 1);
+//    cell.lockImv.hidden = [dic[@"is_lock"] integerValue] != 1 ;
     return cell;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

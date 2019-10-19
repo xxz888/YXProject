@@ -12,7 +12,7 @@
 #import "YXMineChouJiangViewController.h"
 #import "YXHomeEditPersonTableViewController.h"
 #import "YXMineYaoQingWebViewController.h"
-
+#import "YXJiFenShopViewController.h"
 @interface YXMineJiFenTableViewController ()
 @property(nonatomic,strong)NSMutableArray * sign_Array;
 @end
@@ -52,9 +52,11 @@
                 [weakself.qiandaoBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
                 [weakself.qiandaoBtn setBackgroundColor:[UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0]];
                 weakself.qiandaoBtn.userInteractionEnabled = NO;
-                [weakself.finish3 setTitle:@"已完成" forState:UIControlStateNormal];
-                [weakself.finish3 setTitleColor:KWhiteColor forState:UIControlStateNormal];
-                [weakself.finish3 setBackgroundColor:[UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0]];
+                
+               [weakself.finish3 setTitle:@"已完成" forState:UIControlStateNormal];
+                      [weakself.finish3 setTitleColor:kRGBA(153, 153, 153, 1.0) forState:UIControlStateNormal];
+                      [weakself.finish3 setBackgroundColor:kRGBA(245, 245, 245, 1.0)];
+                ViewBorderRadius(weakself.finish3, 4, 0, KClearColor);
                 weakself.finish3.userInteractionEnabled = NO;
             }
         }
@@ -132,10 +134,11 @@
         weakself.qiandaoBtn.userInteractionEnabled = NO;
         
         [weakself.finish3 setTitle:@"已完成" forState:UIControlStateNormal];
-        [weakself.finish3 setTitleColor:KWhiteColor forState:UIControlStateNormal];
-        [weakself.finish3 setBackgroundColor:[UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0]];
+        [weakself.finish3 setTitleColor:kRGBA(153, 153, 153, 1.0) forState:UIControlStateNormal];
+        [weakself.finish3 setBackgroundColor:kRGBA(245, 245, 245, 1.0)];
         weakself.finish3.userInteractionEnabled = NO;
-        
+        ViewBorderRadius(weakself.finish3, 4, 0, KClearColor);
+
         [weakself handleShowContentView];
         
         
@@ -167,25 +170,13 @@
     [modalViewController showWithAnimated:YES completion:nil];
 }
 
-
-
-//-(void)scrollViewDidScroll:(UIScrollView *)scrollView
-//{
-//    NSLog(@"%f",self.tableView.contentOffset.y);
-//    if (self.tableView.contentOffset.y <= 0) {
-//        self.tableView.bounces = NO;
-//        
-//        NSLog(@"禁止下拉");
-//    }
-//    else
-//        if (self.tableView.contentOffset.y >= 0){
-//            self.tableView.bounces = YES;
-//            NSLog(@"允许上拉");
-//            
-//        }
-//}
 - (IBAction)jifenshangchengAction:(id)sender {
-    [self.navigationController pushViewController:[YXMineChouJiangViewController new] animated:YES];
+    kWeakSelf(self);
+    YXJiFenShopViewController * vc = [[YXJiFenShopViewController alloc]init];
+        [YXPLUS_MANAGER requestIntegral_Commodity_recommendGet:@"" success:^(id object) {
+            vc.lunboArray = [[NSMutableArray alloc]initWithArray:object[@"data"]];
+            [weakself.navigationController pushViewController:vc animated:YES];
+        }];
 }
 
 - (IBAction)finishAllAction:(UIButton *)btn{

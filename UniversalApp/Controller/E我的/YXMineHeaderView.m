@@ -28,6 +28,10 @@
     [self.fasixinBtn setTitleColor:A_COlOR forState:0];
     [self.fasixinBtn setBackgroundColor:KClearColor];
     ViewBorderRadius(self.fasixinBtn, 5, 1,A_COlOR);
+    
+    
+    [self.fasixinView setBackgroundColor:kRGBA(64, 75, 84, 1)];
+    ViewBorderRadius(self.fasixinView, 5, 1,KClearColor);
 }
 -(void)clickAction:(id)sender{
 //    self.imageScale= [ImageScale new];
