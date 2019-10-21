@@ -8,6 +8,9 @@
 
 #import "ShareManager.h"
 #import "QiniuLoad.h"
+#import "MessageModel.h"
+#import "MessageFrameModel.h"
+#import "JQFMDB.h"
 @implementation ShareManager
 
 SINGLETON_FOR_CLASS(ShareManager);
@@ -948,6 +951,62 @@ SINGLETON_FOR_CLASS(ShareManager);
     
 }
 
-
-
+//所有要接受的消息都走这里，方便管理。此方法已经验证正确
+-(void)receiveAllKindsMessage:(NSDictionary *)messNewDic message:(NSMutableArray *)messages userInfoDic:(NSDictionary *)userInfoDic type:(int)type{
+    if (messNewDic) {
+        NSDictionary * dic = @{
+                                            @"content":[messNewDic[@"content"] UnicodeToUtf81],
+                                            @"date":kGetString(messNewDic[@"id"]),
+                                            @"own_id":kGetString(messNewDic[@"own_id"]),
+                                            @"aim_id":kGetString(messNewDic[@"aim_id"]),
+                                            @"xxzid":kGetString(messNewDic[@"id"]),
+                                            @"own_info":messNewDic[@"own_info"],
+                                            @"aim_info":messNewDic[@"aim_info"]
+                              };
+           MessageModel *compareM = (MessageModel *)[[messages lastObject] message];
+           //修改模型并且将模型保存数组
+           MessageModel * messageModel = [[MessageModel alloc] init];
+           messageModel.type = type;
+           messageModel.text = dic[@"content"];
+           messageModel.time = dic[@"date"];
+           messageModel.photo = userInfoDic[@"photo"];
+           messageModel.aim_id = dic[@"aim_id"];
+           messageModel.own_id = dic[@"own_id"];
+           messageModel.xxzid = dic[@"xxzid"];
+           UserInfo * userInfo = curUser;
+           if (messageModel.type ==1) {
+               messageModel.aim_info = [[ShareManager dicToString:dic[@"aim_info"]] replaceAll:@"\n" target:@""];
+               messageModel.own_info = [[ShareManager dicToString:dic[@"own_info"]] replaceAll:@"\n" target:@""];
+           }else{
+               NSDictionary * aim_info = @{@"photo":userInfoDic[@"photo"],@"username":userInfoDic[@"username"]};
+               messageModel.aim_info = [[ShareManager dicToString:aim_info] replaceAll:@"\n" target:@""];
+               
+               NSDictionary * own_info = @{@"photo":userInfo.photo,@"username":userInfo.username};
+               messageModel.own_info = [[ShareManager dicToString:own_info] replaceAll:@"\n" target:@""];
+           }
+             messageModel.hiddenTime = [messageModel.time isEqualToString:compareM.time];
+             MessageFrameModel *mf = [[MessageFrameModel alloc] init];
+             mf.message = messageModel;
+             mf.isRead = NO;
+             //只插入messagemodel
+             JQFMDB *db = [JQFMDB shareDatabase];
+             [db jq_inDatabase:^{
+                 [YX_MANAGER.socketMessageArray removeAllObjects];
+                 [db jq_insertTable:YX_USER_LiaoTian dicOrModel:messageModel];
+             }];
+            [messages addObject:mf];
+    }
+}
+-(BOOL)getOwnDbMessage:(NSString *)own_id aim_id:(NSString *)aim_id other:(NSDictionary *)otherDic{
+    UserInfo * userInfo = curUser;
+    BOOL messageBool1 = [userInfo.id integerValue] == [own_id integerValue] && [aim_id integerValue] == [otherDic[@"id"] integerValue];
+    BOOL messageBool2 = [userInfo.id integerValue] == [aim_id integerValue] && [own_id integerValue] == [otherDic[@"id"] integerValue];
+    return messageBool1 || messageBool2;
+}
+-(BOOL)getOwnListDbMessage:(NSString *)own_id aim_id:(NSString *)aim_id{
+    UserInfo * userInfo = curUser;
+    BOOL messageBool1 = [userInfo.id integerValue] == [own_id integerValue];
+    BOOL messageBool2 = [userInfo.id integerValue] == [aim_id integerValue];
+    return messageBool1 || messageBool2;
+}
 @end

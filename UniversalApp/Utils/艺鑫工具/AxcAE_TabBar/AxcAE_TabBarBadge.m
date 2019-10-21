@@ -35,7 +35,7 @@
 ////////
 - (void)setFrame:(CGRect)frame{
     [super setFrame:frame];
-    self.layer.cornerRadius = self.frame.size.height/2.0;
+    self.layer.cornerRadius = 6;
 }
 #pragma mark - 配置实例
 // 默认属性
@@ -46,15 +46,15 @@
     self.textAlignment = NSTextAlignmentCenter;
     self.clipsToBounds = YES;
     self.automaticHidden = NO;
-    self.badgeHeight = 15;
+    self.badgeHeight = 12;
 }
 - (void)setBadgeText:(NSString *)badgeText{
     _badgeText = badgeText;
     self.text = _badgeText;
-    CGFloat widths = _badgeText.length*9<20?20:_badgeText.length*9;
-    if (self.badgeWidth) {
-        widths = self.badgeWidth;
-    }
+    CGFloat widths = 12;//_badgeText.length*9<20?20:_badgeText.length*9;
+//    if (self.badgeWidth) {
+//        widths = self.badgeWidth;
+//    }
     if (_badgeText.integerValue) { // 是数字 或者不为0
         self.hidden = NO; // 不管咋地先取消隐藏
         if (_badgeText.integerValue > 99) {

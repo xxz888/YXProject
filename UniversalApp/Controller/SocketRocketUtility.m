@@ -244,10 +244,35 @@ dispatch_async(dispatch_get_main_queue(), block);\
         NSDictionary * messageDic = [ShareManager stringToDic:message];
         if (messageDic[@"message"][@"data"]) {
            [YX_MANAGER.socketMessageArray addObject:messageDic];
+            [[AppDelegate shareAppDelegate].mainTabBar.axcTabBar setBadge:NSIntegerToNSString(1) index:2];
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:kWebSocketdidReceiveMessageNote object:message];
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -(NSString *)UnicodeToUtf8:(NSString *)str{
     NSString *tempStr1=[str stringByReplacingOccurrencesOfString:@"\\u" withString:@"\\U"];
     NSString *tempStr2=[tempStr1 stringByReplacingOccurrencesOfString:@"\""withString:@"\\\""];

@@ -107,13 +107,13 @@
     //是自己
     if (MessageModelTypeMe == message.type) {
              [self.contentBtn setBackgroundImage:[UIImage resizableImageWith:@"chat_send_nor"] forState:UIControlStateNormal];
-        [self.iconView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:userInfo.photo]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
+        [self.iconView sd_setImageWithURL:[NSURL URLWithString:otherPhoto] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
    
         [self.contentBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
     //别人
     }else{
         [self.contentBtn setBackgroundImage:[UIImage resizableImageWith:@"chat_recive_nor"]  forState:UIControlStateNormal];
-        [self.iconView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:messageFrame.message.photo]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
+        [self.iconView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:otherPhoto]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
         [self.contentBtn setTitleColor:KBlackColor forState:UIControlStateNormal];
 
     }

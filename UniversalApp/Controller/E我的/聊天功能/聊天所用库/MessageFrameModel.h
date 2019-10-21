@@ -39,5 +39,8 @@
  cell的高度
  */
 @property (nonatomic, assign) CGFloat cellHeight;
-
+/**
+ 已读未读
+ */
+@property (nonatomic, assign) BOOL isRead;
 @end

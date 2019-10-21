@@ -13,11 +13,21 @@
 #import "SimpleChatMainViewController.h"
 #import "JQFMDB.h"
 #import "MessageModel.h"
+#import "MessageFrameModel.h"
 @interface YXMessageViewController ()<UIGestureRecognizerDelegate>
 @property (nonatomic) BOOL isCanBack;
 @property (nonatomic) BOOL isEnable;
 @property (weak, nonatomic) IBOutlet UITableViewCell *runCell;
 @property(nonatomic, strong) NSMutableArray * dbMessageArray;//用户信息
+/**
+ 消息数组
+ */
+@property (nonatomic, strong) NSMutableArray *messages;
+@property (nonatomic, strong) NSMutableArray *dbArray;
+@property (nonatomic, strong) NSMutableArray *bendiArray;
+@property (nonatomic, strong) NSDictionary * requestObject;
+
+@property (nonatomic, strong) NSDictionary * userInfoDic;
 
 @end
 
@@ -28,17 +38,185 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.navigationItem.title = @"我的消息";
     [self setUI];
-    
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tuisongxiaoxi:) name:@"tuisongxiaoxi" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                              selector:@selector(KAppShow:) name:KAPP_SHOW object:nil];
+    [self refreshVC];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[AppDelegate shareAppDelegate].mainTabBar.axcTabBar setBadge:NSIntegerToNSString(0) index:2];
+}
+-(void)KAppShow:(NSNotification*)notice{
+    [self requestWeiDuMessage];
+}
+
 -(void)refreshVC{
     [self getNewMessageNumeber];
-       self.isEnable = [self isUserNotificationEnable];
-       [self.dbMessageArray removeAllObjects];
-       JQFMDB *db = [JQFMDB shareDatabase];
-       NSArray *dictArray = [db jq_lookupTable:YX_USER_LiaoTian dicOrModel:[MessageModel class] whereFormat:nil];
-       [self makeSamePersonInfo:dictArray];
-       
-       [self.tableView reloadData];
+    self.isEnable = [self isUserNotificationEnable];
+    [self requestWeiDuMessage];
+//    kWeakSelf(self);
+//     [YXPLUS_MANAGER requestChatting_ListoryGet:@"" success:^(id object) {
+////         weakself.requestObject =[NSDictionary dictionaryWithDictionary:object];
+//
+//         for (NSArray * messNewArray in object[@"data"]) {
+//             for (NSDictionary * messNewDic in messNewArray) {
+//                 NSString * content = [messNewDic[@"content"] UnicodeToUtf81];
+//                                     NSString * date = messNewDic[@"date"];
+//
+//                                     NSString * own_id= kGetString(messNewDic[@"own_id"]);
+//                                     NSString * aim_id= kGetString(messNewDic[@"aim_id"]);
+//                                     NSString * myid= kGetString(messNewDic[@"id"]);
+//
+//
+//                                      NSString * photo = @"";
+//                                      NSString * username = @"";
+//                                      NSString * otherId = @"";
+//                                      UserInfo * userInfo = curUser;
+//
+//                                      if ([userInfo.id isEqualToString:own_id]) {
+//                                          photo =    messNewDic[@"aim_info"][@"photo"];
+//                                          username = messNewDic[@"aim_info"][@"username"];
+//                                          otherId =  aim_id;
+//                                      }else{
+//                                          photo =    messNewDic[@"own_info"][@"photo"];
+//                                          username = messNewDic[@"own_info"][@"username"];
+//                                          otherId =  own_id;
+//                                      }
+//
+//
+//                                     self.userInfoDic = @{@"id":otherId,@"photo":photo,@"username":username};
+//                                     NSInteger refreshCellIndex = 0;
+//                                     for (NSInteger i = 0; i < self.dbMessageArray.count ;i++) {
+//
+//                                         MessageModel * model = self.dbMessageArray[i][0];
+//                                         if ([model.own_id isEqualToString:otherId] || [model.aim_id isEqualToString:otherId]) {
+//                                             refreshCellIndex = i;
+//                                             break;
+//                                         }
+//                                     }
+//                                     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:refreshCellIndex inSection:0],nil] withRowAnimation:UITableViewRowAnimationNone];
+//                                     //这里开始看是哪个cell，显示小红点
+//
+//                                     [self addMessage:@{@"content":content,@"date":date,@"own_id":own_id,@"aim_id":aim_id,@"xxzid":myid,@"own_info":messNewDic[@"own_info"],@"aim_info":messNewDic[@"aim_info"]}  type:MessageModelTypeOther];
+//             }
+//
+//         }
+//
+//
+//
+////         [weakself.dbMessageArray removeAllObjects];
+////         JQFMDB *db = [JQFMDB shareDatabase];
+////         NSArray *dictArray = [db jq_lookupTable:YX_USER_LiaoTian dicOrModel:[MessageModel class] whereFormat:nil];
+////         [weakself makeSamePersonInfo:dictArray];
+////         [weakself.tableView reloadData];
+//     }];
+   
+
+}
+
+//未读信息的处理
+-(void)requestWeiDuMessage{
+    kWeakSelf(self);
+    [YXPLUS_MANAGER requestChatting_ListoryGet:@"" success:^(id object) {
+        for (NSArray * dataArray in  object[@"data"]) {
+            for (NSDictionary * messNewDic in dataArray) {
+                if ([WP_TOOL_ShareManager getOwnListDbMessage:messNewDic[@"own_id"] aim_id:messNewDic[@"aim_id"]]) {
+                    [WP_TOOL_ShareManager receiveAllKindsMessage:messNewDic message:self.messages userInfoDic:self.userInfoDic type:1];
+                }
+            }
+        }
+        //先请求完未读的，在看看不在这个界面时候，有没有未读的
+        [weakself getSocketWeiDuMessage];
+    }];
+}
+//在线，在本界面,接受到socket信息的处理,就是看那个接受消息的数组
+- (void)SRWebSocketDidReceiveMsg:(NSNotification *)note {
+    [self getSocketWeiDuMessage];
+}
+//在线，在不在本页面,同一个方法，都是接收到socket信息处理
+-(void)getSocketWeiDuMessage{
+    for (NSDictionary * defineDic in YX_MANAGER.socketMessageArray) {
+        NSDictionary * messNewDic = defineDic[@"message"][@"data"];
+             if ([WP_TOOL_ShareManager getOwnListDbMessage:messNewDic[@"own_id"] aim_id:messNewDic[@"aim_id"]]) {
+                 [WP_TOOL_ShareManager receiveAllKindsMessage:messNewDic
+                                                 message:self.messages
+                                             userInfoDic:self.userInfoDic
+                                                    type:1
+            ];
+        }
+    }
+    [self makeSamePersonInfo:self.messages];
+    
+    
+}
+-(void)makeSamePersonInfo:(NSArray *)ownArray{
+    UserInfo * userInfo = curUser;
+    //先得到自己的id
+    NSString * ownId = userInfo.id;
+    //自己数据拿出来后，开始取出不同的好友分组
+    NSMutableArray * ownFriendIdArray = [[NSMutableArray alloc]init];
+    for (MessageFrameModel * dictModel in ownArray) {
+        //如果aimid是自己，就取ownid
+        if ([dictModel.message.aim_id isEqualToString:ownId]) {
+            [ownFriendIdArray addObject:dictModel.message.own_id];
+        }
+        //如果ownid是自己，就取aimid
+        if ([dictModel.message.own_id isEqualToString:ownId]) {
+            [ownFriendIdArray addObject:dictModel.message.aim_id];
+        }
+    }
+    //然后给好友分组的数组去重
+    NSSet *set = [NSSet setWithArray:ownFriendIdArray];
+    //得到有多少好友id的数组，就是这个界面显示几行
+    NSMutableArray * rowIdArry = [NSMutableArray arrayWithArray:[set allObjects]];
+
+
+    [self.dbMessageArray removeAllObjects];
+    //然后根据id来分组
+    for (NSString * rowId in rowIdArry) {
+        NSMutableArray * resultArray = [[NSMutableArray alloc]init];
+        for (MessageFrameModel * dictModel in ownArray) {
+                if ([dictModel.message.aim_id isEqualToString:ownId] && [dictModel.message.own_id isEqualToString:rowId]) {
+                     [resultArray addObject:dictModel];
+                }
+                if ([dictModel.message.aim_id isEqualToString:rowId] && [dictModel.message.own_id isEqualToString:ownId]) {
+                    [resultArray addObject:dictModel];
+                }
+         }
+        [self.dbMessageArray addObject:resultArray];
+    }
+    [self.tableView reloadData];
+
+}
+-(NSMutableArray *)messages{
+    if (_messages == nil) {
+        JQFMDB *db = [JQFMDB shareDatabase];
+        NSArray *dictArray = [db jq_lookupTable:YX_USER_LiaoTian dicOrModel:[MessageModel class] whereFormat:nil];
+        NSMutableArray *models = [NSMutableArray arrayWithCapacity:dictArray.count];
+        MessageModel *previousModel = nil;
+        for (MessageModel * message in dictArray) {
+            if ([WP_TOOL_ShareManager getOwnListDbMessage:message.own_id aim_id:message.aim_id]) {
+                    //只拿自己的
+                    MessageFrameModel *frameM = [[MessageFrameModel alloc] init];
+                    //判断是否显示时间
+                    message.hiddenTime =  [message.time isEqualToString:previousModel.time];
+                    frameM.message = message;
+                    frameM.isRead = YES;
+                    [models addObject:frameM];
+                    previousModel = message;
+                }
+                self.messages = [models mutableCopy];
+            }
+        }
+      return _messages;
 }
 -(void)headerRereshing{
    [self refreshVC];
@@ -57,71 +235,15 @@
           [weakself.tableView.mj_footer endRefreshing];
       });
 }
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tuisongxiaoxi:) name:@"tuisongxiaoxi" object:nil];
-    [self refreshVC];
-}
--(void)makeSamePersonInfo:(NSArray *)dictArray{
-    UserInfo * userInfo = curUser;
-    //先得到自己的id
-    NSString * ownId = userInfo.id;
-    //下面开始算法，把相同的放在一起
-    NSMutableArray * ownArray = [[NSMutableArray alloc]init];
-    //先取出自己的记录
-    for (MessageModel * dictModel in dictArray) {
-        //只要own_id 和 aim_id有一个是自己，那就说明这条信息和自己有关
-        BOOL messageBool = [userInfo.id isEqualToString:dictModel.own_id] || [userInfo.id isEqualToString:dictModel.aim_id];
-        //如果是自己，就把所有和自己相关的数据拿出来
-        if (messageBool) {
-            [ownArray addObject:dictModel];
-        }
-    }
-    //自己数据拿出来后，开始取出不同的好友分组
-    NSMutableArray * ownFriendIdArray = [[NSMutableArray alloc]init];
-    for (MessageModel * dictModel in ownArray) {
-        //如果aimid是自己，就取ownid
-        if ([dictModel.aim_id isEqualToString:ownId]) {
-            [ownFriendIdArray addObject:dictModel.own_id];
-        }
-        //如果ownid是自己，就取aimid
-        if ([dictModel.own_id isEqualToString:ownId]) {
-            [ownFriendIdArray addObject:dictModel.aim_id];
-        }
-    }
-    //然后给好友分组的数组去重
-    NSSet *set = [NSSet setWithArray:ownFriendIdArray];
-    //得到有多少好友id的数组，就是这个界面显示几行
-    NSMutableArray * rowIdArry = [NSMutableArray arrayWithArray:[set allObjects]];
-    
-    
-    
-    //然后根据id来分组
-    for (NSString * rowId in rowIdArry) {
-        NSMutableArray * resultArray = [[NSMutableArray alloc]init];
-        for (MessageModel * dictModel in ownArray) {
-                if ([dictModel.aim_id isEqualToString:ownId] && [dictModel.own_id isEqualToString:rowId]) {
-                     [resultArray addObject:dictModel];
-                }
-                if ([dictModel.aim_id isEqualToString:rowId] && [dictModel.own_id isEqualToString:ownId]) {
-                    [resultArray addObject:dictModel];
-                }
-         }
-        [self.dbMessageArray addObject:resultArray];
-    }
-    
 
-}
+
 -(void)tuisongxiaoxi:(NSNotification *)notice{
     [self.tableView reloadData];
 }
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
 -(void)setUI{
     self.dbMessageArray = [[NSMutableArray alloc]init];
+    self.dbArray = [[NSMutableArray alloc]init];
+    self.bendiArray = [[NSMutableArray alloc]init];
     ViewBorderRadius(self.zanjb, 8, 1, KWhiteColor);
     ViewBorderRadius(self.fensijb, 8, 1, KWhiteColor);
     ViewBorderRadius(self.hdjb, 8, 1, KWhiteColor);
@@ -143,6 +265,10 @@
     ViewBorderRadius(self.yiduBtn, 11, 1, kRGBA(238, 238, 238, 1));
     
     [self.tableView registerNib:[UINib nibWithNibName:@"YXMessageLiaoTianTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMessageLiaoTianTableViewCell"];
+    
+    
+    
+ 
     
     [self addRefreshView:self.tableView];
 }
@@ -184,73 +310,82 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 3) {
         YXMessageLiaoTianTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMessageLiaoTianTableViewCell" forIndexPath:indexPath];
-        MessageModel * model = [self.dbMessageArray[indexPath.row] lastObject];
-        
-     
-        cell.ltContent.text = model.text;
-        
+        MessageFrameModel * model = [self.dbMessageArray[indexPath.row] lastObject];
+        cell.ltContent.text = model.message.text;
         UserInfo * userInfo = curUser;
-
-        
         NSString * photo = @"";
         NSString * username = @"";
-        if ([userInfo.id isEqualToString:model.own_id]) {
-            photo = [ShareManager stringToDic:model.aim_info][@"photo"];
-            username = [ShareManager stringToDic:model.aim_info][@"username"];
+        if ([userInfo.id isEqualToString:model.message.own_id]) {
+            photo = [ShareManager stringToDic:model.message.aim_info][@"photo"];
+            username = [ShareManager stringToDic:model.message.aim_info][@"username"];
         }else{
-            photo = [ShareManager stringToDic:model.own_info][@"photo"];
-            username = [ShareManager stringToDic:model.own_info][@"username"];
+            photo = [ShareManager stringToDic:model.message.own_info][@"photo"];
+            username = [ShareManager stringToDic:model.message.own_info][@"username"];
         }
-        
         cell.ltTitle.text = username;
         [cell.ltImv sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:photo]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
-        cell.ltTime.text = [ShareManager haomiaoNianYueRi:[ShareManager getOtherTimeStrWithString:model.time]];
+        cell.ltTime.text = [ShareManager haomiaoNianYueRi:[ShareManager getOtherTimeStrWithString:model.message.time]];
+        //新消息提示
+        cell.messageLbl.hidden = model.isRead;
         return cell;
     }
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    kWeakSelf(self);
-        [YXPLUS_MANAGER requestChatting_ListoryGet:@"" success:^(id object) {
-                 MessageModel * model = [self.dbMessageArray[indexPath.row] lastObject];
-                 SimpleChatMainViewController * vc = [[SimpleChatMainViewController alloc]init];
-            UserInfo * userInfo = curUser;
+     kWeakSelf(self);
+     MessageFrameModel * model = [self.dbMessageArray[indexPath.row] lastObject];
+     SimpleChatMainViewController * vc = [[SimpleChatMainViewController alloc]init];
+     vc.clickIndex = indexPath.row;
+     UserInfo * userInfo = curUser;
 
-                 NSString * photo = @"";
-                 NSString * username = @"";
-                 NSString * otherId = @"";
+     NSString * photo = @"";
+     NSString * username = @"";
+     NSString * otherId = @"";
 
-                     if ([userInfo.id isEqualToString:model.own_id]) {
-                         photo = [ShareManager stringToDic:model.aim_info][@"photo"];
-                         username = [ShareManager stringToDic:model.aim_info][@"username"];
-                         otherId = model.aim_id;
-                     }else{
-                         photo = [ShareManager stringToDic:model.own_info][@"photo"];
-                         username = [ShareManager stringToDic:model.own_info][@"username"];
-                         otherId = model.own_id;
-                     }
-            
-                vc.userInfoDic = @{@"photo":photo,@"username":username,@"id":otherId};
-                  vc.requestObject =[NSDictionary dictionaryWithDictionary:object];
-                 [weakself.navigationController pushViewController:vc animated:YES];
-          }];
+         if ([userInfo.id isEqualToString:model.message.own_id]) {
+             photo = [ShareManager stringToDic:model.message.aim_info][@"photo"];
+             username = [ShareManager stringToDic:model.message.aim_info][@"username"];
+             otherId = model.message.aim_id;
+         }else{
+             photo = [ShareManager stringToDic:model.message.own_info][@"photo"];
+             username = [ShareManager stringToDic:model.message.own_info][@"username"];
+             otherId = model.message.own_id;
+         }
+     vc.userInfoDic = @{@"photo":photo,@"username":username,@"id":otherId};
+    
+    
+    vc.backVCClickIndexblock = ^(NSInteger clickIndex) {
+        MessageFrameModel * model = [self.dbMessageArray[clickIndex] lastObject];
+        model.isRead = YES;
+        NSInteger lastIndex = [weakself.dbMessageArray[clickIndex] count] - 1;
+        [weakself.dbMessageArray[clickIndex] replaceObjectAtIndex:lastIndex withObject:model];
+        [weakself.tableView reloadData];
+    };
+    
+     [weakself.navigationController pushViewController:vc animated:YES];
 }
 
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"聊天置顶" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        // 收回侧滑
-        [tableView setEditing:NO animated:YES];
-    }];
+  
+    if (indexPath.section == 3) {
+            UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"聊天置顶" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+                // 收回侧滑
+                [tableView setEditing:NO animated:YES];
+            }];
 
 
-    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-    // 删除cell: 必须要先删除数据源，才能删除cell
-//    [self.dataArray removeObjectAtIndex:indexPath.row];
-//    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-}];
+            UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+            // 删除cell: 必须要先删除数据源，才能删除cell
+        //    [self.dataArray removeObjectAtIndex:indexPath.row];
+        //    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }];
 
-return @[deleteAction, editAction];
+        return @[deleteAction, editAction];
+    }else{
+        return @[];
+    }
+
 }
 
 
@@ -345,4 +480,201 @@ return @[deleteAction, editAction];
         }
     }
 }
+
+//
+//
+//
+//
+//- (void)SRWebSocketDidReceiveMsg:(NSNotification *)note {
+//    //收到服务端发送过来的消息
+//    NSString * message = note.object;
+//    NSDictionary * messageDic = [ShareManager stringToDic:message];
+//    NSDictionary * messNewDic = messageDic[@"message"][@"data"];
+//    if (messNewDic) {
+//        NSString * content = [messNewDic[@"content"] UnicodeToUtf81];
+//        NSString * date = messNewDic[@"date"];
+//
+//        NSString * own_id= kGetString(messNewDic[@"own_id"]);
+//        NSString * aim_id= kGetString(messNewDic[@"aim_id"]);
+//        NSString * myid= kGetString(messNewDic[@"id"]);
+//
+//
+//         NSString * photo = @"";
+//         NSString * username = @"";
+//         NSString * otherId = @"";
+//         UserInfo * userInfo = curUser;
+//
+//         if ([userInfo.id isEqualToString:own_id]) {
+//             photo =    messNewDic[@"aim_info"][@"photo"];
+//             username = messNewDic[@"aim_info"][@"username"];
+//             otherId =  aim_id;
+//         }else{
+//             photo =    messNewDic[@"own_info"][@"photo"];
+//             username = messNewDic[@"own_info"][@"username"];
+//             otherId =  own_id;
+//         }
+//
+//
+//        self.userInfoDic = @{@"id":otherId,@"photo":photo,@"username":username};
+//        NSInteger refreshCellIndex = 0;
+//        for (NSInteger i = 0; i < self.dbMessageArray.count ;i++) {
+//
+//            MessageModel * model = self.dbMessageArray[i][0];
+//            if ([model.own_id isEqualToString:otherId] || [model.aim_id isEqualToString:otherId]) {
+//                refreshCellIndex = i;
+//                break;
+//            }
+//        }
+//        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:refreshCellIndex inSection:0],nil] withRowAnimation:UITableViewRowAnimationNone];
+//        //这里开始看是哪个cell，显示小红点
+//
+//        [self addMessage:@{@"content":content,@"date":date,@"own_id":own_id,@"aim_id":aim_id,@"xxzid":myid,@"own_info":messNewDic[@"own_info"],@"aim_info":messNewDic[@"aim_info"]}  type:MessageModelTypeOther];
+//    }
+//}
+//-(void)insertCommonAction:(NSDictionary *) messNewDic{
+//    JQFMDB *db = [JQFMDB shareDatabase];
+//    MessageModel *compareM = (MessageModel *)[[_messages lastObject] message];
+//    MessageModel * noHaveModel = [[MessageModel alloc]init];
+//     noHaveModel.type = 1;//这个数组里面的元素，都是别人给我发的，都是1
+//     noHaveModel.text = messNewDic[@"content"];
+//     noHaveModel.time = messNewDic[@"date"];
+//     noHaveModel.photo = self.userInfoDic[@"photo"];
+//     noHaveModel.aim_id = messNewDic[@"aim_id"];
+//     noHaveModel.own_id = messNewDic[@"own_id"];
+//     noHaveModel.xxzid = messNewDic[@"id"];
+//    if (messNewDic[@"aim_info"]) {
+//        noHaveModel.aim_info = [[ShareManager dicToString:messNewDic[@"aim_info"]]  replaceAll:@"\n" target:@""];;
+//    }
+//    if (messNewDic[@"own_info"]) {
+//        noHaveModel.own_info = [[ShareManager dicToString:messNewDic[@"own_info"]]  replaceAll:@"\n" target:@""];;
+//    }
+//     noHaveModel.hiddenTime = [messNewDic[@"date"] isEqualToString:compareM.time];
+//      [db jq_inDatabase:^{
+//          [db jq_insertTable:YX_USER_LiaoTian dicOrModel:noHaveModel];
+//      }];
+//}
+//-(NSMutableArray *)messages{
+//    if (_messages == nil) {
+//        JQFMDB *db = [JQFMDB shareDatabase];
+//        NSArray *dictArray = [db jq_lookupTable:YX_USER_LiaoTian dicOrModel:[MessageModel class] whereFormat:nil];
+//        NSMutableArray *models = [NSMutableArray arrayWithCapacity:dictArray.count];
+//
+//        //数据库消息的id
+//        [self.dbArray removeAllObjects];
+//        for (MessageModel * dictModel in dictArray) {
+//            [self.dbArray addObject:dictModel.xxzid];
+//        }
+//        //本地消息的id
+//        [self.bendiArray removeAllObjects];
+//        for (NSDictionary * defineDic in YX_MANAGER.socketMessageArray) {
+//           NSDictionary * messNewDic = defineDic[@"message"][@"data"];
+//           [self.bendiArray addObject:kGetString(messNewDic[@"id"])];
+//        }
+//        NSArray *data1Array = [self.bendiArray filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT (SELF IN %@)",self.dbArray]];
+//
+//        //如果数据库里面没有这条数据，那就先把这数据插入里面
+//        if (dictArray.count == 0) {
+//            for (NSDictionary * defineDic in YX_MANAGER.socketMessageArray) {
+//                [self insertCommonAction:defineDic[@"message"][@"data"]];
+//            }
+//        }else{
+//            //找出不同元素后，把不同的元素的id找出来加进去
+//            for (NSDictionary * defineDic in YX_MANAGER.socketMessageArray) {
+//                NSDictionary * messNewDic = defineDic[@"message"][@"data"];
+//                for (NSString * xxzid in data1Array) {
+//                    if ([xxzid isEqualToString:kGetString(messNewDic[@"id"])]) {
+//                        [self insertCommonAction:messNewDic];
+//                    }
+//                }
+//            }
+//        }
+//        //然后再请求最新的消息看有没有
+//        NSMutableArray * resultArray = [[NSMutableArray alloc]init];
+//        for (NSArray * dataArray in  self.requestObject[@"data"]) {
+//            for (NSDictionary * dataDic in dataArray) {
+//                if ([kGetString(dataDic[@"own_id"]) isEqualToString:kGetString(self.userInfoDic[@"id"])]) {
+//                    [resultArray addObjectsFromArray:dataArray];
+//                    break;
+//                }
+//            }
+//        }
+//        for (NSDictionary * dic in resultArray) {
+//            [self insertCommonAction:dic];
+//        }
+//
+//        //把没有插入过数据库的数据，插入进去后再开始显示
+//           NSArray * dictNewArray = [db jq_lookupTable:YX_USER_LiaoTian dicOrModel:[MessageModel class] whereFormat:nil];
+//           for (MessageModel * dictModel in dictNewArray) {
+//               UserInfo * userInfo = curUser;
+//               MessageModel *previousModel = nil;
+//               //先取出自己的记录
+//               BOOL messageBool1 = [userInfo.id isEqualToString:dictModel.own_id] || [userInfo.id isEqualToString:dictModel.aim_id];
+//               BOOL messageBool2 = [kGetString(self.userInfoDic[@"id"]) isEqualToString:dictModel.own_id] || [kGetString(self.userInfoDic[@"id"]) isEqualToString:dictModel.aim_id];
+//                 if (messageBool1 && messageBool2) {
+//                       MessageFrameModel *frameM = [[MessageFrameModel alloc] init];
+//                       //判断是否显示时间
+//                       dictModel.hiddenTime =  [dictModel.time isEqualToString:previousModel.time];
+//                       frameM.message = dictModel;
+//                       [models addObject:frameM];
+//                       previousModel = dictModel;
+//                   }
+//
+//               self.messages = [models mutableCopy];
+//
+//           }
+//
+//
+//
+//
+//    }
+//    return _messages;
+//}
+//-(void) addMessage:(NSDictionary *)dic type:(MessageModelType) type
+//{
+//    MessageModel *compareM = (MessageModel *)[[self.messages lastObject] message];
+//    //修改模型并且将模型保存数组
+//    MessageModel * message = [[MessageModel alloc] init];
+//    message.type = type;
+//    message.text = dic[@"content"];
+//    message.time = dic[@"date"];
+//    message.photo = self.userInfoDic[@"photo"];
+//    message.aim_id = dic[@"aim_id"];
+//    message.own_id = dic[@"own_id"];
+//    message.xxzid = dic[@"xxzid"];
+//    UserInfo * userInfo = curUser;
+//
+//    if (type ==1) {
+//        message.aim_info = [[ShareManager dicToString:dic[@"aim_info"]] replaceAll:@"\n" target:@""];
+//        message.own_info = [[ShareManager dicToString:dic[@"own_info"]] replaceAll:@"\n" target:@""];
+//    }else{
+//        NSDictionary * aim_info = @{@"photo":self.userInfoDic[@"photo"],@"username":self.userInfoDic[@"username"]};
+//        message.aim_info = [[ShareManager dicToString:aim_info] replaceAll:@"\n" target:@""];
+//
+//        NSDictionary * own_info = @{@"photo":userInfo.photo,@"username":userInfo.username};
+//        message.own_info = [[ShareManager dicToString:own_info] replaceAll:@"\n" target:@""];
+//    }
+//    message.hiddenTime = [message.time isEqualToString:compareM.time];
+//
+//      MessageFrameModel *mf = [[MessageFrameModel alloc] init];
+//      mf.message = message;
+//      //只插入messagemodel
+//      JQFMDB *db = [JQFMDB shareDatabase];
+//      [db jq_inDatabase:^{
+//
+//      //判断数据库是否有这条数据
+////           BOOL isHave = NO;
+////           for (NSDictionary * defineDic in YX_MANAGER.socketMessageArray) {
+////                 NSString * xxzid = kGetString(defineDic[@"message"][@"data"][@"id"]);
+////                 if ([xxzid isEqualToString:message.xxzid]) {
+////                     isHave = YES;
+////                     break;
+////                 }
+////           }
+////           if (!isHave) {
+//               [db jq_insertTable:YX_USER_LiaoTian dicOrModel:message];
+////           }
+//      }];
+//     [self.messages addObject:mf];
+//     [self refreshVC];
+//}
 @end

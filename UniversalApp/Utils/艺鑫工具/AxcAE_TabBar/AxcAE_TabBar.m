@@ -199,6 +199,8 @@ static AxcAE_TabBarItem *lastItem;
         item.badge = Badge;
         if ([Badge isEqualToString:@"0"]) {
             item.badgeLabel.hidden = YES;
+        }else{
+            item.badgeLabel.text = @"";
         }
 
     }else{

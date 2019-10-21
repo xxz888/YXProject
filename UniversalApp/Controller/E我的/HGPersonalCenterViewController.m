@@ -226,13 +226,12 @@ static CGFloat const HeaderImageViewHeight =320;
     };
     //发私信
     _headerView.fasixinblock = ^{
-           [YXPLUS_MANAGER requestChatting_ListoryGet:@"" success:^(id object) {
+//           [YXPLUS_MANAGER requestChatting_ListoryGet:@"" success:^(id object) {
                   SimpleChatMainViewController * vc = [[SimpleChatMainViewController alloc]init];
                   vc.userInfoDic = [NSDictionary dictionaryWithDictionary:weakself.userInfoDic];
-                   vc.requestObject =[NSDictionary dictionaryWithDictionary:object];
+//                   vc.requestObject =[NSDictionary dictionaryWithDictionary:object];
                   [weakself.navigationController pushViewController:vc animated:YES];
-           }];
-   
+//           }];
     };
 }
 /**

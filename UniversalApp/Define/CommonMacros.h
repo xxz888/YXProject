@@ -30,6 +30,8 @@
 
 //用户model缓存
 #define KUserModelCache @"KUserModelCache"
+//用户model缓存
+#define KAPP_SHOW @"APP_SHOW"
 
 //用户信息储存，之后改的
 #define KUserInfo @"KUserInfo"

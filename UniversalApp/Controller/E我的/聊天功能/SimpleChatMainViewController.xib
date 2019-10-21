@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="backView" destination="B4d-rP-xef" id="Pb3-Pv-qCo"/>
                 <outlet property="mainTableView" destination="pdf-na-fRa" id="qd9-Wh-jzE"/>
+                <outlet property="titleLbl" destination="g5L-C2-DQg" id="CD9-iw-BZT"/>
                 <outlet property="view" destination="iN0-l3-epB" id="UoQ-wT-AzV"/>
             </connections>
         </placeholder>

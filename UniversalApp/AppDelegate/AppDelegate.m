@@ -62,11 +62,12 @@
 
 //app隐藏
 - (void)applicationWillResignActive:(UIApplication *)application {
-  [[SocketRocketUtility instance] SRWebSocketClose];
+    [[SocketRocketUtility instance] SRWebSocketClose];
 }
 //app显示
 - (void)applicationWillEnterForeground:(UIApplication *)application {
      [[SocketRocketUtility instance] SRWebSocketStart];
+     KPostNotification(KAPP_SHOW, nil);
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {

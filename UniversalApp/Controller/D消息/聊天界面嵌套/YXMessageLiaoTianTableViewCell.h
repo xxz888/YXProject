@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *ltTitle;
 @property (weak, nonatomic) IBOutlet UILabel *ltContent;
 @property (weak, nonatomic) IBOutlet UILabel *ltTime;
+@property (weak, nonatomic) IBOutlet UILabel *messageLbl;
 
 @end
 

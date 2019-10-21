@@ -78,4 +78,8 @@ SINGLETON_FOR_HEADER(ShareManager)
 +(NSString *)haomiaoZhuanRIqi:(NSString *)haomiao;
 + (NSString *)getOtherTimeStrWithString:(NSString *)formatTime;
 +(NSString *)haomiaoNianYueRi:(NSString *)haomiao;
+//所有要接受的消息都走这里，方便管理。此方法已经验证正确
+-(void)receiveAllKindsMessage:(NSDictionary *)messNewDic message:(NSMutableArray *)messages userInfoDic:(NSDictionary *)userInfoDic  type:(int)type;
+-(BOOL)getOwnDbMessage:(NSString *)own_id aim_id:(NSString *)aim_id other:(NSDictionary *)otherDic;
+-(BOOL)getOwnListDbMessage:(NSString *)own_id aim_id:(NSString *)aim_id;
 @end
