@@ -22,7 +22,7 @@
 
     if (!userInfo.weibo_name || [userInfo.weibo_name isEqualToString:@""]) {
         self.wbTf.text = @"未绑定";
-        self.wbTf.textColor = kRGBA(10, 36, 51, 1);
+        self.wbTf.textColor = SEGMENT_COLOR;
     }else{
         self.wbTf.text = userInfo.weibo_name;
         self.wbTf.textColor = kRGBA(187, 187, 187, 1);
@@ -30,7 +30,7 @@
     
     if (!userInfo.weixin_name || [userInfo.weixin_name isEqualToString:@""]) {
         self.wxAccTf.text = @"未绑定";
-        self.wxAccTf.textColor = kRGBA(10, 36, 51, 1);
+        self.wxAccTf.textColor = SEGMENT_COLOR;
     }else{
         self.wxAccTf.text = userInfo.weixin_name;
         self.wxAccTf.textColor = kRGBA(187, 187, 187, 1);
@@ -39,7 +39,7 @@
     
     
     self.qqTf.text = @"未绑定";
-    self.qqTf.textColor = kRGBA(10, 36, 51, 1);
+    self.qqTf.textColor = SEGMENT_COLOR;
 
 //    if (!userInfo.weibo_name || [userInfo.weibo_name isEqualToString:@""]) {
 //        self.qqTf.text = @"未绑定";

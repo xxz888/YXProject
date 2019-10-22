@@ -1182,7 +1182,7 @@
                                                         </stackView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcA-DI-9d1">
                                                             <rect key="frame" x="37" y="210.5" width="308" height="40"/>
-                                                            <color key="backgroundColor" red="0.039215686270000001" green="0.14117647059999999" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="backgroundColor" red="0.031372549020000001" green="0.14117647059999999" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="vdL-Uk-Bs5"/>
                                                             </constraints>
@@ -1286,7 +1286,7 @@
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="助力说明" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cld-BS-tQV">
                                                             <rect key="frame" x="141" y="17" width="100" height="28"/>
-                                                            <color key="backgroundColor" red="0.039215686270000001" green="0.14117647059999999" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="backgroundColor" red="0.031372549020000001" green="0.14117647059999999" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="hRu-H0-OXn"/>
                                                                 <constraint firstAttribute="height" constant="28" id="kvG-iG-cgI"/>
@@ -1303,7 +1303,7 @@
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Tc-PI-zEO">
                                                             <rect key="frame" x="16" y="44" width="350" height="2"/>
-                                                            <color key="backgroundColor" red="0.039215686270000001" green="0.14117647059999999" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="backgroundColor" red="0.031372549020000001" green="0.14117647059999999" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="2" id="WFO-jF-sJa"/>
                                                             </constraints>
@@ -1319,6 +1319,7 @@
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghb-Vn-vqV">
                                                                     <rect key="frame" x="0.0" y="0.0" width="18" height="18"/>
+                                                                    <color key="backgroundColor" red="0.031372549020000001" green="0.14117647059999999" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -1351,6 +1352,7 @@
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJr-wo-aGa">
                                                                     <rect key="frame" x="0.0" y="0.0" width="18" height="18"/>
+                                                                    <color key="backgroundColor" red="0.031372549020000001" green="0.14117647059999999" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -1385,6 +1387,7 @@
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2Q-Gr-UIQ">
                                                                     <rect key="frame" x="0.0" y="0.0" width="18" height="18"/>
+                                                                    <color key="backgroundColor" red="0.031372549020000001" green="0.14117647059999999" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -1419,6 +1422,7 @@
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Y7-UG-BYu">
                                                                     <rect key="frame" x="0.0" y="0.0" width="18" height="18"/>
+                                                                    <color key="backgroundColor" red="0.031372549020000001" green="0.14117647059999999" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -1467,7 +1471,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
-                                                            <color key="backgroundColor" red="0.039215686270000001" green="0.14117647059999999" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="backgroundColor" red="0.031372549020000001" green="0.14117647059999999" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="18" id="7Dz-Iq-EwG"/>
                                                                 <constraint firstAttribute="height" constant="18" id="c2F-od-6iS"/>

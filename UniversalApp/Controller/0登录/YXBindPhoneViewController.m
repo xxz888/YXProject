@@ -54,7 +54,7 @@
 }
 -(void)changeCodeAction{
     if (self.codeTf.text.length >= 6) {
-        self.bingBtn.backgroundColor = [UIColor colorWithRed:10/255.0 green:36/255.0 blue:54/255.0 alpha:1.0];
+        self.bingBtn.backgroundColor = SEGMENT_COLOR;
         self.bingBtn.userInteractionEnabled = YES;
     }else{
         self.bingBtn.backgroundColor = [UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0];

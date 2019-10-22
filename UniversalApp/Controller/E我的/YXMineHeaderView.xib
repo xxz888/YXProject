@@ -452,7 +452,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.043137254901960784" green="0.10588235294117647" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.031372549019607843" green="0.14117647058823529" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="c4W-fu-jMd" firstAttribute="centerY" secondItem="cal-EZ-O4u" secondAttribute="centerY" id="0J2-65-74M"/>
                 <constraint firstAttribute="trailing" secondItem="mta-u5-PyU" secondAttribute="trailing" constant="-15" id="1M9-kn-KgA"/>

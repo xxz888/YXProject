@@ -550,7 +550,6 @@
 		BBC3FB4A22C5C59B00BB2564 /* no_data@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC3FB4622C5C59B00BB2564 /* no_data@3x.png */; };
 		BBC3FB4B22C5C59B00BB2564 /* no_data.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC3FB4722C5C59B00BB2564 /* no_data.png */; };
 		BBC3FB4C22C5C59B00BB2564 /* no_data@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC3FB4822C5C59B00BB2564 /* no_data@2x.png */; };
-		BBC6180421F5AD5A00495619 /* YXHomeGolf.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC6180321F5AD5A00495619 /* YXHomeGolf.storyboard */; };
 		BBC7CD1E22E16BFB00AC9E2D /* YXFindHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC7CD1D22E16BFB00AC9E2D /* YXFindHeaderView.m */; };
 		BBC7CD2022E16C0500AC9E2D /* YXFindHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC7CD1F22E16C0500AC9E2D /* YXFindHeaderView.xib */; };
 		BBCC4B1721E8927700493F40 /* UIView+Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4B1121E8927600493F40 /* UIView+Geometry.m */; };
@@ -1670,7 +1669,6 @@
 		BBC3FB4622C5C59B00BB2564 /* no_data@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_data@3x.png"; sourceTree = "<group>"; };
 		BBC3FB4722C5C59B00BB2564 /* no_data.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_data.png; sourceTree = "<group>"; };
 		BBC3FB4822C5C59B00BB2564 /* no_data@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_data@2x.png"; sourceTree = "<group>"; };
-		BBC6180321F5AD5A00495619 /* YXHomeGolf.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = YXHomeGolf.storyboard; sourceTree = "<group>"; };
 		BBC7CD1C22E16BFB00AC9E2D /* YXFindHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindHeaderView.h; sourceTree = "<group>"; };
 		BBC7CD1D22E16BFB00AC9E2D /* YXFindHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindHeaderView.m; sourceTree = "<group>"; };
 		BBC7CD1F22E16C0500AC9E2D /* YXFindHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFindHeaderView.xib; sourceTree = "<group>"; };
@@ -2583,10 +2581,10 @@
 			isa = PBXGroup;
 			children = (
 				BB07FB172357099000F34D2D /* YXMessageThreeDetailViewController.h */,
-				BB07FB182357099000F34D2D /* YXMessageThreeDetailViewCell.h */,
-				BB07FB192357099000F34D2D /* YXMessageThreeDetailViewCell.xib */,
 				BB07FB1A2357099000F34D2D /* YXMessageThreeDetailViewController.m */,
+				BB07FB182357099000F34D2D /* YXMessageThreeDetailViewCell.h */,
 				BB07FB1B2357099000F34D2D /* YXMessageThreeDetailViewCell.m */,
+				BB07FB192357099000F34D2D /* YXMessageThreeDetailViewCell.xib */,
 			);
 			path = "粉丝关注详情";
 			sourceTree = "<group>";
@@ -4713,7 +4711,6 @@
 				BBA8129921DDA9F1001B5EA1 /* YXPublish.storyboard */,
 				BBA8129B21DDAA04001B5EA1 /* YXMessage.storyboard */,
 				BBA8129D21DDAA15001B5EA1 /* YXMine.storyboard */,
-				BBC6180321F5AD5A00495619 /* YXHomeGolf.storyboard */,
 			);
 			path = StoryBoard;
 			sourceTree = "<group>";
@@ -5835,7 +5832,6 @@
 				BBB59B79228E8D200029D3D0 /* YXZhiNanViewController.xib in Resources */,
 				BBABDF44229BC45E0046683A /* YXZhiNan4Cell.xib in Resources */,
 				BB07FB152357001900F34D2D /* SimpleChatMainViewController.xib in Resources */,
-				BBC6180421F5AD5A00495619 /* YXHomeGolf.storyboard in Resources */,
 				BBB59B47228D02B70029D3D0 /* YXHomeXueJiaToolsTableViewCell.xib in Resources */,
 				BB29121D22156BB500FF484E /* Giant Perfecto.gif in Resources */,
 				BB3DFE9D221E8566000C70B5 /* YXFindSearchTableViewCell.xib in Resources */,

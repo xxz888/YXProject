@@ -160,7 +160,7 @@
         cell.lbl1Height.constant = 70/3;
         cell.lbl2Height.constant = 70/3;
 
-        cell.lbl2.text = [dic[@"comment"] UnicodeToUtf8];
+        cell.lbl2.text = [dic[@"comment"] UnicodeToUtf81];
     }
     if ([kGetString(dic[@"photo"]) isEqualToString:@""] || [nameTitle isEqualToString:@"雪茄点评"]) {
         cell.rightImv.hidden = YES;

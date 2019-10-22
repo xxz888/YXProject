@@ -261,7 +261,7 @@
     self.view3.tag = 1003;
     [self.view3 addGestureRecognizer:tapGesturRecognizer3];
     [self addShadowToView:self.stackView withColor:kRGBA(102, 102, 102, 0.3)];
-    ViewBorderRadius(self.tuisongBtn, 2, 1, kRGBA(10, 36, 51, 1));
+    ViewBorderRadius(self.tuisongBtn, 2, 1, SEGMENT_COLOR);
     ViewBorderRadius(self.yiduBtn, 11, 1, kRGBA(238, 238, 238, 1));
     
     [self.tableView registerNib:[UINib nibWithNibName:@"YXMessageLiaoTianTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMessageLiaoTianTableViewCell"];

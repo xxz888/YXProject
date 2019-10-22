@@ -66,7 +66,7 @@
 }
 -(void)changeCodeAction{
     if (self.nCodeTf.text.length >= 4) {
-        self.finishBtn.backgroundColor = [UIColor colorWithRed:10/255.0 green:36/255.0 blue:54/255.0 alpha:1.0];
+        self.finishBtn.backgroundColor = SEGMENT_COLOR;
         self.finishBtn.userInteractionEnabled = YES;
     }else{
         self.finishBtn.backgroundColor = [UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0];

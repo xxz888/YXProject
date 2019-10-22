@@ -25,7 +25,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithRed:10/255.0 green:36/255.0 blue:54/255.0 alpha:1.0];
+    self.view.backgroundColor = SEGMENT_COLOR;
     self.phoneLogin.imageView.contentMode = UIViewContentModeScaleAspectFill;
 }
 - (IBAction)closeLoginView:(id)sender {
