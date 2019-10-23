@@ -254,12 +254,15 @@
      
 
         //封面图
-        CGSize size = [UIImage getImageSizeWithURL:self.startDic[@"cover"]];
+        NSString * cover = self.startDic[@"cover"];
+        if (![self.startDic[@"cover"] contains:IMG_URI]) {
+            cover = [IMG_URI append:self.startDic[@"cover"]];
+        }
+        CGSize size = [UIImage getImageSizeWithURL:cover];
         double scale = size.width == 0 ? 0 : size.height/size.width;
         coverHeight = kScreenWidth * scale;
         self.cell.coverImvHeight.constant = coverHeight;
-        NSString * str1 = [(NSMutableString *)self.startDic[@"cover"] replaceAll:@" " target:@"%20"];
-        [self.cell.coverImV sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        [self.cell.coverImV sd_setImageWithURL:[NSURL URLWithString:cover] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         [self setWebVIewData:self.startDic];
         self.cell.leftWidth.constant  = 5;
         self.cell.rightWidth.constant = 5;

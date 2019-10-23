@@ -242,9 +242,30 @@ dispatch_async(dispatch_get_main_queue(), block);\
         NSLog(@"************************** socket收到数据了************************** ");
         NSLog(@"message:%@",[self UnicodeToUtf8:message]);
         NSDictionary * messageDic = [ShareManager stringToDic:message];
-        if (messageDic[@"message"][@"data"]) {
-           [YX_MANAGER.socketMessageArray addObject:messageDic];
-            [[AppDelegate shareAppDelegate].mainTabBar.axcTabBar setBadge:NSIntegerToNSString(1) index:2];
+        NSLog(@"message:%@",messageDic);
+
+        NSInteger action = [message[@"action"] integerValue];
+        
+        switch (action) {
+            //心跳消息，不予处理
+            case 0:{
+               
+            }
+            //聊天消息推送
+            case 1:{
+                if (messageDic[@"message"][@"data"]) {
+                       [YX_MANAGER.socketMessageArray addObject:messageDic];
+                       [[AppDelegate shareAppDelegate].mainTabBar.axcTabBar setBadge:NSIntegerToNSString(1) index:2];
+                }
+            }
+                break;
+           //点赞、聊天、评论消息推送
+            case 2:{
+                [[AppDelegate shareAppDelegate].mainTabBar.axcTabBar setBadge:NSIntegerToNSString(1) index:2];
+            }
+                break;
+            default:
+                break;
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:kWebSocketdidReceiveMessageNote object:message];
     }

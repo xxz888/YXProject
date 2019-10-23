@@ -13,6 +13,7 @@
 #import "YXPublishFootViewController.h"
 #import "YXHomeXueJiaPinPaiViewController.h"
 #import "YXFaBuBaseViewController.h"
+#import "YXWenZhangEditorViewController.h"
 
 @interface XWPopMenuController (){
     UIImageView *_imageView;
@@ -209,7 +210,7 @@
         YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
         [self presentViewController:imageVC animated:YES completion:nil];
     }else{
-        EditorViewController * pinpaiVC = [[EditorViewController alloc]init];
+        YXWenZhangEditorViewController * pinpaiVC = [[YXWenZhangEditorViewController alloc]init];
         [self presentViewController:pinpaiVC animated:YES completion:nil];
     }
 }

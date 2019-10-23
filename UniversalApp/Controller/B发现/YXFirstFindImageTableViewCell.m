@@ -180,6 +180,9 @@
         self.picContainerView.hidden = YES;
 
         NSString * string = [(NSMutableString *)dic[@"cover"] replaceAll:@" " target:@"%20"];
+        if (![string contains:IMG_URI]) {
+            string = [IMG_URI append:string];
+        }
         [self.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         [self.onlyOneImv removeGestureRecognizer:self.tap];
         //下边这句话不能删除，改变样式的

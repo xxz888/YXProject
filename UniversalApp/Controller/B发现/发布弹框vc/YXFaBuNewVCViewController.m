@@ -9,6 +9,8 @@
 #import "YXFaBuNewVCViewController.h"
 #import "YXPublishImageViewController.h"
 #import "EditorViewController.h"
+#import "YXWenZhangEditorViewController.h"
+
 @interface YXFaBuNewVCViewController ()
 
 @end
@@ -42,7 +44,7 @@
 }
 
 - (IBAction)wenzhangAction:(id)sender {
-    EditorViewController * pinpaiVC = [[EditorViewController alloc]init];
+    YXWenZhangEditorViewController * pinpaiVC = [[YXWenZhangEditorViewController alloc]init];
     kWeakSelf(self);
 
     pinpaiVC.closeNewVcblock = ^{

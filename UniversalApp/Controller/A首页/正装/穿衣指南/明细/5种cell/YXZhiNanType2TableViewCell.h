@@ -11,6 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXZhiNanType2TableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *type2Imv;
+@property (weak, nonatomic) IBOutlet UILabel *type2Detail;
+@property (weak, nonatomic) IBOutlet UILabel *type2Title;
+@property (weak, nonatomic) IBOutlet UIView *yinyingView;
 
 @end
 

@@ -9,8 +9,10 @@
 #import "RootViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
+typedef void(^closeNewVcBlock)(void);
 
 @interface YXWenZhangEditorViewController : RootViewController
+@property(nonatomic,copy)closeNewVcBlock  closeNewVcblock;
 
 @end
 

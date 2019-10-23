@@ -46,9 +46,10 @@
         YXFindSearchTagHeaderView * headerView = [nib objectAtIndex:0];
         headerView.frame = CGRectMake(0, 0, KScreenWidth, 280);
     headerView.lbl1.text = kGetString(self.startDic[@"tag"]);
-    headerView.lbl2.text = [kGetString(self.startDic[@"count_tag"]) append:@"篇帖子"];
+    headerView.lbl2.text = [kGetNSInteger([self.dataArray count]) append:@"篇帖子"];
     
     NSString * photo = [self.startDic[@"photo"] contains:IMG_OLD_URI] ? [self.startDic[@"photo"] replaceAll:IMG_OLD_URI target:IMG_URI] : self.startDic[@"photo"] ;
+    photo = [photo contains:IMG_URI] ? photo : [IMG_URI append:photo];
     [headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     kWeakSelf(self);
     headerView.backvcblock = ^{
@@ -103,13 +104,9 @@ scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
 #pragma mark ========== 我自己的所有 ==========
 -(void)requestMine_AllList{
     
-    kWeakSelf(self);
-    NSString * parString =[NSString stringWithFormat:@"0&page=%@",NSIntegerToNSString(self.requestPage)];
-    [YX_MANAGER requestGet_users_find:parString success:^(id object){
-        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
-        [weakself.yxTableView reloadData];
-        weakself.nodataImg.hidden = weakself.dataArray.count != 0;
-    }];
+          self.dataArray = [self commonAction:self.startArray dataArray:self.dataArray];
+          [self.yxTableView reloadData];
+          self.nodataImg.hidden = self.dataArray.count != 0;
 }
 #pragma mark ========== 晒图点赞 ==========
 -(void)requestDianZan_Image_Action:(NSIndexPath *)indexPath{

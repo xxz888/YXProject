@@ -26,4 +26,6 @@
 @property (nonatomic, assign) NSUInteger selectedIndex;
 @property (nonatomic, assign) BOOL isEnlarge;
 @property (nonatomic,strong) NSDictionary * startDic;
+@property (nonatomic,strong) NSArray  * startArray;
+
 @end

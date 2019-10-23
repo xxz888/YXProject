@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *qiandaoBtn;
 - (IBAction)qiandaoAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *qiandaoView;
+@property (weak, nonatomic) IBOutlet UILabel *lianxuqiandaoLbl;
 
 @property (weak, nonatomic) IBOutlet UIButton *finish1;
 @property (weak, nonatomic) IBOutlet UIButton *finish2;

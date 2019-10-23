@@ -2167,12 +2167,12 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wD-FR-zY9">
-                                                            <rect key="frame" x="80.333333333333329" y="-9.3333333333333144" width="11.666666666666671" height="70"/>
+                                                            <rect key="frame" x="80.333333333333329" y="-9.3333333333333144" width="10" height="70"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="70" id="C9T-gD-zJY"/>
                                                             </constraints>
                                                             <attributedString key="attributedText">
-                                                                <fragment content="1">
+                                                                <fragment content="-">
                                                                     <attributes>
                                                                         <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                         <font key="NSFont" size="24" name="DINAlternate-Bold"/>
@@ -2970,7 +2970,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QW3-hL-4VM">
-                                                            <rect key="frame" x="99" y="17" width="12.333333333333329" height="17"/>
+                                                            <rect key="frame" x="97.333333333333329" y="17" width="12.333333333333329" height="17"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="17" id="6UQ-cp-RME"/>
                                                             </constraints>
@@ -3860,6 +3860,7 @@
                         <outlet property="finish8" destination="B3E-Zb-Na9" id="Mco-S8-R25"/>
                         <outlet property="finish9" destination="yDo-si-HDL" id="NuY-YH-TYm"/>
                         <outlet property="jifenNumLbl" destination="UqH-VS-64A" id="Afk-Ij-so7"/>
+                        <outlet property="lianxuqiandaoLbl" destination="1wD-FR-zY9" id="BrW-Pp-xOg"/>
                         <outlet property="qiandaoBtn" destination="nQC-N0-su2" id="qzw-4t-21H"/>
                         <outlet property="qiandaoView" destination="BP4-Vv-1OH" id="T5D-9n-prD"/>
                     </connections>

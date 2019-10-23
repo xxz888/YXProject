@@ -197,7 +197,7 @@
 
 }
 -(NSMutableArray *)messages{
-    if (_messages == nil) {
+//    if (_messages == nil) {
         JQFMDB *db = [JQFMDB shareDatabase];
         NSArray *dictArray = [db jq_lookupTable:YX_USER_LiaoTian dicOrModel:[MessageModel class] whereFormat:nil];
         NSMutableArray *models = [NSMutableArray arrayWithCapacity:dictArray.count];
@@ -213,9 +213,9 @@
                     [models addObject:frameM];
                     previousModel = message;
                 }
-                self.messages = [models mutableCopy];
+                _messages = [models mutableCopy];
             }
-        }
+//        }
       return _messages;
 }
 -(void)headerRereshing{
@@ -369,19 +369,41 @@
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
   
     if (indexPath.section == 3) {
-            UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"聊天置顶" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-                // 收回侧滑
-                [tableView setEditing:NO animated:YES];
-            }];
+//            UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"聊天置顶" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+//                // 收回侧滑
+//                [tableView setEditing:NO animated:YES];
+//            }];
 
 
             UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-            // 删除cell: 必须要先删除数据源，才能删除cell
-        //    [self.dataArray removeObjectAtIndex:indexPath.row];
-        //    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
+                    
+                     MessageFrameModel * model = [self.dbMessageArray[indexPath.row] lastObject];
+                     MessageModel * mesModel = model.message;
+                     JQFMDB *db = [JQFMDB shareDatabase];
+                NSString * aim_id = mesModel.aim_id;
+                NSString * own_id = mesModel.own_id;
+                for (NSArray * array in self.dbMessageArray) {
+                    for (MessageFrameModel * model2 in array) {
+                        MessageModel * model1 = model2.message;
+                        if ([model1.aim_id integerValue] == [aim_id integerValue] && [model1.own_id integerValue] == [own_id integerValue]) {
+                            NSString * sql = [@"WHERE aim_id = " append:model1.aim_id];
+                            [db jq_deleteTable:YX_USER_LiaoTian whereFormat:sql];
+                        }else  if ([model1.aim_id integerValue] == [own_id integerValue] && [model1.own_id integerValue] == [aim_id integerValue]) {
+                           NSString * sql = [@"WHERE aim_id = " append:model1.aim_id];
+                           [db jq_deleteTable:YX_USER_LiaoTian whereFormat:sql];
+                        }
+                    }
+                }
+                
+                
+                // 删除cell: 必须要先删除数据源，才能删除cell
+                [self.dbMessageArray removeObjectAtIndex:indexPath.row];
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                     
         }];
 
-        return @[deleteAction, editAction];
+        return @[deleteAction];
     }else{
         return @[];
     }

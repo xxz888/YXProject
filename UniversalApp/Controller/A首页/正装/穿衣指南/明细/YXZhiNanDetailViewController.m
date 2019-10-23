@@ -15,6 +15,9 @@
 #import "YXZhiNan5Cell.h"
 #import "QiniuLoad.h"
 #import "YXZhiNanPingLunViewController.h"
+#import "YXZhiNanType2TableViewCell.h"
+#import "YXMineImageDetailViewController.h"
+#import "YXFirstFindImageTableViewCell.h"
 @interface YXZhiNanDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
 @property (nonatomic,strong) YXZhiNanDetailHeaderView * headerView;
@@ -165,7 +168,11 @@
     NSDictionary * dic = self.dataArray[indexPath.section][indexPath.row];
     NSInteger obj = [dic[@"obj"] integerValue];
     if (obj == 1) {
-        return [YXZhiNan1Cell jisuanCellHeight:dic] + 20;
+        if ([dic[@"ratio"] integerValue] == 99999) {
+                  return 180;
+               }else{
+                  return [YXZhiNan1Cell jisuanCellHeight:dic] + 20;
+               }
     }else if(obj == 2) {
         return  [YXZhiNan2Cell jisuanCellHeight:dic] + 20;
     }else if(obj == 3 || obj == 4) {
@@ -179,13 +186,24 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.section][indexPath.row];
     NSInteger obj = [dic[@"obj"] integerValue];
-    
+
     
     
     if (obj == 1 ) {
-        YXZhiNan1Cell * cell1 = [tableView dequeueReusableCellWithIdentifier:@"YXZhiNan1Cell" forIndexPath:indexPath];
-        [cell1 setCellData:dic];
-        return cell1;
+        if ([dic[@"ratio"] integerValue] == 99999) {
+            NSDictionary * resultDic = [ShareManager stringToDic:dic[@"detail"]];
+            YXZhiNanType2TableViewCell * cell1 = [tableView dequeueReusableCellWithIdentifier:@"YXZhiNanType2TableViewCell" forIndexPath:indexPath];
+            NSString * str = [(NSMutableString *)resultDic[@"cover"] replaceAll:@" " target:@"%20"];
+            [cell1.type2Imv sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:str]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+            cell1.type2Detail.text = resultDic[@"title"];
+            cell1.type2Title.text = resultDic[@"sectionTitle"];
+            return cell1;
+        }else{
+            YXZhiNan1Cell * cell1 = [tableView dequeueReusableCellWithIdentifier:@"YXZhiNan1Cell" forIndexPath:indexPath];
+            [cell1 setCellData:dic];
+            return cell1;
+        }
+      
     }else if(obj == 2) {
         YXZhiNan2Cell * cell2 = [tableView dequeueReusableCellWithIdentifier:@"YXZhiNan2Cell" forIndexPath:indexPath];
         [cell2 setCellData:dic linkData:self.linkArray];
@@ -237,6 +255,21 @@
     }
     return nil;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary * dic = self.dataArray[indexPath.section][indexPath.row];
+     NSInteger obj = [dic[@"obj"] integerValue];
+    NSDictionary * resultDic = [ShareManager stringToDic:dic[@"detail"]];
+
+     if (obj == 1 ) {
+         if ([dic[@"ratio"] integerValue] == 99999) {
+             YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
+             CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:resultDic];
+             VC.headerViewHeight = h;
+             VC.startDic = [NSMutableDictionary dictionaryWithDictionary:resultDic];
+             [self.navigationController pushViewController:VC animated:YES];
+         }
+     }
+}
 //初始化UI
 -(void)setVCUI{
     self.bottomViewHeight.constant = AxcAE_IsiPhoneX ? 90 : 60;
@@ -254,6 +287,8 @@
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan4Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan4Cell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan5Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan5Cell"];
      [self.yxTableView registerNib:[UINib nibWithNibName:@"UITableViewCell" bundle:nil] forCellReuseIdentifier:@"UITableViewCell"];
+         [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNanType2TableViewCell" bundle:nil] forCellReuseIdentifier:@"YXZhiNanType2TableViewCell"];
+    
     
     if (@available(iOS 11.0, *)) {
         

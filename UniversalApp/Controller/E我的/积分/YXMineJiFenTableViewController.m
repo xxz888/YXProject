@@ -43,7 +43,8 @@
     
     [YX_MANAGER requestUsersSign_in_List:@{} success:^(id object) {
         [weakself.sign_Array removeAllObjects];
-        [weakself.sign_Array addObjectsFromArray:object];
+        [weakself.sign_Array addObjectsFromArray:object[@"data"]];
+        weakself.lianxuqiandaoLbl.text = kGetString(object[@"day_number"]);
         //判断今天是否已经签到
         NSString * currDayTime = [ShareManager getCurrentDay];
         for (NSDictionary * dic in weakself.sign_Array) {

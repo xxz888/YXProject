@@ -802,6 +802,10 @@ SINGLETON_FOR_CLASS(ShareManager);
     
     [headHtml appendString : @"<meta name=\"black\" name=\"apple-mobile-web-app-status-bar-style\" />" ];
     
+    [headHtml appendString : @"<link rel=\"stylesheet\" type=\"text/css\" href=\"normalize1.css\">" ];
+    [headHtml appendString : @"<link rel=\"stylesheet\" type=\"text/css\" href=\"style1.css\">" ];
+
+
     //适配图片宽度，让图片宽度等于屏幕宽度
     [headHtml appendString : @"<style>img{width:100%;}</style>" ];
     [headHtml appendString : @"<style>img{height:auto;}</style>" ];
