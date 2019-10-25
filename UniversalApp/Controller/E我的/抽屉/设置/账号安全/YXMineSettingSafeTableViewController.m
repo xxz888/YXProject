@@ -88,6 +88,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [super tableView:tableView numberOfRowsInSection:section];
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0 && indexPath.row
+         == 0 &&  IS_IPhoneX) {
+           return 84;
+    }else{
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell * cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     
@@ -96,11 +104,11 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 0) {
+    if (indexPath.section == 1 && indexPath.row == 0) {
         YXBindPhoneViewController * VC = [[YXBindPhoneViewController alloc]init];
         VC.whereCome = YES;
         [self.navigationController pushViewController:VC animated:YES];
-    }else if (indexPath.row == 1){
+    }else if (indexPath.section == 1 && indexPath.row == 1){
         if ([self.wxAccTf.text isEqualToString:@"未绑定"]) {
             [self bingAction];
         }

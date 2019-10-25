@@ -34,12 +34,11 @@
 
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
 
-static CGFloat const HeaderImageViewHeight =320;
 
 @interface HGPersonalCenterViewController () <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, HGSegmentedPageViewControllerDelegate, HGPageViewControllerDelegate,HGPageViewControllerDelegate1>{
     QMUIModalPresentationViewController * _modalViewController;
     NSArray * titleArray;
-
+    CGFloat HeaderImageViewHeight;
 }
 @property (nonatomic, strong) UITableView * menuTableView;
 
@@ -58,6 +57,12 @@ static CGFloat const HeaderImageViewHeight =320;
 
 
 #pragma mark - Life Cycle
+
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (@available(iOS 11.0, *)) {
@@ -65,11 +70,13 @@ static CGFloat const HeaderImageViewHeight =320;
     } else {
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
+    HeaderImageViewHeight = IS_IPhoneX ? 320 : 300 ;
     //如果使用自定义的按钮去替换系统默认返回按钮，会出现滑动返回手势失效的情况
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     [self setupSubViews];
     self.isEnlarge = NO;
     [self updateNavigationBarBackgroundColor];
+    [self setNeedsStatusBarAppearanceUpdate];
 
 }
 
@@ -240,7 +247,11 @@ static CGFloat const HeaderImageViewHeight =320;
  */
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    return;
+//    CGFloat yyy =  vc.yxTableView.contentOffset.y;
+//    NSLog(@"%f",yyy);
+    YXMineAllViewController * vc =  (YXMineAllViewController *)self.segmentedPageViewController.pageViewControllers[0];
+
+
     //第一部分：处理导航栏
     [self updateNavigationBarBackgroundColor];
     
@@ -248,9 +259,12 @@ static CGFloat const HeaderImageViewHeight =320;
     CGFloat contentOffsetY = scrollView.contentOffset.y;
     //吸顶临界点(此时的临界点不是视觉感官上导航栏的底部，而是当前屏幕的顶部相对scrollViewContentView的位置)
     CGFloat criticalPointOffsetY = [self.yxTableView rectForSection:0].origin.y -  [UIApplication sharedApplication].statusBarFrame.size.height;
-    criticalPointOffsetY = AxcAE_IsiPhoneX ? -30 : -65;
+//    criticalPointOffsetY = -kStatusBarHeight;
     //利用contentOffset处理内外层scrollView的滑动冲突问题
     if (contentOffsetY >= criticalPointOffsetY) {
+//        if (!vc.yxTableView.scrollEnabled) {
+//                vc.yxTableView.scrollEnabled = YES;
+//            }
         /*
          * 到达临界点：
          * 1.未吸顶状态 -> 吸顶状态
@@ -261,6 +275,9 @@ static CGFloat const HeaderImageViewHeight =320;
         scrollView.contentOffset = CGPointMake(0, criticalPointOffsetY);
 //        [self.segmentedPageViewController.currentPageViewController makePageViewControllerScroll:YES];
     } else {
+//        if (vc.yxTableView.scrollEnabled) {
+//            vc.yxTableView.scrollEnabled = NO;
+//        }
         /*
          * 未达到临界点：
          * 1.吸顶状态 -> 不吸顶状态

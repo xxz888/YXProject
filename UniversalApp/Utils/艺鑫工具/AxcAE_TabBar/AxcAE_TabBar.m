@@ -137,7 +137,7 @@ static AxcAE_TabBarItem *lastItem;
     [self.items enumerateObjectsUsingBlock:^(AxcAE_TabBarItem * _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
         CGRect itemFrame = item.frame;
         CGFloat itemHeight = self.frame.size.height;
-        if (AxcAE_IsiPhoneX || itemHeight > 50) {
+        if (IS_IPhoneX || itemHeight > 50) {
             itemHeight = 49; // iphoneX高度要小
         }
         BOOL isNoSettingItemSize = !item.itemModel.itemSize.width || !item.itemModel.itemSize.height;

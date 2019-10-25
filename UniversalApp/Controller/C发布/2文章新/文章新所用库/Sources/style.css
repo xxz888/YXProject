@@ -34,9 +34,9 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-    height:-moz-calc(100% - 170px); 
-	height:-webkit-calc(100% - 170px); 
-	height:calc(100% - 170px);
+    height:-moz-calc(100% - 170px);
+    height:-webkit-calc(100% - 170px);
+    height:calc(100% - 170px);
     content: " ";
     margin: 0 30px;
     padding: 20px 0;

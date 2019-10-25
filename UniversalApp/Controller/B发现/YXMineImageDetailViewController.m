@@ -18,7 +18,6 @@
 #import "YXFirstFindImageTableViewCell.h"
 #import "HGPersonalCenterViewController.h"
 #import "XLVideoPlayer.h"
-
 @interface YXMineImageDetailViewController ()<ZInputToolbarDelegate,QMUIMoreOperationControllerDelegate,SDCycleScrollViewDelegate,UIWebViewDelegate>{
     CGFloat imageHeight;
     
@@ -42,7 +41,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     [QMUITips showLoadingInView:self.view];
-   [self initAllControl];
+    [self initAllControl];
     //初始化所有的控件
     [self setHeaderView];
     [self requestNewList];
@@ -55,9 +54,6 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-
-
-
 }
 
 -(void)headerRereshing{
@@ -94,30 +90,43 @@
 }
 -(void)setWebVIewData:(NSDictionary *)dic{
     self.cell.cellWebView.delegate = self;
-    //获取bundlePath 路径
-    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
-    //获取本地html目录 basePath
-    NSString *basePath = [NSString stringWithFormat:@"%@/%@",bundlePath,@"html"];
-    //获取本地html目录 baseUrl
-    NSURL *baseUrl = [NSURL fileURLWithPath: basePath isDirectory: YES];
-    //显示内容
-    if (dic[@"detail"]) {
-        [self.cell.cellWebView loadHTMLString:[ShareManager adaptWebViewForHtml:dic[@"detail"]] baseURL: baseUrl];
+    NSString *path = [[NSBundle mainBundle] bundlePath];
+    NSURL *baseURL = [NSURL fileURLWithPath:path];
+    NSString *htmlPath =
+    [[NSBundle mainBundle] pathForResource:@"richText_editor1" ofType:@"html"];
+    NSString *htmlCont = [NSString stringWithContentsOfFile:htmlPath
+                                                   encoding:NSUTF8StringEncoding
+                                                      error:nil];
+    self.cell.cellWebView.scrollView.bounces = NO;
+    self.cell.cellWebView.hidesInputAccessoryView = YES;
+    [self.cell.cellWebView loadHTMLString:htmlCont baseURL: baseURL];
+    self.cell.cellWebView.userInteractionEnabled = NO;
+}
+#pragma mark -webviewdelegate
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+//       [self.cell.cellWebView setupTitle:self.startDic[@"title"]];
+       [self.cell.cellWebView setupHtmlContent:self.startDic[@"detail"]];
+       //删除占位信息
+       [self.cell.cellWebView clearContentPlaceholder];
+       webViewHeight= [[self.cell.cellWebView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"]floatValue];
+       CGRect newFrame= self.cell.cellWebView.frame;
+       newFrame.size.height = webViewHeight;
+       self.cell.cellWebView.frame= newFrame;
+       [self.cell.cellWebView sizeToFit];
+       CGRect Frame = self.cell.frame;
 
-      
-    }
-    [self.cell.cellWebView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+       CGFloat detailHeight = [ShareManager inTextOutHeight:[self.startDic[@"title"] UnicodeToUtf8] lineSpace:9 fontSize:24];
+       CGFloat height = 10 + 10 + 5 + 40 ; //分割线和上下距离和评论
+       Frame.size.height= 125 + detailHeight + webViewHeight + coverHeight + height;
+       self.cell.midViewHeight.constant =  webViewHeight;
+       self.cell.frame= Frame;
+       [self.yxTableView setTableHeaderView:self.cell];//这句话才是重点
+       [QMUITips hideAllTips];
 }
 
 - (void)observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context{
-    kWeakSelf(self);
         if([keyPath isEqualToString:@"contentSize"]) {
-        CGFloat documentHeight = [[self.cell.cellWebView stringByEvaluatingJavaScriptFromString:@"document.getElementById(\"content\").offsetHeight;"] floatValue];
-            
         webViewHeight= [[self.cell.cellWebView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"]floatValue];
-            CGFloat webViewHeight1 = [[self.cell.cellWebView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
-            CGFloat webViewHeight2 = [[self.cell.cellWebView stringByEvaluatingJavaScriptFromString:@"document.body.clientHeight"] floatValue];
-            
         CGRect newFrame= self.cell.cellWebView.frame;
         newFrame.size.height = webViewHeight;
         self.cell.cellWebView.frame= newFrame;
@@ -126,7 +135,7 @@
 
         CGFloat detailHeight = [ShareManager inTextOutHeight:[self.startDic[@"title"] UnicodeToUtf8] lineSpace:9 fontSize:24];
 
-        CGFloat height = 10 + 10 + 5 + 40 ; //分割线和上下距离和评论
+            CGFloat height = 10 + 10 + 5 + 40 + (IS_IPhoneX ? 0 : 20) ; //分割线和上下距离和评论
         Frame.size.height= 125 + detailHeight + webViewHeight + coverHeight + height;
         self.cell.midViewHeight.constant =  webViewHeight;
         self.cell.frame= Frame;
@@ -146,12 +155,11 @@
     }
 }
     
-- (void)webViewDidFinishLoad:(UIWebView*)webView{
-        CGFloat sizeHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"]floatValue];
-        self.cell.cellWebView.frame=CGRectMake(0,0,self.cell.midView.frame.size.width, sizeHeight);
-        [QMUITips hideAllTipsInView:self.view];
-
-}
+//- (void)webViewDidFinishLoad:(UIWebView*)webView{
+//        CGFloat sizeHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"]floatValue];
+//        self.cell.cellWebView.frame=CGRectMake(0,0,self.cell.midView.frame.size.width, sizeHeight);
+//        [QMUITips hideAllTipsInView:self.view];
+//}
 - (XLVideoPlayer *)player {
     if (!_player) {
         _player = [[XLVideoPlayer alloc] init];
@@ -178,7 +186,7 @@
  
     self.cell.tagId = [self.startDic[@"id"] integerValue];
     CGRect oldFrame = self.cell.frame;
-    CGFloat newHeight =  self.headerViewHeight;
+    CGFloat newHeight =  self.headerViewHeight + (IS_IPhoneX ? 0 : 20);
     self.cell.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width, newHeight);
     self.cell.fenxiangBtn.hidden = self.cell.fenxiangImv.hidden = YES;
 
@@ -222,7 +230,7 @@
                 self.cell.midViewHeight.constant = ( KScreenWidth - 20 ) * scale;
                 self.cell.playImV.hidden = YES;
                 CGRect Frame = self.cell.frame;
-                Frame.size.height= self.headerViewHeight - 100 + 60 + self.cell.midViewHeight.constant;
+                Frame.size.height= self.headerViewHeight - 100 + 60 + self.cell.midViewHeight.constant+ (IS_IPhoneX ? 0 : 20);
                 self.cell.frame= Frame;
                 self.player.videoUrl = self.startDic[@"url_list"][0];
                 [self.cell.onlyOneImv addSubview:self.player];
@@ -233,7 +241,7 @@
                 CGFloat detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:15];
                 CGFloat midViewHeight = [YXFirstFindImageTableViewCell inArrayCountOutHeight:[self.startDic[@"url_list"] count]];
 //                Frame.size.height = 170 + detailHeight + 200 + kTopHeight;
-                Frame.size.height = 170 + detailHeight + midViewHeight + kTopHeight;
+                Frame.size.height = 170 + detailHeight + midViewHeight + kTopHeight+ (IS_IPhoneX ? 0 : 20);
                 self.cell.frame= Frame;
                
             }
@@ -267,6 +275,10 @@
         self.cell.leftWidth.constant  = 5;
         self.cell.rightWidth.constant = 5;
         self.yxTableView.tableHeaderView = self.cell;
+        
+        
+       
+        
     }
     zanBool =  [self.startDic[@"is_praise"] integerValue] == 1;
 

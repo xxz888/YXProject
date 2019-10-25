@@ -113,7 +113,7 @@ static CGFloat const HeaderImageViewHeight = 130;
     CGFloat contentOffsetY = scrollView.contentOffset.y;
     //吸顶临界点(此时的临界点不是视觉感官上导航栏的底部，而是当前屏幕的顶部相对scrollViewContentView的位置)
     CGFloat criticalPointOffsetY = [self.yxTableView rectForSection:0].origin.y -  [UIApplication sharedApplication].statusBarFrame.size.height;
-    criticalPointOffsetY = AxcAE_IsiPhoneX ? -88 : -65;
+    criticalPointOffsetY = IS_IPhoneX ? -88 : -65;
     NSLog(@"%f",criticalPointOffsetY);
     //利用contentOffset处理内外层scrollView的滑动冲突问题
     if (contentOffsetY >= criticalPointOffsetY) {

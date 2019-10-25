@@ -14,7 +14,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.yxTableView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight - kStatusBarHeight - TabBarHeight - 40);
+    self.yxTableView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight - kStatusBarHeight - kTabBarHeight - 40);
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSecondVC:) name:@"refreshSecondVC" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -42,7 +42,15 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void)refreshSecondVC: (NSNotification *) notification {
-    [self requestTableData];
+        kWeakSelf(self);
+    NSString * parString =[NSString stringWithFormat:@"%@&page=%@",@"1",NSIntegerToNSString(self.requestPage)];
+    [QMUITips showLoadingInView:self.view];
+    [YX_MANAGER requestGet_users_find:parString success:^(id object){
+        [QMUITips hideAllTips];
+        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
+        [weakself.yxTableView reloadData];
+        weakself.nodataImg.hidden = weakself.dataArray.count != 0;
+    }];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

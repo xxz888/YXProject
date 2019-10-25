@@ -1343,7 +1343,7 @@ HXDatePhotoEditViewControllerDelegate
         [_maskView.layer addSublayer:self.iCloudMaskLayer];
         [_maskView addSubview:self.iCloudIcon];
         [_maskView addSubview:self.stateLb];
-        [_maskView addSubview:self.selectBtn];
+//        [_maskView addSubview:self.selectBtn];
     }
     return _maskView;
 }
@@ -1614,11 +1614,11 @@ HXDatePhotoEditViewControllerDelegate
     return self;
 }
 - (void)setupUI {
-    [self addSubview:self.bgView];
-    [self addSubview:self.previewBtn];
-    [self addSubview:self.originalBtn];
-    [self addSubview:self.doneBtn];
-    [self addSubview:self.editBtn];
+//    [self addSubview:self.bgView];
+//    [self addSubview:self.previewBtn];
+//    [self addSubview:self.originalBtn];
+//    [self addSubview:self.doneBtn];
+//    [self addSubview:self.editBtn];
     [self changeDoneBtnFrame];
 }
 - (void)setManager:(HXPhotoManager *)manager {

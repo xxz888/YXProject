@@ -22,12 +22,14 @@
 /**
  消息数组
  */
+- (IBAction)yiduAction:(id)sender;
 @property (nonatomic, strong) NSMutableArray *messages;
 @property (nonatomic, strong) NSMutableArray *dbArray;
 @property (nonatomic, strong) NSMutableArray *bendiArray;
 @property (nonatomic, strong) NSDictionary * requestObject;
 
 @property (nonatomic, strong) NSDictionary * userInfoDic;
+@property (nonatomic, strong) NSMutableArray * yiduArray;
 
 @end
 
@@ -37,7 +39,12 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.navigationItem.title = @"我的消息";
+    self.yiduArray = [[NSMutableArray alloc]init];
+   for (NSInteger i = 0; i< 100; i++) {
+            [self.yiduArray  addObject:@"0"];
+   }
     [self setUI];
+  
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -62,70 +69,38 @@
     [self getNewMessageNumeber];
     self.isEnable = [self isUserNotificationEnable];
     [self requestWeiDuMessage];
-//    kWeakSelf(self);
-//     [YXPLUS_MANAGER requestChatting_ListoryGet:@"" success:^(id object) {
-////         weakself.requestObject =[NSDictionary dictionaryWithDictionary:object];
-//
-//         for (NSArray * messNewArray in object[@"data"]) {
-//             for (NSDictionary * messNewDic in messNewArray) {
-//                 NSString * content = [messNewDic[@"content"] UnicodeToUtf81];
-//                                     NSString * date = messNewDic[@"date"];
-//
-//                                     NSString * own_id= kGetString(messNewDic[@"own_id"]);
-//                                     NSString * aim_id= kGetString(messNewDic[@"aim_id"]);
-//                                     NSString * myid= kGetString(messNewDic[@"id"]);
-//
-//
-//                                      NSString * photo = @"";
-//                                      NSString * username = @"";
-//                                      NSString * otherId = @"";
-//                                      UserInfo * userInfo = curUser;
-//
-//                                      if ([userInfo.id isEqualToString:own_id]) {
-//                                          photo =    messNewDic[@"aim_info"][@"photo"];
-//                                          username = messNewDic[@"aim_info"][@"username"];
-//                                          otherId =  aim_id;
-//                                      }else{
-//                                          photo =    messNewDic[@"own_info"][@"photo"];
-//                                          username = messNewDic[@"own_info"][@"username"];
-//                                          otherId =  own_id;
-//                                      }
-//
-//
-//                                     self.userInfoDic = @{@"id":otherId,@"photo":photo,@"username":username};
-//                                     NSInteger refreshCellIndex = 0;
-//                                     for (NSInteger i = 0; i < self.dbMessageArray.count ;i++) {
-//
-//                                         MessageModel * model = self.dbMessageArray[i][0];
-//                                         if ([model.own_id isEqualToString:otherId] || [model.aim_id isEqualToString:otherId]) {
-//                                             refreshCellIndex = i;
-//                                             break;
-//                                         }
-//                                     }
-//                                     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:refreshCellIndex inSection:0],nil] withRowAnimation:UITableViewRowAnimationNone];
-//                                     //这里开始看是哪个cell，显示小红点
-//
-//                                     [self addMessage:@{@"content":content,@"date":date,@"own_id":own_id,@"aim_id":aim_id,@"xxzid":myid,@"own_info":messNewDic[@"own_info"],@"aim_info":messNewDic[@"aim_info"]}  type:MessageModelTypeOther];
-//             }
-//
-//         }
-//
-//
-//
-////         [weakself.dbMessageArray removeAllObjects];
-////         JQFMDB *db = [JQFMDB shareDatabase];
-////         NSArray *dictArray = [db jq_lookupTable:YX_USER_LiaoTian dicOrModel:[MessageModel class] whereFormat:nil];
-////         [weakself makeSamePersonInfo:dictArray];
-////         [weakself.tableView reloadData];
-//     }];
-   
-
 }
 
 //未读信息的处理
 -(void)requestWeiDuMessage{
     kWeakSelf(self);
     [YXPLUS_MANAGER requestChatting_ListoryGet:@"" success:^(id object) {
+        
+        
+        
+           for (NSArray * dataArray in  object[@"data"]) {
+                 for (NSDictionary * defineDic in dataArray) {
+            NSDictionary * messNewDic = defineDic;
+            NSString * ownId = kGetString(messNewDic[@"own_id"]);
+            NSString * aimId = kGetString(messNewDic[@"aim_id"]);
+
+            if ([WP_TOOL_ShareManager getOwnListDbMessage:messNewDic[@"own_id"] aim_id:messNewDic[@"aim_id"]]) {
+                for (NSInteger i = 0; i<self.dbMessageArray.count; i++) {
+                    for (MessageFrameModel * dictModel in self.dbMessageArray[i]) {
+                          if ([dictModel.message.aim_id isEqualToString:ownId] && [dictModel.message.own_id isEqualToString:aimId]) {
+                                [self.yiduArray  replaceObjectAtIndex:i withObject:@"1"];
+                                break;
+                            }
+                            if ([dictModel.message.aim_id isEqualToString:aimId] && [dictModel.message.own_id isEqualToString:ownId]) {
+                                [self.yiduArray  replaceObjectAtIndex:i withObject:@"1"];
+                                break;
+                            }
+                    }
+                }
+            }
+                 }
+        }
+        
         for (NSArray * dataArray in  object[@"data"]) {
             for (NSDictionary * messNewDic in dataArray) {
                 if ([WP_TOOL_ShareManager getOwnListDbMessage:messNewDic[@"own_id"] aim_id:messNewDic[@"aim_id"]]) {
@@ -143,7 +118,31 @@
 }
 //在线，在不在本页面,同一个方法，都是接收到socket信息处理
 -(void)getSocketWeiDuMessage{
+    
+
     for (NSDictionary * defineDic in YX_MANAGER.socketMessageArray) {
+        NSDictionary * messNewDic = defineDic[@"message"][@"data"];
+        NSString * ownId = kGetString(messNewDic[@"own_id"]);
+        NSString * aimId = kGetString(messNewDic[@"aim_id"]);
+
+        if ([WP_TOOL_ShareManager getOwnListDbMessage:messNewDic[@"own_id"] aim_id:messNewDic[@"aim_id"]]) {
+            for (NSInteger i = 0; i<self.dbMessageArray.count; i++) {
+                for (MessageFrameModel * dictModel in self.dbMessageArray[i]) {
+                      if ([dictModel.message.aim_id isEqualToString:ownId] && [dictModel.message.own_id isEqualToString:aimId]) {
+                            [self.yiduArray  replaceObjectAtIndex:i withObject:@"1"];
+                            break;
+                        }
+                        if ([dictModel.message.aim_id isEqualToString:aimId] && [dictModel.message.own_id isEqualToString:ownId]) {
+                            [self.yiduArray  replaceObjectAtIndex:i withObject:@"1"];
+                            break;
+                        }
+                }
+            }
+        }
+    }
+    
+    for (NSDictionary * defineDic in YX_MANAGER.socketMessageArray) {
+        
         NSDictionary * messNewDic = defineDic[@"message"][@"data"];
              if ([WP_TOOL_ShareManager getOwnListDbMessage:messNewDic[@"own_id"] aim_id:messNewDic[@"aim_id"]]) {
                  [WP_TOOL_ShareManager receiveAllKindsMessage:messNewDic
@@ -193,15 +192,32 @@
          }
         [self.dbMessageArray addObject:resultArray];
     }
+
     [self.tableView reloadData];
 
 }
+- (IBAction)yiduAction:(id)sender {
+    self.zanjb.hidden = YES;
+    self.fensijb.hidden = YES;
+    self.hdjb.hidden = YES;
+    [[AppDelegate shareAppDelegate].mainTabBar.axcTabBar setBadge:NSIntegerToNSString(0) index:2];
+    
+    [self.yiduArray removeAllObjects];
+     for (NSInteger i = 0; i< 100; i++) {
+        [self.yiduArray addObject:@"0"];
+    }
+    [self.tableView reloadData];
+}
+
 -(NSMutableArray *)messages{
 //    if (_messages == nil) {
         JQFMDB *db = [JQFMDB shareDatabase];
         NSArray *dictArray = [db jq_lookupTable:YX_USER_LiaoTian dicOrModel:[MessageModel class] whereFormat:nil];
         NSMutableArray *models = [NSMutableArray arrayWithCapacity:dictArray.count];
         MessageModel *previousModel = nil;
+    if (dictArray.count == 0) {
+        [_messages removeAllObjects];
+    }
         for (MessageModel * message in dictArray) {
             if ([WP_TOOL_ShareManager getOwnListDbMessage:message.own_id aim_id:message.aim_id]) {
                     //只拿自己的
@@ -262,7 +278,7 @@
     [self.view3 addGestureRecognizer:tapGesturRecognizer3];
     [self addShadowToView:self.stackView withColor:kRGBA(102, 102, 102, 0.3)];
     ViewBorderRadius(self.tuisongBtn, 2, 1, SEGMENT_COLOR);
-    ViewBorderRadius(self.yiduBtn, 11, 1, kRGBA(238, 238, 238, 1));
+    ViewBorderRadius(self.yiduBtn, 13, 1, kRGBA(238, 238, 238, 1));
     
     [self.tableView registerNib:[UINib nibWithNibName:@"YXMessageLiaoTianTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMessageLiaoTianTableViewCell"];
     
@@ -326,7 +342,8 @@
         [cell.ltImv sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:photo]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
         cell.ltTime.text = [ShareManager haomiaoNianYueRi:[ShareManager getOtherTimeStrWithString:model.message.time]];
         //新消息提示
-        cell.messageLbl.hidden = model.isRead;
+        
+        cell.messageLbl.hidden = [self.yiduArray[indexPath.row] integerValue] == 0;
         return cell;
     }
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -355,10 +372,8 @@
     
     
     vc.backVCClickIndexblock = ^(NSInteger clickIndex) {
-        MessageFrameModel * model = [self.dbMessageArray[clickIndex] lastObject];
-        model.isRead = YES;
-        NSInteger lastIndex = [weakself.dbMessageArray[clickIndex] count] - 1;
-        [weakself.dbMessageArray[clickIndex] replaceObjectAtIndex:lastIndex withObject:model];
+   
+        [weakself.yiduArray replaceObjectAtIndex:clickIndex withObject:@"0"];
         [weakself.tableView reloadData];
     };
     

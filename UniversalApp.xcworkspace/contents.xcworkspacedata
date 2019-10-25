@@ -1,6 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <Group
+      location = "group:UniversalApp/Controller/C&#x53d1;&#x5e03;/2&#x6587;&#x7ae0;&#x65b0;/&#x6587;&#x7ae0;&#x65b0;&#x6240;&#x7528;&#x5e93;/Model"
+      name = "Model">
+      <FileRef
+         location = "group:WGUIWebViewPool.m">
+      </FileRef>
+      <FileRef
+         location = "group:WGUploadPictureModel.h">
+      </FileRef>
+      <FileRef
+         location = "group:WGUploadPictureModel.m">
+      </FileRef>
+      <FileRef
+         location = "group:WGUIWebViewPool.h">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:UniversalApp/Controller/C&#x53d1;&#x5e03;/2&#x6587;&#x7ae0;&#x65b0;/&#x6587;&#x7ae0;&#x65b0;&#x6240;&#x7528;&#x5e93;/Sources"
+      name = "Sources">
+      <FileRef
+         location = "group:icon_refresh.png">
+      </FileRef>
+      <FileRef
+         location = "group:article_editor.js">
+      </FileRef>
+      <FileRef
+         location = "group:style.css">
+      </FileRef>
+      <FileRef
+         location = "group:normalize.css">
+      </FileRef>
+      <FileRef
+         location = "group:jquery.js">
+      </FileRef>
+      <FileRef
+         location = "group:richText_editor.html">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:UniversalApp/Controller/C&#x53d1;&#x5e03;/2&#x6587;&#x7ae0;&#x65b0;/&#x6587;&#x7ae0;&#x65b0;&#x6240;&#x7528;&#x5e93;/Tool"
+      name = "Tool">
+      <FileRef
+         location = "group:UIWebView+KWWebViewJSTool.h">
+      </FileRef>
+      <FileRef
+         location = "group:UIControl+KWButtonExtension.h">
+      </FileRef>
+      <FileRef
+         location = "group:UIWebView+KWHideAccessoryView.m">
+      </FileRef>
+      <FileRef
+         location = "group:UIWebView+KWWebViewJSTool.m">
+      </FileRef>
+      <FileRef
+         location = "group:UIControl+KWButtonExtension.m">
+      </FileRef>
+      <FileRef
+         location = "group:WGCommon.h">
+      </FileRef>
+      <FileRef
+         location = "group:UIWebView+KWHideAccessoryView.h">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:UniversalApp/Controller/C&#x53d1;&#x5e03;/2&#x6587;&#x7ae0;&#x65b0;/&#x6587;&#x7ae0;&#x65b0;&#x6240;&#x7528;&#x5e93;/View"
+      name = "View">
+      <FileRef
+         location = "group:KWFontStyleBar.h">
+      </FileRef>
+      <FileRef
+         location = "group:KWEditorBar.h">
+      </FileRef>
+      <FileRef
+         location = "group:KWEditorBar.xib">
+      </FileRef>
+      <FileRef
+         location = "group:KWFontStyleBar.m">
+      </FileRef>
+      <FileRef
+         location = "group:KWEditorBar.m">
+      </FileRef>
+   </Group>
    <FileRef
       location = "group:UniversalApp.xcodeproj">
    </FileRef>

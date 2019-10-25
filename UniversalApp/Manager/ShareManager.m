@@ -414,7 +414,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     NSMutableArray * photoArray = [NSMutableArray array];
     NSMutableArray * titleArray = [NSMutableArray array];
     
-    SDCycleScrollView *cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, 180) delegate:nil placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    SDCycleScrollView *cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 180) delegate:nil placeholderImage:[UIImage imageNamed:@"img_moren"]];
     cycleScrollView3.bannerImageViewContentMode =  3;
     cycleScrollView3.showPageControl = NO;
     cycleScrollView3.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
@@ -502,7 +502,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
     paraStyle.lineSpacing = lineSpacing + 2;
     NSDictionary *dic = @{NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:fontSize], NSParagraphStyleAttributeName:paraStyle};
-    CGSize size = [string boundingRectWithSize:CGSizeMake(KScreenWidth-20, MAXFLOAT) options:
+    CGSize size = [string boundingRectWithSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width - 20, MAXFLOAT) options:
                    NSStringDrawingUsesLineFragmentOrigin |
                    NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
     return  ceil(size.height) + 10;
@@ -520,7 +520,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     
     
     [attributedStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedStr.length)];
-    CGSize size = [str boundingRectWithSize:CGSizeMake(KScreenWidth-30, MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
+    CGSize size = [str boundingRectWithSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width-30, MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
     
     
     return  size.height;
@@ -599,7 +599,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     //展开后得高度(计算出文本内容的高度+固定控件的高度)
     NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
     NSStringDrawingOptions option = (NSStringDrawingOptions)(NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading);
-    CGSize size = [string boundingRectWithSize:CGSizeMake(KScreenWidth- 20, 100000) options:option attributes:attribute context:nil].size;
+    CGSize size = [string boundingRectWithSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width- 20, 100000) options:option attributes:attribute context:nil].size;
     return size;
 }
 +(CGFloat)getOldImageSizeWithURL:(id)URL{
@@ -744,7 +744,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     moment.text = dic[@"title"];
     moment.detailText = dic[@"question"];
     moment.time = dic[@"publish_date"] ? [dic[@"publish_date"] longLongValue] : [dic[@"publish_time"] longLongValue];
-    moment.singleWidth = (KScreenWidth-30)/3;
+    moment.singleWidth = ([[UIScreen mainScreen] bounds].size.width-30)/3;
     moment.singleHeight = 100;
     moment.location = @"";
     moment.isPraise = NO;
@@ -787,54 +787,69 @@ SINGLETON_FOR_CLASS(ShareManager);
 //HTML适配图片文字
 + (NSString *)adaptWebViewForHtml:(NSString *) htmlStr{
     
-    NSMutableString *headHtml = [[NSMutableString alloc] initWithCapacity:0];
-    [headHtml appendString : @"<html>" ];
+
+    NSString * normalize = [[NSBundle mainBundle] pathForResource:@"normalize" ofType:@"css"];
+    NSString * normalizeCss = [NSString stringWithFormat:@"<link href=\"%@\" type=\"text/css\" rel=\"stylesheet\">",normalize];
+    NSString * style = [[NSBundle mainBundle] pathForResource:@"style" ofType:@"css"];
+    NSString * styleCss = [NSString stringWithFormat:@"<link href=\"%@\" type=\"text/css\" rel=\"stylesheet\">",style];
+    NSString * js =   [[NSBundle mainBundle] pathForResource:@"jquery" ofType:@"js"];
+    NSString * jqjs = [NSString stringWithFormat:@"<script src=\"%@\">",js];
     
+    NSMutableString *headHtml = [[NSMutableString alloc] initWithCapacity:0];
+    [headHtml appendString : @"<!DOCTYPE html><html>" ];
     [headHtml appendString : @"<head>" ];
     
-    [headHtml appendString : @"<meta charset=\"utf-8\">" ];
+    [headHtml appendString : @"<meta name=\"viewport\" content=\"user-scalable=no\" />" ];
+    [headHtml appendString : @"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />" ];
+    [headHtml appendString : normalizeCss];
+    [headHtml appendString : styleCss];
+    [headHtml appendString : jqjs];
     
-    [headHtml appendString : @"<meta id=\"viewport\" name=\"viewport\" content=\"width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=false\" />" ];
-    
-    [headHtml appendString : @"<meta name=\"apple-mobile-web-app-capable\" content=\"yes\" />" ];
-    
-    [headHtml appendString : @"<meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black\" />" ];
-    
-    [headHtml appendString : @"<meta name=\"black\" name=\"apple-mobile-web-app-status-bar-style\" />" ];
-    
-    [headHtml appendString : @"<link rel=\"stylesheet\" type=\"text/css\" href=\"normalize1.css\">" ];
-    [headHtml appendString : @"<link rel=\"stylesheet\" type=\"text/css\" href=\"style1.css\">" ];
+    [headHtml appendString : @"</script></head>"];
+
+//
+//    [headHtml appendString : @"<meta id=\"viewport\" name=\"viewport\" content=\"width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=false\" />" ];
+//
+//
+//    [headHtml appendString : @"<meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black\" />" ];
+//    [headHtml appendString : @"<meta name=\"black\" name=\"apple-mobile-web-app-status-bar-style\" />" ];
+//
+//
 
 
-    //适配图片宽度，让图片宽度等于屏幕宽度
-    [headHtml appendString : @"<style>img{width:100%;}</style>" ];
-    [headHtml appendString : @"<style>img{height:auto;}</style>" ];
-    
+//    //适配图片宽度，让图片宽度等于屏幕宽度
+//    [headHtml appendString : @"<style>img{width:100%;}</style>" ];
+//    [headHtml appendString : @"<style>img{height:auto;}</style>" ];
+//
     //适配图片宽度，让图片宽度最大等于屏幕宽度
     //    [headHtml appendString : @"<style>img{max-width:100%;width:auto;height:auto;}</style>"];
     
     
     //适配图片宽度，如果图片宽度超过手机屏幕宽度，就让图片宽度等于手机屏幕宽度，高度自适应，如果图片宽度小于屏幕宽度，就显示图片大小
-    [headHtml appendString : @"<script type='text/javascript'>"
-     "window.onload = function(){\n"
-     "var maxwidth=document.body.clientWidth;\n" //屏幕宽度
-     "for(i=0;i <document.images.length;i++){\n"
-     "var myimg = document.images[i];\n"
-     "if(myimg.width > maxwidth){\n"
-     "myimg.style.width = '100%';\n"
-     "myimg.style.height = 'auto'\n;"
-     "}\n"
-     "}\n"
-     "}\n"
-     "</script>\n"];
+//    [headHtml appendString : @"<script type='text/javascript'>"
+//     "window.onload = function(){\n"
+//     "var maxwidth=document.body.clientWidth;\n" //屏幕宽度
+//     "for(i=0;i <document.images.length;i++){\n"
+//     "var myimg = document.images[i];\n"
+//     "if(myimg.width > maxwidth){\n"
+//     "myimg.style.width = '100%';\n"
+//     "myimg.style.height = 'auto'\n;"
+//     "}\n"
+//     "}\n"
+//     "}\n"
+//     "</script>\n"];
     
-    [headHtml appendString : @"<style>table{width:100%;}</style>" ];
-    [headHtml appendString : @"<body><title>webview</title>" ];
-    NSString *bodyHtml;
-    bodyHtml = [NSString stringWithString:headHtml];
-    bodyHtml = [bodyHtml stringByAppendingString:htmlStr];
-    bodyHtml = [bodyHtml append:@"<body>"];
-    return bodyHtml;
+//    [headHtml appendString : @"<style>table{width:100%;}</style>" ];
+    [headHtml appendString : @"<body>" ];
+    
+    [headHtml appendString:htmlStr];
+    
+    NSString * article_editor =   [[NSBundle mainBundle] pathForResource:@"article_editor" ofType:@"js"];
+    NSString * article_editorjs = [NSString stringWithFormat:@"<script type=\"text/javascript\" src=\"%@\" />",article_editor];
+    [headHtml appendString:article_editorjs];
+
+    [headHtml appendString:@"</body></html>"];
+    return headHtml;
     
 }
 
@@ -900,7 +915,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:imgUrl]];
     UIImage *showimage = [UIImage imageWithData:data];
     CGFloat scale = showimage.size.height/showimage.size.width;
-    return KScreenWidth * scale;
+    return [[UIScreen mainScreen] bounds].size.width * scale;
 }
 
 
@@ -991,7 +1006,7 @@ SINGLETON_FOR_CLASS(ShareManager);
              messageModel.hiddenTime = [messageModel.time isEqualToString:compareM.time];
              MessageFrameModel *mf = [[MessageFrameModel alloc] init];
              mf.message = messageModel;
-             mf.isRead = NO;
+             mf.isRead = YES;
              //只插入messagemodel
              JQFMDB *db = [JQFMDB shareDatabase];
              [db jq_inDatabase:^{

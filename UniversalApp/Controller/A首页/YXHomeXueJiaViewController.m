@@ -78,7 +78,7 @@
     UIView * searchView = [[UIView alloc]initWithFrame:CGRectMake(15, 50, KScreenWidth-30, 30)];
     searchView.layer.backgroundColor = [UIColor colorWithRed:244/255.0 green:244/255.0 blue:244/255.0 alpha:1.0].CGColor;
     searchView.layer.cornerRadius = 15;
-    [self.segmentedPageViewController.view addSubview:searchView];
+//    [self.segmentedPageViewController.view addSubview:searchView];
     
     
     UIImageView * fangdajingView = [[UIImageView alloc]initWithFrame:CGRectMake(16, 6, 18, 18)];
@@ -188,7 +188,7 @@
 -(void)createBottomTableView{
 
     if (!self.bottomTableView) {
-        self.bottomTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, AxcAE_IsiPhoneX ?self.bootomView.frame.size.height : KScreenHeight - kTopHeight - TabBarHeight) style:UITableViewStyleGrouped];
+        self.bottomTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, IS_IPhoneX ?self.bootomView.frame.size.height : KScreenHeight - kTopHeight - TabBarHeight) style:UITableViewStyleGrouped];
         [self.bootomView addSubview:self.bottomTableView];
     }
     self.bottomTableView.backgroundColor = KWhiteColor;

@@ -83,9 +83,17 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [super tableView:tableView numberOfRowsInSection:section] ;
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0 && indexPath.row
+         == 0 &&  IS_IPhoneX) {
+           return 84;
+    }else{
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell * cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
-    if (indexPath.section == 1) {
+    if (indexPath.section == 2) {
         cell.separatorInset = UIEdgeInsetsMake(0, KScreenWidth, 0, 0);
     }
     return cell;

@@ -37,10 +37,18 @@
 - (void)setupContent:(NSString *)content{
     NSString *html = [content stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     NSString *trigger = [NSString stringWithFormat:@"RE.setHtml(\"%@\");",html];
-    
     [self stringByEvaluatingJavaScriptFromString:trigger];
 }
+/**
+ :初始化文章
+ */
+- (void)setupHtmlContent:(NSString *)content {
+    
+    NSString *html = [content stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    NSString *trigger = [NSString stringWithFormat:@"RE.setHtmlStr(\"%@\");",html];
 
+    [self stringByEvaluatingJavaScriptFromString:trigger];
+}
 
 - (void)clearContentPlaceholder{
     [self stringByEvaluatingJavaScriptFromString:@"RE.clearBackTxt();"];
@@ -212,8 +220,6 @@
 - (void)inserSuccessImageKey:(NSString *)imageKey imgUrl:(NSString *)imgUrl{
     NSString *trigger = [NSString stringWithFormat:@"RE.insertSuccessReplaceImg(\"%@\", \"%@\");",imageKey, imgUrl];
     [self stringByEvaluatingJavaScriptFromString:trigger];
-
-
 }
 
 - (void)deleteImageKey:(NSString *)key{

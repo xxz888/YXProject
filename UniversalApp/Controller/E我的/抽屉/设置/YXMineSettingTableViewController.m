@@ -15,6 +15,7 @@
 #import "YXMineShouHuoAdressViewController.h"
 
 @interface YXMineSettingTableViewController ()
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *navHeight;
 
 @end
 
@@ -24,11 +25,17 @@
     self.navigationController.navigationBar.hidden = YES;
     
 }
+- (IBAction)backVC:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
-
+   
+//    if (IS_IPhoneX) {
+//        self.navHeight.constant = 84;
+//    }
     //解决方案
     self.automaticallyAdjustsScrollViewInsets=false;
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -37,11 +44,10 @@
     self.tableView.tableFooterView = [[UIView alloc]init];
     
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    btn.frame = CGRectMake(20, KScreenHeight-67-kTopHeight-49, KScreenWidth-40, 45);
+    btn.frame = CGRectMake(20, KScreenHeight-kTabBarHeight-45, KScreenWidth-40, 45);
     btn.layer.masksToBounds = YES;
     btn.layer.cornerRadius = 22.5;
-    btn.backgroundColor = kRGBA(10, 36, 54, 1);
+    btn.backgroundColor = SEGMENT_COLOR;
     [btn setTitle:@"退出登录" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(exitAppAction) forControlEvents:UIControlEventTouchUpInside];
     [self.tableView addSubview:btn];
@@ -57,7 +63,14 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [super numberOfSectionsInTableView:tableView];
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0 && indexPath.row
+         == 0 &&  IS_IPhoneX) {
+           return 84;
+    }else{
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [super tableView:tableView numberOfRowsInSection:section];
 }
@@ -72,7 +85,7 @@
     UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
     kWeakSelf(self);
     switch (indexPath.section) {
-        case 0:
+        case 1:
             //账号与安全
             if (indexPath.row == 1) {
                 UserInfo * userInfo= curUser;
@@ -92,7 +105,7 @@
                 [self.navigationController pushViewController:[[YXMineShouHuoAdressViewController alloc] init] animated:YES];
             }
             break;
-        case 1:
+        case 2:
             if (indexPath.row == 0) {
                 
                 YXMineAboutUsViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineAboutUsViewController"];

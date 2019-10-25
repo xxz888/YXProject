@@ -42,24 +42,25 @@ UITableViewDelegate
     self.navigationController.popoverPresentationController.delegate = (id)self;
     [self setupUI];
     // 获取当前应用对照片的访问授权状态
-    __weak typeof(self) weakSelf = self;
-    [self.view showLoadingHUDText:nil];
-    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if ([PHPhotoLibrary authorizationStatus] != PHAuthorizationStatusAuthorized) {
-                [weakSelf.view handleLoading];
-                [weakSelf.view addSubview:weakSelf.authorizationLb];
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSBundle hx_localizedStringForKey:@"无法访问相册"] message:[NSBundle hx_localizedStringForKey:@"请在设置-隐私-相册中允许访问相册"] preferredStyle:UIAlertControllerStyleAlert];
-                [alert addAction:[UIAlertAction actionWithTitle:[NSBundle hx_localizedStringForKey:@"取消"] style:UIAlertActionStyleDefault handler:nil]];
-                [alert addAction:[UIAlertAction actionWithTitle:[NSBundle hx_localizedStringForKey:@"设置"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                }]];
-                [weakSelf presentViewController:alert animated:YES completion:nil];
-            }else {
-                [weakSelf getAlbumModelList:YES];
-            }
-        });
-    }];
+//    __weak typeof(self) weakSelf = self;
+//    [self.view showLoadingHUDText:nil];
+//    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            if ([PHPhotoLibrary authorizationStatus] != PHAuthorizationStatusAuthorized) {
+//                [weakSelf.view handleLoading];
+//                [weakSelf.view addSubview:weakSelf.authorizationLb];
+//                UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSBundle hx_localizedStringForKey:@"无法访问相册"] message:[NSBundle hx_localizedStringForKey:@"请在设置-隐私-相册中允许访问相册"] preferredStyle:UIAlertControllerStyleAlert];
+//                [alert addAction:[UIAlertAction actionWithTitle:[NSBundle hx_localizedStringForKey:@"取消"] style:UIAlertActionStyleDefault handler:nil]];
+//                [alert addAction:[UIAlertAction actionWithTitle:[NSBundle hx_localizedStringForKey:@"设置"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+//                }]];
+//                [weakSelf presentViewController:alert animated:YES completion:nil];
+//            }else {
+//                [weakSelf getAlbumModelList:YES];
+//            }
+//        });
+//    }];
+      [self getAlbumModelList:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 }
 
@@ -453,8 +454,8 @@ UITableViewDelegate
 }
 - (void)setupUI {
     [self.contentView addSubview:self.coverView];
-    [self.contentView addSubview:self.albumNameLb];
-    [self.contentView addSubview:self.photoNumberLb];
+//    [self.contentView addSubview:self.albumNameLb];
+//    [self.contentView addSubview:self.photoNumberLb];
 //    [self.contentView addSubview:self.selectNumberBtn];
 }
 - (void)setModel:(HXAlbumModel *)model {

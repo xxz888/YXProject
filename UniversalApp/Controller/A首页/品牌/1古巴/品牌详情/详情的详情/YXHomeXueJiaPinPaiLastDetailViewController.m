@@ -108,7 +108,7 @@
         [self.lastPeiJianlastDetailView againSetDetailView:weakself.startDic];
         self.lastPeiJianlastDetailView.PeiJianOrPinPai = self.PeiJianOrPinPai;
         // 设置 view 的 frame(将设置 frame 提到设置 tableHeaderView 之前)
-        self.lastPeiJianlastDetailView.frame = CGRectMake(0, 0, kScreenWidth, (AxcAE_IsiPhoneX ? 670 : 760));
+        self.lastPeiJianlastDetailView.frame = CGRectMake(0, 0, kScreenWidth, (IS_IPhoneX ? 670 : 760));
         // 设置 tableHeaderView
         self.yxTableView.tableHeaderView = self.lastPeiJianlastDetailView;
     }else{
@@ -179,7 +179,7 @@
             listHeight  = listData.count * 40 ;
         }
         // 设置 view 的 frame(将设置 frame 提到设置 tableHeaderView 之前)
-        self.lastDetailView.frame = CGRectMake(0, 0, kScreenWidth, (AxcAE_IsiPhoneX ? 420 : 510) + height + tagHeight + listHeight);
+        self.lastDetailView.frame = CGRectMake(0, 0, kScreenWidth, (IS_IPhoneX ? 420 : 510) + height + tagHeight + listHeight);
         // 设置 tableHeaderView
         self.yxTableView.tableHeaderView = self.lastDetailView;
     }

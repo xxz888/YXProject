@@ -247,13 +247,13 @@
         frame.origin.x = 0.0f;
         
         if (self.toolbarPosition == TOCropViewControllerToolbarPositionBottom) {
-            frame.origin.y = CGRectGetHeight(self.view.bounds) - (AxcAE_IsiPhoneX ? 78.0f : 44.0f);
+            frame.origin.y = CGRectGetHeight(self.view.bounds) - (IS_IPhoneX ? 78.0f : 44.0f);
         } else {
             frame.origin.y = 0;
         }
         
         frame.size.width = CGRectGetWidth(self.view.bounds);
-        frame.size.height = AxcAE_IsiPhoneX ? 78.0f : 44.0f;
+        frame.size.height = IS_IPhoneX ? 78.0f : 44.0f;
         
         // If the bar is at the top of the screen and the status bar is visible, account for the status bar height
         if (self.toolbarPosition == TOCropViewControllerToolbarPositionTop && self.prefersStatusBarHidden == NO) {

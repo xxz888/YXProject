@@ -10,7 +10,6 @@
 #import "YXFindViewController.h"
 #import "YXMessageViewController.h"
 #import "YXMineViewController.h"
-#import "XWPopMenuController.h"
 #import "HGPersonalCenterViewController.h"
 #import "YXHomeXueJiaViewController.h"
 #import "YXSecondViewController.h"
@@ -162,7 +161,7 @@ static NSInteger lastIdx = 0;
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     self.axcTabBar.frame = self.tabBar.bounds;
-//    if (!AxcAE_IsiPhoneX) {
+//    if (!IS_IPhoneX) {
 //        self.axcTabBar.frame = CGRectMake(0, KScreenHeight-64, KScreenWidth, 64);
 //    }
     [self.axcTabBar viewDidLayoutItems];

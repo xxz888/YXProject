@@ -116,9 +116,16 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [super tableView:tableView numberOfRowsInSection:section];
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0 && indexPath.row
+         == 0 &&  IS_IPhoneX) {
+           return 84;
+    }else{
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 1) {
+    if (indexPath.section == 1 && indexPath.row == 1) {
         YXMineShouHuoAdressViewController * vc = [[YXMineShouHuoAdressViewController alloc]init];
         vc.backVCHaveParblock = ^(NSDictionary * dic) {
                             self.shouhuoren.text = dic[@"name"];

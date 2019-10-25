@@ -7,4 +7,3 @@
 //
 
 #import "KSSwiftBridgingHeader.h"
-#import "EditorViewController.h"

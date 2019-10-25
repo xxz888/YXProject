@@ -26,7 +26,6 @@
     self.yxTableView.separatorStyle = 0;
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXMineShouHuoTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineShouHuoTableViewCell"];
     self.yxTableView.backgroundColor = kRGBA(245, 245, 245, 1);
-    self.view.backgroundColor = kRGBA(245, 245, 245, 1);
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

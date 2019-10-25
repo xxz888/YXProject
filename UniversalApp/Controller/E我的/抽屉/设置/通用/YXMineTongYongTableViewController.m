@@ -43,7 +43,14 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [super numberOfSectionsInTableView:tableView];
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0 && indexPath.row
+         == 0 &&  IS_IPhoneX) {
+           return 84;
+    }else{
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [super tableView:tableView numberOfRowsInSection:section];
 }
@@ -51,14 +58,14 @@
     UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
 
     switch (indexPath.section) {
-        case 0:
+        case 1:
             //推送
             if (indexPath.row == 0) {
                 YXMineTuiSongViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineTuiSongViewController"];
                 [self.navigationController pushViewController:VC animated:YES];
             }
             break;
-        case 1:
+        case 2:
             //清除搜索记录
             if (indexPath.row == 0) {
                 QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {

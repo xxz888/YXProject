@@ -103,8 +103,8 @@
 - (KWEditorBar *)toolBarView{
     if (!_toolBarView) {
         _toolBarView = [KWEditorBar editorBar];
-        _toolBarView.frame = CGRectMake(0,SCREEN_HEIGHT - KWEditorBar_Height, self.view.frame.size.width, KWEditorBar_Height);
-        _toolBarView.backgroundColor = COLOR(237, 237, 237, 1);
+        _toolBarView.frame = CGRectMake(0,SCREEN_HEIGHT - KWEditorBar_Height+1, self.view.frame.size.width, KWEditorBar_Height);
+        _toolBarView.backgroundColor = kRGBA(237, 237, 237, 1);
     }
     return _toolBarView;
 }
@@ -365,10 +365,6 @@
             }
         }
             break;
-        case 4:{
-            //插入地址
-            [self.webView insertLinkUrl:@"https://www.baidu.com/" title:@"百度" content:@"百度一下"];
-        }break;
         case 5:{
             //插入图片
             if (!self.toolBarView.keyboardButton.selected) {
@@ -627,7 +623,7 @@
 - (HXPhotoManager *)manager {
     if (!_manager) {
         _manager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhoto];
-        _manager.configuration.toolBarTitleColor = COLOR(33,189,109,1);
+        _manager.configuration.toolBarTitleColor = kRGBA(33,189,109,1);
         _manager.configuration.videoMaxNum = 1;
         _manager.configuration.imageMaxSize = 5;
         _manager.configuration.selectTogether = NO;

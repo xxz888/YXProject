@@ -106,7 +106,7 @@
     
     self.titleArray = [[NSMutableArray alloc]init];
     self.yxTableView = [[UITableView alloc]init];
-    self.yxTableView.frame = CGRectMake(0,45, KScreenWidth,self.view.frame.size.height-kTopHeight-kTabBarHeight+10 - 45);
+    self.yxTableView.frame = CGRectMake(0,5, KScreenWidth,self.view.frame.size.height-kTopHeight-kTabBarHeight+10 - 5);
     self.yxTableView.delegate = self;
     self.yxTableView.dataSource= self;
     self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -118,7 +118,7 @@
     return self.titleArray.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 170;
+    return (KScreenWidth - 30) * 9 / 16;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXHomeXueJiaToolsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeXueJiaToolsTableViewCell" forIndexPath:indexPath];

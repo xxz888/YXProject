@@ -39,7 +39,10 @@
  @param content 内容
  */
 - (void)setupContent:(NSString *)content;
-
+/**
+ :初始化文章
+ */
+- (void)setupHtmlContent:(NSString *)content;
 
 /**
  *  清除内容的占位文本
@@ -216,6 +219,7 @@
  *  处理HTML的特殊字符转换成文本内容
  */
 - (NSString *)removeQuotesFromHTML:(NSString *)html;
+
 @end
 
 

@@ -272,7 +272,7 @@
 }
 //初始化UI
 -(void)setVCUI{
-    self.bottomViewHeight.constant = AxcAE_IsiPhoneX ? 90 : 60;
+    self.bottomViewHeight.constant = IS_IPhoneX ? 90 : 60;
     [self addNavigationItemWithImageNames:@[@"更多"] isLeft:NO target:self action:@selector(moreShare) tags:@[@"999"]];
     self.view.backgroundColor = KWhiteColor;
     self.dataArray = [[NSMutableArray alloc]init];

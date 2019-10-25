@@ -31,7 +31,7 @@
         if ([dic[@"detail"] isEqualToString:@""] && [dic[@"tag"] isEqualToString:@""]) {
                      detailHeight = 0;
                  }else{
-                     detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:15];
+                     detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:17];
                  }
         //这里判断晒图是图还是视频
         if ([kGetString(dic[@"url_list"][0]) containsString:@"mp4"]) {
@@ -48,13 +48,13 @@
         if ([dic[@"title"] isEqualToString:@""] && [dic[@"tag"] isEqualToString:@""]) {
             detailHeight = 0;
         }else{
-            detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:15];
+            detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:17];
             
         }
     }
 
    
-    return 125 + detailHeight + midViewHeight;
+    return 128 + detailHeight + midViewHeight;
 }
 +(CGFloat)inArrayCountOutHeight:(NSInteger)count{
     CGFloat h = 0;

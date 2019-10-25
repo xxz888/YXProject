@@ -1152,7 +1152,7 @@
     [self.selectedList removeAllObjects];
     [self.selectedPhotos removeAllObjects];
     [self.selectedVideos removeAllObjects];
-    self.isOriginal = NO;
+    self.isOriginal = YES;
     self.photosTotalBtyes = nil;
     [self.selectedCameraList removeAllObjects];
     [self.selectedCameraVideos removeAllObjects];
@@ -1175,7 +1175,7 @@
     [self.endSelectedVideos removeAllObjects];
     [self.endSelectedPhotos removeAllObjects];
     [self.endSelectedVideos removeAllObjects];
-    self.endIsOriginal = NO;
+    self.endIsOriginal = YES;
     self.endPhotosTotalBtyes = nil;
     
     [self.selectedList removeAllObjects];
@@ -1191,7 +1191,7 @@
     [self.selectedVideos removeAllObjects];
     [self.selectedPhotos removeAllObjects];
     [self.selectedVideos removeAllObjects];
-    self.isOriginal = NO;
+    self.isOriginal = YES;
     self.photosTotalBtyes = nil;
     
     [self.albums removeAllObjects];

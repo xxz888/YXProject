@@ -71,15 +71,14 @@
         }
         
         [weakself handleShowContentViewController];
-//        XWPopMenuController *vc = [[XWPopMenuController alloc]init];
-//        [weakself presentViewController:vc animated:NO completion:nil];
+
     };
 }
 - (void)handleShowContentViewController {
-//    if (![userManager loadUserInfo]) {
-//           KPostNotification(KNotificationLoginStateChange, @NO);
-//           return;
-//       }
+    if (![userManager loadUserInfo]) {
+           KPostNotification(KNotificationLoginStateChange, @NO);
+           return;
+       }
     YXFaBuNewVCViewController * contentViewController = [[YXFaBuNewVCViewController alloc] init];
     QMUIModalPresentationViewController *modalViewController = [[QMUIModalPresentationViewController alloc] init];
     modalViewController.contentViewMargins = UIEdgeInsetsMake(KScreenHeight-175-kTabBarHeight-10, KScreenWidth-146, kTabBarHeight+10, 0);

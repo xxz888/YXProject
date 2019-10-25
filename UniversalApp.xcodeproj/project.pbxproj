@@ -164,7 +164,6 @@
 		BB21FDA722B0991E0059BCAC /* KSMediaViewerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB21FD7F22B0991E0059BCAC /* KSMediaViewerCell.m */; };
 		BB21FDA822B0991E0059BCAC /* KSMediaViewerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB21FD8022B0991E0059BCAC /* KSMediaViewerView.m */; };
 		BB21FDA922B0991E0059BCAC /* KSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB21FD8322B0991E0059BCAC /* KSExtension.swift */; };
-		BB21FDAF22B099B20059BCAC /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB21FDAA22B099B10059BCAC /* EditorViewController.m */; };
 		BB21FDB022B099B20059BCAC /* YXWenZhangView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB21FDAB22B099B20059BCAC /* YXWenZhangView.m */; };
 		BB21FDB122B099B20059BCAC /* YXWenZhangView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB21FDAC22B099B20059BCAC /* YXWenZhangView.xib */; };
 		BB21FDB522B09B2E0059BCAC /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = BB21FDB322B09B2D0059BCAC /* Tool.m */; };
@@ -226,12 +225,6 @@
 		BB4AA7D82317B2EC00C22224 /* YXMineYiJianFanKuiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4AA7D72317B2EC00C22224 /* YXMineYiJianFanKuiViewController.m */; };
 		BB524794234A2F3B00FB22B3 /* YXFaBuNewVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB524792234A2F3B00FB22B3 /* YXFaBuNewVCViewController.m */; };
 		BB524795234A2F3B00FB22B3 /* YXFaBuNewVCViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB524793234A2F3B00FB22B3 /* YXFaBuNewVCViewController.xib */; };
-		BB53E713235EFAC00014F106 /* UIWebView+KWHideAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB53E6AE235EFABF0014F106 /* UIWebView+KWHideAccessoryView.m */; };
-		BB53E714235EFAC00014F106 /* UIWebView+KWWebViewJSTool.m in Sources */ = {isa = PBXBuildFile; fileRef = BB53E6AF235EFABF0014F106 /* UIWebView+KWWebViewJSTool.m */; };
-		BB53E715235EFAC00014F106 /* UIControl+KWButtonExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BB53E6B0235EFABF0014F106 /* UIControl+KWButtonExtension.m */; };
-		BB53E716235EFAC00014F106 /* KWEditorBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB53E6B6235EFABF0014F106 /* KWEditorBar.xib */; };
-		BB53E717235EFAC00014F106 /* KWFontStyleBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BB53E6B7235EFABF0014F106 /* KWFontStyleBar.m */; };
-		BB53E718235EFAC00014F106 /* KWEditorBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BB53E6B8235EFABF0014F106 /* KWEditorBar.m */; };
 		BB53E719235EFAC00014F106 /* HXCustomCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB53E6BA235EFABF0014F106 /* HXCustomCameraViewController.m */; };
 		BB53E71A235EFAC00014F106 /* UIViewController+HXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BB53E6BB235EFABF0014F106 /* UIViewController+HXExtension.m */; };
 		BB53E71B235EFAC00014F106 /* HXPhotoConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = BB53E6BC235EFABF0014F106 /* HXPhotoConfiguration.m */; };
@@ -271,15 +264,10 @@
 		BB53E73D235EFAC00014F106 /* HXDateVideoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB53E702235EFABF0014F106 /* HXDateVideoEditViewController.m */; };
 		BB53E73E235EFAC00014F106 /* HXDatePhotoToolManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB53E705235EFABF0014F106 /* HXDatePhotoToolManager.m */; };
 		BB53E73F235EFAC00014F106 /* HXDatePhotoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB53E706235EFABF0014F106 /* HXDatePhotoEditViewController.m */; };
-		BB53E740235EFAC00014F106 /* icon_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = BB53E70A235EFAC00014F106 /* icon_refresh.png */; };
-		BB53E741235EFAC00014F106 /* article_editor.js in Resources */ = {isa = PBXBuildFile; fileRef = BB53E70B235EFAC00014F106 /* article_editor.js */; };
-		BB53E742235EFAC00014F106 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = BB53E70C235EFAC00014F106 /* style.css */; };
-		BB53E743235EFAC00014F106 /* normalize.css in Resources */ = {isa = PBXBuildFile; fileRef = BB53E70D235EFAC00014F106 /* normalize.css */; };
-		BB53E744235EFAC00014F106 /* jquery.js in Resources */ = {isa = PBXBuildFile; fileRef = BB53E70E235EFAC00014F106 /* jquery.js */; };
-		BB53E745235EFAC00014F106 /* richText_editor.html in Resources */ = {isa = PBXBuildFile; fileRef = BB53E70F235EFAC00014F106 /* richText_editor.html */; };
-		BB53E746235EFAC00014F106 /* WGUploadPictureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB53E712235EFAC00014F106 /* WGUploadPictureModel.m */; };
 		BB53E749235EFAE00014F106 /* YXWenZhangEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB53E748235EFAE00014F106 /* YXWenZhangEditorViewController.m */; };
 		BB53E74B235F01020014F106 /* YXWenZhangEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB53E74A235F01020014F106 /* YXWenZhangEditorViewController.xib */; };
+		BB554D052362C95E003B7F55 /* YXXinDongTaiView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB554D042362C95E003B7F55 /* YXXinDongTaiView.m */; };
+		BB554D072362C968003B7F55 /* YXXinDongTaiView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB554D062362C968003B7F55 /* YXXinDongTaiView.xib */; };
 		BB5DC69B2189CA38003F1998 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */; };
 		BB5DC69C2189CA38003F1998 /* SELUpdateAlertConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */; };
 		BB5FD86A21FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD86821FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m */; };
@@ -297,7 +285,6 @@
 		BB5FD89021FECC0600B5F1A8 /* YXFindQuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5FD88E21FECC0600B5F1A8 /* YXFindQuestionTableViewCell.xib */; };
 		BB5FD89D21FF488E00B5F1A8 /* PublishMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD89821FF488E00B5F1A8 /* PublishMenuButton.m */; };
 		BB5FD89F21FF488E00B5F1A8 /* UIImage+XW.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD89C21FF488E00B5F1A8 /* UIImage+XW.m */; };
-		BB5FD8A221FF49DD00B5F1A8 /* XWPopMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD8A021FF49DD00B5F1A8 /* XWPopMenuController.m */; };
 		BB5FD8A621FF529A00B5F1A8 /* YXMineAllImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD8A421FF529A00B5F1A8 /* YXMineAllImageTableViewCell.m */; };
 		BB5FD8A721FF529A00B5F1A8 /* YXMineAllImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5FD8A521FF529A00B5F1A8 /* YXMineAllImageTableViewCell.xib */; };
 		BB688A1522ADE8BE00964FA3 /* OrgHalfLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB688A1422ADE8BE00964FA3 /* OrgHalfLineLabel.m */; };
@@ -317,6 +304,20 @@
 		BB6D2A3C21EEC63900F5049F /* Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BB6D2A3021EEC63900F5049F /* Resources.bundle */; };
 		BB6D2A3F21EF206A00F5049F /* KeyBoardTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A3E21EF206A00F5049F /* KeyBoardTableView.m */; };
 		BB6D2A4221EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6D2A4121EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.m */; };
+		BB6F6A1A2361A31B00EC8732 /* KWEditorBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB6F6A052361A31A00EC8732 /* KWEditorBar.xib */; };
+		BB6F6A1B2361A31B00EC8732 /* KWFontStyleBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6F6A062361A31A00EC8732 /* KWFontStyleBar.m */; };
+		BB6F6A1C2361A31B00EC8732 /* KWEditorBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6F6A072361A31A00EC8732 /* KWEditorBar.m */; };
+		BB6F6A1D2361A31B00EC8732 /* UIWebView+KWHideAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6F6A0B2361A31A00EC8732 /* UIWebView+KWHideAccessoryView.m */; };
+		BB6F6A1E2361A31B00EC8732 /* UIWebView+KWWebViewJSTool.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6F6A0C2361A31A00EC8732 /* UIWebView+KWWebViewJSTool.m */; };
+		BB6F6A1F2361A31B00EC8732 /* UIControl+KWButtonExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6F6A0D2361A31A00EC8732 /* UIControl+KWButtonExtension.m */; };
+		BB6F6A202361A31B00EC8732 /* WGUploadPictureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6F6A122361A31A00EC8732 /* WGUploadPictureModel.m */; };
+		BB6F6A212361A31B00EC8732 /* icon_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = BB6F6A142361A31A00EC8732 /* icon_refresh.png */; };
+		BB6F6A222361A31B00EC8732 /* article_editor.js in Resources */ = {isa = PBXBuildFile; fileRef = BB6F6A152361A31B00EC8732 /* article_editor.js */; };
+		BB6F6A232361A31B00EC8732 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = BB6F6A162361A31B00EC8732 /* style.css */; };
+		BB6F6A242361A31B00EC8732 /* normalize.css in Resources */ = {isa = PBXBuildFile; fileRef = BB6F6A172361A31B00EC8732 /* normalize.css */; };
+		BB6F6A252361A31B00EC8732 /* jquery.js in Resources */ = {isa = PBXBuildFile; fileRef = BB6F6A182361A31B00EC8732 /* jquery.js */; };
+		BB6F6A262361A31B00EC8732 /* richText_editor.html in Resources */ = {isa = PBXBuildFile; fileRef = BB6F6A192361A31B00EC8732 /* richText_editor.html */; };
+		BB6F6A282361A65D00EC8732 /* richText_editor1.html in Resources */ = {isa = PBXBuildFile; fileRef = BB6F6A272361A65D00EC8732 /* richText_editor1.html */; };
 		BB70253B2212980A009EBE39 /* YXFindSearchHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB70253A2212980A009EBE39 /* YXFindSearchHeadView.m */; };
 		BB70253D22129812009EBE39 /* YXFindSearchHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB70253C22129812009EBE39 /* YXFindSearchHeadView.xib */; };
 		BB7025442212A42C009EBE39 /* YXFindSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7025432212A42C009EBE39 /* YXFindSearchResultViewController.m */; };
@@ -475,7 +476,6 @@
 		BBADE4DB21F8665A0011E5FF /* YXMineImageDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBADE4DA21F8665A0011E5FF /* YXMineImageDetailHeaderView.m */; };
 		BBADE4DD21F866670011E5FF /* YXMineImageDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBADE4DC21F866670011E5FF /* YXMineImageDetailHeaderView.xib */; };
 		BBADE4E121F8A6D30011E5FF /* CBSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBADE4DF21F8A6D30011E5FF /* CBSegmentView.m */; };
-		BBB4528622B738A9006451E4 /* EditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB4528522B738A9006451E4 /* EditorViewController.xib */; };
 		BBB59ABE228CF8CB0029D3D0 /* YXHomeTuiJianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB599C4228CF8CA0029D3D0 /* YXHomeTuiJianViewController.m */; };
 		BBB59AD8228CF8CB0029D3D0 /* YXHomeMeiJiuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB599F7228CF8CA0029D3D0 /* YXHomeMeiJiuViewController.m */; };
 		BBB59ADA228CF8CB0029D3D0 /* Moment.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB599FF228CF8CA0029D3D0 /* Moment.m */; };
@@ -1051,11 +1051,9 @@
 		BB21FD8122B0991E0059BCAC /* KSMediaViewerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSMediaViewerCell.h; sourceTree = "<group>"; };
 		BB21FD8222B0991E0059BCAC /* KSMediaViewerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSMediaViewerView.h; sourceTree = "<group>"; };
 		BB21FD8322B0991E0059BCAC /* KSExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSExtension.swift; sourceTree = "<group>"; };
-		BB21FDAA22B099B10059BCAC /* EditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorViewController.m; sourceTree = "<group>"; };
 		BB21FDAB22B099B20059BCAC /* YXWenZhangView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWenZhangView.m; sourceTree = "<group>"; };
 		BB21FDAC22B099B20059BCAC /* YXWenZhangView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YXWenZhangView.xib; sourceTree = "<group>"; };
 		BB21FDAD22B099B20059BCAC /* YXWenZhangView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWenZhangView.h; sourceTree = "<group>"; };
-		BB21FDAE22B099B20059BCAC /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
 		BB21FDB222B09AC30059BCAC /* MDBridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDBridgingHeader.h; sourceTree = "<group>"; };
 		BB21FDB322B09B2D0059BCAC /* Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tool.m; path = "UniversalApp/Controller/C发布/2文章/文章所用的swift库/Tool.m"; sourceTree = SOURCE_ROOT; };
 		BB21FDB422B09B2D0059BCAC /* Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tool.h; path = "UniversalApp/Controller/C发布/2文章/文章所用的swift库/Tool.h"; sourceTree = SOURCE_ROOT; };
@@ -1143,18 +1141,6 @@
 		BB524791234A2F3B00FB22B3 /* YXFaBuNewVCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFaBuNewVCViewController.h; sourceTree = "<group>"; };
 		BB524792234A2F3B00FB22B3 /* YXFaBuNewVCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFaBuNewVCViewController.m; sourceTree = "<group>"; };
 		BB524793234A2F3B00FB22B3 /* YXFaBuNewVCViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFaBuNewVCViewController.xib; sourceTree = "<group>"; };
-		BB53E6AC235EFABF0014F106 /* UIWebView+KWWebViewJSTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+KWWebViewJSTool.h"; sourceTree = "<group>"; };
-		BB53E6AD235EFABF0014F106 /* UIControl+KWButtonExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+KWButtonExtension.h"; sourceTree = "<group>"; };
-		BB53E6AE235EFABF0014F106 /* UIWebView+KWHideAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+KWHideAccessoryView.m"; sourceTree = "<group>"; };
-		BB53E6AF235EFABF0014F106 /* UIWebView+KWWebViewJSTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+KWWebViewJSTool.m"; sourceTree = "<group>"; };
-		BB53E6B0235EFABF0014F106 /* UIControl+KWButtonExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+KWButtonExtension.m"; sourceTree = "<group>"; };
-		BB53E6B1235EFABF0014F106 /* WGCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WGCommon.h; sourceTree = "<group>"; };
-		BB53E6B2235EFABF0014F106 /* UIWebView+KWHideAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+KWHideAccessoryView.h"; sourceTree = "<group>"; };
-		BB53E6B4235EFABF0014F106 /* KWFontStyleBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWFontStyleBar.h; sourceTree = "<group>"; };
-		BB53E6B5235EFABF0014F106 /* KWEditorBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWEditorBar.h; sourceTree = "<group>"; };
-		BB53E6B6235EFABF0014F106 /* KWEditorBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KWEditorBar.xib; sourceTree = "<group>"; };
-		BB53E6B7235EFABF0014F106 /* KWFontStyleBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWFontStyleBar.m; sourceTree = "<group>"; };
-		BB53E6B8235EFABF0014F106 /* KWEditorBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWEditorBar.m; sourceTree = "<group>"; };
 		BB53E6BA235EFABF0014F106 /* HXCustomCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXCustomCameraViewController.m; sourceTree = "<group>"; };
 		BB53E6BB235EFABF0014F106 /* UIViewController+HXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HXExtension.m"; sourceTree = "<group>"; };
 		BB53E6BC235EFABF0014F106 /* HXPhotoConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXPhotoConfiguration.m; sourceTree = "<group>"; };
@@ -1234,17 +1220,12 @@
 		BB53E706235EFABF0014F106 /* HXDatePhotoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXDatePhotoEditViewController.m; sourceTree = "<group>"; };
 		BB53E707235EFABF0014F106 /* HXDatePhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXDatePhotoViewController.h; sourceTree = "<group>"; };
 		BB53E708235EFABF0014F106 /* HXDatePhotoViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXDatePhotoViewFlowLayout.h; sourceTree = "<group>"; };
-		BB53E70A235EFAC00014F106 /* icon_refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_refresh.png; sourceTree = "<group>"; };
-		BB53E70B235EFAC00014F106 /* article_editor.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = article_editor.js; sourceTree = "<group>"; };
-		BB53E70C235EFAC00014F106 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
-		BB53E70D235EFAC00014F106 /* normalize.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = normalize.css; sourceTree = "<group>"; };
-		BB53E70E235EFAC00014F106 /* jquery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.js; sourceTree = "<group>"; };
-		BB53E70F235EFAC00014F106 /* richText_editor.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = richText_editor.html; sourceTree = "<group>"; };
-		BB53E711235EFAC00014F106 /* WGUploadPictureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WGUploadPictureModel.h; sourceTree = "<group>"; };
-		BB53E712235EFAC00014F106 /* WGUploadPictureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WGUploadPictureModel.m; sourceTree = "<group>"; };
 		BB53E747235EFAE00014F106 /* YXWenZhangEditorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXWenZhangEditorViewController.h; sourceTree = "<group>"; };
 		BB53E748235EFAE00014F106 /* YXWenZhangEditorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXWenZhangEditorViewController.m; sourceTree = "<group>"; };
 		BB53E74A235F01020014F106 /* YXWenZhangEditorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXWenZhangEditorViewController.xib; sourceTree = "<group>"; };
+		BB554D032362C95E003B7F55 /* YXXinDongTaiView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXXinDongTaiView.h; sourceTree = "<group>"; };
+		BB554D042362C95E003B7F55 /* YXXinDongTaiView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXXinDongTaiView.m; sourceTree = "<group>"; };
+		BB554D062362C968003B7F55 /* YXXinDongTaiView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXXinDongTaiView.xib; sourceTree = "<group>"; };
 		BB5DC6972189CA38003F1998 /* SELUpdateAlertConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlertConst.h; sourceTree = "<group>"; };
 		BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
 		BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlertConst.m; sourceTree = "<group>"; };
@@ -1276,8 +1257,6 @@
 		BB5FD89921FF488E00B5F1A8 /* UIImage+XW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+XW.h"; sourceTree = "<group>"; };
 		BB5FD89B21FF488E00B5F1A8 /* PublishMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishMenuButton.h; sourceTree = "<group>"; };
 		BB5FD89C21FF488E00B5F1A8 /* UIImage+XW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+XW.m"; sourceTree = "<group>"; };
-		BB5FD8A021FF49DD00B5F1A8 /* XWPopMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWPopMenuController.m; sourceTree = "<group>"; };
-		BB5FD8A121FF49DD00B5F1A8 /* XWPopMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWPopMenuController.h; sourceTree = "<group>"; };
 		BB5FD8A321FF529A00B5F1A8 /* YXMineAllImageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineAllImageTableViewCell.h; sourceTree = "<group>"; };
 		BB5FD8A421FF529A00B5F1A8 /* YXMineAllImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineAllImageTableViewCell.m; sourceTree = "<group>"; };
 		BB5FD8A521FF529A00B5F1A8 /* YXMineAllImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineAllImageTableViewCell.xib; sourceTree = "<group>"; };
@@ -1314,6 +1293,27 @@
 		BB6D2A3E21EF206A00F5049F /* KeyBoardTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyBoardTableView.m; sourceTree = "<group>"; };
 		BB6D2A4021EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeXueJiaQuestionDetailViewController.h; sourceTree = "<group>"; };
 		BB6D2A4121EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeXueJiaQuestionDetailViewController.m; sourceTree = "<group>"; };
+		BB6F6A032361A31A00EC8732 /* KWFontStyleBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWFontStyleBar.h; sourceTree = "<group>"; };
+		BB6F6A042361A31A00EC8732 /* KWEditorBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWEditorBar.h; sourceTree = "<group>"; };
+		BB6F6A052361A31A00EC8732 /* KWEditorBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KWEditorBar.xib; sourceTree = "<group>"; };
+		BB6F6A062361A31A00EC8732 /* KWFontStyleBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWFontStyleBar.m; sourceTree = "<group>"; };
+		BB6F6A072361A31A00EC8732 /* KWEditorBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWEditorBar.m; sourceTree = "<group>"; };
+		BB6F6A092361A31A00EC8732 /* UIWebView+KWWebViewJSTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+KWWebViewJSTool.h"; sourceTree = "<group>"; };
+		BB6F6A0A2361A31A00EC8732 /* UIControl+KWButtonExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+KWButtonExtension.h"; sourceTree = "<group>"; };
+		BB6F6A0B2361A31A00EC8732 /* UIWebView+KWHideAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+KWHideAccessoryView.m"; sourceTree = "<group>"; };
+		BB6F6A0C2361A31A00EC8732 /* UIWebView+KWWebViewJSTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+KWWebViewJSTool.m"; sourceTree = "<group>"; };
+		BB6F6A0D2361A31A00EC8732 /* UIControl+KWButtonExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+KWButtonExtension.m"; sourceTree = "<group>"; };
+		BB6F6A0E2361A31A00EC8732 /* WGCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WGCommon.h; sourceTree = "<group>"; };
+		BB6F6A0F2361A31A00EC8732 /* UIWebView+KWHideAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+KWHideAccessoryView.h"; sourceTree = "<group>"; };
+		BB6F6A112361A31A00EC8732 /* WGUploadPictureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WGUploadPictureModel.h; sourceTree = "<group>"; };
+		BB6F6A122361A31A00EC8732 /* WGUploadPictureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WGUploadPictureModel.m; sourceTree = "<group>"; };
+		BB6F6A142361A31A00EC8732 /* icon_refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_refresh.png; sourceTree = "<group>"; };
+		BB6F6A152361A31B00EC8732 /* article_editor.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = article_editor.js; sourceTree = "<group>"; };
+		BB6F6A162361A31B00EC8732 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		BB6F6A172361A31B00EC8732 /* normalize.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = normalize.css; sourceTree = "<group>"; };
+		BB6F6A182361A31B00EC8732 /* jquery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.js; sourceTree = "<group>"; };
+		BB6F6A192361A31B00EC8732 /* richText_editor.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = richText_editor.html; sourceTree = "<group>"; };
+		BB6F6A272361A65D00EC8732 /* richText_editor1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = richText_editor1.html; sourceTree = "<group>"; };
 		BB7025392212980A009EBE39 /* YXFindSearchHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchHeadView.h; sourceTree = "<group>"; };
 		BB70253A2212980A009EBE39 /* YXFindSearchHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchHeadView.m; sourceTree = "<group>"; };
 		BB70253C22129812009EBE39 /* YXFindSearchHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFindSearchHeadView.xib; sourceTree = "<group>"; };
@@ -1583,7 +1583,6 @@
 		BBADE4DC21F866670011E5FF /* YXMineImageDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineImageDetailHeaderView.xib; sourceTree = "<group>"; };
 		BBADE4DF21F8A6D30011E5FF /* CBSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBSegmentView.m; sourceTree = "<group>"; };
 		BBADE4E021F8A6D30011E5FF /* CBSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSegmentView.h; sourceTree = "<group>"; };
-		BBB4528522B738A9006451E4 /* EditorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditorViewController.xib; sourceTree = "<group>"; };
 		BBB599C4228CF8CA0029D3D0 /* YXHomeTuiJianViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeTuiJianViewController.m; sourceTree = "<group>"; };
 		BBB599C5228CF8CA0029D3D0 /* YXHomeTuiJianViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHomeTuiJianViewController.h; sourceTree = "<group>"; };
 		BBB599F7228CF8CA0029D3D0 /* YXHomeMeiJiuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeMeiJiuViewController.m; sourceTree = "<group>"; };
@@ -3034,14 +3033,6 @@
 			path = "分享解锁";
 			sourceTree = "<group>";
 		};
-		BB3CA492221F90E600C6793D /* 4提问 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "4提问";
-			path = "UniversalApp/Controller/C发布/4提问";
-			sourceTree = SOURCE_ROOT;
-		};
 		BB3CA493221F947600C6793D /* 所有发布界面复用 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3100,6 +3091,9 @@
 				BB53E747235EFAE00014F106 /* YXWenZhangEditorViewController.h */,
 				BB53E748235EFAE00014F106 /* YXWenZhangEditorViewController.m */,
 				BB53E74A235F01020014F106 /* YXWenZhangEditorViewController.xib */,
+				BB21FDAD22B099B20059BCAC /* YXWenZhangView.h */,
+				BB21FDAB22B099B20059BCAC /* YXWenZhangView.m */,
+				BB21FDAC22B099B20059BCAC /* YXWenZhangView.xib */,
 				BB53E6AA235EFA8F0014F106 /* 文章新所用库 */,
 			);
 			name = "2文章新";
@@ -3109,39 +3103,13 @@
 		BB53E6AA235EFA8F0014F106 /* 文章新所用库 */ = {
 			isa = PBXGroup;
 			children = (
+				BB6F6A102361A31A00EC8732 /* Model */,
+				BB6F6A132361A31A00EC8732 /* Sources */,
+				BB6F6A082361A31A00EC8732 /* Tool */,
+				BB6F6A022361A31A00EC8732 /* View */,
 				BB53E6B9235EFABF0014F106 /* HXWeiboPhotoPicker */,
-				BB53E710235EFAC00014F106 /* Model */,
-				BB53E709235EFABF0014F106 /* Sources */,
-				BB53E6AB235EFABF0014F106 /* Tool */,
-				BB53E6B3235EFABF0014F106 /* View */,
 			);
 			path = "文章新所用库";
-			sourceTree = "<group>";
-		};
-		BB53E6AB235EFABF0014F106 /* Tool */ = {
-			isa = PBXGroup;
-			children = (
-				BB53E6AC235EFABF0014F106 /* UIWebView+KWWebViewJSTool.h */,
-				BB53E6AD235EFABF0014F106 /* UIControl+KWButtonExtension.h */,
-				BB53E6AE235EFABF0014F106 /* UIWebView+KWHideAccessoryView.m */,
-				BB53E6AF235EFABF0014F106 /* UIWebView+KWWebViewJSTool.m */,
-				BB53E6B0235EFABF0014F106 /* UIControl+KWButtonExtension.m */,
-				BB53E6B1235EFABF0014F106 /* WGCommon.h */,
-				BB53E6B2235EFABF0014F106 /* UIWebView+KWHideAccessoryView.h */,
-			);
-			path = Tool;
-			sourceTree = "<group>";
-		};
-		BB53E6B3235EFABF0014F106 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				BB53E6B4235EFABF0014F106 /* KWFontStyleBar.h */,
-				BB53E6B5235EFABF0014F106 /* KWEditorBar.h */,
-				BB53E6B6235EFABF0014F106 /* KWEditorBar.xib */,
-				BB53E6B7235EFABF0014F106 /* KWFontStyleBar.m */,
-				BB53E6B8235EFABF0014F106 /* KWEditorBar.m */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		BB53E6B9235EFABF0014F106 /* HXWeiboPhotoPicker */ = {
@@ -3230,26 +3198,12 @@
 			path = HXWeiboPhotoPicker;
 			sourceTree = "<group>";
 		};
-		BB53E709235EFABF0014F106 /* Sources */ = {
+		BB554D082362D425003B7F55 /* 2文章 */ = {
 			isa = PBXGroup;
 			children = (
-				BB53E70A235EFAC00014F106 /* icon_refresh.png */,
-				BB53E70B235EFAC00014F106 /* article_editor.js */,
-				BB53E70C235EFAC00014F106 /* style.css */,
-				BB53E70D235EFAC00014F106 /* normalize.css */,
-				BB53E70E235EFAC00014F106 /* jquery.js */,
-				BB53E70F235EFAC00014F106 /* richText_editor.html */,
+				BB21FD3D22B098AC0059BCAC /* 文章所用的swift库 */,
 			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
-		BB53E710235EFAC00014F106 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				BB53E711235EFAC00014F106 /* WGUploadPictureModel.h */,
-				BB53E712235EFAC00014F106 /* WGUploadPictureModel.m */,
-			);
-			path = Model;
+			path = "2文章";
 			sourceTree = "<group>";
 		};
 		BB5DC6962189CA38003F1998 /* UpdateAlert */ = {
@@ -3370,6 +3324,55 @@
 				BB6D2A2F21EEC63900F5049F /* EmojiCell.h */,
 			);
 			path = EmojiView;
+			sourceTree = "<group>";
+		};
+		BB6F6A022361A31A00EC8732 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB6F6A032361A31A00EC8732 /* KWFontStyleBar.h */,
+				BB6F6A042361A31A00EC8732 /* KWEditorBar.h */,
+				BB6F6A052361A31A00EC8732 /* KWEditorBar.xib */,
+				BB6F6A062361A31A00EC8732 /* KWFontStyleBar.m */,
+				BB6F6A072361A31A00EC8732 /* KWEditorBar.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BB6F6A082361A31A00EC8732 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				BB6F6A092361A31A00EC8732 /* UIWebView+KWWebViewJSTool.h */,
+				BB6F6A0A2361A31A00EC8732 /* UIControl+KWButtonExtension.h */,
+				BB6F6A0B2361A31A00EC8732 /* UIWebView+KWHideAccessoryView.m */,
+				BB6F6A0C2361A31A00EC8732 /* UIWebView+KWWebViewJSTool.m */,
+				BB6F6A0D2361A31A00EC8732 /* UIControl+KWButtonExtension.m */,
+				BB6F6A0E2361A31A00EC8732 /* WGCommon.h */,
+				BB6F6A0F2361A31A00EC8732 /* UIWebView+KWHideAccessoryView.h */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		BB6F6A102361A31A00EC8732 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BB6F6A112361A31A00EC8732 /* WGUploadPictureModel.h */,
+				BB6F6A122361A31A00EC8732 /* WGUploadPictureModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BB6F6A132361A31A00EC8732 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				BB6F6A272361A65D00EC8732 /* richText_editor1.html */,
+				BB6F6A142361A31A00EC8732 /* icon_refresh.png */,
+				BB6F6A152361A31B00EC8732 /* article_editor.js */,
+				BB6F6A162361A31B00EC8732 /* style.css */,
+				BB6F6A172361A31B00EC8732 /* normalize.css */,
+				BB6F6A182361A31B00EC8732 /* jquery.js */,
+				BB6F6A192361A31B00EC8732 /* richText_editor.html */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		BB702538221297E3009EBE39 /* 搜索view */ = {
@@ -3979,7 +3982,6 @@
 				BBA812AB21DDAB9D001B5EA1 /* YXFindViewController.h */,
 				BBA812AC21DDAB9D001B5EA1 /* YXFindViewController.m */,
 				BBB59A1B228CF8CA0029D3D0 /* 搜索 */,
-				BB524790234A2F0800FB22B3 /* 发布弹框vc */,
 				BBC7CD1B22E16BDB00AC9E2D /* 发现头部 */,
 				BB70253E2212A3A7009EBE39 /* 搜索结果 */,
 				BB702538221297E3009EBE39 /* 搜索view */,
@@ -3990,13 +3992,11 @@
 		BBA812A821DDAB7A001B5EA1 /* C发布 */ = {
 			isa = PBXGroup;
 			children = (
-				BB5FD8A121FF49DD00B5F1A8 /* XWPopMenuController.h */,
-				BB5FD8A021FF49DD00B5F1A8 /* XWPopMenuController.m */,
+				BB524790234A2F0800FB22B3 /* 发布弹框vc */,
 				BB9EFE6C21F5CC7F00180813 /* 更多标签 */,
 				BBD2C84821E0F46500350DCD /* 1晒图 */,
 				BB53E6A9235EFA8F0014F106 /* 2文章新 */,
-				BBD2C84721E0F46500350DCD /* 2文章 */,
-				BB3CA492221F90E600C6793D /* 4提问 */,
+				BB554D082362D425003B7F55 /* 2文章 */,
 			);
 			path = "C发布";
 			sourceTree = "<group>";
@@ -5146,6 +5146,9 @@
 				BB5FD8A321FF529A00B5F1A8 /* YXMineAllImageTableViewCell.h */,
 				BB5FD8A421FF529A00B5F1A8 /* YXMineAllImageTableViewCell.m */,
 				BB5FD8A521FF529A00B5F1A8 /* YXMineAllImageTableViewCell.xib */,
+				BB554D032362C95E003B7F55 /* YXXinDongTaiView.h */,
+				BB554D042362C95E003B7F55 /* YXXinDongTaiView.m */,
+				BB554D062362C968003B7F55 /* YXXinDongTaiView.xib */,
 			);
 			path = "1全部";
 			sourceTree = "<group>";
@@ -5204,20 +5207,6 @@
 			children = (
 			);
 			path = Languages;
-			sourceTree = "<group>";
-		};
-		BBD2C84721E0F46500350DCD /* 2文章 */ = {
-			isa = PBXGroup;
-			children = (
-				BB21FDAE22B099B20059BCAC /* EditorViewController.h */,
-				BB21FDAA22B099B10059BCAC /* EditorViewController.m */,
-				BBB4528522B738A9006451E4 /* EditorViewController.xib */,
-				BB21FDAD22B099B20059BCAC /* YXWenZhangView.h */,
-				BB21FDAB22B099B20059BCAC /* YXWenZhangView.m */,
-				BB21FDAC22B099B20059BCAC /* YXWenZhangView.xib */,
-				BB21FD3D22B098AC0059BCAC /* 文章所用的swift库 */,
-			);
-			path = "2文章";
 			sourceTree = "<group>";
 		};
 		BBD2C84821E0F46500350DCD /* 1晒图 */ = {
@@ -6054,13 +6043,14 @@
 				BBB59B7E228E972B0029D3D0 /* YXZhiNanTableViewCell.xib in Resources */,
 				BBD2C93E21E0F67800350DCD /* UIBarButtonItemArrowLeft@2x.png in Resources */,
 				293D46421ECDBB63007C64A9 /* icon_tabbar_homepage.png in Resources */,
-				BB53E744235EFAC00014F106 /* jquery.js in Resources */,
 				BB928F9821FB5D290090A044 /* BRPickerView.bundle in Resources */,
 				BB29121622156BB500FF484E /* Long Corona.gif in Resources */,
 				BBD2C94521E0F67800350DCD /* ImageSelectedSmallOn@3x.png in Resources */,
 				BB928F6B21FAD02B0090A044 /* YXMineMyCaoGaoViewController.xib in Resources */,
+				BB6F6A212361A31B00EC8732 /* icon_refresh.png in Resources */,
 				BB29121F22156BB500FF484E /* Short Panetela.gif in Resources */,
 				BBBBC0FB22BCD2FF00F528E1 /* ImageResources.bundle in Resources */,
+				BB6F6A242361A31B00EC8732 /* normalize.css in Resources */,
 				BB5FD87F21FEB87400B5F1A8 /* YXMineImageCollectionViewCell.xib in Resources */,
 				BBB59B1A228CF8CB0029D3D0 /* YXToolsColorTableViewCell.xib in Resources */,
 				BB29121E22156BB500FF484E /* Culebras.gif in Resources */,
@@ -6071,16 +6061,16 @@
 				BBD2C92A21E0F67800350DCD /* UIBarButtonItemGrid@3x.png in Resources */,
 				BBA8129621DDA9A5001B5EA1 /* YXHome.storyboard in Resources */,
 				BBD2C94321E0F67800350DCD /* PlayButtonOverlayLarge@3x.png in Resources */,
+				BB6F6A262361A31B00EC8732 /* richText_editor.html in Resources */,
 				29629EEA1F78E49D002CFCBD /* back_icon@3x.png in Resources */,
 				BBD2C94921E0F67800350DCD /* ImageSelectedSmallOn@2x.png in Resources */,
 				BB29120D22156BB500FF484E /* Corona.gif in Resources */,
-				BB53E745235EFAC00014F106 /* richText_editor.html in Resources */,
 				BBD2C93621E0F67800350DCD /* PlayButtonOverlayLargeTap@3x.png in Resources */,
 				2917D2091EE007C300E76185 /* MBHUD_Info@2x.png in Resources */,
 				BBABDF3F229BC3E90046683A /* YXZhiNan3Cell.xib in Resources */,
-				BB53E740235EFAC00014F106 /* icon_refresh.png in Resources */,
 				293D46521ECDBB63007C64A9 /* icon_tabbar_nearby.png in Resources */,
 				BBD2C90421E0F67700350DCD /* README.md in Resources */,
+				BB6F6A252361A31B00EC8732 /* jquery.js in Resources */,
 				29FEE77B1ECED1E200C81B60 /* MBHUD_Warn@2x.png in Resources */,
 				BBB59AF4228CF8CB0029D3D0 /* YXHomeLastListTableViewCell.xib in Resources */,
 				BBD2C94121E0F67800350DCD /* UIBarButtonItemArrowLeft@3x.png in Resources */,
@@ -6099,7 +6089,6 @@
 				BB928F5D21FABCF10090A044 /* YXMinePingLunTableViewCell.xib in Resources */,
 				BBBCDBB3223F65540056C7DD /* README.md in Resources */,
 				BB07FB1D2357099100F34D2D /* YXMessageThreeDetailViewCell.xib in Resources */,
-				BB53E741235EFAC00014F106 /* article_editor.js in Resources */,
 				BB53E732235EFAC00014F106 /* HXWeiboPhotoPicker.bundle in Resources */,
 				2917D2061EE007C300E76185 /* MBHUD_Success@3x.png in Resources */,
 				BBD2C93C21E0F67800350DCD /* PlayButtonOverlayLarge@2x.png in Resources */,
@@ -6111,11 +6100,11 @@
 				BBDA2D2121EB30BF00EDCCFF /* sdRefeshView_arrow@2x.png in Resources */,
 				BBC3FB4A22C5C59B00BB2564 /* no_data@3x.png in Resources */,
 				BBD2C93021E0F67800350DCD /* PlayButtonOverlayLargeTap@2x.png in Resources */,
+				BB6F6A1A2361A31B00EC8732 /* KWEditorBar.xib in Resources */,
 				293D45A11ECD6422007C64A9 /* Assets.xcassets in Resources */,
 				BB15B0EB234ED077005CED4F /* YXJiFenLiJiGouMaiFootView.xib in Resources */,
 				BB86C8B4231B922800A061E2 /* YXMineJiFenLiShiChildTableViewCell.xib in Resources */,
 				BBF26E3722448D2E0000AEF5 /* YXBindPhoneViewController.xib in Resources */,
-				BB53E743235EFAC00014F106 /* normalize.css in Resources */,
 				BBE82BD921E340AD004E4144 /* EffectImage.png in Resources */,
 				BBD7796C2244DD390077E44D /* YXBindPhoneNextViewController.xib in Resources */,
 				BB29122322156BB500FF484E /* Panetela.gif in Resources */,
@@ -6134,9 +6123,9 @@
 				BBB59ADE228CF8CB0029D3D0 /* YXHomeQuestionDetailHeaderView.xib in Resources */,
 				2917D2081EE007C300E76185 /* MBHUD_Info@3x.png in Resources */,
 				BB01334E232F869900573AC0 /* YXMineAddAdressViewController.xib in Resources */,
+				BB6F6A282361A65D00EC8732 /* richText_editor1.html in Resources */,
 				BBD2C92F21E0F67800350DCD /* ImageSelectedOff.png in Resources */,
 				BBD2C94421E0F67800350DCD /* UIBarButtonItemArrowRight@2x.png in Resources */,
-				BB53E716235EFAC00014F106 /* KWEditorBar.xib in Resources */,
 				BB9832752201700C0048D103 /* blueArrow.png in Resources */,
 				294A680D1ED58F0700AC382A /* LCTabBarBadge@2x.png in Resources */,
 				BBC16284217AD6EA00008907 /* Login.storyboard in Resources */,
@@ -6144,7 +6133,6 @@
 				BBACB4CC234DC2E10092367B /* YXJiFenShop2CollectionViewCell.xib in Resources */,
 				BB5FD88421FEB8CE00B5F1A8 /* YXMineEssayTableViewCell.xib in Resources */,
 				BBD2C92C21E0F67800350DCD /* UIBarButtonItemGrid.png in Resources */,
-				BBB4528622B738A9006451E4 /* EditorViewController.xib in Resources */,
 				BB29122022156BB500FF484E /* Robusto Extra.gif in Resources */,
 				BB21FDBA22B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib in Resources */,
 				BBD2C93A21E0F67800350DCD /* UIBarButtonItemArrowRight@3x.png in Resources */,
@@ -6156,6 +6144,7 @@
 				2917D20B1EE007C300E76185 /* MBHUD_Error@2x.png in Resources */,
 				293D464C1ECDBB63007C64A9 /* icon_tabbar_mine_selected.png in Resources */,
 				BBC3FB4C22C5C59B00BB2564 /* no_data@2x.png in Resources */,
+				BB554D072362C968003B7F55 /* YXXinDongTaiView.xib in Resources */,
 				296F85091FED04EF005612D1 /* close_icon@2x.png in Resources */,
 				BBB59B15228CF8CB0029D3D0 /* YXXingZhuangViewController.xib in Resources */,
 				BBACB4B7234D84340092367B /* YXJiFenShop1TableViewCell.xib in Resources */,
@@ -6178,6 +6167,7 @@
 				293D46471ECDBB63007C64A9 /* icon_tabbar_merchant_normal@2x.png in Resources */,
 				BBD2C92E21E0F67800350DCD /* VideoOverlay@2x.png in Resources */,
 				BBD2C93221E0F67800350DCD /* ImageSelectedSmallOff@2x.png in Resources */,
+				BB6F6A222361A31B00EC8732 /* article_editor.js in Resources */,
 				BB29120822156BB500FF484E /* Cigarillo.gif in Resources */,
 				BBD2C93921E0F67800350DCD /* ImageError.png in Resources */,
 				BBD2C95421E0F72800350DCD /* LICENSE.md in Resources */,
@@ -6213,7 +6203,6 @@
 				BB29120E22156BB500FF484E /* Long Panetela.gif in Resources */,
 				293D45A21ECD6422007C64A9 /* LaunchScreen.storyboard in Resources */,
 				BB688A1C22AE505800964FA3 /* YXZhiNan5Cell.xib in Resources */,
-				BB53E742235EFAC00014F106 /* style.css in Resources */,
 				293D45A31ECD6422007C64A9 /* Info.plist in Resources */,
 				BBACB4B2234D718C0092367B /* YXJiFenShopViewController.xib in Resources */,
 				BBB59B3C228CF92D0029D3D0 /* YXHomeXueJiaTableViewCell.xib in Resources */,
@@ -6235,6 +6224,7 @@
 				BBD2C94B21E0F67800350DCD /* README.md in Resources */,
 				BBC3FB4B22C5C59B00BB2564 /* no_data.png in Resources */,
 				BBB59B20228CF8CB0029D3D0 /* YXHomePeiJianLastView.xib in Resources */,
+				BB6F6A232361A31B00EC8732 /* style.css in Resources */,
 				BBD2C95721E0F72800350DCD /* README.md in Resources */,
 				293D46401ECDBB63007C64A9 /* icon_tabbar_discovery.png in Resources */,
 				BB53E74B235F01020014F106 /* YXWenZhangEditorViewController.xib in Resources */,
@@ -6344,6 +6334,7 @@
 				BB21FD9422B0991E0059BCAC /* KSMediaPickerCollectionView.m in Sources */,
 				BBADE49521F6CB110011E5FF /* QDCollectionViewDemoCell.m in Sources */,
 				293D45A41ECD6422007C64A9 /* main.m in Sources */,
+				BB6F6A202361A31B00EC8732 /* WGUploadPictureModel.m in Sources */,
 				BB5FD89D21FF488E00B5F1A8 /* PublishMenuButton.m in Sources */,
 				BBD2C91621E0F67800350DCD /* LLImagePickerModel.m in Sources */,
 				29AD6C631ED3E4D600B0879C /* AppDelegate.m in Sources */,
@@ -6422,7 +6413,6 @@
 				BB53E719235EFAC00014F106 /* HXCustomCameraViewController.m in Sources */,
 				293D46011ECDA56A007C64A9 /* MainTabBarController.m in Sources */,
 				BB53E72F235EFAC00014F106 /* HXCustomCameraController.m in Sources */,
-				BB53E714235EFAC00014F106 /* UIWebView+KWWebViewJSTool.m in Sources */,
 				BB6D2A4221EF7AEA00F5049F /* YXHomeXueJiaQuestionDetailViewController.m in Sources */,
 				BBD2C91D21E0F67800350DCD /* UIViewController+LLExtension.m in Sources */,
 				BB53E71A235EFAC00014F106 /* UIViewController+HXExtension.m in Sources */,
@@ -6465,7 +6455,6 @@
 				BB8376F42248B5730091A1A8 /* YXMineFindTableViewCell.m in Sources */,
 				29629EF11F78E669002CFCBD /* XLJSHandler.m in Sources */,
 				29AD6C6B1ED41E2100B0879C /* UserManager.m in Sources */,
-				BB53E713235EFAC00014F106 /* UIWebView+KWHideAccessoryView.m in Sources */,
 				BB07FB1F2357099100F34D2D /* YXMessageThreeDetailViewCell.m in Sources */,
 				29AD6C671ED41BA100B0879C /* AdPageView.m in Sources */,
 				BBB59AE3228CF8CB0029D3D0 /* YXHomeXueJiaFootTableViewCell.m in Sources */,
@@ -6477,9 +6466,9 @@
 				BB9C6982233372E2003EF6AA /* YXMineYaoQingWebViewController.m in Sources */,
 				BB07FB0A2356EA4400F34D2D /* UIImage+HQExtension.m in Sources */,
 				BB07FB0E2356EA4400F34D2D /* MessageFrameModel.m in Sources */,
-				BB53E718235EFAC00014F106 /* KWEditorBar.m in Sources */,
 				BB928F6521FACDE70090A044 /* YXMineSettingSafeTableViewController.m in Sources */,
 				BBB59B00228CF8CB0029D3D0 /* SDTimeLineRefreshHeader.m in Sources */,
+				BB6F6A1E2361A31B00EC8732 /* UIWebView+KWWebViewJSTool.m in Sources */,
 				BBB59B8B228EB52A0029D3D0 /* YXPlusManager.m in Sources */,
 				BBA812C421DDBF6A001B5EA1 /* UIButton+SSEdgeInsets.m in Sources */,
 				BBB59B46228D02B70029D3D0 /* YXHomeXueJiaToolsTableViewCell.m in Sources */,
@@ -6511,8 +6500,6 @@
 				BBACB4DD234DDC020092367B /* YXJiFenDetailAllImageTableViewCell.m in Sources */,
 				BB7AF13422004FE600989896 /* YXMineFootDetailViewController.m in Sources */,
 				BBE82D0121E44A7D004E4144 /* ZLPhotoAssets.m in Sources */,
-				BB5FD8A221FF49DD00B5F1A8 /* XWPopMenuController.m in Sources */,
-				BB21FDAF22B099B20059BCAC /* EditorViewController.m in Sources */,
 				BBD2C8FE21E0F67700350DCD /* TZProgressView.m in Sources */,
 				BB46926922E6F5D800A7A77E /* SocketRocketUtility.m in Sources */,
 				BBD2C90221E0F67700350DCD /* TZImagePickerController.m in Sources */,
@@ -6565,10 +6552,8 @@
 				BB3DFE8B221D568D000C70B5 /* UICollectionView+XHWebImageAutoSize.m in Sources */,
 				BBD2C98521E1BC0A00350DCD /* PYSearchConst.m in Sources */,
 				BBD7796F22487DA60077E44D /* YXMineTuiSongViewController.m in Sources */,
-				BB53E717235EFAC00014F106 /* KWFontStyleBar.m in Sources */,
 				BBD2C83B21E0F44A00350DCD /* UIImageView+CircularImv.m in Sources */,
 				BBDA2D0221EB30BF00EDCCFF /* SDContactModel.m in Sources */,
-				BB53E746235EFAC00014F106 /* WGUploadPictureModel.m in Sources */,
 				BBD2C98221E1BC0A00350DCD /* UIColor+PYSearchExtension.m in Sources */,
 				BB9ECD4C228002EA00A12952 /* ZInputToolbar.m in Sources */,
 				BB21FD8822B0991E0059BCAC /* KSVideoPlayerLiteView.m in Sources */,
@@ -6599,6 +6584,7 @@
 				BBB59B09228CF8CB0029D3D0 /* YXHomeXueJiaPinPaiSearchViewController.m in Sources */,
 				BBCC4B1721E8927700493F40 /* UIView+Geometry.m in Sources */,
 				BBACB4D6234DD1A20092367B /* YXJiFenShopDetailHeaderView.m in Sources */,
+				BB554D052362C95E003B7F55 /* YXXinDongTaiView.m in Sources */,
 				BBB59B23228CF8CB0029D3D0 /* BKCustomSwitchBtn.m in Sources */,
 				BB3BDDE0234F385C0027490C /* YXZhiNanYaoQingJieSuoTableViewController.m in Sources */,
 				BBB59B01228CF8CB0029D3D0 /* SDWeiXinPhotoContainerView.m in Sources */,
@@ -6637,6 +6623,7 @@
 				BBD2C96521E10E5500350DCD /* LTTextView.m in Sources */,
 				BB2A8EB6221BB0A300B6756A /* UILabel+String.m in Sources */,
 				BBB59AFA228CF8CB0029D3D0 /* SDTimeLineCellModel.m in Sources */,
+				BB6F6A1F2361A31B00EC8732 /* UIControl+KWButtonExtension.m in Sources */,
 				BBB59B78228E8D200029D3D0 /* YXZhiNanViewController.m in Sources */,
 				BBF45E5F222FD29A005C52C4 /* GCDAsyncUdpSocket.m in Sources */,
 				BBDA2D2021EB30BF00EDCCFF /* SDRefreshHeaderView.m in Sources */,
@@ -6699,6 +6686,7 @@
 				BBBFD7882222D7D300D377AC /* UILabel+JJImagePicker.m in Sources */,
 				BBD7796B2244DD390077E44D /* YXBindPhoneNextViewController.m in Sources */,
 				BBA812F721DDEBBB001B5EA1 /* SegmentTapView.m in Sources */,
+				BB6F6A1C2361A31B00EC8732 /* KWEditorBar.m in Sources */,
 				BB688A1A22AE504F00964FA3 /* YXZhiNan5Cell.m in Sources */,
 				BB21FD9522B0991E0059BCAC /* KSMediaPickerViewImageCell.swift in Sources */,
 				BB928F9721FB5D290090A044 /* BRAddressModel.m in Sources */,
@@ -6708,7 +6696,6 @@
 				BB6D2A3821EEC63900F5049F /* HCEmojiKeyboard.m in Sources */,
 				BBD2C8F821E0F67700350DCD /* TZVideoPlayerController.m in Sources */,
 				BBC3FB4922C5C59B00BB2564 /* BJNoDataView.m in Sources */,
-				BB53E715235EFAC00014F106 /* UIControl+KWButtonExtension.m in Sources */,
 				BBABDF39229BC3A20046683A /* YXZhiNan2Cell.m in Sources */,
 				BBBBC0FA22BCD2FF00F528E1 /* XLSlider.m in Sources */,
 				BBD2C8FB21E0F67700350DCD /* UIView+Layout.m in Sources */,
@@ -6738,6 +6725,7 @@
 				BB21FD9822B0991E0059BCAC /* KSMediaPickerScrollView.m in Sources */,
 				BBC3FB0022C4647400BB2564 /* YXSecondViewController.m in Sources */,
 				BBD2C92721E0F67800350DCD /* MWGridViewController.m in Sources */,
+				BB6F6A1D2361A31B00EC8732 /* UIWebView+KWHideAccessoryView.m in Sources */,
 				BBB59AEA228CF8CB0029D3D0 /* YXHomeXueJiaGuBaViewController.m in Sources */,
 				BBF67C9B23601F3100032E9C /* YXZhiNanType2TableViewCell.m in Sources */,
 				BB21FDB922B0E68A0059BCAC /* YXFirstFindImageTableViewCell.m in Sources */,
@@ -6746,6 +6734,7 @@
 				BBA812AD21DDAB9D001B5EA1 /* YXFindViewController.m in Sources */,
 				BBA812E621DDDE47001B5EA1 /* WJSliderView.m in Sources */,
 				BBB59B04228CF8CB0029D3D0 /* YXHomeXueJiaPinPaiDetailViewController.m in Sources */,
+				BB6F6A1B2361A31B00EC8732 /* KWFontStyleBar.m in Sources */,
 				BBB59AE9228CF8CB0029D3D0 /* PYTempViewController.m in Sources */,
 				BBF26E07223FA92D0000AEF5 /* HWWaveView.m in Sources */,
 				BBDA2CFE21EB30BF00EDCCFF /* SDBaseNavigationController.m in Sources */,

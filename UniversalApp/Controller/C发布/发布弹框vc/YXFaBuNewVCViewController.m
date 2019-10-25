@@ -8,7 +8,6 @@
 
 #import "YXFaBuNewVCViewController.h"
 #import "YXPublishImageViewController.h"
-#import "EditorViewController.h"
 #import "YXWenZhangEditorViewController.h"
 
 @interface YXFaBuNewVCViewController ()
