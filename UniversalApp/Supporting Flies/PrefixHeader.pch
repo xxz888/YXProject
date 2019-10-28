@@ -72,7 +72,6 @@
 #import <MBProgressHUD.h>
 #import <Masonry.h>
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "WGCommon.h"
 
 //插件
 #import "UIView+TBFrame.h"

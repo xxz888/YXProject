@@ -18,6 +18,9 @@
 #import "YXFirstFindImageTableViewCell.h"
 #import "HGPersonalCenterViewController.h"
 #import "XLVideoPlayer.h"
+#import "UIWebView+KWWebViewJSTool.h"
+#import "UIWebView+KWHideAccessoryView.h"
+
 @interface YXMineImageDetailViewController ()<ZInputToolbarDelegate,QMUIMoreOperationControllerDelegate,SDCycleScrollViewDelegate,UIWebViewDelegate>{
     CGFloat imageHeight;
     
