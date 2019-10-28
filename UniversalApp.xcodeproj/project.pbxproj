@@ -757,6 +757,7 @@
 		BBE82CFF21E44A7D004E4144 /* ZLPhotoPickerDatas.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82CF921E44A7D004E4144 /* ZLPhotoPickerDatas.m */; };
 		BBE82D0021E44A7D004E4144 /* ZLPhotoPickerGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82CFB21E44A7D004E4144 /* ZLPhotoPickerGroup.m */; };
 		BBE82D0121E44A7D004E4144 /* ZLPhotoAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82CFC21E44A7D004E4144 /* ZLPhotoAssets.m */; };
+		BBEA15372366CC76006FBBFF /* SYBaseHttpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = BBEA15362366CC76006FBBFF /* SYBaseHttpConnection.m */; };
 		BBF26E07223FA92D0000AEF5 /* HWWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26DFF223FA92D0000AEF5 /* HWWaveView.m */; };
 		BBF26E08223FA92D0000AEF5 /* HWCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E02223FA92D0000AEF5 /* HWCircleView.m */; };
 		BBF26E09223FA92D0000AEF5 /* HWProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E04223FA92D0000AEF5 /* HWProgressView.m */; };
@@ -2089,6 +2090,8 @@
 		BBE82CFC21E44A7D004E4144 /* ZLPhotoAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoAssets.m; sourceTree = "<group>"; };
 		BBE82CFD21E44A7D004E4144 /* ZLPhotoPickerDatas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerDatas.h; sourceTree = "<group>"; };
 		BBE82CFE21E44A7D004E4144 /* ZLPhotoPickerGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerGroup.h; sourceTree = "<group>"; };
+		BBEA15352366CC76006FBBFF /* SYBaseHttpConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYBaseHttpConnection.h; sourceTree = "<group>"; };
+		BBEA15362366CC76006FBBFF /* SYBaseHttpConnection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYBaseHttpConnection.m; sourceTree = "<group>"; };
 		BBF26DFF223FA92D0000AEF5 /* HWWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWWaveView.m; sourceTree = "<group>"; };
 		BBF26E00223FA92D0000AEF5 /* HWInstallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWInstallView.h; sourceTree = "<group>"; };
 		BBF26E01223FA92D0000AEF5 /* HWProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWProgressView.h; sourceTree = "<group>"; };
@@ -2618,6 +2621,8 @@
 				BBA8131121DE0814001B5EA1 /* HttpRequest.m */,
 				29AD6C691ED41E2100B0879C /* UserManager.h */,
 				29AD6C6A1ED41E2100B0879C /* UserManager.m */,
+				BBEA15352366CC76006FBBFF /* SYBaseHttpConnection.h */,
+				BBEA15362366CC76006FBBFF /* SYBaseHttpConnection.m */,
 				29AD6C6F1ED41ED200B0879C /* UserInfo.h */,
 				29AD6C701ED41ED200B0879C /* UserInfo.m */,
 				2973A8181EDEE6BE002751F0 /* GameInfo.h */,
@@ -6477,6 +6482,7 @@
 				BB9413DA21F8B602007E800A /* IQToolbar.m in Sources */,
 				BBB59AD8228CF8CB0029D3D0 /* YXHomeMeiJiuViewController.m in Sources */,
 				BBDA2D2421EB30BF00EDCCFF /* SDRefreshView.m in Sources */,
+				BBEA15372366CC76006FBBFF /* SYBaseHttpConnection.m in Sources */,
 				BBD30CE921E5CE26000D3244 /* YXMineCommon1TableViewCell.m in Sources */,
 				BB15B0E5234EBDF9005CED4F /* YXJiFenLiJiGouMaiTableViewController.m in Sources */,
 				BB5FD87521FE9BBD00B5F1A8 /* AxcAE_TabBarItem.m in Sources */,

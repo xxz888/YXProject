@@ -14,7 +14,8 @@
 #import "HGSegmentedPageViewController.h"
 #import "YXHomeXueJiaGuBaViewController.h"
 #import "SocketRocketUtility.h"
-
+#import "JQFMDB.h"
+#import "MessageModel.h"
 @interface YXHomeXueJiaViewController ()<UITableViewDelegate,UITableViewDataSource,ClickGridView,UIGestureRecognizerDelegate>
 @property (nonatomic) BOOL isCanBack;
 @property (nonatomic, strong) HGSegmentedPageViewController *segmentedPageViewController;
@@ -33,6 +34,11 @@
 
     
     [[SocketRocketUtility instance] SRWebSocketStart];
+    
+    JQFMDB *db = [JQFMDB shareDatabase];
+    if (![db jq_isExistTable:YX_USER_LiaoTian]) {
+      [db jq_createTable:YX_USER_LiaoTian dicOrModel:[MessageModel class]];
+    }
 }
 
 

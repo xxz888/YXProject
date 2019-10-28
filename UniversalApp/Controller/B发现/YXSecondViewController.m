@@ -48,11 +48,13 @@
     [self rightBottomBtn];
 }
 -(void)rightBottomBtn{
-    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setImage:[UIImage imageNamed:@"findjiahao"] forState:0];
-    btn.frame = CGRectMake(KScreenWidth-16-54+1, KScreenHeight-kTabBarHeight-54-10+6-22, 48, 48);
-    [self.view addSubview:btn];
-    [btn addTarget:self action:@selector(handleShowContentViewController) forControlEvents:UIControlEventTouchUpInside];
+    if (!_findjiahao) {
+        _findjiahao = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_findjiahao setImage:[UIImage imageNamed:@"findjiahao"] forState:0];
+        _findjiahao.frame = CGRectMake(KScreenWidth-16-54+1, KScreenHeight-kTabBarHeight-54-10+6-22, 48, 48);
+        [self.view addSubview:_findjiahao];
+        [_findjiahao addTarget:self action:@selector(handleShowContentViewController) forControlEvents:UIControlEventTouchUpInside];
+    }
 }
 -(void)setNavSearchView{
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXFindHeaderView" owner:self options:nil];
@@ -211,4 +213,5 @@
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer*)gestureRecognizer {
     return self.isCanBack;
 }
+
 @end

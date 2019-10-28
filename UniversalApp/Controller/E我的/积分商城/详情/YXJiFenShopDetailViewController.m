@@ -75,7 +75,7 @@
     }else{
         self.navView.backgroundColor = KClearColor;
         self.wenziView.hidden = YES;
-}
+    }
 
 }
 - (IBAction)lijigoumaiAction:(id)sender {

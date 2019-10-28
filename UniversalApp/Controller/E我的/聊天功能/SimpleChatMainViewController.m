@@ -67,10 +67,7 @@
     self.bendiArray = [[NSMutableArray alloc]init];
  
     
-        JQFMDB *db = [JQFMDB shareDatabase];
-        if (![db jq_isExistTable:YX_USER_LiaoTian]) {
-            [db jq_createTable:YX_USER_LiaoTian dicOrModel:[MessageModel class]];
-        }
+  
     
     [self jumpBottomLiaoTian];
 }

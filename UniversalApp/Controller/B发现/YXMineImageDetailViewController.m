@@ -101,6 +101,11 @@
     self.cell.cellWebView.hidesInputAccessoryView = YES;
     [self.cell.cellWebView loadHTMLString:htmlCont baseURL: baseURL];
     self.cell.cellWebView.userInteractionEnabled = NO;
+    
+    
+    [self.cell.cellWebView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+
+
 }
 #pragma mark -webviewdelegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
@@ -108,50 +113,56 @@
        [self.cell.cellWebView setupHtmlContent:self.startDic[@"detail"]];
        //删除占位信息
        [self.cell.cellWebView clearContentPlaceholder];
-       webViewHeight= [[self.cell.cellWebView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"]floatValue];
-       CGRect newFrame= self.cell.cellWebView.frame;
-       newFrame.size.height = webViewHeight;
-       self.cell.cellWebView.frame= newFrame;
-       [self.cell.cellWebView sizeToFit];
-       CGRect Frame = self.cell.frame;
+    
+    
+    
 
-       CGFloat detailHeight = [ShareManager inTextOutHeight:[self.startDic[@"title"] UnicodeToUtf8] lineSpace:9 fontSize:24];
-       CGFloat height = 10 + 10 + 5 + 40 ; //分割线和上下距离和评论
-       Frame.size.height= 125 + detailHeight + webViewHeight + coverHeight + height;
-       self.cell.midViewHeight.constant =  webViewHeight;
-       self.cell.frame= Frame;
-       [self.yxTableView setTableHeaderView:self.cell];//这句话才是重点
-       [QMUITips hideAllTips];
 }
 
 - (void)observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context{
         if([keyPath isEqualToString:@"contentSize"]) {
-        webViewHeight= [[self.cell.cellWebView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"]floatValue];
-        CGRect newFrame= self.cell.cellWebView.frame;
-        newFrame.size.height = webViewHeight;
-        self.cell.cellWebView.frame= newFrame;
-        [self.cell.cellWebView sizeToFit];
-        CGRect Frame = self.cell.frame;
+            webViewHeight= [[self.cell.cellWebView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"]floatValue];
+            CGRect newFrame= self.cell.cellWebView.frame;
+            newFrame.size.height = webViewHeight;
+            self.cell.cellWebView.frame= newFrame;
+            [self.cell.cellWebView sizeToFit];
+            CGRect Frame = self.cell.frame;
 
-        CGFloat detailHeight = [ShareManager inTextOutHeight:[self.startDic[@"title"] UnicodeToUtf8] lineSpace:9 fontSize:24];
-
-            CGFloat height = 10 + 10 + 5 + 40 + (IS_IPhoneX ? 0 : 20) ; //分割线和上下距离和评论
-        Frame.size.height= 125 + detailHeight + webViewHeight + coverHeight + height;
-        self.cell.midViewHeight.constant =  webViewHeight;
-        self.cell.frame= Frame;
-        [self.yxTableView setTableHeaderView:self.cell];//这句话才是重点
+            CGFloat detailHeight = [ShareManager inTextOutHeight:[self.startDic[@"title"] UnicodeToUtf8] lineSpace:9 fontSize:24];
+            CGFloat height = 10 + 10 + 5 + 40 ; //分割线和上下距离和评论
+            Frame.size.height= 125 + detailHeight + webViewHeight + coverHeight + height;
+            self.cell.midViewHeight.constant =  webViewHeight;
+            self.cell.frame= Frame;
+            [self.yxTableView setTableHeaderView:self.cell];//这句话才是重点
+            [QMUITips hideAllTips];
             
-        if (!self.nodataImg) {
-            self.nodataImg = [[UILabel alloc]init];
-        }
-        self.nodataImg.frame = CGRectMake((KScreenWidth-200)/2,self.cell.frame.size.height - 30, 200, 100);
-        self.nodataImg.text = @"暂时还没有评论";
-        self.nodataImg.font = [UIFont systemFontOfSize:14];
-        self.nodataImg.textColor = [UIColor lightGrayColor];
-        self.nodataImg.textAlignment = NSTextAlignmentCenter;
-        [self.nodataImg removeFromSuperview];
-        [self.yxTableView addSubview:self.nodataImg];
-        self.nodataImg.hidden = self.dataArray.count != 0;
+            
+//        webViewHeight= [[self.cell.cellWebView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"]floatValue];
+//        CGRect newFrame= self.cell.cellWebView.frame;
+//        newFrame.size.height = webViewHeight;
+//        self.cell.cellWebView.frame= newFrame;
+//        [self.cell.cellWebView sizeToFit];
+//        CGRect Frame = self.cell.frame;
+//
+//        CGFloat detailHeight = [ShareManager inTextOutHeight:[self.startDic[@"title"] UnicodeToUtf8] lineSpace:9 fontSize:24];
+//
+//            CGFloat height = 10 + 10 + 5 + 40 + (IS_IPhoneX ? 0 : 20) ; //分割线和上下距离和评论
+//        Frame.size.height= 125 + detailHeight + webViewHeight + coverHeight + height;
+//        self.cell.midViewHeight.constant =  webViewHeight;
+//        self.cell.frame= Frame;
+//        [self.yxTableView setTableHeaderView:self.cell];//这句话才是重点
+//
+//        if (!self.nodataImg) {
+//            self.nodataImg = [[UILabel alloc]init];
+//        }
+//        self.nodataImg.frame = CGRectMake((KScreenWidth-200)/2,self.cell.frame.size.height - 30, 200, 100);
+//        self.nodataImg.text = @"暂时还没有评论";
+//        self.nodataImg.font = [UIFont systemFontOfSize:14];
+//        self.nodataImg.textColor = [UIColor lightGrayColor];
+//        self.nodataImg.textAlignment = NSTextAlignmentCenter;
+//        [self.nodataImg removeFromSuperview];
+//        [self.yxTableView addSubview:self.nodataImg];
+//        self.nodataImg.hidden = self.dataArray.count != 0;
     }
 }
     

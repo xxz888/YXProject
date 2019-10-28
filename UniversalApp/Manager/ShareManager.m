@@ -501,7 +501,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     }
     NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
     paraStyle.lineSpacing = lineSpacing + 2;
-    NSDictionary *dic = @{NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:fontSize], NSParagraphStyleAttributeName:paraStyle};
+    NSDictionary *dic = @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Light" size:fontSize], NSParagraphStyleAttributeName:paraStyle};
     CGSize size = [string boundingRectWithSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width - 20, MAXFLOAT) options:
                    NSStringDrawingUsesLineFragmentOrigin |
                    NSStringDrawingUsesFontLeading attributes:dic context:nil].size;

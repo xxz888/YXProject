@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface YXSecondViewController : RootViewController
 @property (nonatomic, strong) HGSegmentedPageViewController *segmentedPageViewController;
 
+@property (nonatomic, strong) UIButton * findjiahao;
 @end
 
 NS_ASSUME_NONNULL_END

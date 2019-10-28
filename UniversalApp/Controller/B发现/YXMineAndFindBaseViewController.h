@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) CGFloat totalKeybordHeight;
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, strong) NSIndexPath *currentEditingIndexthPath;
+@property (nonatomic,strong) NSDictionary * startDic;
 
 #pragma mark ========== 足迹点赞 ==========
 -(void)requestDianZan_ZuJI_Action:(NSIndexPath *)indexPath;

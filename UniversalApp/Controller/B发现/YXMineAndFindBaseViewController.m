@@ -14,15 +14,21 @@
 #import "UIView+LSExtension.h"
 #import "YXPublishImageViewController.h"
 #import "XLVideoPlayer.h"
+#import "YXSecondViewController.h"
+#import "YXMineChouJiangViewController.h"
 
+
+static CGFloat sectionHeaderHeight = 80;
 @interface YXMineAndFindBaseViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,ZInputToolbarDelegate,UIScrollViewDelegate>{
     CGFloat _autoPLHeight;
     BOOL _tagSelectBool;
     XLVideoPlayer *_player;
+    CGFloat _oldY;
 
 }
 @property (nonatomic, strong) NSDictionary *shareDic;
 @property (nonatomic, strong) ZInputToolbar *inputToolbar;
+@property (nonatomic, strong) UIView * headerView;
 
 @end
 @implementation YXMineAndFindBaseViewController
@@ -59,6 +65,31 @@
     [self.yxTableView addSubview:self.nodataImg];
     self.nodataImg.hidden = YES;
     
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (!_headerView) {
+        _headerView = [[UIView alloc]init];
+        _headerView.frame = CGRectMake(0, 0, KScreenWidth, sectionHeaderHeight);
+        _headerView.backgroundColor = KWhiteColor;
+        UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(6,13,KScreenWidth-14, 64)];
+        imageView.image = [UIImage imageNamed:@"findXingYunChouJiang"];
+        imageView.userInteractionEnabled = YES;
+        
+        //添加点击手势
+        UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction:)];
+        //点击几次后触发事件响应，默认为：1
+        click.numberOfTapsRequired = 1;
+        [imageView addGestureRecognizer:click];
+        [_headerView addSubview:imageView];
+    }
+    return _headerView;
+}
+-(void)clickAction:(id)tap{
+    YXMineChouJiangViewController * vc = [[YXMineChouJiangViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return [self.startDic[@"id"] integerValue] == 1 ? 74 : 0;
 }
 #pragma mark ========== tableview代理方法 ==========
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -106,12 +137,12 @@
         _player = nil;
     };
 }
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    return [[UIView alloc]init];
-}
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0;
-}
+//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    return [[UIView alloc]init];
+//}
+//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    return 0;
+//}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.row];
     return [self customImageData:dic indexPath:indexPath];
@@ -196,8 +227,17 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if ([scrollView isEqual:self.yxTableView]) {
-        
         [_player playerScrollIsSupportSmallWindowPlay:NO];
+        if ([self.parentViewController.parentViewController isKindOfClass:[YXSecondViewController class]]) {
+            YXSecondViewController * vc = (YXSecondViewController *)self.parentViewController.parentViewController;
+            if (self.yxTableView.contentOffset.y > _oldY) {vc.findjiahao.hidden = YES;}else{vc.findjiahao.hidden = NO;}
+        }
+        
+        if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+        } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+        }
     }
 }
 
@@ -427,8 +467,9 @@
 }
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-}
+    _oldY = self.yxTableView.contentOffset.y;
 
+}
 - (void)shareAction{
     
 }

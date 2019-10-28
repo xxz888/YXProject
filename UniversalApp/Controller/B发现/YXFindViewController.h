@@ -9,7 +9,6 @@
 #import "RootViewController.h"
 #import "YXMineAndFindBaseViewController.h"
 @interface YXFindViewController : YXMineAndFindBaseViewController
-@property (nonatomic,strong) NSDictionary * startDic;
 #pragma mark ========== 2222222-在请求具体tag下的请求,获取发现页标签数据全部接口 ==========
 -(void)requestTableData;
 @end

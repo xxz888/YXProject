@@ -10,6 +10,7 @@
 #import "AFHTTPSessionManager.h"
 #import "AFNetworkActivityIndicatorManager.h"
 #import "XLDouYinLoading.h"
+#import "SYBaseHttpConnection.h"
 @implementation HttpRequest
 
 + (void)httpRequestPostPi:(NSString *)pi Parameters:(id)parmeters sucess:(SucessBlock)sucess failure:(FailureBlock)failure{
@@ -17,8 +18,10 @@
     kWeakSelf(self);
     NSString * strURl = [API_ROOT_URL_HTTP_FORMAL stringByAppendingString:pi];
     NSLog(@"getUrl-:%@",strURl);
+    
+    AFHTTPSessionManager * manager = [SYBaseHttpConnection sharedManager];
 
-    [[self commonAction] POST:strURl  parameters:parmeters progress:^(NSProgress * _Nonnull downloadProgress) {
+    [manager POST:strURl  parameters:parmeters progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [QMUITips hideAllTipsInView:[ShareManager getMainView]];
         [weakself setCommonRespone:sucess pi:pi responseObject:responseObject];
@@ -33,7 +36,9 @@
     kWeakSelf(self);
     NSString * url = [API_ROOT_URL_HTTP_FORMAL append:pi];
     NSLog(@"getUrl-:%@",url);
-    [[self commonAction] GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    AFHTTPSessionManager * manager = [SYBaseHttpConnection sharedManager];
+
+    [manager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
          NSLog(@"getUrl-请求成功-:%@",url);
         [weakself setCommonRespone:sucess pi:pi responseObject:responseObject];
@@ -110,7 +115,6 @@ var c = a + b
 }
 +(AFHTTPSessionManager *)commonAction{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
     manager.requestSerializer =  [AFJSONRequestSerializer serializer];
     manager.responseSerializer =  [AFHTTPResponseSerializer serializer];
     UserInfo *userInfo = curUser;

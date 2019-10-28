@@ -31,7 +31,7 @@
         if ([dic[@"detail"] isEqualToString:@""] && [dic[@"tag"] isEqualToString:@""]) {
                      detailHeight = 0;
                  }else{
-                     detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:17];
+                     detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:15];
                  }
         //这里判断晒图是图还是视频
         if ([kGetString(dic[@"url_list"][0]) containsString:@"mp4"]) {
@@ -48,7 +48,7 @@
         if ([dic[@"title"] isEqualToString:@""] && [dic[@"tag"] isEqualToString:@""]) {
             detailHeight = 0;
         }else{
-            detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:17];
+            detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:15];
             
         }
     }
@@ -186,7 +186,7 @@
         [self.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         [self.onlyOneImv removeGestureRecognizer:self.tap];
         //下边这句话不能删除，改变样式的
-        [ShareManager setLineSpace:9 inLabel:self.detailLbl size:17];
+        [ShareManager setLineSpace:9 inLabel:self.detailLbl size:15];
         [ShareManager inTextViewOutDifColorView:self.detailLbl tag:dic[@"tag"]];
         self.detailLbl.font =  [UIFont fontWithName:@"Helvetica-Bold" size:17];
         self.detailHeight.constant = [ShareManager inTextOutHeight:self.detailLbl.text  lineSpace:9 fontSize:17];
