@@ -9,8 +9,6 @@
 #import "YXFindSearchResultTagViewController.h"
 #import "YXHomeXueJiaTableViewCell.h"
 #import "YXMineAllViewController.h"
-#import "YXMineImageViewController.h"
-#import "YXMineFootViewController.h"
 #import "HGCenterBaseTableView.h"
 #import "YXMineHeaderView.h"
 #import "YXMineFenSiViewController.h"

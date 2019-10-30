@@ -8,7 +8,6 @@
 
 #import "YXMessageThreeDetailViewController.h"
 #import "YXMessageThreeDetailViewCell.h"
-#import "YXMineViewController.h"
 #import "YXMineImageDetailViewController.h"
 #import "YXFindImageTableViewCell.h"
 #import "YXMineFootDetailViewController.h"
@@ -169,13 +168,12 @@
 }
 #pragma mark ========== 头像点击 ==========
 -(void)clickUserImageView:(NSString *)userId{
-    UserInfo *userInfo = curUser;
-    if ([userInfo.id isEqualToString:userId]) {
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
+    if ([kGetString(userInfo[@"id"]) isEqualToString:userId]) {
         self.navigationController.tabBarController.selectedIndex = 3;
         return;
     }
-//    UIStoryboard * stroryBoard5 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
-//    YXMineViewController * mineVC = [stroryBoard5 instantiateViewControllerWithIdentifier:@"YXMineViewController"];
+
     HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
     mineVC.userId = userId;
     mineVC.whereCome = YES;    //  YES为其他人 NO为自己

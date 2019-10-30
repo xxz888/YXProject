@@ -173,9 +173,8 @@ dispatch_async(dispatch_get_main_queue(), block);\
 
 - (void)sentheart {
 
-    NSInteger state = self.socket.readyState;
-    UserInfo * info = curUser;
-    NSDictionary * dic = @{@"type":@"1",@"message":info.token};
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
+    NSDictionary * dic = @{@"type":@"1",@"message":userInfo[@"token"]};
     NSString * string = [self dictionaryToJson:dic];
     [self sendData:string];
 }

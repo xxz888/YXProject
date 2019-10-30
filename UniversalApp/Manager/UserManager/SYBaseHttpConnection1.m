@@ -1,16 +1,16 @@
 //
-//  SYBaseHttpConnection.m
+//  SYBaseHttpConnection1.m
 //  UniversalApp
 //
-//  Created by 小小醉 on 2019/10/28.
+//  Created by 小小醉 on 2019/10/29.
 //  Copyright © 2019 徐阳. All rights reserved.
 //
 
-#import "SYBaseHttpConnection.h"
+#import "SYBaseHttpConnection1.h"
 #import "AFHTTPSessionManager.h"
 
 static AFHTTPSessionManager *manager;
-@implementation SYBaseHttpConnection
+@implementation SYBaseHttpConnection1
 
 +(AFHTTPSessionManager *)sharedManager {
     static dispatch_once_t onceToken;
@@ -18,6 +18,7 @@ static AFHTTPSessionManager *manager;
         manager = [AFHTTPSessionManager manager];
         manager.requestSerializer =  [AFJSONRequestSerializer serializer];
         manager.responseSerializer =  [AFHTTPResponseSerializer serializer];
+
         [manager.requestSerializer setValue:@"Keep-Alive" forHTTPHeaderField:@"Connection"];
         //允许非权威机构颁发的证书
         manager.securityPolicy.allowInvalidCertificates=YES;

@@ -17,8 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.webView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight);
-    UserInfo *userInfo = curUser;
-    self.url =  [NSString stringWithFormat:@"http://www.%@choujiang.html?%@",[API_URL split:@"api"][0],userInfo.token];
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
+    self.url =  [NSString stringWithFormat:@"http://%@choujiang.html?%@",[API_URL split:@"api"][0],userInfo[@"token"]];
 
 //    self.url =  [NSString stringWithFormat:@"http://%@choujiang.html?%@",@"192.168.101.21:63340/TJOfficial_Web/",userInfo.token];
 

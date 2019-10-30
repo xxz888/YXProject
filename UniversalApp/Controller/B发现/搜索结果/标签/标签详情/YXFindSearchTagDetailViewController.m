@@ -7,21 +7,17 @@
 //
 
 #import "YXFindSearchTagDetailViewController.h"
-#import "YXMineEssayTableViewCell.h"
 #import "YXMineImageDetailViewController.h"
-#import "BKCustomSwitchBtn.h"
-#import "YXMineImageCollectionViewCell.h"
 #import "XHWebImageAutoSize.h"
 #import "YXFindSearchTagHeaderView.h"
 #import "YXHomeXueJiaQuestionDetailViewController.h"
 #import "YXMineFootDetailViewController.h"
 #import "YXFirstFindImageTableViewCell.h"
 #import "QiniuLoad.h"
-@interface YXFindSearchTagDetailViewController ()<UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UICollectionViewDelegate,BKCustomSwitchBtnDelegate>{
+@interface YXFindSearchTagDetailViewController ()<UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UICollectionViewDelegate>{
     NSInteger page ;
 }
 @property (strong,nonatomic)  UICollectionView * yxCollectionView;
-@property (nonatomic, strong) BKCustomSwitchBtn *changeShowTypeBtn;//转换cell布局的Btn
 //@property (nonatomic, strong) YXFindSearchTagHeaderView * headerView;
 
 @end
@@ -202,8 +198,8 @@ scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
     kWeakSelf(self)
     [QiniuLoad uploadImageToQNFilePath:@[viewImage] success:^(NSString *reslut) {
           [QMUITips hideAllTips];
-           UserInfo * info = curUser;
-           NSString * title = [NSString stringWithFormat:@"%@@蓝皮书app",info.username];
+        NSDictionary * userInfo = userManager.loadUserAllInfo;
+        NSString * title = [NSString stringWithFormat:@"%@@蓝皮书app",userInfo[@"username"]];
            NSString * desc = [NSString stringWithFormat:@"分享了%@，快来关注吧！",weakself.startDic[@"tag"]];
           [[ShareManager sharedShareManager] shareAllToPlatformType:umType obj:@{@"img":reslut,@"desc":desc,@"title":title,@"type":@"3"}];
     } failure:^(NSString *error) {

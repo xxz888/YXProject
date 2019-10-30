@@ -7,7 +7,6 @@
 //
 
 #import "YXHomeXueJiaQuestionDetailViewController.h"
-#import "YXHomeQuestionDetailHeaderView.h"
 #import "HGPersonalCenterViewController.h"
 #import "ZInputToolbar.h"
 #import "UIView+LSExtension.h"
@@ -19,7 +18,6 @@
     BOOL zanBool;
     NSDictionary * shareDic;
 }
-@property(nonatomic)YXHomeQuestionDetailHeaderView * headerView;
 @property (nonatomic, strong) NSMutableDictionary * pardic;;
 @property (nonatomic, strong) MMImageListView *imageListView;
 @end
@@ -68,8 +66,8 @@
     NSString * str11 = [(NSMutableString *)(dic[@"user_photo"] ? dic[@"user_photo"] : dic[@"photo"]) replaceAll:@" " target:@"%20"];
     [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:str11] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
     //自己的头图像
-    UserInfo *userInfo = curUser;
-    NSString * str22 = [(NSMutableString *)userInfo.photo replaceAll:@" " target:@"%20"];
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
+    NSString * str22 = [(NSMutableString *)userInfo[@"photo"] replaceAll:@" " target:@"%20"];
     [cell.addPlImageView sd_setImageWithURL:[NSURL URLWithString:str22] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
     //评论数量
     cell.talkCount.text = talkNum;
@@ -184,8 +182,8 @@
             KPostNotification(KNotificationLoginStateChange, @NO);
             return;
         }
-        UserInfo * userInfo = curUser;
-        BOOL isOwn = [self.startDic[@"user_id"] integerValue] == [userInfo.id integerValue];
+        NSDictionary * userInfo = userManager.loadUserAllInfo;
+        BOOL isOwn = [self.startDic[@"user_id"] integerValue] == [kGetString(userInfo[@"id"]) integerValue];
         shareDic = [NSDictionary dictionaryWithDictionary:self.startDic];
         [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"2" tag:[weakself.startDic[@"id"] integerValue]  startDic:weakself.startDic];
     };
@@ -348,9 +346,9 @@
     cell.commentView.likeLabel.hidden = YES;
     __weak typeof(self) weakSelf = self;
     cell.imgBlock = ^(SDTimeLineCell * cell) {
-        UserInfo *userInfo = curUser;
+        NSDictionary * userInfo = userManager.loadUserAllInfo;
         NSString * cellUserId = kGetString(cell.model.userID);
-        if ([userInfo.id isEqualToString:cellUserId]) {
+        if ([kGetString(userInfo[@"id"]) isEqualToString:cellUserId]) {
             weakSelf.navigationController.tabBarController.selectedIndex = 3;
             return;
         }

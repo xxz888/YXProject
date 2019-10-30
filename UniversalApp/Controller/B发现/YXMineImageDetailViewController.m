@@ -346,8 +346,8 @@
         KPostNotification(KNotificationLoginStateChange, @NO);
         return;
     }
-    UserInfo * userInfo = curUser;
-    BOOL isOwn = [self.startDic[@"user_id"] integerValue] == [userInfo.id integerValue];
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
+    BOOL isOwn = [self.startDic[@"user_id"] integerValue] == [kGetString(userInfo[@"id"]) integerValue];
     self.shareDic = [NSDictionary dictionaryWithDictionary:self.startDic];
     [self addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:[self.startDic[@"id"] integerValue]  startDic: self.startDic];
 }
@@ -360,8 +360,8 @@
 }
 #pragma mark ========== 头像点击 ==========
 -(void)clickUserImageView:(NSString *)userId{
-    UserInfo *userInfo = curUser;
-    if ([userInfo.id isEqualToString:userId]) {
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
+    if ([kGetString(userInfo[@"id"]) isEqualToString:userId]) {
         self.navigationController.tabBarController.selectedIndex = 3;
         return;
     }
@@ -815,8 +815,8 @@
         KPostNotification(KNotificationLoginStateChange, @NO);
         return;
     }
-    UserInfo * userInfo = curUser;
-    BOOL isOwn = [self.startDic[@"user_id"] integerValue] == [userInfo.id integerValue];
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
+    BOOL isOwn = [self.startDic[@"user_id"] integerValue] == [kGetString(userInfo[@"id"]) integerValue];
     self.shareDic = [NSDictionary dictionaryWithDictionary:self.cell.dataDic];
     [self addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:self.cell.tagId startDic:self.cell.dataDic];
 }

@@ -10,11 +10,7 @@
 #import "PYSearchViewController.h"
 #import "PYSearch.h"
 #import "PYTempViewController.h"
-#import "YXMineEssayTableViewCell.h"
-#import "YXMineEssayDetailViewController.h"
 #import "YXMineImageDetailViewController.h"
-#import "YXMineViewController.h"
-#import "YXMineImageCollectionViewCell.h"
 
 #import "YXFindImageTableViewCell.h"
 #import "YXFindQuestionTableViewCell.h"

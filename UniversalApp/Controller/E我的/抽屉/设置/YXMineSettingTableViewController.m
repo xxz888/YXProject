@@ -88,8 +88,8 @@
         case 1:
             //账号与安全
             if (indexPath.row == 1) {
-                UserInfo * userInfo= curUser;
-                [YX_MANAGER requestGetUserothers:userInfo.id success:^(id object) {
+                NSDictionary * userInfo = userManager.loadUserAllInfo;
+                [YX_MANAGER requestGetUserothers:kGetString(userInfo[@"id"]) success:^(id object) {
                     YXHomeEditPersonTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXHomeEditPersonTableViewController"];
                     VC.userInfoDic = [NSDictionary dictionaryWithDictionary:[NSDictionary dictionaryWithDictionary:object]];
                     [weakself.navigationController pushViewController:VC animated:YES];

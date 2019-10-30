@@ -39,7 +39,7 @@
     kWeakSelf(self);
     [YX_MANAGER requestSmscodeGET:[self.nPhoneTf.text append:@"/4/"]  success:^(id object) {
         [QMUITips showSucceed:@"验证码发送成功" inView:weakself.view hideAfterDelay:2];
-        [weakself.getMes_codeBtn startWithTime:180
+        [weakself.getMes_codeBtn startWithTime:60
                                      title:@"点击重新获取"
                             countDownTitle:@"s"
                                  mainColor:C_COLOR

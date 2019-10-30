@@ -41,10 +41,9 @@
             [QMUITips showError:@"积分不足"];
             return;
         }
-        UserInfo * info = curUser;
-        
+        NSDictionary * userInfo = userManager.loadUserAllInfo;
         NSDictionary * dic = @{@"type":@"1",
-                               @"user_id":kGetString(info.id),
+                               @"user_id":kGetString(userInfo[@"id"]),
                                @"address_id":weakself.address_id,
                                @"commodity_id":kGetString(weakself.startDic[@"id"]),
         };

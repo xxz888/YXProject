@@ -10,10 +10,7 @@
 #import "YXHomeXueJiaTableViewCell.h"
 #import "YXHomeXueJiaHeaderView.h"
 #import "YXHomeXueJiaPinPaiViewController.h"
-#import "YXHomeXueJiaWenHuaViewController.h"
 #import "YXHomeXueJiaToolsViewController.h"
-#import "YXHomeXueJiaQuestionViewController.h"
-#import "YXHomeXueJiaPeiJianViewController.h"
 @interface YXHomeXueJiaViewController : RootViewController
 @property (weak, nonatomic) IBOutlet UIView *bootomView;
 @property(nonatomic,strong)UITableView * bottomTableView;

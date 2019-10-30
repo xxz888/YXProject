@@ -157,9 +157,9 @@
     
 }
 -(void)makeSamePersonInfo:(NSArray *)ownArray{
-    UserInfo * userInfo = curUser;
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
     //先得到自己的id
-    NSString * ownId = userInfo.id;
+    NSString * ownId = kGetString(userInfo[@"id"]);
     //自己数据拿出来后，开始取出不同的好友分组
     NSMutableArray * ownFriendIdArray = [[NSMutableArray alloc]init];
     for (MessageFrameModel * dictModel in ownArray) {
@@ -328,10 +328,10 @@
         YXMessageLiaoTianTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMessageLiaoTianTableViewCell" forIndexPath:indexPath];
         MessageFrameModel * model = [self.dbMessageArray[indexPath.row] lastObject];
         cell.ltContent.text = model.message.text;
-        UserInfo * userInfo = curUser;
+        NSDictionary * userInfo = userManager.loadUserAllInfo;
         NSString * photo = @"";
         NSString * username = @"";
-        if ([userInfo.id isEqualToString:model.message.own_id]) {
+        if ([kGetString(userInfo[@"id"]) isEqualToString:model.message.own_id]) {
             photo = [ShareManager stringToDic:model.message.aim_info][@"photo"];
             username = [ShareManager stringToDic:model.message.aim_info][@"username"];
         }else{
@@ -353,13 +353,12 @@
      MessageFrameModel * model = [self.dbMessageArray[indexPath.row] lastObject];
      SimpleChatMainViewController * vc = [[SimpleChatMainViewController alloc]init];
      vc.clickIndex = indexPath.row;
-     UserInfo * userInfo = curUser;
-
+NSDictionary * userInfo = userManager.loadUserAllInfo;
      NSString * photo = @"";
      NSString * username = @"";
      NSString * otherId = @"";
 
-         if ([userInfo.id isEqualToString:model.message.own_id]) {
+         if ([kGetString(userInfo[@"id"]) isEqualToString:model.message.own_id]) {
              photo = [ShareManager stringToDic:model.message.aim_info][@"photo"];
              username = [ShareManager stringToDic:model.message.aim_info][@"username"];
              otherId = model.message.aim_id;

@@ -145,4 +145,11 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
+#pragma mark ==========邀请好友解锁==========
+-(void)requestOption_lock_historyPOST:YX_BLOCK{
+    [HTTP_POST(@"/pub/option_lock_history/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+
 @end

@@ -143,17 +143,6 @@ SINGLETON_FOR_CLASS(UserManager);
 #pragma mark ————— 手动登录到服务器 —————
 -(void)loginToServer:(NSDictionary *)params completion:(loginBlock)completion{
     [self LoginSuccess:params completion:completion];
-
-//    [MBProgressHUD showActivityMessageInView:@"登录中..."];
-//    [PPNetworkHelper POST:NSStringFormat(@"%@%@",API_ROOT_URL_HTTP_FORMAL,URL_user_login) parameters:params success:^(id responseObject) {
-//        [self LoginSuccess:responseObject completion:completion];
-//
-//    } failure:^(NSError *error) {
-//        [MBProgressHUD hideHUD];
-//        if (completion) {
-//            completion(NO,error.localizedDescription);
-//        }
-//    }];
 }
 
 #pragma mark ————— 自动登录到服务器 —————
@@ -169,95 +158,32 @@ SINGLETON_FOR_CLASS(UserManager);
             [weakself LoginSuccess:object completion:completion];
         }
     }];
-    
-    
-    
-    
-//    [PPNetworkHelper POST:NSStringFormat(@"%@%@",API_ROOT_URL_HTTP_FORMAL,URL_user_auto_login) parameters:nil success:^(id responseObject) {
-//        [self LoginSuccess:responseObject completion:completion];
-//
-//    } failure:^(NSError *error) {
-//        if (completion) {
-//            completion(NO,error.localizedDescription);
-//        }
-//    }];
 }
 
 #pragma mark ————— 登录成功处理 —————
 -(void)LoginSuccess:(id )responseObject completion:(loginBlock)completion{
-    self.curUserInfo = [UserInfo modelWithDictionary:responseObject];
-    [self saveUserInfo];
+    UserDefaultsSET(responseObject, KUserInfo);
     self.isLogined = YES;
     if (completion) {
         completion(YES,nil);
     }
     KPostNotification(KNotificationLoginStateChange, @YES);
-    return;
-    
-    if (ValidDict(responseObject)) {
-        if (ValidDict(responseObject[@"data"])) {
-            NSDictionary *data = responseObject[@"data"];
-            if (ValidStr(data[@"imId"]) && ValidStr(data[@"imPass"])) {
-                //登录IM
-                [[IMManager sharedIMManager] IMLogin:data[@"imId"] IMPwd:data[@"imPass"] completion:^(BOOL success, NSString *des) {
-                    [MBProgressHUD hideHUD];
-                    if (success) {
-                        self.curUserInfo = [UserInfo modelWithDictionary:data];
-                        [self saveUserInfo];
-                        self.isLogined = YES;
-                        if (completion) {
-                            completion(YES,nil);
-                        }
-                        KPostNotification(KNotificationLoginStateChange, @YES);
-                    }else{
-                        if (completion) {
-                            completion(NO,@"IM登录失败");
-                        }
-                        KPostNotification(KNotificationLoginStateChange, @NO);
-                    }
-                }];
-            }else{
-                if (completion) {
-                    completion(NO,@"登录返回数据异常");
-                }
-                KPostNotification(KNotificationLoginStateChange, @NO);
-            }
-            
-        }
-    }else{
-        if (completion) {
-            completion(NO,@"登录返回数据异常");
-        }
-        KPostNotification(KNotificationLoginStateChange, @NO);
-    }
-    
-}
-#pragma mark ————— 储存用户信息 —————
--(void)saveUserInfo{
-    if (self.curUserInfo) {
-        NSDictionary *dic = [self.curUserInfo modelToJSONObject];
-        UserDefaultsSET(dic, KUserInfo);
-        
-//        YYCache *cache = [[YYCache alloc]initWithName:KUserCacheName];
-//        NSDictionary *dic = [self.curUserInfo modelToJSONObject];
-//        [cache setObject:dic forKey:KUserModelCache];
-    }
 }
 #pragma mark ————— 加载缓存的用户信息 —————
 -(BOOL)loadUserInfo{
     NSDictionary * infoDic = UserDefaultsGET(KUserInfo);
     if (infoDic) {
-        self.curUserInfo = [UserInfo modelWithJSON:infoDic];
         return YES;
     }
     return NO;
-//    YYCache *cache = [[YYCache alloc]initWithName:KUserCacheName];
-//    NSDictionary * userDic = (NSDictionary *)[cache objectForKey:KUserModelCache];
-//    if (userDic) {
-//        self.curUserInfo = [UserInfo modelWithJSON:userDic];
-//        return YES;
-//    }
-//    return NO;
+}
+-(NSDictionary *)loadUserAllInfo{
+    NSDictionary * infoDic = UserDefaultsGET(KUserInfo);
+    if (infoDic) {
+        return infoDic;
+    }else{
+        return  nil;
+    }
 }
 #pragma mark ————— 被踢下线 —————
 -(void)onKick{
@@ -266,30 +192,14 @@ SINGLETON_FOR_CLASS(UserManager);
 #pragma mark ————— 退出登录 —————
 - (void)logout:(void (^)(BOOL, NSString *))completion{
     [[AppDelegate shareAppDelegate].mainTabBar setSelectedIndex:0];
-
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-    
     [[UIApplication sharedApplication] unregisterForRemoteNotifications];
     
-//    [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationLogout object:nil];//被踢下线通知用户退出直播间
-    
-    [[IMManager sharedIMManager] IMLogout];
-    
-    self.curUserInfo = nil;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:KUserInfo];
     self.isLogined = NO;
     YX_MANAGER.isClear = NO;
-    
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:KUserInfo];
-    
     [[SocketRocketUtility instance] SRWebSocketClose];
-
-    //移除缓存
-//    YYCache *cache = [[YYCache alloc]initWithName:KUserCacheName];
-//    [cache removeAllObjectsWithBlock:^{
-//        if (completion) {
-//            completion(YES,nil);
-//        }
-//    }];
     KPostNotification(KNotificationLoginStateChange, @NO);
 
 }

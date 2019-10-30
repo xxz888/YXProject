@@ -20,7 +20,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = kRGBA(245, 245, 245, 1);
+//    self.view.backgroundColor = kRGBA(245, 245, 245, 1);
     self.textView = [[QMUITextView alloc] init];
     self.textView.frame = CGRectMake(0, 0, KScreenWidth, self.qianmingView.frame.size.height);
     self.textView.delegate = self;

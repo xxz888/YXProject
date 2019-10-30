@@ -12,10 +12,8 @@
 #import "MMImagePreviewView.h"
 #import "Moment.h"
 #import <UShareUI/UShareUI.h>
-#import "UIColor+MyColor.h"
 #import "MMImageListView.h"
 #import "SELUpdateAlert.h"
-#import "UDPManage.h"
 #import "Comment.h"
 /**
  分享 相关服务
@@ -48,7 +46,6 @@ SINGLETON_FOR_HEADER(ShareManager)
 +(NSString *)justFitImage:(NSString *)essay;
 //+(CGFloat)inTextOutHeight:(NSString *)string;
 +(CGFloat)inTextOutHeight:(NSString *)string lineSpace:(CGFloat)lineSpacing fontSize:(CGFloat)fontSize;
-+ (void)setBorderinView:(UIView *)view;
 +(CGSize)cellAutoHeight:(NSString *)string;
 // 根据图片url获取图片尺寸
 +(CGFloat)getImageSizeWithURL:(id)imageURL;

@@ -186,9 +186,9 @@
         case 101://首次完善个人主页
         {
             
-            UserInfo *  userInfo = curUser;
+            NSDictionary * userInfo = userManager.loadUserAllInfo;
             kWeakSelf(self);
-            [YX_MANAGER requestGetFind_user_id:userInfo.id success:^(id object) {
+            [YX_MANAGER requestGetFind_user_id:kGetString(userInfo[@"id"]) success:^(id object) {
                 YXHomeEditPersonTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXHomeEditPersonTableViewController"];
                 VC.userInfoDic = [NSDictionary dictionaryWithDictionary:object];
                 [weakself.navigationController pushViewController:VC animated:YES];            }];

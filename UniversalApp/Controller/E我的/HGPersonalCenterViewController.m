@@ -8,8 +8,6 @@
 
 #import "HGPersonalCenterViewController.h"
 #import "YXMineAllViewController.h"
-#import "YXMineImageViewController.h"
-#import "YXMineFootViewController.h"
 #import "HGCenterBaseTableView.h"
 #import "YXMineHeaderView.h"
 #import "YXMineFenSiViewController.h"
@@ -221,7 +219,7 @@
     };
     _headerView.mineClickImageblock = ^{
         YXHomeEditPersonTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXHomeEditPersonTableViewController"];
-        VC.userInfoDic = [NSDictionary dictionaryWithDictionary:weakself.userInfoDic];
+        VC.userInfoDic = [NSDictionary dictionaryWithDictionary:userManager.loadUserAllInfo];
         [weakself.navigationController pushViewController:VC animated:YES];
     };
     _headerView.jifenShopblock = ^{
@@ -235,7 +233,7 @@
     _headerView.fasixinblock = ^{
 //           [YXPLUS_MANAGER requestChatting_ListoryGet:@"" success:^(id object) {
                   SimpleChatMainViewController * vc = [[SimpleChatMainViewController alloc]init];
-                  vc.userInfoDic = [NSDictionary dictionaryWithDictionary:weakself.userInfoDic];
+                  vc.userInfoDic = [NSDictionary dictionaryWithDictionary:userManager.loadUserAllInfo];
 //                   vc.requestObject =[NSDictionary dictionaryWithDictionary:object];
                   [weakself.navigationController pushViewController:vc animated:YES];
 //           }];
@@ -474,18 +472,20 @@
         self.headerView.jifenView.hidden =  self.headerView.myStackView.hidden = NO;
         self.headerView.tieshubtn.userInteractionEnabled = YES;
 
-        self.userInfo = curUser;
         
         //积分
              [YX_MANAGER requestGetFind_My_user_Info:@"" success:^(id object) {
                  weakself.headerView.tieshuCountLbl.text= kGetNSInteger([object[@"wallet"][@"integral"] integerValue]);
+                 
              }];
              
-             
-        
-        [YX_MANAGER requestGetFind_user_id:user_id_BOOL ? self.userId : self.userInfo.id success:^(id object) {
-            [weakself personValue:object];
-        }];
+             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                 NSDictionary * userInfo = userManager.loadUserAllInfo;
+                       [YX_MANAGER requestGetFind_user_id:user_id_BOOL ? self.userId : kGetString(userInfo[@"id"]) success:^(id object) {
+                           [weakself personValue:object];
+                       }];
+             });
+      
         [YX_MANAGER requestLikesGET:@"4/0/1/" success:^(id object) {
             weakself.headerView.guanzhuCountLbl.text = kGetString(object[@"like_number"]);
             weakself.headerView.fensiCountLbl.text = kGetString(object[@"fans_number"]);
@@ -496,16 +496,19 @@
 
 -(void)personValue:(id)object{
     NSString * str = [(NSMutableString *)object[@"photo"] replaceAll:@" " target:@"%20"];
-    if (self.userInfo) {
-        YYCache *cache = [[YYCache alloc]initWithName:KUserCacheName];
-        NSDictionary *dic = [self.userInfo modelToJSONObject];
-        [dic setValue:str forKey:@"photo"];
-        [cache setObject:dic forKey:KUserModelCache];
-    }
+    NSMutableDictionary * mDic = [NSMutableDictionary dictionaryWithDictionary:object];
+    NSDictionary * userInfoDic = UserDefaultsGET(KUserInfo);
+    [mDic setValue:userInfoDic[@"token"] forKey:@"token"];
+    
+    UserDefaultsSET(mDic, KUserInfo);
     self.headerView.qianmingLbl.text = object[@"character"];
     self.headerView.sexView.hidden = [object[@"gender"] integerValue] == 0;
     self.headerView.nvsexview.hidden = [object[@"gender"] integerValue] != 0 ;
-    [self.headerView.mineImageView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:str]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
+    kWeakSelf(self);
+
+
+
+
     self.navigationItem.title = kGetString(object[@"username"]);
     self.headerView.mineTitle.text =kGetString(object[@"username"]);
     self.headerView.mineAdress.text = kGetString(object[@"site"]);
@@ -530,10 +533,12 @@
     }
     
     ViewBorderRadius(self.headerView.guanzhuBtn, 5, 1,KClearColor);
-//    NSString * islike = tag == 1 ? @"互相关注" : tag == 2 ? @"已关注" : @"+关注";
-//    [self.headerView.guanzhuBtn setTitle:islike forState:UIControlStateNormal];
     
-    self.userInfoDic = [NSDictionary dictionaryWithDictionary:object];
+    
+    [[SDImageCache sharedImageCache] clearDisk];
+
+    [[SDImageCache sharedImageCache] clearMemory];//可有可无
+            [weakself.headerView.mineImageView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:str]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
 }
 
 
@@ -622,9 +627,9 @@
       [QMUITips showLoadingInView:self.view];
     [QiniuLoad uploadImageToQNFilePath:@[viewImage] success:^(NSString *reslut) {
                 [QMUITips hideAllTips];
-           UserInfo * info = curUser;
-           NSString * title = [NSString stringWithFormat:@"%@的主页@蓝皮书app",info.username];
-           NSString * desc = [NSString stringWithFormat:@"%@的蓝皮书主页，快来关注吧！",info.username];
+            NSDictionary * userInfo = userManager.loadUserAllInfo;
+           NSString * title = [NSString stringWithFormat:@"%@的主页@蓝皮书app",userInfo[@"username"]];
+           NSString * desc = [NSString stringWithFormat:@"%@的蓝皮书主页，快来关注吧！",userInfo[@"username"]];
           [[ShareManager sharedShareManager] shareAllToPlatformType:umType obj:@{@"img":reslut,@"desc":desc,@"title":title,@"type":@"3"}];
     } failure:^(NSString *error) {
         NSLog(@"%@",error);

@@ -26,6 +26,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
+    [self requestZhiNanGet];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -35,7 +36,7 @@
     [super viewDidLoad];
     [self initTableView];
     [self addRefreshView:self.yxTableView];
-    [self requestZhiNanGet];
+
 }
 -(void)headerRereshing{
     [super headerRereshing];
@@ -137,13 +138,22 @@
         vc.startArray = [[NSMutableArray alloc]initWithArray:weakself.dataArray];
         
         //这里判断是否锁了
-        NSInteger lock = [weakself.collArray[bigIndex][smallIndex][@"is_lock"] integerValue];
-        if (lock == 1) {
-            UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-              YXZhiNanYaoQingJieSuoTableViewController *    homeVC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXZhiNanYaoQingJieSuoTableViewController"];
-            
-            [self.navigationController pushViewController:homeVC animated:YES];
-//            [QMUITips showInfo:@"请邀请好友解锁"];
+        
+        NSInteger is_lock = [weakself.collArray[bigIndex][smallIndex][@"is_lock"] integerValue];
+        NSInteger user_lock = [weakself.collArray[bigIndex][smallIndex][@"user_lock"] integerValue];
+        
+        if (is_lock == 1) {
+            if (user_lock == 0) {
+                if (![userManager loadUserInfo]) {
+                          KPostNotification(KNotificationLoginStateChange, @NO);
+                          return;
+                      }
+                UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+                        YXZhiNanYaoQingJieSuoTableViewController *    homeVC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXZhiNanYaoQingJieSuoTableViewController"];
+                [self.navigationController pushViewController:homeVC animated:YES];
+            }else{
+                [weakself.navigationController pushViewController:vc animated:YES];
+            }
         }else{
             [weakself.navigationController pushViewController:vc animated:YES];
         }

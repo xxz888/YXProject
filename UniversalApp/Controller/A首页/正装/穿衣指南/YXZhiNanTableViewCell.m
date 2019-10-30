@@ -74,8 +74,18 @@
     cell.titleLbl.text = dic[@"name"];
     cell.lockImv.hidden = YES;
     
-    cell.titleLbl.backgroundColor = [dic[@"is_lock"] integerValue] == 1 ? kRGBA(204, 204, 204, 1) : kRGBA(248, 248, 248, 1);
-    cell.titleLbl.textColor = [dic[@"is_lock"] integerValue] == 1 ? KWhiteColor : kRGBA(68, 68, 68, 1);
+    NSInteger is_lock = [dic[@"is_lock"] integerValue];
+    NSInteger user_lock = [dic[@"user_lock"] integerValue];
+    if (is_lock == 1 && user_lock == 0) {
+        cell.titleLbl.backgroundColor = kRGBA(204, 204, 204, 1);
+        cell.titleLbl.textColor = KWhiteColor;
+    }else{
+        cell.titleLbl.backgroundColor =  kRGBA(248, 248, 248, 1);
+        cell.titleLbl.textColor = kRGBA(68, 68, 68, 1);
+
+    }
+//    cell.titleLbl.textColor = [dic[@"is_lock"] integerValue] == 1 ? KWhiteColor : kRGBA(68, 68, 68, 1);
+    
 //    cell.lockImv.hidden = [dic[@"is_lock"] integerValue] != 1 ;
     return cell;
 }

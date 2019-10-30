@@ -43,5 +43,7 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestChatting_ListoryPOST:YX_BLOCK;
 #pragma mark ==========获取用户未读消息==========
 -(void)requestChatting_ListoryGet:YX_BLOCK;
+#pragma mark ==========邀请好友解锁==========
+-(void)requestOption_lock_historyPOST:YX_BLOCK;
 @end
 

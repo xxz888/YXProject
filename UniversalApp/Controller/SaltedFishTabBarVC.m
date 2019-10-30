@@ -9,7 +9,6 @@
 #import "SaltedFishTabBarVC.h"
 #import "YXFindViewController.h"
 #import "YXMessageViewController.h"
-#import "YXMineViewController.h"
 #import "HGPersonalCenterViewController.h"
 #import "YXHomeXueJiaViewController.h"
 #import "YXSecondViewController.h"

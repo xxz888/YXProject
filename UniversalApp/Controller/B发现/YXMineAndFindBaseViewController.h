@@ -16,7 +16,6 @@
 #import "YXMineImageDetailViewController.h"
 #import "YXHomeXueJiaQuestionDetailViewController.h"
 #import "Comment.h"
-#import "YXMineViewController.h"
 #import "HGBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN

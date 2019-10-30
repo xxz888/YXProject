@@ -79,8 +79,8 @@
     }else{
         [cell.common1GuanzhuBtn setTitle:@"+关注" forState:UIControlStateNormal];
     }
-    UserInfo * userInfo = curUser;
-    if ([userInfo.username isEqualToString:self.dataArray[indexPath.row][key1]]) {
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
+    if ([userInfo[@"username"] isEqualToString:self.dataArray[indexPath.row][key1]]) {
         cell.common1GuanzhuBtn.hidden = YES;
     }else{
         cell.common1GuanzhuBtn.hidden = NO;
@@ -123,9 +123,9 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UserInfo * userInfo = curUser;
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
     NSString * key1 = self.dataArray[indexPath.row][@"aim_name"] ? @"aim_name" : @"user_name";
-    if ([userInfo.username isEqualToString:self.dataArray[indexPath.row][key1]]) {
+    if ([userInfo[@"username"] isEqualToString:self.dataArray[indexPath.row][key1]]) {
         [self.navigationController popToRootViewControllerAnimated:YES];
         self.navigationController.tabBarController.selectedIndex = 3;
         return;

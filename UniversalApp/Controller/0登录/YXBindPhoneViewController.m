@@ -28,10 +28,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UserInfo *userInfo = curUser;
-    
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
+
     if (self.whereCome) {
-        self.phoneTf.text = userInfo.mobile;
+        self.phoneTf.text = userInfo[@"mobile"];
         self.phoneTf.userInteractionEnabled = NO;
         self.tipTopLbl.text =@"更换手机号";
     }else{
@@ -71,7 +71,7 @@
     kWeakSelf(self);
     [YX_MANAGER requestSmscodeGET:par success:^(id object) {
         [QMUITips showSucceed:@"验证码发送成功" inView:weakself.view hideAfterDelay:2];
-        [weakself.getMes_codeBtn startWithTime:180
+        [weakself.getMes_codeBtn startWithTime:60
                                      title:@"点击重新获取"
                             countDownTitle:@"s"
                                  mainColor:C_COLOR

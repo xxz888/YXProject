@@ -168,8 +168,8 @@ static CGFloat sectionHeaderHeight = 80;
     cell.shareblock = ^(NSInteger tag) {
         NSIndexPath * indexPathSelect = [NSIndexPath indexPathForRow:tag  inSection:0];
         YXFindImageTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
-        UserInfo * userInfo = curUser;
-        BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [userInfo.id integerValue];
+        NSDictionary * userInfo = userManager.loadUserAllInfo;
+        BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [kGetString(userInfo[@"id"]) integerValue];
         weakself.shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
         [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:cell.tagId startDic:cell.dataDic];
     };
@@ -202,6 +202,10 @@ static CGFloat sectionHeaderHeight = 80;
     };
     //点击点赞和评论
     cell.clickDetailblock = ^(NSInteger tag, NSInteger tag1) {
+        if (![userManager loadUserInfo]) {
+                  KPostNotification(KNotificationLoginStateChange, @NO);
+                  return;
+              }
         NSIndexPath * indexPathSelect = [NSIndexPath indexPathForRow:tag1  inSection:0];
         YXFindImageTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
         if (tag == 1) {//评论
@@ -209,8 +213,8 @@ static CGFloat sectionHeaderHeight = 80;
         }else if(tag == 2){//点赞
             [weakself requestDianZan_Image_Action:indexPathSelect];
         }else{//分享
-            UserInfo * userInfo = curUser;
-            BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [userInfo.id integerValue];
+            NSDictionary * userInfo = userManager.loadUserAllInfo;
+            BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [kGetString(userInfo[@"id"]) integerValue];
             weakself.shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
             
             [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:cell.tagId startDic:cell.dataDic];
@@ -269,8 +273,8 @@ static CGFloat sectionHeaderHeight = 80;
 
 #pragma mark ========== 头像点击 ==========
 -(void)clickUserImageView:(NSString *)userId{
-     UserInfo *userInfo = curUser;
-    if ([userInfo.id isEqualToString:userId]) {
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
+    if ([kGetString(userInfo[@"id"]) isEqualToString:userId]) {
         self.navigationController.tabBarController.selectedIndex = 3;
         return;
     }
@@ -450,8 +454,8 @@ static CGFloat sectionHeaderHeight = 80;
     [QiniuLoad uploadImageToQNFilePath:@[viewImage] success:^(NSString *reslut) {
         [QMUITips hideAllTips];
 
-           UserInfo * info = curUser;
-           NSString * title = [NSString stringWithFormat:@"%@发布的内容@蓝皮书app",info.username];
+           NSDictionary * userInfo = userManager.loadUserAllInfo;
+           NSString * title = [NSString stringWithFormat:@"%@发布的内容@蓝皮书app",userInfo[@"username"]];
            NSString * desc = @"这篇内容真的很赞，快点开看!";
           [[ShareManager sharedShareManager] shareAllToPlatformType:umType obj:@{@"img":reslut,@"desc":desc,@"title":title,@"type":@"3"}];
     } failure:^(NSString *error) {

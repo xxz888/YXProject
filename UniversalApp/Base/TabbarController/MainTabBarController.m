@@ -13,7 +13,6 @@
 #import "XYTabBar.h"
 
 #import "YXMessageViewController.h"
-#import "YXMineViewController.h"
 #import "TBTabBar.h"
 #import "VTingSeaPopView.h"
 #import "SDTimeLineTableViewController.h"

@@ -29,7 +29,8 @@
 
 @implementation YXHomeEditPersonTableViewController
 - (IBAction)backAction:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self upData];
+
 }
 
 - (void)viewDidLoad {
@@ -47,7 +48,10 @@
     
     
     kWeakSelf(self);
-         [YX_MANAGER requestGetFind_My_user_Info:@"" success:^(id object) {
+//         [YX_MANAGER requestGetFind_My_user_Info:@"" success:^(id object) {
+    
+                    NSDictionary * object = UserDefaultsGET(KUserInfo);
+
                   NSString * str = [(NSMutableString *)object[@"photo"] replaceAll:@" " target:@"%20"];
                   [weakself.titleImgView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:str]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
                   weakself.nameTf.text = kGetString(object[@"username"]);
@@ -57,7 +61,7 @@
                   [weakself.qianMingBtn setTitle:object[@"character"] forState:UIControlStateNormal];
                   weakself.photo = str;
          
-         }];
+//         }];
 
 }
 - (void)viewWillAppear:(BOOL)animated
@@ -71,7 +75,6 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [_nameTf resignFirstResponder];
     
-    [self upData];
 }
 
 #pragma mark - Table view data source
@@ -103,29 +106,25 @@
 //    [QMUITips showLoadingInView:self.view];
     NSString * site = self.adressBtn.titleLabel.text ? self.adressBtn.titleLabel.text : @"";
     NSString * photo = [self.photo contains:IMG_URI] ? [self.photo split:IMG_URI][1] : self.photo;
+    NSString * birthday = [self.birthBtn.titleLabel.text isEqualToString:@"点击选择生日"]||self.birthBtn.titleLabel.text==nil ?@"":self.birthBtn.titleLabel.text;
     NSDictionary * dic = @{@"username":self.nameTf.text,
                            @"gender":[self.sexBtn.titleLabel.text isEqualToString:@"男"] ? @"1" :@"0",
                            @"photo":photo,
-                           @"birthday":self.birthBtn.titleLabel.text,
+                           @"birthday":birthday,
                            @"site":site,
                            @"character":self.qianMingBtn.titleLabel.text
                            };
     [YX_MANAGER requestUpdate_userPOST:dic success:^(id object) {
         [QMUITips hideAllTipsInView:weakself.view];
-//        [QMUITips showSucceed:@"修改成功"];
-        UserInfo *userInfo = curUser;
-        [userInfo setToken:object[@"token"]];
         
+        NSDictionary * userInfoDic = UserDefaultsGET(KUserInfo);
+        NSMutableDictionary * mDic = [NSMutableDictionary dictionaryWithDictionary:userInfoDic];
+        [mDic setValue:object[@"token"] forKey:@"token"];
+        UserDefaultsSET(mDic, KUserInfo);
+    
         
-        if (userInfo) {
-            YYCache *cache = [[YYCache alloc]initWithName:KUserCacheName];
-            NSDictionary *dic = [userInfo modelToJSONObject];
-            [cache setObject:dic forKey:KUserModelCache];
-        }
-        
-        
-//        [weakself.navigationController popViewControllerAnimated:YES];
-        
+        [weakself.navigationController popViewControllerAnimated:YES];
+
    
     }];
 }

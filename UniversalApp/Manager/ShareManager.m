@@ -61,8 +61,8 @@ SINGLETON_FOR_CLASS(ShareManager);
                  }
             break;
             case 4:{
-                     UserInfo * userinfo = curUser;
-                     webpageUrl = [NSString stringWithFormat:@"%@yaoqingZhuCe.html?%@",[API_URL split:@"api"][0],kGetString(userinfo.id)];
+                     NSDictionary * userInfo = userManager.loadUserAllInfo;
+                     webpageUrl = [NSString stringWithFormat:@"%@yaoqingZhuCe.html?%@",[API_URL split:@"api"][0],kGetString(userInfo[@"id"])];
 //                webpageUrl = [NSString stringWithFormat:@"http://192.168.101.21:63340/矩形抽奖活动html/yaoqingZhuCe.html?%@",kGetString(userinfo.id)];
 
                      shareObject.thumbImage = obj[@"thumbImage"];
@@ -90,6 +90,11 @@ SINGLETON_FOR_CLASS(ShareManager);
                 UMSocialLogInfo(@"response message is %@",resp.message);
                 //第三方原始返回的数据
                 UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
+                if (type == 4) {
+                    [YXPLUS_MANAGER requestOption_lock_historyPOST:@{} success:^(id object) {
+                        [QMUITips showSucceed:@"解锁成功"];
+                    }];
+                }
             }else{
                 UMSocialLogInfo(@"response data is %@",data);
             }
@@ -526,12 +531,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     return  size.height;
 }
     
-+ (void)setBorderinView:(UIView *)view{
-    view.layer.borderColor = [[UIColor borderColor] CGColor];
-    view.layer.borderWidth = 0.8;
-    view.layer.masksToBounds = YES;
-    view.layer.cornerRadius = 7;
-}
+
 
 #pragma mark - 小图单击
 -(void)singleTapSmallViewCallback:(MMImageView *)imageView{
@@ -723,18 +723,18 @@ SINGLETON_FOR_CLASS(ShareManager);
     [dataTask resume];
 }
 
-+(void)upDataPersionIP{
-    UserInfo *userInfo = curUser;
-    NSDictionary * dic = @{@"username":kGetString(userInfo.username),
-                           @"gender":kGetString(userInfo.gender),
-                           @"photo":kGetString(userInfo.photo),
-                           @"birthday":kGetString(userInfo.birthday),
-                           @"site":kGetString(userInfo.site),
-                           };
-    [YX_MANAGER requestUpdate_userPOST:dic success:^(id object) {
-        
-    }];
-}
+//+(void)upDataPersionIP{
+//    NSDictionary * userInfo = userManager.loadUserAllInfo;
+//    NSDictionary * dic = @{@"username":kGetString(userInfo.username),
+//                           @"gender":kGetString(userInfo.gender),
+//                           @"photo":kGetString(userInfo.photo),
+//                           @"birthday":kGetString(userInfo.birthday),
+//                           @"site":kGetString(userInfo.site),
+//                           };
+//    [YX_MANAGER requestUpdate_userPOST:dic success:^(id object) {
+//
+//    }];
+//}
 
 +(Moment *)setTestInfo:(NSDictionary *)dic{
     NSMutableArray *commentList = nil;
@@ -875,8 +875,8 @@ SINGLETON_FOR_CLASS(ShareManager);
     kWeakSelf(self);
     //先上传到七牛云图片  再提交服务器
     [QiniuLoad uploadImageToQNFilePath:@[viewImage] success:^(NSString *reslut) {
-        UserInfo * info = curUser;
-        NSString * title = [NSString stringWithFormat:@"%@发布的内容@蓝皮书app",info.username];
+        NSDictionary * userInfo = userManager.loadUserAllInfo;
+        NSString * title = [NSString stringWithFormat:@"%@发布的内容@蓝皮书app",userInfo[@"username"]];
         NSString * desc = @"这篇内容真的很赞，快点开看!";
         [weakself pushShareViewAndDic:@{@"img":reslut,@"desc":desc,@"title":title,@"type":@"3"}];
     } failure:^(NSString *error) {}];
@@ -992,7 +992,7 @@ SINGLETON_FOR_CLASS(ShareManager);
            messageModel.aim_id = dic[@"aim_id"];
            messageModel.own_id = dic[@"own_id"];
            messageModel.xxzid = dic[@"xxzid"];
-           UserInfo * userInfo = curUser;
+           NSDictionary * userInfo = userManager.loadUserAllInfo;
            if (messageModel.type ==1) {
                messageModel.aim_info = [[ShareManager dicToString:dic[@"aim_info"]] replaceAll:@"\n" target:@""];
                messageModel.own_info = [[ShareManager dicToString:dic[@"own_info"]] replaceAll:@"\n" target:@""];
@@ -1000,7 +1000,7 @@ SINGLETON_FOR_CLASS(ShareManager);
                NSDictionary * aim_info = @{@"photo":userInfoDic[@"photo"],@"username":userInfoDic[@"username"]};
                messageModel.aim_info = [[ShareManager dicToString:aim_info] replaceAll:@"\n" target:@""];
                
-               NSDictionary * own_info = @{@"photo":userInfo.photo,@"username":userInfo.username};
+               NSDictionary * own_info = @{@"photo":userInfo[@"photo"],@"username":userInfo[@"username"]};
                messageModel.own_info = [[ShareManager dicToString:own_info] replaceAll:@"\n" target:@""];
            }
              messageModel.hiddenTime = [messageModel.time isEqualToString:compareM.time];
@@ -1017,15 +1017,15 @@ SINGLETON_FOR_CLASS(ShareManager);
     }
 }
 -(BOOL)getOwnDbMessage:(NSString *)own_id aim_id:(NSString *)aim_id other:(NSDictionary *)otherDic{
-    UserInfo * userInfo = curUser;
-    BOOL messageBool1 = [userInfo.id integerValue] == [own_id integerValue] && [aim_id integerValue] == [otherDic[@"id"] integerValue];
-    BOOL messageBool2 = [userInfo.id integerValue] == [aim_id integerValue] && [own_id integerValue] == [otherDic[@"id"] integerValue];
+   NSDictionary * userInfo = userManager.loadUserAllInfo;
+    BOOL messageBool1 = [kGetString(userInfo[@"id"]) integerValue] == [own_id integerValue] && [aim_id integerValue] == [otherDic[@"id"] integerValue];
+    BOOL messageBool2 = [kGetString(userInfo[@"id"]) integerValue] == [aim_id integerValue] && [own_id integerValue] == [otherDic[@"id"] integerValue];
     return messageBool1 || messageBool2;
 }
 -(BOOL)getOwnListDbMessage:(NSString *)own_id aim_id:(NSString *)aim_id{
-    UserInfo * userInfo = curUser;
-    BOOL messageBool1 = [userInfo.id integerValue] == [own_id integerValue];
-    BOOL messageBool2 = [userInfo.id integerValue] == [aim_id integerValue];
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
+    BOOL messageBool1 = [kGetString(userInfo[@"id"]) integerValue] == [own_id integerValue];
+    BOOL messageBool2 = [kGetString(userInfo[@"id"]) integerValue] == [aim_id integerValue];
     return messageBool1 || messageBool2;
 }
 @end

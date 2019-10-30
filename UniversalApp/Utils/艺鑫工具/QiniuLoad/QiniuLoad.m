@@ -109,7 +109,7 @@ static NSString *QiniuBucketName  = @"thegdlife";
     }
 
     NSMutableArray *imageAdd = [NSMutableArray new];
-    UserInfo *userInfo = curUser;
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
     NSString * myToken = [QiniuLoad makeToken:accessKey secretKey:secretKey];
     //主要是把图片或者文件转成nsdata类型就可以了
     QNConfiguration *config = [QNConfiguration build:^(QNConfigurationBuilder *builder) {
@@ -124,7 +124,7 @@ static NSString *QiniuBucketName  = @"thegdlife";
         dispatch_semaphore_t sema = dispatch_semaphore_create(0);
         for (NSInteger i = 0; i < [photos count]; i++) {
             NSData *data= [QiniuLoad imageData:photos[i]];
-            NSString * key = [NSString stringWithFormat:@"%@_image_%@%ld.png",userInfo.id,[ShareManager getNowTimeTimestamp3],(long)i];
+            NSString * key = [NSString stringWithFormat:@"%@_image_%@%ld.png",kGetString(userInfo[@"id"]),[ShareManager getNowTimeTimestamp3],(long)i];
             [upManager putData:data key:key token:myToken complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
                 if (resp[@"key"]) {
                     [imageAdd addObject:[NSString stringWithFormat:@"%@%@",kQNinterface,resp[@"key"]]];
@@ -198,8 +198,8 @@ static NSString *QiniuBucketName  = @"thegdlife";
     
     NSData *myVideoData = [NSData dataWithContentsOfURL:url];
     
-    UserInfo *userInfo = curUser;
-    NSString * userId = userInfo.id;
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
+    NSString * userId = kGetString(userInfo[@"id"]);
     NSString * key = [NSString stringWithFormat:@"%@_Video_%@.mp4",userId,[ShareManager getNowTimeTimestamp3]];
 
     [upManager putData:myVideoData key:key token:[QiniuLoad makeToken:accessKey secretKey:secretKey] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {

@@ -11,7 +11,6 @@
 #import "LoginViewController.h"
 //#import "OpenUDID.h"
 #import "SaltedFishTabBarVC.h"
-#import "UDPManage.h"
 #import  <UserNotifications/UserNotifications.h>// Push组件必须的系统库
 #import "YXSecondViewController.h"
 #import "YXFindViewController.h"

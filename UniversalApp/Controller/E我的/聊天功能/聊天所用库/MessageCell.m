@@ -96,12 +96,12 @@
     //2,设置头像
     
     
-    UserInfo * userInfo = curUser;
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
     NSString * otherPhoto = @"";
     if (self.otherDic) {
         otherPhoto = self.otherDic[@"photo"];
     }else{
-        otherPhoto = userInfo.photo;
+        otherPhoto = userInfo[@"photo"];
 
     }
     //是自己

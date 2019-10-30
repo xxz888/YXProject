@@ -57,8 +57,8 @@
     NSString * str1 = [(NSMutableString *)(dic[@"user_photo"] ? dic[@"user_photo"] : dic[@"photo"]) replaceAll:@" " target:@"%20"];
     [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     //自己的头图像
-    UserInfo *userInfo = curUser;
-    NSString * str2 = [(NSMutableString *)userInfo.photo replaceAll:@" " target:@"%20"];
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
+    NSString * str2 = [(NSMutableString *)userInfo[@"photo"] replaceAll:@" " target:@"%20"];
 //    [cell.addPlImageView sd_setImageWithURL:[NSURL URLWithString:str2] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     //评论数量
     cell.talkCount.text = talkNum;
@@ -176,8 +176,8 @@
             KPostNotification(KNotificationLoginStateChange, @NO);
             return;
         }
-        UserInfo * userInfo = curUser;
-        BOOL isOwn = [self.startDic[@"user_id"] integerValue] == [userInfo.id integerValue];
+        NSDictionary * userInfo = userManager.loadUserAllInfo;
+        BOOL isOwn = [self.startDic[@"user_id"] integerValue] == [kGetString(userInfo[@"id"]) integerValue];
         shareDic = [NSDictionary dictionaryWithDictionary:self.startDic];
         [weakself addGuanjiaShareViewIsOwn:isOwn isWho:cell.whereCome ? @"3" : @"1" tag:[weakself.startDic[@"id"] integerValue] startDic: nil];
     };

@@ -90,8 +90,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString * userId = kGetString(self.dataArray[indexPath.row][@"id"]);
-    UserInfo *userInfo = curUser;
-     if ([userInfo.id isEqualToString:userId]) {
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
+     if ([kGetString(userInfo[@"id"]) isEqualToString:userId]) {
          self.navigationController.tabBarController.selectedIndex = 3;
          return;
      }

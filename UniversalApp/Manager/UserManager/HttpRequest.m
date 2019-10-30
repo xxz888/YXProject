@@ -11,6 +11,8 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "XLDouYinLoading.h"
 #import "SYBaseHttpConnection.h"
+#import "SYBaseHttpConnection1.h"
+
 @implementation HttpRequest
 
 + (void)httpRequestPostPi:(NSString *)pi Parameters:(id)parmeters sucess:(SucessBlock)sucess failure:(FailureBlock)failure{
@@ -19,8 +21,12 @@
     NSString * strURl = [API_ROOT_URL_HTTP_FORMAL stringByAppendingString:pi];
     NSLog(@"getUrl-:%@",strURl);
     
-    AFHTTPSessionManager * manager = [SYBaseHttpConnection sharedManager];
-
+        AFHTTPSessionManager * manager = [SYBaseHttpConnection sharedManager];
+        NSDictionary * userInfo = userManager.loadUserAllInfo;
+        if (userInfo) {
+            [manager.requestSerializer setValue:[@"JWT " append:userInfo[@"token"]] forHTTPHeaderField:@"Authorization"];
+        }
+    
     [manager POST:strURl  parameters:parmeters progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [QMUITips hideAllTipsInView:[ShareManager getMainView]];
@@ -36,7 +42,12 @@
     kWeakSelf(self);
     NSString * url = [API_ROOT_URL_HTTP_FORMAL append:pi];
     NSLog(@"getUrl-:%@",url);
-    AFHTTPSessionManager * manager = [SYBaseHttpConnection sharedManager];
+       AFHTTPSessionManager * manager = [SYBaseHttpConnection sharedManager];
+              NSDictionary * userInfo = userManager.loadUserAllInfo;
+              if (userInfo) {
+                  [manager.requestSerializer setValue:[@"JWT " append:userInfo[@"token"]] forHTTPHeaderField:@"Authorization"];
+              }
+
 
     [manager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -113,28 +124,6 @@ var c = a + b
     
 
 }
-+(AFHTTPSessionManager *)commonAction{
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer =  [AFJSONRequestSerializer serializer];
-    manager.responseSerializer =  [AFHTTPResponseSerializer serializer];
-    UserInfo *userInfo = curUser;
-    if (curUser && userInfo.token && ![userInfo.token isEqualToString:@""]) {
-        NSLog(@"身份信息-----%@", [@"JWT " append:userInfo.token]);
-        [manager.requestSerializer setValue:[@"JWT " append:userInfo.token] forHTTPHeaderField:@"Authorization"];
-    }
-    [manager.requestSerializer setValue:@"Keep-Alive" forHTTPHeaderField:@"Connection"];
-    //允许非权威机构颁发的证书
-    manager.securityPolicy.allowInvalidCertificates=YES;
-    //也不验证域名一致性
-    manager.securityPolicy.validatesDomainName=NO;
-    //关闭缓存避免干扰测试
-    manager.requestSerializer.cachePolicy=NSURLRequestReloadIgnoringLocalCacheData;
-    manager.requestSerializer.timeoutInterval = 10;
-    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/javascript",@"text/plain",nil];
-    return manager;
-}
-
 #pragma mark ========== 设置公共请求参数 ==========
 +(void)setCommonRequestParameters{
     

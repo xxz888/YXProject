@@ -115,8 +115,8 @@
     kWeakSelf(self);
         //这里区别寸草稿还是发布
         if (btn.tag == 301) {
-            UserInfo *userInfo = curUser;
-            NSString * userId = userInfo.id;
+            NSDictionary * userInfo = userManager.loadUserAllInfo;
+            NSString * userId = kGetString(userInfo[@"id"]);
             NSString * key = [NSString stringWithFormat:@"%@%@",userId,[ShareManager getNowTimeTimestamp3]];
             JQFMDB *db = [JQFMDB shareDatabase];
             YXShaiTuModel * model = [[YXShaiTuModel alloc]init];

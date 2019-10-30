@@ -16,23 +16,23 @@
 @implementation YXMineSettingSafeTableViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UserInfo *userInfo = curUser;
-    self.phoneTf.text = userInfo.mobile;
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
+    self.phoneTf.text = userInfo[@"mobile"];
     self.phoneTf.textColor = kRGBA(187, 187, 187, 1);
 
-    if (!userInfo.weibo_name || [userInfo.weibo_name isEqualToString:@""]) {
+    if (!userInfo[@"weibo_name"] || [userInfo[@"weibo_name"] isEqualToString:@""]) {
         self.wbTf.text = @"未绑定";
         self.wbTf.textColor = SEGMENT_COLOR;
     }else{
-        self.wbTf.text = userInfo.weibo_name;
+        self.wbTf.text = userInfo[@"weibo_name"];
         self.wbTf.textColor = kRGBA(187, 187, 187, 1);
     }
     
-    if (!userInfo.weixin_name || [userInfo.weixin_name isEqualToString:@""]) {
+    if (!userInfo[@"weixin_name"] || [userInfo[@"weixin_name"] isEqualToString:@""]) {
         self.wxAccTf.text = @"未绑定";
         self.wxAccTf.textColor = SEGMENT_COLOR;
     }else{
-        self.wxAccTf.text = userInfo.weixin_name;
+        self.wxAccTf.text = userInfo[@"weixin_name"];
         self.wxAccTf.textColor = kRGBA(187, 187, 187, 1);
     }
     

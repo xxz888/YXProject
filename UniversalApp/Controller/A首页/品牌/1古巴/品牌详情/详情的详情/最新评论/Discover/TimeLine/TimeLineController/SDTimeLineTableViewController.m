@@ -297,9 +297,9 @@ static CGFloat textFieldH = 40;
     cell.indexPath = indexPath;
     __weak typeof(self) weakSelf = self;
     cell.imgBlock = ^(SDTimeLineCell * cell) {
-        UserInfo *userInfo = curUser;
+        NSDictionary * userInfo = userManager.loadUserAllInfo;
         NSString * cellUserId = kGetString(cell.model.userID);
-        if ([userInfo.id isEqualToString:cellUserId]) {
+        if ([kGetString(userInfo[@"id"]) isEqualToString:cellUserId]) {
             self.navigationController.tabBarController.selectedIndex = 3;
             return;
         }

@@ -9,7 +9,6 @@
 #import "LoginViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "UIButton+CountDown.h"
-#import "UDPManage.h"
 #import "YXBindPhoneViewController.h"
 #import "YXLoginXieYiViewController.h"
 @interface LoginViewController ()<UITextFieldDelegate>
@@ -111,7 +110,7 @@
     kWeakSelf(self);
     [YX_MANAGER requestSmscodeGET:[self.phoneTf.text append:@"/1/"] success:^(id object) {
             [QMUITips showSucceed:@"验证码发送成功" inView:weakself.view hideAfterDelay:2];
-            [weakself.getMes_codeBtn startWithTime:180
+            [weakself.getMes_codeBtn startWithTime:60
                                          title:@"点击重新获取"
                                 countDownTitle:@"s"
                                      mainColor:KClearColor

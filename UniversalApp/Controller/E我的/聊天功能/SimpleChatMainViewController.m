@@ -144,15 +144,15 @@
     formatter.dateFormat = @"HH:mm";
     NSString *strDate = [formatter stringFromDate:date];
     NSString * content = textField.text;
-    UserInfo * userInfo = curUser;
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
 
-    NSString * own_info= [ShareManager dicToString:@{@"photo":userInfo.photo,@"username":userInfo.username}];
+    NSString * own_info= [ShareManager dicToString:@{@"photo":userInfo[@"photo"],@"username":userInfo[@"username"]}];
     NSString * aim_info= [ShareManager dicToString:@{@"photo":self.userInfoDic[@"photo"],@"username":self.userInfoDic[@"username"]}];
 
         NSDictionary * messNewDic = @{
                                           @"content":content,
                                           @"date":strDate,
-                                          @"own_id":userInfo.id,
+                                          @"own_id":kGetString(userInfo[@"id"]),
                                           @"aim_id":self.userInfoDic[@"id"],
                                           @"own_info":own_info,
                                           @"aim_info":aim_info

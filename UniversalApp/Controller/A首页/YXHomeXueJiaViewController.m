@@ -10,7 +10,6 @@
 #import "YXHomeXueJiaViewController.h"
 #import <ZXSegmentController/ZXSegmentController.h>
 #import "YXHomeNewsDetailViewController.h"
-#import "UDPManage.h"
 #import "HGSegmentedPageViewController.h"
 #import "YXHomeXueJiaGuBaViewController.h"
 #import "SocketRocketUtility.h"
@@ -271,8 +270,7 @@
         [self.navigationController pushViewController:VC animated:YES];
 
     }else if(tag == 1){
-        VC = [[YXHomeXueJiaWenHuaViewController alloc]init];
-        [self.navigationController pushViewController:VC animated:YES];
+    
 
     }
     /*
@@ -286,9 +284,7 @@
         [self.navigationController pushViewController:VC animated:YES];
 
     }else if (tag == 3){
-        YXHomeXueJiaQuestionViewController * VCCoustom = [[YXHomeXueJiaQuestionViewController alloc]init];
-        VCCoustom.whereCome = TYPE_XUEJIA_1;
-        [self.navigationController pushViewController:VCCoustom animated:YES];
+     
     }
     /*
     else if(tag == 5){

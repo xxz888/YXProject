@@ -7,7 +7,6 @@
 //
 
 #import "YXMineMyDianZanViewController.h"
-#import "YXMineEssayTableViewCell.h"
 #import "YXMineImageDetailViewController.h"
 @interface YXMineMyDianZanViewController ()<UITableViewDelegate,UITableViewDataSource>
 @end

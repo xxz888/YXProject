@@ -10,7 +10,6 @@
 #import "YXHomeLastDetailView.h"
 #import "YXHomeLastMyTalkView.h"
 #import "XHStarRateView.h"
-#import "YXMineImageViewController.h"
 
 #import "SDTimeLineTableHeaderView.h"
 #import "SDTimeLineRefreshHeader.h"
@@ -25,13 +24,12 @@
 #import "GlobalDefines.h"
 #import "YXHomeSearchMoreViewController.h"
 #import "HGPersonalCenterViewController.h"
-#import "YXHomePeiJianLastView.h"
 #define kTimeLineTableViewCellId @"SDTimeLineCell"
 #import "ZInputToolbar.h"
 #import "UIView+LSExtension.h"
 #define textFieldH 40
 
-@interface YXHomeXueJiaPinPaiLastDetailViewController ()<UITableViewDelegate,UITableViewDataSource,clickMyTalkDelegate,clickMyTalkDelegate1,SDTimeLineCellDelegate, UITextFieldDelegate,ZInputToolbarDelegate>{
+@interface YXHomeXueJiaPinPaiLastDetailViewController ()<UITableViewDelegate,UITableViewDataSource,clickMyTalkDelegate,SDTimeLineCellDelegate, UITextFieldDelegate,ZInputToolbarDelegate>{
     SDTimeLineRefreshFooter *_refreshFooter;
     SDTimeLineRefreshHeader *_refreshHeader;
     CGFloat _lastScrollViewOffsetY;
@@ -41,7 +39,6 @@
 }
 @property(nonatomic,strong)YXHomeLastDetailView * lastDetailView;
 @property(nonatomic,strong)YXHomeLastMyTalkView * lastMyTalkView;
-@property(nonatomic,strong)YXHomePeiJianLastView * lastPeiJianlastDetailView;
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
@@ -96,21 +93,6 @@
 - (void)setupTableHeaderView{
     if (self.PeiJianOrPinPai) {
         kWeakSelf(self);
-        //添加分隔线颜色设置
-        NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXHomePeiJianLastView" owner:self options:nil];
-        self.lastPeiJianlastDetailView = [nib objectAtIndex:0];
-        self.lastPeiJianlastDetailView.delegate = self;
-        //点击segment
-        self.lastPeiJianlastDetailView.block = ^(NSInteger index) {
-            index == 0 ? [weakself requestNewList] : [weakself requestHotList];
-            _segmentIndex = index;
-        };
-        [self.lastPeiJianlastDetailView againSetDetailView:weakself.startDic];
-        self.lastPeiJianlastDetailView.PeiJianOrPinPai = self.PeiJianOrPinPai;
-        // 设置 view 的 frame(将设置 frame 提到设置 tableHeaderView 之前)
-        self.lastPeiJianlastDetailView.frame = CGRectMake(0, 0, kScreenWidth, (IS_IPhoneX ? 670 : 760));
-        // 设置 tableHeaderView
-        self.yxTableView.tableHeaderView = self.lastPeiJianlastDetailView;
     }else{
         CGFloat height = 0.0;
         CGFloat tagHeight = 0;
@@ -263,7 +245,7 @@
     if (self.PeiJianOrPinPai) {
         //请求评价列表 平均分
         [YX_MANAGER requestCigar_accessories_commentGet:[self getParamters:@"1"] success:^(id object) {
-            [weakself.lastPeiJianlastDetailView fiveStarViewUIAllDataDic_PingJunFen:object];
+
         }];
     }else{
         //请求评价列表 平均分
@@ -278,7 +260,7 @@
     if (self.PeiJianOrPinPai) {
         //请求评价列表 平均分
         [YX_MANAGER requestCigar_accessories_commentGet:[self getParamters:@"2"] success:^(id object) {
-            [weakself.lastPeiJianlastDetailView fiveStarViewUIAllDataDic_GeRenFen:object];
+
         }];
     }else{
         //请求评价列表 平均分
@@ -502,10 +484,11 @@
     [cell.showMoreCommentBtn setTitle:height1 == 0 ? @"" : @"显示更多回复 >>"  forState:UIControlStateNormal];
     cell.showMoreCommentBtn.hidden = height1 == 0;
     __weak typeof(self) weakSelf = self;
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
+
     cell.imgBlock = ^(SDTimeLineCell * cell) {
-        UserInfo *userInfo = curUser;
         NSString * cellUserId = kGetString(cell.model.userID);
-        if ([userInfo.id isEqualToString:cellUserId]) {
+        if ([kGetString(userInfo[@"id"]) isEqualToString:cellUserId]) {
             self.navigationController.tabBarController.selectedIndex = 3;
             return;
         }
@@ -515,9 +498,8 @@
         [weakSelf.navigationController pushViewController:mineVC animated:YES];
     };
     cell.imgBlock = ^(SDTimeLineCell * cell) {
-        UserInfo *userInfo = curUser;
         NSString * cellUserId = kGetString(cell.model.userID);
-        if ([userInfo.id isEqualToString:cellUserId]) {
+        if ([kGetString(userInfo[@"id"]) isEqualToString:cellUserId]) {
             weakSelf.navigationController.tabBarController.selectedIndex = 3;
             return;
         }
