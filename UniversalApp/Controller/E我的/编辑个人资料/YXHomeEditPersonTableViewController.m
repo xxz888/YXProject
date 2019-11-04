@@ -123,7 +123,9 @@
         UserDefaultsSET(mDic, KUserInfo);
     
         
+        weakself.backvcBlock();
         [weakself.navigationController popViewControllerAnimated:YES];
+       
 
    
     }];

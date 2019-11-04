@@ -29,11 +29,13 @@
 #import "QiniuLoad.h"
 #import "YXJiFenShopViewController.h"
 #import "SimpleChatMainViewController.h"
+#import "SDWeiXinPhotoContainerView.h"
+#import "SDPhotoBrowser.h"
 
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
 
 
-@interface HGPersonalCenterViewController () <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, HGSegmentedPageViewControllerDelegate, HGPageViewControllerDelegate,HGPageViewControllerDelegate1>{
+@interface HGPersonalCenterViewController () <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, HGSegmentedPageViewControllerDelegate, HGPageViewControllerDelegate,HGPageViewControllerDelegate1,SDPhotoBrowserDelegate>{
     QMUIModalPresentationViewController * _modalViewController;
     NSArray * titleArray;
     CGFloat HeaderImageViewHeight;
@@ -48,7 +50,7 @@
 @property(nonatomic, strong) UserInfo *userInfo;//用户信息
 @property(nonatomic, strong) NSDictionary *userInfoDic;//用户信息
 @property (nonatomic) BOOL isCanBack;
-
+@property (nonatomic, strong) NSMutableArray *picPathStringsArray;
 @end
 
 @implementation HGPersonalCenterViewController
@@ -75,13 +77,13 @@
     self.isEnlarge = NO;
     [self updateNavigationBarBackgroundColor];
     [self setNeedsStatusBarAppearanceUpdate];
+    [self setViewData];
 
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-        [self setViewData];
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
 
 }
@@ -218,9 +220,26 @@
         [weakself.navigationController pushViewController:VC animated:YES];
     };
     _headerView.mineClickImageblock = ^{
-        YXHomeEditPersonTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXHomeEditPersonTableViewController"];
-        VC.userInfoDic = [NSDictionary dictionaryWithDictionary:userManager.loadUserAllInfo];
-        [weakself.navigationController pushViewController:VC animated:YES];
+        //如果是其他人，就是放大头像
+        if(weakself.whereCome){
+                
+            
+                   SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
+                   browser.currentImageIndex = weakself.headerView.tag;
+                   browser.sourceImagesContainerView = weakself.headerView;
+                   browser.imageCount = weakself.picPathStringsArray.count;
+                   browser.delegate = weakself;
+                   [browser show];
+        }else{
+            
+              YXHomeEditPersonTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXHomeEditPersonTableViewController"];
+               VC.userInfoDic = [NSDictionary dictionaryWithDictionary:userManager.loadUserAllInfo];
+               VC.backvcBlock = ^{
+                   [weakself setViewData];
+               };
+               [weakself.navigationController pushViewController:VC animated:YES];
+        }
+   
     };
     _headerView.jifenShopblock = ^{
         YXJiFenShopViewController * vc = [[YXJiFenShopViewController alloc]init];
@@ -231,13 +250,20 @@
     };
     //发私信
     _headerView.fasixinblock = ^{
-//           [YXPLUS_MANAGER requestChatting_ListoryGet:@"" success:^(id object) {
-                  SimpleChatMainViewController * vc = [[SimpleChatMainViewController alloc]init];
-                  vc.userInfoDic = [NSDictionary dictionaryWithDictionary:userManager.loadUserAllInfo];
-//                   vc.requestObject =[NSDictionary dictionaryWithDictionary:object];
-                  [weakself.navigationController pushViewController:vc animated:YES];
-//           }];
+          SimpleChatMainViewController * vc = [[SimpleChatMainViewController alloc]init];
+          vc.userInfoDic = [NSDictionary dictionaryWithDictionary:userManager.loadUserAllInfo];
+          [weakself.navigationController pushViewController:vc animated:YES];
     };
+}
+- (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index
+{
+    NSString *imageName = self.picPathStringsArray[index];
+      NSURL *url = [[NSBundle mainBundle] URLForResource:imageName withExtension:nil];
+      return url;
+}
+- (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index
+{
+    return self.headerView.mineImageView.image;
 }
 /**
  * 处理联动
@@ -245,14 +271,8 @@
  */
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    CGFloat yyy =  vc.yxTableView.contentOffset.y;
-//    NSLog(@"%f",yyy);
-    YXMineAllViewController * vc =  (YXMineAllViewController *)self.segmentedPageViewController.pageViewControllers[0];
-
-
     //第一部分：处理导航栏
     [self updateNavigationBarBackgroundColor];
-    
     //第二部分：处理手势冲突
     CGFloat contentOffsetY = scrollView.contentOffset.y;
     //吸顶临界点(此时的临界点不是视觉感官上导航栏的底部，而是当前屏幕的顶部相对scrollViewContentView的位置)
@@ -463,51 +483,43 @@
         self.headerView.backBtn.hidden = self.headerView.guanzhuBtn.hidden = self.headerView.otherStackView.hidden = NO;
         self.headerView.jifenView.hidden =  self.headerView.myStackView.hidden =  YES;
         self.headerView.tieshubtn.userInteractionEnabled = NO;
+        self.picPathStringsArray = [[NSMutableArray alloc]init];
         [YX_MANAGER requestGetUserothers:self.userId success:^(id object) {
             [weakself personValue:object];
         }];
-        
     }else{
         self.headerView.backBtn.hidden = self.headerView.guanzhuBtn.hidden = self.headerView.otherStackView.hidden = YES;
         self.headerView.jifenView.hidden =  self.headerView.myStackView.hidden = NO;
         self.headerView.tieshubtn.userInteractionEnabled = YES;
-
-        
         //积分
              [YX_MANAGER requestGetFind_My_user_Info:@"" success:^(id object) {
                  weakself.headerView.tieshuCountLbl.text= kGetNSInteger([object[@"wallet"][@"integral"] integerValue]);
                  
              }];
-             
+            [QMUITips hideAllTips];
+            [QMUITips showLoadingInView:self.view];
              dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                  NSDictionary * userInfo = userManager.loadUserAllInfo;
-                       [YX_MANAGER requestGetFind_user_id:user_id_BOOL ? self.userId : kGetString(userInfo[@"id"]) success:^(id object) {
+                       [YX_MANAGER requestGetFind_user_id:user_id_BOOL ? weakself.userId : kGetString(userInfo[@"id"]) success:^(id object) {
+                           [QMUITips hideAllTips];
                            [weakself personValue:object];
                        }];
              });
-      
         [YX_MANAGER requestLikesGET:@"4/0/1/" success:^(id object) {
             weakself.headerView.guanzhuCountLbl.text = kGetString(object[@"like_number"]);
             weakself.headerView.fensiCountLbl.text = kGetString(object[@"fans_number"]);
-            
         }];
     }
 }
-
 -(void)personValue:(id)object{
     NSString * str = [(NSMutableString *)object[@"photo"] replaceAll:@" " target:@"%20"];
     NSMutableDictionary * mDic = [NSMutableDictionary dictionaryWithDictionary:object];
-    NSDictionary * userInfoDic = UserDefaultsGET(KUserInfo);
-    [mDic setValue:userInfoDic[@"token"] forKey:@"token"];
+
     
-    UserDefaultsSET(mDic, KUserInfo);
     self.headerView.qianmingLbl.text = object[@"character"];
     self.headerView.sexView.hidden = [object[@"gender"] integerValue] == 0;
     self.headerView.nvsexview.hidden = [object[@"gender"] integerValue] != 0 ;
     kWeakSelf(self);
-
-
-
 
     self.navigationItem.title = kGetString(object[@"username"]);
     self.headerView.mineTitle.text =kGetString(object[@"username"]);
@@ -515,6 +527,12 @@
     if (self.whereCome) {
             self.headerView.otherguanzhucountlbl.text = kGetString(object[@"likes_number"]);
             self.headerView.otherfensicountlbl.text = kGetString(object[@"fans_number"]);
+        [self.picPathStringsArray removeAllObjects];
+        [self.picPathStringsArray addObject:str];
+    }else{
+        NSDictionary * userInfoDic = UserDefaultsGET(KUserInfo);
+        [mDic setValue:userInfoDic[@"token"] forKey:@"token"];
+        UserDefaultsSET(mDic, KUserInfo);
     }
 
     NSInteger tag = [object[@"is_like"] integerValue];

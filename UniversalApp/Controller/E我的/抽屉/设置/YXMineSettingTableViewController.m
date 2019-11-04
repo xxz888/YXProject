@@ -50,7 +50,7 @@
     btn.backgroundColor = SEGMENT_COLOR;
     [btn setTitle:@"退出登录" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(exitAppAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.tableView addSubview:btn];
+//    [self.tableView addSubview:btn];
 }
 - (void)exitAppAction{
     [self.navigationController popViewControllerAnimated:NO];
@@ -120,7 +120,10 @@
                [ShareManager returnUpdateVersion];
             }
             break;
-            
+        case 3:
+            if (indexPath.row == 0) {
+                [self exitAppAction];
+            }
         default:
             break;
     }

@@ -26,6 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *otherguanzhucountlbl;
 @property (weak, nonatomic) IBOutlet UILabel *otherfensicountlbl;
 
+
+@property (strong, nonatomic) NSString * otherImageViewUrl;
+
 typedef void(^fasixinBlock)();
 - (IBAction)fasixinAction:(id)sender;
 @property (nonatomic,copy) fasixinBlock fasixinblock;

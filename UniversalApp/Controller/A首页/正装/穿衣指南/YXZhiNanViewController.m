@@ -26,11 +26,17 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                              selector:@selector(jiesuochenggong:) name:@"jiesuochenggong" object:nil];
+    [self requestZhiNanGet];
+}
+-(void)jiesuochenggong:(id)notice{
     [self requestZhiNanGet];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar setHidden:NO];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -111,7 +117,7 @@
     return self.dataArray.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.collArray.count > 0) {
+    if (self.collArray.count > 0 && self.collArray.count <= self.dataArray.count) {
         NSInteger n = [self.collArray[indexPath.row] count];
         return 44 * (n/2+n%2) + 80;
     }
@@ -148,9 +154,10 @@
                           KPostNotification(KNotificationLoginStateChange, @NO);
                           return;
                       }
-                UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-                        YXZhiNanYaoQingJieSuoTableViewController *    homeVC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXZhiNanYaoQingJieSuoTableViewController"];
-                [self.navigationController pushViewController:homeVC animated:YES];
+             NSString * title = @"蓝皮书,品位生活指南@蓝皮书app";
+                 NSString * desc = @"Ta开启了蓝皮书之旅,快来加入吧";
+                [[ShareManager sharedShareManager] pushShareViewAndDic:@{
+                       @"type":@"4",@"desc":desc,@"title":title,@"thumbImage":@"http://photo.lpszn.com/appiconWechatIMG1store_1024pt.png"}];
             }else{
                 [weakself.navigationController pushViewController:vc animated:YES];
             }

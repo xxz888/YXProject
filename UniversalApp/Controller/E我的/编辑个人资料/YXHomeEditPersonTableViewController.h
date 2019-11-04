@@ -10,6 +10,7 @@
 #import "RootTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
+typedef void(^backVcBlock)(void);
 
 @interface YXHomeEditPersonTableViewController : RootTableViewController
 @property (weak, nonatomic) IBOutlet UIButton *finishBtn;
@@ -27,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSDictionary *userInfoDic;//用户信息
 @property (weak, nonatomic) IBOutlet UIButton *qianMingBtn;
 
+@property(nonatomic, copy) backVcBlock  backvcBlock;//用户信息
 
 @end
 

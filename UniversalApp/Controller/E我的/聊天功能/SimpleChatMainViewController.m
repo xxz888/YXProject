@@ -46,12 +46,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(KAppShow:) name:KAPP_SHOW object:nil];
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
+    [[IQKeyboardManager sharedManager] setEnable:NO];
     [self requestWeiDuMessage];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = YES;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[IQKeyboardManager sharedManager] setEnable:YES];
+
 }
 -(void)KAppShow:(NSNotification*)notice{
     [self requestWeiDuMessage];
@@ -221,18 +224,17 @@
     self.inputTextField.delegate = self;
 }
 -(void)keyBoardWillChange:(NSNotification *) notification{
-    //计算需要移动的距离
-    NSDictionary *dict = notification.userInfo ;
-    CGRect keyBoardFrame =  [[dict objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGFloat keyboardY = keyBoardFrame.origin.y;
-    CGFloat translationY = keyboardY - self.view.frame.size.height;
-    //动画执行时间
-    CGFloat time = [[dict objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    //键盘弹出的节奏和view动画节奏一致:7 << 16
-    [UIView animateKeyframesWithDuration:time delay:0.0 options:7 << 16 animations:^{
-        self.view.transform = CGAffineTransformMakeTranslation(0, translationY);
-    } completion:^(BOOL finished) {}];
-    
+        //计算需要移动的距离
+         NSDictionary *dict = notification.userInfo ;
+         CGRect keyBoardFrame =  [[dict objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+         CGFloat keyboardY = keyBoardFrame.origin.y;
+         CGFloat translationY = keyboardY - self.view.frame.size.height;
+         //动画执行时间
+         CGFloat time = [[dict objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+         //键盘弹出的节奏和view动画节奏一致:7 << 16
+         [UIView animateKeyframesWithDuration:time delay:0.0 options:7 << 16 animations:^{
+             self.view.transform = CGAffineTransformMakeTranslation(0, translationY);
+         } completion:^(BOOL finished) {}];
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{

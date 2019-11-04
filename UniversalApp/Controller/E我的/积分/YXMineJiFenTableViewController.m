@@ -31,10 +31,13 @@
 }
 -(void)requestData{
     
+    
+    
     kWeakSelf(self);
     [YX_MANAGER requestGetFind_My_user_Info:@"" success:^(id object) {
         weakself.jifenNumLbl.text= [@"积分:" append:kGetNSInteger([object[@"wallet"][@"integral"] integerValue])];
            [weakself.accImv sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:object[@"photo"]]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
+        weakself.nameLbl.text = object[@"username"];
         weakself.accImv.layer.masksToBounds = YES;
         weakself.accImv.layer.cornerRadius = self.accImv.frame.size.width / 2.0;
     }];

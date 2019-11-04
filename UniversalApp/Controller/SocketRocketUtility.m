@@ -43,8 +43,7 @@ dispatch_async(dispatch_get_main_queue(), block);\
 -(void)SRWebSocketStart{
      if ([userManager loadUserInfo]){
           [[SocketRocketUtility instance] SRWebSocketClose];
-          NSString * url = @"ws://47.99.113.177:8002/push/";
-          [[SocketRocketUtility instance] SRWebSocketOpenWithURLString:url];
+          [[SocketRocketUtility instance] SRWebSocketOpenWithURLString:API_SOCKET_URL];
       }
 }
 #pragma mark - **************** public methods

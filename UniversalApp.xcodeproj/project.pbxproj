@@ -137,36 +137,7 @@
 		BB21FDB922B0E68A0059BCAC /* YXFirstFindImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB21FDB722B0E68A0059BCAC /* YXFirstFindImageTableViewCell.m */; };
 		BB21FDBA22B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB21FDB822B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib */; };
 		BB21FDBD22B2193A0059BCAC /* ImageScale.m in Sources */ = {isa = PBXBuildFile; fileRef = BB21FDBB22B2193A0059BCAC /* ImageScale.m */; };
-		BB227B1923346AA0004A04EC /* PingFang.ttc in Resources */ = {isa = PBXBuildFile; fileRef = BB227B1823346AA0004A04EC /* PingFang.ttc */; };
 		BB25D48723162F3600971B94 /* YXNewLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB25D48623162F3600971B94 /* YXNewLoginViewController.m */; };
-		BB29120822156BB500FF484E /* Cigarillo.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911EC22156BB500FF484E /* Cigarillo.gif */; };
-		BB29120922156BB500FF484E /* Petit Corona.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911ED22156BB500FF484E /* Petit Corona.gif */; };
-		BB29120A22156BB500FF484E /* Petit Pyramid.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911EE22156BB500FF484E /* Petit Pyramid.gif */; };
-		BB29120B22156BB500FF484E /* Grand Corona.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911EF22156BB500FF484E /* Grand Corona.gif */; };
-		BB29120C22156BB500FF484E /* Petit Perfecto.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911F022156BB500FF484E /* Petit Perfecto.gif */; };
-		BB29120D22156BB500FF484E /* Corona.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911F122156BB500FF484E /* Corona.gif */; };
-		BB29120E22156BB500FF484E /* Long Panetela.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911F222156BB500FF484E /* Long Panetela.gif */; };
-		BB29120F22156BB500FF484E /* Pyramid.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911F322156BB500FF484E /* Pyramid.gif */; };
-		BB29121022156BB500FF484E /* Lonsdale.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911F422156BB500FF484E /* Lonsdale.gif */; };
-		BB29121122156BB500FF484E /* Giant Robusto.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911F522156BB500FF484E /* Giant Robusto.gif */; };
-		BB29121222156BB500FF484E /* Double Robusto.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911F622156BB500FF484E /* Double Robusto.gif */; };
-		BB29121322156BB500FF484E /* Double Corona.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911F722156BB500FF484E /* Double Corona.gif */; };
-		BB29121422156BB500FF484E /* Robusto.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911F822156BB500FF484E /* Robusto.gif */; };
-		BB29121522156BB500FF484E /* Small Panetela.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911F922156BB500FF484E /* Small Panetela.gif */; };
-		BB29121622156BB500FF484E /* Long Corona.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911FA22156BB500FF484E /* Long Corona.gif */; };
-		BB29121722156BB500FF484E /* Giant Corona.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911FB22156BB500FF484E /* Giant Corona.gif */; };
-		BB29121822156BB500FF484E /* Perfecto.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911FC22156BB500FF484E /* Perfecto.gif */; };
-		BB29121922156BB500FF484E /* Slim Panetela.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911FD22156BB500FF484E /* Slim Panetela.gif */; };
-		BB29121A22156BB500FF484E /* Corona Extra.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911FE22156BB500FF484E /* Corona Extra.gif */; };
-		BB29121B22156BB500FF484E /* Churchill.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2911FF22156BB500FF484E /* Churchill.gif */; };
-		BB29121C22156BB500FF484E /* Double Pyramid.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB29120022156BB500FF484E /* Double Pyramid.gif */; };
-		BB29121D22156BB500FF484E /* Giant Perfecto.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB29120122156BB500FF484E /* Giant Perfecto.gif */; };
-		BB29121E22156BB500FF484E /* Culebras.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB29120222156BB500FF484E /* Culebras.gif */; };
-		BB29121F22156BB500FF484E /* Short Panetela.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB29120322156BB500FF484E /* Short Panetela.gif */; };
-		BB29122022156BB500FF484E /* Robusto Extra.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB29120422156BB500FF484E /* Robusto Extra.gif */; };
-		BB29122122156BB500FF484E /* Petit Robusto.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB29120522156BB500FF484E /* Petit Robusto.gif */; };
-		BB29122222156BB500FF484E /* Double Perfecto.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB29120622156BB500FF484E /* Double Perfecto.gif */; };
-		BB29122322156BB500FF484E /* Panetela.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB29120722156BB500FF484E /* Panetela.gif */; };
 		BB29122922156BDE00FF484E /* LLGifView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29122722156BDD00FF484E /* LLGifView.m */; };
 		BB29122A22156BDE00FF484E /* LLGifImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29122822156BDD00FF484E /* LLGifImageView.m */; };
 		BB2A8EB9221BE73300B6756A /* UIImage+ImgSize.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2A8EB8221BE73300B6756A /* UIImage+ImgSize.m */; };
@@ -885,37 +856,8 @@
 		BB21FDB822B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXFirstFindImageTableViewCell.xib; sourceTree = "<group>"; };
 		BB21FDBB22B2193A0059BCAC /* ImageScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScale.m; sourceTree = "<group>"; };
 		BB21FDBC22B2193A0059BCAC /* ImageScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScale.h; sourceTree = "<group>"; };
-		BB227B1823346AA0004A04EC /* PingFang.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = PingFang.ttc; sourceTree = "<group>"; };
 		BB25D48523162F3600971B94 /* YXNewLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YXNewLoginViewController.h; path = register/YXNewLoginViewController.h; sourceTree = "<group>"; };
 		BB25D48623162F3600971B94 /* YXNewLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = YXNewLoginViewController.m; path = register/YXNewLoginViewController.m; sourceTree = "<group>"; };
-		BB2911EC22156BB500FF484E /* Cigarillo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Cigarillo.gif; sourceTree = "<group>"; };
-		BB2911ED22156BB500FF484E /* Petit Corona.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Petit Corona.gif"; sourceTree = "<group>"; };
-		BB2911EE22156BB500FF484E /* Petit Pyramid.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Petit Pyramid.gif"; sourceTree = "<group>"; };
-		BB2911EF22156BB500FF484E /* Grand Corona.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Grand Corona.gif"; sourceTree = "<group>"; };
-		BB2911F022156BB500FF484E /* Petit Perfecto.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Petit Perfecto.gif"; sourceTree = "<group>"; };
-		BB2911F122156BB500FF484E /* Corona.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Corona.gif; sourceTree = "<group>"; };
-		BB2911F222156BB500FF484E /* Long Panetela.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Long Panetela.gif"; sourceTree = "<group>"; };
-		BB2911F322156BB500FF484E /* Pyramid.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Pyramid.gif; sourceTree = "<group>"; };
-		BB2911F422156BB500FF484E /* Lonsdale.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Lonsdale.gif; sourceTree = "<group>"; };
-		BB2911F522156BB500FF484E /* Giant Robusto.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Giant Robusto.gif"; sourceTree = "<group>"; };
-		BB2911F622156BB500FF484E /* Double Robusto.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Double Robusto.gif"; sourceTree = "<group>"; };
-		BB2911F722156BB500FF484E /* Double Corona.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Double Corona.gif"; sourceTree = "<group>"; };
-		BB2911F822156BB500FF484E /* Robusto.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Robusto.gif; sourceTree = "<group>"; };
-		BB2911F922156BB500FF484E /* Small Panetela.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Small Panetela.gif"; sourceTree = "<group>"; };
-		BB2911FA22156BB500FF484E /* Long Corona.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Long Corona.gif"; sourceTree = "<group>"; };
-		BB2911FB22156BB500FF484E /* Giant Corona.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Giant Corona.gif"; sourceTree = "<group>"; };
-		BB2911FC22156BB500FF484E /* Perfecto.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Perfecto.gif; sourceTree = "<group>"; };
-		BB2911FD22156BB500FF484E /* Slim Panetela.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Slim Panetela.gif"; sourceTree = "<group>"; };
-		BB2911FE22156BB500FF484E /* Corona Extra.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Corona Extra.gif"; sourceTree = "<group>"; };
-		BB2911FF22156BB500FF484E /* Churchill.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Churchill.gif; sourceTree = "<group>"; };
-		BB29120022156BB500FF484E /* Double Pyramid.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Double Pyramid.gif"; sourceTree = "<group>"; };
-		BB29120122156BB500FF484E /* Giant Perfecto.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Giant Perfecto.gif"; sourceTree = "<group>"; };
-		BB29120222156BB500FF484E /* Culebras.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Culebras.gif; sourceTree = "<group>"; };
-		BB29120322156BB500FF484E /* Short Panetela.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Short Panetela.gif"; sourceTree = "<group>"; };
-		BB29120422156BB500FF484E /* Robusto Extra.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Robusto Extra.gif"; sourceTree = "<group>"; };
-		BB29120522156BB500FF484E /* Petit Robusto.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Petit Robusto.gif"; sourceTree = "<group>"; };
-		BB29120622156BB500FF484E /* Double Perfecto.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Double Perfecto.gif"; sourceTree = "<group>"; };
-		BB29120722156BB500FF484E /* Panetela.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Panetela.gif; sourceTree = "<group>"; };
 		BB29122522156BDD00FF484E /* LLGifView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLGifView.h; sourceTree = "<group>"; };
 		BB29122622156BDD00FF484E /* LLGifImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLGifImageView.h; sourceTree = "<group>"; };
 		BB29122722156BDD00FF484E /* LLGifView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLGifView.m; sourceTree = "<group>"; };
@@ -2550,41 +2492,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		BB2911EB22156BB500FF484E /* 雪茄形状 */ = {
-			isa = PBXGroup;
-			children = (
-				BB2911EC22156BB500FF484E /* Cigarillo.gif */,
-				BB2911ED22156BB500FF484E /* Petit Corona.gif */,
-				BB2911EE22156BB500FF484E /* Petit Pyramid.gif */,
-				BB2911EF22156BB500FF484E /* Grand Corona.gif */,
-				BB2911F022156BB500FF484E /* Petit Perfecto.gif */,
-				BB2911F122156BB500FF484E /* Corona.gif */,
-				BB2911F222156BB500FF484E /* Long Panetela.gif */,
-				BB2911F322156BB500FF484E /* Pyramid.gif */,
-				BB2911F422156BB500FF484E /* Lonsdale.gif */,
-				BB2911F522156BB500FF484E /* Giant Robusto.gif */,
-				BB2911F622156BB500FF484E /* Double Robusto.gif */,
-				BB2911F722156BB500FF484E /* Double Corona.gif */,
-				BB2911F822156BB500FF484E /* Robusto.gif */,
-				BB2911F922156BB500FF484E /* Small Panetela.gif */,
-				BB2911FA22156BB500FF484E /* Long Corona.gif */,
-				BB2911FB22156BB500FF484E /* Giant Corona.gif */,
-				BB2911FC22156BB500FF484E /* Perfecto.gif */,
-				BB2911FD22156BB500FF484E /* Slim Panetela.gif */,
-				BB2911FE22156BB500FF484E /* Corona Extra.gif */,
-				BB2911FF22156BB500FF484E /* Churchill.gif */,
-				BB29120022156BB500FF484E /* Double Pyramid.gif */,
-				BB29120122156BB500FF484E /* Giant Perfecto.gif */,
-				BB29120222156BB500FF484E /* Culebras.gif */,
-				BB29120322156BB500FF484E /* Short Panetela.gif */,
-				BB29120422156BB500FF484E /* Robusto Extra.gif */,
-				BB29120522156BB500FF484E /* Petit Robusto.gif */,
-				BB29120622156BB500FF484E /* Double Perfecto.gif */,
-				BB29120722156BB500FF484E /* Panetela.gif */,
-			);
-			path = "雪茄形状";
-			sourceTree = "<group>";
-		};
 		BB29122422156BDD00FF484E /* LLGifView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3532,7 +3439,6 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
-				BB227B1823346AA0004A04EC /* PingFang.ttc */,
 				BBBBC0F222BCD2FE00F528E1 /* VideoPlayer */,
 				BB688A1322ADE8BE00964FA3 /* OrgHalfLineLabel.h */,
 				BB688A1422ADE8BE00964FA3 /* OrgHalfLineLabel.m */,
@@ -3545,7 +3451,6 @@
 				BBBFD7572222D7D300D377AC /* JJImagePicker */,
 				BB3DFE7D221D568D000C70B5 /* XHWebImageAutoSize */,
 				BB29122422156BDD00FF484E /* LLGifView */,
-				BB2911EB22156BB500FF484E /* 雪茄形状 */,
 				BB44F87822140AFB0034CAEC /* 分享相关 */,
 				BB9832822202CD9A0048D103 /* XLDouYinLoading */,
 				BB9832652201700C0048D103 /* FCXRefreshView */,
@@ -5181,8 +5086,6 @@
 				BB9EFE7121F5CCBA00180813 /* YXPublishMoreTagsViewController.xib in Resources */,
 				BBB59B88228EA0250029D3D0 /* YXZhiNanCollectionViewCell.xib in Resources */,
 				BBD2C91F21E0F67800350DCD /* LLImagePicker.bundle in Resources */,
-				BB29121922156BB500FF484E /* Slim Panetela.gif in Resources */,
-				BB29121522156BB500FF484E /* Small Panetela.gif in Resources */,
 				BB013344232F688F00573AC0 /* YXMineShouHuoAdressViewController.xib in Resources */,
 				BBEA15722366E41B006FBBFF /* PlayButtonOverlayLarge@3x.png in Resources */,
 				BBEA15632366E41B006FBBFF /* ImageSelectedSmallOff@3x.png in Resources */,
@@ -5192,29 +5095,22 @@
 				BBEA155C2366E41B006FBBFF /* UIBarButtonItemGrid.png in Resources */,
 				BBB59B16228CF8CB0029D3D0 /* YXXingZhuangTableViewCell.xib in Resources */,
 				BBBFD7892222D7D300D377AC /* TOCropViewControllerLocalizable.strings in Resources */,
-				BB29121422156BB500FF484E /* Robusto.gif in Resources */,
-				BB29121322156BB500FF484E /* Double Corona.gif in Resources */,
 				BBB59B7E228E972B0029D3D0 /* YXZhiNanTableViewCell.xib in Resources */,
 				BB928F9821FB5D290090A044 /* BRPickerView.bundle in Resources */,
-				BB29121622156BB500FF484E /* Long Corona.gif in Resources */,
 				BBEA155F2366E41B006FBBFF /* ImageSelectedOff.png in Resources */,
 				BB928F6B21FAD02B0090A044 /* YXMineMyCaoGaoViewController.xib in Resources */,
-				BB29121F22156BB500FF484E /* Short Panetela.gif in Resources */,
 				BBBBC0FB22BCD2FF00F528E1 /* ImageResources.bundle in Resources */,
 				BB6F6A242361A31B00EC8732 /* normalize.css in Resources */,
 				BBEA15622366E41B006FBBFF /* ImageSelectedSmallOff@2x.png in Resources */,
 				BBEA155E2366E41B006FBBFF /* VideoOverlay@2x.png in Resources */,
 				BBB59B1A228CF8CB0029D3D0 /* YXToolsColorTableViewCell.xib in Resources */,
-				BB29121E22156BB500FF484E /* Culebras.gif in Resources */,
 				BBEA15742366E41B006FBBFF /* ImageSelectedSmallOn@3x.png in Resources */,
 				BBD30CEA21E5CE26000D3244 /* YXMineCommon1TableViewCell.xib in Resources */,
 				BBB59AEE228CF8CB0029D3D0 /* YXHomeXueJiaDetailTableViewCell.xib in Resources */,
-				BB29120C22156BB500FF484E /* Petit Perfecto.gif in Resources */,
 				BBEA15672366E41B006FBBFF /* VideoOverlay@3x.png in Resources */,
 				BBA8129621DDA9A5001B5EA1 /* YXHome.storyboard in Resources */,
 				BB6F6A262361A31B00EC8732 /* richText_editor.html in Resources */,
 				29629EEA1F78E49D002CFCBD /* back_icon@3x.png in Resources */,
-				BB29120D22156BB500FF484E /* Corona.gif in Resources */,
 				BBEA15652366E41B006FBBFF /* PlayButtonOverlayLargeTap@3x.png in Resources */,
 				2917D2091EE007C300E76185 /* MBHUD_Info@2x.png in Resources */,
 				BBEA15762366E41B006FBBFF /* ImageSelectedOn@3x.png in Resources */,
@@ -5225,11 +5121,9 @@
 				29FEE77B1ECED1E200C81B60 /* MBHUD_Warn@2x.png in Resources */,
 				BBB59AF4228CF8CB0029D3D0 /* YXHomeLastListTableViewCell.xib in Resources */,
 				2917D2071EE007C300E76185 /* MBHUD_Success@2x.png in Resources */,
-				BB29121222156BB500FF484E /* Double Robusto.gif in Resources */,
 				BBEA156C2366E41B006FBBFF /* ImageSelectedOff@2x.png in Resources */,
 				BBB59B3A228CF92D0029D3D0 /* YXGridView.xib in Resources */,
 				BBEA15772366E41B006FBBFF /* ImageSelectedOn@2x.png in Resources */,
-				BB29120B22156BB500FF484E /* Grand Corona.gif in Resources */,
 				BBEA156A2366E41B006FBBFF /* ImageSelectedOn.png in Resources */,
 				BBA8129A21DDA9F1001B5EA1 /* YXPublish.storyboard in Resources */,
 				BBD2C94A21E0F67800350DCD /* LICENSE in Resources */,
@@ -5253,7 +5147,6 @@
 				BBE82BD921E340AD004E4144 /* EffectImage.png in Resources */,
 				BBEA156D2366E41B006FBBFF /* UIBarButtonItemArrowLeft@2x.png in Resources */,
 				BBD7796C2244DD390077E44D /* YXBindPhoneNextViewController.xib in Resources */,
-				BB29122322156BB500FF484E /* Panetela.gif in Resources */,
 				BBEA156B2366E41B006FBBFF /* PlayButtonOverlayLarge@2x.png in Resources */,
 				BBBE071E2224E36100CDD11E /* YXBaseFaXianDetailViewController.xib in Resources */,
 				BB9413DF21F8B602007E800A /* IQKeyboardManager.bundle in Resources */,
@@ -5265,7 +5158,6 @@
 				BB5FD88B21FECBDB00B5F1A8 /* YXFindImageTableViewCell.xib in Resources */,
 				BBD2C98621E1BC0A00350DCD /* PYSearch.bundle in Resources */,
 				BBABDF20229BB0400046683A /* YXZhiNanDetailViewController.xib in Resources */,
-				BB29121B22156BB500FF484E /* Churchill.gif in Resources */,
 				BBABDF25229BB16E0046683A /* YXZhiNanDetailHeaderView.xib in Resources */,
 				2917D2081EE007C300E76185 /* MBHUD_Info@3x.png in Resources */,
 				BB01334E232F869900573AC0 /* YXMineAddAdressViewController.xib in Resources */,
@@ -5276,7 +5168,6 @@
 				BBC16284217AD6EA00008907 /* Login.storyboard in Resources */,
 				BBF67C9C23601F3100032E9C /* YXZhiNanType2TableViewCell.xib in Resources */,
 				BBACB4CC234DC2E10092367B /* YXJiFenShop2CollectionViewCell.xib in Resources */,
-				BB29122022156BB500FF484E /* Robusto Extra.gif in Resources */,
 				BB21FDBA22B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib in Resources */,
 				BBADE4DD21F866670011E5FF /* YXMineImageDetailHeaderView.xib in Resources */,
 				BBA8129821DDA9B6001B5EA1 /* YXFind.storyboard in Resources */,
@@ -5288,17 +5179,13 @@
 				296F85091FED04EF005612D1 /* close_icon@2x.png in Resources */,
 				BBB59B15228CF8CB0029D3D0 /* YXXingZhuangViewController.xib in Resources */,
 				BBACB4B7234D84340092367B /* YXJiFenShop1TableViewCell.xib in Resources */,
-				BB29120A22156BB500FF484E /* Petit Pyramid.gif in Resources */,
 				BBB59B79228E8D200029D3D0 /* YXZhiNanViewController.xib in Resources */,
 				BBABDF44229BC45E0046683A /* YXZhiNan4Cell.xib in Resources */,
 				BB07FB152357001900F34D2D /* SimpleChatMainViewController.xib in Resources */,
 				BBB59B47228D02B70029D3D0 /* YXHomeXueJiaToolsTableViewCell.xib in Resources */,
-				BB29121D22156BB500FF484E /* Giant Perfecto.gif in Resources */,
 				BB3DFE9D221E8566000C70B5 /* YXFindSearchTableViewCell.xib in Resources */,
 				BB21FD8422B0991E0059BCAC /* KSMediaPicker.strings in Resources */,
 				BBDA2D0F21EB30BF00EDCCFF /* MLEmoji_Expression.plist in Resources */,
-				BB29120922156BB500FF484E /* Petit Corona.gif in Resources */,
-				BB29120F22156BB500FF484E /* Pyramid.gif in Resources */,
 				29629EF21F78E67E002CFCBD /* JSToOC.html in Resources */,
 				BBEA15752366E41B006FBBFF /* PlayButtonOverlayLarge.png in Resources */,
 				BBDA2D1021EB30BF00EDCCFF /* MLEmoji_Expression.bundle in Resources */,
@@ -5308,7 +5195,6 @@
 				BB98329F229E190000894FAF /* YXMineMyCollectionTableViewCell.xib in Resources */,
 				BB6F6A222361A31B00EC8732 /* article_editor.js in Resources */,
 				BBEA155B2366E41B006FBBFF /* ImageSelectedSmallOn.png in Resources */,
-				BB29120822156BB500FF484E /* Cigarillo.gif in Resources */,
 				BBD2C95421E0F72800350DCD /* LICENSE.md in Resources */,
 				BBD2C8FD21E0F67700350DCD /* TZImagePickerController.bundle in Resources */,
 				BB3CA498221F95FC00C6793D /* YXFaBuBaseViewController.xib in Resources */,
@@ -5318,15 +5204,11 @@
 				BB9832872202D77C0048D103 /* Images.xcassets in Resources */,
 				BB928F7D21FB55E80090A044 /* YXMineMyDianZanViewController.xib in Resources */,
 				BBABDF3A229BC3A20046683A /* YXZhiNan2Cell.xib in Resources */,
-				BB29122122156BB500FF484E /* Petit Robusto.gif in Resources */,
-				BB29121C22156BB500FF484E /* Double Pyramid.gif in Resources */,
 				BBEA15612366E41B006FBBFF /* ImageError@2x.png in Resources */,
 				BBACB4D3234DCCD40092367B /* YXJiFenShopDetailViewController.xib in Resources */,
-				BB29121122156BB500FF484E /* Giant Robusto.gif in Resources */,
 				BB0AE5C92253384900CC07EC /* YXFindSearchTagHeaderView.xib in Resources */,
 				BBDA2D1121EB30BF00EDCCFF /* MLEmoji_ExpressionImage.plist in Resources */,
 				296F85081FED04EF005612D1 /* close_icon@3x.png in Resources */,
-				BB29120E22156BB500FF484E /* Long Panetela.gif in Resources */,
 				BBEA15642366E41B006FBBFF /* PlayButtonOverlayLargeTap.png in Resources */,
 				293D45A21ECD6422007C64A9 /* LaunchScreen.storyboard in Resources */,
 				BB688A1C22AE505800964FA3 /* YXZhiNan5Cell.xib in Resources */,
@@ -5335,11 +5217,9 @@
 				BBB59B3C228CF92D0029D3D0 /* YXHomeXueJiaTableViewCell.xib in Resources */,
 				BBABDF35229BC33C0046683A /* YXZhiNan1Cell.xib in Resources */,
 				BBB59AE4228CF8CB0029D3D0 /* YXHomeXueJiaFootTableViewCell.xib in Resources */,
-				BB29121A22156BB500FF484E /* Corona Extra.gif in Resources */,
 				BB9832712201700C0048D103 /* blueArrow@2x.png in Resources */,
 				29629EE91F78E49B002CFCBD /* back_icon@2x.png in Resources */,
 				BBB59AEB228CF8CB0029D3D0 /* YXHomeXueJiaPinPaiTableViewCell.xib in Resources */,
-				BB29121022156BB500FF484E /* Lonsdale.gif in Resources */,
 				BB21FDB122B099B20059BCAC /* YXWenZhangView.xib in Resources */,
 				BB8376F02248AE930091A1A8 /* YXMineFindViewController.xib in Resources */,
 				BB86C90F231DFA2400A061E2 /* UMCommonLog.bundle in Resources */,
@@ -5353,10 +5233,7 @@
 				BBD2C95721E0F72800350DCD /* README.md in Resources */,
 				BB53E74B235F01020014F106 /* YXWenZhangEditorViewController.xib in Resources */,
 				BBEA15732366E41B006FBBFF /* UIBarButtonItemArrowRight@2x.png in Resources */,
-				BB29121822156BB500FF484E /* Perfecto.gif in Resources */,
-				BB29121722156BB500FF484E /* Giant Corona.gif in Resources */,
 				BBB59B3D228CF92D0029D3D0 /* YXHomeXueJiaHeaderView.xib in Resources */,
-				BB29122222156BB500FF484E /* Double Perfecto.gif in Resources */,
 				BBACB4BE234D87690092367B /* YXJiFenShop1CollectionViewCell.xib in Resources */,
 				BBACB4DE234DDC020092367B /* YXJiFenDetailAllImageTableViewCell.xib in Resources */,
 				BB013349232F69B500573AC0 /* YXMineShouHuoTableViewCell.xib in Resources */,
@@ -5365,7 +5242,6 @@
 				BB98329A229E165A00894FAF /* YXMineMyCollectionViewController.xib in Resources */,
 				BBB59B1B228CF8CB0029D3D0 /* YXColorViewController.xib in Resources */,
 				BB5FD89021FECC0600B5F1A8 /* YXFindQuestionTableViewCell.xib in Resources */,
-				BB227B1923346AA0004A04EC /* PingFang.ttc in Resources */,
 				BB928F5821FABCC30090A044 /* YXMinePingLunViewController.xib in Resources */,
 				2917D20A1EE007C300E76185 /* MBHUD_Error@3x.png in Resources */,
 				BBEA15592366E41B006FBBFF /* UIBarButtonItemArrowLeft.png in Resources */,

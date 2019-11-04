@@ -64,6 +64,9 @@
     };
 }
 -(void)requestTableData{
+    [QMUITips hideAllTips];
+    [QMUITips showLoadingInView:kAppWindow];
+    
         kWeakSelf(self);
        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
            user_id_BOOL ? [self requestOther_AllList] : [self requestMine_AllList];
@@ -92,6 +95,8 @@
     kWeakSelf(self);
     NSString * parString =[NSString stringWithFormat:@"0&page=%@",NSIntegerToNSString(self.requestPage)];
     [YX_MANAGER requestGet_users_find:parString success:^(id object){
+        [QMUITips hideAllTips];
+
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
         weakself.dongtaiView.hidden =  weakself.dataArray.count != 0;
@@ -103,6 +108,7 @@
     kWeakSelf(self);
     NSString * par = [NSString stringWithFormat:@"%@/%@",self.userId,NSIntegerToNSString(self.requestPage)];
     [YX_MANAGER requestGetSers_Other_AllList:par success:^(id object){
+        [QMUITips hideAllTips];
         weakself.dataArray =  [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
     }];

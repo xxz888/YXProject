@@ -18,6 +18,9 @@
 -(void)setCellData:(NSDictionary *)dic linkData:(NSArray *)linkArray{
     kWeakSelf(self);
     CGFloat height_size = [ShareManager inTextZhiNanOutHeight:dic[@"detail"] lineSpace:0 fontSize:16];
+    if ([CGFloatToNSString(height_size) integerValue] == 22) {
+        height_size = height_size * 2;
+    }
     self.contentHeight.constant = height_size;
     
     

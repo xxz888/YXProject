@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *day6;
 @property (weak, nonatomic) IBOutlet UILabel *day7;
 @property (weak, nonatomic) IBOutlet UILabel *jifenNumLbl;
+@property (weak, nonatomic) IBOutlet UILabel *nameLbl;
 
 @end
 

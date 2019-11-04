@@ -62,7 +62,8 @@ SINGLETON_FOR_CLASS(ShareManager);
             break;
             case 4:{
                      NSDictionary * userInfo = userManager.loadUserAllInfo;
-                     webpageUrl = [NSString stringWithFormat:@"%@yaoqingZhuCe.html?%@",[API_URL split:@"api"][0],kGetString(userInfo[@"id"])];
+                webpageUrl = @"http://www.lpszn.com/";
+//                     webpageUrl = [NSString stringWithFormat:@"%@yaoqingZhuCe.html?%@",[API_URL split:@"api"][0],kGetString(userInfo[@"id"])];
 //                webpageUrl = [NSString stringWithFormat:@"http://192.168.101.21:63340/矩形抽奖活动html/yaoqingZhuCe.html?%@",kGetString(userinfo.id)];
 
                      shareObject.thumbImage = obj[@"thumbImage"];
@@ -93,6 +94,8 @@ SINGLETON_FOR_CLASS(ShareManager);
                 if (type == 4) {
                     [YXPLUS_MANAGER requestOption_lock_historyPOST:@{} success:^(id object) {
                         [QMUITips showSucceed:@"解锁成功"];
+                        KPostNotification(@"jiesuochenggong", nil);
+
                     }];
                 }
             }else{
@@ -888,6 +891,8 @@ SINGLETON_FOR_CLASS(ShareManager);
 #pragma mark ========== 分享 ==========
 - (void)pushShareViewAndDic:(NSDictionary *)shareDic{
     QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
+    moreOperationController.cancelButton.hidden = NO;
+    moreOperationController.isExtendBottomLayout = YES;
     moreOperationController.items = @[
                                       // 第一行
                                       @[
