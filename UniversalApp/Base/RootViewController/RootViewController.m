@@ -388,6 +388,7 @@
 
 #pragma mark ==========  搜索相关 ==========
 -(void)setNavSearchView{
+
     [_searchHeaderView removeFromSuperview];
     _searchHeaderView = nil;
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXFindSearchHeadView" owner:self options:nil];
@@ -395,15 +396,16 @@
     _searchHeaderView.searchBar.delegate = self;
     [self.navigationItem.titleView sizeToFit];
     self.navigationItem.titleView = _searchHeaderView;
-    
+    [_searchHeaderView.findTextField addTarget:self action:@selector(textField1TextChange:) forControlEvents:UIControlEventValueChanged];
 
 }
+
 #pragma mark - gesture actions
 - (void)cancleAction{
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
 -(void)textField1TextChange:(UITextField *)tf{
-//    [self clickSearchBar];
+
 }
 -(void)setSegmentControllersArray:(NSArray *)controllers title:(NSArray *)titlesArray defaultIndex:(NSInteger)index top:(CGFloat)top view:(UIView *)view{
     ZXSegmentController* segmentController = [[ZXSegmentController alloc] initWithControllers:controllers

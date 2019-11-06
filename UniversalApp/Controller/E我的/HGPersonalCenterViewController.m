@@ -518,7 +518,7 @@
     NSMutableDictionary * mDic = [NSMutableDictionary dictionaryWithDictionary:object];
 
     
-    self.headerView.qianmingLbl.text = object[@"character"];
+    self.headerView.qianmingLbl.text = [object[@"character"] isEqualToString:@"请填写签名"] ? @"" : object[@"character"];
     kWeakSelf(self);
 
     self.navigationItem.title = kGetString(object[@"username"]);

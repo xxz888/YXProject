@@ -344,8 +344,7 @@
     self.showKeyboardWhenReturnSearchResult = YES;
     self.removeSpaceOnSearchString = YES;
     
-    self.searchHeaderView.searchBarHeight.constant = 50;
-    [self.searchHeaderView.cancleBtn addTarget:self action:@selector(cancelDidClick) forControlEvents:UIControlEventTouchUpInside];
+
     UIView *headerView = [[UIView alloc] init];
     headerView.py_width = PYScreenW;
     headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;

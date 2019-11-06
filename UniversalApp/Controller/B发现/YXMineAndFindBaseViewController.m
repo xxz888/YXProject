@@ -16,6 +16,7 @@
 #import "XLVideoPlayer.h"
 #import "YXSecondViewController.h"
 #import "YXMineChouJiangViewController.h"
+#import "YXHuaTiViewController.h"
 
 
 static CGFloat sectionHeaderHeight = 90;
@@ -85,8 +86,10 @@ static CGFloat sectionHeaderHeight = 90;
     return _headerView;
 }
 -(void)clickAction:(id)tap{
-    YXMineChouJiangViewController * vc = [[YXMineChouJiangViewController alloc]init];
+    YXHuaTiViewController * vc = [[YXHuaTiViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
+//    YXMineChouJiangViewController * vc = [[YXMineChouJiangViewController alloc]init];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return [self.startDic[@"id"] integerValue] == 1 ? sectionHeaderHeight : 0;

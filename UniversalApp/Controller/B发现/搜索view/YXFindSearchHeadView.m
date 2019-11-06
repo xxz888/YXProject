@@ -16,8 +16,8 @@
 //    searchTextField.font = [UIFont systemFontOfSize:13];
 //
 //    [self addShadowToView:self withColor:KDarkGaryColor];
-    self.searchBar.tintColor = SEGMENT_COLOR;
-
+    self.findTextField.tintColor = SEGMENT_COLOR;
+    self.findTextField.textColor = SEGMENT_COLOR;
 
 
 }

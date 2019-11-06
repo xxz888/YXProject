@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,34 +17,46 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7R4-GF-iRr">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
                     <subviews>
-                        <searchBar contentMode="redraw" placeholder="搜索" scopeBarBackgroundImage="1" translatesAutoresizingMaskIntoConstraints="NO" id="f0K-B3-5RC">
-                            <rect key="frame" x="0.0" y="9" width="375" height="34"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohD-wO-baF">
+                            <rect key="frame" x="0.0" y="11" width="359" height="30"/>
+                            <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入关键字" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h4U-HX-c5g">
+                                    <rect key="frame" x="52" y="0.0" width="307" height="30"/>
+                                    <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="放大镜" translatesAutoresizingMaskIntoConstraints="NO" id="3Cv-C2-fIg">
+                                    <rect key="frame" x="16" y="5" width="20" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="GaX-UO-Bht"/>
+                                        <constraint firstAttribute="height" constant="20" id="Xbp-C9-TVI"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="34" id="0rH-YA-P81"/>
+                                <constraint firstItem="h4U-HX-c5g" firstAttribute="leading" secondItem="3Cv-C2-fIg" secondAttribute="trailing" constant="16" id="1Ql-e7-6mb"/>
+                                <constraint firstItem="3Cv-C2-fIg" firstAttribute="leading" secondItem="ohD-wO-baF" secondAttribute="leading" constant="16" id="9jf-q4-v4a"/>
+                                <constraint firstAttribute="bottom" secondItem="h4U-HX-c5g" secondAttribute="bottom" id="Lcf-jh-dWy"/>
+                                <constraint firstItem="h4U-HX-c5g" firstAttribute="top" secondItem="ohD-wO-baF" secondAttribute="top" id="MZK-qU-lyI"/>
+                                <constraint firstAttribute="height" constant="30" id="YEX-xG-w1h"/>
+                                <constraint firstAttribute="trailing" secondItem="h4U-HX-c5g" secondAttribute="trailing" id="eV5-ul-qOd"/>
+                                <constraint firstItem="3Cv-C2-fIg" firstAttribute="centerY" secondItem="ohD-wO-baF" secondAttribute="centerY" id="rdC-ai-Epa"/>
                             </constraints>
-                            <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEd-G5-mml">
-                            <rect key="frame" x="375" y="11.5" width="0.0" height="29"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="取消">
-                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <connections>
-                                <action selector="cancleAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="21O-op-EXx"/>
-                            </connections>
-                        </button>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskBounds" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="15"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="hEd-G5-mml" firstAttribute="centerY" secondItem="f0K-B3-5RC" secondAttribute="centerY" id="7nQ-0w-0e2"/>
-                        <constraint firstItem="f0K-B3-5RC" firstAttribute="leading" secondItem="7R4-GF-iRr" secondAttribute="leading" id="AyM-gK-1Pw"/>
-                        <constraint firstAttribute="trailing" secondItem="hEd-G5-mml" secondAttribute="trailing" id="KyI-nK-LEw"/>
-                        <constraint firstAttribute="trailing" secondItem="f0K-B3-5RC" secondAttribute="trailing" id="QWq-VG-IEH"/>
-                        <constraint firstItem="hEd-G5-mml" firstAttribute="leading" secondItem="f0K-B3-5RC" secondAttribute="trailing" id="n2c-V4-Iwl"/>
-                        <constraint firstItem="f0K-B3-5RC" firstAttribute="centerY" secondItem="7R4-GF-iRr" secondAttribute="centerY" id="qRv-qC-9Yv"/>
+                        <constraint firstItem="ohD-wO-baF" firstAttribute="centerY" secondItem="7R4-GF-iRr" secondAttribute="centerY" id="Ex9-46-8hB"/>
+                        <constraint firstAttribute="trailing" secondItem="ohD-wO-baF" secondAttribute="trailing" constant="16" id="LvR-3E-6Df"/>
+                        <constraint firstItem="ohD-wO-baF" firstAttribute="leading" secondItem="7R4-GF-iRr" secondAttribute="leading" id="SGi-Xi-dcl"/>
                     </constraints>
                 </view>
             </subviews>
@@ -58,14 +70,12 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="cancleBtn" destination="hEd-G5-mml" id="v47-S0-e9u"/>
-                <outlet property="searchBar" destination="f0K-B3-5RC" id="FFI-V3-DmV"/>
-                <outlet property="searchBarHeight" destination="QWq-VG-IEH" id="BLV-kq-sjl"/>
+                <outlet property="findTextField" destination="h4U-HX-c5g" id="Srm-5d-Vjf"/>
             </connections>
-            <point key="canvasLocation" x="-783" y="-99"/>
+            <point key="canvasLocation" x="-783.20000000000005" y="-99.850074962518747"/>
         </view>
     </objects>
     <resources>
-        <image name="1" width="16" height="16"/>
+        <image name="放大镜" width="32" height="32"/>
     </resources>
 </document>
