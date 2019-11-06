@@ -29,15 +29,27 @@
     self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXJiFenShop1TableViewCell" bundle:nil] forCellReuseIdentifier:@"YXJiFenShop1TableViewCell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXJiFenShop2TableViewCell" bundle:nil] forCellReuseIdentifier:@"YXJiFenShop2TableViewCell"];
+    [self addRefreshView:self.yxTableView];
     [self getData];
 }
-
+-(void)headerRereshing{
+    [self getData];
+}
+-(void)footerRereshing{
+    [self.yxTableView.mj_header endRefreshing];
+          [self.yxTableView.mj_footer endRefreshing];
+    
+}
 -(void)getData{
     [self.dataArray removeAllObjects];
     kWeakSelf(self);
     [YXPLUS_MANAGER requestIntegral_classify:@"" success:^(id object) {
         [weakself.dataArray addObjectsFromArray:object[@"data"]];
         [weakself.yxTableView reloadData];
+        
+        [weakself.yxTableView.mj_header endRefreshing];
+        [weakself.yxTableView.mj_footer endRefreshing];
+
     }];
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -77,9 +89,9 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.row];
     if ([dic[@"commodify_id"] integerValue] == 0) {
-        return 550;
+        return 600;
     }else{
-         return 460;
+         return 490;
     }
    
 }

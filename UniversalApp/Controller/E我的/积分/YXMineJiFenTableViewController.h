@@ -9,6 +9,7 @@
 #import "RootTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
+typedef void(^backVcBlock)(void);
 
 @interface YXMineJiFenTableViewController : RootTableViewController
 @property (weak, nonatomic) IBOutlet UIImageView *accImv;
@@ -34,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *day7;
 @property (weak, nonatomic) IBOutlet UILabel *jifenNumLbl;
 @property (weak, nonatomic) IBOutlet UILabel *nameLbl;
+@property(nonatomic, copy) backVcBlock  backvcBlock;//用户信息
 
 @end
 

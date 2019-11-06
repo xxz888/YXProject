@@ -204,6 +204,9 @@
     _headerView.editPersionblock = ^{
         
         YXMineJiFenTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineJiFenTableViewController"];
+        VC.backvcBlock = ^{
+            [weakself setViewData];
+        };
         [weakself.navigationController pushViewController:VC animated:YES];
     };
     
@@ -498,7 +501,7 @@
              }];
             [QMUITips hideAllTips];
             [QMUITips showLoadingInView:self.view];
-             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                  NSDictionary * userInfo = userManager.loadUserAllInfo;
                        [YX_MANAGER requestGetFind_user_id:user_id_BOOL ? weakself.userId : kGetString(userInfo[@"id"]) success:^(id object) {
                            [QMUITips hideAllTips];

@@ -18,7 +18,7 @@
 #import "YXMineChouJiangViewController.h"
 
 
-static CGFloat sectionHeaderHeight = 80;
+static CGFloat sectionHeaderHeight = 90;
 @interface YXMineAndFindBaseViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,ZInputToolbarDelegate,UIScrollViewDelegate>{
     CGFloat _autoPLHeight;
     BOOL _tagSelectBool;
@@ -71,7 +71,7 @@ static CGFloat sectionHeaderHeight = 80;
         _headerView = [[UIView alloc]init];
         _headerView.frame = CGRectMake(0, 0, KScreenWidth, sectionHeaderHeight);
         _headerView.backgroundColor = KWhiteColor;
-        UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(6,13,KScreenWidth-14, 64)];
+        UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(6,13,KScreenWidth-14, 74)];
         imageView.image = [UIImage imageNamed:@"findXingYunChouJiang"];
         imageView.userInteractionEnabled = YES;
         
@@ -89,7 +89,7 @@ static CGFloat sectionHeaderHeight = 80;
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return [self.startDic[@"id"] integerValue] == 1 ? 74 : 0;
+    return [self.startDic[@"id"] integerValue] == 1 ? sectionHeaderHeight : 0;
 }
 #pragma mark ========== tableview代理方法 ==========
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

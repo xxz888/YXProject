@@ -87,7 +87,7 @@
         kWeakSelf(self);
         [YX_MANAGER requestFaBuImagePOST:dic success:^(id object) {
             [QMUITips hideAllTipsInView:weakself.view];
-            [QMUITips showSucceed:object[@"message"] inView:[ShareManager getMainView] hideAfterDelay:1];
+            [QMUITips showSucceed:@"发布成功"];
             if (weakself.closeNewVcblock) {
                    weakself.closeNewVcblock();
                }

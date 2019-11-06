@@ -125,6 +125,7 @@
 }
 
 - (IBAction)backAction:(id)sender {
+    self.backvcBlock();
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -145,7 +146,7 @@
 
         [weakself handleShowContentView];
         
-        
+        [weakself requestData];
     }];
     
 

@@ -21,8 +21,8 @@
     //点击几次后触发事件响应，默认为：1
     click.numberOfTapsRequired = 1;
     [self.jifenView addGestureRecognizer:jifenclick];
-    
-    ViewBorderRadius(self.jifenView, 15, 1, kRGBA(176, 151, 99, 1));
+    self.jifenView.backgroundColor = kRGBA(176, 151, 99, 1);
+//    ViewBorderRadius(self.jifenView, 15, 1, kRGBA(176, 151, 99, 1));
     ViewBorderRadius(self.sexView, 14, 1, KWhiteColor);
     ViewBorderRadius(self.nvsexview, 14, 1, KWhiteColor);
     [self.fasixinBtn setTitleColor:A_COlOR forState:0];

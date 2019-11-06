@@ -122,7 +122,7 @@
     self.axcTabBar.tabBarConfig = tabBarConfs;
     // 7.设置委托
     self.axcTabBar.delegate = self;
-    self.axcTabBar.backgroundColor = YXRGBAColor(249, 249, 249);
+    self.axcTabBar.backgroundColor = KWhiteColor;
     // 8.添加覆盖到上边
     [self.tabBar addSubview:self.axcTabBar];
     [self addLayoutTabBar]; // 10.添加适配

@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
 @property(nonatomic, strong) QMUIGridView *gridView;
 @property(nonatomic,strong)NSMutableArray * dataArray;
+@property(nonatomic,strong)NSMutableArray * tagIdArray;
 
 @end
 
@@ -42,6 +43,7 @@
     [self setNavSearchView];
     self.tagArray = [[NSMutableArray alloc]init];
     self.dataArray = [[NSMutableArray alloc]init];
+    self.tagIdArray = [[NSMutableArray alloc]init];
     [self addRefreshView:self.yxTableView];
     //    [self requestGetTag];
     [self requestFindTag];
@@ -61,20 +63,22 @@
 -(void)requestFindTag{
     kWeakSelf(self);
     [self.tagArray removeAllObjects];
+    [self.tagIdArray removeAllObjects];
     [YX_MANAGER requestGet_users_find_tag:@"" success:^(id object) {
         
 
         for (NSDictionary * dic in object) {
             [weakself.tagArray addObject:dic[@"type"]];
+            [weakself.tagIdArray addObject:kGetString(dic[@"id"])];
         }
         [sliderSegmentView setTitleArray:weakself.tagArray withStyle:CBSegmentStyleSlider];
-        [weakself requestGetTagLIst:kGetString(object[0][@"id"])];
+        [weakself requestGetTagLIst:kGetString(weakself.tagIdArray[0])];
     }];
 }
 #pragma mark ========== 根据标签请求列表 ==========
 -(void)requestGetTagLIst:(NSString *)page{
     kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"%@/%@",NSIntegerToNSString(self.requestPage),page];
+    NSString * par = [NSString stringWithFormat:@"%@/%@",page,NSIntegerToNSString(self.requestPage)];
     [YX_MANAGER requestGetTagList:par success:^(id object) {
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
@@ -84,7 +88,8 @@
     kWeakSelf(self);
     sliderSegmentView = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, 40)];
     sliderSegmentView.titleChooseReturn = ^(NSInteger x) {
-        weakself.type = NSIntegerToNSString(x+1);
+        
+        weakself.type = weakself.tagIdArray[x];
         [weakself requestGetTagLIst:weakself.type];
     };
     return sliderSegmentView;

@@ -28,7 +28,6 @@
     [self.navigationController.navigationBar setHidden:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                               selector:@selector(jiesuochenggong:) name:@"jiesuochenggong" object:nil];
-    [self requestZhiNanGet];
 }
 -(void)jiesuochenggong:(id)notice{
     [self requestZhiNanGet];
@@ -42,6 +41,7 @@
     [super viewDidLoad];
     [self initTableView];
     [self addRefreshView:self.yxTableView];
+    [self requestZhiNanGet];
 
 }
 -(void)headerRereshing{
@@ -117,7 +117,11 @@
     return self.dataArray.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.collArray.count > 0 && self.collArray.count <= self.dataArray.count) {
+    
+    if (self.collArray.count > 0) {
+        if (self.collArray.count != self.dataArray.count) {
+            return 100;
+        }
         NSInteger n = [self.collArray[indexPath.row] count];
         return 44 * (n/2+n%2) + 80;
     }
