@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIStackView *myStackView;
 @property (weak, nonatomic) IBOutlet UIStackView *otherStackView;
 @property (weak, nonatomic) IBOutlet UIView *fasixinView;
+@property (weak, nonatomic) IBOutlet UIButton *shezhiBtn;
 
 @property (weak, nonatomic) IBOutlet UILabel *guanzhuCountLbl;
 @property (weak, nonatomic) IBOutlet UILabel *fensiCountLbl;

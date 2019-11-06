@@ -24,6 +24,7 @@
     self.textView = [[QMUITextView alloc] init];
     self.textView.frame = CGRectMake(0, 0, KScreenWidth, self.qianmingView.frame.size.height);
     self.textView.delegate = self;
+    self.textView.maximumTextLength = 25;
     self.textView.placeholder = @"填写个人签名";
     self.textView.placeholderColor = UIColorPlaceholder; // 自定义 placeholder 的颜色
     self.textView.textContainerInset = UIEdgeInsetsMake(10, 7, 10, 7);
@@ -49,6 +50,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if (textView.text.length + 1 > 25) {
+        return NO;
+    }
     self.textCount.text = [NSString stringWithFormat:@"%ld",self.textView.text.length+1];
     return YES;
 }

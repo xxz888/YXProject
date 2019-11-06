@@ -26,7 +26,9 @@
  
     self.nodataImg.hidden = YES;
     
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSecondVC:) name:@"refreshSecondVC" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSecondVC:) name:@"refreshSecondVC" object:nil];
+    [self requestTableData];
+
 }
 - (void)dealloc {
     //单条移除观察者
@@ -82,7 +84,6 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self requestTableData];
 }
 #pragma mark ========== 我自己的所有 ==========
 -(void)requestMine_AllList{

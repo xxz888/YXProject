@@ -144,11 +144,11 @@
         
         
         if (self.whereCome) {
-            _headerView.guanzhuBtn.hidden = _headerView.fasixinBtn.hidden = _headerView.fasixinView.hidden = NO;
-            _headerView.editPersonBtn.hidden = YES;
+            _headerView.guanzhuBtn.hidden = _headerView.fasixinBtn.hidden = _headerView.fasixinView.hidden = _headerView.backBtn.hidden =  NO;
+            _headerView.editPersonBtn.hidden = _headerView.shezhiBtn.hidden  = YES;
         }else{
-            _headerView.guanzhuBtn.hidden = _headerView.fasixinBtn.hidden =  _headerView.fasixinView.hidden = YES;
-            _headerView.editPersonBtn.hidden = NO;
+            _headerView.guanzhuBtn.hidden = _headerView.fasixinBtn.hidden =  _headerView.fasixinView.hidden =  _headerView.backBtn.hidden = YES;
+            _headerView.editPersonBtn.hidden = _headerView.shezhiBtn.hidden = NO;
         }
         
         _headerView.mineImageView.layer.masksToBounds = YES;
@@ -254,7 +254,7 @@
     //发私信
     _headerView.fasixinblock = ^{
           SimpleChatMainViewController * vc = [[SimpleChatMainViewController alloc]init];
-          vc.userInfoDic = [NSDictionary dictionaryWithDictionary:userManager.loadUserAllInfo];
+          vc.userInfoDic = [NSDictionary dictionaryWithDictionary:weakself.userInfoDic];
           [weakself.navigationController pushViewController:vc animated:YES];
     };
 }
@@ -423,9 +423,7 @@
 - (void)segmentedPageViewControllerWillBeginDragging {
     self.yxTableView.scrollEnabled = NO;
 }
-
 - (void)segmentedPageViewControllerDidEndDragging {
-
     self.yxTableView.scrollEnabled = YES;
 }
 
@@ -489,6 +487,7 @@
         self.picPathStringsArray = [[NSMutableArray alloc]init];
         [YX_MANAGER requestGetUserothers:self.userId success:^(id object) {
             [weakself personValue:object];
+            weakself.userInfoDic = [NSDictionary dictionaryWithDictionary:object];
         }];
     }else{
         self.headerView.backBtn.hidden = self.headerView.guanzhuBtn.hidden = self.headerView.otherStackView.hidden = YES;
@@ -520,16 +519,15 @@
 
     
     self.headerView.qianmingLbl.text = object[@"character"];
-    self.headerView.sexView.hidden = [object[@"gender"] integerValue] == 0;
-    self.headerView.nvsexview.hidden = [object[@"gender"] integerValue] != 0 ;
     kWeakSelf(self);
 
     self.navigationItem.title = kGetString(object[@"username"]);
     self.headerView.mineTitle.text =kGetString(object[@"username"]);
-    self.headerView.mineAdress.text = kGetString(object[@"site"]);
+    NSString * sex = [object[@"gender"] integerValue] == 0 ? @"女" : @"男";
+    self.headerView.mineAdress.text =  [NSString stringWithFormat:@"%@ | %@",sex,object[@"site"]];
     if (self.whereCome) {
-            self.headerView.otherguanzhucountlbl.text = kGetString(object[@"likes_number"]);
-            self.headerView.otherfensicountlbl.text = kGetString(object[@"fans_number"]);
+        self.headerView.otherguanzhucountlbl.text = kGetString(object[@"likes_number"]);
+        self.headerView.otherfensicountlbl.text = kGetString(object[@"fans_number"]);
         [self.picPathStringsArray removeAllObjects];
         [self.picPathStringsArray addObject:str];
     }else{
@@ -548,18 +546,15 @@
         [self.headerView.guanzhuBtn setTitleColor:KWhiteColor forState:0];
         [self.headerView.guanzhuBtn setBackgroundColor:kRGBA(64, 75, 84, 1)];
     }else{
-               [self.headerView.guanzhuBtn setTitle:@"＋关注" forState:UIControlStateNormal];
-               [self.headerView.guanzhuBtn setTitleColor:KWhiteColor forState:0];
-               [self.headerView.guanzhuBtn setBackgroundColor:kRGBA(176, 151, 99, 1)];
+       [self.headerView.guanzhuBtn setTitle:@"＋关注" forState:UIControlStateNormal];
+       [self.headerView.guanzhuBtn setTitleColor:KWhiteColor forState:0];
+       [self.headerView.guanzhuBtn setBackgroundColor:kRGBA(176, 151, 99, 1)];
     }
     
     ViewBorderRadius(self.headerView.guanzhuBtn, 5, 1,KClearColor);
     
-    
-    [[SDImageCache sharedImageCache] clearDisk];
 
-    [[SDImageCache sharedImageCache] clearMemory];//可有可无
-            [weakself.headerView.mineImageView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:str]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
+    [weakself.headerView.mineImageView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:str]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
 }
 
 

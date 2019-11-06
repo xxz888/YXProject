@@ -61,7 +61,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-     self.titleLbl.text = self.userInfoDic[@"username"];
+    self.titleLbl.text = self.userInfoDic[@"username"];
     if (kScreenHeight > 810) {self.iPhoneX = 10; }else{self.iPhoneX = 0;}
     [self createTableView];
     self.mDic = [[NSMutableDictionary alloc]init];

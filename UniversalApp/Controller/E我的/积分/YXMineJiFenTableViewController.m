@@ -125,7 +125,9 @@
 }
 
 - (IBAction)backAction:(id)sender {
-    self.backvcBlock();
+    if (self.backvcBlock) {
+        self.backvcBlock();
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
