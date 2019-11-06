@@ -116,7 +116,7 @@ typedef void (^ListenChangeIndexBlock)(NSInteger);
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar;
 - (void)cancleAction;
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar;
-
+-(void)textField1TextChange:(UITextField *)tf;
 
 
 

@@ -139,8 +139,11 @@
     }];
 }
 -(void)textField1TextChange:(UITextField *)tf{
-    if (tf.text.length == 0) {
-
+    if (tf.text.length != 0) {
+          kWeakSelf(self);
+          [YX_MANAGER requestGetTagList_Tag:@{@"type":self.selectRow,@"key":tf.text,@"page":@"1"} success:^(id object) {
+            
+          }];
     }
 }
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{

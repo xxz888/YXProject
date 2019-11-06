@@ -396,7 +396,7 @@
     _searchHeaderView.searchBar.delegate = self;
     [self.navigationItem.titleView sizeToFit];
     self.navigationItem.titleView = _searchHeaderView;
-    [_searchHeaderView.findTextField addTarget:self action:@selector(textField1TextChange:) forControlEvents:UIControlEventValueChanged];
+    [_searchHeaderView.findTextField addTarget:self action:@selector(textField1TextChange:) forControlEvents:UIControlEventEditingChanged];
 
 }
 
