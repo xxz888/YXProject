@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *yaoqing2;
 @property (weak, nonatomic) IBOutlet UILabel *yaoqing3;
 @property (weak, nonatomic) IBOutlet UILabel *shengyulbl;
+@property (weak, nonatomic) IBOutlet UIButton *fenxiangBtn;
 
 @end
 

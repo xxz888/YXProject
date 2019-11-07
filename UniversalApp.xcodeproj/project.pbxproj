@@ -213,6 +213,10 @@
 		BB59B9642373AF080064EC59 /* YXPublishNewTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB59B9632373AF080064EC59 /* YXPublishNewTagView.m */; };
 		BB59B9662373AF170064EC59 /* YXPublishNewTagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB59B9652373AF170064EC59 /* YXPublishNewTagView.xib */; };
 		BB59B96C2373B4A30064EC59 /* CALayer+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = BB59B96B2373B4A30064EC59 /* CALayer+Color.m */; };
+		BB59B96F2373C5820064EC59 /* YXSecondHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB59B96E2373C5820064EC59 /* YXSecondHeadView.m */; };
+		BB59B9712373C5B40064EC59 /* YXSecondHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB59B9702373C5B40064EC59 /* YXSecondHeadView.xib */; };
+		BB59B9752373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB59B9732373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.m */; };
+		BB59B9762373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB59B9742373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.xib */; };
 		BB5DC69B2189CA38003F1998 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */; };
 		BB5DC69C2189CA38003F1998 /* SELUpdateAlertConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */; };
 		BB5FD86A21FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD86821FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m */; };
@@ -330,8 +334,6 @@
 		BB9EFE7021F5CCBA00180813 /* YXPublishMoreTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFE6E21F5CCBA00180813 /* YXPublishMoreTagsViewController.m */; };
 		BB9EFE7121F5CCBA00180813 /* YXPublishMoreTagsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB9EFE6F21F5CCBA00180813 /* YXPublishMoreTagsViewController.xib */; };
 		BBA8129621DDA9A5001B5EA1 /* YXHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA8129521DDA9A5001B5EA1 /* YXHome.storyboard */; };
-		BBA8129821DDA9B6001B5EA1 /* YXFind.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA8129721DDA9B6001B5EA1 /* YXFind.storyboard */; };
-		BBA8129A21DDA9F1001B5EA1 /* YXPublish.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA8129921DDA9F1001B5EA1 /* YXPublish.storyboard */; };
 		BBA8129C21DDAA04001B5EA1 /* YXMessage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA8129B21DDAA04001B5EA1 /* YXMessage.storyboard */; };
 		BBA8129E21DDAA15001B5EA1 /* YXMine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA8129D21DDAA15001B5EA1 /* YXMine.storyboard */; };
 		BBA812AD21DDAB9D001B5EA1 /* YXFindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA812AC21DDAB9D001B5EA1 /* YXFindViewController.m */; };
@@ -1010,6 +1012,12 @@
 		BB59B9652373AF170064EC59 /* YXPublishNewTagView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXPublishNewTagView.xib; sourceTree = "<group>"; };
 		BB59B96A2373B4A30064EC59 /* CALayer+Color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+Color.h"; sourceTree = "<group>"; };
 		BB59B96B2373B4A30064EC59 /* CALayer+Color.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Color.m"; sourceTree = "<group>"; };
+		BB59B96D2373C5820064EC59 /* YXSecondHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXSecondHeadView.h; sourceTree = "<group>"; };
+		BB59B96E2373C5820064EC59 /* YXSecondHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXSecondHeadView.m; sourceTree = "<group>"; };
+		BB59B9702373C5B40064EC59 /* YXSecondHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXSecondHeadView.xib; sourceTree = "<group>"; };
+		BB59B9722373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXSecondHeadCollectionViewCell.h; sourceTree = "<group>"; };
+		BB59B9732373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXSecondHeadCollectionViewCell.m; sourceTree = "<group>"; };
+		BB59B9742373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXSecondHeadCollectionViewCell.xib; sourceTree = "<group>"; };
 		BB5DC6972189CA38003F1998 /* SELUpdateAlertConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlertConst.h; sourceTree = "<group>"; };
 		BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
 		BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlertConst.m; sourceTree = "<group>"; };
@@ -1212,8 +1220,6 @@
 		BB9EFE6E21F5CCBA00180813 /* YXPublishMoreTagsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXPublishMoreTagsViewController.m; sourceTree = "<group>"; };
 		BB9EFE6F21F5CCBA00180813 /* YXPublishMoreTagsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXPublishMoreTagsViewController.xib; sourceTree = "<group>"; };
 		BBA8129521DDA9A5001B5EA1 /* YXHome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = YXHome.storyboard; sourceTree = "<group>"; };
-		BBA8129721DDA9B6001B5EA1 /* YXFind.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = YXFind.storyboard; sourceTree = "<group>"; };
-		BBA8129921DDA9F1001B5EA1 /* YXPublish.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = YXPublish.storyboard; sourceTree = "<group>"; };
 		BBA8129B21DDAA04001B5EA1 /* YXMessage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = YXMessage.storyboard; sourceTree = "<group>"; };
 		BBA8129D21DDAA15001B5EA1 /* YXMine.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = YXMine.storyboard; sourceTree = "<group>"; };
 		BBA812AB21DDAB9D001B5EA1 /* YXFindViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindViewController.h; sourceTree = "<group>"; };
@@ -3399,7 +3405,6 @@
 		BBA812A721DDAB7A001B5EA1 /* B发现 */ = {
 			isa = PBXGroup;
 			children = (
-				BB59B952237297790064EC59 /* 热门话题 */,
 				BBC3FAFE22C4647400BB2564 /* YXSecondViewController.h */,
 				BBC3FAFF22C4647400BB2564 /* YXSecondViewController.m */,
 				BBD1C77222166AD40063002F /* YXMineAndFindBaseViewController.h */,
@@ -3411,6 +3416,7 @@
 				BBADE4D521F8655E0011E5FF /* YXMineImageDetailViewController.m */,
 				BBA812AB21DDAB9D001B5EA1 /* YXFindViewController.h */,
 				BBA812AC21DDAB9D001B5EA1 /* YXFindViewController.m */,
+				BB59B952237297790064EC59 /* 热门话题 */,
 				BBB59A1B228CF8CA0029D3D0 /* 搜索 */,
 				BBC7CD1B22E16BDB00AC9E2D /* 发现头部 */,
 				BB70253E2212A3A7009EBE39 /* 搜索结果 */,
@@ -4256,8 +4262,6 @@
 			children = (
 				BBC16283217AD6EA00008907 /* Login.storyboard */,
 				BBA8129521DDA9A5001B5EA1 /* YXHome.storyboard */,
-				BBA8129721DDA9B6001B5EA1 /* YXFind.storyboard */,
-				BBA8129921DDA9F1001B5EA1 /* YXPublish.storyboard */,
 				BBA8129B21DDAA04001B5EA1 /* YXMessage.storyboard */,
 				BBA8129D21DDAA15001B5EA1 /* YXMine.storyboard */,
 			);
@@ -4287,6 +4291,12 @@
 		BBC7CD1B22E16BDB00AC9E2D /* 发现头部 */ = {
 			isa = PBXGroup;
 			children = (
+				BB59B96D2373C5820064EC59 /* YXSecondHeadView.h */,
+				BB59B96E2373C5820064EC59 /* YXSecondHeadView.m */,
+				BB59B9702373C5B40064EC59 /* YXSecondHeadView.xib */,
+				BB59B9722373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.h */,
+				BB59B9732373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.m */,
+				BB59B9742373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.xib */,
 				BBC7CD1C22E16BFB00AC9E2D /* YXFindHeaderView.h */,
 				BBC7CD1D22E16BFB00AC9E2D /* YXFindHeaderView.m */,
 				BBC7CD1F22E16C0500AC9E2D /* YXFindHeaderView.xib */,
@@ -5172,7 +5182,6 @@
 				BBB59B3A228CF92D0029D3D0 /* YXGridView.xib in Resources */,
 				BBEA15772366E41B006FBBFF /* ImageSelectedOn@2x.png in Resources */,
 				BBEA156A2366E41B006FBBFF /* ImageSelectedOn.png in Resources */,
-				BBA8129A21DDA9F1001B5EA1 /* YXPublish.storyboard in Resources */,
 				BBD2C94A21E0F67800350DCD /* LICENSE in Resources */,
 				BBA8129C21DDAA04001B5EA1 /* YXMessage.storyboard in Resources */,
 				BB524795234A2F3B00FB22B3 /* YXFaBuNewVCViewController.xib in Resources */,
@@ -5218,7 +5227,6 @@
 				BBACB4CC234DC2E10092367B /* YXJiFenShop2CollectionViewCell.xib in Resources */,
 				BB21FDBA22B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib in Resources */,
 				BBADE4DD21F866670011E5FF /* YXMineImageDetailHeaderView.xib in Resources */,
-				BBA8129821DDA9B6001B5EA1 /* YXFind.storyboard in Resources */,
 				BBB59B1F228CF8CB0029D3D0 /* YXHomeChiCunViewController.xib in Resources */,
 				BBBCDBB2223F65540056C7DD /* LICENSE in Resources */,
 				2917D20B1EE007C300E76185 /* MBHUD_Error@2x.png in Resources */,
@@ -5252,6 +5260,7 @@
 				BB9832872202D77C0048D103 /* Images.xcassets in Resources */,
 				BB928F7D21FB55E80090A044 /* YXMineMyDianZanViewController.xib in Resources */,
 				BBABDF3A229BC3A20046683A /* YXZhiNan2Cell.xib in Resources */,
+				BB59B9712373C5B40064EC59 /* YXSecondHeadView.xib in Resources */,
 				BBEA15612366E41B006FBBFF /* ImageError@2x.png in Resources */,
 				BBACB4D3234DCCD40092367B /* YXJiFenShopDetailViewController.xib in Resources */,
 				BB0AE5C92253384900CC07EC /* YXFindSearchTagHeaderView.xib in Resources */,
@@ -5280,6 +5289,7 @@
 				BB6F6A232361A31B00EC8732 /* style.css in Resources */,
 				BBD2C95721E0F72800350DCD /* README.md in Resources */,
 				BB53E74B235F01020014F106 /* YXWenZhangEditorViewController.xib in Resources */,
+				BB59B9762373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.xib in Resources */,
 				BBEA15732366E41B006FBBFF /* UIBarButtonItemArrowRight@2x.png in Resources */,
 				BBB59B3D228CF92D0029D3D0 /* YXHomeXueJiaHeaderView.xib in Resources */,
 				BBACB4BE234D87690092367B /* YXJiFenShop1CollectionViewCell.xib in Resources */,
@@ -5570,6 +5580,7 @@
 				BB53E730235EFAC00014F106 /* UIImage+HXExtension.m in Sources */,
 				BBD2C90021E0F67700350DCD /* TZPhotoPickerController.m in Sources */,
 				BBB59AFF228CF8CB0029D3D0 /* SDTimeLineCell.m in Sources */,
+				BB59B96F2373C5820064EC59 /* YXSecondHeadView.m in Sources */,
 				BBD2C92021E0F67800350DCD /* MWPhotoBrowser.m in Sources */,
 				293D45F51ECDA453007C64A9 /* RootViewController.m in Sources */,
 				BBD2C80C21E0F41F00350DCD /* YXMineAllViewController.m in Sources */,
@@ -5704,6 +5715,7 @@
 				BB53E73E235EFAC00014F106 /* HXDatePhotoToolManager.m in Sources */,
 				BBDA2D2621EB30BF00EDCCFF /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				BBA812AD21DDAB9D001B5EA1 /* YXFindViewController.m in Sources */,
+				BB59B9752373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.m in Sources */,
 				BBB59B04228CF8CB0029D3D0 /* YXHomeXueJiaPinPaiDetailViewController.m in Sources */,
 				BB6F6A1B2361A31B00EC8732 /* KWFontStyleBar.m in Sources */,
 				BBB59AE9228CF8CB0029D3D0 /* PYTempViewController.m in Sources */,

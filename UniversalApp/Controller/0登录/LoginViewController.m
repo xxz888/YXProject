@@ -36,7 +36,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"登录";
-    
+    [self.loginBtn setBackgroundColor:SEGMENT_COLOR];
+
     self.codeTf.delegate = self;
     [self.codeTf addTarget:self action:@selector(changeCodeAction) forControlEvents:UIControlEventAllEvents];
     self.loginBtn.backgroundColor = [UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0];

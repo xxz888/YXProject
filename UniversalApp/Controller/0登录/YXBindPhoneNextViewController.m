@@ -25,6 +25,8 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.finishBtn.backgroundColor = SEGMENT_COLOR;
+
     self.nCodeTf.delegate = self;
     [self.nCodeTf addTarget:self action:@selector(changeCodeAction) forControlEvents:UIControlEventAllEvents];
     self.finishBtn.backgroundColor = [UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0];

@@ -17,9 +17,10 @@
 #import "YXSecondViewController.h"
 #import "YXMineChouJiangViewController.h"
 #import "YXHuaTiViewController.h"
+#import "YXSecondHeadView.h"
 
 
-static CGFloat sectionHeaderHeight = 90;
+static CGFloat sectionHeaderHeight = 260;
 @interface YXMineAndFindBaseViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,ZInputToolbarDelegate,UIScrollViewDelegate>{
     CGFloat _autoPLHeight;
     BOOL _tagSelectBool;
@@ -30,17 +31,28 @@ static CGFloat sectionHeaderHeight = 90;
 @property (nonatomic, strong) NSDictionary *shareDic;
 @property (nonatomic, strong) ZInputToolbar *inputToolbar;
 @property (nonatomic, strong) UIView * headerView;
+@property (nonatomic, strong) YXSecondHeadView * headerTagView;
+@property (nonatomic, strong) NSMutableArray *tagArray;
 
 @end
 @implementation YXMineAndFindBaseViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     _autoPLHeight = 0;
-    [self tableviewCon];
-    [self addRefreshView:self.yxTableView];
-   
+    self.dataArray = [[NSMutableArray alloc]init];
+    self.tagArray  = [[NSMutableArray alloc]init];;
+    [self requestFindTag];
 }
-
+#pragma mark ========== 先请求tag列表,获取发现页标签数据 ==========
+-(void)requestFindTag{
+    kWeakSelf(self);
+    [self.tagArray removeAllObjects];
+    [YX_MANAGER requestGet_users_find_tag:@"" success:^(id object) {
+        [weakself.tagArray addObjectsFromArray:object];
+        [weakself tableviewCon];
+        [weakself addRefreshView:self.yxTableView];
+    }];
+}
 #pragma mark ========== 创建tableview ==========
 -(void)tableviewCon{
     self.dataArray = [[NSMutableArray alloc]init];
@@ -68,28 +80,48 @@ static CGFloat sectionHeaderHeight = 90;
     
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (!_headerView) {
-        _headerView = [[UIView alloc]init];
-        _headerView.frame = CGRectMake(0, 0, KScreenWidth, sectionHeaderHeight);
-        _headerView.backgroundColor = KWhiteColor;
-        UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(6,13,KScreenWidth-14, 74)];
-        imageView.image = [UIImage imageNamed:@"findXingYunChouJiang"];
-        imageView.userInteractionEnabled = YES;
+    if (!_headerTagView) {
+         NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXSecondHeadView" owner:self options:nil];
+        _headerTagView = [nib objectAtIndex:0];
+        _headerTagView.frame = CGRectMake(0, 0, KScreenWidth, sectionHeaderHeight);
+        _headerTagView.backgroundColor = KWhiteColor;
         
+        [_headerTagView setCellData:self.tagArray];
+        
+        _headerTagView.choujiangImg.userInteractionEnabled = YES;
         //添加点击手势
         UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction:)];
         //点击几次后触发事件响应，默认为：1
         click.numberOfTapsRequired = 1;
-        [imageView addGestureRecognizer:click];
-        [_headerView addSubview:imageView];
+        [_headerTagView.choujiangImg addGestureRecognizer:click];
+        kWeakSelf(self);
+        //查看更多
+        _headerTagView.moretagblock = ^{
+            YXHuaTiViewController * vc = [[YXHuaTiViewController alloc]init];
+            [weakself.navigationController pushViewController:vc animated:YES];
+        };
+        //
+        _headerTagView.clickCollectionItemBlock = ^(NSString * string) {
+                [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":string,@"page":@"1",@"type":@"3"} success:^(id object) {
+                    if ([object count] > 0) {
+                        YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
+                        VC.type = @"3";
+                        VC.key = object[0][@"tag"];
+                        VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
+                        VC.startArray = [NSArray arrayWithArray:object];
+
+                        [weakself.navigationController pushViewController:VC animated:YES];
+                    }else{
+                        [QMUITips showInfo:@"无此标签的信息"];
+                    }
+                }];
+        };
     }
-    return _headerView;
+    return _headerTagView;
 }
 -(void)clickAction:(id)tap{
-    YXHuaTiViewController * vc = [[YXHuaTiViewController alloc]init];
+    YXMineChouJiangViewController * vc = [[YXMineChouJiangViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
-//    YXMineChouJiangViewController * vc = [[YXMineChouJiangViewController alloc]init];
-//    [self.navigationController pushViewController:vc animated:YES];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return [self.startDic[@"id"] integerValue] == 1 ? sectionHeaderHeight : 0;

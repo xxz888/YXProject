@@ -20,7 +20,8 @@
 //
 - (void)viewDidLoad {
     [super viewDidLoad];
- 
+ [self.fenxiangBtn setBackgroundColor:SEGMENT_COLOR];
+
     self.shengyulbl.text = [NSString stringWithFormat:@"—— 还差%@位好友助力，即可解锁所有文章阅读 ——",@"三"];
     
     //获取好友帮助列表

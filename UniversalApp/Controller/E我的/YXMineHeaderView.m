@@ -11,6 +11,7 @@
 @implementation YXMineHeaderView
 
 - (void)drawRect:(CGRect)rect {
+    self.backgroundColor = SEGMENT_COLOR;
     UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction:)];
     //点击几次后触发事件响应，默认为：1
     click.numberOfTapsRequired = 1;

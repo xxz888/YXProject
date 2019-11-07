@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSDictionary * userInfo = userManager.loadUserAllInfo;
-
+    self.bingBtn.backgroundColor = SEGMENT_COLOR;
     if (self.whereCome) {
         self.phoneTf.text = userInfo[@"mobile"];
         self.phoneTf.userInteractionEnabled = NO;

@@ -28,11 +28,11 @@
     self.navigationController.navigationBar.hidden = YES;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    [self requestTableData];
     
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self requestAction];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 280;
@@ -44,8 +44,10 @@
     headerView.lbl1.text = kGetString(self.startDic[@"tag"]);
     headerView.lbl2.text = [kGetNSInteger([self.dataArray count]) append:@"篇帖子"];
     
-    NSString * photo = [self.startDic[@"photo"] contains:IMG_OLD_URI] ? [self.startDic[@"photo"] replaceAll:IMG_OLD_URI target:IMG_URI] : self.startDic[@"photo"] ;
-    photo = [photo contains:IMG_URI] ? photo : [IMG_URI append:photo];
+    NSString * photo = @"";
+    if ([self.startDic[@"url_list"] count] > 0) {
+        photo = self.startDic[@"url_list"][0];
+    }
     [headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     kWeakSelf(self);
     headerView.backvcblock = ^{
@@ -69,11 +71,11 @@
     [self requestTableData];
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-CGFloat sectionHeaderHeight = 280;
-if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
-scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
-} else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
-scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+    CGFloat sectionHeaderHeight = 280;
+    if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+    scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+    } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+    scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
 }
 }
 //-(void)viewDidLoad{
@@ -89,6 +91,7 @@ scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
     [YX_MANAGER requestSearchFind_all:@{@"key":self.key,@"page":NSIntegerToNSString(self.requestPage),@"type":self.type,@"key_unicode":[self.key utf8ToUnicode]} success:^(id object) {
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxCollectionView reloadData];
+        [weakself.yxTableView reloadData];
         [weakself.yxCollectionView.mj_header endRefreshing];
         [weakself.yxCollectionView.mj_footer endRefreshing];
 

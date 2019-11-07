@@ -11,13 +11,11 @@
 
 
 @implementation YXJiFenLiJiGouMaiFootView
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
+
 - (void)drawRect:(CGRect)rect {
-    // Drawing code
+    [self.querenzhifu setBackgroundColor:SEGMENT_COLOR];
 }
-*/
+
 
 - (IBAction)querenzhifuAction:(id)sender {
     self.lijigoumaiblock();
