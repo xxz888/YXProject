@@ -151,5 +151,11 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) { }];
 }
+#pragma mark ==========添加tag==========
+-(void)requestAddIu_tagPOST:YX_BLOCK{
+    [HTTP_POST(@"/users/iu_tag/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
 
 @end

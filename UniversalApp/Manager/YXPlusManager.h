@@ -45,5 +45,7 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestChatting_ListoryGet:YX_BLOCK;
 #pragma mark ==========邀请好友解锁==========
 -(void)requestOption_lock_historyPOST:YX_BLOCK;
+#pragma mark ==========添加tag==========
+-(void)requestAddIu_tagPOST:YX_BLOCK;
 @end
 

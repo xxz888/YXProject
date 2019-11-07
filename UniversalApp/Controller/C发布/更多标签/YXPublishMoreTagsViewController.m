@@ -8,6 +8,8 @@
 
 #import "YXPublishMoreTagsViewController.h"
 #import "YXGridView.h"
+#import "YXPublishNewTagView.h"
+#import "BRStringPickerView.h"
 @interface YXPublishMoreTagsViewController ()<UITableViewDelegate,UITableViewDataSource>{
     CBSegmentView * sliderSegmentView;
     UITextField * searchBar;
@@ -20,6 +22,8 @@
 @property(nonatomic,strong)NSMutableArray * dataArray;
 @property(nonatomic,strong)NSMutableArray * tagIdArray;
 
+@property(nonatomic,strong)YXPublishNewTagView * contentView;
+@property(nonatomic,strong)NSString  * tag_type;
 @end
 
 @implementation YXPublishMoreTagsViewController
@@ -35,7 +39,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.type = @"1";
     [self.yxTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     [self.topview addSubview: [self headerView]];
     self.yxTableView.separatorColor = YXRGBAColor(239, 239, 239);
@@ -47,7 +50,7 @@
     [self addRefreshView:self.yxTableView];
     //    [self requestGetTag];
     [self requestFindTag];
-    
+    self.yxTableView.tableFooterView = [[UIView alloc]init];
     
 }
 -(void)headerRereshing{
@@ -72,6 +75,7 @@
             [weakself.tagIdArray addObject:kGetString(dic[@"id"])];
         }
         [sliderSegmentView setTitleArray:weakself.tagArray withStyle:CBSegmentStyleSlider];
+        weakself.type = kGetString(weakself.tagIdArray[0]);
         [weakself requestGetTagLIst:kGetString(weakself.tagIdArray[0])];
     }];
 }
@@ -134,6 +138,7 @@
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = 0;
     cell.textLabel.text =  [NSString stringWithFormat:@"#%@",self.dataArray[indexPath.row][@"tag"]];
+    cell.textLabel.textColor = kRGBA(68, 68, 68, 1);
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -145,5 +150,52 @@
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
+- (IBAction)newHuatiAction:(id)sender {
+    [self handleShowContentView];
+}
+- (void)handleShowContentView {
+    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXPublishNewTagView" owner:self options:nil];
+    _contentView = [nib objectAtIndex:0];
+    _contentView.frame = CGRectMake(20, 110, KScreenWidth-40, 403);
+    _contentView.backgroundColor = KClearColor;
+    QMUIModalPresentationViewController *modalViewController = [[QMUIModalPresentationViewController alloc] init];
+    modalViewController.contentView = _contentView;
+    [modalViewController showWithAnimated:YES completion:nil];
+    kWeakSelf(self);
 
+    
+    
+    //关闭
+    _contentView.closeblock = ^{
+        [modalViewController hideWithAnimated:YES completion:nil];;
+    };
+    //发布到哪
+    _contentView.fabublock = ^{
+        [BRStringPickerView showStringPickerWithTitle:@"发布到" dataSource:weakself.tagArray defaultSelValue:@"" resultBlock:^(id selectValue) {
+            [weakself.contentView.fabuBtn setTitle:selectValue forState:UIControlStateNormal];
+        }];
+    };
+    //确认
+    _contentView.makeSureblock = ^{
+        if ([weakself.contentView.fabuBtn.titleLabel.text isEqualToString:@"发布到"]) {
+            [QMUITips showError:@"清选择发布的类目" inView:weakself.contentView hideAfterDelay:1.0];            
+            return ;
+        }
+        if (weakself.contentView.huatiTf.text.length == 0) {
+            [QMUITips showError:@"请填写话题内容" inView:weakself.contentView hideAfterDelay:1.0];
+
+           return ;
+        }
+        [modalViewController hideWithAnimated:YES completion:nil];;
+        NSDictionary * dic = @{@"tag":weakself.contentView.huatiTf.text,@"tag_type":weakself.type,@"tag_id":@"",@"type":@"1"};
+        [YXPLUS_MANAGER requestAddIu_tagPOST:dic success:^(id object) {
+            [weakself dismissViewControllerAnimated:YES completion:^{
+                weakself.tagBlock(@{@"tag":weakself.contentView.huatiTf.text});
+            }];
+        }];
+    };
+    
+  
+    
+}
 @end

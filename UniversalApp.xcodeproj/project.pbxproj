@@ -210,6 +210,9 @@
 		BB59B95C23729CB00064EC59 /* YXHuaTiLeftTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB59B95A23729CB00064EC59 /* YXHuaTiLeftTableViewCell.xib */; };
 		BB59B9602372A1630064EC59 /* YXHuaTiRightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB59B95E2372A1630064EC59 /* YXHuaTiRightTableViewCell.m */; };
 		BB59B9612372A1630064EC59 /* YXHuaTiRightTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB59B95F2372A1630064EC59 /* YXHuaTiRightTableViewCell.xib */; };
+		BB59B9642373AF080064EC59 /* YXPublishNewTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB59B9632373AF080064EC59 /* YXPublishNewTagView.m */; };
+		BB59B9662373AF170064EC59 /* YXPublishNewTagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB59B9652373AF170064EC59 /* YXPublishNewTagView.xib */; };
+		BB59B96C2373B4A30064EC59 /* CALayer+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = BB59B96B2373B4A30064EC59 /* CALayer+Color.m */; };
 		BB5DC69B2189CA38003F1998 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */; };
 		BB5DC69C2189CA38003F1998 /* SELUpdateAlertConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */; };
 		BB5FD86A21FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD86821FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m */; };
@@ -1002,6 +1005,11 @@
 		BB59B95D2372A1630064EC59 /* YXHuaTiRightTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHuaTiRightTableViewCell.h; sourceTree = "<group>"; };
 		BB59B95E2372A1630064EC59 /* YXHuaTiRightTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHuaTiRightTableViewCell.m; sourceTree = "<group>"; };
 		BB59B95F2372A1630064EC59 /* YXHuaTiRightTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHuaTiRightTableViewCell.xib; sourceTree = "<group>"; };
+		BB59B9622373AF080064EC59 /* YXPublishNewTagView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXPublishNewTagView.h; sourceTree = "<group>"; };
+		BB59B9632373AF080064EC59 /* YXPublishNewTagView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXPublishNewTagView.m; sourceTree = "<group>"; };
+		BB59B9652373AF170064EC59 /* YXPublishNewTagView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXPublishNewTagView.xib; sourceTree = "<group>"; };
+		BB59B96A2373B4A30064EC59 /* CALayer+Color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+Color.h"; sourceTree = "<group>"; };
+		BB59B96B2373B4A30064EC59 /* CALayer+Color.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Color.m"; sourceTree = "<group>"; };
 		BB5DC6972189CA38003F1998 /* SELUpdateAlertConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlertConst.h; sourceTree = "<group>"; };
 		BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
 		BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlertConst.m; sourceTree = "<group>"; };
@@ -3330,6 +3338,9 @@
 				BB9EFE6D21F5CCBA00180813 /* YXPublishMoreTagsViewController.h */,
 				BB9EFE6E21F5CCBA00180813 /* YXPublishMoreTagsViewController.m */,
 				BB9EFE6F21F5CCBA00180813 /* YXPublishMoreTagsViewController.xib */,
+				BB59B9622373AF080064EC59 /* YXPublishNewTagView.h */,
+				BB59B9632373AF080064EC59 /* YXPublishNewTagView.m */,
+				BB59B9652373AF170064EC59 /* YXPublishNewTagView.xib */,
 			);
 			path = "更多标签";
 			sourceTree = "<group>";
@@ -3519,6 +3530,8 @@
 				BB6D2A3E21EF206A00F5049F /* KeyBoardTableView.m */,
 				BB2A8EB7221BE73300B6756A /* UIImage+ImgSize.h */,
 				BB2A8EB8221BE73300B6756A /* UIImage+ImgSize.m */,
+				BB59B96A2373B4A30064EC59 /* CALayer+Color.h */,
+				BB59B96B2373B4A30064EC59 /* CALayer+Color.m */,
 			);
 			path = "艺鑫工具";
 			sourceTree = "<group>";
@@ -5117,6 +5130,7 @@
 				29FEE77C1ECED1E200C81B60 /* MBHUD_Warn@3x.png in Resources */,
 				BB9EFE7121F5CCBA00180813 /* YXPublishMoreTagsViewController.xib in Resources */,
 				BBB59B88228EA0250029D3D0 /* YXZhiNanCollectionViewCell.xib in Resources */,
+				BB59B9662373AF170064EC59 /* YXPublishNewTagView.xib in Resources */,
 				BBD2C91F21E0F67800350DCD /* LLImagePicker.bundle in Resources */,
 				BB013344232F688F00573AC0 /* YXMineShouHuoAdressViewController.xib in Resources */,
 				BBEA15722366E41B006FBBFF /* PlayButtonOverlayLarge@3x.png in Resources */,
@@ -5442,6 +5456,7 @@
 				BB928F9321FB5D290090A044 /* BRStringPickerView.m in Sources */,
 				BB21FD8722B0991E0059BCAC /* KSButton.swift in Sources */,
 				BBA812C721DDBF6A001B5EA1 /* UIFactory.m in Sources */,
+				BB59B96C2373B4A30064EC59 /* CALayer+Color.m in Sources */,
 				BB3DFE98221E7F14000C70B5 /* YXFindSearchTagViewController.m in Sources */,
 				BB928F7C21FB55E80090A044 /* YXMineMyDianZanViewController.m in Sources */,
 				BBEA158C2366F05F006FBBFF /* MMImageListView.m in Sources */,
@@ -5712,6 +5727,7 @@
 				BB21FD8B22B0991E0059BCAC /* KSTriangleIndicatorButton.m in Sources */,
 				BBABDF1F229BB0400046683A /* YXZhiNanDetailViewController.m in Sources */,
 				BBB59AF9228CF8CB0029D3D0 /* SDTimeLineTableViewController.m in Sources */,
+				BB59B9642373AF080064EC59 /* YXPublishNewTagView.m in Sources */,
 				BBBFD7922222D7D300D377AC /* TOCropToolbar.m in Sources */,
 				BB53E72A235EFAC00014F106 /* HXDatePhotoPreviewViewController.m in Sources */,
 				BBDA2CFF21EB30BF00EDCCFF /* SDBaseRefreshView.m in Sources */,

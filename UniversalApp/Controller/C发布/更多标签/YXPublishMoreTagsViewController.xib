@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hZG-R1-qWi">
-                    <rect key="frame" x="0.0" y="70" width="375" height="597"/>
+                    <rect key="frame" x="0.0" y="50" width="375" height="617"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="qgd-jx-fz4"/>
@@ -31,17 +29,40 @@
                     </connections>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Su-nN-OLb">
-                    <rect key="frame" x="0.0" y="25" width="375" height="40"/>
+                    <rect key="frame" x="0.0" y="5" width="375" height="40"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="kv2-Uz-nfa"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vRD-V0-Ghj">
+                    <rect key="frame" x="132.5" y="603" width="110" height="36"/>
+                    <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="110" id="d9r-6e-VxF"/>
+                        <constraint firstAttribute="height" constant="36" id="o5b-wd-X71"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="新建话题">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="18"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="newHuatiAction:" destination="-1" eventType="touchUpInside" id="Xaq-e3-wyQ"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="vRD-V0-Ghj" secondAttribute="bottom" constant="28" id="BU6-0O-sRR"/>
                 <constraint firstItem="hZG-R1-qWi" firstAttribute="top" secondItem="6Su-nN-OLb" secondAttribute="bottom" constant="5" id="C5q-IR-GzB"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="6Su-nN-OLb" secondAttribute="trailing" id="JN4-zR-Jo5"/>
+                <constraint firstItem="vRD-V0-Ghj" firstAttribute="centerX" secondItem="hZG-R1-qWi" secondAttribute="centerX" id="Jt3-v7-xcB"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="hZG-R1-qWi" secondAttribute="bottom" id="Vc3-NS-WtF"/>
                 <constraint firstItem="hZG-R1-qWi" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="ZWM-un-F8k"/>
                 <constraint firstItem="6Su-nN-OLb" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="5" id="aZb-ee-HbH"/>

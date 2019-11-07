@@ -174,8 +174,8 @@
     CBGroupAndStreamView * silde = [[CBGroupAndStreamView alloc] initWithFrame:CGRectMake(0, 0,self.floatView.qmui_width, self.floatView.qmui_height)];
     silde.backgroundColor = KClearColor;
     silde.isSingle = YES;
-    silde.radius = 5;
-    silde.font = [UIFont systemFontOfSize:12];
+    silde.radius = 4;
+    silde.font = [UIFont systemFontOfSize:13];
     silde.titleTextFont = [UIFont systemFontOfSize:18];
     [silde setContentView:contentArr titleArr:titleArr];
     [self.floatView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
