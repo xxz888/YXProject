@@ -53,9 +53,6 @@ SINGLETON_FOR_CLASS(UserManager);
         
         if ([userManager loadUserInfo]) {
             [QMUITips showSucceed:@"登录成功"];
-//            [[AppDelegate shareAppDelegate].mainTabBar setSelectedIndex:0];
-//            [weakself closeViewAAA:vcself];
-
         }else{
             [QMUITips showSucceed:@"绑定成功,请重新登录"];
             KPostNotification(KNotificationLoginStateChange, @NO);
@@ -167,6 +164,7 @@ SINGLETON_FOR_CLASS(UserManager);
     if (completion) {
         completion(YES,nil);
     }
+    YX_MANAGER.isNeedRefrshMineVc = YES;
     KPostNotification(KNotificationLoginStateChange, @YES);
 }
 #pragma mark ————— 加载缓存的用户信息 —————
@@ -198,7 +196,8 @@ SINGLETON_FOR_CLASS(UserManager);
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults removeObjectForKey:KUserInfo];
     self.isLogined = NO;
-    YX_MANAGER.isClear = NO;
+    YX_MANAGER.isClear = YES;
+    YX_MANAGER.isNeedRefrshMineVc = YES;
     [[SocketRocketUtility instance] SRWebSocketClose];
     KPostNotification(KNotificationLoginStateChange, @NO);
 

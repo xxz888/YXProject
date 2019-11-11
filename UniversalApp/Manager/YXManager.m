@@ -1059,6 +1059,7 @@ successBlock(responseObject);\
 
     self.isClear = NO;
     self.moreBool = NO;
+    self.isNeedRefrshMineVc = NO;
     return  self;
 }
 @end

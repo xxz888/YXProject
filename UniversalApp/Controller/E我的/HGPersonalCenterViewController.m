@@ -85,7 +85,19 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
-
+    if (YX_MANAGER.isNeedRefrshMineVc) {
+        [self setViewData];
+    }
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+- (void)loginStateChange:(NSNotification *)notification{
+    BOOL loginSuccess = [notification.object boolValue];
+    if (loginSuccess) {
+        [self setViewData];
+    }
 }
 #pragma mark - Private Methods
 - (void)setupSubViews {

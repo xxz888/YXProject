@@ -15,6 +15,8 @@
 #import "YXJiFenShopViewController.h"
 @interface YXMineJiFenTableViewController ()
 @property(nonatomic,strong)NSMutableArray * sign_Array;
+@property(nonatomic)NSInteger day_number;
+
 @end
 
 @implementation YXMineJiFenTableViewController
@@ -48,6 +50,7 @@
         [weakself.sign_Array removeAllObjects];
         [weakself.sign_Array addObjectsFromArray:object[@"data"]];
         weakself.lianxuqiandaoLbl.text = kGetString(object[@"day_number"]);
+        weakself.day_number = [object[@"day_number"] integerValue];
         //判断今天是否已经签到
         NSString * currDayTime = [ShareManager getCurrentDay];
         for (NSDictionary * dic in weakself.sign_Array) {
@@ -64,14 +67,29 @@
                 weakself.finish3.userInteractionEnabled = NO;
             }
         }
-        [weakself get7Days];
+        [weakself get7Days:[object[@"day_number"] integerValue]];
     }];
     
-    [self get7Days];
+//    [self get7Days];
 
 }
--(void)get7Days{
+-(void)get7Days:(NSInteger)day_number{
+    NSArray * lblArray1 = @[self.day1,self.day2,self.day3,self.day4,self.day5,self.day6];
+    NSArray * lblArray2 = @[self.img1,self.img2,self.img3,self.img4,self.img5,self.img6];
+
+    for (NSInteger i = 0; i < 6; i++) {
+        if (i < day_number) {
+            [(UILabel *)lblArray1[i] setHidden:YES];
+            [(UIImageView *)lblArray2[i] setHidden:NO];
+
+        }else{
+             [(UILabel *)lblArray1[i] setHidden:NO];
+             [(UIImageView *)lblArray2[i] setHidden:YES];
+        }
+    }
     
+    
+    /*
     NSMutableArray * dayArray = [[NSMutableArray alloc]init];
     
     for (NSInteger i = 3; i < 8; i++) {
@@ -92,10 +110,13 @@
     self.day5.text = dayArray[2];
     self.day6.text = dayArray[3];
     self.day7.text = dayArray[4];
-
+     */
+    
+    
     
 }
 -(void)setVCUI{
+    self.day_number = -1;
     self.accImv.layer.masksToBounds = YES;
     self.accImv.layer.cornerRadius = self.accImv.frame.size.width / 2.0;
     ViewRadius(self.qiandaoBtn, 12);
@@ -132,7 +153,8 @@
 }
 
 - (IBAction)qiandaoAction:(id)sender {
-    
+//    [self handleShowContentView];
+//    return;
     kWeakSelf(self);
     [YX_MANAGER requestUsersSign_in_Action:@"" success:^(id object) {
         [weakself.qiandaoBtn setTitle:@"已签到" forState:UIControlStateNormal];
@@ -146,7 +168,9 @@
         weakself.finish3.userInteractionEnabled = NO;
         ViewBorderRadius(weakself.finish3, 4, 0, KClearColor);
 
-        [weakself handleShowContentView];
+        if (weakself.day_number == 7) {
+            [weakself handleShowContentView];
+        }
         
         [weakself requestData];
     }];
@@ -173,6 +197,7 @@
     contentView.backgroundColor = KClearColor;
     QMUIModalPresentationViewController *modalViewController = [[QMUIModalPresentationViewController alloc] init];
 //    modalViewController.contentViewMargins = UIEdgeInsetsMake(0, modalViewController.view.frame.size.width/2, 0, 0);
+    modalViewController.view.layer.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.5].CGColor;
     modalViewController.contentView = contentView;
     [modalViewController showWithAnimated:YES completion:nil];
 }

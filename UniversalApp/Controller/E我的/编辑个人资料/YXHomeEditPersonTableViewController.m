@@ -107,12 +107,13 @@
     NSString * site = self.adressBtn.titleLabel.text ? self.adressBtn.titleLabel.text : @"";
     NSString * photo = [self.photo contains:IMG_URI] ? [self.photo split:IMG_URI][1] : self.photo;
     NSString * birthday = [self.birthBtn.titleLabel.text isEqualToString:@"点击选择生日"]||self.birthBtn.titleLabel.text==nil ?@"":self.birthBtn.titleLabel.text;
+    NSString * qianming = self.qianMingBtn.titleLabel.text ? self.qianMingBtn.titleLabel.text : @"";
     NSDictionary * dic = @{@"username":self.nameTf.text,
                            @"gender":[self.sexBtn.titleLabel.text isEqualToString:@"男"] ? @"1" :@"0",
                            @"photo":photo,
                            @"birthday":birthday,
                            @"site":site,
-                           @"character":self.qianMingBtn.titleLabel.text
+                           @"character":qianming
                            };
     [YX_MANAGER requestUpdate_userPOST:dic success:^(id object) {
         [QMUITips hideAllTipsInView:weakself.view];

@@ -36,6 +36,14 @@ typedef void(^backVcBlock)(void);
 @property (weak, nonatomic) IBOutlet UILabel *jifenNumLbl;
 @property (weak, nonatomic) IBOutlet UILabel *nameLbl;
 @property(nonatomic, copy) backVcBlock  backvcBlock;//用户信息
+@property (weak, nonatomic) IBOutlet UILabel *day1;
+@property (weak, nonatomic) IBOutlet UILabel *day2;
+@property (weak, nonatomic) IBOutlet UIImageView *img1;
+@property (weak, nonatomic) IBOutlet UIImageView *img2;
+@property (weak, nonatomic) IBOutlet UIImageView *img3;
+@property (weak, nonatomic) IBOutlet UIImageView *img4;
+@property (weak, nonatomic) IBOutlet UIImageView *img5;
+@property (weak, nonatomic) IBOutlet UIImageView *img6;
 
 @end
 
