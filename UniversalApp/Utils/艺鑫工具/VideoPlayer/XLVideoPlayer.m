@@ -301,8 +301,8 @@
 #pragma mark - status hiden
 
 - (void)setStatusBarHidden:(BOOL)hidden {
-    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-    statusBar.hidden = hidden;
+//    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+//    statusBar.hidden = hidden;
 }
 
 #pragma mark - Screen Orientation
