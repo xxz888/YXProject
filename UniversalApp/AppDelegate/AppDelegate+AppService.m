@@ -17,10 +17,11 @@
 #import  <UMCommon/UMCommon.h>  // 公共组件是所有友盟产品的基础组件，必选
 #import  <UMPush/UMessage.h>  // Push组件
 #define UMAppKey @"5d2eba7d0cafb28237000acb"
-
+#import "YXNetFailView.h"
 #import "YXNewLoginViewController.h"
 @interface AppDelegate()<UNUserNotificationCenterDelegate>
-
+//@property (nonatomic, strong) YXNetFailView * netFailView;
+//@property (nonatomic) BOOL netBool;
 @end
 @implementation AppDelegate (AppService)
 
@@ -40,6 +41,8 @@
                                              selector:@selector(netWorkStateChange:)
                                                  name:KNotificationNetWorkStateChange
                                                object:nil];
+    
+
 }
 
 #pragma mark ————— 初始化window —————
@@ -54,6 +57,15 @@
     if (@available(iOS 11.0, *)){
         [[UIScrollView appearance] setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
     }
+//    kWeakSelf(self);
+//    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXNetFailView" owner:self options:nil];
+//    self.netFailView = [nib objectAtIndex:0];
+//    self.netFailView.hidden = YES;
+//    self.netFailView.frame = CGRectMake(0,0, KScreenWidth, KScreenHeight);
+//    [self.window addSubview:self.netFailView];
+//    self.netFailView.refreshblock = ^{
+//        [weakself.netFailView removeFromSuperview];
+//    };
 }
 #pragma mark ————— 初始化用户系统 —————
 -(void)initUserManager{
@@ -100,7 +112,7 @@
 - (void)netWorkStateChange:(NSNotification *)notification
 {
     BOOL isNetWork = [notification.object boolValue];
-    
+//    self.netFailView.hidden = isNetWork;
     if (isNetWork) {//有网络
         if ([userManager loadUserInfo] && !isLogin) {//有用户数据 并且 未登录成功 重新来一次自动登录
             
@@ -118,7 +130,7 @@
         }
         
     }else {//登陆失败加载登陆页面控制器
-        [MBProgressHUD showTopTipMessage:@"网络状态不佳" isWindow:YES];
+//        [MBProgressHUD showTopTipMessage:@"网络状态不佳" isWindow:YES];
     }
 }
 

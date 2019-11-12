@@ -18,6 +18,7 @@
 #import "YXMineChouJiangViewController.h"
 #import "YXHuaTiViewController.h"
 #import "YXSecondHeadView.h"
+#import "YXNetFailView.h"
 
 
 static CGFloat sectionHeaderHeight = 260;
@@ -33,6 +34,8 @@ static CGFloat sectionHeaderHeight = 260;
 @property (nonatomic, strong) UIView * headerView;
 @property (nonatomic, strong) YXSecondHeadView * headerTagView;
 @property (nonatomic, strong) NSMutableArray *tagArray;
+
+
 
 @end
 @implementation YXMineAndFindBaseViewController
@@ -78,7 +81,15 @@ static CGFloat sectionHeaderHeight = 260;
     [self.yxTableView addSubview:self.nodataImg];
     self.nodataImg.hidden = YES;
     
+
 }
+#pragma mark ————— 网络状态变化 —————
+//- (void)netWorkStateChange:(NSNotification *)notification{
+//    BOOL isNetWork = [notification.object boolValue];
+//    self.netFailView.hidden = isNetWork;
+//    _netBool = isNetWork;
+//}
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (!_headerTagView) {
          NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXSecondHeadView" owner:self options:nil];
@@ -282,7 +293,7 @@ static CGFloat sectionHeaderHeight = 260;
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_player destroyPlayer];
     _player = nil;
 
@@ -498,9 +509,14 @@ static CGFloat sectionHeaderHeight = 260;
     }];
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-}
+//-(void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:animated];
+//    //网络状态监听
+//     [[NSNotificationCenter defaultCenter] addObserver:self
+//                                              selector:@selector(netWorkStateChange:)
+//                                                  name:KNotificationNetWorkStateChange
+//                                                object:nil];
+//}
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

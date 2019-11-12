@@ -141,6 +141,8 @@
 		BB29122922156BDE00FF484E /* LLGifView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29122722156BDD00FF484E /* LLGifView.m */; };
 		BB29122A22156BDE00FF484E /* LLGifImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29122822156BDD00FF484E /* LLGifImageView.m */; };
 		BB2A8EB9221BE73300B6756A /* UIImage+ImgSize.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2A8EB8221BE73300B6756A /* UIImage+ImgSize.m */; };
+		BB2F2BFA23793AE100654C31 /* YXNetFailView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2F2BF923793AE100654C31 /* YXNetFailView.m */; };
+		BB2F2BFC23793AEB00654C31 /* YXNetFailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB2F2BFB23793AEB00654C31 /* YXNetFailView.xib */; };
 		BB3BDDE0234F385C0027490C /* YXZhiNanYaoQingJieSuoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3BDDDE234F385C0027490C /* YXZhiNanYaoQingJieSuoTableViewController.m */; };
 		BB3CA496221F948E00C6793D /* YXFaBuBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3CA495221F948E00C6793D /* YXFaBuBaseViewController.m */; };
 		BB3CA498221F95FC00C6793D /* YXFaBuBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB3CA497221F95FC00C6793D /* YXFaBuBaseViewController.xib */; };
@@ -875,6 +877,9 @@
 		BB29122822156BDD00FF484E /* LLGifImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLGifImageView.m; sourceTree = "<group>"; };
 		BB2A8EB7221BE73300B6756A /* UIImage+ImgSize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImgSize.h"; sourceTree = "<group>"; };
 		BB2A8EB8221BE73300B6756A /* UIImage+ImgSize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImgSize.m"; sourceTree = "<group>"; };
+		BB2F2BF823793AE100654C31 /* YXNetFailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXNetFailView.h; sourceTree = "<group>"; };
+		BB2F2BF923793AE100654C31 /* YXNetFailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXNetFailView.m; sourceTree = "<group>"; };
+		BB2F2BFB23793AEB00654C31 /* YXNetFailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXNetFailView.xib; sourceTree = "<group>"; };
 		BB3BDDDD234F385C0027490C /* YXZhiNanYaoQingJieSuoTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXZhiNanYaoQingJieSuoTableViewController.h; sourceTree = "<group>"; };
 		BB3BDDDE234F385C0027490C /* YXZhiNanYaoQingJieSuoTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXZhiNanYaoQingJieSuoTableViewController.m; sourceTree = "<group>"; };
 		BB3CA494221F948E00C6793D /* YXFaBuBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFaBuBaseViewController.h; sourceTree = "<group>"; };
@@ -2532,6 +2537,16 @@
 			path = LLGifView;
 			sourceTree = "<group>";
 		};
+		BB2F2BF723793AB900654C31 /* 网络失败界面 */ = {
+			isa = PBXGroup;
+			children = (
+				BB2F2BF823793AE100654C31 /* YXNetFailView.h */,
+				BB2F2BF923793AE100654C31 /* YXNetFailView.m */,
+				BB2F2BFB23793AEB00654C31 /* YXNetFailView.xib */,
+			);
+			path = "网络失败界面";
+			sourceTree = "<group>";
+		};
 		BB3BDDDC234F381F0027490C /* 分享解锁 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3405,6 +3420,7 @@
 		BBA812A721DDAB7A001B5EA1 /* B发现 */ = {
 			isa = PBXGroup;
 			children = (
+				BB2F2BF723793AB900654C31 /* 网络失败界面 */,
 				BBC3FAFE22C4647400BB2564 /* YXSecondViewController.h */,
 				BBC3FAFF22C4647400BB2564 /* YXSecondViewController.m */,
 				BBD1C77222166AD40063002F /* YXMineAndFindBaseViewController.h */,
@@ -5300,6 +5316,7 @@
 				BBEA15692366E41B006FBBFF /* UIBarButtonItemArrowRight@3x.png in Resources */,
 				BB98329A229E165A00894FAF /* YXMineMyCollectionViewController.xib in Resources */,
 				BBB59B1B228CF8CB0029D3D0 /* YXColorViewController.xib in Resources */,
+				BB2F2BFC23793AEB00654C31 /* YXNetFailView.xib in Resources */,
 				BB5FD89021FECC0600B5F1A8 /* YXFindQuestionTableViewCell.xib in Resources */,
 				BB928F5821FABCC30090A044 /* YXMinePingLunViewController.xib in Resources */,
 				2917D20A1EE007C300E76185 /* MBHUD_Error@3x.png in Resources */,
@@ -5696,6 +5713,7 @@
 				BB53E722235EFAC00014F106 /* UIFont+HXExtension.m in Sources */,
 				BBB59B38228CF92D0029D3D0 /* YXHomeXueJiaTableViewCell.m in Sources */,
 				BB21FD9122B0991E0059BCAC /* KSMediaPickerOutputModel.swift in Sources */,
+				BB2F2BFA23793AE100654C31 /* YXNetFailView.m in Sources */,
 				BB2A8EB9221BE73300B6756A /* UIImage+ImgSize.m in Sources */,
 				BB9413E321F8B602007E800A /* IQUIScrollView+Additions.m in Sources */,
 				BBB59AFE228CF8CB0029D3D0 /* SDTimeLineTableHeaderView.m in Sources */,
