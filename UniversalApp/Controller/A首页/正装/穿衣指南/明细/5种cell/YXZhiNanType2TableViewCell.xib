@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,10 +42,10 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="49Z-Tg-rJk">
-                        <rect key="frame" x="16" y="60" width="288" height="120"/>
+                        <rect key="frame" x="16" y="60" width="288" height="110"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeD-jN-8kf">
-                                <rect key="frame" x="120" y="20" width="168" height="22.5"/>
+                                <rect key="frame" x="120" y="15" width="168" height="22.5"/>
                                 <attributedString key="attributedText">
                                     <fragment content="123123123">
                                         <attributes>
@@ -58,7 +58,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EtE-Zf-Xro">
-                                <rect key="frame" x="10" y="20" width="100" height="80"/>
+                                <rect key="frame" x="10" y="15" width="100" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="gRt-1l-qA0"/>
                                     <constraint firstAttribute="height" constant="80" id="ykp-Wk-mMi"/>
@@ -68,7 +68,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="DeD-jN-8kf" secondAttribute="trailing" id="0F4-5N-BwO"/>
-                            <constraint firstAttribute="height" constant="120" id="MOv-yY-KTZ"/>
+                            <constraint firstAttribute="height" constant="110" id="MOv-yY-KTZ"/>
                             <constraint firstItem="DeD-jN-8kf" firstAttribute="leading" secondItem="EtE-Zf-Xro" secondAttribute="trailing" constant="10" id="SPd-8u-cay"/>
                             <constraint firstItem="EtE-Zf-Xro" firstAttribute="centerY" secondItem="49Z-Tg-rJk" secondAttribute="centerY" id="SyI-qd-CTK"/>
                             <constraint firstItem="EtE-Zf-Xro" firstAttribute="leading" secondItem="49Z-Tg-rJk" secondAttribute="leading" constant="10" id="f9Z-bX-ffx"/>
@@ -93,7 +93,7 @@
                 <outlet property="type2Title" destination="fmF-IU-6SZ" id="HKS-SZ-iXG"/>
                 <outlet property="yinyingView" destination="49Z-Tg-rJk" id="Wbe-BE-Zpa"/>
             </connections>
-            <point key="canvasLocation" x="-110.14492753623189" y="81.696428571428569"/>
+            <point key="canvasLocation" x="7" y="80"/>
         </tableViewCell>
     </objects>
 </document>

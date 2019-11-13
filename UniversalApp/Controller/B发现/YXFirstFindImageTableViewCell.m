@@ -148,7 +148,10 @@
                 //给视频的imageveiew添加手势，这个方法一定要写晒图所有方法后边的，不能移动顺序
                 self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showVideoPlayer:)];
                 self.onlyOneImv.tag = self.tag;
+                self.onlyOneImv.userInteractionEnabled = YES;
+
                 [self.onlyOneImv addGestureRecognizer:self.tap];
+
                 NSString * string = [(NSMutableString *)dic[@"cover"] replaceAll:@" " target:@"%20"];
                 [self.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
                 //如果是图片，为1张图片，有可能是晒图，有可能视频
@@ -178,13 +181,13 @@
         self.onlyOneImv.hidden = NO;
         self.playImV.hidden =YES;
         self.picContainerView.hidden = YES;
-
+        
         NSString * string = [(NSMutableString *)dic[@"cover"] replaceAll:@" " target:@"%20"];
         if (![string contains:IMG_URI]) {
             string = [IMG_URI append:string];
         }
         [self.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-        [self.onlyOneImv removeGestureRecognizer:self.tap];
+        self.onlyOneImv.userInteractionEnabled = NO;
         //下边这句话不能删除，改变样式的
         [ShareManager setLineSpace:9 inLabel:self.detailLbl size:15];
         [ShareManager inTextViewOutDifColorView:self.detailLbl tag:dic[@"tag"]];

@@ -38,6 +38,7 @@
     if (![db jq_isExistTable:YX_USER_LiaoTian]) {
       [db jq_createTable:YX_USER_LiaoTian dicOrModel:[MessageModel class]];
     }
+        [self requestZhiNan1Get];
 }
 
 
@@ -46,7 +47,7 @@
     self.vcArr = [NSMutableArray array];
     self.titlesArr = [NSMutableArray array];
 
-    [self requestZhiNan1Get];
+
 
 }
 -(void)requestZhiNan1Get{

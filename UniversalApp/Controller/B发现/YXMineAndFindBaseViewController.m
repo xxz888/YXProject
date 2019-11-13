@@ -217,7 +217,14 @@ static CGFloat sectionHeaderHeight = 260;
         NSDictionary * userInfo = userManager.loadUserAllInfo;
         BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [kGetString(userInfo[@"id"]) integerValue];
         weakself.shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
-        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:cell.tagId startDic:cell.dataDic];
+        
+        NSArray * urlList = dic[@"url_list"];
+        NSString * iswho = kGetString(cell.dataDic[@"obj"]);
+        if ([kGetString(urlList[0]) containsString:@"mp4"]) {
+            iswho = @"3";
+        }
+
+        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:iswho tag:cell.tagId startDic:cell.dataDic];
     };
     //点击用户头像
     cell.clickImageBlock = ^(NSInteger tag) {
@@ -359,81 +366,76 @@ static CGFloat sectionHeaderHeight = 260;
     QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
     kWeakSelf(self);
     // 如果你的 item 是确定的，则可以直接通过 items 属性来显示，如果 item 需要经过一些判断才能确定下来，请看第二个示例
-    NSMutableArray * itemsArray1 = [[NSMutableArray alloc]init];
-    [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_add") title:@"编辑" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-        [moreOperationController hideToBottom];
-        YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
-        YXShaiTuModel * model = [[YXShaiTuModel alloc]init];
-        model.post_id = kGetString(startDic[@"id"]);
-        model.coustomId = @"";
-        model.detail = startDic[@"detail"];
-        model.publish_site = startDic[@"publish_site"];
-        model.title = startDic[@"title"];
-        model.tag = startDic[@"tag"];
-        model.publish_site = startDic[@"publish_site"];
-        model.photo_list = startDic[@"photo_list"];
-        model.cover = startDic[@"cover"];
-        model.obj = kGetString(startDic[@"obj"]);
-        imageVC.model = model;
-        imageVC.modalPresentationStyle = UIModalPresentationFullScreen;
-        [weakself presentViewController:imageVC animated:YES completion:nil];
-    }]],
-    [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_remove") title:@"删除" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-        [moreOperationController hideToBottom];
-        if ([isWho isEqualToString:@"1"]) {
-            [QMUITips showLoadingInView:weakself.view];
-            [YX_MANAGER requestDel_ShaiTU:NSIntegerToNSString(tagId) success:^(id object) {
-                [QMUITips hideAllTips];
-                [QMUITips showSucceed:@"删除成功"];
-                [weakself requestTableData];
-            }];
-        }else if ([isWho isEqualToString:@"2"]){
-            [YX_MANAGER requestDel_WenDa:NSIntegerToNSString(tagId) success:^(id object) {
-                [QMUITips hideAllTips];
+//    if (isOwn) {
+//        [itemsArray1 removeObjectAtIndex:2];
+//        if ([isWho isEqualToString:@"2"]) {
+//            [itemsArray1 removeObjectAtIndex:0];
+//        }
+//    }else{
+//        [itemsArray1 removeObjectAtIndex:0];
+//        [itemsArray1 removeObjectAtIndex:0];
+//    }
 
-                [QMUITips showSucceed:@"删除成功"];
-                
-                [weakself requestTableData];
-            }];
-        }else if ([isWho isEqualToString:@"3"]){
-            [YX_MANAGER requestDel_ZuJi:NSIntegerToNSString(tagId) success:^(id object) {
-                [QMUITips hideAllTips];
-                [QMUITips showSucceed:@"删除成功"];
-                
-                [weakself requestTableData];
-            }];
-        }
-    }]],
-    [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_report") title:@"举报" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-        [moreOperationController hideToBottom];
-        QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
-        }];
-        QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"不友善内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
-            [QMUITips showSucceed:@"举报成功"];
-        }];
-        QMUIAlertAction *action3 = [QMUIAlertAction actionWithTitle:@"有害内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
-            [QMUITips showSucceed:@"举报成功"];
-        }];
-        QMUIAlertAction *action4 = [QMUIAlertAction actionWithTitle:@"抄袭内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
-            [QMUITips showSucceed:@"举报成功"];
-        }];
-        QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:QMUIAlertControllerStyleActionSheet];
-        [alertController addAction:action1];
-        [alertController addAction:action2];
-        [alertController addAction:action3];
-        [alertController addAction:action4];
-        [alertController showWithAnimated:YES];
-    }]];
     
+    
+    NSMutableArray * itemsArray1 = [[NSMutableArray alloc]init];
     if (isOwn) {
-        [itemsArray1 removeObjectAtIndex:2];
-        if (![isWho isEqualToString:@"1"]) {
-            [itemsArray1 removeObjectAtIndex:0];
+        if ([isWho isEqualToString:@"1"]) {
+            [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_add") title:@"编辑" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                       [moreOperationController hideToBottom];
+                       YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
+                       YXShaiTuModel * model = [[YXShaiTuModel alloc]init];
+                       model.post_id = kGetString(startDic[@"id"]);
+                       model.coustomId = @"";
+                       model.detail = startDic[@"detail"];
+                       model.publish_site = startDic[@"publish_site"];
+                       model.title = startDic[@"title"];
+                       model.tag = startDic[@"tag"];
+                       model.publish_site = startDic[@"publish_site"];
+                       model.photo_list = startDic[@"photo_list"];
+                       model.cover = startDic[@"cover"];
+                       model.obj = kGetString(startDic[@"obj"]);
+                       imageVC.model = model;
+                       imageVC.modalPresentationStyle = UIModalPresentationFullScreen;
+                       [weakself presentViewController:imageVC animated:YES completion:nil];
+            }]];
         }
+    
+        [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_remove") title:@"删除" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+            [moreOperationController hideToBottom];
+                [QMUITips showLoadingInView:weakself.view];
+                [YX_MANAGER requestDel_ShaiTU:NSIntegerToNSString(tagId) success:^(id object) {
+                    [QMUITips hideAllTips];
+                    [QMUITips showSucceed:@"删除成功"];
+                    [weakself requestTableData];
+                }];
+        
+        }]];
     }else{
-        [itemsArray1 removeObjectAtIndex:0];
-        [itemsArray1 removeObjectAtIndex:0];
+        [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_report") title:@"举报" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+            [moreOperationController hideToBottom];
+            QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+            }];
+            QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"不友善内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+                [QMUITips showSucceed:@"举报成功"];
+            }];
+            QMUIAlertAction *action3 = [QMUIAlertAction actionWithTitle:@"有害内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+                [QMUITips showSucceed:@"举报成功"];
+            }];
+            QMUIAlertAction *action4 = [QMUIAlertAction actionWithTitle:@"抄袭内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+                [QMUITips showSucceed:@"举报成功"];
+            }];
+            QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:QMUIAlertControllerStyleActionSheet];
+            [alertController addAction:action1];
+            [alertController addAction:action2];
+            [alertController addAction:action3];
+            [alertController addAction:action4];
+            [alertController showWithAnimated:YES];
+        }]];
     }
+   
+
+    
 
     
     

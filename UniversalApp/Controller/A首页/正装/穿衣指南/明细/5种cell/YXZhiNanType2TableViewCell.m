@@ -20,7 +20,7 @@
     // 阴影颜色
     theView.layer.shadowColor = theColor.CGColor;
     // 阴影偏移，默认(0, -3)
-    theView.layer.shadowOffset = CGSizeMake(0,3);
+    theView.layer.shadowOffset = CGSizeMake(1,3);
     // 阴影透明度，默认0
     theView.layer.shadowOpacity = 0.5;
     // 阴影半径，默认3

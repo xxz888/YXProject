@@ -673,7 +673,7 @@ RE.insertUpdateImg =function(imgId,imgUrl){
 
 //设置编辑器是否不可编辑
 RE.canFocus = function(bool){
-    $("#article_content").attr("contenteditable",bool);
+//    $("#article_content").attr("contenteditable",bool);
 }
 
 //图片上传失败

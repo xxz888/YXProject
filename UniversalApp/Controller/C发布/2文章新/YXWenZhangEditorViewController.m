@@ -88,9 +88,10 @@
         [YX_MANAGER requestFaBuImagePOST:dic success:^(id object) {
             [QMUITips hideAllTipsInView:weakself.view];
             [QMUITips showSucceed:@"发布成功"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSecondVC" object:nil];
             if (weakself.closeNewVcblock) {
-                   weakself.closeNewVcblock();
-               }
+                weakself.closeNewVcblock();
+            }
         }];
 }
 
@@ -146,7 +147,7 @@
     self.toolBarView.delegate = self;
     [self.toolBarView addObserver:self forKeyPath:@"transform" options:
      NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
-    self.webView.scrollView.contentInset= UIEdgeInsetsMake(176,0,0,0);
+    self.webView.scrollView.contentInset= UIEdgeInsetsMake(176,0,44,0);
     [self addCoverImage];
 }
 -(void)addCoverImage{
@@ -295,9 +296,9 @@
     if ([urlString hasPrefix:@"re-state-content://"]) {
         self.fontBar.hidden = NO;
         self.toolBarView.hidden = NO;
-//        if ([self.webView contentText].length <= 0) {
+        if ([self.webView contentText].length <= 0) {
 //            [self.webView.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
-//        }
+        }
     }
     
     if ([urlString hasPrefix:@"re-state-title://"]) {
