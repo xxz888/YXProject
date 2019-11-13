@@ -109,6 +109,13 @@
         [db jq_inDatabase:^{
             [db jq_insertTable:YX_USER_FaBuCaoGao dicOrModel:model];
         }];
+    
+    
+        if (self.model.coustomId && ![self.model.coustomId isEqualToString:@""]) {
+            JQFMDB *db = [JQFMDB shareDatabase];
+            NSString * sql = [@"WHERE coustomId = " append:kGetString(self.model.coustomId)];
+            [db jq_deleteTable:YX_USER_FaBuCaoGao whereFormat:sql];
+        }
         [QMUITips showSucceed:@"存草稿成功"];
         [self closeCurrentVC];
 
@@ -117,11 +124,15 @@
 - (IBAction)fabuAction:(id)sender {
         kWeakSelf(self);
         [YX_MANAGER requestFaBuImagePOST:[self getResultDic] success:^(id object) {
+            if (weakself.model) {
+                JQFMDB *db = [JQFMDB shareDatabase];
+                NSString * sql = [@"WHERE coustomId = " append:kGetString(weakself.model.coustomId)];
+                [db jq_deleteTable:YX_USER_FaBuCaoGao whereFormat:sql];
+            }
             [QMUITips hideAllTipsInView:weakself.view];
             [QMUITips showSucceed:@"发布成功"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSecondVC" object:nil];
             [weakself closeCurrentVC];
-            
         }];
 }
 -(void)closeCurrentVC{

@@ -46,8 +46,12 @@
     
     
     //标签
-    self.tagArray = [NSMutableArray arrayWithArray:[self.model.tag split:@" "]];
-    [self addNewTags];
+   
+    if (self.model.tag.length  != 0) {
+        self.tagArray = [NSMutableArray arrayWithArray:[self.model.tag split:@" "]];
+           [self addNewTags];
+
+       }
     //地点
     self.locationString = [self.model.publish_site isEqualToString:@""] ? @"获取地理位置" :  self.model.publish_site;
     [self.locationBtn setTitle:self.locationString forState:UIControlStateNormal];
@@ -125,6 +129,15 @@
             [db jq_inDatabase:^{
                 [db jq_insertTable:YX_USER_FaBuCaoGao dicOrModel:model];
             }];
+            
+            
+            if (weakself.model.coustomId && ![weakself.model.coustomId isEqualToString:@""]) {
+                JQFMDB *db = [JQFMDB shareDatabase];
+                NSString * sql = [@"WHERE coustomId = " append:kGetString(weakself.model.coustomId)];
+                [db jq_deleteTable:YX_USER_FaBuCaoGao whereFormat:sql];
+            }
+            
+            
             [QMUITips showSucceed:@"存草稿成功"];
             [weakself closeViewAAA];
         }else{
@@ -151,9 +164,9 @@
         
         
         
-        if (self.model.coustomId && ![self.model.coustomId isEqualToString:@""]) {
+        if (weakself.model.coustomId && ![weakself.model.coustomId isEqualToString:@""]) {
             JQFMDB *db = [JQFMDB shareDatabase];
-            NSString * sql = [@"WHERE coustomId = " append:kGetString(self.model.coustomId)];
+            NSString * sql = [@"WHERE coustomId = " append:kGetString(weakself.model.coustomId)];
             [db jq_deleteTable:YX_USER_FaBuCaoGao whereFormat:sql];
         }
     }];

@@ -111,23 +111,32 @@
 }
 #pragma mark ========== 点击菜单按钮的方法 ==========
 - (void)handleShowContentView {
-    kWeakSelf(self);
-    QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
-    }];
-    QMUIAlertAction *action3 = [QMUIAlertAction actionWithTitle:@"分享" style:QMUIAlertActionStyleDefault handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
-        [weakself addGuanjiaShareView];
-    }];
-    QMUIAlertAction *action4 = [QMUIAlertAction actionWithTitle:@"草稿箱" style:QMUIAlertActionStyleDefault handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
-        YXMineMyCaoGaoViewController * VC = [[YXMineMyCaoGaoViewController alloc]init];
-        [weakself.navigationController pushViewController:VC animated:YES];
-    }];
+     kWeakSelf(self);
+    //UIAlertActionStyleDestructive红色
+    //UIAlertActionStyleCancel蓝色
+      UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+      }];
+      UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+          [weakself addGuanjiaShareView];
+      }];
+      UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"草稿箱" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+          YXMineMyCaoGaoViewController * VC = [[YXMineMyCaoGaoViewController alloc]init];
+          [weakself.navigationController pushViewController:VC animated:YES];
+      }];
+      UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+      [alertController addAction:action2];
+      [alertController addAction:action3];
+      [alertController addAction:action1];
 
-    QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:QMUIAlertControllerStyleActionSheet];
-    [alertController addAction:action1];
-    [alertController addAction:action3];
-    [alertController addAction:action4];
+      if (IS_IPAD) {
+          NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:2];
+          CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
+          CGRect cellRectInSelfView = [self.view convertRect:cellRect fromView:self.tableView];
+          alertController.popoverPresentationController.sourceView = self.view;
+          alertController.popoverPresentationController.sourceRect = cellRectInSelfView;
+      }
+      [self presentViewController:alertController animated:YES completion:NULL];
 
-    [alertController showWithAnimated:YES];
     
     
     
