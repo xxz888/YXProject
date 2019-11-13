@@ -7,6 +7,7 @@
 //
 
 #import "RootViewController.h"
+#import "YXShaiTuModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^closeNewVcBlock)(void);
@@ -15,6 +16,7 @@ typedef void(^closeNewVcBlock)(void);
 @property(nonatomic,copy)closeNewVcBlock  closeNewVcblock;
 @property (weak, nonatomic) IBOutlet UIButton *cuncaogaoBtn;
 @property (weak, nonatomic) IBOutlet UIButton *fabuBtn;
+@property(nonatomic,strong)YXShaiTuModel * model;
 
 @end
 

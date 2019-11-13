@@ -14,6 +14,7 @@
 #define kEditorURL @"richText_editor"
 #import "YXWenZhangView.h"
 #import "QiniuLoad.h"
+#import "JQFMDB.h"
 @interface YXWenZhangEditorViewController ()<UITextViewDelegate,UIWebViewDelegate,KWEditorBarDelegate,KWFontStyleBarDelegate,HXAlbumListViewControllerDelegate,UIAlertViewDelegate>
 
 @property (nonatomic,strong) UIScrollView *scrollView;
@@ -48,57 +49,90 @@
 
 @implementation YXWenZhangEditorViewController
 - (IBAction)backVcAction:(id)sender {
-    
-    if (self.closeNewVcblock) {
-        self.closeNewVcblock();
+    [self closeCurrentVC];
+}
+-(void)faxianEditCome{
+    if (self.model.cover.length != 0) {
+        UIImageView * coverImage = [self.webView.scrollView viewWithTag:1001];
+        UIImageView * zhanweiImage = [self.webView.scrollView viewWithTag:1002];
+        UILabel * zhanweilbl = [self.webView.scrollView viewWithTag:1003];
+        [coverImage sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:self.model.cover]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        zhanweiImage.hidden = zhanweilbl.hidden = YES;
+        self.cover = self.model.cover;
     }
+
+    
+    
+    [self.webView setupTitle:self.model.title];
+    [self.webView setupContent:self.model.detail];
+    [self.webView clearContentPlaceholder];
+    
 }
-- (IBAction)cuncaogaoAction:(id)sender {
-    
-    
-}
-- (IBAction)fabuAction:(id)sender {
-     NSLog(@"%@",[self.webView contentHtmlText]);
-     NSLog(@"%@",[self.webView titleText]);
-    
-    
-    
-        NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
-        //post_id 修改传，发布传空
+-(NSDictionary * )getResultDic{
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
+    //post_id 修改传，发布传空
+    if (self.model.post_id && self.model.post_id.length != 0) {
+        [dic setValue:self.model.post_id forKey:@"post_id"];
+    }else{
         [dic setValue:@"" forKey:@"post_id"];
-        //title 标题 晒图不传
-        [dic setValue:[self.webView titleText] forKey:@"title"];
-        //封面
-        [dic setValue:self.cover forKey:@"cover"];
-        //detail 详情
-        [dic setValue:[self.webView contentHtmlText] forKey:@"detail"];
-        //拼接photo_list
-        [dic setValue:@"" forKey:@"photo_list"];
-    //    NSString * photo_list = [imgArray componentsJoinedByString:@","];
-    //    photo_list = [photo_list replaceAll:kQNinterface target:@""];
-    //    [dic setValue:photo_list forKey:@"photo_list"];
-        //obj 1晒图 2文章
-        [dic setValue:@"2" forKey:@"obj"];
-        //tag 标签
-        [dic setValue:@"" forKey:@"tag"];
-    //    self.tagArray.count == 0 ?
-    //    [dic setValue:@"" forKey:@"tag"] : [dic setValue:[self.tagArray componentsJoinedByString:@" "] forKey:@"tag"];
-        //publish_site 地点
-        [dic setValue:@"" forKey:@"publish_site"];
-    //    NSString * publish_site = [self.locationString isEqualToString:@"获取地理位置"] ? @"" : self.locationString;
-    //    [dic setValue:publish_site forKey:@"publish_site"];
+    }
         
+    //title 标题 晒图不传
+    [dic setValue:[self.webView titleText] forKey:@"title"];
+    //封面
+    [dic setValue:self.cover forKey:@"cover"];
+    //detail 详情
+    [dic setValue:[self.webView contentHtmlText] forKey:@"detail"];
+    //拼接photo_list
+    [dic setValue:@"" forKey:@"photo_list"];
+    //obj 1晒图 2文章
+    [dic setValue:@"2" forKey:@"obj"];
+    //tag 标签
+    [dic setValue:@"" forKey:@"tag"];
+    [dic setValue:@"" forKey:@"publish_site"];
+    return  dic;
+}
+
+//存草稿
+- (IBAction)cuncaogaoAction:(id)sender {
+    JQFMDB *db = [JQFMDB shareDatabase];
+        NSDictionary * userInfo = userManager.loadUserAllInfo;
+        NSString * userId = kGetString(userInfo[@"id"]);
+    
+        NSArray * haveArray = [db jq_lookupTable:YX_USER_FaBuCaoGao dicOrModel:[YXShaiTuModel class] whereFormat:nil];
+    
+    
+        NSString * key = [NSString stringWithFormat:@"%@%@",userId,[ShareManager getNowTimeTimestamp3]];
+        YXShaiTuModel * model = [[YXShaiTuModel alloc]init];
+        [model setValuesForKeysWithDictionary:[self getResultDic]];
+         model.coustomId =  key;
+        [db jq_inDatabase:^{
+            [db jq_insertTable:YX_USER_FaBuCaoGao dicOrModel:model];
+        }];
+        [QMUITips showSucceed:@"存草稿成功"];
+        [self closeCurrentVC];
+
+}
+//发布
+- (IBAction)fabuAction:(id)sender {
         kWeakSelf(self);
-        [YX_MANAGER requestFaBuImagePOST:dic success:^(id object) {
+        [YX_MANAGER requestFaBuImagePOST:[self getResultDic] success:^(id object) {
             [QMUITips hideAllTipsInView:weakself.view];
             [QMUITips showSucceed:@"发布成功"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSecondVC" object:nil];
-            if (weakself.closeNewVcblock) {
-                weakself.closeNewVcblock();
-            }
+            [weakself closeCurrentVC];
+            
         }];
 }
-
+-(void)closeCurrentVC{
+    if (self.closeNewVcblock) {
+                self.closeNewVcblock();
+        }else{
+            [self dismissViewControllerAnimated:YES completion:^{
+                self.navigationController.tabBarController.selectedIndex = 1;
+            }];
+        }
+}
 - (NSMutableArray *)uploadPics{
     if (!_uploadPics) {
         _uploadPics = [NSMutableArray array];
@@ -155,7 +189,11 @@
     [self addCoverImage];
     
     ViewRadius(self.fabuBtn, 12.5);
+    
+    
+
 }
+
 -(void)addCoverImage{
     
     // 这里也是关键
@@ -232,6 +270,14 @@
 
 #pragma mark -webviewdelegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
+    JQFMDB *db = [JQFMDB shareDatabase];
+    if (![db jq_isExistTable:YX_USER_FaBuCaoGao]) {
+        [db jq_createTable:YX_USER_FaBuCaoGao dicOrModel:[YXShaiTuModel class]];
+    }
+    //如果model有，说明1、是编辑界面进来的 2、是从草稿界面进来的
+    if (_model) {
+        [self faxianEditCome];
+    }
     NSLog(@"webViewDidFinishLoad");
     JSContext *ctx = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     ctx[@"contentUpdateCallback"] = ^(JSValue *msg) {
@@ -628,7 +674,7 @@
     [self presentViewController:nav animated:YES completion:nil];
 }
 - (HXPhotoManager *)manager {
-    if (!_manager) {
+//    if (!_manager) {
         _manager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhoto];
         _manager.configuration.toolBarTitleColor = kRGBA(33,189,109,1);
         _manager.configuration.videoMaxNum = 1;
@@ -644,7 +690,7 @@
     _manager.configuration.navigationTitleColor = [UIColor blackColor];
     _manager.configuration.showDateSectionHeader =NO;
         _manager.configuration.singleSelected = NO;
-    }
+//    }
     return _manager;
 }
 

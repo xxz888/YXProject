@@ -61,7 +61,7 @@
     self.videoCoverImageString = @"";
     
     //内容
-    self.qmuiTextView.text = [self.model.detail UnicodeToUtf8];
+    self.qmuiTextView.text = self.model.detail;
     //类型
     self.fabuType = NO;
 }

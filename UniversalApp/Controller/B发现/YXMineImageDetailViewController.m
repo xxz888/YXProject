@@ -195,9 +195,50 @@
     double scale = videoSize.height/videoSize.width;
     return scale;
 }
+-(void)guanzhuAction{
+    kWeakSelf(self);
+    [YX_MANAGER requestLikesActionGET:kGetString(self.startDic[@"user_id"])  success:^(id object) {
+          BOOL is_like = [weakself.guanzhuBtn.titleLabel.text isEqualToString:@"＋关注"] == 1;
+          if (!is_like) {
+              [weakself.guanzhuBtn setTitle:@"＋关注" forState:UIControlStateNormal];
+              [weakself.guanzhuBtn setTitleColor:SEGMENT_COLOR forState:0];
+              [weakself.guanzhuBtn setBackgroundColor:KWhiteColor];
+              ViewBorderRadius(weakself.guanzhuBtn, 14, 1,SEGMENT_COLOR);
+          }else{
+              [weakself.guanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
+              [weakself.guanzhuBtn setTitleColor:KWhiteColor forState:0];
+              [weakself.guanzhuBtn setBackgroundColor:SEGMENT_COLOR];
+              ViewBorderRadius(weakself.guanzhuBtn, 14, 1,KClearColor);
+          }
+
+      }];
+}
 -(void)setHeaderView{
     [self.cell setCellValue:self.startDic];
- 
+    kWeakSelf(self);
+    [YX_MANAGER requestGetUserothers:kGetString(self.startDic[@"user_id"]) success:^(id object) {
+           NSInteger tag = [object[@"is_like"] integerValue];
+           if(tag == 2){
+                [weakself.guanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
+                [weakself.guanzhuBtn setTitleColor:KWhiteColor forState:0];
+                [weakself.guanzhuBtn setBackgroundColor:SEGMENT_COLOR];
+                ViewBorderRadius(weakself.guanzhuBtn, 14, 1,KClearColor);
+           }else if(tag == 1){
+                [weakself.guanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
+                [weakself.guanzhuBtn setTitleColor:KWhiteColor forState:0];
+                [weakself.guanzhuBtn setBackgroundColor:SEGMENT_COLOR];
+                ViewBorderRadius(weakself.guanzhuBtn, 14, 1,KClearColor);
+           }else{
+               [weakself.guanzhuBtn setTitle:@"＋关注" forState:UIControlStateNormal];
+               [weakself.guanzhuBtn setTitleColor:SEGMENT_COLOR forState:0];
+               [weakself.guanzhuBtn setBackgroundColor:KWhiteColor];
+               ViewBorderRadius(weakself.guanzhuBtn, 14, 1,SEGMENT_COLOR);
+           }
+    }];
+    
+    
+    
+    
     self.cell.tagId = [self.startDic[@"id"] integerValue];
     CGRect oldFrame = self.cell.frame;
     CGFloat newHeight =  self.headerViewHeight + (IS_IPhoneX ? 0 : 20);
@@ -296,10 +337,6 @@
     }
     zanBool =  [self.startDic[@"is_praise"] integerValue] == 1;
 
-    
-
-    
-    kWeakSelf(self);
     self.cell.shareblock = ^(NSInteger tag1) {
         
     };

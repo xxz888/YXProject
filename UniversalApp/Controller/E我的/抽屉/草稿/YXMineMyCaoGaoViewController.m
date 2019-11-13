@@ -11,6 +11,8 @@
 #import "YXPublishImageViewController.h"
 #import "JQFMDB.h"
 #import "YXShaiTuModel.h"
+#import "YXWenZhangEditorViewController.h"
+
 @interface YXMineMyCaoGaoViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
 @property(nonatomic,strong)NSArray * caoGaoArray;
@@ -37,7 +39,7 @@
     self.yxTableView.delegate= self;
     self.yxTableView.dataSource = self;
     self.yxTableView.tableFooterView = [[UIView alloc]init];
-    
+    self.yxTableView.separatorStyle = 0;
 
     
 }
@@ -71,7 +73,7 @@
     return self.caoGaoArray.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 100;
+    return 120;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identify = @"YXHomeXueJiaTableViewCell";
@@ -79,25 +81,49 @@
     if (!cell) {
         cell = [[YXHomeXueJiaTableViewCell alloc]initWithStyle:0 reuseIdentifier:identify];
     }
-  
+    cell.selectionStyle = 0;
+    cell.cellAutherLbl.hidden = YES;
     YXShaiTuModel * model =  self.caoGaoArray[indexPath.row];
-    
-    NSArray * photo_list = [model.photo_list split:@","];
-    NSString * showCoverImg = @"";
-    if (photo_list.count > 0) {
-        showCoverImg = [IMG_URI append:photo_list[0]];
+    if ([model.obj integerValue] == 1) {
+        NSArray * photo_list = [model.photo_list split:@","];
+        NSString * showCoverImg = @"";
+        if (photo_list.count > 0) {
+            showCoverImg = [IMG_URI append:photo_list[0]];
+        }
+        NSString * str = [(NSMutableString *)showCoverImg replaceAll:@" " target:@"%20"];
+        [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        cell.cellLbl.text = model.detail;
+        cell.cellDataLbl.text = @"晒图";
+    }else{
+        if (model.cover) {
+            NSString * str = [(NSMutableString *)[IMG_URI append:model.cover] replaceAll:@" " target:@"%20"];
+                  [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        }else{
+              [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+        }
+      
+          cell.cellLbl.text = model.title;
+          cell.cellDataLbl.text = @"文章";
+
     }
-    NSString * str = [(NSMutableString *)showCoverImg replaceAll:@" " target:@"%20"];
-    [cell.cellImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
-    cell.cellLbl.text = [model.detail UnicodeToUtf8];
+
 
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
-    imageVC.model = self.caoGaoArray[indexPath.row];
-    imageVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:imageVC animated:YES completion:nil];
+    YXShaiTuModel * model = self.caoGaoArray[indexPath.row];
+    if ([model.obj integerValue] == 1) {
+            YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
+            imageVC.model =model;
+            imageVC.modalPresentationStyle = UIModalPresentationFullScreen;
+            [self presentViewController:imageVC animated:YES completion:nil];
+    }else{
+             YXWenZhangEditorViewController * wenzhangVC = [[YXWenZhangEditorViewController alloc]init];
+             wenzhangVC.model = model;
+             wenzhangVC.modalPresentationStyle = UIModalPresentationFullScreen;
+             [self presentViewController:wenzhangVC animated:YES completion:nil];
+    }
+   
 }
 /*
 #pragma mark - Navigation

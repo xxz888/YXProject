@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,6 +15,7 @@
                 <outlet property="clickPingLunBtn" destination="fZw-k5-9IL" id="K6o-g7-FTA"/>
                 <outlet property="clickbtnHeight" destination="uNS-MQ-c4I" id="XnH-VE-tEw"/>
                 <outlet property="coustomNavView" destination="2oi-rh-fRK" id="Pe4-d2-eqN"/>
+                <outlet property="guanzhuBtn" destination="frL-s0-Vad" id="AkT-dG-u4x"/>
                 <outlet property="view" destination="iN0-l3-epB" id="SyB-Yq-Xg1"/>
                 <outlet property="yxTableView" destination="dOh-3i-XAI" id="zOM-JP-bUN"/>
             </connections>
@@ -61,13 +60,32 @@
                                 <action selector="shareAction:" destination="-1" eventType="touchUpInside" id="85h-kR-eL2"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frL-s0-Vad">
+                            <rect key="frame" x="256" y="42" width="66" height="28"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="28" id="EZd-F1-nbj"/>
+                                <constraint firstAttribute="width" constant="66" id="Hj2-bC-PRj"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="+ 关注">
+                                <color key="titleColor" red="0.062745098040000002" green="0.13725490200000001" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" red="0.062745098040000002" green="0.13725490200000001" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="guanzhuAction:" destination="-1" eventType="touchUpInside" id="gms-q5-vlW"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="jzg-hF-hg4" firstAttribute="leading" secondItem="2oi-rh-fRK" secondAttribute="leading" constant="16" id="1TQ-rX-cd8"/>
+                        <constraint firstItem="frL-s0-Vad" firstAttribute="centerY" secondItem="5fe-1v-Fg4" secondAttribute="centerY" id="CRt-Ed-yz7"/>
                         <constraint firstItem="5fe-1v-Fg4" firstAttribute="centerY" secondItem="jzg-hF-hg4" secondAttribute="centerY" id="CUT-3M-bD4"/>
                         <constraint firstAttribute="height" constant="80" id="Jye-lD-TvK"/>
                         <constraint firstItem="jzg-hF-hg4" firstAttribute="top" secondItem="2oi-rh-fRK" secondAttribute="top" constant="45" id="bm4-vv-bQf"/>
+                        <constraint firstItem="5fe-1v-Fg4" firstAttribute="leading" secondItem="frL-s0-Vad" secondAttribute="trailing" constant="15" id="kwp-O0-rHt"/>
                         <constraint firstAttribute="trailing" secondItem="5fe-1v-Fg4" secondAttribute="trailing" constant="16" id="mkt-WU-UQ7"/>
                     </constraints>
                 </view>
@@ -201,7 +219,7 @@
                 <constraint firstItem="2oi-rh-fRK" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="weC-1j-S3V"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="-946.39999999999998" y="-81.409295352323838"/>
+            <point key="canvasLocation" x="-1388" y="-204"/>
         </view>
     </objects>
     <resources>

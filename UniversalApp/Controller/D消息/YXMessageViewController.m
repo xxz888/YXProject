@@ -30,6 +30,7 @@
 
 @property (nonatomic, strong) NSDictionary * userInfoDic;
 @property (nonatomic, strong) NSMutableArray * yiduArray;
+@property (nonatomic, strong) UIImageView * noMessageImV;
 
 @end
 
@@ -208,7 +209,12 @@
     }
     [self.tableView reloadData];
 }
-
+-(UIImageView *)noMessageImV{
+    if (!_noMessageImV) {
+        
+    }
+    return _noMessageImV;
+}
 -(NSMutableArray *)messages{
 //    if (_messages == nil) {
         JQFMDB *db = [JQFMDB shareDatabase];
@@ -276,21 +282,19 @@
     UITapGestureRecognizer *tapGesturRecognizer3 =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
     self.view3.tag = 1003;
     [self.view3 addGestureRecognizer:tapGesturRecognizer3];
-    [self addShadowToView:self.stackView withColor:kRGBA(102, 102, 102, 0.3)];
     ViewBorderRadius(self.tuisongBtn, 2, 1, SEGMENT_COLOR);
     ViewBorderRadius(self.yiduBtn, 13, 1, kRGBA(238, 238, 238, 1));
     
     [self.tableView registerNib:[UINib nibWithNibName:@"YXMessageLiaoTianTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMessageLiaoTianTableViewCell"];
-    
-    
-    
- 
-    
+
     [self addRefreshView:self.tableView];
+    
+    
+    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 3) {
+    if (section == 4) {
         return self.dbMessageArray.count;
     }else{
         return [super tableView:tableView numberOfRowsInSection:section];
@@ -309,7 +313,11 @@
             }
         }
         return 0;
-    }else  if (indexPath.section == 3) {
+    }else if(indexPath.section == 3){
+        return self.dbMessageArray.count == 0 ? 370 : 0;
+    }
+    
+    else  if (indexPath.section == 4) {
         return 80;
     }
     else{
@@ -318,13 +326,13 @@
 }
 //cell的缩进级别，动态静态cell必须重写，否则会造成崩溃
 - (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(3 == indexPath.section){//爱好 （动态cell）
+    if(4 == indexPath.section){//爱好 （动态cell）
         return [super tableView:tableView indentationLevelForRowAtIndexPath: [NSIndexPath indexPathForRow:0 inSection:3]];
     }
     return [super tableView:tableView indentationLevelForRowAtIndexPath:indexPath];
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 3) {
+    if (indexPath.section == 4) {
         YXMessageLiaoTianTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMessageLiaoTianTableViewCell" forIndexPath:indexPath];
         MessageFrameModel * model = [self.dbMessageArray[indexPath.row] lastObject];
         cell.ltContent.text = model.message.text;
@@ -382,7 +390,7 @@ NSDictionary * userInfo = userManager.loadUserAllInfo;
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
   
-    if (indexPath.section == 3) {
+    if (indexPath.section == 4) {
 //            UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"聊天置顶" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
 //                // 收回侧滑
 //                [tableView setEditing:NO animated:YES];
@@ -422,23 +430,6 @@ NSDictionary * userInfo = userManager.loadUserAllInfo;
         return @[];
     }
 
-}
-
-
-
-
-/// 添加四边阴影效果
-- (void)addShadowToView:(UIView *)theView withColor:(UIColor *)theColor {
-    // 阴影颜色
-    theView.layer.shadowColor = theColor.CGColor;
-    // 阴影偏移，默认(0, -3)
-    theView.layer.shadowOffset = CGSizeMake(0,0);
-    // 阴影透明度，默认0
-    theView.layer.shadowOpacity = 1;
-    // 阴影半径，默认3
-    theView.layer.shadowRadius = 3;
-    theView.layer.cornerRadius = 5;
-    
 }
 -(void)tapAction:(id)sender{
     UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;

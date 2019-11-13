@@ -429,7 +429,7 @@ th {
 }
 #title{
     border-bottom: 1px dashed #999999;
-    margin: 0 15px;
+    margin: 0 0;
     padding: 15px 0;
 }
 .main-case{
@@ -439,15 +439,15 @@ th {
 }
 #article_content{
     position:relative;
-    width:-moz-calc(100% - 20px);
-    width:-webkit-calc(100% - 20px);
-    width: calc(100% - 20px);
+    width:-moz-calc(100% - 10px);
+    width:-webkit-calc(100% - 10px);
+    width: calc(100% - 10px);
     min-height: 50%;
     border: 0;
     /*    padding: 10px 20px 15px 25px; */
     /*    padding: 10px 20px 15px 25px;*/
     /*    padding: 10px 26px 50px 26px;*/
-    padding: 10px 10px 10px 10px;
+    padding: 10px 0px 10px 10px;
     line-height:28px;
     font-size: 16px;
     z-index:3;
@@ -475,7 +475,7 @@ th {
     color:#999;
     font-size: 16px;
     top:15px;
-    left:27px;
+    left:15px;
 }
 
 .back-img-text{
@@ -584,7 +584,7 @@ blockquote:before {
 }
 /* 去掉超链接下划线 */
 #article_content a{
-    color:#4A90E2;
+    color:#333;
     text-decoration: none;
 }
 

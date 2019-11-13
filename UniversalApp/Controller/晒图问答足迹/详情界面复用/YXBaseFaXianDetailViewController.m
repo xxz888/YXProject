@@ -232,4 +232,10 @@
 - (void)shareAction{
     
 }
+- (IBAction)guanzhuAction:(id)sender {
+    [self guanzhuAction];
+}
+- (void)guanzhuAction{
+    
+}
 @end

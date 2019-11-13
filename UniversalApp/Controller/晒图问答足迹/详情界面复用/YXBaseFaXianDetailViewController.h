@@ -46,6 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *commentToUser;
 @property (nonatomic, copy) NSString *commentToUserID;
 
+@property (weak, nonatomic) IBOutlet UIButton *guanzhuBtn;
+- (IBAction)guanzhuAction:(id)sender;
 
 @property (nonatomic, strong) ZInputToolbar *inputToolbar;
 
@@ -76,7 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *shareBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *imgShareBtn;
 @property (weak, nonatomic) IBOutlet UIView *coustomNavView;
-
+- (void)guanzhuAction;
 @end
 
 NS_ASSUME_NONNULL_END

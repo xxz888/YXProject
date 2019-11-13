@@ -19,6 +19,7 @@
 #import "YXHuaTiViewController.h"
 #import "YXSecondHeadView.h"
 #import "YXNetFailView.h"
+#import "YXWenZhangEditorViewController.h"
 
 
 static CGFloat sectionHeaderHeight = 260;
@@ -380,24 +381,43 @@ static CGFloat sectionHeaderHeight = 260;
     
     NSMutableArray * itemsArray1 = [[NSMutableArray alloc]init];
     if (isOwn) {
-        if ([isWho isEqualToString:@"1"]) {
+        if ([isWho isEqualToString:@"1"] || [isWho isEqualToString:@"2"]) {
             [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_add") title:@"编辑" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                        [moreOperationController hideToBottom];
-                       YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
-                       YXShaiTuModel * model = [[YXShaiTuModel alloc]init];
-                       model.post_id = kGetString(startDic[@"id"]);
-                       model.coustomId = @"";
-                       model.detail = startDic[@"detail"];
-                       model.publish_site = startDic[@"publish_site"];
-                       model.title = startDic[@"title"];
-                       model.tag = startDic[@"tag"];
-                       model.publish_site = startDic[@"publish_site"];
-                       model.photo_list = startDic[@"photo_list"];
-                       model.cover = startDic[@"cover"];
-                       model.obj = kGetString(startDic[@"obj"]);
-                       imageVC.model = model;
-                       imageVC.modalPresentationStyle = UIModalPresentationFullScreen;
-                       [weakself presentViewController:imageVC animated:YES completion:nil];
+                if ([isWho isEqualToString:@"1"]) {
+                    YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
+                    YXShaiTuModel * model = [[YXShaiTuModel alloc]init];
+                    model.post_id = kGetString(startDic[@"id"]);
+                    model.coustomId = @"";
+                    model.detail = startDic[@"detail"];
+                    model.publish_site = startDic[@"publish_site"];
+                    model.title = startDic[@"title"];
+                    model.tag = startDic[@"tag"];
+                    model.publish_site = startDic[@"publish_site"];
+                    model.photo_list = startDic[@"photo_list"];
+                    model.cover = startDic[@"cover"];
+                    model.obj = kGetString(startDic[@"obj"]);
+                    imageVC.model = model;
+                    imageVC.modalPresentationStyle = UIModalPresentationFullScreen;
+                    [weakself presentViewController:imageVC animated:YES completion:nil];
+                }else{
+                    YXWenZhangEditorViewController * wenzhangVC = [[YXWenZhangEditorViewController alloc]init];
+                    YXShaiTuModel * model = [[YXShaiTuModel alloc]init];
+                    model.post_id = kGetString(startDic[@"id"]);
+                    model.coustomId = @"";
+                    model.detail = startDic[@"detail"];
+                    model.publish_site = startDic[@"publish_site"];
+                    model.title = startDic[@"title"];
+                    model.tag = startDic[@"tag"];
+                    model.publish_site = startDic[@"publish_site"];
+                    model.photo_list = startDic[@"photo_list"];
+                    model.cover = startDic[@"cover"];
+                    model.obj = kGetString(startDic[@"obj"]);
+                    wenzhangVC.model = model;
+                    wenzhangVC.modalPresentationStyle = UIModalPresentationFullScreen;
+                    [weakself presentViewController:wenzhangVC animated:YES completion:nil];
+                }
+                       
             }]];
         }
     
