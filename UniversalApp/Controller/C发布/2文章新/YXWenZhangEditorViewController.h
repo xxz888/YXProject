@@ -13,6 +13,8 @@ typedef void(^closeNewVcBlock)(void);
 
 @interface YXWenZhangEditorViewController : RootViewController
 @property(nonatomic,copy)closeNewVcBlock  closeNewVcblock;
+@property (weak, nonatomic) IBOutlet UIButton *cuncaogaoBtn;
+@property (weak, nonatomic) IBOutlet UIButton *fabuBtn;
 
 @end
 

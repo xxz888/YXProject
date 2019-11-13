@@ -53,6 +53,10 @@
         self.closeNewVcblock();
     }
 }
+- (IBAction)cuncaogaoAction:(id)sender {
+    
+    
+}
 - (IBAction)fabuAction:(id)sender {
      NSLog(@"%@",[self.webView contentHtmlText]);
      NSLog(@"%@",[self.webView titleText]);
@@ -149,6 +153,8 @@
      NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
     self.webView.scrollView.contentInset= UIEdgeInsetsMake(176,0,44,0);
     [self addCoverImage];
+    
+    ViewRadius(self.fabuBtn, 12.5);
 }
 -(void)addCoverImage{
     

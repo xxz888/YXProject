@@ -12,7 +12,8 @@
 #import "YXZhiNanDetailHeaderView.h"
 #import "QiniuLoad.h"
 #import "YXZhiNanYaoQingJieSuoTableViewController.h"
-
+#import "YXMineImageDetailViewController.h"
+#import "YXFirstFindImageTableViewCell.h"
 @interface YXZhiNanViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) NSMutableArray * dataArray;
 @property (nonatomic,strong) YXZhiNanDetailHeaderView * headerView;
@@ -148,9 +149,9 @@
         vc.startArray = [[NSMutableArray alloc]initWithArray:weakself.dataArray];
         
         //这里判断是否锁了
-        
-        NSInteger is_lock = [weakself.collArray[bigIndex][smallIndex][@"is_lock"] integerValue];
-        NSInteger user_lock = [weakself.collArray[bigIndex][smallIndex][@"user_lock"] integerValue];
+        NSDictionary * dicsb = weakself.collArray[bigIndex][smallIndex];
+        NSInteger is_lock = [dicsb[@"is_lock"] integerValue];
+        NSInteger user_lock = [dicsb[@"user_lock"] integerValue];
         
         if (is_lock == 1) {
             if (user_lock == 0) {
@@ -166,7 +167,21 @@
                 [weakself.navigationController pushViewController:vc animated:YES];
             }
         }else{
-            [weakself.navigationController pushViewController:vc animated:YES];
+                
+                NSString * par = [NSString stringWithFormat:@"0/%@",weakself.dataArray[bigIndex][@"id"]];
+                [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
+                      NSDictionary * dic = object[smallIndex][0];
+                    if ([dic[@"ratio"] integerValue] == 99999) {
+                          NSDictionary * resultDic = [ShareManager stringToDic:dic[@"detail"]];
+                          YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
+                          CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:resultDic];
+                          VC.headerViewHeight = h;
+                          VC.startDic = [NSMutableDictionary dictionaryWithDictionary:resultDic];
+                          [weakself.navigationController pushViewController:VC animated:YES];
+                    }else{
+                        [weakself.navigationController pushViewController:vc animated:YES];
+                    }
+                }];
         }
     };
     return cell;
