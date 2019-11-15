@@ -28,7 +28,7 @@
     CGFloat webViewHeight;//webview高度
     CGFloat coverHeight;//封面高度
     BOOL webViewFinishBOOL;//判断webview是否加载完成
-
+    CGFloat _oldY;
 }
 @property (nonatomic,strong)  YXFirstFindImageTableViewCell * cell;
 @property (nonatomic,strong)  NSDictionary * shareDic;
@@ -112,14 +112,9 @@
 }
 #pragma mark -webviewdelegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-//       [self.cell.cellWebView setupTitle:self.startDic[@"title"]];
        [self.cell.cellWebView setupHtmlContent:self.startDic[@"detail"]];
        //删除占位信息
        [self.cell.cellWebView clearContentPlaceholder];
-    
-    
-    
-
 }
 
 - (void)observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context{
@@ -138,42 +133,9 @@
             self.cell.frame= Frame;
             [self.yxTableView setTableHeaderView:self.cell];//这句话才是重点
             [QMUITips hideAllTips];
-            
-            
-//        webViewHeight= [[self.cell.cellWebView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"]floatValue];
-//        CGRect newFrame= self.cell.cellWebView.frame;
-//        newFrame.size.height = webViewHeight;
-//        self.cell.cellWebView.frame= newFrame;
-//        [self.cell.cellWebView sizeToFit];
-//        CGRect Frame = self.cell.frame;
-//
-//        CGFloat detailHeight = [ShareManager inTextOutHeight:[self.startDic[@"title"] UnicodeToUtf8] lineSpace:9 fontSize:24];
-//
-//            CGFloat height = 10 + 10 + 5 + 40 + (IS_IPhoneX ? 0 : 20) ; //分割线和上下距离和评论
-//        Frame.size.height= 125 + detailHeight + webViewHeight + coverHeight + height;
-//        self.cell.midViewHeight.constant =  webViewHeight;
-//        self.cell.frame= Frame;
-//        [self.yxTableView setTableHeaderView:self.cell];//这句话才是重点
-//
-//        if (!self.nodataImg) {
-//            self.nodataImg = [[UILabel alloc]init];
-//        }
-//        self.nodataImg.frame = CGRectMake((KScreenWidth-200)/2,self.cell.frame.size.height - 30, 200, 100);
-//        self.nodataImg.text = @"暂时还没有评论";
-//        self.nodataImg.font = [UIFont systemFontOfSize:14];
-//        self.nodataImg.textColor = [UIColor lightGrayColor];
-//        self.nodataImg.textAlignment = NSTextAlignmentCenter;
-//        [self.nodataImg removeFromSuperview];
-//        [self.yxTableView addSubview:self.nodataImg];
-//        self.nodataImg.hidden = self.dataArray.count != 0;
     }
 }
-    
-//- (void)webViewDidFinishLoad:(UIWebView*)webView{
-//        CGFloat sizeHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"]floatValue];
-//        self.cell.cellWebView.frame=CGRectMake(0,0,self.cell.midView.frame.size.width, sizeHeight);
-//        [QMUITips hideAllTipsInView:self.view];
-//}
+
 - (XLVideoPlayer *)player {
     if (!_player) {
         _player = [[XLVideoPlayer alloc] init];
@@ -195,6 +157,8 @@
     double scale = videoSize.height/videoSize.width;
     return scale;
 }
+
+
 -(void)guanzhuAction{
     kWeakSelf(self);
     [YX_MANAGER requestLikesActionGET:kGetString(self.startDic[@"user_id"])  success:^(id object) {
@@ -204,16 +168,74 @@
               [weakself.guanzhuBtn setTitleColor:SEGMENT_COLOR forState:0];
               [weakself.guanzhuBtn setBackgroundColor:KWhiteColor];
               ViewBorderRadius(weakself.guanzhuBtn, 14, 1,SEGMENT_COLOR);
+              
+              
+            [weakself.cell.guanzhuBtn setTitle:@"＋关注" forState:UIControlStateNormal];
+            [weakself.cell.guanzhuBtn setTitleColor:SEGMENT_COLOR forState:0];
+            [weakself.cell.guanzhuBtn setBackgroundColor:KWhiteColor];
+            ViewBorderRadius(weakself.cell.guanzhuBtn, 14, 1,SEGMENT_COLOR);
           }else{
               [weakself.guanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
               [weakself.guanzhuBtn setTitleColor:KWhiteColor forState:0];
               [weakself.guanzhuBtn setBackgroundColor:SEGMENT_COLOR];
               ViewBorderRadius(weakself.guanzhuBtn, 14, 1,KClearColor);
+              
+              [weakself.cell.guanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
+              [weakself.cell.guanzhuBtn setTitleColor:KWhiteColor forState:0];
+              [weakself.cell.guanzhuBtn setBackgroundColor:SEGMENT_COLOR];
+              ViewBorderRadius(weakself.cell.guanzhuBtn, 14, 1,KClearColor);
           }
 
       }];
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if ([scrollView isEqual: self.yxTableView]) {
+            if (self.yxTableView.contentOffset.y > _oldY) {
+                // 上滑
+                    self.coustomNavView.backgroundColor = KWhiteColor;
+                    [self.backBtn setImage:IMAGE_NAMED(@"黑色返回") forState:UIControlStateNormal];
+                    [self.shareBtn setImage:IMAGE_NAMED(@"更多") forState:UIControlStateNormal];
+                    self.guanzhuBtn.hidden = self.titleImg.hidden = self.titleName.hidden = self.titleTime.hidden = NO;
+                    self.cell.guanzhuBtn.hidden = YES;
+                    self.cell.cellHeaderHeight.constant = 0;
+                    self.cell.titleImageView.hidden = self.cell.titleLbl.hidden = self.cell.mapBtn.hidden = YES;
+                    
+            }
+            else{
+                // 下滑
+                    self.coustomNavView.backgroundColor = KClearColor;
+                    [self.backBtn setImage:IMAGE_NAMED(@"huisebeijingfanhui") forState:UIControlStateNormal];
+                    [self.shareBtn setImage:IMAGE_NAMED(@"huisebeijinggengduo") forState:UIControlStateNormal];
+                    self.guanzhuBtn.hidden = self.titleImg.hidden = self.titleName.hidden = self.titleTime.hidden = YES;
+                    self.cell.guanzhuBtn.hidden = NO;
+                self.cell.cellHeaderHeight.constant = 50;
+ self.cell.titleImageView.hidden = self.cell.titleLbl.hidden = self.cell.mapBtn.hidden = NO;
+            }
+        }
+}
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    // 获取开始拖拽时tableview偏移量
+    _oldY = self.yxTableView.contentOffset.y;
+}
 -(void)setHeaderView{
+    //初始化赋值
+
+    [self.backBtn setImage:IMAGE_NAMED(@"huisebeijingfanhui") forState:UIControlStateNormal];
+    [self.shareBtn setImage:IMAGE_NAMED(@"huisebeijinggengduo") forState:UIControlStateNormal];
+    self.guanzhuBtn.hidden = YES;
+    self.cell.guanzhuBtn.hidden = NO;
+    //头像
+    NSString * str1 = [(NSMutableString *)self.startDic[@"photo"] replaceAll:@" " target:@"%20"];
+    [self.titleImg sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:str1]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
+    //头名字
+    self.titleName.text = self.startDic[@"user_name"];
+    //头时间
+    self.titleTime.text = [ShareManager updateTimeForRow:[self.startDic[@"publish_time"] longLongValue]];
+    self.titleImg.hidden = self.titleName.hidden = self.titleTime.hidden = YES;
+    
+    
+    
     [self.cell setCellValue:self.startDic];
     kWeakSelf(self);
     [YX_MANAGER requestGetUserothers:kGetString(self.startDic[@"user_id"]) success:^(id object) {
@@ -223,16 +245,33 @@
                 [weakself.guanzhuBtn setTitleColor:KWhiteColor forState:0];
                 [weakself.guanzhuBtn setBackgroundColor:SEGMENT_COLOR];
                 ViewBorderRadius(weakself.guanzhuBtn, 14, 1,KClearColor);
+               
+                [weakself.cell.guanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
+                [weakself.cell.guanzhuBtn setTitleColor:KWhiteColor forState:0];
+                [weakself.cell.guanzhuBtn setBackgroundColor:SEGMENT_COLOR];
+                ViewBorderRadius(weakself.cell.guanzhuBtn, 14, 1,KClearColor);
+               
            }else if(tag == 1){
                 [weakself.guanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
                 [weakself.guanzhuBtn setTitleColor:KWhiteColor forState:0];
                 [weakself.guanzhuBtn setBackgroundColor:SEGMENT_COLOR];
                 ViewBorderRadius(weakself.guanzhuBtn, 14, 1,KClearColor);
+               
+               [weakself.cell.guanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
+               [weakself.cell.guanzhuBtn setTitleColor:KWhiteColor forState:0];
+               [weakself.cell.guanzhuBtn setBackgroundColor:SEGMENT_COLOR];
+               ViewBorderRadius(weakself.cell.guanzhuBtn, 14, 1,KClearColor);
            }else{
                [weakself.guanzhuBtn setTitle:@"＋关注" forState:UIControlStateNormal];
                [weakself.guanzhuBtn setTitleColor:SEGMENT_COLOR forState:0];
                [weakself.guanzhuBtn setBackgroundColor:KWhiteColor];
                ViewBorderRadius(weakself.guanzhuBtn, 14, 1,SEGMENT_COLOR);
+               
+               [weakself.cell.guanzhuBtn setTitle:@"＋关注" forState:UIControlStateNormal];
+               [weakself.cell.guanzhuBtn setTitleColor:SEGMENT_COLOR forState:0];
+               [weakself.cell.guanzhuBtn setBackgroundColor:KWhiteColor];
+               ViewBorderRadius(weakself.cell.guanzhuBtn, 14, 1,SEGMENT_COLOR);
+               
            }
     }];
     
@@ -375,6 +414,9 @@
         }else{
            
         }
+    };
+    self.cell.guanZhublock = ^{
+        [weakself guanzhuAction];
     };
 }
 
@@ -857,4 +899,5 @@
     self.shareDic = [NSDictionary dictionaryWithDictionary:self.cell.dataDic];
     [self addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:self.cell.tagId startDic:self.cell.dataDic];
 }
+
 @end

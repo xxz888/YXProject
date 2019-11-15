@@ -102,7 +102,7 @@
 
 #pragma mark ========== 我自己的所有 ==========
 -(void)requestMine_AllList{
-    
+    [self.dataArray removeAllObjects];
           self.dataArray = [self commonAction:self.startArray dataArray:self.dataArray];
           [self.yxTableView reloadData];
           self.nodataImg.hidden = self.dataArray.count != 0;

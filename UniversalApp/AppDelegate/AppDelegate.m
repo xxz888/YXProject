@@ -37,13 +37,13 @@
     [self initUserManager];
     
     //网络监听
-    [self monitorNetworkStatus];
+//    [self monitorNetworkStatus];
     
     
     //初始化QMUI
     [self initQMUI];
     //广告页
-    //[AppManager appStart];
+//    [AppManager appStart];
     
     //[WP_TOOL_AppManager updateApp];
     [ShareManager updateApp];

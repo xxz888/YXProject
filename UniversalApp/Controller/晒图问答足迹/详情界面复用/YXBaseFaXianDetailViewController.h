@@ -79,6 +79,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *imgShareBtn;
 @property (weak, nonatomic) IBOutlet UIView *coustomNavView;
 - (void)guanzhuAction;
+
+@property (weak, nonatomic) IBOutlet UIImageView *titleImg;
+@property (weak, nonatomic) IBOutlet UILabel *titleName;
+@property (weak, nonatomic) IBOutlet UILabel *titleTime;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

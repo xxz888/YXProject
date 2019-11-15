@@ -90,9 +90,9 @@
     //detail
     NSString * titleText = @"";
     if ([dic[@"obj"] integerValue] == 1) {
-        titleText = [[NSString stringWithFormat:@"%@%@",dic[@"detail"],dic[@"tag"]] UnicodeToUtf8];
+        titleText = [NSString stringWithFormat:@"%@%@",dic[@"detail"],dic[@"tag"]];
     }else{
-        titleText = [[NSString stringWithFormat:@"%@%@",dic[@"title"],dic[@"tag"]] UnicodeToUtf8];
+        titleText = [NSString stringWithFormat:@"%@%@",dic[@"title"],dic[@"tag"]];
     }
     //赞和评论
     NSString * talkNum =  kGetString(dic[@"comment_number"]);
@@ -250,4 +250,7 @@
 
 
 
+- (IBAction)guanzhuAction:(id)sender {
+    self.guanZhublock();
+}
 @end

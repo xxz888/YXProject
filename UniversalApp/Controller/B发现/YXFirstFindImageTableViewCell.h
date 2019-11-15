@@ -44,12 +44,19 @@ typedef void(^ClickTag1Block)(NSString *);
 @property (nonatomic,copy) ClickTag1Block clickTagblock;
     
     
-    
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cellHeaderHeight;
+
 @property (weak, nonatomic) IBOutlet UILabel *zanCount;
 @property (weak, nonatomic) IBOutlet UILabel *talkCount;
     
 - (IBAction)zanTalkAction:(id)sender;
-    
+
+
+typedef void(^GuanZhuBlock)();
+@property (nonatomic,copy) GuanZhuBlock guanZhublock;
+@property (weak, nonatomic) IBOutlet UIButton *guanzhuBtn;
+- (IBAction)guanzhuAction:(id)sender;
+
     
 typedef void(^clickInDetail)(NSInteger,NSInteger);
 @property (nonatomic,copy) clickInDetail clickDetailblock;
