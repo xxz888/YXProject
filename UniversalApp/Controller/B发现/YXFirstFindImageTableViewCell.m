@@ -9,9 +9,12 @@
 #import "YXFirstFindImageTableViewCell.h"
 #import "UIImage+ImgSize.h"
 #import "SDWeiXinPhotoContainerView.h"
+#import "CBGroupAndStreamView.h"
+
 @interface YXFirstFindImageTableViewCell()<SDCycleScrollViewDelegate>
 @property (nonatomic,strong) UITapGestureRecognizer *tap;
 @property (strong, nonatomic) SDWeiXinPhotoContainerView *picContainerView;
+@property (strong, nonatomic) CBGroupAndStreamView * cbGroupAndStreamView;
 
 @end
 
@@ -26,9 +29,9 @@
 
     //计算detail高度
     if([dic[@"obj"] integerValue] == 1){
-        titleText = [[NSString stringWithFormat:@"%@%@",dic[@"detail"],dic[@"tag"]] UnicodeToUtf8];
+        titleText = [NSString stringWithFormat:@"%@",dic[@"detail"]];
         midViewHeight = KScreenWidth-20;
-        if ([dic[@"detail"] isEqualToString:@""] && [dic[@"tag"] isEqualToString:@""]) {
+        if ([dic[@"detail"] isEqualToString:@""]) {
                      detailHeight = 0;
                  }else{
                      detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:15];
@@ -43,24 +46,48 @@
      
         
     }else{
-        titleText = [[NSString stringWithFormat:@"%@%@",dic[@"title"],dic[@"tag"]] UnicodeToUtf8];
+        titleText = [NSString stringWithFormat:@"%@",dic[@"title"]];
         midViewHeight = 220;
-        if ([dic[@"title"] isEqualToString:@""] && [dic[@"tag"] isEqualToString:@""]) {
+        if ([dic[@"title"] isEqualToString:@""]) {
             detailHeight = 0;
         }else{
-            detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:15];
+            detailHeight = [ShareManager inTextBlodOutHeight:titleText lineSpace:9 fontSize:18];
             
         }
     }
 
    
-    return 128 + detailHeight + midViewHeight;
+    return 128 + detailHeight + midViewHeight + [YXFirstFindImageTableViewCell allViewHeight:dic];
+}
++(CGFloat)allViewHeight:(NSDictionary *)dic{
+    if ([dic[@"tag_list"] count] == 0) {
+        return 0;
+    }
+    if ([dic[@"tag_list"][0] length] ==0) {
+        return 0;
+    }
+    CBGroupAndStreamView * cb = [[CBGroupAndStreamView alloc] init];
+    cb.hidden = YES;
+    cb.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight);
+    cb.isSingle = YES;
+    cb.radius = 4;
+    cb.butHeight = 30;
+    cb.font = [UIFont systemFontOfSize:12];
+    cb.titleTextFont = [UIFont systemFontOfSize:12];
+    [kAppWindow addSubview:cb];
+    NSMutableArray * contentArr = [[NSMutableArray alloc]init];
+      for (NSString * str in dic[@"tag_list"]) {
+          [contentArr addObject:[@"#" append:str]];
+      }
+    [cb setContentView:@[contentArr] titleArr:@[@""]];
+    return  cb.allViewHeight;
 }
 +(CGFloat)inArrayCountOutHeight:(NSInteger)count{
     CGFloat h = 0;
     if (count == 1) {
         h = 200;
     }else{
+        
         CGFloat oneH =  (KScreenWidth - 30 )/ 3 ;
         if (count > 3 && count <= 6) {
             h = oneH * 2;
@@ -90,9 +117,9 @@
     //detail
     NSString * titleText = @"";
     if ([dic[@"obj"] integerValue] == 1) {
-        titleText = [NSString stringWithFormat:@"%@%@",dic[@"detail"],dic[@"tag"]];
+        titleText = [NSString stringWithFormat:@"%@",dic[@"detail"]];
     }else{
-        titleText = [NSString stringWithFormat:@"%@%@",dic[@"title"],dic[@"tag"]];
+        titleText = [NSString stringWithFormat:@"%@",dic[@"title"]];
     }
     //赞和评论
     NSString * talkNum =  kGetString(dic[@"comment_number"]);
@@ -112,30 +139,13 @@
     BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
     UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
     [self.zanBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
-    
-    
-    
-    NSArray * indexArray = [dic[@"tag"] split:@" "];
-    NSMutableArray * modelArray = [NSMutableArray array];
-    for (NSString * string in indexArray) {
-        //设置需要点击的字符串，并配置此字符串的样式及位置
-        IXAttributeModel    * model = [IXAttributeModel new];
-        model.range = [titleText rangeOfString:string];
-        model.string = string;
-        model.attributeDic = @{NSForegroundColorAttributeName : YXRGBAColor(10, 96, 254),
-                               NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:15]};
-        [modelArray addObject:model];
+    if ([dic[@"tag_list"] count] != 0 && [dic[@"tag_list"][0] length]!=0) {
+          [self addNewTags:dic];
+    }else{
+        [self.tagView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        self.tagViewHeight.constant = 0 ;
     }
-    //文本点击回调
-    self.detailLbl.tapBlock = ^(NSString *string) {
-        weakself.clickTagblock(string);
-    };
-    //label内容赋值
-    [self.detailLbl setText:titleText
-                 attributes:@{NSForegroundColorAttributeName : YXRGBAColor(10, 96, 254),
-                              NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:15],}
-               tapStringArray:modelArray];
-
+    self.detailLbl.text = titleText;
     //图片
     if ([dic[@"obj"] integerValue] == 1) {
         NSArray * urlList = dic[@"url_list"];
@@ -167,21 +177,16 @@
                 //处理view隐藏
                 self.playImV.hidden = YES;
             }
-        self.detailLbl.font =  [UIFont fontWithName:@"苹方-简" size:15];
         //下边这句话不能删除，改变样式的
         [ShareManager setLineSpace:9 inLabel:self.detailLbl size:15];
-        [ShareManager inTextViewOutDifColorView:self.detailLbl tag:dic[@"tag"]];
         self.detailHeight.constant = [ShareManager inTextOutHeight:self.detailLbl.text  lineSpace:9 fontSize:15];
-        if ([dic[@"detail"] isEqualToString:@""] && [dic[@"tag"] isEqualToString:@""]) {
-            self.detailHeight.constant = 0;
-        }
+        if ([dic[@"detail"] isEqualToString:@""]) {self.detailHeight.constant = 0;}
     }else{
     //文章
         self.midViewHeight.constant = 220;
         self.onlyOneImv.hidden = NO;
         self.playImV.hidden =YES;
         self.picContainerView.hidden = YES;
-        
         NSString * string = [(NSMutableString *)dic[@"cover"] replaceAll:@" " target:@"%20"];
         if (![string contains:IMG_URI]) {
             string = [IMG_URI append:string];
@@ -189,26 +194,62 @@
         [self.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         self.onlyOneImv.userInteractionEnabled = NO;
         //下边这句话不能删除，改变样式的
-        [ShareManager setLineSpace:9 inLabel:self.detailLbl size:15];
-        [ShareManager inTextViewOutDifColorView:self.detailLbl tag:dic[@"tag"]];
-        self.detailLbl.font =  [UIFont fontWithName:@"Helvetica-Bold" size:17];
-        self.detailHeight.constant = [ShareManager inTextOutHeight:self.detailLbl.text  lineSpace:9 fontSize:17];
         
-        if ([dic[@"title"] isEqualToString:@""] && [dic[@"tag"] isEqualToString:@""]) {
+        
+ 
+        
+        
+        [ShareManager setLineSpace:9 inLabel:self.detailLbl size:18];
+        self.detailLbl.font =  [UIFont fontWithName:@"Helvetica-Bold" size:18];
+        self.detailHeight.constant = [ShareManager inTextBlodOutHeight:self.detailLbl.text  lineSpace:9 fontSize:18];
+        
+         NSMutableAttributedString * attriStr = [[NSMutableAttributedString alloc] initWithString:self.detailLbl.text];
+         NSTextAttachment *attchImage = [[NSTextAttachment alloc] init];
+         attchImage.image = [UIImage imageNamed:@"faxianshu"];
+         attchImage.bounds = CGRectMake(0, -2, 20, 16);
+         NSMutableAttributedString * attriStr1 = [[NSMutableAttributedString alloc] initWithString:@"  "];
+
+         NSAttributedString *stringImage = [NSAttributedString attributedStringWithAttachment:attchImage];
+         [attriStr insertAttributedString:stringImage atIndex:0];
+         [attriStr insertAttributedString:attriStr1 atIndex:1];
+
+         self.detailLbl.attributedText = attriStr;
+        
+        if ([dic[@"title"] isEqualToString:@""]) {
             self.detailHeight.constant = 0;
         }
     }
-    
-    
-    
-   
-    [self.detailLbl setOrgVerticalTextAlignment:OrgHLVerticalTextAlignmentMiddle];
-
     if ([dic[@"publish_site"] isEqualToString:@""] || !dic[@"publish_site"] ) {
         self.nameCenter.constant = self.titleImageView.frame.origin.y;
     }else{
         self.nameCenter.constant = 0;
     }
+}
+-(void)addNewTags:(NSDictionary *)dic{
+    [self.tagView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    self.tagViewHeight.constant = [YXFirstFindImageTableViewCell allViewHeight:dic];
+    _cbGroupAndStreamView = [[CBGroupAndStreamView alloc] initWithFrame:CGRectMake(0, 0,self.tagView.qmui_width, [YXFirstFindImageTableViewCell allViewHeight:dic])];
+    [self.tagView addSubview:_cbGroupAndStreamView];
+    NSMutableArray * contentArr = [[NSMutableArray alloc]init];
+    for (NSString * str in dic[@"tag_list"]) {
+        [contentArr addObject:[@"#" append:str]];
+    }
+    _cbGroupAndStreamView.backgroundColor = KClearColor;
+    _cbGroupAndStreamView.isSingle = YES;
+    _cbGroupAndStreamView.radius = 4;
+    _cbGroupAndStreamView.butHeight = 28;
+    _cbGroupAndStreamView.font = [UIFont systemFontOfSize:12];
+    _cbGroupAndStreamView.titleTextFont = [UIFont systemFontOfSize:12];
+    _cbGroupAndStreamView.scroller.backgroundColor = KClearColor;
+    _cbGroupAndStreamView.scroller.scrollEnabled = NO;
+    _cbGroupAndStreamView.contentNorColor  = SEGMENT_COLOR;
+    _cbGroupAndStreamView.contentSelColor = SEGMENT_COLOR;
+    _cbGroupAndStreamView.backClolor = kRGBA(245, 245, 245, 1);
+    [_cbGroupAndStreamView setContentView:@[contentArr] titleArr:@[@""]];
+    kWeakSelf(self);
+    _cbGroupAndStreamView.cb_selectCurrentValueBlock = ^(NSString *value, NSInteger index, NSInteger groupId) {
+        weakself.clickTagblock(value);
+    };
 }
 - (void)showVideoPlayer:(UITapGestureRecognizer *)tapGesture {
     self.playBlock(tapGesture);

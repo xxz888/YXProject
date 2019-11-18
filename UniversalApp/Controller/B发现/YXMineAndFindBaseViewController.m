@@ -60,7 +60,7 @@ static CGFloat sectionHeaderHeight = 260;
 #pragma mark ========== 创建tableview ==========
 -(void)tableviewCon{
     self.dataArray = [[NSMutableArray alloc]init];
-    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-kStatusBarHeight-TabBarHeight-40)];
     [self.view addSubview:self.yxTableView];
     self.yxTableView.delegate = self;
     self.yxTableView.dataSource= self;

@@ -13,9 +13,9 @@
 
 @interface CBGroupAndStreamView()
 //滚动视图
-@property (strong,nonatomic) UIScrollView *scroller;
+//@property (strong,nonatomic) UIScrollView *scroller;
 //最后一个按钮的frame
-@property (assign,nonatomic) CGRect frameRect;
+//@property (assign,nonatomic) CGRect frameRect;
 //数据源数组
 @property (strong,nonatomic) NSMutableArray *dataSourceArr;
 //保存按钮选中的值
@@ -97,6 +97,8 @@
     }
     //设置滚动视图的滚动范围
     self.scroller.contentSize = CGSizeMake(0, self.frameRect.size.height + self.frameRect.origin.y + 10);
+    
+    self.allViewHeight = self.frameRect.size.height + self.frameRect.origin.y + 10;
 }
 
 
@@ -153,7 +155,7 @@
 
             but.frame = CGRectMake(butorignX, but_totalHeight, butWidth, butHeight);
             current_rect = but.frame;
-            but.backgroundColor = KWhiteColor;
+            [but setBackgroundColor:_backClolor];
             but.tag = groupId * 100 + i + 1;
             //按钮样式
             [but addTarget:self action:@selector(butClick:) forControlEvents:UIControlEventTouchUpInside];

@@ -61,12 +61,16 @@ typedef void(^cb_SelectCurrentValueBlock)(NSString * value, NSInteger index, NSI
  时，则会修改为多选
  */
 @property (copy, nonatomic) NSArray * defaultSelectIndexArr;
-
+//滚动视图
+@property (strong,nonatomic) UIScrollView *scroller;
 /**
  默认颜色
  */
 @property (strong, nonatomic) UIColor * norColor;
-
+/**
+ 默认颜色
+ */
+@property (strong, nonatomic) UIColor * backClolor;
 /**
  选中颜色
  */
@@ -111,7 +115,10 @@ typedef void(^cb_SelectCurrentValueBlock)(NSString * value, NSInteger index, NSI
  标题高度，默认为 30
  */
 @property (assign, nonatomic) CGFloat titleLabHeight;
-
+/**
+ 标题高度，默认为 30
+ */
+@property (assign, nonatomic) CGFloat allViewHeight;
 /**
  两按钮左右之间的距离 默认 为 10
  */
@@ -156,5 +163,5 @@ typedef void(^cb_SelectCurrentValueBlock)(NSString * value, NSInteger index, NSI
  重置
  */
 - (void)reset;
-
+@property (assign,nonatomic) CGRect frameRect;
 @end

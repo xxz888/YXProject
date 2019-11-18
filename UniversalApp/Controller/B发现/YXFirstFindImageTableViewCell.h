@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *timeLbl;
 @property (weak, nonatomic) IBOutlet UIButton *mapBtn;
-@property (weak, nonatomic) IBOutlet IXAttributeTapLabel *detailLbl;
+@property (weak, nonatomic) IBOutlet UILabel *detailLbl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailHeight;
 @property (weak, nonatomic) IBOutlet UIView *midView;
 +(CGFloat)cellDefaultHeight:(NSDictionary *)dic;
@@ -26,7 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSMutableDictionary * dataDic;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameCenter;
 -(CGFloat)getTitleTagLblHeight:(NSDictionary *)dic;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tagViewHeight;
 
+@property (weak, nonatomic) IBOutlet UIView *tagView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *onlyOneImv;
 

@@ -265,7 +265,7 @@
         </view>
     </objects>
     <resources>
-        <image name="UnZan" width="48" height="48"/>
+        <image name="UnZan" width="66" height="66"/>
         <image name="分享" width="48" height="48"/>
         <image name="更多" width="64" height="64"/>
         <image name="黑色返回" width="44" height="44"/>

@@ -627,6 +627,8 @@
 		BBF5076F22B33A6900579F29 /* TZTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF5076D22B33A6900579F29 /* TZTestCell.m */; };
 		BBF67C9B23601F3100032E9C /* YXZhiNanType2TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF67C9923601F3100032E9C /* YXZhiNanType2TableViewCell.m */; };
 		BBF67C9C23601F3100032E9C /* YXZhiNanType2TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBF67C9A23601F3100032E9C /* YXZhiNanType2TableViewCell.xib */; };
+		BBFADB9C238281EB0010A9FB /* HGPersonalCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBFADB9A238281EB0010A9FB /* HGPersonalCenterTableViewCell.m */; };
+		BBFADB9D238281EB0010A9FB /* HGPersonalCenterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBFADB9B238281EB0010A9FB /* HGPersonalCenterTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1731,6 +1733,9 @@
 		BBF67C9823601F3100032E9C /* YXZhiNanType2TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXZhiNanType2TableViewCell.h; sourceTree = "<group>"; };
 		BBF67C9923601F3100032E9C /* YXZhiNanType2TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXZhiNanType2TableViewCell.m; sourceTree = "<group>"; };
 		BBF67C9A23601F3100032E9C /* YXZhiNanType2TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXZhiNanType2TableViewCell.xib; sourceTree = "<group>"; };
+		BBFADB99238281EB0010A9FB /* HGPersonalCenterTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGPersonalCenterTableViewCell.h; sourceTree = "<group>"; };
+		BBFADB9A238281EB0010A9FB /* HGPersonalCenterTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGPersonalCenterTableViewCell.m; sourceTree = "<group>"; };
+		BBFADB9B238281EB0010A9FB /* HGPersonalCenterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HGPersonalCenterTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3387,12 +3392,15 @@
 		BBA812A321DDAB7A001B5EA1 /* E我的 */ = {
 			isa = PBXGroup;
 			children = (
-				BB07FAF62356E8D000F34D2D /* 聊天功能 */,
 				BBBCDBB7223F65C50056C7DD /* HGPersonalCenterViewController.h */,
 				BBBCDBB8223F65C50056C7DD /* HGPersonalCenterViewController.m */,
+				BBFADB99238281EB0010A9FB /* HGPersonalCenterTableViewCell.h */,
+				BBFADB9A238281EB0010A9FB /* HGPersonalCenterTableViewCell.m */,
+				BBFADB9B238281EB0010A9FB /* HGPersonalCenterTableViewCell.xib */,
 				BB7AF1362200869400989896 /* YXMineHeaderView.h */,
 				BB7AF1372200869400989896 /* YXMineHeaderView.m */,
 				BB7AF1392200869E00989896 /* YXMineHeaderView.xib */,
+				BB07FAF62356E8D000F34D2D /* 聊天功能 */,
 				BBACB4AD234D71620092367B /* 积分商城 */,
 				BB12EE322318FEEC008CF3C6 /* 积分 */,
 				BB94141C21F9B850007E800A /* 编辑个人资料 */,
@@ -5293,6 +5301,7 @@
 				BB9832712201700C0048D103 /* blueArrow@2x.png in Resources */,
 				29629EE91F78E49B002CFCBD /* back_icon@2x.png in Resources */,
 				BBB59AEB228CF8CB0029D3D0 /* YXHomeXueJiaPinPaiTableViewCell.xib in Resources */,
+				BBFADB9D238281EB0010A9FB /* HGPersonalCenterTableViewCell.xib in Resources */,
 				BB21FDB122B099B20059BCAC /* YXWenZhangView.xib in Resources */,
 				BB8376F02248AE930091A1A8 /* YXMineFindViewController.xib in Resources */,
 				BB86C90F231DFA2400A061E2 /* UMCommonLog.bundle in Resources */,
@@ -5805,6 +5814,7 @@
 				BB013348232F69B500573AC0 /* YXMineShouHuoTableViewCell.m in Sources */,
 				BBCC4B1821E8927700493F40 /* Utility.m in Sources */,
 				BBA812C521DDBF6A001B5EA1 /* UITabBar+TBBadge.m in Sources */,
+				BBFADB9C238281EB0010A9FB /* HGPersonalCenterTableViewCell.m in Sources */,
 				296DEA751F5D50D100C6FD00 /* UIView+SDExtension.m in Sources */,
 				BBF26E2022408B0E0000AEF5 /* FMResultSet.m in Sources */,
 				BB21FD9222B0991E0059BCAC /* KSMediaPickerItemModel.swift in Sources */,

@@ -79,4 +79,5 @@ SINGLETON_FOR_HEADER(ShareManager)
 -(void)receiveAllKindsMessage:(NSDictionary *)messNewDic message:(NSMutableArray *)messages userInfoDic:(NSDictionary *)userInfoDic  type:(int)type;
 -(BOOL)getOwnDbMessage:(NSString *)own_id aim_id:(NSString *)aim_id other:(NSDictionary *)otherDic;
 -(BOOL)getOwnListDbMessage:(NSString *)own_id aim_id:(NSString *)aim_id;
++(CGFloat)inTextBlodOutHeight:(NSString *)string lineSpace:(CGFloat)lineSpacing fontSize:(CGFloat)fontSize;
 @end

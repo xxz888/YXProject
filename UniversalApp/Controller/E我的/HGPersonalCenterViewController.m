@@ -31,7 +31,7 @@
 #import "SimpleChatMainViewController.h"
 #import "SDWeiXinPhotoContainerView.h"
 #import "SDPhotoBrowser.h"
-
+#import "HGPersonalCenterTableViewCell.h"
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
 
 

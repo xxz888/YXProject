@@ -21,4 +21,12 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)fenxiangAction:(id)sender {
+}
+
+- (IBAction)pinglunAction:(id)sender {
+}
+
+- (IBAction)dianzanAction:(id)sender {
+}
 @end

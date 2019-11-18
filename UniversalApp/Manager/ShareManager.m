@@ -464,11 +464,9 @@ SINGLETON_FOR_CLASS(ShareManager);
     tfView.attributedText = str;
 }
 +(void)setLineSpace:(CGFloat)lineSpace inLabel:(UILabel *)label size:(CGFloat)size{
-
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = lineSpace;  //设置行间距
     paragraphStyle.alignment = label.textAlignment;
-    
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:label.text attributes:@{NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:size],NSParagraphStyleAttributeName:paragraphStyle,NSForegroundColorAttributeName:KBlackColor}];
 
     label.attributedText = attributedString;
@@ -515,6 +513,28 @@ SINGLETON_FOR_CLASS(ShareManager);
                    NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
     return  ceil(size.height) + 10;
 }
++(CGFloat)inTextBlodOutHeight:(NSString *)string lineSpace:(CGFloat)lineSpacing fontSize:(CGFloat)fontSize{
+    if (string.length == 0 || [string isEqualToString:@""] ) {
+        return 0;
+    }
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+    paraStyle.lineSpacing = lineSpacing ;
+    NSDictionary *dic = @{NSFontAttributeName:[UIFont fontWithName:@"Helvetica-Bold" size:fontSize], NSParagraphStyleAttributeName:paraStyle};
+    CGSize size = [string boundingRectWithSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width - 20, MAXFLOAT) options:
+                   NSStringDrawingUsesLineFragmentOrigin |
+                   NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
+    
+    
+
+    
+    
+    
+    
+    
+    
+    return  ceil(size.height);
+}
+
 +(CGFloat)inTextZhiNanOutHeight:(NSString *)str lineSpace:(CGFloat)lineSpacing fontSize:(CGFloat)fontSize{
     if (str.length == 0) {
         return 0;
