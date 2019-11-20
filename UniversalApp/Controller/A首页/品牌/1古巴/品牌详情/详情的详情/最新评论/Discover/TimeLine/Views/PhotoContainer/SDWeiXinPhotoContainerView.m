@@ -135,16 +135,24 @@
 
 - (CGFloat)itemWidthForPicPathArray:(NSArray *)array
 {
-    if (array.count == 1) {
-        return 200;
-    } else {
-        return (KScreenWidth - 30) / 3;
+    if (self.rowCount == 2) {
+          CGFloat h = 0;
+          CGFloat oneH =  (KScreenWidth - 90 - 10 ) / 2 ;
+    
+          return oneH;
+    }else{
+        if (array.count == 1) {
+             return 200;
+         } else {
+             return (KScreenWidth - 30) / 3;
+         }
     }
+ 
 }
 
 - (NSInteger)perRowItemCountForPicPathArray:(NSArray *)array
 {
-    return 3;
+    return self.rowCount == 2 ? 2 : 3;
     if (array.count < 3) {
         return array.count;
     } else if (array.count < 4) {

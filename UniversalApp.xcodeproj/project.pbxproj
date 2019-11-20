@@ -629,6 +629,7 @@
 		BBF67C9C23601F3100032E9C /* YXZhiNanType2TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBF67C9A23601F3100032E9C /* YXZhiNanType2TableViewCell.xib */; };
 		BBFADB9C238281EB0010A9FB /* HGPersonalCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBFADB9A238281EB0010A9FB /* HGPersonalCenterTableViewCell.m */; };
 		BBFADB9D238281EB0010A9FB /* HGPersonalCenterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBFADB9B238281EB0010A9FB /* HGPersonalCenterTableViewCell.xib */; };
+		BBFADBA1238387ED0010A9FB /* HGPersonalCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBFADBA0238387ED0010A9FB /* HGPersonalCenterViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1736,6 +1737,7 @@
 		BBFADB99238281EB0010A9FB /* HGPersonalCenterTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGPersonalCenterTableViewCell.h; sourceTree = "<group>"; };
 		BBFADB9A238281EB0010A9FB /* HGPersonalCenterTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGPersonalCenterTableViewCell.m; sourceTree = "<group>"; };
 		BBFADB9B238281EB0010A9FB /* HGPersonalCenterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HGPersonalCenterTableViewCell.xib; sourceTree = "<group>"; };
+		BBFADBA0238387ED0010A9FB /* HGPersonalCenterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HGPersonalCenterViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3394,6 +3396,7 @@
 			children = (
 				BBBCDBB7223F65C50056C7DD /* HGPersonalCenterViewController.h */,
 				BBBCDBB8223F65C50056C7DD /* HGPersonalCenterViewController.m */,
+				BBFADBA0238387ED0010A9FB /* HGPersonalCenterViewController.xib */,
 				BBFADB99238281EB0010A9FB /* HGPersonalCenterTableViewCell.h */,
 				BBFADB9A238281EB0010A9FB /* HGPersonalCenterTableViewCell.m */,
 				BBFADB9B238281EB0010A9FB /* HGPersonalCenterTableViewCell.xib */,
@@ -5231,6 +5234,7 @@
 				BBBE071E2224E36100CDD11E /* YXBaseFaXianDetailViewController.xib in Resources */,
 				BB9413DF21F8B602007E800A /* IQKeyboardManager.bundle in Resources */,
 				BBACB4C3234DB4050092367B /* YXJiFenShop2TableViewCell.xib in Resources */,
+				BBFADBA1238387ED0010A9FB /* HGPersonalCenterViewController.xib in Resources */,
 				BBB59B08228CF8CB0029D3D0 /* YXHomeXueJiaPinPaiSearchViewController.xib in Resources */,
 				BB86C8BF231CC48C00A061E2 /* YXMineQianMingViewController.xib in Resources */,
 				BBEA15892366E49A006FBBFF /* icon_refresh.png in Resources */,

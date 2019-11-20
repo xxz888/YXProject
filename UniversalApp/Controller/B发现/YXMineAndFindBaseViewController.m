@@ -271,7 +271,7 @@ static CGFloat sectionHeaderHeight = 260;
             BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [kGetString(userInfo[@"id"]) integerValue];
             weakself.shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
             
-            [weakself addGuanjiaShareViewIsOwn:isOwn isWho:@"1" tag:cell.tagId startDic:cell.dataDic];
+            [weakself addGuanjiaShareViewIsOwn:isOwn isWho:kGetString(cell.dataDic[@"obj"]) tag:cell.tagId startDic:cell.dataDic];
         }
     };
     //播放视频按钮

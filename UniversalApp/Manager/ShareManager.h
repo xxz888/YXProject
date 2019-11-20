@@ -80,4 +80,10 @@ SINGLETON_FOR_HEADER(ShareManager)
 -(BOOL)getOwnDbMessage:(NSString *)own_id aim_id:(NSString *)aim_id other:(NSDictionary *)otherDic;
 -(BOOL)getOwnListDbMessage:(NSString *)own_id aim_id:(NSString *)aim_id;
 +(CGFloat)inTextBlodOutHeight:(NSString *)string lineSpace:(CGFloat)lineSpacing fontSize:(CGFloat)fontSize;
+-(void)setYinYing:(UIView *)view;
+-(void)qvXiaoYinYing:(UIView *)view;
+
+//最终计算高度的方法
++(void)setAllContentAttributed:(CGFloat)lineSpace inLabel:(UILabel *)label size:(CGFloat)size font:(UIFont *)font;
++(CGFloat)inAllContentOutHeight:(NSString *)string contentWidth:(CGFloat)contentWidth lineSpace:(CGFloat)lineSpacing font:(UIFont *)font;
 @end

@@ -276,7 +276,7 @@ RE.setBlockquote = function() {
 }
 
 RE.insertImage2 = function(url,delurl,alt) {
-    var html1 = "<br />" + '<div style="position:relative;">' +
+    var html1 =  '<div style="position:relative;">' +
     '<img src="' + url + '" alt="' + alt + '" style="width:100%;"/>'+
     '<img src="' + delurl + '" alt="' + alt + '" style="width:30px;height:30px;position:absolute;right:10px;top:10px"/>' + '</div>';
     
@@ -284,7 +284,7 @@ RE.insertImage2 = function(url,delurl,alt) {
 }
 
 RE.insertImage = function(url, alt) {
-    var html ="<br />" + '<img src="' + url + '" alt="' + alt + '" style="width:100%;"/>';
+    var html = '<img src="' + url + '" alt="' + alt + '" style="width:100%;"/>';
     RE.insertHTML(html);
 }
 
@@ -557,8 +557,8 @@ RE.insertImageBase64String = function(imageData,imgId) {
     
     RE.restorerange();
     //        var html = '<div id="'+imgId+'" class="main-img-case loading"><div><img src="data:image/jpeg;base64,'+imageData+'" alt="'+imgId+'" /></div></div>';
-    var html='<br />'  + '<div  contenteditable="false" id="'+imgId+'" class="main-img-case loading" tabindex="0">'+
-    '</div>'+ '<br />';
+    var html='<div  contenteditable="false" id="'+imgId+'" class="main-img-case loading" tabindex="0">'+
+    '</div>';
     
     RE.insertHTML(html);
     insertHtml(imageData,imgId);
@@ -599,7 +599,7 @@ RE.uploadImg = function(imgId,progress){
 
 //图片上传成功(不包含删除按钮)
 RE.insertSuccessReplaceImg =function(imgId,imgUrl){
-    var imgStr='<img id="'+imgId+'-img" class="real-img" src="'+ imgUrl +'">'+'<br />';
+    var imgStr='<img id="'+imgId+'-img" class="real-img" src="'+ imgUrl +'">';
     
     
     $("#"+imgId).after(imgStr);

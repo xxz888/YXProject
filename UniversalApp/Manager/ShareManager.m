@@ -1053,4 +1053,43 @@ SINGLETON_FOR_CLASS(ShareManager);
     BOOL messageBool2 = [kGetString(userInfo[@"id"]) integerValue] == [aim_id integerValue];
     return messageBool1 || messageBool2;
 }
+-(void)setYinYing:(UIView *)view{
+    // gradient
+    CAGradientLayer *layer = [CAGradientLayer layer];
+    layer.startPoint = CGPointMake(0, 1);//（0，0）表示从左上角开始变化。默认值是(0.5,0.0)表示从x轴为中间，y为顶端的开始变化
+    layer.endPoint = CGPointMake(1, 1);//（1，1）表示到右下角变化结束。默认值是(0.5,1.0)  表示从x轴为中间，y为低端的结束变化
+    layer.colors = [NSArray arrayWithObjects:(id)kRGBA(216, 200, 156,1).CGColor,(id)kRGBA(190, 168, 119, 1).CGColor,(id)kRGBA(176, 151, 99, 1).CGColor, nil];
+    layer.locations = @[@0.0f,@0.6f,@1.0f];//渐变颜色的区间分布，locations的数组长度和color一致，这个值一般不用管它，默认是nil，会平均分布
+    layer.frame = view.layer.bounds;
+    [view.layer insertSublayer:layer atIndex:0];
+}
+-(void)qvXiaoYinYing:(UIView *)view{
+    // gradient
+    CAGradientLayer *layer = [CAGradientLayer layer];
+    layer.startPoint = CGPointMake(0, 1);//（0，0）表示从左上角开始变化。默认值是(0.5,0.0)表示从x轴为中间，y为顶端的开始变化
+    layer.endPoint = CGPointMake(1, 1);//（1，1）表示到右下角变化结束。默认值是(0.5,1.0)  表示从x轴为中间，y为低端的结束变化
+    layer.colors = [NSArray arrayWithObjects:(id)kRGBA(64, 75, 84, 1).CGColor,(id)kRGBA(64, 75, 84, 1).CGColor,(id)kRGBA(64, 75, 84, 1).CGColor, nil];
+    layer.locations = @[@0.0f,@0.6f,@1.0f];//渐变颜色的区间分布，locations的数组长度和color一致，这个值一般不用管它，默认是nil，会平均分布
+    layer.frame = view.layer.bounds;
+    [view.layer insertSublayer:layer atIndex:0];
+}
+
+
++(void)setAllContentAttributed:(CGFloat)lineSpace inLabel:(UILabel *)label size:(CGFloat)size font:(UIFont *)font{
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = lineSpace;  //设置行间距
+    paragraphStyle.alignment = label.textAlignment;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:label.text attributes:@{NSFontAttributeName:font,NSParagraphStyleAttributeName:paragraphStyle}];
+    label.attributedText = attributedString;
+}
++(CGFloat)inAllContentOutHeight:(NSString *)string contentWidth:(CGFloat)contentWidth lineSpace:(CGFloat)lineSpacing font:(UIFont *)font{
+    if (string.length == 0 || [string isEqualToString:@""] ) { return 0;}
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+    paraStyle.lineSpacing = lineSpacing;
+    NSDictionary *dic = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paraStyle};
+    CGSize size = [string boundingRectWithSize:CGSizeMake(contentWidth, MAXFLOAT) options:
+                   NSStringDrawingUsesLineFragmentOrigin |
+                   NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
+    return  ceil(size.height);
+}
 @end

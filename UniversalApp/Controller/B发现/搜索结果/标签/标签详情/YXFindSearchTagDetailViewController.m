@@ -32,7 +32,14 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self tableviewCon];
     [self requestAction];
+}
+
+#pragma mark ========== 创建tableview ==========
+-(void)tableviewCon{
+    [super tableviewCon];
+    [self.yxTableView setFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 280;

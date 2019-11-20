@@ -374,11 +374,22 @@
     [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
    
     if (self.bindTableView) {
-        YXFirstFindImageTableViewCell * cell = [self.bindTableView cellForRowAtIndexPath:self.currentIndexPath];
-        [cell.onlyOneImv addSubview:self];
+        if (self.bindTableView.tag == 99999) {
+            HGPersonalCenterTableViewCell * cell = [self.bindTableView cellForRowAtIndexPath:self.currentIndexPath];
+            [cell.cellMidView addSubview:self];
+        }else{
+            YXFirstFindImageTableViewCell * cell = [self.bindTableView cellForRowAtIndexPath:self.currentIndexPath];
+            [cell.onlyOneImv addSubview:self];
+        }
+      
     }
+    
+   
     if (self.cell) {
-             [self.cell.onlyOneImv addSubview:self];
+        [self.cell.onlyOneImv addSubview:self];
+    }
+    if (self.cell1) {
+        [self.cell1.cellMidView addSubview:self];
     }
     [UIView animateWithDuration:0.3 animations:^{
         self.transform = CGAffineTransformMakeRotation(0);
@@ -394,10 +405,6 @@
 #pragma mark - button action
 
 - (void)playOrPause:(UIButton *)btn {
-    
-    
-    YXFirstFindImageTableViewCell * cell = [self.bindTableView cellForRowAtIndexPath:self.currentIndexPath];
-    
     if(self.player.rate == 0){      //pause
         btn.selected = YES;
         [self.player play];

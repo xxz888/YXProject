@@ -11,35 +11,39 @@
 @implementation YXMineHeaderView
 
 - (void)drawRect:(CGRect)rect {
+    self.topHeight.constant = IS_IPhoneX ? 44 : 20;
+    
     self.backgroundColor = SEGMENT_COLOR;
     UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction:)];
-    //点击几次后触发事件响应，默认为：1
     click.numberOfTapsRequired = 1;
     [self.mineImageView addGestureRecognizer:click];
-    
-    
-    UITapGestureRecognizer * jifenclick = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jifenclickAction:)];
-    //点击几次后触发事件响应，默认为：1
+    self.qianmingLbl.userInteractionEnabled = YES;
+    [self.qianmingLbl addGestureRecognizer:click];
     click.numberOfTapsRequired = 1;
-    [self.jifenView addGestureRecognizer:jifenclick];
-    self.jifenView.backgroundColor = kRGBA(176, 151, 99, 1);
-//    ViewBorderRadius(self.jifenView, 15, 1, kRGBA(176, 151, 99, 1));
-    ViewBorderRadius(self.sexView, 14, 1, KWhiteColor);
-    ViewBorderRadius(self.nvsexview, 14, 1, KWhiteColor);
     [self.fasixinBtn setTitleColor:A_COlOR forState:0];
     [self.fasixinBtn setBackgroundColor:KClearColor];
-//    ViewBorderRadius(self.fasixinBtn, 5, 1,A_COlOR);
-    
-    
     [self.fasixinView setBackgroundColor:kRGBA(64, 75, 84, 1)];
     ViewBorderRadius(self.fasixinView, 5, 1,KClearColor);
+    
+    ViewBorderRadius(self.guanzhuBtn, 16, 1,KClearColor);
+    ViewBorderRadius(self.qiandaoBtn, 16, 1,KClearColor);
+    [self.qiandaoBtn setBackgroundColor:kRGBA(176, 151, 99, 1)];
+
+//    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect: self.cellHeaderView.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(10,10)];
+//    //创建 layer
+//    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+//    maskLayer.frame = self.cellHeaderView.bounds;
+//    //赋值
+//    maskLayer.path = maskPath.CGPath;
+//    self.cellHeaderView.layer.mask = maskLayer;
+    
+    
 }
+
 -(void)clickAction:(id)sender{
-//    self.imageScale= [ImageScale new];
-//    [self.imageScale scaleImageView:self.mineImageView];
     self.mineClickImageblock();
 }
--(void)jifenclickAction:(id)sender{
+-(void)gexingqianmingAction:(id)sender{
     self.jifenShopblock();
 }
 - (IBAction)guanzhuAction:(id)sender{
@@ -69,5 +73,24 @@
 }
 - (IBAction)fasixinAction:(id)sender {
     self.fasixinblock();
+}
+- (IBAction)qiandaoAction:(id)sender {
+    self.editPersionblock();
+}
+- (IBAction)shangchengAction:(id)sender {
+    self.shangchengblock();
+}
+- (IBAction)dongtaiAction:(id)sender {
+    self.dongtaiBtn.font = FONT(@"Helvetica-Bold", 21);
+    self.choucangBtn.font = FONT(@"Helvetica-Bold", 15);
+    [self.dongtaiBtn setTitleColor:KBlackColor forState:0];
+    [self.choucangBtn setTitleColor:kRGBA(153, 153, 153, 1) forState:0];
+
+}
+- (IBAction)shoucangAction:(id)sender {
+    self.dongtaiBtn.font = FONT(@"Helvetica-Bold", 15);
+    self.choucangBtn.font = FONT(@"Helvetica-Bold", 21);
+    [self.choucangBtn setTitleColor:KBlackColor forState:0];
+    [self.dongtaiBtn setTitleColor:kRGBA(153, 153, 153, 1) forState:0];
 }
 @end

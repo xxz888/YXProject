@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "YXFirstFindImageTableViewCell.h"
+#import "HGPersonalCenterTableViewCell.h"
 @class XLVideoPlayer;
 
 typedef void (^VideoCompletedPlayingBlock) (XLVideoPlayer *videoPlayer);
@@ -43,5 +44,6 @@ typedef void (^VideoCompletedPlayingBlock) (XLVideoPlayer *videoPlayer);
 - (void)playerScrollIsSupportSmallWindowPlay:(BOOL)support;
 
 @property (nonatomic, strong) YXFirstFindImageTableViewCell * cell;
+@property (nonatomic, strong) HGPersonalCenterTableViewCell * cell1;
 
 @end

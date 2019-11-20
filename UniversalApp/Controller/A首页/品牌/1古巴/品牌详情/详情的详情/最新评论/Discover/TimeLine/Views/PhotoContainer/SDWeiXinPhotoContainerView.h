@@ -32,5 +32,5 @@
 @interface SDWeiXinPhotoContainerView : UIView
 
 @property (nonatomic, strong) NSArray *picPathStringsArray;
-
+@property(nonatomic,assign)NSInteger rowCount;
 @end
