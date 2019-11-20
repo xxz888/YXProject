@@ -26,5 +26,6 @@
 - (IBAction)moreAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *controllerHeaderViewOtherView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *controllerHeaderViewHeight;
+@property (nonatomic, strong) UILabel * nodataImg;
 
 @end

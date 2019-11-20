@@ -31,6 +31,8 @@
 #import "YXMineImageDetailViewController.h"
 #import "YXPublishImageViewController.h"
 #import "YXWenZhangEditorViewController.h"
+#import "YXXinDongTaiView.h"
+#import "YXFaBuNewVCViewController.h"
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
 
 
@@ -44,6 +46,7 @@
     NSInteger _selectRow;
 
 }
+@property (nonatomic,strong) YXXinDongTaiView * dongtaiView;
 @property (nonatomic, strong) NSDictionary *shareDic;
 @property (nonatomic, strong) UILabel *nickNameLabel;
 @property (nonatomic, strong) HGSegmentedPageViewController *segmentedPageViewController;
@@ -263,12 +266,14 @@
        cell.clickDetailblock = ^(NSInteger tag, NSInteger tag1) {
            NSIndexPath * indexPathSelect = [NSIndexPath indexPathForRow:tag1  inSection:0];
            HGPersonalCenterTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
-           _selectRow = tag1;
            if (tag == 1) {//评论
+               _selectRow = -1;
                [weakself tableView:weakself.yxTableView didSelectRowAtIndexPath:indexPathSelect];
            }else if(tag == 2){//点赞
+               _selectRow = tag1;
                [weakself requestDianZan_Image_Action:indexPathSelect];
            }else{//分享
+               _selectRow = -1;
                NSDictionary * userInfo = userManager.loadUserAllInfo;
                BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [kGetString(userInfo[@"id"]) integerValue];
                weakself.shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
@@ -303,6 +308,17 @@
     [_yxTableView registerNib:[UINib nibWithNibName:@"HGPersonalCenterTableViewCell" bundle:nil] forCellReuseIdentifier:@"HGPersonalCenterTableViewCell"];
     self.dataArray = [[NSMutableArray alloc]init];
     [self addRefreshView:self.yxTableView];
+    
+    if (self.whereCome) {
+         self.nodataImg = [[UILabel alloc]init];
+         self.nodataImg.frame = CGRectMake((KScreenWidth-200)/2,HeaderImageViewHeight-100+(KScreenHeight - HeaderImageViewHeight)/2, 200, 100);
+         self.nodataImg.text = @"暂时还没有晒图和文章";
+         self.nodataImg.font = [UIFont systemFontOfSize:14];
+         self.nodataImg.textColor = [UIColor lightGrayColor];
+         self.nodataImg.textAlignment = NSTextAlignmentCenter;
+         [self.yxTableView addSubview:self.nodataImg];
+         self.nodataImg.hidden = YES;
+    }
 }
 -(void)endRefresh{
     [self.yxTableView.mj_header endRefreshing];
@@ -640,6 +656,8 @@
             [weakself.yxTableView reloadData];
             }];
         }
+        
+        weakself.dongtaiView.hidden =  weakself.dataArray.count != 0;
     }];
 }
 #pragma mark ========== 其他用户的所有 ==========
@@ -653,9 +671,9 @@
              [weakself.yxTableView reloadRow:_selectRow inSection:0 withRowAnimation:UITableViewRowAnimationNone];
            _selectRow = -1;
          }else{
-             [UIView performWithoutAnimation:^{
-                        [weakself.yxTableView reloadData];
-                        }];         }
+             [UIView performWithoutAnimation:^{ [weakself.yxTableView reloadData];}];}
+                weakself.nodataImg.hidden = weakself.dataArray.count != 0;
+
     }];
 }
 #pragma mark ========== 晒图点赞 ==========
@@ -788,6 +806,34 @@
                                       ];
     [moreOperationController showFromBottom];
 
+}
+-(UIView *)dongtaiView{
+    if (!_dongtaiView) {
+        NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXXinDongTaiView" owner:self options:nil];
+        _dongtaiView = [nib objectAtIndex:0];
+        _dongtaiView.frame = CGRectMake(16,HeaderImageViewHeight+16, 160, 160);
+        [self.yxTableView addSubview:_dongtaiView];
+        
+        
+        //添加点击手势
+        UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction:)];
+        //点击几次后触发事件响应，默认为：1
+        click.numberOfTapsRequired = 1;
+        [_dongtaiView addGestureRecognizer:click];
+        _dongtaiView.userInteractionEnabled = YES;
+    }
+    return _dongtaiView;
+}
+-(void)clickAction:(id)click{
+    YXFaBuNewVCViewController * contentViewController = [[YXFaBuNewVCViewController alloc] init];
+    QMUIModalPresentationViewController *modalViewController = [[QMUIModalPresentationViewController alloc] init];
+    modalViewController.contentViewMargins = UIEdgeInsetsMake(KScreenHeight-175-kTabBarHeight-10, KScreenWidth-146, kTabBarHeight+10, 0);
+    modalViewController.contentViewController = contentViewController;
+    [modalViewController showWithAnimated:YES completion:nil];
+    
+    contentViewController.block = ^{
+        [modalViewController hideWithAnimated:YES completion:nil];
+    };
 }
 @end
 
