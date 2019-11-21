@@ -84,6 +84,6 @@ SINGLETON_FOR_HEADER(ShareManager)
 -(void)qvXiaoYinYing:(UIView *)view;
 
 //最终计算高度的方法
-+(void)setAllContentAttributed:(CGFloat)lineSpace inLabel:(UILabel *)label size:(CGFloat)size font:(UIFont *)font;
++(void)setAllContentAttributed:(CGFloat)lineSpace inLabel:(UILabel *)label font:(UIFont *)font;
 +(CGFloat)inAllContentOutHeight:(NSString *)string contentWidth:(CGFloat)contentWidth lineSpace:(CGFloat)lineSpacing font:(UIFont *)font;
 @end

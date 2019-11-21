@@ -21,6 +21,7 @@
 #import "UIWebView+KWWebViewJSTool.h"
 #import "UIWebView+KWHideAccessoryView.h"
 #import "YXWenZhangEditorViewController.h"
+#define cellSpace 9
 @interface YXMineImageDetailViewController ()<ZInputToolbarDelegate,QMUIMoreOperationControllerDelegate,SDCycleScrollViewDelegate,UIWebViewDelegate>{
     CGFloat imageHeight;
     
@@ -197,8 +198,8 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if ([scrollView isEqual: self.yxTableView]) {
-            if (self.yxTableView.contentOffset.y > _oldY) {
+    if ([scrollView isEqual: self.yxTableView] && [self.startDic[@"obj"] integerValue] == 2) {
+            if (self.yxTableView.contentOffset.y > _oldY ) {
                 // 上滑
                     self.coustomNavView.backgroundColor = KWhiteColor;
                     [self.backBtn setImage:IMAGE_NAMED(@"黑色返回") forState:UIControlStateNormal];
@@ -301,7 +302,6 @@
     self.cell.bottomBottomHeight.constant = 40;
     self.cell.bottomPingLunLbl.hidden = NO;
     
-    [ShareManager inTextViewOutDifColorView:self.cell.detailLbl tag:self.startDic[@"tag"]];
 
     
     
@@ -327,6 +327,10 @@
         self.cell.wenzhangDetailLbl.hidden = YES;//晒图进来，隐藏文章的deatil的label
         self.cell.wenzhangDetailHeight.constant = 0;//晒图进来，设置文章的的label为0
         [QMUITips hideAllTipsInView:self.view];
+        [ShareManager setAllContentAttributed:cellSpace inLabel:self.cell.detailLbl font:SYSTEMFONT(16)];
+        CGFloat detailHeight = [YXFirstFindImageTableViewCell jisuanContentHeight:self.startDic];
+        //标签高度
+        CGFloat tagViewHeight = [YXFirstFindImageTableViewCell cellTagViewHeight:self.startDic];
         //这里判断晒图是图还是视频
         if ([self.startDic[@"url_list"] count] > 0) {
             //视频
@@ -342,11 +346,9 @@
             //晒图
             }else{
                 CGRect Frame = self.cell.frame;
-                NSString * titleText = [NSString stringWithFormat:@"%@%@",self.startDic[@"detail"],self.startDic[@"tag"]];
-                CGFloat detailHeight = [ShareManager inTextOutHeight:titleText lineSpace:9 fontSize:15];
-                CGFloat midViewHeight = [YXFirstFindImageTableViewCell inArrayCountOutHeight:[self.startDic[@"url_list"] count]];
-//                Frame.size.height = 170 + detailHeight + 200 + kTopHeight;
-                Frame.size.height = 170 + detailHeight + midViewHeight + kTopHeight+ (IS_IPhoneX ? 0 : 20);
+
+                CGFloat midViewHeight = [YXFirstFindImageTableViewCell cellAllImageHeight:self.startDic];
+                Frame.size.height = 170 + tagViewHeight +  detailHeight + midViewHeight + kTopHeight+ (IS_IPhoneX ? 0 : 20);
                 self.cell.frame= Frame;
                
             }
@@ -377,8 +379,8 @@
         self.cell.coverImvHeight.constant = coverHeight;
         [self.cell.coverImV sd_setImageWithURL:[NSURL URLWithString:cover] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         [self setWebVIewData:self.startDic];
-        self.cell.leftWidth.constant  = 5;
-        self.cell.rightWidth.constant = 5;
+//        self.cell.leftWidth.constant  = 0;
+//        self.cell.rightWidth.constant = 10;
         self.yxTableView.tableHeaderView = self.cell;
         
         
@@ -477,11 +479,7 @@
         }
     }];
 }
--(CGFloat)getLblHeight:(NSDictionary *)dic{
-    NSString * titleText = [NSString stringWithFormat:@"%@%@",dic[@"content"] ? dic[@"content"]:dic[@"describe"],dic[@"tag"]];
-    CGFloat height_size = [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
-    return height_size;
-}
+
 
 #pragma mark ========== 获取晒图评论列表 ==========
 -(void)requestNewList{
@@ -719,10 +717,6 @@
         return 0;
     }
     return    [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:400];
-}
--(CGFloat)getTitleTagLblHeight:(NSDictionary *)dic whereCome:(BOOL)whereCome{
-    NSString * titleText = [NSString stringWithFormat:@"%@%@",whereCome ? dic[@"content"]:dic[@"describe"],dic[@"tag"]];
-    return [ShareManager inTextOutHeight:[titleText UnicodeToUtf8] lineSpace:9 fontSize:14];
 }
 
 #pragma mark ========== 分享 ==========

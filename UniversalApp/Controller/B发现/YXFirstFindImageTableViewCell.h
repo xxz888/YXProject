@@ -94,9 +94,9 @@ typedef void(^PlayBlock)(UITapGestureRecognizer *);
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toptop1Height;
 @property (weak, nonatomic) IBOutlet UIButton *fenxiangBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *fenxiangImv;
-
-+(CGFloat)inArrayCountOutHeight:(NSInteger)count;
-
++(CGFloat)cellAllImageHeight:(NSDictionary *)dic;
++(CGFloat)jisuanContentHeight:(NSDictionary *)dic;
++(CGFloat)cellTagViewHeight:(NSDictionary *)dic;
 @end
 
 NS_ASSUME_NONNULL_END

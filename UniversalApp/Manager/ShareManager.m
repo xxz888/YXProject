@@ -1075,7 +1075,7 @@ SINGLETON_FOR_CLASS(ShareManager);
 }
 
 
-+(void)setAllContentAttributed:(CGFloat)lineSpace inLabel:(UILabel *)label size:(CGFloat)size font:(UIFont *)font{
++(void)setAllContentAttributed:(CGFloat)lineSpace inLabel:(UILabel *)label font:(UIFont *)font{
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = lineSpace;  //设置行间距
     paragraphStyle.alignment = label.textAlignment;

@@ -39,11 +39,10 @@
     NSString * contentText = @"";
     if ([dic[@"obj"] integerValue] == 1) {
         contentText = dic[@"detail"];
-        return [ShareManager inAllContentOutHeight:contentText contentWidth:KScreenWidth-90 lineSpace:cellSpace font:[UIFont systemFontOfSize:16]];
+        return [ShareManager inAllContentOutHeight:contentText contentWidth:KScreenWidth-90 lineSpace:cellSpace font:SYSTEMFONT(16)];
     }else{
         contentText = [@"占位" append: dic[@"title"]];
-        
-        return [ShareManager inAllContentOutHeight:contentText contentWidth:KScreenWidth-90 lineSpace:cellSpace font:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
+        return [ShareManager inAllContentOutHeight:contentText contentWidth:KScreenWidth-90 lineSpace:cellSpace font:BOLDSYSTEMFONT(18)];
     }
 
 }
@@ -123,22 +122,24 @@
                  [self.picContainerView removeFromSuperview];
                  self.coverImv.hidden = self.playImv.hidden = YES;
                  self.picContainerView = [SDWeiXinPhotoContainerView new];
+                 self.picContainerView.sdWidth = KScreenWidth - 90 - 10 ;
                  self.picContainerView.frame = CGRectMake(0, 0, self.cellMidView.qmui_width,
                                                         self.cellMidView.qmui_height);
                  self.picContainerView.rowCount = 2;
                  [self.cellMidView addSubview:self.picContainerView];
-               NSMutableArray * newUrlList = [[NSMutableArray alloc]init];
-                if (urlList.count > 4) {
-                   [newUrlList addObject:urlList[0]];
+                 NSMutableArray * newUrlList = [[NSMutableArray alloc]init];
+                 if (urlList.count > 4) {
+                    [newUrlList addObject:urlList[0]];
                     [newUrlList addObject:urlList[1]];
                     [newUrlList addObject:urlList[2]];
                     [newUrlList addObject:urlList[3]];
-
-               }
+                 }else{
+                     [newUrlList addObjectsFromArray:urlList];
+                 }
                  self.picContainerView.picPathStringsArray = newUrlList;
            }
            //下边这句话不能删除，改变样式的
-           [ShareManager setAllContentAttributed:cellSpace inLabel:self.cellContentLbl size:16 font:[UIFont systemFontOfSize:16]];
+           [ShareManager setAllContentAttributed:cellSpace inLabel:self.cellContentLbl font:SYSTEMFONT(16)];
            if ([dic[@"detail"] isEqualToString:@""]) {self.cellContentLblHeight.constant = 0;}
        }else{
 //文章
@@ -154,8 +155,9 @@
            self.cellMidView.userInteractionEnabled = NO;
            self.cellMidViewHeight.constant = cellVideoHeight;
            
-         [ShareManager setAllContentAttributed:cellSpace inLabel:self.cellContentLbl size:cellSpace font:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
-          self.cellContentLbl.font =  [UIFont fontWithName:@"Helvetica-Bold" size:18];
+          [ShareManager setAllContentAttributed:cellSpace inLabel:self.cellContentLbl font:BOLDSYSTEMFONT(18)];
+           self.cellContentLbl.font =  BOLDSYSTEMFONT(18);
+           self.cellContentLbl.textColor = kRGBA(176, 151, 99, 1);
           self.cellContentLbl.text = [NSString stringWithFormat:@"%@",dic[@"title"]];
           NSMutableAttributedString * attriStr = [[NSMutableAttributedString alloc] initWithString:self.cellContentLbl.text];
           NSTextAttachment *attchImage = [[NSTextAttachment alloc] init];
@@ -166,7 +168,6 @@
           [attriStr insertAttributedString:stringImage atIndex:0];
           [attriStr insertAttributedString:attriStr1 atIndex:1];
           self.cellContentLbl.attributedText = attriStr;
-//          self.cellContentLbl.textColor = KBlackColor;
        
        
  
@@ -177,7 +178,8 @@
     
     
     
-    
+//    self.cellContentLbl.textAlignment = NSTextAlignmentJustified;
+
     
     //年月日
           NSArray * riqiArray = [[self timestampSwitchTime:[dic[@"publish_time"] integerValue] andFormatter:@"YYYY-MM:dd"] split:@":"];
@@ -209,8 +211,8 @@
     _cbGroupAndStreamView.isSingle = YES;
     _cbGroupAndStreamView.radius = 4;
     _cbGroupAndStreamView.butHeight = 32;
-    _cbGroupAndStreamView.font = [UIFont systemFontOfSize:12];
-    _cbGroupAndStreamView.titleTextFont = [UIFont systemFontOfSize:12];
+    _cbGroupAndStreamView.font = [UIFont systemFontOfSize:14];
+    _cbGroupAndStreamView.titleTextFont = [UIFont systemFontOfSize:14];
     _cbGroupAndStreamView.scroller.backgroundColor = KClearColor;
     _cbGroupAndStreamView.scroller.scrollEnabled = NO;
     _cbGroupAndStreamView.contentNorColor  = SEGMENT_COLOR;

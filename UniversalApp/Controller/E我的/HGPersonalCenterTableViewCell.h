@@ -55,7 +55,7 @@ typedef void(^clickInDetail)(NSInteger,NSInteger);
 
 typedef void(^ClickTag1Block)(NSString *);
 @property (nonatomic,copy) ClickTag1Block clickTagblock;
-    
++(CGFloat)cellAllImageHeight:(NSDictionary *)dic;
 @end
 
 NS_ASSUME_NONNULL_END
