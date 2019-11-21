@@ -52,18 +52,24 @@
 }
 -(void)requestZhiNan1Get{
     kWeakSelf(self);
-    [YXPLUS_MANAGER requestZhiNan1Get:@"1/0" success:^(id object) {
-        for (NSDictionary * dic in object) {
-            YXHomeXueJiaToolsViewController * vc = [[YXHomeXueJiaToolsViewController alloc]init];
-            vc.title = dic[@"name"];
-            vc.startId = kGetString(dic[@"id"]);
-            [weakself.vcArr addObject:vc];
-            [weakself.titlesArr addObject:dic[@"name"]];
-        }
-        [weakself initSegment];
-        
-    }];
-   
+//    [YXPLUS_MANAGER requestZhiNan1Get:@"1/0" success:^(id object) {
+//        for (NSDictionary * dic in object) {
+//            YXHomeXueJiaToolsViewController * vc = [[YXHomeXueJiaToolsViewController alloc]init];
+//            vc.title = dic[@"name"];
+//            vc.startId = kGetString(dic[@"id"]);
+//            [weakself.vcArr addObject:vc];
+//            [weakself.titlesArr addObject:dic[@"name"]];
+//        }
+//        [weakself initSegment];
+//
+//    }];
+   YXHomeXueJiaToolsViewController * vc = [[YXHomeXueJiaToolsViewController alloc]init];
+              vc.title = @"指南";
+              vc.startId = @"5";
+              [weakself.vcArr addObject:vc];
+              [weakself.titlesArr addObject:@"指南"];
+    [weakself initSegment];
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

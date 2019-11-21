@@ -8,7 +8,7 @@
 
 #import "HGPersonalCenterTableViewCell.h"
 #define cellSpace 6
-#define cellVideoHeight 135
+#define cellVideoHeight 180
 @implementation HGPersonalCenterTableViewCell
 
 - (void)awakeFromNib {
@@ -27,11 +27,11 @@
     //如果没有标签，
     CGFloat tagViewToTopSpaceHeight = [HGPersonalCenterTableViewCell cellTagViewToTopSpaceHeight:dic];
     
-    return 48 + contentTextHeight + tagViewHeight + midViewHeight + tagViewToTopSpaceHeight;
+    return 63 + contentTextHeight + tagViewHeight + midViewHeight + tagViewToTopSpaceHeight;
 }
 //计算标签离上部的距离
 +(CGFloat)cellTagViewToTopSpaceHeight:(NSDictionary *)dic{
-    return ([dic[@"tag_list"] count] != 0 && [dic[@"tag_list"][0] length]!=0) ? 0 : 10;
+    return 10;//[dic[@"tag"] length] < 2 ? 0 : 10;
 }
 
 //计算文字高度
@@ -39,7 +39,7 @@
     NSString * contentText = @"";
     if ([dic[@"obj"] integerValue] == 1) {
         contentText = dic[@"detail"];
-        return [ShareManager inAllContentOutHeight:contentText contentWidth:KScreenWidth-90 lineSpace:cellSpace font:[UIFont systemFontOfSize:14]];
+        return [ShareManager inAllContentOutHeight:contentText contentWidth:KScreenWidth-90 lineSpace:cellSpace font:[UIFont systemFontOfSize:16]];
     }else{
         contentText = [@"占位" append: dic[@"title"]];
         
@@ -93,9 +93,9 @@
 }
 -(void)setCellData:(NSDictionary *)dic{
 //标签
-       if ([dic[@"tag_list"] count] != 0 && [dic[@"tag_list"][0] length]!=0) {
+       if ([dic[@"tag"] length] > 2) {
            [self addNewTags:dic];
-           self.cellTagViewToTopSpaceHeight.constant = 0;
+           self.cellTagViewToTopSpaceHeight.constant = 10;
        }else{
            [self.cellTagView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
            self.cellTagViewHeight.constant = 0 ;
@@ -107,10 +107,10 @@
 //图片
        if ([dic[@"obj"] integerValue] == 1) {
            self.cellContentLbl.text = [NSString stringWithFormat:@"%@",dic[@"detail"]];
-//           self.cellContentLbl.textColor = kRGBA(153, 153, 153, 1);
            NSArray * urlList = dic[@"url_list"];
            //这里判断晒图是图还是视频
            if ([kGetString(urlList[0]) containsString:@"mp4"]) {
+               self.picContainerView.frame = CGRectMake(0, 0, 0,0);
                [self.picContainerView removeFromSuperview];
                self.coverImv.hidden = self.playImv.hidden = NO;
                self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showVideoPlayer:)];
@@ -120,17 +120,29 @@
                NSString * string = [(NSMutableString *)dic[@"cover"] replaceAll:@" " target:@"%20"];
                [self.coverImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
            }else{
+                 [self.picContainerView removeFromSuperview];
                  self.coverImv.hidden = self.playImv.hidden = YES;
                  self.picContainerView = [SDWeiXinPhotoContainerView new];
+                 self.picContainerView.frame = CGRectMake(0, 0, self.cellMidView.qmui_width,
+                                                        self.cellMidView.qmui_height);
                  self.picContainerView.rowCount = 2;
                  [self.cellMidView addSubview:self.picContainerView];
-                 self.picContainerView.picPathStringsArray = dic[@"url_list"];
+               NSMutableArray * newUrlList = [[NSMutableArray alloc]init];
+                if (urlList.count > 4) {
+                   [newUrlList addObject:urlList[0]];
+                    [newUrlList addObject:urlList[1]];
+                    [newUrlList addObject:urlList[2]];
+                    [newUrlList addObject:urlList[3]];
+
+               }
+                 self.picContainerView.picPathStringsArray = newUrlList;
            }
            //下边这句话不能删除，改变样式的
-           [ShareManager setAllContentAttributed:cellSpace inLabel:self.cellContentLbl size:14 font:[UIFont systemFontOfSize:14]];
+           [ShareManager setAllContentAttributed:cellSpace inLabel:self.cellContentLbl size:16 font:[UIFont systemFontOfSize:16]];
            if ([dic[@"detail"] isEqualToString:@""]) {self.cellContentLblHeight.constant = 0;}
        }else{
 //文章
+           self.picContainerView.frame = CGRectMake(0, 0, 0,0);
            [self.picContainerView removeFromSuperview];
            self.coverImv.hidden = NO;
            self.playImv.hidden = YES;
@@ -196,7 +208,7 @@
     _cbGroupAndStreamView.backgroundColor = KClearColor;
     _cbGroupAndStreamView.isSingle = YES;
     _cbGroupAndStreamView.radius = 4;
-    _cbGroupAndStreamView.butHeight = 28;
+    _cbGroupAndStreamView.butHeight = 32;
     _cbGroupAndStreamView.font = [UIFont systemFontOfSize:12];
     _cbGroupAndStreamView.titleTextFont = [UIFont systemFontOfSize:12];
     _cbGroupAndStreamView.scroller.backgroundColor = KClearColor;

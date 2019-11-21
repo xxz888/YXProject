@@ -35,7 +35,17 @@
 #import "YXFaBuNewVCViewController.h"
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
 
-
+#define  adjustsScrollViewInsets_NO(scrollView,vc)\
+do { \
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
+if ([UIScrollView instancesRespondToSelector:NSSelectorFromString(@"setContentInsetAdjustmentBehavior:")]) {\
+[scrollView   performSelector:NSSelectorFromString(@"setContentInsetAdjustmentBehavior:") withObject:@(2)];\
+} else {\
+vc.automaticallyAdjustsScrollViewInsets = NO;\
+}\
+_Pragma("clang diagnostic pop") \
+} while (0)
 @interface HGPersonalCenterViewController () <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate,SDPhotoBrowserDelegate>{
     QMUIModalPresentationViewController * _modalViewController;
     NSArray * titleArray;
@@ -64,15 +74,39 @@
 
 @implementation HGPersonalCenterViewController
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 
+//
+//    if (self.yxTableView.contentOffset.y >= 192) {
+//        scrollView.contentInset = UIEdgeInsetsMake(-192, 0, 0, 0);
+//    }
+    if (self.yxTableView.contentOffset.y > _oldY) {
+        NSLog(@"%@",floatToNSString(self.yxTableView.contentOffset.y));
+    // 上滑
+        self.controllerHeaderView.hidden = NO;
+    }else{
+    // 下滑
+        NSLog(@"%@",floatToNSString(self.yxTableView.contentOffset.y));
+        if (self.yxTableView.contentOffset.y <= 0) {
+            self.controllerHeaderView.hidden = YES;
+        }
+
+    }
+    
+}
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    // 获取开始拖拽时tableview偏移量
+        _oldY = self.yxTableView.contentOffset.y;
+}
 #pragma mark - Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    HeaderImageViewHeight = 279 + kStatusBarHeight;
+    HeaderImageViewHeight = 266 + kStatusBarHeight;
     self.controllerHeaderViewHeight.constant = 44 + kStatusBarHeight;
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     self.controllerHeaderView.hidden = YES;
     [self createTableView];
+    adjustsScrollViewInsets_NO(self.yxTableView, self);
     [self setViewData];
     [self requestTableData];
 }
@@ -211,8 +245,14 @@
 
 #pragma mark - UITableViewDelegate
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXMineHeaderView" owner:self options:nil];
-    _headerView = [nib objectAtIndex:0];
+    if (!_headerView) {
+        NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXMineHeaderView" owner:self options:nil];
+        _headerView = [nib objectAtIndex:0];
+        _headerView.mineImageView.layer.masksToBounds = YES;
+        _headerView.mineImageView.layer.cornerRadius = _headerView.mineImageView.frame.size.width / 2.0;
+         [self setViewData];
+    }
+
     if (self.whereCome) {
         _headerView.guanzhuBtn.hidden = _headerView.fasixinBtn.hidden = _headerView.fasixinView.hidden = _headerView.backBtn.hidden =  NO;
         _headerView.editPersonBtn.hidden = _headerView.shezhiBtn.hidden  = YES;
@@ -220,10 +260,9 @@
         _headerView.guanzhuBtn.hidden = _headerView.fasixinBtn.hidden =  _headerView.fasixinView.hidden =  _headerView.backBtn.hidden = YES;
         _headerView.editPersonBtn.hidden = _headerView.shezhiBtn.hidden = NO;
     }
-    _headerView.mineImageView.layer.masksToBounds = YES;
-    _headerView.mineImageView.layer.cornerRadius = _headerView.mineImageView.frame.size.width / 2.0;
+
     [self headerViewBlockAction];
-    [self setViewData];
+
     return _headerView;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -576,35 +615,7 @@
           [[ShareManager sharedShareManager] shareAllToPlatformType:umType obj:@{@"img":reslut,@"desc":desc,@"title":title,@"type":@"3"}];
     } failure:^(NSString *error) { }];
 }
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat sectionHeaderHeight = HeaderImageViewHeight;
-    if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
-        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
-    }else if(scrollView.contentOffset.y>=sectionHeaderHeight) {
-        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
-    }
-    
-    if (self.yxTableView.contentOffset.y >= 192) {
-             scrollView.contentInset = UIEdgeInsetsMake(-192, 0, 0, 0);
-    }
-    if (self.yxTableView.contentOffset.y > _oldY) {
-        NSLog(@"%@",floatToNSString(self.yxTableView.contentOffset.y));
-    // 上滑
-        self.controllerHeaderView.hidden = NO;
-    }else{
-    // 下滑
-        NSLog(@"%@",floatToNSString(self.yxTableView.contentOffset.y));
-        if (self.yxTableView.contentOffset.y <= 0) {
-            self.controllerHeaderView.hidden = YES;
-        }
-     
-    }
-    
-}
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    // 获取开始拖拽时tableview偏移量
-        _oldY = self.yxTableView.contentOffset.y;
-}
+
 - (IBAction)controllerHeaderViewGuanzhuAction:(id)sender {
 }
 

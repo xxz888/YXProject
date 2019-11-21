@@ -16,9 +16,13 @@
     self.backgroundColor = SEGMENT_COLOR;
     UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction:)];
     click.numberOfTapsRequired = 1;
+    self.mineImageView.userInteractionEnabled = YES;
     [self.mineImageView addGestureRecognizer:click];
+    
+    UITapGestureRecognizer *click1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction:)];
+    click.numberOfTapsRequired = 1;
     self.qianmingLbl.userInteractionEnabled = YES;
-    [self.qianmingLbl addGestureRecognizer:click];
+    [self.qianmingLbl addGestureRecognizer:click1];
     click.numberOfTapsRequired = 1;
     [self.fasixinBtn setTitleColor:A_COlOR forState:0];
     [self.fasixinBtn setBackgroundColor:KClearColor];

@@ -96,7 +96,7 @@
         itemH = itemW;
 //    }
     long perRowItemCount = [self perRowItemCountForPicPathArray:_picPathStringsArray];
-    CGFloat margin = 5;
+    CGFloat margin = _rowCount==2? 10:5;
     
     [_picPathStringsArray enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         long columnIndex = idx % perRowItemCount;

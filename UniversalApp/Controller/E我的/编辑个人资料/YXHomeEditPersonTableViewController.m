@@ -50,7 +50,7 @@
     kWeakSelf(self);
 //         [YX_MANAGER requestGetFind_My_user_Info:@"" success:^(id object) {
     
-                    NSDictionary * object = UserDefaultsGET(KUserInfo);
+                 NSDictionary * object = UserDefaultsGET(KUserInfo);
 
                   NSString * str = [(NSMutableString *)object[@"photo"] replaceAll:@" " target:@"%20"];
                   [weakself.titleImgView sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:str]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
@@ -121,10 +121,19 @@
         NSDictionary * userInfoDic = UserDefaultsGET(KUserInfo);
         NSMutableDictionary * mDic = [NSMutableDictionary dictionaryWithDictionary:userInfoDic];
         [mDic setValue:object[@"token"] forKey:@"token"];
+        [mDic setValue:dic[@"gender"] forKey:@"gender"];
+        [mDic setValue:dic[@"photo"] forKey:@"photo"];
+        [mDic setValue:dic[@"birthday"] forKey:@"birthday"];
+        [mDic setValue:dic[@"site"] forKey:@"site"];
+        [mDic setValue:dic[@"character"] forKey:@"character"];
+        [mDic setValue:dic[@"username"] forKey:@"username"];
+
         UserDefaultsSET(mDic, KUserInfo);
     
         
-        weakself.backvcBlock();
+        if (weakself.backvcBlock) {
+            weakself.backvcBlock();
+        }
         [weakself.navigationController popViewControllerAnimated:YES];
        
 
