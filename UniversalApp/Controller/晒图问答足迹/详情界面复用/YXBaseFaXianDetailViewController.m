@@ -36,7 +36,7 @@
     }
 
     cell.model = self.dataArray[indexPath.row];
-
+    
     CGFloat height1 = cell.model.moreCountPL.integerValue <= 0 ? 0 : 20;
     [cell.showMoreCommentBtn setTitle:height1 == 0 ? @"" : @"显示更多回复 >>"  forState:UIControlStateNormal];
     cell.showMoreCommentBtn.hidden = height1 == 0;

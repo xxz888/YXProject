@@ -177,6 +177,7 @@
     silde.radius = 4;
     silde.font = [UIFont systemFontOfSize:13];
     silde.titleTextFont = [UIFont systemFontOfSize:18];
+    silde.backClolor = KWhiteColor;
     [silde setContentView:contentArr titleArr:titleArr];
     [self.floatView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.floatView addSubview:silde];
@@ -240,11 +241,11 @@
 }
 -(void)closeViewAAA{
 //    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSecondVC" object:nil];
-    UIViewController *controller = self;
-    while(controller.presentingViewController != nil){
-        controller = controller.presentingViewController;
-    }
-    [controller dismissViewControllerAnimated:YES completion:^{}];
+//    UIViewController *controller = self;
+//    while(controller.presentingViewController != nil){
+//        controller = controller.presentingViewController;
+//    }
+//    [controller dismissViewControllerAnimated:YES completion:^{}];
 }
 
 

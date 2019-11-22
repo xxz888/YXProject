@@ -74,8 +74,8 @@ kWeakSelf(self);
     if (!_segmentedPageViewController) {
         
         _segmentedPageViewController = [[HGSegmentedPageViewController alloc] init];
-        _segmentedPageViewController.categoryView.titleNomalFont = [UIFont systemFontOfSize:16];
-        _segmentedPageViewController.categoryView.titleSelectedFont = [UIFont systemFontOfSize:16 weight:UIFontWeightBold];
+        _segmentedPageViewController.categoryView.titleNomalFont = BOLDSYSTEMFONT(18);
+        _segmentedPageViewController.categoryView.titleSelectedFont =  BOLDSYSTEMFONT(24);
         _segmentedPageViewController.categoryView.titleSelectedColor = SEGMENT_COLOR;
         _segmentedPageViewController.pageViewControllers = self.vcArr.copy;
         _segmentedPageViewController.categoryView.titles = self.titlesArr;

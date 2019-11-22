@@ -24,9 +24,24 @@ typedef void(^guanzhuAction)(YXMessageThreeDetailViewCell *);
 @property (nonatomic,strong) NSString * userId;
 
 @property (weak, nonatomic) IBOutlet UIImageView *rightImv;
+@property (weak, nonatomic) IBOutlet UILabel *fensiLbl2;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *guanzhuWidth;
 
 typedef void(^titleImgAction)(YXMessageThreeDetailViewCell *);
 @property (nonatomic,copy) titleImgAction imgBlock;
+@property (weak, nonatomic) IBOutlet UILabel *cellContentLbl;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cellContentLblHeight;
+@property (weak, nonatomic) IBOutlet UILabel *detailLbl;
+
++(CGFloat)jisuanGaoDu:(NSDictionary *)dic;
+@property (weak, nonatomic) IBOutlet UIButton *huifuBtn;
+- (IBAction)huifuAction:(id)sender;
+
+typedef void(^huifuAction)(NSInteger indexRow);
+@property (nonatomic,copy) huifuAction huifuaction;
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -95,7 +95,14 @@
     return  self.dataArray.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 100;
+    if (self.whereCome == 3) {
+         NSDictionary * dic = self.dataArray[indexPath.row];
+         return 190 +  [YXMessageThreeDetailViewCell jisuanGaoDu:dic];
+    }else if(self.whereCome == 2){
+        return 68;
+    }else{
+         return 210;
+    }
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXMessageThreeDetailViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXMessageThreeDetailViewCell" forIndexPath:indexPath];
@@ -104,7 +111,7 @@
     cell.lbl1.text = dic[@"user_name"];
     cell.lbl3.text =  [ShareManager timestampSwitchTime:[dic[@"fans_time"] integerValue] andFormatter:@""];
     cell.userId = dic[@"user_id"];
-    
+    cell.tag = indexPath.row;
     NSArray * photoArray = [dic[@"photo"] split:@","];
     NSString * photo = @"";
     if ([photoArray count] > 0) {
@@ -119,28 +126,42 @@
     cell.imgBlock = ^(YXMessageThreeDetailViewCell * cell) {
         [weakself clickUserImageView:kGetString(cell.userId)];
     };
-    NSString * nameTitle = [kGetString(dic[@"post_type"])  isEqualToString:@"1"] ? @"晒图" :
-    [kGetString(dic[@"post_type"]) isEqualToString:@"2"] ? @"足迹" :
-    [kGetString(dic[@"post_type"]) isEqualToString:@"3"] ? @"问答" : @"雪茄点评";
+    cell.huifuaction = ^(NSInteger indexRow) {
+        NSDictionary * dic = weakself.dataArray[indexRow];
+         [weakself dianzanAction:dic];
+      };
+    cell.lbl1.font = BOLDSYSTEMFONT(14);
+    cell.detailLbl.text = dic[@"detail"] ?dic[@"detail"] : dic[@"title"];
     //点赞
     if (self.whereCome == 1) {
-        cell.lbl1Tag.text = [@"赞了你的" append:nameTitle];
-        cell.lbl2.hidden = YES;
-        cell.rightImv.hidden = NO;
-        cell.lbl3.text =  [ShareManager timestampSwitchTime:[dic[@"praise_time"] integerValue] andFormatter:@""];
-        cell.lbl1Height.constant = 35;
-        cell.lbl2Height.constant = 0;
+        cell.lbl2.text = [ShareManager timestampSwitchTime:[dic[@"praise_time"] integerValue] andFormatter:@""];
+        [ShareManager setAllContentAttributed:9 inLabel:cell.cellContentLbl font:SYSTEMFONT(16)];
+        cell.cellContentLbl.font =  SYSTEMFONT(16);
+        cell.cellContentLbl.text = @"赞了你的帖子";
+        NSMutableAttributedString * attriStr = [[NSMutableAttributedString alloc] initWithString:cell.cellContentLbl.text];
+        NSTextAttachment *attchImage = [[NSTextAttachment alloc] init];
+        attchImage.image = [UIImage imageNamed:@"messageDetailZan"];
+        attchImage.bounds = CGRectMake(0, -5, 22, 22);
+        NSMutableAttributedString * attriStr1 = [[NSMutableAttributedString alloc] initWithString:@"  "];
+        NSAttributedString *stringImage = [NSAttributedString attributedStringWithAttachment:attchImage];
+        [attriStr insertAttributedString:stringImage atIndex:0];
+        [attriStr insertAttributedString:attriStr1 atIndex:1];
+        cell.cellContentLbl.attributedText = attriStr;
+
     }else if(self.whereCome == 2){
-        cell.lbl1Tag.text = @"开始关注你了";
-        cell.lbl2.hidden = YES;
-        cell.lbl3.text =  [ShareManager timestampSwitchTime:[dic[@"fans_time"] integerValue] andFormatter:@""];
-        cell.lbl1Height.constant = 35;
-        cell.lbl2Height.constant = 0;
-        cell.guanZhuBtn.hidden = NO;
-       
+        cell.lbl2.text = @"关注了你";
+        cell.fensiLbl2.text = [ShareManager timestampSwitchTime:[dic[@"fans_time"] integerValue] andFormatter:@""];
+        cell.guanZhuBtn.hidden = cell.fensiLbl2.hidden = NO;
+        
         NSInteger tag = [dic[@"is_like"] integerValue];
         [ShareManager setGuanZhuStatus:cell.guanZhuBtn status:tag == 0 alertView:NO];
+        ViewRadius(cell.guanZhuBtn, 14);
         NSString * islike = tag == 1 ? @"互相关注" : @"关注";
+        if (tag == 1) {
+             cell.guanzhuWidth.constant = 80;
+         }else{
+             cell.guanzhuWidth.constant = 66;
+         }
         [cell.guanZhuBtn setTitle:islike forState:UIControlStateNormal];
         cell.gzBlock = ^(YXMessageThreeDetailViewCell * cell) {
             [YX_MANAGER requestLikesActionGET:kGetString(cell.userId) success:^(id object) {
@@ -148,21 +169,23 @@
                 [ShareManager setGuanZhuStatus:cell.guanZhuBtn status:!is_like alertView:YES];
                 NSString * islike = is_like ? @"互相关注" : @"关注";
                 [cell.guanZhuBtn setTitle:islike forState:UIControlStateNormal];
+
+                if (is_like) {
+                    cell.guanzhuWidth.constant = 80;
+                }else{
+                    cell.guanzhuWidth.constant = 66;
+                }
+                ViewRadius(cell.guanZhuBtn, 14);
             }];
         };
 
     }else if(self.whereCome == 3){
-        cell.lbl1Tag.text = [@"评论了你的" append:nameTitle];
-        cell.rightImv.hidden = NO;
-        cell.lbl2.hidden = NO;
-        cell.lbl3.text =  [ShareManager timestampSwitchTime:[dic[@"comment_time"] integerValue] andFormatter:@""];
-        cell.lbl1Height.constant = 70/3;
-        cell.lbl2Height.constant = 70/3;
-
-        cell.lbl2.text = [dic[@"comment"] UnicodeToUtf81];
-    }
-    if ([kGetString(dic[@"photo"]) isEqualToString:@""] || [nameTitle isEqualToString:@"雪茄点评"]) {
-        cell.rightImv.hidden = YES;
+        cell.huifuBtn.hidden = NO;
+        [ShareManager setAllContentAttributed:9 inLabel:cell.cellContentLbl font:SYSTEMFONT(16)];
+        cell.cellContentLbl.font =  SYSTEMFONT(16);
+        cell.cellContentLbl.text = dic[@"comment"];
+        cell.lbl2.text = [ShareManager timestampSwitchTime:[dic[@"comment_time"] integerValue] andFormatter:@""];
+        cell.cellContentLblHeight.constant = [YXMessageThreeDetailViewCell jisuanGaoDu:dic];
     }
     return cell;
 }

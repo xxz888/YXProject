@@ -49,8 +49,8 @@
     [YX_MANAGER requestUsersSign_in_List:@{} success:^(id object) {
         [weakself.sign_Array removeAllObjects];
         [weakself.sign_Array addObjectsFromArray:object[@"data"]];
-        weakself.lianxuqiandaoLbl.text = kGetString(object[@"day_number"]);
-        weakself.day_number = [object[@"day_number"] integerValue];
+        weakself.lianxuqiandaoLbl.text = kGetString(object[@"continuous"]);
+        weakself.day_number = [object[@"continuous"] integerValue];
         //判断今天是否已经签到
         NSString * currDayTime = [ShareManager getCurrentDay];
         for (NSDictionary * dic in weakself.sign_Array) {
@@ -67,7 +67,7 @@
                 weakself.finish3.userInteractionEnabled = NO;
             }
         }
-        [weakself get7Days:[object[@"day_number"] integerValue]];
+        [weakself get7Days:[object[@"continuous"] integerValue]];
     }];
     
 //    [self get7Days];
@@ -168,7 +168,7 @@
         weakself.finish3.userInteractionEnabled = NO;
         ViewBorderRadius(weakself.finish3, 4, 0, KClearColor);
 
-        if (weakself.day_number == 7) {
+        if ([self judgeStr:NSIntegerToNSString(weakself.day_number) with:@"7"]) {
             [weakself handleShowContentView];
         }
         
@@ -179,6 +179,24 @@
  
 
 }
+#pragma mark: - 判断是否能够被整除
+
+-(BOOL)judgeStr:(NSString *)str1 with:(NSString *)str2
+{
+    
+    int a = [str1 intValue];
+    
+    double s1 = [str2 doubleValue];
+    
+    int s2 = [str2 intValue];
+    
+    if (s1/a-s2/a>0) {
+        
+        return NO;
+    }
+    return YES;
+}
+
 - (IBAction)jifenHistoryAction:(id)sender {
     UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"YXMine" bundle:nil];
     YXMineJiFenHistoryViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXMineJiFenHistoryViewController"];

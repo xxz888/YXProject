@@ -361,7 +361,7 @@
      MessageFrameModel * model = [self.dbMessageArray[indexPath.row] lastObject];
      SimpleChatMainViewController * vc = [[SimpleChatMainViewController alloc]init];
      vc.clickIndex = indexPath.row;
-NSDictionary * userInfo = userManager.loadUserAllInfo;
+     NSDictionary * userInfo = userManager.loadUserAllInfo;
      NSString * photo = @"";
      NSString * username = @"";
      NSString * otherId = @"";
@@ -438,7 +438,7 @@ NSDictionary * userInfo = userManager.loadUserAllInfo;
     YXMessageThreeDetailViewController * VC = [[YXMessageThreeDetailViewController alloc]init];
     switch (tag) {
         case 1001:
-            VC.title = @"点赞消息";
+            VC.title = @"收到的赞";
             VC.whereCome = 1;
             self.zanjb.hidden = YES;
             break;

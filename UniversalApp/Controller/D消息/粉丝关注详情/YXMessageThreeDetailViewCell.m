@@ -9,7 +9,10 @@
 #import "YXMessageThreeDetailViewCell.h"
 
 @implementation YXMessageThreeDetailViewCell
-
++(CGFloat)jisuanGaoDu:(NSDictionary *)dic{
+    CGFloat contentHeight = [ShareManager inAllContentOutHeight:dic[@"comment"] contentWidth:KScreenWidth-20 lineSpace:9 font:SYSTEMFONT(16)];
+    return contentHeight;
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.titleImg.layer.masksToBounds = YES;
@@ -18,7 +21,11 @@
     self.titleImg.tag = 1001;
     [self.titleImg addGestureRecognizer:tapGesturRecognizer1];
     
-    ViewRadius(self.rightImv, 3);
+    ViewRadius(self.rightImv, 4);
+    ViewBorderRadius(self.huifuBtn, 14, 1, kRGBA(238, 238, 238, 1));
+    
+    ViewRadius(self.guanZhuBtn, 14);
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -33,5 +40,8 @@
 
 - (IBAction)guanZhuAction:(id)sender {
     self.gzBlock(self);
+}
+- (IBAction)huifuAction:(id)sender {
+    self.huifuaction(self.tag);
 }
 @end

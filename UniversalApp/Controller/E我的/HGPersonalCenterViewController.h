@@ -27,5 +27,6 @@
 @property (weak, nonatomic) IBOutlet UIView *controllerHeaderViewOtherView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *controllerHeaderViewHeight;
 @property (nonatomic, strong) UILabel * nodataImg;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *guanzhuWidth;
 
 @end

@@ -136,13 +136,18 @@
         }];
 }
 -(void)closeCurrentVC{
-    if (self.closeNewVcblock) {
-                self.closeNewVcblock();
-        }else{
-            [self dismissViewControllerAnimated:YES completion:^{
-                self.navigationController.tabBarController.selectedIndex = 1;
-            }];
-        }
+//    if (self.closeNewVcblock) { self.closeNewVcblock();
+//        }else{
+                   [self closeViewBBB];
+
+//        }3
+}
+-(void)closeViewBBB{
+    UIViewController *controller = self;
+    while(controller.presentingViewController != nil){
+        controller = controller.presentingViewController;
+    }
+    [controller dismissViewControllerAnimated:YES completion:^{}];
 }
 - (NSMutableArray *)uploadPics{
     if (!_uploadPics) {

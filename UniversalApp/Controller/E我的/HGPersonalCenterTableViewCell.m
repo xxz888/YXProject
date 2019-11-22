@@ -117,7 +117,7 @@
                self.coverImv.userInteractionEnabled = YES;
                [self.coverImv addGestureRecognizer:self.tap];
                NSString * string = [(NSMutableString *)dic[@"cover"] replaceAll:@" " target:@"%20"];
-               [self.coverImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+               [self.coverImv sd_setImageWithURL:[NSURL URLWithString:[WP_TOOL_ShareManager addImgURL:string]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
            }else{
                  [self.picContainerView removeFromSuperview];
                  self.coverImv.hidden = self.playImv.hidden = YES;
@@ -148,10 +148,7 @@
            self.coverImv.hidden = NO;
            self.playImv.hidden = YES;
            NSString * string = [(NSMutableString *)dic[@"cover"] replaceAll:@" " target:@"%20"];
-           if (![string contains:IMG_URI]) {
-               string = [IMG_URI append:string];
-           }
-           [self.coverImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+           [self.coverImv sd_setImageWithURL:[NSURL URLWithString:[WP_TOOL_ShareManager addImgURL:string]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
            self.cellMidView.userInteractionEnabled = NO;
            self.cellMidViewHeight.constant = cellVideoHeight;
            

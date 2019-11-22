@@ -69,9 +69,12 @@
             midViewHeight = cellVideoHeight;
         }else{
           CGFloat oneH =  (KScreenWidth - 34 - 20) / 3 ;
-          if (urlList.count == 1 || urlList.count == 2 || urlList.count == 3) {
-              midViewHeight = oneH;
-          }else if(urlList.count == 4 || urlList.count == 5 || urlList.count == 6){
+          if (urlList.count == 1 || urlList.count == 2) {
+              midViewHeight = (KScreenWidth - 34 - 10) / 2;
+          }else if (urlList.count == 3){
+              return oneH;
+          }
+          else if(urlList.count == 4 || urlList.count == 5 || urlList.count == 6){
               midViewHeight = oneH * 2 + 10;
           }else{
               midViewHeight = oneH * 3 + 20;
@@ -140,7 +143,7 @@
                 [self.onlyOneImv addGestureRecognizer:self.tap];
 
                 NSString * string = [(NSMutableString *)dic[@"cover"] replaceAll:@" " target:@"%20"];
-                [self.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+                [self.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:[WP_TOOL_ShareManager addImgURL:string]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
                 //如果是图片，为1张图片，有可能是晒图，有可能视频
                 //处理view隐藏
                 self.playImV.hidden = NO;
@@ -151,13 +154,27 @@
                 self.picContainerView = [SDWeiXinPhotoContainerView new];
                 self.picContainerView.sdWidth = KScreenWidth - 34 - 20 ;
                 self.picContainerView.frame = CGRectMake(0, 0, self.midView.qmui_width,self.midView.qmui_height);
-                self.picContainerView.rowCount = 3;
+//                NSMutableArray * newUrllist = [NSMutableArray array];
+//                if (urlList.count > 2) {
+//                    [newUrllist addObjectsFromArray:urlList];
+//                }else{
+//                    [newUrllist removeAllObjects];
+//                    if (urlList.count == 1) {
+//                        [newUrllist addObject:urlList[0]];
+//                    }else{
+//                        [newUrllist addObject:urlList[0]];
+//                        [newUrllist addObject:urlList[1]];
+//                    }
+//                    [newUrllist addObject:urlList[1]];
+//                }
+                self.picContainerView.rowCount = urlList.count;
+                self.picContainerView.picPathStringsArray = urlList;
                 [self.midView addSubview:self.picContainerView];
 
-                self.picContainerView.picPathStringsArray = urlList;
                 //处理view隐藏
                 self.playImV.hidden = YES;
             }
+        self.detailLbl.textColor = kRGBA(68, 68, 68, 1);
         //下边这句话不能删除，改变样式的
         [ShareManager setAllContentAttributed:cellSpace inLabel:self.detailLbl font:SYSTEMFONT(16)];
         if ([dic[@"detail"] isEqualToString:@""]) {self.detailHeight.constant = 0;}

@@ -75,6 +75,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     
     _iconView = [UIImageView new];
     _iconView.userInteractionEnabled = YES;
+    _iconView.contentMode = 2;
     _nameLable = [UILabel new];
     _nameLable.font = [UIFont systemFontOfSize:14];
     

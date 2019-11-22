@@ -140,7 +140,27 @@ SINGLETON_FOR_CLASS(ShareManager);
     [alert show];
 }
 //获取当前的时间
-
++(NSString*)getCurrentTimes1:(NSString *)format{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    
+    [formatter setDateFormat:format];
+    
+    //现在时间,你可以输出来看下是什么格式
+    
+    NSDate *datenow = [NSDate date];
+    
+    //----------将nsdate按formatter格式转成nsstring
+    
+    NSString *currentTimeString = [formatter stringFromDate:datenow];
+    
+    NSLog(@"currentTimeString =  %@",currentTimeString);
+    
+    return currentTimeString;
+    
+}
 +(NSString*)getCurrentTimes{
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -214,7 +234,59 @@ SINGLETON_FOR_CLASS(ShareManager);
 //将某个时间戳转化成 时间
 
 #pragma mark - 将某个时间戳转化成 时间
-
++(NSString *)timestampSwitchTime1:(NSInteger)timestamp andFormatter:(NSString *)format{
+    
+    
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    
+    [formatter setDateFormat:format]; // （@"YYYY-MM-dd hh:mm:ss"）----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    
+    NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
+    
+    [formatter setTimeZone:timeZone];
+    
+    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:timestamp];
+    
+    
+    
+    NSString *confromTimespStr = [formatter stringFromDate:confromTimesp];
+    
+    
+    
+    //NSLog(@"&&&&&&&confromTimespStr = : %@",confromTimespStr);
+    
+    NSCalendar * calendar = [NSCalendar currentCalendar];
+    BOOL isday  = [calendar isDateInToday:confromTimesp];
+    BOOL isYestarday  = [calendar isDateInYesterday:confromTimesp];
+    if (isday) {//如果是今天
+        [formatter setDateFormat:@"HH:mm"];
+        NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
+        [formatter setTimeZone:timeZone];
+        NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:timestamp];
+        NSString *confromTimespStr = [formatter stringFromDate:confromTimesp];
+        NSString * str = [NSString stringWithFormat:@"%@",confromTimespStr];
+        return str;
+    }
+    if (isYestarday) {//如果是昨天
+        [formatter setDateFormat:@"HH:mm"];
+        NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
+        [formatter setTimeZone:timeZone];
+        NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:timestamp];
+        NSString *confromTimespStr = [formatter stringFromDate:confromTimesp];
+        NSString * str = [NSString stringWithFormat:@"昨天 %@",confromTimespStr];
+        return str;
+    }
+    
+    
+    
+    return confromTimespStr;
+    
+}
 +(NSString *)timestampSwitchTime:(NSInteger)timestamp andFormatter:(NSString *)format{
     
     
@@ -1000,7 +1072,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     if (messNewDic) {
         NSDictionary * dic = @{
                                             @"content":[messNewDic[@"content"] UnicodeToUtf81],
-                                            @"date":kGetString(messNewDic[@"id"]),
+                                            @"date":kGetString(messNewDic[@"date"]),
                                             @"own_id":kGetString(messNewDic[@"own_id"]),
                                             @"aim_id":kGetString(messNewDic[@"aim_id"]),
                                             @"xxzid":kGetString(messNewDic[@"id"]),
@@ -1012,7 +1084,7 @@ SINGLETON_FOR_CLASS(ShareManager);
            MessageModel * messageModel = [[MessageModel alloc] init];
            messageModel.type = type;
            messageModel.text = dic[@"content"];
-           messageModel.time = dic[@"date"];
+           messageModel.time = [dic[@"date"] length] > 9 ?  [ShareManager timestampSwitchTime1:[dic[@"date"] integerValue] andFormatter:@"HH:MM"] : dic[@"date"];
            messageModel.photo = userInfoDic[@"photo"];
            messageModel.aim_id = dic[@"aim_id"];
            messageModel.own_id = dic[@"own_id"];
@@ -1091,5 +1163,12 @@ SINGLETON_FOR_CLASS(ShareManager);
                    NSStringDrawingUsesLineFragmentOrigin |
                    NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
     return  ceil(size.height);
+}
+-(NSString *)addImgURL:(NSString *)string{
+    if ([string contains:IMG_URI]) {
+        return string;
+    }else{
+        return [IMG_URI append:string];
+    }
 }
 @end

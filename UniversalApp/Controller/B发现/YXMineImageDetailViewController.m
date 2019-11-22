@@ -135,7 +135,7 @@
             CGRect Frame = self.cell.frame;
 
             CGFloat detailHeight = [ShareManager inTextOutHeight:[self.startDic[@"title"] UnicodeToUtf8] lineSpace:9 fontSize:24];
-            CGFloat height = 10 + 10 + 5 + 40 ; //分割线和上下距离和评论
+            CGFloat height = 10 + 10 + 5 + 10  ; //分割线和上下距离和评论
             Frame.size.height= 125 + detailHeight + webViewHeight + coverHeight + height;
             self.cell.midViewHeight.constant =  webViewHeight;
             self.cell.frame= Frame;
@@ -206,8 +206,8 @@
                     [self.shareBtn setImage:IMAGE_NAMED(@"更多") forState:UIControlStateNormal];
                     self.guanzhuBtn.hidden = self.titleImg.hidden = self.titleName.hidden = self.titleTime.hidden = NO;
                     self.cell.guanzhuBtn.hidden = YES;
-                    self.cell.cellHeaderHeight.constant = 0;
-                    self.cell.titleImageView.hidden = self.cell.titleLbl.hidden = self.cell.mapBtn.hidden = YES;
+//                    self.cell.cellHeaderHeight.constant = 0;
+//                    self.cell.titleImageView.hidden = self.cell.titleLbl.hidden = self.cell.mapBtn.hidden = YES;
                     
             }
             else{
@@ -217,8 +217,8 @@
                     [self.shareBtn setImage:IMAGE_NAMED(@"huisebeijinggengduo") forState:UIControlStateNormal];
                     self.guanzhuBtn.hidden = self.titleImg.hidden = self.titleName.hidden = self.titleTime.hidden = YES;
                     self.cell.guanzhuBtn.hidden = NO;
-                self.cell.cellHeaderHeight.constant = 50;
- self.cell.titleImageView.hidden = self.cell.titleLbl.hidden = self.cell.mapBtn.hidden = NO;
+//                    self.cell.cellHeaderHeight.constant = 50;
+//                    self.cell.titleImageView.hidden = self.cell.titleLbl.hidden = self.cell.mapBtn.hidden = NO;
             }
         }
 }
@@ -339,7 +339,7 @@
                 self.cell.midViewHeight.constant = ( KScreenWidth - 20 ) * scale;
                 self.cell.playImV.hidden = YES;
                 CGRect Frame = self.cell.frame;
-                Frame.size.height= self.headerViewHeight - 100 + 60 + self.cell.midViewHeight.constant+ (IS_IPhoneX ? 0 : 20);
+                Frame.size.height= self.headerViewHeight - 100 + 60 + self.cell.midViewHeight.constant+ (IS_IPhoneX ? 0 : 20) - 30;
                 self.cell.frame= Frame;
                 self.player.videoUrl = self.startDic[@"url_list"][0];
                 [self.cell.onlyOneImv addSubview:self.player];
@@ -348,7 +348,7 @@
                 CGRect Frame = self.cell.frame;
 
                 CGFloat midViewHeight = [YXFirstFindImageTableViewCell cellAllImageHeight:self.startDic];
-                Frame.size.height = 170 + tagViewHeight +  detailHeight + midViewHeight + kTopHeight+ (IS_IPhoneX ? 0 : 20);
+                Frame.size.height = 170 + tagViewHeight +  detailHeight + midViewHeight + kTopHeight+ (IS_IPhoneX ? 0 : 20) - 30;
                 self.cell.frame= Frame;
                
             }

@@ -141,8 +141,8 @@
         _segmentedPageViewController = [[HGSegmentedPageViewController alloc] init];
         _segmentedPageViewController.categoryView.frame = CGRectMake(0, 0, KScreenWidth, 50);
         _segmentedPageViewController.categoryView.userInteractionEnabled = YES;
-        _segmentedPageViewController.categoryView.titleNomalFont = [UIFont systemFontOfSize:14];
-        _segmentedPageViewController.categoryView.titleSelectedFont = [UIFont systemFontOfSize:22 weight:UIFontWeightBold];
+        _segmentedPageViewController.categoryView.titleNomalFont = BOLDSYSTEMFONT(18);
+        _segmentedPageViewController.categoryView.titleSelectedFont =  BOLDSYSTEMFONT(24);
         _segmentedPageViewController.categoryView.titleSelectedColor = SEGMENT_COLOR;
         _segmentedPageViewController.pageViewControllers = controllers.copy;
         _segmentedPageViewController.categoryView.titles = titles;

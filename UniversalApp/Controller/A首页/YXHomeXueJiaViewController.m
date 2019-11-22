@@ -112,8 +112,8 @@
 - (HGSegmentedPageViewController *)segmentedPageViewController{
     if (!_segmentedPageViewController) {
         _segmentedPageViewController = [[HGSegmentedPageViewController alloc] init];
-        _segmentedPageViewController.categoryView.titleNomalFont = [UIFont fontWithName:@"PingFangSC-Regular" size: 14];
-        _segmentedPageViewController.categoryView.titleSelectedFont =  [UIFont fontWithName:@"PingFangSC-Medium" size: 22];
+        _segmentedPageViewController.categoryView.titleNomalFont = BOLDSYSTEMFONT(18);
+        _segmentedPageViewController.categoryView.titleSelectedFont =  BOLDSYSTEMFONT(24);
         _segmentedPageViewController.categoryView.titleSelectedColor = SEGMENT_COLOR;
         _segmentedPageViewController.pageViewControllers = self.vcArr.copy;
         _segmentedPageViewController.categoryView.titles = self.titlesArr;

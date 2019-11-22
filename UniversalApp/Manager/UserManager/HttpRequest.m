@@ -97,7 +97,7 @@ var c = a + b
                     if ([obj[@"status"] integerValue] == -1){
                      
                     }else{
-                        [QMUITips showError:obj[@"message"] inView:view hideAfterDelay:1];
+                        [QMUITips showError:obj[@"message"] inView:view hideAfterDelay:0.5];
                     }
                 }
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -115,9 +115,9 @@ var c = a + b
             sucess(response);
         }else{
             NSString * str = [NSString stringWithFormat:@"请求接口为:%@\n返回数据为:%@",pi,response];
-            [QMUITips showError:@"返回类型未知,无法解析" inView:view hideAfterDelay:1];
+            [QMUITips showError:@"返回类型未知,无法解析" inView:view hideAfterDelay:0.5];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [QMUITips showError:str inView:view hideAfterDelay:3];
+                [QMUITips showError:str inView:view hideAfterDelay:2];
             });
         }
     }

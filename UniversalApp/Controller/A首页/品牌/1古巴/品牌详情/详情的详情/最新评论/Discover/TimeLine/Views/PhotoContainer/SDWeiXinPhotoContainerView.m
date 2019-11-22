@@ -96,7 +96,7 @@
         itemH = itemW;
 //    }
     long perRowItemCount = [self perRowItemCountForPicPathArray:_picPathStringsArray];
-    CGFloat margin = _rowCount==2? 10:5;
+    CGFloat margin = _rowCount == 2 ? 10:5;
     
     [_picPathStringsArray enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         long columnIndex = idx % perRowItemCount;
@@ -133,16 +133,10 @@
     [browser show];
 }
 
-- (CGFloat)itemWidthForPicPathArray:(NSArray *)array
-{
-    if (self.rowCount == 2) {
-          return  self.sdWidth / 2 ;
-    }else{
-        return (KScreenWidth - 34 - 20) / 3;
-    }
- 
+- (CGFloat)itemWidthForPicPathArray:(NSArray *)array{
+    if (self.rowCount == 1 || self.rowCount == 2) { return  self.sdWidth/2;}
+    else{return self.sdWidth/3;}
 }
-
 - (NSInteger)perRowItemCountForPicPathArray:(NSArray *)array{
     return self.rowCount == 2 ? 2 : 3;
 }

@@ -392,6 +392,7 @@ _Pragma("clang diagnostic pop") \
              dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                  NSDictionary * userInfo = userManager.loadUserAllInfo;
                        [YX_MANAGER requestGetFind_user_id:user_id_BOOL ? weakself.userId : kGetString(userInfo[@"id"]) success:^(id object) {
+                           weakself.userInfoDic = [NSDictionary dictionaryWithDictionary:object];
                            [weakself setControllerHeaderviewData:object];
                            [QMUITips hideAllTips];
                            [weakself personValue:object];
@@ -454,6 +455,7 @@ _Pragma("clang diagnostic pop") \
 }
 //关注按钮的初始化方法
 -(void)setGuanzhuCommonBtn:(NSInteger)tag btn:(UIButton*)btn{
+    self.guanzhuWidth.constant = 66;
     if(tag == 2){
         [self.headerView.guanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
         [self.headerView.guanzhuBtn setTitleColor:KWhiteColor forState:0];
@@ -470,6 +472,7 @@ _Pragma("clang diagnostic pop") \
         [self.controllerHeaderViewGauzhu setTitle:@"互相关注" forState:UIControlStateNormal];
         [self.controllerHeaderViewGauzhu setTitleColor:KWhiteColor forState:0];
         [self.controllerHeaderViewGauzhu setBackgroundColor:kRGBA(64, 75, 84, 1)];
+        self.guanzhuWidth.constant = 80;
     }else{
        [self.headerView.guanzhuBtn setTitle:@"＋关注" forState:UIControlStateNormal];
        [self.headerView.guanzhuBtn setTitleColor:KWhiteColor forState:0];
@@ -480,7 +483,13 @@ _Pragma("clang diagnostic pop") \
        [self.controllerHeaderViewGauzhu setBackgroundColor:kRGBA(176, 151, 99, 1)];
     }
 }
-
+//所有按钮的关注方法
+-(void)setGuanzhuCommonAction{
+    kWeakSelf(self);
+    [YX_MANAGER requestLikesActionGET:weakself.userId success:^(id object) {
+        [weakself setViewData];
+    }];
+}
 -(void)setControllerHeaderviewData:(NSDictionary *)object{
        //控制器上的view  YES为其他人 NO为自己
         NSInteger tag = [object[@"is_like"] integerValue];
@@ -498,33 +507,7 @@ _Pragma("clang diagnostic pop") \
         self.controllerHeaderViewBackBtnWidth.constant = 0;
     }
 }
-//所有按钮的关注方法
--(void)setGuanzhuCommonAction{
-    kWeakSelf(self);
-    [YX_MANAGER requestLikesActionGET:weakself.userId success:^(id object) {
-       BOOL is_like = [weakself.headerView.guanzhuBtn.titleLabel.text isEqualToString:@"＋关注"] == 1;
-       if (!is_like) {
-           [weakself.headerView.guanzhuBtn setTitle:@"＋关注" forState:UIControlStateNormal];
-           [weakself.headerView.guanzhuBtn setTitleColor:KWhiteColor forState:0];
-           [weakself.headerView.guanzhuBtn setBackgroundColor:kRGBA(176, 151, 99, 1)];
-           
-           [weakself.controllerHeaderViewGauzhu setTitle:@"＋关注" forState:UIControlStateNormal];
-           [weakself.controllerHeaderViewGauzhu setTitleColor:KWhiteColor forState:0];
-           [weakself.controllerHeaderViewGauzhu setBackgroundColor:kRGBA(176, 151, 99, 1)];
 
-       }else{
-           [weakself.headerView.guanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
-           [weakself.headerView.guanzhuBtn setTitleColor:KWhiteColor forState:0];
-           [weakself.headerView.guanzhuBtn setBackgroundColor:kRGBA(64, 75, 84, 1)];
-           
-           [weakself.controllerHeaderViewGauzhu setTitle:@"已关注" forState:UIControlStateNormal];
-           [weakself.controllerHeaderViewGauzhu setTitleColor:KWhiteColor forState:0];
-           [weakself.controllerHeaderViewGauzhu setBackgroundColor:kRGBA(64, 75, 84, 1)];
-       }
-    
-
-    }];
-}
 
 #pragma mark ========== 分享 ==========
 - (void)addGuanjiaShareView{
@@ -617,6 +600,7 @@ _Pragma("clang diagnostic pop") \
 }
 
 - (IBAction)controllerHeaderViewGuanzhuAction:(id)sender {
+    [self setGuanzhuCommonAction];
 }
 
 - (IBAction)liaotianAction:(id)sender {

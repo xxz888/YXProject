@@ -17,6 +17,7 @@
                 <outlet property="controllerHeaderViewOtherView" destination="iHp-st-zdA" id="ICB-Kd-AOG"/>
                 <outlet property="controllerHeaderViewTitleImv" destination="YE0-rT-xDF" id="Rwm-gS-1D6"/>
                 <outlet property="controllerHeaderViewTitleLbl" destination="Pgk-Ry-Fkb" id="eDT-UV-zCI"/>
+                <outlet property="guanzhuWidth" destination="LVX-3P-P7o" id="fti-5g-q53"/>
                 <outlet property="view" destination="iN0-l3-epB" id="n6g-3Z-PCk"/>
                 <outlet property="yxTableView" destination="DYV-vV-zIx" id="GW4-bO-ZdQ"/>
             </connections>

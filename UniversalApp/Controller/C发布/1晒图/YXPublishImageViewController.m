@@ -100,7 +100,8 @@
 //title 标题 晒图不传
     [dic setValue:@"" forKey:@"title"];
 //封面
-    [dic setValue:self.videoCoverImageString forKey:@"cover"];
+    NSString * cover = [self.videoCoverImageString contains:IMG_URI] ? [self.videoCoverImageString split:IMG_URI][1]:self.videoCoverImageString;
+    [dic setValue:cover forKey:@"cover"];
 //detail 详情
     [dic setValue:[self.textViewInput utf8ToUnicode] forKey:@"detail"];
 //拼接photo_list

@@ -86,4 +86,7 @@ SINGLETON_FOR_HEADER(ShareManager)
 //最终计算高度的方法
 +(void)setAllContentAttributed:(CGFloat)lineSpace inLabel:(UILabel *)label font:(UIFont *)font;
 +(CGFloat)inAllContentOutHeight:(NSString *)string contentWidth:(CGFloat)contentWidth lineSpace:(CGFloat)lineSpacing font:(UIFont *)font;
+-(NSString *)addImgURL:(NSString *)string;
++(NSString *)timestampSwitchTime1:(NSInteger)timestamp andFormatter:(NSString *)format;
++(NSString*)getCurrentTimes1:(NSString *)format;
 @end

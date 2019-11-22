@@ -144,8 +144,8 @@
     //当前用户发送时间
     NSDate * date = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"HH:mm";
-    NSString *strDate = [formatter stringFromDate:date];
+    formatter.dateFormat = @"HH:MM";
+    NSString *strDate = [ShareManager getCurrentTimes1:@"HH:MM"];
     NSString * content = textField.text;
     NSDictionary * userInfo = userManager.loadUserAllInfo;
 
