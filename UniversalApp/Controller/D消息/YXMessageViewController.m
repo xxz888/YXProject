@@ -221,15 +221,15 @@
         NSArray *dictArray = [db jq_lookupTable:YX_USER_LiaoTian dicOrModel:[MessageModel class] whereFormat:nil];
         NSMutableArray *models = [NSMutableArray arrayWithCapacity:dictArray.count];
         MessageModel *previousModel = nil;
-    if (dictArray.count == 0) {
-        [_messages removeAllObjects];
-    }
+        if (dictArray.count == 0) {
+            [_messages removeAllObjects];
+        }
         for (MessageModel * message in dictArray) {
             if ([WP_TOOL_ShareManager getOwnListDbMessage:message.own_id aim_id:message.aim_id]) {
                     //只拿自己的
                     MessageFrameModel *frameM = [[MessageFrameModel alloc] init];
                     //判断是否显示时间
-                    message.hiddenTime =  [message.time isEqualToString:previousModel.time];
+                    message.hiddenTime =  abs([message.time intValue] - [previousModel.time intValue] < 60);
                     frameM.message = message;
                     frameM.isRead = YES;
                     [models addObject:frameM];
@@ -348,7 +348,7 @@
         }
         cell.ltTitle.text = username;
         [cell.ltImv sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:photo]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
-        cell.ltTime.text = [ShareManager haomiaoNianYueRi:[ShareManager getOtherTimeStrWithString:model.message.time]];
+        cell.ltTime.text = [ShareManager ChatingTime:model.message.time];
         //新消息提示
         
         cell.messageLbl.hidden = [self.yiduArray[indexPath.row] integerValue] == 0;

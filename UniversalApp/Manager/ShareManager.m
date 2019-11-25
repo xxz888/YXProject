@@ -141,25 +141,13 @@ SINGLETON_FOR_CLASS(ShareManager);
 }
 //获取当前的时间
 +(NSString*)getCurrentTimes1:(NSString *)format{
-    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    
-    // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
-    
-    [formatter setDateFormat:format];
-    
-    //现在时间,你可以输出来看下是什么格式
-    
-    NSDate *datenow = [NSDate date];
-    
-    //----------将nsdate按formatter格式转成nsstring
-    
-    NSString *currentTimeString = [formatter stringFromDate:datenow];
-    
-    NSLog(@"currentTimeString =  %@",currentTimeString);
-    
-    return currentTimeString;
-    
+    NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
+    [formatter setTimeZone:timeZone];
+    [formatter setDateFormat:@"HH:mm"];
+    NSString *timeString = [formatter stringFromDate:[NSDate date]];
+    NSLog(@"The time is %@", timeString);
+    return timeString;
 }
 +(NSString*)getCurrentTimes{
     
@@ -215,7 +203,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     
-    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss SSS"]; // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"]; // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
     
     //设置时区,这个对于时间的处理有时很重要
     
@@ -230,7 +218,12 @@ SINGLETON_FOR_CLASS(ShareManager);
     return timeSp;
     
 }
++(NSString *)get2020NowTimeTimestamp{
+    NSDate *datenow = [NSDate date];//现在时间,你可以输出来看下是什么格式
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[datenow timeIntervalSince1970]];
+    return timeSp;
 
+}
 //将某个时间戳转化成 时间
 
 #pragma mark - 将某个时间戳转化成 时间
@@ -439,6 +432,53 @@ SINGLETON_FOR_CLASS(ShareManager);
     else {
         return @"刚刚";
     }
+}
++(NSString*)ChatingTime:(NSString *)timestring{
+  
+    
+    int timestamp=  [timestring intValue];
+    
+    
+        // 创建日历对象
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        
+        // 获取当前时间
+    NSDate *currentDate = [NSDate date];
+        
+        // 获取当前时间的年、月、日。利用日历
+        NSDateComponents *components = [calendar components:NSCalendarUnitYear| NSCalendarUnitMonth|NSCalendarUnitDay fromDate:currentDate];
+        NSInteger currentYear = components.year;
+        NSInteger currentMonth = components.month;
+        NSInteger currentDay = components.day;
+    
+        
+        // 获取消息发送时间的年、月、日
+        NSDate *msgDate = [NSDate dateWithTimeIntervalSince1970:timestamp];
+        components = [calendar components:NSCalendarUnitYear| NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour fromDate:msgDate];
+        CGFloat msgYear = components.year;
+        CGFloat msgMonth = components.month;
+        CGFloat msgDay = components.day;
+        CGFloat msghours = components.hour;
+        // 进行判断
+        NSDateFormatter *dateFmt = [[NSDateFormatter alloc] init];
+        if (currentYear == msgYear && currentMonth == msgMonth && currentDay == msgDay) {
+            //今天
+            if (msghours<12) {
+                dateFmt.dateFormat = @"上午 hh:mm";
+            }else{
+                dateFmt.dateFormat = @"下午 hh:mm";
+            }
+           
+        }else if (currentYear == msgYear && currentMonth == msgMonth && currentDay-1 == msgDay ){
+            //昨天
+            dateFmt.dateFormat = @"昨天 HH:mm";
+        }else{
+            //昨天以前
+            dateFmt.dateFormat = @"MM-dd HH:mm";
+        }
+        // 返回处理后的结果
+        return [dateFmt stringFromDate:msgDate];
+    
 }
 +(void)setGuanZhuStatus:(UIButton *)btn status:(BOOL)statusBool alertView:(BOOL)isAlertView{
      if (statusBool) {
@@ -1084,7 +1124,7 @@ SINGLETON_FOR_CLASS(ShareManager);
            MessageModel * messageModel = [[MessageModel alloc] init];
            messageModel.type = type;
            messageModel.text = dic[@"content"];
-           messageModel.time = [dic[@"date"] length] > 9 ?  [ShareManager timestampSwitchTime1:[dic[@"date"] integerValue] andFormatter:@"HH:MM"] : dic[@"date"];
+           messageModel.time = dic[@"date"];
            messageModel.photo = userInfoDic[@"photo"];
            messageModel.aim_id = dic[@"aim_id"];
            messageModel.own_id = dic[@"own_id"];
@@ -1100,7 +1140,7 @@ SINGLETON_FOR_CLASS(ShareManager);
                NSDictionary * own_info = @{@"photo":userInfo[@"photo"],@"username":userInfo[@"username"]};
                messageModel.own_info = [[ShareManager dicToString:own_info] replaceAll:@"\n" target:@""];
            }
-             messageModel.hiddenTime = [messageModel.time isEqualToString:compareM.time];
+             messageModel.hiddenTime = abs([messageModel.time intValue] - [compareM.time intValue] < 60);
              MessageFrameModel *mf = [[MessageFrameModel alloc] init];
              mf.message = messageModel;
              mf.isRead = YES;

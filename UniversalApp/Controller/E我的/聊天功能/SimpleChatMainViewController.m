@@ -124,7 +124,7 @@
                     //只拿自己的
                     MessageFrameModel *frameM = [[MessageFrameModel alloc] init];
                     //判断是否显示时间
-                    message.hiddenTime =  [message.time isEqualToString:previousModel.time];
+                    message.hiddenTime =  abs([message.time intValue] - [previousModel.time intValue] < 60);
                     frameM.message = message;
                     [models addObject:frameM];
                     previousModel = message;
@@ -141,14 +141,11 @@
      [YXPLUS_MANAGER requestChatting_ListoryPOST:dic success:^(id object) {
          
      }];
-    //当前用户发送时间
-    NSDate * date = [NSDate date];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"HH:MM";
-    NSString *strDate = [ShareManager getCurrentTimes1:@"HH:MM"];
+    
+    NSString *strDate = [ShareManager get2020NowTimeTimestamp];
     NSString * content = textField.text;
     NSDictionary * userInfo = userManager.loadUserAllInfo;
-
+    
     NSString * own_info= [ShareManager dicToString:@{@"photo":userInfo[@"photo"],@"username":userInfo[@"username"]}];
     NSString * aim_info= [ShareManager dicToString:@{@"photo":self.userInfoDic[@"photo"],@"username":self.userInfoDic[@"username"]}];
 
@@ -231,9 +228,18 @@
          CGFloat translationY = keyboardY - self.view.frame.size.height;
          //动画执行时间
          CGFloat time = [[dict objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+         CGFloat jisuangaod = translationY+ (IS_IPhoneX ? 34 : 0);
+         if (translationY == 0 ){
+             jisuangaod = 0;
+         }
          //键盘弹出的节奏和view动画节奏一致:7 << 16
          [UIView animateKeyframesWithDuration:time delay:0.0 options:7 << 16 animations:^{
-             self.view.transform = CGAffineTransformMakeTranslation(0, translationY);
+             if (self.messages.count < 5) {
+                 self.backView.transform = CGAffineTransformMakeTranslation(0, jisuangaod);
+             }else{
+                 self.backView.transform = CGAffineTransformMakeTranslation(0, 0);
+                 self.view.transform = CGAffineTransformMakeTranslation(0, translationY);
+             }
          } completion:^(BOOL finished) {}];
 }
 

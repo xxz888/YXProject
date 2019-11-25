@@ -89,4 +89,6 @@ SINGLETON_FOR_HEADER(ShareManager)
 -(NSString *)addImgURL:(NSString *)string;
 +(NSString *)timestampSwitchTime1:(NSInteger)timestamp andFormatter:(NSString *)format;
 +(NSString*)getCurrentTimes1:(NSString *)format;
++(NSString*)ChatingTime:(NSString *)timestring;
++(NSString *)get2020NowTimeTimestamp;
 @end

@@ -90,7 +90,7 @@
     self.timeLabel.textAlignment = NSTextAlignmentCenter;
     
 
-    self.timeLabel.text = messageFrame.message.time;
+    self.timeLabel.text = [ShareManager ChatingTime:messageFrame.message.time];
 
 //    self.timeLabel.text = [ShareManager haomiaoZhuanRIqi:[ShareManager getOtherTimeStrWithString:messageFrame.message.time]];
 
