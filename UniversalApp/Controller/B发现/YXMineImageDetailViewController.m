@@ -10,7 +10,6 @@
 #import "XHWebImageAutoSize.h"
 #import "ZInputToolbar.h"
 #import "UIView+LSExtension.h"
-#import "YXFindImageTableViewCell.h"
 #import "HXEasyCustomShareView.h"
 #import "YXPublishImageViewController.h"
 #import "YXFindSearchTagDetailViewController.h"
@@ -414,7 +413,7 @@
     };
     self.cell.clickDetailblock = ^(NSInteger tag, NSInteger tag1) {
         NSIndexPath * indexPathSelect = [NSIndexPath indexPathForRow:tag1  inSection:0];
-        YXFindImageTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
+        YXFirstFindImageTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
         if (![userManager loadUserInfo]) {
             KPostNotification(KNotificationLoginStateChange, @NO);
             return;

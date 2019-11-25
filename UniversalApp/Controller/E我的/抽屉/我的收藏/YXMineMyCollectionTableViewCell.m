@@ -27,7 +27,6 @@
             [self.leftImgView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
             self.titleLbl.text = dic1[@"cigar_name"];
             self.contentLbl.text = dic1[@"argument"];
-            self.collLbl.text = [NSString stringWithFormat:@"%@收藏",dic1[@"collect_number"]];
         }
             break;
         case 2:{//雪茄品牌
@@ -36,7 +35,6 @@
             [self.leftImgView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"img_moren"]];
             self.titleLbl.text = dic2[@"cigar_brand"];
             self.contentLbl.text = dic2[@"intro"];
-            self.collLbl.text = [NSString stringWithFormat:@"%@收藏",dic2[@"concern_number"]];
         }
             break;
         case 3:{//指南
@@ -45,7 +43,6 @@
             self.titleLbl.text = dic[@"name"];
             self.contentLbl.text = dic[@"intro"];
             NSString * collNum = [dic[@"detail"] count] > 0 ? kGetString(dic[@"detail"][0][@"collect_number"]) : @"0";
-            self.collLbl.text = [NSString stringWithFormat:@"%@收藏",collNum];
         }
             break;
         default:

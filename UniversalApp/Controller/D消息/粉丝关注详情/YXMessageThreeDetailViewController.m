@@ -9,10 +9,7 @@
 #import "YXMessageThreeDetailViewController.h"
 #import "YXMessageThreeDetailViewCell.h"
 #import "YXMineImageDetailViewController.h"
-#import "YXFindImageTableViewCell.h"
-#import "YXMineFootDetailViewController.h"
-#import "YXFindImageTableViewCell.h"
-#import "YXHomeXueJiaQuestionDetailViewController.h"
+
 #import "XHWebImageAutoSize.h"
 #import "YXHomeXueJiaPinPaiLastDetailViewController.h"
 #import "HGPersonalCenterViewController.h"
@@ -261,17 +258,6 @@
         VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
         NSString * url = dic[@"photo1"];
         CGFloat imageHeight = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:400];
-        VC.height = imageHeight;
-        [self.navigationController pushViewController:VC animated:YES];
-    }else if (tag == 3){//问答
-        YXHomeXueJiaQuestionDetailViewController * VC = [[YXHomeXueJiaQuestionDetailViewController alloc]init];
-//        VC.moment = [ShareManager setTestInfo:dic];
-        [self.navigationController pushViewController:VC animated:YES];
-    }else if (tag == 2){//足迹
-        YXMineFootDetailViewController * VC = [[YXMineFootDetailViewController alloc]init];
-        NSString * url = dic[@"pic1"];
-        CGFloat imageHeight = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:400];
-        VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
         VC.height = imageHeight;
         [self.navigationController pushViewController:VC animated:YES];
     }

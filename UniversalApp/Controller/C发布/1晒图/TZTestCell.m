@@ -47,6 +47,7 @@
     ViewRadius(_imageView, 5);
     CGFloat width = self.tz_width / 4.0;
     _videoImageView.frame = CGRectMake(width, width, width, width);
+    _videoImageView.center = self.center;
 }
 
 - (void)setAsset:(PHAsset *)asset {

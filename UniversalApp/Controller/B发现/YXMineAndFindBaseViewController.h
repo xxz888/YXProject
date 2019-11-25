@@ -7,14 +7,10 @@
 //
 
 #import "RootViewController.h"
-#import "YXFindImageTableViewCell.h"
-#import "YXFindQuestionTableViewCell.h"
 #import "YXFirstFindImageTableViewCell.h"
-#import "YXMineFootDetailViewController.h"
 #import "Moment.h"
 #import "HXEasyCustomShareView.h"
 #import "YXMineImageDetailViewController.h"
-#import "YXHomeXueJiaQuestionDetailViewController.h"
 #import "Comment.h"
 #import "HGBaseViewController.h"
 

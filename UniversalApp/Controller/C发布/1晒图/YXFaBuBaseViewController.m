@@ -71,7 +71,7 @@
                 [weakself.photoImageList addObjectsFromArray:qiniuArray];
             }
         }
-        NSLog(@"------------七牛云上传图片耗时: %f秒", CFAbsoluteTimeGetCurrent() - start);
+//        NSLog(@"------------七牛云上传图片耗时: %f秒", CFAbsoluteTimeGetCurrent() - start);
     } failure:^(NSString *error) {}];
 }
 - (void)viewDidLoad {

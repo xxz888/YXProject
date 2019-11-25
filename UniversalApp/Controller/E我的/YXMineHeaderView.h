@@ -107,6 +107,9 @@ typedef void(^shangchengBlock)();
 @property (weak, nonatomic) IBOutlet UIButton *choucangBtn;
 - (IBAction)shoucangAction:(id)sender;
 
+typedef void(^selectSegmentBlock)(NSInteger);
+@property (nonatomic,copy) selectSegmentBlock selectSegmentblock;
+
 @end
 
 NS_ASSUME_NONNULL_END

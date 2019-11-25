@@ -175,7 +175,7 @@
 -(void)closeViewAction:(id)sender{
 
     if (_startDic) {
-        [self closeViewBBB];
+        [self closeViewAAA];
 
     }else{
         if (self.photoImageList.count > 0 || self.qmuiTextView.text.length > 0 ) {
@@ -183,7 +183,7 @@
             UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
             }];
             UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"不保存" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                [weakself closeViewBBB];
+                [weakself closeViewAAA];
             }];
             UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"保存" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 [weakself fabuAction:self.cunCaoGaoBtn];
@@ -202,20 +202,13 @@
             }
             [self presentViewController:alertController animated:YES completion:NULL];
         }else{
-            [self closeViewBBB];
+            [self closeViewAAA];
         }
     }
 }
 -(void)closeViewAAA{
     [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSecondVC" object:nil];
-
-    if (self.closeNewVcblock) {
-        self.closeNewVcblock();
-        
-    }else{
-        [self closeViewBBB];
-    }
-
+    [self closeViewBBB];
 }
 -(void)closeViewBBB{
     UIViewController *controller = self;

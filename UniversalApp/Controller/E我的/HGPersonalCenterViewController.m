@@ -33,6 +33,9 @@
 #import "YXWenZhangEditorViewController.h"
 #import "YXXinDongTaiView.h"
 #import "YXFaBuNewVCViewController.h"
+#import "YXMineMyCollectionTableViewCell.h"
+#import "YXZhiNanDetailViewController.h"
+#import "YXZhiNanViewController.h"
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
 
 #define  adjustsScrollViewInsets_NO(scrollView,vc)\
@@ -54,7 +57,8 @@ _Pragma("clang diagnostic pop") \
     BOOL _tagSelectBool;
     XLVideoPlayer *_player;
     NSInteger _selectRow;
-
+    NSString * _sort;
+    BOOL _selectIndexBool;
 }
 @property (nonatomic,strong) YXXinDongTaiView * dongtaiView;
 @property (nonatomic, strong) NSDictionary *shareDic;
@@ -81,12 +85,12 @@ _Pragma("clang diagnostic pop") \
 //        scrollView.contentInset = UIEdgeInsetsMake(-192, 0, 0, 0);
 //    }
     if (self.yxTableView.contentOffset.y > _oldY) {
-        NSLog(@"%@",floatToNSString(self.yxTableView.contentOffset.y));
+//        NSLog(@"%@",floatToNSString(self.yxTableView.contentOffset.y));
     // 上滑
         self.controllerHeaderView.hidden = NO;
     }else{
     // 下滑
-        NSLog(@"%@",floatToNSString(self.yxTableView.contentOffset.y));
+//        NSLog(@"%@",floatToNSString(self.yxTableView.contentOffset.y));
         if (self.yxTableView.contentOffset.y <= 0) {
             self.controllerHeaderView.hidden = YES;
         }
@@ -101,7 +105,8 @@ _Pragma("clang diagnostic pop") \
 #pragma mark - Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    HeaderImageViewHeight = 266 + kStatusBarHeight;
+    _selectIndexBool = NO;
+    HeaderImageViewHeight = 276 + kStatusBarHeight;
     self.controllerHeaderViewHeight.constant = 44 + kStatusBarHeight;
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     self.controllerHeaderView.hidden = YES;
@@ -109,6 +114,17 @@ _Pragma("clang diagnostic pop") \
     adjustsScrollViewInsets_NO(self.yxTableView, self);
     [self setViewData];
     [self requestTableData];
+}
+
+-(void)requestMyCollectionListGet{
+   kWeakSelf(self);
+    NSString * par = [NSString stringWithFormat:@"3/%@",NSIntegerToNSString(self.requestPage)];
+   [YX_MANAGER requestMyXueJia_CollectionListGet:par success:^(id object) {
+       weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
+       [weakself.yxTableView reloadData];
+       [QMUITips hideAllTips];
+       [weakself endRefresh];
+   }];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -241,6 +257,20 @@ _Pragma("clang diagnostic pop") \
                 [weakself.navigationController pushViewController:vc animated:YES];
             }];
     };
+    _headerView.selectSegmentblock = ^(NSInteger selectIndex) {
+        _selectIndexBool = selectIndex == 1;
+        [weakself requestTableData];
+//        [weakself.yxTableView reloadData];
+//        //动态
+//        if (selectIndex == 0) {
+//
+//
+//
+//        //收藏
+//        }else if (selectIndex == 1){
+//
+//        }
+    };
 }
 
 #pragma mark - UITableViewDelegate
@@ -255,10 +285,10 @@ _Pragma("clang diagnostic pop") \
 
     if (self.whereCome) {
         _headerView.guanzhuBtn.hidden = _headerView.fasixinBtn.hidden = _headerView.fasixinView.hidden = _headerView.backBtn.hidden =  NO;
-        _headerView.editPersonBtn.hidden = _headerView.shezhiBtn.hidden  = YES;
+        _headerView.editPersonBtn.hidden = _headerView.shezhiBtn.hidden  = _headerView.choucangBtn.hidden = YES;
     }else{
         _headerView.guanzhuBtn.hidden = _headerView.fasixinBtn.hidden =  _headerView.fasixinView.hidden =  _headerView.backBtn.hidden = YES;
-        _headerView.editPersonBtn.hidden = _headerView.shezhiBtn.hidden = NO;
+        _headerView.editPersonBtn.hidden = _headerView.shezhiBtn.hidden =   _headerView.choucangBtn.hidden = NO;
     }
 
     [self headerViewBlockAction];
@@ -269,7 +299,11 @@ _Pragma("clang diagnostic pop") \
     return HeaderImageViewHeight;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [HGPersonalCenterTableViewCell cellDefaultHeight:self.dataArray[indexPath.row]];
+    if (_selectIndexBool) {
+        return 120;
+    }else{
+        return [HGPersonalCenterTableViewCell cellDefaultHeight:self.dataArray[indexPath.row]];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -277,65 +311,157 @@ _Pragma("clang diagnostic pop") \
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    HGPersonalCenterTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HGPersonalCenterTableViewCell" forIndexPath:indexPath];
-    cell.tag = indexPath.row;
-    cell.dataDic = self.dataArray[indexPath.row];
-    [cell setCellData:self.dataArray[indexPath.row]];
-    kWeakSelf(self);
-    //点击tag
-       cell.clickTagblock = ^(NSString * string) {
-           kWeakSelf(self);
-           _tagSelectBool = YES;
-           [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":@"1",@"type":@"3"} success:^(id object) {
-               if ([object count] > 0) {
-                   YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
-                   VC.type = @"3";
-                   VC.key = object[0][@"tag"];
-                   VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
-                   VC.startArray = [NSArray arrayWithArray:object];
+    
+    if (_selectIndexBool) {
+        YXMineMyCollectionTableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"YXMineMyCollectionTableViewCell" forIndexPath:indexPath];
+        [cell setCellData:self.dataArray[indexPath.row]];
+        return cell;
+    }else{
+        HGPersonalCenterTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HGPersonalCenterTableViewCell" forIndexPath:indexPath];
+          cell.tag = indexPath.row;
+          cell.dataDic = self.dataArray[indexPath.row];
+          [cell setCellData:self.dataArray[indexPath.row]];
+          kWeakSelf(self);
+          //点击tag
+             cell.clickTagblock = ^(NSString * string) {
+                 kWeakSelf(self);
+                 _tagSelectBool = YES;
+                 [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":@"1",@"type":@"3"} success:^(id object) {
+                     if ([object count] > 0) {
+                         YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
+                         VC.type = @"3";
+                         VC.key = object[0][@"tag"];
+                         VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
+                         VC.startArray = [NSArray arrayWithArray:object];
 
-                   [weakself.navigationController pushViewController:VC animated:YES];
-               }else{
-                   [QMUITips showInfo:@"无此标签的信息"];
-               }
-               _tagSelectBool = NO;
-           }];
-       };
-       //点击点赞和评论
-       cell.clickDetailblock = ^(NSInteger tag, NSInteger tag1) {
-           NSIndexPath * indexPathSelect = [NSIndexPath indexPathForRow:tag1  inSection:0];
-           HGPersonalCenterTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
-           if (tag == 1) {//评论
-               _selectRow = -1;
-               [weakself tableView:weakself.yxTableView didSelectRowAtIndexPath:indexPathSelect];
-           }else if(tag == 2){//点赞
-               _selectRow = tag1;
-               [weakself requestDianZan_Image_Action:indexPathSelect];
-           }else{//分享
-               _selectRow = -1;
-               NSDictionary * userInfo = userManager.loadUserAllInfo;
-               BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [kGetString(userInfo[@"id"]) integerValue];
-               weakself.shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
-               [weakself addGuanjiaShareViewIsOwn:isOwn isWho:kGetString(cell.dataDic[@"obj"]) tag:[cell.dataDic[@"id"] integerValue] startDic:cell.dataDic];
-           }
-       };
-    //播放视频按钮
-      cell.playBlock = ^(UITapGestureRecognizer * tap) {
-          [weakself showVideoPlayer:tap];
-      };
-    return cell;
+                         [weakself.navigationController pushViewController:VC animated:YES];
+                     }else{
+                         [QMUITips showInfo:@"无此标签的信息"];
+                     }
+                     _tagSelectBool = NO;
+                 }];
+             };
+             //点击点赞和评论
+             cell.clickDetailblock = ^(NSInteger tag, NSInteger tag1) {
+                 NSIndexPath * indexPathSelect = [NSIndexPath indexPathForRow:tag1  inSection:0];
+                 HGPersonalCenterTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
+                 if (tag == 1) {//评论
+                     _selectRow = -1;
+                     [weakself tableView:weakself.yxTableView didSelectRowAtIndexPath:indexPathSelect];
+                 }else if(tag == 2){//点赞
+                     _selectRow = tag1;
+                     [weakself requestDianZan_Image_Action:indexPathSelect];
+                 }else{//分享
+                     _selectRow = -1;
+                     NSDictionary * userInfo = userManager.loadUserAllInfo;
+                     BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [kGetString(userInfo[@"id"]) integerValue];
+                     weakself.shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
+                     [weakself addGuanjiaShareViewIsOwn:isOwn isWho:kGetString(cell.dataDic[@"obj"]) tag:[cell.dataDic[@"id"] integerValue] startDic:cell.dataDic];
+                 }
+             };
+          //播放视频按钮
+            cell.playBlock = ^(UITapGestureRecognizer * tap) {
+                [weakself showVideoPlayer:tap];
+            };
+            return cell;
+    }
+    
+  
 }
 #pragma mark ========== tableViewcell点击 ==========
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (_tagSelectBool) {
-        return;
+    if (_selectIndexBool) {
+        NSDictionary * dic = self.dataArray[indexPath.row];
+        NSInteger sort = [dic[@"sort"] integerValue];
+        if ([dic[@"detail"] count] > 0) {
+            
+//            NSString * par = [NSString stringWithFormat:@"1/%@",self.startDic[@"id"]];
+//            [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
+//                if ([object count] == 0) {
+//                    [QMUITips hideAllTipsInView:weakself.view];
+//                    return;
+//                }
+//
+//
+//                weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
+//                NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"weight" ascending:YES]];
+//                [weakself.dataArray sortUsingDescriptors:sortDescriptors];
+//
+//                dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//                    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+//                    [weakself.collArray removeAllObjects];
+//
+//
+//                        for (NSInteger i = 0; i < [weakself.dataArray count]; i++) {
+//                            NSString * par1 = [NSString stringWithFormat:@"1/%@",weakself.dataArray[i][@"id"]];
+//                                [YXPLUS_MANAGER requestZhiNan1Get:par1 success:^(id object) {
+//                                    [weakself.collArray addObject:object];
+//
+//                                    if (weakself.dataArray.count == weakself.collArray.count) {
+//
+//                                        [weakself.yxTableView reloadData];
+//                                        [weakself panduanUMXiaoXi];
+//                                    }
+//                                     dispatch_semaphore_signal(sema);
+//                                    [QMUITips hideAllTipsInView:weakself.view];
+//                                }];
+//                            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+//                        }
+//                });
+//            }];
+            
+            
+            
+            YXZhiNanDetailViewController * vc = [[YXZhiNanDetailViewController alloc]init];
+            vc.smallIndex = 0;
+            vc.bigIndex = 0;
+            vc.startArray = [[NSMutableArray alloc] init];
+            NSDictionary * dic4 =
+            @{
+                @"id":kGetString(dic[@"target_id"]),
+                @"father_id":@"0",
+                @"intro":dic[@"intro"],
+                @"heat":@"0",
+                @"is_collect":@"1",
+                @"photo_detail":dic[@"photo_detail"],
+                @"collect_number":kGetString(dic[@"collect_number"]),
+                @"weight":@"0",
+                @"comment_number":kGetString(dic[@"comment_number"]),
+                @"is_next":@"",
+                @"name":dic[@"name"],
+                @"photo":@"",
+            };
+            [vc.startArray addObject:dic4];
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        }else{
+            YXZhiNanViewController * vc = [[YXZhiNanViewController alloc]init];
+            NSDictionary * dic3 =
+            @{
+              @"is_collect":@"1",
+              @"father_id":kGetString(dic[@"id"]),
+              @"id":kGetString(dic[@"target_id"]),
+              @"intro":dic[@"intro"],
+              @"photo":@"",
+              @"is_next":@YES,
+              @"name":dic[@"name"],
+              @"photo_detail":dic[@"photo_detail"]
+              };
+            vc.startDic = [NSDictionary dictionaryWithDictionary:dic3];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }else{
+        if (_tagSelectBool) {
+              return;
+          }
+          NSDictionary * dic = self.dataArray[indexPath.row];
+          YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
+          CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:dic];
+          VC.headerViewHeight = h;
+          VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+          [self.navigationController pushViewController:VC animated:YES];
     }
-    NSDictionary * dic = self.dataArray[indexPath.row];
-    YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
-    CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:dic];
-    VC.headerViewHeight = h;
-    VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-    [self.navigationController pushViewController:VC animated:YES];
+  
 }
 #pragma mark - Lazy
 - (void)createTableView {
@@ -345,6 +471,9 @@ _Pragma("clang diagnostic pop") \
     _yxTableView.tag = 99999;
     _yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_yxTableView registerNib:[UINib nibWithNibName:@"HGPersonalCenterTableViewCell" bundle:nil] forCellReuseIdentifier:@"HGPersonalCenterTableViewCell"];
+        [_yxTableView registerNib:[UINib nibWithNibName:@"YXMineMyCollectionTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineMyCollectionTableViewCell"];
+    
+    
     self.dataArray = [[NSMutableArray alloc]init];
     [self addRefreshView:self.yxTableView];
     
@@ -626,7 +755,11 @@ _Pragma("clang diagnostic pop") \
 }
 -(void)requestTableData{
     [QMUITips showLoadingInView:kAppWindow];
-    self.whereCome ? [self requestOther_AllList] : [self requestMine_AllList];
+    if (_selectIndexBool) {
+        [self requestMyCollectionListGet];
+    }else{
+        self.whereCome ? [self requestOther_AllList] : [self requestMine_AllList];
+    }
 }
 -(void)headerRereshing{
     [super headerRereshing];

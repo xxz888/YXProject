@@ -9,8 +9,6 @@
 #import "YXHomeXueJiaPinPaiDetailViewController.h"
 #import "YXHomeXueJiaDetailTableViewCell.h"
 #import "CatZanButton.h"
-#import "YXHomeXueJiaPinPaiLastDetailViewController.h"
-#import "YXPublishFootViewController.h"
 #import "POPAnimation.h"
 
 @interface YXHomeXueJiaPinPaiDetailViewController()<ClickLikeBtnDelegate,UIWebViewDelegate>{
@@ -201,47 +199,47 @@
     }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    if (indexPath.section == 1) {
-        
-         //yes为足迹进来 no为正常进入
-        if (self.whereCome) {
-             YXPublishFootViewController * footVC = [[YXPublishFootViewController alloc]init];
-            footVC.cigar_id = kGetString(self.dicData[@"data"][indexPath.row][@"id"]);
-            [self presentViewController:footVC animated:YES completion:nil];
-        }else{
-                kWeakSelf(self);
-                UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-                YXHomeXueJiaPinPaiLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiLastDetailViewController"];
-                VC.startDic = [NSMutableDictionary dictionaryWithDictionary:self.dicData[@"data"][indexPath.row]];
-                VC.PeiJianOrPinPai = NO;
-            
-                //请求六宫格图片
-                NSString * tag = VC.startDic[@"cigar_name"];
-               [QMUITips showLoadingInView:weakself.view];
-                [YX_MANAGER requestSearchFind_all:@{@"key":tag,@"key_unicode":[tag utf8ToUnicode],@"page":@"1",@"type":@"3"} success:^(id object) {
-                
-                NSMutableArray * imageArray = [NSMutableArray array];
-                for (NSDictionary * dic in object) {
-                    for (NSString * string in dic[@"url_list"]) {
-                        [imageArray addObject:string];
-                    }
-                }
-                    [QMUITips hideAllTipsInView:weakself.view];
-                [VC.startDic setValue:weakself.title forKey:@"cigar_brand"];
-                VC.imageArray = [NSMutableArray arrayWithArray:imageArray];
-                [weakself.navigationController pushViewController:VC animated:YES];
-            }];
-            
-            
-                [YX_MANAGER requestGetDetailListPOST:@{@"type":@(0),@"tag":tag,@"page":@(1)} success:^(id object) {
-          
-                
-            }];
-    
-        }
-
-    }
+//
+//    if (indexPath.section == 1) {
+//
+//         //yes为足迹进来 no为正常进入
+//        if (self.whereCome) {
+//             YXPublishFootViewController * footVC = [[YXPublishFootViewController alloc]init];
+//            footVC.cigar_id = kGetString(self.dicData[@"data"][indexPath.row][@"id"]);
+//            [self presentViewController:footVC animated:YES completion:nil];
+//        }else{
+//                kWeakSelf(self);
+//                UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
+//                YXHomeXueJiaPinPaiLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiLastDetailViewController"];
+//                VC.startDic = [NSMutableDictionary dictionaryWithDictionary:self.dicData[@"data"][indexPath.row]];
+//                VC.PeiJianOrPinPai = NO;
+//
+//                //请求六宫格图片
+//                NSString * tag = VC.startDic[@"cigar_name"];
+//               [QMUITips showLoadingInView:weakself.view];
+//                [YX_MANAGER requestSearchFind_all:@{@"key":tag,@"key_unicode":[tag utf8ToUnicode],@"page":@"1",@"type":@"3"} success:^(id object) {
+//
+//                NSMutableArray * imageArray = [NSMutableArray array];
+//                for (NSDictionary * dic in object) {
+//                    for (NSString * string in dic[@"url_list"]) {
+//                        [imageArray addObject:string];
+//                    }
+//                }
+//                    [QMUITips hideAllTipsInView:weakself.view];
+//                [VC.startDic setValue:weakself.title forKey:@"cigar_brand"];
+//                VC.imageArray = [NSMutableArray arrayWithArray:imageArray];
+//                [weakself.navigationController pushViewController:VC animated:YES];
+//            }];
+//
+//
+//                [YX_MANAGER requestGetDetailListPOST:@{@"type":@(0),@"tag":tag,@"page":@(1)} success:^(id object) {
+//
+//
+//            }];
+//
+//        }
+//
+//    }
 }
 -(void)requestLiuGongGe{
 

@@ -20,7 +20,7 @@
 #import "YXSecondHeadView.h"
 #import "YXNetFailView.h"
 #import "YXWenZhangEditorViewController.h"
-
+#import "YXFirstFindImageTableViewCell.h"
 
 static CGFloat sectionHeaderHeight = 260;
 @interface YXMineAndFindBaseViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,ZInputToolbarDelegate,UIScrollViewDelegate>{
@@ -214,7 +214,7 @@ static CGFloat sectionHeaderHeight = 260;
     //右上角分享
     cell.shareblock = ^(NSInteger tag) {
         NSIndexPath * indexPathSelect = [NSIndexPath indexPathForRow:tag  inSection:0];
-        YXFindImageTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
+        YXFirstFindImageTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
         NSDictionary * userInfo = userManager.loadUserAllInfo;
         BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [kGetString(userInfo[@"id"]) integerValue];
         weakself.shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
@@ -261,7 +261,7 @@ static CGFloat sectionHeaderHeight = 260;
                   return;
               }
         NSIndexPath * indexPathSelect = [NSIndexPath indexPathForRow:tag1  inSection:0];
-        YXFindImageTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
+        YXFirstFindImageTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
         if (tag == 1) {//评论
             [weakself tableView:weakself.yxTableView didSelectRowAtIndexPath:indexPathSelect];
         }else if(tag == 2){//点赞

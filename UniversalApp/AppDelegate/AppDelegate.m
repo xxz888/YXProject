@@ -54,7 +54,7 @@
     //此函数在UMCommon.framework版本1.4.2及以上版本，在UMConfigure.h的头文件中加入。
     //如果用户用组件化SDK,需要升级最新的UMCommon.framework版本。
     NSString * deviceID =[UMConfigure deviceIDForIntegration];
-    NSLog(@"集成测试的deviceID:%@", deviceID);
+//    NSLog(@"集成测试的deviceID:%@", deviceID);
     
     
     return YES;

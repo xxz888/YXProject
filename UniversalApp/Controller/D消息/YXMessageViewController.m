@@ -357,34 +357,37 @@
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-     kWeakSelf(self);
-     MessageFrameModel * model = [self.dbMessageArray[indexPath.row] lastObject];
-     SimpleChatMainViewController * vc = [[SimpleChatMainViewController alloc]init];
-     vc.clickIndex = indexPath.row;
-     NSDictionary * userInfo = userManager.loadUserAllInfo;
-     NSString * photo = @"";
-     NSString * username = @"";
-     NSString * otherId = @"";
+    if (indexPath.section == 4) {
+        kWeakSelf(self);
+          MessageFrameModel * model = [self.dbMessageArray[indexPath.row] lastObject];
+          SimpleChatMainViewController * vc = [[SimpleChatMainViewController alloc]init];
+          vc.clickIndex = indexPath.row;
+          NSDictionary * userInfo = userManager.loadUserAllInfo;
+          NSString * photo = @"";
+          NSString * username = @"";
+          NSString * otherId = @"";
 
-         if ([kGetString(userInfo[@"id"]) isEqualToString:model.message.own_id]) {
-             photo = [ShareManager stringToDic:model.message.aim_info][@"photo"];
-             username = [ShareManager stringToDic:model.message.aim_info][@"username"];
-             otherId = model.message.aim_id;
-         }else{
-             photo = [ShareManager stringToDic:model.message.own_info][@"photo"];
-             username = [ShareManager stringToDic:model.message.own_info][@"username"];
-             otherId = model.message.own_id;
-         }
-     vc.userInfoDic = @{@"photo":photo,@"username":username,@"id":otherId};
-    
-    
-    vc.backVCClickIndexblock = ^(NSInteger clickIndex) {
-   
-        [weakself.yiduArray replaceObjectAtIndex:clickIndex withObject:@"0"];
-        [weakself.tableView reloadData];
-    };
-    
-     [weakself.navigationController pushViewController:vc animated:YES];
+              if ([kGetString(userInfo[@"id"]) isEqualToString:model.message.own_id]) {
+                  photo = [ShareManager stringToDic:model.message.aim_info][@"photo"];
+                  username = [ShareManager stringToDic:model.message.aim_info][@"username"];
+                  otherId = model.message.aim_id;
+              }else{
+                  photo = [ShareManager stringToDic:model.message.own_info][@"photo"];
+                  username = [ShareManager stringToDic:model.message.own_info][@"username"];
+                  otherId = model.message.own_id;
+              }
+          vc.userInfoDic = @{@"photo":photo,@"username":username,@"id":otherId};
+         
+         
+         vc.backVCClickIndexblock = ^(NSInteger clickIndex) {
+        
+             [weakself.yiduArray replaceObjectAtIndex:clickIndex withObject:@"0"];
+             [weakself.tableView reloadData];
+         };
+         
+          [weakself.navigationController pushViewController:vc animated:YES];
+    }
+  
 }
 
 

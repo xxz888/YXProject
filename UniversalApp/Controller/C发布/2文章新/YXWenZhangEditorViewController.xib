@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,7 +36,7 @@
                                 <constraint firstAttribute="height" constant="22" id="OY9-NP-hte"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <state key="normal" image="黑色返回"/>
+                            <state key="normal" image="关闭"/>
                             <connections>
                                 <action selector="backVcAction:" destination="-1" eventType="touchUpInside" id="GZo-Sy-gCA"/>
                             </connections>
@@ -96,6 +96,6 @@
         </view>
     </objects>
     <resources>
-        <image name="黑色返回" width="44" height="44"/>
+        <image name="关闭" width="64" height="64"/>
     </resources>
 </document>

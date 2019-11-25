@@ -10,8 +10,6 @@
 #import "YXMineImageDetailViewController.h"
 #import "XHWebImageAutoSize.h"
 #import "YXFindSearchTagHeaderView.h"
-#import "YXHomeXueJiaQuestionDetailViewController.h"
-#import "YXMineFootDetailViewController.h"
 #import "YXFirstFindImageTableViewCell.h"
 #import "QiniuLoad.h"
 @interface YXFindSearchTagDetailViewController ()<UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UICollectionViewDelegate>{

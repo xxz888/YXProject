@@ -89,12 +89,13 @@
     self.choucangBtn.font = FONT(@"Helvetica-Bold", 15);
     [self.dongtaiBtn setTitleColor:KBlackColor forState:0];
     [self.choucangBtn setTitleColor:kRGBA(153, 153, 153, 1) forState:0];
-
+    self.selectSegmentblock(0);
 }
 - (IBAction)shoucangAction:(id)sender {
     self.dongtaiBtn.font = FONT(@"Helvetica-Bold", 15);
     self.choucangBtn.font = FONT(@"Helvetica-Bold", 21);
     [self.choucangBtn setTitleColor:KBlackColor forState:0];
     [self.dongtaiBtn setTitleColor:kRGBA(153, 153, 153, 1) forState:0];
+    self.selectSegmentblock(1);
 }
 @end

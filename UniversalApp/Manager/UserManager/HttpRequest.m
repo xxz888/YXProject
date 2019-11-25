@@ -19,7 +19,7 @@
 
     kWeakSelf(self);
     NSString * strURl = [API_ROOT_URL_HTTP_FORMAL stringByAppendingString:pi];
-    NSLog(@"getUrl-:%@",strURl);
+//    NSLog(@"getUrl-:%@",strURl);
     
         AFHTTPSessionManager * manager = [SYBaseHttpConnection sharedManager];
         NSDictionary * userInfo = userManager.loadUserAllInfo;
@@ -31,7 +31,7 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [QMUITips hideAllTipsInView:[ShareManager getMainView]];
         [weakself setCommonRespone:sucess pi:pi responseObject:responseObject];
-        NSLog(@"getUrl-请求成功-:%@",strURl);
+//        NSLog(@"getUrl-请求成功-:%@",strURl);
 
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [QMUITips hideAllTipsInView:[ShareManager getMainView]];
@@ -41,7 +41,7 @@
 + (void)httpRequestGetPi:(NSString *)pi sucess:(SucessBlock)sucess failure:(FailureBlock)failure{
     kWeakSelf(self);
     NSString * url = [API_ROOT_URL_HTTP_FORMAL append:pi];
-    NSLog(@"getUrl-:%@",url);
+//    NSLog(@"getUrl-:%@",url);
        AFHTTPSessionManager * manager = [SYBaseHttpConnection sharedManager];
               NSDictionary * userInfo = userManager.loadUserAllInfo;
               if (userInfo) {
@@ -51,7 +51,7 @@
 
     [manager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-         NSLog(@"getUrl-请求成功-:%@",url);
+//         NSLog(@"getUrl-请求成功-:%@",url);
         [weakself setCommonRespone:sucess pi:pi responseObject:responseObject];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         

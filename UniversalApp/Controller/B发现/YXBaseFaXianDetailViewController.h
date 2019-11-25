@@ -7,8 +7,6 @@
 //
 
 #import "RootViewController.h"
-#import "YXMineImageDetailHeaderView.h"
-#import "YXHomeLastMyTalkView.h"
 #import "UIView+SDAutoLayout.h"
 #import "LEETheme.h"
 #import "GlobalDefines.h"
@@ -20,7 +18,6 @@
 #import "XHStarRateView.h"
 #import "ZInputToolbar.h"
 #import "UIView+LSExtension.h"
-#import "YXMineImageDetailHeaderView.h"
 #import "BJNoDataView.h"
 
 #import "UITableView+SDAutoTableViewCellHeight.h"
@@ -37,7 +34,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *clickbtnHeight;
 
 @property (nonatomic,assign) BOOL whereCome;
-@property(nonatomic,strong)YXMineImageDetailHeaderView * lastDetailView;
 @property(nonatomic,strong)YXHomeLastMyTalkView * lastMyTalkView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) UITextField *textField;

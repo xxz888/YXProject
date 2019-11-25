@@ -11,13 +11,8 @@
 #import "PYSearch.h"
 #import "PYTempViewController.h"
 #import "YXMineImageDetailViewController.h"
-
-#import "YXFindImageTableViewCell.h"
-#import "YXFindQuestionTableViewCell.h"
-#import "YXHomeXueJiaQuestionDetailViewController.h"
 #import "Moment.h"
 #import "Comment.h"
-#import "YXMineFootDetailViewController.h"
 #import "NSString+CString.h"
 @interface YXFindSearchResultAllViewController ()<PYSearchViewControllerDelegate,UITableViewDelegate,UITableViewDataSource>{
     NSInteger page ;

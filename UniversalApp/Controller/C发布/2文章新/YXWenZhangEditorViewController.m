@@ -49,7 +49,7 @@
 
 @implementation YXWenZhangEditorViewController
 - (IBAction)backVcAction:(id)sender {
-    [self closeCurrentVC];
+    [self closeViewAAA];
 }
 -(void)faxianEditCome{
     if (self.model.cover.length != 0) {
@@ -117,7 +117,7 @@
             [db jq_deleteTable:YX_USER_FaBuCaoGao whereFormat:sql];
         }
         [QMUITips showSucceed:@"存草稿成功"];
-        [self closeCurrentVC];
+        [self closeViewAAA];
 
 }
 //发布
@@ -132,15 +132,12 @@
             [QMUITips hideAllTipsInView:weakself.view];
             [QMUITips showSucceed:@"发布成功"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSecondVC" object:nil];
-            [weakself closeCurrentVC];
+            [weakself closeViewAAA];
         }];
 }
--(void)closeCurrentVC{
-//    if (self.closeNewVcblock) { self.closeNewVcblock();
-//        }else{
-                   [self closeViewBBB];
-
-//        }3
+-(void)closeViewAAA{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSecondVC" object:nil];
+    [self closeViewBBB];
 }
 -(void)closeViewBBB{
     UIViewController *controller = self;

@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -219,36 +219,6 @@
             </objects>
             <point key="canvasLocation" x="-772" y="-643"/>
         </scene>
-        <!--Home Xue Jia Question Detail View Controller-->
-        <scene sceneID="puE-Of-8MA">
-            <objects>
-                <viewController storyboardIdentifier="YXHomeXueJiaQuestionDetailViewController" id="7DF-ch-eMQ" customClass="YXHomeXueJiaQuestionDetailViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3Pu-vB-SRn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="CIE-9r-dMb" customClass="KeyBoardTableView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="846"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="CIE-9r-dMb" secondAttribute="bottom" constant="50" id="dkJ-hh-EGE"/>
-                            <constraint firstItem="CIE-9r-dMb" firstAttribute="leading" secondItem="3Pu-vB-SRn" secondAttribute="leading" id="mfN-K0-qm5"/>
-                            <constraint firstItem="CIE-9r-dMb" firstAttribute="top" secondItem="3Pu-vB-SRn" secondAttribute="top" id="oL9-Jv-Loq"/>
-                            <constraint firstItem="CIE-9r-dMb" firstAttribute="trailing" secondItem="3Pu-vB-SRn" secondAttribute="trailing" id="yjk-1t-zaL"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="g05-Ug-OtS"/>
-                    </view>
-                    <connections>
-                        <outlet property="yxTableView" destination="CIE-9r-dMb" id="AvP-Uf-wq7"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zFg-8v-iiW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2177" y="925"/>
-        </scene>
         <!--Home Xue Jia Wen Da Detail View Controller-->
         <scene sceneID="sxy-Xg-DeI">
             <objects>
@@ -282,7 +252,6 @@
         <!--Home Xue Jia Gu Ba View Controller-->
         <scene sceneID="YjO-5Q-XaK">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4nx-In-bcu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="YXHomeXueJiaGuBaViewController" id="Kld-uX-LrI" customClass="YXHomeXueJiaGuBaViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DU8-TC-XjZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -304,13 +273,13 @@
                         <viewLayoutGuide key="safeArea" id="2Wm-9J-zAE"/>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4nx-In-bcu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4417" y="-1502"/>
         </scene>
         <!--Home Xue Jia Pei Jian Last Detail View Controller-->
         <scene sceneID="NDO-aX-bAh">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x1U-tw-ESv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="YXHomeXueJiaPeiJianLastDetailViewController" id="LmM-Do-Byr" customClass="YXHomeXueJiaPeiJianLastDetailViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="n4h-tb-edQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -401,6 +370,7 @@
                         <outlet property="webView" destination="7NA-B5-sWx" id="gPt-IL-ILW"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x1U-tw-ESv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3215.1999999999998" y="-2941.0794602698652"/>
         </scene>
