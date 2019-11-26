@@ -7,13 +7,12 @@
 #import "PYSearchViewController.h"
 #import "PYSearchConst.h"
 #import "PYSearchSuggestionViewController.h"
-#import "YXFindSearchHeadView.h"
 
 #define PYRectangleTagMaxCol 3
 #define PYTextColor KBlackColor
 #define PYSEARCH_COLORPolRandomColor self.colorPol[arc4random_uniform((uint32_t)self.colorPol.count)]
 
-@interface PYSearchViewController () <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, PYSearchSuggestionViewDataSource, UIGestureRecognizerDelegate> {
+@interface PYSearchViewController () <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, PYSearchSuggestionViewDataSource, UIGestureRecognizerDelegate,UITextFieldDelegate> {
     id <UIGestureRecognizerDelegate> _previousInteractivePopGestureRecognizerDelegate;
 }
 
@@ -96,7 +95,6 @@
  The width of cancel button
  */
 @property (nonatomic, assign) CGFloat cancelButtonWidth;
-@property(nonatomic,strong)YXFindSearchHeadView * findSearchView;
 
 @end
 
@@ -343,7 +341,7 @@
     self.showSearchResultWhenSearchBarRefocused = NO;
     self.showKeyboardWhenReturnSearchResult = YES;
     self.removeSpaceOnSearchString = YES;
-    
+    self.searchTextField.delegate = self;
 
     UIView *headerView = [[UIView alloc] init];
     headerView.py_width = PYScreenW;
@@ -931,7 +929,16 @@
     }
     return 44.0;
 }
-
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if ([self.delegate respondsToSelector:@selector(searchViewController:didSearchWithSearchBar:searchText:)]) {
+        [self.delegate searchViewController:self didSearchWithSearchBar:self.searchHeaderView.searchBar searchText:textField.text];
+        [self saveSearchCacheAndRefreshView];
+        return YES;
+    }
+    if (self.didSearchBlock) self.didSearchBlock(self, self.searchHeaderView.searchBar,textField.text);
+    [self saveSearchCacheAndRefreshView];
+    return YES;
+}
 #pragma mark - UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {

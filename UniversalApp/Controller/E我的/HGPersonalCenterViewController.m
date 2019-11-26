@@ -79,12 +79,7 @@ _Pragma("clang diagnostic pop") \
 @implementation HGPersonalCenterViewController
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-
-//
-//    if (self.yxTableView.contentOffset.y >= 192) {
-//        scrollView.contentInset = UIEdgeInsetsMake(-192, 0, 0, 0);
-//    }
-    if (self.yxTableView.contentOffset.y > _oldY) {
+    if (self.yxTableView.contentOffset.y > HeaderImageViewHeight-40) {
 //        NSLog(@"%@",floatToNSString(self.yxTableView.contentOffset.y));
     // 上滑
         self.controllerHeaderView.hidden = NO;
@@ -282,13 +277,13 @@ _Pragma("clang diagnostic pop") \
         _headerView.mineImageView.layer.cornerRadius = _headerView.mineImageView.frame.size.width / 2.0;
          [self setViewData];
     }
-
+    _headerView.backgroundColor = kRGBA(16, 35, 58, 1);
     if (self.whereCome) {
         _headerView.guanzhuBtn.hidden = _headerView.fasixinBtn.hidden = _headerView.fasixinView.hidden = _headerView.backBtn.hidden =  NO;
-        _headerView.editPersonBtn.hidden = _headerView.shezhiBtn.hidden  = _headerView.choucangBtn.hidden = YES;
+        _headerView.editPersonBtn.hidden = _headerView.shezhiBtn.hidden   = YES;
     }else{
         _headerView.guanzhuBtn.hidden = _headerView.fasixinBtn.hidden =  _headerView.fasixinView.hidden =  _headerView.backBtn.hidden = YES;
-        _headerView.editPersonBtn.hidden = _headerView.shezhiBtn.hidden =   _headerView.choucangBtn.hidden = NO;
+        _headerView.editPersonBtn.hidden = _headerView.shezhiBtn.hidden =    NO;
     }
 
     [self headerViewBlockAction];

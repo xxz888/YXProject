@@ -141,6 +141,8 @@
            //下边这句话不能删除，改变样式的
            [ShareManager setAllContentAttributed:cellSpace inLabel:self.cellContentLbl font:SYSTEMFONT(16)];
            if ([dic[@"detail"] isEqualToString:@""]) {self.cellContentLblHeight.constant = 0;}
+           self.cellContentLbl.textColor = kRGBA(68, 68, 68, 1);
+
        }else{
 //文章
            self.picContainerView.frame = CGRectMake(0, 0, 0,0);

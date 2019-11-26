@@ -281,6 +281,7 @@
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAV-ln-cp0">
                     <rect key="frame" x="16" y="139.33333333333334" width="200" height="19.666666666666657"/>
+                    <color key="backgroundColor" red="0.062745098039215685" green="0.13725490196078433" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <attributedString key="attributedText">
                         <fragment content="-">
                             <attributes>
@@ -308,7 +309,7 @@
                                 <action selector="dongtaiAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="HI1-ii-JIA"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1z9-GN-VOl">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1z9-GN-VOl">
                             <rect key="frame" x="79" y="9" width="31" height="30"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                             <state key="normal" title="收藏">
@@ -416,7 +417,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.062745098040000002" green="0.13725490200000001" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.054901960784313725" green="0.098039215686274508" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="6uK-Nr-9ae" firstAttribute="centerY" secondItem="93P-T7-RWY" secondAttribute="centerY" id="0Wd-ET-6WW"/>
                 <constraint firstItem="GBa-bF-gmT" firstAttribute="leading" secondItem="sE9-Ps-Bqa" secondAttribute="leading" id="27g-dd-ZMG"/>

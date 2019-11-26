@@ -164,23 +164,21 @@
     [YX_MANAGER requestGetFind_all:@"" success:^(id object) {
         NSMutableArray * hotSeaches = [[NSMutableArray alloc]init];
         for (NSDictionary * dic in object) {
-            [hotSeaches addObject:[dic[@"key"] UnicodeToUtf81]];
+            [hotSeaches addObject:dic[@"key"]];
         }
         PYSearchViewController * searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"搜索", @"搜索") didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
             YXFindSearchResultViewController * VC = [[YXFindSearchResultViewController alloc] init];
             VC.searchBlock = ^(NSString * string) {
-                weakself.searchHeaderView.searchBar.text = [string UnicodeToUtf8];
+                weakself.searchHeaderView.searchBar.text = string;
             };
-            VC.searchText = [searchText UnicodeToUtf81];
+            VC.searchText = searchText;
             [searchViewController.navigationController pushViewController:VC animated:YES];
         }];
         searchViewController.searchResultShowMode = 1;
         searchViewController.hotSearchStyle = PYHotSearchStyleNormalTag;
         searchViewController.searchHistoryStyle = 1;
-        searchViewController.delegate = self;
-//        RootNavigationController *nav2 = [[RootNavigationController alloc]initWithRootViewController:searchViewController];
-//        [self presentViewController:nav2 animated:NO completion:nil];
-        [self.navigationController pushViewController:searchViewController animated:YES];
+        searchViewController.delegate = weakself;
+        [weakself.navigationController pushViewController:searchViewController animated:YES];
     }];
 }
 -(void)viewDidAppear:(BOOL)animated{

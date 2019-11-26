@@ -14,7 +14,7 @@
 #import "Moment.h"
 #import "Comment.h"
 #import "NSString+CString.h"
-@interface YXFindSearchResultAllViewController ()<PYSearchViewControllerDelegate,UITableViewDelegate,UITableViewDataSource>{
+@interface YXFindSearchResultAllViewController ()< UITextFieldDelegate,PYSearchViewControllerDelegate,UITableViewDelegate,UITableViewDataSource>{
     NSInteger page ;
 }
 @property(nonatomic,strong)NSMutableArray * dataArray;
@@ -39,6 +39,7 @@
     [self setOtherAction];
     //请求
     [self requestAction];
+    self.searchHeaderView.findTextField.delegate = self;
 }
 -(void)setOtherAction{
     self.title = @"发现";
@@ -57,8 +58,9 @@
 -(void)requestAction{
     [self requestFindAll:self.key];
 }
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self requestFindAll:textField.text];
+    return YES;
 }
 #pragma mark ========== 1111111-先请求tag列表,获取发现页标签数据 ==========
 -(void)requestFindAll:(NSString *)key{
@@ -67,7 +69,7 @@
     }
     
     kWeakSelf(self);
-    [YX_MANAGER requestSearchFind_all:@{@"key":key,@"page":NSIntegerToNSString(self.requestPage),@"type":@"1",@"key_unicode":[key utf8ToUnicode]} success:^(id object) {
+    [YX_MANAGER requestSearchFind_all:@{@"key":key,@"page":NSIntegerToNSString(self.requestPage),@"type":@"1",@"key_unicode":key} success:^(id object) {
         if ([object count] > 0) {
             NSMutableArray *_dataSourceTemp=[NSMutableArray new];
             for (NSDictionary *company in object) {

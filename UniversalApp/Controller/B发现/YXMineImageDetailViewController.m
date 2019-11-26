@@ -133,7 +133,7 @@
             [self.cell.cellWebView sizeToFit];
             CGRect Frame = self.cell.frame;
 
-            CGFloat detailHeight = [ShareManager inTextOutHeight:[self.startDic[@"title"] UnicodeToUtf8] lineSpace:9 fontSize:24];
+            CGFloat detailHeight = [ShareManager inTextOutHeight:self.startDic[@"title"] lineSpace:9 fontSize:24];
             CGFloat height = 10 + 10 + 5 + 10  ; //分割线和上下距离和评论
             Frame.size.height= 125 + detailHeight + webViewHeight + coverHeight + height;
             self.cell.midViewHeight.constant =  webViewHeight;
@@ -198,7 +198,11 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if ([scrollView isEqual: self.yxTableView] && [self.startDic[@"obj"] integerValue] == 2) {
-            if (self.yxTableView.contentOffset.y > _oldY ) {
+        NSLog(@"offset%f",self.yxTableView.contentOffset.y);
+         CGFloat detailHeight = [ShareManager inTextOutHeight:self.startDic[@"title"] lineSpace:9 fontSize:24];
+         CGFloat needHeight = detailHeight + coverHeight + 10 + 50;
+        NSLog(@"need-%f",needHeight);
+            if (self.yxTableView.contentOffset.y > needHeight ) {
                 // 上滑
                     self.coustomNavView.backgroundColor = KWhiteColor;
                     [self.backBtn setImage:IMAGE_NAMED(@"黑色返回") forState:UIControlStateNormal];

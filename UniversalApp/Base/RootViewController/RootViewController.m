@@ -13,7 +13,7 @@
 #import "PYTempViewController.h"
 #import "YXFindSearchHeadView.h"
 
-@interface RootViewController ()<PYSearchViewControllerDelegate,UIGestureRecognizerDelegate,UISearchBarDelegate,UIScrollViewDelegate>{
+@interface RootViewController ()<PYSearchViewControllerDelegate,UIGestureRecognizerDelegate,UISearchBarDelegate,UIScrollViewDelegate,UITextFieldDelegate>{
     XHStarRateView *starRateView ;
     UITableView * _yxTableView;
     UICollectionView * _yxCollectionView;
@@ -397,9 +397,12 @@
     [self.navigationItem.titleView sizeToFit];
     self.navigationItem.titleView = _searchHeaderView;
     [_searchHeaderView.findTextField addTarget:self action:@selector(textField1TextChange:) forControlEvents:UIControlEventEditingChanged];
-
+    _searchHeaderView.findTextField.delegate = self;
+    
 }
-
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    return YES;
+}
 #pragma mark - gesture actions
 - (void)cancleAction{
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];

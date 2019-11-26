@@ -13,7 +13,7 @@
 #import "XHWebImageAutoSize.h"
 #import "YXHomeXueJiaPinPaiLastDetailViewController.h"
 #import "HGPersonalCenterViewController.h"
-
+#import "YXFirstFindImageTableViewCell.h"
 @interface YXMessageThreeDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView * yxTableView;
 @property(nonatomic,strong)NSMutableArray * dataArray;
@@ -112,10 +112,10 @@
     NSArray * photoArray = [dic[@"photo"] split:@","];
     NSString * photo = @"";
     if ([photoArray count] > 0) {
-        photo = [IMG_URI append:photoArray[0]];
+        photo = photoArray[0] ;
     }
-    if ([dic[@"photo"] contains:IMG_OLD_URI]) {
-        photo = [IMG_URI append: [dic[@"photo"] split:IMG_OLD_URI][1]];
+    if (![photo contains:IMG_URI]) {
+        photo = [IMG_URI append:photo];
     }
     [cell.rightImv sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"img_moren"]];
 
@@ -254,11 +254,19 @@
 -(void)jumpAction:(NSString *)tagString dic:(NSDictionary *)dic{
     NSInteger tag = [tagString integerValue];
     if (tag == 1) {//晒图
+//        YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
+//        VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+//        NSString * url = dic[@"photo1"];
+//        CGFloat imageHeight = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:400];
+//        VC.height = imageHeight;
+//        [self.navigationController pushViewController:VC animated:YES];
+        
+        
+        
         YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
+        CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:dic];
+        VC.headerViewHeight = h;
         VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-        NSString * url = dic[@"photo1"];
-        CGFloat imageHeight = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:400];
-        VC.height = imageHeight;
         [self.navigationController pushViewController:VC animated:YES];
     }
 }

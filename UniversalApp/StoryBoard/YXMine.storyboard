@@ -618,6 +618,7 @@
                                                     <state key="normal" image="黑色返回"/>
                                                     <connections>
                                                         <action selector="backAction:" destination="wNH-Zg-7Ea" eventType="touchUpInside" id="awf-7f-yLd"/>
+                                                        <action selector="backVcAction:" destination="8cd-Od-fLC" eventType="touchUpInside" id="Xb7-wg-fMm"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

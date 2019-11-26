@@ -80,6 +80,16 @@
 -(void)backBtnClicked{
     [self.navigationController popViewControllerAnimated:YES];
 }
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    allVC.key = textField.text;
+       userVC.key = textField.text;
+       tagVC.key = textField.text;
+       [allVC requestFindAll:textField.text];
+    [userVC requestFindAll_user:textField.text];
+    [tagVC requestFindAll_Tag:textField.text];
+    
+    return YES;
+}
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     allVC.key = searchBar.text;
     userVC.key = searchBar.text;

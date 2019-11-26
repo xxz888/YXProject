@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YXFindSearchTagViewController : RootViewController
 @property (nonatomic,strong) NSString *key;
-
+-(void)requestFindAll_Tag:(NSString *)key;
 @end
 
 NS_ASSUME_NONNULL_END
