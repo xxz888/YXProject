@@ -40,8 +40,7 @@
 //    //赋值
 //    maskLayer.path = maskPath.CGPath;
 //    self.cellHeaderView.layer.mask = maskLayer;
-    
-    
+  
 }
 
 -(void)clickAction:(id)sender{
@@ -87,8 +86,14 @@
 - (IBAction)dongtaiAction:(id)sender {
     self.dongtaiBtn.font = FONT(@"Helvetica-Bold", 21);
     self.choucangBtn.font = FONT(@"Helvetica-Bold", 15);
+    
     [self.dongtaiBtn setTitleColor:KBlackColor forState:0];
     [self.choucangBtn setTitleColor:kRGBA(153, 153, 153, 1) forState:0];
+    
+    
+    
+    
+    self.shoucangSegmentViewHeight.constant = self.dongtaiAndShouCangSegmentToBottomHeight.constant = 0;
     self.selectSegmentblock(0);
 }
 - (IBAction)shoucangAction:(id)sender {
@@ -96,6 +101,13 @@
     self.choucangBtn.font = FONT(@"Helvetica-Bold", 21);
     [self.choucangBtn setTitleColor:KBlackColor forState:0];
     [self.dongtaiBtn setTitleColor:kRGBA(153, 153, 153, 1) forState:0];
+    self.shoucangSegmentViewHeight.constant = self.dongtaiAndShouCangSegmentToBottomHeight.constant = 60;
     self.selectSegmentblock(1);
+}
+- (IBAction)shoucangSegmentAction:(UIButton *)sender{
+    self.shoucangSegmentblock(sender.tag);
+}
+- (IBAction)liaoTianAction:(id)sender {
+    self.liaoTianblock();
 }
 @end

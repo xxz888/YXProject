@@ -91,4 +91,8 @@ SINGLETON_FOR_HEADER(ShareManager)
 +(NSString*)getCurrentTimes1:(NSString *)format;
 +(NSString*)ChatingTime:(NSString *)timestring;
 +(NSString *)get2020NowTimeTimestamp;
+-(void)inGuanZhuStatusBtn:(UIButton *)btn;
+-(void)inYiGuanZhuStatusBtn:(UIButton *)btn;
+-(void)inHuXiangGuanZhuStatusBtn:(UIButton *)btn;
+-(void)inGuanZhuMineStatusBtn:(UIButton *)btn;
 @end

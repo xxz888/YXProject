@@ -169,30 +169,14 @@
 -(void)guanzhuAction{
     kWeakSelf(self);
     [YX_MANAGER requestLikesActionGET:kGetString(self.startDic[@"user_id"])  success:^(id object) {
-          BOOL is_like = [weakself.guanzhuBtn.titleLabel.text isEqualToString:@"＋关注"] == 1;
+          BOOL is_like = [weakself.guanzhuBtn.titleLabel.text isEqualToString:@"关注"] == 1;
           if (!is_like) {
-              [weakself.guanzhuBtn setTitle:@"＋关注" forState:UIControlStateNormal];
-              [weakself.guanzhuBtn setTitleColor:SEGMENT_COLOR forState:0];
-              [weakself.guanzhuBtn setBackgroundColor:KWhiteColor];
-              ViewBorderRadius(weakself.guanzhuBtn, 14, 1,SEGMENT_COLOR);
-              
-              
-            [weakself.cell.guanzhuBtn setTitle:@"＋关注" forState:UIControlStateNormal];
-            [weakself.cell.guanzhuBtn setTitleColor:SEGMENT_COLOR forState:0];
-            [weakself.cell.guanzhuBtn setBackgroundColor:KWhiteColor];
-            ViewBorderRadius(weakself.cell.guanzhuBtn, 14, 1,SEGMENT_COLOR);
+              [WP_TOOL_ShareManager inGuanZhuStatusBtn:weakself.guanzhuBtn];
+              [WP_TOOL_ShareManager inGuanZhuStatusBtn:weakself.cell.guanzhuBtn];
           }else{
-              [weakself.guanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
-              [weakself.guanzhuBtn setTitleColor:KWhiteColor forState:0];
-              [weakself.guanzhuBtn setBackgroundColor:SEGMENT_COLOR];
-              ViewBorderRadius(weakself.guanzhuBtn, 14, 1,KClearColor);
-              
-              [weakself.cell.guanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
-              [weakself.cell.guanzhuBtn setTitleColor:KWhiteColor forState:0];
-              [weakself.cell.guanzhuBtn setBackgroundColor:SEGMENT_COLOR];
-              ViewBorderRadius(weakself.cell.guanzhuBtn, 14, 1,KClearColor);
+              [WP_TOOL_ShareManager inYiGuanZhuStatusBtn:weakself.guanzhuBtn];
+              [WP_TOOL_ShareManager inYiGuanZhuStatusBtn:weakself.cell.guanzhuBtn];
           }
-
       }];
 }
 
@@ -256,37 +240,16 @@
     [YX_MANAGER requestGetUserothers:kGetString(self.startDic[@"user_id"]) success:^(id object) {
            NSInteger tag = [object[@"is_like"] integerValue];
            if(tag == 2){
-                [weakself.guanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
-                [weakself.guanzhuBtn setTitleColor:KWhiteColor forState:0];
-                [weakself.guanzhuBtn setBackgroundColor:SEGMENT_COLOR];
-                ViewBorderRadius(weakself.guanzhuBtn, 14, 1,KClearColor);
-               
-                [weakself.cell.guanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
-                [weakself.cell.guanzhuBtn setTitleColor:KWhiteColor forState:0];
-                [weakself.cell.guanzhuBtn setBackgroundColor:SEGMENT_COLOR];
-                ViewBorderRadius(weakself.cell.guanzhuBtn, 14, 1,KClearColor);
-               
+             [WP_TOOL_ShareManager inYiGuanZhuStatusBtn:weakself.guanzhuBtn];
+             [WP_TOOL_ShareManager inYiGuanZhuStatusBtn:weakself.cell.guanzhuBtn];
+
            }else if(tag == 1){
-                [weakself.guanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
-                [weakself.guanzhuBtn setTitleColor:KWhiteColor forState:0];
-                [weakself.guanzhuBtn setBackgroundColor:SEGMENT_COLOR];
-                ViewBorderRadius(weakself.guanzhuBtn, 14, 1,KClearColor);
-               
-               [weakself.cell.guanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
-               [weakself.cell.guanzhuBtn setTitleColor:KWhiteColor forState:0];
-               [weakself.cell.guanzhuBtn setBackgroundColor:SEGMENT_COLOR];
-               ViewBorderRadius(weakself.cell.guanzhuBtn, 14, 1,KClearColor);
+            [WP_TOOL_ShareManager inHuXiangGuanZhuStatusBtn:weakself.guanzhuBtn];
+            [WP_TOOL_ShareManager inHuXiangGuanZhuStatusBtn:weakself.cell.guanzhuBtn];
+
            }else{
-               [weakself.guanzhuBtn setTitle:@"＋关注" forState:UIControlStateNormal];
-               [weakself.guanzhuBtn setTitleColor:SEGMENT_COLOR forState:0];
-               [weakself.guanzhuBtn setBackgroundColor:KWhiteColor];
-               ViewBorderRadius(weakself.guanzhuBtn, 14, 1,SEGMENT_COLOR);
-               
-               [weakself.cell.guanzhuBtn setTitle:@"＋关注" forState:UIControlStateNormal];
-               [weakself.cell.guanzhuBtn setTitleColor:SEGMENT_COLOR forState:0];
-               [weakself.cell.guanzhuBtn setBackgroundColor:KWhiteColor];
-               ViewBorderRadius(weakself.cell.guanzhuBtn, 14, 1,SEGMENT_COLOR);
-               
+            [WP_TOOL_ShareManager inGuanZhuStatusBtn:weakself.guanzhuBtn];
+            [WP_TOOL_ShareManager inGuanZhuStatusBtn:weakself.cell.guanzhuBtn];
            }
     }];
     
@@ -842,11 +805,11 @@
                                               [weakself saveImage:UMSocialPlatformType_QQ];
 
                                           }],
-                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-                                              [moreOperationController hideToBottom];
-                                              [weakself saveImage:UMSocialPlatformType_Qzone];
-
-                                          }],
+//                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+//                                              [moreOperationController hideToBottom];
+//                                              [weakself saveImage:UMSocialPlatformType_Qzone];
+//
+//                                          }],
                                           ],
                                       itemsArray1
                                       // 第二行

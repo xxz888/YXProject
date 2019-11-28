@@ -1040,10 +1040,10 @@ SINGLETON_FOR_CLASS(ShareManager);
                                               [moreOperationController hideToBottom];
                                               [[ShareManager sharedShareManager] shareAllToPlatformType:UMSocialPlatformType_QQ obj:shareDic];
                                           }],
-                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-                                              [moreOperationController hideToBottom];
-                                              [[ShareManager sharedShareManager] shareAllToPlatformType:UMSocialPlatformType_Qzone obj:shareDic];
-                                          }],
+//                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+//                                              [moreOperationController hideToBottom];
+//                                              [[ShareManager sharedShareManager] shareAllToPlatformType:UMSocialPlatformType_Qzone obj:shareDic];
+//                                          }],
                                           ],
                                       ];
     [moreOperationController showFromBottom];
@@ -1210,5 +1210,32 @@ SINGLETON_FOR_CLASS(ShareManager);
     }else{
         return [IMG_URI append:string];
     }
+}
+
+
+-(void)inGuanZhuMineStatusBtn:(UIButton *)btn{
+
+    [btn setTitle:@"关注" forState:UIControlStateNormal];
+    [btn setTitleColor:KWhiteColor forState:0];
+    [btn setBackgroundColor:kRGBA(176, 151, 99, 1)];
+    ViewRadius(btn, 16);
+}
+-(void)inGuanZhuStatusBtn:(UIButton *)btn{
+    [btn setTitle:@"关注" forState:UIControlStateNormal];
+    [btn setTitleColor:KWhiteColor forState:0];
+    [btn setBackgroundColor:SEGMENT_COLOR];
+    ViewRadius(btn, 16);
+}
+-(void)inYiGuanZhuStatusBtn:(UIButton *)btn{
+    [btn setTitle:@"已关注" forState:UIControlStateNormal];
+    [btn setTitleColor:kRGBA(153, 153, 153, 1) forState:0];
+    [btn setBackgroundColor:kRGBA(245, 245, 245, 1)];
+    ViewRadius(btn, 16);
+}
+-(void)inHuXiangGuanZhuStatusBtn:(UIButton *)btn{
+    [btn setTitle:@"互相关注" forState:UIControlStateNormal];
+    [btn setTitleColor:SEGMENT_COLOR forState:0];
+    [btn setBackgroundColor:kRGBA(245, 245, 245, 1)];
+    ViewRadius(btn, 16);
 }
 @end

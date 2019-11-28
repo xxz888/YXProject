@@ -14,9 +14,13 @@
 #import "QiniuLoad.h"
 @interface YXFindSearchTagDetailViewController ()<UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UICollectionViewDelegate>{
     NSInteger page ;
+    ;
 }
-@property (strong,nonatomic)  UICollectionView * yxCollectionView;
 //@property (nonatomic, strong) YXFindSearchTagHeaderView * headerView;
+@property (nonatomic) NSInteger is_collect;
+
+@property (strong,nonatomic)  YXFindSearchTagHeaderView * headerView;
+@property (nonatomic, strong) NSDictionary * headerViewStartDic;
 
 @end
 
@@ -43,25 +47,80 @@
     return 280;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-        NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXFindSearchTagHeaderView" owner:self options:nil];
-        YXFindSearchTagHeaderView * headerView = [nib objectAtIndex:0];
-        headerView.frame = CGRectMake(0, 0, KScreenWidth, 280);
-    headerView.lbl1.text = kGetString(self.startDic[@"tag"]);
-    headerView.lbl2.text = [kGetNSInteger([self.dataArray count]) append:@"篇帖子"];
+    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXFindSearchTagHeaderView" owner:self options:nil];
+    _headerView = [nib objectAtIndex:0];
+    _headerView.frame = CGRectMake(0, 0, KScreenWidth, 280);
+    _headerView.lbl1.text = kGetString(self.headerViewStartDic[@"tag"]);
+    _headerView.lbl2.text = [kGetNSInteger([self.headerViewStartDic[@"post_number"] integerValue]) append:@"篇帖子"];
+    
+    
+     
+        BOOL is_collect = [self.headerViewStartDic[@"is_collect"] integerValue] == 1;
+        UIImage * likeImage = is_collect ? [UIImage imageNamed:@"收藏2"] : [UIImage imageNamed:@"收藏1"] ;
+        _headerView.shoucangImage.image = likeImage;
+
+        UIColor * backColor = is_collect ? SEGMENT_COLOR: KWhiteColor;
+        [_headerView.choucangBtn setBackgroundColor:backColor];
+        UIColor * textColor = is_collect ? KWhiteColor : KDarkGaryColor;
+        _headerView.shoucangLabel.textColor = textColor;
+        NSString * shoucangText = is_collect ? @"已收藏":@"收藏";
+        _headerView.shoucangLabel.text = shoucangText;
+        _headerView.shoucangWidth.constant = is_collect ? 72 : 65;
+         
+    
+    
     
     NSString * photo = @"";
-    if ([self.startDic[@"url_list"] count] > 0) {
-        photo = self.startDic[@"url_list"][0];
+    if ([self.headerViewStartDic[@"photo"] length] > 0) {
+        photo = self.headerViewStartDic[@"photo"];
+    }else {
+        if ([self.startDic[@"url_list"] count] > 0) { photo = self.startDic[@"url_list"][0];}
+        if ([self.startDic[@"cover"] length] > 0)   { photo = self.startDic[@"cover"];}
     }
-    [headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    
+    [_headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:[WP_TOOL_ShareManager addImgURL:photo]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     kWeakSelf(self);
-    headerView.backvcblock = ^{
+    _headerView.backvcblock = ^{
         [weakself.navigationController popViewControllerAnimated:YES];
     };
-    headerView.fenxiangblock = ^{
+    _headerView.fenxiangblock = ^{
         [weakself addGuanjiaShareView];
     };
-    return headerView;
+    _headerView.shoucangblock = ^(NSInteger tag) {
+         NSString * photo = @"";
+         if ([weakself.headerViewStartDic[@"photo"] length] > 0) {
+             photo = weakself.headerViewStartDic[@"photo"];
+         }else {
+             if ([weakself.startDic[@"url_list"] count] > 0) { photo = weakself.startDic[@"url_list"][0];}
+             if ([weakself.startDic[@"cover"] length] > 0)   { photo = weakself.startDic[@"cover"];}
+         }
+        
+        
+        NSString * tagRequest = [weakself.key concate:@"#"] ? [weakself.key split:@"#"][1] : weakself.key;
+        [YXPLUS_MANAGER requestUserShouCangPOST:@{@"obj":@"3",@"target_id":@"",@"photo":photo,@"tag":tagRequest} success:^(id object) {
+                    [weakself requestIsCollection];
+
+
+            
+            
+//       NSString * tagRequest = [[weakself.key concate:@"#"] ? [weakself.key split:@"#"][1] : weakself.key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//         [YXPLUS_MANAGER requestUserIsShouCangGet:tagRequest success:^(id object) {
+//
+//             BOOL is_collect = [weakself.headerViewStartDic[@"is_collect"] integerValue] == 1;
+//             UIImage * likeImage = is_collect ? [UIImage imageNamed:@"收藏1"] : [UIImage imageNamed:@"收藏2"] ;
+//             weakself.headerView.shoucangImage.image = likeImage;
+//
+//             UIColor * backColor = is_collect ? KWhiteColor  : SEGMENT_COLOR;
+//             [weakself.headerView.choucangBtn setBackgroundColor:backColor];
+//             UIColor * textColor = is_collect ? KDarkGaryColor : KWhiteColor;
+//             weakself.headerView.shoucangLabel.textColor = textColor;
+//             NSString * shoucangText = is_collect ? @"收藏":@"已收藏";
+//             weakself.headerView.shoucangLabel.text = shoucangText;
+//         }];
+            
+        }];
+    };
+    return _headerView;
 
 }
 -(void)requestTableData{
@@ -83,34 +142,33 @@
     scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
 }
 }
-//-(void)viewDidLoad{
-//    [super viewDidLoad];
-//    self.view.backgroundColor = KWhiteColor;
-//    self.dataArray = [[NSMutableArray alloc]init];
-//    self.title = self.key;
-//
-//    [self requestAction];
-//}
 -(void)requestAction{
     kWeakSelf(self);
     [YX_MANAGER requestSearchFind_all:@{@"key":self.key,@"page":NSIntegerToNSString(self.requestPage),@"type":self.type,@"key_unicode":[self.key utf8ToUnicode]} success:^(id object) {
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
-        [weakself.yxCollectionView reloadData];
-        [weakself.yxTableView reloadData];
-        [weakself.yxCollectionView.mj_header endRefreshing];
-        [weakself.yxCollectionView.mj_footer endRefreshing];
+        [weakself requestIsCollection];
 
+
+
+    }];
+}
+-(void)requestIsCollection{
+    //请求是否收藏
+    kWeakSelf(self);
+    NSString * tagRequest = [[self.key concate:@"#"] ? [self.key split:@"#"][1] : self.key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [YXPLUS_MANAGER requestUserIsShouCangGet:tagRequest success:^(id object) {
+        weakself.headerViewStartDic = [NSDictionary dictionaryWithDictionary:object];
+        [weakself.yxTableView reloadData];
     }];
 }
 
 
-
 #pragma mark ========== 我自己的所有 ==========
 -(void)requestMine_AllList{
-    [self.dataArray removeAllObjects];
-          self.dataArray = [self commonAction:self.startArray dataArray:self.dataArray];
-          [self.yxTableView reloadData];
-          self.nodataImg.hidden = self.dataArray.count != 0;
+     [self.dataArray removeAllObjects];
+      self.dataArray = [self commonAction:self.startArray dataArray:self.dataArray];
+      [self.yxTableView reloadData];
+      self.nodataImg.hidden = self.dataArray.count != 0;
 }
 #pragma mark ========== 晒图点赞 ==========
 -(void)requestDianZan_Image_Action:(NSIndexPath *)indexPath{
@@ -141,11 +199,11 @@
                                               [weakself saveImage:UMSocialPlatformType_QQ];
 
                                           }],
-                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-                                              [moreOperationController hideToBottom];
-                                              [weakself saveImage:UMSocialPlatformType_Qzone];
-
-                                          }],
+//                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+//                                              [moreOperationController hideToBottom];
+//                                              [weakself saveImage:UMSocialPlatformType_Qzone];
+//
+//                                          }],
                                           ],
                                       ];
     [moreOperationController showFromBottom];

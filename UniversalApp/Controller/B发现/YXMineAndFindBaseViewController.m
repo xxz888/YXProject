@@ -281,6 +281,7 @@ static CGFloat sectionHeaderHeight = 260;
     return cell;
 }
 
+
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -340,9 +341,6 @@ static CGFloat sectionHeaderHeight = 260;
 }
 #pragma mark ========== tableViewcell点击 ==========
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (_tagSelectBool) {
-        return;
-    }
     NSDictionary * dic = self.dataArray[indexPath.row];
     YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
     CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:dic];
@@ -368,19 +366,6 @@ static CGFloat sectionHeaderHeight = 260;
     }
     QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
     kWeakSelf(self);
-    // 如果你的 item 是确定的，则可以直接通过 items 属性来显示，如果 item 需要经过一些判断才能确定下来，请看第二个示例
-//    if (isOwn) {
-//        [itemsArray1 removeObjectAtIndex:2];
-//        if ([isWho isEqualToString:@"2"]) {
-//            [itemsArray1 removeObjectAtIndex:0];
-//        }
-//    }else{
-//        [itemsArray1 removeObjectAtIndex:0];
-//        [itemsArray1 removeObjectAtIndex:0];
-//    }
-
-    
-    
     NSMutableArray * itemsArray1 = [[NSMutableArray alloc]init];
     if (isOwn) {
         if ([isWho isEqualToString:@"1"] || [isWho isEqualToString:@"2"]) {
@@ -434,6 +419,18 @@ static CGFloat sectionHeaderHeight = 260;
         
         }]];
     }else{
+        [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_shoucang") title:[startDic[@"is_collect"] integerValue] == 0 ? @"收藏": @"已收藏" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                         [YXPLUS_MANAGER requestUserShouCangPOST:@{@"obj":@"2",@"target_id":kGetString(startDic[@"id"]),@"photo":@"",@"tag":@""} success:^(id object) {
+                             [QMUITips hideAllTips];
+                             [weakself requestTableData];
+                             [moreOperationController hideToBottom];
+                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                 [QMUITips showSucceed:@"操作成功" inView:weakself.view hideAfterDelay:1.0];
+                             });
+                         }];
+                }]];
+         
+        
         [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_report") title:@"举报" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
             [moreOperationController hideToBottom];
             QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
@@ -454,6 +451,9 @@ static CGFloat sectionHeaderHeight = 260;
             [alertController addAction:action4];
             [alertController showWithAnimated:YES];
         }]];
+        
+
+        
     }
    
 
@@ -492,11 +492,11 @@ static CGFloat sectionHeaderHeight = 260;
                                               [weakself saveImage:UMSocialPlatformType_QQ];
 
                                           }],
-                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-                                              [moreOperationController hideToBottom];
-                                              [weakself saveImage:UMSocialPlatformType_Qzone];
-
-                                          }],
+//                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+//                                              [moreOperationController hideToBottom];
+//                                              [weakself saveImage:UMSocialPlatformType_Qzone];
+//
+//                                          }],
                                           ],
                                       itemsArray1
                                       // 第二行

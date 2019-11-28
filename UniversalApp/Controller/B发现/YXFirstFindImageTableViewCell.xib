@@ -33,13 +33,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zaj-qz-5sF">
-                                <rect key="frame" x="210" y="16" width="66" height="28"/>
+                                <rect key="frame" x="196" y="14" width="80" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="Elm-Mw-s3F"/>
-                                    <constraint firstAttribute="width" constant="66" id="uWO-sO-xZV"/>
+                                    <constraint firstAttribute="height" constant="32" id="Elm-Mw-s3F"/>
+                                    <constraint firstAttribute="width" constant="80" id="uWO-sO-xZV"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="+ 关注">
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="关注">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>

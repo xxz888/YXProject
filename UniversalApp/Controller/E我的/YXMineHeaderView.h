@@ -109,6 +109,22 @@ typedef void(^shangchengBlock)();
 
 typedef void(^selectSegmentBlock)(NSInteger);
 @property (nonatomic,copy) selectSegmentBlock selectSegmentblock;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *shoucangSegmentViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dongtaiAndShouCangSegmentToBottomHeight;
+@property (weak, nonatomic) IBOutlet UIButton *zhinanBtn;
+@property (weak, nonatomic) IBOutlet UIButton *shoucangdongtaiBtn;
+@property (weak, nonatomic) IBOutlet UIButton *huatiBtn;
+- (IBAction)shoucangSegmentAction:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIButton *liaoTianBtn;
+
+typedef void(^liaoTianBlock)();
+@property (nonatomic,copy) liaoTianBlock liaoTianblock;
+
+- (IBAction)liaoTianAction:(id)sender;
+
+
+typedef void(^shoucangSegmentBlock)(NSInteger);
+@property (nonatomic,copy) shoucangSegmentBlock shoucangSegmentblock;
 
 @end
 

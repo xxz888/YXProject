@@ -63,6 +63,9 @@ static CGFloat const HeaderImageViewHeight = 130;
     [self setupSubViews];
     self.isEnlarge = YES;
     self.title = self.key;
+    
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

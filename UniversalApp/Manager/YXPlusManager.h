@@ -47,5 +47,11 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestOption_lock_historyPOST:YX_BLOCK;
 #pragma mark ==========添加tag==========
 -(void)requestAddIu_tagPOST:YX_BLOCK;
+#pragma mark ==========查看收藏==========
+-(void)requestUserShouCangGet:YX_BLOCK;
+#pragma mark ==========收藏==========
+-(void)requestUserShouCangPOST:YX_BLOCK;
+#pragma mark ==========请求tag是否收藏==========
+-(void)requestUserIsShouCangGet:YX_BLOCK;
 @end
 

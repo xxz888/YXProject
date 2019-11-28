@@ -22,6 +22,16 @@ typedef void(^clickSegment)(NSInteger);
 @property (nonatomic,copy) backvcBlock backvcblock;
 @property (nonatomic,copy) fenxiangBlock fenxiangblock;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *shoucangWidth;
+
+
+typedef void(^shoucangBlock)(NSInteger);
+- (IBAction)shoucangAction:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *shoucangImage;
+@property (weak, nonatomic) IBOutlet UILabel *shoucangLabel;
+@property (weak, nonatomic) IBOutlet UIButton *choucangBtn;
+@property (nonatomic,copy) shoucangBlock shoucangblock;
+
 @end
 
 NS_ASSUME_NONNULL_END

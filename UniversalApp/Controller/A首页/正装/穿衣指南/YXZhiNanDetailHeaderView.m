@@ -64,11 +64,11 @@
         UIImage * likeImage = self.is_collect ? [UIImage imageNamed:@"收藏2"] : [UIImage imageNamed:@"收藏1"] ;
         self.shoucangImage.image = likeImage;
         
-        UIColor * color1 = self.is_collect ? YXRGBAColor(10, 36, 54) : KWhiteColor;
+        UIColor * color1 = self.is_collect ? SEGMENT_COLOR: KWhiteColor;
         self.collVIew.backgroundColor = color1;
         UIColor * color2 = self.is_collect ? KWhiteColor : KDarkGaryColor;
         self.shoucangLabel.textColor = color2;
-//        self.shoucangLabel.text = self.is_collect ? @"已收藏":@"收藏";
+        self.shoucangLabel.text = self.is_collect ? @"已收藏":@"收藏";
 
     }
     

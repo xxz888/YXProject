@@ -133,7 +133,7 @@ successBlock(responseObject);\
 }
 #pragma mark ========== 我收藏的雪茄列表 ==========
 -(void)requestMyXueJia_CollectionListGet:YX_BLOCK{
-    [HTTP_GET([[@"/pub/get_user_collect/" append:dic] append:@"/"]) sucess:^(id responseObject) {
+    [HTTP_GET([@"/pub/user_collect/?" append:dic]) sucess:^(id responseObject) {
         successBlock(responseObject);
     } failure:^(NSError *error) { }];
 }

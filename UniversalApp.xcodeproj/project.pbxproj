@@ -603,6 +603,8 @@
 		BBEA15972366F084006FBBFF /* MomentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBEA15932366F083006FBBFF /* MomentCell.m */; };
 		BBEA15982366F084006FBBFF /* Moment.m in Sources */ = {isa = PBXBuildFile; fileRef = BBEA15952366F084006FBBFF /* Moment.m */; };
 		BBEA159B2366F0A6006FBBFF /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = BBEA15992366F0A6006FBBFF /* Comment.m */; };
+		BBED1231238E413E009561A3 /* HGPersonal1TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBED122F238E413E009561A3 /* HGPersonal1TableViewCell.m */; };
+		BBED1232238E413E009561A3 /* HGPersonal1TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBED1230238E413E009561A3 /* HGPersonal1TableViewCell.xib */; };
 		BBF26E1B22408B0E0000AEF5 /* JQFMDB.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E0D22408B0E0000AEF5 /* JQFMDB.m */; };
 		BBF26E1C22408B0E0000AEF5 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E1122408B0E0000AEF5 /* FMDatabaseQueue.m */; };
 		BBF26E1D22408B0E0000AEF5 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E1422408B0E0000AEF5 /* FMDatabaseAdditions.m */; };
@@ -1680,6 +1682,9 @@
 		BBEA15962366F084006FBBFF /* Moment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moment.h; sourceTree = "<group>"; };
 		BBEA15992366F0A6006FBBFF /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		BBEA159A2366F0A6006FBBFF /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		BBED122E238E413E009561A3 /* HGPersonal1TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGPersonal1TableViewCell.h; sourceTree = "<group>"; };
+		BBED122F238E413E009561A3 /* HGPersonal1TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGPersonal1TableViewCell.m; sourceTree = "<group>"; };
+		BBED1230238E413E009561A3 /* HGPersonal1TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HGPersonal1TableViewCell.xib; sourceTree = "<group>"; };
 		BBF26E0D22408B0E0000AEF5 /* JQFMDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JQFMDB.m; sourceTree = "<group>"; };
 		BBF26E0E22408B0E0000AEF5 /* JQFMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JQFMDB.h; sourceTree = "<group>"; };
 		BBF26E1022408B0E0000AEF5 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
@@ -3333,6 +3338,9 @@
 				BBFADB99238281EB0010A9FB /* HGPersonalCenterTableViewCell.h */,
 				BBFADB9A238281EB0010A9FB /* HGPersonalCenterTableViewCell.m */,
 				BBFADB9B238281EB0010A9FB /* HGPersonalCenterTableViewCell.xib */,
+				BBED122E238E413E009561A3 /* HGPersonal1TableViewCell.h */,
+				BBED122F238E413E009561A3 /* HGPersonal1TableViewCell.m */,
+				BBED1230238E413E009561A3 /* HGPersonal1TableViewCell.xib */,
 				BB7AF1362200869400989896 /* YXMineHeaderView.h */,
 				BB7AF1372200869400989896 /* YXMineHeaderView.m */,
 				BB7AF1392200869E00989896 /* YXMineHeaderView.xib */,
@@ -5151,6 +5159,7 @@
 				BBB59B79228E8D200029D3D0 /* YXZhiNanViewController.xib in Resources */,
 				BBABDF44229BC45E0046683A /* YXZhiNan4Cell.xib in Resources */,
 				BB07FB152357001900F34D2D /* SimpleChatMainViewController.xib in Resources */,
+				BBED1232238E413E009561A3 /* HGPersonal1TableViewCell.xib in Resources */,
 				BBB59B47228D02B70029D3D0 /* YXHomeXueJiaToolsTableViewCell.xib in Resources */,
 				BB3DFE9D221E8566000C70B5 /* YXFindSearchTableViewCell.xib in Resources */,
 				BB21FD8422B0991E0059BCAC /* KSMediaPicker.strings in Resources */,
@@ -5570,6 +5579,7 @@
 				BBF5076F22B33A6900579F29 /* TZTestCell.m in Sources */,
 				BB3DFE8A221D568D000C70B5 /* XHWebImageAutoSizeCache.m in Sources */,
 				BB53E737235EFAC00014F106 /* HXDatePhotoViewTransition.m in Sources */,
+				BBED1231238E413E009561A3 /* HGPersonal1TableViewCell.m in Sources */,
 				BB53E73C235EFAC00014F106 /* HXCircleProgressView.m in Sources */,
 				BB9413E421F8B602007E800A /* IQUIView+Hierarchy.m in Sources */,
 				BB928F9621FB5D290090A044 /* BRBaseView.m in Sources */,

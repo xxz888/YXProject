@@ -58,7 +58,7 @@
     [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
         weakself.startArray = [weakself commonAction:object dataArray:weakself.startArray];
         NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"weight" ascending:YES]];
-          [weakself.startArray sortUsingDescriptors:sortDescriptors];
+        [weakself.startArray sortUsingDescriptors:sortDescriptors];
         [weakself panduanIsColl];
         [YXPLUS_MANAGER requestAll_optionGet:@"" success:^(id object) {
             [weakself.allOptionArray removeAllObjects];
@@ -77,7 +77,12 @@
         [self.collImgView setImage:likeImage];
     }
 }
+
 -(void)headerRereshing{
+    if (self.whereCome) {
+        [self endRefresh];
+        return;
+    }
     if ([self.startArray[0][@"father_id"] integerValue] == 0) {
         [self endRefresh];
         return;
@@ -91,6 +96,10 @@
     }
 }
 -(void)footerRereshing{
+    if (self.whereCome) {
+        [self endRefresh];
+           return;
+    }
     if ([self.startArray[0][@"father_id"] integerValue] == 0) {
         [self endRefresh];
         return;
@@ -272,7 +281,8 @@
 }
 //初始化UI
 -(void)setVCUI{
-    self.bottomViewHeight.constant = IS_IPhoneX ? 90 : 60;
+    self.bottomViewHeight.constant = self.whereCome ? 0 : IS_IPhoneX ? 90 : 60;
+    self.bottomView.hidden = self.whereCome;
     [self addNavigationItemWithImageNames:@[@"更多"] isLeft:NO target:self action:@selector(moreShare) tags:@[@"999"]];
     self.view.backgroundColor = KWhiteColor;
     self.dataArray = [[NSMutableArray alloc]init];
@@ -347,11 +357,8 @@
     }
     kWeakSelf(self);
     NSString * tagId = kGetString(self.startArray[self.bigIndex][@"id"]);
-    [YXPLUS_MANAGER requestCollect_optionGet:[@"3/" append:tagId] success:^(id object) {
+    [YXPLUS_MANAGER requestUserShouCangPOST:@{@"obj":@"1",@"target_id":tagId,@"photo":@"",@"tag":@""} success:^(id object) {
         [weakself requestStartZhiNanGet];
-//        UIImage * likeImage = weakself.is_collect ? [UIImage imageNamed:@"收藏未选择"] : [UIImage imageNamed:@"收藏选择"] ;
-//        [weakself.collImgView setImage:likeImage];
-//        weakself.is_collect = !weakself.is_collect;
     }];
 }
 @end

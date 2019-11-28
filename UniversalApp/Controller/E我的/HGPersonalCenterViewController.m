@@ -33,10 +33,12 @@
 #import "YXWenZhangEditorViewController.h"
 #import "YXXinDongTaiView.h"
 #import "YXFaBuNewVCViewController.h"
-#import "YXMineMyCollectionTableViewCell.h"
 #import "YXZhiNanDetailViewController.h"
 #import "YXZhiNanViewController.h"
+#import "HGPersonal1TableViewCell.h"
+
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
+#import "YXFirstFindImageTableViewCell.h"
 
 #define  adjustsScrollViewInsets_NO(scrollView,vc)\
 do { \
@@ -49,6 +51,7 @@ vc.automaticallyAdjustsScrollViewInsets = NO;\
 }\
 _Pragma("clang diagnostic pop") \
 } while (0)
+
 @interface HGPersonalCenterViewController () <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate,SDPhotoBrowserDelegate>{
     QMUIModalPresentationViewController * _modalViewController;
     NSArray * titleArray;
@@ -71,55 +74,22 @@ _Pragma("clang diagnostic pop") \
 @property (nonatomic) BOOL isCanBack;
 @property (nonatomic, strong) NSMutableArray *picPathStringsArray;
 @property (nonatomic, strong) NSMutableArray *dataArray;
-
-//控制器上面添加的
-
+@property (nonatomic) NSInteger  downSelectIndex;
 @end
 
 @implementation HGPersonalCenterViewController
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (self.yxTableView.contentOffset.y > HeaderImageViewHeight-40) {
-//        NSLog(@"%@",floatToNSString(self.yxTableView.contentOffset.y));
-    // 上滑
-        self.controllerHeaderView.hidden = NO;
-    }else{
-    // 下滑
-//        NSLog(@"%@",floatToNSString(self.yxTableView.contentOffset.y));
-        if (self.yxTableView.contentOffset.y <= 0) {
-            self.controllerHeaderView.hidden = YES;
-        }
-
-    }
-    
-}
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    // 获取开始拖拽时tableview偏移量
-        _oldY = self.yxTableView.contentOffset.y;
-}
 #pragma mark - Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     _selectIndexBool = NO;
+    _downSelectIndex = 2001;
     HeaderImageViewHeight = 276 + kStatusBarHeight;
     self.controllerHeaderViewHeight.constant = 44 + kStatusBarHeight;
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     self.controllerHeaderView.hidden = YES;
     [self createTableView];
-    adjustsScrollViewInsets_NO(self.yxTableView, self);
     [self setViewData];
     [self requestTableData];
-}
-
--(void)requestMyCollectionListGet{
-   kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"3/%@",NSIntegerToNSString(self.requestPage)];
-   [YX_MANAGER requestMyXueJia_CollectionListGet:par success:^(id object) {
-       weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
-       [weakself.yxTableView reloadData];
-       [QMUITips hideAllTips];
-       [weakself endRefresh];
-   }];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -131,6 +101,70 @@ _Pragma("clang diagnostic pop") \
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+-(void)requestTableData{
+    if (_selectIndexBool) {
+        [self requestMyCollectionListGet];
+    }else{
+        
+        self.whereCome ? [self requestOther_AllList] : [self requestMine_AllList];
+    }
+}
+-(void)headerRereshing{
+    [super headerRereshing];
+    [self requestTableData];
+}
+-(void)footerRereshing{
+    [super footerRereshing];
+    [self requestTableData];
+}
+-(void)requestMyCollectionListGet{
+    [QMUITips showLoadingInView:kAppWindow];
+    kWeakSelf(self);
+    NSString * obj = _downSelectIndex == 2001 ? @"1" : _downSelectIndex == 2002 ? @"2" :@"3";
+    NSString * par = [NSString stringWithFormat:@"obj=%@&page=%@",obj,NSIntegerToNSString(self.requestPage)];
+    [YX_MANAGER requestMyXueJia_CollectionListGet:par success:^(id object) {
+       weakself.dataArray = [weakself commonAction:object[@"data"] dataArray:weakself.dataArray];
+       [weakself.yxTableView reloadData];
+       [QMUITips hideAllTips];
+       [weakself endRefresh];
+   }];
+}
+#pragma mark ========== 我自己的所有 ==========
+-(void)requestMine_AllList{
+    [QMUITips showLoadingInView:kAppWindow];
+    kWeakSelf(self);
+    NSString * parString =[NSString stringWithFormat:@"0&page=%@",NSIntegerToNSString(self.requestPage)];
+    [YX_MANAGER requestGet_users_find:parString success:^(id object){
+        [QMUITips hideAllTips];
+        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
+        if (_selectRow > -1) {
+            [weakself.yxTableView reloadRow:_selectRow inSection:0 withRowAnimation:UITableViewRowAnimationNone];
+            _selectRow = -1;
+        }else{
+            [UIView performWithoutAnimation:^{
+            [weakself.yxTableView reloadData];
+            }];
+        }
+        weakself.dongtaiView.hidden =  weakself.dataArray.count != 0;
+    }];
+}
+#pragma mark ========== 其他用户的所有 ==========
+-(void)requestOther_AllList{
+    [QMUITips showLoadingInView:kAppWindow];
+    kWeakSelf(self);
+    NSString * par = [NSString stringWithFormat:@"%@/%@",self.userId,NSIntegerToNSString(self.requestPage)];
+    [YX_MANAGER requestGetSers_Other_AllList:par success:^(id object){
+        [QMUITips hideAllTips];
+        weakself.dataArray =  [weakself commonAction:object dataArray:weakself.dataArray];
+       if (_selectRow > -1) {
+             [weakself.yxTableView reloadRow:_selectRow inSection:0 withRowAnimation:UITableViewRowAnimationNone];
+           _selectRow = -1;
+         }else{
+             [UIView performWithoutAnimation:^{ [weakself.yxTableView reloadData];}];}
+                weakself.nodataImg.hidden = weakself.dataArray.count != 0;
+
+    }];
 }
 - (void)loginStateChange:(NSNotification *)notification{
     BOOL loginSuccess = [notification.object boolValue];
@@ -226,21 +260,17 @@ _Pragma("clang diagnostic pop") \
     _headerView.mineClickImageblock = ^{
         //如果是其他人，就是放大头像
         if(weakself.whereCome){
-                
-            
-                   SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
-                   browser.currentImageIndex = weakself.headerView.tag;
-                   browser.sourceImagesContainerView = weakself.headerView;
-                   browser.imageCount = weakself.picPathStringsArray.count;
-                   browser.delegate = weakself;
-                   [browser show];
+               SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
+               browser.currentImageIndex = weakself.headerView.tag;
+               browser.sourceImagesContainerView = weakself.headerView;
+               browser.imageCount = weakself.picPathStringsArray.count;
+               browser.delegate = weakself;
+               [browser show];
         }else{
             
               YXHomeEditPersonTableViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXHomeEditPersonTableViewController"];
                VC.userInfoDic = [NSDictionary dictionaryWithDictionary:userManager.loadUserAllInfo];
-               VC.backvcBlock = ^{
-                   [weakself setViewData];
-               };
+               VC.backvcBlock = ^{[weakself setViewData];};
                [weakself.navigationController pushViewController:VC animated:YES];
         }
    
@@ -254,48 +284,106 @@ _Pragma("clang diagnostic pop") \
     };
     _headerView.selectSegmentblock = ^(NSInteger selectIndex) {
         _selectIndexBool = selectIndex == 1;
+        weakself.requestPage = 1;
+        [weakself.dataArray removeAllObjects];
         [weakself requestTableData];
-//        [weakself.yxTableView reloadData];
-//        //动态
-//        if (selectIndex == 0) {
-//
-//
-//
-//        //收藏
-//        }else if (selectIndex == 1){
-//
-//        }
+
+        
+        //动态
+        if (selectIndex == 0) {
+            HeaderImageViewHeight = 276 + kStatusBarHeight;
+            weakself.headerView.zhinanBtn.hidden = weakself.headerView.shoucangdongtaiBtn.hidden = weakself.headerView.huatiBtn.hidden = YES;
+        //收藏
+        }else if (selectIndex == 1){
+            weakself.dongtaiView.hidden = YES;
+            HeaderImageViewHeight = 276 + kStatusBarHeight + 60;
+              weakself.headerView.zhinanBtn.hidden = weakself.headerView.shoucangdongtaiBtn.hidden = weakself.headerView.huatiBtn.hidden = NO;
+        }
+
+    };
+    _headerView.liaoTianblock = ^{
+        [weakself liaotianAction:nil];
+    };
+    _headerView.shoucangSegmentblock = ^(NSInteger selectIndex) {
+        UIColor * back1Color = kRGBA(16, 35, 58, 1);
+        UIColor * back2Color = kRGBA(245, 245, 245, 1);
+        UIColor * textColor = kRGBA(153, 153, 153, 1);
+        weakself.requestPage = 1;
+        weakself.downSelectIndex = selectIndex;
+        [weakself.dataArray removeAllObjects];
+        [weakself requestMyCollectionListGet];
+        //文章
+        if (selectIndex == 2001) {
+            [weakself.headerView.zhinanBtn setBackgroundColor:back1Color];
+            [weakself.headerView.zhinanBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
+            [weakself.headerView.shoucangdongtaiBtn setBackgroundColor:back2Color];
+            [weakself.headerView.shoucangdongtaiBtn setTitleColor:textColor forState:UIControlStateNormal];
+            [weakself.headerView.huatiBtn setBackgroundColor:back2Color];
+            [weakself.headerView.huatiBtn setTitleColor:textColor forState:UIControlStateNormal];
+        }else if(selectIndex == 2002){
+            [weakself.headerView.shoucangdongtaiBtn setBackgroundColor:back1Color];
+            [weakself.headerView.shoucangdongtaiBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
+            [weakself.headerView.zhinanBtn setBackgroundColor:back2Color];
+            [weakself.headerView.zhinanBtn setTitleColor:textColor forState:UIControlStateNormal];
+            [weakself.headerView.huatiBtn setBackgroundColor:back2Color];
+            [weakself.headerView.huatiBtn setTitleColor:textColor forState:UIControlStateNormal];
+        }else if(selectIndex == 2003){
+            [weakself.headerView.huatiBtn setBackgroundColor:back1Color];
+            [weakself.headerView.huatiBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
+            [weakself.headerView.shoucangdongtaiBtn setBackgroundColor:back2Color];
+            [weakself.headerView.shoucangdongtaiBtn setTitleColor:textColor forState:UIControlStateNormal];
+            [weakself.headerView.zhinanBtn setBackgroundColor:back2Color];
+            [weakself.headerView.zhinanBtn setTitleColor:textColor forState:UIControlStateNormal];
+        }
     };
 }
 
 #pragma mark - UITableViewDelegate
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+-(UIView *)headerView{
     if (!_headerView) {
         NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXMineHeaderView" owner:self options:nil];
         _headerView = [nib objectAtIndex:0];
         _headerView.mineImageView.layer.masksToBounds = YES;
         _headerView.mineImageView.layer.cornerRadius = _headerView.mineImageView.frame.size.width / 2.0;
+        _headerView.zhinanBtn.hidden = _headerView.shoucangdongtaiBtn.hidden = _headerView.huatiBtn.hidden = YES;
+        _headerView.dongtaiAndShouCangSegmentToBottomHeight.constant = _headerView.shoucangSegmentViewHeight.constant = 0;
+        UIColor * back1Color = kRGBA(16, 35, 58, 1);
+                 UIColor * back2Color = kRGBA(245, 245, 245, 1);
+                 UIColor * textColor = kRGBA(153, 153, 153, 1);
+          
+          [_headerView.zhinanBtn setBackgroundColor:back1Color];
+               [_headerView.zhinanBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
+               [_headerView.shoucangdongtaiBtn setBackgroundColor:back2Color];
+               [_headerView.shoucangdongtaiBtn setTitleColor:textColor forState:UIControlStateNormal];
+               [_headerView.huatiBtn setBackgroundColor:back2Color];
+               [_headerView.huatiBtn setTitleColor:textColor forState:UIControlStateNormal];
          [self setViewData];
     }
+    _headerView.frame = CGRectMake(0, 0, KScreenWidth, HeaderImageViewHeight);
     _headerView.backgroundColor = kRGBA(16, 35, 58, 1);
     if (self.whereCome) {
-        _headerView.guanzhuBtn.hidden = _headerView.fasixinBtn.hidden = _headerView.fasixinView.hidden = _headerView.backBtn.hidden =  NO;
-        _headerView.editPersonBtn.hidden = _headerView.shezhiBtn.hidden   = YES;
+        _headerView.guanzhuBtn.hidden = _headerView.fasixinBtn.hidden = _headerView.fasixinView.hidden = _headerView.backBtn.hidden = _headerView.liaoTianBtn.hidden =  NO;
+        _headerView.editPersonBtn.hidden = _headerView.shezhiBtn.hidden  = YES;
     }else{
-        _headerView.guanzhuBtn.hidden = _headerView.fasixinBtn.hidden =  _headerView.fasixinView.hidden =  _headerView.backBtn.hidden = YES;
-        _headerView.editPersonBtn.hidden = _headerView.shezhiBtn.hidden =    NO;
+        _headerView.guanzhuBtn.hidden = _headerView.fasixinBtn.hidden =  _headerView.fasixinView.hidden =  _headerView.backBtn.hidden=   _headerView.liaoTianBtn.hidden = YES;
+        _headerView.editPersonBtn.hidden = _headerView.shezhiBtn.hidden  = NO;
     }
 
     [self headerViewBlockAction];
 
     return _headerView;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return HeaderImageViewHeight;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+//    return HeaderImageViewHeight;
+//}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_selectIndexBool) {
-        return 120;
+        if (_downSelectIndex == 2001 || _downSelectIndex == 2003) {
+            return 120;
+        }else{
+            NSDictionary * dic = self.dataArray[indexPath.row];
+            return [YXFirstFindImageTableViewCell cellDefaultHeight:dic];
+        }
     }else{
         return [HGPersonalCenterTableViewCell cellDefaultHeight:self.dataArray[indexPath.row]];
     }
@@ -308,11 +396,24 @@ _Pragma("clang diagnostic pop") \
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (_selectIndexBool) {
-        YXMineMyCollectionTableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"YXMineMyCollectionTableViewCell" forIndexPath:indexPath];
-        [cell setCellData:self.dataArray[indexPath.row]];
-        return cell;
+        NSDictionary * dic = self.dataArray[indexPath.row];
+        //动态的cell
+        if (self.downSelectIndex == 2001) {
+            HGPersonal1TableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HGPersonal1TableViewCell" forIndexPath:indexPath];
+            cell.contentTopHeight.constant = 12;
+            [cell setCellData:dic type:self.downSelectIndex];
+            return  cell;
+        }else if (self.downSelectIndex == 2003) {
+            HGPersonal1TableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HGPersonal1TableViewCell" forIndexPath:indexPath];
+            cell.contentTopHeight.constant = 32;
+            [cell setCellData:dic type:self.downSelectIndex];
+            return  cell;
+        }else{
+            return [self customImageData:dic indexPath:indexPath];
+        }
     }else{
-        HGPersonalCenterTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HGPersonalCenterTableViewCell" forIndexPath:indexPath];
+        
+         HGPersonalCenterTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HGPersonalCenterTableViewCell" forIndexPath:indexPath];
           cell.tag = indexPath.row;
           cell.dataDic = self.dataArray[indexPath.row];
           [cell setCellData:self.dataArray[indexPath.row]];
@@ -363,92 +464,152 @@ _Pragma("clang diagnostic pop") \
     
   
 }
+#pragma mark ========== 图片 ==========
+-(YXFirstFindImageTableViewCell *)customImageData:(NSDictionary *)dic indexPath:(NSIndexPath *)indexPath{
+    YXFirstFindImageTableViewCell * cell = [self.yxTableView dequeueReusableCellWithIdentifier:@"YXFirstFindImageTableViewCell" forIndexPath:indexPath];
+    cell.tagId = [dic[@"id"] integerValue];
+    cell.tag = indexPath.row;
+    cell.titleImageView.tag = indexPath.row;
+    cell.dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+    [cell setCellValue:dic];
+    cell.topTopHeight.constant = 0;
+    cell.bottomBottomHeight.constant = 0;
+    cell.bottomPingLunLbl.hidden = YES;
+    cell.wenzhangDetailHeight.constant = 0;//文章详情里面用的，外边设置为0
+    cell.wenzhangDetailLbl.hidden = YES;//文章详情里面用的，外边设置为隐藏
+    cell.toptop1Height.constant = 0;
+
+    //以下为所有block方法
+    kWeakSelf(self);
+    //右上角分享
+    cell.shareblock = ^(NSInteger tag) {
+        NSIndexPath * indexPathSelect = [NSIndexPath indexPathForRow:tag  inSection:0];
+        YXFirstFindImageTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
+        NSDictionary * userInfo = userManager.loadUserAllInfo;
+        BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [kGetString(userInfo[@"id"]) integerValue];
+        weakself.shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
+        
+        NSArray * urlList = dic[@"url_list"];
+        NSString * iswho = kGetString(cell.dataDic[@"obj"]);
+        if ([kGetString(urlList[0]) containsString:@"mp4"]) {
+            iswho = @"3";
+        }
+
+        [weakself addGuanjiaShareViewIsOwn:isOwn isWho:iswho tag:cell.tagId startDic:cell.dataDic];
+    };
+    //点击用户头像
+    cell.clickImageBlock = ^(NSInteger tag) {
+        if (![userManager loadUserInfo]) {
+            KPostNotification(KNotificationLoginStateChange, @NO);
+            return;
+        }
+        [weakself clickUserImageView:kGetString(weakself.dataArray[tag][@"user_id"])];
+    };
+    //点击tag
+    cell.clickTagblock = ^(NSString * string) {
+        kWeakSelf(self);
+        _tagSelectBool = YES;
+        [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":@"1",@"type":@"3"} success:^(id object) {
+            if ([object count] > 0) {
+                YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
+                VC.type = @"3";
+                VC.key = object[0][@"tag"];
+                VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
+                VC.startArray = [NSArray arrayWithArray:object];
+
+                [weakself.navigationController pushViewController:VC animated:YES];
+            }else{
+                [QMUITips showInfo:@"无此标签的信息"];
+            }
+            _tagSelectBool = NO;
+        }];
+    };
+    //点击点赞和评论
+    cell.clickDetailblock = ^(NSInteger tag, NSInteger tag1) {
+        if (![userManager loadUserInfo]) {
+                  KPostNotification(KNotificationLoginStateChange, @NO);
+                  return;
+              }
+        NSIndexPath * indexPathSelect = [NSIndexPath indexPathForRow:tag1  inSection:0];
+        YXFirstFindImageTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
+        if (tag == 1) {//评论
+            [weakself tableView:weakself.yxTableView didSelectRowAtIndexPath:indexPathSelect];
+        }else if(tag == 2){//点赞
+            [weakself requestDianZan_Image_Action:indexPathSelect];
+        }else{//分享
+            NSDictionary * userInfo = userManager.loadUserAllInfo;
+            BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [kGetString(userInfo[@"id"]) integerValue];
+            weakself.shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
+            
+            [weakself addGuanjiaShareViewIsOwn:isOwn isWho:kGetString(cell.dataDic[@"obj"]) tag:cell.tagId startDic:cell.dataDic];
+        }
+    };
+    //播放视频按钮
+    cell.playBlock = ^(UITapGestureRecognizer * tap) {
+        [weakself showVideoPlayer:tap];
+    };
+    return cell;
+}
+#pragma mark ========== 头像点击 ==========
+-(void)clickUserImageView:(NSString *)userId{
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
+    if ([kGetString(userInfo[@"id"]) isEqualToString:userId]) {
+        self.navigationController.tabBarController.selectedIndex = 3;
+        return;
+    }
+     HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
+     mineVC.userId = userId;
+     mineVC.whereCome = YES;    //  YES为其他人 NO为自己
+     [self.navigationController pushViewController:mineVC animated:YES];
+}
+#pragma -----点击工具指南-----
+-(void)didselect2001ShouCang:(NSDictionary *)dic{
+    YXZhiNanDetailViewController * vc = [[YXZhiNanDetailViewController alloc]init];
+    vc.smallIndex = 0;
+    vc.bigIndex = 0;
+    vc.whereCome = YES;
+    vc.startArray = [[NSMutableArray alloc] init];
+    [vc.startArray addObject:dic[@"title"]];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+#pragma -----点击动态-----
+-(void)didselect2002ShouCang:(NSDictionary *)dic{
+    YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
+    CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:dic];
+    VC.headerViewHeight = h;
+    VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+    [self.navigationController pushViewController:VC animated:YES];
+}
+#pragma -----点击话题-----
+-(void)didselect2003ShouCang:(NSDictionary *)dic{
+    kWeakSelf(self);
+    [YX_MANAGER requestSearchFind_all:@{@"key":dic[@"tag"],@"key_unicode":dic[@"tag"],@"page":@"1",@"type":@"3"} success:^(id object) {
+          if ([object count] > 0) {
+              YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
+              VC.type = @"3";
+              VC.key = object[0][@"tag"];
+              VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
+              VC.startArray = [NSArray arrayWithArray:object];
+              [weakself.navigationController pushViewController:VC animated:YES];
+          }else{
+              [QMUITips showInfo:@"无此标签的信息"];
+          }
+      }];
+}
 #pragma mark ========== tableViewcell点击 ==========
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //收藏里面的点击
     if (_selectIndexBool) {
         NSDictionary * dic = self.dataArray[indexPath.row];
-        NSInteger sort = [dic[@"sort"] integerValue];
-        if ([dic[@"detail"] count] > 0) {
-            
-//            NSString * par = [NSString stringWithFormat:@"1/%@",self.startDic[@"id"]];
-//            [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
-//                if ([object count] == 0) {
-//                    [QMUITips hideAllTipsInView:weakself.view];
-//                    return;
-//                }
-//
-//
-//                weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
-//                NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"weight" ascending:YES]];
-//                [weakself.dataArray sortUsingDescriptors:sortDescriptors];
-//
-//                dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//                    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-//                    [weakself.collArray removeAllObjects];
-//
-//
-//                        for (NSInteger i = 0; i < [weakself.dataArray count]; i++) {
-//                            NSString * par1 = [NSString stringWithFormat:@"1/%@",weakself.dataArray[i][@"id"]];
-//                                [YXPLUS_MANAGER requestZhiNan1Get:par1 success:^(id object) {
-//                                    [weakself.collArray addObject:object];
-//
-//                                    if (weakself.dataArray.count == weakself.collArray.count) {
-//
-//                                        [weakself.yxTableView reloadData];
-//                                        [weakself panduanUMXiaoXi];
-//                                    }
-//                                     dispatch_semaphore_signal(sema);
-//                                    [QMUITips hideAllTipsInView:weakself.view];
-//                                }];
-//                            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-//                        }
-//                });
-//            }];
-            
-            
-            
-            YXZhiNanDetailViewController * vc = [[YXZhiNanDetailViewController alloc]init];
-            vc.smallIndex = 0;
-            vc.bigIndex = 0;
-            vc.startArray = [[NSMutableArray alloc] init];
-            NSDictionary * dic4 =
-            @{
-                @"id":kGetString(dic[@"target_id"]),
-                @"father_id":@"0",
-                @"intro":dic[@"intro"],
-                @"heat":@"0",
-                @"is_collect":@"1",
-                @"photo_detail":dic[@"photo_detail"],
-                @"collect_number":kGetString(dic[@"collect_number"]),
-                @"weight":@"0",
-                @"comment_number":kGetString(dic[@"comment_number"]),
-                @"is_next":@"",
-                @"name":dic[@"name"],
-                @"photo":@"",
-            };
-            [vc.startArray addObject:dic4];
-            [self.navigationController pushViewController:vc animated:YES];
-            
-        }else{
-            YXZhiNanViewController * vc = [[YXZhiNanViewController alloc]init];
-            NSDictionary * dic3 =
-            @{
-              @"is_collect":@"1",
-              @"father_id":kGetString(dic[@"id"]),
-              @"id":kGetString(dic[@"target_id"]),
-              @"intro":dic[@"intro"],
-              @"photo":@"",
-              @"is_next":@YES,
-              @"name":dic[@"name"],
-              @"photo_detail":dic[@"photo_detail"]
-              };
-            vc.startDic = [NSDictionary dictionaryWithDictionary:dic3];
-            [self.navigationController pushViewController:vc animated:YES];
+        //这个方法太长为了清晰
+        if (_downSelectIndex == 2001) {
+            [self didselect2001ShouCang:dic];
+        }else if (_downSelectIndex == 2002){
+            [self didselect2002ShouCang:dic];
+        }else if (_downSelectIndex == 2003){
+            [self didselect2003ShouCang:dic];
         }
     }else{
-        if (_tagSelectBool) {
-              return;
-          }
           NSDictionary * dic = self.dataArray[indexPath.row];
           YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
           CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:dic];
@@ -466,9 +627,8 @@ _Pragma("clang diagnostic pop") \
     _yxTableView.tag = 99999;
     _yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_yxTableView registerNib:[UINib nibWithNibName:@"HGPersonalCenterTableViewCell" bundle:nil] forCellReuseIdentifier:@"HGPersonalCenterTableViewCell"];
-        [_yxTableView registerNib:[UINib nibWithNibName:@"YXMineMyCollectionTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXMineMyCollectionTableViewCell"];
-    
-    
+    [_yxTableView registerNib:[UINib nibWithNibName:@"YXFirstFindImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFirstFindImageTableViewCell"];
+      [_yxTableView registerNib:[UINib nibWithNibName:@"HGPersonal1TableViewCell" bundle:nil] forCellReuseIdentifier:@"HGPersonal1TableViewCell"];
     self.dataArray = [[NSMutableArray alloc]init];
     [self addRefreshView:self.yxTableView];
     
@@ -482,6 +642,9 @@ _Pragma("clang diagnostic pop") \
          [self.yxTableView addSubview:self.nodataImg];
          self.nodataImg.hidden = YES;
     }
+    
+    [self.yxTableView setTableHeaderView:self.headerView];
+    
 }
 -(void)endRefresh{
     [self.yxTableView.mj_header endRefreshing];
@@ -581,30 +744,14 @@ _Pragma("clang diagnostic pop") \
 -(void)setGuanzhuCommonBtn:(NSInteger)tag btn:(UIButton*)btn{
     self.guanzhuWidth.constant = 66;
     if(tag == 2){
-        [self.headerView.guanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
-        [self.headerView.guanzhuBtn setTitleColor:KWhiteColor forState:0];
-        [self.headerView.guanzhuBtn setBackgroundColor:kRGBA(64, 75, 84, 1)];
-
-        [self.controllerHeaderViewGauzhu setTitle:@"已关注" forState:UIControlStateNormal];
-        [self.controllerHeaderViewGauzhu setTitleColor:KWhiteColor forState:0];
-        [self.controllerHeaderViewGauzhu setBackgroundColor:kRGBA(64, 75, 84, 1)];
+        [WP_TOOL_ShareManager inYiGuanZhuStatusBtn:self.headerView.guanzhuBtn];
+        [WP_TOOL_ShareManager inYiGuanZhuStatusBtn:self.controllerHeaderViewGauzhu];
     }else if(tag == 1){
-        [self.headerView.guanzhuBtn setTitle:@"互相关注" forState:UIControlStateNormal];
-        [self.headerView.guanzhuBtn setTitleColor:KWhiteColor forState:0];
-        [self.headerView.guanzhuBtn setBackgroundColor:kRGBA(64, 75, 84, 1)];
-        
-        [self.controllerHeaderViewGauzhu setTitle:@"互相关注" forState:UIControlStateNormal];
-        [self.controllerHeaderViewGauzhu setTitleColor:KWhiteColor forState:0];
-        [self.controllerHeaderViewGauzhu setBackgroundColor:kRGBA(64, 75, 84, 1)];
-        self.guanzhuWidth.constant = 80;
+        [WP_TOOL_ShareManager inHuXiangGuanZhuStatusBtn:self.headerView.guanzhuBtn];
+        [WP_TOOL_ShareManager inHuXiangGuanZhuStatusBtn:self.controllerHeaderViewGauzhu];
     }else{
-       [self.headerView.guanzhuBtn setTitle:@"＋关注" forState:UIControlStateNormal];
-       [self.headerView.guanzhuBtn setTitleColor:KWhiteColor forState:0];
-       [self.headerView.guanzhuBtn setBackgroundColor:kRGBA(176, 151, 99, 1)];
-        
-       [self.controllerHeaderViewGauzhu setTitle:@"＋关注" forState:UIControlStateNormal];
-       [self.controllerHeaderViewGauzhu setTitleColor:KWhiteColor forState:0];
-       [self.controllerHeaderViewGauzhu setBackgroundColor:kRGBA(176, 151, 99, 1)];
+        [WP_TOOL_ShareManager inGuanZhuMineStatusBtn:self.headerView.guanzhuBtn];
+        [WP_TOOL_ShareManager inGuanZhuStatusBtn:self.controllerHeaderViewGauzhu];
     }
 }
 //所有按钮的关注方法
@@ -653,11 +800,11 @@ _Pragma("clang diagnostic pop") \
                                               [weakself saveImage:UMSocialPlatformType_QQ];
 
                                           }],
-                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-                                              [moreOperationController hideToBottom];
-                                              [weakself saveImage:UMSocialPlatformType_Qzone];
-
-                                          }],
+//                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+//                                              [moreOperationController hideToBottom];
+//                                              [weakself saveImage:UMSocialPlatformType_Qzone];
+//
+//                                          }],
                                           ],
                                       ];
     [moreOperationController showFromBottom];
@@ -748,57 +895,7 @@ _Pragma("clang diagnostic pop") \
 {
     return self.headerView.mineImageView.image;
 }
--(void)requestTableData{
-    [QMUITips showLoadingInView:kAppWindow];
-    if (_selectIndexBool) {
-        [self requestMyCollectionListGet];
-    }else{
-        self.whereCome ? [self requestOther_AllList] : [self requestMine_AllList];
-    }
-}
--(void)headerRereshing{
-    [super headerRereshing];
-    [self requestTableData];
-}
--(void)footerRereshing{
-    [super footerRereshing];
-    [self requestTableData];
-}
-#pragma mark ========== 我自己的所有 ==========
--(void)requestMine_AllList{
-    kWeakSelf(self);
-    NSString * parString =[NSString stringWithFormat:@"0&page=%@",NSIntegerToNSString(self.requestPage)];
-    [YX_MANAGER requestGet_users_find:parString success:^(id object){
-        [QMUITips hideAllTips];
-        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
-        if (_selectRow > -1) {
-            [weakself.yxTableView reloadRow:_selectRow inSection:0 withRowAnimation:UITableViewRowAnimationNone];
-            _selectRow = -1;
-        }else{
-            [UIView performWithoutAnimation:^{
-            [weakself.yxTableView reloadData];
-            }];
-        }
-        
-        weakself.dongtaiView.hidden =  weakself.dataArray.count != 0;
-    }];
-}
-#pragma mark ========== 其他用户的所有 ==========
--(void)requestOther_AllList{
-    kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"%@/%@",self.userId,NSIntegerToNSString(self.requestPage)];
-    [YX_MANAGER requestGetSers_Other_AllList:par success:^(id object){
-        [QMUITips hideAllTips];
-        weakself.dataArray =  [weakself commonAction:object dataArray:weakself.dataArray];
-       if (_selectRow > -1) {
-             [weakself.yxTableView reloadRow:_selectRow inSection:0 withRowAnimation:UITableViewRowAnimationNone];
-           _selectRow = -1;
-         }else{
-             [UIView performWithoutAnimation:^{ [weakself.yxTableView reloadData];}];}
-                weakself.nodataImg.hidden = weakself.dataArray.count != 0;
 
-    }];
-}
 #pragma mark ========== 晒图点赞 ==========
 -(void)requestDianZan_Image_Action:(NSIndexPath *)indexPath{
     kWeakSelf(self);
@@ -917,11 +1014,11 @@ _Pragma("clang diagnostic pop") \
                                               [weakself saveImage:UMSocialPlatformType_QQ];
 
                                           }],
-                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-                                              [moreOperationController hideToBottom];
-                                              [weakself saveImage:UMSocialPlatformType_Qzone];
-
-                                          }],
+//                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+//                                              [moreOperationController hideToBottom];
+//                                              [weakself saveImage:UMSocialPlatformType_Qzone];
+//
+//                                          }],
                                           ],
                                       itemsArray1
                                       // 第二行
@@ -957,6 +1054,10 @@ _Pragma("clang diagnostic pop") \
     contentViewController.block = ^{
         [modalViewController hideWithAnimated:YES completion:nil];
     };
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (self.yxTableView.contentOffset.y > HeaderImageViewHeight-40) { self.controllerHeaderView.hidden = NO;
+    }else{if (self.yxTableView.contentOffset.y <= 0) { self.controllerHeaderView.hidden = YES;}}
 }
 @end
 

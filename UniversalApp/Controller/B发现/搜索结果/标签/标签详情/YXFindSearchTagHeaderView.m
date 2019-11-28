@@ -27,4 +27,7 @@
 - (IBAction)segmentAction:(id)sender {
     self.block(self.segment.selectedSegmentIndex);
 }
+- (IBAction)shoucangAction:(UIButton *)sender {
+    self.shoucangblock(sender.tag);
+}
 @end

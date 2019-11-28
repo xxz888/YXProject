@@ -99,11 +99,11 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9h6-LY-liP">
-                                    <rect key="frame" x="16" y="1" width="66" height="28"/>
+                                    <rect key="frame" x="2" y="-1" width="80" height="32"/>
                                     <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="28" id="HR2-JZ-sjn"/>
-                                        <constraint firstAttribute="width" constant="66" id="LVX-3P-P7o"/>
+                                        <constraint firstAttribute="height" constant="32" id="HR2-JZ-sjn"/>
+                                        <constraint firstAttribute="width" constant="80" id="LVX-3P-P7o"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <state key="normal" title="已关注">

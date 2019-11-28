@@ -157,5 +157,22 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) { }];
 }
-
+#pragma mark ==========收藏==========
+-(void)requestUserShouCangPOST:YX_BLOCK{
+    [HTTP_POST(@"/pub/user_collect/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+#pragma mark ==========查看收藏==========
+-(void)requestUserShouCangGet:YX_BLOCK{
+    [HTTP_POST(@"/pub/user_collect/?") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
+#pragma mark ==========请求tag是否收藏==========
+-(void)requestUserIsShouCangGet:YX_BLOCK{
+    [HTTP_GET([@"/pub/tag/?tag=" append:dic])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
 @end

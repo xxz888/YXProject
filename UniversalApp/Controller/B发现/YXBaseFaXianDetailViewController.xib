@@ -87,13 +87,13 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frL-s0-Vad">
-                            <rect key="frame" x="254" y="43" width="66" height="28"/>
+                            <rect key="frame" x="240" y="41" width="80" height="32"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="28" id="EZd-F1-nbj"/>
-                                <constraint firstAttribute="width" constant="66" id="Hj2-bC-PRj"/>
+                                <constraint firstAttribute="height" constant="32" id="EZd-F1-nbj"/>
+                                <constraint firstAttribute="width" constant="80" id="Hj2-bC-PRj"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="+ 关注">
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="关注">
                                 <color key="titleColor" red="0.062745098040000002" green="0.13725490200000001" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="highlighted">
@@ -261,7 +261,7 @@
                 <constraint firstItem="2oi-rh-fRK" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="weC-1j-S3V"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="-2290" y="-206"/>
+            <point key="canvasLocation" x="-2441" y="-217"/>
         </view>
     </objects>
     <resources>

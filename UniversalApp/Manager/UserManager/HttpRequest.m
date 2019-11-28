@@ -92,13 +92,14 @@ var c = a + b
             if ([obj[@"status"] integerValue] == 1) {
                 sucess(obj);
             }else{
-                if (![obj[@"message"] isEqualToString:@"查询无数据"]) {
-                
+                if ([obj[@"status"] integerValue] == 0) {
+                    [QMUITips showError:obj[@"message"] inView:view hideAfterDelay:0.5];
+                }else{
                     if ([obj[@"status"] integerValue] == -1){
-                     
-                    }else{
-                        [QMUITips showError:obj[@"message"] inView:view hideAfterDelay:0.5];
-                    }
+                                       
+                      }else{
+                          [QMUITips showError:obj[@"message"] inView:view hideAfterDelay:0.5];
+                      }
                 }
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     
