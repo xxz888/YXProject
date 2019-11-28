@@ -11,6 +11,7 @@
 #import "MessageModel.h"
 #import "MessageFrameModel.h"
 #import "JQFMDB.h"
+
 @implementation ShareManager
 
 SINGLETON_FOR_CLASS(ShareManager);
@@ -1217,8 +1218,61 @@ SINGLETON_FOR_CLASS(ShareManager);
 
     [btn setTitle:@"关注" forState:UIControlStateNormal];
     [btn setTitleColor:KWhiteColor forState:0];
-    [btn setBackgroundColor:kRGBA(176, 151, 99, 1)];
     ViewRadius(btn, 16);
+    UIImage *backImage = [self gradientImageWithBounds:btn.frame andColors:@[kRGBA(216, 200, 156, 1), kRGBA(190, 168, 119, 1), kRGBA(176, 151, 99, 1)] andGradientType:GradientDirectionLeftToRight];
+    UIColor *bgColor = [UIColor colorWithPatternImage:backImage];
+    [btn setBackgroundColor:bgColor];
+    
+}
+
+/**
+ *  @brief  生成渐变色图片
+ *
+ *  @param  bounds  图片的大小
+ *  @param  colors      渐变颜色组
+ *  @param  gradientType     渐变方向
+ *
+ *  @return 图片
+ */
+- (UIImage*)gradientImageWithBounds:(CGRect)bounds andColors:(NSArray*)colors andGradientType:(GradientDirection)gradientType{
+    NSMutableArray *ar = [NSMutableArray array];
+    
+    for(UIColor *c in colors) {
+        [ar addObject:(id)c.CGColor];
+    }
+    UIGraphicsBeginImageContextWithOptions(bounds.size, YES, 1);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    CGColorSpaceRef colorSpace = CGColorGetColorSpace([[colors lastObject] CGColor]);
+    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef)ar, NULL);
+    CGPoint startPt =  CGPointMake(0.0, 0.0);
+    CGPoint endPt =  CGPointMake(0.0, 0.0);
+    
+    switch (gradientType) {
+        case GradientDirectionTopToBottom:
+            startPt= CGPointMake(0.0, 0.0);
+            endPt= CGPointMake(0.0, bounds.size.height);
+            break;
+        case GradientDirectionLeftToRight:
+            startPt = CGPointMake(0.0, 0.0);
+            endPt = CGPointMake(bounds.size.width, 0.0);
+            break;
+        case GradientDirectionBottomToTop:
+            startPt = CGPointMake(0.0, bounds.size.height);
+            endPt = CGPointMake(0.0, 0.0);
+            break;
+        case GradientDirectionRightToLeft:
+            startPt = CGPointMake(bounds.size.width, 0.0);
+            endPt = CGPointMake(0, 0.0);
+            break;
+    }
+    CGContextDrawLinearGradient(context, gradient, startPt, endPt, kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    CGGradientRelease(gradient);
+    CGContextRestoreGState(context);
+    CGColorSpaceRelease(colorSpace);
+    UIGraphicsEndImageContext();
+    return image;
 }
 -(void)inGuanZhuStatusBtn:(UIButton *)btn{
     [btn setTitle:@"关注" forState:UIControlStateNormal];

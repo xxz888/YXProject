@@ -182,32 +182,23 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if ([scrollView isEqual: self.yxTableView] && [self.startDic[@"obj"] integerValue] == 2) {
-        NSLog(@"offset%f",self.yxTableView.contentOffset.y);
          CGFloat detailHeight = [ShareManager inTextOutHeight:self.startDic[@"title"] lineSpace:9 fontSize:24];
          CGFloat needHeight = detailHeight + coverHeight + 10 + 50;
-        NSLog(@"need-%f",needHeight);
             if (self.yxTableView.contentOffset.y > needHeight ) {
-                // 上滑
                     self.coustomNavView.backgroundColor = KWhiteColor;
                     [self.backBtn setImage:IMAGE_NAMED(@"黑色返回") forState:UIControlStateNormal];
                     [self.shareBtn setImage:IMAGE_NAMED(@"更多") forState:UIControlStateNormal];
                     self.guanzhuBtn.hidden = self.titleImg.hidden = self.titleName.hidden = self.titleTime.hidden = NO;
                     self.cell.guanzhuBtn.hidden = YES;
-//                    self.cell.cellHeaderHeight.constant = 0;
-//                    self.cell.titleImageView.hidden = self.cell.titleLbl.hidden = self.cell.mapBtn.hidden = YES;
-                    
             }
             else{
-                // 下滑
                     self.coustomNavView.backgroundColor = KClearColor;
                     [self.backBtn setImage:IMAGE_NAMED(@"huisebeijingfanhui") forState:UIControlStateNormal];
                     [self.shareBtn setImage:IMAGE_NAMED(@"huisebeijinggengduo") forState:UIControlStateNormal];
                     self.guanzhuBtn.hidden = self.titleImg.hidden = self.titleName.hidden = self.titleTime.hidden = YES;
                     self.cell.guanzhuBtn.hidden = NO;
-//                    self.cell.cellHeaderHeight.constant = 50;
-//                    self.cell.titleImageView.hidden = self.cell.titleLbl.hidden = self.cell.mapBtn.hidden = NO;
             }
-        }
+    }
 }
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     // 获取开始拖拽时tableview偏移量

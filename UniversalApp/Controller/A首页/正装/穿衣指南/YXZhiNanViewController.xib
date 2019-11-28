@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YXZhiNanViewController">
             <connections>
+                <outlet property="backBtn" destination="peF-8H-32I" id="Mbj-fC-NEU"/>
+                <outlet property="moreBtn" destination="Nf3-3E-O3O" id="iOe-xZ-ju6"/>
+                <outlet property="titleLbl" destination="p3n-cr-rCv" id="VGa-IW-Dmb"/>
+                <outlet property="topView" destination="qpi-jB-8sK" id="51O-zq-V1K"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="yxTableView" destination="yI3-WC-Ixr" id="vJL-d1-P5g"/>
             </connections>
@@ -53,62 +57,22 @@
                                 <action selector="moreShare" destination="-1" eventType="touchUpInside" id="awO-s4-fPF"/>
                             </connections>
                         </button>
-                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8CC-sd-V7b">
-                            <rect key="frame" x="50" y="41" width="313" height="30"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Ee-Bg-shX">
-                                    <rect key="frame" x="106.5" y="0.0" width="100" height="30"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="放大镜" translatesAutoresizingMaskIntoConstraints="NO" id="MwA-pM-8f4">
-                                            <rect key="frame" x="0.0" y="6" width="18" height="18"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="18" id="hZo-nm-Mwg"/>
-                                                <constraint firstAttribute="height" constant="18" id="sjP-6f-MjT"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="搜索蓝皮书" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJK-lN-vTs">
-                                            <rect key="frame" x="30" y="0.0" width="70" height="30"/>
-                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
-                                            <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="100" id="2jC-n5-7ne"/>
-                                        <constraint firstItem="MwA-pM-8f4" firstAttribute="centerY" secondItem="2Ee-Bg-shX" secondAttribute="centerY" id="R16-Tf-fRA"/>
-                                        <constraint firstItem="MwA-pM-8f4" firstAttribute="leading" secondItem="2Ee-Bg-shX" secondAttribute="leading" id="ZNC-aM-oEN"/>
-                                        <constraint firstItem="zJK-lN-vTs" firstAttribute="top" secondItem="2Ee-Bg-shX" secondAttribute="top" id="a4B-sc-jKs"/>
-                                        <constraint firstAttribute="bottom" secondItem="zJK-lN-vTs" secondAttribute="bottom" id="iSg-l2-ods"/>
-                                        <constraint firstAttribute="trailing" secondItem="zJK-lN-vTs" secondAttribute="trailing" id="uYj-nA-6kw"/>
-                                    </constraints>
-                                </view>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="7CR-xK-IsS"/>
-                                <constraint firstItem="2Ee-Bg-shX" firstAttribute="top" secondItem="8CC-sd-V7b" secondAttribute="top" id="bqr-iT-YE4"/>
-                                <constraint firstItem="2Ee-Bg-shX" firstAttribute="centerX" secondItem="8CC-sd-V7b" secondAttribute="centerX" id="uQz-iQ-cMv"/>
-                                <constraint firstAttribute="bottom" secondItem="2Ee-Bg-shX" secondAttribute="bottom" id="vHi-rY-sSg"/>
-                            </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                    <integer key="value" value="15"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p3n-cr-rCv">
+                            <rect key="frame" x="207" y="56" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="peF-8H-32I" firstAttribute="top" secondItem="qpi-jB-8sK" secondAttribute="top" constant="45" id="1dx-5v-Rcc"/>
                         <constraint firstItem="peF-8H-32I" firstAttribute="leading" secondItem="qpi-jB-8sK" secondAttribute="leading" constant="16" id="1mx-Pb-SA0"/>
                         <constraint firstItem="Nf3-3E-O3O" firstAttribute="centerY" secondItem="peF-8H-32I" secondAttribute="centerY" id="1zU-Kc-DLI"/>
-                        <constraint firstItem="8CC-sd-V7b" firstAttribute="leading" secondItem="peF-8H-32I" secondAttribute="trailing" constant="12" id="7FN-6n-jVn"/>
                         <constraint firstAttribute="trailing" secondItem="Nf3-3E-O3O" secondAttribute="trailing" constant="15" id="7q5-jI-Wkp"/>
                         <constraint firstAttribute="height" constant="80" id="Gpm-HM-Pnc"/>
-                        <constraint firstItem="8CC-sd-V7b" firstAttribute="centerY" secondItem="peF-8H-32I" secondAttribute="centerY" id="X9k-Fv-Tnn"/>
-                        <constraint firstItem="Nf3-3E-O3O" firstAttribute="leading" secondItem="8CC-sd-V7b" secondAttribute="trailing" constant="16" id="guT-nh-GSf"/>
+                        <constraint firstItem="p3n-cr-rCv" firstAttribute="centerX" secondItem="qpi-jB-8sK" secondAttribute="centerX" id="Ip7-lt-Q7m"/>
+                        <constraint firstItem="p3n-cr-rCv" firstAttribute="centerY" secondItem="peF-8H-32I" secondAttribute="centerY" id="lWM-ux-nwJ"/>
                     </constraints>
                 </view>
             </subviews>
@@ -130,7 +94,6 @@
     </objects>
     <resources>
         <image name="homeshare" width="40" height="40"/>
-        <image name="放大镜" width="32" height="32"/>
         <image name="白色返回" width="44" height="44"/>
     </resources>
 </document>

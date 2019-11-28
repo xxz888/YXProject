@@ -24,6 +24,22 @@
 @end
 
 @implementation YXZhiNanViewController
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    //上滑
+    if (scrollView.contentOffset.y < 80) {
+        self.topView.backgroundColor = [KWhiteColor colorWithAlphaComponent:scrollView.contentOffset.y / 80];
+        [self.backBtn setImage:IMAGE_NAMED(@"白色返回") forState:UIControlStateNormal];
+        [self.moreBtn setImage:IMAGE_NAMED(@"homeshare") forState:UIControlStateNormal];
+        self.titleLbl.hidden = YES;
+    }else{
+        [self.backBtn setImage:IMAGE_NAMED(@"黑色返回") forState:UIControlStateNormal];
+        [self.moreBtn setImage:IMAGE_NAMED(@"黑色分享") forState:UIControlStateNormal];
+        self.topView.backgroundColor = [KWhiteColor colorWithAlphaComponent:1];
+        self.titleLbl.text = self.startDic[@"name"];
+        self.titleLbl.hidden = NO;
+    }
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];

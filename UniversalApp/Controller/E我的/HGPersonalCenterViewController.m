@@ -1058,6 +1058,9 @@ _Pragma("clang diagnostic pop") \
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (self.yxTableView.contentOffset.y > HeaderImageViewHeight-40) { self.controllerHeaderView.hidden = NO;
     }else{if (self.yxTableView.contentOffset.y <= 0) { self.controllerHeaderView.hidden = YES;}}
+
+
+
 }
 @end
 

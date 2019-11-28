@@ -12,7 +12,12 @@
 #define CommonMacros_h
 #define YX_MANAGER [YXManager sharedInstance]
 #define YXPLUS_MANAGER [YXPlusManager sharedInstance]
-
+typedef NS_ENUM(NSInteger, GradientDirection) {
+    GradientDirectionTopToBottom = 0,    // 从上往下 渐变
+    GradientDirectionLeftToRight,        // 从左往右
+    GradientDirectionBottomToTop,      // 从下往上
+    GradientDirectionRightToLeft      // 从右往左
+};
 #import "NSString+CString.h"
 
 #pragma mark - ——————— 用户相关 ————————

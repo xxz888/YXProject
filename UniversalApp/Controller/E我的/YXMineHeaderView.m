@@ -31,16 +31,10 @@
     
     ViewBorderRadius(self.guanzhuBtn, 16, 1,KClearColor);
     ViewBorderRadius(self.qiandaoBtn, 16, 1,KClearColor);
-    [self.qiandaoBtn setBackgroundColor:kRGBA(176, 151, 99, 1)];
-
-//    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect: self.cellHeaderView.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(10,10)];
-//    //创建 layer
-//    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-//    maskLayer.frame = self.cellHeaderView.bounds;
-//    //赋值
-//    maskLayer.path = maskPath.CGPath;
-//    self.cellHeaderView.layer.mask = maskLayer;
-  
+    
+  UIImage *backImage = [WP_TOOL_ShareManager gradientImageWithBounds:self.qiandaoBtn.frame andColors:@[kRGBA(216, 200, 156, 1), kRGBA(190, 168, 119, 1), kRGBA(176, 151, 99, 1)] andGradientType:1];
+  UIColor *bgColor = [UIColor colorWithPatternImage:backImage];
+  [self.qiandaoBtn  setBackgroundColor:bgColor];
 }
 
 -(void)clickAction:(id)sender{

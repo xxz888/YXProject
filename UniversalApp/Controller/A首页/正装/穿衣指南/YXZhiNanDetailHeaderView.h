@@ -30,7 +30,7 @@ typedef void(^OpenBlock)(NSString *);
 
 @property (weak, nonatomic) IBOutlet UIImageView *shoucangImage;
 @property (weak, nonatomic) IBOutlet UILabel *shoucangLabel;
-
+-(void)setHeaderViewData:(NSDictionary *)dic;
 @end
 
 NS_ASSUME_NONNULL_END

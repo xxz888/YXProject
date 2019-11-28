@@ -15,6 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSDictionary * startDic;
 @property (nonatomic,assign) NSInteger index;
 @property (nonatomic,strong) NSDictionary * umDic;
+@property (weak, nonatomic) IBOutlet UIView *topView;
+@property (weak, nonatomic) IBOutlet UIButton *backBtn;
+@property (weak, nonatomic) IBOutlet UIButton *moreBtn;
+@property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 
 @end
 
