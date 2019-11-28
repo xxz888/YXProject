@@ -13,8 +13,9 @@
 #import "YXFindHeaderView.h"
 #import "YXFaBuNewVCViewController.h"
 #import "PYSearchViewController.h"
-
-@interface YXSecondViewController ()<PYSearchViewControllerDelegate,UIGestureRecognizerDelegate>
+#import "YXPublishImageViewController.h"
+#import "YXWenZhangEditorViewController.h"
+@interface YXSecondViewController ()<PYSearchViewControllerDelegate,UIGestureRecognizerDelegate,lzMenuDelegate>
 @property(nonatomic,strong)NSMutableArray * dataArray;
 @property(nonatomic,strong)NSMutableArray * typeArray;
 @property(nonatomic,strong)NSString * type;
@@ -31,6 +32,7 @@
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 
 }
+
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = YES;
@@ -45,16 +47,35 @@
 
     [self initConfing];
     [self requestFindTag];
-    [self rightBottomBtn];
+//    [self rightBottomBtn];
+    [self addButton];
+
 }
--(void)rightBottomBtn{
-    if (!_findjiahao) {
-        _findjiahao = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_findjiahao setImage:[UIImage imageNamed:@"findjiahao"] forState:0];
-        _findjiahao.frame = CGRectMake(KScreenWidth-16-54+1, KScreenHeight-kTabBarHeight-54-10+6-22, 48, 48);
-        [self.view addSubview:_findjiahao];
-        [_findjiahao addTarget:self action:@selector(handleShowContentViewController) forControlEvents:UIControlEventTouchUpInside];
+- (void)addButton{
+    
+    CGRect floatFrame = CGRectMake(KScreenWidth-70, KScreenHeight-kTabBarHeight-80, 48, 48);
+    self.menuBtn = [[LZMenuButton alloc]initWithFrame:floatFrame normalImage:[UIImage imageNamed:@"findjiahao"] andPressedImage:[UIImage imageNamed:@"fabunewclose"] withScrollview:nil effectImage:[UIImage imageNamed:@""] menuWidth:45];
+    self.menuBtn.imageArray = @[@"fabunewshaitu",@"fabunewwenzhang"];
+    self.menuBtn.labelArray = @[@"文章",@"晒图"];
+    self.menuBtn.hideWhileScrolling = NO;
+    self.menuBtn.delegate = self;
+    [self.view addSubview:self.menuBtn];
+    
+}
+- (void)didSelectMenuOptionAtIndex:(NSInteger)row{
+    if (row==1) {
+        YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
+        imageVC.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:imageVC animated:YES completion:nil];
+    }else{
+        YXWenZhangEditorViewController * pinpaiVC = [[YXWenZhangEditorViewController alloc]init];
+        pinpaiVC.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:pinpaiVC animated:YES completion:nil];
     }
+
+    
+    
+   
 }
 -(void)setNavSearchView{
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXFindHeaderView" owner:self options:nil];
@@ -80,7 +101,7 @@
     if (![userManager loadUserInfo]) {
            KPostNotification(KNotificationLoginStateChange, @NO);
            return;
-       }
+    }
     YXFaBuNewVCViewController * contentViewController = [[YXFaBuNewVCViewController alloc] init];
     QMUIModalPresentationViewController *modalViewController = [[QMUIModalPresentationViewController alloc] init];
     modalViewController.contentViewMargins = UIEdgeInsetsMake(KScreenHeight-175-kTabBarHeight-10, KScreenWidth-146, kTabBarHeight+10, 0);

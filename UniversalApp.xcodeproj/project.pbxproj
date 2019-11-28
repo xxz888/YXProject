@@ -605,6 +605,9 @@
 		BBEA159B2366F0A6006FBBFF /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = BBEA15992366F0A6006FBBFF /* Comment.m */; };
 		BBED1231238E413E009561A3 /* HGPersonal1TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBED122F238E413E009561A3 /* HGPersonal1TableViewCell.m */; };
 		BBED1232238E413E009561A3 /* HGPersonal1TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBED1230238E413E009561A3 /* HGPersonal1TableViewCell.xib */; };
+		BBED1239238FB609009561A3 /* LZMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BBED1235238FB608009561A3 /* LZMenuButton.m */; };
+		BBED123A238FB609009561A3 /* LZMenuButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBED1236238FB608009561A3 /* LZMenuButtonCell.m */; };
+		BBED123B238FB609009561A3 /* LZMenuButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBED1237238FB608009561A3 /* LZMenuButtonCell.xib */; };
 		BBF26E1B22408B0E0000AEF5 /* JQFMDB.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E0D22408B0E0000AEF5 /* JQFMDB.m */; };
 		BBF26E1C22408B0E0000AEF5 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E1122408B0E0000AEF5 /* FMDatabaseQueue.m */; };
 		BBF26E1D22408B0E0000AEF5 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E1422408B0E0000AEF5 /* FMDatabaseAdditions.m */; };
@@ -1685,6 +1688,11 @@
 		BBED122E238E413E009561A3 /* HGPersonal1TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGPersonal1TableViewCell.h; sourceTree = "<group>"; };
 		BBED122F238E413E009561A3 /* HGPersonal1TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGPersonal1TableViewCell.m; sourceTree = "<group>"; };
 		BBED1230238E413E009561A3 /* HGPersonal1TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HGPersonal1TableViewCell.xib; sourceTree = "<group>"; };
+		BBED1234238FB608009561A3 /* LZMenuButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZMenuButtonCell.h; sourceTree = "<group>"; };
+		BBED1235238FB608009561A3 /* LZMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZMenuButton.m; sourceTree = "<group>"; };
+		BBED1236238FB608009561A3 /* LZMenuButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZMenuButtonCell.m; sourceTree = "<group>"; };
+		BBED1237238FB608009561A3 /* LZMenuButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LZMenuButtonCell.xib; sourceTree = "<group>"; };
+		BBED1238238FB608009561A3 /* LZMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZMenuButton.h; sourceTree = "<group>"; };
 		BBF26E0D22408B0E0000AEF5 /* JQFMDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JQFMDB.m; sourceTree = "<group>"; };
 		BBF26E0E22408B0E0000AEF5 /* JQFMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JQFMDB.h; sourceTree = "<group>"; };
 		BBF26E1022408B0E0000AEF5 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
@@ -2571,6 +2579,7 @@
 		BB524790234A2F0800FB22B3 /* 发布弹框vc */ = {
 			isa = PBXGroup;
 			children = (
+				BBED1233238FB608009561A3 /* LZMenuBtnView */,
 				BB524791234A2F3B00FB22B3 /* YXFaBuNewVCViewController.h */,
 				BB524792234A2F3B00FB22B3 /* YXFaBuNewVCViewController.m */,
 				BB524793234A2F3B00FB22B3 /* YXFaBuNewVCViewController.xib */,
@@ -4866,6 +4875,18 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		BBED1233238FB608009561A3 /* LZMenuBtnView */ = {
+			isa = PBXGroup;
+			children = (
+				BBED1238238FB608009561A3 /* LZMenuButton.h */,
+				BBED1235238FB608009561A3 /* LZMenuButton.m */,
+				BBED1234238FB608009561A3 /* LZMenuButtonCell.h */,
+				BBED1236238FB608009561A3 /* LZMenuButtonCell.m */,
+				BBED1237238FB608009561A3 /* LZMenuButtonCell.xib */,
+			);
+			path = LZMenuBtnView;
+			sourceTree = "<group>";
+		};
 		BBF26E0C22408B0E0000AEF5 /* JQFMDB */ = {
 			isa = PBXGroup;
 			children = (
@@ -5164,6 +5185,7 @@
 				BB3DFE9D221E8566000C70B5 /* YXFindSearchTableViewCell.xib in Resources */,
 				BB21FD8422B0991E0059BCAC /* KSMediaPicker.strings in Resources */,
 				BBDA2D0F21EB30BF00EDCCFF /* MLEmoji_Expression.plist in Resources */,
+				BBED123B238FB609009561A3 /* LZMenuButtonCell.xib in Resources */,
 				29629EF21F78E67E002CFCBD /* JSToOC.html in Resources */,
 				BBEA15752366E41B006FBBFF /* PlayButtonOverlayLarge.png in Resources */,
 				BBDA2D1021EB30BF00EDCCFF /* MLEmoji_Expression.bundle in Resources */,
@@ -5562,6 +5584,7 @@
 				BBB59B06228CF8CB0029D3D0 /* YXHomeXueJiaFeiGuViewController.m in Sources */,
 				BBB59AEC228CF8CB0029D3D0 /* YXHomeXueJiaPinPaiTableViewCell.m in Sources */,
 				BB21FD9022B0991E0059BCAC /* KSMediaPickerViewerController.swift in Sources */,
+				BBED123A238FB609009561A3 /* LZMenuButtonCell.m in Sources */,
 				BB1F1C1C2367EF95002D0FE5 /* SYBaseHttpConnection1.m in Sources */,
 				29AD6C4D1ED3D51200B0879C /* OpenUDID.m in Sources */,
 				BBA812B321DDABC1001B5EA1 /* YXMessageViewController.m in Sources */,
@@ -5594,6 +5617,7 @@
 				BBD7796B2244DD390077E44D /* YXBindPhoneNextViewController.m in Sources */,
 				BB6F6A1C2361A31B00EC8732 /* KWEditorBar.m in Sources */,
 				BB688A1A22AE504F00964FA3 /* YXZhiNan5Cell.m in Sources */,
+				BBED1239238FB609009561A3 /* LZMenuButton.m in Sources */,
 				BB21FD9522B0991E0059BCAC /* KSMediaPickerViewImageCell.swift in Sources */,
 				BB928F9721FB5D290090A044 /* BRAddressModel.m in Sources */,
 				BB53E73F235EFAC00014F106 /* HXDatePhotoEditViewController.m in Sources */,

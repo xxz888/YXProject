@@ -675,7 +675,7 @@ _Pragma("clang diagnostic pop") \
                  
              }];
             [QMUITips hideAllTips];
-            [QMUITips showLoadingInView:self.view];
+//            [QMUITips showLoadingInView:self.view];
              dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                  NSDictionary * userInfo = userManager.loadUserAllInfo;
                        [YX_MANAGER requestGetFind_user_id:user_id_BOOL ? weakself.userId : kGetString(userInfo[@"id"]) success:^(id object) {
@@ -1057,10 +1057,7 @@ _Pragma("clang diagnostic pop") \
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (self.yxTableView.contentOffset.y > HeaderImageViewHeight-40) { self.controllerHeaderView.hidden = NO;
-    }else{if (self.yxTableView.contentOffset.y <= 0) { self.controllerHeaderView.hidden = YES;}}
+    }else{if (self.yxTableView.contentOffset.y <= 0) { self.controllerHeaderView.hidden = YES;}}}
 
-
-
-}
 @end
 

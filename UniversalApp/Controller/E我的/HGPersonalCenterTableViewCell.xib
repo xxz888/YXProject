@@ -99,10 +99,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="76.5" height="17"/>
                                         <subviews>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4j-8X-vog">
-                                                <rect key="frame" x="0.0" y="0.0" width="17" height="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="17" id="V4E-9J-kUw"/>
-                                                    <constraint firstAttribute="width" constant="17" id="ZQJ-Hg-Kgy"/>
+                                                    <constraint firstAttribute="height" constant="22" id="V4E-9J-kUw"/>
+                                                    <constraint firstAttribute="width" constant="22" id="ZQJ-Hg-Kgy"/>
                                                 </constraints>
                                                 <state key="normal" backgroundImage="faxianfenxiang"/>
                                                 <connections>
@@ -120,10 +120,10 @@
                                         <rect key="frame" x="76.5" y="0.0" width="77" height="17"/>
                                         <subviews>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YIR-tT-UQc">
-                                                <rect key="frame" x="28.5" y="0.0" width="20" height="20"/>
+                                                <rect key="frame" x="27.5" y="0.0" width="22" height="22"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="20" id="DWI-ZK-CCv"/>
-                                                    <constraint firstAttribute="height" constant="20" id="OWd-2R-vpF"/>
+                                                    <constraint firstAttribute="width" constant="22" id="DWI-ZK-CCv"/>
+                                                    <constraint firstAttribute="height" constant="22" id="OWd-2R-vpF"/>
                                                 </constraints>
                                                 <state key="normal" backgroundImage="讨论"/>
                                                 <connections>
@@ -131,7 +131,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Vu-Gk-bP3">
-                                                <rect key="frame" x="51.5" y="-3" width="20" height="10"/>
+                                                <rect key="frame" x="52.5" y="-3" width="20" height="10"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="50Y-dP-fRt"/>
                                                     <constraint firstAttribute="height" constant="10" id="HEo-dZ-5Rc"/>
@@ -153,10 +153,10 @@
                                         <rect key="frame" x="153.5" y="0.0" width="76.5" height="17"/>
                                         <subviews>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qP-iw-cTX">
-                                                <rect key="frame" x="41.5" y="0.0" width="20" height="20"/>
+                                                <rect key="frame" x="36.5" y="0.0" width="25" height="21"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="20" id="DDS-Zt-gvN"/>
-                                                    <constraint firstAttribute="height" constant="20" id="wa9-st-Rsu"/>
+                                                    <constraint firstAttribute="width" constant="25" id="DDS-Zt-gvN"/>
+                                                    <constraint firstAttribute="height" constant="21" id="wa9-st-Rsu"/>
                                                 </constraints>
                                                 <state key="normal" backgroundImage="UnZan"/>
                                                 <connections>
@@ -246,8 +246,8 @@
     </objects>
     <resources>
         <image name="PlayButtonOverlayLargeTap.png" width="66" height="66"/>
-        <image name="UnZan" width="66" height="66"/>
-        <image name="faxianfenxiang" width="60" height="57"/>
+        <image name="UnZan" width="78" height="63"/>
+        <image name="faxianfenxiang" width="66" height="66"/>
         <image name="讨论" width="66" height="66"/>
     </resources>
 </document>

@@ -8,13 +8,13 @@
 
 #import "RootViewController.h"
 #import "HGSegmentedPageViewController.h"
+#import "LZMenuButton.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXSecondViewController : RootViewController
 @property (nonatomic, strong) HGSegmentedPageViewController *segmentedPageViewController;
-
-@property (nonatomic, strong) UIButton * findjiahao;
+@property (nonatomic,strong)LZMenuButton *menuBtn;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -165,7 +165,7 @@
         </view>
     </objects>
     <resources>
-        <image name="account_highlight" width="69" height="72"/>
+        <image name="account_highlight" width="72" height="72"/>
         <image name="mineHeaderMore" width="66" height="66"/>
         <image name="mineliaotian" width="66" height="60"/>
         <image name="黑色返回" width="44" height="44"/>

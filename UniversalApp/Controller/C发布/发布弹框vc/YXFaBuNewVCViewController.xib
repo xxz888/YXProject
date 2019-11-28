@@ -114,7 +114,7 @@
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                    <integer key="value" value="23"/>
+                                    <integer key="value" value="18"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                             </userDefinedRuntimeAttributes>
@@ -154,7 +154,7 @@
         </view>
     </objects>
     <resources>
-        <image name="fabunewclose" width="180" height="180"/>
+        <image name="fabunewclose" width="144" height="144"/>
         <image name="fabunewshaitu" width="78" height="66"/>
         <image name="fabunewwenzhang" width="78" height="66"/>
     </resources>

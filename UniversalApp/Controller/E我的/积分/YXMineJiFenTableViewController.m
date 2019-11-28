@@ -168,7 +168,7 @@
         weakself.finish3.userInteractionEnabled = NO;
         ViewBorderRadius(weakself.finish3, 4, 0, KClearColor);
 
-        if ([self judgeStr:NSIntegerToNSString(weakself.day_number) with:@"7"]) {
+        if ([self judgeStr:NSIntegerToNSString(weakself.day_number) with:@"7"] && weakself.day_number != 0) {
             [weakself handleShowContentView];
         }
         

@@ -289,7 +289,7 @@ static CGFloat sectionHeaderHeight = 260;
         [_player playerScrollIsSupportSmallWindowPlay:NO];
         if ([self.parentViewController.parentViewController isKindOfClass:[YXSecondViewController class]]) {
             YXSecondViewController * vc = (YXSecondViewController *)self.parentViewController.parentViewController;
-            if (self.yxTableView.contentOffset.y > _oldY) {vc.findjiahao.hidden = YES;}else{vc.findjiahao.hidden = NO;}
+            if (self.yxTableView.contentOffset.y > _oldY) {vc.menuBtn.hidden = YES;}else{vc.menuBtn.hidden = NO;}
         }
         
         if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
