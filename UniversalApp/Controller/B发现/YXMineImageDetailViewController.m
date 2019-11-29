@@ -759,25 +759,7 @@
             [alertController showWithAnimated:YES];
         }]];
     }
-   
 
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     moreOperationController.items = @[
@@ -790,17 +772,14 @@
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareMoment") title:@"分享到朋友圈" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               [moreOperationController hideToBottom];
                                               [weakself saveImage:UMSocialPlatformType_WechatTimeLine];
-
                                           }],
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_QQ") title:@"分享给QQ好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                                               [weakself saveImage:UMSocialPlatformType_QQ];
-
                                           }],
-//                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-//                                              [moreOperationController hideToBottom];
-//                                              [weakself saveImage:UMSocialPlatformType_Qzone];
-//
-//                                          }],
+                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                                              [moreOperationController hideToBottom];
+                                              [weakself saveImage:UMSocialPlatformType_Qzone];
+                                          }],
                                           ],
                                       itemsArray1
                                       // 第二行
@@ -825,11 +804,13 @@
     UIGraphicsEndImageContext();
     //先上传到七牛云图片  再提交服务器
     [QMUITips showLoadingInView:self.view];
-
     [QiniuLoad uploadImageToQNFilePath:@[viewImage] success:^(NSString *reslut) {
         [QMUITips hideAllTips];
 
-        [[ShareManager sharedShareManager] shareAllToPlatformType:umType obj:@{@"img":reslut}];
+           NSDictionary * userInfo = userManager.loadUserAllInfo;
+           NSString * title = [NSString stringWithFormat:@"%@发布的内容@蓝皮书app",userInfo[@"username"]];
+           NSString * desc = @"这篇内容真的很赞，快点开看!";
+          [[ShareManager sharedShareManager] shareAllToPlatformType:umType obj:@{@"img":reslut,@"desc":desc,@"title":title,@"type":@"3"}];
     } failure:^(NSString *error) {
         NSLog(@"%@",error);
     }];

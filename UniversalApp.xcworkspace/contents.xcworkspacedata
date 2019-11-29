@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:BaseAlertController.h">
+   </FileRef>
+   <FileRef
+      location = "group:BaseAlertController.m">
+   </FileRef>
+   <FileRef
       location = "group:UniversalApp.xcodeproj">
    </FileRef>
    <FileRef

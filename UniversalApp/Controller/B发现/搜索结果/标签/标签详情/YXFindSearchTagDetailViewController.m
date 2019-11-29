@@ -199,11 +199,11 @@
                                               [weakself saveImage:UMSocialPlatformType_QQ];
 
                                           }],
-//                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-//                                              [moreOperationController hideToBottom];
-//                                              [weakself saveImage:UMSocialPlatformType_Qzone];
-//
-//                                          }],
+                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                                              [moreOperationController hideToBottom];
+                                              [weakself saveImage:UMSocialPlatformType_Qzone];
+
+                                          }],
                                           ],
                                       ];
     [moreOperationController showFromBottom];

@@ -48,7 +48,7 @@
     }
 }
 -(void)setUI{
-    self.view.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
+    self.view.backgroundColor = KWhiteColor;
     self.textView = [[QMUITextView alloc] init];
     self.textView.frame = CGRectMake(0, 0, KScreenWidth, self.detailAdressView.frame.size.height);
     self.textView.delegate = self;
@@ -68,6 +68,9 @@
 }
 
 - (IBAction)selectAdressAction:(id)sender {
+    [self.adPhone resignFirstResponder];
+    [self.adName resignFirstResponder];
+    [self.textView resignFirstResponder];
     kWeakSelf(self);
     NSArray *dataSource = nil; // dataSource 为空时，就默认使用框架内部提供的数据源（即 BRCity.plist）
     [BRAddressPickerView showAddressPickerWithShowType:BRAddressPickerModeCity dataSource:dataSource defaultSelected:@[] isAutoSelect:YES themeColor:nil resultBlock:^(BRProvinceModel *province, BRCityModel *city, BRAreaModel *area) {

@@ -608,6 +608,7 @@
 		BBED1239238FB609009561A3 /* LZMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BBED1235238FB608009561A3 /* LZMenuButton.m */; };
 		BBED123A238FB609009561A3 /* LZMenuButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBED1236238FB608009561A3 /* LZMenuButtonCell.m */; };
 		BBED123B238FB609009561A3 /* LZMenuButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBED1237238FB608009561A3 /* LZMenuButtonCell.xib */; };
+		BBED1245239112F5009561A3 /* BaseAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBED1244239112F5009561A3 /* BaseAlertController.m */; };
 		BBF26E1B22408B0E0000AEF5 /* JQFMDB.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E0D22408B0E0000AEF5 /* JQFMDB.m */; };
 		BBF26E1C22408B0E0000AEF5 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E1122408B0E0000AEF5 /* FMDatabaseQueue.m */; };
 		BBF26E1D22408B0E0000AEF5 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF26E1422408B0E0000AEF5 /* FMDatabaseAdditions.m */; };
@@ -1693,6 +1694,8 @@
 		BBED1236238FB608009561A3 /* LZMenuButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZMenuButtonCell.m; sourceTree = "<group>"; };
 		BBED1237238FB608009561A3 /* LZMenuButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LZMenuButtonCell.xib; sourceTree = "<group>"; };
 		BBED1238238FB608009561A3 /* LZMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZMenuButton.h; sourceTree = "<group>"; };
+		BBED1243239112F5009561A3 /* BaseAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseAlertController.h; sourceTree = "<group>"; };
+		BBED1244239112F5009561A3 /* BaseAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseAlertController.m; sourceTree = "<group>"; };
 		BBF26E0D22408B0E0000AEF5 /* JQFMDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JQFMDB.m; sourceTree = "<group>"; };
 		BBF26E0E22408B0E0000AEF5 /* JQFMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JQFMDB.h; sourceTree = "<group>"; };
 		BBF26E1022408B0E0000AEF5 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
@@ -1892,6 +1895,8 @@
 		293D45AD1ECD6926007C64A9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				BBED1243239112F5009561A3 /* BaseAlertController.h */,
+				BBED1244239112F5009561A3 /* BaseAlertController.m */,
 				BBC3FB4222C5C59B00BB2564 /* BJNoDataView */,
 				BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */,
 				BBA812D721DDDE47001B5EA1 /* homeSliderView */,
@@ -5539,6 +5544,7 @@
 				BB3BDDE0234F385C0027490C /* YXZhiNanYaoQingJieSuoTableViewController.m in Sources */,
 				BBB59B01228CF8CB0029D3D0 /* SDWeiXinPhotoContainerView.m in Sources */,
 				BB9832742201700C0048D103 /* FCXRefreshBaseView.m in Sources */,
+				BBED1245239112F5009561A3 /* BaseAlertController.m in Sources */,
 				BBB59AE5228CF8CB0029D3D0 /* YXHomeXueJiaFootViewController.m in Sources */,
 				BB9832852202CD9A0048D103 /* XLDouYinLoading.m in Sources */,
 				BBD2C91721E0F67800350DCD /* LLImagePickerView.m in Sources */,

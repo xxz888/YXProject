@@ -62,21 +62,15 @@ static CGFloat sectionHeaderHeight = 260;
     self.dataArray = [[NSMutableArray alloc]init];
     self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-kStatusBarHeight-kTabBarHeight-40) style:1];
     [self.view addSubview:self.yxTableView];
-
-        self.yxTableView.estimatedSectionHeaderHeight = 0;
-        self.yxTableView.estimatedSectionFooterHeight = 0;
-    self.yxTableView.tableFooterView.frame = CGRectMake(0,0,KScreenWidth,0.001);
+    self.yxTableView.backgroundColor = KWhiteColor;
     self.yxTableView.delegate = self;
     self.yxTableView.dataSource= self;
     self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.yxTableView.showsVerticalScrollIndicator = NO;
-    self.yxTableView.estimatedRowHeight = 0;
-    self.yxTableView.estimatedSectionHeaderHeight = 0;
-    self.yxTableView.estimatedSectionFooterHeight = 0;
+    self.yxTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0.001)];
+    self.yxTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0.001)];
+
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXFirstFindImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXFirstFindImageTableViewCell"];
-    
-    
-    
     self.nodataImg = [[UILabel alloc]init];
     self.nodataImg.frame = CGRectMake((KScreenWidth-200)/2,80 , 200, 100);
     self.nodataImg.text = @"暂时还没有晒图和文章";
@@ -478,8 +472,6 @@ static CGFloat sectionHeaderHeight = 260;
                                       // 第一行
                                       @[
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareFriend") title:@"分享给微信好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-                                              itemView.width = 56;
-                                              itemView.height = 56;
                                               [moreOperationController hideToBottom];
                                               [weakself saveImage:UMSocialPlatformType_WechatSession];
                                           }],
@@ -492,11 +484,11 @@ static CGFloat sectionHeaderHeight = 260;
                                               [weakself saveImage:UMSocialPlatformType_QQ];
 
                                           }],
-//                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-//                                              [moreOperationController hideToBottom];
-//                                              [weakself saveImage:UMSocialPlatformType_Qzone];
-//
-//                                          }],
+                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                                              [moreOperationController hideToBottom];
+                                              [weakself saveImage:UMSocialPlatformType_Qzone];
+
+                                          }],
                                           ],
                                       itemsArray1
                                       // 第二行

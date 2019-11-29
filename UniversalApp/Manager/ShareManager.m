@@ -1041,10 +1041,10 @@ SINGLETON_FOR_CLASS(ShareManager);
                                               [moreOperationController hideToBottom];
                                               [[ShareManager sharedShareManager] shareAllToPlatformType:UMSocialPlatformType_QQ obj:shareDic];
                                           }],
-//                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-//                                              [moreOperationController hideToBottom];
-//                                              [[ShareManager sharedShareManager] shareAllToPlatformType:UMSocialPlatformType_Qzone obj:shareDic];
-//                                          }],
+                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                                              [moreOperationController hideToBottom];
+                                              [[ShareManager sharedShareManager] shareAllToPlatformType:UMSocialPlatformType_Qzone obj:shareDic];
+                                          }],
                                           ],
                                       ];
     [moreOperationController showFromBottom];

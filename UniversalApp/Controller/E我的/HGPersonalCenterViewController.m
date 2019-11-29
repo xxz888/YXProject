@@ -36,9 +36,11 @@
 #import "YXZhiNanDetailViewController.h"
 #import "YXZhiNanViewController.h"
 #import "HGPersonal1TableViewCell.h"
+#import "BaseAlertController.h"
 
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
 #import "YXFirstFindImageTableViewCell.h"
+#import "LZMenuButton.h"
 
 #define  adjustsScrollViewInsets_NO(scrollView,vc)\
 do { \
@@ -52,7 +54,7 @@ vc.automaticallyAdjustsScrollViewInsets = NO;\
 _Pragma("clang diagnostic pop") \
 } while (0)
 
-@interface HGPersonalCenterViewController () <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate,SDPhotoBrowserDelegate>{
+@interface HGPersonalCenterViewController () <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate,SDPhotoBrowserDelegate,lzMenuDelegate>{
     QMUIModalPresentationViewController * _modalViewController;
     NSArray * titleArray;
     CGFloat HeaderImageViewHeight;
@@ -75,6 +77,7 @@ _Pragma("clang diagnostic pop") \
 @property (nonatomic, strong) NSMutableArray *picPathStringsArray;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic) NSInteger  downSelectIndex;
+@property (nonatomic,strong)LZMenuButton *menuBtn;
 @end
 
 @implementation HGPersonalCenterViewController
@@ -146,6 +149,7 @@ _Pragma("clang diagnostic pop") \
             [weakself.yxTableView reloadData];
             }];
         }
+        [weakself setViewData];
         weakself.dongtaiView.hidden =  weakself.dataArray.count != 0;
     }];
 }
@@ -163,6 +167,7 @@ _Pragma("clang diagnostic pop") \
          }else{
              [UIView performWithoutAnimation:^{ [weakself.yxTableView reloadData];}];}
                 weakself.nodataImg.hidden = weakself.dataArray.count != 0;
+        [weakself setViewData];
 
     }];
 }
@@ -186,7 +191,7 @@ _Pragma("clang diagnostic pop") \
           YXMineMyCaoGaoViewController * VC = [[YXMineMyCaoGaoViewController alloc]init];
           [weakself.navigationController pushViewController:VC animated:YES];
       }];
-      UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+      BaseAlertController * alertController = [BaseAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
       [alertController addAction:action2];
       
     if (!self.whereCome) {
@@ -202,8 +207,11 @@ _Pragma("clang diagnostic pop") \
           alertController.popoverPresentationController.sourceView = self.view;
           alertController.popoverPresentationController.sourceRect = cellRectInSelfView;
       }
-      [self presentViewController:alertController animated:YES completion:NULL];
+    [self presentViewController:alertController animated:YES completion:^{
+//        [alertController alertTapDismiss];
+    }];
 }
+
 - (IBAction)backVcAction:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -800,11 +808,11 @@ _Pragma("clang diagnostic pop") \
                                               [weakself saveImage:UMSocialPlatformType_QQ];
 
                                           }],
-//                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-//                                              [moreOperationController hideToBottom];
-//                                              [weakself saveImage:UMSocialPlatformType_Qzone];
-//
-//                                          }],
+                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                                              [moreOperationController hideToBottom];
+                                              [weakself saveImage:UMSocialPlatformType_Qzone];
+
+                                          }],
                                           ],
                                       ];
     [moreOperationController showFromBottom];
@@ -1014,11 +1022,11 @@ _Pragma("clang diagnostic pop") \
                                               [weakself saveImage:UMSocialPlatformType_QQ];
 
                                           }],
-//                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-//                                              [moreOperationController hideToBottom];
-//                                              [weakself saveImage:UMSocialPlatformType_Qzone];
-//
-//                                          }],
+                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareQzone") title:@"分享到QQ空间" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                                              [moreOperationController hideToBottom];
+                                              [weakself saveImage:UMSocialPlatformType_Qzone];
+
+                                          }],
                                           ],
                                       itemsArray1
                                       // 第二行
@@ -1045,15 +1053,34 @@ _Pragma("clang diagnostic pop") \
     return _dongtaiView;
 }
 -(void)clickAction:(id)click{
-    YXFaBuNewVCViewController * contentViewController = [[YXFaBuNewVCViewController alloc] init];
-    QMUIModalPresentationViewController *modalViewController = [[QMUIModalPresentationViewController alloc] init];
-    modalViewController.contentViewMargins = UIEdgeInsetsMake(KScreenHeight-175-kTabBarHeight-10, KScreenWidth-146, kTabBarHeight+10, 0);
-    modalViewController.contentViewController = contentViewController;
-    [modalViewController showWithAnimated:YES completion:nil];
+//    [self addButton];
+    self.navigationController.tabBarController.selectedIndex = 1;
+}
+- (void)addButton{
     
-    contentViewController.block = ^{
-        [modalViewController hideWithAnimated:YES completion:nil];
-    };
+    CGRect floatFrame = CGRectMake(KScreenWidth-70, KScreenHeight-kTabBarHeight-80, 48, 48);
+    self.menuBtn = [[LZMenuButton alloc]initWithFrame:floatFrame normalImage:[UIImage imageNamed:@"findjiahao"] andPressedImage:[UIImage imageNamed:@"fabunewclose"] withScrollview:nil effectImage:[UIImage imageNamed:@""] menuWidth:45];
+    self.menuBtn.imageArray = @[@"fabunewshaitu",@"fabunewwenzhang"];
+    self.menuBtn.labelArray = @[@"文章",@"晒图"];
+    self.menuBtn.hideWhileScrolling = NO;
+    self.menuBtn.delegate = self;
+    [self.view addSubview:self.menuBtn];
+    
+}
+- (void)didSelectMenuOptionAtIndex:(NSInteger)row{
+    if (row==1) {
+        YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
+        imageVC.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:imageVC animated:YES completion:nil];
+    }else{
+        YXWenZhangEditorViewController * pinpaiVC = [[YXWenZhangEditorViewController alloc]init];
+        pinpaiVC.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:pinpaiVC animated:YES completion:nil];
+    }
+
+    
+    
+   
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (self.yxTableView.contentOffset.y > HeaderImageViewHeight-40) { self.controllerHeaderView.hidden = NO;
