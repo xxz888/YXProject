@@ -33,9 +33,17 @@ SINGLETON_FOR_CLASS(UserManager);
         }else{
             
             YXBindPhoneViewController * VC = [[YXBindPhoneViewController alloc]init];
-            VC.bindBlock = ^{
+            VC.bindBlock = ^(NSDictionary * dic) {
+                UserDefaultsSET(dic, KUserInfo);
+                 self.isLogined = YES;
+                 YX_MANAGER.isNeedRefrshMineVc = YES;
+                 KPostNotification(KNotificationLoginStateChange, @YES);
+                
                 [vcself dismissViewControllerAnimated:YES completion:nil];
+                [QMUITips showSucceed:@"登录成功"];
             };
+            
+
             VC.whereCome = NO;
             VC.unique_id = des;
             [vcself.navigationController pushViewController:VC animated:YES];

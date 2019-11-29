@@ -57,7 +57,7 @@ SINGLETON_FOR_CLASS(ShareManager);
             case 3:{
                      NSString * resultString = [NSString stringWithFormat:@"%@",obj[@"img"]];
                      resultString = [resultString stringByReplacingOccurrencesOfString:@" " withString:@""];
-                     webpageUrl = [NSString stringWithFormat:@"http://www.%@/HomeZhiNanDetail.html?img=%@",httpurl,resultString];
+                     webpageUrl = [NSString stringWithFormat:@"http://www.%@/showImage.html?img=%@",httpurl,resultString];
                      shareObject.thumbImage = obj[@"img"];
                  }
             break;

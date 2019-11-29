@@ -186,21 +186,24 @@
                 
                 NSString * par = [NSString stringWithFormat:@"0/%@",weakself.dataArray[bigIndex][@"id"]];
                 [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
-                    if ([object[smallIndex] count] > 0) {
-                        NSDictionary * dic = object[smallIndex][0];
-                                       if ([dic[@"ratio"] integerValue] == 99999) {
-                                             NSDictionary * resultDic = [ShareManager stringToDic:dic[@"detail"]];
-                                             YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
-                                             CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:resultDic];
-                                             VC.headerViewHeight = h;
-                                             VC.startDic = [NSMutableDictionary dictionaryWithDictionary:resultDic];
-                                             [weakself.navigationController pushViewController:VC animated:YES];
-                                       }else{
-                                           [weakself.navigationController pushViewController:vc animated:YES];
-                                       }
-                    }else{
-                        [QMUITips showInfo:@"暂无详情信息"];
+                    if ([object count] > smallIndex) {
+                        if ([object[smallIndex] count] > 0) {
+                                               NSDictionary * dic = object[smallIndex][0];
+                                                              if ([dic[@"ratio"] integerValue] == 99999) {
+                                                                    NSDictionary * resultDic = [ShareManager stringToDic:dic[@"detail"]];
+                                                                    YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
+                                                                    CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:resultDic];
+                                                                    VC.headerViewHeight = h;
+                                                                    VC.startDic = [NSMutableDictionary dictionaryWithDictionary:resultDic];
+                                                                    [weakself.navigationController pushViewController:VC animated:YES];
+                                                              }else{
+                                                                  [weakself.navigationController pushViewController:vc animated:YES];
+                                                              }
+                                           }else{
+                                               [QMUITips showInfo:@"暂无详情信息"];
+                                           }
                     }
+                   
                  
                 }];
         }

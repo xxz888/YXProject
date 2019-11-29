@@ -9,7 +9,7 @@
 #import "RootViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
-typedef void(^bingFinishBlock)();
+typedef void(^bingFinishBlock)(NSDictionary *);
 @interface YXBindPhoneViewController : RootViewController
 @property (weak, nonatomic) IBOutlet UITextField *phoneTf;
 @property (weak, nonatomic) IBOutlet UITextField *codeTf;

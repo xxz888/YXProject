@@ -18,10 +18,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LrN-jf-BWl">
-                    <rect key="frame" x="16" y="20" width="22" height="22"/>
+                    <rect key="frame" x="16" y="20" width="32" height="32"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="22" id="lOG-XM-p6h"/>
-                        <constraint firstAttribute="height" constant="22" id="sgq-Cv-dks"/>
+                        <constraint firstAttribute="width" constant="32" id="lOG-XM-p6h"/>
+                        <constraint firstAttribute="height" constant="32" id="sgq-Cv-dks"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <state key="normal" image="huisebeijingfanhui"/>
@@ -30,10 +30,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ffa-HU-aKK">
-                    <rect key="frame" x="339" y="21" width="20" height="20"/>
+                    <rect key="frame" x="327" y="20" width="32" height="32"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="20" id="HoY-zJ-fsk"/>
-                        <constraint firstAttribute="height" constant="20" id="u1l-kB-uxg"/>
+                        <constraint firstAttribute="width" constant="32" id="HoY-zJ-fsk"/>
+                        <constraint firstAttribute="height" constant="32" id="u1l-kB-uxg"/>
                     </constraints>
                     <state key="normal" backgroundImage="huisebeijinggengduo"/>
                     <connections>
@@ -141,12 +141,12 @@
                 <outlet property="shoucangWidth" destination="hiq-x5-dL8" id="IUm-mc-Q1e"/>
                 <outlet property="titleImageView" destination="DOB-FK-5DY" id="9rE-7w-zss"/>
             </connections>
-            <point key="canvasLocation" x="-414" y="-500"/>
+            <point key="canvasLocation" x="-774" y="-497"/>
         </view>
     </objects>
     <resources>
-        <image name="huisebeijingfanhui" width="78" height="78"/>
-        <image name="huisebeijinggengduo" width="78" height="78"/>
+        <image name="huisebeijingfanhui" width="96" height="96"/>
+        <image name="huisebeijinggengduo" width="96" height="96"/>
         <image name="收藏1" width="64" height="64"/>
     </resources>
 </document>

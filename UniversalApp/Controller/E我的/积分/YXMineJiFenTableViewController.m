@@ -81,10 +81,13 @@
         if (i < day_number) {
             [(UILabel *)lblArray1[i] setHidden:YES];
             [(UIImageView *)lblArray2[i] setHidden:NO];
-
+            UILabel * lab = (UILabel *)lblArray1[i];
+            lab.textColor = kRGBA(68, 68, 68, 1);
         }else{
              [(UILabel *)lblArray1[i] setHidden:NO];
              [(UIImageView *)lblArray2[i] setHidden:YES];
+              UILabel * lab = (UILabel *)lblArray1[i];
+            lab.textColor = kRGBA(187, 187, 187, 1);
         }
     }
     
@@ -168,8 +171,10 @@
         weakself.finish3.userInteractionEnabled = NO;
         ViewBorderRadius(weakself.finish3, 4, 0, KClearColor);
 
-        if ([self judgeStr:NSIntegerToNSString(weakself.day_number) with:@"7"] && weakself.day_number != 0) {
-            [weakself handleShowContentView];
+        if (weakself.day_number != 0) {
+            if (weakself.day_number==7 || weakself.day_number==14|| weakself.day_number==21|| weakself.day_number==28) {
+                [weakself handleShowContentView];
+            }
         }
         
         [weakself requestData];
@@ -195,6 +200,7 @@
         return NO;
     }
     return YES;
+    
 }
 
 - (IBAction)jifenHistoryAction:(id)sender {

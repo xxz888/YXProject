@@ -60,8 +60,12 @@ static CGFloat sectionHeaderHeight = 260;
 #pragma mark ========== 创建tableview ==========
 -(void)tableviewCon{
     self.dataArray = [[NSMutableArray alloc]init];
-    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-kStatusBarHeight-kTabBarHeight-40)];
+    self.yxTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-kStatusBarHeight-kTabBarHeight-40) style:1];
     [self.view addSubview:self.yxTableView];
+
+        self.yxTableView.estimatedSectionHeaderHeight = 0;
+        self.yxTableView.estimatedSectionFooterHeight = 0;
+    self.yxTableView.tableFooterView.frame = CGRectMake(0,0,KScreenWidth,0.001);
     self.yxTableView.delegate = self;
     self.yxTableView.dataSource= self;
     self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -291,12 +295,6 @@ static CGFloat sectionHeaderHeight = 260;
             YXSecondViewController * vc = (YXSecondViewController *)self.parentViewController.parentViewController;
             if (self.yxTableView.contentOffset.y > _oldY) {vc.menuBtn.hidden = YES;}else{vc.menuBtn.hidden = NO;}
         }
-        
-        if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
-        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
-        } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
-        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
-        }
     }
 }
 
@@ -419,7 +417,7 @@ static CGFloat sectionHeaderHeight = 260;
         
         }]];
     }else{
-        [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_shoucang") title:[startDic[@"is_collect"] integerValue] == 0 ? @"收藏": @"已收藏" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+        [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_collect") title:[startDic[@"is_collect"] integerValue] == 0 ? @"收藏": @"已收藏" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                          [YXPLUS_MANAGER requestUserShouCangPOST:@{@"obj":@"2",@"target_id":kGetString(startDic[@"id"]),@"photo":@"",@"tag":@""} success:^(id object) {
                              [QMUITips hideAllTips];
                              [weakself requestTableData];
@@ -480,6 +478,8 @@ static CGFloat sectionHeaderHeight = 260;
                                       // 第一行
                                       @[
                                           [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareFriend") title:@"分享给微信好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                                              itemView.width = 56;
+                                              itemView.height = 56;
                                               [moreOperationController hideToBottom];
                                               [weakself saveImage:UMSocialPlatformType_WechatSession];
                                           }],

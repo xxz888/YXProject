@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YXFindSearchResultTagViewController : HGBaseViewController
+@interface YXFindSearchResultTagViewController : RootViewController
 @property (nonatomic,strong) NSString *key;
 @property (nonatomic, assign) NSUInteger selectedIndex;
 @property (nonatomic, assign) BOOL isEnlarge;

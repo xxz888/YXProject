@@ -127,7 +127,7 @@
                                @"sms_code":self.codeTf.text
                                };
         [YX_MANAGER requestPostBinding_party:dic success:^(id object) {
-            weakself.bindBlock();
+               weakself.bindBlock([NSDictionary dictionaryWithDictionary:object]);
         }];
     }
 
