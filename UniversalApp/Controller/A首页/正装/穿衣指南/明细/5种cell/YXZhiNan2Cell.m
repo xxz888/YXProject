@@ -57,7 +57,7 @@
     
     //label内容赋值
     [self.contentLbl setText:dic[@"detail"]
-                 attributes:@{NSForegroundColorAttributeName : YXRGBAColor(51, 51, 51),
+                 attributes:@{NSForegroundColorAttributeName :COLOR_000000,
                               NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Light" size:16],
                               NSParagraphStyleAttributeName:paragraphStyle
                               }

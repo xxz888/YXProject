@@ -30,7 +30,7 @@
     //标签高度
     CGFloat tagViewHeight = [YXFirstFindImageTableViewCell cellTagViewHeight:dic];
     //计算detail高度
-    return 116 + detailHeight + midViewHeight + tagViewHeight;
+    return 146 + detailHeight + midViewHeight + tagViewHeight;
 }
 
 
@@ -174,7 +174,7 @@
                 //处理view隐藏
                 self.playImV.hidden = YES;
             }
-        self.detailLbl.textColor = kRGBA(68, 68, 68, 1);
+        self.detailLbl.textColor = COLOR_333333;
         //下边这句话不能删除，改变样式的
         [ShareManager setAllContentAttributed:cellSpace inLabel:self.detailLbl font:SYSTEMFONT(16)];
         if ([dic[@"detail"] isEqualToString:@""]) {self.detailHeight.constant = 0;}

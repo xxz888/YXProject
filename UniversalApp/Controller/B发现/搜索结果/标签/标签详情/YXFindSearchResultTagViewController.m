@@ -19,7 +19,6 @@
 #import "HGPageViewController.h"
 #import "YXHomeEditPersonTableViewController.h"
 #import "YXMineMyCollectionViewController.h"
-#import "YXMinePingLunViewController.h"
 #import "YXMineSettingTableViewController.h"
 #import "YXMineMyCaoGaoViewController.h"
 #import "YXMineMyDianZanViewController.h"

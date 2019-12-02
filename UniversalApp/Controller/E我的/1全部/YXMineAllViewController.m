@@ -8,7 +8,6 @@
 
 #import "YXMineAllViewController.h"
 #import "YXXinDongTaiView.h"
-#import "YXFaBuNewVCViewController.h"
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
 
 @interface YXMineAllViewController (){
@@ -54,17 +53,7 @@
     }
     return _dongtaiView;
 }
--(void)clickAction:(id)click{
-    YXFaBuNewVCViewController * contentViewController = [[YXFaBuNewVCViewController alloc] init];
-    QMUIModalPresentationViewController *modalViewController = [[QMUIModalPresentationViewController alloc] init];
-    modalViewController.contentViewMargins = UIEdgeInsetsMake(KScreenHeight-175-kTabBarHeight-10, KScreenWidth-146, kTabBarHeight+10, 0);
-    modalViewController.contentViewController = contentViewController;
-    [modalViewController showWithAnimated:YES completion:nil];
-    
-    contentViewController.block = ^{
-        [modalViewController hideWithAnimated:YES completion:nil];
-    };
-}
+
 -(void)requestTableData{
     [QMUITips hideAllTips];
     [QMUITips showLoadingInView:kAppWindow];

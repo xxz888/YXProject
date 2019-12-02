@@ -82,7 +82,7 @@
             [(UILabel *)lblArray1[i] setHidden:YES];
             [(UIImageView *)lblArray2[i] setHidden:NO];
             UILabel * lab = (UILabel *)lblArray1[i];
-            lab.textColor = kRGBA(68, 68, 68, 1);
+            lab.textColor = COLOR_333333;
         }else{
              [(UILabel *)lblArray1[i] setHidden:NO];
              [(UIImageView *)lblArray2[i] setHidden:YES];

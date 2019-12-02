@@ -81,7 +81,7 @@
         cell.titleLbl.textColor = KWhiteColor;
     }else{
         cell.titleLbl.backgroundColor =  kRGBA(248, 248, 248, 1);
-        cell.titleLbl.textColor = kRGBA(68, 68, 68, 1);
+        cell.titleLbl.textColor = COLOR_333333;
 
     }
 //    cell.titleLbl.textColor = [dic[@"is_lock"] integerValue] == 1 ? KWhiteColor : kRGBA(68, 68, 68, 1);

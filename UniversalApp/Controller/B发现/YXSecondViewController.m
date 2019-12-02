@@ -11,7 +11,6 @@
 #import "YXFindSearchResultViewController.h"
 #import "YXFindViewController.h"
 #import "YXFindHeaderView.h"
-#import "YXFaBuNewVCViewController.h"
 #import "PYSearchViewController.h"
 #import "YXPublishImageViewController.h"
 #import "YXWenZhangEditorViewController.h"

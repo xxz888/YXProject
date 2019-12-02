@@ -9,9 +9,6 @@
 #import "YXHomeXueJiaToolsViewController.h"
 #import <Masonry/Masonry.h>
 #import <ZXSegmentController/ZXSegmentController.h>
-#import "YXHomeChiCunViewController.h"
-#import "YXXingZhuangViewController.h"
-#import "YXColorViewController.h"
 #import "HGSegmentedPageViewController.h"
 #import "YXHomeXueJiaToolsTableViewCell.h"
 #import "YXZhiNanViewController.h"

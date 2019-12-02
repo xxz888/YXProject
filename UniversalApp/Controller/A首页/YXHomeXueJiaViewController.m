@@ -9,13 +9,12 @@
 
 #import "YXHomeXueJiaViewController.h"
 #import <ZXSegmentController/ZXSegmentController.h>
-#import "YXHomeNewsDetailViewController.h"
 #import "HGSegmentedPageViewController.h"
-#import "YXHomeXueJiaGuBaViewController.h"
 #import "SocketRocketUtility.h"
+#import "YXHomeXueJiaToolsViewController.h"
 #import "JQFMDB.h"
 #import "MessageModel.h"
-@interface YXHomeXueJiaViewController ()<UITableViewDelegate,UITableViewDataSource,ClickGridView,UIGestureRecognizerDelegate>
+@interface YXHomeXueJiaViewController ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 @property (nonatomic) BOOL isCanBack;
 @property (nonatomic, strong) HGSegmentedPageViewController *segmentedPageViewController;
 @property (nonatomic,strong) NSMutableArray * titlesArr;

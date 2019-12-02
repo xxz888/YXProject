@@ -7,12 +7,10 @@
 //
 
 #import "YXMineMyCollectionViewController.h"
-#import "YXMinePingLunViewController.h"
-#import "YXMineMyCollectionTableViewCell.h"
-#import "YXHomeXueJiaPinPaiLastDetailViewController.h"
 #import "YXZhiNanViewController.h"
 #import "YXZhiNanDetailViewController.h"
 #import "BJNoDataView.h"
+#import "YXMineMyCollectionTableViewCell.h"
 
 @interface YXMineMyCollectionViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSString * _sort;
@@ -61,11 +59,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.row];
     NSInteger sort = [dic[@"sort"] integerValue];
-    if (sort == 1) {
-        [self requestCigar:indexPath];
-    }else if (sort == 2) {
-        [self requestCigar_brand_details:kGetString(dic[@"target_id"]) indexPath:indexPath];
-    }else if (sort == 3){
+    if (sort == 3){
         if ([dic[@"detail"] count] > 0) {
             YXZhiNanDetailViewController * vc = [[YXZhiNanDetailViewController alloc]init];
             vc.smallIndex = 0;
@@ -108,39 +102,6 @@
     }
 }
 
--(void)requestCigar:(NSIndexPath *)indexPath{
-    kWeakSelf(self);
-    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-    YXHomeXueJiaPinPaiLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiLastDetailViewController"];
-    NSDictionary * dic = self.dataArray[indexPath.row];
-    VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic[@"detail"]];
-    VC.PeiJianOrPinPai = NO;
-    //请求六宫格图片
-    NSString * tag = VC.startDic[@"cigar_name"];
-    [YX_MANAGER requestGetDetailListPOST:@{@"type":@(0),@"tag":tag,@"page":@(1)} success:^(id object) {
-        NSMutableArray * imageArray = [NSMutableArray array];
-        for (NSDictionary * dic in object) {
-            [imageArray addObject:dic[@"photo1"]];
-        }
-        [VC.startDic setValue:weakself.title forKey:@"cigar_brand"];
-        VC.imageArray = [NSMutableArray arrayWithArray:imageArray];
-        [weakself.navigationController pushViewController:VC animated:YES];
-        
-    }];
-}
-
--(void)requestCigar_brand_details:(NSString *)cigar_brand_id indexPath:(NSIndexPath *)indexPath{
-    kWeakSelf(self);
-    [YX_MANAGER requestCigar_brand_detailsPOST:@{@"cigar_brand_id":@([cigar_brand_id intValue])} success:^(id object) {
-        UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-        YXHomeXueJiaPinPaiDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiDetailViewController"];
-        NSDictionary * dic = weakself.dataArray[indexPath.row];
-        VC.dicData = [NSMutableDictionary dictionaryWithDictionary:object];
-        VC.dicStartData = [NSMutableDictionary dictionaryWithDictionary:dic[@"detail"]];
-        VC.whereCome = NO;
-        [weakself.navigationController pushViewController:VC animated:YES];
-    }];
-}
 -(UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath  API_AVAILABLE(ios(11.0)){
     kWeakSelf(self);
     //删除

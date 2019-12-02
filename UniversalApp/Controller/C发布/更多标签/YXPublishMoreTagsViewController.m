@@ -7,7 +7,6 @@
 //
 
 #import "YXPublishMoreTagsViewController.h"
-#import "YXGridView.h"
 #import "YXPublishNewTagView.h"
 #import "BRStringPickerView.h"
 @interface YXPublishMoreTagsViewController ()<UITableViewDelegate,UITableViewDataSource>{
@@ -18,7 +17,6 @@
 @property(nonatomic,strong)NSString * type;
 
 @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
-@property(nonatomic, strong) QMUIGridView *gridView;
 @property(nonatomic,strong)NSMutableArray * dataArray;
 @property(nonatomic,strong)NSMutableArray * tagIdArray;
 
@@ -138,7 +136,7 @@
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = 0;
     cell.textLabel.text =  [NSString stringWithFormat:@"#%@",self.dataArray[indexPath.row][@"tag"]];
-    cell.textLabel.textColor = kRGBA(68, 68, 68, 1);
+    cell.textLabel.textColor =COLOR_333333;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -13,9 +13,6 @@
 #import "SDTimeLineTableHeaderView.h"
 #import "SDTimeLineCell.h"
 #import "SDTimeLineCellModel.h"
-#import "YXHomeLastDetailView.h"
-#import "YXHomeLastMyTalkView.h"
-#import "XHStarRateView.h"
 #import "ZInputToolbar.h"
 #import "UIView+LSExtension.h"
 #import "BJNoDataView.h"
@@ -34,7 +31,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *clickbtnHeight;
 
 @property (nonatomic,assign) BOOL whereCome;
-@property(nonatomic,strong)YXHomeLastMyTalkView * lastMyTalkView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, assign) BOOL isReplayingComment;

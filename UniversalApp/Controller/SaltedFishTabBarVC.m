@@ -28,7 +28,7 @@
 
     
     UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-    YXHomeXueJiaViewController *    homeVC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaViewController"];
+    YXHomeXueJiaViewController *    homeVC = [[YXHomeXueJiaViewController alloc]init];
 
     RootNavigationController *nav1 = [[RootNavigationController alloc]initWithRootViewController:homeVC];
     YXSecondViewController * findVC = [[YXSecondViewController alloc]init];

@@ -7,14 +7,8 @@
 //
 
 #import "RootViewController.h"
-#import "YXHomeXueJiaTableViewCell.h"
-#import "YXHomeXueJiaHeaderView.h"
-#import "YXHomeXueJiaPinPaiViewController.h"
-#import "YXHomeXueJiaToolsViewController.h"
 @interface YXHomeXueJiaViewController : RootViewController
-@property (weak, nonatomic) IBOutlet UIView *bootomView;
 @property(nonatomic,strong)UITableView * bottomTableView;
-@property(nonatomic,strong)YXHomeXueJiaHeaderView * headerView;
 @property(nonatomic,strong)NSMutableArray * informationArray;
 @property(nonatomic,strong)NSMutableArray * scrollImgArray;
 @property (nonatomic,strong) NSMutableArray * vcArr;

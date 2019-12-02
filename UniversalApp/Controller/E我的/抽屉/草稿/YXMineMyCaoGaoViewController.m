@@ -7,12 +7,11 @@
 //
 
 #import "YXMineMyCaoGaoViewController.h"
-#import "YXHomeXueJiaTableViewCell.h"
 #import "YXPublishImageViewController.h"
 #import "JQFMDB.h"
 #import "YXShaiTuModel.h"
 #import "YXWenZhangEditorViewController.h"
-
+#import "YXHomeXueJiaTableViewCell.h"
 @interface YXMineMyCaoGaoViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
 @property(nonatomic,strong)NSArray * caoGaoArray;

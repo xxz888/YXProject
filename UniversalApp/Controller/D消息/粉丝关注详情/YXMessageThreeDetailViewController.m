@@ -11,7 +11,6 @@
 #import "YXMineImageDetailViewController.h"
 
 #import "XHWebImageAutoSize.h"
-#import "YXHomeXueJiaPinPaiLastDetailViewController.h"
 #import "HGPersonalCenterViewController.h"
 #import "YXFirstFindImageTableViewCell.h"
 @interface YXMessageThreeDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -228,21 +227,7 @@
         [YX_MANAGER requestget_track_by_id:post_id success:^(id object) {
             [weakself jumpAction:post_type dic:object];
         }];
-    }else if ([post_type isEqualToString:@"3"]){
-        [YX_MANAGER requestget_question_by_id:post_id success:^(id object) {
-            [weakself jumpAction:post_type dic:object];
-        }];
-    }else if ([post_type isEqualToString:@"4"]){
-        [YX_MANAGER requestget_cigar_by_id:post_id success:^(id object) {
-            UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"YXHome" bundle:nil];
-            YXHomeXueJiaPinPaiLastDetailViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXHomeXueJiaPinPaiLastDetailViewController"];
-            VC.startDic = [NSMutableDictionary dictionaryWithDictionary:object];
-            [VC.startDic setValue:@"" forKey:@"cigar_brand"];
-            weakself.whereCome = YES;
-                [self.navigationController pushViewController:VC animated:YES];
-        }];
     }
-    
 }
 -(void)fensiAction:(NSDictionary *)dic{
     
