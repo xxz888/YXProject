@@ -153,12 +153,12 @@
                                         <rect key="frame" x="153.5" y="0.0" width="76.5" height="17"/>
                                         <subviews>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qP-iw-cTX">
-                                                <rect key="frame" x="36.5" y="0.0" width="25" height="21"/>
+                                                <rect key="frame" x="39.5" y="0.0" width="22" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="25" id="DDS-Zt-gvN"/>
-                                                    <constraint firstAttribute="height" constant="21" id="wa9-st-Rsu"/>
+                                                    <constraint firstAttribute="width" constant="22" id="DDS-Zt-gvN"/>
+                                                    <constraint firstAttribute="height" constant="20" id="wa9-st-Rsu"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="UnZan"/>
+                                                <state key="normal" backgroundImage="未赞"/>
                                                 <connections>
                                                     <action selector="dianzanAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="B0s-Hc-riL"/>
                                                 </connections>
@@ -246,8 +246,8 @@
     </objects>
     <resources>
         <image name="PlayButtonOverlayLargeTap.png" width="66" height="66"/>
-        <image name="UnZan" width="78" height="63"/>
         <image name="faxianfenxiang" width="66" height="66"/>
+        <image name="未赞" width="66" height="66"/>
         <image name="讨论" width="66" height="66"/>
     </resources>
 </document>

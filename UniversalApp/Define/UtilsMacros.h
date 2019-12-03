@@ -15,8 +15,8 @@
 #define TYPE_XUEJIA_1  @"1"
 #define TYPE_GOLF_2 @"2"
 #define TYPE_HONGJIU_3 @"3"
-#define ZAN_IMG [UIImage imageNamed:@"Zan"]
-#define UNZAN_IMG [UIImage imageNamed:@"UnZan"]
+#define ZAN_IMG [UIImage imageNamed:@"已赞"]
+#define UNZAN_IMG [UIImage imageNamed:@"未赞"]
 #define REFRESH_NO_DATA @"没有更多数据"
 
 
