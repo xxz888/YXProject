@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YXSecondHeadCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UILabel *tagTitle;
+@property (weak, nonatomic) IBOutlet UIImageView *tagImageView;
 
 @end
 

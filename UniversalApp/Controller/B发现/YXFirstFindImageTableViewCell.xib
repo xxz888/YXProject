@@ -208,7 +208,7 @@
                                                     <constraint firstAttribute="width" constant="22" id="eB8-c7-W5v"/>
                                                     <constraint firstAttribute="height" constant="21" id="ha7-3n-DW8"/>
                                                 </constraints>
-                                                <state key="normal" image="未赞"/>
+                                                <state key="normal" backgroundImage="未赞"/>
                                                 <connections>
                                                     <action selector="zanTalkAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xiG-mA-Lcg"/>
                                                 </connections>

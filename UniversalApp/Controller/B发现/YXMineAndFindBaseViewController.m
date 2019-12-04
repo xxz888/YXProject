@@ -116,7 +116,7 @@ static CGFloat sectionHeaderHeight = 260;
                     if ([object count] > 0) {
                         YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
                         VC.type = @"3";
-                        VC.key = object[0][@"tag"];
+                        VC.key = string;
                         VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
                         VC.startArray = [NSArray arrayWithArray:object];
 
@@ -130,6 +130,10 @@ static CGFloat sectionHeaderHeight = 260;
     return _headerTagView;
 }
 -(void)clickAction:(id)tap{
+    if (![userManager loadUserInfo]) {
+             KPostNotification(KNotificationLoginStateChange, @NO);
+             return;
+         }
     YXMineChouJiangViewController * vc = [[YXMineChouJiangViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -241,7 +245,7 @@ static CGFloat sectionHeaderHeight = 260;
             if ([object count] > 0) {
                 YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
                 VC.type = @"3";
-                VC.key = object[0][@"tag"];
+                VC.key = string;
                 VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
                 VC.startArray = [NSArray arrayWithArray:object];
 

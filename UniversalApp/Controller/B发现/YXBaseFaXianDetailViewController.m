@@ -8,7 +8,7 @@
 
 #import "YXBaseFaXianDetailViewController.h"
 #import "HGPersonalCenterViewController.h"
-
+#import "QiniuLoad.h"
 @interface YXBaseFaXianDetailViewController ()<UITextFieldDelegate,SDTimeLineCellDelegate>
 
 @end
@@ -237,5 +237,32 @@
 }
 - (void)guanzhuAction{
     
+}
+- (void)saveImage:(UMSocialPlatformType)umType{
+    UIImage* viewImage = nil;
+    UITableView *scrollView = self.yxTableView;
+    UIGraphicsBeginImageContextWithOptions(scrollView.contentSize, scrollView.opaque, 0.0);{
+        CGPoint savedContentOffset = scrollView.contentOffset;
+        CGRect savedFrame = scrollView.frame;
+        scrollView.contentOffset = CGPointZero;
+        scrollView.frame = CGRectMake(0, 0, scrollView.contentSize.width, scrollView.contentSize.height);
+        [scrollView.layer renderInContext: UIGraphicsGetCurrentContext()];
+        viewImage = UIGraphicsGetImageFromCurrentImageContext();
+        scrollView.contentOffset = savedContentOffset;
+        scrollView.frame = savedFrame;
+    }
+    UIGraphicsEndImageContext();
+    //先上传到七牛云图片  再提交服务器
+    [QMUITips showLoadingInView:self.view];
+    [QiniuLoad uploadImageToQNFilePath:@[viewImage] success:^(NSString *reslut) {
+        [QMUITips hideAllTips];
+
+           NSDictionary * userInfo = userManager.loadUserAllInfo;
+           NSString * title = [NSString stringWithFormat:@"%@发布的内容@蓝皮书app",userInfo[@"username"]];
+           NSString * desc = @"这篇内容真的很赞，快点开看!";
+          [[ShareManager sharedShareManager] shareAllToPlatformType:umType obj:@{@"img":reslut,@"desc":desc,@"title":title,@"type":@"3"}];
+    } failure:^(NSString *error) {
+        NSLog(@"%@",error);
+    }];
 }
 @end

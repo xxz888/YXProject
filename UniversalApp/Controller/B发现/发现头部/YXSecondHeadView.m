@@ -24,22 +24,50 @@
     self.yxCollectionView.pagingEnabled = YES;
 
     [self.yxCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([YXSecondHeadCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:@"YXSecondHeadCollectionViewCell"];
+    
+
 }
+/*
+ 今日LOOK
+
+ 一周穿搭
+
+ 普通人穿搭自救指南
+
+ 穿西服的男人
+
+ 职场穿搭
+
+ 抽雪茄的女人
+
+ Cigar入坑必看
+
+ 灰茄达人俱乐部
+
+ 晒出你的好收藏
+
+ 酒柜必备好酒
+
+ 什么值得买
+
+ 瞧瞧我的鞋柜
+ */
 -(void)setCellData:(NSMutableArray *)startDataArray{
     self.dataArray = [[NSMutableArray alloc]init];
     [self.dataArray addObjectsFromArray:@[
-  @{@"type":@"#穿搭指南"},
-  @{@"type":@"#大牌LOOK"},
-  @{@"type":@"#小白鞋"},
-  @{@"type":@"#代古拉k"},
+  @{@"type":@"#今日LOOK"},
+  @{@"type":@"#一周穿搭"},
+  @{@"type":@"#普通人穿搭自救指南"},
+  @{@"type":@"#穿西服的男人"},
+  @{@"type":@"#职场穿搭"},
   
-  @{@"type":@"#上海"},
-  @{@"type":@"#迪克"},
-  @{@"type":@"#城市街拍大赛"},
-  @{@"type":@"#穿搭指南"},
+  @{@"type":@"#抽雪茄的女人"},
+  @{@"type":@"#Cigar入坑必看"},
+  @{@"type":@"#灰茄达人俱乐部"},
+  @{@"type":@"#酒柜必备好酒"},
+  @{@"type":@"#什么值得买"},
   
-  @{@"type":@"#大牌LOOK"},
-  @{@"type":@"#小白鞋"},
+  @{@"type":@"#瞧瞧我的鞋柜"},
   ]];
     [self.yxCollectionView reloadData];
 }
@@ -59,6 +87,7 @@
     YXSecondHeadCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YXSecondHeadCollectionViewCell" forIndexPath:indexPath];
     NSDictionary * dic = self.dataArray[indexPath.row];
     cell.tagTitle.text = dic[@"type"];
+    cell.tagImageView.image = IMAGE_NAMED([dic[@"type"] split:@"#"][1]);
     return cell;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

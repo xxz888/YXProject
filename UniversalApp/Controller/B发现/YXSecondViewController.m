@@ -91,8 +91,6 @@
             KPostNotification(KNotificationLoginStateChange, @NO);
             return;
         }
-        
-
     };
 }
 

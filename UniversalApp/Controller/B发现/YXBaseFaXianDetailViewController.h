@@ -76,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *titleName;
 @property (weak, nonatomic) IBOutlet UILabel *titleTime;
 
-
+- (void)saveImage:(UMSocialPlatformType)umType;
 @end
 
 NS_ASSUME_NONNULL_END
