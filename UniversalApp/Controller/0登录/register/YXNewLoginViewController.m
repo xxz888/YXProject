@@ -9,6 +9,8 @@
 #import "YXNewLoginViewController.h"
 #import "LoginViewController.h"
 #import "YXBindPhoneViewController.h"
+#import "YXLoginXieYiViewController.h"
+
 @interface YXNewLoginViewController ()
 
 @end
@@ -18,6 +20,15 @@
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    
+    kWeakSelf(self);
+    [YXPLUS_MANAGER requestPubTagPOST:@{} success:^(id object) {
+        if ([object isEqualToString:@"0"]) {
+            weakself.wxLogin.hidden = weakself.moreLoginView.hidden = weakself.moreLoginLbl.hidden = YES;
+        }else{
+            weakself.wxLogin.hidden = weakself.moreLoginView.hidden = weakself.moreLoginLbl.hidden = NO;
+        }
+    }];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -45,5 +56,16 @@
 - (IBAction)qqLoginAction:(id)sender {
     [userManager LoginVCCommonAction:self type:kUserLoginTypeQQ];
 }
-
+- (IBAction)btn1Action:(id)sender {
+    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+    YXLoginXieYiViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXLoginXieYiViewController"];
+    VC.type = @"1";
+    [self.navigationController pushViewController:VC animated:YES];
+}
+- (IBAction)btn2Action:(id)sender {
+    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+    YXLoginXieYiViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXLoginXieYiViewController"];
+    VC.type = @"2";
+    [self.navigationController pushViewController:VC animated:YES];
+}
 @end

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qpk-B8-sWH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qpk-B8-sWH">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -190,6 +190,7 @@
                                         </state>
                                         <connections>
                                             <action selector="btn1Action:" destination="qpk-B8-sWH" eventType="touchUpInside" id="HwQ-La-w2Z"/>
+                                            <action selector="btn1Action:" destination="DWm-Dr-h8V" eventType="touchUpInside" id="oRd-Jz-TtP"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登陆即代表阅读并同意" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSW-CE-osN">
@@ -212,6 +213,7 @@
                                         </state>
                                         <connections>
                                             <action selector="btn2Action:" destination="qpk-B8-sWH" eventType="touchUpInside" id="erj-Vi-eDE"/>
+                                            <action selector="btn2Action:" destination="DWm-Dr-h8V" eventType="touchUpInside" id="noh-zQ-9sa"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -264,6 +266,11 @@
                             <constraint firstItem="Lhw-Jo-dkI" firstAttribute="centerX" secondItem="qwM-0C-i8y" secondAttribute="centerX" id="rCz-Lr-E0c"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="moreLoginLbl" destination="aEj-dw-g0E" id="R2f-z6-OMV"/>
+                        <outlet property="moreLoginView" destination="aT2-VZ-lqD" id="Pak-va-2zD"/>
+                        <outlet property="wxLogin" destination="OOO-0f-me3" id="QBt-8L-Lyg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yhX-Q9-E0A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -537,6 +544,8 @@
                         <outlet property="codeTf" destination="8PB-d4-96t" id="oLg-wK-KFU"/>
                         <outlet property="getMes_codeBtn" destination="Snw-wB-n5r" id="rYO-xU-4tq"/>
                         <outlet property="loginBtn" destination="6fe-8U-ZlH" id="o3q-E7-ToI"/>
+                        <outlet property="moreLoginLbl" destination="41f-0a-6Is" id="Yhi-Vp-5Kh"/>
+                        <outlet property="moreLoginView" destination="b2W-tp-8WF" id="bqS-Rm-gan"/>
                         <outlet property="phoneTf" destination="Bp9-xY-zxQ" id="CFd-oL-Ohd"/>
                     </connections>
                 </viewController>

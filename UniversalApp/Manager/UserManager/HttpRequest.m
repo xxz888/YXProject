@@ -26,6 +26,8 @@
         if (userInfo) {
             [manager.requestSerializer setValue:[@"JWT " append:userInfo[@"token"]] forHTTPHeaderField:@"Authorization"];
         }
+   
+
     
     [manager POST:strURl  parameters:parmeters progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -86,7 +88,11 @@ var c = a + b
     } else {
         view = [[UIApplication sharedApplication].windows lastObject];
     }
-
+    if ([pi isEqualToString:@"/pub/tag/"]) {
+        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        sucess(result);
+        return;
+    }
     //返回情况分为两种情况，第一种是NSInlineData 字符串类型， 一种是json字典
     if ([obj isKindOfClass:[NSArray class]]) {
         sucess(obj);

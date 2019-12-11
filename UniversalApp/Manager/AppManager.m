@@ -45,7 +45,7 @@ SINGLETON_FOR_CLASS(AppManager);
         if (data) {
             NSDictionary *appInfoDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
             if (error) {
-                NSLog(@"%@", error.description);
+//                NSLog(@"%@", error.description);
                 return;
             }
             NSArray *resultArray = [appInfoDict objectForKey:@"results"];

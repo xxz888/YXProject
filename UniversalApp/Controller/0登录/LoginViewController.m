@@ -28,7 +28,14 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
     //视频播放
-    //[self.player play];
+      kWeakSelf(self);
+      [YXPLUS_MANAGER requestPubTagPOST:@{} success:^(id object) {
+          if ([object isEqualToString:@"0"]) {
+              weakself.moreLoginView.hidden = weakself.moreLoginLbl.hidden = YES;
+          }else{
+               weakself.moreLoginView.hidden = weakself.moreLoginLbl.hidden = NO;
+          }
+      }];
     
 }
 -(void)viewWillDisappear:(BOOL)animated{

@@ -189,4 +189,9 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) {}];
 }
+-(void)requestPubTagPOST:YX_BLOCK{
+    [HTTP_POST(@"/pub/tag/") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) { }];
+}
 @end

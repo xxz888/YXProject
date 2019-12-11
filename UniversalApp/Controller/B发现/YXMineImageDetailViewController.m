@@ -812,7 +812,7 @@
            NSString * desc = @"这篇内容真的很赞，快点开看!";
           [[ShareManager sharedShareManager] shareAllToPlatformType:umType obj:@{@"img":reslut,@"desc":desc,@"title":title,@"type":@"3"}];
     } failure:^(NSString *error) {
-        NSLog(@"%@",error);
+        
     }];
 }
 - (void)viewWillDisappear:(BOOL)animated {

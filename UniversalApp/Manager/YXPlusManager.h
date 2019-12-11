@@ -54,5 +54,6 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 #pragma mark ==========请求tag是否收藏==========
 -(void)requestUserIsShouCangGet:YX_BLOCK;
 -(void)requestBlackGet:YX_BLOCK;
+-(void)requestPubTagPOST:YX_BLOCK;
 @end
 

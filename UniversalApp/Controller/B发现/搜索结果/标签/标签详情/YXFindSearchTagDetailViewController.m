@@ -269,7 +269,7 @@
            NSString * desc = [NSString stringWithFormat:@"分享了%@，快来关注吧！",weakself.startDic[@"tag"]];
           [[ShareManager sharedShareManager] shareAllToPlatformType:umType obj:@{@"img":reslut,@"desc":desc,@"title":title,@"type":@"3"}];
     } failure:^(NSString *error) {
-        NSLog(@"%@",error);
+        
     }];
 }
 @end
