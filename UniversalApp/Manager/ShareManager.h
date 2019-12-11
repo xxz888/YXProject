@@ -96,4 +96,5 @@ SINGLETON_FOR_HEADER(ShareManager)
 -(void)inHuXiangGuanZhuStatusBtn:(UIButton *)btn;
 -(void)inGuanZhuMineStatusBtn:(UIButton *)btn;
 - (UIImage*)gradientImageWithBounds:(CGRect)bounds andColors:(NSArray*)colors andGradientType:(GradientDirection)gradientType;
+-(void)wanShanZiLiao:(UIViewController *)weakself;
 @end

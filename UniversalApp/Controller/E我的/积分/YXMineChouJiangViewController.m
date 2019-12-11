@@ -19,8 +19,8 @@
     self.webView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight);
     NSDictionary * userInfo = userManager.loadUserAllInfo;
     self.url =  [NSString stringWithFormat:@"http://%@choujiang.html?%@",[API_URL split:@"api"][0],userInfo[@"token"]];
-
-//    self.url =  [NSString stringWithFormat:@"http://%@choujiang.html?%@",@"192.168.101.21:63340/TJOfficial_Web/",userInfo.token];
+//
+//    self.url =  [NSString stringWithFormat:@"http://%@choujiang.html?%@",@"192.168.101.21:63340/TJOfficial_Web/",userInfo[@"token"]];
 
 #pragma mark--button create
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];

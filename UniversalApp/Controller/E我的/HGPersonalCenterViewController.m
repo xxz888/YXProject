@@ -177,39 +177,75 @@ _Pragma("clang diagnostic pop") \
 }
 #pragma mark ========== 点击菜单按钮的方法 ==========
 - (void)handleShowContentView {
-     kWeakSelf(self);
-    //UIAlertActionStyleDestructive红色
-    //UIAlertActionStyleCancel蓝色
-      UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-      }];
-      UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-          [weakself addGuanjiaShareView];
-      }];
-      UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"草稿箱" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-          YXMineMyCaoGaoViewController * VC = [[YXMineMyCaoGaoViewController alloc]init];
-          [weakself.navigationController pushViewController:VC animated:YES];
-      }];
-      BaseAlertController * alertController = [BaseAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-      [alertController addAction:action2];
-      
-    if (!self.whereCome) {
-        [alertController addAction:action3];
-
+    kWeakSelf(self);
+    if (self.whereCome) {
+        [YX_MANAGER requestGetUserothers:self.userId success:^(id object) {
+            [weakself commonShowContentView:object];
+        }];
+    }else{
+        [weakself commonShowContentView:@{@"is_black":@"0"}];
     }
-      [alertController addAction:action1];
 
-      if (IS_IPAD) {
-          NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:2];
-          CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
-          CGRect cellRectInSelfView = [self.view convertRect:cellRect fromView:self.tableView];
-          alertController.popoverPresentationController.sourceView = self.view;
-          alertController.popoverPresentationController.sourceRect = cellRectInSelfView;
-      }
-    [self presentViewController:alertController animated:YES completion:^{
-//        [alertController alertTapDismiss];
-    }];
+
 }
+-(void)commonShowContentView:(NSDictionary *)object{
+            kWeakSelf(self);
+             UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+             }];
+             UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                 [weakself addGuanjiaShareView];
+             }];
+             UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"草稿箱" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                 YXMineMyCaoGaoViewController * VC = [[YXMineMyCaoGaoViewController alloc]init];
+                 [weakself.navigationController pushViewController:VC animated:YES];
+             }];
+            BOOL isBlack = [object[@"is_black"] integerValue] == 0;
+            NSString * laheiString = isBlack ? @"拉黑此用户" : @"解除拉黑";
+            UIAlertAction *action4 = [UIAlertAction actionWithTitle:laheiString style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                [YXPLUS_MANAGER requestBlackGet:weakself.userId success:^(id object) {
+                    [QMUITips showSucceed:isBlack ? @"已拉黑" : @"已解除拉黑"];
+                }];
+            }];
+            UIAlertAction *action5 = [UIAlertAction actionWithTitle:@"举报此用户" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+       //         [moreOperationController hideToBottom];
+                QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+                }];
+                QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"不友善内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+                    [QMUITips showSucceed:@"举报成功"];
+                }];
+                QMUIAlertAction *action3 = [QMUIAlertAction actionWithTitle:@"有害内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+                    [QMUITips showSucceed:@"举报成功"];
+                }];
+                QMUIAlertAction *action4 = [QMUIAlertAction actionWithTitle:@"抄袭内容" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+                    [QMUITips showSucceed:@"举报成功"];
+                }];
+                QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:QMUIAlertControllerStyleActionSheet];
+                [alertController addAction:action1];
+                [alertController addAction:action2];
+                [alertController addAction:action3];
+                [alertController addAction:action4];
+                [alertController showWithAnimated:YES];
+            }];
+             BaseAlertController * alertController = [BaseAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+             [alertController addAction:action2];
+             
+           if (weakself.whereCome) {
+               [alertController addAction:action4];
+               [alertController addAction:action5];
+           }else{
+               [alertController addAction:action3];
+           }
+             [alertController addAction:action1];
 
+             if (IS_IPAD) {
+                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:2];
+                 CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
+                 CGRect cellRectInSelfView = [self.view convertRect:cellRect fromView:self.tableView];
+                 alertController.popoverPresentationController.sourceView = self.view;
+                 alertController.popoverPresentationController.sourceRect = cellRectInSelfView;
+             }
+           [weakself presentViewController:alertController animated:YES completion:^{}];
+}
 - (IBAction)backVcAction:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -593,7 +629,7 @@ _Pragma("clang diagnostic pop") \
           if ([object count] > 0) {
               YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
               VC.type = @"3";
-              VC.key = object[0][@"tag"];
+              VC.key = [dic[@"tag"] contains:@"#"] ? dic[@"tag"] : [@"#" append:dic[@"tag"]];
               VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
               VC.startArray = [NSArray arrayWithArray:object];
               [weakself.navigationController pushViewController:VC animated:YES];
@@ -672,8 +708,8 @@ _Pragma("clang diagnostic pop") \
             [weakself endRefresh];
         }];
     }else{
-        self.headerView.backBtn.hidden = self.headerView.guanzhuBtn.hidden = self.headerView.otherStackView.hidden = YES;
-        self.headerView.myStackView.hidden = self.headerView.qiandaoBtn.hidden = self.headerView.shangchengBtn.hidden = NO;
+        self.headerView.backBtn.hidden = self.headerView.guanzhuBtn.hidden = self.headerView.otherStackView.hidden = self.headerView.shangchengBtn.hidden = YES;
+        self.headerView.myStackView.hidden = self.headerView.qiandaoBtn.hidden =  NO;
         self.headerView.tieshubtn.userInteractionEnabled = YES;
         //积分
              [YX_MANAGER requestGetFind_My_user_Info:@"" success:^(id object) {

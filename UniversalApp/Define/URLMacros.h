@@ -1,7 +1,7 @@
 //
 //  URLMacros.h
 //  MiAiApp
-//
+//ke
 //  Created by 徐阳 on 2017/5/18.
 //  Copyright © 2017年 徐阳. All rights reserved.
 //
@@ -46,7 +46,7 @@
 
 
 #define UPDATE_APP_URL @"http://itunes.apple.com/lookup?id="
-#define UPDATE_App_ID @"1454467501"
+#define UPDATE_App_ID @"1490358357"
 
 #define IMG_URI @"http://photo.lpszn.com/"
 

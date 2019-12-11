@@ -11,6 +11,8 @@
 #import "UIButton+CountDown.h"
 #import "YXBindPhoneViewController.h"
 #import "YXLoginXieYiViewController.h"
+#import "YXWanShanXinXiViewController.h"
+
 @interface LoginViewController ()<UITextFieldDelegate>
 //1 播放器
 @property (strong, nonatomic) AVPlayer *player;
@@ -35,29 +37,17 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"登录";
-    [self.loginBtn setBackgroundColor:SEGMENT_COLOR];
-
+    self.loginBtn.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
     self.codeTf.delegate = self;
     [self.codeTf addTarget:self action:@selector(changeCodeAction) forControlEvents:UIControlEventAllEvents];
-    self.loginBtn.backgroundColor = [UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0];
     self.loginBtn.userInteractionEnabled = NO;
     [self.getMes_codeBtn addTarget:self action:@selector(getSms_CodeAction) forControlEvents:UIControlEventTouchUpInside];
 }
-
-
 -(void)skipAction{
     KPostNotification(KNotificationLoginStateChange, @YES);
 }
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 #pragma mark - 懒加载AVPlayer
-- (AVPlayer *)player
-{
+- (AVPlayer *)player{
     if (!_player) {
         //1 创建一个播放item
         NSString *path = [[NSBundle mainBundle]pathForResource:@"register_guide_video.mp4" ofType:nil];
@@ -75,14 +65,12 @@
     }
     return _player;
 }
-
 - (IBAction)btn1Action:(id)sender {
     UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
     YXLoginXieYiViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXLoginXieYiViewController"];
     VC.type = @"1";
     [self.navigationController pushViewController:VC animated:YES];
 }
-
 - (IBAction)btn2Action:(id)sender {
     UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
     YXLoginXieYiViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXLoginXieYiViewController"];
@@ -93,17 +81,30 @@
     kWeakSelf(self);
     [YX_MANAGER requestLoginPOST:@{@"mobile":self.phoneTf.text,@"sms_code":self.codeTf.text} success:^(id object) {
             [userManager login:kUserLoginTypePwd params:object completion:^(BOOL success, NSString *des) {
-                [weakself dismissViewControllerAnimated:YES completion:nil];
-                [[AppDelegate shareAppDelegate].mainTabBar setSelectedIndex:0];
-                [QMUITips showSucceed:@"登录成功"];
+                [weakself wanShanZiLiao:self];
             }];
-   
     }];
+}
+-(void)wanShanZiLiao:(UIViewController *)weakself{
+    if (UserDefaultsGET(IS_FirstLogin)) {
+        NSString * is_firstLogin = UserDefaultsGET(IS_FirstLogin);
+        if ([is_firstLogin isEqualToString:@"NO"]) {
+            UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+            YXWanShanXinXiViewController * vc = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXWanShanXinXiViewController"];
+            [weakself.navigationController pushViewController:vc animated:YES];
+            UserDefaultsSET(@"YES", IS_FirstLogin);
+        }else{
+            [weakself dismissViewControllerAnimated:YES completion:nil];
+            [[AppDelegate shareAppDelegate].mainTabBar setSelectedIndex:0];
+            [QMUITips showSucceed:@"登录成功"];
+        }
+    }
 }
 - (IBAction)closeLoginView:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)getSms_CodeAction{
+ 
     if (self.phoneTf.text.length <= 10) {
         [QMUITips showError:@"请输入正确的手机号"];
         return;
@@ -121,9 +122,10 @@
 -(void)changeCodeAction{
     if (self.codeTf.text.length >= 6) {
         self.loginBtn.backgroundColor = SEGMENT_COLOR;
+        [self.loginBtn setTitleColor:KWhiteColor forState:UIControlStateNormal];
         self.loginBtn.userInteractionEnabled = YES;
     }else{
-        self.loginBtn.backgroundColor = [UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0];
+        self.loginBtn.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
         self.loginBtn.userInteractionEnabled = NO;
     }
 }

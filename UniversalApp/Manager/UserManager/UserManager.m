@@ -9,6 +9,7 @@
 #import "UserManager.h"
 #import "YXBindPhoneViewController.h"
 #import "SocketRocketUtility.h"
+#import "YXWanShanXinXiViewController.h"
 @implementation UserManager
 
 SINGLETON_FOR_CLASS(UserManager);
@@ -29,27 +30,34 @@ SINGLETON_FOR_CLASS(UserManager);
     kWeakSelf(self);
     [userManager login:loginType completion:^(BOOL success, NSString *des) {
         if (success) {
-            [weakself closeViewAAA:vcself];
+            if (UserDefaultsGET(IS_FirstLogin)) {
+                NSString * is_firstLogin = UserDefaultsGET(IS_FirstLogin);
+                if ([is_firstLogin isEqualToString:@"NO"]) {
+                    UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+                    YXWanShanXinXiViewController * vc = [stroryBoard4 instantiateViewControllerWithIdentifier:@"YXWanShanXinXiViewController"];
+                    [vcself.navigationController pushViewController:vc animated:YES];
+                    UserDefaultsSET(@"YES", IS_FirstLogin);
+                }else{
+                    [weakself closeViewAAA:vcself];
+                }
+            }
         }else{
-            
             YXBindPhoneViewController * VC = [[YXBindPhoneViewController alloc]init];
             VC.bindBlock = ^(NSDictionary * dic) {
-                UserDefaultsSET(dic, KUserInfo);
-                 self.isLogined = YES;
+                 UserDefaultsSET(dic, KUserInfo);
+                 weakself.isLogined = YES;
                  YX_MANAGER.isNeedRefrshMineVc = YES;
                  KPostNotification(KNotificationLoginStateChange, @YES);
-                
-                [vcself dismissViewControllerAnimated:YES completion:nil];
-                [QMUITips showSucceed:@"登录成功"];
+                 [vcself dismissViewControllerAnimated:YES completion:nil];
+                 [QMUITips showSucceed:@"登录成功"];
             };
-            
-
             VC.whereCome = NO;
             VC.unique_id = des;
             [vcself.navigationController pushViewController:VC animated:YES];
         }
     }];
 }
+
 -(void)closeViewAAA:(UIViewController *)vcself{
     kWeakSelf(self);
     UIViewController *controller = vcself;
@@ -57,19 +65,12 @@ SINGLETON_FOR_CLASS(UserManager);
         controller = controller.presentingViewController;
     }
     [controller dismissViewControllerAnimated:NO completion:^{
-        
-        
         if ([userManager loadUserInfo]) {
             [QMUITips showSucceed:@"登录成功"];
         }else{
             [QMUITips showSucceed:@"绑定成功,请重新登录"];
             KPostNotification(KNotificationLoginStateChange, @NO);
         }
-        
-        
-        
-        
-        
     }];
 }
 

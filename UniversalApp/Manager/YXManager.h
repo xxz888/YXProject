@@ -17,7 +17,6 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 + (instancetype)sharedInstance;
 @property (nonatomic,assign) BOOL isClear;
 @property (nonatomic,assign) BOOL isNeedRefrshMineVc;
-
 @property(nonatomic,strong)NSMutableArray * advertisingArray;
 @property(nonatomic,strong)NSMutableArray * informationArray;
 @property(nonatomic,strong)NSMutableDictionary * cache1Dic;

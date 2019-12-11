@@ -29,9 +29,7 @@
     self.phoneLogin.imageView.contentMode = UIViewContentModeScaleAspectFill;
 }
 - (IBAction)closeLoginView:(id)sender {
-    [self dismissViewControllerAnimated:NO completion:^{
-        
-    }];
+    [self dismissViewControllerAnimated:NO completion:^{}];
 }
 - (IBAction)phoneLoginAction:(id)sender {
     UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
@@ -47,14 +45,5 @@
 - (IBAction)qqLoginAction:(id)sender {
     [userManager LoginVCCommonAction:self type:kUserLoginTypeQQ];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

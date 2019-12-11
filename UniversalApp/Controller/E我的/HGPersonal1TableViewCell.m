@@ -13,6 +13,13 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    self.yinyingView.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0].CGColor;
+    self.yinyingView.layer.cornerRadius = 8;
+    self.yinyingView.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.07].CGColor;
+    self.yinyingView.layer.shadowOffset = CGSizeMake(0,0);
+    self.yinyingView.layer.shadowOpacity = 1;
+    self.yinyingView.layer.shadowRadius = 10;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -43,7 +50,7 @@
     self.contentLbl.text = contentString;
     self.collectLbl.text = [collectString append:@" 人收藏"];
     
-    [self addShadowToView:self.yinyingView withColor:KBlackColor];
+//    [self addShadowToView:self.yinyingView withColor:KBlackColor];
 
 }
 /// 添加四边阴影效果

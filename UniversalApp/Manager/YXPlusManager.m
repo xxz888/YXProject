@@ -175,4 +175,18 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) { }];
 }
+
+-(void)requestChouJiangGet:YX_BLOCK{
+    NSString * url = @"/pub/winning/?obj=1";
+    [HTTP_GET([[url append:dic] append:@"/"])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
+
+-(void)requestBlackGet:YX_BLOCK{
+    NSString * url = @"/users/black/?aim_id=";
+    [HTTP_GET([url append:dic])  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 @end

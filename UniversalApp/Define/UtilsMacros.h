@@ -23,6 +23,7 @@
 #define Handle_IMG [UIImage imageNamed:@"Zan"]
 #define un_Handle_IMG [UIImage imageNamed:@"UnZan"]
 #define SHOW_FUTURE_DEV @"功能正在开发中..."
+#define IS_FirstLogin @"IS_FirstLogin"
 
 #define YX_USER_FaBuCaoGao @"YX_FaBuCaoGao"
 #define YX_USER_LiaoTian @"YX_LiaoTianMessage"

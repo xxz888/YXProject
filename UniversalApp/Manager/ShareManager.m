@@ -1292,4 +1292,5 @@ SINGLETON_FOR_CLASS(ShareManager);
     [btn setBackgroundColor:kRGBA(245, 245, 245, 1)];
     ViewRadius(btn, 16);
 }
+
 @end

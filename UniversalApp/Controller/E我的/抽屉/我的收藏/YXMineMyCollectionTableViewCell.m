@@ -14,6 +14,9 @@
     [super awakeFromNib];
     // Initialization code
     ViewRadius(self.leftImgView, 5);
+    
+    
+    
 }
 -(void)setCellData:(NSDictionary *)dic{
     NSInteger sort = [dic[@"sort"] integerValue];

@@ -29,12 +29,10 @@
     
     [manager POST:strURl  parameters:parmeters progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [QMUITips hideAllTipsInView:[ShareManager getMainView]];
+        [QMUITips hideAllTips];
         [weakself setCommonRespone:sucess pi:pi responseObject:responseObject];
-//        NSLog(@"getUrl-请求成功-:%@",strURl);
-
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [QMUITips hideAllTipsInView:[ShareManager getMainView]];
+//        [QMUITips hideAllTips];
         failure(error);
     }];
 }
@@ -43,18 +41,23 @@
     NSString * url = [API_ROOT_URL_HTTP_FORMAL append:pi];
 //    NSLog(@"getUrl-:%@",url);
        AFHTTPSessionManager * manager = [SYBaseHttpConnection sharedManager];
-              NSDictionary * userInfo = userManager.loadUserAllInfo;
-              if (userInfo) {
-                  [manager.requestSerializer setValue:[@"JWT " append:userInfo[@"token"]] forHTTPHeaderField:@"Authorization"];
-              }
+     
+      NSDictionary * userInfo = userManager.loadUserAllInfo;
+      if (userInfo) {
+          if ([pi contains:@"/pub/option/"]) {
+              
+          }else{
+              [manager.requestSerializer setValue:[@"JWT " append:userInfo[@"token"]] forHTTPHeaderField:@"Authorization"];
+          }
+      }
 
 
     [manager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//         NSLog(@"getUrl-请求成功-:%@",url);
+        [QMUITips hideAllTips];
         [weakself setCommonRespone:sucess pi:pi responseObject:responseObject];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+//        [QMUITips hideAllTips];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         failure(error);
     }];

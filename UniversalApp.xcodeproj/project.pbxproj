@@ -503,6 +503,7 @@
 		BBDA2EF221ECC22B00EDCCFF /* QMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBDA2EEC21ECC22B00EDCCFF /* QMapSearchKit.framework */; };
 		BBDA2EF321ECC22B00EDCCFF /* YXGaoDeMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDA2EEF21ECC22B00EDCCFF /* YXGaoDeMapViewController.m */; };
 		BBDA2EF421ECC22B00EDCCFF /* SearchResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDA2EF021ECC22B00EDCCFF /* SearchResultsController.m */; };
+		BBE5306F239F771800484D3B /* YXWanShanXinXiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE5306E239F771700484D3B /* YXWanShanXinXiViewController.m */; };
 		BBE82BD821E340AD004E4144 /* CatZanButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82BD521E340AD004E4144 /* CatZanButton.m */; };
 		BBE82BD921E340AD004E4144 /* EffectImage.png in Resources */ = {isa = PBXBuildFile; fileRef = BBE82BD721E340AD004E4144 /* EffectImage.png */; };
 		BBE82CE521E3A125004E4144 /* QiniuLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE82CE321E3A125004E4144 /* QiniuLoad.m */; };
@@ -1494,6 +1495,8 @@
 		BBDA2EEE21ECC22B00EDCCFF /* YXGaoDeMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXGaoDeMapViewController.h; sourceTree = "<group>"; };
 		BBDA2EEF21ECC22B00EDCCFF /* YXGaoDeMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXGaoDeMapViewController.m; sourceTree = "<group>"; };
 		BBDA2EF021ECC22B00EDCCFF /* SearchResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsController.m; sourceTree = "<group>"; };
+		BBE5306D239F771700484D3B /* YXWanShanXinXiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXWanShanXinXiViewController.h; sourceTree = "<group>"; };
+		BBE5306E239F771700484D3B /* YXWanShanXinXiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXWanShanXinXiViewController.m; sourceTree = "<group>"; };
 		BBE82BD521E340AD004E4144 /* CatZanButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatZanButton.m; sourceTree = "<group>"; };
 		BBE82BD621E340AD004E4144 /* CatZanButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatZanButton.h; sourceTree = "<group>"; };
 		BBE82BD721E340AD004E4144 /* EffectImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EffectImage.png; sourceTree = "<group>"; };
@@ -4299,6 +4302,15 @@
 			path = LocationSend;
 			sourceTree = "<group>";
 		};
+		BBE5306C239F76EC00484D3B /*  完善信息 */ = {
+			isa = PBXGroup;
+			children = (
+				BBE5306D239F771700484D3B /* YXWanShanXinXiViewController.h */,
+				BBE5306E239F771700484D3B /* YXWanShanXinXiViewController.m */,
+			);
+			path = " 完善信息";
+			sourceTree = "<group>";
+		};
 		BBE82BD421E340AD004E4144 /* CatZanButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -4408,6 +4420,7 @@
 		BBF26E2C224489C80000AEF5 /* 0登录 */ = {
 			isa = PBXGroup;
 			children = (
+				BBE5306C239F76EC00484D3B /*  完善信息 */,
 				BB25D48523162F3600971B94 /* YXNewLoginViewController.h */,
 				BB25D48623162F3600971B94 /* YXNewLoginViewController.m */,
 				BBBDCAB72226612200A9F2CB /* LoginViewController.h */,
@@ -5181,6 +5194,7 @@
 				BBD7796B2244DD390077E44D /* YXBindPhoneNextViewController.m in Sources */,
 				BB6F6A1C2361A31B00EC8732 /* KWEditorBar.m in Sources */,
 				BB688A1A22AE504F00964FA3 /* YXZhiNan5Cell.m in Sources */,
+				BBE5306F239F771800484D3B /* YXWanShanXinXiViewController.m in Sources */,
 				BBED1239238FB609009561A3 /* LZMenuButton.m in Sources */,
 				BB21FD9522B0991E0059BCAC /* KSMediaPickerViewImageCell.swift in Sources */,
 				BB928F9721FB5D290090A044 /* BRAddressModel.m in Sources */,
@@ -5474,6 +5488,7 @@
 				CODE_SIGN_ENTITLEMENTS = UniversalApp/UniversalApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.3;
 				DEVELOPMENT_TEAM = V458Z29RD7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5509,7 +5524,7 @@
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/share/share_ios_6.9.4/SocialLibraries/Sina",
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/share/share_ios_6.9.4/SocialLibraries/QQ",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jiuju.thegoodlife;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tongji.lps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_INSTALLED_PRODUCT = YES;
@@ -5531,6 +5546,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 1.3;
 				DEVELOPMENT_TEAM = V458Z29RD7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5567,7 +5583,7 @@
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/share/share_ios_6.9.4/SocialLibraries/Sina",
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/share/share_ios_6.9.4/SocialLibraries/QQ",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jiuju.thegoodlife;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tongji.lps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = UniversalApp/MDBridgingHeader.h;

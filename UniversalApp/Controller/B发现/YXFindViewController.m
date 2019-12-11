@@ -28,6 +28,7 @@
         kWeakSelf(self);
         YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
         [YX_MANAGER requestget_post_by_id:kGetString(umDic[@"key1"]) success:^(id object) {
+           
             CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:object];
             VC.headerViewHeight = h;
             VC.startDic = [NSMutableDictionary dictionaryWithDictionary:object];
@@ -46,7 +47,7 @@
     NSString * parString =[NSString stringWithFormat:@"%@&page=%@",@"1",NSIntegerToNSString(self.requestPage)];
 //    [QMUITips showLoadingInView:self.view];
     [YX_MANAGER requestGet_users_find:parString success:^(id object){
-//        [QMUITips hideAllTips];
+        [QMUITips hideAllTips];
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
         weakself.nodataImg.hidden = weakself.dataArray.count != 0;
