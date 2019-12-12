@@ -14,6 +14,7 @@
 #import "YXHomeXueJiaToolsViewController.h"
 #import "JQFMDB.h"
 #import "MessageModel.h"
+#import "YXDingZhiViewController.h"
 @interface YXHomeXueJiaViewController ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 @property (nonatomic) BOOL isCanBack;
 @property (nonatomic, strong) HGSegmentedPageViewController *segmentedPageViewController;
@@ -62,12 +63,17 @@
 //        [weakself initSegment];
 //
 //    }];
-   YXHomeXueJiaToolsViewController * vc = [[YXHomeXueJiaToolsViewController alloc]init];
-              vc.title = @"指南";
-              vc.startId = @"5";
-              [weakself.vcArr addObject:vc];
-              [weakself.titlesArr addObject:@"指南"];
-    [weakself initSegment];
+      YXHomeXueJiaToolsViewController * toolsVC = [[YXHomeXueJiaToolsViewController alloc]init];
+      toolsVC.startId = @"5";
+    
+      YXDingZhiViewController * dingzhiVC = [[YXDingZhiViewController alloc]init];
+      [weakself.vcArr addObject:toolsVC];
+      [weakself.vcArr addObject:dingzhiVC];
+
+      [weakself.titlesArr addObject:@"指南"];
+      [weakself.titlesArr addObject:@"定制"];
+    
+      [weakself initSegment];
 
 }
 

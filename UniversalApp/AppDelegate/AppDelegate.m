@@ -25,7 +25,7 @@
     //[self NetWorkConfig];
     
     //UMeng初始化
-    [self initUMeng:launchOptions];
+//    [self initUMeng:launchOptions];
     
     //初始化app服务
     [self initService];

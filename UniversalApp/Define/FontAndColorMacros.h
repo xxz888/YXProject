@@ -43,6 +43,7 @@
 
 #define COLOR_000000 YXRGBAColor(0, 0, 0)
 #define COLOR_333333 YXRGBAColor(51, 51, 51)
+#define COLOR_BBBBBB kRGBA(187, 187, 187, 1)
 
 #define C_COLOR YXRGBAColor(242, 242, 242)
 

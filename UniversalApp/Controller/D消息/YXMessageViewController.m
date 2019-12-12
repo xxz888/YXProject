@@ -8,7 +8,6 @@
 
 #import "YXMessageViewController.h"
 #import "YXMessageThreeDetailViewController.h"
-#import <UMAnalytics/MobClick.h>
 #import "YXMessageLiaoTianTableViewCell.h"
 #import "SimpleChatMainViewController.h"
 #import "JQFMDB.h"

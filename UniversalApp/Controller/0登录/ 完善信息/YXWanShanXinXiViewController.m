@@ -17,7 +17,6 @@
 #define loginnan_sel    IMAGE_NAMED(@"loginnan_sel")
 #define loginnv_sel     IMAGE_NAMED(@"loginnv_sel")
 #define loginnv_unsel   IMAGE_NAMED(@"loginnv_unsel")
-#define color187 kRGBA(187, 187, 187, 1)
 @interface YXWanShanXinXiViewController ()<KSMediaPickerControllerDelegate,UITextFieldDelegate>
 @property (nonatomic,strong) NSString * photo;
 @property (nonatomic) BOOL bool1;
@@ -64,8 +63,8 @@
     [self.nanImageView addGestureRecognizer:aTapGR3];
     
     
-    [self.birthdayBtn setTitleColor:color187 forState:UIControlStateNormal];
-    [self.addressBtn setTitleColor:color187 forState:UIControlStateNormal];
+    [self.birthdayBtn setTitleColor:COLOR_BBBBBB forState:UIControlStateNormal];
+    [self.addressBtn setTitleColor:COLOR_BBBBBB forState:UIControlStateNormal];
     
     self.upLoadView.hidden = NO;
     self.titleImageView.hidden = YES;

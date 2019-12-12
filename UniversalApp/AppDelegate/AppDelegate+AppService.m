@@ -9,7 +9,7 @@
 #import "AppDelegate+AppService.h"
 #import <UMShare/UMShare.h>
 #import "LoginViewController.h"
-//#import "OpenUDID.h"
+#import <UMAnalytics/MobClick.h>
 #import "SaltedFishTabBarVC.h"
 #import  <UserNotifications/UserNotifications.h>// Push组件必须的系统库
 #import "YXSecondViewController.h"
@@ -183,7 +183,7 @@
     //当应用处于前台时提示设置，需要哪个可以设置哪一个
     completionHandler(UNNotificationPresentationOptionSound|UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionAlert);
 }
-//后天点击推送消息，进入app
+//收到推送消息，进入app
 -(void)userNotificationCenter:(UNUserNotificationCenter*)center didReceiveNotificationResponse:(UNNotificationResponse*)response withCompletionHandler:(void(^)())completionHandler{
     kWeakSelf(self);
     NSDictionary* userInfo = response.notification.request.content.userInfo;
@@ -202,7 +202,7 @@
     NSInteger tag = [userInfo[@"key0"] integerValue];
     //首页
     if(tag == 0){
-        //发现
+        //首页
         [[NSNotificationCenter defaultCenter] postNotificationName:UM_User_Info_0 object:userInfo];
     }else if (tag == 1){
         //发现

@@ -225,7 +225,6 @@
                 [weakself.navigationController pushViewController:vc animated:YES];
             }
         }
-    
     }
 }
 -(void)initTableView{

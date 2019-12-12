@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="140" id="KGk-i7-Jjw" customClass="YXDingZhiTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="124"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="124"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u8s-8n-ge9">
+                        <rect key="frame" x="16" y="8" width="288" height="108"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="抽雪茄的女人" translatesAutoresizingMaskIntoConstraints="NO" id="OAP-W0-5QD">
+                                <rect key="frame" x="10" y="10" width="88" height="88"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="88" id="Yff-AX-X1I"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="服装西服定制店" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nvi-v4-zut">
+                                <rect key="frame" x="114" y="10" width="114.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oji-Zr-BO3">
+                                <rect key="frame" x="114" y="42.5" width="68" height="12"/>
+                                <color key="backgroundColor" red="1" green="0.80392156859999997" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="68" id="Fqy-uO-WEV"/>
+                                    <constraint firstAttribute="height" constant="12" id="lj6-TV-4rz"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="杭州市西湖区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Apn-qS-Keh">
+                                <rect key="frame" x="114" y="83.5" width="74" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.73333333333333328" green="0.73333333333333328" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQa-0J-rgw">
+                                <rect key="frame" x="253.5" y="83.5" width="24.5" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.73333333329999995" green="0.73333333329999995" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Apn-qS-Keh" firstAttribute="bottom" secondItem="OAP-W0-5QD" secondAttribute="bottom" id="5Ct-9S-oHh"/>
+                            <constraint firstItem="OAP-W0-5QD" firstAttribute="leading" secondItem="u8s-8n-ge9" secondAttribute="leading" constant="10" id="AqQ-O7-Cp2"/>
+                            <constraint firstItem="oji-Zr-BO3" firstAttribute="leading" secondItem="nvi-v4-zut" secondAttribute="leading" id="BUS-QT-srf"/>
+                            <constraint firstAttribute="bottom" secondItem="OAP-W0-5QD" secondAttribute="bottom" constant="10" id="CTC-Du-Qxw"/>
+                            <constraint firstItem="OAP-W0-5QD" firstAttribute="top" secondItem="u8s-8n-ge9" secondAttribute="top" constant="10" id="GgD-dp-Ro8"/>
+                            <constraint firstItem="nvi-v4-zut" firstAttribute="leading" secondItem="OAP-W0-5QD" secondAttribute="trailing" constant="16" id="JnO-OW-x9L"/>
+                            <constraint firstItem="qQa-0J-rgw" firstAttribute="centerY" secondItem="Apn-qS-Keh" secondAttribute="centerY" id="NT7-Gc-dko"/>
+                            <constraint firstItem="nvi-v4-zut" firstAttribute="top" secondItem="OAP-W0-5QD" secondAttribute="top" id="Yqe-NT-4wj"/>
+                            <constraint firstItem="Apn-qS-Keh" firstAttribute="leading" secondItem="nvi-v4-zut" secondAttribute="leading" id="ikM-c5-S3c"/>
+                            <constraint firstAttribute="trailing" secondItem="qQa-0J-rgw" secondAttribute="trailing" constant="10" id="kAi-sa-lrJ"/>
+                            <constraint firstItem="oji-Zr-BO3" firstAttribute="top" secondItem="nvi-v4-zut" secondAttribute="bottom" constant="13" id="zkN-v3-YtW"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="u8s-8n-ge9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="CuK-Mt-NMd"/>
+                    <constraint firstAttribute="trailing" secondItem="u8s-8n-ge9" secondAttribute="trailing" constant="16" id="T7q-O3-xNA"/>
+                    <constraint firstAttribute="bottom" secondItem="u8s-8n-ge9" secondAttribute="bottom" constant="8" id="Ydm-Kt-lbK"/>
+                    <constraint firstItem="u8s-8n-ge9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="aCD-wy-zRm"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <point key="canvasLocation" x="144.92753623188406" y="60.9375"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="抽雪茄的女人" width="1024" height="1024"/>
+    </resources>
+</document>
