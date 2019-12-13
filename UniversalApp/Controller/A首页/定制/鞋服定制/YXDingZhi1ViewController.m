@@ -40,7 +40,6 @@
     YXDingZhi1TableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXDingZhi1TableViewCell" forIndexPath:indexPath];
     return cell;
 }
-
 - (IBAction)addressAction:(id)sender {
     [self.view endEditing:YES];
        kWeakSelf(self);

@@ -11,6 +11,7 @@
 #import "YXDingZhiTableViewCell.h"
 #import "YXDingZhi1ViewController.h"
 #import "YXDingZhi4TableViewController.h"
+#import "YXDingZhiDetailViewController.h"
 
 @interface YXDingZhiViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) YXDingZhiHeadView * headerView;
@@ -64,5 +65,9 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXDingZhiTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXDingZhiTableViewCell" forIndexPath:indexPath];
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    YXDingZhiDetailViewController * vc = [[YXDingZhiDetailViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end

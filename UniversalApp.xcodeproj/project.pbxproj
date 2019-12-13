@@ -408,6 +408,10 @@
 		BBBCDBB9223F65C50056C7DD /* HGPersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBCDBB8223F65C50056C7DD /* HGPersonalCenterViewController.m */; };
 		BBBD722923A231F600D36B5E /* YXYingYeTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBD722723A231F600D36B5E /* YXYingYeTimeViewController.m */; };
 		BBBD722A23A231F600D36B5E /* YXYingYeTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBBD722823A231F600D36B5E /* YXYingYeTimeViewController.xib */; };
+		BBBD722F23A3697500D36B5E /* YXDingZhiDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBD722D23A3697500D36B5E /* YXDingZhiDetailViewController.m */; };
+		BBBD723023A3697500D36B5E /* YXDingZhiDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBBD722E23A3697500D36B5E /* YXDingZhiDetailViewController.xib */; };
+		BBBD723323A36E8E00D36B5E /* YXDingZhiDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBD723223A36E8E00D36B5E /* YXDingZhiDetailView.m */; };
+		BBBD723523A36E9900D36B5E /* YXDingZhiDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBBD723423A36E9900D36B5E /* YXDingZhiDetailView.xib */; };
 		BBBDCAB92226612200A9F2CB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBDCAB62226612200A9F2CB /* LoginViewController.m */; };
 		BBBE071C2224E32D00CDD11E /* YXBaseFaXianDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBE071B2224E32D00CDD11E /* YXBaseFaXianDetailViewController.m */; };
 		BBBE071E2224E36100CDD11E /* YXBaseFaXianDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBBE071D2224E36100CDD11E /* YXBaseFaXianDetailViewController.xib */; };
@@ -1311,6 +1315,12 @@
 		BBBD722623A231F600D36B5E /* YXYingYeTimeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXYingYeTimeViewController.h; sourceTree = "<group>"; };
 		BBBD722723A231F600D36B5E /* YXYingYeTimeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXYingYeTimeViewController.m; sourceTree = "<group>"; };
 		BBBD722823A231F600D36B5E /* YXYingYeTimeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXYingYeTimeViewController.xib; sourceTree = "<group>"; };
+		BBBD722C23A3697500D36B5E /* YXDingZhiDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXDingZhiDetailViewController.h; sourceTree = "<group>"; };
+		BBBD722D23A3697500D36B5E /* YXDingZhiDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXDingZhiDetailViewController.m; sourceTree = "<group>"; };
+		BBBD722E23A3697500D36B5E /* YXDingZhiDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXDingZhiDetailViewController.xib; sourceTree = "<group>"; };
+		BBBD723123A36E8E00D36B5E /* YXDingZhiDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXDingZhiDetailView.h; sourceTree = "<group>"; };
+		BBBD723223A36E8E00D36B5E /* YXDingZhiDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXDingZhiDetailView.m; sourceTree = "<group>"; };
+		BBBD723423A36E9900D36B5E /* YXDingZhiDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXDingZhiDetailView.xib; sourceTree = "<group>"; };
 		BBBDCAB62226612200A9F2CB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		BBBDCAB72226612200A9F2CB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		BBBE071A2224E32D00CDD11E /* YXBaseFaXianDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXBaseFaXianDetailViewController.h; sourceTree = "<group>"; };
@@ -2537,6 +2547,7 @@
 				BB47955123A0E3C300923BDA /* YXDingZhiViewController.xib */,
 				BB1E5CEE23A211DB007BF7D5 /* 添加商户 */,
 				BB45A27423A20DCE0029FF4D /* 鞋服定制 */,
+				BBBD722B23A3694100D36B5E /* 详情界面 */,
 			);
 			path = "定制";
 			sourceTree = "<group>";
@@ -3724,6 +3735,19 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		BBBD722B23A3694100D36B5E /* 详情界面 */ = {
+			isa = PBXGroup;
+			children = (
+				BBBD722C23A3697500D36B5E /* YXDingZhiDetailViewController.h */,
+				BBBD722D23A3697500D36B5E /* YXDingZhiDetailViewController.m */,
+				BBBD722E23A3697500D36B5E /* YXDingZhiDetailViewController.xib */,
+				BBBD723123A36E8E00D36B5E /* YXDingZhiDetailView.h */,
+				BBBD723223A36E8E00D36B5E /* YXDingZhiDetailView.m */,
+				BBBD723423A36E9900D36B5E /* YXDingZhiDetailView.xib */,
+			);
+			path = "详情界面";
+			sourceTree = "<group>";
+		};
 		BBBFD7572222D7D300D377AC /* JJImagePicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -4831,6 +4855,7 @@
 				293D45A11ECD6422007C64A9 /* Assets.xcassets in Resources */,
 				BB15B0EB234ED077005CED4F /* YXJiFenLiJiGouMaiFootView.xib in Resources */,
 				BB86C8B4231B922800A061E2 /* YXMineJiFenLiShiChildTableViewCell.xib in Resources */,
+				BBBD723523A36E9900D36B5E /* YXDingZhiDetailView.xib in Resources */,
 				BBF26E3722448D2E0000AEF5 /* YXBindPhoneViewController.xib in Resources */,
 				BBE82BD921E340AD004E4144 /* EffectImage.png in Resources */,
 				BBEA156D2366E41B006FBBFF /* UIBarButtonItemArrowLeft@2x.png in Resources */,
@@ -4924,6 +4949,7 @@
 				BB59B9762373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.xib in Resources */,
 				BBEA15732366E41B006FBBFF /* UIBarButtonItemArrowRight@2x.png in Resources */,
 				BBACB4BE234D87690092367B /* YXJiFenShop1CollectionViewCell.xib in Resources */,
+				BBBD723023A3697500D36B5E /* YXDingZhiDetailViewController.xib in Resources */,
 				BB59B957237297F60064EC59 /* YXHuaTiViewController.xib in Resources */,
 				BBACB4DE234DDC020092367B /* YXJiFenDetailAllImageTableViewCell.xib in Resources */,
 				BB013349232F69B500573AC0 /* YXMineShouHuoTableViewCell.xib in Resources */,
@@ -5034,6 +5060,8 @@
 				BBB59B12228CF8CB0029D3D0 /* YXHomeXueJiaViewController.m in Sources */,
 				BB21FD8A22B0991E0059BCAC /* KSVideoLayer.m in Sources */,
 				BB6D2A3F21EF206A00F5049F /* KeyBoardTableView.m in Sources */,
+				BBBD723323A36E8E00D36B5E /* YXDingZhiDetailView.m in Sources */,
+				BBBD722F23A3697500D36B5E /* YXDingZhiDetailViewController.m in Sources */,
 				BB21FD9D22B0991E0059BCAC /* KSMediaViewerVideoCell.swift in Sources */,
 				2917D1FF1EDFC89A00E76185 /* YYFPSLabel.m in Sources */,
 				BB928F9D21FBFFD40090A044 /* YXMineTongYongTableViewController.m in Sources */,
