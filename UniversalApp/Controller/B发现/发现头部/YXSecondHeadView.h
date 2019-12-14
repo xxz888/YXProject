@@ -13,15 +13,20 @@ typedef void(^ClickCollectionItemBlock)(NSString *);
 typedef void(^MoreTagBlock)();
 
 @interface YXSecondHeadView : UIView <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
-@property (weak, nonatomic) IBOutlet UICollectionView *yxCollectionView;
 @property (nonatomic,strong) NSMutableArray * dataArray;
 @property (weak, nonatomic) IBOutlet UIImageView *choujiangImg;
 @property (nonatomic,copy) ClickCollectionItemBlock clickCollectionItemBlock;
 -(void)setCellData:(NSMutableArray *)startDataArray;
 @property (nonatomic,copy) MoreTagBlock moretagblock;
-@property (weak, nonatomic) IBOutlet UIView *yuan1;
-@property (weak, nonatomic) IBOutlet UIView *yuan2;
-@property (weak, nonatomic) IBOutlet UIView *yuan3;
+
+
+@property (weak, nonatomic) IBOutlet UIButton *btn1;
+@property (weak, nonatomic) IBOutlet UIButton *btn2;
+@property (weak, nonatomic) IBOutlet UIButton *btn3;
+@property (weak, nonatomic) IBOutlet UILabel *dongtaicount1;
+- (IBAction)btn1Action:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *dongtaicount2;
+@property (weak, nonatomic) IBOutlet UILabel *dongtaicount3;
 
 @end
 

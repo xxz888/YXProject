@@ -14,8 +14,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.yxTableView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight - kTopHeight - kTabBarHeight - 40);
-//    [self.yxTableView setFrame:CGRectMake(0, 0, KScreenWidth,  40)];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSecondVC:) name:@"refreshSecondVC" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(panduanUMXiaoXi1:) name:UM_User_Info_1 object:nil];
@@ -74,7 +72,7 @@
         [QMUITips hideAllTips];
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
-        weakself.nodataImg.hidden = weakself.dataArray.count != 0;
+        weakself.nodataImg.hidden = YES;
     }];
 }
 

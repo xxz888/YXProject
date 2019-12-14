@@ -63,13 +63,14 @@
     return YES;
 }
 #pragma mark ========== 1111111-先请求tag列表,获取发现页标签数据 ==========
--(void)requestFindAll:(NSString *)key{
-    if (!key) {
+-(void)requestFindAll:(NSString *)string{
+    if (!string) {
         return;
     }
     
     kWeakSelf(self);
-    [YX_MANAGER requestSearchFind_all:@{@"key":key,@"page":NSIntegerToNSString(self.requestPage),@"type":@"1",@"key_unicode":key} success:^(id object) {
+    if ([string contains:@"#"]) {string = [string split:@"#"][1];}
+    [YX_MANAGER requestSearchFind_all:@{@"key":string,@"page":NSIntegerToNSString(self.requestPage),@"type":@"1",@"key_unicode":string} success:^(id object) {
         if ([object count] > 0) {
             NSMutableArray *_dataSourceTemp=[NSMutableArray new];
             for (NSDictionary *company in object) {

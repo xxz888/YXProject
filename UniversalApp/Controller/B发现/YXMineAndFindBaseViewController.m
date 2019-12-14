@@ -22,7 +22,7 @@
 #import "YXWenZhangEditorViewController.h"
 #import "YXFirstFindImageTableViewCell.h"
 
-static CGFloat sectionHeaderHeight = 260;
+static CGFloat sectionHeaderHeight = 200;
 @interface YXMineAndFindBaseViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,ZInputToolbarDelegate,UIScrollViewDelegate>{
     CGFloat _autoPLHeight;
     BOOL _tagSelectBool;
@@ -96,7 +96,7 @@ static CGFloat sectionHeaderHeight = 260;
         _headerTagView.frame = CGRectMake(0, 0, KScreenWidth, sectionHeaderHeight);
         _headerTagView.backgroundColor = KWhiteColor;
         
-        [_headerTagView setCellData:self.tagArray];
+//        [_headerTagView setCellData:self.tagArray];
         
         _headerTagView.choujiangImg.userInteractionEnabled = YES;
         //添加点击手势
@@ -110,7 +110,6 @@ static CGFloat sectionHeaderHeight = 260;
             YXHuaTiViewController * vc = [[YXHuaTiViewController alloc]init];
             [weakself.navigationController pushViewController:vc animated:YES];
         };
-        //
         _headerTagView.clickCollectionItemBlock = ^(NSString * string) {
                 [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":string,@"page":@"1",@"type":@"3"} success:^(id object) {
                     if ([object count] > 0) {
@@ -138,7 +137,7 @@ static CGFloat sectionHeaderHeight = 260;
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return [self.startDic[@"id"] integerValue] == 1 ? sectionHeaderHeight : 0;
+    return [self.startDic[@"id"] integerValue] == 2 ? sectionHeaderHeight : 0;
 }
 #pragma mark ========== tableview代理方法 ==========
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -241,6 +240,7 @@ static CGFloat sectionHeaderHeight = 260;
     cell.clickTagblock = ^(NSString * string) {
         kWeakSelf(self);
         _tagSelectBool = YES;
+        if ([string contains:@"#"]) {string = [string split:@"#"][1];}
         [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":@"1",@"type":@"3"} success:^(id object) {
             if ([object count] > 0) {
                 YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];

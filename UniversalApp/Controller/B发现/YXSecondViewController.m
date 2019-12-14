@@ -111,9 +111,9 @@
 //        [weakself initSegment];
 //    }];
     [self.dataArray removeAllObjects];
-    NSDictionary * newDic = @{@"weight":@"0",@"type":@"最新",@"id":@"1"};
+    NSDictionary * newDic = @{@"weight":@"0",@"type":@"推荐",@"id":@"1"};
     [self.dataArray addObject:newDic];
-    NSDictionary * newDic1 = @{@"weight":@"1",@"type":@"最热",@"id":@"2"};
+    NSDictionary * newDic1 = @{@"weight":@"1",@"type":@"热门",@"id":@"2"};
     [self.dataArray addObject:newDic1];
     NSDictionary * newDic2 = @{@"weight":@"2",@"type":@"关注",@"id":@"3"};
     [self.dataArray addObject:newDic2];

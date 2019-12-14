@@ -90,10 +90,9 @@
         [self requestGetTagLIst:self.selectRow];
     }else{
           kWeakSelf(self);
-        NSString * tag = self.rightArray[indexPath.row][@"tag"];
-        tag = [tag isEqualToString:@"#"]?tag:[@"#" append:tag];
-        tag =  [tag replaceAll:@" " target:@""];
-          [YX_MANAGER requestSearchFind_all:@{@"key":tag,@"key_unicode":tag,@"page":@"1",@"type":@"3"} success:^(id object) {
+        NSString * string = self.rightArray[indexPath.row][@"tag"];
+        if ([string contains:@"#"]) {string = [string split:@"#"][1];}
+          [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":string,@"page":@"1",@"type":@"3"} success:^(id object) {
               if ([object count] > 0) {
                   YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
                   VC.type = @"3";

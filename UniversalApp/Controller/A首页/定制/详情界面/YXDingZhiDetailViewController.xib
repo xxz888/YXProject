@@ -81,7 +81,7 @@
                                                 <color key="titleColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             </state>
                                         </button>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="指南讨论" translatesAutoresizingMaskIntoConstraints="NO" id="ugG-aT-S0b">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dingzhifenxiang" translatesAutoresizingMaskIntoConstraints="NO" id="ugG-aT-S0b">
                                             <rect key="frame" x="10" y="11" width="22" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="22" id="FCC-wd-5FV"/>
@@ -109,7 +109,7 @@
                                                 <color key="titleColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             </state>
                                         </button>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="指南分享" translatesAutoresizingMaskIntoConstraints="NO" id="Z9F-u7-kbO">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="更多" translatesAutoresizingMaskIntoConstraints="NO" id="Z9F-u7-kbO">
                                             <rect key="frame" x="9.5" y="11" width="22" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="22" id="NOr-eU-zdk"/>
@@ -174,9 +174,9 @@
         </view>
     </objects>
     <resources>
-        <image name="指南分享" width="48" height="48"/>
-        <image name="指南讨论" width="48" height="48"/>
+        <image name="dingzhifenxiang" width="66" height="66"/>
         <image name="收藏未选择" width="66" height="66"/>
+        <image name="更多" width="64" height="64"/>
         <image name="黑色返回" width="44" height="44"/>
     </resources>
 </document>

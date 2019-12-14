@@ -32,7 +32,8 @@
     [self initAllControl];
     [self requestNewList];
     self.title = @"评论";
-
+    self.threeStackView.hidden = YES;
+    self.threeStackViewWidth.constant = self.threeStackViewLeftMagin.constant = 0;
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

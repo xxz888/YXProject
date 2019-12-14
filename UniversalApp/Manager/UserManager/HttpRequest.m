@@ -19,7 +19,7 @@
 
     kWeakSelf(self);
     NSString * strURl = [API_ROOT_URL_HTTP_FORMAL stringByAppendingString:pi];
-//    NSLog(@"getUrl-:%@",strURl);
+    NSLog(@"getUrl-:%@",strURl);
     
         AFHTTPSessionManager * manager = [SYBaseHttpConnection sharedManager];
         NSDictionary * userInfo = userManager.loadUserAllInfo;
@@ -41,7 +41,6 @@
 + (void)httpRequestGetPi:(NSString *)pi sucess:(SucessBlock)sucess failure:(FailureBlock)failure{
     kWeakSelf(self);
     NSString * url = [API_ROOT_URL_HTTP_FORMAL append:pi];
-//    NSLog(@"getUrl-:%@",url);
        AFHTTPSessionManager * manager = [SYBaseHttpConnection sharedManager];
      
       NSDictionary * userInfo = userManager.loadUserAllInfo;
@@ -50,6 +49,7 @@
               
           }else{
               [manager.requestSerializer setValue:[@"JWT " append:userInfo[@"token"]] forHTTPHeaderField:@"Authorization"];
+              NSLog(@"URL = %@,Token = %@",url,userInfo[@"token"]);
           }
       }
 

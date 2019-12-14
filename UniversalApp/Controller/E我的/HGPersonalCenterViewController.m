@@ -464,6 +464,7 @@ _Pragma("clang diagnostic pop") \
              cell.clickTagblock = ^(NSString * string) {
                  kWeakSelf(self);
                  _tagSelectBool = YES;
+                 if ([string contains:@"#"]) {string = [string split:@"#"][1];}
                  [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":@"1",@"type":@"3"} success:^(id object) {
                      if ([object count] > 0) {
                          YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
@@ -551,6 +552,7 @@ _Pragma("clang diagnostic pop") \
     cell.clickTagblock = ^(NSString * string) {
         kWeakSelf(self);
         _tagSelectBool = YES;
+        if ([string contains:@"#"]) {string = [string split:@"#"][1];}
         [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":@"1",@"type":@"3"} success:^(id object) {
             if ([object count] > 0) {
                 YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
@@ -625,11 +627,13 @@ _Pragma("clang diagnostic pop") \
 #pragma -----点击话题-----
 -(void)didselect2003ShouCang:(NSDictionary *)dic{
     kWeakSelf(self);
-    [YX_MANAGER requestSearchFind_all:@{@"key":dic[@"tag"],@"key_unicode":dic[@"tag"],@"page":@"1",@"type":@"3"} success:^(id object) {
+    NSString * string = dic[@"tag"];
+    if ([string contains:@"#"]) {string = [string split:@"#"][1];}
+    [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":string,@"page":@"1",@"type":@"3"} success:^(id object) {
           if ([object count] > 0) {
               YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
               VC.type = @"3";
-              VC.key = [dic[@"tag"] contains:@"#"] ? dic[@"tag"] : [@"#" append:dic[@"tag"]];
+              VC.key = string;
               VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
               VC.startArray = [NSArray arrayWithArray:object];
               [weakself.navigationController pushViewController:VC animated:YES];

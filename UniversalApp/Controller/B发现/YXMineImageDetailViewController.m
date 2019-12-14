@@ -83,7 +83,7 @@
     //赞
     BOOL isp =  [self.startDic[@"is_praise"] integerValue] == 1;
     UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
-    [self.bottomZanBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
+    self.zanImgv.image = likeImage;
 }
 -(YXFirstFindImageTableViewCell *)cell{
     if (!_cell) {
@@ -357,6 +357,7 @@
         [weakself clickUserImageView:kGetString(weakself.startDic[@"user_id"])];
     };
     self.cell.clickTagblock = ^(NSString * string) {
+        if ([string contains:@"#"]) {string = [string split:@"#"][1];}
         [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":@"1",@"type":@"2"} success:^(id object) {
             if ([object count] > 0) {
                 YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
@@ -432,7 +433,7 @@
         //赞
         zanBool = !zanBool;
         UIImage * likeImage = zanBool ? ZAN_IMG : UNZAN_IMG;
-        [weakself.bottomZanBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
+        weakself.zanImgv.image = likeImage;
         NSInteger zhengfuValue = zanBool ? 1 : -1;
         weakself.bottomZanCount.text = NSIntegerToNSString([weakself.bottomZanCount.text integerValue] + zhengfuValue);
         if ([weakself.bottomZanCount.text isEqualToString:@"0"]) {

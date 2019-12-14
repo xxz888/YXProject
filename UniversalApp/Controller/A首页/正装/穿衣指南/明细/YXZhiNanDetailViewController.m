@@ -69,8 +69,14 @@
 -(void)panduanIsColl{
     self.title = [NSString stringWithFormat:@"0%ld/%@",self.bigIndex+1,kGetString(self.startArray[self.bigIndex][@"name"])];
     self.plLbl.text = kGetString(self.startArray[self.bigIndex][@"comment_number"]);
-    self.collLbl.text = kGetString(self.startArray[self.bigIndex][@"collect_number"]);
+    if ([self.plLbl.text isEqualToString:@"0"]) {
+        self.plLbl.hidden = YES;
+    }else{
+        self.plLbl.hidden = NO;
+    }
 
+    self.collLbl.text = kGetString(self.startArray[self.bigIndex][@"collect_number"]);
+    self.collLbl.hidden = [self.collLbl.text isEqualToString:@"0"];
     if ([userManager loadUserInfo]) {
         self.is_collect = [self.startArray[self.bigIndex][@"is_collect"] integerValue] == 1;
         UIImage * likeImage = self.is_collect ? [UIImage imageNamed:@"收藏选择"] : [UIImage imageNamed:@"收藏未选择"] ;
@@ -313,6 +319,9 @@
         self.automaticallyAdjustsScrollViewInsets=NO;
         
     }
+    UITapGestureRecognizer *aTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pinglunAction)];
+      // 添加手势
+      [self.pinglunView addGestureRecognizer:aTapGR];
 }
 
 -(void)moreShare{

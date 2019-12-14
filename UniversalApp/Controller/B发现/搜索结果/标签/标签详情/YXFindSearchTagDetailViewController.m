@@ -141,6 +141,7 @@
 //}
 -(void)requestAction{
     kWeakSelf(self);
+    if ([self.key contains:@"#"]) {self.key = [self.key split:@"#"][1];}
     [YX_MANAGER requestSearchFind_all:@{@"key":self.key,@"page":NSIntegerToNSString(self.requestPage),@"type":self.type,@"key_unicode":[self.key utf8ToUnicode]} success:^(id object) {
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];

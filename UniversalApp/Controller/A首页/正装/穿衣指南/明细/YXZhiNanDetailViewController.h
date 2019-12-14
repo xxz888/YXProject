@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *collImgView;
     @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewHeight;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (weak, nonatomic) IBOutlet UIView *pinglunView;
 
 @end
 

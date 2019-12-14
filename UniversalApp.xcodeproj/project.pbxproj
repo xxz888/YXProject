@@ -222,8 +222,6 @@
 		BB59B96C2373B4A30064EC59 /* CALayer+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = BB59B96B2373B4A30064EC59 /* CALayer+Color.m */; };
 		BB59B96F2373C5820064EC59 /* YXSecondHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB59B96E2373C5820064EC59 /* YXSecondHeadView.m */; };
 		BB59B9712373C5B40064EC59 /* YXSecondHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB59B9702373C5B40064EC59 /* YXSecondHeadView.xib */; };
-		BB59B9752373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB59B9732373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.m */; };
-		BB59B9762373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB59B9742373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.xib */; };
 		BB5DC69B2189CA38003F1998 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */; };
 		BB5DC69C2189CA38003F1998 /* SELUpdateAlertConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */; };
 		BB5FD86A21FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5FD86821FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m */; };
@@ -1000,9 +998,6 @@
 		BB59B96D2373C5820064EC59 /* YXSecondHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXSecondHeadView.h; sourceTree = "<group>"; };
 		BB59B96E2373C5820064EC59 /* YXSecondHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXSecondHeadView.m; sourceTree = "<group>"; };
 		BB59B9702373C5B40064EC59 /* YXSecondHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXSecondHeadView.xib; sourceTree = "<group>"; };
-		BB59B9722373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXSecondHeadCollectionViewCell.h; sourceTree = "<group>"; };
-		BB59B9732373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXSecondHeadCollectionViewCell.m; sourceTree = "<group>"; };
-		BB59B9742373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXSecondHeadCollectionViewCell.xib; sourceTree = "<group>"; };
 		BB5DC6972189CA38003F1998 /* SELUpdateAlertConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlertConst.h; sourceTree = "<group>"; };
 		BB5DC6982189CA38003F1998 /* SELUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlert.m; sourceTree = "<group>"; };
 		BB5DC6992189CA38003F1998 /* SELUpdateAlertConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELUpdateAlertConst.m; sourceTree = "<group>"; };
@@ -3845,9 +3840,6 @@
 				BB59B96D2373C5820064EC59 /* YXSecondHeadView.h */,
 				BB59B96E2373C5820064EC59 /* YXSecondHeadView.m */,
 				BB59B9702373C5B40064EC59 /* YXSecondHeadView.xib */,
-				BB59B9722373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.h */,
-				BB59B9732373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.m */,
-				BB59B9742373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.xib */,
 				BBC7CD1C22E16BFB00AC9E2D /* YXFindHeaderView.h */,
 				BBC7CD1D22E16BFB00AC9E2D /* YXFindHeaderView.m */,
 				BBC7CD1F22E16C0500AC9E2D /* YXFindHeaderView.xib */,
@@ -4946,7 +4938,6 @@
 				BB6F6A232361A31B00EC8732 /* style.css in Resources */,
 				BBD2C95721E0F72800350DCD /* README.md in Resources */,
 				BB53E74B235F01020014F106 /* YXWenZhangEditorViewController.xib in Resources */,
-				BB59B9762373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.xib in Resources */,
 				BBEA15732366E41B006FBBFF /* UIBarButtonItemArrowRight@2x.png in Resources */,
 				BBACB4BE234D87690092367B /* YXJiFenShop1CollectionViewCell.xib in Resources */,
 				BBBD723023A3697500D36B5E /* YXDingZhiDetailViewController.xib in Resources */,
@@ -5360,7 +5351,6 @@
 				BB53E73E235EFAC00014F106 /* HXDatePhotoToolManager.m in Sources */,
 				BBDA2D2621EB30BF00EDCCFF /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				BBA812AD21DDAB9D001B5EA1 /* YXFindViewController.m in Sources */,
-				BB59B9752373C6DB0064EC59 /* YXSecondHeadCollectionViewCell.m in Sources */,
 				BB6F6A1B2361A31B00EC8732 /* KWFontStyleBar.m in Sources */,
 				BBB59AE9228CF8CB0029D3D0 /* PYTempViewController.m in Sources */,
 				BBD2C92521E0F67800350DCD /* MWPhoto.m in Sources */,

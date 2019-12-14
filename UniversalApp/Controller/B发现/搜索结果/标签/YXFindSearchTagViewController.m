@@ -59,12 +59,13 @@
 }
 
 #pragma mark ========== 1111111-先请求tag列表,获取发现页标签数据 ==========
--(void)requestFindAll_Tag:(NSString *)key{
-    if (!key) {
+-(void)requestFindAll_Tag:(NSString *)string{
+    if (!string) {
         return;
     }
     kWeakSelf(self);
-    [YX_MANAGER requestSearchFind_all:@{@"key":key,@"key_unicode":[key utf8ToUnicode],@"page":NSIntegerToNSString(self.requestPage),@"type":@"2"} success:^(id object) {
+    if ([string contains:@"#"]) {string = [string split:@"#"][1];}
+    [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":NSIntegerToNSString(self.requestPage),@"type":@"2"} success:^(id object) {
         [weakself.dataArray removeAllObjects];
         [weakself.dataArray addObjectsFromArray:object];
         [weakself.yxTableView reloadData];
