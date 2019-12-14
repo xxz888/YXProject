@@ -28,9 +28,6 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-//    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-//
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,7 +47,7 @@
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXFindSearchTagHeaderView" owner:self options:nil];
     _headerView = [nib objectAtIndex:0];
     _headerView.frame = CGRectMake(0, 0, KScreenWidth, 280);
-    _headerView.lbl1.text = kGetString(self.headerViewStartDic[@"tag"]);
+    _headerView.lbl1.text = self.key;
     _headerView.lbl2.text = [kGetNSInteger([self.headerViewStartDic[@"post_number"] integerValue]) append:@"篇帖子"];
     
     
@@ -146,11 +143,14 @@
     kWeakSelf(self);
     [YX_MANAGER requestSearchFind_all:@{@"key":self.key,@"page":NSIntegerToNSString(self.requestPage),@"type":self.type,@"key_unicode":[self.key utf8ToUnicode]} success:^(id object) {
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
-        [weakself requestIsCollection];
+        [weakself.yxTableView reloadData];
 
 
 
     }];
+    
+    [weakself requestIsCollection];
+
 }
 -(void)requestIsCollection{
     //请求是否收藏

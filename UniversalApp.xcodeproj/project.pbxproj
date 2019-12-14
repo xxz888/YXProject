@@ -5614,7 +5614,7 @@
 				CODE_SIGN_ENTITLEMENTS = UniversalApp/UniversalApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.6;
+				CURRENT_PROJECT_VERSION = 1.01;
 				DEVELOPMENT_TEAM = V458Z29RD7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5650,6 +5650,7 @@
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/share/share_ios_6.9.4/SocialLibraries/Sina",
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/share/share_ios_6.9.4/SocialLibraries/QQ",
 				);
+				MARKETING_VERSION = 1.01;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tongji.lps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5672,7 +5673,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 1.6;
+				CURRENT_PROJECT_VERSION = 1.01;
 				DEVELOPMENT_TEAM = V458Z29RD7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5709,6 +5710,7 @@
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/share/share_ios_6.9.4/SocialLibraries/Sina",
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/share/share_ios_6.9.4/SocialLibraries/QQ",
 				);
+				MARKETING_VERSION = 1.01;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tongji.lps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

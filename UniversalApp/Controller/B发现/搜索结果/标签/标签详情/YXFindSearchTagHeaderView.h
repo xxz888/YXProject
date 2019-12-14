@@ -21,6 +21,7 @@ typedef void(^clickSegment)(NSInteger);
 @property (nonatomic,copy) clickSegment block;
 @property (nonatomic,copy) backvcBlock backvcblock;
 @property (nonatomic,copy) fenxiangBlock fenxiangblock;
+@property (weak, nonatomic) IBOutlet UIView *shoucangView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *shoucangWidth;
 

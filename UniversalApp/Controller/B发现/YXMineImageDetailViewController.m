@@ -386,6 +386,10 @@
         }
     };
     self.cell.guanZhublock = ^{
+        if (![userManager loadUserInfo]) {
+                  KPostNotification(KNotificationLoginStateChange, @NO);
+                  return;
+              }
         [weakself guanzhuAction];
     };
 }

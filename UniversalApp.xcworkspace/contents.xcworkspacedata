@@ -2,15 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/xiaoxiaozui/Desktop/YXProject/UniversalApp/Controller/A&#x9996;&#x9875;/&#x5b9a;&#x5236;/&#x6dfb;&#x52a0;&#x5546;&#x6237;/YXDingZhiYingYeTimeViewController.h">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/xiaoxiaozui/Desktop/YXProject/UniversalApp/Controller/A&#x9996;&#x9875;/&#x5b9a;&#x5236;/&#x6dfb;&#x52a0;&#x5546;&#x6237;/YXDingZhiYingYeTimeViewController.m">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/xiaoxiaozui/Desktop/YXProject/UniversalApp/Controller/A&#x9996;&#x9875;/&#x5b9a;&#x5236;/&#x6dfb;&#x52a0;&#x5546;&#x6237;/YXDingZhiYingYeTimeViewController.xib">
-   </FileRef>
-   <FileRef
       location = "group:UniversalApp.xcodeproj">
    </FileRef>
    <FileRef

@@ -10,13 +10,15 @@
 
 @implementation YXFindSearchTagHeaderView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
+
 - (void)drawRect:(CGRect)rect {
-    // Drawing code
+    if (![userManager loadUserInfo]) {
+        self.shoucangView.hidden = YES;
+    }else{
+        self.shoucangView.hidden= NO;
+    }
 }
-*/
+
 - (IBAction)backVcAction:(id)sender {
     self.backvcblock();
 }
