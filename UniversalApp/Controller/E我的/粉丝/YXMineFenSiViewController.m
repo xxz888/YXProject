@@ -123,6 +123,10 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
     NSDictionary * userInfo = userManager.loadUserAllInfo;
     NSString * key1 = self.dataArray[indexPath.row][@"aim_name"] ? @"aim_name" : @"user_name";
     if ([userInfo[@"username"] isEqualToString:self.dataArray[indexPath.row][key1]]) {

@@ -486,13 +486,13 @@ SINGLETON_FOR_CLASS(ShareManager);
          [btn setTitle:@"+关注" forState:UIControlStateNormal];
          [btn setTitleColor:KWhiteColor forState:0];
          [btn setBackgroundColor:SEGMENT_COLOR];
-         ViewBorderRadius(btn, 5, 1, KClearColor);
+         ViewBorderRadius(btn, 14, 1, KClearColor);
          isAlertView ? [QMUITips showSucceed:@"操作成功"] : nil;
     }else{
         [btn setTitle:@"已关注" forState:UIControlStateNormal];
         [btn setTitleColor:kRGBA(153, 153, 153, 1) forState:0];
         [btn setBackgroundColor:kRGBA(245, 245, 245, 1)];
-        ViewBorderRadius(btn, 5, 1, KClearColor);
+        ViewBorderRadius(btn, 14, 1, KClearColor);
         isAlertView ?  [QMUITips showSucceed:@"操作成功"] : nil;
     }
 }

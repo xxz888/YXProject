@@ -55,5 +55,7 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestUserIsShouCangGet:YX_BLOCK;
 -(void)requestBlackGet:YX_BLOCK;
 -(void)requestPubTagPOST:YX_BLOCK;
+#pragma mark ==========热门tag==========
+-(void)requestHotTagGet:YX_BLOCK;
 @end
 

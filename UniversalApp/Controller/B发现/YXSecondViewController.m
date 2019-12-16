@@ -62,6 +62,10 @@
     
 }
 - (void)didSelectMenuOptionAtIndex:(NSInteger)row{
+    if (![userManager loadUserInfo]) {
+        KPostNotification(KNotificationLoginStateChange, @NO);
+        return;
+    }
     if (row==1) {
         YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
         imageVC.modalPresentationStyle = UIModalPresentationFullScreen;

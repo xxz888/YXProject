@@ -157,6 +157,12 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) { }];
 }
+#pragma mark ==========热门tag==========
+-(void)requestHotTagGet:YX_BLOCK{
+    [HTTP_GET(@"/users/iu_tag/")  sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {}];
+}
 #pragma mark ==========收藏==========
 -(void)requestUserShouCangPOST:YX_BLOCK{
     [HTTP_POST(@"/pub/user_collect/") Parameters:dic sucess:^(id responseObject) {

@@ -237,7 +237,7 @@
 #pragma clang diagnostic pop
                 [_weakSelf saveSearchCacheAndRefreshView];
             } else {
-                [_weakSelf searchBarSearchButtonClicked:_weakSelf.searchHeaderView.searchBar];
+                [_weakSelf searchBarSearchButtonClicked:@""];
             }
         };
         searchSuggestionVC.view.frame = CGRectMake(0, CGRectGetMaxY(self.navigationController.navigationBar.frame), PYScreenW, PYScreenH);
@@ -810,14 +810,14 @@
             [self.delegate searchViewController:self didSelectHotSearchAtIndex:[self.hotSearchTags indexOfObject:label] searchText:label.text];
             [self saveSearchCacheAndRefreshView];
         } else {
-            [self searchBarSearchButtonClicked:self.searchHeaderView.searchBar];
+            [self searchBarSearchButtonClicked:label.text];
         }
     } else {
         if ([self.delegate respondsToSelector:@selector(searchViewController:didSelectSearchHistoryAtIndex:searchText:)]) {
             [self.delegate searchViewController:self didSelectSearchHistoryAtIndex:[self.searchHistoryTags indexOfObject:label] searchText:label.text];
             [self saveSearchCacheAndRefreshView];
         } else {
-            [self searchBarSearchButtonClicked:self.searchHeaderView.searchBar];
+            [self searchBarSearchButtonClicked:label.text];
         }
     }
     PYSEARCH_LOG(@"Search %@", label.text);
@@ -940,14 +940,14 @@
     return YES;
 }
 #pragma mark - UISearchBarDelegate
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+- (void)searchBarSearchButtonClicked:(NSString *)string
 {
     if ([self.delegate respondsToSelector:@selector(searchViewController:didSearchWithSearchBar:searchText:)]) {
-        [self.delegate searchViewController:self didSearchWithSearchBar:searchBar searchText:searchBar.text];
+        [self.delegate searchViewController:self didSearchWithSearchBar:_searchBar searchText:string];
         [self saveSearchCacheAndRefreshView];
         return;
     }
-    if (self.didSearchBlock) self.didSearchBlock(self, self.searchHeaderView.searchBar,self.searchHeaderView.searchBar.text);
+    if (self.didSearchBlock) self.didSearchBlock(self, self.searchHeaderView.searchBar,string);
     [self saveSearchCacheAndRefreshView];
 }
 
@@ -1063,7 +1063,7 @@
         [self.delegate searchViewController:self didSelectSearchHistoryAtIndex:indexPath.row searchText:cell.textLabel.text];
         [self saveSearchCacheAndRefreshView];
     } else {
-        [self searchBarSearchButtonClicked:self.searchHeaderView.searchBar];
+        [self searchBarSearchButtonClicked:@""];
     }
 }
 

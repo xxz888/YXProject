@@ -11,13 +11,11 @@
 #import "YXFindSearchResultUsersViewController.h"
 #import "YXFindSearchResultAllViewController.h"
 #import "UIView+PYSearchExtension.h"
-#import "YXFindSearchTagViewController.h"
 #import "HGSegmentedPageViewController.h"
 
 @interface YXFindSearchResultViewController (){
     YXFindSearchResultAllViewController * allVC;
     YXFindSearchResultUsersViewController * userVC;
-    YXFindSearchTagViewController * tagVC;
 }
 @property (nonatomic, strong) HGSegmentedPageViewController *segmentedPageViewController;
 
@@ -59,13 +57,10 @@
         allVC.key = self.searchText;
         userVC = [[YXFindSearchResultUsersViewController alloc]init];
         userVC.key = self.searchText;
-        
         userVC.whereCome = NO;
-        tagVC = [[YXFindSearchTagViewController alloc]init];
-        tagVC.key = self.searchText;
         
-        NSArray* titles = @[@"全部",@"用户",@"标签"];
-        NSArray* controllers = @[allVC,userVC,tagVC];
+        NSArray* titles = @[@"全部",@"用户"];
+        NSArray* controllers = @[allVC,userVC];
         
         _segmentedPageViewController = [[HGSegmentedPageViewController alloc] init];
         _segmentedPageViewController.pageViewControllers = controllers.copy;
@@ -83,17 +78,14 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     allVC.key = textField.text;
        userVC.key = textField.text;
-       tagVC.key = textField.text;
        [allVC requestFindAll:textField.text];
     [userVC requestFindAll_user:textField.text];
-    [tagVC requestFindAll_Tag:textField.text];
     
     return YES;
 }
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     allVC.key = searchBar.text;
     userVC.key = searchBar.text;
-    tagVC.key = searchBar.text;
     [allVC requestFindAll:searchBar.text];
 }
 

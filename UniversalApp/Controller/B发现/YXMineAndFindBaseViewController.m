@@ -54,8 +54,32 @@ static CGFloat sectionHeaderHeight = 200;
     [YX_MANAGER requestGet_users_find_tag:@"" success:^(id object) {
         [weakself.tagArray addObjectsFromArray:object];
         [weakself tableviewCon];
+        
         [weakself addRefreshView:self.yxTableView];
+        
+        
+        if ([self.startDic[@"id"] integerValue] == 2) {
+            //请求热门标签
+             [YXPLUS_MANAGER requestHotTagGet:@"" success:^(id object) {
+                 if ([object[@"data"] count] == 3) {
+                     NSArray * dataArr = object[@"data"];
+                     [weakself.headerTagView.btn1 setTitle:[@"#   " append: dataArr[0][@"tag"]] forState:UIControlStateNormal];
+                     weakself.headerTagView.dongtaicount1.text = [kGetString(dataArr[0][@"post_number"]) append:@" 条动态"];
+                     weakself.headerTagView.dongtaicount1 .hidden = [weakself.headerTagView.dongtaicount1.text isEqualToString:@"0"];
+                     [weakself.headerTagView.btn2 setTitle:[@"#   " append: dataArr[1][@"tag"]] forState:UIControlStateNormal];
+                     weakself.headerTagView.dongtaicount2.text = [kGetString(dataArr[1][@"post_number"]) append:@" 条动态"];
+                     weakself.headerTagView.dongtaicount2 .hidden = [weakself.headerTagView.dongtaicount2.text isEqualToString:@"0"];
+
+                     [weakself.headerTagView.btn3 setTitle:[@"#   " append: dataArr[2][@"tag"]] forState:UIControlStateNormal];
+                     weakself.headerTagView.dongtaicount3.text = [kGetString(dataArr[2][@"post_number"]) append:@" 条动态"];
+                     weakself.headerTagView.dongtaicount3 .hidden = [weakself.headerTagView.dongtaicount3.text isEqualToString:@"0"];
+
+                 }
+             }];
+        }
     }];
+    
+
 }
 #pragma mark ========== 创建tableview ==========
 -(void)tableviewCon{
@@ -132,7 +156,7 @@ static CGFloat sectionHeaderHeight = 200;
     if (![userManager loadUserInfo]) {
              KPostNotification(KNotificationLoginStateChange, @NO);
              return;
-         }
+    }
     YXMineChouJiangViewController * vc = [[YXMineChouJiangViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
