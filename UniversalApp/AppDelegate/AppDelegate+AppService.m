@@ -19,6 +19,7 @@
 #define UMAppKey @"5d2eba7d0cafb28237000acb"
 #import "YXNetFailView.h"
 #import "YXNewLoginViewController.h"
+#import "QiniuLoad.h"
 @interface AppDelegate()<UNUserNotificationCenterDelegate>
 //@property (nonatomic, strong) YXNetFailView * netFailView;
 //@property (nonatomic) BOOL netBool;
@@ -52,21 +53,58 @@
     [self.window makeKeyAndVisible];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [[UIButton appearance] setExclusiveTouch:YES];
-//    [[UIButton appearance] setShowsTouchWhenHighlighted:YES];
-//    [UIActivityIndicatorView appearanceWhenContainedIn:[MBProgressHUD class], nil].color = KWhiteColor;
     if (@available(iOS 11.0, *)){
         [[UIScrollView appearance] setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
     }
-//    kWeakSelf(self);
-//    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXNetFailView" owner:self options:nil];
-//    self.netFailView = [nib objectAtIndex:0];
-//    self.netFailView.hidden = YES;
-//    self.netFailView.frame = CGRectMake(0,0, KScreenWidth, KScreenHeight);
-//    [self.window addSubview:self.netFailView];
-//    self.netFailView.refreshblock = ^{
-//        [weakself.netFailView removeFromSuperview];
-//    };
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(userDidTakeScreenshot:)
+                                                 name:UIApplicationUserDidTakeScreenshotNotification
+                                               object:nil];
+    
 }
+#pragma mark - 用户截屏通知事件
+- (void)userDidTakeScreenshot:(NSNotification *)notification {
+    if ([[self topViewController] isKindOfClass:[QMUIMoreOperationController class]]) {
+        return;
+    }
+    // 手动截取当前屏幕图片
+    UIGraphicsBeginImageContextWithOptions([self topViewController].view.bounds.size, NO, [UIScreen mainScreen].scale);
+    [[self topViewController].view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.5);//数值 0 - 1 之间
+    UIImage *mainScreenshot = [UIImage imageWithData:imageData];
+    UIImageView * imageView = [[UIImageView alloc]initWithImage:mainScreenshot];
+    CGFloat width = KScreenWidth - (kRealValue(65) * 2);
+    imageView.frame = CGRectMake(kRealValue(65.0), 40, width, 1.59 * width);
+    ViewRadius(imageView, 5);
+    
+    if (mainScreenshot) {
+        [[ShareManager sharedShareManager] pushShareViewAndDic:@{@"type":@"5",@"img":mainScreenshot}];
+               [[self topViewController].view addSubview:imageView];
+    }
+
+}
+- (UIViewController *)topViewController {
+    UIViewController *resultVC;
+    resultVC = [self _topViewController:[[UIApplication sharedApplication].keyWindow rootViewController]];
+    while (resultVC.presentedViewController) {
+        resultVC = [self _topViewController:resultVC.presentedViewController];
+    }
+    return resultVC;
+}
+- (UIViewController *)_topViewController:(UIViewController *)vc {
+    if ([vc isKindOfClass:[UINavigationController class]]) {
+        return [self _topViewController:[(UINavigationController *)vc topViewController]];
+    } else if ([vc isKindOfClass:[UITabBarController class]]) {
+        return [self _topViewController:[(UITabBarController *)vc selectedViewController]];
+    } else {
+        return vc;
+    }
+    return nil;
+}
+
 #pragma mark ————— 初始化用户系统 —————
 -(void)initUserManager{
     if([userManager loadUserInfo]){
@@ -138,7 +176,7 @@
 #pragma mark ————— 友盟 初始化 —————
 -(void)initUMeng:(NSDictionary *)launchOptions{
     /* 打开调试日志 */
-    [[UMSocialManager defaultManager] openLog:YES];
+//    [[UMSocialManager defaultManager] openLog:YES];
     
     /* 设置友盟appkey */
     [UMConfigure initWithAppkey:UMengKey channel:nil];
@@ -147,11 +185,6 @@
     [self configUSharePlatforms];
     //友盟推送
     [self configUMPush:launchOptions];
-    //友盟统计
-    [self configUMTongJi];
-}
--(void)configUMTongJi{
-    
 }
 -(void)configUMPush:(NSDictionary *)launchOptions{
     // 配置友盟SDK产品并并统一初始化

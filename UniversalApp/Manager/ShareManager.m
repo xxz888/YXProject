@@ -23,64 +23,100 @@ SINGLETON_FOR_CLASS(ShareManager);
             [weakself shareAllToPlatformType:platformType obj:obj];
     }];
 }
+- (void)shareImageToPlatformType:(UMSocialPlatformType)platformType obj:(id)obj{
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+
+   //创建图片内容对象
+      UMShareImageObject *shareObject = [[UMShareImageObject alloc] init];
+      //如果有缩略图，则设置缩略图
+      shareObject.thumbImage = [UIImage imageNamed:@"useIcon"];
+      [shareObject setShareImage:obj[@"img"]];
+      //分享消息对象设置分享内容对象
+      messageObject.shareObject = shareObject;
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:nil completion:^(id data, NSError *error) {
+        if (error) {
+            NSLog(@"************Share fail with error %@*********",error);
+        }else{
+            NSLog(@"response data is %@",data);
+        }
+    }];
+}
 - (void)shareAllToPlatformType:(UMSocialPlatformType)platformType obj:(id)obj{
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    
+    
     //创建网页内容对象
     UIImage * thumbURL = [UIImage imageNamed:@"appicon"];
-    
-    
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:obj[@"title"] descr:obj[@"desc"] thumImage:thumbURL];
-    [UMSocialGlobal shareInstance].isUsingHttpsWhenShareContent = NO;
-    
-    /*
-    这两分为两种情况，一种是直接分享图片出去，一种是分享实际自己的内容出去，接受方式不一样，所以在这里分别处理
-    */
-    
-    NSString * webpageUrl = @"";
+
     //如果图片为空，说明是分享的自己的内容
     NSInteger type = [obj[@"type"] integerValue];
-    NSString * httpurl = [API_URL split:@"/api"][0];
-    NSString * url1 = [NSString stringWithFormat:@"%@/phone/#/",httpurl];
     
-    switch (type) {
-            case 1:{
-                    webpageUrl = [NSString stringWithFormat:@"%@second/%@",url1,obj[@"index"]];
-                    shareObject.thumbImage = obj[@"thumbImage"];
+    id shareObjectAll = nil;
+    if (type == 5) {
+           //创建图片内容对象
+           UMShareImageObject * shareObject = [[UMShareImageObject alloc] init];
+           //如果有缩略图，则设置缩略图
+           shareObject.thumbImage = thumbURL;
+           [shareObject setShareImage:obj[@"img"]];
+        shareObjectAll = shareObject;
+        
+    }else{
+        
+        
+        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:obj[@"title"] descr:obj[@"desc"] thumImage:thumbURL];
+        [UMSocialGlobal shareInstance].isUsingHttpsWhenShareContent = NO;
+        /*
+        这两分为两种情况，一种是直接分享图片出去，一种是分享实际自己的内容出去，接受方式不一样，所以在这里分别处理
+        */
+        NSString * webpageUrl = @"";
+            NSString * httpurl = [API_URL split:@"/api"][0];
+            NSString * url1 = [NSString stringWithFormat:@"%@/phone/#/",httpurl];
+            
+            switch (type) {
+                    case 1:{
+                            webpageUrl = [NSString stringWithFormat:@"%@second/%@",url1,obj[@"index"]];
+                            shareObject.thumbImage = obj[@"thumbImage"];
+                            break;
+                        }
+                    case 2:{
+                            webpageUrl = [NSString stringWithFormat:@"%@third/%@/%@",url1,obj[@"index1"],obj[@"index"]];
+                            shareObject.thumbImage = obj[@"thumbImage"];
+                            break;
+                        }
+                    case 3:{
+                             NSString * resultString = [NSString stringWithFormat:@"%@",obj[@"img"]];
+                             resultString = [resultString stringByReplacingOccurrencesOfString:@" " withString:@""];
+                             webpageUrl = [NSString stringWithFormat:@"http://www.%@/showImage.html?img=%@",httpurl,resultString];
+                             shareObject.thumbImage = obj[@"img"];
+                         }
                     break;
-                }
-            case 2:{
-                    webpageUrl = [NSString stringWithFormat:@"%@third/%@/%@",url1,obj[@"index1"],obj[@"index"]];
-                    shareObject.thumbImage = obj[@"thumbImage"];
-                    break;
-                }
-            case 3:{
-                     NSString * resultString = [NSString stringWithFormat:@"%@",obj[@"img"]];
-                     resultString = [resultString stringByReplacingOccurrencesOfString:@" " withString:@""];
-                     webpageUrl = [NSString stringWithFormat:@"http://www.%@/showImage.html?img=%@",httpurl,resultString];
-                     shareObject.thumbImage = obj[@"img"];
-                 }
-            break;
-            case 4:{
-                     NSDictionary * userInfo = userManager.loadUserAllInfo;
-                webpageUrl = @"http://www.lpszn.com/";
-//                     webpageUrl = [NSString stringWithFormat:@"%@yaoqingZhuCe.html?%@",[API_URL split:@"api"][0],kGetString(userInfo[@"id"])];
-//                webpageUrl = [NSString stringWithFormat:@"http://192.168.101.21:63340/矩形抽奖活动html/yaoqingZhuCe.html?%@",kGetString(userinfo.id)];
+                    case 4:{
+                             NSDictionary * userInfo = userManager.loadUserAllInfo;
+                        webpageUrl = @"http://www.lpszn.com/";
+        //                     webpageUrl = [NSString stringWithFormat:@"%@yaoqingZhuCe.html?%@",[API_URL split:@"api"][0],kGetString(userInfo[@"id"])];
+        //                webpageUrl = [NSString stringWithFormat:@"http://192.168.101.21:63340/矩形抽奖活动html/yaoqingZhuCe.html?%@",kGetString(userinfo.id)];
 
-                     shareObject.thumbImage = obj[@"thumbImage"];
-                     break;
-                 }
-        default:
-            break;
+                             shareObject.thumbImage = obj[@"thumbImage"];
+                             break;
+                         }
+                default:
+                    break;
+            }
+            
+
+            
+            shareObject.webpageUrl = webpageUrl;
+            shareObjectAll = shareObject;
+
     }
-    
-
-    
-    shareObject.webpageUrl = webpageUrl;
 
 
     //分享消息对象设置分享内容对象
-    messageObject.shareObject = shareObject;
+    messageObject.shareObject = shareObjectAll;
+
     //调用分享接口
     [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:nil completion:^(id data, NSError *error) {
         if (error) {
@@ -1024,6 +1060,7 @@ SINGLETON_FOR_CLASS(ShareManager);
 #pragma mark ========== 分享 ==========
 - (void)pushShareViewAndDic:(NSDictionary *)shareDic{
     QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
+    
     moreOperationController.cancelButton.hidden = NO;
     moreOperationController.isExtendBottomLayout = YES;
     moreOperationController.items = @[
@@ -1048,7 +1085,9 @@ SINGLETON_FOR_CLASS(ShareManager);
                                           ],
                                       ];
     [moreOperationController showFromBottom];
+    
 }
+
 +(CGFloat)getImageViewSize:(NSString *)imgUrl{
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:imgUrl]];
     UIImage *showimage = [UIImage imageWithData:data];
