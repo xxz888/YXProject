@@ -1,8 +1,8 @@
 //
-//  YXDingZhiDetailView.h
+//  YXDingZhiPingLunViewController.h
 //  UniversalApp
 //
-//  Created by 小小醉 on 2019/12/13.
+//  Created by 小小醉 on 2019/12/16.
 //  Copyright © 2019 徐阳. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YXDingZhiDetailView : UIView
+@interface YXDingZhiPingLunViewController : UIViewController
 
 @end
 

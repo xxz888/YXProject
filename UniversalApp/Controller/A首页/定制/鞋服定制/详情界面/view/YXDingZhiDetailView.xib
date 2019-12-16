@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="YXDingZhiDetailView">
             <rect key="frame" x="0.0" y="0.0" width="414" height="460"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -139,6 +139,9 @@
                                     <state key="normal">
                                         <color key="titleColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     </state>
+                                    <connections>
+                                        <action selector="pinglunAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="wq2-jB-75A"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="写评价" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgW-gp-FnE">
                                     <rect key="frame" x="25" y="4" width="49" height="19.5"/>

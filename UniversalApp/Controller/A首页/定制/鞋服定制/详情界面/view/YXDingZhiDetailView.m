@@ -18,4 +18,7 @@
 }
 */
 
+- (IBAction)pinglunAction:(id)sender {
+    self.pingLunBlock();
+}
 @end
