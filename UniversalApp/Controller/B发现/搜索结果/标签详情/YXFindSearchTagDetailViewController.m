@@ -156,7 +156,7 @@
 -(void)requestIsCollection{
     //请求是否收藏
     kWeakSelf(self);
-    NSString * tagRequest = [[self.key concate:@"#"] ? [self.key split:@"#"][1] : self.key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString * tagRequest = [[self.key contains:@"#"] ? [self.key split:@"#"][1] : self.key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [YXPLUS_MANAGER requestUserIsShouCangGet:tagRequest success:^(id object) {
         weakself.headerViewStartDic = [NSDictionary dictionaryWithDictionary:object];
         [weakself.yxTableView reloadData];

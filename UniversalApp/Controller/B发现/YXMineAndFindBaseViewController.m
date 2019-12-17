@@ -263,7 +263,6 @@ static CGFloat sectionHeaderHeight = 200;
     //点击tag
     cell.clickTagblock = ^(NSString * string) {
         kWeakSelf(self);
-        _tagSelectBool = YES;
         if ([string contains:@"#"]) {string = [string split:@"#"][1];}
         [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":@"1",@"type":@"3"} success:^(id object) {
             if ([object count] > 0) {
@@ -277,7 +276,6 @@ static CGFloat sectionHeaderHeight = 200;
             }else{
                 [QMUITips showInfo:@"无此标签的信息"];
             }
-            _tagSelectBool = NO;
         }];
     };
     //点击点赞和评论
