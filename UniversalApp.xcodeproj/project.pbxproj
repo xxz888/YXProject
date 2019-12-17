@@ -2586,9 +2586,9 @@
 		BB48B4D423A78277004550C0 /* 发表评论界面 */ = {
 			isa = PBXGroup;
 			children = (
-				BB48B4D523A78277004550C0 /* YXDingZhiPingLunViewController.xib */,
 				BB48B4D623A78277004550C0 /* YXDingZhiPingLunViewController.h */,
 				BB48B4D723A78277004550C0 /* YXDingZhiPingLunViewController.m */,
+				BB48B4D523A78277004550C0 /* YXDingZhiPingLunViewController.xib */,
 			);
 			path = "发表评论界面";
 			sourceTree = "<group>";

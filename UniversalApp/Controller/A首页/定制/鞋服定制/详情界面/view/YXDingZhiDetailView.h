@@ -13,6 +13,16 @@ typedef void(^PingLunBlock)(void);
 @interface YXDingZhiDetailView : UIView
 - (IBAction)pinglunAction:(id)sender;
 @property(nonatomic,copy)PingLunBlock pingLunBlock;
+@property (weak, nonatomic) IBOutlet UILabel *cellTitle;
+@property (weak, nonatomic) IBOutlet UIView *starView;
+
+@property (weak, nonatomic) IBOutlet UILabel *cellTime;
+@property (weak, nonatomic) IBOutlet UILabel *cellAdress;
+@property (weak, nonatomic) IBOutlet UILabel *cellFar;
+@property (weak, nonatomic) IBOutlet UILabel *pingjiaCount;
+@property (weak, nonatomic) IBOutlet UIView *cellAdressBottomView;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

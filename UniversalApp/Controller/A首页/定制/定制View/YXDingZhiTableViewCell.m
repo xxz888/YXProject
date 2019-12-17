@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    [ShareManager fiveStarView:2 view:self.starView];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

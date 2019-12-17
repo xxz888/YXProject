@@ -40,7 +40,6 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oji-Zr-BO3">
                                 <rect key="frame" x="114" y="42.5" width="68" height="12"/>
-                                <color key="backgroundColor" red="1" green="0.80392156859999997" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="68" id="Fqy-uO-WEV"/>
                                     <constraint firstAttribute="height" constant="12" id="lj6-TV-4rz"/>
@@ -90,6 +89,13 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="cellAdress" destination="Apn-qS-Keh" id="jX8-1c-0JT"/>
+                <outlet property="cellFar" destination="qQa-0J-rgw" id="H5O-3S-Ptq"/>
+                <outlet property="cellImv" destination="OAP-W0-5QD" id="bXV-Xd-qcJ"/>
+                <outlet property="cellTitle" destination="nvi-v4-zut" id="QU1-sd-Fee"/>
+                <outlet property="starView" destination="oji-Zr-BO3" id="CDR-Kl-BPy"/>
+            </connections>
             <point key="canvasLocation" x="144.92753623188406" y="60.9375"/>
         </tableViewCell>
     </objects>

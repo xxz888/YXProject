@@ -10,13 +10,10 @@
 
 @implementation YXDingZhiDetailView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
-    // Drawing code
+    [ShareManager fiveStarView:5 view:self.starView];
 }
-*/
+
 
 - (IBAction)pinglunAction:(id)sender {
     self.pingLunBlock();
