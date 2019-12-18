@@ -203,7 +203,6 @@
                 [weakself.photoImageList addObjectsFromArray:qiniuArray];
             }
         }
-//        NSLog(@"------------七牛云上传图片耗时: %f秒", CFAbsoluteTimeGetCurrent() - start);
     } failure:^(NSString *error) {}];
 }
 
@@ -486,6 +485,7 @@ if (_startDic) {
             return;
         }
         KSMediaPickerController *ctl = [KSMediaPickerController.alloc initWithMaxVideoItemCount:1 maxPictureItemCount:9];
+        
         ctl.delegate = self;
         KSNavigationController *nav = [KSNavigationController.alloc initWithRootViewController:ctl];
         nav.modalPresentationStyle = UIModalPresentationFullScreen;

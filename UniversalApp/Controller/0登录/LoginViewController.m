@@ -112,7 +112,7 @@
 }
 - (void)getSms_CodeAction{
  
-    if (self.phoneTf.text.length <= 10) {
+    if (self.phoneTf.text.length <= 9) {
         [QMUITips showError:@"请输入正确的手机号"];
         return;
     }
