@@ -28,7 +28,7 @@
 #import "YXFindSearchTagDetailViewController.h"
 #import "XLVideoPlayer.h"
 #import "YXMineImageDetailViewController.h"
-#import "YXPublishImageViewController.h"
+#import "YXFaBuBaseViewController.h"
 #import "YXWenZhangEditorViewController.h"
 #import "YXXinDongTaiView.h"
 #import "YXZhiNanDetailViewController.h"
@@ -996,7 +996,7 @@ _Pragma("clang diagnostic pop") \
             [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_add") title:@"编辑" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                 [moreOperationController hideToBottom];
                 if ([isWho isEqualToString:@"1"]) {
-                    YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
+                    YXFaBuBaseViewController * imageVC = [[YXFaBuBaseViewController alloc]init];
                     YXShaiTuModel * model = [[YXShaiTuModel alloc]init];
                     model.post_id = kGetString(startDic[@"id"]);
                     model.coustomId = @"";
@@ -1107,7 +1107,7 @@ _Pragma("clang diagnostic pop") \
 }
 - (void)didSelectMenuOptionAtIndex:(NSInteger)row{
     if (row==1) {
-        YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
+        YXFaBuBaseViewController * imageVC = [[YXFaBuBaseViewController alloc]init];
         imageVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [self presentViewController:imageVC animated:YES completion:nil];
     }else{

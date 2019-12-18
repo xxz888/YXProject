@@ -11,7 +11,7 @@
 #import "ZInputToolbar.h"
 #import "UIView+LSExtension.h"
 #import "HXEasyCustomShareView.h"
-#import "YXPublishImageViewController.h"
+#import "YXFaBuBaseViewController.h"
 #import "YXFindSearchTagDetailViewController.h"
 #import "UIImage+ImgSize.h"
 #import "YXFirstFindImageTableViewCell.h"
@@ -696,7 +696,7 @@
             [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_add") title:@"编辑" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                        [moreOperationController hideToBottom];
                 if ([isWho isEqualToString:@"1"]) {
-                    YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
+                    YXFaBuBaseViewController * imageVC = [[YXFaBuBaseViewController alloc]init];
                     YXShaiTuModel * model = [[YXShaiTuModel alloc]init];
                     model.post_id = kGetString(startDic[@"id"]);
                     model.coustomId = @"";

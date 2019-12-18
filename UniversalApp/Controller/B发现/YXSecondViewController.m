@@ -12,7 +12,7 @@
 #import "YXFindViewController.h"
 #import "YXFindHeaderView.h"
 #import "PYSearchViewController.h"
-#import "YXPublishImageViewController.h"
+#import "YXFaBuBaseViewController.h"
 #import "YXWenZhangEditorViewController.h"
 @interface YXSecondViewController ()<PYSearchViewControllerDelegate,UIGestureRecognizerDelegate,lzMenuDelegate>
 @property(nonatomic,strong)NSMutableArray * dataArray;
@@ -67,7 +67,7 @@
         return;
     }
     if (row==1) {
-        YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
+        YXFaBuBaseViewController * imageVC = [[YXFaBuBaseViewController alloc]init];
         imageVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [self presentViewController:imageVC animated:YES completion:nil];
     }else{

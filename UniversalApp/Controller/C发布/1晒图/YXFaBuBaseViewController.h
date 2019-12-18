@@ -14,9 +14,15 @@
 #import "YXPublishMoreTagsViewController.h"
 #import "QiniuLoad.h"
 #import "UniversalApp-Swift.h"
+#import "YXShaiTuModel.h"
+#define photo1_BOOL photo1 && photo1.length > 5
+#define photo2_BOOL photo2 && photo2.length > 5
+#define photo3_BOOL photo3 && photo3.length > 5
+#import "JQFMDB.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^dismissBlock) ();
+typedef void(^closeNewVcBlock)(void);
 
 @interface YXFaBuBaseViewController : RootViewController
 @property (nonatomic,assign) BOOL whereComeCaogao;//yes是草稿进来
@@ -97,7 +103,9 @@ typedef void(^dismissBlock) ();
 -(void)addNewTags;
 
 
-
+@property(nonatomic,strong)YXShaiTuModel * model;
+@property(nonatomic,strong)NSMutableDictionary * startDic;
+@property(nonatomic,copy)closeNewVcBlock  closeNewVcblock;
 
 @end
 

@@ -446,7 +446,6 @@
 		BBD2C83821E0F44A00350DCD /* VTingSeaPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C81421E0F44A00350DCD /* VTingSeaPopView.m */; };
 		BBD2C83921E0F44A00350DCD /* timeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD2C81521E0F44A00350DCD /* timeView.xib */; };
 		BBD2C83A21E0F44A00350DCD /* VTingTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C81621E0F44A00350DCD /* VTingTimeView.m */; };
-		BBD2C84C21E0F46500350DCD /* YXPublishImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C84921E0F46500350DCD /* YXPublishImageViewController.m */; };
 		BBD2C8F521E0F67700350DCD /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = BBD2C85F21E0F67600350DCD /* LICENSE */; };
 		BBD2C8F621E0F67700350DCD /* TZImageCropManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C86421E0F67600350DCD /* TZImageCropManager.m */; };
 		BBD2C8F721E0F67700350DCD /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD2C86621E0F67600350DCD /* TZAssetCell.m */; };
@@ -1400,8 +1399,6 @@
 		BBD2C81421E0F44A00350DCD /* VTingSeaPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTingSeaPopView.m; sourceTree = "<group>"; };
 		BBD2C81521E0F44A00350DCD /* timeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = timeView.xib; sourceTree = "<group>"; };
 		BBD2C81621E0F44A00350DCD /* VTingTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTingTimeView.m; sourceTree = "<group>"; };
-		BBD2C84921E0F46500350DCD /* YXPublishImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXPublishImageViewController.m; sourceTree = "<group>"; };
-		BBD2C84A21E0F46500350DCD /* YXPublishImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPublishImageViewController.h; sourceTree = "<group>"; };
 		BBD2C85F21E0F67600350DCD /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		BBD2C86221E0F67600350DCD /* TZPhotoPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPreviewCell.h; sourceTree = "<group>"; };
 		BBD2C86321E0F67600350DCD /* TZPhotoPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPickerController.h; sourceTree = "<group>"; };
@@ -3958,8 +3955,6 @@
 		BBD2C84821E0F46500350DCD /* 1晒图 */ = {
 			isa = PBXGroup;
 			children = (
-				BBD2C84A21E0F46500350DCD /* YXPublishImageViewController.h */,
-				BBD2C84921E0F46500350DCD /* YXPublishImageViewController.m */,
 				BB3CA494221F948E00C6793D /* YXFaBuBaseViewController.h */,
 				BB3CA495221F948E00C6793D /* YXFaBuBaseViewController.m */,
 				BB3CA497221F95FC00C6793D /* YXFaBuBaseViewController.xib */,
@@ -5386,7 +5381,6 @@
 				BBF26E1E22408B0E0000AEF5 /* FMDatabase.m in Sources */,
 				BBB59B7D228E972B0029D3D0 /* YXZhiNanTableViewCell.m in Sources */,
 				BBF26E3622448D2E0000AEF5 /* YXBindPhoneViewController.m in Sources */,
-				BBD2C84C21E0F46500350DCD /* YXPublishImageViewController.m in Sources */,
 				29AD6C711ED41ED200B0879C /* UserInfo.m in Sources */,
 				BB21FD9822B0991E0059BCAC /* KSMediaPickerScrollView.m in Sources */,
 				BBC3FB0022C4647400BB2564 /* YXSecondViewController.m in Sources */,

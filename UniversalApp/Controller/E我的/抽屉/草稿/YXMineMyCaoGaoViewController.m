@@ -7,7 +7,7 @@
 //
 
 #import "YXMineMyCaoGaoViewController.h"
-#import "YXPublishImageViewController.h"
+#import "YXFaBuBaseViewController.h"
 #import "JQFMDB.h"
 #import "YXShaiTuModel.h"
 #import "YXWenZhangEditorViewController.h"
@@ -112,7 +112,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     YXShaiTuModel * model = self.caoGaoArray[indexPath.row];
     if ([model.obj integerValue] == 1) {
-            YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
+            YXFaBuBaseViewController * imageVC = [[YXFaBuBaseViewController alloc]init];
             imageVC.model =model;
             imageVC.modalPresentationStyle = UIModalPresentationFullScreen;
             [self presentViewController:imageVC animated:YES completion:nil];

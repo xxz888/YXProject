@@ -17,7 +17,7 @@
 #import "VTingSeaPopView.h"
 #import "SDTimeLineTableViewController.h"
 
-#import "YXPublishImageViewController.h"
+#import "YXFaBuBaseViewController.h"
 
 @interface MainTabBarController ()<UITabBarControllerDelegate,VTingPopItemSelectDelegate> {
     NSMutableArray *images;
@@ -87,7 +87,7 @@
     UIStoryboard * stroryBoard3 = [UIStoryboard storyboardWithName:@"YXPublish" bundle:nil];
 
     if (index == 0) {//晒图
-        YXPublishImageViewController * publishVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishImageViewController"];
+        YXFaBuBaseViewController * publishVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXFaBuBaseViewController"];
         [weakSelf presentViewController:publishVC animated:YES completion:nil];
     }else if (index == 2){//文章
 //        YXPublishArticleViewController * publishVC = [stroryBoard3 instantiateViewControllerWithIdentifier:@"YXPublishArticleViewController"];

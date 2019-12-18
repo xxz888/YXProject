@@ -20,7 +20,141 @@
 @end
 
 @implementation YXFaBuBaseViewController
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self addTextView];
+    [self setOtherUI];
+    self.titleTfHeight.constant = 0;
+    self.view3Height.constant = 0;
+    self.floatHeight_Tag.constant = -10;
+    self.switchBtn.hidden = self.fengcheView.hidden = self.faxianLbl.hidden = self.lineView3.hidden = YES;
+    
+    JQFMDB *db = [JQFMDB shareDatabase];
+    if (![db jq_isExistTable:YX_USER_FaBuCaoGao]) {
+        [db jq_createTable:YX_USER_FaBuCaoGao dicOrModel:[YXShaiTuModel class]];
+    }
 
+    //如果model有，说明1、是编辑界面进来的 2、是从草稿界面进来的
+    if (_model) {
+        [self faxianEditCome];
+    }
+}
+
+//如果是从发现界面编辑进来的
+-(void)faxianEditCome{
+    //标签
+    if (self.model.tag.length  != 0) {
+        self.tagArray = [NSMutableArray arrayWithArray:[self.model.tag split:@" "]];
+           [self addNewTags];
+
+       }
+    //地点
+    self.locationString = [self.model.publish_site isEqualToString:@""] ? @"获取地理位置" :  self.model.publish_site;
+    [self.locationBtn setTitle:self.locationString forState:UIControlStateNormal];
+    
+    for (NSString * imgString in [self.model.photo_list split:@","]) {
+        KSMediaPickerOutputModel * model = [KSMediaPickerOutputModel.alloc modelInitWithCoder:nil];
+        [self.selectedPhotos addObject:model];
+        [self.photoImageList addObject:[IMG_URI append:imgString]];
+    }
+    //封面
+    self.videoCoverImageString = @"";
+    //内容
+    self.qmuiTextView.text = self.model.detail;
+    //类型
+    self.fabuType = NO;
+}
+-(void)commonAction:(NSMutableArray *)imgArray btn:(UIButton *)btn{
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
+    self.textViewInput = self.qmuiTextView.text;
+    if (imgArray.count == 0) {
+        [QMUITips showInfo:@"请至少上传一张图片或者一个视频!" inView:self.view hideAfterDelay:2];
+        return;
+    }
+//post_id 修改传，发布传空
+    [dic setValue:self.model.post_id ? self.model.post_id : @"" forKey:@"post_id"];
+//title 标题 晒图不传
+    [dic setValue:@"" forKey:@"title"];
+//封面
+    NSString * cover = [self.videoCoverImageString contains:IMG_URI] ? [self.videoCoverImageString split:IMG_URI][1]:self.videoCoverImageString;
+    [dic setValue:cover forKey:@"cover"];
+//detail 详情
+    [dic setValue:[self.textViewInput utf8ToUnicode] forKey:@"detail"];
+//拼接photo_list
+    NSString * photo_list = [imgArray componentsJoinedByString:@","];
+    photo_list = [photo_list replaceAll:IMG_URI target:@""];
+    [dic setValue:photo_list forKey:@"photo_list"];
+//obj 1晒图 2文章
+    [dic setValue:@"1" forKey:@"obj"];
+//tag 标签
+    self.tagArray.count == 0 ?
+    [dic setValue:@"" forKey:@"tag"] : [dic setValue:[self.tagArray componentsJoinedByString:@" "] forKey:@"tag"];
+//publish_site 地点
+    NSString * publish_site = [self.locationString isEqualToString:@"获取地理位置"] ? @"" : self.locationString;
+    [dic setValue:publish_site forKey:@"publish_site"];
+    kWeakSelf(self);
+        //这里区别寸草稿还是发布
+        if (btn.tag == 301) {
+            NSDictionary * userInfo = userManager.loadUserAllInfo;
+            NSString * userId = kGetString(userInfo[@"id"]);
+            NSString * key = [NSString stringWithFormat:@"%@%@",userId,[ShareManager getNowTimeTimestamp3]];
+            JQFMDB *db = [JQFMDB shareDatabase];
+            YXShaiTuModel * model = [[YXShaiTuModel alloc]init];
+            [model setValuesForKeysWithDictionary:dic];
+             model.coustomId =  key;
+            [db jq_inDatabase:^{
+                [db jq_insertTable:YX_USER_FaBuCaoGao dicOrModel:model];
+            }];
+            if (weakself.model.coustomId && ![weakself.model.coustomId isEqualToString:@""]) {
+                JQFMDB *db = [JQFMDB shareDatabase];
+                NSString * sql = [@"WHERE coustomId = " append:kGetString(weakself.model.coustomId)];
+                [db jq_deleteTable:YX_USER_FaBuCaoGao whereFormat:sql];
+            }
+            [QMUITips showSucceed:@"存草稿成功"];
+            [weakself closeViewAAA];
+        }else{
+            [weakself requestFabu:dic];
+        }
+
+}
+-(void)requestFabu:(NSMutableDictionary *)dic{
+    [QMUITips showLoadingInView:[ShareManager getMainView]];
+    BOOL sameBool = [self.model.post_id isEqualToString:@""];
+    
+    if (sameBool) {
+        [self lastFabu:dic];
+    }else{
+        [dic setValue:self.model.post_id forKey:@"post_id"];
+        [self lastFabu:dic];
+    }
+}
+-(void)lastFabu:(NSDictionary *)dic{
+    kWeakSelf(self);
+    [YX_MANAGER requestFaBuImagePOST:dic success:^(id object) {
+        [QMUITips showSucceed:@"发布成功"];
+        [weakself closeViewAAA];
+        
+        
+        
+        if (weakself.model.coustomId && ![weakself.model.coustomId isEqualToString:@""]) {
+            JQFMDB *db = [JQFMDB shareDatabase];
+            NSString * sql = [@"WHERE coustomId = " append:kGetString(weakself.model.coustomId)];
+            [db jq_deleteTable:YX_USER_FaBuCaoGao whereFormat:sql];
+        }
+    }];
+}
+
+-(void)closeViewAAA{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSecondVC" object:nil];
+    [self closeViewBBB];
+}
+-(void)closeViewBBB{
+    UIViewController *controller = self;
+    while(controller.presentingViewController != nil){
+        controller = controller.presentingViewController;
+    }
+    [controller dismissViewControllerAnimated:YES completion:^{}];
+}
 #pragma mark ==========  图片和视频返回的block ==========
 - (void)mediaPicker:(KSMediaPickerController *)mediaPicker didFinishSelected:(NSArray<KSMediaPickerOutputModel *> *)outputArray {
     [mediaPicker.navigationController dismissViewControllerAnimated:YES completion:nil];
@@ -36,8 +170,6 @@
         }
     }
     [self.yxCollectionView reloadData];
-    
-    
     //如果数组为1,两种情况，1、视频 2、一张图片
     if (outputArray.count == 1) {
         KSMediaPickerOutputModel * model = outputArray[0];
@@ -74,11 +206,7 @@
 //        NSLog(@"------------七牛云上传图片耗时: %f秒", CFAbsoluteTimeGetCurrent() - start);
     } failure:^(NSString *error) {}];
 }
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self addTextView];
-    [self setOtherUI];
-}
+
 -(void)setOtherUI{
     self.tagArray = [NSMutableArray array];
     self.photoImageList = [[NSMutableArray alloc]init];
@@ -116,6 +244,19 @@
 
 - (IBAction)fabuAction:(UIButton *)btn{
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    if ([self.selectedPhotos count] == [self.photoImageList count]) {
+        if (self.fabuType){//视频
+            if([self.videoCoverImageString isEqualToString:@""]){
+                [QMUITips showInfo:@"正在上传,请稍等" inView:self.view hideAfterDelay:2];
+            }else{
+                [self commonAction:self.photoImageList btn:btn];
+            }
+        }else{//图片
+            [self commonAction:self.photoImageList btn:btn];
+        }
+    }else{
+        [QMUITips showInfo:@"正在上传,请稍等" inView:self.view hideAfterDelay:2];
+    }
 }
 
 - (IBAction)locationBtnAction:(id)sender{
@@ -235,19 +376,38 @@
     return YES;
 }
 - (IBAction)closeViewAction:(id)sender {
-//   [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    
+if (_startDic) {
     [self closeViewAAA];
-}
--(void)closeViewAAA{
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSecondVC" object:nil];
-//    UIViewController *controller = self;
-//    while(controller.presentingViewController != nil){
-//        controller = controller.presentingViewController;
-//    }
-//    [controller dismissViewControllerAnimated:YES completion:^{}];
-}
 
+}else{
+    if (self.photoImageList.count > 0 || self.qmuiTextView.text.length > 0 ) {
+        kWeakSelf(self);
+        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        }];
+        UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"不保存" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [weakself closeViewAAA];
+        }];
+        UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"保存" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [weakself fabuAction:self.cunCaoGaoBtn];
+        }];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"你将退出发布,是否保存草稿?" preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        [alertController addAction:action3];
+        [alertController addAction:action2];
+        [alertController addAction:action1];
+        if (IS_IPAD) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:2];
+            CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
+            CGRect cellRectInSelfView = [self.view convertRect:cellRect fromView:self.tableView];
+            alertController.popoverPresentationController.sourceView = self.view;
+            alertController.popoverPresentationController.sourceRect = cellRectInSelfView;
+        }
+        [self presentViewController:alertController animated:YES completion:NULL];
+    }else{
+        [self closeViewAAA];
+    }
+}
+}
 
 
 

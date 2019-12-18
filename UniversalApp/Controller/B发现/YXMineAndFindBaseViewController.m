@@ -12,7 +12,7 @@
 #import "YXFindSearchTagDetailViewController.h"
 #import "ZInputToolbar.h"
 #import "UIView+LSExtension.h"
-#import "YXPublishImageViewController.h"
+#import "YXFaBuBaseViewController.h"
 #import "XLVideoPlayer.h"
 #import "YXSecondViewController.h"
 #import "YXMineChouJiangViewController.h"
@@ -390,7 +390,7 @@ static CGFloat sectionHeaderHeight = 200;
             [itemsArray1 addObject:[QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_add") title:@"编辑" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
                        [moreOperationController hideToBottom];
                 if ([isWho isEqualToString:@"1"]) {
-                    YXPublishImageViewController * imageVC = [[YXPublishImageViewController alloc]init];
+                    YXFaBuBaseViewController * imageVC = [[YXFaBuBaseViewController alloc]init];
                     YXShaiTuModel * model = [[YXShaiTuModel alloc]init];
                     model.post_id = kGetString(startDic[@"id"]);
                     model.coustomId = @"";
