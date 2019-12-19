@@ -14,17 +14,15 @@
 
 #import "YXMessageViewController.h"
 #import "TBTabBar.h"
-#import "VTingSeaPopView.h"
 #import "SDTimeLineTableViewController.h"
 
 #import "YXFaBuBaseViewController.h"
 
-@interface MainTabBarController ()<UITabBarControllerDelegate,VTingPopItemSelectDelegate> {
+@interface MainTabBarController ()<UITabBarControllerDelegate> {
     NSMutableArray *images;
     NSMutableArray *titles;
     NSMutableArray *titlesTag;
     
-    VTingSeaPopView *pop;
 }
 
 @property (nonatomic,strong) NSMutableArray * VCS;//tabbar root VC

@@ -21,7 +21,6 @@
 #import "YXMineMyCollectionViewController.h"
 #import "YXMineSettingTableViewController.h"
 #import "YXMineMyCaoGaoViewController.h"
-#import "YXMineMyDianZanViewController.h"
 #import "YXMineFindViewController.h"
 #import "YXFindSearchTagHeaderView.h"
 #import "YXFindSearchTagDetailViewController.h"

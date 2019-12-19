@@ -31,7 +31,7 @@
 
 @implementation YXHomeEditPersonTableViewController
 - (IBAction)backAction:(id)sender {
- 
+    [self.navigationController popViewControllerAnimated:YES];
 
 }
 - (IBAction)saveAction:(id)sender {
