@@ -167,10 +167,6 @@
 
     [self upData];
 }
-#pragma -----------------上传完图片和视频的回调方法-----------------
-- (void)photoView:(HXPhotoView *)photoView changeComplete:(NSArray<HXPhotoModel *> *)allList photos:(NSArray<HXPhotoModel *> *)photos videos:(NSArray<HXPhotoModel *> *)videos original:(BOOL)isOriginal {
-    
-}
 - (IBAction)changeTitleImgAction:(id)sender {
     [_nameTf resignFirstResponder];
     [self.view endEditing:YES];

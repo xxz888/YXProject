@@ -7,7 +7,8 @@
 //
 
 #import "YXWanShanXinXiViewController.h"
-#import "UniversalApp-Swift.h"
+#import "HXPhotoPicker.h"
+
 #import "QiniuLoad.h"
 #import "BRAddressPickerView.h"
 #import "NSDate+BRPickerView.h"
@@ -17,7 +18,7 @@
 #define loginnan_sel    IMAGE_NAMED(@"loginnan_sel")
 #define loginnv_sel     IMAGE_NAMED(@"loginnv_sel")
 #define loginnv_unsel   IMAGE_NAMED(@"loginnv_unsel")
-@interface YXWanShanXinXiViewController ()<KSMediaPickerControllerDelegate,UITextFieldDelegate>
+@interface YXWanShanXinXiViewController ()<HXPhotoViewDelegate,UITextFieldDelegate>
 @property (nonatomic,strong) NSString * photo;
 @property (nonatomic) BOOL bool1;
 @property (nonatomic) BOOL bool2;
@@ -25,7 +26,8 @@
 @property (nonatomic) BOOL bool4;
 @property (nonatomic) BOOL bool5;
 @property (nonatomic) BOOL bool6;
-
+@property (strong, nonatomic) HXDatePhotoToolManager *toolManager;
+@property (strong, nonatomic) HXPhotoManager *manager;
 @end
 
 @implementation YXWanShanXinXiViewController
@@ -36,6 +38,27 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = NO;
+}
+- (HXPhotoManager *)manager {
+    if (!_manager) {
+        _manager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhotoAndVideo];
+        _manager.configuration.singleSelected = YES;
+        _manager.configuration.albumListTableView = ^(UITableView *tableView) {
+//            NSSLog(@"%@",tableView);
+        };
+        _manager.configuration.singleJumpEdit = YES;
+        _manager.configuration.movableCropBox = YES;
+        _manager.configuration.movableCropBoxEditSize = YES;
+//        _manager.configuration.movableCropBoxCustomRatio = CGPointMake(1, 1);
+    }
+    return _manager;
+}
+
+- (HXDatePhotoToolManager *)toolManager {
+    if (!_toolManager) {
+        _toolManager = [[HXDatePhotoToolManager alloc] init];
+    }
+    return _toolManager;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -76,12 +99,22 @@
 
 //上传图片
 -(void)upLoadViewAction:(id)tag{
-    [self.view endEditing:YES];
-    KSMediaPickerController *ctl = [KSMediaPickerController.alloc initWithMaxVideoItemCount:0 maxPictureItemCount:1];
-    ctl.delegate = self;
-    KSNavigationController *nav = [KSNavigationController.alloc initWithRootViewController:ctl];
-    nav.modalPresentationStyle = 0;
-    [self presentViewController:nav animated:YES completion:nil];
+    self.manager.configuration.saveSystemAblum = NO;
+     kWeakSelf(self);
+     [self hx_presentAlbumListViewControllerWithManager:self.manager done:^(NSArray<HXPhotoModel *> *allList, NSArray<HXPhotoModel *> *photoList, NSArray<HXPhotoModel *> *videoList, BOOL original, HXAlbumListViewController *viewController) {
+         if (photoList.count > 0) {
+             [weakself.view showLoadingHUDText:@"获取图片中"];
+             [weakself.toolManager getSelectedImageList:photoList requestType:0 success:^(NSArray<UIImage *> *imageList) {
+                [weakself uploadImageQiNiuYun:imageList];
+             } failed:^{
+                 [weakself.view handleLoading];
+                 [weakself.view showImageHUDText:@"获取失败"];
+             }];
+             NSSLog(@"%ld张图片",photoList.count);
+         }
+     } cancel:^(HXAlbumListViewController *viewController) {
+         NSSLog(@"取消了");
+     }];
 }
 //姓名
 -(void)nameTfChange:(UITextField *)tf{
@@ -113,12 +146,6 @@
         self.bool3 = YES;
         [self changeMakeSureBtnStatus];
     }
-}
-#pragma mark ==========  图片和视频返回的block ==========
-- (void)mediaPicker:(KSMediaPickerController *)mediaPicker didFinishSelected:(NSArray<KSMediaPickerOutputModel *> *)outputArray {
-    [mediaPicker.navigationController dismissViewControllerAnimated:YES completion:nil];
-    KSMediaPickerOutputModel * model =  outputArray[0];
-    [self uploadImageQiNiuYun:@[model.image]];
 }
 -(void)uploadImageQiNiuYun:(NSArray *)upLoadImageArray{
     kWeakSelf(self);

@@ -12,74 +12,46 @@
 #import "XLDouYinLoading.h"
 #import "SYBaseHttpConnection.h"
 #import "SYBaseHttpConnection1.h"
-
 @implementation HttpRequest
-
 + (void)httpRequestPostPi:(NSString *)pi Parameters:(id)parmeters sucess:(SucessBlock)sucess failure:(FailureBlock)failure{
-
     kWeakSelf(self);
-    NSString * strURl = [API_ROOT_URL_HTTP_FORMAL stringByAppendingString:pi];
-    NSLog(@"getUrl-:%@",strURl);
-    
-        AFHTTPSessionManager * manager = [SYBaseHttpConnection sharedManager];
-        NSDictionary * userInfo = userManager.loadUserAllInfo;
-        if (userInfo) {
-            [manager.requestSerializer setValue:[@"JWT " append:userInfo[@"token"]] forHTTPHeaderField:@"Authorization"];
-        }
-   
-
-    
-    [manager POST:strURl  parameters:parmeters progress:^(NSProgress * _Nonnull downloadProgress) {
+    NSString * url = [API_ROOT_URL_HTTP_FORMAL stringByAppendingString:pi];
+    AFHTTPSessionManager * manager = [SYBaseHttpConnection sharedManager];
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
+    if (userInfo) {
+        [manager.requestSerializer setValue:[@"JWT " append:userInfo[@"token"]] forHTTPHeaderField:@"Authorization"];
+        NSLog(@"URL = %@,Token = %@",url,userInfo[@"token"]);
+    }
+    [manager POST:url  parameters:parmeters progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [QMUITips hideAllTips];
         [weakself setCommonRespone:sucess pi:pi responseObject:responseObject];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        [QMUITips hideAllTips];
+        [QMUITips hideAllTips];
         failure(error);
     }];
 }
 + (void)httpRequestGetPi:(NSString *)pi sucess:(SucessBlock)sucess failure:(FailureBlock)failure{
     kWeakSelf(self);
     NSString * url = [API_ROOT_URL_HTTP_FORMAL append:pi];
-       AFHTTPSessionManager * manager = [SYBaseHttpConnection sharedManager];
-     
-      NSDictionary * userInfo = userManager.loadUserAllInfo;
-      if (userInfo) {
-          if ([pi contains:@"/pub/option/"]) {
-              
-          }else{
-              [manager.requestSerializer setValue:[@"JWT " append:userInfo[@"token"]] forHTTPHeaderField:@"Authorization"];
-              NSLog(@"URL = %@,Token = %@",url,userInfo[@"token"]);
-          }
-      }
-
-
+    AFHTTPSessionManager * manager = [SYBaseHttpConnection sharedManager];
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
+    if (userInfo) {
+        [manager.requestSerializer setValue:[@"JWT " append:userInfo[@"token"]] forHTTPHeaderField:@"Authorization"];
+        NSLog(@"URL = %@,Token = %@",url,userInfo[@"token"]);
+    }
     [manager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [QMUITips hideAllTips];
         [weakself setCommonRespone:sucess pi:pi responseObject:responseObject];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        [QMUITips hideAllTips];
+        [QMUITips hideAllTips];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         failure(error);
     }];
 }
-
-/*
-var a = "a"
-var b = "b"
-
-if(isHave){
-    a = "aa";
-}else{
-    a = "aaaaaa"
-}
-var c = a + b
-*/
-
 #pragma mark ========== 请求成功处理参数的共同方法 ==========
 +(void)setCommonRespone:(SucessBlock)sucess pi:(NSString *)pi responseObject:(id)responseObject{
-    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     id obj = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
     UIView * view;
@@ -131,13 +103,6 @@ var c = a + b
             });
         }
     }
-    
-
 }
-#pragma mark ========== 设置公共请求参数 ==========
-+(void)setCommonRequestParameters{
-    
-}
-
 
 @end
