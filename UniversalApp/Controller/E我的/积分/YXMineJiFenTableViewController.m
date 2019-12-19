@@ -13,6 +13,8 @@
 #import "YXHomeEditPersonTableViewController.h"
 #import "YXMineYaoQingWebViewController.h"
 #import "YXJiFenShopViewController.h"
+#import "YXFaBuBaseViewController.h"
+#import "YXWenZhangEditorViewController.h"
 @interface YXMineJiFenTableViewController ()
 @property(nonatomic,strong)NSMutableArray * sign_Array;
 @property(nonatomic)NSInteger day_number;
@@ -262,15 +264,26 @@
         }
             break;
         case 103://每日签到
-            
             break;
         case 104://每日新增粉丝
         case 105://每日新增关注
         case 106://每条内容被喜欢10次
+            break;
         case 107://图片加精
         case 108://视频加精
+        {
+                 YXFaBuBaseViewController * imageVC = [[YXFaBuBaseViewController alloc]init];
+                 imageVC.modalPresentationStyle = UIModalPresentationFullScreen;
+                 [self presentViewController:imageVC animated:YES completion:nil];
+            
+        }
+        break;
         case 109://文章加精
-            self.navigationController.tabBarController.selectedIndex = 1;
+        {
+        YXWenZhangEditorViewController * pinpaiVC = [[YXWenZhangEditorViewController alloc]init];
+        pinpaiVC.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:pinpaiVC animated:YES completion:nil];
+        }
             break;
         default:
             break;

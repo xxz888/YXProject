@@ -65,6 +65,7 @@
         sucess(result);
         return;
     }
+    NSLog(@"%@",obj);
     //返回情况分为两种情况，第一种是NSInlineData 字符串类型， 一种是json字典
     if ([obj isKindOfClass:[NSArray class]]) {
         sucess(obj);

@@ -31,8 +31,11 @@
 
 @implementation YXHomeEditPersonTableViewController
 - (IBAction)backAction:(id)sender {
-    [self upData];
+ 
 
+}
+- (IBAction)saveAction:(id)sender {
+       [self upData];
 }
 - (HXPhotoManager *)manager {
     if (!_manager) {
@@ -81,10 +84,32 @@
                   [weakself.birthBtn setTitle:object[@"birthday"] forState:UIControlStateNormal];
                   [weakself.sexBtn setTitle:[object[@"gender"] integerValue] == 0 ? @"女":@"男" forState:UIControlStateNormal];
                   [weakself.qianMingBtn setTitle:object[@"character"] forState:UIControlStateNormal];
+    
+                [self changeTfColor:self.nameTf];
+    [self changeBtnColor:self.adressBtn];
+    [self changeBtnColor:self.birthBtn];
+    [self changeBtnColor:self.qianMingBtn];
+    [self changeBtnColor:self.sexBtn];
+
+                 
                   weakself.photo = str;
          
 //         }];
 
+}
+-(void)changeBtnColor:(UIButton *)btn{
+    if ([btn.titleLabel.text isEqualToString:@"请填写"] || [btn.titleLabel.text isEqualToString:@"请选择"]) {
+        [btn setTitleColor:COLOR_999999 forState:0];
+    }else{
+        [btn setTitleColor:COLOR_333333 forState:0];
+    }
+}
+-(void)changeTfColor:(UITextField *)tf{
+    if ([tf.text isEqualToString:@"请填写"] || [tf.text isEqualToString:@"请选择"]) {
+        tf.textColor = COLOR_999999;
+    }else{
+        tf.textColor = COLOR_333333;
+    }
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -125,7 +150,7 @@
 }
 -(void)upData{
     kWeakSelf(self);
-//    [QMUITips showLoadingInView:self.view];
+    [QMUITips showLoadingInView:self.view];
     NSString * site = self.adressBtn.titleLabel.text ? self.adressBtn.titleLabel.text : @"";
     NSString * photo = [self.photo contains:IMG_URI] ? [self.photo split:IMG_URI][1] : self.photo;
     NSString * birthday = [self.birthBtn.titleLabel.text isEqualToString:@"点击选择生日"]||self.birthBtn.titleLabel.text==nil ?@"":self.birthBtn.titleLabel.text;
@@ -201,6 +226,8 @@
     kWeakSelf(self);
     [BRStringPickerView showStringPickerWithTitle:@"性别" dataSource:@[@"男", @"女"] defaultSelValue:@"" resultBlock:^(id selectValue) {
         [weakself.sexBtn setTitle:selectValue forState:UIControlStateNormal];
+        [weakself.sexBtn setTitleColor:COLOR_333333 forState:0];
+
     }];
 }
 
@@ -213,6 +240,7 @@
         if (province.name && city.name && area.name) {
             NSString * address = [NSString stringWithFormat:@"%@ %@ %@", province.name, city.name, area.name];
             [weakself.adressBtn setTitle:address forState:UIControlStateNormal];
+            [weakself.adressBtn setTitleColor:COLOR_333333 forState:0];
         }
      
     } cancelBlock:^{
@@ -227,6 +255,8 @@
     NSDate *maxDate = [NSDate date];
     [BRDatePickerView showDatePickerWithTitle:@"出生日期" dateType:BRDatePickerModeYMD defaultSelValue:@"" minDate:minDate maxDate:maxDate isAutoSelect:YES themeColor:nil resultBlock:^(NSString *selectValue) {
         [weakself.birthBtn setTitle:selectValue forState:UIControlStateNormal];
+        [weakself.birthBtn setTitleColor:COLOR_333333 forState:0];
+
     } cancelBlock:^{
         NSLog(@"点击了背景或取消按钮");
     }];
@@ -237,6 +267,8 @@
     YXMineQianMingViewController * vc = [[YXMineQianMingViewController alloc]init];
     vc.qianmingblock = ^(NSString * qianming) {
         [weakself.qianMingBtn setTitle:qianming forState:UIControlStateNormal];
+        [weakself.qianMingBtn setTitleColor:COLOR_333333 forState:0];
+
     };
     [self.navigationController pushViewController:vc animated:YES];
 }
