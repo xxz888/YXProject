@@ -8,55 +8,146 @@
 #import "YXFaBuBaseViewController.h"
 #import "JJImagePicker.h"
 #import "TZTestCell.h"
-@interface YXFaBuBaseViewController ()<UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,KSMediaPickerControllerDelegate>{
+#import "HXPhotoPicker.h"
+#import "SDWebImageManager.h"
+static const CGFloat kPhotoViewMargin = 0;
+@interface YXFaBuBaseViewController ()<UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,HXPhotoViewDelegate>{
     UIImageView * _selectImageView;
     UIImage * zhanweiImage;
     NSMutableArray *_selectedAssets;
 }
 @property (nonatomic, strong) UICollectionView *yxCollectionView;
 @property (strong, nonatomic) UICollectionViewFlowLayout *layout;
-
+@property (strong, nonatomic) HXPhotoManager *manager;
+@property (weak, nonatomic) HXPhotoView *photoView;
+@property (strong, nonatomic) UIScrollView *scrollViewFaBu;
+@property (strong, nonatomic) HXDatePhotoToolManager *toolManager;
 @property (strong, nonatomic,readonly) QMUIModalPresentationViewController * modalNewViewController;
 @end
-
 @implementation YXFaBuBaseViewController
+-(HXPhotoManager *)manager{
+    if (!_manager) {
+        _manager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhotoAndVideo];
+        _manager.configuration.showDeleteNetworkPhotoAlert = NO;
+        _manager.configuration.saveSystemAblum = NO;
+        _manager.configuration.photoMaxNum = 9;
+        _manager.configuration.videoMaxNum = 1;
+        _manager.configuration.maxNum = 9;
+    }
+    return _manager;
+}
+- (HXDatePhotoToolManager *)toolManager {
+    if (!_toolManager) {
+        _toolManager = [[HXDatePhotoToolManager alloc] init];
+    }
+    return _toolManager;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.hidden = NO;
+    
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth-32, self.threeViewHeight.constant)];
+    [self.threeImageView addSubview:scrollView];
+    self.scrollViewFaBu.userInteractionEnabled = NO;
+    self.scrollViewFaBu = scrollView;
+    
+    CGFloat width = KScreenWidth-32;
+    HXPhotoView *photoView = [HXPhotoView photoManager:self.manager];
+    photoView.frame = CGRectMake(kPhotoViewMargin, kPhotoViewMargin, width - kPhotoViewMargin * 2, 0);
+    photoView.lineCount = 5;
+    photoView.delegate = self;
+    photoView.spacing = 5;
+    photoView.backgroundColor = [UIColor whiteColor];
+    [scrollView addSubview:photoView];
+    self.photoView = photoView;
+    
     [self addTextView];
     [self setOtherUI];
-    self.titleTfHeight.constant = 0;
-    self.view3Height.constant = 0;
-    self.floatHeight_Tag.constant = -10;
-    self.switchBtn.hidden = self.fengcheView.hidden = self.faxianLbl.hidden = self.lineView3.hidden = YES;
-    
     JQFMDB *db = [JQFMDB shareDatabase];
     if (![db jq_isExistTable:YX_USER_FaBuCaoGao]) {
         [db jq_createTable:YX_USER_FaBuCaoGao dicOrModel:[YXShaiTuModel class]];
     }
-
     //如果model有，说明1、是编辑界面进来的 2、是从草稿界面进来的
     if (_model) {
         [self faxianEditCome];
     }
 }
+- (void)addNetworkPhoto {
+    if (self.manager.afterSelectPhotoCountIsMaximum) {
+        [self.view showImageHUDText:@"图片已达到最大数"];
+        return;
+    }
+    [self.photoView refreshView];
+}
+#pragma -----------------上传完图片和视频的回调方法-----------------
+- (void)photoView:(HXPhotoView *)photoView changeComplete:(NSArray<HXPhotoModel *> *)allList photos:(NSArray<HXPhotoModel *> *)photos videos:(NSArray<HXPhotoModel *> *)videos original:(BOOL)isOriginal {
+    NSSLog(@"所有:%ld - 照片:%ld - 视频:%ld",allList.count,photos.count,videos.count);
+    if (allList.count > 0) {
+        //判断是不是编辑或者草稿进来的
+        kWeakSelf(self);
+        //如果是视频
+           if (videos.count > 0) {
+               [QMUITips showLoadingInView:self.view];
+               [self.toolManager writeSelectModelListToTempPathWithList:videos requestType:0 success:^(NSArray<NSURL *> *allURL, NSArray<NSURL *> *photoURL, NSArray<NSURL *> *videoURL) {
+                     //上传七牛云视频
+                     [QiniuLoad uploadVideoToQNFilePath:videoURL[0] success:^(NSString *reslut) {
+                         [weakself.photoImageList addObject:reslut];
+                     } failure:^(NSString *error) {[QMUITips hideAllTips];}];
+                       //上传完视频，再上传封面图片
+                       [weakself.toolManager getSelectedImageList:videos success:^(NSArray<UIImage *> *imageList) {
+                           //上传七牛云图片
+                           [QiniuLoad uploadImageToQNFilePath:imageList success:^(NSString *reslut) {
+                               [QMUITips hideAllTips];
+                               NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
+                               weakself.videoCoverImageString = qiniuArray[0];
+                           } failure:^(NSString *error) {[QMUITips hideAllTips];}];
+                       } failed:^{ [QMUITips hideAllTips];}];
+                 } failed:^{[QMUITips hideAllTips];}];
+           }
+        //如果是图片
+           if (photos.count > 0) {
+               [QMUITips showLoadingInView:self.view];
+                [self.toolManager getSelectedImageList:photos success:^(NSArray<UIImage *> *imageList) {
+                     //上传七牛云图片
+                     [QiniuLoad uploadImageToQNFilePath:imageList success:^(NSString *reslut) {
+                          [QMUITips hideAllTips];
+                          [weakself.photoImageList removeAllObjects];
+                          NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
+                          if (qiniuArray.count > 0) {
+                            [weakself.photoImageList addObjectsFromArray:qiniuArray];
+                          }
+                      } failure:^(NSString *error) {[QMUITips hideAllTips];}];
+                 } failed:^{[QMUITips hideAllTips];}];
+           }
+    }
+}
+- (void)photoView:(HXPhotoView *)photoView deleteNetworkPhoto:(NSString *)networkPhotoUrl {
+    NSSLog(@"%@",networkPhotoUrl);
+}
+- (void)photoView:(HXPhotoView *)photoView updateFrame:(CGRect)frame{
+    NSSLog(@"%@",NSStringFromCGRect(frame));
+    self.scrollViewFaBu.contentSize = CGSizeMake(KScreenWidth-32, CGRectGetMaxY(frame) + kPhotoViewMargin);
+    self.threeViewHeight.constant = frame.size.height < 100 ? 100 : 150;
+    [self.scrollViewFaBu setSize:CGSizeMake(KScreenWidth-32,self.threeViewHeight.constant)];
 
+}
 //如果是从发现界面编辑进来的
 -(void)faxianEditCome{
     //标签
     if (self.model.tag.length  != 0) {
         self.tagArray = [NSMutableArray arrayWithArray:[self.model.tag split:@" "]];
-           [self addNewTags];
-
-       }
+        [self addNewTags];
+    }
     //地点
     self.locationString = [self.model.publish_site isEqualToString:@""] ? @"获取地理位置" :  self.model.publish_site;
     [self.locationBtn setTitle:self.locationString forState:UIControlStateNormal];
-    
+    [self.photoImageList removeAllObjects];
     for (NSString * imgString in [self.model.photo_list split:@","]) {
-        KSMediaPickerOutputModel * model = [KSMediaPickerOutputModel.alloc modelInitWithCoder:nil];
-        [self.selectedPhotos addObject:model];
         [self.photoImageList addObject:[IMG_URI append:imgString]];
     }
+    //有默认的图片的话，就显示出来
+      [self.manager addNetworkingImageToAlbum:self.photoImageList selected:YES];
+      [self.photoView refreshView];
     //封面
     self.videoCoverImageString = @"";
     //内容
@@ -115,12 +206,10 @@
         }else{
             [weakself requestFabu:dic];
         }
-
 }
 -(void)requestFabu:(NSMutableDictionary *)dic{
     [QMUITips showLoadingInView:[ShareManager getMainView]];
     BOOL sameBool = [self.model.post_id isEqualToString:@""];
-    
     if (sameBool) {
         [self lastFabu:dic];
     }else{
@@ -133,9 +222,6 @@
     [YX_MANAGER requestFaBuImagePOST:dic success:^(id object) {
         [QMUITips showSucceed:@"发布成功"];
         [weakself closeViewAAA];
-        
-        
-        
         if (weakself.model.coustomId && ![weakself.model.coustomId isEqualToString:@""]) {
             JQFMDB *db = [JQFMDB shareDatabase];
             NSString * sql = [@"WHERE coustomId = " append:kGetString(weakself.model.coustomId)];
@@ -143,7 +229,6 @@
         }
     }];
 }
-
 -(void)closeViewAAA{
     [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSecondVC" object:nil];
     [self closeViewBBB];
@@ -155,57 +240,6 @@
     }
     [controller dismissViewControllerAnimated:YES completion:^{}];
 }
-#pragma mark ==========  图片和视频返回的block ==========
-- (void)mediaPicker:(KSMediaPickerController *)mediaPicker didFinishSelected:(NSArray<KSMediaPickerOutputModel *> *)outputArray {
-    [mediaPicker.navigationController dismissViewControllerAnimated:YES completion:nil];
-    NSMutableArray * upLoadImageArray = [NSMutableArray array];
-    kWeakSelf(self);
-    
-    for (KSMediaPickerOutputModel * model in outputArray) {
-        [_selectedPhotos addObject:model];
-        if (model.image) {
-            [upLoadImageArray addObject:model.image];
-        }else{
-            
-        }
-    }
-    [self.yxCollectionView reloadData];
-    //如果数组为1,两种情况，1、视频 2、一张图片
-    if (outputArray.count == 1) {
-        KSMediaPickerOutputModel * model = outputArray[0];
-        if (model.mediaType == PHAssetMediaTypeVideo) {
-            self.fabuType = YES;
-            UIImage * cover = [self getVideoPreViewImage:model.videoAsset.URL];
-            [QiniuLoad uploadVideoToQNFilePath:model.videoAsset.URL success:^(NSString *reslut) {
-                [weakself.photoImageList addObject:reslut];
-                [weakself uploadImageQiNiuYun:[NSMutableArray arrayWithObject:cover]];
-            } failure:^(NSString *error) {}];
-        }else{
-            self.fabuType = NO;
-            [self uploadImageQiNiuYun:upLoadImageArray];
-        }
-    }else{
-        self.fabuType = NO;
-        [self uploadImageQiNiuYun:upLoadImageArray];
-    }
-}
--(void)uploadImageQiNiuYun:(NSMutableArray *)upLoadImageArray{
-    kWeakSelf(self);
-    CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();
-    [QMUITips showLoadingInView:self.view];
-    [QiniuLoad uploadImageToQNFilePath:upLoadImageArray success:^(NSString *reslut) {
-        [QMUITips hideAllTips];
-        NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
-        if (qiniuArray.count > 0) {
-            if (weakself.fabuType) {
-                weakself.videoCoverImageString = qiniuArray[0];
-            }else{
-                [weakself.photoImageList addObjectsFromArray:qiniuArray];
-            }
-        }
-    } failure:^(NSString *error) {}];
-}
-
 -(void)setOtherUI{
     self.tagArray = [NSMutableArray array];
     self.photoImageList = [[NSMutableArray alloc]init];
@@ -220,7 +254,6 @@
     
     self.videoCoverImageString=@"";
     _selectedPhotos = [NSMutableArray array];
-    [self configCollectionView];
     
     self.topHeight.constant = kStatusBarHeight;
 }
@@ -240,24 +273,10 @@
     [self.qmuiTextView becomeFirstResponder];
     [self.detailView addSubview:self.qmuiTextView];
 }
-
 - (IBAction)fabuAction:(UIButton *)btn{
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-    if ([self.selectedPhotos count] == [self.photoImageList count]) {
-        if (self.fabuType){//视频
-            if([self.videoCoverImageString isEqualToString:@""]){
-                [QMUITips showInfo:@"正在上传,请稍等" inView:self.view hideAfterDelay:2];
-            }else{
-                [self commonAction:self.photoImageList btn:btn];
-            }
-        }else{//图片
-            [self commonAction:self.photoImageList btn:btn];
-        }
-    }else{
-        [QMUITips showInfo:@"正在上传,请稍等" inView:self.view hideAfterDelay:2];
-    }
+    [self commonAction:self.photoImageList btn:btn];
 }
-
 - (IBAction)locationBtnAction:(id)sender{
     kWeakSelf(self);
     YXGaoDeMapViewController * VC = [[YXGaoDeMapViewController alloc]init];
@@ -265,10 +284,8 @@
         _locationString = locationString;
         if ([locationString isEqualToString:@""]) {
             [weakself.locationBtn setTitle:@"获取地理位置" forState:0];
-
         }else{
             [weakself.locationBtn setTitle:locationString forState:0];
-
         }
         [weakself dismissViewControllerAnimated:YES completion:nil];
     };
@@ -279,7 +296,6 @@
     [self pushNewHuaTi];
 }
 - (IBAction)moreAction:(id)sender{
-
     kWeakSelf(self);
     YXPublishMoreTagsViewController * VC = [[YXPublishMoreTagsViewController alloc]init];
     RootNavigationController *nav = [[RootNavigationController alloc]initWithRootViewController:VC];
@@ -293,7 +309,6 @@
     };
     [weakself presentViewController:nav animated:YES completion:nil];
 }
-
 -(void)xinhuatiButtonAction:(UIButton *)btn{
     if ([_xinhuatiTf.text isEqualToString:@""]) {
         return;
@@ -306,9 +321,7 @@
     }
     [_modalNewViewController hideWithAnimated:YES completion:nil];
 }
-
 -(void)addNewTags{
-
     NSArray * titleArr = @[@""];
     NSArray *contentArr = @[_tagArray];
     CBGroupAndStreamView * silde = [[CBGroupAndStreamView alloc] initWithFrame:CGRectMake(0, 0,self.floatView.qmui_width, self.floatView.qmui_height)];
@@ -377,7 +390,6 @@
 - (IBAction)closeViewAction:(id)sender {
 if (_startDic) {
     [self closeViewAAA];
-
 }else{
     if (self.photoImageList.count > 0 || self.qmuiTextView.text.length > 0 ) {
         kWeakSelf(self);
@@ -390,7 +402,6 @@ if (_startDic) {
             [weakself fabuAction:self.cunCaoGaoBtn];
         }];
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"你将退出发布,是否保存草稿?" preferredStyle:UIAlertControllerStyleActionSheet];
-        
         [alertController addAction:action3];
         [alertController addAction:action2];
         [alertController addAction:action1];
@@ -405,127 +416,6 @@ if (_startDic) {
     }else{
         [self closeViewAAA];
     }
-}
-}
-
-
-
-
-
-
-
-
-
-
-
-- (void)configCollectionView {
-    // 如不需要长按排序效果，将LxGridViewFlowLayout类改成UICollectionViewFlowLayout即可
-    _layout = [[UICollectionViewFlowLayout alloc] init];
-    _layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    _yxCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:_layout];
-    _yxCollectionView.showsVerticalScrollIndicator = _yxCollectionView.showsHorizontalScrollIndicator = NO;
-    _yxCollectionView.backgroundColor = KWhiteColor;
-    _yxCollectionView.contentInset = UIEdgeInsetsMake(4, 4, 4, 4);
-    _yxCollectionView.dataSource = self;
-    _yxCollectionView.delegate = self;
-    _yxCollectionView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-    _yxCollectionView.contentSize = CGSizeMake(kScreenWidth-20, 0);
-    [self.threeImageView addSubview:_yxCollectionView];
-    [_yxCollectionView registerClass:[TZTestCell class] forCellWithReuseIdentifier:@"TZTestCell"];
-}
-
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    _layout.itemSize = CGSizeMake(90, 90);
-    _layout.minimumInteritemSpacing = 10;
-    _layout.minimumLineSpacing = 10;
-    [_yxCollectionView setCollectionViewLayout:_layout];
-    _yxCollectionView.frame = CGRectMake(-7, 0, kScreenWidth -20,100);
-}
-#pragma mark UICollectionView
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (_selectedPhotos.count >= 9) {
-        return _selectedPhotos.count;
-    }
-    return _selectedPhotos.count + 1;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    TZTestCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TZTestCell" forIndexPath:indexPath];
-    cell.videoImageView.hidden = YES;
-    if (indexPath.item == _selectedPhotos.count) {
-        cell.imageView.image = [UIImage imageNamed:@"AlbumAddBtn.png"];
-        cell.deleteBtn.hidden = YES;
-        cell.gifLable.hidden = YES;
-    } else {
-        KSMediaPickerOutputModel * model = _selectedPhotos[indexPath.item];
-        if (model.mediaType == mediaTypeVideo) {
-            cell.imageView.image = model.thumb;
-            cell.videoImageView.hidden = NO;
-        }else{
-            if (model.thumb) {
-                cell.imageView.image = model.thumb;
-            }else{
-                NSString * str1 = [(NSMutableString *)self.photoImageList[indexPath.row] replaceAll:@" " target:@"%20"];
-                [cell.imageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"zhanweitu"]];
-            }
-        }
-        cell.deleteBtn.hidden = NO;
-    }
-    cell.deleteBtn.tag = indexPath.item;
-    [cell.deleteBtn addTarget:self action:@selector(deleteBtnClik:) forControlEvents:UIControlEventTouchUpInside];
-    return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.item == _selectedPhotos.count) {
-        /// 两个参数都请不要传0，因为没处理单媒体类型录影和拍照的问题
-        if (_selectedPhotos.count == 1 && self.fabuType) {
-            [QMUITips showInfo:@"只能上传一个视频!" inView:self.view hideAfterDelay:2];
-            return;
-        }
-        KSMediaPickerController *ctl = [KSMediaPickerController.alloc initWithMaxVideoItemCount:1 maxPictureItemCount:9];
-        
-        ctl.delegate = self;
-        KSNavigationController *nav = [KSNavigationController.alloc initWithRootViewController:ctl];
-        nav.modalPresentationStyle = UIModalPresentationFullScreen;
-        [self presentViewController:nav animated:YES completion:nil];
-        
-    } else { // preview photos or video / 预览照片或者视频
-      
-    }
-}
-#pragma mark - Click Event
-
-- (void)deleteBtnClik:(UIButton *)sender {
-    if ([self collectionView:self.collectionView numberOfItemsInSection:0] <= _selectedPhotos.count) {
-        [_selectedPhotos removeObjectAtIndex:sender.tag];
-        [self.collectionView reloadData];
-        return;
-    }
-    
-    [_selectedPhotos removeObjectAtIndex:sender.tag];
-    [_yxCollectionView performBatchUpdates:^{
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:sender.tag inSection:0];
-        [self->_yxCollectionView deleteItemsAtIndexPaths:@[indexPath]];
-    } completion:^(BOOL finished) {
-        [self->_yxCollectionView reloadData];
-    }];
-}
-
-
-
-// 获取视频第一帧
-- (UIImage*)getVideoPreViewImage:(NSURL *)path{
-    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:path options:nil];
-    AVAssetImageGenerator *assetGen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
-    assetGen.appliesPreferredTrackTransform = YES;
-    CMTime time = CMTimeMakeWithSeconds(0.0, 600);
-    NSError *error = nil;
-    CMTime actualTime;
-    CGImageRef image = [assetGen copyCGImageAtTime:time actualTime:&actualTime error:&error];
-    UIImage *videoImage = [[UIImage alloc] initWithCGImage:image];
-    CGImageRelease(image);
-    return videoImage;
+  }
 }
 @end

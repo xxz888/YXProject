@@ -37,14 +37,29 @@ UITableViewDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[UIApplication sharedApplication] setStatusBarStyle:self.manager.configuration.statusBarStyle];
-    self.navigationController.navigationBar.hidden = NO;
-
+    
     [self setPhotoManager];
     self.navigationController.popoverPresentationController.delegate = (id)self;
     [self setupUI];
-    self.navigationController.navigationBar.translucent = NO;
-    self.automaticallyAdjustsScrollViewInsets = NO;
-      [self getAlbumModelList:YES];
+    // 获取当前应用对照片的访问授权状态
+    __weak typeof(self) weakSelf = self;
+    [self.view showLoadingHUDText:nil];
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([PHPhotoLibrary authorizationStatus] != PHAuthorizationStatusAuthorized) {
+                [weakSelf.view handleLoading];
+                [weakSelf.view addSubview:weakSelf.authorizationLb];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSBundle hx_localizedStringForKey:@"无法访问相册"] message:[NSBundle hx_localizedStringForKey:@"请在设置-隐私-相册中允许访问相册"] preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:[UIAlertAction actionWithTitle:[NSBundle hx_localizedStringForKey:@"取消"] style:UIAlertActionStyleDefault handler:nil]];
+                [alert addAction:[UIAlertAction actionWithTitle:[NSBundle hx_localizedStringForKey:@"设置"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                }]];
+                [weakSelf presentViewController:alert animated:YES completion:nil];
+            }else {
+                [weakSelf getAlbumModelList:YES];
+            }
+        });
+    }];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 }
 
@@ -98,8 +113,8 @@ UITableViewDelegate
         CGFloat itemHeight = itemWidth + 6 + 14 + 4 + 14;
         self.flowLayout.itemSize = CGSizeMake(itemWidth, itemHeight);
         
-        self.collectionView.contentInset = UIEdgeInsetsMake(0, leftMargin, 0, rightMargin);
-        self.collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(0, leftMargin, 0, rightMargin);
+        self.collectionView.contentInset = UIEdgeInsetsMake(navBarHeight, leftMargin, 0, rightMargin);
+        self.collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(navBarHeight, leftMargin, 0, rightMargin);
         if (self.orientationDidChange) {
             [self.collectionView scrollToItemAtIndexPath:self.beforeOrientationIndexPath atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
         }
@@ -135,7 +150,6 @@ UITableViewDelegate
     self.title = @"相册";
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(cancelClick)];
-
     if (self.manager.configuration.singleSelected) {
         [self.view addSubview:self.tableView];
     }else {
@@ -321,7 +335,25 @@ UITableViewDelegate
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [_tableView registerClass:[HXAlbumListSingleViewCell class] forCellReuseIdentifier:@"tableViewCellId"];}
+        [_tableView registerClass:[HXAlbumListSingleViewCell class] forCellReuseIdentifier:@"tableViewCellId"];
+#ifdef __IPHONE_11_0
+        if (@available(iOS 11.0, *)) {
+            if ([self navigationBarWhetherSetupBackground]) {
+                self.navigationController.navigationBar.translucent = NO;
+            }else {
+                _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            }
+#else
+            if ((NO)) {
+#endif
+            } else {
+                if ([self navigationBarWhetherSetupBackground]) {
+                    self.navigationController.navigationBar.translucent = NO;
+                }else {
+                    self.automaticallyAdjustsScrollViewInsets = NO;
+                }
+            }
+    }
     return _tableView;
 }
 - (UICollectionView *)collectionView {
@@ -335,16 +367,30 @@ UITableViewDelegate
         [_collectionView registerClass:[HXAlbumListQuadrateViewCell class] forCellWithReuseIdentifier:@"cellId"];
 //        _collectionView.contentInset = UIEdgeInsetsMake(kNavigationBarHeight, 0, 0, 0);
 //        _collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(kNavigationBarHeight, 0, 0, 0);
-
-//            if (self.manager.configuration.open3DTouchPreview) {
-//                if ([self respondsToSelector:@selector(traitCollection)]) {
-//                    if ([self.traitCollection respondsToSelector:@selector(forceTouchCapability)]) {
-//                        if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
-//                            self.previewingContext = [self registerForPreviewingWithDelegate:self sourceView:_collectionView];
-//                        }
-//                    }
-//                }
-//            }
+#ifdef __IPHONE_11_0
+        if (@available(iOS 11.0, *)) {
+            if ([self navigationBarWhetherSetupBackground]) {
+                self.navigationController.navigationBar.translucent = YES;
+            }
+            _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+#else
+            if ((NO)) {
+#endif
+            } else {
+                if ([self navigationBarWhetherSetupBackground]) {
+                    self.navigationController.navigationBar.translucent = YES;
+                }
+                self.automaticallyAdjustsScrollViewInsets = NO;
+            }
+            if (self.manager.configuration.open3DTouchPreview) {
+                if ([self respondsToSelector:@selector(traitCollection)]) {
+                    if ([self.traitCollection respondsToSelector:@selector(forceTouchCapability)]) {
+                        if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
+                            self.previewingContext = [self registerForPreviewingWithDelegate:self sourceView:_collectionView];
+                        }
+                    }
+                }
+            }
     }
     return _collectionView;
 }
@@ -406,8 +452,8 @@ UITableViewDelegate
 }
 - (void)setupUI {
     [self.contentView addSubview:self.coverView];
-//    [self.contentView addSubview:self.albumNameLb];
-//    [self.contentView addSubview:self.photoNumberLb];
+    [self.contentView addSubview:self.albumNameLb];
+    [self.contentView addSubview:self.photoNumberLb];
 //    [self.contentView addSubview:self.selectNumberBtn];
 }
 - (void)setModel:(HXAlbumModel *)model {

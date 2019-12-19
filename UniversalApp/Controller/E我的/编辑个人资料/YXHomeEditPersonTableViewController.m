@@ -15,16 +15,18 @@
 #import "ImagePicker.h"
 #import "QiniuLoad.h"
 #import<QiniuSDK.h>
-#import "UniversalApp-Swift.h"
 #import "YXMineQianMingViewController.h"
+#import "HXPhotoPicker.h"
 
-@interface YXHomeEditPersonTableViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate,UITextViewDelegate,KSMediaPickerControllerDelegate>{
+
+@interface YXHomeEditPersonTableViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate,UITextViewDelegate,HXPhotoViewDelegate>{
     
     ImagePicker *imagePicker;
     
 }
 @property (nonatomic,strong) NSString * photo;
-
+@property (strong, nonatomic) HXDatePhotoToolManager *toolManager;
+@property (strong, nonatomic) HXPhotoManager *manager;
 @end
 
 @implementation YXHomeEditPersonTableViewController
@@ -32,7 +34,27 @@
     [self upData];
 
 }
+- (HXPhotoManager *)manager {
+    if (!_manager) {
+        _manager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhotoAndVideo];
+        _manager.configuration.singleSelected = YES;
+        _manager.configuration.albumListTableView = ^(UITableView *tableView) {
+//            NSSLog(@"%@",tableView);
+        };
+        _manager.configuration.singleJumpEdit = YES;
+        _manager.configuration.movableCropBox = YES;
+        _manager.configuration.movableCropBoxEditSize = YES;
+//        _manager.configuration.movableCropBoxCustomRatio = CGPointMake(1, 1);
+    }
+    return _manager;
+}
 
+- (HXDatePhotoToolManager *)toolManager {
+    if (!_toolManager) {
+        _toolManager = [[HXDatePhotoToolManager alloc] init];
+    }
+    return _toolManager;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     //解决方案
@@ -145,56 +167,37 @@
 
     [self upData];
 }
+#pragma -----------------上传完图片和视频的回调方法-----------------
+- (void)photoView:(HXPhotoView *)photoView changeComplete:(NSArray<HXPhotoModel *> *)allList photos:(NSArray<HXPhotoModel *> *)photos videos:(NSArray<HXPhotoModel *> *)videos original:(BOOL)isOriginal {
+    
+}
 - (IBAction)changeTitleImgAction:(id)sender {
     [_nameTf resignFirstResponder];
     [self.view endEditing:YES];
     kWeakSelf(self);
-    
-    KSMediaPickerController *ctl = [KSMediaPickerController.alloc initWithMaxVideoItemCount:0 maxPictureItemCount:1];
-    ctl.delegate = self;
-    KSNavigationController *nav = [KSNavigationController.alloc initWithRootViewController:ctl];
-    nav.modalPresentationStyle = 0;
-    [self presentViewController:nav animated:YES completion:nil];
-    
-    
-    
-    
-    
-    
-    return;
-    [imagePicker dwSetPresentDelegateVC:self SheetShowInView:self.view InfoDictionaryKeys:(long)nil];
-    [imagePicker dwGetpickerTypeStr:^(NSString *pickerTypeStr) {
-    } pickerImagePic:^(UIImage *pickerImagePic) {
-        [QMUITips showLoadingInView:self.view];
-        [QiniuLoad uploadImageToQNFilePath:@[pickerImagePic] success:^(NSString *reslut) {
-            [weakself.titleImgView setImage:pickerImagePic];
-
-            weakself.photo = [NSMutableArray arrayWithArray:[reslut split:@";"]][0];
-            [QMUITips hideAllTipsInView:self.view];
-        } failure:^(NSString *error) {
-            
-        }];
-     
-    }];
-}
-
-
-#pragma mark ==========  图片和视频返回的block ==========
-- (void)mediaPicker:(KSMediaPickerController *)mediaPicker didFinishSelected:(NSArray<KSMediaPickerOutputModel *> *)outputArray {
-    [mediaPicker.navigationController dismissViewControllerAnimated:YES completion:nil];
-    KSMediaPickerOutputModel * model =  outputArray[0];
-    [self uploadImageQiNiuYun:@[model.image]];
-}
--(void)uploadImageQiNiuYun:(NSArray *)upLoadImageArray{
-    kWeakSelf(self);
-    CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();
-    [QMUITips showLoadingInView:self.view];
-    [QiniuLoad uploadImageToQNFilePath:upLoadImageArray success:^(NSString *reslut) {
-        NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
-        weakself.titleImgView.image = upLoadImageArray[0];
-         weakself.photo = qiniuArray[0];
-        [QMUITips hideAllTipsInView:weakself.view];
-    } failure:^(NSString *error) {}];
+        self.manager.configuration.saveSystemAblum = NO;
+         
+         __weak typeof(self) weakSelf = self;
+         [self hx_presentAlbumListViewControllerWithManager:self.manager done:^(NSArray<HXPhotoModel *> *allList, NSArray<HXPhotoModel *> *photoList, NSArray<HXPhotoModel *> *videoList, BOOL original, HXAlbumListViewController *viewController) {
+             if (photoList.count > 0) {
+                 [weakSelf.view showLoadingHUDText:@"获取图片中"];
+                 [weakSelf.toolManager getSelectedImageList:photoList requestType:0 success:^(NSArray<UIImage *> *imageList) {
+                     kWeakSelf(self);
+                       [QiniuLoad uploadImageToQNFilePath:imageList success:^(NSString *reslut) {
+                           NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
+                           weakself.titleImgView.image = imageList[0];
+                            weakself.photo = qiniuArray[0];
+                           [weakSelf.view handleLoading];
+                       } failure:^(NSString *error) {}];
+                 } failed:^{
+                     [weakSelf.view handleLoading];
+                     [weakSelf.view showImageHUDText:@"获取失败"];
+                 }];
+                 NSSLog(@"%ld张图片",photoList.count);
+             }
+         } cancel:^(HXAlbumListViewController *viewController) {
+             NSSLog(@"取消了");
+         }];
 }
 - (IBAction)sexBtnAction:(id)sender {
     [_nameTf resignFirstResponder];

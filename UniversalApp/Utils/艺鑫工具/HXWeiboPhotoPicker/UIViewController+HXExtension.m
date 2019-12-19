@@ -26,7 +26,6 @@
     vc.cancelBlock = cancel;
     HXCustomNavigationController *nav = [[HXCustomNavigationController alloc] initWithRootViewController:vc];
     nav.supportRotation = manager.configuration.supportRotation;
-    nav.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:nav animated:YES completion:nil];
 }
 
@@ -38,6 +37,7 @@
     HXCustomNavigationController *nav = [[HXCustomNavigationController alloc] initWithRootViewController:vc];
     nav.isCamera = YES;
     nav.supportRotation = manager.configuration.supportRotation;
+    nav.modalPresentationStyle = manager.configuration.hxCameraModalPresentationStyle;
     [self presentViewController:nav animated:YES completion:nil];
 }
 
@@ -50,21 +50,22 @@
     HXCustomNavigationController *nav = [[HXCustomNavigationController alloc] initWithRootViewController:vc];
     nav.isCamera = YES;
     nav.supportRotation = manager.configuration.supportRotation;
+    nav.modalPresentationStyle = manager.configuration.hxCameraModalPresentationStyle;
     [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (BOOL)navigationBarWhetherSetupBackground {
-//    if ([self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefault]) {
-//        return YES;
-//    }else if ([self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsCompact]) {
-//        return YES;
-//    }else if ([self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefaultPrompt]) {
-//        return YES;
-//    }else if ([self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsCompactPrompt]) {
-//        return YES;
-//    }else if (self.navigationController.navigationBar.backgroundColor) {
-//        return YES;
-//    }
+    if ([self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefault]) {
+        return YES;
+    }else if ([self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsCompact]) {
+        return YES;
+    }else if ([self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefaultPrompt]) {
+        return YES;
+    }else if ([self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsCompactPrompt]) {
+        return YES;
+    }else if (self.navigationController.navigationBar.backgroundColor) {
+        return YES;
+    }
     return NO;
 }
 @end

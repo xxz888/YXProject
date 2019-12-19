@@ -10,7 +10,7 @@
 #import "UIImage+HXExtension.h"
 #import "HXPhoto3DTouchViewController.h"
 #import "HXDatePhotoPreviewViewController.h"
-#import "UIButton+HXExtension.h"
+#import "UIButton+HXExtension.h" 
 #import "HXCustomCameraViewController.h"
 #import "HXCustomNavigationController.h"
 #import "HXCustomCameraController.h"
@@ -132,7 +132,7 @@ HXDatePhotoEditViewControllerDelegate
         self.flowLayout.itemSize = CGSizeMake(itemWidth, itemHeight);
     }
     CGFloat bottomViewY = height - 50 - bottomMargin;
-    navBarHeight = 0;
+    
     self.collectionView.contentInset = UIEdgeInsetsMake(navBarHeight, leftMargin, bottomMargin, rightMargin);
     if (!self.manager.configuration.singleSelected) {
         self.collectionView.contentInset = UIEdgeInsetsMake(navBarHeight, leftMargin, 50 + bottomMargin, rightMargin);
@@ -145,7 +145,7 @@ HXDatePhotoEditViewControllerDelegate
         [self.collectionView scrollToItemAtIndexPath:self.beforeOrientationIndexPath atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
     }
     
-    self.bottomView.frame = CGRectMake(0, height - 50 - kTopHeight, viewWidth, 50 + bottomMargin);
+    self.bottomView.frame = CGRectMake(0, bottomViewY, viewWidth, 50 + bottomMargin);
     
     if (self.manager.configuration.photoListCollectionView) {
         self.manager.configuration.photoListCollectionView(self.collectionView);
@@ -479,7 +479,7 @@ HXDatePhotoEditViewControllerDelegate
                     HXCustomNavigationController *nav = [[HXCustomNavigationController alloc] initWithRootViewController:vc];
                     nav.isCamera = YES;
                     nav.supportRotation = weakSelf.manager.configuration.supportRotation;
-                    nav.modalPresentationStyle = UIModalPresentationFullScreen;
+                    nav.modalPresentationStyle = weakSelf.manager.configuration.hxCameraModalPresentationStyle;
                     [weakSelf presentViewController:nav animated:YES completion:nil];
                 }else {
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSBundle hx_localizedStringForKey:@"无法使用相机"] message:[NSBundle hx_localizedStringForKey:@"请在设置-隐私-相机中允许访问相机"] preferredStyle:UIAlertControllerStyleAlert];
@@ -733,7 +733,7 @@ HXDatePhotoEditViewControllerDelegate
     if (model.dateCellIsVisible) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[self dateItem:model] inSection:model.dateSection];
         [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
-        [self.manager addICloudModel:model];
+        [self.manager addICloudModel:model]; 
     }
 }
 - (void)datePhotoPreviewControllerDidSelect:(HXDatePhotoPreviewViewController *)previewController model:(HXPhotoModel *)model {
@@ -1122,7 +1122,7 @@ HXDatePhotoEditViewControllerDelegate
                         }
                     }
                 }
-            }];
+            }]; 
         }else {
             self.imageView.image = model.thumbPhoto;
         }
@@ -1701,7 +1701,7 @@ HXDatePhotoEditViewControllerDelegate
         self.originalBtn.enabled = NO;
         self.originalBtn.selected = NO;
         [self.manager setOriginal:NO] ;
-    }else {
+    }else { 
         self.originalBtn.enabled = YES;
     }
 }
@@ -1730,7 +1730,7 @@ HXDatePhotoEditViewControllerDelegate
 }
 - (void)didOriginalClick:(UIButton *)button {
     button.selected = !button.selected;
-    [self.manager setOriginal:button.selected];
+    [self.manager setOriginal:button.selected]; 
 }
 - (void)layoutSubviews {
     [super layoutSubviews];

@@ -8,9 +8,12 @@
 
 #import "HXDatePhotoToolManager.h"
 #import "UIImage+HXExtension.h"
+#if __has_include(<SDWebImage/UIImageView+WebCache.h>)
 #import <SDWebImage/UIImageView+WebCache.h>
+#else
 #import "UIImageView+WebCache.h"
-#import "SDWebImageDownloader.h"
+#endif
+
 @interface HXDatePhotoToolManager ()
 @property (copy, nonatomic) HXDatePhotoToolManagerSuccessHandler successHandler;
 @property (copy, nonatomic) HXDatePhotoToolManagerFailedHandler failedHandler;
@@ -24,6 +27,8 @@
 @property (strong, nonatomic) NSMutableArray *allArray;
 
 @property (strong, nonatomic) NSMutableArray *downloadTokenArray;
+
+
 @property (copy, nonatomic) HXDatePhotoToolManagerGetImageListSuccessHandler imageSuccessHandler;
 @property (copy, nonatomic) HXDatePhotoToolManagerGetImageListFailedHandler imageFailedHandler;
 @property (assign, nonatomic) BOOL gettingImage;
@@ -372,7 +377,7 @@
 - (void)getSelectedImageList:(NSArray<HXPhotoModel *> *)modelList success:(HXDatePhotoToolManagerGetImageListSuccessHandler)success failed:(HXDatePhotoToolManagerGetImageListFailedHandler)failed {
     if (self.gettingImage) {
         NSSLog(@"已有任务,请等待");
-//        return;
+        return;
     }
     self.cancelGetImage = NO;
     self.gettingImage = YES;
@@ -464,44 +469,44 @@
     }else {
         if (model.networkPhotoUrl) {
             __weak typeof(self) weakSelf = self;
-            if (model.downloadError) {
-                SDWebImageDownloader *token = [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:model.networkPhotoUrl options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-                    if (!error && image) {
-                        model.thumbPhoto = image;
-                        model.previewPhoto = image;
-                        [weakSelf.imageArray addObject:model.thumbPhoto];
-                        [weakSelf.allImageModelArray removeObject:weakSelf.currentImageModelArray.firstObject];
-                        [weakSelf getCurrentModelImage];
-                    }else {
-                        [weakSelf.downloadTokenArray removeAllObjects];
-                        weakSelf.gettingImage = NO;
-                        if (weakSelf.imageFailedHandler) {
-                            weakSelf.imageFailedHandler();
-                        }
-                    }
-                }];
-                [self.downloadTokenArray addObject:token];
-                return;
-            }
-            if (!model.downloadComplete) {
-                SDWebImageDownloader *token = [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:model.networkPhotoUrl options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-                    if (!error && image) {
-                        model.thumbPhoto = image;
-                        model.previewPhoto = image;
-                        [weakSelf.imageArray addObject:model.thumbPhoto];
-                        [weakSelf.allImageModelArray removeObject:weakSelf.currentImageModelArray.firstObject];
-                        [weakSelf getCurrentModelImage];
-                    }else {
-                        [weakSelf.downloadTokenArray removeAllObjects];
-                        weakSelf.gettingImage = NO;
-                        if (weakSelf.imageFailedHandler) {
-                            weakSelf.imageFailedHandler();
-                        }
-                    }
-                }];
-                [self.downloadTokenArray addObject:token];
-                return;
-            }
+//            if (model.downloadError) {
+//                SDWebImageDownloadToken *token = [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:model.networkPhotoUrl options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+//                    if (!error && image) {
+//                        model.thumbPhoto = image;
+//                        model.previewPhoto = image;
+//                        [weakSelf.imageArray addObject:model.thumbPhoto];
+//                        [weakSelf.allImageModelArray removeObject:weakSelf.currentImageModelArray.firstObject];
+//                        [weakSelf getCurrentModelImage];
+//                    }else {
+//                        [weakSelf.downloadTokenArray removeAllObjects];
+//                        weakSelf.gettingImage = NO;
+//                        if (weakSelf.imageFailedHandler) {
+//                            weakSelf.imageFailedHandler();
+//                        }
+//                    }
+//                }];
+//                [self.downloadTokenArray addObject:token];
+//                return;
+//            }
+//            if (!model.downloadComplete) {
+//                SDWebImageDownloadToken *token = [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:model.networkPhotoUrl options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+//                    if (!error && image) {
+//                        model.thumbPhoto = image;
+//                        model.previewPhoto = image;
+//                        [weakSelf.imageArray addObject:model.thumbPhoto];
+//                        [weakSelf.allImageModelArray removeObject:weakSelf.currentImageModelArray.firstObject];
+//                        [weakSelf getCurrentModelImage];
+//                    }else {
+//                        [weakSelf.downloadTokenArray removeAllObjects];
+//                        weakSelf.gettingImage = NO;
+//                        if (weakSelf.imageFailedHandler) {
+//                            weakSelf.imageFailedHandler();
+//                        }
+//                    }
+//                }];
+//                [self.downloadTokenArray addObject:token];
+//                return;
+//            }
             [self.imageArray addObject:model.thumbPhoto];
             [self.allImageModelArray removeObject:self.currentImageModelArray.firstObject];
             [self getCurrentModelImage];
@@ -514,8 +519,8 @@
 }
 - (void)cancelGetImageList {
     self.cancelGetImage = YES;
-//    for (SDWebImageDownloadToken * token in self.downloadTokenArray) {
-//        [[SDWebImageDownloader sharedDownloader] cancel:token];
+//    for (SDWebImageDownloadToken *token in self.downloadTokenArray) {
+//        [[SDWebImageDownloader sharedDownloader] cancel:token]; 
 //    }
     [self.downloadTokenArray removeAllObjects];
     if (self.currentImageRequestID) {
