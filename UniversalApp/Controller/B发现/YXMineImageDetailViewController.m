@@ -20,6 +20,8 @@
 #import "UIWebView+KWWebViewJSTool.h"
 #import "UIWebView+KWHideAccessoryView.h"
 #import "YXWenZhangEditorViewController.h"
+
+
 #define cellSpace 9
 @interface YXMineImageDetailViewController ()<ZInputToolbarDelegate,QMUIMoreOperationControllerDelegate,SDCycleScrollViewDelegate,UIWebViewDelegate>{
     CGFloat imageHeight;
@@ -69,21 +71,19 @@
 }
 -(void)initAllControl{
     [super initAllControl];
-    
-    
     //赞和评论
     NSString * praisNum = kGetString(self.startDic[@"praise_number"]);
     //评论数量
     self.bottomZanCount.text = praisNum;
-    
-    if ([praisNum isEqualToString:@"0"] || [praisNum isEqualToString:@"(null)"]) {
+        if ([praisNum isEqualToString:@"0"] || [praisNum isEqualToString:@"(null)"]) {
          self.bottomZanCount.text = @"";
     }
-    
     //赞
     BOOL isp =  [self.startDic[@"is_praise"] integerValue] == 1;
-    UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
+    UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG_DARK;
     self.zanImgv.image = likeImage;
+    self.pinglunView1.hidden = NO;
+    self.pinglunView2.hidden = YES;
 }
 -(YXFirstFindImageTableViewCell *)cell{
     if (!_cell) {
@@ -91,6 +91,7 @@
     }
     return _cell;
 }
+
 -(void)setWebVIewData:(NSDictionary *)dic{
     self.cell.cellWebView.delegate = self;
     NSString *path = [[NSBundle mainBundle] bundlePath];
@@ -104,21 +105,25 @@
     self.cell.cellWebView.hidesInputAccessoryView = YES;
     [self.cell.cellWebView loadHTMLString:htmlCont baseURL: baseURL];
     self.cell.cellWebView.userInteractionEnabled = NO;
-    
-    
     [self.cell.cellWebView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
-
-
 }
 #pragma mark -webviewdelegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    NSString * newWebString = self.startDic[@"detail"];
-//    if ([self.startDic[@"detail"] containsString:@"<br><br><br>"]) {
-//        newWebString = [self.startDic[@"detail"] replaceAll:@"<br><br><br>" target:@""];
-//    }
-//    if ([newWebString containsString:@"<br><br>"]) {
-//       newWebString = [newWebString replaceAll:@"<br><br>" target:@"<br>"];
-//    }
+       NSString * newWebString = self.startDic[@"detail"];
+       newWebString = [newWebString replaceAll:@"\"" target:@"\'"];
+       newWebString = [newWebString replaceAll:@"<p><br></p><p><br></p>" target:@"<br>"];
+       newWebString = [newWebString replaceAll:@"<p><br></p>" target:@"<br>"];
+       newWebString = [newWebString replaceAll:@"<p class='ql-align-right'><br></p>" target:@""];
+       newWebString = [newWebString replaceAll:@"<p class='ql-align-justify'><br></p>" target:@""];
+       newWebString = [newWebString replaceAll:@"<p class='ql-align-left'><br></p>" target:@""];
+
+        newWebString = [newWebString replaceAll:@"<br><br>" target:@""];
+        newWebString = [newWebString replaceAll:@"<br><br><br>" target:@""];
+        newWebString = [newWebString replaceAll:@"<br><br><br><br>" target:@""];
+        newWebString = [newWebString replaceAll:@"<br><br><br><br><br>" target:@""];
+        newWebString = [newWebString replaceAll:@"<br><br><br><br><br><br>" target:@""];
+        newWebString = [newWebString replaceAll:@"<br><br><br><br><br><br><br>" target:@""];
+
        [self.cell.cellWebView setupHtmlContent:newWebString];
        //删除占位信息
        [self.cell.cellWebView clearContentPlaceholder];
@@ -134,7 +139,7 @@
             CGRect Frame = self.cell.frame;
 
             CGFloat detailHeight = [ShareManager inTextOutHeight:self.startDic[@"title"] lineSpace:9 fontSize:24];
-            CGFloat height = 10 + 10 + 5 + 10  ; //分割线和上下距离和评论
+            CGFloat height = 10 + 10 + 5 + 10 + 36; //分割线和上下距离和评论
             Frame.size.height= 125 + detailHeight + webViewHeight + coverHeight + height;
             self.cell.midViewHeight.constant =  webViewHeight;
             self.cell.frame= Frame;
@@ -243,40 +248,14 @@
             [WP_TOOL_ShareManager inGuanZhuStatusBtn:weakself.cell.guanzhuBtn];
            }
     }];
-    
-    
-    
-    
     self.cell.tagId = [self.startDic[@"id"] integerValue];
     CGRect oldFrame = self.cell.frame;
     CGFloat newHeight =  self.headerViewHeight + (IS_IPhoneX ? 0 : 20);
     self.cell.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width, newHeight);
     self.cell.fenxiangBtn.hidden = self.cell.fenxiangImv.hidden = YES;
-
-
     //详情界面点赞和分享调整到下边
     self.cell.threeBtnStackView.hidden =  YES;
-    self.cell.bottomBottomHeight.constant = 40;
     self.cell.bottomPingLunLbl.hidden = NO;
-    
-
-    
-    
-    
-    
-    if (self.dataArray.count != 0) {
-        if (!self.nodataImg) {
-            self.nodataImg = [[UILabel alloc]init];
-        }
-        self.nodataImg.frame = CGRectMake((KScreenWidth-200)/2,self.cell.frame.size.height , 200, 100);
-        self.nodataImg.text = @"暂时还没有评论";
-        self.nodataImg.font = [UIFont systemFontOfSize:14];
-        self.nodataImg.textColor = [UIColor lightGrayColor];
-        self.nodataImg.textAlignment = NSTextAlignmentCenter;
-        [self.nodataImg removeFromSuperview];
-        [self.yxTableView addSubview:self.nodataImg];
-    }
-    
     //晒图
     if ([self.startDic[@"obj"] integerValue] == 1) {
 
@@ -296,7 +275,7 @@
                 self.cell.midViewHeight.constant = ( KScreenWidth - 20 ) * scale;
                 self.cell.playImV.hidden = YES;
                 CGRect Frame = self.cell.frame;
-                Frame.size.height= self.headerViewHeight - 100 + 60 + self.cell.midViewHeight.constant+ (IS_IPhoneX ? 0 : 20) - 30;
+                Frame.size.height= self.headerViewHeight - 100 + 60 + self.cell.midViewHeight.constant+ (IS_IPhoneX ? 0 : 20) + 6;
                 self.cell.frame= Frame;
                 self.player.videoUrl = self.startDic[@"url_list"][0];
                 [self.cell.onlyOneImv addSubview:self.player];
@@ -305,13 +284,12 @@
                 CGRect Frame = self.cell.frame;
 
                 CGFloat midViewHeight = [YXFirstFindImageTableViewCell cellAllImageHeight:self.startDic];
-                Frame.size.height = 170 + tagViewHeight +  detailHeight + midViewHeight + kTopHeight+ (IS_IPhoneX ? 0 : 20) - 30;
+                Frame.size.height = 170 + tagViewHeight +  detailHeight + midViewHeight + kTopHeight+ (IS_IPhoneX ? 0 : 20) + 6;
                 self.cell.frame= Frame;
                
             }
         }
          self.yxTableView.tableHeaderView = self.cell;
-
     //文章
     }else{
         self.cell.onlyOneImv.hidden = self.cell.playImV.hidden = YES;
@@ -323,8 +301,6 @@
         self.cell.detailLbl.hidden = YES;//隐藏原有detail的详情
         self.cell.detailHeight.constant = 0;//设置原有的detail为0
         self.cell.wenzhangDetailLbl.text = [self.startDic[@"title"] UnicodeToUtf8];
-     
-
         //封面图
         NSString * cover = self.startDic[@"cover"];
         if (![self.startDic[@"cover"] contains:IMG_URI]) {
@@ -336,13 +312,7 @@
         self.cell.coverImvHeight.constant = coverHeight;
         [self.cell.coverImV sd_setImageWithURL:[NSURL URLWithString:cover] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         [self setWebVIewData:self.startDic];
-//        self.cell.leftWidth.constant  = 0;
-//        self.cell.rightWidth.constant = 10;
         self.yxTableView.tableHeaderView = self.cell;
-        
-        
-       
-        
     }
     zanBool =  [self.startDic[@"is_praise"] integerValue] == 1;
 
@@ -432,7 +402,7 @@
     [YX_MANAGER requestPost_praisePOST:@{@"post_id":post_id} success:^(id object) {
         //赞
         zanBool = !zanBool;
-        UIImage * likeImage = zanBool ? ZAN_IMG : UNZAN_IMG;
+        UIImage * likeImage = zanBool ? ZAN_IMG : UNZAN_IMG_DARK;
         weakself.zanImgv.image = likeImage;
         NSInteger zhengfuValue = zanBool ? 1 : -1;
         weakself.bottomZanCount.text = NSIntegerToNSString([weakself.bottomZanCount.text integerValue] + zhengfuValue);
@@ -448,18 +418,14 @@
     kWeakSelf(self);
     //请求评价列表 最新评论列表
     [YX_MANAGER requestPost_comment:[self getParamters:@"1" page:NSIntegerToNSString(self.requestPage)] success:^(id object) {
-        if ([object count] > 0) {
-            weakself.dataArray = [weakself commonAction:[weakself creatModelsWithCount:object] dataArray:weakself.dataArray];
-        }else{
-            [weakself.yxTableView.mj_header endRefreshing];
-            [weakself.yxTableView.mj_footer endRefreshing];
-        }
+        weakself.dataArray = [weakself commonAction:[weakself creatModelsWithCount:object] dataArray:weakself.dataArray];
+        [weakself.yxTableView.mj_header endRefreshing];
+        [weakself.yxTableView.mj_footer endRefreshing];
         [weakself refreshTableView];
     }];
 }
 -(void)refreshTableView{
     [self.yxTableView reloadData];
-    self.nodataImg.hidden = self.dataArray.count != 0;
 }
 #pragma mark ========== 评论子评论 ==========
 -(void)requestpost_comment_child:(NSDictionary *)dic{

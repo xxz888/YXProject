@@ -515,7 +515,7 @@ _Pragma("clang diagnostic pop") \
     cell.dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
     [cell setCellValue:dic];
     cell.topTopHeight.constant = 0;
-    cell.bottomBottomHeight.constant = 0;
+//    cell.bottomBottomHeight.constant = 0;
     cell.bottomPingLunLbl.hidden = YES;
     cell.wenzhangDetailHeight.constant = 0;//文章详情里面用的，外边设置为0
     cell.wenzhangDetailLbl.hidden = YES;//文章详情里面用的，外边设置为隐藏

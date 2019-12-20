@@ -27,11 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameCenter;
 -(CGFloat)getTitleTagLblHeight:(NSDictionary *)dic;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tagViewHeight;
-
 @property (weak, nonatomic) IBOutlet UIView *tagView;
-
 @property (weak, nonatomic) IBOutlet UIImageView *onlyOneImv;
-
 //点击头像
 typedef void(^Click1ImageBlock)(NSInteger);
 @property (nonatomic,copy) Click1ImageBlock clickImageBlock;
@@ -39,42 +36,24 @@ typedef void(^Click1ImageBlock)(NSInteger);
 typedef void(^Click1ShareBlock)(NSInteger);
 - (IBAction)shareAction:(id)sender;
 @property (nonatomic,copy) Click1ShareBlock shareblock;
-
-
-
 typedef void(^ClickTag1Block)(NSString *);
 @property (nonatomic,copy) ClickTag1Block clickTagblock;
-    
-    
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cellHeaderHeight;
-
 @property (weak, nonatomic) IBOutlet UILabel *zanCount;
 @property (weak, nonatomic) IBOutlet UILabel *talkCount;
-    
 - (IBAction)zanTalkAction:(id)sender;
-
-
 typedef void(^GuanZhuBlock)();
 @property (nonatomic,copy) GuanZhuBlock guanZhublock;
 @property (weak, nonatomic) IBOutlet UIButton *guanzhuBtn;
 - (IBAction)guanzhuAction:(id)sender;
 
-    
 typedef void(^clickInDetail)(NSInteger,NSInteger);
 @property (nonatomic,copy) clickInDetail clickDetailblock;
-
-
-
-
-
 @property (weak, nonatomic) IBOutlet UIButton *zanBtn;
-
-    
 - (void)setUpSycleScrollView:(NSArray *)photoArray height:(CGFloat)height;
 @property(nonatomic)SDCycleScrollView *cycleScrollView3;
 @property (nonatomic)NSInteger tatolCount;
-
-    @property (weak, nonatomic) IBOutlet UIWebView *cellWebView;
+@property (weak, nonatomic) IBOutlet UIWebView *cellWebView;
     @property (weak, nonatomic) IBOutlet NSLayoutConstraint *midViewHeight;
     @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightWidth;
     @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftWidth;
@@ -83,13 +62,10 @@ typedef void(^clickInDetail)(NSInteger,NSInteger);
 @property (weak, nonatomic) IBOutlet UIImageView *playImV;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *threeViewHeight;
 @property (weak, nonatomic) IBOutlet UIView *threeBtnView;
-
-
 typedef void(^PlayBlock)(UITapGestureRecognizer *);
 @property (nonatomic,copy) PlayBlock playBlock;
 @property (weak, nonatomic) IBOutlet UIStackView *threeBtnStackView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topTopHeight;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomBottomHeight;//评论高度
 @property (weak, nonatomic) IBOutlet UILabel *bottomPingLunLbl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toptop1Height;
 @property (weak, nonatomic) IBOutlet UIButton *fenxiangBtn;
@@ -97,6 +73,8 @@ typedef void(^PlayBlock)(UITapGestureRecognizer *);
 +(CGFloat)cellAllImageHeight:(NSDictionary *)dic;
 +(CGFloat)jisuanContentHeight:(NSDictionary *)dic;
 +(CGFloat)cellTagViewHeight:(NSDictionary *)dic;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomBottomHeight;
+
 @end
 
 NS_ASSUME_NONNULL_END

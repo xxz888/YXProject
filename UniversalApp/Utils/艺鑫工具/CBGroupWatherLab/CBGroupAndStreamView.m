@@ -365,7 +365,6 @@
 - (UIScrollView *)scroller{
     if (!_scroller) {
         _scroller =  [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
-        _scroller.backgroundColor = kRGBA(239, 239, 239, 1);
         _scroller.showsVerticalScrollIndicator = NO;
         _scroller.showsHorizontalScrollIndicator = NO;
     }

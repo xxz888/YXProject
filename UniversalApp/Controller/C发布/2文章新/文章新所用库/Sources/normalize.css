@@ -443,16 +443,19 @@ th {
     width:-webkit-calc(100% - 10px);
     width: calc(100% - 10px);
     min-height: 50%;
+    font-weight:400;
     border: 0;
     /*    padding: 10px 20px 15px 25px; */
     /*    padding: 10px 20px 15px 25px;*/
     /*    padding: 10px 26px 50px 26px;*/
+    font-family:PingFangSC-Regular,PingFang SC;
     padding: 10px 0px 10px 10px;
     line-height:28px;
+    letter-spacing:2px;
     font-size: 16px;
     z-index:3;
     -webkit-tap-highlight-color:transparent;
-    color:#000000;
+    color:#333333;
     
 }
 #article_content img{

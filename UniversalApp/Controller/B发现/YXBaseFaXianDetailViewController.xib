@@ -15,6 +15,9 @@
                 <outlet property="bottomZanCount" destination="R6z-QQ-QjS" id="OtS-0T-AfH"/>
                 <outlet property="coustomNavView" destination="2oi-rh-fRK" id="Pe4-d2-eqN"/>
                 <outlet property="guanzhuBtn" destination="frL-s0-Vad" id="AkT-dG-u4x"/>
+                <outlet property="pinglunView1" destination="l1T-2j-ceq" id="fzX-Ou-myb"/>
+                <outlet property="pinglunView2" destination="Fnv-1w-iKT" id="TDY-JH-lay"/>
+                <outlet property="pinglunView2TitleImv" destination="LZh-Ht-OZo" id="ABa-0o-8Jd"/>
                 <outlet property="shareBtn" destination="5fe-1v-Fg4" id="BNm-4B-kh5"/>
                 <outlet property="threeStackView" destination="Rfc-gL-ri1" id="Grz-4D-BvV"/>
                 <outlet property="threeStackViewLeftMagin" destination="oO4-gj-ACr" id="Z6H-ef-DX3"/>
@@ -269,15 +272,15 @@
                                         <action selector="clickPingLunAction:" destination="-1" eventType="touchUpInside" id="trd-d0-T8I"/>
                                     </connections>
                                 </button>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="account_highlight" translatesAutoresizingMaskIntoConstraints="NO" id="PjY-6Q-sbL">
-                                    <rect key="frame" x="17" y="8.5" width="13" height="13"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhinanbi" translatesAutoresizingMaskIntoConstraints="NO" id="PjY-6Q-sbL">
+                                    <rect key="frame" x="17" y="6" width="18" height="18"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="13" id="n9j-wk-tbF"/>
-                                        <constraint firstAttribute="height" constant="13" id="zGU-Pi-vNn"/>
+                                        <constraint firstAttribute="width" constant="18" id="n9j-wk-tbF"/>
+                                        <constraint firstAttribute="height" constant="18" id="zGU-Pi-vNn"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="写评论" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sar-XS-Qxl">
-                                    <rect key="frame" x="40" y="6.5" width="43" height="17"/>
+                                    <rect key="frame" x="45" y="6.5" width="43" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -317,18 +320,81 @@
                         <constraint firstItem="Rfc-gL-ri1" firstAttribute="top" secondItem="l1T-2j-ceq" secondAttribute="top" constant="1" id="oqK-az-pgd"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fnv-1w-iKT">
+                    <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_moreOperation_shareFriend" translatesAutoresizingMaskIntoConstraints="NO" id="LZh-Ht-OZo">
+                            <rect key="frame" x="16" y="9" width="36" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="Olp-c3-fhT"/>
+                                <constraint firstAttribute="width" constant="36" id="fxA-at-XZ3"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="18"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldA-XT-8uA">
+                            <rect key="frame" x="68" y="12" width="291" height="30"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDf-CF-vYe">
+                                    <rect key="frame" x="0.0" y="0.0" width="291" height="30"/>
+                                    <connections>
+                                        <action selector="clickPingLunAction:" destination="-1" eventType="touchUpInside" id="kQb-5S-t0p"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加评论…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QzQ-QT-cmS">
+                                    <rect key="frame" x="16" y="6.5" width="68.5" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="MDf-CF-vYe" firstAttribute="leading" secondItem="ldA-XT-8uA" secondAttribute="leading" id="2lI-fK-xCg"/>
+                                <constraint firstItem="QzQ-QT-cmS" firstAttribute="leading" secondItem="ldA-XT-8uA" secondAttribute="leading" constant="16" id="3UP-zY-QNy"/>
+                                <constraint firstItem="QzQ-QT-cmS" firstAttribute="centerY" secondItem="ldA-XT-8uA" secondAttribute="centerY" id="OhY-wZ-G46"/>
+                                <constraint firstItem="MDf-CF-vYe" firstAttribute="top" secondItem="ldA-XT-8uA" secondAttribute="top" id="SO3-p4-hSc"/>
+                                <constraint firstAttribute="height" constant="30" id="dlS-sd-no1"/>
+                                <constraint firstAttribute="trailing" secondItem="MDf-CF-vYe" secondAttribute="trailing" id="tv5-jQ-Qub"/>
+                                <constraint firstAttribute="bottom" secondItem="MDf-CF-vYe" secondAttribute="bottom" id="xVR-Jm-R1q"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="15"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="LZh-Ht-OZo" firstAttribute="top" secondItem="Fnv-1w-iKT" secondAttribute="top" constant="9" id="0a4-70-4wU"/>
+                        <constraint firstItem="ldA-XT-8uA" firstAttribute="centerY" secondItem="LZh-Ht-OZo" secondAttribute="centerY" id="36I-4O-gnq"/>
+                        <constraint firstItem="ldA-XT-8uA" firstAttribute="leading" secondItem="LZh-Ht-OZo" secondAttribute="trailing" constant="16" id="AUs-BV-n0b"/>
+                        <constraint firstItem="LZh-Ht-OZo" firstAttribute="leading" secondItem="Fnv-1w-iKT" secondAttribute="leading" constant="16" id="Ndl-Qk-kUd"/>
+                        <constraint firstAttribute="height" constant="50" id="Rpo-cD-1M6"/>
+                        <constraint firstAttribute="trailing" secondItem="ldA-XT-8uA" secondAttribute="trailing" constant="16" id="X5u-qo-gKx"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="dOh-3i-XAI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1v8-Rr-qXz"/>
                 <constraint firstItem="l1T-2j-ceq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="50q-KN-wXj"/>
+                <constraint firstItem="Fnv-1w-iKT" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="5Uh-ai-OiB"/>
                 <constraint firstItem="l1T-2j-ceq" firstAttribute="top" secondItem="dOh-3i-XAI" secondAttribute="bottom" id="8wM-gF-RKD"/>
                 <constraint firstAttribute="trailing" secondItem="l1T-2j-ceq" secondAttribute="trailing" id="DMR-ab-ftG"/>
                 <constraint firstItem="dOh-3i-XAI" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Dyf-fd-ILC"/>
                 <constraint firstItem="2oi-rh-fRK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Vsy-tF-ug5"/>
                 <constraint firstItem="dOh-3i-XAI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="acl-Ee-fbC"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="l1T-2j-ceq" secondAttribute="bottom" id="cSC-xc-eJy"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Fnv-1w-iKT" secondAttribute="bottom" id="lgz-v6-bKL"/>
                 <constraint firstItem="2oi-rh-fRK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="oSR-ur-hHO"/>
+                <constraint firstItem="Fnv-1w-iKT" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="tPr-uu-mer"/>
                 <constraint firstItem="2oi-rh-fRK" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="weC-1j-S3V"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -336,9 +402,10 @@
         </view>
     </objects>
     <resources>
-        <image name="account_highlight" width="72" height="72"/>
         <image name="dingzhifenxiang" width="66" height="66"/>
+        <image name="icon_moreOperation_shareFriend" width="56" height="56"/>
         <image name="pinglunweizan" width="66" height="66"/>
+        <image name="zhinanbi" width="54" height="54"/>
         <image name="zhinanpinglun" width="66" height="69"/>
         <image name="更多" width="64" height="64"/>
         <image name="黑色返回" width="44" height="44"/>

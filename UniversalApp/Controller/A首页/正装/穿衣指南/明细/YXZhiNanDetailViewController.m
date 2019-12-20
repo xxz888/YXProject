@@ -293,35 +293,20 @@
     self.view.backgroundColor = KWhiteColor;
     self.dataArray = [[NSMutableArray alloc]init];
     self.linkArray = [[NSMutableArray alloc]init];
-
     self.allOptionArray = [[NSMutableArray alloc]init];
-
     [self addRefreshView:self.yxTableView];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan1Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan1Cell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan2Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan2Cell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan3Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan3Cell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan4Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan4Cell"];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan5Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan5Cell"];
-     [self.yxTableView registerNib:[UINib nibWithNibName:@"UITableViewCell" bundle:nil] forCellReuseIdentifier:@"UITableViewCell"];
-         [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNanType2TableViewCell" bundle:nil] forCellReuseIdentifier:@"YXZhiNanType2TableViewCell"];
-    
-    
-    if (@available(iOS 11.0, *)) {
-        
-        //ios 11以上
-        
-        self.yxTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        
-    } else {
-        
-        //ios 11以下
-        
-        self.automaticallyAdjustsScrollViewInsets=NO;
-        
-    }
+    [self.yxTableView registerNib:[UINib nibWithNibName:@"UITableViewCell" bundle:nil] forCellReuseIdentifier:@"UITableViewCell"];
+    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNanType2TableViewCell" bundle:nil] forCellReuseIdentifier:@"YXZhiNanType2TableViewCell"];
+    if (@available(iOS 11.0, *)) {self.yxTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {self.automaticallyAdjustsScrollViewInsets=NO;}
     UITapGestureRecognizer *aTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pinglunAction)];
       // 添加手势
-      [self.pinglunView addGestureRecognizer:aTapGR];
+    [self.pinglunView addGestureRecognizer:aTapGR];
 }
 
 -(void)moreShare{

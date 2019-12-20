@@ -67,6 +67,7 @@
         _deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_deleteBtn setImage:[HXPhotoTools hx_imageNamed:@"compose_delete@2x.png"] forState:UIControlStateNormal];
         [_deleteBtn addTarget:self action:@selector(didDeleteClick) forControlEvents:UIControlEventTouchUpInside];
+        _deleteBtn.alpha = 0.8;
     }
     return _deleteBtn;
 }
@@ -196,7 +197,7 @@
 {
     [super layoutSubviews];
     self.imageView.frame = self.bounds;
-    
+    ViewRadius(self.imageView, 4);
     self.stateLb.frame = CGRectMake(0, self.hx_h - 18, self.hx_w - 4, 18);
     self.bottomMaskLayer.frame = CGRectMake(0, self.hx_h - 25, self.hx_w, 25);
     
@@ -204,7 +205,7 @@
     CGFloat height = self.frame.size.height;
     CGFloat deleteBtnW = self.deleteBtn.currentImage.size.width;
     CGFloat deleteBtnH = self.deleteBtn.currentImage.size.height;
-    self.deleteBtn.frame = CGRectMake(width - deleteBtnW, 0, deleteBtnW, deleteBtnH);
+    self.deleteBtn.frame = CGRectMake(width - 22, 0, 22, 22);
     
     self.progressView.center = CGPointMake(width / 2, height / 2);
 }

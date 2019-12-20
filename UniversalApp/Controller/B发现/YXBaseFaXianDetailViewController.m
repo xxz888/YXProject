@@ -9,8 +9,9 @@
 #import "YXBaseFaXianDetailViewController.h"
 #import "HGPersonalCenterViewController.h"
 #import "QiniuLoad.h"
+#import "TJNoPingLunView.h"
 @interface YXBaseFaXianDetailViewController ()<UITextFieldDelegate,SDTimeLineCellDelegate>
-
+@property(nonatomic,strong)   TJNoPingLunView * noView;
 @end
 
 @implementation YXBaseFaXianDetailViewController
@@ -23,90 +24,107 @@
     _pageArray = [[NSMutableArray alloc]init];
 }
 
-
+-(UIView *)noView{
+    if (!_noView) {
+         NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"TJNoPingLunView" owner:self options:nil];
+        _noView = [nib objectAtIndex:0];
+        _noView.frame = CGRectMake((KScreenWidth-250)/2, 50, 250, 178);
+    }
+    return _noView;
+}
 #pragma mark ========== tableview代理和所有方法 ==========
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.dataArray.count;
+    return self.dataArray.count == 0 ? 1 : self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-  SDTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:kTimeLineTableViewCellId];
-    if (indexPath.row == 0) {
-        cell.bottomLine.hidden = YES;
+    
+    if (self.dataArray.count == 0) {
+        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+        cell.userInteractionEnabled = NO;
+        [cell.contentView addSubview:self.noView];
+        return cell;
+    }else{
+        SDTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:kTimeLineTableViewCellId];
+          if (indexPath.row == 0) {
+              cell.bottomLine.hidden = YES;
+          }
+
+          cell.model = self.dataArray[indexPath.row];
+          
+          CGFloat height1 = cell.model.moreCountPL.integerValue <= 0 ? 0 : 20;
+          [cell.showMoreCommentBtn setTitle:height1 == 0 ? @"" : @"显示更多回复 >>"  forState:UIControlStateNormal];
+          cell.showMoreCommentBtn.hidden = height1 == 0;
+          
+
+          cell.indexPath = indexPath;
+          __weak typeof(self) weakSelf = self;
+          cell.imgBlock = ^(SDTimeLineCell * cell) {
+              NSDictionary * userInfo = userManager.loadUserAllInfo;
+              NSString * cellUserId = kGetString(cell.model.userID);
+              if ([kGetString(userInfo[@"id"]) isEqualToString:cellUserId]) {
+                  weakSelf.navigationController.tabBarController.selectedIndex = 3;
+                  return;
+              }
+              HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
+              mineVC.userId = cellUserId;
+              mineVC.whereCome = YES;    //  YES为其他人 NO为自己
+              [weakSelf.navigationController pushViewController:mineVC animated:YES];
+          };
+          if (!cell.moreButtonClickedBlock) {
+              [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {
+                  
+                  SDTimeLineCellModel *model = weakSelf.dataArray[indexPath.row];
+                  model.isOpening = !model.isOpening;
+                  [weakSelf.yxTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+              }];
+              
+              [cell setDidClickCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow, SDTimeLineCell * cell) {
+                  
+                  
+                  if (![userManager loadUserInfo]) {
+                      KPostNotification(KNotificationLoginStateChange, @NO);
+                      return;
+                  }
+                  
+                   weakSelf.inputToolbar.placeholderLabel.text = [NSString stringWithFormat:@"  回复：%@", commentId];
+                  weakSelf.currentEditingIndexthPath = cell.indexPath;
+                  [weakSelf.inputToolbar.textInput becomeFirstResponder];
+                  weakSelf.isReplayingComment = YES;
+                  weakSelf.commentToUser = commentId;
+                  //[weakSelf adjustTableViewToFitKeyboard];
+              }];
+              
+              [cell setDidLongClickCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow, SDTimeLineCell *cell,NSInteger tag) {
+                  
+                  if (![userManager loadUserInfo]) {
+                      KPostNotification(KNotificationLoginStateChange, @NO);
+                      return;
+                  }
+                  //在此添加你想要完成的功能
+                  QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {}];
+                  QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"删除" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
+                      
+                      [weakSelf delePingLun:tag];
+
+                  }];
+                  QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"确定删除？" message:@"删除后将无法恢复，请慎重考虑" preferredStyle:QMUIAlertControllerStyleActionSheet];
+                  [alertController addAction:action1];
+                  [alertController addAction:action2];
+                  [alertController showWithAnimated:YES];
+              }];
+              cell.delegate = weakSelf;
+          }
+          ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
+          [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
+          
+          cell.starView.hidden = YES;
+          return cell;
     }
-
-    cell.model = self.dataArray[indexPath.row];
-    
-    CGFloat height1 = cell.model.moreCountPL.integerValue <= 0 ? 0 : 20;
-    [cell.showMoreCommentBtn setTitle:height1 == 0 ? @"" : @"显示更多回复 >>"  forState:UIControlStateNormal];
-    cell.showMoreCommentBtn.hidden = height1 == 0;
+  
     
 
-    cell.indexPath = indexPath;
-    __weak typeof(self) weakSelf = self;
-    cell.imgBlock = ^(SDTimeLineCell * cell) {
-        NSDictionary * userInfo = userManager.loadUserAllInfo;
-        NSString * cellUserId = kGetString(cell.model.userID);
-        if ([kGetString(userInfo[@"id"]) isEqualToString:cellUserId]) {
-            weakSelf.navigationController.tabBarController.selectedIndex = 3;
-            return;
-        }
-        HGPersonalCenterViewController * mineVC = [[HGPersonalCenterViewController alloc]init];
-        mineVC.userId = cellUserId;
-        mineVC.whereCome = YES;    //  YES为其他人 NO为自己
-        [weakSelf.navigationController pushViewController:mineVC animated:YES];
-    };
-    if (!cell.moreButtonClickedBlock) {
-        [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {
-            
-            SDTimeLineCellModel *model = weakSelf.dataArray[indexPath.row];
-            model.isOpening = !model.isOpening;
-            [weakSelf.yxTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        }];
-        
-        [cell setDidClickCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow, SDTimeLineCell * cell) {
-            
-            
-            if (![userManager loadUserInfo]) {
-                KPostNotification(KNotificationLoginStateChange, @NO);
-                return;
-            }
-            
-             weakSelf.inputToolbar.placeholderLabel.text = [NSString stringWithFormat:@"  回复：%@", commentId];
-            weakSelf.currentEditingIndexthPath = cell.indexPath;
-            [weakSelf.inputToolbar.textInput becomeFirstResponder];
-            weakSelf.isReplayingComment = YES;
-            weakSelf.commentToUser = commentId;
-            //[weakSelf adjustTableViewToFitKeyboard];
-        }];
-        
-        [cell setDidLongClickCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow, SDTimeLineCell *cell,NSInteger tag) {
-            
-            if (![userManager loadUserInfo]) {
-                KPostNotification(KNotificationLoginStateChange, @NO);
-                return;
-            }
-            //在此添加你想要完成的功能
-            QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {}];
-            QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"删除" style:QMUIAlertActionStyleDestructive handler:^(QMUIAlertController *aAlertController, QMUIAlertAction *action) {
-                
-                [weakSelf delePingLun:tag];
 
-            }];
-            QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"确定删除？" message:@"删除后将无法恢复，请慎重考虑" preferredStyle:QMUIAlertControllerStyleActionSheet];
-            [alertController addAction:action1];
-            [alertController addAction:action2];
-            [alertController showWithAnimated:YES];
-        }];
-        cell.delegate = weakSelf;
-    }
-    ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
-    [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
-    
-    cell.starView.hidden = YES;
-    
-
-    return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -156,11 +174,13 @@
     return 0.001f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    // >>>>>>>>>>>>>>>>>>>>> * cell自适应 * >>>>>>>>>>>>>>>>>>>>>>>>
-    SDTimeLineCellModel * model = self.dataArray[indexPath.row];
-    CGFloat height1 = model.moreCountPL.integerValue <= 0 ? 0 : 20;
-
-    return [self.yxTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[SDTimeLineCell class] contentViewWidth:[self cellContentViewWith]] + height1;
+    if (self.dataArray.count == 0) {
+        return 228;
+    }else{
+        SDTimeLineCellModel * model = self.dataArray[indexPath.row];
+        CGFloat height1 = model.moreCountPL.integerValue <= 0 ? 0 : 20;
+        return [self.yxTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[SDTimeLineCell class] contentViewWidth:[self cellContentViewWith]] + height1;
+    }
 }
 - (CGFloat)cellContentViewWith{
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
@@ -191,6 +211,7 @@
     self.title = @"";
     self.segmentIndex = 0;
     [self.yxTableView registerClass:[SDTimeLineCell class] forCellReuseIdentifier:kTimeLineTableViewCellId];
+    [self.yxTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     self.yxTableView.estimatedRowHeight = 0;
     self.yxTableView.estimatedSectionHeaderHeight = 0;
     self.yxTableView.estimatedSectionFooterHeight = 0;

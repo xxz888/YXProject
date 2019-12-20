@@ -17,11 +17,7 @@
     kWeakSelf(self);
     NSString * url = [API_ROOT_URL_HTTP_FORMAL stringByAppendingString:pi];
     AFHTTPSessionManager * manager = [SYBaseHttpConnection sharedManager];
-    NSDictionary * userInfo = userManager.loadUserAllInfo;
-    if (userInfo) {
-        [manager.requestSerializer setValue:[@"JWT " append:userInfo[@"token"]] forHTTPHeaderField:@"Authorization"];
-        NSLog(@"URL = %@,Token = %@",url,userInfo[@"token"]);
-    }
+    [HttpRequest panduanToken:manager];
     [manager POST:url  parameters:parmeters progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [QMUITips hideAllTips];
@@ -35,11 +31,7 @@
     kWeakSelf(self);
     NSString * url = [API_ROOT_URL_HTTP_FORMAL append:pi];
     AFHTTPSessionManager * manager = [SYBaseHttpConnection sharedManager];
-    NSDictionary * userInfo = userManager.loadUserAllInfo;
-    if (userInfo) {
-        [manager.requestSerializer setValue:[@"JWT " append:userInfo[@"token"]] forHTTPHeaderField:@"Authorization"];
-        NSLog(@"URL = %@,Token = %@",url,userInfo[@"token"]);
-    }
+    [HttpRequest panduanToken:manager];
     [manager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [QMUITips hideAllTips];
@@ -49,6 +41,15 @@
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         failure(error);
     }];
+}
++(void)panduanToken:(AFHTTPSessionManager *)manager{
+    if ([userManager loadUserInfo]) {
+        NSDictionary * userInfo = userManager.loadUserAllInfo;
+        if (userInfo) {
+               [manager.requestSerializer setValue:[@"JWT " append:userInfo[@"token"]] forHTTPHeaderField:@"Authorization"];
+               NSLog(@"Token = %@",userInfo[@"token"]);
+        }
+    }
 }
 #pragma mark ========== 请求成功处理参数的共同方法 ==========
 +(void)setCommonRespone:(SucessBlock)sucess pi:(NSString *)pi responseObject:(id)responseObject{

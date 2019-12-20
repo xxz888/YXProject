@@ -181,9 +181,7 @@
                                                            error:nil];
         [_webView loadHTMLString:htmlCont baseURL:baseURL];
         _webView.scrollView.bounces=NO;
-        _webView.hidesInputAccessoryView = YES;
-//        _webView.detectsPhoneNumbers = NO;
-        
+        _webView.hidesInputAccessoryView = YES;  
     }
     return _webView;
 }
@@ -201,9 +199,9 @@
     self.webView.scrollView.contentInset= UIEdgeInsetsMake(176,0,44,0);
     [self addCoverImage];
     
-    ViewRadius(self.fabuBtn, 12.5);
     
-    
+    ViewRadius(self.fabuBtn, 14);
+    ViewBorderRadius(self.cuncaogaoBtn, 14, 0.5, COLOR_999999);
 
 }
 

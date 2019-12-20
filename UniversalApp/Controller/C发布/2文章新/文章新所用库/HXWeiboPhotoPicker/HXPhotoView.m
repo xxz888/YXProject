@@ -166,6 +166,7 @@ static NSString *HXPhotoSubViewCellId = @"photoSubViewCellId";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     HXPhotoSubViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:HXPhotoSubViewCellId forIndexPath:indexPath];
+    
     cell.delegate = self;
     cell.model = self.dataList[indexPath.item];
     cell.showDeleteNetworkPhotoAlert = self.manager.configuration.showDeleteNetworkPhotoAlert;

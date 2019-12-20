@@ -32,9 +32,6 @@
     //计算detail高度
     return 146 + detailHeight + midViewHeight + tagViewHeight;
 }
-
-
-
 //计算文字高度
 +(CGFloat)jisuanContentHeight:(NSDictionary *)dic{
     NSString * contentText = @"";
@@ -113,7 +110,6 @@
     if ([praisNum isEqualToString:@"0"] || [praisNum isEqualToString:@"(null)"]) {
         self.zanCount.text = @"";
     }
-    
     //赞
     BOOL isp =  [dic[@"is_praise"] integerValue] == 1;
     UIImage * likeImage = isp ? ZAN_IMG : UNZAN_IMG;
@@ -154,19 +150,6 @@
                 self.picContainerView = [SDWeiXinPhotoContainerView new];
                 self.picContainerView.sdWidth = KScreenWidth - 34 - 20 ;
                 self.picContainerView.frame = CGRectMake(0, 0, self.midView.qmui_width,self.midView.qmui_height);
-//                NSMutableArray * newUrllist = [NSMutableArray array];
-//                if (urlList.count > 2) {
-//                    [newUrllist addObjectsFromArray:urlList];
-//                }else{
-//                    [newUrllist removeAllObjects];
-//                    if (urlList.count == 1) {
-//                        [newUrllist addObject:urlList[0]];
-//                    }else{
-//                        [newUrllist addObject:urlList[0]];
-//                        [newUrllist addObject:urlList[1]];
-//                    }
-//                    [newUrllist addObject:urlList[1]];
-//                }
                 self.picContainerView.rowCount = urlList.count;
                 self.picContainerView.picPathStringsArray = urlList;
                 [self.midView addSubview:self.picContainerView];

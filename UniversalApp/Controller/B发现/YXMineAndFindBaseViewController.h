@@ -38,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 -(void)tableviewCon;
 - (void)saveImage:(UMSocialPlatformType)umType;
+
 @end
 
 NS_ASSUME_NONNULL_END

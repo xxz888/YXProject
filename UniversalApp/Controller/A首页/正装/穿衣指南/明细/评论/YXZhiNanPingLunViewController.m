@@ -9,7 +9,6 @@
 #import "YXZhiNanPingLunViewController.h"
 #import "ZInputToolbar.h"
 #import "UIView+LSExtension.h"
-
 @interface YXZhiNanPingLunViewController ()<ZInputToolbarDelegate,QMUIMoreOperationControllerDelegate>{
     BOOL zanBool;
 }
@@ -27,13 +26,16 @@
 }
 - (void)viewDidLoad{
     [super viewDidLoad];
-
     //初始化所有的控件
     [self initAllControl];
     [self requestNewList];
     self.title = @"评论";
-    self.threeStackView.hidden = YES;
-    self.threeStackViewWidth.constant = self.threeStackViewLeftMagin.constant = 0;
+    self.pinglunView1.hidden = YES;
+    self.pinglunView2.hidden = NO;
+    
+    
+    NSDictionary * userInfo = userManager.loadUserAllInfo;
+    [self.pinglunView2TitleImv sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:userInfo[@"photo"]]] placeholderImage:[UIImage imageNamed:@"zhanweitouxiang"]];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -44,7 +46,7 @@
 }
 -(void)headerRereshing{
     [super headerRereshing];
-     [self requestNewList];
+    [self requestNewList];
 }
 -(void)footerRereshing{
     [super footerRereshing];
@@ -59,11 +61,9 @@
     //请求评价列表 最新评论列表
     NSString * par = [NSString stringWithFormat:@"obj=1&target_id=%@&page=%@",self.startId,NSIntegerToNSString(self.requestPage)];
     [YX_MANAGER requestPubSearchAndDelComment:par success:^(id object) {
-            weakself.dataArray = [weakself commonAction:[weakself creatModelsWithCount:object] dataArray:weakself.dataArray];
-            [weakself.yxTableView.mj_header endRefreshing];
-            [weakself.yxTableView.mj_footer endRefreshing];
-        [weakself refreshTableView];
-        
+        weakself.dataArray = [weakself commonAction:[weakself creatModelsWithCount:object] dataArray:weakself.dataArray];
+        [weakself.yxTableView.mj_header endRefreshing];
+        [weakself.yxTableView.mj_footer endRefreshing];
     }];
 }
 -(void)refreshTableView{
@@ -198,10 +198,7 @@
 }
 #pragma mark ========== tableview 点击评论按钮 ==========
 - (void)didClickcCommentButtonInCell:(SDTimeLineCell *)cell{
-    
-    
     [self setupTextField];
-    
     self.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
     SDTimeLineCellModel * model = self.dataArray[self.currentEditingIndexthPath.row];
     self.textField.placeholder = [NSString stringWithFormat:@"  回复：%@",model.name];
@@ -209,7 +206,6 @@
     self.isReplayingComment = YES;
     self.commentToUser = model.name;
     self.commentToUserID = model.userID;
-//    [self adjustTableViewToFitKeyboard];
 }
 #pragma mark ========== tableview 点赞按钮 ==========
 - (void)didClickLikeButtonInCell:(SDTimeLineCell *)cell{
@@ -228,7 +224,6 @@
         [weakself requestNewList];
     }];
 }
-
 -(void)delePingLun:(NSInteger)tag{
     kWeakSelf(self);
     [YX_MANAGER requestPubSearchAndDelChildComment:NSIntegerToNSString(tag) success:^(id object) {

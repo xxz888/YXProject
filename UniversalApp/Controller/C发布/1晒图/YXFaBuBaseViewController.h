@@ -68,6 +68,10 @@ typedef void(^closeNewVcBlock)(void);
 @property(nonatomic,strong)YXShaiTuModel * model;
 @property(nonatomic,strong)NSMutableDictionary * startDic;
 @property(nonatomic,copy)closeNewVcBlock  closeNewVcblock;
+@property (weak, nonatomic) IBOutlet UIButton *fabuBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toTopHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tagViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tagViewTopHeight;
 
 @end
 

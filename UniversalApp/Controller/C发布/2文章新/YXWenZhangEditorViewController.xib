@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,13 +42,13 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="97x-8z-CWs">
-                            <rect key="frame" x="338" y="9.5" width="60" height="25"/>
+                            <rect key="frame" x="332" y="8" width="66" height="28"/>
                             <color key="backgroundColor" red="0.062745098040000002" green="0.13725490200000001" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="25" id="KxW-1m-vs1"/>
-                                <constraint firstAttribute="width" constant="60" id="Udp-hz-L86"/>
+                                <constraint firstAttribute="height" constant="28" id="KxW-1m-vs1"/>
+                                <constraint firstAttribute="width" constant="66" id="Udp-hz-L86"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <state key="normal" title="发布">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -57,14 +57,14 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="301" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="65N-SH-G0r">
-                            <rect key="frame" x="258" y="9.5" width="60" height="25"/>
+                            <rect key="frame" x="256" y="8" width="66" height="28"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="25" id="7ub-4O-FVd"/>
-                                <constraint firstAttribute="width" constant="60" id="EEh-Rb-YYH"/>
+                                <constraint firstAttribute="height" constant="28" id="7ub-4O-FVd"/>
+                                <constraint firstAttribute="width" constant="66" id="EEh-Rb-YYH"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="存草稿">
-                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="cuncaogaoAction:" destination="-1" eventType="touchUpInside" id="aAK-5N-MNH"/>
@@ -78,7 +78,7 @@
                         <constraint firstItem="kKS-og-jFt" firstAttribute="leading" secondItem="wUi-DE-TwI" secondAttribute="leading" constant="16" id="MyY-Tu-chG"/>
                         <constraint firstItem="97x-8z-CWs" firstAttribute="centerY" secondItem="wUi-DE-TwI" secondAttribute="centerY" id="Om6-4u-LLa"/>
                         <constraint firstItem="65N-SH-G0r" firstAttribute="centerY" secondItem="97x-8z-CWs" secondAttribute="centerY" id="Rbh-N6-Lh2"/>
-                        <constraint firstItem="97x-8z-CWs" firstAttribute="leading" secondItem="65N-SH-G0r" secondAttribute="trailing" constant="20" id="knU-RV-HVa"/>
+                        <constraint firstItem="97x-8z-CWs" firstAttribute="leading" secondItem="65N-SH-G0r" secondAttribute="trailing" constant="10" id="knU-RV-HVa"/>
                         <constraint firstItem="ZBn-qP-GuD" firstAttribute="centerY" secondItem="kKS-og-jFt" secondAttribute="centerY" id="oTI-pp-wxX"/>
                         <constraint firstItem="ZBn-qP-GuD" firstAttribute="centerX" secondItem="wUi-DE-TwI" secondAttribute="centerX" id="p8y-cD-u2D"/>
                         <constraint firstAttribute="bottom" secondItem="kKS-og-jFt" secondAttribute="bottom" constant="11" id="yUw-xS-HLE"/>

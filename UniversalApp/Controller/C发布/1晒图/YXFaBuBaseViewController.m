@@ -15,6 +15,7 @@ static const CGFloat kPhotoViewMargin = 0;
     UIImageView * _selectImageView;
     UIImage * zhanweiImage;
     NSMutableArray *_selectedAssets;
+    CGFloat _tagHeight;
 }
 @property (nonatomic, strong) UICollectionView *yxCollectionView;
 @property (strong, nonatomic) UICollectionViewFlowLayout *layout;
@@ -33,6 +34,7 @@ static const CGFloat kPhotoViewMargin = 0;
         _manager.configuration.photoMaxNum = 9;
         _manager.configuration.videoMaxNum = 1;
         _manager.configuration.maxNum = 9;
+        _manager.configuration.selectTogether = NO;
     }
     return _manager;
 }
@@ -45,21 +47,8 @@ static const CGFloat kPhotoViewMargin = 0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden = NO;
-    
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth-32, self.threeViewHeight.constant)];
-    [self.threeImageView addSubview:scrollView];
-    self.scrollViewFaBu.userInteractionEnabled = NO;
-    self.scrollViewFaBu = scrollView;
-    
-    CGFloat width = KScreenWidth-32;
-    HXPhotoView *photoView = [HXPhotoView photoManager:self.manager];
-    photoView.frame = CGRectMake(kPhotoViewMargin, kPhotoViewMargin, width - kPhotoViewMargin * 2, 0);
-    photoView.lineCount = 5;
-    photoView.delegate = self;
-    photoView.spacing = 5;
-    photoView.backgroundColor = [UIColor whiteColor];
-    [scrollView addSubview:photoView];
-    self.photoView = photoView;
+    self.tagViewHeight.constant = 0;
+    self.tagViewTopHeight.constant = 0;
     
     [self addTextView];
     [self setOtherUI];
@@ -256,6 +245,28 @@ static const CGFloat kPhotoViewMargin = 0;
     _selectedPhotos = [NSMutableArray array];
     
     self.topHeight.constant = kStatusBarHeight;
+    
+    
+    
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth-32, self.threeViewHeight.constant)];
+    [self.threeImageView addSubview:scrollView];
+    self.scrollViewFaBu.userInteractionEnabled = NO;
+    self.scrollViewFaBu = scrollView;
+    
+    CGFloat width = KScreenWidth-32;
+    HXPhotoView *photoView = [HXPhotoView photoManager:self.manager];
+    photoView.frame = CGRectMake(kPhotoViewMargin, kPhotoViewMargin, width - kPhotoViewMargin * 2, 0);
+    photoView.lineCount = 5;
+    photoView.delegate = self;
+    photoView.spacing = 5;
+    photoView.backgroundColor = [UIColor whiteColor];
+    [scrollView addSubview:photoView];
+    self.photoView = photoView;
+    
+    ViewRadius(self.fabuBtn, 14);
+    ViewBorderRadius(self.cunCaoGaoBtn, 14, 0.5, COLOR_999999);
+    
+    self.toTopHeight.constant = STATUS_BAR_HEIGHT + 10;
 }
 - (void)swipeAction: (UITapGestureRecognizer *)gesture{
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
@@ -293,7 +304,7 @@ static const CGFloat kPhotoViewMargin = 0;
     [weakself presentViewController:nav animated:YES completion:nil];
 }
 - (IBAction)xinhuatiAction:(id)sender{
-    [self pushNewHuaTi];
+//    [self pushNewHuaTi];
 }
 - (IBAction)moreAction:(id)sender{
     kWeakSelf(self);
@@ -301,11 +312,12 @@ static const CGFloat kPhotoViewMargin = 0;
     RootNavigationController *nav = [[RootNavigationController alloc]initWithRootViewController:VC];
     VC.tagBlock = ^(NSDictionary * dic) {
         [weakself.tagArray addObject:[@"#" append:dic[@"tag"]]];
-        if (weakself.menueView) {
-            [weakself.menueView setContentView:@[weakself.tagArray] titleArr:@[]];
-        }else{
+//        if (weakself.menueView) {
+//            [weakself.menueView setContentView:@[weakself.tagArray] titleArr:@[]];
+//        }else{
             [weakself addNewTags];
-        }
+//        }
+        self.tagViewHeight.constant = [self cellTagViewHeight];
     };
     [weakself presentViewController:nav animated:YES completion:nil];
 }
@@ -314,26 +326,43 @@ static const CGFloat kPhotoViewMargin = 0;
         return;
     }
     [_tagArray addObject:[_xinhuatiTf.text concate:@"#"]];
-    if (self.menueView) {
-        [_menueView setContentView:@[_tagArray] titleArr:@[]];
-    }else{
+//    if (self.menueView) {
+//        [_menueView setContentView:@[_tagArray] titleArr:@[]];
+//    }else{
         [self addNewTags];
-    }
+//    }
     [_modalNewViewController hideWithAnimated:YES completion:nil];
+    self.tagViewHeight.constant = [self cellTagViewHeight];
+}
+//计算标签高度
+-(CGFloat)cellTagViewHeight{
+    if ([self.tagArray count] == 0) {return 0;}
+    CBGroupAndStreamView * cb = [[CBGroupAndStreamView alloc] init];
+    cb.hidden = YES;cb.frame = CGRectMake(0, 0, KScreenWidth-34-10, 0);
+    cb.isSingle = YES;cb.radius = 4;cb.butHeight = 32;cb.font = [UIFont systemFontOfSize:12];
+    cb.titleTextFont = [UIFont systemFontOfSize:12];
+    [cb setContentView:@[self.tagArray] titleArr:@[@""]];
+    self.tagViewTopHeight.constant = -15;
+    return  cb.allViewHeight;
 }
 -(void)addNewTags{
     NSArray * titleArr = @[@""];
     NSArray *contentArr = @[_tagArray];
-    CBGroupAndStreamView * silde = [[CBGroupAndStreamView alloc] initWithFrame:CGRectMake(0, 0,self.floatView.qmui_width, self.floatView.qmui_height)];
-    silde.backgroundColor = KClearColor;
+    [self.floatView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    self.tagViewHeight.constant = [self cellTagViewHeight];
+    CBGroupAndStreamView * silde = [[CBGroupAndStreamView alloc] initWithFrame:CGRectMake(0, 0,self.floatView.qmui_width, [self cellTagViewHeight])];
+    [self.floatView addSubview:silde];
+    silde.backgroundColor = KWhiteColor;
     silde.isSingle = YES;
     silde.radius = 4;
-    silde.font = [UIFont systemFontOfSize:13];
-    silde.titleTextFont = [UIFont systemFontOfSize:18];
-    silde.backClolor = KWhiteColor;
+    silde.butHeight = 32;
+    silde.font = [UIFont systemFontOfSize:14];
+    silde.titleTextFont = [UIFont systemFontOfSize:14];
+    silde.scroller.scrollEnabled = NO;
+    silde.contentNorColor  = SEGMENT_COLOR;
+    silde.contentSelColor = SEGMENT_COLOR;
+    silde.backClolor = kRGBA(245, 245, 245, 1);
     [silde setContentView:contentArr titleArr:titleArr];
-    [self.floatView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [self.floatView addSubview:silde];
     _menueView = silde;
     kWeakSelf(self);
     silde.cb_selectCurrentValueBlock = ^(NSString *value, NSInteger index, NSInteger groupId) {
@@ -343,44 +372,45 @@ static const CGFloat kPhotoViewMargin = 0;
         [weakself.tagArray addObjectsFromArray:array];
         [weakself.menueView setContentView:@[weakself.tagArray] titleArr:@[]];
         [weakself addNewTags];
+        weakself.tagViewHeight.constant = [weakself cellTagViewHeight];
     };
 }
--(void)pushNewHuaTi{
-    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 200)];
-    contentView.backgroundColor = UIColorWhite;
-    contentView.layer.cornerRadius = 6;
-    
-    UIEdgeInsets contentViewPadding = UIEdgeInsetsMake(50, 20, 30, 20);
-    CGFloat contentLimitWidth = CGRectGetWidth(contentView.bounds) - UIEdgeInsetsGetHorizontalValue(contentViewPadding);
-    
-    _xinhuatiTf = [[QMUITextField alloc] initWithFrame:CGRectMake(contentViewPadding.left, contentViewPadding.top, contentLimitWidth, 36)];
-    _xinhuatiTf.placeholder = @"请输入新话题";
-    _xinhuatiTf.borderStyle = UITextBorderStyleRoundedRect;
-    _xinhuatiTf.font = UIFontMake(16);
-    _xinhuatiTf.delegate = self;
-    [contentView addSubview:_xinhuatiTf];
-    [_xinhuatiTf becomeFirstResponder];
-    
-    UIButton *btn = [UIButton buttonWithType:0];
-    ViewBorderRadius(btn, 4, 1, KWhiteColor);
-    [btn setTitleColor:[UIColor darkGrayColor] forState:0];
-    [btn setTitle:@"添加" forState:0];
-    NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle qmui_paragraphStyleWithLineHeight:20];
-    paragraphStyle.paragraphSpacing = 20;
-    [contentView addSubview:btn];
-    
-    btn.frame = CGRectMake(contentViewPadding.left, CGRectGetMaxY(_xinhuatiTf.frame) + 20, contentLimitWidth/1.8, QMUIViewSelfSizingHeight);
-    btn.centerX = _xinhuatiTf.centerX;
-    contentView.frame = CGRectSetHeight(contentView.frame, CGRectGetMaxY(btn.frame) + contentViewPadding.bottom);
-    [btn addTarget:self action:@selector(xinhuatiButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-     _modalNewViewController = [[QMUIModalPresentationViewController alloc] init];
-    _modalNewViewController.animationStyle = QMUIModalPresentationAnimationStyleSlide;
-    _modalNewViewController.contentView = contentView;
-    [_modalNewViewController showWithAnimated:YES completion:nil];
-}
+//-(void)pushNewHuaTi{
+//    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+//    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 200)];
+//    contentView.backgroundColor = UIColorWhite;
+//    contentView.layer.cornerRadius = 6;
+//
+//    UIEdgeInsets contentViewPadding = UIEdgeInsetsMake(50, 20, 30, 20);
+//    CGFloat contentLimitWidth = CGRectGetWidth(contentView.bounds) - UIEdgeInsetsGetHorizontalValue(contentViewPadding);
+//
+//    _xinhuatiTf = [[QMUITextField alloc] initWithFrame:CGRectMake(contentViewPadding.left, contentViewPadding.top, contentLimitWidth, 36)];
+//    _xinhuatiTf.placeholder = @"请输入新话题";
+//    _xinhuatiTf.borderStyle = UITextBorderStyleRoundedRect;
+//    _xinhuatiTf.font = UIFontMake(16);
+//    _xinhuatiTf.delegate = self;
+//    [contentView addSubview:_xinhuatiTf];
+//    [_xinhuatiTf becomeFirstResponder];
+//
+//    UIButton *btn = [UIButton buttonWithType:0];
+//    ViewBorderRadius(btn, 4, 1, KWhiteColor);
+//    [btn setTitleColor:[UIColor darkGrayColor] forState:0];
+//    [btn setTitle:@"添加" forState:0];
+//    NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle qmui_paragraphStyleWithLineHeight:20];
+//    paragraphStyle.paragraphSpacing = 20;
+//    [contentView addSubview:btn];
+//
+//    btn.frame = CGRectMake(contentViewPadding.left, CGRectGetMaxY(_xinhuatiTf.frame) + 20, contentLimitWidth/1.8, QMUIViewSelfSizingHeight);
+//    btn.centerX = _xinhuatiTf.centerX;
+//    contentView.frame = CGRectSetHeight(contentView.frame, CGRectGetMaxY(btn.frame) + contentViewPadding.bottom);
+//    [btn addTarget:self action:@selector(xinhuatiButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//
+//
+//     _modalNewViewController = [[QMUIModalPresentationViewController alloc] init];
+//    _modalNewViewController.animationStyle = QMUIModalPresentationAnimationStyleSlide;
+//    _modalNewViewController.contentView = contentView;
+//    [_modalNewViewController showWithAnimated:YES completion:nil];
+//}
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     if ([string isEqualToString:@" "]) {
         return NO;

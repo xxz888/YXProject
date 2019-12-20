@@ -133,6 +133,8 @@
 		BB48B4D923A78277004550C0 /* YXDingZhiPingLunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48B4D723A78277004550C0 /* YXDingZhiPingLunViewController.m */; };
 		BB48B4DE23A782C7004550C0 /* YXAllPingLunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48B4DC23A782C7004550C0 /* YXAllPingLunViewController.m */; };
 		BB48B4DF23A782C7004550C0 /* YXAllPingLunViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB48B4DD23A782C7004550C0 /* YXAllPingLunViewController.xib */; };
+		BB48B8E923AC5B12004550C0 /* TJNoPingLunView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48B8E823AC5B12004550C0 /* TJNoPingLunView.m */; };
+		BB48B8EB23AC5B1E004550C0 /* TJNoPingLunView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB48B8EA23AC5B1E004550C0 /* TJNoPingLunView.xib */; };
 		BB4AA7D42317AC3700C22224 /* YXMineAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4AA7D32317AC3700C22224 /* YXMineAboutUsViewController.m */; };
 		BB4AA7D82317B2EC00C22224 /* YXMineYiJianFanKuiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4AA7D72317B2EC00C22224 /* YXMineYiJianFanKuiViewController.m */; };
 		BB53E719235EFAC00014F106 /* HXCustomCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB53E6BA235EFABF0014F106 /* HXCustomCameraViewController.m */; };
@@ -803,6 +805,9 @@
 		BB48B4DB23A782C7004550C0 /* YXAllPingLunViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXAllPingLunViewController.h; sourceTree = "<group>"; };
 		BB48B4DC23A782C7004550C0 /* YXAllPingLunViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXAllPingLunViewController.m; sourceTree = "<group>"; };
 		BB48B4DD23A782C7004550C0 /* YXAllPingLunViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXAllPingLunViewController.xib; sourceTree = "<group>"; };
+		BB48B8E723AC5B12004550C0 /* TJNoPingLunView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJNoPingLunView.h; sourceTree = "<group>"; };
+		BB48B8E823AC5B12004550C0 /* TJNoPingLunView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TJNoPingLunView.m; sourceTree = "<group>"; };
+		BB48B8EA23AC5B1E004550C0 /* TJNoPingLunView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TJNoPingLunView.xib; sourceTree = "<group>"; };
 		BB4AA7AE23166E5900C22224 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libWeiboSDK.a; path = UniversalApp/ThridParty/UMSocial/SocialLibraries/Sina/libWeiboSDK.a; sourceTree = "<group>"; };
 		BB4AA7D22317AC3700C22224 /* YXMineAboutUsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineAboutUsViewController.h; sourceTree = "<group>"; };
 		BB4AA7D32317AC3700C22224 /* YXMineAboutUsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineAboutUsViewController.m; sourceTree = "<group>"; };
@@ -2319,6 +2324,16 @@
 			path = "所有评论界面";
 			sourceTree = "<group>";
 		};
+		BB48B8E623AC5AF0004550C0 /* 公用 */ = {
+			isa = PBXGroup;
+			children = (
+				BB48B8E723AC5B12004550C0 /* TJNoPingLunView.h */,
+				BB48B8E823AC5B12004550C0 /* TJNoPingLunView.m */,
+				BB48B8EA23AC5B1E004550C0 /* TJNoPingLunView.xib */,
+			);
+			path = "公用";
+			sourceTree = "<group>";
+		};
 		BB524790234A2F0800FB22B3 /* 发布弹框vc */ = {
 			isa = PBXGroup;
 			children = (
@@ -3025,6 +3040,7 @@
 				BB5FD86821FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m */,
 				BB46926822E6F5D800A7A77E /* SocketRocketUtility.h */,
 				BB46926722E6F5D700A7A77E /* SocketRocketUtility.m */,
+				BB48B8E623AC5AF0004550C0 /* 公用 */,
 				BBF26E2C224489C80000AEF5 /* 0登录 */,
 				BBA812A421DDAB7A001B5EA1 /* A首页 */,
 				BBA812A721DDAB7A001B5EA1 /* B发现 */,
@@ -4532,6 +4548,7 @@
 				BB928F9821FB5D290090A044 /* BRPickerView.bundle in Resources */,
 				BBEA155F2366E41B006FBBFF /* ImageSelectedOff.png in Resources */,
 				BB928F6B21FAD02B0090A044 /* YXMineMyCaoGaoViewController.xib in Resources */,
+				BB48B8EB23AC5B1E004550C0 /* TJNoPingLunView.xib in Resources */,
 				BB48B4DF23A782C7004550C0 /* YXAllPingLunViewController.xib in Resources */,
 				BBBBC0FB22BCD2FF00F528E1 /* ImageResources.bundle in Resources */,
 				BB6F6A242361A31B00EC8732 /* normalize.css in Resources */,
@@ -4772,6 +4789,7 @@
 				BBBD723323A36E8E00D36B5E /* YXDingZhiDetailView.m in Sources */,
 				BBBD722F23A3697500D36B5E /* YXDingZhiDetailViewController.m in Sources */,
 				2917D1FF1EDFC89A00E76185 /* YYFPSLabel.m in Sources */,
+				BB48B8E923AC5B12004550C0 /* TJNoPingLunView.m in Sources */,
 				BB928F9D21FBFFD40090A044 /* YXMineTongYongTableViewController.m in Sources */,
 				BBEA159B2366F0A6006FBBFF /* Comment.m in Sources */,
 				BBFACBC82394BB75008F5496 /* SDTimeLineRefreshHeader.m in Sources */,
