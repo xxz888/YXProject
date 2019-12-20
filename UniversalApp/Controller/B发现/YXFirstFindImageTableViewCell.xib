@@ -38,7 +38,7 @@
                                     <constraint firstAttribute="height" constant="24" id="Elm-Mw-s3F"/>
                                     <constraint firstAttribute="width" constant="60" id="uWO-sO-xZV"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="关注">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
