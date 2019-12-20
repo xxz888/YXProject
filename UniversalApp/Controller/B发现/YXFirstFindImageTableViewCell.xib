@@ -33,10 +33,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zaj-qz-5sF">
-                                <rect key="frame" x="196" y="14" width="80" height="32"/>
+                                <rect key="frame" x="216" y="18" width="60" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="Elm-Mw-s3F"/>
-                                    <constraint firstAttribute="width" constant="80" id="uWO-sO-xZV"/>
+                                    <constraint firstAttribute="height" constant="24" id="Elm-Mw-s3F"/>
+                                    <constraint firstAttribute="width" constant="60" id="uWO-sO-xZV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="关注">

@@ -39,7 +39,7 @@
 }
 - (HXPhotoManager *)manager {
     if (!_manager) {
-        _manager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhotoAndVideo];
+        _manager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhoto];
         _manager.configuration.singleSelected = YES;
         _manager.configuration.albumListTableView = ^(UITableView *tableView) {
 //            NSSLog(@"%@",tableView);

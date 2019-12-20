@@ -123,6 +123,7 @@
         newWebString = [newWebString replaceAll:@"<br><br><br><br><br>" target:@""];
         newWebString = [newWebString replaceAll:@"<br><br><br><br><br><br>" target:@""];
         newWebString = [newWebString replaceAll:@"<br><br><br><br><br><br><br>" target:@""];
+        newWebString = [newWebString replaceAll:@"\n\n" target:@"\n"];
 
        [self.cell.cellWebView setupHtmlContent:newWebString];
        //删除占位信息
@@ -176,11 +177,11 @@
     [YX_MANAGER requestLikesActionGET:kGetString(self.startDic[@"user_id"])  success:^(id object) {
           BOOL is_like = [weakself.guanzhuBtn.titleLabel.text isEqualToString:@"关注"] == 1;
           if (!is_like) {
-              [WP_TOOL_ShareManager inGuanZhuStatusBtn:weakself.guanzhuBtn];
-              [WP_TOOL_ShareManager inGuanZhuStatusBtn:weakself.cell.guanzhuBtn];
+              [WP_TOOL_ShareManager inGuanZhuStatus12Btn:weakself.guanzhuBtn];
+              [WP_TOOL_ShareManager inGuanZhuStatus12Btn:weakself.cell.guanzhuBtn];
           }else{
-              [WP_TOOL_ShareManager inYiGuanZhuStatusBtn:weakself.guanzhuBtn];
-              [WP_TOOL_ShareManager inYiGuanZhuStatusBtn:weakself.cell.guanzhuBtn];
+              [WP_TOOL_ShareManager inYiGuanZhuStatus12Btn:weakself.guanzhuBtn];
+              [WP_TOOL_ShareManager inYiGuanZhuStatus12Btn:weakself.cell.guanzhuBtn];
           }
       }];
 }
@@ -236,16 +237,16 @@
     [YX_MANAGER requestGetUserothers:kGetString(self.startDic[@"user_id"]) success:^(id object) {
            NSInteger tag = [object[@"is_like"] integerValue];
            if(tag == 2){
-             [WP_TOOL_ShareManager inYiGuanZhuStatusBtn:weakself.guanzhuBtn];
-             [WP_TOOL_ShareManager inYiGuanZhuStatusBtn:weakself.cell.guanzhuBtn];
+             [WP_TOOL_ShareManager inYiGuanZhuStatus12Btn:weakself.guanzhuBtn];
+             [WP_TOOL_ShareManager inYiGuanZhuStatus12Btn:weakself.cell.guanzhuBtn];
 
            }else if(tag == 1){
-            [WP_TOOL_ShareManager inHuXiangGuanZhuStatusBtn:weakself.guanzhuBtn];
-            [WP_TOOL_ShareManager inHuXiangGuanZhuStatusBtn:weakself.cell.guanzhuBtn];
+            [WP_TOOL_ShareManager inHuXiangGuanZhuStatus12Btn:weakself.guanzhuBtn];
+            [WP_TOOL_ShareManager inHuXiangGuanZhuStatus12Btn:weakself.cell.guanzhuBtn];
 
            }else{
-            [WP_TOOL_ShareManager inGuanZhuStatusBtn:weakself.guanzhuBtn];
-            [WP_TOOL_ShareManager inGuanZhuStatusBtn:weakself.cell.guanzhuBtn];
+            [WP_TOOL_ShareManager inGuanZhuStatus12Btn:weakself.guanzhuBtn];
+            [WP_TOOL_ShareManager inGuanZhuStatus12Btn:weakself.cell.guanzhuBtn];
            }
     }];
     self.cell.tagId = [self.startDic[@"id"] integerValue];

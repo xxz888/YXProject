@@ -61,7 +61,7 @@ static CGFloat sectionHeaderHeight = 200;
         if ([self.startDic[@"id"] integerValue] == 2) {
             //请求热门标签
              [YXPLUS_MANAGER requestHotTagGet:@"" success:^(id object) {
-                 if ([object[@"data"] count] == 3) {
+                 if ([object[@"data"] count] >= 3) {
                      NSArray * dataArr = object[@"data"];
                      [weakself.headerTagView.btn1 setTitle:[@"#   " append: dataArr[0][@"tag"]] forState:UIControlStateNormal];
                      weakself.headerTagView.dongtaicount1.text = [kGetString(dataArr[0][@"post_number"]) append:@" 条动态"];

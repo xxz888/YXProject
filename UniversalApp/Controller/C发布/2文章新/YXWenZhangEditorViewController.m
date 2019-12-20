@@ -59,6 +59,7 @@
         [coverImage sd_setImageWithURL:[NSURL URLWithString:[IMG_URI append:self.model.cover]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         zhanweiImage.hidden = zhanweilbl.hidden = YES;
         self.cover = self.model.cover;
+//        coverImage.hidden = NO;
     }
 
     
@@ -196,7 +197,7 @@
     self.toolBarView.delegate = self;
     [self.toolBarView addObserver:self forKeyPath:@"transform" options:
      NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
-    self.webView.scrollView.contentInset= UIEdgeInsetsMake(176,0,44,0);
+    self.webView.scrollView.contentInset= UIEdgeInsetsMake(210,0,44,0);
     [self addCoverImage];
     
     
@@ -208,45 +209,47 @@
 -(void)addCoverImage{
     
     // 这里也是关键
-    UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, -176,KScreenWidth,176)];
-    view.backgroundColor = KWhiteColor;
+    UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, -210,KScreenWidth,210)];
+    view.backgroundColor = COLOR_F5F5F5;
     
-    UIImageView * coverImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, 160)];
+    UIImageView * coverImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, 210)];
+    coverImage.contentMode = UIViewContentModeScaleToFill;
     coverImage.tag = 1001;
     coverImage.userInteractionEnabled = YES;
     UITapGestureRecognizer *singleTap =
     [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(whenClickImage)];
     [coverImage addGestureRecognizer:singleTap];
-    coverImage.backgroundColor = KWhiteColor;
+    coverImage.backgroundColor = KClearColor;
+//    coverImage.hidden = YES;
     [view addSubview:coverImage];
     
-    UIImageView * zhanweiImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 42, 34)];
+    UIImageView * zhanweiImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 36, 36)];
     zhanweiImage.tag = 1002;
 
     zhanweiImage.userInteractionEnabled = NO;
     CGFloat x = coverImage.center.x;
-    CGFloat y = coverImage.center.y - 5;
-    zhanweiImage.center = CGPointMake(x, y);
-    zhanweiImage.image = [UIImage imageNamed:@"fabuwenzhangxiangji"];
+    CGFloat y = coverImage.center.y;
+    zhanweiImage.center = CGPointMake(x, y-5);
+    zhanweiImage.image = [UIImage imageNamed:@"fabuwenzhangjia"];
     [view addSubview:zhanweiImage];
     
-    UIView * bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 160, KScreenWidth, 16)];
-    bottomView.backgroundColor = kRGBA(245, 245, 245, 1);
-    [view addSubview:bottomView];
+//    UIView * bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 160, KScreenWidth, 16)];
+//    bottomView.backgroundColor = kRGBA(245, 245, 245, 1);
+//    [view addSubview:bottomView];
     
     UILabel *label = [[UILabel alloc] init];
     label.tag = 1003;
     label.userInteractionEnabled = NO;
-    label.frame = CGRectMake((KScreenWidth-56)/2,91,100,20);
+    label.frame = CGRectMake((KScreenWidth-56)/2,92,100,20);
     label.numberOfLines = 0;
     CGFloat x1 = coverImage.center.x;
-    CGFloat y1 = coverImage.center.y + 25;
+    CGFloat y1 = coverImage.center.y + 30;
     label.center = CGPointMake(x1, y1);
     [view addSubview:label];
     
-    label.text = @"添加照片";
+    label.text = @"添加封面图";
     label.font = [UIFont systemFontOfSize:14 weight:600];
-    label.textColor = SEGMENT_COLOR;
+    label.textColor = COLOR_BBBBBB;
     label.textAlignment = NSTextAlignmentCenter;
     label.alpha = 1.0;
     // 把自定义的view添加到webView的scrollView上面!!!
@@ -566,6 +569,8 @@
                         [coverImage sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
                         zhanweiImage.hidden = zhanweilbl.hidden = YES;
                         weakself.cover = [string split:IMG_URI][1];
+//                        coverImage.hidden = NO;
+
                    } failure:^(NSString *error) {}];
                 }else{
                     //1、插入本地图片
@@ -688,19 +693,10 @@
 //    if (!_manager) {
         _manager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhoto];
         _manager.configuration.toolBarTitleColor = kRGBA(33,189,109,1);
-        _manager.configuration.videoMaxNum = 1;
-        _manager.configuration.imageMaxSize = 5;
-        _manager.configuration.selectTogether = NO;
-        _manager.configuration.deleteTemporaryPhoto = NO;
-        _manager.configuration.rowCount = 4;
-        _manager.configuration.reverseDate = YES;
-        _manager.configuration.singleJumpEdit = NO;
-        _manager.configuration.saveSystemAblum = YES;
-        _manager.configuration.supportRotation = NO;
-        _manager.configuration.hideOriginalBtn = NO;
-    _manager.configuration.navigationTitleColor = [UIColor blackColor];
-    _manager.configuration.showDateSectionHeader =NO;
-        _manager.configuration.singleSelected = NO;
+        _manager.configuration.singleSelected = YES;
+    _manager.configuration.singleJumpEdit = YES;
+    _manager.configuration.movableCropBox = YES;
+    _manager.configuration.movableCropBoxEditSize = YES;
 //    }
     return _manager;
 }

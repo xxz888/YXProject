@@ -1331,5 +1331,22 @@ SINGLETON_FOR_CLASS(ShareManager);
     [btn setBackgroundColor:kRGBA(245, 245, 245, 1)];
     ViewRadius(btn, 16);
 }
-
+-(void)inGuanZhuStatus12Btn:(UIButton *)btn{
+    [btn setTitle:@"关注" forState:UIControlStateNormal];
+    [btn setTitleColor:KWhiteColor forState:0];
+    [btn setBackgroundColor:SEGMENT_COLOR];
+    ViewRadius(btn, 12);
+}
+-(void)inYiGuanZhuStatus12Btn:(UIButton *)btn{
+    [btn setTitle:@"已关注" forState:UIControlStateNormal];
+    [btn setTitleColor:kRGBA(153, 153, 153, 1) forState:0];
+    [btn setBackgroundColor:kRGBA(245, 245, 245, 1)];
+    ViewRadius(btn, 12);
+}
+-(void)inHuXiangGuanZhuStatus12Btn:(UIButton *)btn{
+    [btn setTitle:@"互相关注" forState:UIControlStateNormal];
+    [btn setTitleColor:SEGMENT_COLOR forState:0];
+    [btn setBackgroundColor:kRGBA(245, 245, 245, 1)];
+    ViewRadius(btn, 12);
+}
 @end
