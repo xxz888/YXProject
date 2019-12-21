@@ -28,16 +28,25 @@ typedef void(^backVcBlock)(void);
 @property (weak, nonatomic) IBOutlet UIButton *finish8;
 @property (weak, nonatomic) IBOutlet UIButton *finish9;
 - (IBAction)jifenHistoryAction:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UILabel *jifenNumLbl;
+@property (weak, nonatomic) IBOutlet UILabel *nameLbl;
+@property(nonatomic, copy) backVcBlock  backvcBlock;//用户信息
+
+
+
+@property (weak, nonatomic) IBOutlet UILabel *day0;
+@property (weak, nonatomic) IBOutlet UILabel *day1;
+@property (weak, nonatomic) IBOutlet UILabel *day2;
 @property (weak, nonatomic) IBOutlet UILabel *day3;
 @property (weak, nonatomic) IBOutlet UILabel *day4;
 @property (weak, nonatomic) IBOutlet UILabel *day5;
 @property (weak, nonatomic) IBOutlet UILabel *day6;
-@property (weak, nonatomic) IBOutlet UILabel *day7;
-@property (weak, nonatomic) IBOutlet UILabel *jifenNumLbl;
-@property (weak, nonatomic) IBOutlet UILabel *nameLbl;
-@property(nonatomic, copy) backVcBlock  backvcBlock;//用户信息
-@property (weak, nonatomic) IBOutlet UILabel *day1;
-@property (weak, nonatomic) IBOutlet UILabel *day2;
+
+
+
+
+@property (weak, nonatomic) IBOutlet UIImageView *img0;
 @property (weak, nonatomic) IBOutlet UIImageView *img1;
 @property (weak, nonatomic) IBOutlet UIImageView *img2;
 @property (weak, nonatomic) IBOutlet UIImageView *img3;
@@ -45,6 +54,14 @@ typedef void(^backVcBlock)(void);
 @property (weak, nonatomic) IBOutlet UIImageView *img5;
 @property (weak, nonatomic) IBOutlet UIImageView *img6;
 
+
+@property (weak, nonatomic) IBOutlet UILabel *colorDay0;
+@property (weak, nonatomic) IBOutlet UILabel *colorDay1;
+@property (weak, nonatomic) IBOutlet UILabel *colorDay2;
+@property (weak, nonatomic) IBOutlet UILabel *colorDay3;
+@property (weak, nonatomic) IBOutlet UILabel *colorDay4;
+@property (weak, nonatomic) IBOutlet UILabel *colorDay5;
+@property (weak, nonatomic) IBOutlet UILabel *colorDay6;
 @end
 
 NS_ASSUME_NONNULL_END

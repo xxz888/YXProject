@@ -108,6 +108,13 @@
         
         [imageView sd_setImageWithURL:[NSURL URLWithString:obj] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         imageView.frame = CGRectMake(columnIndex * (itemW + margin), rowIndex * (itemH + margin), itemW, itemH);
+        if (_picPathStringsArray.count == 4) {
+            if (idx == 2) {
+                imageView.frame = CGRectMake(0 * (itemW + margin), 1 * (itemH + margin), itemW, itemH);
+            }else if (idx == 3){
+                imageView.frame = CGRectMake(1 * (itemW + margin), 1 * (itemH + margin), itemW, itemH);
+            }
+        }
     }];
     
     CGFloat w = perRowItemCount * itemW + (perRowItemCount - 1) * margin;

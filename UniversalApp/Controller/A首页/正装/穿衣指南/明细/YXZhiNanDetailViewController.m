@@ -333,6 +333,10 @@
     }
 }
 -(void)pinglunAction{
+    if (![userManager loadUserInfo]) {
+          KPostNotification(KNotificationLoginStateChange, @NO);
+          return;
+      }
     YXZhiNanPingLunViewController * vc = [[YXZhiNanPingLunViewController alloc]init];
     vc.startDic = [NSDictionary dictionaryWithDictionary:self.startArray[self.bigIndex]];
     vc.startId = self.startArray[self.bigIndex][@"id"];

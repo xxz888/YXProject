@@ -888,7 +888,7 @@ SINGLETON_FOR_CLASS(ShareManager);
             long currentVersionLong = [[currentVersion stringByReplacingOccurrencesOfString:@"." withString:@""] longLongValue];
             //判断两个版本是否相同
             if (currentVersionLong  < updateVersionLong) {
-                [SELUpdateAlert showUpdateAlertWithVersion:updateVersion Description:@"" focTag:NO];
+                [SELUpdateAlert showUpdateAlertWithVersion:updateVersion Description:@"优化用户体验" focTag:NO];
             }
         }
     }];

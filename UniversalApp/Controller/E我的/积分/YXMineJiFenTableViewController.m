@@ -76,20 +76,25 @@
 
 }
 -(void)get7Days:(NSInteger)day_number{
-    NSArray * lblArray1 = @[self.day1,self.day2,self.day3,self.day4,self.day5,self.day6];
-    NSArray * lblArray2 = @[self.img1,self.img2,self.img3,self.img4,self.img5,self.img6];
+    NSArray * lblArray1 = @[self.day0,self.day1,self.day2,self.day3,self.day4,self.day5,self.day6];
+    NSArray * lblArray2 = @[self.img0,self.img1,self.img2,self.img3,self.img4,self.img5,self.img6];
+    NSArray * lblArray3 = @[self.colorDay0,self.colorDay1,self.colorDay2,self.colorDay3,self.colorDay4,self.colorDay5,self.colorDay6];
 
-    for (NSInteger i = 0; i < 6; i++) {
+    for (NSInteger i = 0; i < 7; i++) {
         if (i < day_number) {
             [(UILabel *)lblArray1[i] setHidden:YES];
             [(UIImageView *)lblArray2[i] setHidden:NO];
-            UILabel * lab = (UILabel *)lblArray1[i];
+            [(UILabel *)lblArray3[i] setHidden:NO];
+
+            UILabel * lab = (UILabel *)lblArray3[i];
             lab.textColor = COLOR_333333;
         }else{
              [(UILabel *)lblArray1[i] setHidden:NO];
              [(UIImageView *)lblArray2[i] setHidden:YES];
-              UILabel * lab = (UILabel *)lblArray1[i];
-            lab.textColor = kRGBA(187, 187, 187, 1);
+             [(UILabel *)lblArray3[i] setHidden:NO];
+
+              UILabel * lab = (UILabel *)lblArray3[i];
+              lab.textColor = kRGBA(187, 187, 187, 1);
         }
     }
     
@@ -268,14 +273,16 @@
         case 104://每日新增粉丝
         case 105://每日新增关注
         case 106://每条内容被喜欢10次
+        {
+            self.navigationController.tabBarController.selectedIndex = 1;
+        }
             break;
         case 107://图片加精
         case 108://视频加精
         {
-                 YXFaBuBaseViewController * imageVC = [[YXFaBuBaseViewController alloc]init];
-                 imageVC.modalPresentationStyle = UIModalPresentationFullScreen;
-                 [self presentViewController:imageVC animated:YES completion:nil];
-            
+         YXFaBuBaseViewController * imageVC = [[YXFaBuBaseViewController alloc]init];
+         imageVC.modalPresentationStyle = UIModalPresentationFullScreen;
+         [self presentViewController:imageVC animated:YES completion:nil];
         }
         break;
         case 109://文章加精
