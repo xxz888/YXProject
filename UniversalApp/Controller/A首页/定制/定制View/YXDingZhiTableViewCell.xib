@@ -20,7 +20,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u8s-8n-ge9">
                         <rect key="frame" x="16" y="8" width="288" height="108"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="抽雪茄的女人" translatesAutoresizingMaskIntoConstraints="NO" id="OAP-W0-5QD">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dz1_2" translatesAutoresizingMaskIntoConstraints="NO" id="OAP-W0-5QD">
                                 <rect key="frame" x="10" y="10" width="88" height="88"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="88" id="Yff-AX-X1I"/>
@@ -100,6 +100,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="抽雪茄的女人" width="1024" height="1024"/>
+        <image name="dz1_2" width="327" height="282"/>
     </resources>
 </document>

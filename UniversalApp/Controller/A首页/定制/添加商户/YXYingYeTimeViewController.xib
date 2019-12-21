@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YXYingYeTimeViewController">
             <connections>
+                <outlet property="time24Btn" destination="MWe-xl-a3A" id="XPO-W9-XcZ"/>
                 <outlet property="timeBtn" destination="KYE-hb-Zj4" id="uyY-Ow-PHm"/>
                 <outlet property="timeEndBtn" destination="wck-17-Y7z" id="8BF-6e-WRu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -335,11 +336,17 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MWe-xl-a3A">
                                     <rect key="frame" x="0.0" y="15.5" width="24" height="24"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="24" id="E6B-Oj-cus"/>
                                         <constraint firstAttribute="height" constant="24" id="G1M-NO-N06"/>
                                     </constraints>
-                                    <state key="normal" image="hx_original_normal.png"/>
+                                    <state key="normal" image="shouhuo_unSel">
+                                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="time24BtnAction:" destination="-1" eventType="touchUpInside" id="bOe-4y-QjC"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24小时营业" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0K-IA-HiY">
                                     <rect key="frame" x="36" y="15" width="94" height="25.5"/>
@@ -429,7 +436,7 @@
                                 <constraint firstAttribute="height" constant="40" id="yxj-46-Nup"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                            <state key="normal" title="提交">
+                            <state key="normal" title="保存">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <userDefinedRuntimeAttributes>
@@ -438,6 +445,9 @@
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="saveAction:" destination="-1" eventType="touchUpInside" id="krr-0W-hei"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -471,12 +481,12 @@
                 <constraint firstItem="4Gd-xQ-hM0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="z7P-aU-w8i"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="-387" y="128"/>
+            <point key="canvasLocation" x="-1281" y="101"/>
         </view>
     </objects>
     <resources>
-        <image name="hx_original_normal.png" width="13" height="13"/>
         <image name="rightacc" width="44" height="44"/>
+        <image name="shouhuo_unSel" width="48" height="48"/>
         <image name="黑色返回" width="44" height="44"/>
     </resources>
 </document>

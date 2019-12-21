@@ -9,7 +9,7 @@
 #import "RootViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+typedef void(^yingyeshijianBlock)(NSDictionary *);
 @interface YXYingYeTimeViewController : RootViewController
 - (IBAction)backVcAction:(id)sender;
 - (IBAction)weekAction:(id)sender;
@@ -26,7 +26,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UIButton *timeEndBtn;
 - (IBAction)timeEndAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *time24Btn;
+- (IBAction)time24BtnAction:(id)sender;
+- (IBAction)saveAction:(id)sender;
 
+@property(nonatomic,copy)yingyeshijianBlock yingyeshijianblock;
 @end
 
 NS_ASSUME_NONNULL_END

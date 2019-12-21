@@ -10,6 +10,8 @@
 #import "NSDate+BRPickerView.h"
 #import "BRDatePickerView.h"
 @interface YXYingYeTimeViewController ()
+@property(nonatomic,strong)NSMutableArray * yingyeriArray;
+@property(nonatomic,strong)NSMutableArray * yingyeriStartArray;
 
 @end
 
@@ -17,19 +19,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self.time24Btn setBackgroundColor:KWhiteColor];
+    [self.time24Btn setImage:IMAGE_NAMED(@"shouhuo_unSel") forState:UIControlStateNormal];
+    [self.time24Btn setImage:IMAGE_NAMED(@"shouhuo_sel") forState:UIControlStateSelected];
+    _yingyeriArray = [[NSMutableArray alloc]init];
+    _yingyeriStartArray = @[self.week1,self.week2,self.week3,self.week4,self.week5,self.week6,self.week7];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (IBAction)backVcAction:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -44,6 +39,13 @@
         btn.tag = btn.tag + 1000;
         [self unSelectBtnStatus:btn];
     }
+    [_yingyeriArray removeAllObjects];
+    for (UIButton * selectBtn in _yingyeriStartArray) {
+        if (selectBtn.tag < 1000) {
+            [_yingyeriArray addObject:@(selectBtn.tag)];
+        }
+    }
+    
 }
 -(void)selectBtnStatus:(UIButton *)btn{
     ViewBorderRadius(btn, 4, 1, SEGMENT_COLOR);
@@ -58,7 +60,7 @@
     [self.view endEditing:YES];
     kWeakSelf(self);
  
-    [BRDatePickerView showDatePickerWithTitle:@"营业开始时间" dateType:BRDatePickerModeHM defaultSelValue:@"" minDate:nil maxDate:nil isAutoSelect:YES themeColor:nil resultBlock:^(NSString *selectValue) {
+    [BRDatePickerView showDatePickerWithTitle:@"营业开始时间" dateType:BRDatePickerModeHM defaultSelValue:@"08:00" minDate:nil maxDate:nil isAutoSelect:YES themeColor:nil resultBlock:^(NSString *selectValue) {
         [weakself.timeBtn setTitle:[@"开始时间:" append:selectValue] forState:UIControlStateNormal];
         [weakself.timeBtn setTitleColor:KBlackColor forState:UIControlStateNormal];
     } cancelBlock:^{}];
@@ -66,9 +68,20 @@
 - (IBAction)timeEndAction:(id)sender {
        [self.view endEditing:YES];
        kWeakSelf(self);
-       [BRDatePickerView showDatePickerWithTitle:@"营业结束时间" dateType:BRDatePickerModeHM defaultSelValue:@"" minDate:nil maxDate:nil isAutoSelect:YES themeColor:nil resultBlock:^(NSString *selectValue) {
+       [BRDatePickerView showDatePickerWithTitle:@"营业结束时间" dateType:BRDatePickerModeHM defaultSelValue:@"20:00" minDate:nil maxDate:nil isAutoSelect:YES themeColor:nil resultBlock:^(NSString *selectValue) {
            [weakself.timeEndBtn setTitle:[@"结束时间:" append:selectValue] forState:UIControlStateNormal];
            [weakself.timeEndBtn setTitleColor:KBlackColor forState:UIControlStateNormal];
        } cancelBlock:^{}];
+}
+- (IBAction)time24BtnAction:(UIButton *)btn{
+    self.time24Btn.selected = !self.time24Btn.selected;
+}
+
+- (IBAction)saveAction:(id)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    if (self.yingyeshijianblock) {
+        self.yingyeshijianblock(@{@"week":_yingyeriArray,@"time":@"24小时"});
+    }
 }
 @end

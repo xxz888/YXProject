@@ -10,6 +10,7 @@
 
 @interface RootTableViewController ()<UIGestureRecognizerDelegate>{
     UITableView * _yxTableView;
+    CGPoint _center;
 
 }
 @property (nonatomic) BOOL isCanUseSideBack;
@@ -37,11 +38,19 @@
 //    [[UINavigationBar appearance] setTintColor:KBlackColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.requestPage = 1;
+    
+    
+    //
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    _center = self.view.center;
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
-    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
+    [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -198,4 +207,70 @@
     return buttonArray;
 }
 
+//键盘将要弹出
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    //获取键盘高度 keyboardHeight
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    CGFloat keyboardHeight = keyboardRect.size.height;
+    
+    //当前屏幕高度，无论横屏竖屏
+    CGFloat screenH = [UIScreen mainScreen].bounds.size.height;
+    
+    //主窗口
+    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    //获取当前响应者
+    UIView *firstResponder = [keyWindow performSelector:@selector(firstResponder)];
+    NSLog(@"firstResponder:%@",firstResponder);
+
+  // Twitter 网络登录时上移问题
+    Class clName = NSClassFromString(@"UIWebBrowserView");
+    if ([firstResponder isKindOfClass:clName]) return;
+    if (![firstResponder respondsToSelector:@selector(center)]) return;
+
+    //当前响应者在其父视图的中点(x居中 y最下点)
+    CGPoint firstCPoint = CGPointMake(firstResponder.center.x, CGRectGetMaxY(firstResponder.frame));
+    //当前响应者在屏幕中的point
+    CGPoint convertPoint = [keyWindow convertPoint:firstCPoint fromView:firstResponder.superview];
+    //[firstResponder convertPoint:firstCPoint toView:keyWindow];
+    //当前响应者的最大y值
+    CGFloat firstRespHeight = convertPoint.y;
+    
+    //键盘最高点的y值
+    CGFloat topHeighY = screenH - keyboardHeight;//顶部高度的Y值
+    if (topHeighY < firstRespHeight) { //键盘挡住了当前响应的控件 需要上移
+        CGFloat spaceHeight = firstRespHeight - topHeighY;
+        self.tableView.center = CGPointMake(self.tableView.center.x, self.tableView.center.y - spaceHeight);
+        
+        CGFloat duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        [UIView animateWithDuration:duration animations:^{
+            [self.view layoutIfNeeded];
+        }];
+        
+    }else{
+        NSLog(@"键盘未挡住输入框");
+    }
+    
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    //结束编辑
+    [self.view endEditing:YES];
+}
+
+//键盘将要隐藏
+- (void)keyboardWillHide:(NSNotification *)notification{
+    self.tableView.center = _center;
+    NSDictionary *userInfo = [notification userInfo];
+    CGFloat duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    [UIView animateWithDuration:duration animations:^{
+        [self.view layoutIfNeeded];
+    }];
+}
+-(void)dealloc{
+    [kNotificationCenter removeObserver:self];
+}
 @end

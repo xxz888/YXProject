@@ -68,10 +68,10 @@
     
       YXDingZhiViewController * dingzhiVC = [[YXDingZhiViewController alloc]init];
       [weakself.vcArr addObject:toolsVC];
-//      [weakself.vcArr addObject:dingzhiVC];
+      [weakself.vcArr addObject:dingzhiVC];
 
       [weakself.titlesArr addObject:@"指南"];
-//      [weakself.titlesArr addObject:@"定制"];
+      [weakself.titlesArr addObject:@"定制"];
     
       [weakself initSegment];
 
