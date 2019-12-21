@@ -248,6 +248,8 @@
 		BB86C917231DFA2400A061E2 /* libSocialSina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB86C909231DFA2400A061E2 /* libSocialSina.a */; };
 		BB86C918231DFA2400A061E2 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB86C90D231DFA2400A061E2 /* libSocialQQ.a */; };
 		BB86C91B231E671E00A061E2 /* YXMineChouJiangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB86C91A231E671E00A061E2 /* YXMineChouJiangViewController.m */; };
+		BB8D249023AE18CC0017482B /* JXMapNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8D248223AE18CC0017482B /* JXMapNavigationView.m */; };
+		BB8D249623AE18CD0017482B /* CLLocation+YCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8D248B23AE18CC0017482B /* CLLocation+YCLocation.m */; };
 		BB928F4A21F9BB960090A044 /* YXHomeEditPersonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F4921F9BB960090A044 /* YXHomeEditPersonTableViewController.m */; };
 		BB928F6121FACAE20090A044 /* YXMineSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F6021FACAE20090A044 /* YXMineSettingTableViewController.m */; };
 		BB928F6521FACDE70090A044 /* YXMineSettingSafeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F6421FACDE70090A044 /* YXMineSettingSafeTableViewController.m */; };
@@ -1008,6 +1010,10 @@
 		BB86C90D231DFA2400A061E2 /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
 		BB86C919231E671E00A061E2 /* YXMineChouJiangViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YXMineChouJiangViewController.h; path = ../YXMineChouJiangViewController.h; sourceTree = "<group>"; };
 		BB86C91A231E671E00A061E2 /* YXMineChouJiangViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = YXMineChouJiangViewController.m; path = ../YXMineChouJiangViewController.m; sourceTree = "<group>"; };
+		BB8D248223AE18CC0017482B /* JXMapNavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXMapNavigationView.m; sourceTree = "<group>"; };
+		BB8D248423AE18CC0017482B /* CLLocation+YCLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+YCLocation.h"; sourceTree = "<group>"; };
+		BB8D248B23AE18CC0017482B /* CLLocation+YCLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+YCLocation.m"; sourceTree = "<group>"; };
+		BB8D248E23AE18CC0017482B /* JXMapNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXMapNavigationView.h; sourceTree = "<group>"; };
 		BB928F4821F9BB960090A044 /* YXHomeEditPersonTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeEditPersonTableViewController.h; sourceTree = "<group>"; };
 		BB928F4921F9BB960090A044 /* YXHomeEditPersonTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeEditPersonTableViewController.m; sourceTree = "<group>"; };
 		BB928F5F21FACAE20090A044 /* YXMineSettingTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineSettingTableViewController.h; sourceTree = "<group>"; };
@@ -2741,6 +2747,17 @@
 			path = QQ;
 			sourceTree = "<group>";
 		};
+		BB8D247F23AE18CC0017482B /* 调用手机地图APP导航 */ = {
+			isa = PBXGroup;
+			children = (
+				BB8D248E23AE18CC0017482B /* JXMapNavigationView.h */,
+				BB8D248223AE18CC0017482B /* JXMapNavigationView.m */,
+				BB8D248423AE18CC0017482B /* CLLocation+YCLocation.h */,
+				BB8D248B23AE18CC0017482B /* CLLocation+YCLocation.m */,
+			);
+			path = "调用手机地图APP导航";
+			sourceTree = "<group>";
+		};
 		BB928F5E21FACA810090A044 /* 设置 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3179,6 +3196,7 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BB8D247F23AE18CC0017482B /* 调用手机地图APP导航 */,
 				BBFACBA42394BB75008F5496 /* TimeLine */,
 				BBFACB9E2394AAD7008F5496 /* LZLikeView.h */,
 				BBFACB9D2394AAD7008F5496 /* LZLikeView.m */,
@@ -4816,6 +4834,7 @@
 				BB9413E021F8B602007E800A /* IQKeyboardManager.m in Sources */,
 				BBBFD78A2222D7D300D377AC /* TOActivityCroppedImageProvider.m in Sources */,
 				BBD2C92421E0F67800350DCD /* MWTapDetectingImageView.m in Sources */,
+				BB8D249023AE18CC0017482B /* JXMapNavigationView.m in Sources */,
 				BBD2C92821E0F67800350DCD /* MWGridCell.m in Sources */,
 				BBDA2D2521EB30BF00EDCCFF /* UIView+SDAutoLayout.m in Sources */,
 				290A981E1F4ABEB9006BF882 /* BaseTableViewCell.m in Sources */,
@@ -4989,6 +5008,7 @@
 				BBD2C8FF21E0F67700350DCD /* TZImageManager.m in Sources */,
 				BB53E73B235EFAC00014F106 /* HXCustomPreviewView.m in Sources */,
 				BB86C8BA231B987C00A061E2 /* YXMineQianDaoView.m in Sources */,
+				BB8D249623AE18CD0017482B /* CLLocation+YCLocation.m in Sources */,
 				BB9413DC21F8B602007E800A /* IQBarButtonItem.m in Sources */,
 				BBED123A238FB609009561A3 /* LZMenuButtonCell.m in Sources */,
 				BB1F1C1C2367EF95002D0FE5 /* SYBaseHttpConnection1.m in Sources */,

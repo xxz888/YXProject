@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JXMapNavigationView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^PingLunBlock)(void);
@@ -21,6 +22,7 @@ typedef void(^PingLunBlock)(void);
 @property (weak, nonatomic) IBOutlet UILabel *cellFar;
 @property (weak, nonatomic) IBOutlet UILabel *pingjiaCount;
 @property (weak, nonatomic) IBOutlet UIView *cellAdressBottomView;
+@property (nonatomic, strong)JXMapNavigationView *mapNavigationView;
 
 
 @end

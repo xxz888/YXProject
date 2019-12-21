@@ -2,6 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -103,6 +104,10 @@
 		<string>mqzoneopensdkapi</string>
 		<string>mqqbrowser</string>
 		<string>mttbrowser</string>
+        <string>iosamap</string>
+             <string>qqmap</string>
+             <string>comgooglemaps</string>
+             <string>baidumap</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
