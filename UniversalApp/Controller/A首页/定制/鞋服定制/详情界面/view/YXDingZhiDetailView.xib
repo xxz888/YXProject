@@ -92,8 +92,8 @@
                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="锁" translatesAutoresizingMaskIntoConstraints="NO" id="f8l-mJ-Pbo">
-                            <rect key="frame" x="361" y="10.5" width="21" height="19"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dingzhiqiche" translatesAutoresizingMaskIntoConstraints="NO" id="f8l-mJ-Pbo">
+                            <rect key="frame" x="347" y="10.5" width="21" height="19"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="21" id="90P-wS-xyA"/>
                                 <constraint firstAttribute="height" constant="19" id="zXH-L8-7eD"/>
@@ -109,7 +109,7 @@
                         <constraint firstItem="q5r-fC-kRm" firstAttribute="centerY" secondItem="MsY-GT-x2e" secondAttribute="centerY" id="iqc-Go-naE"/>
                         <constraint firstItem="q5r-fC-kRm" firstAttribute="leading" secondItem="MsY-GT-x2e" secondAttribute="trailing" constant="10" id="kFS-tW-IYd"/>
                         <constraint firstItem="Ila-Ts-VLA" firstAttribute="top" secondItem="q5r-fC-kRm" secondAttribute="bottom" constant="8" id="lbt-sk-Fs0"/>
-                        <constraint firstAttribute="trailing" secondItem="f8l-mJ-Pbo" secondAttribute="trailing" id="wMe-ab-pFB"/>
+                        <constraint firstAttribute="trailing" secondItem="f8l-mJ-Pbo" secondAttribute="trailing" constant="14" id="wMe-ab-pFB"/>
                         <constraint firstAttribute="height" constant="40" id="xXk-1i-1sk"/>
                     </constraints>
                 </view>
@@ -148,7 +148,7 @@
                                     <color key="textColor" red="0.69019607843137254" green="0.59215686274509804" blue="0.38823529411764707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="收藏未选择" translatesAutoresizingMaskIntoConstraints="NO" id="rgd-qs-k9P">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dingzhijiahao" translatesAutoresizingMaskIntoConstraints="NO" id="rgd-qs-k9P">
                                     <rect key="frame" x="0.0" y="4.5" width="18" height="18"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="18" id="kxA-CS-hO0"/>
@@ -161,7 +161,7 @@
                                 <constraint firstAttribute="trailing" secondItem="IaQ-CR-sgy" secondAttribute="trailing" id="7Vs-Oa-8d5"/>
                                 <constraint firstItem="rgd-qs-k9P" firstAttribute="leading" secondItem="lfg-5M-41n" secondAttribute="leading" id="CnB-ah-Yzv"/>
                                 <constraint firstAttribute="trailing" secondItem="qgW-gp-FnE" secondAttribute="trailing" id="D4z-0N-1Qv"/>
-                                <constraint firstItem="qgW-gp-FnE" firstAttribute="centerY" secondItem="rgd-qs-k9P" secondAttribute="centerY" id="ExZ-zz-iUp"/>
+                                <constraint firstItem="qgW-gp-FnE" firstAttribute="centerY" secondItem="rgd-qs-k9P" secondAttribute="centerY" id="RqH-ra-LP2"/>
                                 <constraint firstItem="IaQ-CR-sgy" firstAttribute="leading" secondItem="lfg-5M-41n" secondAttribute="leading" id="evW-CQ-v6f"/>
                                 <constraint firstAttribute="bottom" secondItem="IaQ-CR-sgy" secondAttribute="bottom" id="gqh-Ni-V93"/>
                                 <constraint firstItem="IaQ-CR-sgy" firstAttribute="top" secondItem="lfg-5M-41n" secondAttribute="top" id="qt9-Bq-eX7"/>
@@ -221,9 +221,9 @@
         </view>
     </objects>
     <resources>
+        <image name="dingzhijiahao" width="54" height="54"/>
+        <image name="dingzhiqiche" width="66" height="60"/>
         <image name="dz1_4" width="1029" height="276"/>
         <image name="定位" width="66" height="66"/>
-        <image name="收藏未选择" width="66" height="66"/>
-        <image name="锁" width="128" height="128"/>
     </resources>
 </document>

@@ -60,7 +60,7 @@
                                 <color key="textColor" red="0.73333333333333328" green="0.73333333333333328" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DXG-ra-Nsq">
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DXG-ra-Nsq">
                                 <rect key="frame" x="316" y="12" width="66" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -91,7 +91,7 @@
                             <constraint firstAttribute="height" constant="35" id="VLG-OJ-PE7"/>
                         </constraints>
                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="thc-GF-PxO">
@@ -218,15 +218,19 @@
                 <outlet property="cellContent" destination="fhI-NE-Qt2" id="ugE-XS-3q7"/>
                 <outlet property="cellImg" destination="AWR-JE-XyM" id="Q9x-sk-UZD"/>
                 <outlet property="cellMiddleView" destination="thc-GF-PxO" id="VPS-Al-KPG"/>
+                <outlet property="cellMiddleViewHeight" destination="E0e-Ul-KwV" id="lio-AW-ONz"/>
+                <outlet property="cellMiddleViewToTopHeight" destination="TDR-DU-ZZG" id="Nbp-y0-Dxy"/>
                 <outlet property="cellTime" destination="10H-XJ-suf" id="6th-wd-OnN"/>
                 <outlet property="cellTitle" destination="qh4-Hf-H2V" id="cF2-JW-jyE"/>
+                <outlet property="contentDetailHeight" destination="VLG-OJ-PE7" id="6l8-jb-cnp"/>
+                <outlet property="detailToTopHeight" destination="GLa-Gn-Ijg" id="yHh-nY-pS3"/>
                 <outlet property="starView" destination="DXG-ra-Nsq" id="ns9-Rj-H5d"/>
                 <outlet property="talkBtn" destination="VRG-Kc-Acc" id="z4l-eW-4sN"/>
                 <outlet property="talkCount" destination="bC9-vn-A5U" id="ZCT-Sj-7oM"/>
                 <outlet property="zanBtn" destination="iHb-oy-e1c" id="9Pg-UK-ijd"/>
                 <outlet property="zanCount" destination="TD4-tj-mMe" id="lLD-VP-fYM"/>
             </connections>
-            <point key="canvasLocation" x="-143.47826086956522" y="108.48214285714285"/>
+            <point key="canvasLocation" x="-704" y="105"/>
         </tableViewCell>
     </objects>
     <resources>

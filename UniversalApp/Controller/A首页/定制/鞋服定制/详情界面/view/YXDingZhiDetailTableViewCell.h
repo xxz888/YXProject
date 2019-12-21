@@ -23,7 +23,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *talkBtn;
 - (IBAction)talkAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *talkCount;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentDetailHeight;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailToTopHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cellMiddleViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cellMiddleViewToTopHeight;
+-(void)setCellData:(NSDictionary *)dic;
++(CGFloat)cellDefaultHeight:(NSDictionary *)dic;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -66,13 +66,14 @@
     return 72;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 250;
+    return [YXDingZhiDetailTableViewCell cellDefaultHeight:@{@"":@""}];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 3;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXDingZhiDetailTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXDingZhiDetailTableViewCell" forIndexPath:indexPath];
+    [cell setCellData:@{@"":@""}];
     return cell;
 }
 - (IBAction)backVcAction:(id)sender {
