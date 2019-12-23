@@ -15,11 +15,13 @@
 #define TYPE_XUEJIA_1  @"1"
 #define TYPE_GOLF_2 @"2"
 #define TYPE_HONGJIU_3 @"3"
-#define ZAN_IMG [UIImage imageNamed:@"已赞"]
-#define UNZAN_IMG [UIImage imageNamed:@"未赞"]
+#define ZAN_IMG [UIImage imageNamed:@"F蓝色已点赞"]
+#define UNZAN_IMG [UIImage imageNamed:@"F黑色未点赞"]
 #define UNZAN_IMG_DARK [UIImage imageNamed:@"pinglunweizan"]
 
 #define REFRESH_NO_DATA @"没有更多数据"
+#define Two_Image_space   10
+#define Other_Image_space 5
 
 
 #define Handle_IMG [UIImage imageNamed:@"Zan"]

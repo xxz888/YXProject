@@ -25,7 +25,7 @@
 #pragma mark--button create
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(16, 40, 20, 20);
-    [btn setBackgroundImage:[UIImage imageNamed:@"黑色返回"] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage imageNamed:@"A黑色返回"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(clicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
 }

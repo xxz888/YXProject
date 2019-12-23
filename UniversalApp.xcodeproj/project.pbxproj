@@ -250,6 +250,14 @@
 		BB86C91B231E671E00A061E2 /* YXMineChouJiangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB86C91A231E671E00A061E2 /* YXMineChouJiangViewController.m */; };
 		BB8D249023AE18CC0017482B /* JXMapNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8D248223AE18CC0017482B /* JXMapNavigationView.m */; };
 		BB8D249623AE18CD0017482B /* CLLocation+YCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8D248B23AE18CC0017482B /* CLLocation+YCLocation.m */; };
+		BB8D249C23B060650017482B /* YXChildPingLunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8D249A23B060650017482B /* YXChildPingLunViewController.m */; };
+		BB8D249D23B060650017482B /* YXChildPingLunViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8D249B23B060650017482B /* YXChildPingLunViewController.xib */; };
+		BB8D24A123B0625E0017482B /* YXChildFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8D24A023B0625E0017482B /* YXChildFootView.m */; };
+		BB8D24A523B062770017482B /* YXChildPingLunTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8D24A323B062770017482B /* YXChildPingLunTableViewCell.m */; };
+		BB8D24A623B062770017482B /* YXChildPingLunTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8D24A423B062770017482B /* YXChildPingLunTableViewCell.xib */; };
+		BB8D24A823B062860017482B /* YXChildFootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8D24A723B062860017482B /* YXChildFootView.xib */; };
+		BB8D24B023B063A30017482B /* YXChildHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8D24AF23B063A20017482B /* YXChildHeadView.m */; };
+		BB8D24B223B063B00017482B /* YXChildHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8D24B123B063B00017482B /* YXChildHeadView.xib */; };
 		BB928F4A21F9BB960090A044 /* YXHomeEditPersonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F4921F9BB960090A044 /* YXHomeEditPersonTableViewController.m */; };
 		BB928F6121FACAE20090A044 /* YXMineSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F6021FACAE20090A044 /* YXMineSettingTableViewController.m */; };
 		BB928F6521FACDE70090A044 /* YXMineSettingSafeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F6421FACDE70090A044 /* YXMineSettingSafeTableViewController.m */; };
@@ -1014,6 +1022,18 @@
 		BB8D248423AE18CC0017482B /* CLLocation+YCLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+YCLocation.h"; sourceTree = "<group>"; };
 		BB8D248B23AE18CC0017482B /* CLLocation+YCLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+YCLocation.m"; sourceTree = "<group>"; };
 		BB8D248E23AE18CC0017482B /* JXMapNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXMapNavigationView.h; sourceTree = "<group>"; };
+		BB8D249923B060650017482B /* YXChildPingLunViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXChildPingLunViewController.h; sourceTree = "<group>"; };
+		BB8D249A23B060650017482B /* YXChildPingLunViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXChildPingLunViewController.m; sourceTree = "<group>"; };
+		BB8D249B23B060650017482B /* YXChildPingLunViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXChildPingLunViewController.xib; sourceTree = "<group>"; };
+		BB8D249F23B0625E0017482B /* YXChildFootView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXChildFootView.h; sourceTree = "<group>"; };
+		BB8D24A023B0625E0017482B /* YXChildFootView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXChildFootView.m; sourceTree = "<group>"; };
+		BB8D24A223B062770017482B /* YXChildPingLunTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXChildPingLunTableViewCell.h; sourceTree = "<group>"; };
+		BB8D24A323B062770017482B /* YXChildPingLunTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXChildPingLunTableViewCell.m; sourceTree = "<group>"; };
+		BB8D24A423B062770017482B /* YXChildPingLunTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXChildPingLunTableViewCell.xib; sourceTree = "<group>"; };
+		BB8D24A723B062860017482B /* YXChildFootView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXChildFootView.xib; sourceTree = "<group>"; };
+		BB8D24AE23B063A20017482B /* YXChildHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXChildHeadView.h; sourceTree = "<group>"; };
+		BB8D24AF23B063A20017482B /* YXChildHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXChildHeadView.m; sourceTree = "<group>"; };
+		BB8D24B123B063B00017482B /* YXChildHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXChildHeadView.xib; sourceTree = "<group>"; };
 		BB928F4821F9BB960090A044 /* YXHomeEditPersonTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHomeEditPersonTableViewController.h; sourceTree = "<group>"; };
 		BB928F4921F9BB960090A044 /* YXHomeEditPersonTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHomeEditPersonTableViewController.m; sourceTree = "<group>"; };
 		BB928F5F21FACAE20090A044 /* YXMineSettingTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineSettingTableViewController.h; sourceTree = "<group>"; };
@@ -2758,6 +2778,33 @@
 			path = "调用手机地图APP导航";
 			sourceTree = "<group>";
 		};
+		BB8D249823B0600F0017482B /* 子评论界面 */ = {
+			isa = PBXGroup;
+			children = (
+				BB8D249E23B0623F0017482B /* view */,
+				BB8D249923B060650017482B /* YXChildPingLunViewController.h */,
+				BB8D249A23B060650017482B /* YXChildPingLunViewController.m */,
+				BB8D249B23B060650017482B /* YXChildPingLunViewController.xib */,
+			);
+			path = "子评论界面";
+			sourceTree = "<group>";
+		};
+		BB8D249E23B0623F0017482B /* view */ = {
+			isa = PBXGroup;
+			children = (
+				BB8D24AE23B063A20017482B /* YXChildHeadView.h */,
+				BB8D24AF23B063A20017482B /* YXChildHeadView.m */,
+				BB8D24B123B063B00017482B /* YXChildHeadView.xib */,
+				BB8D249F23B0625E0017482B /* YXChildFootView.h */,
+				BB8D24A023B0625E0017482B /* YXChildFootView.m */,
+				BB8D24A723B062860017482B /* YXChildFootView.xib */,
+				BB8D24A223B062770017482B /* YXChildPingLunTableViewCell.h */,
+				BB8D24A323B062770017482B /* YXChildPingLunTableViewCell.m */,
+				BB8D24A423B062770017482B /* YXChildPingLunTableViewCell.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		BB928F5E21FACA810090A044 /* 设置 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3505,6 +3552,7 @@
 		BBBD722B23A3694100D36B5E /* 详情界面 */ = {
 			isa = PBXGroup;
 			children = (
+				BB8D249823B0600F0017482B /* 子评论界面 */,
 				BB48B4DA23A78289004550C0 /* 所有评论界面 */,
 				BB48B4D423A78277004550C0 /* 发表评论界面 */,
 				BB41FCD423A75C3700C1508D /* view */,
@@ -4553,6 +4601,7 @@
 				BB9EFE7121F5CCBA00180813 /* YXPublishMoreTagsViewController.xib in Resources */,
 				BBB59B88228EA0250029D3D0 /* YXZhiNanCollectionViewCell.xib in Resources */,
 				BB59B9662373AF170064EC59 /* YXPublishNewTagView.xib in Resources */,
+				BB8D24A823B062860017482B /* YXChildFootView.xib in Resources */,
 				BBD2C91F21E0F67800350DCD /* LLImagePicker.bundle in Resources */,
 				BB013344232F688F00573AC0 /* YXMineShouHuoAdressViewController.xib in Resources */,
 				BBEA15722366E41B006FBBFF /* PlayButtonOverlayLarge@3x.png in Resources */,
@@ -4574,6 +4623,7 @@
 				BBEA15622366E41B006FBBFF /* ImageSelectedSmallOff@2x.png in Resources */,
 				BBEA155E2366E41B006FBBFF /* VideoOverlay@2x.png in Resources */,
 				BBEA15742366E41B006FBBFF /* ImageSelectedSmallOn@3x.png in Resources */,
+				BB8D249D23B060650017482B /* YXChildPingLunViewController.xib in Resources */,
 				BBA4612B23A0EACA0010E7CF /* YXDingZhiTableViewCell.xib in Resources */,
 				BBD30CEA21E5CE26000D3244 /* YXMineCommon1TableViewCell.xib in Resources */,
 				BBEA15672366E41B006FBBFF /* VideoOverlay@3x.png in Resources */,
@@ -4675,6 +4725,7 @@
 				296F85081FED04EF005612D1 /* close_icon@3x.png in Resources */,
 				BBEA15642366E41B006FBBFF /* PlayButtonOverlayLargeTap.png in Resources */,
 				293D45A21ECD6422007C64A9 /* LaunchScreen.storyboard in Resources */,
+				BB8D24B223B063B00017482B /* YXChildHeadView.xib in Resources */,
 				BB688A1C22AE505800964FA3 /* YXZhiNan5Cell.xib in Resources */,
 				293D45A31ECD6422007C64A9 /* Info.plist in Resources */,
 				BBACB4B2234D718C0092367B /* YXJiFenShopViewController.xib in Resources */,
@@ -4705,6 +4756,7 @@
 				BB013349232F69B500573AC0 /* YXMineShouHuoTableViewCell.xib in Resources */,
 				BBEA155A2366E41B006FBBFF /* UIBarButtonItemGrid@3x.png in Resources */,
 				BBEA15692366E41B006FBBFF /* UIBarButtonItemArrowRight@3x.png in Resources */,
+				BB8D24A623B062770017482B /* YXChildPingLunTableViewCell.xib in Resources */,
 				BB98329A229E165A00894FAF /* YXMineMyCollectionViewController.xib in Resources */,
 				BB2F2BFC23793AEB00654C31 /* YXNetFailView.xib in Resources */,
 				2917D20A1EE007C300E76185 /* MBHUD_Error@3x.png in Resources */,
@@ -4810,6 +4862,7 @@
 				BB48B8E923AC5B12004550C0 /* TJNoPingLunView.m in Sources */,
 				BB928F9D21FBFFD40090A044 /* YXMineTongYongTableViewController.m in Sources */,
 				BBEA159B2366F0A6006FBBFF /* Comment.m in Sources */,
+				BB8D24B023B063A30017482B /* YXChildHeadView.m in Sources */,
 				BBFACBC82394BB75008F5496 /* SDTimeLineRefreshHeader.m in Sources */,
 				BBEA15922366F072006FBBFF /* MMImagePreviewView.m in Sources */,
 				BB53E729235EFAC00014F106 /* HXPhotoTools.m in Sources */,
@@ -4913,6 +4966,7 @@
 				BBACB4DD234DDC020092367B /* YXJiFenDetailAllImageTableViewCell.m in Sources */,
 				BBE82D0121E44A7D004E4144 /* ZLPhotoAssets.m in Sources */,
 				BBD2C8FE21E0F67700350DCD /* TZProgressView.m in Sources */,
+				BB8D249C23B060650017482B /* YXChildPingLunViewController.m in Sources */,
 				BB46926922E6F5D800A7A77E /* SocketRocketUtility.m in Sources */,
 				BBD2C90221E0F67700350DCD /* TZImagePickerController.m in Sources */,
 				BBD1C77422166AD40063002F /* YXMineAndFindBaseViewController.m in Sources */,
@@ -4996,6 +5050,7 @@
 				BBACB4B6234D84340092367B /* YXJiFenShop1TableViewCell.m in Sources */,
 				BB9413D921F8B602007E800A /* IQTextView.m in Sources */,
 				BBD779722248A37E0077E44D /* YXLoginXieYiViewController.m in Sources */,
+				BB8D24A523B062770017482B /* YXChildPingLunTableViewCell.m in Sources */,
 				BBD2C98821E1BC0A00350DCD /* UIView+PYSearchExtension.m in Sources */,
 				BBA8131321DE0814001B5EA1 /* HttpRequest.m in Sources */,
 				BBF26E1B22408B0E0000AEF5 /* JQFMDB.m in Sources */,
@@ -5087,6 +5142,7 @@
 				BBFACBCD2394BCC9008F5496 /* YXHomeXueJiaTableViewCell.m in Sources */,
 				BB70253B2212980A009EBE39 /* YXFindSearchHeadView.m in Sources */,
 				BB53E725235EFAC00014F106 /* HXAlbumListViewController.m in Sources */,
+				BB8D24A123B0625E0017482B /* YXChildFootView.m in Sources */,
 				BB5FD86A21FE9B2F00B5F1A8 /* SaltedFishTabBarVC.m in Sources */,
 				BBD2C95621E0F72800350DCD /* DACircularProgressView.m in Sources */,
 				BBA812B921DDBE47001B5EA1 /* TBTabBar.m in Sources */,

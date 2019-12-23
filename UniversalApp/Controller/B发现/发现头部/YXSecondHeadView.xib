@@ -195,7 +195,7 @@
                 <outlet property="dongtaicount2" destination="lld-23-Wb8" id="uRF-Ei-DgQ"/>
                 <outlet property="dongtaicount3" destination="oIU-A8-Rx1" id="6cg-ot-Hqh"/>
             </connections>
-            <point key="canvasLocation" x="-539.13043478260875" y="-246.09375"/>
+            <point key="canvasLocation" x="-836.23188405797111" y="-257.47767857142856"/>
         </view>
     </objects>
     <resources>

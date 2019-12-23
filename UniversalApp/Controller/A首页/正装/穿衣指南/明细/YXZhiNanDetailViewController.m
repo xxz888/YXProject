@@ -79,7 +79,7 @@
     self.collLbl.hidden = [self.collLbl.text isEqualToString:@"0"];
     if ([userManager loadUserInfo]) {
         self.is_collect = [self.startArray[self.bigIndex][@"is_collect"] integerValue] == 1;
-        UIImage * likeImage = self.is_collect ? [UIImage imageNamed:@"收藏选择"] : [UIImage imageNamed:@"收藏未选择"] ;
+        UIImage * likeImage = self.is_collect ? [UIImage imageNamed:@"G收藏已选择"] : [UIImage imageNamed:@"G收藏未选择"] ;
         [self.collImgView setImage:likeImage];
     }
 }

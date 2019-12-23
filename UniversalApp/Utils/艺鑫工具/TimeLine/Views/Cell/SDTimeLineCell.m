@@ -107,7 +107,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     [_huiFuButton setTitleColor:KDarkGaryColor forState:UIControlStateNormal];
     [_huiFuButton setFont:[UIFont systemFontOfSize:13]];
     [_huiFuButton addTarget:self action:@selector(huifuAction:) forControlEvents:UIControlEventTouchUpInside];
-    [_huiFuButton setImage:[UIImage imageNamed:@"讨论"] forState:UIControlStateNormal];
+    [_huiFuButton setImage:[UIImage imageNamed:@"D黑色评论"] forState:UIControlStateNormal];
     
     
     _zanButton =[UIButton buttonWithType:UIButtonTypeCustom];
@@ -404,9 +404,9 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     [self fiveStarView:model.score view:_starView];
 
     if ([model.praise isEqualToString:@"1"]) {
-        [self.zanButton setBackgroundImage:[UIImage imageNamed:@"已赞"] forState:UIControlStateNormal];
+        [self.zanButton setBackgroundImage:[UIImage imageNamed:@"F蓝色已点赞"] forState:UIControlStateNormal];
     }else if ([model.praise isEqualToString:@"0"]){
-        [self.zanButton setBackgroundImage:[UIImage imageNamed:@"未赞"] forState:UIControlStateNormal];
+        [self.zanButton setBackgroundImage:[UIImage imageNamed:@"F黑色未点赞"] forState:UIControlStateNormal];
     }
     
  

@@ -28,12 +28,15 @@
     //上滑
     if (scrollView.contentOffset.y < 80) {
         self.topView.backgroundColor = [KWhiteColor colorWithAlphaComponent:scrollView.contentOffset.y / 80];
-        [self.backBtn setImage:IMAGE_NAMED(@"白色返回") forState:UIControlStateNormal];
-        [self.moreBtn setImage:IMAGE_NAMED(@"homeshare") forState:UIControlStateNormal];
+        [self.backBtn setImage:IMAGE_NAMED(@"A黑色背景返回") forState:UIControlStateNormal];
+        [self.moreBtn setImage:IMAGE_NAMED(@"B黑色背景横向更多") forState:UIControlStateNormal];
+        self.fanhuiWidth.constant = self.moreWidth.constant = 32;
         self.titleLbl.hidden = YES;
     }else{
-        [self.backBtn setImage:IMAGE_NAMED(@"黑色返回") forState:UIControlStateNormal];
-        [self.moreBtn setImage:IMAGE_NAMED(@"黑色分享") forState:UIControlStateNormal];
+    [self.backBtn setImage:IMAGE_NAMED(@"A黑色返回") forState:UIControlStateNormal];
+    [self.moreBtn setImage:IMAGE_NAMED(@"E黑色分享") forState:UIControlStateNormal];
+        self.fanhuiWidth.constant = self.moreWidth.constant = 24;
+
         self.topView.backgroundColor = [KWhiteColor colorWithAlphaComponent:1];
         self.titleLbl.text = self.startDic[@"name"];
         self.titleLbl.hidden = NO;
@@ -229,6 +232,7 @@
 }
 -(void)initTableView{
     _contentHeight = 56;
+    self.fanhuiWidth.constant = self.moreWidth.constant = 32;
     self.dataArray = [[NSMutableArray alloc]init];
     self.collArray = [[NSMutableArray alloc]init];
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNanTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXZhiNanTableViewCell"];

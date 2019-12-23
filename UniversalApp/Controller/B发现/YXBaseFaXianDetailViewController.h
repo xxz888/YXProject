@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)deleFather_PingLun:(NSString *)tag;
 - (IBAction)clickPingLunAction:(id)sender;
 
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 @property (weak, nonatomic) IBOutlet UIButton *bottomZanBtn;
 @property (weak, nonatomic) IBOutlet UILabel *bottomZanCount;
 - (IBAction)backVCAction:(id)sender;

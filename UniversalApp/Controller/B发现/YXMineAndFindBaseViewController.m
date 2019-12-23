@@ -22,7 +22,7 @@
 #import "YXWenZhangEditorViewController.h"
 #import "YXFirstFindImageTableViewCell.h"
 
-static CGFloat sectionHeaderHeight = 200;
+static CGFloat sectionHeaderHeight = 290;
 @interface YXMineAndFindBaseViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,ZInputToolbarDelegate,UIScrollViewDelegate>{
     CGFloat _autoPLHeight;
     BOOL _tagSelectBool;
@@ -119,19 +119,15 @@ static CGFloat sectionHeaderHeight = 200;
         _headerTagView = [nib objectAtIndex:0];
         _headerTagView.frame = CGRectMake(0, 0, KScreenWidth, sectionHeaderHeight);
         _headerTagView.backgroundColor = KWhiteColor;
-        
-//        [_headerTagView setCellData:self.tagArray];
-        
-        _headerTagView.choujiangImg.userInteractionEnabled = YES;
-        //添加点击手势
-        UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction:)];
-        //点击几次后触发事件响应，默认为：1
-        click.numberOfTapsRequired = 1;
-        [_headerTagView.choujiangImg addGestureRecognizer:click];
+
         kWeakSelf(self);
         //查看更多
         _headerTagView.moretagblock = ^{
             YXHuaTiViewController * vc = [[YXHuaTiViewController alloc]init];
+            [weakself.navigationController pushViewController:vc animated:YES];
+        };
+        _headerTagView.choujiangblock = ^{
+            YXMineChouJiangViewController * vc = [[YXMineChouJiangViewController alloc]init];
             [weakself.navigationController pushViewController:vc animated:YES];
         };
         _headerTagView.clickCollectionItemBlock = ^(NSString * string) {
@@ -150,6 +146,7 @@ static CGFloat sectionHeaderHeight = 200;
                 }];
         };
     }
+
     return _headerTagView;
 }
 -(void)clickAction:(id)tap{
@@ -157,8 +154,7 @@ static CGFloat sectionHeaderHeight = 200;
              KPostNotification(KNotificationLoginStateChange, @NO);
              return;
     }
-    YXMineChouJiangViewController * vc = [[YXMineChouJiangViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return [self.startDic[@"id"] integerValue] == 2 ? sectionHeaderHeight : 0;

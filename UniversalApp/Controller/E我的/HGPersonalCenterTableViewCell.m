@@ -122,10 +122,8 @@
                  [self.picContainerView removeFromSuperview];
                  self.coverImv.hidden = self.playImv.hidden = YES;
                  self.picContainerView = [SDWeiXinPhotoContainerView new];
-                 self.picContainerView.sdWidth = KScreenWidth - 90 - 10 ;
-                 self.picContainerView.frame = CGRectMake(0, 0, self.cellMidView.qmui_width,
+                 self.picContainerView.frame = CGRectMake(0, 0, KScreenWidth - 90 - 10,
                                                         self.cellMidView.qmui_height);
-                 self.picContainerView.rowCount = 2;
                  [self.cellMidView addSubview:self.picContainerView];
                  NSMutableArray * newUrlList = [[NSMutableArray alloc]init];
                  if (urlList.count > 4) {

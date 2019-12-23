@@ -11,6 +11,17 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXDingZhiPingLunViewController : UIViewController
+- (IBAction)fabiaoAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *fabuTitle;
+@property (weak, nonatomic) IBOutlet UIView *starView;
+@property (weak, nonatomic) IBOutlet UILabel *starLbl;
+@property (weak, nonatomic) IBOutlet UIView *detailView;
+@property (weak, nonatomic) IBOutlet UIView *threeImgView;
+@property (weak, nonatomic) IBOutlet UITextField *xiaofeiTf;
+@property (weak, nonatomic) IBOutlet UIButton *nimingBtn;
+- (IBAction)nimingAction:(id)sender;
+
+
 
 @end
 

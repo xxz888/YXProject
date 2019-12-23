@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,7 +13,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MYU-Fr-ZbL">
-                    <rect key="frame" x="16" y="89" width="200" height="18.333333333333329"/>
+                    <rect key="frame" x="16" y="89" width="200" height="18.5"/>
                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
                     <color key="textColor" red="0.73333333333333328" green="0.73333333333333328" blue="0.73333333333333328" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -24,22 +22,22 @@
                     <rect key="frame" x="16" y="173" width="200" height="30"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JJn-gx-ZgR">
-                            <rect key="frame" x="0.0" y="0.0" width="66.666666666666671" height="30"/>
+                            <rect key="frame" x="0.0" y="0.0" width="66.5" height="30"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L90-3K-lk3">
-                                    <rect key="frame" x="0.0" y="0.0" width="66.666666666666671" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="66.5" height="30"/>
                                     <connections>
                                         <action selector="guanzhuAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="VnN-0p-80A"/>
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qM-cA-gqK">
-                                    <rect key="frame" x="0.0" y="4" width="8" height="22.333333333333332"/>
+                                    <rect key="frame" x="0.0" y="4" width="8" height="22.5"/>
                                     <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="19"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgC-zN-sZQ">
-                                    <rect key="frame" x="21" y="6" width="26.333333333333329" height="18.333333333333332"/>
+                                    <rect key="frame" x="21" y="6" width="26.5" height="18.5"/>
                                     <attributedString key="attributedText">
                                         <fragment content="关注">
                                             <attributes>
@@ -64,23 +62,23 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M9E-8H-k3u">
-                            <rect key="frame" x="66.666666666666657" y="0.0" width="66.666666666666657" height="30"/>
+                            <rect key="frame" x="66.5" y="0.0" width="67" height="30"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGh-vY-O4T">
-                                    <rect key="frame" x="0.0" y="0.0" width="66.666666666666671" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="67" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <connections>
                                         <action selector="fensiAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="qoa-gu-q8q"/>
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nye-zg-KaF">
-                                    <rect key="frame" x="0.0" y="4" width="8" height="22.333333333333332"/>
+                                    <rect key="frame" x="0.0" y="4" width="8" height="22.5"/>
                                     <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="19"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kPQ-5Z-OwD">
-                                    <rect key="frame" x="20" y="6" width="26.333333333333329" height="18.333333333333332"/>
+                                    <rect key="frame" x="20" y="6" width="26.5" height="18.5"/>
                                     <attributedString key="attributedText">
                                         <fragment content="粉丝">
                                             <attributes>
@@ -105,22 +103,22 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EDe-HN-8Ru">
-                            <rect key="frame" x="133.33333333333334" y="0.0" width="66.666666666666657" height="30"/>
+                            <rect key="frame" x="133.5" y="0.0" width="66.5" height="30"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Gh-SG-mFD">
-                                    <rect key="frame" x="0.0" y="0.0" width="66.666666666666671" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="66.5" height="30"/>
                                     <connections>
                                         <action selector="tieshuAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="shc-j5-Hk1"/>
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukU-fa-8my">
-                                    <rect key="frame" x="0.0" y="4" width="8" height="22.333333333333332"/>
+                                    <rect key="frame" x="0.0" y="4" width="8" height="22.5"/>
                                     <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="19"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UN2-QJ-GSE">
-                                    <rect key="frame" x="20" y="6" width="26.333333333333329" height="18.333333333333332"/>
+                                    <rect key="frame" x="20" y="6" width="26.5" height="18.5"/>
                                     <attributedString key="attributedText">
                                         <fragment content="积分">
                                             <attributes>
@@ -165,13 +163,13 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCE-cv-zCt">
-                                    <rect key="frame" x="0.0" y="4" width="8" height="22.333333333333332"/>
+                                    <rect key="frame" x="0.0" y="4" width="8" height="22.5"/>
                                     <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="19"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YiN-ij-jZy">
-                                    <rect key="frame" x="21" y="6" width="26.333333333333329" height="18.333333333333332"/>
+                                    <rect key="frame" x="21" y="6" width="26.5" height="18.5"/>
                                     <attributedString key="attributedText">
                                         <fragment content="关注">
                                             <attributes>
@@ -205,13 +203,13 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FkK-LW-VZ4">
-                                    <rect key="frame" x="0.0" y="4" width="8" height="22.333333333333332"/>
+                                    <rect key="frame" x="0.0" y="4" width="8" height="22.5"/>
                                     <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="19"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMX-hX-Idr">
-                                    <rect key="frame" x="21" y="6" width="26.333333333333329" height="18.333333333333332"/>
+                                    <rect key="frame" x="21" y="6" width="26.5" height="18.5"/>
                                     <attributedString key="attributedText">
                                         <fragment content="粉丝">
                                             <attributes>
@@ -243,7 +241,7 @@
                     </constraints>
                 </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sE9-Ps-Bqa">
-                    <rect key="frame" x="16" y="46" width="15.333333333333336" height="33"/>
+                    <rect key="frame" x="16" y="46" width="15.5" height="33"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="33" id="IoL-vR-sKx"/>
                     </constraints>
@@ -280,7 +278,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAV-ln-cp0">
-                    <rect key="frame" x="16" y="127.33333333333333" width="200" height="19.666666666666671"/>
+                    <rect key="frame" x="16" y="127.5" width="200" height="20"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <attributedString key="attributedText">
                         <fragment content="-">
@@ -375,7 +373,7 @@
                         <constraint firstAttribute="height" constant="24" id="GTI-CG-2W2"/>
                         <constraint firstAttribute="width" constant="24" id="kLO-jB-xmI"/>
                     </constraints>
-                    <state key="normal" image="minemore">
+                    <state key="normal" image="B白色竖向更多">
                         <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
@@ -389,7 +387,7 @@
                         <constraint firstAttribute="height" constant="30" id="Nee-ed-qDz"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="5.5" minY="5.5" maxX="5.5" maxY="5.5"/>
-                    <state key="normal" image="白色返回"/>
+                    <state key="normal" image="A白色返回"/>
                     <connections>
                         <action selector="backVCAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="mVg-ji-O1B"/>
                     </connections>
@@ -488,7 +486,7 @@
                 </view>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQR-H5-l4U">
                     <rect key="frame" x="301" y="-1" width="24" height="24"/>
-                    <state key="normal" image="聊天白色"/>
+                    <state key="normal" image="C聊天白色"/>
                     <connections>
                         <action selector="liaoTianAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="XWG-se-SBe"/>
                     </connections>
@@ -571,10 +569,10 @@
         </view>
     </objects>
     <resources>
+        <image name="A白色返回" width="16" height="16"/>
+        <image name="B白色竖向更多" width="16" height="16"/>
+        <image name="C聊天白色" width="16" height="16"/>
         <image name="minejifenshangcheng" width="63" height="60"/>
-        <image name="minemore" width="44" height="44"/>
         <image name="mineshezhi" width="44" height="44"/>
-        <image name="白色返回" width="44" height="44"/>
-        <image name="聊天白色" width="66" height="60"/>
     </resources>
 </document>

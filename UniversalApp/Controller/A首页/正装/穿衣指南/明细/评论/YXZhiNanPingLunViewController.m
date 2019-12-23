@@ -55,6 +55,12 @@
 -(void)initAllControl{
     [super initAllControl];
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.dataArray.count == 0) {
+        return KScreenHeight - kTopHeight - 50 - TabBarHeight;
+    }
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
 #pragma mark ========== 获取晒图评论列表 ==========
 -(void)requestNewList{
     kWeakSelf(self);

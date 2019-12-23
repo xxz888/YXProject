@@ -65,16 +65,16 @@
         if ([kGetString(urlList[0]) containsString:@"mp4"]) {
             midViewHeight = cellVideoHeight;
         }else{
-          CGFloat oneH =  (KScreenWidth - 34 - 20) / 3 ;
+            CGFloat width = KScreenWidth - 34;
+            CGFloat oneH =  (width - Other_Image_space) / 3;
           if (urlList.count == 1 || urlList.count == 2) {
-              midViewHeight = (KScreenWidth - 34 - 10) / 2;
+              midViewHeight =  (width - Two_Image_space)/ 2 ;
           }else if (urlList.count == 3){
               return oneH;
-          }
-          else if(urlList.count == 4 || urlList.count == 5 || urlList.count == 6){
-              midViewHeight = oneH * 2 + 10;
+          }else if(urlList.count == 4 || urlList.count == 5 || urlList.count == 6){
+              midViewHeight = oneH * 2 + Other_Image_space;
           }else{
-              midViewHeight = oneH * 3 + 20;
+              midViewHeight = oneH * 3 + Other_Image_space*2;
           }
         }
     }else{
@@ -148,9 +148,7 @@
                 self.onlyOneImv.hidden = YES;
                 self.picContainerView.hidden = NO;
                 self.picContainerView = [SDWeiXinPhotoContainerView new];
-                self.picContainerView.sdWidth = KScreenWidth - 34 - 20 ;
-                self.picContainerView.frame = CGRectMake(0, 0, self.midView.qmui_width,self.midView.qmui_height);
-                self.picContainerView.rowCount = urlList.count;
+                self.picContainerView.frame = CGRectMake(0, 0, KScreenWidth - 34,self.midViewHeight.constant);
                 self.picContainerView.picPathStringsArray = urlList;
                 [self.midView addSubview:self.picContainerView];
 
@@ -172,7 +170,7 @@
         if (![string contains:IMG_URI]) { string = [IMG_URI append:string]; }
         [self.onlyOneImv sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         self.onlyOneImv.userInteractionEnabled = NO;
-  //下边这句话不能删除，改变样式的
+        //下边这句话不能删除，改变样式的
          [ShareManager setAllContentAttributed:cellSpace inLabel:self.detailLbl font:BOLDSYSTEMFONT(18)];
          self.detailLbl.font =  BOLDSYSTEMFONT(18);
          self.detailLbl.textColor = kRGBA(176, 151, 99, 1);

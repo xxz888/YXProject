@@ -96,7 +96,8 @@
         itemH = itemW;
 //    }
     long perRowItemCount = [self perRowItemCountForPicPathArray:_picPathStringsArray];
-    CGFloat margin = _rowCount == 2 ? 10:5;
+    //如果为两张图的话，间隔为10，其余为5
+    CGFloat margin = _picPathStringsArray.count == 2 ? Two_Image_space : Other_Image_space;
     
     [_picPathStringsArray enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         long columnIndex = idx % perRowItemCount;
@@ -139,13 +140,18 @@
     browser.delegate = self;
     [browser show];
 }
-
+//单张图片的宽度
 - (CGFloat)itemWidthForPicPathArray:(NSArray *)array{
-    if (self.rowCount == 1 || self.rowCount == 2) { return  self.sdWidth/2;}
-    else{return self.sdWidth/3;}
+    if(self.picPathStringsArray.count == 1 || self.picPathStringsArray.count == 2){
+        return  (self.width_sd - Two_Image_space)/2 ;
+    //3张图片以上的图片，为view的三分之一，减去两个间隔
+    }else{
+        return  (self.width_sd - Other_Image_space*2)/3 ;
+    }
 }
+//一行显示几张图片
 - (NSInteger)perRowItemCountForPicPathArray:(NSArray *)array{
-    return self.rowCount == 2 ? 2 : 3;
+    return self.picPathStringsArray.count == 2 ? 2 : 3;
 }
 
 

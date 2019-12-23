@@ -187,23 +187,32 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if ([scrollView isEqual: self.yxTableView] && [self.startDic[@"obj"] integerValue] == 2) {
-         CGFloat detailHeight = [ShareManager inTextOutHeight:self.startDic[@"title"] lineSpace:9 fontSize:24];
-         CGFloat needHeight = detailHeight + coverHeight + 10 + 50;
-            if (self.yxTableView.contentOffset.y > needHeight ) {
-                    self.coustomNavView.backgroundColor = KWhiteColor;
-                    [self.backBtn setImage:IMAGE_NAMED(@"黑色返回") forState:UIControlStateNormal];
-                    [self.shareBtn setImage:IMAGE_NAMED(@"更多") forState:UIControlStateNormal];
-                    self.guanzhuBtn.hidden = self.titleImg.hidden = self.titleName.hidden = self.titleTime.hidden = NO;
-                    self.cell.guanzhuBtn.hidden = YES;
-            }
-            else{
-                    self.coustomNavView.backgroundColor = KClearColor;
-                    [self.backBtn setImage:IMAGE_NAMED(@"huisebeijingfanhui") forState:UIControlStateNormal];
-                    [self.shareBtn setImage:IMAGE_NAMED(@"huisebeijinggengduo") forState:UIControlStateNormal];
-                    self.guanzhuBtn.hidden = self.titleImg.hidden = self.titleName.hidden = self.titleTime.hidden = YES;
-                    self.cell.guanzhuBtn.hidden = NO;
-            }
+    if ([scrollView isEqual: self.yxTableView]) {
+        CGFloat detailHeight = [ShareManager inTextOutHeight:self.startDic[@"title"] lineSpace:9 fontSize:24];
+        CGFloat needHeight = 0;
+        if ([self.startDic[@"obj"] integerValue] == 2) {
+            needHeight = detailHeight + coverHeight + 10 + 50;
+        }else{
+            needHeight = 50;
+        }
+        if (self.yxTableView.contentOffset.y > needHeight ) {
+            self.coustomNavView.backgroundColor = KWhiteColor;
+            [self.backBtn setImage:IMAGE_NAMED(@"A黑色返回") forState:UIControlStateNormal];
+            [self.shareBtn setImage:IMAGE_NAMED(@"B黑色横向更多") forState:UIControlStateNormal];
+            self.guanzhuBtn.hidden = self.titleImg.hidden = self.titleName.hidden = self.titleTime.hidden = NO;
+            self.cell.guanzhuBtn.hidden = YES;
+        }else{
+           self.coustomNavView.backgroundColor = KClearColor;
+           if ([self.startDic[@"obj"] integerValue] == 2) {
+               [self.backBtn setImage:IMAGE_NAMED(@"A黑色背景返回") forState:UIControlStateNormal];
+               [self.shareBtn setImage:IMAGE_NAMED(@"B黑色背景横向更多") forState:UIControlStateNormal];
+           }else{
+               [self.backBtn setImage:IMAGE_NAMED(@"A黑色返回") forState:UIControlStateNormal];
+               [self.shareBtn setImage:IMAGE_NAMED(@"B黑色横向更多") forState:UIControlStateNormal];
+           }
+            self.guanzhuBtn.hidden = self.titleImg.hidden = self.titleName.hidden = self.titleTime.hidden = YES;
+            self.cell.guanzhuBtn.hidden = NO;
+        }
     }
 }
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
@@ -213,11 +222,11 @@
 -(void)setHeaderView{
     //初始化赋值
     if ([self.startDic[@"obj"] integerValue] == 2) {
-        [self.backBtn setImage:IMAGE_NAMED(@"huisebeijingfanhui") forState:UIControlStateNormal];
-        [self.shareBtn setImage:IMAGE_NAMED(@"huisebeijinggengduo") forState:UIControlStateNormal];
+        [self.backBtn setImage:IMAGE_NAMED(@"A黑色背景返回") forState:UIControlStateNormal];
+        [self.shareBtn setImage:IMAGE_NAMED(@"B黑色背景横向更多") forState:UIControlStateNormal];
     }else{
-        [self.backBtn setImage:IMAGE_NAMED(@"黑色返回") forState:UIControlStateNormal];
-        [self.shareBtn setImage:IMAGE_NAMED(@"更多") forState:UIControlStateNormal];
+        [self.backBtn setImage:IMAGE_NAMED(@"A黑色返回") forState:UIControlStateNormal];
+        [self.shareBtn setImage:IMAGE_NAMED(@"B黑色横向更多") forState:UIControlStateNormal];
     }
     self.guanzhuBtn.hidden = YES;
     self.cell.guanzhuBtn.hidden = NO;
@@ -260,7 +269,7 @@
     //晒图
     if ([self.startDic[@"obj"] integerValue] == 1) {
 
-        self.cell.topTopHeight.constant = 70;//头像的view距离封面图和文章lable的距离，要留出黑色返回的高度，所以高一点
+        self.cell.topTopHeight.constant = 70;//头像的view距离封面图和文章lable的距离，要留出A黑色返回的高度，所以高一点
         self.cell.wenzhangDetailLbl.hidden = YES;//晒图进来，隐藏文章的deatil的label
         self.cell.wenzhangDetailHeight.constant = 0;//晒图进来，设置文章的的label为0
         [QMUITips hideAllTipsInView:self.view];

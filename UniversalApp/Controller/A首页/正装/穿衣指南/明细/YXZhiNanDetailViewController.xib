@@ -59,7 +59,7 @@
                                                 <action selector="bottomAction:" destination="-1" eventType="touchUpInside" id="rhv-Nq-HWr"/>
                                             </connections>
                                         </button>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dingzhifenxiang" translatesAutoresizingMaskIntoConstraints="NO" id="LAa-BZ-7eO">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="E黑色分享" translatesAutoresizingMaskIntoConstraints="NO" id="LAa-BZ-7eO">
                                             <rect key="frame" x="13" y="13.5" width="22" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="22" id="FjH-QE-uyl"/>
@@ -90,7 +90,7 @@
                                                 <action selector="bottomAction:" destination="-1" eventType="touchUpInside" id="bBn-B1-9kg"/>
                                             </connections>
                                         </button>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhinanpinglun" translatesAutoresizingMaskIntoConstraints="NO" id="EY4-S3-4cG">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="D黑色评论" translatesAutoresizingMaskIntoConstraints="NO" id="EY4-S3-4cG">
                                             <rect key="frame" x="13" y="13.5" width="22" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="22" id="48i-v2-omu"/>
@@ -136,7 +136,7 @@
                                                 <action selector="bottomAction:" destination="-1" eventType="touchUpInside" id="8Rb-Hj-Qmk"/>
                                             </connections>
                                         </button>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="收藏未选择" translatesAutoresizingMaskIntoConstraints="NO" id="pHq-YR-8LX">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="G收藏未选择" translatesAutoresizingMaskIntoConstraints="NO" id="pHq-YR-8LX">
                                             <rect key="frame" x="13" y="13.5" width="22" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="22" id="ssn-jm-WeW"/>
@@ -238,9 +238,9 @@
         </view>
     </objects>
     <resources>
-        <image name="dingzhifenxiang" width="66" height="66"/>
+        <image name="D黑色评论" width="66" height="66"/>
+        <image name="E黑色分享" width="66" height="66"/>
+        <image name="G收藏未选择" width="66" height="66"/>
         <image name="zhinanbi" width="54" height="54"/>
-        <image name="zhinanpinglun" width="66" height="69"/>
-        <image name="收藏未选择" width="66" height="66"/>
     </resources>
 </document>

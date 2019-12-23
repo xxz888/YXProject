@@ -391,10 +391,10 @@ static CGFloat textFieldH = 40;
         NSInteger lastValue = 0;
         if ([model.praise isEqualToString:@"1"]) {
             lastValue = [likeString integerValue] - 1;
-            [cell.zanButton setBackgroundImage:[UIImage imageNamed:@"未赞"] forState:UIControlStateNormal];
+            [cell.zanButton setBackgroundImage:[UIImage imageNamed:@"F黑色未点赞"] forState:UIControlStateNormal];
         }else{
             lastValue = [likeString integerValue] + 1;
-            [cell.zanButton setBackgroundImage:[UIImage imageNamed:@"已赞"] forState:UIControlStateNormal];
+            [cell.zanButton setBackgroundImage:[UIImage imageNamed:@"F蓝色已点赞"] forState:UIControlStateNormal];
         }
         cell.commentView.likeLabel.text = [NSString stringWithFormat:@"%ld",lastValue];
         

@@ -61,7 +61,7 @@
     self.collBtn.tag = [dic[@"id"] integerValue];
     if ([userManager loadUserInfo]) {
         self.is_collect = [dic[@"is_collect"] integerValue] == 1;
-        UIImage * likeImage = self.is_collect ? [UIImage imageNamed:@"收藏2"] : [UIImage imageNamed:@"收藏1"] ;
+        UIImage * likeImage = self.is_collect ? [UIImage imageNamed:@"G收藏白色未选择"] : [UIImage imageNamed:@"G收藏未选择"] ;
         self.shoucangImage.image = likeImage;
         
         UIColor * color1 = self.is_collect ? SEGMENT_COLOR: KWhiteColor;
@@ -97,7 +97,7 @@
     kWeakSelf(self);
     NSString * tagId = NSIntegerToNSString(sender.tag);
     [YXPLUS_MANAGER requestCollect_optionGet:[@"3/" append:tagId] success:^(id object) {
-        UIImage * likeImage = weakself.is_collect ? [UIImage imageNamed:@"收藏1"] : [UIImage imageNamed:@"收藏2"] ;
+        UIImage * likeImage = weakself.is_collect ? [UIImage imageNamed:@"G收藏未选择"] : [UIImage imageNamed:@"G收藏白色未选择"] ;
         UIColor * color1 =    weakself.is_collect ? KWhiteColor : YXRGBAColor(10, 36, 54);
         UIColor * color2 =    weakself.is_collect ? KDarkGaryColor           : KWhiteColor;
         self.collVIew.backgroundColor = color1;

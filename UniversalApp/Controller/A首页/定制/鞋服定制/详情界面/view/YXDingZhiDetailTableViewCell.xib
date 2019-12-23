@@ -116,7 +116,7 @@
                                                     <constraint firstAttribute="width" constant="22" id="3S6-f5-71s"/>
                                                     <constraint firstAttribute="height" constant="21" id="MKc-rF-iHY"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="未赞"/>
+                                                <state key="normal" backgroundImage="F黑色未点赞"/>
                                                 <connections>
                                                     <action selector="zanAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hkm-Ib-cvI"/>
                                                 </connections>
@@ -149,7 +149,7 @@
                                                     <constraint firstAttribute="height" constant="22" id="4BQ-DP-n5x"/>
                                                     <constraint firstAttribute="width" constant="22" id="ffL-gJ-3Zl"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="讨论"/>
+                                                <state key="normal" backgroundImage="D黑色评论"/>
                                                 <connections>
                                                     <action selector="talkAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="iBP-Or-SGv"/>
                                                 </connections>
@@ -230,12 +230,12 @@
                 <outlet property="zanBtn" destination="iHb-oy-e1c" id="9Pg-UK-ijd"/>
                 <outlet property="zanCount" destination="TD4-tj-mMe" id="lLD-VP-fYM"/>
             </connections>
-            <point key="canvasLocation" x="-704" y="105"/>
+            <point key="canvasLocation" x="-970" y="102"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="D黑色评论" width="66" height="66"/>
+        <image name="F黑色未点赞" width="16" height="16"/>
         <image name="dz1_1" width="324" height="282"/>
-        <image name="未赞" width="66" height="66"/>
-        <image name="讨论" width="66" height="66"/>
     </resources>
 </document>

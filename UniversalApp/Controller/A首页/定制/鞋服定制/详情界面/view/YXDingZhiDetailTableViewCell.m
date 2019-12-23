@@ -51,6 +51,6 @@
     
 }
 - (IBAction)talkAction:(id)sender {
-    
+    self.talkblock();
 }
 @end

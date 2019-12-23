@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YXDingZhiDetailViewController">
             <connections>
+                <outlet property="collImv" destination="AbC-Se-2zO" id="ONH-B8-Rvh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="yxTableView" destination="zhu-Y3-EY7" id="2Z5-DP-nuW"/>
             </connections>
@@ -35,26 +36,29 @@
                                 <constraint firstAttribute="width" constant="22" id="f3q-Af-UMz"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <state key="normal" image="黑色返回"/>
+                            <state key="normal" image="A黑色返回"/>
                             <connections>
                                 <action selector="backVcAction:" destination="-1" eventType="touchUpInside" id="iZl-Yj-hiH"/>
                             </connections>
                         </button>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="wJ1-9v-Wdj">
-                            <rect key="frame" x="273" y="0.0" width="125" height="44"/>
+                            <rect key="frame" x="298" y="0.0" width="100" height="44"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fht-AM-va9">
-                                    <rect key="frame" x="0.0" y="0.0" width="41.5" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
                                     <subviews>
                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ymu-QY-dMm">
-                                            <rect key="frame" x="0.0" y="0.0" width="41.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <state key="normal">
                                                 <color key="titleColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             </state>
+                                            <connections>
+                                                <action selector="collAction:" destination="-1" eventType="touchUpInside" id="SMu-sx-Eed"/>
+                                            </connections>
                                         </button>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="收藏未选择" translatesAutoresizingMaskIntoConstraints="NO" id="AbC-Se-2zO">
-                                            <rect key="frame" x="10" y="11" width="22" height="22"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="G收藏未选择" translatesAutoresizingMaskIntoConstraints="NO" id="AbC-Se-2zO">
+                                            <rect key="frame" x="14" y="11" width="22" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="22" id="Cmf-IC-6MC"/>
                                                 <constraint firstAttribute="width" constant="22" id="pht-ER-nIk"/>
@@ -72,17 +76,20 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ewq-tG-YCc">
-                                    <rect key="frame" x="41.5" y="0.0" width="42" height="44"/>
+                                    <rect key="frame" x="50" y="0.0" width="50" height="44"/>
                                     <subviews>
                                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jkC-rE-Mui">
-                                            <rect key="frame" x="0.0" y="0.0" width="42" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <state key="normal">
                                                 <color key="titleColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             </state>
+                                            <connections>
+                                                <action selector="shareAction:" destination="-1" eventType="touchUpInside" id="Y1v-K2-ijc"/>
+                                            </connections>
                                         </button>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dingzhifenxiang" translatesAutoresizingMaskIntoConstraints="NO" id="ugG-aT-S0b">
-                                            <rect key="frame" x="10" y="11" width="22" height="22"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="E黑色分享" translatesAutoresizingMaskIntoConstraints="NO" id="ugG-aT-S0b">
+                                            <rect key="frame" x="14" y="11" width="22" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="22" id="FCC-wd-5FV"/>
                                                 <constraint firstAttribute="width" constant="22" id="Rea-s1-KcR"/>
@@ -99,18 +106,21 @@
                                         <constraint firstItem="jkC-rE-Mui" firstAttribute="top" secondItem="ewq-tG-YCc" secondAttribute="top" id="aOZ-MW-DRa"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zrz-oh-gr9">
-                                    <rect key="frame" x="83.5" y="0.0" width="41.5" height="44"/>
+                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zrz-oh-gr9">
+                                    <rect key="frame" x="100" y="0.0" width="0.0" height="44"/>
                                     <subviews>
                                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AmS-zo-jHv">
-                                            <rect key="frame" x="0.0" y="0.0" width="41.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <state key="normal">
                                                 <color key="titleColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             </state>
+                                            <connections>
+                                                <action selector="moreAction:" destination="-1" eventType="touchUpInside" id="AuJ-2b-oqy"/>
+                                            </connections>
                                         </button>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="更多" translatesAutoresizingMaskIntoConstraints="NO" id="Z9F-u7-kbO">
-                                            <rect key="frame" x="9.5" y="11" width="22" height="22"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="B黑色背景横向更多" translatesAutoresizingMaskIntoConstraints="NO" id="Z9F-u7-kbO">
+                                            <rect key="frame" x="-11" y="11" width="22" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="22" id="NOr-eU-zdk"/>
                                                 <constraint firstAttribute="height" constant="22" id="VHF-BC-YrU"/>
@@ -129,7 +139,7 @@
                                 </view>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="width" constant="125" id="VIm-6U-zmM"/>
+                                <constraint firstAttribute="width" constant="100" id="VIm-6U-zmM"/>
                                 <constraint firstAttribute="height" constant="44" id="n7g-UB-baq"/>
                             </constraints>
                         </stackView>
@@ -177,6 +187,9 @@
                                     <integer key="value" value="22"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="telAction:" destination="-1" eventType="touchUpInside" id="xS7-vl-fFJ"/>
+                            </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFo-xu-D1m">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="8"/>
@@ -212,13 +225,13 @@
                 <constraint firstItem="LDB-Jk-yWz" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="sXJ-eA-uu2"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="131.8840579710145" y="132.58928571428572"/>
+            <point key="canvasLocation" x="-235" y="133"/>
         </view>
     </objects>
     <resources>
-        <image name="dingzhifenxiang" width="66" height="66"/>
-        <image name="收藏未选择" width="66" height="66"/>
-        <image name="更多" width="64" height="64"/>
-        <image name="黑色返回" width="44" height="44"/>
+        <image name="A黑色返回" width="16" height="16"/>
+        <image name="B黑色背景横向更多" width="16" height="16"/>
+        <image name="E黑色分享" width="16" height="16"/>
+        <image name="G收藏未选择" width="16" height="16"/>
     </resources>
 </document>

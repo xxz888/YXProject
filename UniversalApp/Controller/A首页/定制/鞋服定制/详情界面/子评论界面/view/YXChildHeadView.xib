@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="YXChildHeadView">
+            <rect key="frame" x="0.0" y="0.0" width="374" height="105"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OPx-UF-rhi">
+                    <rect key="frame" x="16" y="15" width="342" height="36"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dz1_1" translatesAutoresizingMaskIntoConstraints="NO" id="lEe-0h-Cbj">
+                            <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="2cI-Kh-CZU"/>
+                                <constraint firstAttribute="width" constant="36" id="ZUb-Cj-gss"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="18"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="匿名用户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfN-4O-sqf">
+                            <rect key="frame" x="44" y="0.0" width="49.5" height="12"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="12" id="QE2-e4-C4U"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10分钟" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBg-vb-vyi">
+                            <rect key="frame" x="44" y="24" width="32" height="12"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="12" id="GOb-8S-eBm"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <color key="textColor" red="0.73333333329999995" green="0.73333333329999995" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jb5-Yl-Glf">
+                            <rect key="frame" x="326" y="10" width="16" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="16" id="b7Q-G9-R3b"/>
+                                <constraint firstAttribute="height" constant="16" id="vWL-Pf-ha4"/>
+                            </constraints>
+                            <state key="normal" image="F黑色未点赞"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="dBg-vb-vyi" firstAttribute="bottom" secondItem="lEe-0h-Cbj" secondAttribute="bottom" id="92U-rU-vgA"/>
+                        <constraint firstItem="CfN-4O-sqf" firstAttribute="top" secondItem="lEe-0h-Cbj" secondAttribute="top" id="AU2-gd-pq0"/>
+                        <constraint firstAttribute="height" constant="36" id="J9h-0B-sgg"/>
+                        <constraint firstItem="dBg-vb-vyi" firstAttribute="leading" secondItem="CfN-4O-sqf" secondAttribute="leading" id="KFM-ZM-uWO"/>
+                        <constraint firstAttribute="trailing" secondItem="Jb5-Yl-Glf" secondAttribute="trailing" id="M7f-LQ-y7M"/>
+                        <constraint firstItem="lEe-0h-Cbj" firstAttribute="leading" secondItem="OPx-UF-rhi" secondAttribute="leading" id="UZH-do-QYl"/>
+                        <constraint firstAttribute="bottom" secondItem="lEe-0h-Cbj" secondAttribute="bottom" id="f0q-FD-Zje"/>
+                        <constraint firstItem="CfN-4O-sqf" firstAttribute="leading" secondItem="lEe-0h-Cbj" secondAttribute="trailing" constant="8" id="lJg-Ai-mh4"/>
+                        <constraint firstItem="Jb5-Yl-Glf" firstAttribute="centerY" secondItem="OPx-UF-rhi" secondAttribute="centerY" id="nMF-W5-BPh"/>
+                        <constraint firstItem="lEe-0h-Cbj" firstAttribute="top" secondItem="OPx-UF-rhi" secondAttribute="top" id="r3a-U4-Qus"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="与祖国同行，看濠江盛景。即将迎来回归祖国20周年纪念日的澳门，一路欢歌，生机勃发。澳门回归祖国20年来，开创了历史上最好的发展局面。事实充分证明，“一国两制”是完全行得通、办得到、得人心的！" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rY1-6R-6L2">
+                    <rect key="frame" x="60" y="61" width="298" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="P4U-0Y-IMD"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="OPx-UF-rhi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="6p1-4i-B0n"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="OPx-UF-rhi" secondAttribute="trailing" constant="16" id="Eez-Fp-jUd"/>
+                <constraint firstItem="OPx-UF-rhi" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="MWa-r4-YQd"/>
+                <constraint firstItem="rY1-6R-6L2" firstAttribute="trailing" secondItem="OPx-UF-rhi" secondAttribute="trailing" id="QFQ-bm-wO3"/>
+                <constraint firstItem="rY1-6R-6L2" firstAttribute="top" secondItem="OPx-UF-rhi" secondAttribute="bottom" constant="10" id="UYf-cN-9Yt"/>
+                <constraint firstItem="rY1-6R-6L2" firstAttribute="leading" secondItem="dBg-vb-vyi" secondAttribute="leading" id="Vaw-Sb-gTJ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="105.79710144927537" y="-123.54910714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="F黑色未点赞" width="16" height="16"/>
+        <image name="dz1_1" width="324" height="282"/>
+    </resources>
+</document>

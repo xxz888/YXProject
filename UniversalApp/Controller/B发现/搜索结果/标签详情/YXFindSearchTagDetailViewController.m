@@ -53,7 +53,7 @@
     
      
         BOOL is_collect = [self.headerViewStartDic[@"is_collect"] integerValue] == 1;
-        UIImage * likeImage = is_collect ? [UIImage imageNamed:@"收藏2"] : [UIImage imageNamed:@"收藏1"] ;
+        UIImage * likeImage = is_collect ? [UIImage imageNamed:@"G收藏白色未选择"] : [UIImage imageNamed:@"G收藏未选择"] ;
         _headerView.shoucangImage.image = likeImage;
 
         UIColor * backColor = is_collect ? SEGMENT_COLOR: KWhiteColor;
@@ -104,7 +104,7 @@
 //         [YXPLUS_MANAGER requestUserIsShouCangGet:tagRequest success:^(id object) {
 //
 //             BOOL is_collect = [weakself.headerViewStartDic[@"is_collect"] integerValue] == 1;
-//             UIImage * likeImage = is_collect ? [UIImage imageNamed:@"收藏1"] : [UIImage imageNamed:@"收藏2"] ;
+//             UIImage * likeImage = is_collect ? [UIImage imageNamed:@"G收藏未选择"] : [UIImage imageNamed:@"G收藏白色未选择"] ;
 //             weakself.headerView.shoucangImage.image = likeImage;
 //
 //             UIColor * backColor = is_collect ? KWhiteColor  : SEGMENT_COLOR;

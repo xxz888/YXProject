@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^ClickCollectionItemBlock)(NSString *);
 typedef void(^MoreTagBlock)();
+typedef void(^ChouJiangBlock)();
 
 @interface YXSecondHeadView : UIView <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic,strong) NSMutableArray * dataArray;
@@ -18,6 +19,7 @@ typedef void(^MoreTagBlock)();
 @property (nonatomic,copy) ClickCollectionItemBlock clickCollectionItemBlock;
 -(void)setCellData:(NSMutableArray *)startDataArray;
 @property (nonatomic,copy) MoreTagBlock moretagblock;
+@property (nonatomic,copy) ChouJiangBlock choujiangblock;
 
 
 @property (weak, nonatomic) IBOutlet UIButton *btn1;

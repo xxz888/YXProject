@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,7 +11,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YXZhiNanViewController">
             <connections>
                 <outlet property="backBtn" destination="peF-8H-32I" id="Mbj-fC-NEU"/>
+                <outlet property="fanhuiWidth" destination="1vu-ha-PA7" id="n5g-hd-GzI"/>
                 <outlet property="moreBtn" destination="Nf3-3E-O3O" id="iOe-xZ-ju6"/>
+                <outlet property="moreWidth" destination="TaQ-w8-vWH" id="a8V-2o-LPD"/>
                 <outlet property="titleLbl" destination="p3n-cr-rCv" id="VGa-IW-Dmb"/>
                 <outlet property="topView" destination="qpi-jB-8sK" id="51O-zq-V1K"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -35,30 +37,30 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="peF-8H-32I">
-                            <rect key="frame" x="16" y="45" width="22" height="22"/>
+                            <rect key="frame" x="16" y="45" width="32" height="32"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="22" id="1vu-ha-PA7"/>
-                                <constraint firstAttribute="height" constant="22" id="dk6-Gh-OO5"/>
+                                <constraint firstAttribute="width" constant="32" id="1vu-ha-PA7"/>
+                                <constraint firstAttribute="width" secondItem="peF-8H-32I" secondAttribute="height" multiplier="1:1" id="a9W-RP-8qS"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <state key="normal" image="白色返回"/>
+                            <state key="normal" image="A黑色背景返回"/>
                             <connections>
                                 <action selector="backAction:" destination="-1" eventType="touchUpInside" id="LUl-W3-sOj"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nf3-3E-O3O">
-                            <rect key="frame" x="379" y="46" width="20" height="20"/>
+                            <rect key="frame" x="367" y="45" width="32" height="32"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="20" id="TaQ-w8-vWH"/>
-                                <constraint firstAttribute="height" constant="20" id="eZi-Zw-81z"/>
+                                <constraint firstAttribute="width" secondItem="Nf3-3E-O3O" secondAttribute="height" multiplier="1:1" id="3G0-D8-RCu"/>
+                                <constraint firstAttribute="width" constant="32" id="TaQ-w8-vWH"/>
                             </constraints>
-                            <state key="normal" backgroundImage="homeshare"/>
+                            <state key="normal" image="B黑色背景横向更多"/>
                             <connections>
                                 <action selector="moreShare" destination="-1" eventType="touchUpInside" id="awO-s4-fPF"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p3n-cr-rCv">
-                            <rect key="frame" x="207" y="56" width="0.0" height="0.0"/>
+                            <rect key="frame" x="207" y="61" width="0.0" height="0.0"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -89,11 +91,11 @@
                 <constraint firstItem="yI3-WC-Ixr" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="yQa-41-JGh"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="89.855072463768124" y="59.598214285714285"/>
+            <point key="canvasLocation" x="170" y="-42"/>
         </view>
     </objects>
     <resources>
-        <image name="homeshare" width="40" height="40"/>
-        <image name="白色返回" width="44" height="44"/>
+        <image name="A黑色背景返回" width="96" height="96"/>
+        <image name="B黑色背景横向更多" width="96" height="96"/>
     </resources>
 </document>

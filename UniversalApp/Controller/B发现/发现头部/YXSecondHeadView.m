@@ -11,8 +11,18 @@
 @implementation YXSecondHeadView
 
 - (void)drawRect:(CGRect)rect {
+    UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction:)];
+    self.choujiangImg.userInteractionEnabled = YES;
+    [self.choujiangImg addGestureRecognizer:click];
 }
 
+-(void)clickAction:(id)tap{
+    if (![userManager loadUserInfo]) {
+         KPostNotification(KNotificationLoginStateChange, @NO);
+         return;
+    }
+    self.choujiangblock();
+}
 - (IBAction)moreAction:(id)sender {
     self.moretagblock();
 }

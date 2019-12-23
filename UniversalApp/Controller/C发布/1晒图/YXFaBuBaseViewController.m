@@ -71,6 +71,7 @@ static const CGFloat kPhotoViewMargin = 0;
 #pragma -----------------上传完图片和视频的回调方法-----------------
 - (void)photoView:(HXPhotoView *)photoView changeComplete:(NSArray<HXPhotoModel *> *)allList photos:(NSArray<HXPhotoModel *> *)photos videos:(NSArray<HXPhotoModel *> *)videos original:(BOOL)isOriginal {
     NSSLog(@"所有:%ld - 照片:%ld - 视频:%ld",allList.count,photos.count,videos.count);
+    return;
     if (allList.count > 0) {
         //判断是不是编辑或者草稿进来的
         kWeakSelf(self);
@@ -116,7 +117,7 @@ static const CGFloat kPhotoViewMargin = 0;
 - (void)photoView:(HXPhotoView *)photoView updateFrame:(CGRect)frame{
     NSSLog(@"%@",NSStringFromCGRect(frame));
     self.scrollViewFaBu.contentSize = CGSizeMake(KScreenWidth-32, CGRectGetMaxY(frame) + kPhotoViewMargin);
-    self.threeViewHeight.constant = frame.size.height < 100 ? 100 : 150;
+    self.threeViewHeight.constant = CGRectGetMaxY(frame) + kPhotoViewMargin;
     [self.scrollViewFaBu setSize:CGSizeMake(KScreenWidth-32,self.threeViewHeight.constant)];
 
 }
@@ -256,7 +257,7 @@ static const CGFloat kPhotoViewMargin = 0;
     CGFloat width = KScreenWidth-32;
     HXPhotoView *photoView = [HXPhotoView photoManager:self.manager];
     photoView.frame = CGRectMake(kPhotoViewMargin, kPhotoViewMargin, width - kPhotoViewMargin * 2, 0);
-    photoView.lineCount = 5;
+    photoView.lineCount = 4;
     photoView.delegate = self;
     photoView.spacing = 5;
     photoView.backgroundColor = [UIColor whiteColor];

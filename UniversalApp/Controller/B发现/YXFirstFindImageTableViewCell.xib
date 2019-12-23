@@ -46,7 +46,7 @@
                                     <action selector="guanzhuAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="f8x-ET-R6f"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="更多" translatesAutoresizingMaskIntoConstraints="NO" id="zbf-C6-pso">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="B黑色横向更多" translatesAutoresizingMaskIntoConstraints="NO" id="zbf-C6-pso">
                                 <rect key="frame" x="251" y="20" width="20" height="20"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TA-4C-OU6">
@@ -154,7 +154,7 @@
                                                     <constraint firstAttribute="width" constant="22" id="0w3-4B-KLD"/>
                                                     <constraint firstAttribute="height" constant="22" id="V2U-EL-IrS"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="faxianfenxiang"/>
+                                                <state key="normal" backgroundImage="E黑色分享"/>
                                                 <connections>
                                                     <action selector="zanTalkAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="2dX-8a-RVw"/>
                                                 </connections>
@@ -175,7 +175,7 @@
                                                     <constraint firstAttribute="width" constant="22" id="VY0-BR-zH9"/>
                                                     <constraint firstAttribute="height" constant="22" id="hTk-LM-9lM"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="讨论"/>
+                                                <state key="normal" backgroundImage="D黑色评论"/>
                                                 <connections>
                                                     <action selector="zanTalkAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7K6-zV-QbM"/>
                                                 </connections>
@@ -203,12 +203,12 @@
                                         <rect key="frame" x="110.5" y="0.0" width="55.5" height="25"/>
                                         <subviews>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgH-D4-vSm">
-                                                <rect key="frame" x="17" y="2" width="22" height="21"/>
+                                                <rect key="frame" x="17" y="1.5" width="22" height="22"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="22" id="eB8-c7-W5v"/>
-                                                    <constraint firstAttribute="height" constant="21" id="ha7-3n-DW8"/>
+                                                    <constraint firstAttribute="height" constant="22" id="ha7-3n-DW8"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="未赞"/>
+                                                <state key="normal" backgroundImage="F黑色未点赞"/>
                                                 <connections>
                                                     <action selector="zanTalkAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xiG-mA-Lcg"/>
                                                 </connections>
@@ -367,10 +367,10 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="faxianfenxiang" width="66" height="66"/>
+        <image name="B黑色横向更多" width="64" height="64"/>
+        <image name="D黑色评论" width="66" height="66"/>
+        <image name="E黑色分享" width="66" height="66"/>
+        <image name="F黑色未点赞" width="63" height="63"/>
         <image name="play" width="144" height="144"/>
-        <image name="更多" width="64" height="64"/>
-        <image name="未赞" width="66" height="66"/>
-        <image name="讨论" width="66" height="66"/>
     </resources>
 </document>

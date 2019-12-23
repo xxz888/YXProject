@@ -24,7 +24,7 @@
                         <constraint firstAttribute="height" constant="32" id="sgq-Cv-dks"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <state key="normal" image="huisebeijingfanhui"/>
+                    <state key="normal" image="A黑色背景返回"/>
                     <connections>
                         <action selector="backVcAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="j16-Xx-D0S"/>
                     </connections>
@@ -35,7 +35,7 @@
                         <constraint firstAttribute="width" constant="32" id="HoY-zJ-fsk"/>
                         <constraint firstAttribute="height" constant="32" id="u1l-kB-uxg"/>
                     </constraints>
-                    <state key="normal" backgroundImage="huisebeijinggengduo"/>
+                    <state key="normal" backgroundImage="B黑色背景横向更多"/>
                     <connections>
                         <action selector="fenxiangAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="ZcB-gK-4Wt"/>
                     </connections>
@@ -76,7 +76,7 @@
                                 <action selector="shoucangAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="nGG-H8-kiu"/>
                             </connections>
                         </button>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="收藏1" translatesAutoresizingMaskIntoConstraints="NO" id="Yhq-Dv-iG3">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="G收藏未选择" translatesAutoresizingMaskIntoConstraints="NO" id="Yhq-Dv-iG3">
                             <rect key="frame" x="12" y="6" width="14" height="14"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="14" id="51l-DU-9Hd"/>
@@ -146,8 +146,8 @@
         </view>
     </objects>
     <resources>
-        <image name="huisebeijingfanhui" width="96" height="96"/>
-        <image name="huisebeijinggengduo" width="96" height="96"/>
-        <image name="收藏1" width="64" height="64"/>
+        <image name="A黑色背景返回" width="96" height="96"/>
+        <image name="B黑色背景横向更多" width="96" height="96"/>
+        <image name="G收藏未选择" width="16" height="16"/>
     </resources>
 </document>

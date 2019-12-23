@@ -57,7 +57,7 @@
                                                                 <constraint firstAttribute="height" constant="22" id="udb-kV-IJb"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                            <state key="normal" image="黑色返回"/>
+                                                            <state key="normal" image="A黑色返回"/>
                                                             <connections>
                                                                 <action selector="backVcAction:" destination="qpw-r6-3AN" eventType="touchUpInside" id="JA4-aF-4D6"/>
                                                             </connections>
@@ -833,7 +833,7 @@
                                                         <constraint firstAttribute="height" constant="22" id="TPd-6Y-bad"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <state key="normal" image="白色返回"/>
+                                                    <state key="normal" image="A白色返回"/>
                                                     <connections>
                                                         <action selector="backVcAction:" destination="t8M-9d-kH0" eventType="touchUpInside" id="M1B-g2-Y3w"/>
                                                     </connections>
@@ -1147,10 +1147,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="A白色返回" width="44" height="44"/>
+        <image name="A黑色返回" width="44" height="44"/>
         <image name="rightacc" width="44" height="44"/>
         <image name="yaoqingzhanwei" width="66" height="84"/>
-        <image name="白色返回" width="44" height="44"/>
         <image name="解锁海量文章" width="375" height="361"/>
-        <image name="黑色返回" width="44" height="44"/>
     </resources>
 </document>

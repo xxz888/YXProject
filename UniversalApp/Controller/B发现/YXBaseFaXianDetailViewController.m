@@ -42,6 +42,7 @@
     if (self.dataArray.count == 0) {
         UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
         cell.userInteractionEnabled = NO;
+        self.noView.center = cell.contentView.center;
         [cell.contentView addSubview:self.noView];
         return cell;
     }else{
