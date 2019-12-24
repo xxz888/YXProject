@@ -71,7 +71,6 @@ static const CGFloat kPhotoViewMargin = 0;
 #pragma -----------------上传完图片和视频的回调方法-----------------
 - (void)photoView:(HXPhotoView *)photoView changeComplete:(NSArray<HXPhotoModel *> *)allList photos:(NSArray<HXPhotoModel *> *)photos videos:(NSArray<HXPhotoModel *> *)videos original:(BOOL)isOriginal {
     NSSLog(@"所有:%ld - 照片:%ld - 视频:%ld",allList.count,photos.count,videos.count);
-    return;
     if (allList.count > 0) {
         //判断是不是编辑或者草稿进来的
         kWeakSelf(self);

@@ -9,12 +9,12 @@
 #import "RootViewController.h"
 #import "HGSegmentedPageViewController.h"
 #import "LZMenuButton.h"
-
 NS_ASSUME_NONNULL_BEGIN
-
+typedef void(^returnSecondVCBlock)(void);
 @interface YXSecondViewController : RootViewController
 @property (nonatomic, strong) HGSegmentedPageViewController *segmentedPageViewController;
 @property (nonatomic,strong)LZMenuButton *menuBtn;
+@property (nonatomic) BOOL isMineVcCome;//如果从我的界面进来，就要弹出发布界面
 @end
 
 NS_ASSUME_NONNULL_END

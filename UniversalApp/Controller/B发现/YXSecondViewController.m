@@ -14,6 +14,7 @@
 #import "PYSearchViewController.h"
 #import "YXFaBuBaseViewController.h"
 #import "YXWenZhangEditorViewController.h"
+
 @interface YXSecondViewController ()<PYSearchViewControllerDelegate,UIGestureRecognizerDelegate,lzMenuDelegate>
 @property(nonatomic,strong)NSMutableArray * dataArray;
 @property(nonatomic,strong)NSMutableArray * typeArray;
@@ -29,7 +30,9 @@
     self.navigationController.navigationBar.hidden = YES;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-
+    if (self.isMineVcCome) {
+        [self.menuBtn showMenu:nil];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated{

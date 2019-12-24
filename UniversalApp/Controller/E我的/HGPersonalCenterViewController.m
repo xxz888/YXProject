@@ -34,7 +34,7 @@
 #import "YXZhiNanViewController.h"
 #import "HGPersonal1TableViewCell.h"
 #import "BaseAlertController.h"
-
+#import "YXSecondViewController.h"
 #define user_id_BOOL self.userId && ![self.userId isEqualToString:@""]
 #import "YXFirstFindImageTableViewCell.h"
 #import "LZMenuButton.h"
@@ -1092,6 +1092,9 @@ _Pragma("clang diagnostic pop") \
 -(void)clickAction:(id)click{
 //    [self addButton];
     self.navigationController.tabBarController.selectedIndex = 1;
+    RootNavigationController * rootNav = self.navigationController.tabBarController.childViewControllers[1];
+    YXSecondViewController * second = rootNav.viewControllers[0];
+    second.isMineVcCome = YES;
 }
 - (void)addButton{
     

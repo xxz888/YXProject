@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "HGBaseViewController.h"
+
+typedef void(^returnSecondVCBlock)(void);
+
 @interface HGPersonalCenterViewController : RootViewController
 @property (nonatomic, assign) NSUInteger selectedIndex;
 @property (nonatomic, assign) BOOL isEnlarge;
+@property (nonatomic,copy) returnSecondVCBlock returnsecondVCBlock;
 
 @property (nonatomic,assign) BOOL whereCome;// NO为自己  YES为其他人
 @property (nonatomic,copy) NSString * userId;
