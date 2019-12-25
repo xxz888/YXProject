@@ -63,6 +63,9 @@
     [super footerRereshing];
     [self requestTableData];
 }
+- (void)loginStateChange:(NSNotification *)notification{
+    [self requestTableData];
+}
 #pragma mark ========== 2222222-在请求具体tag下的请求,获取发现页标签数据全部接口 ==========
 -(void)requestTableData{
     kWeakSelf(self);

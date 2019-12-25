@@ -30,10 +30,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ttb-73-JfZ">
-                            <rect key="frame" x="16" y="11" width="22" height="22"/>
+                            <rect key="frame" x="16" y="6" width="32" height="32"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="22" id="Ncd-ch-4is"/>
-                                <constraint firstAttribute="width" constant="22" id="f3q-Af-UMz"/>
+                                <constraint firstAttribute="height" constant="32" id="Ncd-ch-4is"/>
+                                <constraint firstAttribute="width" constant="32" id="f3q-Af-UMz"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <state key="normal" image="A黑色返回"/>
@@ -173,7 +173,7 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="waF-Pb-RdC">
                             <rect key="frame" x="16" y="28" width="382" height="44"/>
-                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" red="0.062745098039215685" green="0.13725490196078433" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="KVS-Ss-CaM"/>
                             </constraints>
@@ -229,9 +229,9 @@
         </view>
     </objects>
     <resources>
-        <image name="A黑色返回" width="16" height="16"/>
-        <image name="B黑色背景横向更多" width="16" height="16"/>
-        <image name="E黑色分享" width="16" height="16"/>
-        <image name="G收藏未选择" width="16" height="16"/>
+        <image name="A黑色返回" width="96" height="96"/>
+        <image name="B黑色背景横向更多" width="96" height="96"/>
+        <image name="E黑色分享" width="66" height="66"/>
+        <image name="G收藏未选择" width="66" height="66"/>
     </resources>
 </document>

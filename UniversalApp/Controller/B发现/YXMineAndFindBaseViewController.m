@@ -47,6 +47,9 @@ static CGFloat sectionHeaderHeight = 290;
     self.tagArray  = [[NSMutableArray alloc]init];;
     [self requestFindTag];
 }
+- (void)loginStateChange:(NSNotification *)notification{
+
+}
 #pragma mark ========== 先请求tag列表,获取发现页标签数据 ==========
 -(void)requestFindTag{
     kWeakSelf(self);

@@ -45,16 +45,16 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加商户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3XN-8y-pGW">
-                                                            <rect key="frame" x="170.5" y="37" width="73" height="26"/>
+                                                            <rect key="frame" x="170.5" y="32" width="73" height="26"/>
                                                             <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="18"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDO-Tf-s7f">
-                                                            <rect key="frame" x="16" y="39" width="22" height="22"/>
+                                                            <rect key="frame" x="16" y="29" width="32" height="32"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="22" id="OQS-ZL-EQ7"/>
-                                                                <constraint firstAttribute="height" constant="22" id="udb-kV-IJb"/>
+                                                                <constraint firstAttribute="width" constant="32" id="OQS-ZL-EQ7"/>
+                                                                <constraint firstAttribute="height" constant="32" id="udb-kV-IJb"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <state key="normal" image="A黑色返回"/>
@@ -1148,7 +1148,7 @@
     </scenes>
     <resources>
         <image name="A白色返回" width="44" height="44"/>
-        <image name="A黑色返回" width="44" height="44"/>
+        <image name="A黑色返回" width="96" height="96"/>
         <image name="rightacc" width="44" height="44"/>
         <image name="yaoqingzhanwei" width="66" height="84"/>
         <image name="解锁海量文章" width="375" height="361"/>

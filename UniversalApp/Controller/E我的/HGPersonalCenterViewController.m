@@ -118,6 +118,12 @@ _Pragma("clang diagnostic pop") \
     [super footerRereshing];
     [self requestTableData];
 }
+- (void)loginStateChange:(NSNotification *)notification{
+    _selectIndexBool = YES;
+     [self setViewData];
+     [self requestTableData];
+
+}
 -(void)requestMyCollectionListGet{
     [QMUITips showLoadingInView:kAppWindow];
     kWeakSelf(self);
@@ -167,12 +173,6 @@ _Pragma("clang diagnostic pop") \
         [weakself setViewData];
 
     }];
-}
-- (void)loginStateChange:(NSNotification *)notification{
-    BOOL loginSuccess = [notification.object boolValue];
-    if (loginSuccess) {
-        [self setViewData];
-    }
 }
 #pragma mark ========== 点击菜单按钮的方法 ==========
 - (void)handleShowContentView {
@@ -423,7 +423,7 @@ _Pragma("clang diagnostic pop") \
             return 120;
         }else{
             NSDictionary * dic = self.dataArray[indexPath.row];
-            return [YXFirstFindImageTableViewCell cellDefaultHeight:dic];
+            return [HGPersonalCenterTableViewCell cellDefaultHeight:dic];
         }
     }else{
         return [HGPersonalCenterTableViewCell cellDefaultHeight:self.dataArray[indexPath.row]];

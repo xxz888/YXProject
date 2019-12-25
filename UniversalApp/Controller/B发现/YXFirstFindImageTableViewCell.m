@@ -68,7 +68,7 @@
             CGFloat width = KScreenWidth - 34;
             CGFloat oneH =  (width - Other_Image_space) / 3;
           if (urlList.count == 1 || urlList.count == 2) {
-              midViewHeight =  (width - Two_Image_space)/ 2 ;
+              midViewHeight =  (width - Other_Image_space)/ 2 ;
           }else if (urlList.count == 3){
               return oneH;
           }else if(urlList.count == 4 || urlList.count == 5 || urlList.count == 6){

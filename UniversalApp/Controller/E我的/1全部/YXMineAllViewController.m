@@ -78,6 +78,9 @@
     }
     YX_MANAGER.isNeedRefrshMineVc = NO;
 }
+- (void)loginStateChange:(NSNotification *)notification{
+     [self requestTableData];
+}
 #pragma mark ========== 我自己的所有 ==========
 -(void)requestMine_AllList{
 //    kWeakSelf(self);

@@ -32,5 +32,5 @@
 @interface SDWeiXinPhotoContainerView : UIView
 
 @property (nonatomic, strong) NSArray *picPathStringsArray;
-
+@property(nonatomic)BOOL isMineCome;//yes发现 no我的
 @end

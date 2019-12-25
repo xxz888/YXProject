@@ -80,6 +80,7 @@ static const CGFloat kPhotoViewMargin = 0;
                [self.toolManager writeSelectModelListToTempPathWithList:videos requestType:0 success:^(NSArray<NSURL *> *allURL, NSArray<NSURL *> *photoURL, NSArray<NSURL *> *videoURL) {
                      //上传七牛云视频
                      [QiniuLoad uploadVideoToQNFilePath:videoURL[0] success:^(NSString *reslut) {
+                         [weakself.photoImageList removeAllObjects];
                          [weakself.photoImageList addObject:reslut];
                      } failure:^(NSString *error) {[QMUITips hideAllTips];}];
                        //上传完视频，再上传封面图片
@@ -100,9 +101,9 @@ static const CGFloat kPhotoViewMargin = 0;
                      //上传七牛云图片
                      [QiniuLoad uploadImageToQNFilePath:imageList success:^(NSString *reslut) {
                           [QMUITips hideAllTips];
-                          [weakself.photoImageList removeAllObjects];
                           NSMutableArray * qiniuArray = [NSMutableArray arrayWithArray:[reslut split:@";"]];
                           if (qiniuArray.count > 0) {
+                            [weakself.photoImageList removeAllObjects];
                             [weakself.photoImageList addObjectsFromArray:qiniuArray];
                           }
                       } failure:^(NSString *error) {[QMUITips hideAllTips];}];

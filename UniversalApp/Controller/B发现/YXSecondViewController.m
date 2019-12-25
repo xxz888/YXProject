@@ -31,7 +31,8 @@
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     if (self.isMineVcCome) {
-        [self.menuBtn showMenu:nil];
+        self.menuBtn.hidden = NO;
+        [self.menuBtn handleTap:nil];
     }
 }
 

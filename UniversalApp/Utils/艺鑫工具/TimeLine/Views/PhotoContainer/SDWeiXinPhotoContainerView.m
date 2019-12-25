@@ -97,7 +97,7 @@
 //    }
     long perRowItemCount = [self perRowItemCountForPicPathArray:_picPathStringsArray];
     //如果为两张图的话，间隔为10，其余为5
-    CGFloat margin = _picPathStringsArray.count == 2 ? Two_Image_space : Other_Image_space;
+    CGFloat margin = Other_Image_space;
     
     [_picPathStringsArray enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         long columnIndex = idx % perRowItemCount;
@@ -110,11 +110,12 @@
         [imageView sd_setImageWithURL:[NSURL URLWithString:obj] placeholderImage:[UIImage imageNamed:@"img_moren"]];
         imageView.frame = CGRectMake(columnIndex * (itemW + margin), rowIndex * (itemH + margin), itemW, itemH);
         if (_picPathStringsArray.count == 4) {
-            if (idx == 2) {
-                imageView.frame = CGRectMake(0 * (itemW + margin), 1 * (itemH + margin), itemW, itemH);
-            }else if (idx == 3){
-                imageView.frame = CGRectMake(1 * (itemW + margin), 1 * (itemH + margin), itemW, itemH);
-            }
+          //发现界面
+             if (idx == 2) {
+                 imageView.frame = CGRectMake(0 * (itemW + margin), 1 * (itemH + margin), itemW, itemH);
+             }else if (idx == 3){
+                 imageView.frame = CGRectMake(1 * (itemW + margin), 1 * (itemH + margin), itemW, itemH);
+             }
         }
     }];
     
@@ -142,12 +143,23 @@
 }
 //单张图片的宽度
 - (CGFloat)itemWidthForPicPathArray:(NSArray *)array{
-    if(self.picPathStringsArray.count == 1 || self.picPathStringsArray.count == 2){
-        return  (self.width_sd - Two_Image_space)/2 ;
-    //3张图片以上的图片，为view的三分之一，减去两个间隔
+    if (self.isMineCome) {
+        if(self.picPathStringsArray.count == 1 || self.picPathStringsArray.count == 2 ){
+            return  (self.width_sd - Other_Image_space)/2 ;
+        }else if (self.picPathStringsArray.count == 3){
+            return  (self.width_sd - Other_Image_space*2)/3 ;
+        }else{
+            return  (self.width_sd - Other_Image_space)/2 ;
+        }
     }else{
-        return  (self.width_sd - Other_Image_space*2)/3 ;
+        if(self.picPathStringsArray.count == 1 || self.picPathStringsArray.count == 2){
+            return  (self.width_sd - Other_Image_space)/2 ;
+        //3张图片以上的图片，为view的三分之一，减去两个间隔
+        }else{
+            return  (self.width_sd - Other_Image_space*2)/3 ;
+        }
     }
+
 }
 //一行显示几张图片
 - (NSInteger)perRowItemCountForPicPathArray:(NSArray *)array{

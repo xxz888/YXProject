@@ -80,6 +80,10 @@
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+- (void)loginStateChange:(NSNotification *)notification{
+    [self requestZhiNan1Get];
+
+}
 -(void)headerRereshing{
     [super headerRereshing];
     [self requestZhiNan1Get];

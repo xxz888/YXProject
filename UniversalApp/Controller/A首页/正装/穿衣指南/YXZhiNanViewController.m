@@ -33,13 +33,16 @@
         self.fanhuiWidth.constant = self.moreWidth.constant = 32;
         self.titleLbl.hidden = YES;
     }else{
-    [self.backBtn setImage:IMAGE_NAMED(@"A黑色返回") forState:UIControlStateNormal];
-    [self.moreBtn setImage:IMAGE_NAMED(@"E黑色分享") forState:UIControlStateNormal];
-        self.fanhuiWidth.constant = self.moreWidth.constant = 24;
+
+
+        [self.backBtn setImage:IMAGE_NAMED(@"A黑色返回") forState:UIControlStateNormal];
+        [self.moreBtn setImage:IMAGE_NAMED(@"B黑色横向更多") forState:UIControlStateNormal];
+        self.fanhuiWidth.constant = self.moreWidth.constant = 32;
 
         self.topView.backgroundColor = [KWhiteColor colorWithAlphaComponent:1];
         self.titleLbl.text = self.startDic[@"name"];
         self.titleLbl.hidden = NO;
+
     }
 }
 

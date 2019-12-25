@@ -67,11 +67,14 @@
         if ([kGetString(urlList[0]) containsString:@"mp4"]) {
             midViewHeight = cellVideoHeight;
         }else{
-          CGFloat oneH =  (KScreenWidth - 90 - 10 ) / 2 ;
-          if (urlList.count == 1 || urlList.count == 2) {
-              midViewHeight = oneH;
+            CGFloat width = KScreenWidth - 90;
+            CGFloat oneH =   (width - Other_Image_space) / 2;
+          if (urlList.count == 1 || urlList.count == 2 ) {
+              midViewHeight =  (width - Other_Image_space) / 2 ;
+          }else if(urlList.count == 3){
+              midViewHeight =  (width - Other_Image_space*2) / 3 ;
           }else{
-              midViewHeight = oneH * 2 + 10;
+              midViewHeight = oneH * 2 + Other_Image_space;
           }
         }
     }else{
@@ -108,7 +111,7 @@
            self.cellContentLbl.text = [NSString stringWithFormat:@"%@",dic[@"detail"]];
            NSArray * urlList = dic[@"url_list"];
            //这里判断晒图是图还是视频
-           if ([kGetString(urlList[0]) containsString:@"mp4"]) {
+           if ([kGetString(urlList[0]) containsString:@" mp4"]) {
                self.picContainerView.frame = CGRectMake(0, 0, 0,0);
                [self.picContainerView removeFromSuperview];
                self.coverImv.hidden = self.playImv.hidden = NO;
@@ -122,6 +125,7 @@
                  [self.picContainerView removeFromSuperview];
                  self.coverImv.hidden = self.playImv.hidden = YES;
                  self.picContainerView = [SDWeiXinPhotoContainerView new];
+                 self.picContainerView.isMineCome = YES;
                  self.picContainerView.frame = CGRectMake(0, 0, KScreenWidth - 90 - 10,
                                                         self.cellMidView.qmui_height);
                  [self.cellMidView addSubview:self.picContainerView];

@@ -70,7 +70,9 @@
     self.isEnable = [self isUserNotificationEnable];
     [self requestWeiDuMessage];
 }
-
+- (void)loginStateChange:(NSNotification *)notification{
+    [self requestWeiDuMessage];
+}
 //未读信息的处理
 -(void)requestWeiDuMessage{
     kWeakSelf(self);

@@ -20,7 +20,6 @@
 #define UNZAN_IMG_DARK [UIImage imageNamed:@"pinglunweizan"]
 
 #define REFRESH_NO_DATA @"没有更多数据"
-#define Two_Image_space   10
 #define Other_Image_space 5
 
 

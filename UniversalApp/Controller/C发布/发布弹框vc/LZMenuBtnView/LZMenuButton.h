@@ -34,8 +34,7 @@
 @property (nonatomic, assign)  BOOL isMenuVisible;
 @property (nonatomic, strong)  UITableView *menuTable;
 @property (nonatomic, strong)  UIView *buttonView;
--(void) showMenu:(id)sender;
-
+-(void)handleTap:(id)sender;
 //frame 坐标  passiveImage未展开的图片 activeImage 展开后的图片 scrView底部视图用于控制滑动页面时悬浮按钮是不是还在 effect背景毛玻璃效果处理图片  w展开后小图片的宽
 -(id)initWithFrame:(CGRect)frame normalImage:(UIImage*)passiveImage andPressedImage:(UIImage*)activeImage withScrollview:(UIScrollView*)scrView effectImage:(UIImage *)effect menuWidth:(CGFloat)w;
 
