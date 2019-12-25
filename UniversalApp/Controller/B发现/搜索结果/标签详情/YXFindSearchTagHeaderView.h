@@ -25,6 +25,7 @@ typedef void(^clickSegment)(NSInteger);
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *shoucangWidth;
 
+@property (weak, nonatomic) IBOutlet UIImageView *midImv;
 
 typedef void(^shoucangBlock)(NSInteger);
 - (IBAction)shoucangAction:(UIButton *)sender;

@@ -12,6 +12,18 @@
 
 
 - (void)drawRect:(CGRect)rect {
+    //创建毛玻璃效果
+    UIBlurEffect * blur = [UIBlurEffect effectWithStyle:3];
+    //创建毛玻璃视图
+    UIVisualEffectView * visualView = [[UIVisualEffectView alloc] initWithEffect:blur];
+    visualView.alpha = 0.8f;
+    visualView.frame = self.titleImageView.bounds;
+    //添加到imageView上
+    [self.titleImageView addSubview:visualView];
+    
+    
+    
+    
     if (![userManager loadUserInfo]) {
         self.shoucangView.hidden = YES;
     }else{

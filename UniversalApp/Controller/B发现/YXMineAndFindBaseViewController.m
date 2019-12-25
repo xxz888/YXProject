@@ -134,6 +134,8 @@ static CGFloat sectionHeaderHeight = 290;
             [weakself.navigationController pushViewController:vc animated:YES];
         };
         _headerTagView.clickCollectionItemBlock = ^(NSString * string) {
+            string = [string replaceAll:@"#" target:@""];
+            string = [weakself removeSpaceAndNewline:string];
                 [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":string,@"page":@"1",@"type":@"3"} success:^(id object) {
                     if ([object count] > 0) {
                         YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
@@ -152,6 +154,14 @@ static CGFloat sectionHeaderHeight = 290;
 
     return _headerTagView;
 }
+- (NSString *)removeSpaceAndNewline:(NSString *)str{
+   
+    NSString *temp = [str stringByReplacingOccurrencesOfString:@" " withString:@""];
+    temp = [temp stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+    temp = [temp stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    return temp;
+}
+
 -(void)clickAction:(id)tap{
     if (![userManager loadUserInfo]) {
              KPostNotification(KNotificationLoginStateChange, @NO);

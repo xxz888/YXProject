@@ -11,7 +11,7 @@
 #import "HXPhotoPicker.h"
 #import "SDWebImageManager.h"
 static const CGFloat kPhotoViewMargin = 0;
-@interface YXFaBuBaseViewController ()<UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,HXPhotoViewDelegate>{
+@interface YXFaBuBaseViewController ()< UIAlertViewDelegate,UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,HXPhotoViewDelegate>{
     UIImageView * _selectImageView;
     UIImage * zhanweiImage;
     NSMutableArray *_selectedAssets;
@@ -145,7 +145,9 @@ static const CGFloat kPhotoViewMargin = 0;
     //类型
     self.fabuType = NO;
 }
+
 -(void)commonAction:(NSMutableArray *)imgArray btn:(UIButton *)btn{
+    kWeakSelf(self);
     NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
     self.textViewInput = self.qmuiTextView.text;
     if (imgArray.count == 0) {
@@ -173,26 +175,35 @@ static const CGFloat kPhotoViewMargin = 0;
 //publish_site 地点
     NSString * publish_site = [self.locationString isEqualToString:@"获取地理位置"] ? @"" : self.locationString;
     [dic setValue:publish_site forKey:@"publish_site"];
-    kWeakSelf(self);
         //这里区别寸草稿还是发布
         if (btn.tag == 301) {
-            NSDictionary * userInfo = userManager.loadUserAllInfo;
-            NSString * userId = kGetString(userInfo[@"id"]);
-            NSString * key = [NSString stringWithFormat:@"%@%@",userId,[ShareManager getNowTimeTimestamp3]];
-            JQFMDB *db = [JQFMDB shareDatabase];
-            YXShaiTuModel * model = [[YXShaiTuModel alloc]init];
-            [model setValuesForKeysWithDictionary:dic];
-             model.coustomId =  key;
-            [db jq_inDatabase:^{
-                [db jq_insertTable:YX_USER_FaBuCaoGao dicOrModel:model];
-            }];
-            if (weakself.model.coustomId && ![weakself.model.coustomId isEqualToString:@""]) {
-                JQFMDB *db = [JQFMDB shareDatabase];
-                NSString * sql = [@"WHERE coustomId = " append:kGetString(weakself.model.coustomId)];
-                [db jq_deleteTable:YX_USER_FaBuCaoGao whereFormat:sql];
-            }
-            [QMUITips showSucceed:@"存草稿成功"];
-            [weakself closeViewAAA];
+            kWeakSelf(self);
+             UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+             }];
+             UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+             NSDictionary * userInfo = userManager.loadUserAllInfo;
+             NSString * userId = kGetString(userInfo[@"id"]);
+             NSString * key = [NSString stringWithFormat:@"%@%@",userId,[ShareManager getNowTimeTimestamp3]];
+             JQFMDB *db = [JQFMDB shareDatabase];
+             YXShaiTuModel * model = [[YXShaiTuModel alloc]init];
+             [model setValuesForKeysWithDictionary:dic];
+              model.coustomId =  key;
+             [db jq_inDatabase:^{
+                 [db jq_insertTable:YX_USER_FaBuCaoGao dicOrModel:model];
+             }];
+             if (weakself.model.coustomId && ![weakself.model.coustomId isEqualToString:@""]) {
+                 JQFMDB *db = [JQFMDB shareDatabase];
+                 NSString * sql = [@"WHERE coustomId = " append:kGetString(weakself.model.coustomId)];
+                 [db jq_deleteTable:YX_USER_FaBuCaoGao whereFormat:sql];
+             }
+             [QMUITips showSucceed:@"存草稿成功"];
+             [weakself closeViewAAA];
+             }];
+             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"是否保存到草稿?" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+             [alertController addAction:action3];
+             [alertController addAction:action2];
+             [self presentViewController:alertController animated:YES completion:NULL];
+            
         }else{
             [weakself requestFabu:dic];
         }

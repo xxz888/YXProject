@@ -71,11 +71,19 @@
     if ([self.headerViewStartDic[@"photo"] length] > 0) {
         photo = self.headerViewStartDic[@"photo"];
     }else {
-        if ([self.startDic[@"url_list"] count] > 0) { photo = self.startDic[@"url_list"][0];}
-        if ([self.startDic[@"cover"] length] > 0)   { photo = self.startDic[@"cover"];}
+        if ([self.startDic[@"url_list"] count] > 0) {
+            photo = self.startDic[@"url_list"][0];
+        }
+        if ([self.startDic[@"cover"] length] > 0 && photo.length == 0)   {
+            photo = self.startDic[@"cover"];
+        }
     }
+ 
     
+    
+      [_headerView.midImv sd_setImageWithURL:[NSURL URLWithString:[WP_TOOL_ShareManager addImgURL:photo]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
     [_headerView.titleImageView sd_setImageWithURL:[NSURL URLWithString:[WP_TOOL_ShareManager addImgURL:photo]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+
     kWeakSelf(self);
     _headerView.backvcblock = ^{
         [weakself.navigationController popViewControllerAnimated:YES];

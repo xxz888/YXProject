@@ -96,7 +96,7 @@
               if ([object count] > 0) {
                   YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
                   VC.type = @"3";
-                  VC.key = object[0][@"tag"];
+                  VC.key = string;
                   VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
                   VC.startArray = [NSArray arrayWithArray:object];
                   [weakself.navigationController pushViewController:VC animated:YES];

@@ -261,11 +261,11 @@
     NSMutableArray * items = [[NSMutableArray alloc] init];
     NSInteger i = 0;
     for (NSString * imageName in imageNames) {
-        UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+        UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 32, 32)];
 
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-        btn.frame = CGRectMake(0, 4, 22, 22);
+        btn.frame = CGRectMake(0, 0, 32, 32);
         [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:btn];
         if (isLeft) {
