@@ -33,6 +33,7 @@
     if (self.isMineVcCome) {
         self.menuBtn.hidden = NO;
         [self.menuBtn handleTap:nil];
+        self.isMineVcCome = NO;
     }
 }
 

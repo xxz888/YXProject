@@ -31,8 +31,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-   
+//    self.view.backgroundColor = [UIColor whiteColor];
+    self.tableView.backgroundColor = COLOR_F5F5F5;
 //    if (IS_IPhoneX) {
 //        self.navHeight.constant = 84;
 //    }

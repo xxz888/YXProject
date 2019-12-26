@@ -101,7 +101,7 @@
          }
         
         
-        NSString * tagRequest = [weakself.key concate:@"#"] ? [weakself.key split:@"#"][1] : weakself.key;
+        NSString * tagRequest = [weakself.key contains:@"#"] ? [weakself.key split:@"#"][1] : weakself.key;
         [YXPLUS_MANAGER requestUserShouCangPOST:@{@"obj":@"3",@"target_id":@"",@"photo":photo,@"tag":tagRequest} success:^(id object) {
                     [weakself requestIsCollection];
 

@@ -33,6 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavSearchView];
+    self.searchHeaderView.findTextField.placeholder = @"话题、关键字";
     [self setUI];
     [self requestFindTag];
     [self requestGetTagLIst:self.selectRow];
@@ -43,6 +44,7 @@
     [self addRefreshView:self.rightTableView];
       self.leftArray = [[NSMutableArray alloc]init];
       self.rightArray = [[NSMutableArray alloc]init];
+    self.isShowLiftBack = NO;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -52,7 +54,7 @@
     return tableView.tag==1001?self.leftArray.count:self.rightArray.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return tableView.tag==1001?50:45;
+    return tableView.tag==1001?50:78;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -61,14 +63,16 @@
         NSDictionary * leftDic = self.leftArray[indexPath.row];
         leftCell.titleLbl.text = leftDic[@"type"];
         //字体颜色和背景色
-        leftCell.titleLbl.textColor = [self.selectRow integerValue] == [leftDic[@"id"] integerValue]? KWhiteColor : kRGBA(153, 153, 153, 1);
-        leftCell.titleLbl.backgroundColor = [self.selectRow integerValue] == [leftDic[@"id"] integerValue] ? SEGMENT_COLOR : KWhiteColor;
+        leftCell.titleLbl.textColor = [self.selectRow integerValue] == [leftDic[@"id"] integerValue]? COLOR_333333 : COLOR_999999;
+        leftCell.backgroundColor = [self.selectRow integerValue] == [leftDic[@"id"] integerValue] ? KWhiteColor:COLOR_F5F5F5;
+//        leftCell.titleLbl.backgroundColor = [self.selectRow integerValue] == [leftDic[@"id"] integerValue] ? SEGMENT_COLOR : KWhiteColor;
+        leftCell.titleLbl.font = [self.selectRow integerValue] == [leftDic[@"id"] integerValue]? BOLDSYSTEMFONT(14.0f) : SYSTEMFONT(14.0f);
         return leftCell;
     }else{
         YXHuaTiRightTableViewCell * rightCell = [tableView dequeueReusableCellWithIdentifier:@"YXHuaTiRightTableViewCell" forIndexPath:indexPath];
         NSDictionary * rightDic = self.rightArray[indexPath.row];
         rightCell.titleLbl.text = rightDic[@"tag"];
-
+        rightCell.countLbl.text = [kGetString(rightDic[@"sum"]) append:@"帖子"];
         return rightCell;
 
     }
@@ -89,23 +93,30 @@
         [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
         [self requestGetTagLIst:self.selectRow];
     }else{
-          kWeakSelf(self);
         NSString * string = self.rightArray[indexPath.row][@"tag"];
-        if ([string contains:@"#"]) {string = [string split:@"#"][1];}
-          [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":string,@"page":@"1",@"type":@"3"} success:^(id object) {
-              if ([object count] > 0) {
-                  YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
-                  VC.type = @"3";
-                  VC.key = string;
-                  VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
-                  VC.startArray = [NSArray arrayWithArray:object];
-                  [weakself.navigationController pushViewController:VC animated:YES];
-              }else{
-                  [QMUITips showInfo:@"无此标签的信息"];
-              }
-          }];
+        [self searchTagInfo:string];
     }
 
+}
+-(void)searchTagInfo:(NSString *)string{
+    kWeakSelf(self);
+    if ([string contains:@"#"]) {string = [string split:@"#"][1];}
+         [YX_MANAGER  requestSearchFind_all:@{@"key":string,@"key_unicode":string,@"page":@"1",@"type":@"3"} success:^(id object) {
+             if ([object count] > 0) {
+                 YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
+                 VC.type = @"3";
+                 VC.key = string;
+                 VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
+                 VC.startArray = [NSArray arrayWithArray:object];
+                 [weakself.navigationController pushViewController:VC animated:YES];
+             }else{
+                 [QMUITips showInfo:@"无此标签的信息"];
+             }
+         }];
+}
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self searchTagInfo:textField.text];
+    return YES;
 }
 -(void)headerRereshing{
     [super headerRereshing];

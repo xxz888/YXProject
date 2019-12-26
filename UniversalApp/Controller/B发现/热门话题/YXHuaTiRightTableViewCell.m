@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.titleLbl.font = SYSTEMFONT(16.0);
+//    self.titleLbl.font = SYSTEMFONT(16.0);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

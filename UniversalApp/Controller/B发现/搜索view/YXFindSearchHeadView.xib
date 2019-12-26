@@ -18,10 +18,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohD-wO-baF">
-                            <rect key="frame" x="0.0" y="11" width="359" height="30"/>
+                            <rect key="frame" x="0.0" y="11" width="319" height="30"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入关键字" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h4U-HX-c5g">
-                                    <rect key="frame" x="52" y="0.0" width="307" height="30"/>
+                                    <rect key="frame" x="52" y="0.0" width="267" height="30"/>
                                     <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="0.0" colorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" returnKeyType="search"/>
@@ -51,12 +51,27 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Lu-JW-oPm">
+                            <rect key="frame" x="335" y="0.0" width="40" height="52"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="ajX-ei-Kq3"/>
+                            </constraints>
+                            <state key="normal" title="取消">
+                                <color key="titleColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="cancleAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Mj1-7y-bUg"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="7Lu-JW-oPm" firstAttribute="centerY" secondItem="7R4-GF-iRr" secondAttribute="centerY" id="8NZ-eI-3yG"/>
+                        <constraint firstItem="7Lu-JW-oPm" firstAttribute="height" secondItem="7R4-GF-iRr" secondAttribute="height" id="A5j-B4-T7k"/>
                         <constraint firstItem="ohD-wO-baF" firstAttribute="centerY" secondItem="7R4-GF-iRr" secondAttribute="centerY" id="Ex9-46-8hB"/>
-                        <constraint firstAttribute="trailing" secondItem="ohD-wO-baF" secondAttribute="trailing" constant="16" id="LvR-3E-6Df"/>
                         <constraint firstItem="ohD-wO-baF" firstAttribute="leading" secondItem="7R4-GF-iRr" secondAttribute="leading" id="SGi-Xi-dcl"/>
+                        <constraint firstAttribute="trailing" secondItem="7Lu-JW-oPm" secondAttribute="trailing" id="Vn4-8k-fFS"/>
+                        <constraint firstItem="7Lu-JW-oPm" firstAttribute="leading" secondItem="ohD-wO-baF" secondAttribute="trailing" constant="16" id="sJH-mR-xZs"/>
                     </constraints>
                 </view>
             </subviews>
@@ -72,7 +87,7 @@
             <connections>
                 <outlet property="findTextField" destination="h4U-HX-c5g" id="Srm-5d-Vjf"/>
             </connections>
-            <point key="canvasLocation" x="-783.20000000000005" y="-99.850074962518747"/>
+            <point key="canvasLocation" x="-1586" y="-196"/>
         </view>
     </objects>
     <resources>

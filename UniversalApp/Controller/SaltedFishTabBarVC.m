@@ -131,12 +131,15 @@
 static NSInteger lastIdx = 0;
 - (void)axcAE_TabBar:(AxcAE_TabBar *)tabbar selectIndex:(NSInteger)index{
     if (index == 2 || index == 3 || index == 4) {
-         [self.axcTabBar setSelectIndex:lastIdx WithAnimation:NO]; // 换回上一个选中状态
+        [self.axcTabBar setSelectIndex:lastIdx WithAnimation:NO]; // 换回上一个选中状态
         if (![userManager loadUserInfo]) {
             KPostNotification(KNotificationLoginStateChange, @NO);
             return;
+        }else{
+        
         }
     }
+    
     
     if (index == 2) {
         [[AppDelegate shareAppDelegate].mainTabBar.axcTabBar setBadge:NSIntegerToNSString(0) index:2];

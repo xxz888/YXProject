@@ -97,6 +97,7 @@ _Pragma("clang diagnostic pop") \
     if (YX_MANAGER.isNeedRefrshMineVc) {
         [self setViewData];
     }
+    self.whereCome ? [self requestOther_AllList] : [self requestMine_AllList];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -1091,10 +1092,11 @@ _Pragma("clang diagnostic pop") \
 }
 -(void)clickAction:(id)click{
 //    [self addButton];
-    self.navigationController.tabBarController.selectedIndex = 1;
     RootNavigationController * rootNav = self.navigationController.tabBarController.childViewControllers[1];
     YXSecondViewController * second = rootNav.viewControllers[0];
     second.isMineVcCome = YES;
+    self.navigationController.tabBarController.selectedIndex = 1;
+
 }
 - (void)addButton{
     

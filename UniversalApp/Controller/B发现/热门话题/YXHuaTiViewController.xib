@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,22 +21,22 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" tag="1001" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2hq-zq-P2k">
-                    <rect key="frame" x="0.0" y="49" width="95" height="813"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <rect key="frame" x="0.0" y="49" width="95" height="847"/>
+                    <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Dud-3w-lp1"/>
                         <outlet property="delegate" destination="-1" id="wqb-Tx-72N"/>
                     </connections>
                 </tableView>
                 <tableView clipsSubviews="YES" tag="1002" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UwS-38-xkO">
-                    <rect key="frame" x="96" y="49" width="318" height="813"/>
+                    <rect key="frame" x="96" y="49" width="318" height="847"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="TmE-88-9gG"/>
                         <outlet property="delegate" destination="-1" id="UqA-4M-lHJ"/>
                     </connections>
                 </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Npo-md-Icf">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Npo-md-Icf">
                     <rect key="frame" x="95" y="49" width="1" height="813"/>
                     <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -55,8 +55,9 @@
             <constraints>
                 <constraint firstItem="2hq-zq-P2k" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="5" id="0Fe-zc-Bhd"/>
                 <constraint firstItem="UwS-38-xkO" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="5" id="4CB-Gu-O21"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="2hq-zq-P2k" secondAttribute="bottom" id="8xc-A4-ZhE"/>
+                <constraint firstAttribute="bottom" secondItem="UwS-38-xkO" secondAttribute="bottom" id="5ob-mb-zEH"/>
                 <constraint firstItem="Npo-md-Icf" firstAttribute="leading" secondItem="2hq-zq-P2k" secondAttribute="trailing" id="9qy-YT-dpa"/>
+                <constraint firstAttribute="bottom" secondItem="2hq-zq-P2k" secondAttribute="bottom" id="BQU-RJ-b7q"/>
                 <constraint firstItem="2hq-zq-P2k" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.23" id="Fbu-4A-KRZ"/>
                 <constraint firstItem="2hq-zq-P2k" firstAttribute="top" secondItem="O8J-mr-5Gq" secondAttribute="bottom" id="SkL-Of-TQc"/>
                 <constraint firstItem="Npo-md-Icf" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="5" id="UzH-LC-ajT"/>
@@ -66,7 +67,6 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="Npo-md-Icf" secondAttribute="bottom" id="q43-po-p8f"/>
                 <constraint firstAttribute="trailing" secondItem="O8J-mr-5Gq" secondAttribute="trailing" id="tYa-aP-5Lv"/>
                 <constraint firstItem="2hq-zq-P2k" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="uF8-lf-PnS"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="UwS-38-xkO" secondAttribute="bottom" id="vBz-ik-aKK"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="131.8840579710145" y="136.60714285714286"/>

@@ -36,7 +36,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.isShowLiftBack = YES;
+    self.isShowLiftBack = NO;
     [self setNavSearchView];
     self.searchHeaderView.searchBar.text = self.searchText;
 

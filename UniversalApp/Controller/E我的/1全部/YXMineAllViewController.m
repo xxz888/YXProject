@@ -25,7 +25,9 @@
  
     self.nodataImg.hidden = YES;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSecondVC:) name:@"refreshSecondVC" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(RefreshMine:) name:@"refreshSecondVC" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(RefreshMine:) name:@"RefreshMine" object:nil];
     [self requestTableData];
 
 }
@@ -33,7 +35,7 @@
     //单条移除观察者
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"refreshSecondVC" object:nil];
 }
-- (void)refreshSecondVC: (NSNotification *) notification {
+- (void)RefreshMine: (NSNotification *) notification {
     [self requestTableData];
 }
 -(UIView *)dongtaiView{
