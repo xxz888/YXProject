@@ -1055,6 +1055,8 @@ successBlock(responseObject);\
     self.cache1Array = [[NSMutableArray alloc]init];
     self.cache2Array = [[NSMutableArray alloc]init];
     self.socketMessageArray = [[NSMutableArray alloc]init];
+
+    
     UserDefaultsSET(@"NO", IS_FirstLogin);
     self.isClear = NO;
     self.moreBool = NO;

@@ -47,7 +47,9 @@
                 indexString = [linkStr split:@","][2];
             }
         }
-        weakself.linkBlock(indexString);
+        if (weakself.linkBlock) {
+            weakself.linkBlock(indexString);
+        }
     };
     
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:dic[@"detail"]];

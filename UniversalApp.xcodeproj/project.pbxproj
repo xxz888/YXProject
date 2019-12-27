@@ -263,7 +263,6 @@
 		BB928F6521FACDE70090A044 /* YXMineSettingSafeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F6421FACDE70090A044 /* YXMineSettingSafeTableViewController.m */; };
 		BB928F6A21FAD02B0090A044 /* YXMineMyCaoGaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F6821FAD02B0090A044 /* YXMineMyCaoGaoViewController.m */; };
 		BB928F6B21FAD02B0090A044 /* YXMineMyCaoGaoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB928F6921FAD02B0090A044 /* YXMineMyCaoGaoViewController.xib */; };
-		BB928F6F21FAD1410090A044 /* YXMineMyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F6E21FAD1410090A044 /* YXMineMyCollectionViewController.m */; };
 		BB928F9321FB5D290090A044 /* BRStringPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F8221FB5D280090A044 /* BRStringPickerView.m */; };
 		BB928F9421FB5D290090A044 /* NSDate+BRPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F8721FB5D280090A044 /* NSDate+BRPickerView.m */; };
 		BB928F9521FB5D290090A044 /* BRDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB928F8821FB5D280090A044 /* BRDatePickerView.m */; };
@@ -296,9 +295,6 @@
 		BB9832752201700C0048D103 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = BB98326F2201700C0048D103 /* blueArrow.png */; };
 		BB9832852202CD9A0048D103 /* XLDouYinLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9832832202CD9A0048D103 /* XLDouYinLoading.m */; };
 		BB9832872202D77C0048D103 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB9832862202D77C0048D103 /* Images.xcassets */; };
-		BB98329A229E165A00894FAF /* YXMineMyCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB983299229E165A00894FAF /* YXMineMyCollectionViewController.xib */; };
-		BB98329E229E190000894FAF /* YXMineMyCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB98329C229E190000894FAF /* YXMineMyCollectionTableViewCell.m */; };
-		BB98329F229E190000894FAF /* YXMineMyCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB98329D229E190000894FAF /* YXMineMyCollectionTableViewCell.xib */; };
 		BB9C6982233372E2003EF6AA /* YXMineYaoQingWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9C6981233372E2003EF6AA /* YXMineYaoQingWebViewController.m */; };
 		BB9ECD4C228002EA00A12952 /* ZInputToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9ECD48228002E900A12952 /* ZInputToolbar.m */; };
 		BB9ECD4D228002EA00A12952 /* UIView+LSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9ECD49228002E900A12952 /* UIView+LSExtension.m */; };
@@ -1043,8 +1039,6 @@
 		BB928F6721FAD02B0090A044 /* YXMineMyCaoGaoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineMyCaoGaoViewController.h; sourceTree = "<group>"; };
 		BB928F6821FAD02B0090A044 /* YXMineMyCaoGaoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineMyCaoGaoViewController.m; sourceTree = "<group>"; };
 		BB928F6921FAD02B0090A044 /* YXMineMyCaoGaoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineMyCaoGaoViewController.xib; sourceTree = "<group>"; };
-		BB928F6D21FAD1410090A044 /* YXMineMyCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMineMyCollectionViewController.h; sourceTree = "<group>"; };
-		BB928F6E21FAD1410090A044 /* YXMineMyCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMineMyCollectionViewController.m; sourceTree = "<group>"; };
 		BB928F8121FB5D280090A044 /* BRStringPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRStringPickerView.h; sourceTree = "<group>"; };
 		BB928F8221FB5D280090A044 /* BRStringPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRStringPickerView.m; sourceTree = "<group>"; };
 		BB928F8321FB5D280090A044 /* BRPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRPickerView.h; sourceTree = "<group>"; };
@@ -1108,10 +1102,6 @@
 		BB9832832202CD9A0048D103 /* XLDouYinLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLDouYinLoading.m; sourceTree = "<group>"; };
 		BB9832842202CD9A0048D103 /* XLDouYinLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLDouYinLoading.h; sourceTree = "<group>"; };
 		BB9832862202D77C0048D103 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		BB983299229E165A00894FAF /* YXMineMyCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineMyCollectionViewController.xib; sourceTree = "<group>"; };
-		BB98329B229E190000894FAF /* YXMineMyCollectionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineMyCollectionTableViewCell.h; sourceTree = "<group>"; };
-		BB98329C229E190000894FAF /* YXMineMyCollectionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineMyCollectionTableViewCell.m; sourceTree = "<group>"; };
-		BB98329D229E190000894FAF /* YXMineMyCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineMyCollectionTableViewCell.xib; sourceTree = "<group>"; };
 		BB9C6980233372E2003EF6AA /* YXMineYaoQingWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMineYaoQingWebViewController.h; sourceTree = "<group>"; };
 		BB9C6981233372E2003EF6AA /* YXMineYaoQingWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMineYaoQingWebViewController.m; sourceTree = "<group>"; };
 		BB9ECD48228002E900A12952 /* ZInputToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZInputToolbar.m; sourceTree = "<group>"; };
@@ -2839,19 +2829,6 @@
 			path = "草稿";
 			sourceTree = "<group>";
 		};
-		BB928F6C21FAD1410090A044 /* 我的收藏 */ = {
-			isa = PBXGroup;
-			children = (
-				BB928F6D21FAD1410090A044 /* YXMineMyCollectionViewController.h */,
-				BB928F6E21FAD1410090A044 /* YXMineMyCollectionViewController.m */,
-				BB983299229E165A00894FAF /* YXMineMyCollectionViewController.xib */,
-				BB98329B229E190000894FAF /* YXMineMyCollectionTableViewCell.h */,
-				BB98329C229E190000894FAF /* YXMineMyCollectionTableViewCell.m */,
-				BB98329D229E190000894FAF /* YXMineMyCollectionTableViewCell.xib */,
-			);
-			path = "我的收藏";
-			sourceTree = "<group>";
-		};
 		BB928F7F21FB5D280090A044 /* BRPickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3010,7 +2987,6 @@
 			isa = PBXGroup;
 			children = (
 				BB8376EB2248AE780091A1A8 /* 发现 */,
-				BB928F6C21FAD1410090A044 /* 我的收藏 */,
 				BB928F6621FAD0090090A044 /* 草稿 */,
 				BB928F5E21FACA810090A044 /* 设置 */,
 			);
@@ -4705,7 +4681,6 @@
 				BBDA2D1021EB30BF00EDCCFF /* MLEmoji_Expression.bundle in Resources */,
 				BB70253D22129812009EBE39 /* YXFindSearchHeadView.xib in Resources */,
 				BBEA15702366E41B006FBBFF /* UIBarButtonItemArrowLeft@3x.png in Resources */,
-				BB98329F229E190000894FAF /* YXMineMyCollectionTableViewCell.xib in Resources */,
 				BB6F6A222361A31B00EC8732 /* article_editor.js in Resources */,
 				BBEA155B2366E41B006FBBFF /* ImageSelectedSmallOn.png in Resources */,
 				BBD2C95421E0F72800350DCD /* LICENSE.md in Resources */,
@@ -4757,7 +4732,6 @@
 				BBEA155A2366E41B006FBBFF /* UIBarButtonItemGrid@3x.png in Resources */,
 				BBEA15692366E41B006FBBFF /* UIBarButtonItemArrowRight@3x.png in Resources */,
 				BB8D24A623B062770017482B /* YXChildPingLunTableViewCell.xib in Resources */,
-				BB98329A229E165A00894FAF /* YXMineMyCollectionViewController.xib in Resources */,
 				BB2F2BFC23793AEB00654C31 /* YXNetFailView.xib in Resources */,
 				2917D20A1EE007C300E76185 /* MBHUD_Error@3x.png in Resources */,
 				BBA4612623A0E91C0010E7CF /* YXDingZhiHeadView.xib in Resources */,
@@ -5013,11 +4987,9 @@
 				293D45F51ECDA453007C64A9 /* RootViewController.m in Sources */,
 				BBD2C80C21E0F41F00350DCD /* YXMineAllViewController.m in Sources */,
 				BBD2C83721E0F44A00350DCD /* UIButton+CountDown.m in Sources */,
-				BB928F6F21FAD1410090A044 /* YXMineMyCollectionViewController.m in Sources */,
 				BBD2C98721E1BC0A00350DCD /* NSBundle+PYSearchExtension.m in Sources */,
 				BBFACBC92394BB75008F5496 /* SDWeiXinPhotoContainerView.m in Sources */,
 				BB928F6A21FAD02B0090A044 /* YXMineMyCaoGaoViewController.m in Sources */,
-				BB98329E229E190000894FAF /* YXMineMyCollectionTableViewCell.m in Sources */,
 				BB7025442212A42C009EBE39 /* YXFindSearchResultViewController.m in Sources */,
 				BBACB4D6234DD1A20092367B /* YXJiFenShopDetailHeaderView.m in Sources */,
 				BB554D052362C95E003B7F55 /* YXXinDongTaiView.m in Sources */,

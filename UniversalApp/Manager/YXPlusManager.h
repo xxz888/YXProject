@@ -10,9 +10,13 @@
 typedef void(^SuccessdBlockType)();
 typedef void(^FailBlockType)();
 typedef void(^SuccessdBlockTypeParameter)(id object);
+
 #define YX_BLOCK (id)dic success:(SuccessdBlockTypeParameter)successBlock
 
 @interface YXPlusManager : NSObject
+@property (nonatomic,strong) NSMutableArray * allOptionArray;
+@property (nonatomic,strong) NSMutableArray * useArray;
+
 + (instancetype)sharedInstance;
 -(void)requestZhiNan1Get:YX_BLOCK;
 -(void)requestCollect_optionGet:YX_BLOCK;
@@ -57,5 +61,10 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestPubTagPOST:YX_BLOCK;
 #pragma mark ==========热门tag==========
 -(void)requestHotTagGet:YX_BLOCK;
+-(void)getAllOptionArraySuccess:(SuccessdBlockType)successBlock;
+//传入第二个界面id，返回第二个界面所用数组
+-(NSArray *)inStartId2OutCurrentArray:(NSString *)startId2;
+//传入第二个界面id，返回第二个界面所用外层字典
+-(NSDictionary *)inStartId2OutCurrentDic:(NSString *)startId2;
 @end
 

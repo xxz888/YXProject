@@ -51,12 +51,6 @@
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer*)gestureRecognizer {
     return self.isCanBack;
 }
-
-
-
-
-
-
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     YX_MANAGER.moreBool = NO;
@@ -93,21 +87,26 @@
     [self.yxTableView.mj_footer endRefreshing];
 }
 -(void)requestZhiNan1Get{
-    kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"1/%@",self.startId];
-    [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
-        weakself.titleArray = [weakself commonAction:object dataArray:weakself.titleArray];
-        NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"weight" ascending:YES]];
-        [weakself.titleArray sortUsingDescriptors:sortDescriptors];
-        [weakself.yxTableView reloadData];    //这里来判断是不是友盟通知进来的
-    }];
+      kWeakSelf(self);
+      [QMUITips showLoadingInView:self.view];
+      [YXPLUS_MANAGER getAllOptionArraySuccess:^{
+          //领带、配饰、鞋靴、衬衫、西装、雪茄、威士忌 标题数组
+          weakself.titleArray = [weakself commonAction:YXPLUS_MANAGER.allOptionArray dataArray:weakself.titleArray];
+          NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"weight" ascending:YES]];
+          [weakself.titleArray sortUsingDescriptors:sortDescriptors];
+          [weakself.yxTableView reloadData];
+          [QMUITips hideAllTips];
+          [weakself.yxTableView.mj_header endRefreshing];
+          [weakself.yxTableView.mj_footer endRefreshing];
+
+      }];
 }
 #pragma mark ========== 创建tableview ==========
 -(void)tableviewCon{
     
     self.titleArray = [[NSMutableArray alloc]init];
     self.yxTableView = [[UITableView alloc]init];
-    self.yxTableView.frame = CGRectMake(0,5, KScreenWidth,self.view.frame.size.height-kTopHeight-kTabBarHeight+10 - 5);
+    self.yxTableView.frame = CGRectMake(0,5, KScreenWidth,self.view.frame.size.height-kTopHeight-kTabBarHeight  - 5);
     self.yxTableView.delegate = self;
     self.yxTableView.dataSource= self;
     self.yxTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -131,11 +130,9 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    YXZhiNanViewController * vc1 = [[YXZhiNanViewController alloc]init];
-    vc1.startDic = [NSDictionary dictionaryWithDictionary:self.titleArray[indexPath.row]];
-    vc1.index = indexPath.row;
-    vc1.title = self.titleArray[indexPath.row][@"name"];
-    [self.navigationController pushViewController:vc1 animated:YES];
+    YXZhiNanViewController * vc = [[YXZhiNanViewController alloc]init];
+    vc.startId = self.titleArray[indexPath.row][@"id"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)panduanUMXiaoXi:(NSNotification *)notification{
     

@@ -24,10 +24,11 @@
 @property (nonatomic,strong) NSMutableArray * dataArray;
 @property (nonatomic,strong) NSMutableArray * linkArray;
 @property (nonatomic,strong) NSMutableArray * allOptionArray;
+@property (nonatomic,strong) NSMutableArray * collArray;
 
 @property (nonatomic,assign) BOOL is_collect;
 @property (weak, nonatomic) IBOutlet UILabel *plLbl;
-    @property (weak, nonatomic) IBOutlet UILabel *collLbl;
+@property (weak, nonatomic) IBOutlet UILabel *collLbl;
     
 @property (nonatomic,assign) CGFloat contentHeight;
 @end
@@ -38,9 +39,13 @@
     [super viewDidLoad];
     //初始化UI
     [self setVCUI];
+    //在这里要做请求,请求最后最后一个界面的数据
     [self requestZhiNanGet];
-
+    //这里请求的是是否收藏之类的
+    [self requestZhiNanGetCollData];
 }
+
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:NO];
@@ -49,88 +54,97 @@
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar setHidden:YES];
 }
--(void)requestStartZhiNanGet{
-    if ([self.startArray[0][@"father_id"] integerValue] == 0) {
-        return;
-    }
+//初始化UI
+-(void)setVCUI{
+//    self.bottomViewHeight.constant = self.whereCome ? 0 : IS_IPhoneX ? 90 : 60;
+//    self.bottomView.hidden = self.whereCome;
+    [self addNavigationItemWithImageNames:@[@"B黑色横向更多"] isLeft:NO target:self action:@selector(moreShare) tags:@[@"999"]];
+    self.view.backgroundColor = KWhiteColor;
+    self.dataArray = [[NSMutableArray alloc]init];
+    self.linkArray = [[NSMutableArray alloc]init];
+    self.collArray = [[NSMutableArray alloc]init];
+    [self addRefreshView:self.yxTableView];
+    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan1Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan1Cell"];
+    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan2Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan2Cell"];
+    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan3Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan3Cell"];
+    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan4Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan4Cell"];
+    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan5Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan5Cell"];
+    [self.yxTableView registerNib:[UINib nibWithNibName:@"UITableViewCell" bundle:nil] forCellReuseIdentifier:@"UITableViewCell"];
+    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNanType2TableViewCell" bundle:nil] forCellReuseIdentifier:@"YXZhiNanType2TableViewCell"];
+    if (@available(iOS 11.0, *)) {self.yxTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {self.automaticallyAdjustsScrollViewInsets=NO;}
+    UITapGestureRecognizer *aTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pinglunAction)];
+      // 添加手势
+    [self.pinglunView addGestureRecognizer:aTapGR];
+    self.title = [NSString stringWithFormat:@"0%ld/%@",self.selectCellIndex+1,self.selectCellArray[self.selectCellIndex][@"name"]];
+}
+-(void)requestZhiNanGetCollData{
+    //这个是固定的，不随滑动改变,这个请求制作判断是否收藏，不做其他用途
     kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"1/%@",self.startArray[0][@"father_id"]];
+    NSString * par = [NSString stringWithFormat:@"1/%@",self.firstSelectId];
     [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
-        weakself.startArray = [weakself commonAction:object dataArray:weakself.startArray];
-        NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"weight" ascending:YES]];
-        [weakself.startArray sortUsingDescriptors:sortDescriptors];
+        [weakself.collArray removeAllObjects];
+        [weakself.collArray addObjectsFromArray:object];
         [weakself panduanIsColl];
-        [YXPLUS_MANAGER requestAll_optionGet:@"" success:^(id object) {
-            [weakself.allOptionArray removeAllObjects];
-            [weakself.allOptionArray addObjectsFromArray:object];
-        }];
     }];
 }
+//判断是否收藏过
 -(void)panduanIsColl{
-    self.title = [NSString stringWithFormat:@"0%ld/%@",self.bigIndex+1,kGetString(self.startArray[self.bigIndex][@"name"])];
-    self.plLbl.text = kGetString(self.startArray[self.bigIndex][@"comment_number"]);
-    if ([self.plLbl.text isEqualToString:@"0"]) {
-        self.plLbl.hidden = YES;
-    }else{
-        self.plLbl.hidden = NO;
-    }
-
-    self.collLbl.text = kGetString(self.startArray[self.bigIndex][@"collect_number"]);
+    self.title = [NSString stringWithFormat:@"0%ld/%@",self.selectCellIndex+1,self.selectCellArray[self.selectCellIndex][@"name"]];
+    NSDictionary * selectItemDic = self.collArray[self.selectCellIndex];
+    self.plLbl.text = kGetString(selectItemDic[@"comment_number"]);
+    self.plLbl.hidden =   [self.plLbl.text isEqualToString:@"0"];
+    self.collLbl.text = kGetString(selectItemDic[@"collect_number"]);
     self.collLbl.hidden = [self.collLbl.text isEqualToString:@"0"];
     if ([userManager loadUserInfo]) {
-        self.is_collect = [self.startArray[self.bigIndex][@"is_collect"] integerValue] == 1;
+        self.is_collect = [selectItemDic[@"is_collect"] integerValue] == 1;
         UIImage * likeImage = self.is_collect ? [UIImage imageNamed:@"G收藏已选择"] : [UIImage imageNamed:@"G收藏未选择"] ;
         [self.collImgView setImage:likeImage];
     }
 }
 
 -(void)headerRereshing{
-    if (self.whereCome) {
-        [self endRefresh];
-        return;
-    }
-    if ([self.startArray[0][@"father_id"] integerValue] == 0) {
-        [self endRefresh];
-        return;
-    }
-    self.smallIndex = 0;
-    if (self.bigIndex == 0) {
+  
+    [self common1Action];
+    if (self.selectCellIndex == 0) {
         [self endRefresh];
     }else{
-        self.bigIndex -= 1;
+        self.selectCellIndex -= 1;
         [self requestZhiNanGet];
+        [self requestZhiNanGetCollData];
     }
 }
 -(void)footerRereshing{
-    if (self.whereCome) {
+
+    [self common1Action];
+    if (self.selectCellIndex == [self.selectCellArray count] - 1) {
         [self endRefresh];
-           return;
+    }else{
+        self.selectCellIndex +=1;
+        [self requestZhiNanGet];
+        [self requestZhiNanGetCollData];
     }
-    if ([self.startArray[0][@"father_id"] integerValue] == 0) {
-        [self endRefresh];
-        return;
-    }
-    self.smallIndex = 0;
-        if (self.bigIndex == [self.startArray count] - 1) {
-            [self endRefresh];
-        }else{
-            self.bigIndex +=1;
-            [self requestZhiNanGet];
-        }
+}
+-(void)common1Action{
+    if (self.whereCome) {[self endRefresh];return;}
+    [self panduanIsColl];
+    self.selectItemIndex = 0;
 }
 -(void)endRefresh{
     [self.yxTableView.mj_header endRefreshing];
     [self.yxTableView.mj_footer endRefreshing];
 }
+//请求最后一个界面的信息
 -(void)requestZhiNanGet{
     [QMUITips showLoadingInView:self.view];
+    
+    NSString * selectFatherId = self.selectCellArray[self.selectCellIndex][@"id"];
     kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"0/%@",self.startArray[self.bigIndex][@"id"]];
+    NSString * par = [NSString stringWithFormat:@"0/%@",selectFatherId];
     [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
-            [weakself.dataArray removeAllObjects];
-            [weakself.dataArray addObjectsFromArray:object];
-        
-        
+        [weakself.dataArray removeAllObjects];
+        [weakself.dataArray addObjectsFromArray:object];
+        //获取要点击的link文字
         for (NSInteger i = 0 ; i< weakself.dataArray.count; i++) {
             NSArray * smallArray = weakself.dataArray[i];
             for (NSInteger k = 0; k < smallArray.count; k++) {
@@ -138,38 +152,23 @@
                 NSInteger obj = [dic[@"obj"] integerValue];
                 if (obj == 6) {
                     [weakself.linkArray removeAllObjects];
-                    
                     [weakself.linkArray addObjectsFromArray:[dic[@"detail"] split:@";"]];
                 }
             }
         }
-        
-   
-        
-        
-            [weakself endRefresh];
-            [weakself panduanIsColl];
-            [QMUITips hideAllTipsInView:weakself.view];
-        
-        
-            [weakself.yxTableView reloadData];
-        
-        
-        
-        // reloadDate会在主队列执行，而dispatch_get_main_queue会等待机会，直到主队列空闲才执行。
+        [weakself.yxTableView reloadData];
+        //用作记录上个界面点击的哪个item，在请求完信息滑动到相对应的item
+        //reloadDate会在主队列执行，而dispatch_get_main_queue会等待机会，直到主队列空闲才执行。
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (weakself.dataArray.count > weakself.smallIndex) {
-                    if ([weakself.dataArray[weakself.smallIndex] count] != 0 && weakself.dataArray.count > weakself.smallIndex) {
-                            NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:0 inSection:weakself.smallIndex];
-                            [weakself.yxTableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
-                        }
+            //这里处理防崩溃，这种几率很小的，但也要做个判断
+            if (weakself.selectItemIndex -1 > weakself.dataArray.count) {
+                weakself.selectItemIndex = 0;
             }
-        
-         
+            NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:0 inSection:weakself.selectItemIndex];
+            [weakself.yxTableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
         });
-        
-        
-            [weakself requestStartZhiNanGet];
+        [weakself endRefresh];
+        [QMUITips hideAllTipsInView:weakself.view];
     }];
 }
 
@@ -185,9 +184,9 @@
     if (obj == 1) {
         if ([dic[@"ratio"] integerValue] == 99999) {
                   return 180;
-               }else{
+            }else{
                   return [YXZhiNan1Cell jisuanCellHeight:dic] + 20;
-               }
+        }
     }else if(obj == 2) {
         return  [YXZhiNan2Cell jisuanCellHeight:dic] + 20;
     }else if(obj == 3 || obj == 4) {
@@ -201,9 +200,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.section][indexPath.row];
     NSInteger obj = [dic[@"obj"] integerValue];
-
-    
-    
     if (obj == 1 ) {
         if ([dic[@"ratio"] integerValue] == 99999) {
             NSDictionary * resultDic = [ShareManager stringToDic:dic[@"detail"]];
@@ -227,25 +223,22 @@
         kWeakSelf(self);
         cell2.linkBlock = ^(NSString * indexString) {
             YXZhiNanDetailViewController * vc = [[YXZhiNanDetailViewController alloc]init];
-            vc.smallIndex = 0;
-            NSInteger index1 = [[indexString split:@"-"][0] integerValue];
-            NSInteger index2 = [[indexString split:@"-"][1] integerValue];
-            NSInteger index3 = [[indexString split:@"-"][2] integerValue];
-            for (NSDictionary * dic1 in weakself.allOptionArray) {
+            vc.selectItemIndex = 0;
+//            NSInteger index1 = [[indexString split:@"-"][0] integerValue];
+            NSInteger index1 = [[indexString split:@"-"][1] integerValue];
+            NSInteger index2 = [[indexString split:@"-"][2] integerValue];
+            vc.firstSelectId = NSIntegerToNSString(index1);
+            
+            for (NSDictionary * dic1 in YXPLUS_MANAGER.allOptionArray) {
                 if ([dic1[@"id"] integerValue] == index1) {
-                    for (NSDictionary * dic2 in dic1[@"child_list"]) {
-                        if ([dic2[@"id"] integerValue] == index2) {
-                            vc.startArray = [[NSMutableArray alloc]initWithArray:dic2[@"child_list"]];
-                            for (NSInteger i = 0; i < [dic2[@"child_list"] count]; i++) {
-                                if ([dic2[@"child_list"][i][@"id"] integerValue] == index3) {
-                                    vc.bigIndex = i;
-                                }
-                            }
-                        }
-                    }
+                      vc.selectCellArray = [[NSMutableArray alloc]initWithArray:dic1[@"child_list"]];
+                      for (NSInteger i = 0; i < [dic1[@"child_list"] count]; i++) {
+                          if ([dic1[@"child_list"][i][@"id"] integerValue] == index2) {
+                              vc.selectCellIndex = i;
+                          }
+                      }
                 }
             }
-            vc.smallIndex = 0;
             [weakself.navigationController pushViewController:vc animated:YES];
         };
         
@@ -285,37 +278,15 @@
          }
      }
 }
-//初始化UI
--(void)setVCUI{
-    self.bottomViewHeight.constant = self.whereCome ? 0 : IS_IPhoneX ? 90 : 60;
-    self.bottomView.hidden = self.whereCome;
-    [self addNavigationItemWithImageNames:@[@"更多"] isLeft:NO target:self action:@selector(moreShare) tags:@[@"999"]];
-    self.view.backgroundColor = KWhiteColor;
-    self.dataArray = [[NSMutableArray alloc]init];
-    self.linkArray = [[NSMutableArray alloc]init];
-    self.allOptionArray = [[NSMutableArray alloc]init];
-    [self addRefreshView:self.yxTableView];
-    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan1Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan1Cell"];
-    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan2Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan2Cell"];
-    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan3Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan3Cell"];
-    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan4Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan4Cell"];
-    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNan5Cell" bundle:nil] forCellReuseIdentifier:@"YXZhiNan5Cell"];
-    [self.yxTableView registerNib:[UINib nibWithNibName:@"UITableViewCell" bundle:nil] forCellReuseIdentifier:@"UITableViewCell"];
-    [self.yxTableView registerNib:[UINib nibWithNibName:@"YXZhiNanType2TableViewCell" bundle:nil] forCellReuseIdentifier:@"YXZhiNanType2TableViewCell"];
-    if (@available(iOS 11.0, *)) {self.yxTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    } else {self.automaticallyAdjustsScrollViewInsets=NO;}
-    UITapGestureRecognizer *aTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pinglunAction)];
-      // 添加手势
-    [self.pinglunView addGestureRecognizer:aTapGR];
-}
+
 
 -(void)moreShare{
-    NSDictionary * dic = self.startArray[self.bigIndex];
+    NSDictionary * dic = self.selectCellArray[self.selectCellIndex];
     NSString * title = dic[@"name"];
     NSString * desc = dic[@"intro"];
     NSString * cid = dic[@"id"];
     [[ShareManager sharedShareManager] pushShareViewAndDic:@{
-        @"type":@"2",@"img":@"",@"desc":desc,@"title":title,@"id":cid,@"thumbImage":dic[@"photo"],@"index":kGetNSInteger(self.startIndex),@"index1":kGetNSInteger([dic[@"id"] integerValue])}];
+        @"type":@"2",@"img":@"",@"desc":desc,@"title":title,@"id":cid,@"thumbImage":dic[@"photo"],@"index":kGetNSInteger(self.selectCellIndex),@"index1":kGetNSInteger([dic[@"id"] integerValue])}];
 }
 - (IBAction)bottomAction:(UIButton *)btn{
     switch (btn.tag) {
@@ -337,9 +308,10 @@
           KPostNotification(KNotificationLoginStateChange, @NO);
           return;
       }
+    NSDictionary * dic = self.selectCellArray[self.selectCellIndex];
     YXZhiNanPingLunViewController * vc = [[YXZhiNanPingLunViewController alloc]init];
-    vc.startDic = [NSDictionary dictionaryWithDictionary:self.startArray[self.bigIndex]];
-    vc.startId = self.startArray[self.bigIndex][@"id"];
+    vc.startDic = [NSDictionary dictionaryWithDictionary:dic];
+    vc.startId = dic[@"id"];
     [self.navigationController pushViewController:vc animated:YES];
     
     kWeakSelf(self);
@@ -353,10 +325,11 @@
         KPostNotification(KNotificationLoginStateChange, @NO);
         return;
     }
+    NSDictionary * dic = self.selectCellArray[self.selectCellIndex];
     kWeakSelf(self);
-    NSString * tagId = kGetString(self.startArray[self.bigIndex][@"id"]);
+    NSString * tagId = kGetString(dic[@"id"]);
     [YXPLUS_MANAGER requestUserShouCangPOST:@{@"obj":@"1",@"target_id":tagId,@"photo":@"",@"tag":@""} success:^(id object) {
-        [weakself requestStartZhiNanGet];
+        [weakself requestZhiNanGetCollData];
     }];
 }
 @end

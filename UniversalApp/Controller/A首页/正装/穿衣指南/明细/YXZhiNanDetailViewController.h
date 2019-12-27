@@ -9,19 +9,27 @@
 #import "RootViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+typedef void(^SaveCurrentIndexBlock)(NSInteger);
 @interface YXZhiNanDetailViewController : RootViewController
 @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
-@property (nonatomic,strong) NSMutableArray * startArray;
-@property (nonatomic,assign) NSInteger smallIndex;
-@property (nonatomic,assign) NSInteger bigIndex;
-@property (nonatomic,assign) NSInteger startIndex;
 @property (nonatomic,assign) BOOL whereCome;//NO为正常进入，yes为收藏进入
 @property (weak, nonatomic) IBOutlet UIImageView *collImgView;
     @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewHeight;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UIView *pinglunView;
 
+@property (nonatomic,assign)NSInteger selectItemIndex;
+
+
+@property (nonatomic,copy)SaveCurrentIndexBlock savecurrentindexblock;
+@property (nonatomic,assign)NSInteger savecurrentindex;//记录index
+
+
+@property (nonatomic,assign)NSInteger selectCellIndex;
+@property (nonatomic,strong)NSArray * selectCellArray;
+
+
+@property (nonatomic,strong)NSString * firstSelectId;
 @end
 
 NS_ASSUME_NONNULL_END

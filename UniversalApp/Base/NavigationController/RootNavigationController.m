@@ -16,6 +16,8 @@
 @property (nonatomic,strong) UIPercentDrivenInteractiveTransition *interactivePopTransition;
 @property (nonatomic,strong) UIScreenEdgePanGestureRecognizer *popRecognizer;
 @property(nonatomic,assign) BOOL isSystemSlidBack;//是否开启系统右滑返回
+@property (nonatomic, getter=isPushing) BOOL pushing;
+
 @end
 
 @implementation RootNavigationController
@@ -40,12 +42,24 @@
     [super viewDidLoad];
     self.isSystemSlidBack = YES;
     self.modalPresentationStyle = UIModalPresentationFullScreen;
+    self.delegate = self;
 
+}
+#pragma mark - UINavigationControllerDelegate
+-(void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    self.pushing = NO;
 }
 
 //push时隐藏tabbar
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
+    if (self.pushing == YES) {
+          NSLog(@"被拦截");
+          return;
+      } else {
+          NSLog(@"push");
+          self.pushing = YES;
+      }
     if (self.viewControllers.count > 0) {
         if ([viewController conformsToProtocol:@protocol(XYTransitionProtocol)] ) {
             viewController.hidesBottomBarWhenPushed = NO;

@@ -70,6 +70,7 @@
         weakself.dataArray = [weakself commonAction:[weakself creatModelsWithCount:object] dataArray:weakself.dataArray];
         [weakself.yxTableView.mj_header endRefreshing];
         [weakself.yxTableView.mj_footer endRefreshing];
+        [weakself  refreshTableView];
     }];
 }
 -(void)refreshTableView{

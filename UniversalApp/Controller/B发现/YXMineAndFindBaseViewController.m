@@ -218,12 +218,6 @@ static CGFloat sectionHeaderHeight = 290;
         _player = nil;
     };
 }
-//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    return [[UIView alloc]init];
-//}
-//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    return 0;
-//}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = self.dataArray[indexPath.row];
     return [self customImageData:dic indexPath:indexPath];
@@ -237,7 +231,6 @@ static CGFloat sectionHeaderHeight = 290;
     cell.dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
     [cell setCellValue:dic];
     cell.topTopHeight.constant = 0;
-//    cell.bottomBottomHeight.constant = 0;
     cell.bottomPingLunLbl.hidden = YES;
     cell.wenzhangDetailHeight.constant = 0;//文章详情里面用的，外边设置为0
     cell.wenzhangDetailLbl.hidden = YES;//文章详情里面用的，外边设置为隐藏
@@ -252,13 +245,11 @@ static CGFloat sectionHeaderHeight = 290;
         NSDictionary * userInfo = userManager.loadUserAllInfo;
         BOOL isOwn = [cell.dataDic[@"user_id"] integerValue] == [kGetString(userInfo[@"id"]) integerValue];
         weakself.shareDic = [NSDictionary dictionaryWithDictionary:cell.dataDic];
-        
         NSArray * urlList = dic[@"url_list"];
         NSString * iswho = kGetString(cell.dataDic[@"obj"]);
         if ([kGetString(urlList[0]) containsString:@"mp4"]) {
             iswho = @"3";
         }
-
         [weakself addGuanjiaShareViewIsOwn:isOwn isWho:iswho tag:cell.tagId startDic:cell.dataDic];
     };
     //点击用户头像

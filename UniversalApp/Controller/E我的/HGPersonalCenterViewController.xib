@@ -34,7 +34,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EAH-1s-qv9">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U8P-WW-B6S">
+                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U8P-WW-B6S">
                             <rect key="frame" x="16" y="43" width="32" height="32"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="32" id="Bda-fe-pIR"/>
@@ -72,12 +72,12 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yxs-rR-ziz">
-                            <rect key="frame" x="384" y="47" width="24" height="24"/>
+                            <rect key="frame" x="374" y="47" width="24" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="24" id="mXn-Lr-a6F"/>
                                 <constraint firstAttribute="width" constant="24" id="wyc-No-r9R"/>
                             </constraints>
-                            <state key="normal" image="allMoreBlack">
+                            <state key="normal" image="B黑色横向更多">
                                 <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
@@ -85,7 +85,7 @@
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iHp-st-zdA">
-                            <rect key="frame" x="248" y="44" width="120" height="30"/>
+                            <rect key="frame" x="238" y="44" width="120" height="30"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygU-AD-wHs">
                                     <rect key="frame" x="98" y="4" width="22" height="22"/>
@@ -99,11 +99,11 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9h6-LY-liP">
-                                    <rect key="frame" x="2" y="-1" width="80" height="32"/>
+                                    <rect key="frame" x="16" y="1" width="66" height="28"/>
                                     <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="32" id="HR2-JZ-sjn"/>
-                                        <constraint firstAttribute="width" constant="80" id="LVX-3P-P7o"/>
+                                        <constraint firstAttribute="height" constant="28" id="HR2-JZ-sjn"/>
+                                        <constraint firstAttribute="width" constant="66" id="LVX-3P-P7o"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <state key="normal" title="已关注">
@@ -140,7 +140,7 @@
                         <constraint firstItem="0oR-41-7wD" firstAttribute="top" secondItem="U8P-WW-B6S" secondAttribute="bottom" constant="12" id="JFC-0c-GhD"/>
                         <constraint firstItem="Pgk-Ry-Fkb" firstAttribute="centerY" secondItem="YE0-rT-xDF" secondAttribute="centerY" id="LKg-Vc-Zon"/>
                         <constraint firstItem="iHp-st-zdA" firstAttribute="centerY" secondItem="yxs-rR-ziz" secondAttribute="centerY" id="LU1-qj-WZs"/>
-                        <constraint firstAttribute="trailing" secondItem="yxs-rR-ziz" secondAttribute="trailing" constant="6" id="T3q-N7-7wP"/>
+                        <constraint firstAttribute="trailing" secondItem="yxs-rR-ziz" secondAttribute="trailing" constant="16" id="T3q-N7-7wP"/>
                         <constraint firstItem="Pgk-Ry-Fkb" firstAttribute="leading" secondItem="YE0-rT-xDF" secondAttribute="trailing" constant="8" id="aOk-z7-H7a"/>
                         <constraint firstItem="yxs-rR-ziz" firstAttribute="centerY" secondItem="Pgk-Ry-Fkb" secondAttribute="centerY" id="hgj-eS-8Rc"/>
                         <constraint firstAttribute="trailing" secondItem="0oR-41-7wD" secondAttribute="trailing" id="mgZ-Sb-cj2"/>
@@ -161,13 +161,13 @@
                 <constraint firstItem="DYV-vV-zIx" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="vKE-Zz-KZc"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="-1745" y="55"/>
+            <point key="canvasLocation" x="-2541" y="21"/>
         </view>
     </objects>
     <resources>
         <image name="A黑色返回" width="96" height="96"/>
+        <image name="B黑色横向更多" width="64" height="64"/>
         <image name="C白色聊天" width="66" height="60"/>
         <image name="account_highlight" width="72" height="72"/>
-        <image name="allMoreBlack" width="16" height="16"/>
     </resources>
 </document>

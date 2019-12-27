@@ -14,66 +14,36 @@
 +(CGFloat)jisuanHeight{
     return 0;
 }
-
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
     [self baseCellConfig];
-
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-// Config
 - (void)baseCellConfig{
-    
-    self.dataArray = [[NSMutableArray alloc]init];
     self.yxCollectionView.delegate = self;
     self.yxCollectionView.dataSource = self;
     self.yxCollectionView.showsHorizontalScrollIndicator = NO;
     [self.yxCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([YXZhiNanCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:@"YXZhiNanCollectionViewCell"];
-}
-
-
--(void)requestZhiNanGet:(NSString *)wpId{
-    kWeakSelf(self);
-    NSString * par = [NSString stringWithFormat:@"1/%@",wpId];
-    [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
-      
-        [weakself.yxCollectionView reloadData];
-
-  
-    }];
-}
--(void)setCellData:(NSDictionary *)dic tagIndex:(NSInteger)index cellArray:(NSArray *)cellArray{
-    self.dataArray = [NSMutableArray arrayWithArray:cellArray];
-    self.titleLbl.text = [NSString stringWithFormat:@"0%ld/%@",index+1,dic[@"name"]];
-    NSInteger n = [cellArray count];
-    self.collHeight.constant = 45 * (n/2+n%2);
     self.yxCollectionView.tag = self.tag;
+}
+-(void)setCellData:(NSDictionary *)dic :(NSInteger)index{
+    self.collArray = [NSMutableArray arrayWithArray:dic[@"child_list"]];
+    self.titleLbl.text = [NSString stringWithFormat:@"0%ld/%@",index+1,dic[@"name"]];
+    NSInteger n = [self.collArray count];
+    self.collHeight.constant = 45 * (n/2+n%2);
     [self.yxCollectionView reloadData];
-
-//    [self requestZhiNanGet:dic[@"id"]];
 }
 #pragma mark - Collection Delegate
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    
     return 1;
 }
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.dataArray.count;
+    return self.collArray.count;
 }
-
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     YXZhiNanCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YXZhiNanCollectionViewCell" forIndexPath:indexPath];
-    NSDictionary * dic = self.dataArray[indexPath.row];
+    NSDictionary * dic = self.collArray[indexPath.row];
     cell.titleLbl.text = dic[@"name"];
     cell.lockImv.hidden = YES;
-    
     NSInteger is_lock = [dic[@"is_lock"] integerValue];
     NSInteger user_lock = [dic[@"user_lock"] integerValue];
     if (is_lock == 1 && user_lock == 0) {
@@ -82,11 +52,7 @@
     }else{
         cell.titleLbl.backgroundColor =  kRGBA(248, 248, 248, 1);
         cell.titleLbl.textColor = COLOR_333333;
-
     }
-//    cell.titleLbl.textColor = [dic[@"is_lock"] integerValue] == 1 ? KWhiteColor : kRGBA(68, 68, 68, 1);
-    
-//    cell.lockImv.hidden = [dic[@"is_lock"] integerValue] != 1 ;
     return cell;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

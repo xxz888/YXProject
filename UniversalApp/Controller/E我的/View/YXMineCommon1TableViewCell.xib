@@ -31,10 +31,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNj-AF-bBo">
-                        <rect key="frame" x="234" y="10" width="70" height="30"/>
+                        <rect key="frame" x="238" y="11" width="66" height="28"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="LPH-jY-Yjg"/>
-                            <constraint firstAttribute="width" constant="70" id="sg3-Wn-Pqs"/>
+                            <constraint firstAttribute="height" constant="28" id="LPH-jY-Yjg"/>
+                            <constraint firstAttribute="width" constant="66" id="sg3-Wn-Pqs"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <state key="normal" title="-">

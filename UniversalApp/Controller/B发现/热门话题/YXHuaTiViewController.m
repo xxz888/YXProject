@@ -72,7 +72,7 @@
         YXHuaTiRightTableViewCell * rightCell = [tableView dequeueReusableCellWithIdentifier:@"YXHuaTiRightTableViewCell" forIndexPath:indexPath];
         NSDictionary * rightDic = self.rightArray[indexPath.row];
         rightCell.titleLbl.text = rightDic[@"tag"];
-        rightCell.countLbl.text = [kGetString(rightDic[@"sum"]) append:@"帖子"];
+        rightCell.countLbl.text = [kGetString(rightDic[@"post_number"]) append:@"帖子"];
         return rightCell;
 
     }

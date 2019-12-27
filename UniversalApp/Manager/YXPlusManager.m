@@ -200,4 +200,49 @@ successBlock(responseObject);\
         successBlock(responseObject);
     } failure:^(NSError *error) { }];
 }
+
+
+-(void)getAllOptionArraySuccess:(SuccessdBlockType)successBlock{
+    [YXPLUS_MANAGER requestAll_optionGet:@"" success:^(id object) {
+         [YXPLUS_MANAGER.allOptionArray removeAllObjects];
+         [YXPLUS_MANAGER.allOptionArray addObjectsFromArray:object[0][@"child_list"]];
+         successBlock();
+  }];
+}
+
+//传入第二个界面id，返回第二个界面所用数组
+-(NSArray *)inStartId2OutCurrentArray:(NSString *)startId2{
+    for (NSDictionary * dic in YXPLUS_MANAGER.allOptionArray) {
+        if ([dic[@"id"] integerValue] == [startId2 integerValue]) {
+            return dic[@"child_list"];
+        }
+    }
+    [QMUITips showError:@"传入第二个界面id,未找到所用数组"] ;
+    return @[];
+}
+//传入第二个界面id，返回第二个界面所用外层字典
+-(NSDictionary *)inStartId2OutCurrentDic:(NSString *)startId2{
+    for (NSDictionary * dic in YXPLUS_MANAGER.allOptionArray) {
+        if ([dic[@"id"] integerValue] == [startId2 integerValue]) {
+            return dic;
+        }
+    }
+    [QMUITips showError:@"传入第二个界面id,未找到所用外层字典"] ;
+    return @{};
+}
+//传入第二个界面id，返回第二个界面collectitem所C用数组
+-(NSArray *)inStartId2OutCurrentCollectItemArray:(NSString *)startId2{
+    for (NSDictionary * dic in YXPLUS_MANAGER.allOptionArray) {
+        if ([dic[@"id"] integerValue] == [startId2 integerValue]) {
+            return dic[@"child_list"];
+        }
+    }
+    [QMUITips showError:@"传入第二个界面id,未找到所用collectitem数组"] ;
+    return @[];
+}
+- (instancetype)init{
+    self.allOptionArray = [[NSMutableArray alloc]init];
+    self.useArray = [[NSMutableArray alloc]init];
+    return  self;
+}
 @end

@@ -64,7 +64,7 @@
     CGFloat midViewHeight = 0;
     NSArray * urlList = dic[@"url_list"];
     if ([dic[@"obj"] integerValue] == 1) {
-        if ([kGetString(urlList[0]) containsString:@"mp4"]) {
+        if ([kGetString(urlList[0]) contains:@"mp4"]) {
             midViewHeight = cellVideoHeight;
         }else{
             CGFloat width = KScreenWidth - 90;
@@ -106,24 +106,26 @@
 //中间midview高度
     self.cellMidViewHeight.constant = [HGPersonalCenterTableViewCell cellAllImageHeight:dic];
     self.cellContentLblHeight.constant = [HGPersonalCenterTableViewCell jisuanContentHeight:dic];
+    self.coverImv.userInteractionEnabled = NO;
 //图片
        if ([dic[@"obj"] integerValue] == 1) {
            self.cellContentLbl.text = [NSString stringWithFormat:@"%@",dic[@"detail"]];
            NSArray * urlList = dic[@"url_list"];
            //这里判断晒图是图还是视频
-           if ([kGetString(urlList[0]) containsString:@" mp4"]) {
+           if ([urlList[0] contains:@"mp4"]) {
                self.picContainerView.frame = CGRectMake(0, 0, 0,0);
                [self.picContainerView removeFromSuperview];
+               self.picContainerView.hidden = YES;
                self.coverImv.hidden = self.playImv.hidden = NO;
                self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showVideoPlayer:)];
                self.coverImv.tag = self.tag;
-               self.coverImv.userInteractionEnabled = YES;
                [self.coverImv addGestureRecognizer:self.tap];
                NSString * string = [(NSMutableString *)dic[@"cover"] replaceAll:@" " target:@"%20"];
                [self.coverImv sd_setImageWithURL:[NSURL URLWithString:[WP_TOOL_ShareManager addImgURL:string]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
            }else{
                  [self.picContainerView removeFromSuperview];
                  self.coverImv.hidden = self.playImv.hidden = YES;
+                 self.picContainerView.hidden = NO;
                  self.picContainerView = [SDWeiXinPhotoContainerView new];
                  self.picContainerView.isMineCome = YES;
                  self.picContainerView.frame = CGRectMake(0, 0, KScreenWidth - 90 - 10,
@@ -151,6 +153,7 @@
            [self.picContainerView removeFromSuperview];
            self.coverImv.hidden = NO;
            self.playImv.hidden = YES;
+           self.picContainerView.hidden = YES;
            NSString * string = [(NSMutableString *)dic[@"cover"] replaceAll:@" " target:@"%20"];
            [self.coverImv sd_setImageWithURL:[NSURL URLWithString:[WP_TOOL_ShareManager addImgURL:string]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
            self.cellMidView.userInteractionEnabled = NO;

@@ -75,7 +75,7 @@
     BOOL is_like = [dic[@"is_like"] integerValue] == 1;
     [ShareManager setGuanZhuStatus:cell.common1GuanzhuBtn status:!is_like alertView:NO];
     if (is_like) {
-        [cell.common1GuanzhuBtn setTitle:@"互相关注" forState:UIControlStateNormal];
+        [cell.common1GuanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
     }else{
         [cell.common1GuanzhuBtn setTitle:@"+关注" forState:UIControlStateNormal];
     }
@@ -86,7 +86,7 @@
         cell.common1GuanzhuBtn.hidden = NO;
     }
 //    if (is_like) {
-//        [cell.common1GuanzhuBtn setTitle:@"互相关注" forState:UIControlStateNormal];
+//        [cell.common1GuanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
 //        [cell.common1GuanzhuBtn setTitleColor:KWhiteColor forState:0];
 //        [cell.common1GuanzhuBtn setBackgroundColor:YXRGBAColor(255, 51, 51)];
 //        ViewBorderRadius(cell.common1GuanzhuBtn, 5, 0, KClearColor);
@@ -114,7 +114,7 @@
         [ShareManager setGuanZhuStatus:cell.common1GuanzhuBtn status:!is_like alertView:YES];
 
         if (is_like) {
-             [cell.common1GuanzhuBtn setTitle:@"互相关注" forState:UIControlStateNormal];
+             [cell.common1GuanzhuBtn setTitle:@"已关注" forState:UIControlStateNormal];
         }else{
              [cell.common1GuanzhuBtn setTitle:@"+关注" forState:UIControlStateNormal];
         }

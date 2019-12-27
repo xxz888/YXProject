@@ -152,7 +152,7 @@
         NSInteger tag = [dic[@"is_like"] integerValue];
         [ShareManager setGuanZhuStatus:cell.guanZhuBtn status:tag == 0 alertView:NO];
         ViewRadius(cell.guanZhuBtn, 14);
-        NSString * islike = tag == 1 ? @"互相关注" : @"关注";
+        NSString * islike = tag == 1 ? @"已关注" : @"关注";
         if (tag == 1) {
              cell.guanzhuWidth.constant = 80;
          }else{
@@ -163,7 +163,7 @@
             [YX_MANAGER requestLikesActionGET:kGetString(cell.userId) success:^(id object) {
                 BOOL is_like = [cell.guanZhuBtn.titleLabel.text isEqualToString:@"关注"] == 1;
                 [ShareManager setGuanZhuStatus:cell.guanZhuBtn status:!is_like alertView:YES];
-                NSString * islike = is_like ? @"互相关注" : @"关注";
+                NSString * islike = is_like ? @"已关注" : @"关注";
                 [cell.guanZhuBtn setTitle:islike forState:UIControlStateNormal];
 
                 if (is_like) {

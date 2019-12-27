@@ -18,10 +18,10 @@ typedef void(^ClickCollectionItemBlock)(NSInteger,NSInteger);
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 @property (nonatomic,strong) NSDictionary * collViewDic;
 @property (nonatomic,strong) NSString * wpId;
-@property (nonatomic,strong) NSMutableArray * dataArray;
+@property (nonatomic,strong) NSMutableArray * collArray;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *collHeight;
--(void)setCellData:(NSDictionary *)dic tagIndex:(NSInteger)index cellArray:(NSArray *)cellArray;
+-(void)setCellData:(NSDictionary *)dic :(NSInteger)index;
 @property (nonatomic,copy) ClickCollectionItemBlock clickCollectionItemBlock;
 @property (nonatomic,copy) RefreshCellBlock refreshCellBlock;
 @end

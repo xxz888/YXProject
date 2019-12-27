@@ -13,7 +13,7 @@
 
 - (void)drawRect:(CGRect)rect {
     //创建毛玻璃效果
-    UIBlurEffect * blur = [UIBlurEffect effectWithStyle:3];
+    UIBlurEffect * blur = [UIBlurEffect effectWithStyle:2];
     //创建毛玻璃视图
     UIVisualEffectView * visualView = [[UIVisualEffectView alloc] initWithEffect:blur];
     visualView.alpha = 0.8f;

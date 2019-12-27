@@ -12,11 +12,9 @@
 #import "YXMineGuanZhuViewController.h"
 #import "YXMineAllViewController.h"
 #import "YXHomeEditPersonTableViewController.h"
-#import "YXMineMyCollectionViewController.h"
 #import "YXMineSettingTableViewController.h"
 #import "YXMineMyCaoGaoViewController.h"
 #import "YXMineFindViewController.h"
-#import "YXMineMyCollectionViewController.h"
 #import "YXMineJiFenTableViewController.h"
 #import "YXMineChouJiangViewController.h"
 #import "YXJiFenShopViewController.h"
@@ -73,7 +71,7 @@ _Pragma("clang diagnostic pop") \
 @property (nonatomic) BOOL isCanBack;
 @property (nonatomic, strong) NSMutableArray *picPathStringsArray;
 @property (nonatomic, strong) NSMutableArray *dataArray;
-@property (nonatomic) NSInteger  downSelectIndex;
+@property (nonatomic,assign) NSInteger  downSelectIndex;
 @property (nonatomic,strong)LZMenuButton *menuBtn;
 @end
 
@@ -97,17 +95,20 @@ _Pragma("clang diagnostic pop") \
     if (YX_MANAGER.isNeedRefrshMineVc) {
         [self setViewData];
     }
-    self.whereCome ? [self requestOther_AllList] : [self requestMine_AllList];
+    [self requestTableData];
+//    self.whereCome ? [self requestOther_AllList] : [self requestMine_AllList];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [_player destroyPlayer];
+      _player = nil;
+
 }
 -(void)requestTableData{
     if (_selectIndexBool) {
         [self requestMyCollectionListGet];
     }else{
-        
         self.whereCome ? [self requestOther_AllList] : [self requestMine_AllList];
     }
 }
@@ -424,7 +425,7 @@ _Pragma("clang diagnostic pop") \
             return 120;
         }else{
             NSDictionary * dic = self.dataArray[indexPath.row];
-            return [HGPersonalCenterTableViewCell cellDefaultHeight:dic];
+            return [YXFirstFindImageTableViewCell cellDefaultHeight:dic];
         }
     }else{
         return [HGPersonalCenterTableViewCell cellDefaultHeight:self.dataArray[indexPath.row]];
@@ -516,7 +517,6 @@ _Pragma("clang diagnostic pop") \
     cell.dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
     [cell setCellValue:dic];
     cell.topTopHeight.constant = 0;
-//    cell.bottomBottomHeight.constant = 0;
     cell.bottomPingLunLbl.hidden = YES;
     cell.wenzhangDetailHeight.constant = 0;//文章详情里面用的，外边设置为0
     cell.wenzhangDetailLbl.hidden = YES;//文章详情里面用的，外边设置为隐藏
@@ -609,11 +609,12 @@ _Pragma("clang diagnostic pop") \
 #pragma -----点击工具指南-----
 -(void)didselect2001ShouCang:(NSDictionary *)dic{
     YXZhiNanDetailViewController * vc = [[YXZhiNanDetailViewController alloc]init];
-    vc.smallIndex = 0;
-    vc.bigIndex = 0;
+    vc.savecurrentindex = _downSelectIndex;
+    vc.selectItemIndex = 0;
+    vc.selectCellIndex = 0;
     vc.whereCome = YES;
-    vc.startArray = [[NSMutableArray alloc] init];
-    [vc.startArray addObject:dic[@"title"]];
+    vc.selectCellArray = [NSMutableArray arrayWithObject:dic[@"title"]];
+    vc.firstSelectId = kGetString(dic[@"title"][@"father_id"]);
     [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma -----点击动态-----
@@ -818,10 +819,10 @@ _Pragma("clang diagnostic pop") \
     
     if (self.whereCome) {
      self.controllerHeaderViewOtherView.hidden = NO;
-     self.controllerHeaderViewBackBtnWidth.constant = 20;
+     self.controllerHeaderViewBackBtnWidth.constant = 32;
     }else{
      self.controllerHeaderViewOtherView.hidden = YES;
-        self.controllerHeaderViewBackBtnWidth.constant = 0;
+     self.controllerHeaderViewBackBtnWidth.constant = 0;
     }
 }
 

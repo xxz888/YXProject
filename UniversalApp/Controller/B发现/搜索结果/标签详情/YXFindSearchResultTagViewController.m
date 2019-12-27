@@ -18,7 +18,6 @@
 #import "HGSegmentedPageViewController.h"
 #import "HGPageViewController.h"
 #import "YXHomeEditPersonTableViewController.h"
-#import "YXMineMyCollectionViewController.h"
 #import "YXMineSettingTableViewController.h"
 #import "YXMineMyCaoGaoViewController.h"
 #import "YXMineFindViewController.h"

@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *fanhuiWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *moreWidth;
+@property (nonatomic,strong) NSString * startId;
 
 @end
 

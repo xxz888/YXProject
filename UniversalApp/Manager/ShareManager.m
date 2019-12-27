@@ -1326,7 +1326,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     ViewRadius(btn, 16);
 }
 -(void)inHuXiangGuanZhuStatusBtn:(UIButton *)btn{
-    [btn setTitle:@"互相关注" forState:UIControlStateNormal];
+    [btn setTitle:@"已关注" forState:UIControlStateNormal];
     [btn setTitleColor:SEGMENT_COLOR forState:0];
     [btn setBackgroundColor:kRGBA(245, 245, 245, 1)];
     ViewRadius(btn, 16);
