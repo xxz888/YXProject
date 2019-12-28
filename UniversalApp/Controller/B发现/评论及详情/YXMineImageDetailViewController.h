@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) CGFloat headerViewHeight;
 @property (strong, nonatomic)  UIWebView *webView;
 @property (nonatomic, strong) UILabel * nodataImg;
+@property (nonatomic, strong) NSDictionary * currentCellDic;
 
 @end
 

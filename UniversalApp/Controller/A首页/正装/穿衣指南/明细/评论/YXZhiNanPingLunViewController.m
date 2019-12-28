@@ -83,56 +83,56 @@
         [weakself requestNewList];
     }];
 }
-#pragma mark ========== 更多评论 ==========
--(void)requestMoreCigar_comment_child:(NSString *)farther_id page:(NSString *)page{
-    kWeakSelf(self);
-    NSString * string = [NSString stringWithFormat:@"father_id=%@&page=%@",farther_id,page];
-    [YX_MANAGER requestPubSearchChildPingLunListComment:string success:^(id object) {
-        if ([object count] == 0) {
-            [QMUITips showInfo:@"没有更多评论了" detailText:@"" inView:weakself.yxTableView hideAfterDelay:1];
-            return ;
-        }
-        SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
-        NSMutableArray *temp = [NSMutableArray new];
-        [temp addObjectsFromArray:model.commentItemsArray];
-        //判断评论数组是否添加过新数据，如果添加过就不添加了
-        for (NSDictionary * dic in object) {
-            SDTimeLineCellCommentItemModel *commentItemModel = [SDTimeLineCellCommentItemModel new];
-            if ([dic[@"aim_id"] integerValue] != 0) {
-                commentItemModel.firstUserId = kGetString(dic[@"user_id"]);
-                commentItemModel.firstUserName = kGetString(dic[@"user_info"][@"name"]);
-                commentItemModel.secondUserId = kGetString(dic[@"aim_id"]);
-                commentItemModel.secondUserName = kGetString(dic[@"aim_info"][@"name"]);
-                commentItemModel.commentString = kGetString(dic[@"comment"]) ;
-                commentItemModel.labelTag = [dic[@"id"] integerValue];
-            } else {
-                commentItemModel.firstUserId = kGetString(dic[@"user_id"]);
-                commentItemModel.firstUserName =kGetString(dic[@"user_info"][@"name"]);
-                commentItemModel.commentString = kGetString(dic[@"comment"]) ;
-                commentItemModel.labelTag = [dic[@"id"] integerValue];
-            }
-            BOOL ishave = NO;
-            for (SDTimeLineCellCommentItemModel * oldCommentItemModel in model.commentItemsArray) {
-                if ([oldCommentItemModel.firstUserId integerValue] == [commentItemModel.firstUserId integerValue] &&
-                    [oldCommentItemModel.firstUserName isEqualToString:commentItemModel.firstUserName]   &&
-                    [oldCommentItemModel.commentString isEqualToString:commentItemModel.commentString]
-                    ) {
-                    ishave = YES;
-                }else{
-                    ishave = NO;
-                    break;
-                }
-            }
-            if (ishave) {
-            }else{
-                [temp addObject:commentItemModel];
-                model.commentItemsArray = [temp copy];
-            }
-            
-        }
-        [weakself.yxTableView reloadData];
-    }];
-}
+//#pragma mark ========== 更多评论 ==========
+//-(void)requestMoreCigar_comment_child:(NSString *)farther_id page:(NSString *)page{
+//    kWeakSelf(self);
+//    NSString * string = [NSString stringWithFormat:@"father_id=%@&page=%@",farther_id,page];
+//    [YX_MANAGER requestPubSearchChildPingLunListComment:string success:^(id object) {
+//        if ([object count] == 0) {
+//            [QMUITips showInfo:@"没有更多评论了" detailText:@"" inView:weakself.yxTableView hideAfterDelay:1];
+//            return ;
+//        }
+//        SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
+//        NSMutableArray *temp = [NSMutableArray new];
+//        [temp addObjectsFromArray:model.commentItemsArray];
+//        //判断评论数组是否添加过新数据，如果添加过就不添加了
+//        for (NSDictionary * dic in object) {
+//            SDTimeLineCellCommentItemModel *commentItemModel = [SDTimeLineCellCommentItemModel new];
+//            if ([dic[@"aim_id"] integerValue] != 0) {
+//                commentItemModel.firstUserId = kGetString(dic[@"user_id"]);
+//                commentItemModel.firstUserName = kGetString(dic[@"user_info"][@"name"]);
+//                commentItemModel.secondUserId = kGetString(dic[@"aim_id"]);
+//                commentItemModel.secondUserName = kGetString(dic[@"aim_info"][@"name"]);
+//                commentItemModel.commentString = kGetString(dic[@"comment"]) ;
+//                commentItemModel.labelTag = [dic[@"id"] integerValue];
+//            } else {
+//                commentItemModel.firstUserId = kGetString(dic[@"user_id"]);
+//                commentItemModel.firstUserName =kGetString(dic[@"user_info"][@"name"]);
+//                commentItemModel.commentString = kGetString(dic[@"comment"]) ;
+//                commentItemModel.labelTag = [dic[@"id"] integerValue];
+//            }
+//            BOOL ishave = NO;
+//            for (SDTimeLineCellCommentItemModel * oldCommentItemModel in model.commentItemsArray) {
+//                if ([oldCommentItemModel.firstUserId integerValue] == [commentItemModel.firstUserId integerValue] &&
+//                    [oldCommentItemModel.firstUserName isEqualToString:commentItemModel.firstUserName]   &&
+//                    [oldCommentItemModel.commentString isEqualToString:commentItemModel.commentString]
+//                    ) {
+//                    ishave = YES;
+//                }else{
+//                    ishave = NO;
+//                    break;
+//                }
+//            }
+//            if (ishave) {
+//            }else{
+//                [temp addObject:commentItemModel];
+//                model.commentItemsArray = [temp copy];
+//            }
+//
+//        }
+//        [weakself.yxTableView reloadData];
+//    }];
+//}
 #pragma mark ========== tableview数据 ==========
 - (NSArray *)creatModelsWithCount:(NSArray *)formalArray{
     [self.pageArray removeAllObjects];
@@ -188,42 +188,42 @@
     }
     return [resArr copy];
 }
-#pragma mark ========== 点击跟多评论按钮 ==========
--(void)showMoreComment:(UITableViewCell *)cell{
-    self.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
-    SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
-    NSMutableArray * copyArray = [NSMutableArray arrayWithArray:self.pageArray];
-    for (NSDictionary * dic in copyArray) {
-        if ([dic[@"id"] intValue] == [model.id intValue]) {
-            [dic setValue:@([dic[@"page"] intValue]+1) forKey:@"page"];
-            kWeakSelf(self);
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [weakself requestMoreCigar_comment_child:model.id page:kGetString(dic[@"page"])];
-            });
-        }
-    }
-}
-#pragma mark ========== tableview 点击评论按钮 ==========
-- (void)didClickcCommentButtonInCell:(SDTimeLineCell *)cell{
-    [self setupTextField];
-    self.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
-    SDTimeLineCellModel * model = self.dataArray[self.currentEditingIndexthPath.row];
-    self.textField.placeholder = [NSString stringWithFormat:@"  回复：%@",model.name];
-    self.currentEditingIndexthPath = cell.indexPath;
-    self.isReplayingComment = YES;
-    self.commentToUser = model.name;
-    self.commentToUserID = model.userID;
-}
-#pragma mark ========== tableview 点赞按钮 ==========
-- (void)didClickLikeButtonInCell:(SDTimeLineCell *)cell{
-    kWeakSelf(self);
-    NSIndexPath *index = [self.yxTableView indexPathForCell:cell];
-    SDTimeLineCellModel *model = self.dataArray[index.row];
-    [YX_MANAGER requestPubDianZanComment:model.id success:^(id object) {
-        weakself.currentEditingIndexthPath = index;
-        [weakself requestNewList];
-    }];
-}
+//#pragma mark ========== 点击跟多评论按钮 ==========
+//-(void)showMoreComment:(UITableViewCell *)cell{
+//    self.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
+//    SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
+//    NSMutableArray * copyArray = [NSMutableArray arrayWithArray:self.pageArray];
+//    for (NSDictionary * dic in copyArray) {
+//        if ([dic[@"id"] intValue] == [model.id intValue]) {
+//            [dic setValue:@([dic[@"page"] intValue]+1) forKey:@"page"];
+//            kWeakSelf(self);
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                [weakself requestMoreCigar_comment_child:model.id page:kGetString(dic[@"page"])];
+//            });
+//        }
+//    }
+//}
+//#pragma mark ========== tableview 点击评论按钮 ==========
+//- (void)didClickcCommentButtonInCell:(SDTimeLineCell *)cell{
+//    [self setupTextField];
+//    self.currentEditingIndexthPath = [self.yxTableView indexPathForCell:cell];
+//    SDTimeLineCellModel * model = self.dataArray[self.currentEditingIndexthPath.row];
+//    self.textField.placeholder = [NSString stringWithFormat:@"  回复：%@",model.name];
+//    self.currentEditingIndexthPath = cell.indexPath;
+//    self.isReplayingComment = YES;
+//    self.commentToUser = model.name;
+//    self.commentToUserID = model.userID;
+//}
+//#pragma mark ========== tableview 点赞按钮 ==========
+//- (void)didClickLikeButtonInCell:(SDTimeLineCell *)cell{
+//    kWeakSelf(self);
+//    NSIndexPath *index = [self.yxTableView indexPathForCell:cell];
+//    SDTimeLineCellModel *model = self.dataArray[index.row];
+//    [YX_MANAGER requestPubDianZanComment:model.id success:^(id object) {
+//        weakself.currentEditingIndexthPath = index;
+//        [weakself requestNewList];
+//    }];
+//}
 #pragma mark ========== 评论 ==========
 -(void)pinglunFatherPic:(NSDictionary *)dic{
     kWeakSelf(self);
@@ -261,27 +261,27 @@
     [self.view addSubview:self.inputToolbar];
 }
 #pragma mark - ZInputToolbarDelegate
--(void)inputToolbar:(ZInputToolbar *)inputToolbar sendContent:(NSString *)sendContent {
-    [self finishTextView:inputToolbar.textInput];
-    // 清空输入框文字
-    [self.inputToolbar sendSuccessEndEditing];
-}
+//-(void)inputToolbar:(ZInputToolbar *)inputToolbar sendContent:(NSString *)sendContent {
+//    [self finishTextView:inputToolbar.textInput];
+//    // 清空输入框文字
+//    [self.inputToolbar sendSuccessEndEditing];
+//}
 #pragma mark - UITextFieldDelegate
--(void)finishTextView:(UITextView *)textField{
-    if (self.isReplayingComment) {
-        SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
-        [self requestpost_comment_child:@{@"comment":textField.text,
-                                          @"father_id":@([model.id intValue]),
-                                          @"aim_id":self.commentToUserID,
-                                          }];
-        self.isReplayingComment = NO;
-    }else{
-        [self pinglunFatherPic:@{@"comment":textField.text,
-                                 @"target_id":self.startId,
-                                 @"obj":@"1"
-                                 }];
-        
-    }
-}
+//-(void)finishTextView:(UITextView *)textField{
+//    if (self.isReplayingComment) {
+//        SDTimeLineCellModel *model = self.dataArray[self.currentEditingIndexthPath.row];
+//        [self requestpost_comment_child:@{@"comment":textField.text,
+//                                          @"father_id":@([model.id intValue]),
+//                                          @"aim_id":self.commentToUserID,
+//                                          }];
+//        self.isReplayingComment = NO;
+//    }else{
+//        [self pinglunFatherPic:@{@"comment":textField.text,
+//                                 @"target_id":self.startId,
+//                                 @"obj":@"1"
+//                                 }];
+//
+//    }
+//}
 
 @end

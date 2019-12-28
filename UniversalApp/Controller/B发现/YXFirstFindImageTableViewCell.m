@@ -42,7 +42,6 @@
         contentText = [@"占位" append: dic[@"title"]];
         return [ShareManager inAllContentOutHeight:contentText contentWidth:KScreenWidth-34 lineSpace:cellSpace font:BOLDSYSTEMFONT(18)];
     }
-
 }
 //计算标签高度
 +(CGFloat)cellTagViewHeight:(NSDictionary *)dic{

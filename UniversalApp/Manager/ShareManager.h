@@ -100,4 +100,5 @@ SINGLETON_FOR_HEADER(ShareManager)
 -(void)inGuanZhuStatus12Btn:(UIButton *)btn;
 -(void)inYiGuanZhuStatus12Btn:(UIButton *)btn;
 -(void)inHuXiangGuanZhuStatus12Btn:(UIButton *)btn;
++(void)inAllTextOutDifColor:(UILabel *)label tag:(NSString *)tag lineSpace:(CGFloat)lineSpace color:(UIColor *)color font:(UIFont *)font;
 @end

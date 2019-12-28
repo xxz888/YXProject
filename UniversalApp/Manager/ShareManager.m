@@ -604,13 +604,13 @@ SINGLETON_FOR_CLASS(ShareManager);
     return htmlString;
 }
 
-+(void)inTextViewOutDifColorView:(UILabel *)tfView tag:(NSString *)tag{
++(void)inAllTextOutDifColor:(UILabel *)label tag:(NSString *)tag lineSpace:(CGFloat)lineSpace color:(UIColor *)color font:(UIFont *)font{
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.lineSpacing = 9.0f;  //设置行间距
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:tfView.text attributes:@{NSFontAttributeName:[UIFont fontWithName:@"苹方-简" size:15],NSParagraphStyleAttributeName:paragraphStyle}];
-    NSRange range1 = [[str string] rangeOfString:tag];
-    [str addAttribute:NSForegroundColorAttributeName value:YXRGBAColor(10, 96, 254) range:range1];
-    tfView.attributedText = str;
+    paragraphStyle.lineSpacing = lineSpace;  //设置行间距
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:label.text attributes:@{NSFontAttributeName:font,NSParagraphStyleAttributeName:paragraphStyle}];
+    NSRange range = [[str string] rangeOfString:tag];
+    [str addAttribute:NSForegroundColorAttributeName value:color range:range];
+    label.attributedText = str;
 }
 +(void)setLineSpace:(CGFloat)lineSpace inLabel:(UILabel *)label size:(CGFloat)size{
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];

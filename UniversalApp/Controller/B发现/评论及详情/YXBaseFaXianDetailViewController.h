@@ -34,9 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, assign) BOOL isReplayingComment;
-@property (nonatomic, strong) NSIndexPath *currentEditingIndexthPath;
-@property (nonatomic, copy) NSString *commentToUser;
-@property (nonatomic, copy) NSString *commentToUserID;
+//@property (nonatomic, strong) NSIndexPath *currentEditingIndexthPath;
+//@property (nonatomic, copy) NSString *commentToUser;
+//@property (nonatomic, copy) NSString *commentToUserID;
 
 @property (weak, nonatomic) IBOutlet UIButton *guanzhuBtn;
 - (IBAction)guanzhuAction:(id)sender;
