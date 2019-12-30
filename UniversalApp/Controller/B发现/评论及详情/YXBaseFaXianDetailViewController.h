@@ -84,6 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIStackView *threeStackView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *threeStackViewWidth;
 - (void)saveImage:(UMSocialPlatformType)umType;
+-(void)clickUserImageView:(NSString *)userId;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -10,10 +10,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YXPingLunDetailViewController">
             <connections>
+                <outlet property="bottomMySelfImv" destination="muZ-IF-pck" id="qGJ-6M-u7K"/>
                 <outlet property="bottomView" destination="Ru0-2T-PCW" id="w3i-KS-wdD"/>
                 <outlet property="pinglunTitle" destination="3tU-d8-bjd" id="8J4-6g-pj0"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="yxTableView" destination="1jw-i0-cQs" id="c5M-3p-lF5"/>
+                <outlet property="zanBtn" destination="lS2-aE-5rp" id="Bns-wk-8p1"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -83,6 +85,9 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mxP-Ov-Z38">
                                     <rect key="frame" x="0.0" y="0.0" width="293" height="30"/>
+                                    <connections>
+                                        <action selector="clickPingLunAction:" destination="-1" eventType="touchUpInside" id="5DQ-O6-11t"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加评论…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOd-Me-Dyn">
                                     <rect key="frame" x="16" y="6.5" width="68.5" height="17"/>
@@ -115,6 +120,9 @@
                                 <constraint firstAttribute="height" constant="20" id="Sd1-rv-GQf"/>
                             </constraints>
                             <state key="normal" image="pinglunweizan"/>
+                            <connections>
+                                <action selector="zanAction:" destination="-1" eventType="touchUpInside" id="4kI-6w-Qce"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

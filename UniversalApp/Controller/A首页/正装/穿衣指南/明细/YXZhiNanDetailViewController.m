@@ -311,7 +311,6 @@
     NSDictionary * dic = self.selectCellArray[self.selectCellIndex];
     YXZhiNanPingLunViewController * vc = [[YXZhiNanPingLunViewController alloc]init];
     vc.startDic = [NSDictionary dictionaryWithDictionary:dic];
-    vc.startId = dic[@"id"];
     [self.navigationController pushViewController:vc animated:YES];
     
     kWeakSelf(self);

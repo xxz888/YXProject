@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZeS-IN-qV0">
-                        <rect key="frame" x="16" y="15" width="288" height="36"/>
+                        <rect key="frame" x="16" y="16" width="288" height="36"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dz1_1" translatesAutoresizingMaskIntoConstraints="NO" id="HwR-wi-SwW">
                                 <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
@@ -58,6 +58,9 @@
                                     <constraint firstAttribute="height" constant="16" id="S4E-NC-p8u"/>
                                 </constraints>
                                 <state key="normal" image="F黑色未点赞"/>
+                                <connections>
+                                    <action selector="plZanAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="zAZ-K3-s6X"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -75,7 +78,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="与祖国同行，看濠江盛景。即将迎来回归祖国20周年纪念日的澳门，一路欢歌，生机勃发。澳门回归祖国20年来，开创了历史上最好的发展局面。事实充分证明，“一国两制”是完全行得通、办得到、得人心的！" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SqX-mb-tqa">
-                        <rect key="frame" x="60" y="61" width="244" height="35"/>
+                        <rect key="frame" x="60" y="62" width="244" height="35"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="RIq-VY-B1j"/>
                         </constraints>
@@ -84,8 +87,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hr5-3E-fGz">
-                        <rect key="frame" x="60" y="112" width="244" height="0.5"/>
-                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="60" y="113" width="244" height="0.5"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="0.5" id="gDe-ob-V3b"/>
                         </constraints>
@@ -93,10 +96,10 @@
                 </subviews>
                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="ZeS-IN-qV0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="2Ub-U6-scl"/>
+                    <constraint firstItem="ZeS-IN-qV0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="2Ub-U6-scl"/>
                     <constraint firstItem="ZeS-IN-qV0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="82y-3A-3Rj"/>
                     <constraint firstItem="Hr5-3E-fGz" firstAttribute="trailing" secondItem="SqX-mb-tqa" secondAttribute="trailing" id="Dwj-uY-obm"/>
-                    <constraint firstItem="Hr5-3E-fGz" firstAttribute="top" secondItem="SqX-mb-tqa" secondAttribute="bottom" constant="16" id="Q9i-R5-eOZ"/>
+                    <constraint firstItem="Hr5-3E-fGz" firstAttribute="top" secondItem="SqX-mb-tqa" secondAttribute="bottom" constant="16" id="K3p-Ts-vqS"/>
                     <constraint firstItem="Hr5-3E-fGz" firstAttribute="leading" secondItem="SqX-mb-tqa" secondAttribute="leading" id="RgN-8x-v3p"/>
                     <constraint firstAttribute="trailing" secondItem="ZeS-IN-qV0" secondAttribute="trailing" constant="16" id="cOE-zz-Xwl"/>
                     <constraint firstItem="SqX-mb-tqa" firstAttribute="leading" secondItem="srC-YH-W2J" secondAttribute="leading" id="ilT-c5-3aZ"/>
@@ -105,11 +108,20 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
-            <point key="canvasLocation" x="131.8840579710145" y="161.38392857142856"/>
+            <connections>
+                <outlet property="lineView" destination="Hr5-3E-fGz" id="R4q-sV-jQr"/>
+                <outlet property="plDetail" destination="SqX-mb-tqa" id="kGq-JP-o8S"/>
+                <outlet property="plDetailHeight" destination="RIq-VY-B1j" id="N6f-vc-XLs"/>
+                <outlet property="plTime" destination="srC-YH-W2J" id="5o1-2D-NgP"/>
+                <outlet property="plTitleImv" destination="HwR-wi-SwW" id="aVc-i0-70G"/>
+                <outlet property="plUserName" destination="qXI-Me-Eaq" id="cjO-Hc-kyu"/>
+                <outlet property="plZan" destination="YtM-K3-aQf" id="ors-9q-Qc9"/>
+            </connections>
+            <point key="canvasLocation" x="-171" y="127"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="F黑色未点赞" width="16" height="16"/>
+        <image name="F黑色未点赞" width="63" height="63"/>
         <image name="dz1_1" width="324" height="282"/>
     </resources>
 </document>

@@ -97,7 +97,9 @@
     [footView.seeAllBtn setTitle:allText forState:0];
     kWeakSelf(self);
     footView.block = ^{
-        weakself.seeAllblock(self.tag);
+        if ([YXPingLunTableViewCell getFootViewHeight:self.cellDataDic] != 0) {
+            weakself.seeAllblock(self.tag);
+        }
     };
     return footView;
 }
@@ -135,12 +137,22 @@
 //    UITapGestureRecognizer *aTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGRAction:)];
 //    self.plDetail.userInteractionEnabled = YES;
 //    [self.plDetail addGestureRecognizer:aTapGR];
+    
+    UITapGestureRecognizer *aTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapTitleImvAction:)];
+    self.plTitleImv.userInteractionEnabled = YES;
+    [self.plTitleImv addGestureRecognizer:aTapGR];
 }
 //-(void)tapGRAction:(id)tap{
 //    self.seeAllblock(self.tag);
 //}
+-(void)tapTitleImvAction:(id)tap{
+    self.tagTitleImvCellBlock(kGetString(self.cellDataDic[@"user_id"]));
+}
+
 -(void)tapGRAction1:(id)tap{
-    self.seeAllblock(self.tag);
+      if ([YXPingLunTableViewCell getFootViewHeight:self.cellDataDic] != 0) {
+              self.seeAllblock(self.tag);
+      }
 }
 
 

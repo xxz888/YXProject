@@ -1,8 +1,8 @@
 //
-//  YXPingLunTableViewCell.h
+//  YXChildPingLunTableViewCell.h
 //  UniversalApp
 //
-//  Created by 小小醉 on 2019/12/28.
+//  Created by 小小醉 on 2019/12/23.
 //  Copyright © 2019 徐阳. All rights reserved.
 //
 
@@ -14,29 +14,23 @@ typedef void(^ZanBlock)(NSInteger);
 typedef void(^PressLongChildCellBlock)(NSDictionary *);
 typedef void(^DidCellCellPingLunBlock)(NSInteger);
 typedef void(^TagTitleImvCellBlock)(NSString *);
-
-@interface YXPingLunTableViewCell : UITableViewCell
+@interface YXChildPingLunTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *plTitleImv;
 @property (weak, nonatomic) IBOutlet UILabel *plUserName;
 @property (weak, nonatomic) IBOutlet UILabel *plTime;
 @property (weak, nonatomic) IBOutlet UIButton *plZan;
 - (IBAction)plZanAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *plDetail;
-@property (weak, nonatomic) IBOutlet UITableView *plTableView;
-@property(nonatomic,copy)SeeAllPingLunBlock seeAllblock;
 @property(nonatomic,copy)TagTitleImvCellBlock tagTitleImvCellBlock;
 
 @property(nonatomic,copy)ZanBlock zanBlock;
 @property(nonatomic,copy)PressLongChildCellBlock pressLongChildCellBlock;
 @property(nonatomic,copy)DidCellCellPingLunBlock didCellCellPingLunBlock;
-@property (weak, nonatomic) IBOutlet UIImageView *titleImv;
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *plDetailHeight;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *plplViewHeight;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *plplViewToTopHeight;
 
 +(CGFloat)cellDefaultHeight:(NSDictionary *)dic;
 -(void)setCellData:(NSDictionary *)dic;
+@property (weak, nonatomic) IBOutlet UIView *lineView;
 
 @property(nonatomic,assign)CGFloat cellTableViewHeight;
 @end

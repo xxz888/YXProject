@@ -15,6 +15,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
 - (IBAction)backVcAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property(nonatomic,strong)NSDictionary * startDic;
+@property(nonatomic,strong)NSDictionary * startStartDic;
+
+@property(nonatomic,strong)NSMutableArray * dataArray;
+@property(nonatomic,strong)NSMutableArray * lastArray;
+- (IBAction)clickPingLunAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *bottomMySelfImv;
+@property (weak, nonatomic) IBOutlet UIButton *zanBtn;
+- (IBAction)zanAction:(id)sender;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -7,14 +7,20 @@
 //
 
 #import "RootViewController.h"
-#import "YXBaseFaXianDetailViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^PinglunBlock)(NSString *);
-@interface YXZhiNanPingLunViewController : YXBaseFaXianDetailViewController
-@property (nonatomic,strong) NSDictionary * startStartDic;
-@property (nonatomic,strong) NSString * startId;
+@interface YXZhiNanPingLunViewController : RootViewController
+@property (weak, nonatomic) IBOutlet UITableView *yxTableView;
+- (IBAction)backVcAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property(nonatomic,strong)NSDictionary * startDic;
+@property(nonatomic,strong)NSMutableArray * dataArray;
 
-@property (nonatomic,copy) PinglunBlock pinglunBlock;
+- (IBAction)clickPingLunAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *bottomMySelfImv;
+@property (weak, nonatomic) IBOutlet UIButton *zanBtn;
+- (IBAction)zanAction:(id)sender;
+@property(nonatomic,copy)PinglunBlock pinglunBlock;
 @end
 
 NS_ASSUME_NONNULL_END

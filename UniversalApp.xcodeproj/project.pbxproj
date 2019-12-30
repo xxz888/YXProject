@@ -300,6 +300,7 @@
 		BB9ECD4D228002EA00A12952 /* UIView+LSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9ECD49228002E900A12952 /* UIView+LSExtension.m */; };
 		BB9EFE7021F5CCBA00180813 /* YXPublishMoreTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFE6E21F5CCBA00180813 /* YXPublishMoreTagsViewController.m */; };
 		BB9EFE7121F5CCBA00180813 /* YXPublishMoreTagsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB9EFE6F21F5CCBA00180813 /* YXPublishMoreTagsViewController.xib */; };
+		BBA0C8DB23B9C56000FDA6F3 /* YXZhiNanPingLunViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBA0C8DA23B9C56000FDA6F3 /* YXZhiNanPingLunViewController.xib */; };
 		BBA4612423A0E9140010E7CF /* YXDingZhiHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA4612323A0E9140010E7CF /* YXDingZhiHeadView.m */; };
 		BBA4612623A0E91C0010E7CF /* YXDingZhiHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBA4612523A0E91C0010E7CF /* YXDingZhiHeadView.xib */; };
 		BBA4612A23A0EACA0010E7CF /* YXDingZhiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA4612823A0EACA0010E7CF /* YXDingZhiTableViewCell.m */; };
@@ -1119,6 +1120,7 @@
 		BB9EFE6D21F5CCBA00180813 /* YXPublishMoreTagsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXPublishMoreTagsViewController.h; sourceTree = "<group>"; };
 		BB9EFE6E21F5CCBA00180813 /* YXPublishMoreTagsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXPublishMoreTagsViewController.m; sourceTree = "<group>"; };
 		BB9EFE6F21F5CCBA00180813 /* YXPublishMoreTagsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXPublishMoreTagsViewController.xib; sourceTree = "<group>"; };
+		BBA0C8DA23B9C56000FDA6F3 /* YXZhiNanPingLunViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXZhiNanPingLunViewController.xib; sourceTree = "<group>"; };
 		BBA4612223A0E9140010E7CF /* YXDingZhiHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXDingZhiHeadView.h; sourceTree = "<group>"; };
 		BBA4612323A0E9140010E7CF /* YXDingZhiHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXDingZhiHeadView.m; sourceTree = "<group>"; };
 		BBA4612523A0E91C0010E7CF /* YXDingZhiHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXDingZhiHeadView.xib; sourceTree = "<group>"; };
@@ -2225,6 +2227,7 @@
 			children = (
 				BB21FD3A22AF76660059BCAC /* YXZhiNanPingLunViewController.h */,
 				BB21FD3B22AF76660059BCAC /* YXZhiNanPingLunViewController.m */,
+				BBA0C8DA23B9C56000FDA6F3 /* YXZhiNanPingLunViewController.xib */,
 			);
 			path = "评论";
 			sourceTree = "<group>";
@@ -2808,9 +2811,6 @@
 				BB8D249F23B0625E0017482B /* YXChildFootView.h */,
 				BB8D24A023B0625E0017482B /* YXChildFootView.m */,
 				BB8D24A723B062860017482B /* YXChildFootView.xib */,
-				BB8D24A223B062770017482B /* YXChildPingLunTableViewCell.h */,
-				BB8D24A323B062770017482B /* YXChildPingLunTableViewCell.m */,
-				BB8D24A423B062770017482B /* YXChildPingLunTableViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -3478,6 +3478,9 @@
 		BBB7603A23B73B400020BAA5 /* 详情 */ = {
 			isa = PBXGroup;
 			children = (
+				BB8D24A223B062770017482B /* YXChildPingLunTableViewCell.h */,
+				BB8D24A323B062770017482B /* YXChildPingLunTableViewCell.m */,
+				BB8D24A423B062770017482B /* YXChildPingLunTableViewCell.xib */,
 				BBB7603B23B73B7B0020BAA5 /* YXPingLunDetailViewController.h */,
 				BBB7603C23B73B7B0020BAA5 /* YXPingLunDetailViewController.m */,
 				BBB7603D23B73B7B0020BAA5 /* YXPingLunDetailViewController.xib */,
@@ -4641,6 +4644,7 @@
 				BBB7603923B736920020BAA5 /* YXPingLunHeader.xib in Resources */,
 				BB8376F52248B5730091A1A8 /* YXMineFindTableViewCell.xib in Resources */,
 				BBEA156F2366E41B006FBBFF /* ImageSelectedSmallOff.png in Resources */,
+				BBA0C8DB23B9C56000FDA6F3 /* YXZhiNanPingLunViewController.xib in Resources */,
 				BBA8129E21DDAA15001B5EA1 /* YXMine.storyboard in Resources */,
 				BBEA155C2366E41B006FBBFF /* UIBarButtonItemGrid.png in Resources */,
 				BBBFD7892222D7D300D377AC /* TOCropViewControllerLocalizable.strings in Resources */,
