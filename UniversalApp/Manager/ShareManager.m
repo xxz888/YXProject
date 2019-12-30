@@ -688,18 +688,15 @@ SINGLETON_FOR_CLASS(ShareManager);
     if (str.length == 0) {
         return 0;
     }
-    
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:str];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = lineSpacing; // 设置行间距
     paragraphStyle.alignment = NSTextAlignmentJustified; //设置两端对齐显示
-    NSDictionary *dic = @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Light" size:fontSize]};
+    NSDictionary *dic = @{NSFontAttributeName:SYSTEMFONT(fontSize)};
     
     
     [attributedStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedStr.length)];
     CGSize size = [str boundingRectWithSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width-30, MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
-    
-    
     return  size.height;
 }
     
@@ -1242,7 +1239,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     CGSize size = [string boundingRectWithSize:CGSizeMake(contentWidth, MAXFLOAT) options:
                    NSStringDrawingUsesLineFragmentOrigin |
                    NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
-    return  ceil(size.height);
+    return  size.height;
 }
 -(NSString *)addImgURL:(NSString *)string{
     if ([string contains:IMG_URI]) {

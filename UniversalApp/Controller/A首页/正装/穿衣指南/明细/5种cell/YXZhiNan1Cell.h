@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXZhiNan1Cell : UITableViewCell
-    @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
+@property (weak, nonatomic) IBOutlet UILabel *titleLbl;
     //180
     -(void)setCellData:(NSDictionary *)dic;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleHeight;

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,73 +14,29 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="88.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRG-b2-zAF" customClass="IXAttributeTapLabel">
-                        <rect key="frame" x="15" y="20" width="290" height="59"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Uv-TW-SPJ">
+                        <rect key="frame" x="15" y="20" width="290" height="40"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="59" id="9eq-5w-Gnl"/>
+                            <constraint firstAttribute="height" constant="40" id="1zc-9J-S33"/>
                         </constraints>
-                        <attributedString key="attributedText">
-                            <fragment content="任正非，祖籍浙江省">
-                                <attributes>
-                                    <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <font key="NSFont" size="14" name="PingFangSC-Light"/>
-                                    <real key="NSKern" value="0.0"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="charWrapping" baseWritingDirection="leftToRight" lineSpacing="9" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                        <tabStops/>
-                                    </paragraphStyle>
-                                    <color key="NSStrokeColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <real key="NSStrokeWidth" value="0.0"/>
-                                </attributes>
-                            </fragment>
-                            <fragment content="浦江县">
-                                <attributes>
-                                    <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <font key="NSFont" size="14" name="PingFangSC-Light"/>
-                                    <real key="NSKern" value="0.0"/>
-                                    <url key="NSLink" string="https://baike.baidu.com/item/%E6%B5%A6%E6%B1%9F%E5%8E%BF/8510791"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="charWrapping" baseWritingDirection="leftToRight" lineSpacing="9" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                        <tabStops/>
-                                    </paragraphStyle>
-                                    <color key="NSStrokeColor" red="0.074509803921568626" green="0.43137254901960786" blue="0.76078431372549016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <real key="NSStrokeWidth" value="0.0"/>
-                                </attributes>
-                            </fragment>
-                            <fragment>
-                                <string key="content">，具影响力人物榜单。
-</string>
-                                <attributes>
-                                    <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <font key="NSFont" size="14" name="PingFangSC-Light"/>
-                                    <real key="NSKern" value="0.0"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="charWrapping" baseWritingDirection="leftToRight" lineSpacing="9" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                        <tabStops/>
-                                    </paragraphStyle>
-                                    <color key="NSStrokeColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <real key="NSStrokeWidth" value="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ZRG-b2-zAF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="0zR-EG-8FR"/>
-                    <constraint firstItem="ZRG-b2-zAF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="M7C-qV-W9q"/>
-                    <constraint firstAttribute="trailing" secondItem="ZRG-b2-zAF" secondAttribute="trailing" constant="15" id="ZRP-sY-HTV"/>
+                    <constraint firstItem="6Uv-TW-SPJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="VjG-WU-0YN"/>
+                    <constraint firstAttribute="trailing" secondItem="6Uv-TW-SPJ" secondAttribute="trailing" constant="15" id="at6-6g-ugs"/>
+                    <constraint firstItem="6Uv-TW-SPJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="yuF-L7-WmD"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
-                <outlet property="contentHeight" destination="9eq-5w-Gnl" id="Z6X-n8-sa6"/>
-                <outlet property="contentLbl" destination="ZRG-b2-zAF" id="qLD-ph-gQj"/>
+                <outlet property="contentHeight" destination="1zc-9J-S33" id="Y1Y-Cg-p9X"/>
+                <outlet property="midContentView" destination="6Uv-TW-SPJ" id="Eim-tq-YsG"/>
             </connections>
-            <point key="canvasLocation" x="-1254" y="-10"/>
+            <point key="canvasLocation" x="-1797" y="-8"/>
         </tableViewCell>
     </objects>
 </document>

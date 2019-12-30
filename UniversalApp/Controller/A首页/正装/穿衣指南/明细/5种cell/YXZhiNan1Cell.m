@@ -15,19 +15,20 @@
     // Initialization code
 }
 +(CGFloat)jisuanCellHeight:(NSDictionary *)dic{
-    //内容
-    CGFloat height_size = [ShareManager inTextZhiNanOutHeight:dic[@"detail"] lineSpace:9 fontSize:20];
+    CGFloat height_size = [ShareManager inAllContentOutHeight:dic[@"detail"] contentWidth:KScreenWidth - 30 lineSpace:9 font:BOLDSYSTEMFONT(20)];
     return height_size;
 }
 -(void)setCellData:(NSDictionary *)dic{
-    self.titleLbl.text = dic[@"detail"];
-    
-    self.titleHeight.constant = [ShareManager inTextZhiNanOutHeight:dic[@"detail"] lineSpace:9 fontSize:20];
+    NSString * contentDetail = dic[@"detail"];
+    NSMutableAttributedString * attText = [[NSMutableAttributedString alloc] initWithString:contentDetail];
+    [attText addAttribute:NSFontAttributeName
+                         value:BOLDSYSTEMFONT(20)
+                         range:NSMakeRange(0, contentDetail.length - 1)];//设置字体
+    [attText addAttribute:NSForegroundColorAttributeName
+                         value:kRGBA(176, 151, 99, 1)
+                         range:NSMakeRange(0, contentDetail.length - 1)];//设置字体
+    attText.lineSpacing = 0;//行间距
+    self.titleHeight.constant = [YXZhiNan1Cell jisuanCellHeight:dic];
+    self.titleLbl.attributedText = attText;
 }
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 @end
