@@ -11,7 +11,6 @@
 #include <CommonCrypto/CommonCrypto.h>
 #import <AFNetworking.h>
 #import <QN_GTM_Base64.h>
-#import "ZLPhotoAssets.h"
 #import <QNEtag.h>
 #import <QNConfiguration.h>
 
