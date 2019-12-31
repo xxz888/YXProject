@@ -19,7 +19,6 @@
 #import "YXHomeEditPersonTableViewController.h"
 #import "YXMineSettingTableViewController.h"
 #import "YXMineMyCaoGaoViewController.h"
-#import "YXMineFindViewController.h"
 #import "YXFindSearchTagHeaderView.h"
 #import "YXFindSearchTagDetailViewController.h"
 static CGFloat const HeaderImageViewHeight = 130;

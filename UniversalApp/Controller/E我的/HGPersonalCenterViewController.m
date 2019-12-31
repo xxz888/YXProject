@@ -14,7 +14,6 @@
 #import "YXHomeEditPersonTableViewController.h"
 #import "YXMineSettingTableViewController.h"
 #import "YXMineMyCaoGaoViewController.h"
-#import "YXMineFindViewController.h"
 #import "YXMineJiFenTableViewController.h"
 #import "YXMineChouJiangViewController.h"
 #import "YXJiFenShopViewController.h"

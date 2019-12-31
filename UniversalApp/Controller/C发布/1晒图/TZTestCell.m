@@ -7,7 +7,7 @@
 //
 
 #import "TZTestCell.h"
-#import "UIView+Layout.h"
+//#import "UIView+Layout.h"
 #import <Photos/Photos.h>
 
 @implementation TZTestCell
@@ -40,12 +40,12 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    _imageView.frame = CGRectMake(0,0, self.tz_width, self.tz_height);
-    _gifLable.frame = CGRectMake(self.tz_width - 25, self.tz_height - 14, 25, 14);
-    _deleteBtn.frame = CGRectMake(self.tz_width - 15, 0, 15, 15);
+    _imageView.frame = CGRectMake(0,0, self.qmui_width, self.qmui_height);
+    _gifLable.frame = CGRectMake(self.qmui_width - 25, self.qmui_height - 14, 25, 14);
+    _deleteBtn.frame = CGRectMake(self.qmui_width - 15, 0, 15, 15);
     _deleteBtn.imageEdgeInsets = UIEdgeInsetsMake(4,4,4,4);
     ViewRadius(_imageView, 5);
-    CGFloat width = self.tz_width / 4.0;
+    CGFloat width = self.qmui_width / 4.0;
     _videoImageView.frame = CGRectMake(width, width, width, width);
     _videoImageView.center = self.center;
 }

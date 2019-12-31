@@ -35,15 +35,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(loginStateChange:)
                                                  name:KNotificationLoginStateChange
-                                               object:nil];    
-    
-    //网络状态监听
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(netWorkStateChange:)
-                                                 name:KNotificationNetWorkStateChange
                                                object:nil];
-    
-
 }
 
 #pragma mark ————— 初始化window —————
@@ -148,34 +140,6 @@
         
     }
 }
-
-
-#pragma mark ————— 网络状态变化 —————
-- (void)netWorkStateChange:(NSNotification *)notification
-{
-    BOOL isNetWork = [notification.object boolValue];
-//    self.netFailView.hidden = isNetWork;
-    if (isNetWork) {//有网络
-        if ([userManager loadUserInfo] && !isLogin) {//有用户数据 并且 未登录成功 重新来一次自动登录
-            
-            KPostNotification(KNotificationLoginStateChange, @YES)
-            return;
-            [userManager autoLoginToServer:^(BOOL success, NSString *des) {
-                if (success) {
-                    DLog(@"网络改变后，自动登录成功");
-//                    [MBProgressHUD showSuccessMessage:@"网络改变后，自动登录成功"];
-                    KPostNotification(KNotificationAutoLoginSuccess, nil);
-                }else{
-                    [MBProgressHUD showErrorMessage:NSStringFormat(@"自动登录失败：%@",des)];
-                }
-            }];
-        }
-        
-    }else {//登陆失败加载登陆页面控制器
-//        [MBProgressHUD showTopTipMessage:@"网络状态不佳" isWindow:YES];
-    }
-}
-
 
 #pragma mark ————— 友盟 初始化 —————
 -(void)initUMeng:(NSDictionary *)launchOptions{

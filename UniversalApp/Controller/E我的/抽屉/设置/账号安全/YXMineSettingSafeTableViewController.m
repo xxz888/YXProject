@@ -65,7 +65,7 @@
     kWeakSelf(self);
     [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_WechatSession currentViewController:nil completion:^(id result, NSError *error) {
         if (error) {
-            [MBProgressHUD hideHUD];
+
         } else {
             UMSocialUserInfoResponse *resp = result;
             //登录参数

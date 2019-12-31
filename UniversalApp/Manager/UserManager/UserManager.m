@@ -155,7 +155,6 @@ SINGLETON_FOR_CLASS(UserManager);
 -(void)autoLoginToServer:(NSDictionary *)params completion:(loginBlock)completion{
     kWeakSelf(self);
     [YX_MANAGER requestPostThird_party:params success:^(id object) {
-        [MBProgressHUD hideHUD];
         if ([object[@"message"] isEqualToString:@"第一次登录,请绑定手机号."]) {
             if (completion) {
                 completion(NO,object[@"unique_id"]);
