@@ -54,10 +54,8 @@
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if (self.pushing == YES) {
-          NSLog(@"被拦截");
           return;
       } else {
-          NSLog(@"push");
           self.pushing = YES;
       }
     if (self.viewControllers.count > 0) {

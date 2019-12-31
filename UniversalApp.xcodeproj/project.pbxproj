@@ -276,6 +276,7 @@
 		BBA0C91723BAF1F800FDA6F3 /* UIView+SDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA0C91323BAF1F700FDA6F3 /* UIView+SDAutoLayout.m */; };
 		BBA0C91823BAF1F800FDA6F3 /* UITableView+SDAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA0C91523BAF1F700FDA6F3 /* UITableView+SDAutoTableViewCellHeight.m */; };
 		BBA0C91B23BAF2AA00FDA6F3 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA0C91A23BAF2AA00FDA6F3 /* DACircularProgressView.m */; };
+		BBA0C91F23BAF87400FDA6F3 /* PrintBeautifulLog.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA0C91E23BAF87300FDA6F3 /* PrintBeautifulLog.m */; };
 		BBA4612423A0E9140010E7CF /* YXDingZhiHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA4612323A0E9140010E7CF /* YXDingZhiHeadView.m */; };
 		BBA4612623A0E91C0010E7CF /* YXDingZhiHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBA4612523A0E91C0010E7CF /* YXDingZhiHeadView.xib */; };
 		BBA4612A23A0EACA0010E7CF /* YXDingZhiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA4612823A0EACA0010E7CF /* YXDingZhiTableViewCell.m */; };
@@ -931,6 +932,8 @@
 		BBA0C91623BAF1F700FDA6F3 /* UIView+SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDAutoLayout.h"; sourceTree = "<group>"; };
 		BBA0C91923BAF2AA00FDA6F3 /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
 		BBA0C91A23BAF2AA00FDA6F3 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
+		BBA0C91D23BAF87300FDA6F3 /* PrintBeautifulLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintBeautifulLog.h; sourceTree = "<group>"; };
+		BBA0C91E23BAF87300FDA6F3 /* PrintBeautifulLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintBeautifulLog.m; sourceTree = "<group>"; };
 		BBA4612223A0E9140010E7CF /* YXDingZhiHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXDingZhiHeadView.h; sourceTree = "<group>"; };
 		BBA4612323A0E9140010E7CF /* YXDingZhiHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXDingZhiHeadView.m; sourceTree = "<group>"; };
 		BBA4612523A0E91C0010E7CF /* YXDingZhiHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXDingZhiHeadView.xib; sourceTree = "<group>"; };
@@ -2525,6 +2528,15 @@
 			path = SDAutoLayout;
 			sourceTree = "<group>";
 		};
+		BBA0C91C23BAF87300FDA6F3 /* PrintBeautifulLog */ = {
+			isa = PBXGroup;
+			children = (
+				BBA0C91D23BAF87300FDA6F3 /* PrintBeautifulLog.h */,
+				BBA0C91E23BAF87300FDA6F3 /* PrintBeautifulLog.m */,
+			);
+			path = PrintBeautifulLog;
+			sourceTree = "<group>";
+		};
 		BBA8129F21DDAB00001B5EA1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -2630,6 +2642,7 @@
 		BBA8131421DE0D37001B5EA1 /* 艺鑫工具 */ = {
 			isa = PBXGroup;
 			children = (
+				BBA0C91C23BAF87300FDA6F3 /* PrintBeautifulLog */,
 				296DEA5F1F5D50D100C6FD00 /* SDCycleScrollView */,
 				29280E7E1F063D3600BF52D9 /* XYTransition */,
 				29AD6C531ED3E28800B0879C /* NetWork */,
@@ -3646,6 +3659,7 @@
 				BB1F1C1C2367EF95002D0FE5 /* SYBaseHttpConnection1.m in Sources */,
 				29AD6C4D1ED3D51200B0879C /* OpenUDID.m in Sources */,
 				BBA812B321DDABC1001B5EA1 /* YXMessageViewController.m in Sources */,
+				BBA0C91F23BAF87400FDA6F3 /* PrintBeautifulLog.m in Sources */,
 				BBACB4CD234DC2E10092367B /* YXJiFenShop2CollectionViewCell.m in Sources */,
 				BB07FB132356EA4400F34D2D /* SimpleChatMainViewController.m in Sources */,
 				BB53E735235EFAC00014F106 /* NSDate+HXExtension.m in Sources */,
