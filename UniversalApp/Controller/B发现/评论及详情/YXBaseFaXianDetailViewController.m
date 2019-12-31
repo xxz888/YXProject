@@ -43,7 +43,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.dataArray.count == 0) {
-        return 1;
+        return 300;
     }
     CGFloat cellHeight = [YXPingLunTableViewCell cellDefaultHeight:self.dataArray[indexPath.row]];
     return cellHeight;

@@ -76,8 +76,12 @@
     NSData *imageData = UIImageJPEGRepresentation(image, 0.5);//数值 0 - 1 之间
     UIImage *mainScreenshot = [UIImage imageWithData:imageData];
     UIImageView * imageView = [[UIImageView alloc]initWithImage:mainScreenshot];
-    CGFloat width = KScreenWidth - (kRealValue(65) * 2);
-    imageView.frame = CGRectMake(kRealValue(65.0), 40, width, 1.59 * width);
+    double scale = 283 / 450;
+    CGFloat height = KScreenHeight - 190 - 100;
+    CGFloat width = height * 0.62;
+    
+   
+    imageView.frame = CGRectMake((KScreenWidth -  width)/2, 50, width, height);
     ViewRadius(imageView, 5);
     
     if (mainScreenshot) {
