@@ -664,10 +664,10 @@
 //        return;
 //    };
     
-    self.searchHistoryHeader.hidden = NO;
+    self.searchHistoryHeader.hidden = YES;
     self.searchHistoryTagsContentView.hidden = NO;
     self.searchHistoryView.hidden = NO;
-    self.emptyButton.hidden = NO;
+    self.emptyButton.hidden = YES;
     [self setupSearchHistoryTags];
     
     switch (searchHistoryStyle) {

@@ -7,7 +7,6 @@
 //
 
 #import "YXZhiNan2Cell.h"
-#import "IXAttributeTapLabel.h"
 #define cellSpace 9
 @implementation YXZhiNan2Cell
 - (void)awakeFromNib {

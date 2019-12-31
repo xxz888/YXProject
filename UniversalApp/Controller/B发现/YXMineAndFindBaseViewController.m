@@ -7,7 +7,6 @@
 //
 
 #import "YXMineAndFindBaseViewController.h"
-#import "XHWebImageAutoSize.h"
 #import "HGPersonalCenterViewController.h"
 #import "YXFindSearchTagDetailViewController.h"
 #import "ZInputToolbar.h"
@@ -233,7 +232,6 @@ static CGFloat sectionHeaderHeight = 290;
     cell.topTopHeight.constant = 0;
     cell.bottomPingLunLbl.hidden = YES;
     cell.wenzhangDetailHeight.constant = 0;//文章详情里面用的，外边设置为0
-    cell.wenzhangDetailLbl.hidden = YES;//文章详情里面用的，外边设置为隐藏
     cell.toptop1Height.constant = 0;
 
     //以下为所有block方法

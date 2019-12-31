@@ -7,7 +7,6 @@
 //
 
 #import "RootViewController.h"
-#import "HGBaseViewController.h"
 #import "YXMineAndFindBaseViewController.h"
 
 //typedef NS_ENUM(NSUInteger,GoodsListShowType){

@@ -7,10 +7,8 @@
 //
 
 #import "YXMineImageDetailViewController.h"
-#import "XHWebImageAutoSize.h"
 #import "ZInputToolbar.h"
 #import "UIView+LSExtension.h"
-#import "HXEasyCustomShareView.h"
 #import "YXFaBuBaseViewController.h"
 #import "YXFindSearchTagDetailViewController.h"
 #import "UIImage+ImgSize.h"
@@ -22,7 +20,7 @@
 #import "YXWenZhangEditorViewController.h"
 #import "YXPingLunCellTableViewCell.h"
 #import "YXPingLunTableViewCell.h"
-
+#import <Photos/Photos.h>
 #define cellSpace 9
 @interface YXMineImageDetailViewController ()<ZInputToolbarDelegate,QMUIMoreOperationControllerDelegate,SDCycleScrollViewDelegate,UIWebViewDelegate>{
     CGFloat imageHeight;
@@ -274,7 +272,6 @@
     if ([self.startDic[@"obj"] integerValue] == 1) {
 
         self.cell.topTopHeight.constant = 70;//头像的view距离封面图和文章lable的距离，要留出A黑色返回的高度，所以高一点
-        self.cell.wenzhangDetailLbl.hidden = YES;//晒图进来，隐藏文章的deatil的label
         self.cell.wenzhangDetailHeight.constant = 0;//晒图进来，设置文章的的label为0
         [QMUITips hideAllTipsInView:self.view];
         [ShareManager setAllContentAttributed:cellSpace inLabel:self.cell.detailLbl font:SYSTEMFONT(16)];
@@ -311,10 +308,8 @@
         self.cell.wenzhangDetailHeight.constant = detailHeight;//晒图进来，设置文章的的label为0
         self.cell.cellWebView.hidden = NO;//文章显示webview
         self.cell.topTopHeight.constant = 0 ;//头像的view距离封面图的距离，文章因为有封面，所以离封面图10就行
-        self.cell.wenzhangDetailLbl.hidden = NO;//文章进来，显示文章的deatil的label
         self.cell.detailLbl.hidden = YES;//隐藏原有detail的详情
         self.cell.detailHeight.constant = 0;//设置原有的detail为0
-        self.cell.wenzhangDetailLbl.text = [self.startDic[@"title"] UnicodeToUtf8];
         //封面图
         NSString * cover = self.startDic[@"cover"];
         if (![self.startDic[@"cover"] contains:IMG_URI]) {
@@ -549,7 +544,7 @@
     if (url.length < 5) {
         return 0;
     }
-    return    [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:400];
+    return  400;
 }
 
 #pragma mark ========== 分享 ==========

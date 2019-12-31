@@ -12,11 +12,7 @@
 #import <Masonry/Masonry.h>
 #import <ZXSegmentController/ZXSegmentController.h>
 #import "IQKeyboardManager.h"
-#import "FCXRefreshFooterView.h"
-#import "FCXRefreshHeaderView.h"
-#import "UIScrollView+FCXRefresh.h"
 #import "YXFindSearchHeadView.h"
-#import "HGSegmentedPageViewController.h"
 
 
 typedef void (^ListenChangeIndexBlock)(NSInteger);
@@ -37,8 +33,7 @@ typedef void (^ListenChangeIndexBlock)(NSInteger);
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) UICollectionView * collectionView;
 
-@property (nonatomic, strong) FCXRefreshHeaderView * refreshHeaderView;
-@property (nonatomic, strong) FCXRefreshFooterView * refreshFooterView;
+
 @property (nonatomic,assign) NSInteger requestPage;
 -(NSMutableArray *)commonAction:(id)obj dataArray:(NSMutableArray *)dataArray;
 -(NSMutableArray *)addCollectionViewRefreshView:(id)obj dataArray:(NSMutableArray *)dataArray;

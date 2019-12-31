@@ -45,7 +45,7 @@
 }
 - (void)photoView:(HXPhotoView *)photoView updateFrame:(CGRect)frame{
     NSSLog(@"%@",NSStringFromCGRect(frame));
-    self.scrollViewMenTou.contentSize = CGSizeMake(KScreenWidth-32, self.mentouView.cb_Height);
+    self.scrollViewMenTou.contentSize = CGSizeMake(KScreenWidth-32, self.mentouView.qmui_height);
 }
 - (void)photoView:(HXPhotoView *)photoView changeComplete:(NSArray<HXPhotoModel *> *)allList photos:(NSArray<HXPhotoModel *> *)photos videos:(NSArray<HXPhotoModel *> *)videos original:(BOOL)isOriginal {
     //如果是图片
@@ -74,7 +74,7 @@
     [self setOtherUI];
 }
 -(void)setOtherUI{
-       UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth-32, self.mentouView.cb_Height)];
+       UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth-32, self.mentouView.qmui_height)];
        [self.mentouView addSubview:scrollView];
        self.scrollViewMenTou.userInteractionEnabled = NO;
        self.scrollViewMenTou = scrollView;

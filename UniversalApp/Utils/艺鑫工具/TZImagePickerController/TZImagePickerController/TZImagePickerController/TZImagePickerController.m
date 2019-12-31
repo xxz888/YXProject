@@ -13,7 +13,6 @@
 #import "TZAssetCell.h"
 #import "UIView+Layout.h"
 #import "TZImageManager.h"
-#import "JJImagePicker.h"
 @interface TZImagePickerController () {
     NSTimer *_timer;
     UILabel *_tipLabel;

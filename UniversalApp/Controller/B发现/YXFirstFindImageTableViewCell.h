@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IXAttributeTapLabel.h"
 #import "SDWeiXinPhotoContainerView.h"
 NS_ASSUME_NONNULL_BEGIN
 @interface YXFirstFindImageTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet IXAttributeTapLabel *wenzhangDetailLbl;
+@property (weak, nonatomic) IBOutlet UILabel *wenzhangDetailLbl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *wenzhangDetailHeight;
 @property (nonatomic,assign) NSInteger tagId;
 @property (weak, nonatomic) IBOutlet UIImageView *titleImageView;

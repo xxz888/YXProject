@@ -272,7 +272,7 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label hidden="YES" opaque="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tya-A3-QA5" customClass="IXAttributeTapLabel">
+                    <label hidden="YES" opaque="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tya-A3-QA5">
                         <rect key="frame" x="17" y="16" width="293" height="0.0"/>
                         <constraints>
                             <constraint firstAttribute="height" id="ieN-gl-ZOR"/>
@@ -367,7 +367,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="B黑色横向更多" width="64" height="64"/>
+        <image name="B黑色横向更多" width="96" height="96"/>
         <image name="D黑色评论" width="66" height="66"/>
         <image name="E黑色分享" width="66" height="66"/>
         <image name="F黑色未点赞" width="63" height="63"/>

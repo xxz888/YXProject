@@ -10,6 +10,7 @@
 #import <ZXSegmentController/ZXSegmentController.h>
 #import "YXMineJIFenLishiChildViewController.h"
 #import "YXMineJiFenGuiZeTableViewController.h"
+#import "HGSegmentedPageViewController.h"
 @interface YXMineJiFenHistoryViewController ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 @property (nonatomic, strong) HGSegmentedPageViewController *segmentedPageViewController;
 @property (nonatomic,strong) NSMutableArray * titlesArr;

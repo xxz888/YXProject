@@ -6,13 +6,12 @@
 //  Copyright © 2019年 徐阳. All rights reserved.
 //
 
-#import "BaseTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol ClickBtnDelegate <NSObject>
 -(void)clickBtnAction:(NSInteger)common_id tag:(NSInteger)tag;
 @end
-@interface YXMineCommon1TableViewCell : BaseTableViewCell
+@interface YXMineCommon1TableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *common1ImageView;
 @property (weak, nonatomic) IBOutlet UILabel *common1NameLbl;
 @property (weak, nonatomic) IBOutlet UIButton *common1GuanzhuBtn;

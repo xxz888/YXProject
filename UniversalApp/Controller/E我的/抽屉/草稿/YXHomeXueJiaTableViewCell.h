@@ -6,9 +6,8 @@
 //  Copyright © 2019年 徐阳. All rights reserved.
 //
 
-#import "BaseTableViewCell.h"
 
-@interface YXHomeXueJiaTableViewCell : BaseTableViewCell
+@interface YXHomeXueJiaTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *cellImageView;
 @property (weak, nonatomic) IBOutlet UILabel *cellLbl;

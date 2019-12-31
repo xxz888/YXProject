@@ -9,7 +9,6 @@
 #import "HttpRequest.h"
 #import "AFHTTPSessionManager.h"
 #import "AFNetworkActivityIndicatorManager.h"
-#import "XLDouYinLoading.h"
 #import "SYBaseHttpConnection.h"
 #import "SYBaseHttpConnection1.h"
 @implementation HttpRequest

@@ -9,10 +9,8 @@
 #import "RootViewController.h"
 #import "YXFirstFindImageTableViewCell.h"
 #import "Moment.h"
-#import "HXEasyCustomShareView.h"
 #import "YXMineImageDetailViewController.h"
 #import "Comment.h"
-#import "HGBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

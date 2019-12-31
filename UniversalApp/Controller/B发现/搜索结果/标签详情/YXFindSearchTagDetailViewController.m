@@ -8,7 +8,6 @@
 
 #import "YXFindSearchTagDetailViewController.h"
 #import "YXMineImageDetailViewController.h"
-#import "XHWebImageAutoSize.h"
 #import "YXFindSearchTagHeaderView.h"
 #import "YXFirstFindImageTableViewCell.h"
 #import "QiniuLoad.h"

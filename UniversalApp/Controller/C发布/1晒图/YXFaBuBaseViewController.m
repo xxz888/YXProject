@@ -6,7 +6,6 @@
 //  Copyright © 2019年 徐阳. All rights reserved.
 //
 #import "YXFaBuBaseViewController.h"
-#import "JJImagePicker.h"
 #import "TZTestCell.h"
 #import "HXPhotoPicker.h"
 #import "SDWebImageManager.h"

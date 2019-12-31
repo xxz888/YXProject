@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HGBaseViewController.h"
 
 typedef void(^returnSecondVCBlock)(void);
 

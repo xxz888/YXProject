@@ -14,7 +14,6 @@
 #import "YXMineFenSiViewController.h"
 #import "YXMineGuanZhuViewController.h"
 #import "YXMineAllViewController.h"
-//HGPersonalCenterExtend
 #import "HGSegmentedPageViewController.h"
 #import "HGPageViewController.h"
 #import "YXHomeEditPersonTableViewController.h"

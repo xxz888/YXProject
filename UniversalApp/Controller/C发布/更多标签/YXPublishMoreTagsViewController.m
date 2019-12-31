@@ -9,6 +9,8 @@
 #import "YXPublishMoreTagsViewController.h"
 #import "YXPublishNewTagView.h"
 #import "BRStringPickerView.h"
+#import "CBSegmentView.h"
+
 @interface YXPublishMoreTagsViewController ()<UITableViewDelegate,UITableViewDataSource>{
     CBSegmentView * sliderSegmentView;
     UITextField * searchBar;

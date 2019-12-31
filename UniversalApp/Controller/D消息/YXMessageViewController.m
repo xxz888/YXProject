@@ -452,7 +452,7 @@
             self.fensijb.hidden = YES;
             break;
         case 1003:
-            VC.title = @"D黑色评论";
+            VC.title = @"评论互动";
             VC.whereCome = 3;
             self.hdjb.hidden = YES;
             break;

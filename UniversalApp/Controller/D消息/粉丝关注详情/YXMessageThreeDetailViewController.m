@@ -10,7 +10,6 @@
 #import "YXMessageThreeDetailViewCell.h"
 #import "YXMineImageDetailViewController.h"
 
-#import "XHWebImageAutoSize.h"
 #import "HGPersonalCenterViewController.h"
 #import "YXFirstFindImageTableViewCell.h"
 @interface YXMessageThreeDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -239,14 +238,6 @@
 -(void)jumpAction:(NSString *)tagString dic:(NSDictionary *)dic{
     NSInteger tag = [tagString integerValue];
     if (tag == 1) {//晒图
-//        YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
-//        VC.startDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-//        NSString * url = dic[@"photo1"];
-//        CGFloat imageHeight = [XHWebImageAutoSize imageHeightForURL:[NSURL URLWithString:url] layoutWidth:[UIScreen mainScreen].bounds.size.width estimateHeight:400];
-//        VC.height = imageHeight;
-//        [self.navigationController pushViewController:VC animated:YES];
-        
-        
         
         YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
         CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:dic];

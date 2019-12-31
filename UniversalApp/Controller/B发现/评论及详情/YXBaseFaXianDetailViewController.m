@@ -13,7 +13,7 @@
 #import "YXPingLunTableViewCell.h"
 #import "YXPingLunDetailViewController.h"
 
-@interface YXBaseFaXianDetailViewController ()<UITextFieldDelegate,SDTimeLineCellDelegate>
+@interface YXBaseFaXianDetailViewController ()<UITextFieldDelegate>
 @property(nonatomic,strong)   TJNoPingLunView * noView;
 @end
 
@@ -171,7 +171,6 @@
     kWeakSelf(self);
     self.title = @"";
     self.segmentIndex = 0;
-    [self.yxTableView registerClass:[SDTimeLineCell class] forCellReuseIdentifier:kTimeLineTableViewCellId];
     [self.yxTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     self.yxTableView.estimatedRowHeight = 0;
     self.yxTableView.estimatedSectionHeaderHeight = 0;

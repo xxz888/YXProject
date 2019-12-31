@@ -8,7 +8,6 @@
 
 #import "RootViewController.h"
 #import "QMUITextView.h"
-#import "LLImagePickerView.h"
 #import "CBGroupAndStreamView.h"
 #import "YXGaoDeMapViewController.h"
 #import "YXPublishMoreTagsViewController.h"
