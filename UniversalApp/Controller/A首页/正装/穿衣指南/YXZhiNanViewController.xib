@@ -11,9 +11,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YXZhiNanViewController">
             <connections>
                 <outlet property="backBtn" destination="peF-8H-32I" id="Mbj-fC-NEU"/>
-                <outlet property="fanhuiWidth" destination="1vu-ha-PA7" id="n5g-hd-GzI"/>
+                <outlet property="backBtnToTop" destination="1dx-5v-Rcc" id="JLw-0m-7Le"/>
                 <outlet property="moreBtn" destination="Nf3-3E-O3O" id="iOe-xZ-ju6"/>
-                <outlet property="moreWidth" destination="TaQ-w8-vWH" id="a8V-2o-LPD"/>
                 <outlet property="titleLbl" destination="p3n-cr-rCv" id="VGa-IW-Dmb"/>
                 <outlet property="topView" destination="qpi-jB-8sK" id="51O-zq-V1K"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -39,8 +38,8 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="peF-8H-32I">
                             <rect key="frame" x="16" y="45" width="32" height="32"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="32" id="1vu-ha-PA7"/>
-                                <constraint firstAttribute="width" secondItem="peF-8H-32I" secondAttribute="height" multiplier="1:1" id="a9W-RP-8qS"/>
+                                <constraint firstAttribute="height" constant="32" id="BCy-4z-ffw"/>
+                                <constraint firstAttribute="width" constant="32" id="CtG-UP-Pv7"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <state key="normal" image="A黑色背景返回"/>
@@ -51,8 +50,8 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nf3-3E-O3O">
                             <rect key="frame" x="367" y="45" width="32" height="32"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="Nf3-3E-O3O" secondAttribute="height" multiplier="1:1" id="3G0-D8-RCu"/>
-                                <constraint firstAttribute="width" constant="32" id="TaQ-w8-vWH"/>
+                                <constraint firstAttribute="height" constant="32" id="oqU-Qf-Ofi"/>
+                                <constraint firstAttribute="width" constant="32" id="vKl-yw-tFb"/>
                             </constraints>
                             <state key="normal" image="B黑色背景横向更多"/>
                             <connections>

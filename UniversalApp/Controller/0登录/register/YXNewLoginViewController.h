@@ -11,13 +11,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXNewLoginViewController : RootViewController
-@property (weak, nonatomic) IBOutlet UIButton *phoneLogin;
-- (IBAction)phoneLoginAction:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIView *wxLogin;
 @property (weak, nonatomic) IBOutlet UIStackView *moreLoginView;
 @property (weak, nonatomic) IBOutlet UILabel *moreLoginLbl;
-- (IBAction)btn1Action:(id)sender ;
-- (IBAction)btn2Action:(id)sender ;
+@property (weak, nonatomic) IBOutlet UITextField *phoneTf;
+- (IBAction)getSms_CodeAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *getMes_codeBtn;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -50,28 +50,6 @@
     self.loginBtn.userInteractionEnabled = NO;
     [self.getMes_codeBtn addTarget:self action:@selector(getSms_CodeAction) forControlEvents:UIControlEventTouchUpInside];
 }
--(void)skipAction{
-    KPostNotification(KNotificationLoginStateChange, @YES);
-}
-#pragma mark - 懒加载AVPlayer
-- (AVPlayer *)player{
-    if (!_player) {
-        //1 创建一个播放item
-        NSString *path = [[NSBundle mainBundle]pathForResource:@"register_guide_video.mp4" ofType:nil];
-        NSURL *url = [NSURL fileURLWithPath:path];
-        AVPlayerItem *playItem = [AVPlayerItem playerItemWithURL:url];
-        // 2 播放的设置
-        _player = [AVPlayer playerWithPlayerItem:playItem];
-        _player.actionAtItemEnd = AVPlayerActionAtItemEndNone;// 永不暂停
-        // 3 将图层嵌入到0层
-        AVPlayerLayer *layer = [AVPlayerLayer playerLayerWithPlayer:_player];
-        layer.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight);
-        [self.view.layer insertSublayer:layer atIndex:0];
-        // 4 播放到头循环播放
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playToEnd) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
-    }
-    return _player;
-}
 - (IBAction)btn1Action:(id)sender {
     UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
     YXLoginXieYiViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXLoginXieYiViewController"];

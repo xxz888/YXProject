@@ -188,6 +188,7 @@
 		BB7025472212A4D9009EBE39 /* YXFindSearchResultUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7025462212A4D9009EBE39 /* YXFindSearchResultUsersViewController.m */; };
 		BB70254B2212AF3F009EBE39 /* YXFindSearchResultAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB70254A2212AF3F009EBE39 /* YXFindSearchResultAllViewController.m */; };
 		BB70254F2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB70254D2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m */; };
+		BB71253423CF54460092E52E /* YXNewLoginMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB71253323CF54460092E52E /* YXNewLoginMessageViewController.m */; };
 		BB7AF1382200869400989896 /* YXMineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7AF1372200869400989896 /* YXMineHeaderView.m */; };
 		BB7AF13A2200869E00989896 /* YXMineHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7AF1392200869E00989896 /* YXMineHeaderView.xib */; };
 		BB86C8AC231B706800A061E2 /* YXMineJiFenHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB86C8AB231B706800A061E2 /* YXMineJiFenHistoryViewController.m */; };
@@ -771,6 +772,8 @@
 		BB70254A2212AF3F009EBE39 /* YXFindSearchResultAllViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchResultAllViewController.m; sourceTree = "<group>"; };
 		BB70254C2212BAE2009EBE39 /* YXFindSearchResultTagViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchResultTagViewController.h; sourceTree = "<group>"; };
 		BB70254D2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchResultTagViewController.m; sourceTree = "<group>"; };
+		BB71253223CF54460092E52E /* YXNewLoginMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXNewLoginMessageViewController.h; sourceTree = "<group>"; };
+		BB71253323CF54460092E52E /* YXNewLoginMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXNewLoginMessageViewController.m; sourceTree = "<group>"; };
 		BB7AF1362200869400989896 /* YXMineHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineHeaderView.h; sourceTree = "<group>"; };
 		BB7AF1372200869400989896 /* YXMineHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineHeaderView.m; sourceTree = "<group>"; };
 		BB7AF1392200869E00989896 /* YXMineHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineHeaderView.xib; sourceTree = "<group>"; };
@@ -3129,6 +3132,8 @@
 				BBE5306C239F76EC00484D3B /*  完善信息 */,
 				BB25D48523162F3600971B94 /* YXNewLoginViewController.h */,
 				BB25D48623162F3600971B94 /* YXNewLoginViewController.m */,
+				BB71253223CF54460092E52E /* YXNewLoginMessageViewController.h */,
+				BB71253323CF54460092E52E /* YXNewLoginMessageViewController.m */,
 				BBBDCAB72226612200A9F2CB /* LoginViewController.h */,
 				BBBDCAB62226612200A9F2CB /* LoginViewController.m */,
 				BBF26E3322448D2E0000AEF5 /* YXBindPhoneViewController.h */,
@@ -3611,6 +3616,7 @@
 				BBADE4D721F8655E0011E5FF /* YXMineImageDetailViewController.m in Sources */,
 				BB53E71C235EFAC00014F106 /* HXDownloadProgressView.m in Sources */,
 				BB9413DE21F8B602007E800A /* IQPreviousNextView.m in Sources */,
+				BB71253423CF54460092E52E /* YXNewLoginMessageViewController.m in Sources */,
 				29280E881F063EE700BF52D9 /* XYTransition.m in Sources */,
 				BBB59B1D228CF8CB0029D3D0 /* YXHomeXueJiaToolsViewController.m in Sources */,
 				BB47955223A0E3C300923BDA /* YXDingZhiViewController.m in Sources */,
@@ -3896,7 +3902,7 @@
 				CODE_SIGN_ENTITLEMENTS = UniversalApp/UniversalApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.04;
+				CURRENT_PROJECT_VERSION = 1.03;
 				DEVELOPMENT_TEAM = V458Z29RD7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3932,7 +3938,7 @@
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/share/share_ios_6.9.4/SocialLibraries/Sina",
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/share/share_ios_6.9.4/SocialLibraries/QQ",
 				);
-				MARKETING_VERSION = 1.02;
+				MARKETING_VERSION = 1.03;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tongji.lps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3955,7 +3961,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 1.04;
+				CURRENT_PROJECT_VERSION = 1.03;
 				DEVELOPMENT_TEAM = V458Z29RD7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3992,7 +3998,7 @@
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/share/share_ios_6.9.4/SocialLibraries/Sina",
 					"$(PROJECT_DIR)/UniversalApp/ThridParty/UMSocial/share/share_ios_6.9.4/SocialLibraries/QQ",
 				);
-				MARKETING_VERSION = 1.02;
+				MARKETING_VERSION = 1.03;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tongji.lps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

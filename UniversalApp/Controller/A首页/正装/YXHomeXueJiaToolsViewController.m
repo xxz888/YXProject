@@ -132,6 +132,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     YXZhiNanViewController * vc = [[YXZhiNanViewController alloc]init];
     vc.startId = self.titleArray[indexPath.row][@"id"];
+    vc.startDic = [NSDictionary dictionaryWithDictionary:self.titleArray[indexPath.row]];
+    vc.index = indexPath.row;
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)panduanUMXiaoXi:(NSNotification *)notification{

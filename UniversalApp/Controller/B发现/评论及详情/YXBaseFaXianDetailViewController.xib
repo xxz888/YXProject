@@ -80,10 +80,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fe-1v-Fg4">
-                            <rect key="frame" x="335" y="49" width="24" height="24"/>
+                            <rect key="frame" x="327" y="45" width="32" height="32"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="24" id="UoR-Jz-ncf"/>
-                                <constraint firstAttribute="width" constant="24" id="jXG-8X-Q9W"/>
+                                <constraint firstAttribute="height" constant="32" id="UoR-Jz-ncf"/>
+                                <constraint firstAttribute="width" constant="32" id="jXG-8X-Q9W"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <state key="normal" image="B黑色横向更多"/>
@@ -92,7 +92,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frL-s0-Vad">
-                            <rect key="frame" x="260" y="49" width="60" height="24"/>
+                            <rect key="frame" x="252" y="49" width="60" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="24" id="EZd-F1-nbj"/>
                                 <constraint firstAttribute="width" constant="60" id="Hj2-bC-PRj"/>
@@ -398,12 +398,12 @@
                 <constraint firstItem="2oi-rh-fRK" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="weC-1j-S3V"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="-2442.4000000000001" y="-217.24137931034485"/>
+            <point key="canvasLocation" x="-2761" y="-215"/>
         </view>
     </objects>
     <resources>
         <image name="A黑色返回" width="96" height="96"/>
-        <image name="B黑色横向更多" width="64" height="64"/>
+        <image name="B黑色横向更多" width="96" height="96"/>
         <image name="D黑色评论" width="66" height="66"/>
         <image name="E黑色分享" width="66" height="66"/>
         <image name="icon_moreOperation_shareFriend" width="56" height="56"/>

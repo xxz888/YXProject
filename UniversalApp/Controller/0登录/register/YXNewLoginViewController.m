@@ -10,25 +10,17 @@
 #import "LoginViewController.h"
 #import "YXBindPhoneViewController.h"
 #import "YXLoginXieYiViewController.h"
+#import "UIButton+CountDown.h"
+#import "YXNewLoginMessageViewController.h"
 
 @interface YXNewLoginViewController ()
 
 @end
 
 @implementation YXNewLoginViewController
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-    
-    kWeakSelf(self);
-    [YXPLUS_MANAGER requestPubTagPOST:@{} success:^(id object) {
-        if ([object isEqualToString:@"0"]) {
-            weakself.wxLogin.hidden = weakself.moreLoginView.hidden = weakself.moreLoginLbl.hidden = YES;
-        }else{
-            weakself.wxLogin.hidden = weakself.moreLoginView.hidden = weakself.moreLoginLbl.hidden = NO;
-        }
-    }];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -36,36 +28,39 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = SEGMENT_COLOR;
-    self.phoneLogin.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.view.backgroundColor = kRGBA(151, 151, 151, 1);
+//    self.wxLogin
 }
 - (IBAction)closeLoginView:(id)sender {
     [self dismissViewControllerAnimated:NO completion:^{}];
 }
-- (IBAction)phoneLoginAction:(id)sender {
-    UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-    LoginViewController * VC = [stroryBoard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    [self.navigationController pushViewController:VC animated:YES];
-}
-- (IBAction)weiboLoginAction:(id)sender {
-    [userManager LoginVCCommonAction:self type:kUserLoginTypeWeiBo];
-}
+//- (IBAction)phoneLoginAction:(id)sender {
+//    UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+//    LoginViewController * VC = [stroryBoard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+//    [self.navigationController pushViewController:VC animated:YES];
+//}
+//- (IBAction)weiboLoginAction:(id)sender {
+//    [userManager LoginVCCommonAction:self type:kUserLoginTypeWeiBo];
+//}
 - (IBAction)wxLoginAction:(id)sender {
     [userManager LoginVCCommonAction:self type:kUserLoginTypeWeChat];
 }
 - (IBAction)qqLoginAction:(id)sender {
     [userManager LoginVCCommonAction:self type:kUserLoginTypeQQ];
 }
-- (IBAction)btn1Action:(id)sender {
-    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-    YXLoginXieYiViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXLoginXieYiViewController"];
-    VC.type = @"1";
-    [self.navigationController pushViewController:VC animated:YES];
-}
-- (IBAction)btn2Action:(id)sender {
-    UIStoryboard * stroryBoard1 = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-    YXLoginXieYiViewController * VC = [stroryBoard1 instantiateViewControllerWithIdentifier:@"YXLoginXieYiViewController"];
-    VC.type = @"2";
-    [self.navigationController pushViewController:VC animated:YES];
+- (IBAction)getSms_CodeAction:(id)sender {
+    if (self.phoneTf.text.length <= 9) {
+          [QMUITips showError:@"请输入正确的手机号"];
+          return;
+      }
+    
+  
+      kWeakSelf(self);
+      [YX_MANAGER requestSmscodeGET:[self.phoneTf.text append:@"/1/"] success:^(id object) {
+          UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+            YXNewLoginMessageViewController * VC = [stroryBoard instantiateViewControllerWithIdentifier:@"YXNewLoginMessageViewController"];
+            VC.phone = self.phoneTf.text;
+           [weakself.navigationController pushViewController:VC animated:YES];
+      }];
 }
 @end

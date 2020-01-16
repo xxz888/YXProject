@@ -40,7 +40,7 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.backgroundColor = color;
-                [self setTitle:[NSString stringWithFormat:@"%@%@",timeStr,subTitle] forState:UIControlStateNormal];
+                [self setTitle:[NSString stringWithFormat:@"重新发送%@%@",timeStr,subTitle] forState:UIControlStateNormal];
                 self.userInteractionEnabled = NO;
             });
             

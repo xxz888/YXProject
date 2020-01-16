@@ -30,12 +30,10 @@
         self.topView.backgroundColor = [KWhiteColor colorWithAlphaComponent:scrollView.contentOffset.y / 80];
         [self.backBtn setImage:IMAGE_NAMED(@"A黑色背景返回") forState:UIControlStateNormal];
         [self.moreBtn setImage:IMAGE_NAMED(@"B黑色背景横向更多") forState:UIControlStateNormal];
-        self.fanhuiWidth.constant = self.moreWidth.constant = 32;
         self.titleLbl.hidden = YES;
     }else{
         [self.backBtn setImage:IMAGE_NAMED(@"A黑色返回") forState:UIControlStateNormal];
         [self.moreBtn setImage:IMAGE_NAMED(@"B黑色横向更多") forState:UIControlStateNormal];
-        self.fanhuiWidth.constant = self.moreWidth.constant = 32;
         self.topView.backgroundColor = [KWhiteColor colorWithAlphaComponent:1];
         self.titleLbl.text = self.startDic[@"name"];
         self.titleLbl.hidden = NO;
@@ -47,6 +45,7 @@
     [self.navigationController.navigationBar setHidden:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                               selector:@selector(jiesuochenggong:) name:@"jiesuochenggong" object:nil];
+    self.backBtnToTop.constant = IS_IPhoneX ? 45 : 35;
 }
 -(void)jiesuochenggong:(id)notice{
     [self requestZhiNanGet];
@@ -64,7 +63,6 @@
 }
 -(void)initTableView{
     _contentHeight = 56;
-    self.fanhuiWidth.constant = self.moreWidth.constant = 32;
     //根据当前id找到所用的数组
     self.dataArray = [[NSMutableArray alloc]initWithArray:[YXPLUS_MANAGER inStartId2OutCurrentArray:self.startId]];
     self.collArray = [[NSMutableArray alloc]init];
@@ -92,43 +90,6 @@
         [weakself.yxTableView.mj_footer endRefreshing];
     }];
     
-    
-    
-    
-//    NSString * par = [NSString stringWithFormat:@"1/%@",self.startDic[@"id"]];
-//    [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
-//        if ([object count] == 0) {
-//            [QMUITips hideAllTipsInView:weakself.view];
-//            return;
-//        }
-//
-//
-//        weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
-//        NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"weight" ascending:YES]];
-//        [weakself.dataArray sortUsingDescriptors:sortDescriptors];
-//
-//        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//            dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-//            [weakself.collArray removeAllObjects];
-//
-//
-//                for (NSInteger i = 0; i < [weakself.dataArray count]; i++) {
-//                    NSString * par1 = [NSString stringWithFormat:@"1/%@",weakself.dataArray[i][@"id"]];
-//                        [YXPLUS_MANAGER requestZhiNan1Get:par1 success:^(id object) {
-//                            [weakself.collArray addObject:object];
-//
-//                            if (weakself.dataArray.count == weakself.collArray.count) {
-//
-//                                [weakself.yxTableView reloadData];
-//                                [weakself panduanUMXiaoXi];
-//                            }
-//                             dispatch_semaphore_signal(sema);
-//                            [QMUITips hideAllTipsInView:weakself.view];
-//                        }];
-//                    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-//                }
-//        });
-//    }];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -192,44 +153,7 @@
             }
         }else{
             [weakself.navigationController pushViewController:vc animated:YES];
-            return;
-            if ([itemDic[@"ratio"] integerValue] == 99999) {
-                  //这一步是先获取图片高度
-                  NSDictionary * resultDic = [ShareManager stringToDic:itemDic[@"detail"]];
-                  YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
-                  CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:resultDic];
-                  VC.headerViewHeight = h;
-                  VC.startDic = [NSMutableDictionary dictionaryWithDictionary:resultDic];
-                  [weakself.navigationController pushViewController:VC animated:YES];
-            }else{
-                 [weakself.navigationController pushViewController:vc animated:YES];
-            }
          }
-//                NSString * par = [NSString stringWithFormat:@"0/%@",weakself.dataArray[bigIndex][@"id"]];
-//                [YXPLUS_MANAGER requestZhiNan1Get:par success:^(id object) {
-//                    NSInteger newsmallIndex = smallIndex;
-//                    if ([object count] <= smallIndex) {
-//                        newsmallIndex = [object count] - 1;
-//                    }
-//
-//                   if ([object[newsmallIndex] count] > 0) {
-//                          NSDictionary * dic = object[newsmallIndex][0];
-//                                         if ([dic[@"ratio"] integerValue] == 99999) {
-//                                               NSDictionary * resultDic = [ShareManager stringToDic:dic[@"detail"]];
-//                                               YXMineImageDetailViewController * VC = [[YXMineImageDetailViewController alloc]init];
-//                                               CGFloat h = [YXFirstFindImageTableViewCell cellDefaultHeight:resultDic];
-//                                               VC.headerViewHeight = h;
-//                                               VC.startDic = [NSMutableDictionary dictionaryWithDictionary:resultDic];
-//                                               [weakself.navigationController pushViewController:VC animated:YES];
-//                                         }else{
-//                                             [weakself.navigationController pushViewController:vc animated:YES];
-//                                         }
-//                                      }else{
-//                                          [QMUITips showInfo:@"暂无详情信息"];
-//                                      }
-//
-//                }];
-//        }
     };
     return cell;
 }
@@ -252,9 +176,9 @@
 -(IBAction)moreShare{
     NSString * title = self.startDic[@"name"];
     NSString * desc = self.startDic[@"intro"];
-    NSString * cid = self.startDic[@"id"];
+    NSString * cid = kGetString(self.startDic[@"id"]);
     [[ShareManager sharedShareManager] pushShareViewAndDic:@{
-        @"type":@"1",@"img":@"",@"desc":desc,@"title":title,@"id":cid,@"thumbImage":self.startDic[@"photo"],@"index":kGetNSInteger(self.index)}];
+        @"type":@"1",@"img":@"",@"desc":desc,@"title":title,@"id":cid,@"thumbImage":self.startDic[@"photo"],@"index":NSIntegerToNSString(self.index)}];
 }
 - (IBAction)backAction:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
