@@ -62,13 +62,13 @@
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rB8-vx-UmJ">
-                                        <rect key="frame" x="92" y="17" width="210" height="22"/>
+                                        <rect key="frame" x="92" y="0.0" width="210" height="56"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="0.34447433774834435" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="0.34447433774834435" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="0l3-0w-cpK" firstAttribute="centerY" secondItem="O4G-qB-sDc" secondAttribute="centerY" id="H9q-jc-iQM"/>
                                     <constraint firstAttribute="height" constant="56" id="I3Q-HO-q4p"/>
@@ -78,6 +78,7 @@
                                     <constraint firstAttribute="trailing" secondItem="rB8-vx-UmJ" secondAttribute="trailing" id="fSF-0d-4Ca"/>
                                     <constraint firstItem="0l3-0w-cpK" firstAttribute="leading" secondItem="O4G-qB-sDc" secondAttribute="trailing" constant="10" id="koN-GY-Jv9"/>
                                     <constraint firstItem="O4G-qB-sDc" firstAttribute="top" secondItem="OOO-0f-me3" secondAttribute="top" constant="20" id="mJl-in-E2B"/>
+                                    <constraint firstItem="rB8-vx-UmJ" firstAttribute="height" secondItem="OOO-0f-me3" secondAttribute="height" id="ocl-la-iQE"/>
                                     <constraint firstItem="rB8-vx-UmJ" firstAttribute="centerY" secondItem="O4G-qB-sDc" secondAttribute="centerY" id="qAh-am-U5x"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>

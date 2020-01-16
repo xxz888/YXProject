@@ -90,6 +90,8 @@ PODS:
     - UMCCommon
   - UMCSecurityPlugins (1.0.6)
   - UUButton (1.1)
+  - WGDigitField (1.0.1):
+    - Masonry
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
@@ -120,6 +122,7 @@ DEPENDENCIES:
   - UMCPush
   - UMCSecurityPlugins
   - UUButton
+  - WGDigitField
   - YYKit
   - ZXSegmentController
 
@@ -142,6 +145,7 @@ SPEC REPOS:
     - UMCPush
     - UMCSecurityPlugins
     - UUButton
+    - WGDigitField
     - YYKit
     - ZXSegmentController
 
@@ -163,9 +167,10 @@ SPEC CHECKSUMS:
   UMCPush: 628b5c61be5a5036cb31eb9b3a3ab8dce7521691
   UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
   UUButton: 9a19bbe0c812a6920de21da8acca7a2d0bad52da
+  WGDigitField: 4200f178c6eb08589cb662362df2097f8064e03a
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZXSegmentController: d94f138ab0191da1e2e4268e9b961e082a142549
 
-PODFILE CHECKSUM: 87793ca01d379494d322378f2ad681ade3cc2610
+PODFILE CHECKSUM: 744cbad3748094d3fb592c18cec9f912e16a6abe
 
 COCOAPODS: 1.7.1

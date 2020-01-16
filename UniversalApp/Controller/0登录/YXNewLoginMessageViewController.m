@@ -9,7 +9,7 @@
 #import "YXNewLoginMessageViewController.h"
 #import "UIButton+CountDown.h"
 #import "YXWanShanXinXiViewController.h"
-
+#import <WGDigitField.h>
 @interface YXNewLoginMessageViewController ()
 
 @end
@@ -21,6 +21,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    kWeakSelf(self);
     self.lbl1.text = [NSString stringWithFormat:@"已向您的手机 %@ 发送验证码",[self.phone substringFromIndex:7]];
     [self.getMes_codeBtn setTitle:@"重新发送" forState:UIControlStateNormal];
     [self.getMes_codeBtn startWithTime:60
@@ -29,6 +30,26 @@
                                          mainColor:KClearColor
                                         countColor:KClearColor];
     
+    WGDigitField<WGDigitView<UIView *> *> *field = [[WGDigitField<WGDigitView<UIView *> *> alloc] initWithDigitViewInitBlock:^WGDigitView<UIView *> * (NSInteger index){
+        UIView *background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 46, 46)];
+        background.backgroundColor = COLOR_F5F5F5;
+        background.layer.cornerRadius = 5.f;
+        return [[WGDigitView<UIView *> alloc] initWithBackgroundView:background digitFont:[UIFont systemFontOfSize:25.f] digitColor:[UIColor blackColor]];
+    } numberOfDigits:6 leadSpacing:0 tailSpacing:0 weakenBlock:^(WGDigitView<UIView *> * _Nonnull digitView) {
+        digitView.backgroundView.layer.borderColor = [UIColor grayColor].CGColor;
+        digitView.backgroundView.layer.borderWidth = 1.f;
+    } highlightedBlock:^(WGDigitView<UIView *> * _Nonnull digitView) {
+    } fillCompleteBlock:^(WGDigitField * _Nonnull digitField, NSArray<WGDigitView<UIView *> *> * _Nonnull digitViewArray, NSString * _Nonnull text) {
+        [weakself loginIN:text];
+        [digitField resignFirstResponder];
+    }];
+    
+    [self.codeView addSubview:field];
+    [field mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.and.trailing.equalTo(@0);
+        make.top.equalTo(@0);
+        make.height.equalTo(@46);
+    }];
     
 }
 -(void)loginIN:(NSString *)sms_code{

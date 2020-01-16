@@ -25,4 +25,5 @@ pod 'QMUIKit/QMUIComponents/QMUIToastView'
 pod 'QMUIKit/QMUIComponents/QMUITextField'
 pod 'QMUIKit/QMUIComponents/QMUIGridView'
 pod 'QMUIKit/QMUIComponents/QMUIMoreOperationController'
+pod 'WGDigitField'
 end
