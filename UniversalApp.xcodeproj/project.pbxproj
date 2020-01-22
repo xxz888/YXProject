@@ -189,6 +189,10 @@
 		BB70254B2212AF3F009EBE39 /* YXFindSearchResultAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB70254A2212AF3F009EBE39 /* YXFindSearchResultAllViewController.m */; };
 		BB70254F2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB70254D2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m */; };
 		BB71253423CF54460092E52E /* YXNewLoginMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB71253323CF54460092E52E /* YXNewLoginMessageViewController.m */; };
+		BB71253823D062B20092E52E /* YXSecondHeadCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB71253623D062B20092E52E /* YXSecondHeadCollectionViewCell.m */; };
+		BB71253923D062B20092E52E /* YXSecondHeadCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB71253723D062B20092E52E /* YXSecondHeadCollectionViewCell.xib */; };
+		BB71253D23D163850092E52E /* YXSecondHeadMoreCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB71253B23D163850092E52E /* YXSecondHeadMoreCollectionViewCell.m */; };
+		BB71253E23D163850092E52E /* YXSecondHeadMoreCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB71253C23D163850092E52E /* YXSecondHeadMoreCollectionViewCell.xib */; };
 		BB7AF1382200869400989896 /* YXMineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7AF1372200869400989896 /* YXMineHeaderView.m */; };
 		BB7AF13A2200869E00989896 /* YXMineHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7AF1392200869E00989896 /* YXMineHeaderView.xib */; };
 		BB86C8AC231B706800A061E2 /* YXMineJiFenHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB86C8AB231B706800A061E2 /* YXMineJiFenHistoryViewController.m */; };
@@ -774,6 +778,12 @@
 		BB70254D2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchResultTagViewController.m; sourceTree = "<group>"; };
 		BB71253223CF54460092E52E /* YXNewLoginMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXNewLoginMessageViewController.h; sourceTree = "<group>"; };
 		BB71253323CF54460092E52E /* YXNewLoginMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXNewLoginMessageViewController.m; sourceTree = "<group>"; };
+		BB71253523D062B20092E52E /* YXSecondHeadCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXSecondHeadCollectionViewCell.h; sourceTree = "<group>"; };
+		BB71253623D062B20092E52E /* YXSecondHeadCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXSecondHeadCollectionViewCell.m; sourceTree = "<group>"; };
+		BB71253723D062B20092E52E /* YXSecondHeadCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXSecondHeadCollectionViewCell.xib; sourceTree = "<group>"; };
+		BB71253A23D163850092E52E /* YXSecondHeadMoreCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXSecondHeadMoreCollectionViewCell.h; sourceTree = "<group>"; };
+		BB71253B23D163850092E52E /* YXSecondHeadMoreCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXSecondHeadMoreCollectionViewCell.m; sourceTree = "<group>"; };
+		BB71253C23D163850092E52E /* YXSecondHeadMoreCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXSecondHeadMoreCollectionViewCell.xib; sourceTree = "<group>"; };
 		BB7AF1362200869400989896 /* YXMineHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineHeaderView.h; sourceTree = "<group>"; };
 		BB7AF1372200869400989896 /* YXMineHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineHeaderView.m; sourceTree = "<group>"; };
 		BB7AF1392200869E00989896 /* YXMineHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXMineHeaderView.xib; sourceTree = "<group>"; };
@@ -2953,6 +2963,12 @@
 				BBC7CD1C22E16BFB00AC9E2D /* YXFindHeaderView.h */,
 				BBC7CD1D22E16BFB00AC9E2D /* YXFindHeaderView.m */,
 				BBC7CD1F22E16C0500AC9E2D /* YXFindHeaderView.xib */,
+				BB71253523D062B20092E52E /* YXSecondHeadCollectionViewCell.h */,
+				BB71253623D062B20092E52E /* YXSecondHeadCollectionViewCell.m */,
+				BB71253723D062B20092E52E /* YXSecondHeadCollectionViewCell.xib */,
+				BB71253A23D163850092E52E /* YXSecondHeadMoreCollectionViewCell.h */,
+				BB71253B23D163850092E52E /* YXSecondHeadMoreCollectionViewCell.m */,
+				BB71253C23D163850092E52E /* YXSecondHeadMoreCollectionViewCell.xib */,
 			);
 			path = "发现头部";
 			sourceTree = "<group>";
@@ -3316,6 +3332,7 @@
 				BB928F9821FB5D290090A044 /* BRPickerView.bundle in Resources */,
 				BB928F6B21FAD02B0090A044 /* YXMineMyCaoGaoViewController.xib in Resources */,
 				BB48B8EB23AC5B1E004550C0 /* TJNoPingLunView.xib in Resources */,
+				BB71253E23D163850092E52E /* YXSecondHeadMoreCollectionViewCell.xib in Resources */,
 				BB48B4DF23A782C7004550C0 /* YXAllPingLunViewController.xib in Resources */,
 				BBBBC0FB22BCD2FF00F528E1 /* ImageResources.bundle in Resources */,
 				BB6F6A242361A31B00EC8732 /* normalize.css in Resources */,
@@ -3377,6 +3394,7 @@
 				BB9832872202D77C0048D103 /* Images.xcassets in Resources */,
 				BB45A27D23A20DCE0029FF4D /* YXDingZhi1ViewController.xib in Resources */,
 				BBABDF3A229BC3A20046683A /* YXZhiNan2Cell.xib in Resources */,
+				BB71253923D062B20092E52E /* YXSecondHeadCollectionViewCell.xib in Resources */,
 				BB59B9712373C5B40064EC59 /* YXSecondHeadView.xib in Resources */,
 				BBACB4D3234DCCD40092367B /* YXJiFenShopDetailViewController.xib in Resources */,
 				BB0AE5C92253384900CC07EC /* YXFindSearchTagHeaderView.xib in Resources */,
@@ -3654,10 +3672,12 @@
 				BB1F1C1C2367EF95002D0FE5 /* SYBaseHttpConnection1.m in Sources */,
 				29AD6C4D1ED3D51200B0879C /* OpenUDID.m in Sources */,
 				BBA812B321DDABC1001B5EA1 /* YXMessageViewController.m in Sources */,
+				BB71253D23D163850092E52E /* YXSecondHeadMoreCollectionViewCell.m in Sources */,
 				BBA0C91F23BAF87400FDA6F3 /* PrintBeautifulLog.m in Sources */,
 				BBACB4CD234DC2E10092367B /* YXJiFenShop2CollectionViewCell.m in Sources */,
 				BB07FB132356EA4400F34D2D /* SimpleChatMainViewController.m in Sources */,
 				BB53E735235EFAC00014F106 /* NSDate+HXExtension.m in Sources */,
+				BB71253823D062B20092E52E /* YXSecondHeadCollectionViewCell.m in Sources */,
 				BBA0C8E123BAE6BE00FDA6F3 /* XLJSHandler.m in Sources */,
 				BB07FB1E2357099100F34D2D /* YXMessageThreeDetailViewController.m in Sources */,
 				296DEA721F5D50D100C6FD00 /* TAPageControl.m in Sources */,

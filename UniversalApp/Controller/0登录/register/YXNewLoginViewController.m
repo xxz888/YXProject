@@ -32,7 +32,7 @@
 //    self.wxLogin
     
     NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:@"请输入手机号码" attributes:
-    @{NSForegroundColorAttributeName:kRGBA(102, 102, 102, 1),NSFontAttributeName:self.phoneTf.font}];
+    @{NSForegroundColorAttributeName:kRGBA(102, 102, 102, 0.5),NSFontAttributeName:self.phoneTf.font}];
     self.phoneTf.attributedPlaceholder = attrString;
 }
 - (IBAction)closeLoginView:(id)sender {

@@ -21,7 +21,7 @@
 #import "YXWenZhangEditorViewController.h"
 #import "YXFirstFindImageTableViewCell.h"
 
-static CGFloat sectionHeaderHeight = 290;
+static CGFloat sectionHeaderHeight = 204;
 @interface YXMineAndFindBaseViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,ZInputToolbarDelegate,UIScrollViewDelegate>{
     CGFloat _autoPLHeight;
     BOOL _tagSelectBool;
@@ -31,20 +31,26 @@ static CGFloat sectionHeaderHeight = 290;
 }
 @property (nonatomic, strong) NSDictionary *shareDic;
 @property (nonatomic, strong) ZInputToolbar *inputToolbar;
-@property (nonatomic, strong) UIView * headerView;
 @property (nonatomic, strong) YXSecondHeadView * headerTagView;
 @property (nonatomic, strong) NSMutableArray *tagArray;
+@property (nonatomic, strong) NSMutableArray * hotTagArray;
 
 
 
 @end
 @implementation YXMineAndFindBaseViewController
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self requestFindTag];
+
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     _autoPLHeight = 0;
     self.dataArray = [[NSMutableArray alloc]init];
-    self.tagArray  = [[NSMutableArray alloc]init];;
-    [self requestFindTag];
+    self.tagArray  = [[NSMutableArray alloc]init];
+    self.hotTagArray  = [[NSMutableArray alloc]init];;
+
 }
 - (void)loginStateChange:(NSNotification *)notification{
 
@@ -56,29 +62,23 @@ static CGFloat sectionHeaderHeight = 290;
     [YX_MANAGER requestGet_users_find_tag:@"" success:^(id object) {
         [weakself.tagArray addObjectsFromArray:object];
         [weakself tableviewCon];
-        
         [weakself addRefreshView:self.yxTableView];
         
-        
-        if ([self.startDic[@"id"] integerValue] == 2) {
+        if (weakself.hotTagArray.count == 0) {
             //请求热门标签
-             [YXPLUS_MANAGER requestHotTagGet:@"" success:^(id object) {
-                 if ([object[@"data"] count] >= 3) {
-                     NSArray * dataArr = object[@"data"];
-                     [weakself.headerTagView.btn1 setTitle:[@"#   " append: dataArr[0][@"tag"]] forState:UIControlStateNormal];
-                     weakself.headerTagView.dongtaicount1.text = [kGetString(dataArr[0][@"post_number"]) append:@" 条动态"];
-                     weakself.headerTagView.dongtaicount1 .hidden = [weakself.headerTagView.dongtaicount1.text isEqualToString:@"0"];
-                     [weakself.headerTagView.btn2 setTitle:[@"#   " append: dataArr[1][@"tag"]] forState:UIControlStateNormal];
-                     weakself.headerTagView.dongtaicount2.text = [kGetString(dataArr[1][@"post_number"]) append:@" 条动态"];
-                     weakself.headerTagView.dongtaicount2 .hidden = [weakself.headerTagView.dongtaicount2.text isEqualToString:@"0"];
+                    [weakself.hotTagArray removeAllObjects];
+                    [YXPLUS_MANAGER requestHotTagGet:@"" success:^(id object) {
+                        if ([object[@"data"] count] >= 6) {
+                            [weakself.hotTagArray addObjectsFromArray:object[@"data"]];
+                            [weakself.yxTableView reloadData];
+                        }
+                    }];
+        }else{
+            [weakself.yxTableView reloadData];
 
-                     [weakself.headerTagView.btn3 setTitle:[@"#   " append: dataArr[2][@"tag"]] forState:UIControlStateNormal];
-                     weakself.headerTagView.dongtaicount3.text = [kGetString(dataArr[2][@"post_number"]) append:@" 条动态"];
-                     weakself.headerTagView.dongtaicount3 .hidden = [weakself.headerTagView.dongtaicount3.text isEqualToString:@"0"];
-
-                 }
-             }];
         }
+        
+
     }];
     
 
@@ -121,7 +121,7 @@ static CGFloat sectionHeaderHeight = 290;
         _headerTagView = [nib objectAtIndex:0];
         _headerTagView.frame = CGRectMake(0, 0, KScreenWidth, sectionHeaderHeight);
         _headerTagView.backgroundColor = KWhiteColor;
-
+    
         kWeakSelf(self);
         //查看更多
         _headerTagView.moretagblock = ^{
@@ -149,7 +149,9 @@ static CGFloat sectionHeaderHeight = 290;
                     }
                 }];
         };
+
     }
+    [_headerTagView setHeaderDate:self.hotTagArray];
 
     return _headerTagView;
 }
@@ -169,7 +171,7 @@ static CGFloat sectionHeaderHeight = 290;
 
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return [self.startDic[@"id"] integerValue] == 2 ? sectionHeaderHeight : 0;
+    return  sectionHeaderHeight ;
 }
 #pragma mark ========== tableview代理方法 ==========
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

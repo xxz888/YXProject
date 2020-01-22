@@ -17,11 +17,11 @@ typedef void(^ChouJiangBlock)();
 @property (nonatomic,strong) NSMutableArray * dataArray;
 @property (weak, nonatomic) IBOutlet UIImageView *choujiangImg;
 @property (nonatomic,copy) ClickCollectionItemBlock clickCollectionItemBlock;
--(void)setCellData:(NSMutableArray *)startDataArray;
 @property (nonatomic,copy) MoreTagBlock moretagblock;
 @property (nonatomic,copy) ChouJiangBlock choujiangblock;
 
 
+@property (weak, nonatomic) IBOutlet UICollectionView *yxCollectionView;
 @property (weak, nonatomic) IBOutlet UIButton *btn1;
 @property (weak, nonatomic) IBOutlet UIButton *btn2;
 @property (weak, nonatomic) IBOutlet UIButton *btn3;
@@ -29,7 +29,7 @@ typedef void(^ChouJiangBlock)();
 - (IBAction)btn1Action:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *dongtaicount2;
 @property (weak, nonatomic) IBOutlet UILabel *dongtaicount3;
-
+-(void)setHeaderDate:(NSMutableArray *)dataArray;
 @end
 
 NS_ASSUME_NONNULL_END

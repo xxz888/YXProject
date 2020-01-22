@@ -43,7 +43,7 @@
 - (void)refreshSecondVC: (NSNotification *) notification {
     kWeakSelf(self);
     NSString * parString =[NSString stringWithFormat:@"%@&page=%@",@"1",NSIntegerToNSString(self.requestPage)];
-//    [QMUITips showLoadingInView:self.view];
+//  [QMUITips showLoadingInView:self.view];
     [YX_MANAGER requestGet_users_find:parString success:^(id object){
         [QMUITips hideAllTips];
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
