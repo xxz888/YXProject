@@ -48,12 +48,9 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self initConfing];
     [self requestFindTag];
-//    [self rightBottomBtn];
     [self addButton];
-
 }
 - (void)addButton{
     
@@ -111,19 +108,9 @@
 }
 #pragma mark ========== 1111111-先请求tag列表,获取发现页标签数据 ==========
 -(void)requestFindTag{
-//    kWeakSelf(self);
-//    [YX_MANAGER requestGet_users_find_tag:@"" success:^(id object) {
-//        [weakself.dataArray removeAllObjects];
-//        NSDictionary * newDic = @{@"weight":@"0",@"type":@"最新",@"id":@"-1"};
-//        [weakself.dataArray addObject:newDic];
-//        [weakself.dataArray addObjectsFromArray:object];
-//        [weakself initSegment];
-//    }];
     [self.dataArray removeAllObjects];
     NSDictionary * newDic = @{@"weight":@"0",@"type":@"推荐",@"id":@"1"};
     [self.dataArray addObject:newDic];
-//    NSDictionary * newDic1 = @{@"weight":@"1",@"type":@"热门",@"id":@"2"};
-//    [self.dataArray addObject:newDic1];
     NSDictionary * newDic2 = @{@"weight":@"2",@"type":@"关注",@"id":@"3"};
     [self.dataArray addObject:newDic2];
     [self initSegment];

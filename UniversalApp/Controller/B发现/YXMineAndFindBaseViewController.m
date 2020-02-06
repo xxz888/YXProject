@@ -50,6 +50,7 @@ static CGFloat sectionHeaderHeight = 204;
     self.dataArray = [[NSMutableArray alloc]init];
     self.tagArray  = [[NSMutableArray alloc]init];
     self.hotTagArray  = [[NSMutableArray alloc]init];;
+    [self tableviewCon];
 
 }
 - (void)loginStateChange:(NSNotification *)notification{
@@ -61,7 +62,6 @@ static CGFloat sectionHeaderHeight = 204;
     [self.tagArray removeAllObjects];
     [YX_MANAGER requestGet_users_find_tag:@"" success:^(id object) {
         [weakself.tagArray addObjectsFromArray:object];
-        [weakself tableviewCon];
         [weakself addRefreshView:self.yxTableView];
         
         if (weakself.hotTagArray.count == 0) {
@@ -135,19 +135,10 @@ static CGFloat sectionHeaderHeight = 204;
         _headerTagView.clickCollectionItemBlock = ^(NSString * string) {
             string = [string replaceAll:@"#" target:@""];
             string = [weakself removeSpaceAndNewline:string];
-                [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":string,@"page":@"1",@"type":@"3"} success:^(id object) {
-                    if ([object count] > 0) {
-                        YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
-                        VC.type = @"3";
-                        VC.key = string;
-                        VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
-                        VC.startArray = [NSArray arrayWithArray:object];
-
-                        [weakself.navigationController pushViewController:VC animated:YES];
-                    }else{
-                        [QMUITips showInfo:@"无此标签的信息"];
-                    }
-                }];
+            YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
+                                 VC.type = @"3";
+                                 VC.key = string;
+                                 [weakself.navigationController pushViewController:VC animated:YES];
         };
 
     }
@@ -264,19 +255,10 @@ static CGFloat sectionHeaderHeight = 204;
     cell.clickTagblock = ^(NSString * string) {
         kWeakSelf(self);
         if ([string contains:@"#"]) {string = [string split:@"#"][1];}
-        [YX_MANAGER requestSearchFind_all:@{@"key":string,@"key_unicode":[string utf8ToUnicode],@"page":@"1",@"type":@"3"} success:^(id object) {
-            if ([object count] > 0) {
-                YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
-                VC.type = @"3";
-                VC.key = string;
-                VC.startDic = [NSDictionary dictionaryWithDictionary:object[0]];
-                VC.startArray = [NSArray arrayWithArray:object];
-
-                [weakself.navigationController pushViewController:VC animated:YES];
-            }else{
-                [QMUITips showInfo:@"无此标签的信息"];
-            }
-        }];
+            YXFindSearchTagDetailViewController * VC = [[YXFindSearchTagDetailViewController alloc] init];
+            VC.type = @"3";
+            VC.key = string;
+            [weakself.navigationController pushViewController:VC animated:YES];
     };
     //点击点赞和评论
     cell.clickDetailblock = ^(NSInteger tag, NSInteger tag1) {

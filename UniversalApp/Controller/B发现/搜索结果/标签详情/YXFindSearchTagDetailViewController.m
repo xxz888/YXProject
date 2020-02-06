@@ -138,18 +138,11 @@
     [super footerRereshing];
     [self requestTableData];
 }
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    CGFloat sectionHeaderHeight = 280;
-//    if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
-//    scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
-//    } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
-//    scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
-//}
-//}
 -(void)requestAction{
     kWeakSelf(self);
     if ([self.key contains:@"#"]) {self.key = [self.key split:@"#"][1];}
     [YX_MANAGER requestSearchFind_all:@{@"key":self.key,@"page":NSIntegerToNSString(self.requestPage),@"type":self.type,@"key_unicode":[self.key utf8ToUnicode]} success:^(id object) {
+        weakself.startDic =   [NSDictionary dictionaryWithDictionary:object[0]];
         weakself.dataArray = [weakself commonAction:object dataArray:weakself.dataArray];
         [weakself.yxTableView reloadData];
 
@@ -174,7 +167,7 @@
 #pragma mark ========== 我自己的所有 ==========
 -(void)requestMine_AllList{
      [self.dataArray removeAllObjects];
-      self.dataArray = [self commonAction:self.startArray dataArray:self.dataArray];
+      self.dataArray = [self commonAction:self.dataArray dataArray:self.dataArray];
       [self.yxTableView reloadData];
       self.nodataImg.hidden = self.dataArray.count != 0;
 }

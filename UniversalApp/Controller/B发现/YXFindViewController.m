@@ -17,6 +17,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSecondVC:) name:@"refreshSecondVC" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(panduanUMXiaoXi1:) name:UM_User_Info_1 object:nil];
+    [self requestTableData];
+
 }
 -(void)panduanUMXiaoXi1:(NSNotification *)notification{
     [self panduanxiaoxi:[notification object]];
@@ -53,7 +55,6 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self requestTableData];
 }
 -(void)headerRereshing{
     [super headerRereshing];

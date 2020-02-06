@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qpk-B8-sWH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qpk-B8-sWH">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -117,7 +117,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="aT2-VZ-lqD">
-                                <rect key="frame" x="137" y="743" width="140" height="44"/>
+                                <rect key="frame" x="137" y="750" width="140" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbP-MB-wTy">
                                         <rect key="frame" x="0.0" y="0.0" width="45" height="44"/>
@@ -145,7 +145,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="——  更多登录方式  —— " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEj-dw-g0E">
-                                <rect key="frame" x="0.0" y="690" width="414" height="21"/>
+                                <rect key="frame" x="0.0" y="697" width="414" height="21"/>
                                 <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -160,6 +160,7 @@
                         <color key="backgroundColor" red="0.062745098040000002" green="0.13725490200000001" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="4dV-s1-SYT" firstAttribute="centerX" secondItem="OOO-0f-me3" secondAttribute="centerX" id="0yn-Tg-U0L"/>
+                            <constraint firstItem="5Ht-qf-d5H" firstAttribute="top" secondItem="aT2-VZ-lqD" secondAttribute="bottom" constant="68" id="1Cf-5P-INS"/>
                             <constraint firstItem="OOO-0f-me3" firstAttribute="leading" secondItem="qwM-0C-i8y" secondAttribute="leading" constant="56" id="4b3-93-F6b"/>
                             <constraint firstItem="Lhw-Jo-dkI" firstAttribute="top" secondItem="dMB-rD-L8S" secondAttribute="bottom" constant="80" id="9QK-nf-Vuy"/>
                             <constraint firstAttribute="trailing" secondItem="aEj-dw-g0E" secondAttribute="trailing" id="BVT-6D-H8N"/>
@@ -168,7 +169,6 @@
                             <constraint firstItem="aEj-dw-g0E" firstAttribute="centerX" secondItem="aT2-VZ-lqD" secondAttribute="centerX" id="Fr7-Pe-gZl"/>
                             <constraint firstItem="aD3-lA-OWd" firstAttribute="centerX" secondItem="yPi-58-msO" secondAttribute="centerX" id="NLj-Ca-Oa5"/>
                             <constraint firstAttribute="trailing" secondItem="OOO-0f-me3" secondAttribute="trailing" constant="56" id="NXU-jV-EkM"/>
-                            <constraint firstItem="aEj-dw-g0E" firstAttribute="top" secondItem="aD3-lA-OWd" secondAttribute="bottom" constant="121" id="XLy-yl-VVQ"/>
                             <constraint firstItem="aEj-dw-g0E" firstAttribute="leading" secondItem="qwM-0C-i8y" secondAttribute="leading" id="Y0V-Fy-xER"/>
                             <constraint firstItem="4dV-s1-SYT" firstAttribute="width" secondItem="OOO-0f-me3" secondAttribute="width" id="bSi-ij-IDR"/>
                             <constraint firstItem="dMB-rD-L8S" firstAttribute="top" secondItem="JzV-xB-XUy" secondAttribute="bottom" constant="15" id="dGN-Z7-Iiz"/>

@@ -187,7 +187,6 @@
 		BB7025442212A42C009EBE39 /* YXFindSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7025432212A42C009EBE39 /* YXFindSearchResultViewController.m */; };
 		BB7025472212A4D9009EBE39 /* YXFindSearchResultUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7025462212A4D9009EBE39 /* YXFindSearchResultUsersViewController.m */; };
 		BB70254B2212AF3F009EBE39 /* YXFindSearchResultAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB70254A2212AF3F009EBE39 /* YXFindSearchResultAllViewController.m */; };
-		BB70254F2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB70254D2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m */; };
 		BB71253423CF54460092E52E /* YXNewLoginMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB71253323CF54460092E52E /* YXNewLoginMessageViewController.m */; };
 		BB71253823D062B20092E52E /* YXSecondHeadCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB71253623D062B20092E52E /* YXSecondHeadCollectionViewCell.m */; };
 		BB71253923D062B20092E52E /* YXSecondHeadCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB71253723D062B20092E52E /* YXSecondHeadCollectionViewCell.xib */; };
@@ -774,8 +773,6 @@
 		BB7025462212A4D9009EBE39 /* YXFindSearchResultUsersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchResultUsersViewController.m; sourceTree = "<group>"; };
 		BB7025492212AF3F009EBE39 /* YXFindSearchResultAllViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchResultAllViewController.h; sourceTree = "<group>"; };
 		BB70254A2212AF3F009EBE39 /* YXFindSearchResultAllViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchResultAllViewController.m; sourceTree = "<group>"; };
-		BB70254C2212BAE2009EBE39 /* YXFindSearchResultTagViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXFindSearchResultTagViewController.h; sourceTree = "<group>"; };
-		BB70254D2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXFindSearchResultTagViewController.m; sourceTree = "<group>"; };
 		BB71253223CF54460092E52E /* YXNewLoginMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXNewLoginMessageViewController.h; sourceTree = "<group>"; };
 		BB71253323CF54460092E52E /* YXNewLoginMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXNewLoginMessageViewController.m; sourceTree = "<group>"; };
 		BB71253523D062B20092E52E /* YXSecondHeadCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXSecondHeadCollectionViewCell.h; sourceTree = "<group>"; };
@@ -2032,8 +2029,6 @@
 		BB7025482212AE22009EBE39 /* 标签详情 */ = {
 			isa = PBXGroup;
 			children = (
-				BB70254C2212BAE2009EBE39 /* YXFindSearchResultTagViewController.h */,
-				BB70254D2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m */,
 				BB0AE5C52253384000CC07EC /* YXFindSearchTagHeaderView.h */,
 				BB0AE5C62253384000CC07EC /* YXFindSearchTagHeaderView.m */,
 				BB0AE5C82253384900CC07EC /* YXFindSearchTagHeaderView.xib */,
@@ -3695,7 +3690,6 @@
 				BB53E720235EFAC00014F106 /* HXCollectionView.m in Sources */,
 				BB7025472212A4D9009EBE39 /* YXFindSearchResultUsersViewController.m in Sources */,
 				BB59B9602372A1630064EC59 /* YXHuaTiRightTableViewCell.m in Sources */,
-				BB70254F2212BAE2009EBE39 /* YXFindSearchResultTagViewController.m in Sources */,
 				BB15B0E9234ED06A005CED4F /* YXJiFenLiJiGouMaiFootView.m in Sources */,
 				BBD7796B2244DD390077E44D /* YXBindPhoneNextViewController.m in Sources */,
 				BB6F6A1C2361A31B00EC8732 /* KWEditorBar.m in Sources */,
