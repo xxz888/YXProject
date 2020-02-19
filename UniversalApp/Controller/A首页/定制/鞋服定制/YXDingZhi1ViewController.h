@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YXDingZhi1ViewController : UIViewController
+@interface YXDingZhi1ViewController : RootViewController
 @property (weak, nonatomic) IBOutlet UIButton *addressBtn;
 - (IBAction)addressAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *sortBtn;
@@ -20,6 +20,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *addressLbl;
 @property (weak, nonatomic) IBOutlet UILabel *sortLbl;
 @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
+
+
+@property (strong, nonatomic)NSString * lat;
+@property (strong, nonatomic)NSString * lng;
+@property (strong, nonatomic)NSString * sort;
+@property (strong, nonatomic)NSString * obj;
+@property (nonatomic,strong) NSString * currentCity;
 
 @end
 

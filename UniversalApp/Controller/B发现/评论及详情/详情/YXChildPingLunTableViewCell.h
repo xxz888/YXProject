@@ -31,7 +31,7 @@ typedef void(^TagTitleImvCellBlock)(NSString *);
 +(CGFloat)cellDefaultHeight:(NSDictionary *)dic;
 -(void)setCellData:(NSDictionary *)dic;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
-
+-(void)setCellShopData:(NSDictionary *)dic;
 @property(nonatomic,assign)CGFloat cellTableViewHeight;
 @end
 

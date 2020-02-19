@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +20,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Dwp-nI-oE9">
                             <rect key="frame" x="0.0" y="0.0" width="382" height="94"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QOd-YN-Oqc">
+                                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QOd-YN-Oqc">
                                     <rect key="frame" x="0.0" y="0.0" width="120.5" height="94"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dz1_1" translatesAutoresizingMaskIntoConstraints="NO" id="YY7-Nd-bY0">
@@ -54,7 +54,7 @@
                                         <constraint firstItem="AVa-uv-GjV" firstAttribute="centerY" secondItem="QOd-YN-Oqc" secondAttribute="centerY" id="nkW-xP-0NL"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kgh-Ub-55C">
+                                <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kgh-Ub-55C">
                                     <rect key="frame" x="130.5" y="0.0" width="121" height="94"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dz1_2" translatesAutoresizingMaskIntoConstraints="NO" id="WI3-g6-nQ2">
@@ -88,7 +88,7 @@
                                         <constraint firstItem="pm3-d4-asK" firstAttribute="centerY" secondItem="Kgh-Ub-55C" secondAttribute="centerY" id="wFf-jp-Jw9"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J3U-vY-9cY">
+                                <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J3U-vY-9cY">
                                     <rect key="frame" x="261.5" y="0.0" width="120.5" height="94"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dz1_3" translatesAutoresizingMaskIntoConstraints="NO" id="hsP-6n-DWG">

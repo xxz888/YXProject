@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-typedef void(^talkBlock)(void);
+typedef void(^talkBlock)(NSInteger);
+typedef void(^zanBlock)(NSInteger);
 @interface YXDingZhiDetailTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *cellImg;
 @property (weak, nonatomic) IBOutlet UILabel *cellTitle;
@@ -31,6 +32,10 @@ typedef void(^talkBlock)(void);
 -(void)setCellData:(NSDictionary *)dic;
 +(CGFloat)cellDefaultHeight:(NSDictionary *)dic;
 @property(nonatomic,copy)talkBlock talkblock;
+@property(nonatomic,copy)zanBlock zanblock;
+
+
+@property (strong, nonatomic) NSDictionary * startDic;
 @end
 
 NS_ASSUME_NONNULL_END

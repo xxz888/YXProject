@@ -24,13 +24,13 @@
     [self.view4 addGestureRecognizer:tap4];
 }
 -(void)tap1Action:(id)tap{
-    self.tapview1block();
+    self.tapview1block(kGetNSInteger(self.view1.tag));
 }
 -(void)tap2Action:(id)tap{
-    self.tapview2block();
+    self.tapview2block(kGetNSInteger(self.view2.tag));
 }
 -(void)tap3Action:(id)tap{
-    self.tapview3block();
+    self.tapview3block(kGetNSInteger(self.view3.tag));
 }
 -(void)tap4Action:(id)tap{
     self.tapview4block();

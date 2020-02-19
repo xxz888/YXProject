@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)shareAction:(id)sender;
 - (IBAction)moreAction:(id)sender;
 - (IBAction)telAction:(id)sender;
+@property (strong, nonatomic) NSDictionary * startDic;
 
 
 @end

@@ -15,22 +15,55 @@
     }
     return _mapNavigationView;
 }
+
+
+-(void)setCellData{
+    //图片
+     NSString * url = [IMG_URI append:[self.startDic[@"photo_list"] split:@","][0]];
+     [self.cellImv sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    //共几张图片
+    self.countLbl.text = [NSString stringWithFormat:@"共%lu张",[[self.startDic[@"photo_list"] split:@","] count]];
+    //title
+    self.cellTitle.text = self.startDic[@"name"];
+    //营业时间
+    self.cellTime.text = [YXPLUS_MANAGER inYingYeTimeOutChangeTime:self.startDic[@"business_days"] business_hours:self.startDic[@"business_hours"]];
+    //地址
+    self.cellAdress.text = [self.startDic[@"city"] append:self.startDic[@"site"]];
+    //距离
+    self.cellFar.text =  [NSString stringWithFormat:@"距你%dkm",[self.startDic[@"distance"] intValue] / 1000] ;
+    //评分
+     [self.starView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+     [ShareManager fiveStarView:[self.startDic[@"grade"] qmui_CGFloatValue] view:self.starView];
+}
+
 - (void)drawRect:(CGRect)rect {
-    [ShareManager fiveStarView:5 view:self.starView];
     UITapGestureRecognizer *aTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGRAction:)];
     [self.cellAdressBottomView addGestureRecognizer:aTapGR];
+    
+    
+    UITapGestureRecognizer * aTapGR1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGRAction1:)];
+    [self.countView addGestureRecognizer:aTapGR1];
+    
+    self.countView.backgroundColor = kRGBA(0, 0, 0, 0.5);
+    self.countView.layer.cornerRadius = 4;
 }
+//点击数量的view
+-(void)tapGRAction1:(id)tap{
+    self.clickCountViewBlock();
+}
+//点击星星
 -(void)tapGRAction:(id)tap{
     kWeakSelf(self);
+    NSString * address = [self.startDic[@"city"] append:self.startDic[@"site"]];
     CLGeocoder *myGeocoder = [[CLGeocoder alloc] init];
-    [myGeocoder geocodeAddressString:@"浙江省杭州市登云路108号" completionHandler:^(NSArray *placemarks, NSError *error) {
+    [myGeocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
     double latitude = 0;double longitude = 0;
     if ([placemarks count] > 0 && error == nil) {
         CLPlacemark *firstPlacemark = [placemarks objectAtIndex:0];
          latitude = firstPlacemark.location.coordinate.latitude;
          longitude = firstPlacemark.location.coordinate.longitude;
         if (latitude != 0 && longitude != 0) {
-            [weakself.mapNavigationView showMapNavigationViewFormcurrentLatitude:0 currentLongitute:0 TotargetLatitude:latitude targetLongitute:longitude toName:@"浙江省杭州市登云路108号"];
+            [weakself.mapNavigationView showMapNavigationViewFormcurrentLatitude:0 currentLongitute:0 TotargetLatitude:latitude targetLongitute:longitude toName:address];
             [weakself addSubview:_mapNavigationView];
         }
     }else if ([placemarks count] == 0 && error == nil) {
@@ -50,4 +83,6 @@
 - (IBAction)pinglunAction:(id)sender {
     self.pingLunBlock();
 }
+
+
 @end

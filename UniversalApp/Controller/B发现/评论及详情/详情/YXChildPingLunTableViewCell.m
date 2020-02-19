@@ -36,7 +36,22 @@
     [ShareManager inAllContentOutHeight:dic[@"comment"] contentWidth:KScreenWidth-87 lineSpace:9 font:SYSTEMFONT(14)];
     return height;
 }
+-(void)setCellShopData:(NSDictionary *)dic{
 
+    NSString * photo = dic[@"user_info"][@"photo"];
+    NSString * update_time = dic[@"publish_time"];
+    
+     [self.plTitleImv sd_setImageWithURL:[NSURL URLWithString:[WP_TOOL_ShareManager addImgURL:photo]] placeholderImage:[UIImage imageNamed:@"img_moren"]];
+    self.plUserName.text = dic[@"user_info"][@"username"];
+    self.plTime.text = [ShareManager updateTimeForRow:[update_time longLongValue]];
+    //F蓝色已点赞 F灰色未点赞
+    [self.plZan setImage:[dic[@"is_praise"] integerValue] == 0 ? IMAGE_NAMED(@"F灰色未点赞") : IMAGE_NAMED(@"F蓝色已点赞") forState:0];
+    //评论的内容
+    self.plDetail.text = dic[@"comment"];
+    self.plDetailHeight.constant = [YXChildPingLunTableViewCell getPlDetailHeight:dic];
+    //评论的tableview
+    [ShareManager setAllContentAttributed:9 inLabel:self.plDetail font:SYSTEMFONT(14)];
+}
 -(void)setCellData:(NSDictionary *)dic{
     self.cellDataDic =[NSDictionary dictionaryWithDictionary:dic];
     NSString * photo = dic[@"photo"] ? dic[@"photo"] : dic[@"user_photo"];
@@ -60,11 +75,11 @@
 
     UITapGestureRecognizer *aTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapTitleImvAction:)];
     self.plTitleImv.userInteractionEnabled = YES;
-    [self.plTitleImv addGestureRecognizer:aTapGR];
+//    [self.plTitleImv addGestureRecognizer:aTapGR];
     //添加长按手势
     UILongPressGestureRecognizer * longPressGesture =[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(cellLongPress:)];
     longPressGesture.minimumPressDuration=1.0f;//设置长按 时间
-    [self addGestureRecognizer:longPressGesture];
+//    [self addGestureRecognizer:longPressGesture];
 }
 -(void)cellLongPress:(UILongPressGestureRecognizer *)longRecognizer{
     if (longRecognizer.state==UIGestureRecognizerStateBegan) {

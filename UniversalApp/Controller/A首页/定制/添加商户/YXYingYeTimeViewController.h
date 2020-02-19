@@ -31,6 +31,12 @@ typedef void(^yingyeshijianBlock)(NSDictionary *);
 - (IBAction)saveAction:(id)sender;
 
 @property(nonatomic,copy)yingyeshijianBlock yingyeshijianblock;
+
+
+
+@property(nonatomic,strong)NSString * business_days;
+@property(nonatomic,strong)NSString * business_hours;
+@property(nonatomic,strong)NSString * round_the_clock;
 @end
 
 NS_ASSUME_NONNULL_END

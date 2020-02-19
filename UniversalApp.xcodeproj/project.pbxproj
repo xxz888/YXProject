@@ -88,6 +88,10 @@
 		BB3CA498221F95FC00C6793D /* YXFaBuBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB3CA497221F95FC00C6793D /* YXFaBuBaseViewController.xib */; };
 		BB41FCD823A75C5900C1508D /* YXDingZhiDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB41FCD623A75C5900C1508D /* YXDingZhiDetailTableViewCell.m */; };
 		BB41FCD923A75C5900C1508D /* YXDingZhiDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB41FCD723A75C5900C1508D /* YXDingZhiDetailTableViewCell.xib */; };
+		BB452D0723ED0515006B018D /* YXDingZhiShangJiaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB452D0523ED0515006B018D /* YXDingZhiShangJiaViewController.m */; };
+		BB452D0823ED0515006B018D /* YXDingZhiShangJiaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB452D0623ED0515006B018D /* YXDingZhiShangJiaViewController.xib */; };
+		BB452D0C23ED091B006B018D /* YXDIngZhiShangJiaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB452D0A23ED091B006B018D /* YXDIngZhiShangJiaCollectionViewCell.m */; };
+		BB452D0D23ED091B006B018D /* YXDIngZhiShangJiaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB452D0B23ED091B006B018D /* YXDIngZhiShangJiaCollectionViewCell.xib */; };
 		BB45A27B23A20DCE0029FF4D /* YXDingZhi1TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB45A27523A20DCE0029FF4D /* YXDingZhi1TableViewCell.xib */; };
 		BB45A27C23A20DCE0029FF4D /* YXDingZhi1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB45A27623A20DCE0029FF4D /* YXDingZhi1ViewController.m */; };
 		BB45A27D23A20DCE0029FF4D /* YXDingZhi1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB45A27823A20DCE0029FF4D /* YXDingZhi1ViewController.xib */; };
@@ -594,6 +598,12 @@
 		BB41FCD523A75C5900C1508D /* YXDingZhiDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXDingZhiDetailTableViewCell.h; sourceTree = "<group>"; };
 		BB41FCD623A75C5900C1508D /* YXDingZhiDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXDingZhiDetailTableViewCell.m; sourceTree = "<group>"; };
 		BB41FCD723A75C5900C1508D /* YXDingZhiDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXDingZhiDetailTableViewCell.xib; sourceTree = "<group>"; };
+		BB452D0423ED0515006B018D /* YXDingZhiShangJiaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXDingZhiShangJiaViewController.h; sourceTree = "<group>"; };
+		BB452D0523ED0515006B018D /* YXDingZhiShangJiaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXDingZhiShangJiaViewController.m; sourceTree = "<group>"; };
+		BB452D0623ED0515006B018D /* YXDingZhiShangJiaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXDingZhiShangJiaViewController.xib; sourceTree = "<group>"; };
+		BB452D0923ED091B006B018D /* YXDIngZhiShangJiaCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXDIngZhiShangJiaCollectionViewCell.h; sourceTree = "<group>"; };
+		BB452D0A23ED091B006B018D /* YXDIngZhiShangJiaCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXDIngZhiShangJiaCollectionViewCell.m; sourceTree = "<group>"; };
+		BB452D0B23ED091B006B018D /* YXDIngZhiShangJiaCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXDIngZhiShangJiaCollectionViewCell.xib; sourceTree = "<group>"; };
 		BB45A27523A20DCE0029FF4D /* YXDingZhi1TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YXDingZhi1TableViewCell.xib; sourceTree = "<group>"; };
 		BB45A27623A20DCE0029FF4D /* YXDingZhi1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDingZhi1ViewController.m; sourceTree = "<group>"; };
 		BB45A27723A20DCE0029FF4D /* YXDingZhi1TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDingZhi1TableViewCell.h; sourceTree = "<group>"; };
@@ -1731,13 +1741,26 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		BB452D0323ED0499006B018D /* 商家相册 */ = {
+			isa = PBXGroup;
+			children = (
+				BB452D0423ED0515006B018D /* YXDingZhiShangJiaViewController.h */,
+				BB452D0523ED0515006B018D /* YXDingZhiShangJiaViewController.m */,
+				BB452D0623ED0515006B018D /* YXDingZhiShangJiaViewController.xib */,
+				BB452D0923ED091B006B018D /* YXDIngZhiShangJiaCollectionViewCell.h */,
+				BB452D0A23ED091B006B018D /* YXDIngZhiShangJiaCollectionViewCell.m */,
+				BB452D0B23ED091B006B018D /* YXDIngZhiShangJiaCollectionViewCell.xib */,
+			);
+			path = "商家相册";
+			sourceTree = "<group>";
+		};
 		BB45A27423A20DCE0029FF4D /* 鞋服定制 */ = {
 			isa = PBXGroup;
 			children = (
-				BB41FCDA23A761F600C1508D /* view */,
 				BB45A27A23A20DCE0029FF4D /* YXDingZhi1ViewController.h */,
 				BB45A27623A20DCE0029FF4D /* YXDingZhi1ViewController.m */,
 				BB45A27823A20DCE0029FF4D /* YXDingZhi1ViewController.xib */,
+				BB41FCDA23A761F600C1508D /* view */,
 				BBBD722B23A3694100D36B5E /* 详情界面 */,
 			);
 			path = "鞋服定制";
@@ -1746,10 +1769,10 @@
 		BB47954E23A0D8D600923BDA /* 定制 */ = {
 			isa = PBXGroup;
 			children = (
-				BBD6734423A1E52F007F4767 /* 定制View */,
 				BB47954F23A0E3C300923BDA /* YXDingZhiViewController.h */,
 				BB47955023A0E3C300923BDA /* YXDingZhiViewController.m */,
 				BB47955123A0E3C300923BDA /* YXDingZhiViewController.xib */,
+				BBD6734423A1E52F007F4767 /* 定制View */,
 				BB1E5CEE23A211DB007BF7D5 /* 添加商户 */,
 				BB45A27423A20DCE0029FF4D /* 鞋服定制 */,
 			);
@@ -2897,13 +2920,14 @@
 		BBBD722B23A3694100D36B5E /* 详情界面 */ = {
 			isa = PBXGroup;
 			children = (
+				BBBD722C23A3697500D36B5E /* YXDingZhiDetailViewController.h */,
+				BBBD722D23A3697500D36B5E /* YXDingZhiDetailViewController.m */,
+				BBBD722E23A3697500D36B5E /* YXDingZhiDetailViewController.xib */,
+				BB452D0323ED0499006B018D /* 商家相册 */,
 				BB8D249823B0600F0017482B /* 子评论界面 */,
 				BB48B4DA23A78289004550C0 /* 所有评论界面 */,
 				BB48B4D423A78277004550C0 /* 发表评论界面 */,
 				BB41FCD423A75C3700C1508D /* view */,
-				BBBD722C23A3697500D36B5E /* YXDingZhiDetailViewController.h */,
-				BBBD722D23A3697500D36B5E /* YXDingZhiDetailViewController.m */,
-				BBBD722E23A3697500D36B5E /* YXDingZhiDetailViewController.xib */,
 			);
 			path = "详情界面";
 			sourceTree = "<group>";
@@ -3373,10 +3397,12 @@
 				BBACB4CC234DC2E10092367B /* YXJiFenShop2CollectionViewCell.xib in Resources */,
 				BB21FDBA22B0E68A0059BCAC /* YXFirstFindImageTableViewCell.xib in Resources */,
 				BB554D072362C968003B7F55 /* YXXinDongTaiView.xib in Resources */,
+				BB452D0D23ED091B006B018D /* YXDIngZhiShangJiaCollectionViewCell.xib in Resources */,
 				BBACB4B7234D84340092367B /* YXJiFenShop1TableViewCell.xib in Resources */,
 				BBB59B79228E8D200029D3D0 /* YXZhiNanViewController.xib in Resources */,
 				BBABDF44229BC45E0046683A /* YXZhiNan4Cell.xib in Resources */,
 				BB07FB152357001900F34D2D /* SimpleChatMainViewController.xib in Resources */,
+				BB452D0823ED0515006B018D /* YXDingZhiShangJiaViewController.xib in Resources */,
 				BBED1232238E413E009561A3 /* HGPersonal1TableViewCell.xib in Resources */,
 				BBB59B47228D02B70029D3D0 /* YXHomeXueJiaToolsTableViewCell.xib in Resources */,
 				BBED123B238FB609009561A3 /* LZMenuButtonCell.xib in Resources */,
@@ -3605,6 +3631,7 @@
 				BBEA15912366F072006FBBFF /* MMOperateMenuView.m in Sources */,
 				BB59B95B23729CB00064EC59 /* YXHuaTiLeftTableViewCell.m in Sources */,
 				BB9413E121F8B602007E800A /* IQNSArray+Sort.m in Sources */,
+				BB452D0723ED0515006B018D /* YXDingZhiShangJiaViewController.m in Sources */,
 				BBDA2EF421ECC22B00EDCCFF /* SearchResultsController.m in Sources */,
 				BBD2C98521E1BC0A00350DCD /* PYSearchConst.m in Sources */,
 				BBD7796F22487DA60077E44D /* YXMineTuiSongViewController.m in Sources */,
@@ -3663,6 +3690,7 @@
 				BB86C8BA231B987C00A061E2 /* YXMineQianDaoView.m in Sources */,
 				BB8D249623AE18CD0017482B /* CLLocation+YCLocation.m in Sources */,
 				BB9413DC21F8B602007E800A /* IQBarButtonItem.m in Sources */,
+				BB452D0C23ED091B006B018D /* YXDIngZhiShangJiaCollectionViewCell.m in Sources */,
 				BBED123A238FB609009561A3 /* LZMenuButtonCell.m in Sources */,
 				BB1F1C1C2367EF95002D0FE5 /* SYBaseHttpConnection1.m in Sources */,
 				29AD6C4D1ED3D51200B0879C /* OpenUDID.m in Sources */,

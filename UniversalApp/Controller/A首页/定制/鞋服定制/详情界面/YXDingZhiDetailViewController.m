@@ -14,11 +14,13 @@
 #import "YXDingZhiDetailTableViewCell.h"
 #import "YXDingZhiPingLunViewController.h"
 #import "YXChildPingLunViewController.h"
+#import "YXDingZhiShangJiaViewController.h"
 
 @interface YXDingZhiDetailViewController ()
 
 @property (nonatomic,strong) YXDingZhiDetailView * headerView;
 @property (nonatomic,strong) YXDingZhiFooterView * footerView;
+@property (nonatomic,strong) NSMutableArray * dataArray;
 
 @end
 
@@ -26,20 +28,35 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    [self getShopPingLunList];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     [self initControl];
 }
+-(void)getShopPingLunList{
+    NSString * par = [NSString stringWithFormat:@"page=%ld&business_id=%@&type=%@",(long)self.requestPage,self.startDic[@"id"],@"1"];
+    kWeakSelf(self);
+    [YXPLUS_MANAGER getShopBusiness_commentSuccess:par success:^(id object) {
+      [weakself.yxTableView.mj_header endRefreshing];
+      [weakself.yxTableView.mj_footer endRefreshing];
+      weakself.dataArray = [weakself commonAction:object[@"data"] dataArray:weakself.dataArray];
+      [weakself.yxTableView reloadData];
+    }];
+}
 //初始化控件
 -(void)initControl{
     [self.yxTableView registerNib:[UINib nibWithNibName:@"YXDingZhiDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"YXDingZhiDetailTableViewCell"];
-    [self.yxTableView reloadData];
+    self.dataArray = [[NSMutableArray alloc]init];
 }
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YXDingZhiDetailView" owner:self options:nil];
     self.headerView = [nib objectAtIndex:0];
+    self.headerView.startDic = [NSDictionary dictionaryWithDictionary:self.startDic];
+    [self.headerView setCellData];
+    self.headerView.pingjiaCount.text = [NSString stringWithFormat:@"评价(%lu)",(unsigned long)self.dataArray.count];
     [self allBlockAction];
     return self.headerView;
 }
@@ -53,10 +70,17 @@
     kWeakSelf(self);
     self.headerView.pingLunBlock = ^{
         YXDingZhiPingLunViewController * vc = [[YXDingZhiPingLunViewController alloc]init];
+        vc.startDic = [NSDictionary dictionaryWithDictionary:weakself.startDic];
+        [weakself.navigationController pushViewController:vc animated:YES];
+    };
+    self.headerView.clickCountViewBlock = ^{
+        YXDingZhiShangJiaViewController * vc = [[YXDingZhiShangJiaViewController alloc]init];
+        vc.startArray = [weakself.startDic[@"photo_list"] split:@","];
         [weakself.navigationController pushViewController:vc animated:YES];
     };
     self.footerView.allBtnBlock = ^{
         YXAllPingLunViewController * vc = [[YXAllPingLunViewController alloc]init];
+        vc.startDic = [NSDictionary dictionaryWithDictionary:weakself.startDic];
         [weakself.navigationController pushViewController:vc animated:YES];
     };
 }
@@ -67,18 +91,34 @@
     return 72;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [YXDingZhiDetailTableViewCell cellDefaultHeight:@{@"":@""}];
+    return [YXDingZhiDetailTableViewCell cellDefaultHeight:self.dataArray[indexPath.row]];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return self.dataArray.count >=3 ? 3 : self.dataArray.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXDingZhiDetailTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXDingZhiDetailTableViewCell" forIndexPath:indexPath];
-    [cell setCellData:@{@"":@""}];
-    
-    cell.talkblock = ^{
+    cell.zanBtn.tag = indexPath.row;
+    cell.startDic = [NSDictionary dictionaryWithDictionary:self.dataArray[indexPath.row]];
+    [cell setCellData:self.dataArray[indexPath.row]];
+    kWeakSelf(self);
+    cell.zanblock = ^(NSInteger index) {
+        NSIndexPath * indexPathSelect = [NSIndexPath indexPathForRow:index  inSection:0];
+        YXDingZhiDetailTableViewCell * cell = [weakself.yxTableView cellForRowAtIndexPath:indexPathSelect];
+        //赞
+        BOOL isp =  [weakself.dataArray[index][@"is_praise"] integerValue] == 1;
+        UIImage * likeImage = isp ?  IMAGE_NAMED(@"F灰色未点赞") : IMAGE_NAMED(@"F蓝色已点赞");
+        [cell.zanBtn setBackgroundImage:likeImage forState:UIControlStateNormal];
+        
+        NSString * comment_id = kGetString(weakself.dataArray[index][@"id"]);
+        [YXPLUS_MANAGER clickShopBusiness_comment_praiseSuccess:@{@"comment_id":comment_id,@"type":@"1"} success:^(id object) {
+            [weakself getShopPingLunList];
+        }];
+    };
+    cell.talkblock = ^(NSInteger index){
         YXChildPingLunViewController * vc = [[YXChildPingLunViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
+        vc.startDic = [NSDictionary dictionaryWithDictionary:weakself.dataArray[index]];
+        [weakself.navigationController pushViewController:vc animated:YES];
     };
     return cell;
 }

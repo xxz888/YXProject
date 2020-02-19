@@ -12,7 +12,7 @@
 #import "QiniuLoad.h"
 #import "XHStarRateView.h"
 @interface YXDingZhiPingLunViewController ()<HXPhotoViewDelegate,XHStarRateViewDelegate>{
-    CGFloat _starScore;
+    NSInteger _starScore;
 }
 @property(nonatomic, strong) QMUITextView * qmuiTextView;
 @property (strong, nonatomic) HXPhotoManager *manager;
@@ -28,16 +28,30 @@
         [QMUITips showInfo:@"请填写评论内容"];
         return;
     }
+    
+    //图片key的数组
+    NSMutableArray * imageKeyArray = [[NSMutableArray alloc]init];
+    for (NSString * key in self.photoImageList) {
+        [imageKeyArray addObject:[key split:IMG_URI][1]];
+    }
+    NSString * imageKey = [imageKeyArray componentsJoinedByString:@","];
     NSDictionary * dic = @{
-        @"":@(_starScore),
-        @"":self.qmuiTextView.text,
-        @"":self.photoImageList,
-        @"":self.xiaofeiTf.text,
-        @"":@(self.nimingBtn.selected),
+        @"business_id":kGetNSInteger([self.startDic[@"id"] integerValue]),
+        @"grade":kGetNSInteger(_starScore),
+        @"comment":self.qmuiTextView.text,
+        @"publish_time":[ShareManager getNowTimeMiaoShu],
+        @"photo_list":imageKey,
+        @"price":self.xiaofeiTf.text,
+        @"anonymity":self.nimingBtn.selected ? @"1" : @"0",
     };
+    kWeakSelf(self);
+    [YXPLUS_MANAGER addShopBusiness_commentSuccess:dic success:^(id object) {
+        [QMUITips showSucceed:@"发表成功"];
+        [weakself.navigationController popViewControllerAnimated:YES];
+    }];
 }
 -(void)starRateView:(XHStarRateView *)starRateView currentScore:(CGFloat)currentScore{
-    _starScore = currentScore;
+    _starScore = (NSInteger)currentScore;
     if (currentScore == 5) {
         self.starLbl.text = @"超赞";
     }else if (currentScore == 4){
@@ -57,10 +71,14 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setUIData];
     [self addStarView];
     [self addTextView];
     [self addUpLoadImgView];
     [self addSetNiMingBtn];
+}
+-(void)setUIData{
+    self.fabuTitle.text = self.startDic[@"name"];
 }
 -(void)addSetNiMingBtn{
     [self.nimingBtn setImage:IMAGE_NAMED(@"shouhuo_unSel") forState:UIControlStateNormal];

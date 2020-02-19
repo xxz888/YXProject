@@ -59,6 +59,31 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestUserIsShouCangGet:YX_BLOCK;
 -(void)requestBlackGet:YX_BLOCK;
 -(void)requestPubTagPOST:YX_BLOCK;
+
+
+
+#pragma mark ==========添加商户==========
+-(void)addShopBusinessSuccess:YX_BLOCK;
+#pragma mark ==========查询商户==========
+-(void)getShopBusinessSuccess:YX_BLOCK;
+#pragma mark ==========获取商户评分列表==========
+-(void)getShopBusiness_commentSuccess:YX_BLOCK;
+#pragma mark ==========商户评分==========
+-(void)addShopBusiness_commentSuccess:YX_BLOCK;
+#pragma mark ==========商户评分及子评论点赞==========
+-(void)clickShopBusiness_comment_praiseSuccess:YX_BLOCK;
+#pragma mark ==========获取商户评分子评论列表==========
+-(void)getShopBusiness_comment_childSuccess:YX_BLOCK;
+#pragma mark ==========商户评分子评论==========
+-(void)addShopBusiness_comment_childSuccess:YX_BLOCK;
+
+
+
+
+
+
+
+
 #pragma mark ==========热门tag==========
 -(void)requestHotTagGet:YX_BLOCK;
 -(void)getAllOptionArraySuccess:(SuccessdBlockType)successBlock;
@@ -66,5 +91,6 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(NSArray *)inStartId2OutCurrentArray:(NSString *)startId2;
 //传入第二个界面id，返回第二个界面所用外层字典
 -(NSDictionary *)inStartId2OutCurrentDic:(NSString *)startId2;
+-(NSString *)inYingYeTimeOutChangeTime:(NSString *)business_days business_hours:(NSString *)business_hours;
 @end
 

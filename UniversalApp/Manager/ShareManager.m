@@ -539,7 +539,7 @@ SINGLETON_FOR_CLASS(ShareManager);
     starRateView.isAnimation = YES;
     starRateView.rateStyle = WholeStar;
     starRateView.tag = 1;
-    starRateView.currentScore = 5;
+    starRateView.currentScore = score;
     [view addSubview:starRateView];
     return starRateView;
 }

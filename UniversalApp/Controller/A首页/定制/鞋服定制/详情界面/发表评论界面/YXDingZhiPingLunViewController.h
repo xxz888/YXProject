@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITextField *xiaofeiTf;
 @property (weak, nonatomic) IBOutlet UIButton *nimingBtn;
 - (IBAction)nimingAction:(id)sender;
+@property (strong, nonatomic) NSDictionary * startDic;
 
 
 

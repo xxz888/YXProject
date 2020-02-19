@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *btn4;
 - (IBAction)btnAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
+@property (strong, nonatomic) NSDictionary * startDic;
 
 @end
 

@@ -14,7 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITableView *yxTableView;
 - (IBAction)backVcAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
-
+@property (weak, nonatomic) IBOutlet UIImageView *bottomMySelfImv;
+- (IBAction)zanAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *zanBtn;
+@property(nonatomic,strong)NSDictionary * startDic;
 @end
 
 NS_ASSUME_NONNULL_END

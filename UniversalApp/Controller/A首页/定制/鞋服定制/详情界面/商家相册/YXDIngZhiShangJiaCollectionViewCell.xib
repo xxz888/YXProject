@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="YXDIngZhiShangJiaCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="185" height="161"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="185" height="161"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homebj" translatesAutoresizingMaskIntoConstraints="NO" id="deL-tV-9dh">
+                        <rect key="frame" x="0.0" y="0.0" width="185" height="161"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HlS-Yn-fxJ">
+                        <rect key="frame" x="68.5" y="56.5" width="48" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="48" id="RpA-c5-in1"/>
+                            <constraint firstAttribute="height" constant="48" id="oXF-ot-aic"/>
+                        </constraints>
+                        <state key="normal" image="play"/>
+                        <connections>
+                            <action selector="shangjiaPlayAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="1aG-YF-Rt3"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="deL-tV-9dh" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="6Jj-8T-KXC"/>
+                <constraint firstItem="HlS-Yn-fxJ" firstAttribute="centerX" secondItem="deL-tV-9dh" secondAttribute="centerX" id="GWf-5m-qIb"/>
+                <constraint firstItem="deL-tV-9dh" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="XdJ-k1-co2"/>
+                <constraint firstAttribute="trailing" secondItem="deL-tV-9dh" secondAttribute="trailing" id="dNu-an-Wva"/>
+                <constraint firstItem="HlS-Yn-fxJ" firstAttribute="centerY" secondItem="deL-tV-9dh" secondAttribute="centerY" id="if3-tq-SKX"/>
+                <constraint firstAttribute="bottom" secondItem="deL-tV-9dh" secondAttribute="bottom" id="nuE-ak-u9d"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <size key="customSize" width="185" height="161"/>
+            <connections>
+                <outlet property="shangjiaImv" destination="deL-tV-9dh" id="CDi-UL-emb"/>
+                <outlet property="shangjiaPlayBtn" destination="HlS-Yn-fxJ" id="uK7-rB-5af"/>
+            </connections>
+            <point key="canvasLocation" x="-102" y="14"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="homebj" width="1920" height="1080"/>
+        <image name="play" width="144" height="144"/>
+    </resources>
+</document>

@@ -12,7 +12,13 @@
 #import "QiniuLoad.h"
 #import "BRAddressPickerView.h"
 
-@interface YXDingZhi4TableViewController ()<HXPhotoViewDelegate>
+@interface YXDingZhi4TableViewController ()<HXPhotoViewDelegate>{
+    NSString * _business_days;
+    NSString * _business_hours;
+    NSString * _round_the_clock;
+    NSString * _type;
+
+}
 @property (strong, nonatomic) HXPhotoManager *manager;
 @property (weak, nonatomic) HXPhotoView *photoView;
 @property (strong, nonatomic) HXDatePhotoToolManager *toolManager;
@@ -115,11 +121,25 @@
         switch (indexPath.row) {
             case 7:{
                 kWeakSelf(self);
+               
                 YXYingYeTimeViewController * vc = [[YXYingYeTimeViewController alloc]init];
+                if (_business_days.length != 0) {
+                    vc.business_days = _business_days;
+                }
+                if (_business_hours.length != 0) {
+                    vc.business_hours = _business_hours;
+                }
+                if (_round_the_clock.length != 0) {
+                    vc.round_the_clock = _round_the_clock;
+                }
                 vc.yingyeshijianblock = ^(NSDictionary * dic) {
                     weakself.yingyeshijinDic = [NSDictionary dictionaryWithDictionary:dic];
-                    [weakself.yingyeshijianBtn setTitle:dic[@"time"] forState:0];
+                    [weakself.yingyeshijianBtn setTitle:dic[@"business_hours"] forState:0];
                     [weakself.yingyeshijianBtn setTitleColor:COLOR_333333 forState:0];
+                    
+                    _business_days = dic[@"business_days"];
+                    _business_hours = dic[@"business_hours"];
+                    _round_the_clock = dic[@"round_the_clock"];
                 };
                 [self.navigationController pushViewController:vc animated:YES];
             }
@@ -135,16 +155,48 @@
     if (![self checkParmater]) {
         return;
     }
-    NSString * address = [[self.chengshiBtn.titleLabel.text append:@" "] append:self.dizhiTf.text];
-    NSDictionary * dic = @{
-        @"":self.photoImageList,
-        @"":self.mentouName.text,
-        @"":self.fendianName.text,
-        @"":self.shanghuTypeList,
-        @"":address,
-        @"":self.phoneTf.text,
-        @"":self.yingyeshijianBtn.titleLabel.text
-    };
+    kWeakSelf(self);
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    NSString * address = [self.chengshiBtn.titleLabel.text append:self.dizhiTf.text];
+    address = [address stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    [geocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error){
+      if ([placemarks count] > 0) {
+        CLPlacemark *placemark = [placemarks objectAtIndex:0];
+        CLLocationCoordinate2D coordinate = placemark.location.coordinate;
+        //图片key的数组
+          NSMutableArray * imageKeyArray = [[NSMutableArray alloc]init];
+          for (NSString * key in weakself.photoImageList) {
+              [imageKeyArray addObject:[key split:IMG_URI][1]];
+          }
+          NSString * imageKey = [imageKeyArray componentsJoinedByString:@","];
+
+          NSDictionary * dic = @{
+              @"photo_list":imageKey,
+              @"name":weakself.mentouName.text,
+              @"second_name":weakself.fendianName.text,
+              @"type":_type,
+              @"city":weakself.chengshiBtn.titleLabel.text,
+              @"site":weakself.dizhiTf.text,
+              @"phone":weakself.phoneTf.text,
+              @"business_days":_business_days,
+              @"business_hours":_business_hours,
+              @"round_the_clock":_round_the_clock,
+              @"longitude":[NSString stringWithFormat:@"%f",coordinate.longitude],
+              @"latitude": [NSString stringWithFormat:@"%f",coordinate.latitude],
+              @"obj":@"1",
+          };
+          [weakself requestAddShopBusiness:dic];
+      }
+    }];
+
+  
+}
+-(void)requestAddShopBusiness:(NSDictionary *)dic{
+    kWeakSelf(self);
+    [YXPLUS_MANAGER addShopBusinessSuccess:dic success:^(id object) {
+        [QMUITips showSucceed:@"添加成功"];
+        [weakself.navigationController popViewControllerAnimated:YES];
+    }];
 }
 -(BOOL)checkParmater{
     if (self.photoImageList.count == 0) {
@@ -153,7 +205,7 @@
     }else if (self.mentouName.text.length == 0){
         [QMUITips showInfo:@"请填写商户名"];
         return NO;
-    }else if (self.shanghuTypeList.count == 0){
+    }else if (_type.length == 0){
         [QMUITips showInfo:@"请选择商户类型"];
         return NO;
     }else if ([self.chengshiBtn.titleLabel.text isEqualToString:@"请选择城市"]){
@@ -165,7 +217,8 @@
     }else if (self.phoneTf.text.length == 0){
         [QMUITips showInfo:@"请填写联系方式"];
         return NO;
-        }else if ([self.yingyeshijianBtn.titleLabel.text isEqualToString:@"请选择营业时间"]){
+    }else if ([self.yingyeshijianBtn.titleLabel.text isEqualToString:@"请选择营业时间"]
+              || _business_days.length == 0 || _business_hours.length == 0 || _round_the_clock.length == 0){
         [QMUITips showInfo:@"请选择营业时间"];
         return NO;
     }
@@ -182,34 +235,33 @@
     [[UIApplication sharedApplication].keyWindow endEditing:YES];
    //1010,1020,大于1000代表未选择，小于1000代表选择
     //101,102
-    if (btn.tag > 1000) {
-        btn.tag = btn.tag - 1000;
-        [self selectBtnStatus:btn];
-    }else{
-        btn.tag = btn.tag + 1000;
-        [self unSelectBtnStatus:btn];
+    _type = [NSString stringWithFormat:@"%ld",btn.tag - 100];
+    UIButton * selectBtn1 = [self.tableView viewWithTag:101];
+    UIButton * selectBtn2 = [self.tableView viewWithTag:102];
+    UIButton * selectBtn3 = [self.tableView viewWithTag:103];
+
+    if (btn.tag == 101) {
+        [self selectBtnStatus:selectBtn1];
+        [self unSelectBtnStatus:selectBtn2];
+        [self unSelectBtnStatus:selectBtn3];
     }
-    
-    [self.shanghuTypeList removeAllObjects];
-    UIButton * selectBtn1 = [btn viewWithTag:101];
-    if (selectBtn1) {
-        [self.shanghuTypeList addObject:@(selectBtn1.tag)];
+    if (btn.tag == 102) {
+        [self unSelectBtnStatus:selectBtn1];
+        [self selectBtnStatus:selectBtn2];
+        [self unSelectBtnStatus:selectBtn3];
     }
-    UIButton * selectBtn2 = [btn viewWithTag:102];
-    if (selectBtn2) {
-        [self.shanghuTypeList addObject:@(selectBtn2.tag)];
-    }
-    UIButton * selectBtn3 = [btn viewWithTag:103];
-    if (selectBtn3) {
-        [self.shanghuTypeList addObject:@(selectBtn3.tag)];
+    if (btn.tag == 103) {
+        [self unSelectBtnStatus:selectBtn1];
+        [self unSelectBtnStatus:selectBtn2];
+        [self selectBtnStatus:selectBtn3];
     }
 }
--(void)selectBtnStatus:(UIButton *)btn{
+-(void)unSelectBtnStatus:(UIButton *)btn{
     ViewBorderRadius(btn, 8, 1, KClearColor);
     [btn setTitleColor:COLOR_BBBBBB forState:0];
     [btn setBackgroundColor:COLOR_F5F5F5];
 }
--(void)unSelectBtnStatus:(UIButton *)btn{
+-(void)selectBtnStatus:(UIButton *)btn{
     ViewBorderRadius(btn, 8, 1, KClearColor);
     [btn setTitleColor:KWhiteColor forState:0];
     [btn setBackgroundColor:SEGMENT_COLOR];

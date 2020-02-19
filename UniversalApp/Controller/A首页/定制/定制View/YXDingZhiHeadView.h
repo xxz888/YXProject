@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-typedef void(^tapView1Block)(void);
-typedef void(^tapView2Block)(void);
-typedef void(^tapView3Block)(void);
+typedef void(^tapView1Block)(NSString *);
+typedef void(^tapView2Block)(NSString *);
+typedef void(^tapView3Block)(NSString *);
 typedef void(^tapView4Block)(void);
 
 @interface YXDingZhiHeadView : UIView

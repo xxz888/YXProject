@@ -11,11 +11,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^PingLunBlock)(void);
+typedef void(^ClickCountViewBlock)(void);
+
 @interface YXDingZhiDetailView : UIView
 - (IBAction)pinglunAction:(id)sender;
 @property(nonatomic,copy)PingLunBlock pingLunBlock;
+@property(nonatomic,copy)ClickCountViewBlock clickCountViewBlock;
+@property (weak, nonatomic) IBOutlet UIImageView *cellImv;
+
 @property (weak, nonatomic) IBOutlet UILabel *cellTitle;
-@property (weak, nonatomic) IBOutlet UIView *starView;
+@property (weak, nonatomic) IBOutlet UIView * starView;
 
 @property (weak, nonatomic) IBOutlet UILabel *cellTime;
 @property (weak, nonatomic) IBOutlet UILabel *cellAdress;
@@ -24,7 +29,11 @@ typedef void(^PingLunBlock)(void);
 @property (weak, nonatomic) IBOutlet UIView *cellAdressBottomView;
 @property (nonatomic, strong)JXMapNavigationView *mapNavigationView;
 
+@property (weak, nonatomic) IBOutlet UIView *countView;
+@property (weak, nonatomic) IBOutlet UILabel *countLbl;
 
+@property (strong, nonatomic) NSDictionary * startDic;
+-(void)setCellData;
 @end
 
 NS_ASSUME_NONNULL_END
